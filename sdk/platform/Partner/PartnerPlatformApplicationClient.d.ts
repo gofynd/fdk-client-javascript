@@ -5,11 +5,12 @@ declare class Partner {
     applicationId: any;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.extensionId - Extension id
+     * @param {string} arg.extensionId - Extension id for which proxy URL will
+     *   be generated
      * @param {AddProxyReq} arg.body
      * @returns {Promise<AddProxyResponse>} - Success response
-     * @summary: Add proxy path for external url
-     * @description: Add proxy path for external url
+     * @summary: Create proxy URL for the external URL
+     * @description: Use this API to generate proxy URL for the external URL
      */
     addProxyPath({ extensionId, body }?: {
         extensionId: string;
@@ -17,11 +18,34 @@ declare class Partner {
     }): Promise<AddProxyResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.extensionId - Extension id
+     * @param {string} [arg.extensionId] - Extension id
+     * @returns {Promise<getProxyPathRes>} - Success response
+     * @summary: Proxy
+     * @description: Use this API to get proxy url
+     */
+    getProxyPath({ extensionId }?: {
+        extensionId?: string;
+    }): Promise<getProxyPathRes>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.extensionId] - Extension id
+     * @param {string} [arg.attachedPath] - Application id
+     * @returns {Promise<AddProxyResponse>} - Success response
+     * @summary: Proxy
+     * @description: Use this API to get proxy url
+     */
+    getProxyPathAttachedPath({ extensionId, attachedPath }?: {
+        extensionId?: string;
+        attachedPath?: string;
+    }): Promise<AddProxyResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.extensionId - Extension id for which proxy URL needs
+     *   to be removed
      * @param {string} arg.attachedPath - Attachaed path slug
      * @returns {Promise<RemoveProxyResponse>} - Success response
-     * @summary: Remove proxy path for external url
-     * @description: Remove proxy path for external url
+     * @summary: Remove proxy URL for the external URL
+     * @description: Use this API to remove the proxy URL which is already generated for the external URL
      */
     removeProxyPath({ extensionId, attachedPath }?: {
         extensionId: string;

@@ -1,11 +1,6 @@
 const Joi = require("joi");
 
 class RewardsModel {
-  static ActionPageParams() {
-    return Joi.object({
-      slug: Joi.array().items(Joi.string().allow("")),
-    });
-  }
   static Asset() {
     return Joi.object({
       aspect_ratio: Joi.string().allow(""),
@@ -124,8 +119,8 @@ class RewardsModel {
   }
   static RedeemReferralCodeRequest() {
     return Joi.object({
-      device_id: Joi.string().allow("").required(),
-      referral_code: Joi.string().allow("").required(),
+      device_id: Joi.string().allow(""),
+      referral_code: Joi.string().allow(""),
     });
   }
   static RedeemReferralCodeResponse() {
@@ -142,6 +137,7 @@ class RewardsModel {
       referral: RewardsModel.Offer(),
       referrer_info: Joi.string().allow(""),
       share: RewardsModel.ShareMessages(),
+      terms_conditions_link: Joi.string().allow(""),
       user: RewardsModel.ReferralDetailsUser(),
     });
   }
@@ -170,7 +166,7 @@ class RewardsModel {
   }
   static ShareMessages() {
     return Joi.object({
-      email: Joi.string().allow(""),
+      email: Joi.number(),
       facebook: Joi.string().allow(""),
       fallback: Joi.string().allow(""),
       message: Joi.string().allow(""),

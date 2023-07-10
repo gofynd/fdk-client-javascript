@@ -2,6 +2,7 @@ export = LeadModel;
 declare class LeadModel {
     static AddTicketPayload(): any;
     static AgentChangePayload(): any;
+    static CategoryData(): any;
     static CloseVideoRoomResponse(): any;
     static CommunicationDetails(): any;
     static CreateCustomFormPayload(): any;
@@ -15,10 +16,12 @@ declare class LeadModel {
     static EditCustomFormPayload(): any;
     static EditTicketPayload(): any;
     static Email(): any;
+    static FeedbackForm(): any;
     static FeedbackResponseItem(): any;
     static Filter(): any;
     static GetParticipantsInsideVideoRoomResponse(): any;
     static GetTokenForVideoRoomResponse(): any;
+    static IntegrationConfig(): any;
     static NotifyUser(): any;
     static Page(): any;
     static Participant(): any;
@@ -47,5 +50,6 @@ declare class LeadModel {
     static HistoryTypeEnum(): any;
     static PriorityEnum(): any;
     static TicketAssetTypeEnum(): any;
+    static TicketIntegrationDetails(): any;
     static TicketSourceEnum(): any;
 }

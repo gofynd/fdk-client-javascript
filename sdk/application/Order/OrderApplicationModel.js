@@ -48,16 +48,19 @@ class OrderModel {
       applied_promos: Joi.array().items(OrderModel.AppliedPromos()),
       can_cancel: Joi.boolean(),
       can_return: Joi.boolean(),
+      currency_code: Joi.string().allow(""),
+      currency_symbol: Joi.string().allow(""),
       current_status: OrderModel.CurrentStatus(),
-      delivery_date: Joi.string().allow(""),
+      delivery_date: Joi.string().allow("").allow(null),
       financial_breakup: Joi.array().items(OrderModel.FinancialBreakup()),
       id: Joi.number(),
       item: OrderModel.Item(),
       line_number: Joi.number(),
+      meta: Joi.any(),
       parent_promo_bags: Joi.any(),
       prices: OrderModel.Prices(),
       quantity: Joi.number(),
-      returnable_date: Joi.string().allow(""),
+      returnable_date: Joi.string().allow("").allow(null),
       seller_identifier: Joi.string().allow(""),
     });
   }
@@ -79,6 +82,8 @@ class OrderModel {
   }
   static BreakupValues() {
     return Joi.object({
+      currency_code: Joi.string().allow(""),
+      currency_symbol: Joi.string().allow(""),
       display: Joi.string().allow(""),
       name: Joi.string().allow(""),
       value: Joi.number(),
@@ -86,7 +91,7 @@ class OrderModel {
   }
   static CurrentStatus() {
     return Joi.object({
-      journey_type: Joi.string().allow(""),
+      journey_type: Joi.string().allow("").allow(null),
       name: Joi.string().allow(""),
       status: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
@@ -118,11 +123,13 @@ class OrderModel {
       city: Joi.string().allow(""),
       contact_person: Joi.string().allow(""),
       country: Joi.string().allow(""),
+      country_iso_code: Joi.string().allow(""),
+      country_phone_code: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
       email: Joi.string().allow(""),
       landmark: Joi.string().allow(""),
-      latitude: Joi.number(),
-      longitude: Joi.number(),
+      latitude: Joi.number().allow(null),
+      longitude: Joi.number().allow(null),
       name: Joi.string().allow(""),
       phone: Joi.string().allow(""),
       pincode: Joi.string().allow(""),
@@ -223,6 +230,9 @@ class OrderModel {
       code: Joi.string().allow(""),
       id: Joi.number(),
       image: Joi.array().items(Joi.string().allow("")),
+      l1_categories: Joi.array().items(Joi.string().allow("")),
+      l2_categories: Joi.array().items(Joi.string().allow("")),
+      l3_category_name: Joi.string().allow(""),
       name: Joi.string().allow(""),
       seller_identifier: Joi.string().allow(""),
       size: Joi.string().allow(""),
@@ -298,6 +308,8 @@ class OrderModel {
       cod_charges: Joi.number(),
       coupon_effective_discount: Joi.number(),
       coupon_value: Joi.number(),
+      currency_code: Joi.string().allow(""),
+      currency_symbol: Joi.string().allow(""),
       delivery_charge: Joi.number(),
       discount: Joi.number(),
       fynd_credits: Joi.number(),
@@ -436,19 +448,20 @@ class OrderModel {
       comment: Joi.string().allow(""),
       custom_meta: Joi.array().items(Joi.any()),
       delivery_address: OrderModel.DeliveryAddress(),
-      delivery_date: Joi.string().allow(""),
+      delivery_date: Joi.string().allow("").allow(null),
       dp_name: Joi.string().allow(""),
       fulfilling_company: OrderModel.FulfillingCompany(),
       fulfilling_store: OrderModel.FulfillingStore(),
       invoice: OrderModel.Invoice(),
       need_help_url: Joi.string().allow(""),
       order_id: Joi.string().allow(""),
-      order_type: Joi.string().allow(""),
+      order_type: Joi.string().allow("").allow(null),
       payment: OrderModel.ShipmentPayment(),
       prices: OrderModel.Prices(),
       promise: OrderModel.Promise(),
       refund_details: Joi.any(),
-      returnable_date: Joi.string().allow(""),
+      return_meta: Joi.any(),
+      returnable_date: Joi.string().allow("").allow(null),
       shipment_created_at: Joi.string().allow(""),
       shipment_id: Joi.string().allow(""),
       shipment_status: OrderModel.ShipmentStatus(),
@@ -475,6 +488,7 @@ class OrderModel {
     return Joi.object({
       hex_code: Joi.string().allow(""),
       title: Joi.string().allow(""),
+      value: Joi.string().allow("").allow(null),
     });
   }
   static ShipmentTotalDetails() {
@@ -491,10 +505,12 @@ class OrderModel {
   }
   static ShipmentUserInfo() {
     return Joi.object({
+      email: Joi.string().allow(""),
       first_name: Joi.string().allow(""),
       gender: Joi.string().allow(""),
       last_name: Joi.string().allow(""),
       mobile: Joi.string().allow(""),
+      name: Joi.string().allow(""),
     });
   }
   static StatuesRequest() {
@@ -534,6 +550,7 @@ class OrderModel {
       status: Joi.string().allow(""),
       time: Joi.string().allow(""),
       tracking_details: Joi.array().items(OrderModel.NestedTrackingDetails()),
+      value: Joi.string().allow("").allow(null),
     });
   }
   static UpdateShipmentStatusRequest() {
@@ -548,7 +565,9 @@ class OrderModel {
   static UserInfo() {
     return Joi.object({
       email: Joi.string().allow(""),
+      first_name: Joi.string().allow(""),
       gender: Joi.string().allow(""),
+      last_name: Joi.string().allow(""),
       mobile: Joi.string().allow(""),
       name: Joi.string().allow(""),
     });

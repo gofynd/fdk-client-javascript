@@ -1241,7 +1241,7 @@ Use this API to retrieve a POS order and all its details such as tracking detail
 
 
 
-[OrderList](#OrderList)
+[OrderById](#OrderById)
 
 Success. Check the example shown below or refer `PosOrderById` for more details.
 
@@ -2551,12 +2551,15 @@ Success, the code is valid and returns a session token
  | applied_promos | [[AppliedPromos](#AppliedPromos)]? |  yes  |  |
  | can_cancel | boolean? |  yes  |  |
  | can_return | boolean? |  yes  |  |
+ | currency_code | string? |  yes  |  |
+ | currency_symbol | string? |  yes  |  |
  | current_status | [CurrentStatus](#CurrentStatus)? |  yes  |  |
  | delivery_date | string? |  yes  |  |
  | financial_breakup | [[FinancialBreakup](#FinancialBreakup)]? |  yes  |  |
  | id | number? |  yes  |  |
  | item | [Item](#Item)? |  yes  |  |
  | line_number | number? |  yes  |  |
+ | meta | string? |  yes  |  |
  | parent_promo_bags | string? |  yes  |  |
  | prices | [Prices](#Prices)? |  yes  |  |
  | quantity | number? |  yes  |  |
@@ -2594,6 +2597,8 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | currency_code | string? |  yes  |  |
+ | currency_symbol | string? |  yes  |  |
  | display | string? |  yes  |  |
  | name | string? |  yes  |  |
  | value | number? |  yes  |  |
@@ -2649,6 +2654,8 @@ Success, the code is valid and returns a session token
  | city | string? |  yes  |  |
  | contact_person | string? |  yes  |  |
  | country | string? |  yes  |  |
+ | country_iso_code | string? |  yes  |  |
+ | country_phone_code | string? |  yes  |  |
  | created_at | string? |  yes  |  |
  | email | string? |  yes  |  |
  | landmark | string? |  yes  |  |
@@ -2794,6 +2801,9 @@ Success, the code is valid and returns a session token
  | code | string? |  yes  |  |
  | id | number? |  yes  |  |
  | image | [string]? |  yes  |  |
+ | l1_categories | [string]? |  yes  |  |
+ | l2_categories | [string]? |  yes  |  |
+ | l3_category_name | string? |  yes  |  |
  | name | string? |  yes  |  |
  | seller_identifier | string? |  yes  |  |
  | size | string? |  yes  |  |
@@ -2905,6 +2915,8 @@ Success, the code is valid and returns a session token
  | cod_charges | number? |  yes  |  |
  | coupon_effective_discount | number? |  yes  |  |
  | coupon_value | number? |  yes  |  |
+ | currency_code | string? |  yes  |  |
+ | currency_symbol | string? |  yes  |  |
  | delivery_charge | number? |  yes  |  |
  | discount | number? |  yes  |  |
  | fynd_credits | number? |  yes  |  |
@@ -3127,6 +3139,7 @@ Success, the code is valid and returns a session token
  | prices | [Prices](#Prices)? |  yes  |  |
  | promise | [Promise](#Promise)? |  yes  |  |
  | refund_details | string? |  yes  |  |
+ | return_meta | string? |  yes  |  |
  | returnable_date | string? |  yes  |  |
  | shipment_created_at | string? |  yes  |  |
  | shipment_id | string? |  yes  |  |
@@ -3162,6 +3175,7 @@ Success, the code is valid and returns a session token
  | ---------- | ---- | -------- | ----------- |
  | hex_code | string? |  yes  |  |
  | title | string? |  yes  |  |
+ | value | string? |  yes  |  |
  
 
 ---
@@ -3190,10 +3204,12 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | email | string? |  yes  |  |
  | first_name | string? |  yes  |  |
  | gender | string? |  yes  |  |
  | last_name | string? |  yes  |  |
  | mobile | string? |  yes  |  |
+ | name | string? |  yes  |  |
  
 
 ---
@@ -3253,6 +3269,7 @@ Success, the code is valid and returns a session token
  | status | string? |  yes  |  |
  | time | string? |  yes  |  |
  | tracking_details | [[NestedTrackingDetails](#NestedTrackingDetails)]? |  yes  |  |
+ | value | string? |  yes  |  |
  
 
 ---
@@ -3275,7 +3292,9 @@ Success, the code is valid and returns a session token
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | email | string? |  yes  |  |
+ | first_name | string? |  yes  |  |
  | gender | string? |  yes  |  |
+ | last_name | string? |  yes  |  |
  | mobile | string? |  yes  |  |
  | name | string? |  yes  |  |
  

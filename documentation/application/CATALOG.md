@@ -611,6 +611,7 @@ Get the items in a collection
 // Promise
 const promise = applicationClient.catalog.getCollectionItemsBySlug({  slug : value,
  f : value,
+ q : value,
  filters : value,
  sortOn : value,
  pageId : value,
@@ -621,6 +622,7 @@ const promise = applicationClient.catalog.getCollectionItemsBySlug({  slug : val
 // Async/Await
 const data = await applicationClient.catalog.getCollectionItemsBySlug({  slug : value,
  f : value,
+ q : value,
  filters : value,
  sortOn : value,
  pageId : value,
@@ -637,6 +639,7 @@ const data = await applicationClient.catalog.getCollectionItemsBySlug({  slug : 
 | --------- | -----  | -------- | ----------- | 
 | slug | string | yes | A short, human-readable, URL-friendly identifier of a collection. You can get slug value from the endpoint /service/application/catalog/v1.0/collections/. |    
 | f | string | no | The search filter parameters. Filter parameters will be passed in f parameter as shown in the example below. Double Pipe (\|\|) denotes the OR condition, whereas Triple-colon (:::) indicates a new filter paramater applied as an AND condition. |    
+| q | string | no | The search query for entering partial or full name of product, brand, category, or collection. |    
 | filters | boolean | no | This is a boolean value, True for fetching all filter parameters and False for disabling the filter parameters. |    
 | sortOn | string | no | The order in which the list of products should be sorted, e.g. popularity, price, latest and discount, in either ascending or descending order. See the supported values below. |    
 | pageId | string | no | Page ID to retrieve next set of results. |    
@@ -1017,12 +1020,14 @@ List all the collections
 // Promise
 const promise = applicationClient.catalog.getCollections({  pageNo : value,
  pageSize : value,
- tag : value });
+ tag : value,
+ q : value });
 
 // Async/Await
 const data = await applicationClient.catalog.getCollections({  pageNo : value,
  pageSize : value,
- tag : value });
+ tag : value,
+ q : value });
 ```
 
 
@@ -1033,7 +1038,8 @@ const data = await applicationClient.catalog.getCollections({  pageNo : value,
 | --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | The page number to navigate through the given set of results. |    
 | pageSize | number | no | The number of items to retrieve in each page. |    
-| tag | Array<string> | no | List of tags  to filter collections |  
+| tag | Array<string> | no | List of tags  to filter collections |    
+| q | string | no | Name of the collection to filter collection |  
 
 
 
@@ -8546,6 +8552,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
  | categories | [[ProductBrand](#ProductBrand)]? |  yes  |  |
  | category_map | [ProductCategoryMap](#ProductCategoryMap)? |  yes  |  |
  | color | string? |  yes  |  |
+ | custom_order | [ProductDetailCustomOrder](#ProductDetailCustomOrder)? |  yes  |  |
  | description | string? |  yes  |  |
  | discount | string? |  yes  |  |
  | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)]? |  yes  |  |
@@ -8560,6 +8567,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
  | name | string? |  yes  |  |
  | net_quantity | [NetQuantity](#NetQuantity)? |  yes  |  |
  | price | [ProductListingPrice](#ProductListingPrice)? |  yes  |  |
+ | product_group_tag | [string]? |  yes  |  |
  | product_online_date | string? |  yes  |  |
  | rating | number? |  yes  |  |
  | rating_count | number? |  yes  |  |
@@ -8583,6 +8591,17 @@ Success. Returns a response object. Check the example shown below or refer `Foll
  | key | string? |  yes  |  |
  | type | string? |  yes  |  |
  | value | string? |  yes  |  |
+ 
+
+---
+
+#### [ProductDetailCustomOrder](#ProductDetailCustomOrder)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_custom_order | boolean? |  yes  |  |
+ | manufacturing_time | number? |  yes  |  |
+ | manufacturing_time_unit | string? |  yes  |  |
  
 
 ---
@@ -8765,6 +8784,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
  | categories | [[ProductBrand](#ProductBrand)]? |  yes  |  |
  | category_map | [ProductCategoryMap](#ProductCategoryMap)? |  yes  |  |
  | color | string? |  yes  |  |
+ | custom_order | [ProductDetailCustomOrder](#ProductDetailCustomOrder)? |  yes  |  |
  | description | string? |  yes  |  |
  | discount | string? |  yes  |  |
  | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)]? |  yes  |  |
@@ -8780,6 +8800,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
  | name | string? |  yes  |  |
  | net_quantity | [NetQuantity](#NetQuantity)? |  yes  |  |
  | price | [ProductListingPrice](#ProductListingPrice)? |  yes  |  |
+ | product_group_tag | [string]? |  yes  |  |
  | product_online_date | string? |  yes  |  |
  | rating | number? |  yes  |  |
  | rating_count | number? |  yes  |  |
@@ -8954,7 +8975,9 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | display | string? |  yes  |  |
  | is_selected | boolean? |  yes  |  |
+ | logo | string? |  yes  |  |
  | name | string? |  yes  |  |
  | value | string? |  yes  |  |
  

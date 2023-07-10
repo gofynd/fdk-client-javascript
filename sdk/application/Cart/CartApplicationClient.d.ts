@@ -9,6 +9,7 @@ declare class Cart {
         applyRewardPoints: string;
         checkoutCart: string;
         checkoutCartV2: string;
+        deleteCart: string;
         getAddressById: string;
         getAddresses: string;
         getBulkDiscountOffers: string;
@@ -48,19 +49,19 @@ declare class Cart {
      * @param {boolean} [arg.i] -
      * @param {boolean} [arg.b] -
      * @param {string} [arg.areaCode] -
-     * @param {string} [arg.id] -
      * @param {boolean} [arg.buyNow] -
+     * @param {string} [arg.id] -
      * @param {AddCartRequest} arg.body
      * @returns {Promise<AddCartDetailResponse>} - Success response
      * @summary: Add items to cart
      * @description: Use this API to add items to the cart.
      */
-    addItems({ body, i, b, areaCode, id, buyNow }?: {
+    addItems({ body, i, b, areaCode, buyNow, id }?: {
         i?: boolean;
         b?: boolean;
         areaCode?: string;
-        id?: string;
         buyNow?: boolean;
+        id?: string;
         body: AddCartRequest;
     }): Promise<AddCartDetailResponse>;
     /**
@@ -125,6 +126,16 @@ declare class Cart {
         buyNow?: boolean;
         body: CartCheckoutDetailV2Request;
     }): Promise<CartCheckoutResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.id] - The unique identifier of the cart.
+     * @returns {Promise<DeleteCartDetailResponse>} - Success response
+     * @summary: Delete cart once user made successful checkout
+     * @description: Use this API to delete the cart.
+     */
+    deleteCart({ id }?: {
+        id?: string;
+    }): Promise<DeleteCartDetailResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id -
@@ -439,11 +450,15 @@ declare class Cart {
      * @param {string} [arg.paymentIdentifier] -
      * @param {string} [arg.aggregatorName] -
      * @param {string} [arg.merchantCode] -
+     * @param {string} [arg.iin] -
+     * @param {string} [arg.network] -
+     * @param {string} [arg.type] -
+     * @param {string} [arg.cardId] -
      * @returns {Promise<PaymentCouponValidate>} - Success response
      * @summary: Verify the coupon eligibility against the payment mode
      * @description: Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc.
      */
-    validateCouponForPayment({ id, buyNow, addressId, paymentMode, paymentIdentifier, aggregatorName, merchantCode, }?: {
+    validateCouponForPayment({ id, buyNow, addressId, paymentMode, paymentIdentifier, aggregatorName, merchantCode, iin, network, type, cardId, }?: {
         id?: string;
         buyNow?: boolean;
         addressId?: string;
@@ -451,5 +466,9 @@ declare class Cart {
         paymentIdentifier?: string;
         aggregatorName?: string;
         merchantCode?: string;
+        iin?: string;
+        network?: string;
+        type?: string;
+        cardId?: string;
     }): Promise<PaymentCouponValidate>;
 }

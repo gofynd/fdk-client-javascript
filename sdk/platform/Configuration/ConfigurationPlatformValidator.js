@@ -75,7 +75,6 @@ class ConfigurationValidator {
       id: Joi.string().allow("").required(),
       level: Joi.string().allow("").required(),
       uid: Joi.number().required(),
-      permission: Joi.string().allow(""),
     }).required();
   }
 

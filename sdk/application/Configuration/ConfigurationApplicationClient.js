@@ -122,6 +122,7 @@ class Configuration {
    *   retrieving staff members working at a particular ordering store.
    * @param {string} [arg.user] - Mongo ID of the staff. Helps in retrieving
    *   the details of a particular staff member.
+   * @param {string} [arg.userName] - User name of the member
    * @returns {Promise<AppStaffListResponse>} - Success response
    * @summary: Get a list of staff.
    * @description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
@@ -132,9 +133,10 @@ class Configuration {
     orderIncent,
     orderingStore,
     user,
+    userName,
   } = {}) {
     const { error } = ConfigurationValidator.getAppStaffList().validate(
-      { pageNo, pageSize, orderIncent, orderingStore, user },
+      { pageNo, pageSize, orderIncent, orderingStore, user, userName },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -145,7 +147,7 @@ class Configuration {
     const {
       error: warrning,
     } = ConfigurationValidator.getAppStaffList().validate(
-      { pageNo, pageSize, orderIncent, orderingStore, user },
+      { pageNo, pageSize, orderIncent, orderingStore, user, userName },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -162,6 +164,7 @@ class Configuration {
     query_params["order_incent"] = orderIncent;
     query_params["ordering_store"] = orderingStore;
     query_params["user"] = user;
+    query_params["user_name"] = userName;
 
     const xHeaders = {};
 
@@ -204,6 +207,7 @@ class Configuration {
    *   retrieving staff members working at a particular ordering store.
    * @param {string} [arg.user] - Mongo ID of the staff. Helps in retrieving
    *   the details of a particular staff member.
+   * @param {string} [arg.userName] - User name of the member
    * @summary: Get a list of staff.
    * @description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
    */
@@ -212,6 +216,7 @@ class Configuration {
     orderIncent,
     orderingStore,
     user,
+    userName,
   } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
@@ -224,6 +229,7 @@ class Configuration {
         orderIncent: orderIncent,
         orderingStore: orderingStore,
         user: user,
+        userName: userName,
       });
       paginator.setPaginator({
         hasNext: data.page.has_next ? true : false,
@@ -309,8 +315,8 @@ class Configuration {
   /**
    * @param {Object} arg - Arg object.
    * @returns {Promise<Application>} - Success response
-   * @summary: Get current application details
-   * @description: Use this API to get the current application details which includes configurations that indicate the status of the website, domain, ID, tokens, images, etc.
+   * @summary: Get current sales channel details
+   * @description: Use this API to get the current sales channel details which includes configurations that indicate the status of the website, domain, ID, tokens, images, etc.
    */
   async getApplication({} = {}) {
     const { error } = ConfigurationValidator.getApplication().validate(
@@ -373,7 +379,7 @@ class Configuration {
   /**
    * @param {Object} arg - Arg object.
    * @returns {Promise<ApplicationDetail>} - Success response
-   * @summary: Get basic application details
+   * @summary: Get basic details of the application
    * @description: Use this API to retrieve only the basic details of the application which includes channel name, description, banner, logo, favicon, domain details, etc.
    */
   async getBasicDetails({} = {}) {
@@ -755,7 +761,7 @@ class Configuration {
    * @param {Object} arg - Arg object.
    * @returns {Promise<LanguageResponse>} - Success response
    * @summary: Get list of languages
-   * @description: Use this API to get a list of languages supported in the application.
+   * @description: Use this API to get a list of languages supported in the application
    */
   async getLanguages({} = {}) {
     const { error } = ConfigurationValidator.getLanguages().validate(
@@ -886,7 +892,7 @@ class Configuration {
    *   page. Default value is 10.
    * @param {string} [arg.q] - Store code or name of the ordering store.
    * @returns {Promise<OrderingStores>} - Success response
-   * @summary: Get deployment stores
+   * @summary: Get all deployment stores
    * @description: Use this API to retrieve the details of all the deployment stores (the selling locations where the application will be utilized for placing orders).
    */
   async getOrderingStores({ pageNo, pageSize, q } = {}) {
@@ -955,7 +961,7 @@ class Configuration {
    * @param {number} [arg.pageSize] - The number of items to retrieve in each
    *   page. Default value is 10.
    * @param {string} [arg.q] - Store code or name of the ordering store.
-   * @summary: Get deployment stores
+   * @summary: Get all deployment stores
    * @description: Use this API to retrieve the details of all the deployment stores (the selling locations where the application will be utilized for placing orders).
    */
   getOrderingStoresPaginator({ pageSize, q } = {}) {
@@ -982,8 +988,8 @@ class Configuration {
   /**
    * @param {Object} arg - Arg object.
    * @returns {Promise<ApplicationAboutResponse>} - Success response
-   * @summary: Get application, owner and seller information
-   * @description: Use this API to get the current application details which includes channel name, description, banner, logo, favicon, domain details, etc. This API also retrieves the seller and owner information such as address, email address, and phone number.
+   * @summary: Get sales channel, owner and seller information
+   * @description: Use this API to get the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, etc. This API also retrieves the seller and owner information such as address, email address, and phone number.
    */
   async getOwnerInfo({} = {}) {
     const { error } = ConfigurationValidator.getOwnerInfo().validate(

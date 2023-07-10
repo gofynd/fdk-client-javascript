@@ -49,6 +49,18 @@ declare class Billing {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.extensionId - Extension _id
+     * @param {CreateOneTimeCharge} arg.body
+     * @returns {Promise<CreateOneTimeChargeResponse>} - Success response
+     * @summary: Create one time subscription charge
+     * @description: Register one time subscription charge for a seller of your extension.
+     */
+    createOneTimeCharge({ extensionId, body }?: {
+        extensionId: string;
+        body: CreateOneTimeCharge;
+    }): Promise<CreateOneTimeChargeResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.extensionId - Extension _id
      * @param {CreateSubscriptionCharge} arg.body
      * @returns {Promise<CreateSubscriptionResponse>} - Success response
      * @summary: Create subscription charge
@@ -58,6 +70,18 @@ declare class Billing {
         extensionId: string;
         body: CreateSubscriptionCharge;
     }): Promise<CreateSubscriptionResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.extensionId - Extension _id
+     * @param {string} arg.chargeId - Standalone charge _id
+     * @returns {Promise<OneTimeChargeEntity>} - Success response
+     * @summary: Get subscription charge details
+     * @description: Get created subscription charge details
+     */
+    getChargeDetails({ extensionId, chargeId }?: {
+        extensionId: string;
+        chargeId: string;
+    }): Promise<OneTimeChargeEntity>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<SubscriptionCustomer>} - Success response

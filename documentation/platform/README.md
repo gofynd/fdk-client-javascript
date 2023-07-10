@@ -16,10 +16,9 @@
 * [CompanyProfile](COMPANYPROFILE.md) -  
 * [FileStorage](FILESTORAGE.md) - File Storage 
 * [Share](SHARE.md) - Short link and QR Code 
-* [Inventory](INVENTORY.md) -  
 * [Configuration](CONFIGURATION.md) - Application configuration apis 
 * [Cart](CART.md) - Cart APIs 
-* [Rewards](REWARDS.md) - Rewards 
+* [Rewards](REWARDS.md) - Earn and redeem reward points 
 * [Discount](DISCOUNT.md) - Discount 
 * [Partner](PARTNER.md) - Partner configuration apis 
 * [Webhook](WEBHOOK.md) - Webhook dispatcher with retry and one event to many subscriber vice versa 

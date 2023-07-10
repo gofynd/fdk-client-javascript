@@ -13,8 +13,8 @@ class CartValidator {
       i: Joi.boolean(),
       b: Joi.boolean(),
       areaCode: Joi.string().allow(""),
-      id: Joi.string().allow(""),
       buyNow: Joi.boolean(),
+      id: Joi.string().allow(""),
       body: CartModel.AddCartRequest().required(),
     }).required();
   }
@@ -52,6 +52,12 @@ class CartValidator {
       buyNow: Joi.boolean(),
       body: CartModel.CartCheckoutDetailV2Request().required(),
     }).required();
+  }
+
+  static deleteCart() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+    });
   }
 
   static getAddressById() {
@@ -230,6 +236,10 @@ class CartValidator {
       paymentIdentifier: Joi.string().allow(""),
       aggregatorName: Joi.string().allow(""),
       merchantCode: Joi.string().allow(""),
+      iin: Joi.string().allow(""),
+      network: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      cardId: Joi.string().allow(""),
     });
   }
 }

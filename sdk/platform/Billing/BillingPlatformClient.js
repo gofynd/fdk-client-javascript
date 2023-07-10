@@ -284,6 +284,73 @@ class Billing {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.extensionId - Extension _id
+   * @param {CreateOneTimeCharge} arg.body
+   * @returns {Promise<CreateOneTimeChargeResponse>} - Success response
+   * @summary: Create one time subscription charge
+   * @description: Register one time subscription charge for a seller of your extension.
+   */
+  async createOneTimeCharge({ extensionId, body } = {}) {
+    const { error } = BillingValidator.createOneTimeCharge().validate(
+      {
+        extensionId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = BillingValidator.createOneTimeCharge().validate(
+      {
+        extensionId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for createOneTimeCharge",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/billing/v1.0/company/${this.config.companyId}/extension/${extensionId}/one_time_charge`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = BillingModel.CreateOneTimeChargeResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for createOneTimeCharge",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.extensionId - Extension _id
    * @param {CreateSubscriptionCharge} arg.body
    * @returns {Promise<CreateSubscriptionResponse>} - Success response
    * @summary: Create subscription charge
@@ -343,6 +410,73 @@ class Billing {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for createSubscriptionCharge",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.extensionId - Extension _id
+   * @param {string} arg.chargeId - Standalone charge _id
+   * @returns {Promise<OneTimeChargeEntity>} - Success response
+   * @summary: Get subscription charge details
+   * @description: Get created subscription charge details
+   */
+  async getChargeDetails({ extensionId, chargeId } = {}) {
+    const { error } = BillingValidator.getChargeDetails().validate(
+      {
+        extensionId,
+        chargeId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = BillingValidator.getChargeDetails().validate(
+      {
+        extensionId,
+        chargeId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getChargeDetails",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/billing/v1.0/company/${this.config.companyId}/extension/${extensionId}/charge/${chargeId}`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = BillingModel.OneTimeChargeEntity().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getChargeDetails",
       });
       Logger({ level: "WARN", message: res_error });
     }

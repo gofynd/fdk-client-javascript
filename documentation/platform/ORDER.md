@@ -8,51 +8,47 @@
 ## Order Methods
 Handles all platform order and shipment api(s)
 
-* [bulkActionDetails](#bulkactiondetails)
-* [bulkActionProcessXlsxFile](#bulkactionprocessxlsxfile)
+* [attachOrderUser](#attachorderuser)
 * [checkOrderStatus](#checkorderstatus)
 * [click2Call](#click2call)
 * [createChannelConfig](#createchannelconfig)
 * [createOrder](#createorder)
-* [createShipmentReport](#createshipmentreport)
 * [dispatchManifest](#dispatchmanifest)
+* [downloadBulkActionTemplate](#downloadbulkactiontemplate)
+* [fetchCreditBalanceDetail](#fetchcreditbalancedetail)
+* [fetchRefundModeConfig](#fetchrefundmodeconfig)
+* [generatePOSReceiptByOrderId](#generateposreceiptbyorderid)
 * [getAnnouncements](#getannouncements)
-* [getAppOrderShipmentDetails](#getappordershipmentdetails)
-* [getApplicationShipments](#getapplicationshipments)
 * [getBagById](#getbagbyid)
 * [getBags](#getbags)
-* [getBulkActionFailedReport](#getbulkactionfailedreport)
-* [getBulkInvoice](#getbulkinvoice)
-* [getBulkInvoiceLabel](#getbulkinvoicelabel)
-* [getBulkList](#getbulklist)
+* [getBulkActionTemplate](#getbulkactiontemplate)
 * [getBulkShipmentExcelFile](#getbulkshipmentexcelfile)
 * [getChannelConfig](#getchannelconfig)
 * [getLaneConfig](#getlaneconfig)
-* [getMetricCount](#getmetriccount)
 * [getOrderById](#getorderbyid)
 * [getOrders](#getorders)
-* [getReportsShipmentListing](#getreportsshipmentlisting)
+* [getPlatformShipmentReasons](#getplatformshipmentreasons)
 * [getRoleBasedActions](#getrolebasedactions)
 * [getShipmentById](#getshipmentbyid)
 * [getShipmentHistory](#getshipmenthistory)
 * [getShipmentReasons](#getshipmentreasons)
 * [getShipments](#getshipments)
+* [getStateTransitionMap](#getstatetransitionmap)
 * [getfilters](#getfilters)
 * [invalidateShipmentCache](#invalidateshipmentcache)
 * [orderUpdate](#orderupdate)
-* [platformManualAssignDPToShipment](#platformmanualassigndptoshipment)
 * [postShipmentHistory](#postshipmenthistory)
 * [processManifest](#processmanifest)
 * [reassignLocation](#reassignlocation)
 * [sendSmsNinja](#sendsmsninja)
-* [sendSmsNinjaPlatform](#sendsmsninjaplatform)
-* [trackPlatformShipment](#trackplatformshipment)
+* [sendUserMobileOTP](#sendusermobileotp)
+* [trackShipmentPlatform](#trackshipmentplatform)
 * [updateAddress](#updateaddress)
 * [updatePackagingDimensions](#updatepackagingdimensions)
 * [updateShipmentLock](#updateshipmentlock)
 * [updateShipmentStatus](#updateshipmentstatus)
 * [uploadConsent](#uploadconsent)
-* [upsertJioCode](#upsertjiocode)
+* [verifyMobileOTP](#verifymobileotp)
 
 
 
@@ -61,93 +57,17 @@ Handles all platform order and shipment api(s)
 
 
 
-### bulkActionDetails
-Returns failed, processing and successfully processed shipments.
+### attachOrderUser
+
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.order.bulkActionDetails({  batchId : value });
+const promise = platformClient.order.attachOrderUser({  body : value });
 
 // Async/Await
-const data = await platformClient.order.bulkActionDetails({  batchId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| batchId | string | yes |  |  
-
-
-
-Returns failed, processing and successfully processed shipments along with their counts and failed reasons.
-
-*Returned Response:*
-
-
-
-
-[BulkActionDetailsResponse](#BulkActionDetailsResponse)
-
-Success to acknowledge the service was notified
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "data": [
-    {
-      "batch_id": "d219af50-d37d-421b-b804-db2c51fa554a",
-      "company_id": "1",
-      "total_shipment_count": 1,
-      "successful_shipment_ids": [],
-      "successful_shipments_count": 0,
-      "failed_shipments_count": 0,
-      "processing_shipments_count": 1
-    }
-  ],
-  "error": [],
-  "message": "",
-  "failed_records": [],
-  "uploaded_by": "Neha Shetye",
-  "user_id": "5f23c85bf4439a812561443a",
-  "uploaded_on": "08 Nov 2022, 01:09 PM",
-  "status": false
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### bulkActionProcessXlsxFile
-emits uuid to kafka topic.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.bulkActionProcessXlsxFile({  body : value });
-
-// Async/Await
-const data = await platformClient.order.bulkActionProcessXlsxFile({  body : value });
+const data = await platformClient.order.attachOrderUser({  body : value });
 ```
 
 
@@ -156,19 +76,19 @@ const data = await platformClient.order.bulkActionProcessXlsxFile({  body : valu
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
-| body | [BulkActionPayload](#BulkActionPayload) | yes | Request body |
+| body | [AttachOrderUser](#AttachOrderUser) | yes | Request body |
 
 
-Use this API to start processing Xlsx file.
+
 
 *Returned Response:*
 
 
 
 
-[BulkActionResponse](#BulkActionResponse)
+[AttachOrderUserResponse](#AttachOrderUserResponse)
 
-Success to acknowledge the service was notified
+Attach user to order
 
 
 
@@ -177,10 +97,7 @@ Success to acknowledge the service was notified
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-{
-  "status": true,
-  "message": "Successful"
-}
+
 ```
 </details>
 
@@ -260,15 +177,15 @@ Order Status retrieved successfully
 const promise = platformClient.order.click2Call({  caller : value,
  receiver : value,
  bagId : value,
- callingTo : value,
- callerId : value });
+ callerId : value,
+ method : value });
 
 // Async/Await
 const data = await platformClient.order.click2Call({  caller : value,
  receiver : value,
  bagId : value,
- callingTo : value,
- callerId : value });
+ callerId : value,
+ method : value });
 ```
 
 
@@ -277,11 +194,11 @@ const data = await platformClient.order.click2Call({  caller : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| caller | string | yes |  |   
-| receiver | string | yes |  |   
-| bagId | string | yes |  |    
-| callingTo | string | no |  |    
-| callerId | string | no |  |  
+| caller | string | yes | Call Number |   
+| receiver | string | yes | Receiver Number |   
+| bagId | string | yes | Bag Id for the query |    
+| callerId | string | no | Caller Id |    
+| method | string | no | Provider Method to Call |  
 
 
 
@@ -303,7 +220,10 @@ Process call on request!
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
+{
+  "success": true,
+  "call_id": "c2c_646b00bc-984c-4c10-bb8d-0e850a1e0022"
+}
 ```
 </details>
 
@@ -434,65 +354,6 @@ Successfully created an order!
 ---
 
 
-### createShipmentReport
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.createShipmentReport({  fromDate : value,
- toDate : value });
-
-// Async/Await
-const data = await platformClient.order.createShipmentReport({  fromDate : value,
- toDate : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| fromDate | string | no |  |    
-| toDate | string | no |  |  
-
-
-
-
-
-*Returned Response:*
-
-
-
-
-[Success](#Success)
-
-We have accepted report generation request.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### dispatchManifest
 
 
@@ -548,6 +409,250 @@ Shipment Dispatched mapped with manifest!
 ---
 
 
+### downloadBulkActionTemplate
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.downloadBulkActionTemplate({  templateSlug : value });
+
+// Async/Await
+const data = await platformClient.order.downloadBulkActionTemplate({  templateSlug : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| templateSlug | string | no | Slug name of template to be downloaded |  
+
+
+
+
+
+*Returned Response:*
+
+
+
+
+[FileResponse](#FileResponse)
+
+We are processing the file!
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "file_name": "placed_352_1668856953.7936668.xlsx",
+  "operation": "putObject",
+  "size": 13245,
+  "namespace": "misc",
+  "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  "file_path": "/misc/general/free/original/0Ex0-zTyw-placed_352_1668856953.7936668.xlsx",
+  "method": "PUT",
+  "tags": [],
+  "upload": {
+    "url": "https://fynd-staging-assets.s3-accelerate.amazonaws.com/x0/misc/general/free/original/0Ex0-zTyw-placed_352_1668856953.7936668.xlsx?Content-Type=application%2Fvnd.openxmlformats-officedocument.spreadsheetml.sheet&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJUADR2WMPQT6ZJ2Q%2F20221119%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20221119T112233Z&X-Amz-Expires=1800&X-Amz-Signature=3408400dbe95ff12d0ea5487846aab74b0f2ae6963a58ac980fb46c11cd0b7be&X-Amz-SignedHeaders=host%3Bx-amz-acl&x-amz-acl=public-read",
+    "expiry": 1800
+  },
+  "cdn": {
+    "url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x0/misc/general/free/original/0Ex0-zTyw-placed_352_1668856953.7936668.xlsx"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### fetchCreditBalanceDetail
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.fetchCreditBalanceDetail({  body : value });
+
+// Async/Await
+const data = await platformClient.order.fetchCreditBalanceDetail({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [FetchCreditBalanceRequestPayload](#FetchCreditBalanceRequestPayload) | yes | Request body |
+
+
+
+
+*Returned Response:*
+
+
+
+
+[FetchCreditBalanceResponsePayload](#FetchCreditBalanceResponsePayload)
+
+Credit Balance will be fetched
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### fetchRefundModeConfig
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.fetchRefundModeConfig({  body : value });
+
+// Async/Await
+const data = await platformClient.order.fetchRefundModeConfig({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [RefundModeConfigRequestPayload](#RefundModeConfigRequestPayload) | yes | Request body |
+
+
+
+
+*Returned Response:*
+
+
+
+
+[RefundModeConfigResponsePayload](#RefundModeConfigResponsePayload)
+
+Refund mode config is returned based on input parameter
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### generatePOSReceiptByOrderId
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.generatePOSReceiptByOrderId({  orderId : value,
+ shipmentId : value,
+ documentType : value });
+
+// Async/Await
+const data = await platformClient.order.generatePOSReceiptByOrderId({  orderId : value,
+ shipmentId : value,
+ documentType : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| orderId | string | yes |  |    
+| shipmentId | string | no |  |    
+| documentType | string | no |  |  
+
+
+
+
+
+*Returned Response:*
+
+
+
+
+[GeneratePosOrderReceiptResponse](#GeneratePosOrderReceiptResponse)
+
+We are processing the request!
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getAnnouncements
 
 
@@ -567,7 +672,7 @@ const data = await platformClient.order.getAnnouncements({  date : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| date | string | no |  |  
+| date | string | no | Date On which the announcement is Active (Date should in ISO Datetime format IST Time) |  
 
 
 
@@ -581,495 +686,6 @@ const data = await platformClient.order.getAnnouncements({  date : value });
 [AnnouncementsResponse](#AnnouncementsResponse)
 
 Announcements retrieved successfully
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getAppOrderShipmentDetails
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").order.getAppOrderShipmentDetails({  orderId : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").order.getAppOrderShipmentDetails({  orderId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| orderId | string | yes |  |  
-
-
-
-
-
-*Returned Response:*
-
-
-
-
-[ShipmentDetailsResponse](#ShipmentDetailsResponse)
-
-We render shipment details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "order": {
-    "fynd_order_id": "FY62B13E2101810C19E4",
-    "shipment_count": 1,
-    "order_date": "2022-06-21T09:12:26+00:00"
-  },
-  "shipments": [
-    {
-      "shipment_id": "16557829457641286433",
-      "payment_mode": "COD",
-      "fulfilling_store": {
-        "id": 1,
-        "code": "HS-468a5",
-        "fulfillment_channel": "pulse",
-        "store_name": "Reliance Industries Ltd - Jio Market",
-        "contact_person": "",
-        "phone": "8268108880",
-        "address": "high_street WEWORK, VIJAY DIAMONDS, ANDHERI MUMBAI MAHARASHTRA 400093",
-        "city": "MUMBAI",
-        "state": "MAHARASHTRA",
-        "country": "INDIA",
-        "pincode": 400093
-      },
-      "delivery_details": {
-        "name": "Manish Prakash",
-        "email": "Manish.Prakash@ril.com",
-        "phone": "7787051611",
-        "address": "home 479 sector3 bokaro Bokaro Jharkhand 827003",
-        "city": "Bokaro",
-        "state": "Jharkhand",
-        "country": "India",
-        "pincode": "827003",
-        "state_code": 0
-      },
-      "billing_details": {
-        "name": "Manish Prakash",
-        "email": "Manish.Prakash@ril.com",
-        "phone": "7787051611",
-        "address": "home 479 sector3 bokaro Bokaro Jharkhand 827003",
-        "city": "Bokaro",
-        "state": "Jharkhand",
-        "country": "India",
-        "pincode": "827003",
-        "state_code": 0
-      },
-      "dp_details": {
-        "id": null,
-        "name": null,
-        "awb_no": null,
-        "eway_bill_id": null,
-        "track_url": null,
-        "gst_tag": "sgst"
-      },
-      "journey_type": "forward",
-      "order": {
-        "fynd_order_id": "FY62B13E2101810C19E4",
-        "affiliate_id": "000000000000000000000001",
-        "ordering_channel": "FYND",
-        "source": null,
-        "tax_details": {
-          "gstin": null
-        },
-        "order_date": "2022-06-21T09:12:26+00:00"
-      },
-      "gst_details": {
-        "value_of_good": 475.24,
-        "gst_fee": 23.76,
-        "brand_calculated_amount": 499,
-        "tax_collected_at_source": 0,
-        "gstin_code": null
-      },
-      "shipment_quantity": 1,
-      "bag_status_history": [
-        {
-          "status": "pending",
-          "updated_at": "2022-06-21T09:12:26+00:00",
-          "state_type": "operational",
-          "app_display_name": "Pending",
-          "display_name": "Pending",
-          "forward": null
-        },
-        {
-          "status": "placed",
-          "updated_at": "2022-06-21T09:12:32+00:00",
-          "state_type": "operational",
-          "app_display_name": "Ordered",
-          "display_name": "Placed",
-          "forward": null
-        },
-        {
-          "status": "bag_confirmed",
-          "updated_at": "2022-06-21T09:39:13+00:00",
-          "state_type": "operational",
-          "app_display_name": "Ordered",
-          "display_name": "Bag Confirmed",
-          "forward": null
-        },
-        {
-          "status": "dp_assigned",
-          "updated_at": "2022-06-21T09:40:04+00:00",
-          "state_type": "operational",
-          "app_display_name": "DP Assigned",
-          "display_name": "DP Assigned",
-          "forward": null
-        },
-        {
-          "status": "bag_picked",
-          "updated_at": "2022-06-21T09:40:12+00:00",
-          "state_type": "operational",
-          "app_display_name": "Shipped",
-          "display_name": "In Transit",
-          "forward": null
-        },
-        {
-          "status": "out_for_delivery",
-          "updated_at": "2022-06-21T09:40:29+00:00",
-          "state_type": "operational",
-          "app_display_name": "Out For Delivery",
-          "display_name": "Out For Delivery",
-          "forward": null
-        },
-        {
-          "status": "delivery_done",
-          "updated_at": "2022-06-21T09:40:37+00:00",
-          "state_type": "operational",
-          "app_display_name": "Delivered",
-          "display_name": "Delivery Done",
-          "forward": null
-        }
-      ],
-      "bags": [
-        {
-          "bag_id": 43880,
-          "display_name": "Bag",
-          "entity_type": "bag",
-          "bag_configs": {
-            "is_returnable": true,
-            "can_be_cancelled": true,
-            "enable_tracking": false,
-            "is_customer_return_allowed": true,
-            "allow_force_return": false,
-            "is_active": false
-          },
-          "financial_breakup": [
-            {
-              "price_effective": 499,
-              "discount": 0,
-              "amount_paid": 549,
-              "coupon_effective_discount": 0,
-              "delivery_charge": 50,
-              "fynd_credits": 0,
-              "cod_charges": 0,
-              "refund_credit": 0,
-              "cashback": 0,
-              "refund_amount": 549,
-              "added_to_fynd_cash": false,
-              "cashback_applied": 0,
-              "gst_tax_percentage": 5,
-              "value_of_good": 475.24,
-              "price_marked": 499,
-              "transfer_price": 0,
-              "brand_calculated_amount": 499,
-              "promotion_effective_discount": 0,
-              "coupon_value": 0,
-              "pm_price_split": {
-                "COD": 549
-              },
-              "size": "5",
-              "total_units": 1,
-              "hsn_code": "62050000",
-              "identifiers": {
-                "sku_code": "CL-001L-L-PRPL-PINK-5"
-              },
-              "item_name": "Purple Flip Flops",
-              "gst_fee": "23.76",
-              "gst_tag": "IGST"
-            }
-          ],
-          "current_status": "delivery_done",
-          "item": {
-            "name": "Purple Flip Flops",
-            "brand": "Nike",
-            "slug_key": "purple-flip-flops-ezmucvw4d3",
-            "images": [
-              "https://hdn-1.fynd.com/products/pictures/item/free/270x0/CL-001L-L-PRPL-PINK-6/Rvk5WbGg9Hx-1.jpg"
-            ],
-            "size": "5",
-            "l1_category": "",
-            "l3_category": "27"
-          },
-          "brand": {
-            "modified_on": 1655707988,
-            "logo": "https://hdn-1.jiomarketx0.de/x0/brands/pictures/square-logo/original/DbhIvd_tB-Logo.jpeg",
-            "brand_name": "Nike",
-            "company": null,
-            "created_on": 1647793418,
-            "id": 4
-          },
-          "gst_details": {
-            "gstin_code": null,
-            "gst_tag": "IGST",
-            "hsn_code": "62050000",
-            "value_of_good": 475.24,
-            "gst_tax_percentage": 5,
-            "is_default_hsn_code": true,
-            "brand_calculated_amount": 499,
-            "gst_fee": "23.76"
-          },
-          "article": {
-            "uid": "6237fdfec0903e7ae543c201",
-            "identifiers": {
-              "sku_code": "CL-001L-L-PRPL-PINK-5"
-            },
-            "return_config": {
-              "time": 30,
-              "unit": "days",
-              "returnable": true
-            }
-          },
-          "quantity": 1
-        }
-      ],
-      "delivery_slot": {
-        "slot": "By 03:00 AM",
-        "upper_bound": "2022-06-21T03:42:23+00:00",
-        "lower_bound": "2022-06-21T03:42:23+00:00",
-        "date": "2022-06-21T03:42:23+00:00",
-        "type": "order_window"
-      },
-      "total_items": 1,
-      "payment_methods": [
-        {
-          "slug": "COD",
-          "payment_id": "COD",
-          "payment_amt": 549,
-          "payment_cart": null,
-          "payment_desc": "COD",
-          "bdcustomer_id": null,
-          "order_inv_num": null,
-          "mode_of_payment": "COD",
-          "payment_gateway_logo": null,
-          "transaction_ref_number": ""
-        }
-      ],
-      "vertical": "GROCERIES",
-      "payments": {
-        "mode": "COD",
-        "logo": "https://hdn-1.fynd.com/payment/Pos+Logo.png",
-        "source": "Jio Partner Pay"
-      },
-      "priority_text": null,
-      "status": {
-        "created_at": 1655804437,
-        "shipment_id": "16557829457641286433",
-        "status": "delivery_done",
-        "bag_list": [
-          "43880"
-        ],
-        "id": 19980
-      },
-      "prices": {
-        "amount_paid": 549,
-        "refund_amount": 549,
-        "price_marked": 499,
-        "cod_charges": 0,
-        "discount": 0,
-        "cashback_applied": 0,
-        "delivery_charge": 50,
-        "fynd_credits": 0,
-        "cashback": 0,
-        "price_effective": 499,
-        "refund_credit": 0,
-        "value_of_good": 475.24,
-        "pm_price_split": {
-          "COD": 549
-        },
-        "brand_calculated_amount": 499,
-        "coupon_effective_discount": 0,
-        "tax_collected_at_source": 0,
-        "promotion_effective_discount": 0
-      },
-      "picked_date": "",
-      "tracking_list": [
-        {
-          "status": "Order Placed",
-          "time": "2022-06-21T09:12:32+00:00",
-          "is_passed": true,
-          "is_current": false
-        },
-        {
-          "status": "Order Confirmed",
-          "time": "2022-06-21T09:39:13+00:00",
-          "is_passed": true,
-          "is_current": false
-        },
-        {
-          "status": "Invoiced",
-          "time": "2022-06-21T09:40:12+00:00",
-          "is_passed": true,
-          "is_current": false
-        },
-        {
-          "status": "Delivery Partner Assigned",
-          "time": "2022-06-21T09:40:12+00:00",
-          "is_passed": true,
-          "is_current": false
-        },
-        {
-          "status": "Packed",
-          "time": "2022-06-21T09:40:12+00:00",
-          "is_passed": true,
-          "is_current": false
-        },
-        {
-          "status": "In Transit",
-          "time": "2022-06-21T09:40:12+00:00",
-          "is_passed": true,
-          "is_current": false
-        },
-        {
-          "status": "Out For Delivery",
-          "time": "2022-06-21T09:40:29+00:00",
-          "is_passed": true,
-          "is_current": false
-        },
-        {
-          "status": "Delivered",
-          "time": "2022-06-21T09:40:37+00:00",
-          "is_passed": true,
-          "is_current": true
-        }
-      ],
-      "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36",
-      "platform_logo": "https://fynd-static.s3.amazonaws.com/mode_of_payment/fynd_logo.png",
-      "packaging_type": "POLYB_DFLT_L"
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getApplicationShipments
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").order.getApplicationShipments({  lane : value,
- searchType : value,
- searchId : value,
- fromDate : value,
- toDate : value,
- dpIds : value,
- orderingCompanyId : value,
- stores : value,
- salesChannel : value,
- requestByExt : value,
- pageNo : value,
- pageSize : value,
- customerId : value,
- isPrioritySort : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").order.getApplicationShipments({  lane : value,
- searchType : value,
- searchId : value,
- fromDate : value,
- toDate : value,
- dpIds : value,
- orderingCompanyId : value,
- stores : value,
- salesChannel : value,
- requestByExt : value,
- pageNo : value,
- pageSize : value,
- customerId : value,
- isPrioritySort : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| lane | string | no |  |    
-| searchType | string | no |  |    
-| searchId | string | no |  |    
-| fromDate | string | no |  |    
-| toDate | string | no |  |    
-| dpIds | string | no |  |    
-| orderingCompanyId | string | no |  |    
-| stores | string | no |  |    
-| salesChannel | string | no |  |    
-| requestByExt | string | no |  |    
-| pageNo | number | no |  |    
-| pageSize | number | no |  |    
-| customerId | string | no |  |    
-| isPrioritySort | boolean | no |  |  
-
-
-
-
-
-*Returned Response:*
-
-
-
-
-[ShipmentInternalPlatformViewResponse](#ShipmentInternalPlatformViewResponse)
-
-We are processing the report!
 
 
 
@@ -1116,9 +732,9 @@ const data = await platformClient.order.getBagById({  bagId : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| bagId | string | no |  |    
-| channelBagId | string | no |  |    
-| channelId | string | no |  |  
+| bagId | string | no | Id of bag |    
+| channelBagId | string | no | Id of application bag |    
+| channelId | string | no | Id of application |  
 
 
 
@@ -1190,15 +806,15 @@ const data = await platformClient.order.getBags({  bagIds : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| bagIds | string | no |  |    
-| shipmentIds | string | no |  |    
-| orderIds | string | no |  |    
-| channelBagIds | string | no |  |    
-| channelShipmentIds | string | no |  |    
-| channelOrderIds | string | no |  |    
-| channelId | string | no |  |    
-| pageNo | number | no |  |    
-| pageSize | number | no |  |  
+| bagIds | string | no | Comma separated values of bag ids |    
+| shipmentIds | string | no | Comma separated values of shipment ids |    
+| orderIds | string | no | Comma separated values of order ids |    
+| channelBagIds | string | no | Comma separated values of app bag ids |    
+| channelShipmentIds | string | no | Comma separated values of app shipment ids |    
+| channelOrderIds | string | no | Comma separated values of app order ids |    
+| channelId | string | no | Comma separated values of app ids |    
+| pageNo | number | no | Page number for paginated data |    
+| pageSize | number | no | Page size of data received per page |  
 
 
 
@@ -1235,29 +851,21 @@ Successfully retrived all the given shipments details!
 ---
 
 
-### getBulkActionFailedReport
+### getBulkActionTemplate
 
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.order.getBulkActionFailedReport({  batchId : value,
- reportType : value });
+const promise = platformClient.order.getBulkActionTemplate();
 
 // Async/Await
-const data = await platformClient.order.getBulkActionFailedReport({  batchId : value,
- reportType : value });
+const data = await platformClient.order.getBulkActionTemplate();
 ```
 
 
 
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| batchId | string | yes |  |    
-| reportType | string | no |  |  
 
 
 
@@ -1268,9 +876,9 @@ const data = await platformClient.order.getBulkActionFailedReport({  batchId : v
 
 
 
-[FileResponse](#FileResponse)
+[BulkActionTemplateResponse](#BulkActionTemplateResponse)
 
-File Processed!
+Slug names
 
 
 
@@ -1280,232 +888,13 @@ File Processed!
 
 ```json
 {
-  "file_name": "requirements.txt",
-  "operation": "putObject",
-  "size": 8493,
-  "namespace": "misc",
-  "content_type": "text/plain",
-  "file_path": "/misc/general/free/original/CEQ64hj8--requirements.txt",
-  "method": "PUT",
-  "tags": [],
-  "upload": {
-    "url": "https://fynd-staging-assets.s3-accelerate.amazonaws.com/x0/misc/general/free/original/CEQ64hj8--requirements.txt?Content-Type=text%2Fplain&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJUADR2WMPQT6ZJ2Q%2F20221118%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20221118T064720Z&X-Amz-Expires=1800&X-Amz-Signature=088ae87da27ef49644176f751ad2e642ab6cfad015cf01564ab5201c404000ec&X-Amz-SignedHeaders=host%3Bx-amz-acl&x-amz-acl=public-read",
-    "expiry": 1800
-  },
-  "cdn": {
-    "url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x0/misc/general/free/original/CEQ64hj8--requirements.txt"
-  }
+  "template_x_slug": [
+    {
+      "text": "Partial Cancellation",
+      "value": "PARTIAL_CANCELLATION"
+    }
+  ]
 }
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getBulkInvoice
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.getBulkInvoice({  batchId : value,
- docType : value });
-
-// Async/Await
-const data = await platformClient.order.getBulkInvoice({  batchId : value,
- docType : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| batchId | string | yes |  |   
-| docType | string | yes |  |  
-
-
-
-
-
-*Returned Response:*
-
-
-
-
-[BulkInvoicingResponse](#BulkInvoicingResponse)
-
-We are processing the file!
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getBulkInvoiceLabel
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.getBulkInvoiceLabel({  batchId : value });
-
-// Async/Await
-const data = await platformClient.order.getBulkInvoiceLabel({  batchId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| batchId | string | yes |  |  
-
-
-
-
-
-*Returned Response:*
-
-
-
-
-[BulkInvoiceLabelResponse](#BulkInvoiceLabelResponse)
-
-We are processing the file!
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getBulkList
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.getBulkList({  lane : value,
- searchType : value,
- searchId : value,
- fromDate : value,
- toDate : value,
- dpIds : value,
- orderingCompanyId : value,
- stores : value,
- salesChannel : value,
- requestByExt : value,
- pageNo : value,
- pageSize : value,
- customerId : value,
- isPrioritySort : value });
-
-// Async/Await
-const data = await platformClient.order.getBulkList({  lane : value,
- searchType : value,
- searchId : value,
- fromDate : value,
- toDate : value,
- dpIds : value,
- orderingCompanyId : value,
- stores : value,
- salesChannel : value,
- requestByExt : value,
- pageNo : value,
- pageSize : value,
- customerId : value,
- isPrioritySort : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| lane | string | no |  |    
-| searchType | string | no |  |    
-| searchId | string | no |  |    
-| fromDate | string | no |  |    
-| toDate | string | no |  |    
-| dpIds | string | no |  |    
-| orderingCompanyId | string | no |  |    
-| stores | string | no |  |    
-| salesChannel | string | no |  |    
-| requestByExt | string | no |  |    
-| pageNo | number | no |  |    
-| pageSize | number | no |  |    
-| customerId | string | no |  |    
-| isPrioritySort | boolean | no |  |  
-
-
-
-
-
-*Returned Response:*
-
-
-
-
-[BulkListingResponse](#BulkListingResponse)
-
-We are processing the file!
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{}
 ```
 </details>
 
@@ -1527,36 +916,32 @@ We are processing the file!
 
 ```javascript
 // Promise
-const promise = platformClient.order.getBulkShipmentExcelFile({  lane : value,
- searchType : value,
- searchId : value,
+const promise = platformClient.order.getBulkShipmentExcelFile({  salesChannels : value,
+ dpIds : value,
  fromDate : value,
  toDate : value,
- dpIds : value,
- orderingCompanyId : value,
  stores : value,
- salesChannel : value,
- requestByExt : value,
+ tags : value,
+ bagStatus : value,
+ paymentMethods : value,
+ fileType : value,
+ timeToDispatch : value,
  pageNo : value,
- pageSize : value,
- customerId : value,
- isPrioritySort : value });
+ pageSize : value });
 
 // Async/Await
-const data = await platformClient.order.getBulkShipmentExcelFile({  lane : value,
- searchType : value,
- searchId : value,
+const data = await platformClient.order.getBulkShipmentExcelFile({  salesChannels : value,
+ dpIds : value,
  fromDate : value,
  toDate : value,
- dpIds : value,
- orderingCompanyId : value,
  stores : value,
- salesChannel : value,
- requestByExt : value,
+ tags : value,
+ bagStatus : value,
+ paymentMethods : value,
+ fileType : value,
+ timeToDispatch : value,
  pageNo : value,
- pageSize : value,
- customerId : value,
- isPrioritySort : value });
+ pageSize : value });
 ```
 
 
@@ -1565,20 +950,18 @@ const data = await platformClient.order.getBulkShipmentExcelFile({  lane : value
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| lane | string | no |  |    
-| searchType | string | no |  |    
-| searchId | string | no |  |    
-| fromDate | string | no |  |    
-| toDate | string | no |  |    
-| dpIds | string | no |  |    
-| orderingCompanyId | string | no |  |    
-| stores | string | no |  |    
-| salesChannel | string | no |  |    
-| requestByExt | string | no |  |    
+| salesChannels | string | no | Comma separated values of sales channel ids |    
+| dpIds | string | no | Comma separated values of delivery partner ids |    
+| fromDate | string | no | Start Date in DD-MM-YYYY format |    
+| toDate | string | no | End Date in DD-MM-YYYY format |    
+| stores | string | no | Comma separated values of store ids |    
+| tags | string | no | Comma separated values of tags |    
+| bagStatus | string | no | Comma separated values of bag statuses |    
+| paymentMethods | string | no | Comma separated values of payment methods |    
+| fileType | string | no | File type to be downloaded |    
+| timeToDispatch | number | no | Sla breached or not breached |    
 | pageNo | number | no |  |    
-| pageSize | number | no |  |    
-| customerId | string | no |  |    
-| isPrioritySort | boolean | no |  |  
+| pageSize | number | no |  |  
 
 
 
@@ -1718,9 +1101,15 @@ const promise = platformClient.order.getLaneConfig({  superLane : value,
  toDate : value,
  dpIds : value,
  stores : value,
- salesChannel : value,
+ salesChannels : value,
  paymentMode : value,
- bagStatus : value });
+ bagStatus : value,
+ searchType : value,
+ searchValue : value,
+ tags : value,
+ timeToDispatch : value,
+ paymentMethods : value,
+ myOrders : value });
 
 // Async/Await
 const data = await platformClient.order.getLaneConfig({  superLane : value,
@@ -1729,9 +1118,15 @@ const data = await platformClient.order.getLaneConfig({  superLane : value,
  toDate : value,
  dpIds : value,
  stores : value,
- salesChannel : value,
+ salesChannels : value,
  paymentMode : value,
- bagStatus : value });
+ bagStatus : value,
+ searchType : value,
+ searchValue : value,
+ tags : value,
+ timeToDispatch : value,
+ paymentMethods : value,
+ myOrders : value });
 ```
 
 
@@ -1740,15 +1135,21 @@ const data = await platformClient.order.getLaneConfig({  superLane : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| superLane | string | no |  |    
-| groupEntity | string | no |  |    
-| fromDate | string | no |  |    
-| toDate | string | no |  |    
-| dpIds | string | no |  |    
-| stores | string | no |  |    
-| salesChannel | string | no |  |    
-| paymentMode | string | no |  |    
-| bagStatus | string | no |  |  
+| superLane | string | no | Name of lane for which data is to be fetched |    
+| groupEntity | string | no | Name of group entity |    
+| fromDate | string | no | Start Date in DD-MM-YYYY format |    
+| toDate | string | no | End Date in DD-MM-YYYY format |    
+| dpIds | string | no | Comma separated values of delivery partner ids |    
+| stores | string | no | Comma separated values of store ids |    
+| salesChannels | string | no |  |    
+| paymentMode | string | no | Comma separated values of payment modes |    
+| bagStatus | string | no | Comma separated values of bag statuses |    
+| searchType | string | no |  |    
+| searchValue | string | no |  |    
+| tags | string | no |  |    
+| timeToDispatch | string | no |  |    
+| paymentMethods | string | no |  |    
+| myOrders | boolean | no |  |  
 
 
 
@@ -1858,65 +1259,6 @@ Response containing count of shipments of the given status
 ---
 
 
-### getMetricCount
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.getMetricCount({  fromDate : value,
- toDate : value });
-
-// Async/Await
-const data = await platformClient.order.getMetricCount({  fromDate : value,
- toDate : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| fromDate | string | no |  |    
-| toDate | string | no |  |  
-
-
-
-
-
-*Returned Response:*
-
-
-
-
-[MetricCountResponse](#MetricCountResponse)
-
-Response containing count of shipments of the given metrics
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getOrderById
 
 
@@ -1947,7 +1289,7 @@ const data = await platformClient.order.getOrderById({  orderId : value });
 
 
 
-[ShipmentDetailsResponse](#ShipmentDetailsResponse)
+[OrderDetailsResponse](#OrderDetailsResponse)
 
 We are processing the report!
 
@@ -2714,11 +2056,12 @@ const promise = platformClient.order.getOrders({  lane : value,
  toDate : value,
  dpIds : value,
  stores : value,
- salesChannel : value,
+ salesChannels : value,
  pageNo : value,
  pageSize : value,
  isPrioritySort : value,
- customMeta : value });
+ customMeta : value,
+ myOrders : value });
 
 // Async/Await
 const data = await platformClient.order.getOrders({  lane : value,
@@ -2732,11 +2075,12 @@ const data = await platformClient.order.getOrders({  lane : value,
  toDate : value,
  dpIds : value,
  stores : value,
- salesChannel : value,
+ salesChannels : value,
  pageNo : value,
  pageSize : value,
  isPrioritySort : value,
- customMeta : value });
+ customMeta : value,
+ myOrders : value });
 ```
 
 
@@ -2745,22 +2089,23 @@ const data = await platformClient.order.getOrders({  lane : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| lane | string | no |  |    
-| searchType | string | no |  |    
-| bagStatus | string | no |  |    
-| timeToDispatch | string | no |  |    
+| lane | string | no | lane refers to a section where orders are assigned, indicating its grouping |    
+| searchType | string | no | search_type refers to the field that will be used as the target for the search operation |    
+| bagStatus | string | no | bag_status refers to status of the entity. Filters orders based on the status. |    
+| timeToDispatch | string | no | time_to_dispatch refers to estimated SLA time. |    
 | paymentMethods | string | no |  |    
-| tags | string | no |  |    
-| searchValue | string | no |  |    
+| tags | string | no | tags refers to additional descriptive labels associated with the order |    
+| searchValue | string | no | search_value is matched against the field specified by the search_type |    
 | fromDate | string | no |  |    
 | toDate | string | no |  |    
-| dpIds | string | no |  |    
+| dpIds | string | no | Delivery Partner IDs to which shipments are assigned. |    
 | stores | string | no |  |    
-| salesChannel | string | no |  |    
+| salesChannels | string | no |  |    
 | pageNo | number | no |  |    
 | pageSize | number | no |  |    
 | isPrioritySort | boolean | no |  |    
-| customMeta | string | no |  |  
+| customMeta | string | no |  |    
+| myOrders | boolean | no |  |  
 
 
 
@@ -2797,19 +2142,17 @@ We are processing the report!
 ---
 
 
-### getReportsShipmentListing
-
+### getPlatformShipmentReasons
+Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.order.getReportsShipmentListing({  pageNo : value,
- pageSize : value });
+const promise = platformClient.application("<APPLICATION_ID>").order.getPlatformShipmentReasons({  action : value });
 
 // Async/Await
-const data = await platformClient.order.getReportsShipmentListing({  pageNo : value,
- pageSize : value });
+const data = await platformClient.application("<APPLICATION_ID>").order.getPlatformShipmentReasons({  action : value });
 ```
 
 
@@ -2817,22 +2160,21 @@ const data = await platformClient.order.getReportsShipmentListing({  pageNo : va
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no |  |    
-| pageSize | number | no |  |  
+| --------- | -----  | -------- | ----------- | 
+| action | string | yes |  |  
 
 
 
-
+Using action, get reasons behind full or partial cancellation of a shipment
 
 *Returned Response:*
 
 
 
 
-[OmsReports](#OmsReports)
+[ShipmentReasonsResponse](#ShipmentReasonsResponse)
 
-We have are getting the info.
+Success. Check the example shown below or refer `ShipmentReasonsResponse` for more details.
 
 
 
@@ -2892,7 +2234,22 @@ You will get an array of actions allowed for that particular user based on their
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
+{
+  "permissions": [
+    {
+      "slug": "create_invoice_s3",
+      "display_text": "Create Invoice (s3)",
+      "id": 2,
+      "description": "Create Invoice (s3)"
+    },
+    {
+      "slug": "call",
+      "display_text": "Call",
+      "id": 3,
+      "description": "Call"
+    }
+  ]
+}
 ```
 </details>
 
@@ -2915,15 +2272,11 @@ You will get an array of actions allowed for that particular user based on their
 ```javascript
 // Promise
 const promise = platformClient.order.getShipmentById({  channelShipmentId : value,
- shipmentId : value,
- orderingCompanyId : value,
- requestByExt : value });
+ shipmentId : value });
 
 // Async/Await
 const data = await platformClient.order.getShipmentById({  channelShipmentId : value,
- shipmentId : value,
- orderingCompanyId : value,
- requestByExt : value });
+ shipmentId : value });
 ```
 
 
@@ -2932,10 +2285,8 @@ const data = await platformClient.order.getShipmentById({  channelShipmentId : v
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| channelShipmentId | string | no |  |    
-| shipmentId | string | no |  |    
-| orderingCompanyId | string | no |  |    
-| requestByExt | string | no |  |  
+| channelShipmentId | string | no | App Shipment Id |    
+| shipmentId | string | no | Shipment Id |  
 
 
 
@@ -3331,8 +2682,8 @@ const data = await platformClient.order.getShipmentHistory({  shipmentId : value
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| shipmentId | number | no |  |    
-| bagId | number | no |  |  
+| shipmentId | string | no | Shipment Id |    
+| bagId | number | no | Bag/Product Id |  
 
 
 
@@ -3506,45 +2857,53 @@ Success. Check the example shown below or refer `PlatformShipmentReasonsResponse
 ```javascript
 // Promise
 const promise = platformClient.order.getShipments({  lane : value,
+ bagStatus : value,
+ statusOverrideLane : value,
+ timeToDispatch : value,
  searchType : value,
  searchValue : value,
- searchId : value,
  fromDate : value,
  toDate : value,
  dpIds : value,
- orderingCompanyId : value,
  stores : value,
- salesChannel : value,
- requestByExt : value,
+ salesChannels : value,
  pageNo : value,
  pageSize : value,
- isPrioritySort : value,
+ fetchActiveShipment : value,
  excludeLockedShipments : value,
  paymentMethods : value,
  channelShipmentId : value,
  channelOrderId : value,
- customMeta : value });
+ customMeta : value,
+ orderingChannel : value,
+ companyAffiliateTag : value,
+ myOrders : value,
+ platformUserId : value });
 
 // Async/Await
 const data = await platformClient.order.getShipments({  lane : value,
+ bagStatus : value,
+ statusOverrideLane : value,
+ timeToDispatch : value,
  searchType : value,
  searchValue : value,
- searchId : value,
  fromDate : value,
  toDate : value,
  dpIds : value,
- orderingCompanyId : value,
  stores : value,
- salesChannel : value,
- requestByExt : value,
+ salesChannels : value,
  pageNo : value,
  pageSize : value,
- isPrioritySort : value,
+ fetchActiveShipment : value,
  excludeLockedShipments : value,
  paymentMethods : value,
  channelShipmentId : value,
  channelOrderId : value,
- customMeta : value });
+ customMeta : value,
+ orderingChannel : value,
+ companyAffiliateTag : value,
+ myOrders : value,
+ platformUserId : value });
 ```
 
 
@@ -3553,25 +2912,29 @@ const data = await platformClient.order.getShipments({  lane : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| lane | string | no |  |    
-| searchType | string | no |  |    
-| searchValue | string | no |  |    
-| searchId | string | no |  |    
-| fromDate | string | no |  |    
-| toDate | string | no |  |    
-| dpIds | string | no |  |    
-| orderingCompanyId | string | no |  |    
-| stores | string | no |  |    
-| salesChannel | string | no |  |    
-| requestByExt | string | no |  |    
-| pageNo | number | no |  |    
-| pageSize | number | no |  |    
-| isPrioritySort | boolean | no |  |    
-| excludeLockedShipments | boolean | no |  |    
-| paymentMethods | string | no |  |    
-| channelShipmentId | string | no |  |    
-| channelOrderId | string | no |  |    
-| customMeta | string | no |  |  
+| lane | string | no | Name of lane for which data is to be fetched |    
+| bagStatus | string | no | Comma separated values of bag statuses |    
+| statusOverrideLane | boolean | no | Use this flag to fetch by bag_status and override lane |    
+| timeToDispatch | string | no |  |    
+| searchType | string | no | Search type key |    
+| searchValue | string | no | Search type value |    
+| fromDate | string | no | Start Date in DD-MM-YYYY format |    
+| toDate | string | no | End Date in DD-MM-YYYY format |    
+| dpIds | string | no | Comma separated values of delivery partner ids |    
+| stores | string | no | Comma separated values of store ids |    
+| salesChannels | string | no | Comma separated values of sales channel ids |    
+| pageNo | number | no | Page number for paginated data |    
+| pageSize | number | no | Page size of data received per page |    
+| fetchActiveShipment | boolean | no | flag to fetch active shipments |    
+| excludeLockedShipments | boolean | no | flag to fetch locked shipments |    
+| paymentMethods | string | no | Comma separated values of payment methods |    
+| channelShipmentId | string | no | App Shipment Id |    
+| channelOrderId | string | no | App Order Id |    
+| customMeta | string | no |  |    
+| orderingChannel | string | no |  |    
+| companyAffiliateTag | string | no |  |    
+| myOrders | boolean | no |  |    
+| platformUserId | string | no |  |  
 
 
 
@@ -3608,6 +2971,244 @@ We are processing the report!
 ---
 
 
+### getStateTransitionMap
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.getStateTransitionMap();
+
+// Async/Await
+const data = await platformClient.order.getStateTransitionMap();
+```
+
+
+
+
+
+
+
+
+*Returned Response:*
+
+
+
+
+[BagStateTransitionMap](#BagStateTransitionMap)
+
+State Transition Mapping, for next possible state
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "fynd": {
+    "placed": [
+      "bag_not_confirmed",
+      "cancelled_customer",
+      "cancelled_fynd",
+      "bag_confirmed",
+      "store_reassigned"
+    ],
+    "bag_confirmed": [
+      "handed_over_to_customer",
+      "bag_invoiced"
+    ],
+    "dp_assigned": [
+      "handed_over_to_customer",
+      "bag_packed"
+    ],
+    "bag_packed": [
+      "bag_not_picked",
+      "cancelled_customer"
+    ],
+    "handed_over_to_dg": [
+      "cancelled_at_dp",
+      "credit_note_generated"
+    ],
+    "out_for_delivery": [
+      "delivery_done"
+    ],
+    "delivery_done": [
+      "bag_lost",
+      "return_initiated"
+    ],
+    "return_initiated": [
+      "return_accepted"
+    ],
+    "bag_picked": [
+      "refund_completed",
+      "out_for_delivery",
+      "delivery_done"
+    ],
+    "pending": [
+      "pending",
+      "placed",
+      "payment_failed",
+      "manual_refund"
+    ],
+    "payment_failed": [
+      "awaiting_payment_confirmation",
+      "placed",
+      "manual_refund"
+    ],
+    "return_pre_qc": [
+      "return_initiated",
+      "return_request_cancelled",
+      "manual_refund"
+    ],
+    "bag_not_packed": [
+      "manual_refund"
+    ],
+    "bag_rescheduled": [
+      "manual_refund"
+    ],
+    "fluid_state": [
+      "manual_refund"
+    ],
+    "handed_over_to_customer": [
+      "manual_refund",
+      "return_initiated"
+    ],
+    "hold": [
+      "manual_refund"
+    ],
+    "product_not_available": [
+      "manual_refund"
+    ],
+    "qc_fail": [
+      "manual_refund"
+    ],
+    "qc_pass": [
+      "manual_refund"
+    ],
+    "refund_done": [
+      "manual_refund"
+    ],
+    "refund_processing": [
+      "manual_refund"
+    ],
+    "return_assigning_dp": [
+      "manual_refund"
+    ],
+    "return_bag_packed": [
+      "manual_refund"
+    ],
+    "return_dp_cancelled": [
+      "manual_refund"
+    ],
+    "unhold": [
+      "manual_refund"
+    ],
+    "web_store_rescheduled": [
+      "manual_refund"
+    ],
+    "credit_note_cancelled": [
+      "refund_initiated"
+    ]
+  },
+  "affiliate": {
+    "placed": [
+      "bag_not_confirmed",
+      "store_reassigned",
+      "product_not_available"
+    ],
+    "store_reassigned": [
+      "bag_not_confirmed"
+    ],
+    "bag_confirmed": [
+      "bag_invoiced",
+      "cancelled_fynd"
+    ],
+    "dp_assigned": [
+      "bag_packed"
+    ],
+    "pending": [
+      "payment_failed",
+      "placed",
+      "manual_refund"
+    ],
+    "ready_for_dp_assignment": [
+      "dp_assigned"
+    ],
+    "credit_note_generated": [
+      "refund_pending",
+      "refund_initiated"
+    ],
+    "assigning_return_dp": [
+      "manual_refund"
+    ],
+    "bag_not_packed": [
+      "manual_refund"
+    ],
+    "bag_rescheduled": [
+      "manual_refund"
+    ],
+    "fluid_state": [
+      "manual_refund"
+    ],
+    "handed_over_to_customer": [
+      "manual_refund",
+      "return_initiated"
+    ],
+    "hold": [
+      "manual_refund"
+    ],
+    "product_not_available": [
+      "manual_refund"
+    ],
+    "qc_fail": [
+      "manual_refund"
+    ],
+    "qc_pass": [
+      "manual_refund"
+    ],
+    "refund_done": [
+      "manual_refund"
+    ],
+    "refund_processing": [
+      "manual_refund"
+    ],
+    "return_assigning_dp": [
+      "manual_refund"
+    ],
+    "return_bag_packed": [
+      "manual_refund"
+    ],
+    "return_dp_cancelled": [
+      "manual_refund"
+    ],
+    "unhold": [
+      "manual_refund"
+    ],
+    "web_store_rescheduled": [
+      "manual_refund"
+    ],
+    "credit_note_cancelled": [
+      "refund_initiated"
+    ]
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getfilters
 
 
@@ -3629,8 +3230,8 @@ const data = await platformClient.order.getfilters({  view : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| view | string | yes |  |    
-| groupEntity | string | no |  |  
+| view | string | yes | Name of view |    
+| groupEntity | string | no | Name of group entity |  
 
 
 
@@ -4055,7 +3656,28 @@ Successfully updated shipment cache!
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
+{
+  "response": [
+    {
+      "message": "Shipment sync initiated",
+      "status": 200,
+      "shipment_id": "16838049724111283577",
+      "error": ""
+    },
+    {
+      "message": "Cannot update cache if shipment in pending, payment_failed or awaiting_payment_confirmation",
+      "status": 400,
+      "shipment_id": "16836368409661507353",
+      "error": ""
+    },
+    {
+      "message": "Problem while deleting the cache",
+      "status": 500,
+      "shipment_id": "16838049724111283577",
+      "error": "Internal Exception"
+    }
+  ]
+}
 ```
 </details>
 
@@ -4102,61 +3724,6 @@ const data = await platformClient.order.orderUpdate({  body : value });
 [ResponseDetail](#ResponseDetail)
 
 We are processing the order!
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### platformManualAssignDPToShipment
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.platformManualAssignDPToShipment({  body : value });
-
-// Async/Await
-const data = await platformClient.order.platformManualAssignDPToShipment({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [ManualAssignDPToShipment](#ManualAssignDPToShipment) | yes | Request body |
-
-
-
-
-*Returned Response:*
-
-
-
-
-[ManualAssignDPToShipmentResponse](#ManualAssignDPToShipmentResponse)
-
-DP Assigned for the given shipment Ids.
 
 
 
@@ -4258,7 +3825,8 @@ It shows the journey of the shipment!
       "ticket_id": null,
       "ticket_url": null
     }
-  ]
+  ],
+  "success": true
 }
 ```
 </details>
@@ -4424,7 +3992,10 @@ Sms Sent successfully
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
+{
+  "success": true,
+  "message": "Successfully emitted aldaviz-delayed-shipment-event"
+}
 ```
 </details>
 
@@ -4439,22 +4010,26 @@ Sms Sent successfully
 ---
 
 
-### sendSmsNinjaPlatform
+### sendUserMobileOTP
 
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.order.sendSmsNinjaPlatform();
+const promise = platformClient.order.sendUserMobileOTP({  body : value });
 
 // Async/Await
-const data = await platformClient.order.sendSmsNinjaPlatform();
+const data = await platformClient.order.sendUserMobileOTP({  body : value });
 ```
 
 
 
 
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [SendUserMobileOTP](#SendUserMobileOTP) | yes | Request body |
 
 
 
@@ -4464,9 +4039,9 @@ const data = await platformClient.order.sendSmsNinjaPlatform();
 
 
 
-[OrderStatusResult](#OrderStatusResult)
+[SendUserMobileOtpResponse](#SendUserMobileOtpResponse)
 
-Sms Sent successfully
+Send OTP to user mobile
 
 
 
@@ -4475,7 +4050,16 @@ Sms Sent successfully
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
+{
+  "success": true,
+  "data": {
+    "request_id": "112312312",
+    "message": "Text",
+    "resend_timer": "600",
+    "mobile": 99990000
+  },
+  "message": "Text"
+}
 ```
 </details>
 
@@ -4490,17 +4074,17 @@ Sms Sent successfully
 ---
 
 
-### trackPlatformShipment
+### trackShipmentPlatform
 Track shipment
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").order.trackPlatformShipment({  shipmentId : value });
+const promise = platformClient.application("<APPLICATION_ID>").order.trackShipmentPlatform({  shipmentId : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").order.trackPlatformShipment({  shipmentId : value });
+const data = await platformClient.application("<APPLICATION_ID>").order.trackShipmentPlatform({  shipmentId : value });
 ```
 
 
@@ -4509,7 +4093,7 @@ const data = await platformClient.application("<APPLICATION_ID>").order.trackPla
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| shipmentId | string | yes |  |  
+| shipmentId | string | yes | Shipment Id |  
 
 
 
@@ -4670,7 +4254,7 @@ const data = await platformClient.order.updatePackagingDimensions({  body : valu
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
-| body | [CreateOrderPayload](#CreateOrderPayload) | yes | Request body |
+| body | [UpdatePackagingDimensionsPayload](#UpdatePackagingDimensionsPayload) | yes | Request body |
 
 
 
@@ -4680,7 +4264,7 @@ const data = await platformClient.order.updatePackagingDimensions({  body : valu
 
 
 
-[CreateOrderResponse](#CreateOrderResponse)
+[UpdatePackagingDimensionsResponse](#UpdatePackagingDimensionsResponse)
 
 Manifest will be processed!
 
@@ -4728,7 +4312,7 @@ const data = await platformClient.order.updateShipmentLock({  body : value });
 | body | [UpdateShipmentLockPayload](#UpdateShipmentLockPayload) | yes | Request body |
 
 
-update shipment lock
+update shipment/bag lock and check status
 
 *Returned Response:*
 
@@ -4737,7 +4321,7 @@ update shipment lock
 
 [UpdateShipmentLockResponse](#UpdateShipmentLockResponse)
 
-Successfully updated shipment cache!
+Successfully update the Lock and get check status of the shipment/Bag
 
 
 
@@ -4746,7 +4330,32 @@ Successfully updated shipment cache!
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
+{
+  "success": true,
+  "message": "shipments checked successfully",
+  "check_response": [
+    {
+      "bags": [
+        {
+          "bag_id": 175644,
+          "is_locked": false,
+          "affiliate_bag_id": "def134",
+          "affiliate_order_id": "def134"
+        }
+      ],
+      "lock_status": "complete",
+      "is_bag_locked": false,
+      "is_shipment_locked": true,
+      "shipment_id": "16189206454951802898",
+      "affiliate_id": "5c764a6534add21972ef7b08",
+      "affiliate_shipment_id": "def134",
+      "original_filter": {
+        "shipment_id": "16189206454951802898"
+      },
+      "status": "dp_assigned"
+    }
+  ]
+}
 ```
 </details>
 
@@ -4783,7 +4392,7 @@ const data = await platformClient.order.updateShipmentStatus({  body : value });
 | body | [UpdateShipmentStatusRequest](#UpdateShipmentStatusRequest) | yes | Request body |
 
 
-Update shipment status
+This API is for Shipment State transition or Shipment data update or both below example is for partial state transition with data update
 
 *Returned Response:*
 
@@ -4792,7 +4401,7 @@ Update shipment status
 
 [UpdateShipmentStatusResponseBody](#UpdateShipmentStatusResponseBody)
 
-Successfully reassigned location!
+NOTE success response can contains success and failed result as well
 
 
 
@@ -4801,7 +4410,35 @@ Successfully reassigned location!
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
+{
+  "statuses": [
+    {
+      "shipments": [
+        {
+          "status": 200,
+          "final_state": {
+            "bag_confirmed": "bag_confirmed",
+            "shipment_id": "16836279770211860494"
+          },
+          "identifier": "16836279770211860494"
+        }
+      ]
+    },
+    {
+      "shipments": [
+        {
+          "status": 400,
+          "message": "Invalid State Transition bag_confirmed detected for given entity",
+          "code": null,
+          "exception": "ValidationError",
+          "stack_trace": null,
+          "meta": null,
+          "identifier": "16836279770211860494"
+        }
+      ]
+    }
+  ]
+}
 ```
 </details>
 
@@ -4871,17 +4508,17 @@ Successful Manifest upload!
 ---
 
 
-### upsertJioCode
+### verifyMobileOTP
 
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.order.upsertJioCode({  body : value });
+const promise = platformClient.order.verifyMobileOTP({  body : value });
 
 // Async/Await
-const data = await platformClient.order.upsertJioCode({  body : value });
+const data = await platformClient.order.verifyMobileOTP({  body : value });
 ```
 
 
@@ -4890,7 +4527,7 @@ const data = await platformClient.order.upsertJioCode({  body : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
-| body | [JioCodeUpsertPayload](#JioCodeUpsertPayload) | yes | Request body |
+| body | [VerifyMobileOTP](#VerifyMobileOTP) | yes | Request body |
 
 
 
@@ -4900,9 +4537,9 @@ const data = await platformClient.order.upsertJioCode({  body : value });
 
 
 
-[JioCodeUpsertResponse](#JioCodeUpsertResponse)
+[VerifyOtpResponse](#VerifyOtpResponse)
 
-We are processing the report!
+Verify OTP
 
 
 
@@ -4938,6 +4575,21 @@ We are processing the report!
  | display_text | string |  no  |  |
  | id | number |  no  |  |
  | slug | string |  no  |  |
+ 
+
+---
+
+#### [AdvanceFilterInfo](#AdvanceFilterInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | action_centre | [[FiltersInfo](#FiltersInfo)]? |  yes  |  |
+ | applied_filters | string? |  yes  |  |
+ | filters | [[FiltersInfo](#FiltersInfo)]? |  yes  |  |
+ | page | string? |  yes  |  |
+ | processed | [[FiltersInfo](#FiltersInfo)]? |  yes  |  |
+ | returned | [[FiltersInfo](#FiltersInfo)]? |  yes  |  |
+ | unfulfilled | [[FiltersInfo](#FiltersInfo)]? |  yes  |  |
  
 
 ---
@@ -5020,6 +4672,16 @@ We are processing the report!
  | affiliate_order_id | string |  no  |  |
  | employee_discount | number? |  yes  |  |
  | loyalty_discount | number? |  yes  |  |
+ 
+
+---
+
+#### [AffiliateBagsDetails](#AffiliateBagsDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | affiliate_bag_id | string? |  yes  |  |
+ | coupon_code | string? |  yes  |  |
  
 
 ---
@@ -5123,8 +4785,10 @@ We are processing the report!
  | employee_discount | number? |  yes  |  |
  | is_priority | boolean? |  yes  |  |
  | loyalty_discount | number? |  yes  |  |
+ | marketplace_invoice_id | string? |  yes  |  |
  | order_item_id | string? |  yes  |  |
  | quantity | number? |  yes  |  |
+ | replacement_details | [ReplacementDetails](#ReplacementDetails)? |  yes  |  |
  | size_level_total_qty | number? |  yes  |  |
  
 
@@ -5163,6 +4827,8 @@ We are processing the report!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | announcements | [[AnnouncementResponse](#AnnouncementResponse)]? |  yes  |  |
+ | message | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -5191,11 +4857,12 @@ We are processing the report!
  | a_set | string? |  yes  |  |
  | child_details | string? |  yes  |  |
  | code | string? |  yes  |  |
+ | currency | string? |  yes  |  |
  | dimensions | [Dimensions](#Dimensions)? |  yes  |  |
- | esp_modified | any? |  yes  |  |
- | identifiers | [Identifier](#Identifier) |  no  |  |
+ | esp_modified | boolean? |  yes  |  |
+ | identifiers | string |  no  |  |
  | is_set | boolean? |  yes  |  |
- | raw_meta | any? |  yes  |  |
+ | raw_meta | string? |  yes  |  |
  | return_config | [ReturnConfig](#ReturnConfig)? |  yes  |  |
  | seller_identifier | string |  no  |  |
  | size | string |  no  |  |
@@ -5225,6 +4892,48 @@ We are processing the report!
  | dimension | string |  no  |  |
  | quantity | number |  no  |  |
  | weight | string |  no  |  |
+ 
+
+---
+
+#### [AttachOrderUser](#AttachOrderUser)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | fynd_order_id | string |  no  |  |
+ | otp_data | [AttachUserOtpData](#AttachUserOtpData) |  no  |  |
+ | user_info | [AttachUserInfo](#AttachUserInfo) |  no  |  |
+ 
+
+---
+
+#### [AttachOrderUserResponse](#AttachOrderUserResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [AttachUserInfo](#AttachUserInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country_code | string? |  yes  |  |
+ | first_name | string |  no  |  |
+ | last_name | string |  no  |  |
+ | mobile | string |  no  |  |
+ 
+
+---
+
+#### [AttachUserOtpData](#AttachUserOtpData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | request_id | string |  no  |  |
  
 
 ---
@@ -5278,27 +4987,26 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | affiliate_bag_details | [AffiliateBagDetails](#AffiliateBagDetails) |  no  |  |
+ | affiliate_bag_details | [AffiliateBagDetails](#AffiliateBagDetails)? |  yes  |  |
  | affiliate_details | [AffiliateDetails](#AffiliateDetails)? |  yes  |  |
  | applied_promos | [string]? |  yes  |  |
- | article | [Article](#Article) |  no  |  |
+ | article | [Article](#Article)? |  yes  |  |
  | article_details | [ArticleDetails](#ArticleDetails)? |  yes  |  |
- | b_id | number |  no  |  |
- | b_type | string? |  yes  |  |
- | bag_status | [[BagStatusHistory](#BagStatusHistory)] |  no  |  |
+ | bag_status | [[BagStatusHistory](#BagStatusHistory)]? |  yes  |  |
  | bag_status_history | [BagStatusHistory](#BagStatusHistory)? |  yes  |  |
  | bag_update_time | number? |  yes  |  |
- | brand | [Brand](#Brand) |  no  |  |
- | current_operational_status | [BagStatusHistory](#BagStatusHistory) |  no  |  |
- | current_status | [BagStatusHistory](#BagStatusHistory) |  no  |  |
+ | brand | [Brand](#Brand)? |  yes  |  |
+ | current_operational_status | [BagStatusHistory](#BagStatusHistory)? |  yes  |  |
+ | current_status | [BagStatusHistory](#BagStatusHistory)? |  yes  |  |
  | dates | [Dates](#Dates)? |  yes  |  |
  | display_name | string? |  yes  |  |
  | entity_type | string? |  yes  |  |
- | financial_breakup | [[FinancialBreakup](#FinancialBreakup)] |  no  |  |
- | gst_details | [BagGSTDetails](#BagGSTDetails) |  no  |  |
+ | financial_breakup | [[FinancialBreakup](#FinancialBreakup)]? |  yes  |  |
+ | gst_details | [BagGSTDetails](#BagGSTDetails)? |  yes  |  |
+ | id | number? |  yes  |  |
  | identifier | string? |  yes  |  |
- | item | [Item](#Item) |  no  |  |
- | journey_type | string |  no  |  |
+ | item | [Item](#Item)? |  yes  |  |
+ | journey_type | string? |  yes  |  |
  | line_number | number? |  yes  |  |
  | meta | [BagMeta](#BagMeta)? |  yes  |  |
  | no_of_bags_order | number? |  yes  |  |
@@ -5307,7 +5015,7 @@ We are processing the report!
  | ordering_store | [Store](#Store)? |  yes  |  |
  | original_bag_list | [number]? |  yes  |  |
  | parent_promo_bags | string? |  yes  |  |
- | prices | [Prices](#Prices) |  no  |  |
+ | prices | [Prices](#Prices)? |  yes  |  |
  | qc_required | any? |  yes  |  |
  | quantity | number? |  yes  |  |
  | reasons | [string]? |  yes  |  |
@@ -5315,8 +5023,9 @@ We are processing the report!
  | restore_promos | string? |  yes  |  |
  | seller_identifier | string? |  yes  |  |
  | shipment_id | string? |  yes  |  |
- | status | [BagReturnableCancelableStatus](#BagReturnableCancelableStatus) |  no  |  |
+ | status | [BagReturnableCancelableStatus1](#BagReturnableCancelableStatus1)? |  yes  |  |
  | tags | [string]? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -5326,12 +5035,20 @@ We are processing the report!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | brand_calculated_amount | number? |  yes  |  |
+ | cgst_gst_fee | string? |  yes  |  |
+ | cgst_tax_percentage | number? |  yes  |  |
  | gst_fee | number? |  yes  |  |
  | gst_tag | string? |  yes  |  |
  | gst_tax_percentage | number? |  yes  |  |
  | gstin_code | string? |  yes  |  |
  | hsn_code | string? |  yes  |  |
+ | hsn_code_id | string? |  yes  |  |
+ | igst_gst_fee | string? |  yes  |  |
+ | igst_tax_percentage | number? |  yes  |  |
  | is_default_hsn_code | boolean? |  yes  |  |
+ | sgst_gst_fee | string? |  yes  |  |
+ | sgst_tax_percentage | number? |  yes  |  |
+ | tax_collected_at_source | number? |  yes  |  |
  | value_of_good | number? |  yes  |  |
  
 
@@ -5366,6 +5083,23 @@ We are processing the report!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | b2b_po_details | [B2BPODetails](#B2BPODetails)? |  yes  |  |
+ | custom_json | string? |  yes  |  |
+ | custom_message | string? |  yes  |  |
+ | docket_number | string? |  yes  |  |
+ | extra_meta | string? |  yes  |  |
+ | gift_card | [GiftCard](#GiftCard)? |  yes  |  |
+ | group_id | string? |  yes  |  |
+ | partial_can_ret | boolean? |  yes  |  |
+ 
+
+---
+
+#### [BagPaymentMethods](#BagPaymentMethods)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | number? |  yes  |  |
+ | mode | string? |  yes  |  |
  
 
 ---
@@ -5383,14 +5117,40 @@ We are processing the report!
 
 ---
 
+#### [BagReturnableCancelableStatus1](#BagReturnableCancelableStatus1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | can_be_cancelled | boolean |  no  |  |
+ | enable_tracking | boolean |  no  |  |
+ | is_active | boolean |  no  |  |
+ | is_customer_return_allowed | boolean |  no  |  |
+ | is_returnable | boolean |  no  |  |
+ 
+
+---
+
 #### [Bags](#Bags)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | affiliate_bag_id | string? |  yes  |  |
- | affiliate_order_id | string? |  yes  |  |
- | bag_id | number? |  yes  |  |
- | is_locked | boolean? |  yes  |  |
+ | affiliate_bag_id | string? |  yes  | Application/Affiliate Bag ID, Required if the ID is missing |
+ | affiliate_order_id | string? |  yes  | Application/Affiliate Order ID, Required if the ID is missing |
+ | bag_id | number? |  yes  | Bag Id |
+ | is_locked | boolean? |  yes  | Is Bag Locked |
+ 
+
+---
+
+#### [BagsPage](#BagsPage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | current | number |  no  |  |
+ | has_next | boolean |  no  |  |
+ | item_total | number |  no  |  |
+ | page_type | string |  no  |  |
+ | size | number |  no  |  |
  
 
 ---
@@ -5402,13 +5162,23 @@ We are processing the report!
  | app_display_name | string? |  yes  |  |
  | app_facing | boolean? |  yes  |  |
  | app_state_name | string? |  yes  |  |
- | bs_id | number |  no  |  |
  | display_name | string |  no  |  |
+ | id | number |  no  |  |
  | is_active | boolean? |  yes  |  |
  | journey_type | string |  no  |  |
  | name | string |  no  |  |
  | notify_customer | boolean? |  yes  |  |
  | state_type | string |  no  |  |
+ 
+
+---
+
+#### [BagStateTransitionMap](#BagStateTransitionMap)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | affiliate | string? |  yes  |  |
+ | fynd | string? |  yes  |  |
  
 
 ---
@@ -5442,17 +5212,30 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | affiliate_bag_details | [AffiliateBagDetails](#AffiliateBagDetails)? |  yes  |  |
+ | article | [Article](#Article)? |  yes  |  |
+ | bag_expiry_date | string? |  yes  |  |
  | bag_id | number |  no  |  |
+ | bag_status | [[BagStatusHistory](#BagStatusHistory)]? |  yes  |  |
+ | bag_type | string? |  yes  |  |
+ | brand | [ShipmentListingBrand](#ShipmentListingBrand)? |  yes  |  |
  | can_cancel | boolean? |  yes  |  |
  | can_return | boolean? |  yes  |  |
+ | current_operational_status | [BagStatusHistory](#BagStatusHistory) |  no  |  |
+ | current_status | [BagStatusHistory](#BagStatusHistory) |  no  |  |
+ | dates | [Dates](#Dates)? |  yes  |  |
+ | display_name | string? |  yes  |  |
+ | entity_type | string? |  yes  |  |
+ | financial_breakup | [[FinancialBreakup](#FinancialBreakup)] |  no  |  |
  | gst | [GSTDetailsData](#GSTDetailsData)? |  yes  |  |
  | item | [PlatformItem](#PlatformItem)? |  yes  |  |
- | item_quantity | number |  no  |  |
- | ordering_channel | string |  no  |  |
+ | line_number | number? |  yes  |  |
+ | meta | string? |  yes  |  |
  | prices | [Prices](#Prices)? |  yes  |  |
- | shipment_id | string |  no  |  |
- | status | string |  no  |  |
- | total_shipment_bags | number |  no  |  |
+ | product_quantity | number |  no  |  |
+ | reasons | [string]? |  yes  |  |
+ | size | string? |  yes  |  |
+ | status | [BagReturnableCancelableStatus](#BagReturnableCancelableStatus) |  no  |  |
  
 
 ---
@@ -5461,8 +5244,8 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | message | string |  no  |  |
- | success | boolean |  no  |  |
+ | message | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -5496,6 +5279,19 @@ We are processing the report!
 
 ---
 
+#### [BillingStaffDetails](#BillingStaffDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | employee_code | string? |  yes  |  |
+ | first_name | string? |  yes  |  |
+ | last_name | string? |  yes  |  |
+ | staff_id | number? |  yes  |  |
+ | user | string? |  yes  |  |
+ 
+
+---
+
 #### [Brand](#Brand)
 
  | Properties | Type | Nullable | Description |
@@ -5517,134 +5313,21 @@ We are processing the report!
 
 ---
 
-#### [BulkActionDetailsDataField](#BulkActionDetailsDataField)
+#### [BulkActionTemplate](#BulkActionTemplate)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | batch_id | string? |  yes  |  |
- | company_id | string? |  yes  |  |
- | failed_shipments_count | number? |  yes  |  |
- | processing_shipments_count | number? |  yes  |  |
- | successful_shipment_ids | [string]? |  yes  |  |
- | successful_shipments_count | number? |  yes  |  |
- | total_shipments_count | number? |  yes  |  |
+ | text | string? |  yes  |  |
+ | value | string? |  yes  |  |
  
 
 ---
 
-#### [BulkActionDetailsResponse](#BulkActionDetailsResponse)
+#### [BulkActionTemplateResponse](#BulkActionTemplateResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [[BulkActionDetailsDataField](#BulkActionDetailsDataField)]? |  yes  |  |
- | error | [string]? |  yes  |  |
- | failed_records | [string]? |  yes  |  |
- | message | string? |  yes  |  |
- | status | boolean? |  yes  |  |
- | success | string? |  yes  |  |
- | uploaded_by | string? |  yes  |  |
- | uploaded_on | string? |  yes  |  |
- | user_id | string? |  yes  |  |
- 
-
----
-
-#### [BulkActionPayload](#BulkActionPayload)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | url | string |  no  |  |
- 
-
----
-
-#### [BulkActionResponse](#BulkActionResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
- | status | boolean? |  yes  |  |
- 
-
----
-
-#### [BulkInvoiceLabelResponse](#BulkInvoiceLabelResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | batch_id | string |  no  |  |
- | company_id | string? |  yes  |  |
- | data | string? |  yes  |  |
- | do_invoice_label_generated | boolean |  no  |  |
- | invoice | string? |  yes  |  |
- | invoice_status | string? |  yes  |  |
- | label | string? |  yes  |  |
- | store_code | string? |  yes  |  |
- | store_id | string? |  yes  |  |
- | store_name | string? |  yes  |  |
- 
-
----
-
-#### [BulkInvoicingResponse](#BulkInvoicingResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
- | success | boolean |  no  |  |
- 
-
----
-
-#### [bulkListingData](#bulkListingData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | batch_id | string? |  yes  |  |
- | company_id | number? |  yes  |  |
- | excel_url | string? |  yes  |  |
- | failed | number? |  yes  |  |
- | failed_shipments | [string]? |  yes  |  |
- | file_name | string? |  yes  |  |
- | id | string? |  yes  |  |
- | processing | number? |  yes  |  |
- | processing_shipments | [string]? |  yes  |  |
- | status | string? |  yes  |  |
- | store_code | string? |  yes  |  |
- | store_id | number? |  yes  |  |
- | store_name | string? |  yes  |  |
- | successful | number? |  yes  |  |
- | successful_shipments | [string]? |  yes  |  |
- | total | number? |  yes  |  |
- | uploaded_on | string? |  yes  |  |
- | user_id | string? |  yes  |  |
- | user_name | string? |  yes  |  |
- 
-
----
-
-#### [BulkListingPage](#BulkListingPage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | current | number? |  yes  |  |
- | has_next | boolean? |  yes  |  |
- | has_previous | boolean? |  yes  |  |
- | size | number? |  yes  |  |
- | total | number? |  yes  |  |
- | type | string? |  yes  |  |
- 
-
----
-
-#### [BulkListingResponse](#BulkListingResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [[bulkListingData](#bulkListingData)]? |  yes  |  |
- | error | string? |  yes  |  |
- | page | [BulkListingPage](#BulkListingPage)? |  yes  |  |
- | success | boolean? |  yes  |  |
+ | template_x_slug | [[BulkActionTemplate](#BulkActionTemplate)]? |  yes  | Allowed bulk action template slugs |
  
 
 ---
@@ -5691,15 +5374,15 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | affiliate_id | string? |  yes  |  |
- | affiliate_shipment_id | string? |  yes  |  |
+ | affiliate_id | string? |  yes  | Affiliate ID |
+ | affiliate_shipment_id | string? |  yes  | Affiliate Shipment ID |
  | bags | [[Bags](#Bags)]? |  yes  |  |
- | is_bag_locked | boolean? |  yes  |  |
- | is_shipment_locked | boolean? |  yes  |  |
- | lock_status | boolean? |  yes  |  |
- | original_filter | [OriginalFilter](#OriginalFilter)? |  yes  |  |
- | shipment_id | string? |  yes  |  |
- | status | string? |  yes  |  |
+ | is_bag_locked | boolean? |  yes  | Is Bag Locked |
+ | is_shipment_locked | boolean? |  yes  | Is Shipment Locked |
+ | lock_status | string? |  yes  | Lock Status: Expected lock_status: [complete, operational, financial] |
+ | original_filter | [OriginalFilter](#OriginalFilter)? |  yes  | Filter |
+ | shipment_id | string? |  yes  | Shipment ID |
+ | status | string? |  yes  | Status |
  
 
 ---
@@ -5708,8 +5391,32 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | call_id | string |  no  |  |
- | status | boolean |  no  |  |
+ | call_id | string |  no  | Call ID from the provider |
+ | success | boolean |  no  | Success |
+ 
+
+---
+
+#### [CompanyDetails](#CompanyDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | address | string? |  yes  |  |
+ | company_cin | string? |  yes  |  |
+ | company_contact | [ContactDetails](#ContactDetails)? |  yes  |  |
+ | company_gst | string? |  yes  |  |
+ | company_id | number? |  yes  |  |
+ | company_name | string? |  yes  |  |
+ 
+
+---
+
+#### [ContactDetails](#ContactDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | emails | [string]? |  yes  |  |
+ | phone | [[PhoneDetails](#PhoneDetails)]? |  yes  |  |
  
 
 ---
@@ -5774,6 +5481,7 @@ We are processing the report!
  | ---------- | ---- | -------- | ----------- |
  | billing_info | [BillingInfo](#BillingInfo) |  no  |  |
  | charges | [[Charge](#Charge)]? |  yes  |  |
+ | config | string? |  yes  |  |
  | currency_info | string? |  yes  |  |
  | external_creation_date | string? |  yes  |  |
  | external_order_id | string? |  yes  |  |
@@ -5822,6 +5530,17 @@ We are processing the report!
 
 ---
 
+#### [CreditBalanceInfo](#CreditBalanceInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | customer_mobile_number | string? |  yes  |  |
+ | reason | string? |  yes  |  |
+ | total_credited_balance | string? |  yes  |  |
+ 
+
+---
+
 #### [CurrentStatus](#CurrentStatus)
 
  | Properties | Type | Nullable | Description |
@@ -5829,16 +5548,16 @@ We are processing the report!
  | bag_id | number? |  yes  |  |
  | bag_state_mapper | [BagStateMapper](#BagStateMapper)? |  yes  |  |
  | created_at | string? |  yes  |  |
- | current_status_id | number |  no  |  |
  | delivery_awb_number | string? |  yes  |  |
  | delivery_partner_id | number? |  yes  |  |
+ | id | number |  no  |  |
  | kafka_sync | boolean? |  yes  |  |
  | shipment_id | string? |  yes  |  |
  | state_id | number? |  yes  |  |
  | state_type | string? |  yes  |  |
  | status | string? |  yes  |  |
  | store_id | number? |  yes  |  |
- | updated_at | string? |  yes  |  |
+ | updated_at | number? |  yes  |  |
  
 
 ---
@@ -5848,6 +5567,7 @@ We are processing the report!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | entities | [[EntitiesDataUpdates](#EntitiesDataUpdates)]? |  yes  |  |
+ | order_item_status | [[OrderItemDataUpdates](#OrderItemDataUpdates)]? |  yes  |  |
  | products | [[ProductsDataUpdates](#ProductsDataUpdates)]? |  yes  |  |
  
 
@@ -5857,7 +5577,7 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | delivery_date | any? |  yes  |  |
+ | delivery_date | string? |  yes  |  |
  | order_created | string? |  yes  |  |
  
 
@@ -5868,6 +5588,19 @@ We are processing the report!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | stormbreaker_uuid | string? |  yes  |  |
+ 
+
+---
+
+#### [Dimension](#Dimension)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | height | string? |  yes  |  |
+ | length | number? |  yes  |  |
+ | packaging_type | string? |  yes  |  |
+ | weight | string? |  yes  |  |
+ | width | number? |  yes  |  |
  
 
 ---
@@ -5967,12 +5700,12 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | affiliate_bag_id | string? |  yes  |  |
- | affiliate_id | string? |  yes  |  |
- | affiliate_order_id | string? |  yes  |  |
- | affiliate_shipment_id | string? |  yes  |  |
- | id | string? |  yes  |  |
- | reason_text | string |  no  |  |
+ | affiliate_bag_id | string? |  yes  | Application/Affiliate Bag ID, Required if the ID is missing |
+ | affiliate_id | string? |  yes  | Application/Affiliate ID, Required if the ID is missing |
+ | affiliate_order_id | string? |  yes  | Application/Affiliate Order ID, Required if the ID is missing |
+ | affiliate_shipment_id | string? |  yes  | Application/Affiliate Shipment ID, Required if the ID is missing |
+ | id | string? |  yes  | Shipment ID if 'entity_type': shipments \| Bag Id if 'entity_type': bags |
+ | reason_text | string |  no  | Reason For Shipment/Bag Action |
  
 
 ---
@@ -6042,8 +5775,30 @@ We are processing the report!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | error_trace | string? |  yes  |  |
- | message | string |  no  |  |
- | status | number |  no  |  |
+ | message | string? |  yes  |  |
+ | status | number? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [FetchCreditBalanceRequestPayload](#FetchCreditBalanceRequestPayload)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | affiliate_id | string |  no  |  |
+ | customer_mobile_number | string |  no  |  |
+ | seller_id | string |  no  |  |
+ 
+
+---
+
+#### [FetchCreditBalanceResponsePayload](#FetchCreditBalanceResponsePayload)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [CreditBalanceInfo](#CreditBalanceInfo) |  no  |  |
+ | success | boolean |  no  |  |
  
 
 ---
@@ -6053,25 +5808,7 @@ We are processing the report!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | cdn | [URL](#URL)? |  yes  |  |
- | content_type | string? |  yes  |  |
- | file_name | string? |  yes  |  |
- | file_path | string? |  yes  |  |
- | method | string? |  yes  |  |
- | namespace | string? |  yes  |  |
- | operation | string? |  yes  |  |
- | size | number? |  yes  |  |
- | tags | [string]? |  yes  |  |
- | upload | [FileUploadResponse](#FileUploadResponse)? |  yes  |  |
- 
-
----
-
-#### [FileUploadResponse](#FileUploadResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | expiry | number? |  yes  |  |
- | url | string? |  yes  |  |
+ | file_name | string? |  yes  | Name of the file |
  
 
 ---
@@ -6080,8 +5817,11 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | min_search_size | number? |  yes  |  |
  | name | string? |  yes  |  |
- | text | string |  no  |  |
+ | placeholder_text | string? |  yes  |  |
+ | show_ui | boolean? |  yes  |  |
+ | text | string? |  yes  |  |
  | value | string? |  yes  |  |
  
 
@@ -6092,6 +5832,8 @@ We are processing the report!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | options | [[FilterInfoOption](#FilterInfoOption)]? |  yes  |  |
+ | placeholder_text | string? |  yes  |  |
+ | required | boolean? |  yes  |  |
  | text | string |  no  |  |
  | type | string |  no  |  |
  | value | string |  no  |  |
@@ -6103,7 +5845,8 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | advance | [string]? |  yes  |  |
+ | advance_filter | [AdvanceFilterInfo](#AdvanceFilterInfo)? |  yes  |  |
+ | global_filter | [[FiltersInfo](#FiltersInfo)]? |  yes  |  |
  
 
 ---
@@ -6147,8 +5890,8 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | f_max | string? |  yes  |  |
- | f_min | string? |  yes  |  |
+ | max | string? |  yes  |  |
+ | min | string? |  yes  |  |
  
 
 ---
@@ -6182,11 +5925,25 @@ We are processing the report!
 
 ---
 
+#### [GeneratePosOrderReceiptResponse](#GeneratePosOrderReceiptResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | customer_cn_receipt | string? |  yes  |  |
+ | invoice_receipt | string? |  yes  |  |
+ | merchant_cn_receipt | string? |  yes  |  |
+ | order_id | string? |  yes  |  |
+ | payment_receipt | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
 #### [GetActionsResponse](#GetActionsResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | permissions | [ActionInfo](#ActionInfo) |  no  |  |
+ | permissions | [[ActionInfo](#ActionInfo)]? |  yes  |  |
  
 
 ---
@@ -6196,7 +5953,19 @@ We are processing the report!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | items | [[BagDetailsPlatformResponse](#BagDetailsPlatformResponse)] |  no  |  |
- | page | [Page1](#Page1) |  no  |  |
+ | page | [BagsPage](#BagsPage) |  no  |  |
+ 
+
+---
+
+#### [GiftCard](#GiftCard)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display_text | string? |  yes  |  |
+ | gift_message | string? |  yes  |  |
+ | gift_price | number? |  yes  |  |
+ | is_gift_applied | boolean? |  yes  |  |
  
 
 ---
@@ -6206,8 +5975,19 @@ We are processing the report!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | brand_calculated_amount | number |  no  |  |
+ | cgst_gst_fee | string? |  yes  |  |
+ | cgst_tax_percentage | number? |  yes  |  |
  | gst_fee | number |  no  |  |
+ | gst_tag | string? |  yes  |  |
+ | gst_tax_percentage | number? |  yes  |  |
  | gstin_code | string |  no  |  |
+ | hsn_code | string? |  yes  |  |
+ | hsn_code_id | string? |  yes  |  |
+ | igst_gst_fee | string? |  yes  |  |
+ | igst_tax_percentage | number? |  yes  |  |
+ | is_default_hsn_code | boolean? |  yes  |  |
+ | sgst_gst_fee | string? |  yes  |  |
+ | sgst_tax_percentage | number? |  yes  |  |
  | tax_collected_at_source | number |  no  |  |
  | value_of_good | number |  no  |  |
  
@@ -6218,16 +5998,64 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | bag_id | number? |  yes  |  |
- | createdat | string |  no  |  |
- | l1_detail | string? |  yes  |  |
- | l2_detail | string? |  yes  |  |
- | l3_detail | string? |  yes  |  |
- | message | string |  no  |  |
- | ticket_id | string? |  yes  |  |
- | ticket_url | string? |  yes  |  |
- | type | string |  no  |  |
- | user | string |  no  |  |
+ | assigned_agent | string? |  yes  | Assigned Agent |
+ | bag_id | number? |  yes  | Bag ID |
+ | createdat | string |  no  | Create date |
+ | display_message | string? |  yes  | Display Message |
+ | l1_detail | string? |  yes  | L1 details of bag |
+ | l2_detail | string? |  yes  | L2 details of bag |
+ | l3_detail | string? |  yes  | L3 details of bag |
+ | message | string |  no  | History Message or comment |
+ | meta | [HistoryMeta](#HistoryMeta)? |  yes  | meta |
+ | ticket_id | string? |  yes  | Ticket ID |
+ | ticket_url | string? |  yes  | Ticket URL |
+ | type | string |  no  | type of history, Expected Values:             [ activity_status, activity_escalation, activity_comment, outbound_notification, outbound_voice ] |
+ | user | string |  no  | User who created the history |
+ 
+
+---
+
+#### [HistoryMeta](#HistoryMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | activity_comment | string? |  yes  |  |
+ | activity_type | string? |  yes  |  |
+ | billsec | string? |  yes  |  |
+ | call_id | string? |  yes  |  |
+ | caller | string? |  yes  |  |
+ | callerid | string? |  yes  |  |
+ | channel_type | string? |  yes  |  |
+ | duration | string? |  yes  |  |
+ | endtime | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | reason | [HistoryReason](#HistoryReason)? |  yes  |  |
+ | receiver | string? |  yes  |  |
+ | recipient | string? |  yes  |  |
+ | recordpath | string? |  yes  |  |
+ | short_link | string? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | starttime | string? |  yes  |  |
+ | status | string? |  yes  |  |
+ | status1 | string? |  yes  |  |
+ | status2 | string? |  yes  |  |
+ | store_code | string? |  yes  |  |
+ | store_id | number? |  yes  |  |
+ | store_name | string? |  yes  |  |
+ 
+
+---
+
+#### [HistoryReason](#HistoryReason)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | category | string? |  yes  |  |
+ | code | number? |  yes  |  |
+ | dislay_name | string? |  yes  |  |
+ | quantity | number? |  yes  |  |
+ | state | string? |  yes  |  |
+ | text | string? |  yes  |  |
  
 
 ---
@@ -6236,7 +6064,11 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | alu | string? |  yes  |  |
  | ean | string? |  yes  |  |
+ | isbn | string? |  yes  |  |
+ | sku_code | string? |  yes  |  |
+ | upc | string? |  yes  |  |
  
 
 ---
@@ -6257,7 +6089,9 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | shipment_ids | [string] |  no  |  |
+ | affiliate_bag_ids | [string]? |  yes  | Affiliate Bag Ids to clear cache of shipment Ids mapped to it |
+ | bag_ids | [string]? |  yes  | Bag Ids to clear cache of shipment Ids mapped to it |
+ | shipment_ids | [string]? |  yes  | Shipment Ids to clear cache |
  
 
 ---
@@ -6276,6 +6110,7 @@ We are processing the report!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | credit_note_id | string? |  yes  |  |
+ | external_invoice_id | string? |  yes  |  |
  | invoice_url | string? |  yes  |  |
  | label_url | string? |  yes  |  |
  | store_invoice_id | string? |  yes  |  |
@@ -6325,40 +6160,6 @@ We are processing the report!
 
 ---
 
-#### [JioCodeUpsertDataSet](#JioCodeUpsertDataSet)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | article_id | string? |  yes  |  |
- | company_id | string? |  yes  |  |
- | item_id | string? |  yes  |  |
- | jio_code | string? |  yes  |  |
- 
-
----
-
-#### [JioCodeUpsertPayload](#JioCodeUpsertPayload)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [[JioCodeUpsertDataSet](#JioCodeUpsertDataSet)]? |  yes  |  |
- 
-
----
-
-#### [JioCodeUpsertResponse](#JioCodeUpsertResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [string]? |  yes  |  |
- | error | [[NestedErrorSchemaDataSet](#NestedErrorSchemaDataSet)]? |  yes  |  |
- | identifier | string? |  yes  |  |
- | success | boolean? |  yes  |  |
- | trace_id | string? |  yes  |  |
- 
-
----
-
 #### [LaneConfigResponse](#LaneConfigResponse)
 
  | Properties | Type | Nullable | Description |
@@ -6404,28 +6205,6 @@ We are processing the report!
 
 ---
 
-#### [ManualAssignDPToShipment](#ManualAssignDPToShipment)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | dp_id | number |  no  |  |
- | order_type | string |  no  |  |
- | qc_required | string |  no  |  |
- | shipment_ids | [string]? |  yes  |  |
- 
-
----
-
-#### [ManualAssignDPToShipmentResponse](#ManualAssignDPToShipmentResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | errors | [string]? |  yes  |  |
- | success | string |  no  |  |
- 
-
----
-
 #### [MarketPlacePdf](#MarketPlacePdf)
 
  | Properties | Type | Nullable | Description |
@@ -6440,76 +6219,8 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | dimension | [Dimensions](#Dimensions)? |  yes  |  |
- 
-
----
-
-#### [Meta1](#Meta1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
  | kafka_emission_status | number? |  yes  |  |
  | state_manager_used | string? |  yes  |  |
- 
-
----
-
-#### [MetricCountResponse](#MetricCountResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[MetricsCount](#MetricsCount)]? |  yes  |  |
- 
-
----
-
-#### [MetricsCount](#MetricsCount)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | key | string |  no  |  |
- | options | [[Options](#Options)]? |  yes  |  |
- | text | string |  no  |  |
- | value | number |  no  |  |
- 
-
----
-
-#### [NestedErrorSchemaDataSet](#NestedErrorSchemaDataSet)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
- | type | string? |  yes  |  |
- | value | string? |  yes  |  |
- 
-
----
-
-#### [OmsReports](#OmsReports)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display_name | string? |  yes  |  |
- | report_created_at | string? |  yes  |  |
- | report_id | string? |  yes  |  |
- | report_name | string? |  yes  |  |
- | report_requested_at | string? |  yes  |  |
- | report_type | string? |  yes  |  |
- | request_details | string? |  yes  |  |
- | s3_key | string? |  yes  |  |
- | status | string? |  yes  |  |
- 
-
----
-
-#### [Options](#Options)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | text | string? |  yes  |  |
- | value | number? |  yes  |  |
  
 
 ---
@@ -6519,7 +6230,8 @@ We are processing the report!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | identifiers | string? |  yes  |  |
- | return_config | string? |  yes  |  |
+ | return_config | [ReturnConfig1](#ReturnConfig1)? |  yes  |  |
+ | size | string? |  yes  |  |
  | uid | string? |  yes  |  |
  
 
@@ -6529,6 +6241,7 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | affiliate_bag_details | [AffiliateBagsDetails](#AffiliateBagsDetails)? |  yes  |  |
  | applied_promos | [[AppliedPromos](#AppliedPromos)]? |  yes  |  |
  | article | [OrderBagArticle](#OrderBagArticle)? |  yes  |  |
  | bag_configs | [BagConfigs](#BagConfigs)? |  yes  |  |
@@ -6541,11 +6254,14 @@ We are processing the report!
  | display_name | string? |  yes  |  |
  | entity_type | string? |  yes  |  |
  | financial_breakup | [FinancialBreakup](#FinancialBreakup)? |  yes  |  |
+ | group_id | string? |  yes  |  |
  | gst_details | [BagGST](#BagGST)? |  yes  |  |
  | identifier | string? |  yes  |  |
  | item | [PlatformItem](#PlatformItem)? |  yes  |  |
  | line_number | number? |  yes  |  |
+ | meta | [BagMeta](#BagMeta)? |  yes  |  |
  | parent_promo_bags | string? |  yes  |  |
+ | payment_methods | [[BagPaymentMethods](#BagPaymentMethods)]? |  yes  |  |
  | prices | [Prices](#Prices)? |  yes  |  |
  | quantity | number? |  yes  |  |
  | seller_identifier | string? |  yes  |  |
@@ -6557,11 +6273,11 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | brand_name | string |  no  |  |
- | company | string |  no  |  |
- | created_on | string |  no  |  |
+ | brand_name | string? |  yes  |  |
+ | company | number |  no  |  |
+ | created_on | string? |  yes  |  |
  | id | number |  no  |  |
- | logo | string |  no  |  |
+ | logo | string? |  yes  |  |
  | modified_on | string? |  yes  |  |
  
 
@@ -6577,6 +6293,20 @@ We are processing the report!
  | bag_end_state | string? |  yes  |  |
  | create_user | boolean? |  yes  |  |
  | store_lookup | string? |  yes  |  |
+ 
+
+---
+
+#### [OrderData](#OrderData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | fynd_order_id | string |  no  |  |
+ | meta | [OrderMeta](#OrderMeta)? |  yes  |  |
+ | order_date | string |  no  |  |
+ | payment_methods | string? |  yes  |  |
+ | prices | [Prices](#Prices)? |  yes  |  |
+ | tax_details | [TaxDetails](#TaxDetails)? |  yes  |  |
  
 
 ---
@@ -6608,16 +6338,13 @@ We are processing the report!
 
 ---
 
-#### [OrderDict](#OrderDict)
+#### [OrderDetailsResponse](#OrderDetailsResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | fynd_order_id | string |  no  |  |
- | meta | [OrderMeta](#OrderMeta)? |  yes  |  |
- | order_date | string |  no  |  |
- | payment_methods | string? |  yes  |  |
- | prices | [Prices](#Prices)? |  yes  |  |
- | tax_details | string? |  yes  |  |
+ | order | [OrderData](#OrderData)? |  yes  |  |
+ | shipments | [[PlatformShipment](#PlatformShipment)]? |  yes  |  |
+ | success | boolean |  no  |  |
  
 
 ---
@@ -6649,17 +6376,26 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address | string |  no  |  |
- | city | string |  no  |  |
- | code | string |  no  |  |
- | contact_person | string |  no  |  |
- | country | string |  no  |  |
- | meta | string |  no  |  |
- | ordering_store_id | number |  no  |  |
- | phone | string |  no  |  |
- | pincode | string |  no  |  |
- | state | string |  no  |  |
- | store_name | string |  no  |  |
+ | address | string? |  yes  |  |
+ | city | string? |  yes  |  |
+ | code | string? |  yes  |  |
+ | contact_person | string? |  yes  |  |
+ | country | string? |  yes  |  |
+ | id | number? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | phone | string? |  yes  |  |
+ | pincode | string? |  yes  |  |
+ | state | string? |  yes  |  |
+ | store_name | string? |  yes  |  |
+ 
+
+---
+
+#### [OrderItemDataUpdates](#OrderItemDataUpdates)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | string? |  yes  |  |
  
 
 ---
@@ -6682,8 +6418,10 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | billing_staff_details | [BillingStaffDetails](#BillingStaffDetails)? |  yes  |  |
  | cart_id | number? |  yes  |  |
  | comment | string? |  yes  |  |
+ | company_logo | string? |  yes  |  |
  | currency_symbol | string? |  yes  |  |
  | customer_note | string? |  yes  |  |
  | employee_id | number? |  yes  |  |
@@ -6696,7 +6434,9 @@ We are processing the report!
  | order_type | string? |  yes  |  |
  | ordering_store | number? |  yes  |  |
  | payment_type | string? |  yes  |  |
+ | platform_user_details | [PlatformUserDetails](#PlatformUserDetails)? |  yes  |  |
  | staff | string? |  yes  |  |
+ | transaction_data | [TransactionData](#TransactionData)? |  yes  |  |
  
 
 ---
@@ -6768,8 +6508,8 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | affiliate_id | string? |  yes  |  |
- | affiliate_shipment_id | string? |  yes  |  |
+ | affiliate_id | string? |  yes  | Affiliate ID |
+ | affiliate_shipment_id | string? |  yes  | Affiliate Shipment ID |
  
 
 ---
@@ -6784,19 +6524,6 @@ We are processing the report!
  | size | number? |  yes  |  |
  | total | number? |  yes  |  |
  | type | string? |  yes  |  |
- 
-
----
-
-#### [Page1](#Page1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | current | number |  no  |  |
- | has_next | boolean |  no  |  |
- | item_total | number |  no  |  |
- | page_type | string |  no  |  |
- | size | number |  no  |  |
  
 
 ---
@@ -6837,16 +6564,6 @@ We are processing the report!
 
 ---
 
-#### [PaymentModeInfo](#PaymentModeInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | logo | string |  no  |  |
- | type | string |  no  |  |
- 
-
----
-
 #### [PDFLinks](#PDFLinks)
 
  | Properties | Type | Nullable | Description |
@@ -6857,14 +6574,35 @@ We are processing the report!
  | invoice | string? |  yes  |  |
  | invoice_a4 | string? |  yes  |  |
  | invoice_a6 | string? |  yes  |  |
+ | invoice_export | string? |  yes  |  |
  | invoice_pos | string? |  yes  |  |
  | invoice_type | string |  no  |  |
  | label | string? |  yes  |  |
  | label_a4 | string? |  yes  |  |
  | label_a6 | string? |  yes  |  |
+ | label_export | string? |  yes  |  |
  | label_pos | string? |  yes  |  |
  | label_type | string |  no  |  |
  | po_invoice | string? |  yes  |  |
+ 
+
+---
+
+#### [PhoneDetails](#PhoneDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country_code | number? |  yes  |  |
+ | number | string? |  yes  |  |
+ 
+
+---
+
+#### [PlatformArticleAttributes](#PlatformArticleAttributes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | currency | string? |  yes  |  |
  
 
 ---
@@ -6920,6 +6658,10 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | attributes | [PlatformArticleAttributes](#PlatformArticleAttributes)? |  yes  |  |
+ | branch_url | string? |  yes  |  |
+ | brand | string? |  yes  |  |
+ | brand_id | number? |  yes  |  |
  | can_cancel | boolean? |  yes  |  |
  | can_return | boolean? |  yes  |  |
  | code | string? |  yes  |  |
@@ -6929,10 +6671,14 @@ We are processing the report!
  | image | [string]? |  yes  |  |
  | images | [string]? |  yes  |  |
  | l1_category | [string]? |  yes  |  |
+ | l2_category | [string]? |  yes  |  |
  | l3_category | number? |  yes  |  |
  | l3_category_name | string? |  yes  |  |
+ | last_updated_at | string? |  yes  |  |
+ | meta | string? |  yes  |  |
  | name | string? |  yes  |  |
  | size | string? |  yes  |  |
+ | slug_key | string? |  yes  |  |
  
 
 ---
@@ -6972,21 +6718,27 @@ We are processing the report!
  | bag_status_history | [[BagStatusHistory](#BagStatusHistory)]? |  yes  |  |
  | bags | [[OrderBags](#OrderBags)]? |  yes  |  |
  | billing_details | [UserDetailsData](#UserDetailsData)? |  yes  |  |
+ | can_update_dimension | boolean? |  yes  |  |
+ | company_details | [CompanyDetails](#CompanyDetails)? |  yes  |  |
  | coupon | string? |  yes  |  |
+ | custom_message | string? |  yes  |  |
  | custom_meta | [string]? |  yes  |  |
  | delivery_details | [UserDetailsData](#UserDetailsData)? |  yes  |  |
  | delivery_slot | string? |  yes  |  |
+ | dp_assignment | boolean? |  yes  |  |
  | dp_details | [DPDetailsData](#DPDetailsData)? |  yes  |  |
  | enable_dp_tracking | boolean? |  yes  |  |
+ | estimated_sla_time | string? |  yes  |  |
  | forward_shipment_id | string? |  yes  |  |
  | fulfilling_store | [FulfillingStore](#FulfillingStore)? |  yes  |  |
  | fulfilment_priority | number? |  yes  |  |
  | gst_details | [GSTDetailsData](#GSTDetailsData)? |  yes  |  |
  | invoice | [InvoiceInfo](#InvoiceInfo)? |  yes  |  |
  | invoice_id | string? |  yes  |  |
+ | is_dp_assign_enabled | boolean? |  yes  |  |
  | journey_type | string? |  yes  |  |
  | lock_status | boolean? |  yes  |  |
- | meta | [Meta](#Meta)? |  yes  |  |
+ | meta | [ShipmentMeta](#ShipmentMeta)? |  yes  |  |
  | operational_status | string? |  yes  |  |
  | order | [OrderDetailsData](#OrderDetailsData)? |  yes  |  |
  | ordering_store | [OrderingStoreDetails](#OrderingStoreDetails)? |  yes  |  |
@@ -6994,10 +6746,13 @@ We are processing the report!
  | payment_methods | string? |  yes  |  |
  | payment_mode | string? |  yes  |  |
  | payments | [ShipmentPayments](#ShipmentPayments)? |  yes  |  |
+ | pdf_links | string? |  yes  |  |
  | picked_date | string? |  yes  |  |
  | platform_logo | string? |  yes  |  |
  | prices | [Prices](#Prices)? |  yes  |  |
  | priority_text | string? |  yes  |  |
+ | shipment_created_at | string? |  yes  |  |
+ | shipment_details | [ShipmentDetails](#ShipmentDetails)? |  yes  |  |
  | shipment_id | string |  no  |  |
  | shipment_images | [string]? |  yes  |  |
  | shipment_quantity | number? |  yes  |  |
@@ -7006,6 +6761,7 @@ We are processing the report!
  | total_bags | number? |  yes  |  |
  | total_items | number? |  yes  |  |
  | tracking_list | [[TrackingList](#TrackingList)]? |  yes  |  |
+ | user | [UserDataInfo](#UserDataInfo)? |  yes  |  |
  | user_agent | string? |  yes  |  |
  | vertical | string? |  yes  |  |
  
@@ -7046,6 +6802,30 @@ We are processing the report!
  | status | string? |  yes  |  |
  | updated_at | string? |  yes  |  |
  | updated_time | string? |  yes  |  |
+ 
+
+---
+
+#### [PlatformUserDetails](#PlatformUserDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | platform_user_employee_code | string? |  yes  |  |
+ | platform_user_first_name | string? |  yes  |  |
+ | platform_user_id | string? |  yes  |  |
+ | platform_user_last_name | string? |  yes  |  |
+ 
+
+---
+
+#### [PointBlankOtpData](#PointBlankOtpData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
+ | mobile | number? |  yes  |  |
+ | request_id | string? |  yes  |  |
+ | resend_timer | number? |  yes  |  |
  
 
 ---
@@ -7105,13 +6885,17 @@ We are processing the report!
  | ---------- | ---- | -------- | ----------- |
  | amount_paid | number? |  yes  |  |
  | amount_paid_roundoff | number? |  yes  |  |
+ | brand_calculated_amount | number? |  yes  |  |
  | cashback | number? |  yes  |  |
  | cashback_applied | number? |  yes  |  |
  | cod_charges | number? |  yes  |  |
+ | coupon_effective_discount | number? |  yes  |  |
  | coupon_value | number? |  yes  |  |
  | delivery_charge | number? |  yes  |  |
  | discount | number? |  yes  |  |
  | fynd_credits | number? |  yes  |  |
+ | gift_price | number? |  yes  |  |
+ | pm_price_split | number? |  yes  |  |
  | price_effective | number? |  yes  |  |
  | price_marked | number? |  yes  |  |
  | promotion_effective_discount | number? |  yes  |  |
@@ -7142,8 +6926,8 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identifier | string? |  yes  |  |
- | line_number | number? |  yes  |  |
+ | identifier | string? |  yes  | Product/Bag Article/Item Identifier |
+ | line_number | number? |  yes  | Product/Bag Line number for the Product/Bag Identifier |
  | quantity | number? |  yes  |  |
  
 
@@ -7154,7 +6938,7 @@ We are processing the report!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | data | string? |  yes  |  |
- | filters | [[ProductsDataUpdatesFilters](#ProductsDataUpdatesFilters)]? |  yes  |  |
+ | filters | [[ProductsDataUpdatesFilters](#ProductsDataUpdatesFilters)]? |  yes  | Filter for the Product/Bag |
  
 
 ---
@@ -7163,8 +6947,8 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identifier | string? |  yes  |  |
- | line_number | number? |  yes  |  |
+ | identifier | string? |  yes  | Product/Bag Article/Item Identifier |
+ | line_number | number? |  yes  | Product/Bag Line number for the Product/Bag Identifier |
  
 
 ---
@@ -7193,8 +6977,8 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | identifier | string? |  yes  |  |
- | line_number | number? |  yes  |  |
+ | identifier | string? |  yes  | Product/Bag Article/Item Identifier |
+ | line_number | number? |  yes  | Product/Bag Line number for the Product/Bag Identifier |
  | quantity | number? |  yes  |  |
  
 
@@ -7232,6 +7016,62 @@ We are processing the report!
 
 ---
 
+#### [RefundModeConfigRequestPayload](#RefundModeConfigRequestPayload)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | affiliate_id | string |  no  |  |
+ | customer_mobile_number | string? |  yes  |  |
+ | fynd_order_id | string |  no  |  |
+ | seller_id | number |  no  |  |
+ 
+
+---
+
+#### [RefundModeConfigResponsePayload](#RefundModeConfigResponsePayload)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [[RefundModeInfo](#RefundModeInfo)] |  no  |  |
+ | success | boolean |  no  |  |
+ 
+
+---
+
+#### [RefundModeInfo](#RefundModeInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display_name | string? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | options | [[RefundOption](#RefundOption)]? |  yes  |  |
+ | slug | string? |  yes  |  |
+ 
+
+---
+
+#### [RefundOption](#RefundOption)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | value | string? |  yes  |  |
+ 
+
+---
+
+#### [ReplacementDetails](#ReplacementDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | original_affiliate_order_id | string? |  yes  |  |
+ | replacement_type | string? |  yes  |  |
+ 
+
+---
+
 #### [ResponseDetail](#ResponseDetail)
 
  | Properties | Type | Nullable | Description |
@@ -7253,13 +7093,45 @@ We are processing the report!
 
 ---
 
+#### [ReturnConfig1](#ReturnConfig1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | returnable | boolean? |  yes  |  |
+ | time | number? |  yes  |  |
+ | unit | string? |  yes  |  |
+ 
+
+---
+
 #### [SendSmsPayload](#SendSmsPayload)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | bag_id | number |  no  |  |
- | data | [SmsDataPayload](#SmsDataPayload)? |  yes  |  |
- | slug | string |  no  |  |
+ | bag_id | number |  no  | bag_id for the activity history track |
+ | data | [SmsDataPayload](#SmsDataPayload)? |  yes  | SMS Data |
+ | slug | string |  no  | slug name for the template mapped in pointblank |
+ 
+
+---
+
+#### [SendUserMobileOTP](#SendUserMobileOTP)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country_code | string? |  yes  |  |
+ | mobile | string |  no  |  |
+ 
+
+---
+
+#### [SendUserMobileOtpResponse](#SendUserMobileOtpResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [PointBlankOtpData](#PointBlankOtpData)? |  yes  |  |
+ | message | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -7287,7 +7159,7 @@ We are processing the report!
  | journey | string |  no  |  |
  | location_details | [LocationDetails](#LocationDetails)? |  yes  |  |
  | payment_mode | string |  no  |  |
- | shipment | [[ShipmentDetails](#ShipmentDetails)] |  no  |  |
+ | shipment | [[ShipmentDetails1](#ShipmentDetails1)] |  no  |  |
  | source | string |  no  |  |
  | to_pincode | string |  no  |  |
  
@@ -7309,7 +7181,7 @@ We are processing the report!
  | ---------- | ---- | -------- | ----------- |
  | bag_list | [number]? |  yes  |  |
  | id | number |  no  |  |
- | meta | [Meta1](#Meta1) |  no  |  |
+ | meta | [Meta](#Meta) |  no  |  |
  | remarks | string? |  yes  |  |
  | shipment_id | string? |  yes  |  |
  | status | string? |  yes  |  |
@@ -7318,6 +7190,17 @@ We are processing the report!
 ---
 
 #### [ShipmentDetails](#ShipmentDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | action_to_status | string? |  yes  |  |
+ | lock_message | string? |  yes  |  |
+ | lock_status | boolean? |  yes  |  |
+ 
+
+---
+
+#### [ShipmentDetails1](#ShipmentDetails1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -7332,22 +7215,12 @@ We are processing the report!
 
 ---
 
-#### [ShipmentDetailsResponse](#ShipmentDetailsResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | order | [OrderDict](#OrderDict)? |  yes  |  |
- | shipments | [[PlatformShipment](#PlatformShipment)]? |  yes  |  |
- | success | boolean |  no  |  |
- 
-
----
-
 #### [ShipmentHistoryResponse](#ShipmentHistoryResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | activity_history | [[HistoryDict](#HistoryDict)] |  no  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -7367,10 +7240,12 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | applied_filters | string? |  yes  |  |
- | filters | [[FiltersInfo](#FiltersInfo)]? |  yes  |  |
  | items | [[ShipmentItem](#ShipmentItem)]? |  yes  |  |
- | page | string? |  yes  |  |
+ | lane | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ | total_count | number? |  yes  |  |
  
 
 ---
@@ -7379,22 +7254,29 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | application | string? |  yes  |  |
  | bags | [[BagUnit](#BagUnit)]? |  yes  |  |
- | channel | string? |  yes  |  |
- | created_at | string |  no  |  |
- | fulfilling_centre | string |  no  |  |
+ | can_process | boolean? |  yes  |  |
+ | channel | [ShipmentListingChannel](#ShipmentListingChannel)? |  yes  |  |
+ | customer_note | string? |  yes  |  |
+ | delivery_address | [PlatformDeliveryAddress](#PlatformDeliveryAddress)? |  yes  |  |
+ | display_name | string? |  yes  |  |
+ | estimated_sla_time | string? |  yes  |  |
  | fulfilling_store | [ShipmentItemFulFillingStore](#ShipmentItemFulFillingStore)? |  yes  |  |
- | id | string |  no  |  |
+ | invoice_id | string? |  yes  |  |
+ | lock_status | boolean? |  yes  |  |
+ | meta | [ShipmentItemMeta](#ShipmentItemMeta)? |  yes  |  |
+ | order_date | string? |  yes  |  |
+ | order_id | string |  no  |  |
+ | ordering_channnel | string? |  yes  |  |
  | payment_methods | string? |  yes  |  |
- | payment_mode_info | [PaymentModeInfo](#PaymentModeInfo)? |  yes  |  |
+ | payment_mode | string? |  yes  |  |
+ | previous_shipment_id | string? |  yes  |  |
  | prices | [Prices](#Prices)? |  yes  |  |
  | shipment_created_at | string |  no  |  |
  | shipment_id | string? |  yes  |  |
  | shipment_status | [ShipmentStatus](#ShipmentStatus)? |  yes  |  |
- | sla | string? |  yes  |  |
- | total_bags_count | number |  no  |  |
- | total_shipments_in_order | number |  no  |  |
+ | status_created_at | string? |  yes  |  |
+ | total_bags | number |  no  |  |
  | user | [UserDataInfo](#UserDataInfo)? |  yes  |  |
  
 
@@ -7404,8 +7286,79 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | address | string? |  yes  |  |
+ | brand_store_tags | string? |  yes  |  |
+ | city | string? |  yes  |  |
  | code | string |  no  |  |
- | id | string |  no  |  |
+ | id | number |  no  |  |
+ | location_type | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | phone | string? |  yes  |  |
+ | pincode | string? |  yes  |  |
+ | state | string? |  yes  |  |
+ | store_email | string? |  yes  |  |
+ 
+
+---
+
+#### [ShipmentItemMeta](#ShipmentItemMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | activity_comment | string? |  yes  |  |
+ | assign_dp_from_sb | boolean? |  yes  |  |
+ | auto_trigger_dp_assignment_acf | boolean |  no  |  |
+ | bag_weight | string? |  yes  |  |
+ | debug_info | string? |  yes  |  |
+ | dp_options | string? |  yes  |  |
+ | dp_sort_key | string? |  yes  |  |
+ | ewaybill_info | string? |  yes  |  |
+ | existing_dp_list | [string]? |  yes  |  |
+ | external | string? |  yes  |  |
+ | formatted | [Formatted](#Formatted)? |  yes  |  |
+ | fulfilment_priority_text | string? |  yes  |  |
+ | is_international | boolean? |  yes  |  |
+ | lock_data | [LockData](#LockData)? |  yes  |  |
+ | order_type | string? |  yes  |  |
+ | packaging_name | string? |  yes  |  |
+ | parent_dp_id | string? |  yes  |  |
+ | pdf_media | [string]? |  yes  |  |
+ | same_store_available | boolean? |  yes  |  |
+ | shipment_chargeable_weight | number? |  yes  |  |
+ | shipment_tags | [[ShipmentTags](#ShipmentTags)]? |  yes  |  |
+ | shipment_volumetric_weight | number? |  yes  |  |
+ | shipment_weight | number? |  yes  |  |
+ | shipping_zone | string? |  yes  |  |
+ | sla | number? |  yes  |  |
+ | store_invoice_updated_date | string? |  yes  |  |
+ | tags | [string]? |  yes  |  |
+ | timestamp | [ShipmentTimeStamp](#ShipmentTimeStamp)? |  yes  |  |
+ | weight | number? |  yes  |  |
+ 
+
+---
+
+#### [ShipmentListingBrand](#ShipmentListingBrand)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | created_on | string? |  yes  |  |
+ | logo | string? |  yes  |  |
+ | logo_base64 | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ 
+
+---
+
+#### [ShipmentListingChannel](#ShipmentListingChannel)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | channel_shipment_id | string? |  yes  |  |
+ | is_affiliate | boolean? |  yes  |  |
+ | logo | string? |  yes  |  |
+ | name | string? |  yes  |  |
  
 
 ---
@@ -7415,13 +7368,14 @@ We are processing the report!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | assign_dp_from_sb | boolean? |  yes  |  |
- | auto_trigger_dp_assignment_acf | boolean |  no  |  |
+ | auto_trigger_dp_assignment_acf | boolean? |  yes  |  |
  | awb_number | string? |  yes  |  |
  | b2b_buyer_details | [BuyerDetails](#BuyerDetails)? |  yes  |  |
  | b2c_buyer_details | string? |  yes  |  |
  | bag_weight | string? |  yes  |  |
  | box_type | string? |  yes  |  |
  | debug_info | [DebugInfo](#DebugInfo)? |  yes  |  |
+ | dimension | [Dimensions](#Dimensions)? |  yes  |  |
  | dp_id | string? |  yes  |  |
  | dp_name | string? |  yes  |  |
  | dp_options | string? |  yes  |  |
@@ -7438,6 +7392,7 @@ We are processing the report!
  | marketplace_store_id | string? |  yes  |  |
  | order_type | string? |  yes  |  |
  | packaging_name | string? |  yes  |  |
+ | parent_dp_id | string? |  yes  |  |
  | po_number | string? |  yes  |  |
  | return_affiliate_order_id | string? |  yes  |  |
  | return_affiliate_shipment_id | string? |  yes  |  |
@@ -7445,6 +7400,7 @@ We are processing the report!
  | return_details | string? |  yes  |  |
  | return_store_node | number? |  yes  |  |
  | same_store_available | boolean |  no  |  |
+ | shipment_tags | [[ShipmentTags](#ShipmentTags)]? |  yes  |  |
  | shipment_volumetric_weight | number? |  yes  |  |
  | shipment_weight | number? |  yes  |  |
  | store_invoice_updated_date | string? |  yes  |  |
@@ -7465,13 +7421,34 @@ We are processing the report!
 
 ---
 
+#### [ShipmentReasonsResponse](#ShipmentReasonsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ | reasons | [[ShipmentResponseReasons](#ShipmentResponseReasons)] |  no  |  |
+ | success | boolean |  no  |  |
+ 
+
+---
+
+#### [ShipmentResponseReasons](#ShipmentResponseReasons)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | reason | string? |  yes  |  |
+ | reason_id | number? |  yes  |  |
+ 
+
+---
+
 #### [ShipmentsRequest](#ShipmentsRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | data_updates | [DataUpdates](#DataUpdates)? |  yes  |  |
- | identifier | string |  no  |  |
- | products | [[Products](#Products)]? |  yes  |  |
+ | identifier | string |  no  | Shipment ID |
+ | products | [[Products](#Products)]? |  yes  | Product/Bag to be updated |
  | reasons | [ReasonsData](#ReasonsData)? |  yes  |  |
  
 
@@ -7497,10 +7474,14 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | actual_status | string |  no  |  |
- | hex_code | string |  no  |  |
- | ops_status | string |  no  |  |
+ | bag_list | [string]? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | current_shipment_status | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | shipment_id | string? |  yes  |  |
+ | shipment_status_id | number? |  yes  |  |
  | status | string |  no  |  |
+ | status_created_at | string? |  yes  |  |
  | title | string |  no  |  |
  
 
@@ -7512,9 +7493,22 @@ We are processing the report!
  | ---------- | ---- | -------- | ----------- |
  | bag_list | [string]? |  yes  |  |
  | created_at | string? |  yes  |  |
+ | display_name | string? |  yes  |  |
  | id | number? |  yes  |  |
+ | meta | string? |  yes  |  |
  | shipment_id | string? |  yes  |  |
  | status | string? |  yes  |  |
+ 
+
+---
+
+#### [ShipmentTags](#ShipmentTags)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display_text | string? |  yes  |  |
+ | entity_type | string? |  yes  |  |
+ | slug | string? |  yes  |  |
  
 
 ---
@@ -7523,8 +7517,8 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | t_max | string? |  yes  |  |
- | t_min | string? |  yes  |  |
+ | max | number? |  yes  |  |
+ | min | number? |  yes  |  |
  
 
 ---
@@ -7567,15 +7561,15 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | amount_paid | number |  no  |  |
- | brand_name | string |  no  |  |
- | country_code | string |  no  |  |
- | customer_name | string |  no  |  |
- | message | string |  no  |  |
- | order_id | string |  no  |  |
- | payment_mode | string |  no  |  |
- | phone_number | number |  no  |  |
- | shipment_id | number |  no  |  |
+ | amount_paid | number? |  yes  | Data mapped in Communication template: amount_paid |
+ | brand_name | string? |  yes  | Data mapped in Communication template: brand_name |
+ | country_code | string |  no  | country code for SMS |
+ | customer_name | string? |  yes  | Data mapped in Communication template: customer_name |
+ | message | string |  no  | message to be send in SMS |
+ | order_id | string |  no  | orderId |
+ | payment_mode | string? |  yes  | Data mapped in Communication template: payment_mode |
+ | phone_number | number |  no  | phone number for communication |
+ | shipment_id | number |  no  | ShipmentId |
  
 
 ---
@@ -7584,8 +7578,9 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | exclude_bags_next_state | string? |  yes  |  |
+ | exclude_bags_next_state | string? |  yes  | State to be change for Remaining Bag/Products |
  | shipments | [[ShipmentsRequest](#ShipmentsRequest)]? |  yes  |  |
+ | split_shipment | boolean? |  yes  | Flag to split shipment |
  | status | string? |  yes  |  |
  
 
@@ -7770,16 +7765,6 @@ We are processing the report!
 
 ---
 
-#### [Success](#Success)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
- | success | boolean? |  yes  |  |
- 
-
----
-
 #### [SuccessResponse](#SuccessResponse)
 
  | Properties | Type | Nullable | Description |
@@ -7814,6 +7799,16 @@ We are processing the report!
 
 ---
 
+#### [TaxDetails](#TaxDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | gstin | string? |  yes  |  |
+ | pan_no | string? |  yes  |  |
+ 
+
+---
+
 #### [TaxInfo](#TaxInfo)
 
  | Properties | Type | Nullable | Description |
@@ -7837,14 +7832,50 @@ We are processing the report!
 
 ---
 
+#### [TransactionData](#TransactionData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount_paid | number? |  yes  |  |
+ | currency | string? |  yes  |  |
+ | entity | string? |  yes  |  |
+ | payment_id | string? |  yes  |  |
+ | status | string? |  yes  |  |
+ | terminal_id | string? |  yes  |  |
+ | transaction_id | string? |  yes  |  |
+ | unique_reference_number | string? |  yes  |  |
+ 
+
+---
+
+#### [UpdatePackagingDimensionsPayload](#UpdatePackagingDimensionsPayload)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | current_status | string |  no  |  |
+ | dimension | [[Dimension](#Dimension)] |  no  |  |
+ | shipment_id | string |  no  |  |
+ 
+
+---
+
+#### [UpdatePackagingDimensionsResponse](#UpdatePackagingDimensionsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
+ 
+
+---
+
 #### [UpdateShipmentLockPayload](#UpdateShipmentLockPayload)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | action | string |  no  |  |
- | action_type | string |  no  |  |
- | entities | [[Entities](#Entities)] |  no  |  |
- | entity_type | string |  no  |  |
+ | action | string |  no  | Expected Actions: [lock, unlock, check] |
+ | action_type | string |  no  | Expected action_type: [complete, operational, financial] |
+ | entities | [[Entities](#Entities)] |  no  | Shipment/Entity |
+ | entity_type | string |  no  | Expected entity_type: [bags, shipments] |
  
 
 ---
@@ -7853,7 +7884,7 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | check_response | [[CheckResponse](#CheckResponse)]? |  yes  |  |
+ | check_response | [[CheckResponse](#CheckResponse)]? |  yes  | Entity Lock Status, If the action input as 'check' |
  | message | string? |  yes  |  |
  | success | boolean? |  yes  |  |
  
@@ -7864,11 +7895,11 @@ We are processing the report!
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | force_transition | boolean? |  yes  |  |
- | lock_after_transition | boolean? |  yes  |  |
+ | force_transition | boolean? |  yes  | Force Transition |
+ | lock_after_transition | boolean? |  yes  | Lock Shipment After Transition |
  | statuses | [[StatuesRequest](#StatuesRequest)]? |  yes  |  |
- | task | boolean? |  yes  |  |
- | unlock_before_transition | boolean? |  yes  |  |
+ | task | boolean? |  yes  | To Run Status Update as a background Task |
+ | unlock_before_transition | boolean? |  yes  | Unlock Shipment After Transition |
  
 
 ---
@@ -7933,13 +7964,62 @@ We are processing the report!
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | address | string |  no  |  |
+ | address1 | string? |  yes  |  |
+ | address_type | string? |  yes  |  |
+ | area | string? |  yes  |  |
  | city | string |  no  |  |
  | country | string |  no  |  |
  | email | string? |  yes  |  |
+ | landmark | string? |  yes  |  |
  | name | string |  no  |  |
  | phone | string |  no  |  |
  | pincode | string |  no  |  |
  | state | string |  no  |  |
+ 
+
+---
+
+#### [VerifyMobileOTP](#VerifyMobileOTP)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | fynd_order_id | string |  no  |  |
+ | otp_data | [VerifyOtpData](#VerifyOtpData) |  no  |  |
+ 
+
+---
+
+#### [VerifyOtpData](#VerifyOtpData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | mobile | string |  no  |  |
+ | otp_code | number |  no  |  |
+ | request_id | string |  no  |  |
+ 
+
+---
+
+#### [VerifyOtpResponse](#VerifyOtpResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [VerifyOtpResponseData](#VerifyOtpResponseData)? |  yes  |  |
+ | message | string? |  yes  |  |
+ | status | number? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [VerifyOtpResponseData](#VerifyOtpResponseData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | country_code | string? |  yes  |  |
+ | fynd_order_id | string? |  yes  |  |
+ | message | string? |  yes  |  |
+ | mobile | string? |  yes  |  |
  
 
 ---

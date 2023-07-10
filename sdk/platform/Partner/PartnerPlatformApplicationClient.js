@@ -14,11 +14,12 @@ class Partner {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.extensionId - Extension id
+   * @param {string} arg.extensionId - Extension id for which proxy URL will
+   *   be generated
    * @param {AddProxyReq} arg.body
    * @returns {Promise<AddProxyResponse>} - Success response
-   * @summary: Add proxy path for external url
-   * @description: Add proxy path for external url
+   * @summary: Create proxy URL for the external URL
+   * @description: Use this API to generate proxy URL for the external URL
    */
   async addProxyPath({ extensionId, body } = {}) {
     const { error } = PartnerValidator.addProxyPath().validate(
@@ -78,11 +79,139 @@ class Partner {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.extensionId - Extension id
+   * @param {string} [arg.extensionId] - Extension id
+   * @returns {Promise<getProxyPathRes>} - Success response
+   * @summary: Proxy
+   * @description: Use this API to get proxy url
+   */
+  async getProxyPath({ extensionId } = {}) {
+    const { error } = PartnerValidator.getProxyPath().validate(
+      {
+        extensionId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = PartnerValidator.getProxyPath().validate(
+      {
+        extensionId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getProxyPath",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/partners/v1.0/company/${this.config.companyId}/application/${this.applicationId}/proxy/${extensionId}`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = PartnerModel.getProxyPathRes().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getProxyPath",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.extensionId] - Extension id
+   * @param {string} [arg.attachedPath] - Application id
+   * @returns {Promise<AddProxyResponse>} - Success response
+   * @summary: Proxy
+   * @description: Use this API to get proxy url
+   */
+  async getProxyPathAttachedPath({ extensionId, attachedPath } = {}) {
+    const { error } = PartnerValidator.getProxyPathAttachedPath().validate(
+      {
+        extensionId,
+        attachedPath,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PartnerValidator.getProxyPathAttachedPath().validate(
+      {
+        extensionId,
+        attachedPath,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getProxyPathAttachedPath",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/partners/v1.0/company/${this.config.companyId}/application/${this.applicationId}/proxy/${extensionId}/${attachedPath}`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = PartnerModel.AddProxyResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getProxyPathAttachedPath",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.extensionId - Extension id for which proxy URL needs
+   *   to be removed
    * @param {string} arg.attachedPath - Attachaed path slug
    * @returns {Promise<RemoveProxyResponse>} - Success response
-   * @summary: Remove proxy path for external url
-   * @description: Remove proxy path for external url
+   * @summary: Remove proxy URL for the external URL
+   * @description: Use this API to remove the proxy URL which is already generated for the external URL
    */
   async removeProxyPath({ extensionId, attachedPath } = {}) {
     const { error } = PartnerValidator.removeProxyPath().validate(

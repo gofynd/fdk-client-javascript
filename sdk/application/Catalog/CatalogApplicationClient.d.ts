@@ -139,6 +139,8 @@ declare class Catalog {
      *   will be passed in f parameter as shown in the example below. Double
      *   Pipe (||) denotes the OR condition, whereas Triple-colon (:::)
      *   indicates a new filter paramater applied as an AND condition.
+     * @param {string} [arg.q] - The search query for entering partial or full
+     *   name of product, brand, category, or collection.
      * @param {boolean} [arg.filters] - This is a boolean value, True for
      *   fetching all filter parameters and False for disabling the filter parameters.
      * @param {string} [arg.sortOn] - The order in which the list of products
@@ -153,9 +155,10 @@ declare class Catalog {
      * @summary: Get the items in a collection
      * @description: Get items in a collection specified by its `slug`.
      */
-    getCollectionItemsBySlug({ slug, f, filters, sortOn, pageId, pageSize, pageNo, pageType, }?: {
+    getCollectionItemsBySlug({ slug, f, q, filters, sortOn, pageId, pageSize, pageNo, pageType, }?: {
         slug: string;
         f?: string;
+        q?: string;
         filters?: boolean;
         sortOn?: string;
         pageId?: string;
@@ -172,6 +175,8 @@ declare class Catalog {
      *   will be passed in f parameter as shown in the example below. Double
      *   Pipe (||) denotes the OR condition, whereas Triple-colon (:::)
      *   indicates a new filter paramater applied as an AND condition.
+     * @param {string} [arg.q] - The search query for entering partial or full
+     *   name of product, brand, category, or collection.
      * @param {boolean} [arg.filters] - This is a boolean value, True for
      *   fetching all filter parameters and False for disabling the filter parameters.
      * @param {string} [arg.sortOn] - The order in which the list of products
@@ -181,9 +186,10 @@ declare class Catalog {
      * @summary: Get the items in a collection
      * @description: Get items in a collection specified by its `slug`.
      */
-    getCollectionItemsBySlugPaginator({ slug, f, filters, sortOn, pageSize, }?: {
+    getCollectionItemsBySlugPaginator({ slug, f, q, filters, sortOn, pageSize, }?: {
         slug: string;
         f?: string;
+        q?: string;
         filters?: boolean;
         sortOn?: string;
         pageSize?: number;
@@ -194,25 +200,29 @@ declare class Catalog {
      *   given set of results.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
      * @param {string[]} [arg.tag] - List of tags to filter collections
+     * @param {string} [arg.q] - Name of the collection to filter collection
      * @returns {Promise<GetCollectionListingResponse>} - Success response
      * @summary: List all the collections
      * @description: Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
      */
-    getCollections({ pageNo, pageSize, tag }?: {
+    getCollections({ pageNo, pageSize, tag, q }?: {
         pageNo?: number;
         pageSize?: number;
         tag?: string[];
+        q?: string;
     }): Promise<GetCollectionListingResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
      * @param {string[]} [arg.tag] - List of tags to filter collections
+     * @param {string} [arg.q] - Name of the collection to filter collection
      * @summary: List all the collections
      * @description: Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
      */
-    getCollectionsPaginator({ pageSize, tag }?: {
+    getCollectionsPaginator({ pageSize, tag, q }?: {
         pageSize?: number;
         tag?: string[];
+        q?: string;
     }): Paginator;
     /**
      * @param {Object} arg - Arg object.

@@ -2,37 +2,23 @@ const Joi = require("joi");
 
 const RewardsModel = require("./RewardsPlatformModel");
 class RewardsValidator {
-  static createGiveaway() {
-    return Joi.object({
-      body: RewardsModel.Giveaway().required(),
-    }).required();
-  }
-
-  static getGiveawayByID() {
+  static getGiveawayById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  static getGiveaways() {
-    return Joi.object({
-      pageId: Joi.string().allow(""),
-      pageSize: Joi.number(),
-    }).required();
-  }
-
   static getOfferByName() {
     return Joi.object({
-      cookie: Joi.string().allow("").required(),
       name: Joi.string().allow("").required(),
     }).required();
   }
 
-  static getOffers() {
+  static getRewardsConfiguration() {
     return Joi.object({}).required();
   }
 
-  static getUserAvailablePoints() {
+  static getUserDetails() {
     return Joi.object({
       userId: Joi.string().allow("").required(),
     }).required();
@@ -41,13 +27,36 @@ class RewardsValidator {
   static getUserPointsHistory() {
     return Joi.object({
       userId: Joi.string().allow("").required(),
+
       pageId: Joi.string().allow(""),
-      pageLimit: Joi.number(),
       pageSize: Joi.number(),
     }).required();
   }
 
-  static updateGiveaway() {
+  static saveGiveAway() {
+    return Joi.object({
+      body: RewardsModel.Giveaway().required(),
+    }).required();
+  }
+
+  static setRewardsConfiguration() {
+    return Joi.object({
+      body: RewardsModel.ConfigurationRequest().required(),
+    }).required();
+  }
+
+  static showGiveaways() {
+    return Joi.object({
+      pageId: Joi.string().allow("").required(),
+      pageSize: Joi.number().required(),
+    }).required();
+  }
+
+  static showOffers() {
+    return Joi.object({}).required();
+  }
+
+  static updateGiveAway() {
     return Joi.object({
       id: Joi.string().allow("").required(),
       body: RewardsModel.Giveaway().required(),
@@ -57,6 +66,7 @@ class RewardsValidator {
   static updateOfferByName() {
     return Joi.object({
       name: Joi.string().allow("").required(),
+
       body: RewardsModel.Offer().required(),
     }).required();
   }
@@ -64,6 +74,7 @@ class RewardsValidator {
   static updateUserStatus() {
     return Joi.object({
       userId: Joi.string().allow("").required(),
+
       body: RewardsModel.AppUser().required(),
     }).required();
   }

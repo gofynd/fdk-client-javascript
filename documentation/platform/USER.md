@@ -14,6 +14,7 @@ Authentication Service
 * [createUserGroup](#createusergroup)
 * [createUserSession](#createusersession)
 * [deleteActiveSessions](#deleteactivesessions)
+* [deleteSession](#deletesession)
 * [getActiveSessions](#getactivesessions)
 * [getCustomers](#getcustomers)
 * [getPlatformConfig](#getplatformconfig)
@@ -380,10 +381,12 @@ Delete a list of all session for a user
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").user.deleteActiveSessions({  id : value });
+const promise = platformClient.application("<APPLICATION_ID>").user.deleteActiveSessions({  id : value,
+ reason : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").user.deleteActiveSessions({  id : value });
+const data = await platformClient.application("<APPLICATION_ID>").user.deleteActiveSessions({  id : value,
+ reason : value });
 ```
 
 
@@ -392,7 +395,8 @@ const data = await platformClient.application("<APPLICATION_ID>").user.deleteAct
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| id | string | yes | ID of a customer. |  
+| id | string | yes | ID of a customer. |   
+| reason | string | yes | Reason to delete sessions. |  
 
 
 
@@ -442,8 +446,83 @@ Success. Refer `SessionDeleteResponseSchema` for more details.
 ---
 
 
+### deleteSession
+Delete a session for a user
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").user.deleteSession({  id : value,
+ sessionId : value,
+ reason : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").user.deleteSession({  id : value,
+ sessionId : value,
+ reason : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | ID of a customer. |   
+| sessionId | string | yes | Session ID of a customer. |   
+| reason | string | yes | Reason for deleting session. |  
+
+
+
+Use this API to Delete a session of customers who have registered in the application.
+
+*Returned Response:*
+
+
+
+
+[SessionDeleteResponseSchema](#SessionDeleteResponseSchema)
+
+Success. Refer `SessionDeleteResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      "sess:123",
+      "sess:456"
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getActiveSessions
-Get a list of all session for a user
+Get a list of all session with info for a user
 
 
 
@@ -465,7 +544,7 @@ const data = await platformClient.application("<APPLICATION_ID>").user.getActive
 
 
 
-Use this API to retrieve a list of session of customers who have registered in the application.
+Use this API to retrieve a list of session with info of customers who have registered in the application.
 
 *Returned Response:*
 
@@ -1248,7 +1327,7 @@ const data = await platformClient.application("<APPLICATION_ID>").user.updateUse
 | body | [UpdateUserRequestSchema](#UpdateUserRequestSchema) | yes | Request body |
 
 
-Update user
+Use this API to update user details, Note: Existing emails and phone numbers of user will be replaced directly if phone_numbers or emails field sent in request data.
 
 *Returned Response:*
 
@@ -1581,16 +1660,6 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
  | ---------- | ---- | -------- | ----------- |
  | items | [[UserSchema](#UserSchema)]? |  yes  |  |
  | page | [PaginationSchema](#PaginationSchema)? |  yes  |  |
- 
-
----
-
-#### [Debug](#Debug)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | platform | string? |  yes  |  |
- | source | string? |  yes  |  |
  
 
 ---
@@ -2250,11 +2319,24 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
 ---
 
+#### [SessionListResponseInfo](#SessionListResponseInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | domain | string? |  yes  |  |
+ | expire_in | string? |  yes  |  |
+ | ip | string? |  yes  |  |
+ | session_id | string? |  yes  |  |
+ | user_agent | string? |  yes  |  |
+ 
+
+---
+
 #### [SessionListResponseSchema](#SessionListResponseSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [string]? |  yes  |  |
+ | items | [[SessionListResponseInfo](#SessionListResponseInfo)]? |  yes  |  |
  
 
 ---
@@ -2363,11 +2445,25 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | emails | [[UserEmails](#UserEmails)]? |  yes  |  |
  | external_id | string? |  yes  |  |
  | first_name | string? |  yes  |  |
  | gender | string? |  yes  |  |
  | last_name | string? |  yes  |  |
  | meta | string? |  yes  |  |
+ | phone_numbers | [[UserPhoneNumbers](#UserPhoneNumbers)]? |  yes  |  |
+ 
+
+---
+
+#### [UserEmails](#UserEmails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean? |  yes  |  |
+ | email | string? |  yes  |  |
+ | primary | boolean? |  yes  |  |
+ | verified | boolean? |  yes  |  |
  
 
 ---
@@ -2409,6 +2505,19 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
 ---
 
+#### [UserPhoneNumbers](#UserPhoneNumbers)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean? |  yes  |  |
+ | country_code | string? |  yes  |  |
+ | phone | string? |  yes  |  |
+ | primary | boolean? |  yes  |  |
+ | verified | boolean? |  yes  |  |
+ 
+
+---
+
 #### [UserSchema](#UserSchema)
 
  | Properties | Type | Nullable | Description |
@@ -2418,12 +2527,10 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
  | active | boolean? |  yes  |  |
  | application_id | string? |  yes  |  |
  | created_at | string? |  yes  |  |
- | debug | [Debug](#Debug)? |  yes  |  |
  | dob | string? |  yes  |  |
  | emails | [[Email](#Email)]? |  yes  |  |
  | first_name | string? |  yes  |  |
  | gender | string? |  yes  |  |
- | has_old_password_hash | boolean? |  yes  |  |
  | last_name | string? |  yes  |  |
  | meta | string? |  yes  |  |
  | phone_numbers | [[PhoneNumber](#PhoneNumber)]? |  yes  |  |

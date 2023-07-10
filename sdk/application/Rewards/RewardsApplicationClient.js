@@ -11,11 +11,11 @@ class Rewards {
   constructor(_conf) {
     this._conf = _conf;
     this._relativeUrls = {
+      catalogueOrder:
+        "/service/application/rewards/v1.0/catalogue/offer/order/",
       getOfferByName: "/service/application/rewards/v1.0/offers/{name}/",
       getOrderDiscount:
-        "/service/application/rewards/v1.0/user/offers/order-discount/",
-      getPointsOnProduct:
-        "/service/application/rewards/v1.0/catalogue/offer/order/",
+        "/service/application/rewards/v1.0/user/offer/order-discount/",
       getUserPoints: "/service/application/rewards/v1.0/user/points/",
       getUserPointsHistory:
         "/service/application/rewards/v1.0/user/points/history/",
@@ -42,10 +42,73 @@ class Rewards {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {CatalogueOrderRequest} arg.body
+   * @returns {Promise<CatalogueOrderResponse>} - Success response
+   * @summary: Get all transactions of reward points
+   * @description: Use this API to evaluate the amount of reward points that could be earned on any catalogue product.
+   */
+  async catalogueOrder({ body } = {}) {
+    const { error } = RewardsValidator.catalogueOrder().validate(
+      { body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = RewardsValidator.catalogueOrder().validate(
+      { body },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for catalogueOrder",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["catalogueOrder"],
+        params: {},
+      }),
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = RewardsModel.CatalogueOrderResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for catalogueOrder",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} arg.name - The name given to the offer.
    * @returns {Promise<Offer>} - Success response
    * @summary: Get offer by name
-   * @description: Use this API to get the offer details and configuration by entering the name of the offer.
+   * @description: Use this API to get fetch the specific offer details and configuration by the name of the offer.
    */
   async getOfferByName({ name } = {}) {
     const { error } = RewardsValidator.getOfferByName().validate(
@@ -106,7 +169,7 @@ class Rewards {
    * @param {OrderDiscountRequest} arg.body
    * @returns {Promise<OrderDiscountResponse>} - Success response
    * @summary: Calculates the discount on order-amount
-   * @description: Use this API to calculate the discount on order-amount based on all the amount range configured in order_discount.
+   * @description: Use this API to calculate the discount on the order amount, based on all the amount range configured in Order Discount offer.
    */
   async getOrderDiscount({ body } = {}) {
     const { error } = RewardsValidator.getOrderDiscount().validate(
@@ -166,72 +229,9 @@ class Rewards {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {CatalogueOrderRequest} arg.body
-   * @returns {Promise<CatalogueOrderResponse>} - Success response
-   * @summary: Get the eligibility of reward points on a product
-   * @description: Use this API to evaluate the amount of reward points that could be earned on any catalogue product.
-   */
-  async getPointsOnProduct({ body } = {}) {
-    const { error } = RewardsValidator.getPointsOnProduct().validate(
-      { body },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = RewardsValidator.getPointsOnProduct().validate(
-      { body },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: "Parameter Validation warrnings for getPointsOnProduct",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await ApplicationAPIClient.execute(
-      this._conf,
-      "post",
-      constructUrl({
-        url: this._urls["getPointsOnProduct"],
-        params: {},
-      }),
-      query_params,
-      body,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = RewardsModel.CatalogueOrderResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getPointsOnProduct",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @returns {Promise<PointsResponse>} - Success response
-   * @summary: Get reward points available with a user
-   * @description: Use this API to retrieve total available points of a user for current application
+   * @summary: Get total available points of a user
+   * @description: Use this API to retrieve total available points of a user for current application.
    */
   async getUserPoints({} = {}) {
     const { error } = RewardsValidator.getUserPoints().validate(
@@ -296,7 +296,7 @@ class Rewards {
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
    * @returns {Promise<PointsHistoryResponse>} - Success response
    * @summary: Get all transactions of reward points
-   * @description: Use this API to get a list of points transactions. The list of points history is paginated.
+   * @description: Use this API to fetch a list of points transactions like giveaway points, signup points, referral points, order earn points, redeem points and expired points.
    */
   async getUserPointsHistory({ pageId, pageSize } = {}) {
     const { error } = RewardsValidator.getUserPointsHistory().validate(
@@ -362,7 +362,7 @@ class Rewards {
    * @param {Object} arg - Arg object.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
    * @summary: Get all transactions of reward points
-   * @description: Use this API to get a list of points transactions. The list of points history is paginated.
+   * @description: Use this API to fetch a list of points transactions like giveaway points, signup points, referral points, order earn points, redeem points and expired points.
    */
   getUserPointsHistoryPaginator({ pageSize } = {}) {
     const paginator = new Paginator();
@@ -388,7 +388,7 @@ class Rewards {
    * @param {Object} arg - Arg object.
    * @returns {Promise<ReferralDetailsResponse>} - Success response
    * @summary: Get referral details of a user
-   * @description: Use this API to retrieve the referral details a user has configured in the application.
+   * @description: Use this API to retrieve the referral details like referral code of a user.
    */
   async getUserReferralDetails({} = {}) {
     const { error } = RewardsValidator.getUserReferralDetails().validate(
@@ -452,7 +452,7 @@ class Rewards {
    * @param {Object} arg - Arg object.
    * @param {RedeemReferralCodeRequest} arg.body
    * @returns {Promise<RedeemReferralCodeResponse>} - Success response
-   * @summary: Redeems a referral code and credits reward points to users
+   * @summary: Redeems a referral code and credits reward points to referee and the referrer as per the configuration
    * @description: Use this API to enter a referral code following which, the configured points would be credited to a user's reward points account.
    */
   async redeemReferralCode({ body } = {}) {

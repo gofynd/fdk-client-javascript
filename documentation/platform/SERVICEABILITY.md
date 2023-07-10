@@ -8,28 +8,98 @@
 ## Serviceability Methods
 Logistics Configuration API's allows you to configure zone, application logistics and many more useful features. 
 
+* [addAppDp](#addappdp)
 * [createZone](#createzone)
+* [deleteAppDp](#deleteappdp)
 * [getAllStores](#getallstores)
 * [getApplicationServiceability](#getapplicationserviceability)
+* [getApplicationServiceabilitySelfShipment](#getapplicationserviceabilityselfshipment)
 * [getCompanyStoreView](#getcompanystoreview)
+* [getDpAccount](#getdpaccount)
+* [getDpApplicationRules](#getdpapplicationrules)
+* [getDpCompanyRules](#getdpcompanyrules)
+* [getDpRuleInsert](#getdpruleinsert)
+* [getDpRules](#getdprules)
 * [getEntityRegionView](#getentityregionview)
 * [getListView](#getlistview)
+* [getOptimalLocations](#getoptimallocations)
 * [getStore](#getstore)
 * [getZoneDataView](#getzonedataview)
 * [getZoneFromPincodeView](#getzonefrompincodeview)
 * [getZoneListView](#getzonelistview)
 * [getZonesFromApplicationIdView](#getzonesfromapplicationidview)
+* [patchApplicationServiceabilitySelfShipment](#patchapplicationserviceabilityselfshipment)
+* [updateDpRule](#updatedprule)
 * [updatePincodeAuditHistory](#updatepincodeaudithistory)
 * [updatePincodeBulkView](#updatepincodebulkview)
 * [updatePincodeCoDListing](#updatepincodecodlisting)
 * [updatePincodeMopView](#updatepincodemopview)
 * [updateZoneControllerView](#updatezonecontrollerview)
+* [upsertDpAccount](#upsertdpaccount)
+* [upsertDpApplicationRules](#upsertdpapplicationrules)
+* [upsertDpCompanyRules](#upsertdpcompanyrules)
+* [upsertDpRules](#upsertdprules)
 
 
 
 ## Methods with example and description
 
 
+
+
+### addAppDp
+Add application dp data
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.addAppDp({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.addAppDp({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ApplicationCompanyDpViewRequest](#ApplicationCompanyDpViewRequest) | yes | Request body |
+
+
+This API add application dp data.
+
+*Returned Response:*
+
+
+
+
+[ApplicationCompanyDpViewResponse](#ApplicationCompanyDpViewResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
 
 
 ### createZone
@@ -77,6 +147,62 @@ Response status_code
   "status_code": 200,
   "zone_id": "64809f27f2b8f575d5cb9c56"
 }
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteAppDp
+Delete application dp data
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.deleteAppDp({  courierPartnerId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.deleteAppDp({  courierPartnerId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| courierPartnerId | number | yes | A `courier_partner_id` is a unique identifier of a particular delivery partner. |  
+
+
+
+This API remove application dp data.
+
+*Returned Response:*
+
+
+
+
+[ApplicationCompanyDpViewResponse](#ApplicationCompanyDpViewResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
 ```
 </details>
 
@@ -205,6 +331,68 @@ Response Data
 ---
 
 
+### getApplicationServiceabilitySelfShipment
+Self-ship configuration of application.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.getApplicationServiceabilitySelfShipment();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.getApplicationServiceabilitySelfShipment();
+```
+
+
+
+
+
+
+This API returns Self-ship configuration of the application.
+
+*Returned Response:*
+
+
+
+
+[ApplicationSelfShipConfigResponse](#ApplicationSelfShipConfigResponse)
+
+Response Data
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "data": {
+    "is_active": true,
+    "tat": 3
+  },
+  "success": true,
+  "error": {
+    "type": null,
+    "value": null,
+    "message": null
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getCompanyStoreView
 Company Store View of application.
 
@@ -241,6 +429,291 @@ This API returns Company Store View of the application.
 [CompanyStoreView_Response](#CompanyStoreView_Response)
 
 Get Company Store View Data
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getDpAccount
+Getting DpAccount of a company from database.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.serviceability.getDpAccount({  pageNumber : value,
+ pageSize : value,
+ stage : value,
+ paymentMode : value,
+ transportType : value });
+
+// Async/Await
+const data = await platformClient.serviceability.getDpAccount({  pageNumber : value,
+ pageSize : value,
+ stage : value,
+ paymentMode : value,
+ transportType : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNumber | number | no | index of the item to start returning with |    
+| pageSize | number | no | determines the items to be displayed in a page |    
+| stage | string | no | stage of the account. enabled/disabled |    
+| paymentMode | string | no | Filters dp accounts based on payment mode |    
+| transportType | string | no | Filters dp accounts based on transport_type |  
+
+
+
+This API returns response DpAccount of a company from mongo database.
+
+*Returned Response:*
+
+
+
+
+[CompanyDpAccountListResponse](#CompanyDpAccountListResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getDpApplicationRules
+Get All DpApplicationRules rules added at application level from database.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.getDpApplicationRules();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.getDpApplicationRules();
+```
+
+
+
+
+
+
+This API returns response of all rules of DpApplicationRules from mongo database.
+
+*Returned Response:*
+
+
+
+
+[DPApplicationRuleResponse](#DPApplicationRuleResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getDpCompanyRules
+Get All DpCompanyRules applied to company from database.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.serviceability.getDpCompanyRules();
+
+// Async/Await
+const data = await platformClient.serviceability.getDpCompanyRules();
+```
+
+
+
+
+
+
+This API returns response of all DpCompanyRules from mongo database.
+
+*Returned Response:*
+
+
+
+
+[DPCompanyRuleResponse](#DPCompanyRuleResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getDpRuleInsert
+Fetching of DpRules from database.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.serviceability.getDpRuleInsert({  pageNumber : value,
+ pageSize : value });
+
+// Async/Await
+const data = await platformClient.serviceability.getDpRuleInsert({  pageNumber : value,
+ pageSize : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNumber | number | no | index of the item to start returning with |    
+| pageSize | number | no | determines the items to be displayed in a page |  
+
+
+
+This API returns response of DpRules from mongo database.
+
+*Returned Response:*
+
+
+
+
+[DpMultipleRuleSuccessResponse](#DpMultipleRuleSuccessResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getDpRules
+Fetching of DpRules from database.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.serviceability.getDpRules({  ruleUid : value });
+
+// Async/Await
+const data = await platformClient.serviceability.getDpRules({  ruleUid : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| ruleUid | string | yes | A `rule_uid` is a unique identifier for a particular Dp. |  
+
+
+
+This API returns response of DpRules from mongo database.
+
+*Returned Response:*
+
+
+
+
+[DpRuleSuccessResponse](#DpRuleSuccessResponse)
+
+Response status_code
 
 
 
@@ -367,6 +840,61 @@ This API returns Zone List View of the application.
 [ListViewResponse](#ListViewResponse)
 
 Zone List of application in descending order of their last modified date.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getOptimalLocations
+Get serviceable store of the item
+
+
+
+```javascript
+// Promise
+const promise = platformClient.serviceability.getOptimalLocations({  body : value });
+
+// Async/Await
+const data = await platformClient.serviceability.getOptimalLocations({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ReAssignStoreRequest](#ReAssignStoreRequest) | yes | Request body |
+
+
+This API returns serviceable store of the item.
+
+*Returned Response:*
+
+
+
+
+[ReAssignStoreResponse](#ReAssignStoreResponse)
+
+Response status_code
 
 
 
@@ -908,6 +1436,130 @@ List of zones for the given application_id
 ---
 
 
+### patchApplicationServiceabilitySelfShipment
+Self-ship configuration of application.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.patchApplicationServiceabilitySelfShipment({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.patchApplicationServiceabilitySelfShipment({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [SelfShipResponse](#SelfShipResponse) | yes | Request body |
+
+
+This API updates Self-ship configuration of the application.
+
+*Returned Response:*
+
+
+
+
+[ApplicationSelfShipConfigResponse](#ApplicationSelfShipConfigResponse)
+
+Response Data
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "data": {
+    "is_active": true,
+    "tat": 3
+  },
+  "success": true,
+  "error": {
+    "type": null,
+    "value": null,
+    "message": null
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateDpRule
+Updating of DpRules from database.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.serviceability.updateDpRule({  ruleUid : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.serviceability.updateDpRule({  ruleUid : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| ruleUid | string | yes | A `rule_uid` is a unique identifier for a particular Dp. |  
+| body | [DpRulesUpdateRequest](#DpRulesUpdateRequest) | yes | Request body |
+
+
+This API updates and returns response of DpRules from mongo database.
+
+*Returned Response:*
+
+
+
+
+[DpRuleUpdateSuccessResponse](#DpRuleUpdateSuccessResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### updatePincodeAuditHistory
 Auditlog configuration of application.
 
@@ -1189,6 +1841,226 @@ Response status_code
 ---
 
 
+### upsertDpAccount
+Upsertion of DpAccount in database.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.serviceability.upsertDpAccount({  body : value });
+
+// Async/Await
+const data = await platformClient.serviceability.upsertDpAccount({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CompanyDpAccountRequest](#CompanyDpAccountRequest) | yes | Request body |
+
+
+This API returns response of upsertion of DpAccount in mongo database.
+
+*Returned Response:*
+
+
+
+
+[CompanyDpAccountResponse](#CompanyDpAccountResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### upsertDpApplicationRules
+Upsert of DpApplicationRules in database.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.upsertDpApplicationRules({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.upsertDpApplicationRules({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [DPApplicationRuleRequest](#DPApplicationRuleRequest) | yes | Request body |
+
+
+This API returns response of upsert of DpApplicationRules in mongo database.
+
+*Returned Response:*
+
+
+
+
+[DPApplicationRuleResponse](#DPApplicationRuleResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### upsertDpCompanyRules
+Upsert of DpCompanyRules in database.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.serviceability.upsertDpCompanyRules({  body : value });
+
+// Async/Await
+const data = await platformClient.serviceability.upsertDpCompanyRules({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [DPCompanyRuleRequest](#DPCompanyRuleRequest) | yes | Request body |
+
+
+This API returns response of upsert of DpCompanyRules in mongo database.
+
+*Returned Response:*
+
+
+
+
+[DPCompanyRuleResponse](#DPCompanyRuleResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### upsertDpRules
+Upsert of DpRules in database.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.serviceability.upsertDpRules({  body : value });
+
+// Async/Await
+const data = await platformClient.serviceability.upsertDpRules({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [DpRuleRequest](#DpRuleRequest) | yes | Request body |
+
+
+This API returns response of upsert of DpRules in mongo database.
+
+*Returned Response:*
+
+
+
+
+[DpRuleSuccessResponse](#DpRuleSuccessResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
 
@@ -1206,6 +2078,47 @@ Response status_code
  | longitude | number? |  yes  |  |
  | pincode | number? |  yes  |  |
  | state | string? |  yes  |  |
+ 
+
+---
+
+#### [ApplicationCompanyDpViewRequest](#ApplicationCompanyDpViewRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | dp_id | string? |  yes  |  |
+ 
+
+---
+
+#### [ApplicationCompanyDpViewResponse](#ApplicationCompanyDpViewResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | application_id | string |  no  |  |
+ | company_id | number |  no  |  |
+ | courier_partner_id | number? |  yes  |  |
+ | success | boolean |  no  |  |
+ 
+
+---
+
+#### [ApplicationSelfShipConfig](#ApplicationSelfShipConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | self_ship | [SelfShipResponse](#SelfShipResponse)? |  yes  |  |
+ 
+
+---
+
+#### [ApplicationSelfShipConfigResponse](#ApplicationSelfShipConfigResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [ApplicationSelfShipConfig](#ApplicationSelfShipConfig)? |  yes  |  |
+ | error | [ServiceabilityErrorResponse](#ServiceabilityErrorResponse)? |  yes  |  |
+ | success | boolean |  no  |  |
  
 
 ---
@@ -1239,6 +2152,35 @@ Response status_code
  | error | any? |  yes  |  |
  | status_code | string? |  yes  |  |
  | success | string? |  yes  |  |
+ 
+
+---
+
+#### [CompanyDpAccountListResponse](#CompanyDpAccountListResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[Dp1](#Dp1)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+ | success | boolean |  no  |  |
+ 
+
+---
+
+#### [CompanyDpAccountRequest](#CompanyDpAccountRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [[Dp1](#Dp1)] |  no  |  |
+ 
+
+---
+
+#### [CompanyDpAccountResponse](#CompanyDpAccountResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
  
 
 ---
@@ -1334,6 +2276,188 @@ Response status_code
 
 ---
 
+#### [Dp1](#Dp1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | account_id | string |  no  |  |
+ | dp_id | string |  no  |  |
+ | is_self_ship | boolean |  no  |  |
+ | name | string |  no  |  |
+ | plan_id | string |  no  |  |
+ | plan_rules | string |  no  |  |
+ | stage | string |  no  |  |
+ 
+
+---
+
+#### [DpAccountFailureResponse](#DpAccountFailureResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | error | [[ErrorResponse](#ErrorResponse)] |  no  |  |
+ | status_code | number |  no  |  |
+ | success | boolean |  no  |  |
+ 
+
+---
+
+#### [DPApplicationRuleRequest](#DPApplicationRuleRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shipping_rules | [string] |  no  |  |
+ 
+
+---
+
+#### [DPApplicationRuleResponse](#DPApplicationRuleResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [[DpRuleResponse](#DpRuleResponse)] |  no  |  |
+ | status_code | boolean |  no  |  |
+ | success | boolean |  no  |  |
+ 
+
+---
+
+#### [DPCompanyRuleRequest](#DPCompanyRuleRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | rule_ids | [string] |  no  |  |
+ 
+
+---
+
+#### [DPCompanyRuleResponse](#DPCompanyRuleResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [[DpRuleResponse](#DpRuleResponse)] |  no  |  |
+ | status_code | number |  no  |  |
+ | success | boolean |  no  |  |
+ 
+
+---
+
+#### [DpIds](#DpIds)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | boolean |  no  |  |
+ | meta | string? |  yes  |  |
+ | priority | number |  no  |  |
+ 
+
+---
+
+#### [DpMultipleRuleSuccessResponse](#DpMultipleRuleSuccessResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[DpRule](#DpRule)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+ | success | boolean |  no  |  |
+ 
+
+---
+
+#### [DpRule](#DpRule)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | company_id | number? |  yes  |  |
+ | conditions | [string] |  no  |  |
+ | dp_ids | [String: [DpSchemaInRuleListing](#DpSchemaInRuleListing)] |  no  |  |
+ | is_active | boolean? |  yes  |  |
+ | name | string |  no  |  |
+ 
+
+---
+
+#### [DpRuleRequest](#DpRuleRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | company_id | number? |  yes  |  |
+ | conditions | [string] |  no  |  |
+ | dp_ids | [String: [DpIds](#DpIds)] |  no  |  |
+ | is_active | boolean? |  yes  |  |
+ | name | string |  no  |  |
+ 
+
+---
+
+#### [DpRuleResponse](#DpRuleResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | company_id | number |  no  |  |
+ | conditions | [string] |  no  |  |
+ | created_by | string? |  yes  |  |
+ | created_on | string? |  yes  |  |
+ | dp_ids | string |  no  |  |
+ | is_active | boolean? |  yes  |  |
+ | modified_by | string? |  yes  |  |
+ | modified_on | string? |  yes  |  |
+ | name | string |  no  |  |
+ | uid | string |  no  |  |
+ 
+
+---
+
+#### [DpRuleSuccessResponse](#DpRuleSuccessResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [DpRule](#DpRule) |  no  |  |
+ | status_code | number |  no  |  |
+ | success | boolean |  no  |  |
+ 
+
+---
+
+#### [DpRulesUpdateRequest](#DpRulesUpdateRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | conditions | [string] |  no  |  |
+ | dp_ids | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | name | string |  no  |  |
+ 
+
+---
+
+#### [DpRuleUpdateSuccessResponse](#DpRuleUpdateSuccessResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [DpRuleResponse](#DpRuleResponse) |  no  |  |
+ | status_code | number |  no  |  |
+ | success | boolean |  no  |  |
+ 
+
+---
+
+#### [DpSchemaInRuleListing](#DpSchemaInRuleListing)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | account_id | string |  no  |  |
+ | dp_id | string |  no  |  |
+ | is_self_ship | boolean |  no  |  |
+ | name | string |  no  |  |
+ | plan_id | string |  no  |  |
+ | plan_rules | string |  no  |  |
+ | priority | number |  no  |  |
+ | stage | string |  no  |  |
+ 
+
+---
+
 #### [EinvoiceResponse](#EinvoiceResponse)
 
  | Properties | Type | Nullable | Description |
@@ -1411,11 +2535,33 @@ Response status_code
 
 ---
 
+#### [ErrorResponse](#ErrorResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ | type | string |  no  |  |
+ | value | string |  no  |  |
+ 
+
+---
+
 #### [EwayBillResponse](#EwayBillResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | enabled | boolean? |  yes  |  |
+ 
+
+---
+
+#### [FailureResponse](#FailureResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | error | [[ErrorResponse](#ErrorResponse)] |  no  |  |
+ | status_code | number |  no  |  |
+ | success | boolean |  no  |  |
  
 
 ---
@@ -1434,7 +2580,7 @@ Response status_code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | items | [[ItemResponse](#ItemResponse)]? |  yes  |  |
- | page | [PageResponse](#PageResponse) |  no  |  |
+ | page | [ServiceabilityPageResponse](#ServiceabilityPageResponse) |  no  |  |
  
 
 ---
@@ -1495,7 +2641,7 @@ Response status_code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | serviceability_type | string |  no  |  |
- | zones | [[Zone](#Zone)] |  no  |  |
+ | zones | [string] |  no  |  |
  
 
 ---
@@ -1666,15 +2812,17 @@ Response status_code
 
 ---
 
-#### [PageResponse](#PageResponse)
+#### [Page](#Page)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | current | number? |  yes  |  |
- | has_next | boolean? |  yes  |  |
- | item_total | number? |  yes  |  |
- | size | number? |  yes  |  |
- | type | string? |  yes  |  |
+ | current | number |  no  |  |
+ | has_next | boolean |  no  |  |
+ | has_previous | boolean |  no  |  |
+ | item_total | number |  no  |  |
+ | size | number |  no  |  |
+ | total | number |  no  |  |
+ | type | string |  no  |  |
  
 
 ---
@@ -1846,6 +2994,41 @@ Response status_code
 
 ---
 
+#### [ReAssignStoreRequest](#ReAssignStoreRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | articles | [string] |  no  |  |
+ | configuration | string |  no  |  |
+ | identifier | string |  no  |  |
+ | ignored_locations | [string] |  no  |  |
+ | to_pincode | string |  no  |  |
+ 
+
+---
+
+#### [ReAssignStoreResponse](#ReAssignStoreResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | articles | [string]? |  yes  |  |
+ | error | string |  no  |  |
+ | success | boolean |  no  |  |
+ | to_pincode | string |  no  |  |
+ 
+
+---
+
+#### [SelfShipResponse](#SelfShipResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_active | boolean |  no  |  |
+ | tat | number |  no  |  |
+ 
+
+---
+
 #### [ServiceabilityErrorResponse](#ServiceabilityErrorResponse)
 
  | Properties | Type | Nullable | Description |
@@ -1853,6 +3036,19 @@ Response status_code
  | message | string |  no  |  |
  | type | string |  no  |  |
  | value | string |  no  |  |
+ 
+
+---
+
+#### [ServiceabilityPageResponse](#ServiceabilityPageResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | current | number? |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | item_total | number? |  yes  |  |
+ | size | number? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -1893,22 +3089,6 @@ Response status_code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | store_address | string? |  yes  |  |
- 
-
----
-
-#### [Zone](#Zone)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | assignment_preference | string |  no  |  |
- | is_active | boolean |  no  |  |
- | name | string |  no  |  |
- | slug | string |  no  |  |
- | store_ids | [number] |  no  |  |
- | tags | [string] |  no  |  |
- | type | string |  no  |  |
- | zone_id | string |  no  |  |
  
 
 ---

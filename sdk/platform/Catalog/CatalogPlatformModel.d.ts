@@ -18,7 +18,12 @@ declare class CatalogModel {
     static ApplicationItemSEO(): any;
     static ApplicationProductListingResponse(): any;
     static ApplicationStoreJson(): any;
+    static ArticleAssignment(): any;
+    static ArticleAssignment1(): any;
+    static ArticleQuery(): any;
     static ArticleStoreResponse(): any;
+    static AssignStore(): any;
+    static AssignStoreArticle(): any;
     static AttributeDetailsGroup(): any;
     static AttributeMaster(): any;
     static AttributeMasterDetails(): any;
@@ -28,6 +33,7 @@ declare class CatalogModel {
     static AttributeMasterSerializer(): any;
     static AttributeSchemaRange(): any;
     static AutocompleteAction(): any;
+    static AutoCompleteMedia(): any;
     static AutocompletePageAction(): any;
     static AutocompleteResult(): any;
     static BannerImage(): any;
@@ -285,6 +291,7 @@ declare class CatalogModel {
     static Size(): any;
     static SizeDistribution(): any;
     static SizeGuideResponse(): any;
+    static StoreAssignResponse(): any;
     static StoreDetail(): any;
     static StoreMeta(): any;
     static SuccessResponse(): any;

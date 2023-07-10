@@ -35,6 +35,15 @@ class UserValidator {
   static deleteActiveSessions() {
     return Joi.object({
       id: Joi.string().allow("").required(),
+      reason: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static deleteSession() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      sessionId: Joi.string().allow("").required(),
+      reason: Joi.string().allow("").required(),
     }).required();
   }
 
