@@ -154,7 +154,7 @@ export = OrderPlatformModel;
  */
 /**
  * @typedef B2BPODetails
- * @property {string} [docket_number]
+ * @property {string} [docker_number]
  * @property {number} [item_base_price]
  * @property {boolean} [partial_can_ret]
  * @property {number} [po_line_amount]
@@ -208,7 +208,7 @@ export = OrderPlatformModel;
  * @property {Object} [restore_promos]
  * @property {string} [seller_identifier]
  * @property {string} [shipment_id]
- * @property {BagReturnableCancelableStatus1} [status]
+ * @property {BagReturnableCancelableStatus} [status]
  * @property {string[]} [tags]
  * @property {string} [type]
  */
@@ -268,14 +268,6 @@ export = OrderPlatformModel;
  */
 /**
  * @typedef BagReturnableCancelableStatus
- * @property {boolean} can_be_cancelled
- * @property {boolean} enable_tracking
- * @property {boolean} is_active
- * @property {boolean} is_customer_return_allowed
- * @property {boolean} is_returnable
- */
-/**
- * @typedef BagReturnableCancelableStatus1
  * @property {boolean} can_be_cancelled
  * @property {boolean} enable_tracking
  * @property {boolean} is_active
@@ -1115,7 +1107,7 @@ export = OrderPlatformModel;
 /**
  * @typedef OrderBagArticle
  * @property {Object} [identifiers]
- * @property {ReturnConfig1} [return_config]
+ * @property {ReturnConfig} [return_config]
  * @property {string} [size]
  * @property {string} [uid]
  */
@@ -1425,6 +1417,7 @@ export = OrderPlatformModel;
  * @property {Object} [payment_methods]
  * @property {string} [payment_mode]
  * @property {ShipmentPayments} [payments]
+ * @property {Object} [pdf_links]
  * @property {string} [picked_date]
  * @property {string} [platform_logo]
  * @property {Prices} [prices]
@@ -1654,12 +1647,6 @@ export = OrderPlatformModel;
  */
 /**
  * @typedef ReturnConfig
- * @property {boolean} [returnable]
- * @property {number} [time]
- * @property {string} [unit]
- */
-/**
- * @typedef ReturnConfig1
  * @property {boolean} [returnable]
  * @property {number} [time]
  * @property {string} [unit]
@@ -2261,7 +2248,7 @@ export = OrderPlatformModel;
 declare class OrderPlatformModel {
 }
 declare namespace OrderPlatformModel {
-    export { ActionInfo, AdvanceFilterInfo, AffiliateBagDetails, AffiliateBagsDetails, AffiliateDetails, AffiliateMeta, AnnouncementResponse, AnnouncementsResponse, AppliedPromos, Article, ArticleDetails, AssetByShipment, AttachOrderUser, AttachOrderUserResponse, AttachUserInfo, AttachUserOtpData, Attributes, B2BPODetails, BagConfigs, BagDetailsPlatformResponse, BagGST, BagGSTDetails, BagMeta, BagPaymentMethods, BagReturnableCancelableStatus, BagReturnableCancelableStatus1, Bags, BagsPage, BagStateMapper, BagStateTransitionMap, BagStatusHistory, BagUnit, BaseResponse, BillingInfo, BillingStaffDetails, Brand, BulkActionTemplate, BulkActionTemplateResponse, BuyerDetails, BuyRules, Charge, CheckResponse, Click2CallResponse, CompanyDetails, ContactDetails, CreateOrderAPI, CreateOrderErrorReponse, CreateOrderResponse, CreditBalanceInfo, CurrentStatus, DataUpdates, DateRange, Dates, DebugInfo, Dimension, Dimensions, DiscountRules, DispatchManifest, Document, DPDetailsData, EinvoiceInfo, EInvoicePortalDetails, Entities, EntitiesDataUpdates, EntitiesReasons, EntityReasonData, Error, ErrorDetail, ErrorResponse, ErrorResponse1, FetchCreditBalanceRequestPayload, FetchCreditBalanceResponsePayload, FileResponse, FilterInfoOption, FilterInfoOption1, Filters, FiltersInfo, FiltersInfo1, FiltersRequest, FiltersResponse, FinancialBreakup, Formatted, FulfillingStore, FyndOrderIdList, GeneratePosOrderReceiptResponse, GetActionsResponse, GetBagsPlatformResponse, GiftCard, GSTDetailsData, HistoryDict, HistoryMeta, HistoryReason, Identifier, InvalidateShipmentCacheNestedResponse, InvalidateShipmentCachePayload, InvalidateShipmentCacheResponse, InvoiceInfo, Item, ItemCriterias, JioCodeUpsertDataSet, JioCodeUpsertPayload, JioCodeUpsertResponse, LaneConfigResponse, LineItem, LockData, Manifest, ManifestDetails, ManifestFile, ManifestFiltersResponse, ManifestItemDetails, ManifestList, ManifestMediaUpdate, ManifestMeta, ManifestPageInfo, ManifestShipmentListing, Meta, MetricCountResponse, MetricsCount, NestedErrorSchemaDataSet, OmsReports, Options, OrderBagArticle, OrderBags, OrderBrandName, OrderData, OrderDetails, OrderDetailsData, OrderDetailsResponse, OrderingStoreDetails, OrderItemDataUpdates, OrderListingResponse, OrderMeta, OrderStatus, OrderStatusData, OrderStatusResult, OriginalFilter, Page, PaymentInfo, PaymentMethod, PDFLinks, PDFMeta, PhoneDetails, PlatformArticleAttributes, PlatformBreakupValues, PlatformChannel, PlatformDeliveryAddress, PlatformItem, PlatformOrderItems, PlatformOrderUpdate, PlatformShipment, PlatformShipmentReasonsResponse, PlatformShipmentTrack, PlatformTrack, PlatformUserDetails, PointBlankOtpData, PostActivityHistory, PostHistoryData, PostHistoryDict, PostHistoryFilters, PostShipmentHistory, Prices, ProcessingDates, ProcessManifest, ProcessManifestItemResponse, ProcessManifestResponse, Products, ProductsDataUpdates, ProductsDataUpdatesFilters, ProductsReasons, ProductsReasonsData, ProductsReasonsFilters, QuestionSet, Reason, ReasonsData, RefundModeConfigRequestPayload, RefundModeConfigResponsePayload, RefundModeInfo, RefundOption, ReplacementDetails, ResponseDetail, ResponseGetAssetShipment, ReturnConfig, ReturnConfig1, SendSmsPayload, SendUserMobileOTP, SendUserMobileOtpResponse, Shipment, ShipmentDetail, ShipmentDetails, ShipmentHistoryResponse, ShipmentInfoResponse, ShipmentInternalPlatformViewResponse, ShipmentItem, ShipmentItemFulFillingStore, ShipmentItemMeta, ShipmentListingBrand, ShipmentListingChannel, ShipmentMeta, ShipmentPayments, ShipmentReasonsResponse, ShipmentResponseReasons, ShipmentsRequest, ShipmentsResponse, ShipmentStatus, ShipmentStatusData, ShipmentTags, ShipmentTimeStamp, ShippingInfo, SmsDataPayload, StatuesRequest, StatuesResponse, Store, StoreAddress, StoreDocuments, StoreEinvoice, StoreEwaybill, StoreGstCredentials, StoreMeta, StoreReassign, StoreReassignResponse, SubLane, Success, SuccessResponse, SuperLane, Tax, TaxDetails, TaxInfo, TotalShipmentPricesCount, TrackingList, TransactionData, UpdatePackagingDimensionsPayload, UpdatePackagingDimensionsResponse, UpdateShipmentLockPayload, UpdateShipmentLockResponse, UpdateShipmentStatusRequest, UpdateShipmentStatusResponseBody, UploadConsent, URL, UserDataInfo, UserDetailsData, VerifyMobileOTP, VerifyOtpData, VerifyOtpResponse, VerifyOtpResponseData, Weight };
+    export { ActionInfo, AdvanceFilterInfo, AffiliateBagDetails, AffiliateBagsDetails, AffiliateDetails, AffiliateMeta, AnnouncementResponse, AnnouncementsResponse, AppliedPromos, Article, ArticleDetails, AssetByShipment, AttachOrderUser, AttachOrderUserResponse, AttachUserInfo, AttachUserOtpData, Attributes, B2BPODetails, BagConfigs, BagDetailsPlatformResponse, BagGST, BagGSTDetails, BagMeta, BagPaymentMethods, BagReturnableCancelableStatus, Bags, BagsPage, BagStateMapper, BagStateTransitionMap, BagStatusHistory, BagUnit, BaseResponse, BillingInfo, BillingStaffDetails, Brand, BulkActionTemplate, BulkActionTemplateResponse, BuyerDetails, BuyRules, Charge, CheckResponse, Click2CallResponse, CompanyDetails, ContactDetails, CreateOrderAPI, CreateOrderErrorReponse, CreateOrderResponse, CreditBalanceInfo, CurrentStatus, DataUpdates, DateRange, Dates, DebugInfo, Dimension, Dimensions, DiscountRules, DispatchManifest, Document, DPDetailsData, EinvoiceInfo, EInvoicePortalDetails, Entities, EntitiesDataUpdates, EntitiesReasons, EntityReasonData, Error, ErrorDetail, ErrorResponse, ErrorResponse1, FetchCreditBalanceRequestPayload, FetchCreditBalanceResponsePayload, FileResponse, FilterInfoOption, FilterInfoOption1, Filters, FiltersInfo, FiltersInfo1, FiltersRequest, FiltersResponse, FinancialBreakup, Formatted, FulfillingStore, FyndOrderIdList, GeneratePosOrderReceiptResponse, GetActionsResponse, GetBagsPlatformResponse, GiftCard, GSTDetailsData, HistoryDict, HistoryMeta, HistoryReason, Identifier, InvalidateShipmentCacheNestedResponse, InvalidateShipmentCachePayload, InvalidateShipmentCacheResponse, InvoiceInfo, Item, ItemCriterias, JioCodeUpsertDataSet, JioCodeUpsertPayload, JioCodeUpsertResponse, LaneConfigResponse, LineItem, LockData, Manifest, ManifestDetails, ManifestFile, ManifestFiltersResponse, ManifestItemDetails, ManifestList, ManifestMediaUpdate, ManifestMeta, ManifestPageInfo, ManifestShipmentListing, Meta, MetricCountResponse, MetricsCount, NestedErrorSchemaDataSet, OmsReports, Options, OrderBagArticle, OrderBags, OrderBrandName, OrderData, OrderDetails, OrderDetailsData, OrderDetailsResponse, OrderingStoreDetails, OrderItemDataUpdates, OrderListingResponse, OrderMeta, OrderStatus, OrderStatusData, OrderStatusResult, OriginalFilter, Page, PaymentInfo, PaymentMethod, PDFLinks, PDFMeta, PhoneDetails, PlatformArticleAttributes, PlatformBreakupValues, PlatformChannel, PlatformDeliveryAddress, PlatformItem, PlatformOrderItems, PlatformOrderUpdate, PlatformShipment, PlatformShipmentReasonsResponse, PlatformShipmentTrack, PlatformTrack, PlatformUserDetails, PointBlankOtpData, PostActivityHistory, PostHistoryData, PostHistoryDict, PostHistoryFilters, PostShipmentHistory, Prices, ProcessingDates, ProcessManifest, ProcessManifestItemResponse, ProcessManifestResponse, Products, ProductsDataUpdates, ProductsDataUpdatesFilters, ProductsReasons, ProductsReasonsData, ProductsReasonsFilters, QuestionSet, Reason, ReasonsData, RefundModeConfigRequestPayload, RefundModeConfigResponsePayload, RefundModeInfo, RefundOption, ReplacementDetails, ResponseDetail, ResponseGetAssetShipment, ReturnConfig, SendSmsPayload, SendUserMobileOTP, SendUserMobileOtpResponse, Shipment, ShipmentDetail, ShipmentDetails, ShipmentHistoryResponse, ShipmentInfoResponse, ShipmentInternalPlatformViewResponse, ShipmentItem, ShipmentItemFulFillingStore, ShipmentItemMeta, ShipmentListingBrand, ShipmentListingChannel, ShipmentMeta, ShipmentPayments, ShipmentReasonsResponse, ShipmentResponseReasons, ShipmentsRequest, ShipmentsResponse, ShipmentStatus, ShipmentStatusData, ShipmentTags, ShipmentTimeStamp, ShippingInfo, SmsDataPayload, StatuesRequest, StatuesResponse, Store, StoreAddress, StoreDocuments, StoreEinvoice, StoreEwaybill, StoreGstCredentials, StoreMeta, StoreReassign, StoreReassignResponse, SubLane, Success, SuccessResponse, SuperLane, Tax, TaxDetails, TaxInfo, TotalShipmentPricesCount, TrackingList, TransactionData, UpdatePackagingDimensionsPayload, UpdatePackagingDimensionsResponse, UpdateShipmentLockPayload, UpdateShipmentLockResponse, UpdateShipmentStatusRequest, UpdateShipmentStatusResponseBody, UploadConsent, URL, UserDataInfo, UserDetailsData, VerifyMobileOTP, VerifyOtpData, VerifyOtpResponse, VerifyOtpResponseData, Weight };
 }
 /** @returns {ActionInfo} */
 declare function ActionInfo(): ActionInfo;
@@ -2436,7 +2423,7 @@ type Attributes = {
 /** @returns {B2BPODetails} */
 declare function B2BPODetails(): B2BPODetails;
 type B2BPODetails = {
-    docket_number?: string;
+    docker_number?: string;
     item_base_price?: number;
     partial_can_ret?: boolean;
     po_line_amount?: number;
@@ -2492,7 +2479,7 @@ type BagDetailsPlatformResponse = {
     restore_promos?: any;
     seller_identifier?: string;
     shipment_id?: string;
-    status?: BagReturnableCancelableStatus1;
+    status?: BagReturnableCancelableStatus;
     tags?: string[];
     type?: string;
 };
@@ -2557,15 +2544,6 @@ type BagPaymentMethods = {
 /** @returns {BagReturnableCancelableStatus} */
 declare function BagReturnableCancelableStatus(): BagReturnableCancelableStatus;
 type BagReturnableCancelableStatus = {
-    can_be_cancelled: boolean;
-    enable_tracking: boolean;
-    is_active: boolean;
-    is_customer_return_allowed: boolean;
-    is_returnable: boolean;
-};
-/** @returns {BagReturnableCancelableStatus1} */
-declare function BagReturnableCancelableStatus1(): BagReturnableCancelableStatus1;
-type BagReturnableCancelableStatus1 = {
     can_be_cancelled: boolean;
     enable_tracking: boolean;
     is_active: boolean;
@@ -3615,7 +3593,7 @@ type Options = {
 declare function OrderBagArticle(): OrderBagArticle;
 type OrderBagArticle = {
     identifiers?: any;
-    return_config?: ReturnConfig1;
+    return_config?: ReturnConfig;
     size?: string;
     uid?: string;
 };
@@ -3959,6 +3937,7 @@ type PlatformShipment = {
     payment_methods?: any;
     payment_mode?: string;
     payments?: ShipmentPayments;
+    pdf_links?: any;
     picked_date?: string;
     platform_logo?: string;
     prices?: Prices;
@@ -4241,13 +4220,6 @@ type ResponseGetAssetShipment = {
 /** @returns {ReturnConfig} */
 declare function ReturnConfig(): ReturnConfig;
 type ReturnConfig = {
-    returnable?: boolean;
-    time?: number;
-    unit?: string;
-};
-/** @returns {ReturnConfig1} */
-declare function ReturnConfig1(): ReturnConfig1;
-type ReturnConfig1 = {
     returnable?: boolean;
     time?: number;
     unit?: string;

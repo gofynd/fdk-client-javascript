@@ -266,6 +266,7 @@ const Joi = require("joi");
  * @property {GetAddressSerializer} address
  * @property {boolean} [auto_invoice]
  * @property {AverageOrderProcessingTime} [avg_order_processing_time]
+ * @property {boolean} [bulk_shipment]
  * @property {string} code
  * @property {GetCompanySerializer} [company]
  * @property {SellerPhoneNumber[]} [contact_numbers]
@@ -348,6 +349,7 @@ const Joi = require("joi");
  * @property {AddressSerializer} address
  * @property {boolean} [auto_invoice]
  * @property {AverageOrderProcessingTime} [avg_order_processing_time]
+ * @property {boolean} [bulk_shipment]
  * @property {string} code
  * @property {number} company
  * @property {SellerPhoneNumber[]} [contact_numbers]
@@ -783,6 +785,7 @@ class CompanyProfilePlatformModel {
       address: CompanyProfilePlatformModel.GetAddressSerializer().required(),
       auto_invoice: Joi.boolean(),
       avg_order_processing_time: CompanyProfilePlatformModel.AverageOrderProcessingTime(),
+      bulk_shipment: Joi.boolean(),
       code: Joi.string().allow("").required(),
       company: CompanyProfilePlatformModel.GetCompanySerializer(),
       contact_numbers: Joi.array().items(
@@ -891,6 +894,7 @@ class CompanyProfilePlatformModel {
       address: CompanyProfilePlatformModel.AddressSerializer().required(),
       auto_invoice: Joi.boolean(),
       avg_order_processing_time: CompanyProfilePlatformModel.AverageOrderProcessingTime(),
+      bulk_shipment: Joi.boolean(),
       code: Joi.string().allow("").required(),
       company: Joi.number().required(),
       contact_numbers: Joi.array().items(

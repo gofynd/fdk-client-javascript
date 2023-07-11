@@ -92,18 +92,6 @@ declare class Payment {
      */
     edcDeviceStats({}?: any): Promise<PaymentPlatformModel.EdcDeviceStatsResponse>;
     /**
-     * @param {PaymentPlatformApplicationValidator.ExtensionPaymentUpdateParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<PaymentPlatformModel.ExtensionPaymentUpdateResponseSerializer>}
-     *   - Success response
-     *
-     * @name extensionPaymentUpdate
-     * @summary: Extension will call this api to set the payment status of an order
-     * @description: Use this API to Extension will call this api to set the payment status of an order
-     */
-    extensionPaymentUpdate({ body }?: PaymentPlatformApplicationValidator.ExtensionPaymentUpdateParam): Promise<PaymentPlatformModel.ExtensionPaymentUpdateResponseSerializer>;
-    /**
      * @param {PaymentPlatformApplicationValidator.GetBankAccountDetailsOpenAPIParam} arg
      *   - Arg object
      *

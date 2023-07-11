@@ -45,6 +45,32 @@ export = ServiceabilityPlatformModel;
  * @property {boolean} success
  */
 /**
+ * @typedef BulkRecordError
+ * @property {string[]} error
+ * @property {boolean} is_error
+ */
+/**
+ * @typedef BulkRegionData
+ * @property {string} action
+ * @property {string} batch_id
+ * @property {string} [created_on]
+ * @property {BulkRecordError} [error]
+ * @property {number} failed_count
+ * @property {CSVFileRecord[]} [failed_rec]
+ * @property {string} file_path
+ * @property {string} stage
+ * @property {number} success_count
+ * @property {number} total_rec
+ */
+/**
+ * @typedef BulkRegionJobSerializer
+ * @property {string} action
+ * @property {string} batch_id
+ * @property {string} [country_iso_code]
+ * @property {string} file_url
+ * @property {string} job_action
+ */
+/**
  * @typedef CommonError
  * @property {Object} [error]
  * @property {string} [status_code]
@@ -99,6 +125,21 @@ export = ServiceabilityPlatformModel;
  * @property {string} region_type
  * @property {string} slug
  * @property {number[]} store_ids
+ */
+/**
+ * @typedef CSVFileRecord
+ * @property {string} [country]
+ * @property {number} [dp_id]
+ * @property {string[]} [error]
+ * @property {string} [from_region]
+ * @property {boolean} [is_error]
+ * @property {number} [max_tat]
+ * @property {number} [min_tat]
+ * @property {number} [plan_id]
+ * @property {string} [region_type]
+ * @property {number} [s_no]
+ * @property {string} [tat_type]
+ * @property {string} [to_region]
  */
 /**
  * @typedef DocumentsResponse
@@ -284,6 +325,12 @@ export = ServiceabilityPlatformModel;
  * @property {ErrorResponse[]} error
  * @property {number} status_code
  * @property {boolean} success
+ */
+/**
+ * @typedef GetBulkRegionJobResponse
+ * @property {string} [batch_id]
+ * @property {number} [current_page_number]
+ * @property {BulkRegionData[]} data
  */
 /**
  * @typedef GetSingleZoneDataViewResponse
@@ -535,6 +582,13 @@ export = ServiceabilityPlatformModel;
  * @property {number} pincode
  */
 /**
+ * @typedef PostBulkRegionJobResponse
+ * @property {string} batch_id
+ * @property {boolean} event_emitted
+ * @property {string} message
+ * @property {boolean} response
+ */
+/**
  * @typedef ProductReturnConfigResponse
  * @property {boolean} [on_same_store]
  */
@@ -640,7 +694,7 @@ export = ServiceabilityPlatformModel;
 declare class ServiceabilityPlatformModel {
 }
 declare namespace ServiceabilityPlatformModel {
-    export { AddressResponse, ApplicationCompanyDpViewRequest, ApplicationCompanyDpViewResponse, ApplicationSelfShipConfig, ApplicationSelfShipConfigResponse, ApplicationServiceabilityConfig, ApplicationServiceabilityConfigResponse, CommonError, CompanyDpAccountListResponse, CompanyDpAccountRequest, CompanyDpAccountResponse, CompanyStoreView_PageItems, CompanyStoreView_Response, ContactNumberResponse, CreatedByResponse, CreateZoneData, DocumentsResponse, Dp, Dp1, DpAccountFailureResponse, DPApplicationRuleRequest, DPApplicationRuleResponse, DPCompanyRuleRequest, DPCompanyRuleResponse, DpIds, DpMultipleRuleSuccessResponse, DpRule, DpRuleRequest, DpRuleResponse, DpRuleSuccessResponse, DpRulesUpdateRequest, DpRuleUpdateSuccessResponse, DpSchemaInRuleListing, EinvoiceResponse, EntityRegionView_Error, EntityRegionView_Items, EntityRegionView_page, EntityRegionView_Request, EntityRegionView_Response, Error, ErrorResponse, EwayBillResponse, FailureResponse, GetSingleZoneDataViewResponse, GetStoresViewResponse, GetZoneDataViewChannels, GetZoneDataViewItems, GetZoneFromApplicationIdViewResponse, GetZoneFromPincodeViewRequest, GetZoneFromPincodeViewResponse, GstCredentialsResponse, IntegrationTypeResponse, ItemResponse, ListViewChannels, ListViewItems, ListViewProduct, ListViewResponse, ListViewSummary, LogisticsResponse, ManagerResponse, MobileNo, ModifiedByResponse, OpeningClosing, Page, PincodeBulkViewResponse, PincodeCodStatusListingPage, PincodeCodStatusListingRequest, PincodeCodStatusListingResponse, PincodeCodStatusListingSummary, PincodeMopBulkData, PincodeMopData, PincodeMOPresponse, PincodeMopUpdateAuditHistoryPaging, PincodeMopUpdateAuditHistoryRequest, PincodeMopUpdateAuditHistoryResponse, PincodeMopUpdateAuditHistoryResponseData, PincodeMopUpdateResponse, ProductReturnConfigResponse, ReAssignStoreRequest, ReAssignStoreResponse, SelfShipResponse, ServiceabilityErrorResponse, ServiceabilityPageResponse, TimmingResponse, UpdateZoneData, WarningsResponse, ZoneDataItem, ZoneMappingType, ZoneProductTypes, ZoneRequest, ZoneResponse, ZoneSuccessResponse, ZoneUpdateRequest };
+    export { AddressResponse, ApplicationCompanyDpViewRequest, ApplicationCompanyDpViewResponse, ApplicationSelfShipConfig, ApplicationSelfShipConfigResponse, ApplicationServiceabilityConfig, ApplicationServiceabilityConfigResponse, BulkRecordError, BulkRegionData, BulkRegionJobSerializer, CommonError, CompanyDpAccountListResponse, CompanyDpAccountRequest, CompanyDpAccountResponse, CompanyStoreView_PageItems, CompanyStoreView_Response, ContactNumberResponse, CreatedByResponse, CreateZoneData, CSVFileRecord, DocumentsResponse, Dp, Dp1, DpAccountFailureResponse, DPApplicationRuleRequest, DPApplicationRuleResponse, DPCompanyRuleRequest, DPCompanyRuleResponse, DpIds, DpMultipleRuleSuccessResponse, DpRule, DpRuleRequest, DpRuleResponse, DpRuleSuccessResponse, DpRulesUpdateRequest, DpRuleUpdateSuccessResponse, DpSchemaInRuleListing, EinvoiceResponse, EntityRegionView_Error, EntityRegionView_Items, EntityRegionView_page, EntityRegionView_Request, EntityRegionView_Response, Error, ErrorResponse, EwayBillResponse, FailureResponse, GetBulkRegionJobResponse, GetSingleZoneDataViewResponse, GetStoresViewResponse, GetZoneDataViewChannels, GetZoneDataViewItems, GetZoneFromApplicationIdViewResponse, GetZoneFromPincodeViewRequest, GetZoneFromPincodeViewResponse, GstCredentialsResponse, IntegrationTypeResponse, ItemResponse, ListViewChannels, ListViewItems, ListViewProduct, ListViewResponse, ListViewSummary, LogisticsResponse, ManagerResponse, MobileNo, ModifiedByResponse, OpeningClosing, Page, PincodeBulkViewResponse, PincodeCodStatusListingPage, PincodeCodStatusListingRequest, PincodeCodStatusListingResponse, PincodeCodStatusListingSummary, PincodeMopBulkData, PincodeMopData, PincodeMOPresponse, PincodeMopUpdateAuditHistoryPaging, PincodeMopUpdateAuditHistoryRequest, PincodeMopUpdateAuditHistoryResponse, PincodeMopUpdateAuditHistoryResponseData, PincodeMopUpdateResponse, PostBulkRegionJobResponse, ProductReturnConfigResponse, ReAssignStoreRequest, ReAssignStoreResponse, SelfShipResponse, ServiceabilityErrorResponse, ServiceabilityPageResponse, TimmingResponse, UpdateZoneData, WarningsResponse, ZoneDataItem, ZoneMappingType, ZoneProductTypes, ZoneRequest, ZoneResponse, ZoneSuccessResponse, ZoneUpdateRequest };
 }
 /** @returns {AddressResponse} */
 declare function AddressResponse(): AddressResponse;
@@ -693,6 +747,35 @@ type ApplicationServiceabilityConfigResponse = {
     data?: ApplicationServiceabilityConfig;
     error?: ServiceabilityErrorResponse;
     success: boolean;
+};
+/** @returns {BulkRecordError} */
+declare function BulkRecordError(): BulkRecordError;
+type BulkRecordError = {
+    error: string[];
+    is_error: boolean;
+};
+/** @returns {BulkRegionData} */
+declare function BulkRegionData(): BulkRegionData;
+type BulkRegionData = {
+    action: string;
+    batch_id: string;
+    created_on?: string;
+    error?: BulkRecordError;
+    failed_count: number;
+    failed_rec?: CSVFileRecord[];
+    file_path: string;
+    stage: string;
+    success_count: number;
+    total_rec: number;
+};
+/** @returns {BulkRegionJobSerializer} */
+declare function BulkRegionJobSerializer(): BulkRegionJobSerializer;
+type BulkRegionJobSerializer = {
+    action: string;
+    batch_id: string;
+    country_iso_code?: string;
+    file_url: string;
+    job_action: string;
 };
 /** @returns {CommonError} */
 declare function CommonError(): CommonError;
@@ -758,6 +841,22 @@ type CreateZoneData = {
     region_type: string;
     slug: string;
     store_ids: number[];
+};
+/** @returns {CSVFileRecord} */
+declare function CSVFileRecord(): CSVFileRecord;
+type CSVFileRecord = {
+    country?: string;
+    dp_id?: number;
+    error?: string[];
+    from_region?: string;
+    is_error?: boolean;
+    max_tat?: number;
+    min_tat?: number;
+    plan_id?: number;
+    region_type?: string;
+    s_no?: number;
+    tat_type?: string;
+    to_region?: string;
 };
 /** @returns {DocumentsResponse} */
 declare function DocumentsResponse(): DocumentsResponse;
@@ -970,6 +1069,13 @@ type FailureResponse = {
     error: ErrorResponse[];
     status_code: number;
     success: boolean;
+};
+/** @returns {GetBulkRegionJobResponse} */
+declare function GetBulkRegionJobResponse(): GetBulkRegionJobResponse;
+type GetBulkRegionJobResponse = {
+    batch_id?: string;
+    current_page_number?: number;
+    data: BulkRegionData[];
 };
 /** @returns {GetSingleZoneDataViewResponse} */
 declare function GetSingleZoneDataViewResponse(): GetSingleZoneDataViewResponse;
@@ -1253,6 +1359,14 @@ type PincodeMopUpdateResponse = {
     country: string;
     is_active: boolean;
     pincode: number;
+};
+/** @returns {PostBulkRegionJobResponse} */
+declare function PostBulkRegionJobResponse(): PostBulkRegionJobResponse;
+type PostBulkRegionJobResponse = {
+    batch_id: string;
+    event_emitted: boolean;
+    message: string;
+    response: boolean;
 };
 /** @returns {ProductReturnConfigResponse} */
 declare function ProductReturnConfigResponse(): ProductReturnConfigResponse;

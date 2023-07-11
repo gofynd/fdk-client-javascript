@@ -35,10 +35,6 @@ export = PaymentPlatformApplicationValidator;
  */
 /** @typedef EdcDeviceStatsParam */
 /**
- * @typedef ExtensionPaymentUpdateParam
- * @property {PaymentPlatformModel.ExtensionPaymentUpdateRequestSerializer} body
- */
-/**
  * @typedef GetBankAccountDetailsOpenAPIParam
  * @property {string} orderId
  * @property {string} [requestHash]
@@ -159,8 +155,6 @@ declare class PaymentPlatformApplicationValidator {
     static edcDeviceList(): EdcDeviceListParam;
     /** @returns {EdcDeviceStatsParam} */
     static edcDeviceStats(): any;
-    /** @returns {ExtensionPaymentUpdateParam} */
-    static extensionPaymentUpdate(): ExtensionPaymentUpdateParam;
     /** @returns {GetBankAccountDetailsOpenAPIParam} */
     static getBankAccountDetailsOpenAPI(): GetBankAccountDetailsOpenAPIParam;
     /** @returns {GetBrandPaymentGatewayConfigParam} */
@@ -209,7 +203,7 @@ declare class PaymentPlatformApplicationValidator {
     static verifyCustomerForPayment(): VerifyCustomerForPaymentParam;
 }
 declare namespace PaymentPlatformApplicationValidator {
-    export { AddEdcDeviceParam, AddRefundBankAccountUsingOTPParam, CancelPaymentLinkParam, CheckAndUpdatePaymentStatusParam, ConfirmPaymentParam, CreatePaymentLinkParam, EdcAggregatorsAndModelListParam, EdcDeviceListParam, EdcDeviceStatsParam, ExtensionPaymentUpdateParam, GetBankAccountDetailsOpenAPIParam, GetBrandPaymentGatewayConfigParam, GetEdcDeviceParam, GetPaymentCodeOptionParam, GetPaymentLinkParam, GetPaymentModeRoutesParam, GetPosPaymentModeRoutesParam, GetUserBeneficiariesParam, GetUserCODlimitRoutesParam, GetUserOrderBeneficiariesParam, InitialisePaymentParam, MerchantOnBoardingParam, OauthGetUrlParam, PaymentStatusBulkParam, PollingPaymentLinkParam, RepaymentDetailsParam, ResendOrCancelPaymentParam, ResendPaymentLinkParam, RevokeOauthTokenParam, SaveBrandPaymentGatewayConfigParam, SetUserCODlimitRoutesParam, UpdateEdcDeviceParam, VerifyCustomerForPaymentParam };
+    export { AddEdcDeviceParam, AddRefundBankAccountUsingOTPParam, CancelPaymentLinkParam, CheckAndUpdatePaymentStatusParam, ConfirmPaymentParam, CreatePaymentLinkParam, EdcAggregatorsAndModelListParam, EdcDeviceListParam, EdcDeviceStatsParam, GetBankAccountDetailsOpenAPIParam, GetBrandPaymentGatewayConfigParam, GetEdcDeviceParam, GetPaymentCodeOptionParam, GetPaymentLinkParam, GetPaymentModeRoutesParam, GetPosPaymentModeRoutesParam, GetUserBeneficiariesParam, GetUserCODlimitRoutesParam, GetUserOrderBeneficiariesParam, InitialisePaymentParam, MerchantOnBoardingParam, OauthGetUrlParam, PaymentStatusBulkParam, PollingPaymentLinkParam, RepaymentDetailsParam, ResendOrCancelPaymentParam, ResendPaymentLinkParam, RevokeOauthTokenParam, SaveBrandPaymentGatewayConfigParam, SetUserCODlimitRoutesParam, UpdateEdcDeviceParam, VerifyCustomerForPaymentParam };
 }
 type AddEdcDeviceParam = {
     /**
@@ -239,9 +233,6 @@ type EdcDeviceListParam = {
     isActive?: boolean;
     storeId?: number;
     deviceTag?: string;
-};
-type ExtensionPaymentUpdateParam = {
-    body: PaymentPlatformModel.ExtensionPaymentUpdateRequestSerializer;
 };
 type GetBankAccountDetailsOpenAPIParam = {
     orderId: string;

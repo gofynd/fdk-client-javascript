@@ -78,73 +78,6 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformApplicationValidator.DeleteAppDpParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<ServiceabilityPlatformModel.ApplicationCompanyDpViewResponse>}
-   *   - Success response
-   *
-   * @name deleteAppDp
-   * @summary: Delete application dp data
-   * @description: This API remove application dp data.
-   */
-  async deleteAppDp({ courierPartnerId } = {}) {
-    const {
-      error,
-    } = ServiceabilityPlatformApplicationValidator.deleteAppDp().validate(
-      {
-        courierPartnerId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityPlatformApplicationValidator.deleteAppDp().validate(
-      {
-        courierPartnerId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Serviceability > deleteAppDp \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/courier-partner/${courierPartnerId}`,
-      query_params,
-      undefined
-    );
-
-    const {
-      error: res_error,
-    } = ServiceabilityPlatformModel.ApplicationCompanyDpViewResponse().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Serviceability > deleteAppDp \n ${res_error}`,
-      });
-    }
-
-    return response;
-  }
-
-  /**
    * @param {ServiceabilityPlatformApplicationValidator.GetApplicationServiceabilityParam} arg
    *   - Arg object
    *
@@ -271,20 +204,20 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformApplicationValidator.GetDpApplicationRulesParam} arg
+   * @param {ServiceabilityPlatformApplicationValidator.GetDpApplicationRulePriorityParam} arg
    *   - Arg object
    *
    * @returns {Promise<ServiceabilityPlatformModel.DPApplicationRuleResponse>}
    *   - Success response
    *
-   * @name getDpApplicationRules
+   * @name getDpApplicationRulePriority
    * @summary: Get All DpApplicationRules rules added at application level from database.
    * @description: This API returns response of all rules of DpApplicationRules from mongo database.
    */
-  async getDpApplicationRules({} = {}) {
+  async getDpApplicationRulePriority({} = {}) {
     const {
       error,
-    } = ServiceabilityPlatformApplicationValidator.getDpApplicationRules().validate(
+    } = ServiceabilityPlatformApplicationValidator.getDpApplicationRulePriority().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -295,14 +228,14 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityPlatformApplicationValidator.getDpApplicationRules().validate(
+    } = ServiceabilityPlatformApplicationValidator.getDpApplicationRulePriority().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Serviceability > getDpApplicationRules \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Serviceability > getDpApplicationRulePriority \n ${warrning}`,
       });
     }
 
@@ -326,7 +259,7 @@ class Serviceability {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Serviceability > getDpApplicationRules \n ${res_error}`,
+        message: `Response Validation Warnnings for platform > Serviceability > getDpApplicationRulePriority \n ${res_error}`,
       });
     }
 
@@ -812,20 +745,20 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformApplicationValidator.UpsertDpApplicationRulesParam} arg
+   * @param {ServiceabilityPlatformApplicationValidator.UpsertDpApplicationRulePriorityParam} arg
    *   - Arg object
    *
    * @returns {Promise<ServiceabilityPlatformModel.DPApplicationRuleResponse>}
    *   - Success response
    *
-   * @name upsertDpApplicationRules
+   * @name upsertDpApplicationRulePriority
    * @summary: Upsert of DpApplicationRules in database.
    * @description: This API returns response of upsert of DpApplicationRules in mongo database.
    */
-  async upsertDpApplicationRules({ body } = {}) {
+  async upsertDpApplicationRulePriority({ body } = {}) {
     const {
       error,
-    } = ServiceabilityPlatformApplicationValidator.upsertDpApplicationRules().validate(
+    } = ServiceabilityPlatformApplicationValidator.upsertDpApplicationRulePriority().validate(
       {
         body,
       },
@@ -838,7 +771,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityPlatformApplicationValidator.upsertDpApplicationRules().validate(
+    } = ServiceabilityPlatformApplicationValidator.upsertDpApplicationRulePriority().validate(
       {
         body,
       },
@@ -847,7 +780,7 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Serviceability > upsertDpApplicationRules \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Serviceability > upsertDpApplicationRulePriority \n ${warrning}`,
       });
     }
 
@@ -871,7 +804,7 @@ class Serviceability {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Serviceability > upsertDpApplicationRules \n ${res_error}`,
+        message: `Response Validation Warnnings for platform > Serviceability > upsertDpApplicationRulePriority \n ${res_error}`,
       });
     }
 

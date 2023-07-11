@@ -3,6 +3,15 @@ declare class Serviceability {
     constructor(config: any);
     config: any;
     /**
+     * @param {ServiceabilityPlatformValidator.CreateDpRuleParam} arg - Arg object
+     * @returns {Promise<ServiceabilityPlatformModel.DpRuleSuccessResponse>} -
+     *   Success response
+     * @name createDpRule
+     * @summary: Upsert of DpRules in database.
+     * @description: This API returns response of upsert of DpRules in mongo database.
+     */
+    createDpRule({ body }?: ServiceabilityPlatformValidator.CreateDpRuleParam): Promise<ServiceabilityPlatformModel.DpRuleSuccessResponse>;
+    /**
      * @param {ServiceabilityPlatformValidator.CreateZoneParam} arg - Arg object
      * @returns {Promise<ServiceabilityPlatformModel.ZoneResponse>} - Success response
      * @name createZone
@@ -30,43 +39,45 @@ declare class Serviceability {
      */
     getCompanyStoreView({ pageNumber, pageSize }?: ServiceabilityPlatformValidator.GetCompanyStoreViewParam): Promise<ServiceabilityPlatformModel.CompanyStoreView_Response>;
     /**
-     * @param {ServiceabilityPlatformValidator.GetDpAccountParam} arg - Arg object
+     * @param {ServiceabilityPlatformValidator.GetDpAccountListParam} arg - Arg object
      * @returns {Promise<ServiceabilityPlatformModel.CompanyDpAccountListResponse>}
      *   - Success response
      *
-     * @name getDpAccount
+     * @name getDpAccountList
      * @summary: Getting DpAccount of a company from database.
      * @description: This API returns response DpAccount of a company from mongo database.
      */
-    getDpAccount({ pageNumber, pageSize, stage, paymentMode, transportType, }?: ServiceabilityPlatformValidator.GetDpAccountParam): Promise<ServiceabilityPlatformModel.CompanyDpAccountListResponse>;
+    getDpAccountList({ pageNumber, pageSize, stage, paymentMode, transportType, }?: ServiceabilityPlatformValidator.GetDpAccountListParam): Promise<ServiceabilityPlatformModel.CompanyDpAccountListResponse>;
     /**
-     * @param {ServiceabilityPlatformValidator.GetDpCompanyRulesParam} arg - Arg object
+     * @param {ServiceabilityPlatformValidator.GetDpCompanyRulePriorityParam} arg
+     *   - Arg object
+     *
      * @returns {Promise<ServiceabilityPlatformModel.DPCompanyRuleResponse>} -
      *   Success response
-     * @name getDpCompanyRules
+     * @name getDpCompanyRulePriority
      * @summary: Get All DpCompanyRules applied to company from database.
      * @description: This API returns response of all DpCompanyRules from mongo database.
      */
-    getDpCompanyRules({}?: any): Promise<ServiceabilityPlatformModel.DPCompanyRuleResponse>;
+    getDpCompanyRulePriority({}?: any): Promise<ServiceabilityPlatformModel.DPCompanyRuleResponse>;
     /**
-     * @param {ServiceabilityPlatformValidator.GetDpRuleInsertParam} arg - Arg object
+     * @param {ServiceabilityPlatformValidator.GetDpRuleParam} arg - Arg object
+     * @returns {Promise<ServiceabilityPlatformModel.DpRuleSuccessResponse>} -
+     *   Success response
+     * @name getDpRule
+     * @summary: Fetching of DpRules from database.
+     * @description: This API returns response of DpRules from mongo database.
+     */
+    getDpRule({ ruleUid }?: ServiceabilityPlatformValidator.GetDpRuleParam): Promise<ServiceabilityPlatformModel.DpRuleSuccessResponse>;
+    /**
+     * @param {ServiceabilityPlatformValidator.GetDpRuleListParam} arg - Arg object
      * @returns {Promise<ServiceabilityPlatformModel.DpMultipleRuleSuccessResponse>}
      *   - Success response
      *
-     * @name getDpRuleInsert
+     * @name getDpRuleList
      * @summary: Fetching of DpRules from database.
      * @description: This API returns response of DpRules from mongo database.
      */
-    getDpRuleInsert({ pageNumber, pageSize }?: ServiceabilityPlatformValidator.GetDpRuleInsertParam): Promise<ServiceabilityPlatformModel.DpMultipleRuleSuccessResponse>;
-    /**
-     * @param {ServiceabilityPlatformValidator.GetDpRulesParam} arg - Arg object
-     * @returns {Promise<ServiceabilityPlatformModel.DpRuleSuccessResponse>} -
-     *   Success response
-     * @name getDpRules
-     * @summary: Fetching of DpRules from database.
-     * @description: This API returns response of DpRules from mongo database.
-     */
-    getDpRules({ ruleUid }?: ServiceabilityPlatformValidator.GetDpRulesParam): Promise<ServiceabilityPlatformModel.DpRuleSuccessResponse>;
+    getDpRuleList({ pageNumber, pageSize }?: ServiceabilityPlatformValidator.GetDpRuleListParam): Promise<ServiceabilityPlatformModel.DpMultipleRuleSuccessResponse>;
     /**
      * @param {ServiceabilityPlatformValidator.GetEntityRegionViewParam} arg - Arg object
      * @returns {Promise<ServiceabilityPlatformModel.EntityRegionView_Response>}
@@ -95,6 +106,28 @@ declare class Serviceability {
      */
     getOptimalLocations({ body }?: ServiceabilityPlatformValidator.GetOptimalLocationsParam): Promise<ServiceabilityPlatformModel.ReAssignStoreResponse>;
     /**
+     * @param {ServiceabilityPlatformValidator.GetRegionJobBulkParam} arg - Arg object
+     * @returns {Promise<ServiceabilityPlatformModel.GetBulkRegionJobResponse>}
+     *   - Success response
+     *
+     * @name getRegionJobBulk
+     * @summary: Get bulk_export_job collection all records
+     * @description: This API takes gives all the records of bulk_export_job collection
+     */
+    getRegionJobBulk({ currentPageNumber, pageSize }?: ServiceabilityPlatformValidator.GetRegionJobBulkParam): Promise<ServiceabilityPlatformModel.GetBulkRegionJobResponse>;
+    /**
+     * @param {ServiceabilityPlatformValidator.GetRegionJobBulkBatchIdParam} arg
+     *   - Arg object
+     *
+     * @returns {Promise<ServiceabilityPlatformModel.GetBulkRegionJobResponse>}
+     *   - Success response
+     *
+     * @name getRegionJobBulkBatchId
+     * @summary: Get bulk_export_job data for a given batch_id
+     * @description: This API takes batch_id and gives the detail of bulk_export_job collection for the batch_id
+     */
+    getRegionJobBulkBatchId({ batchId }?: ServiceabilityPlatformValidator.GetRegionJobBulkBatchIdParam): Promise<ServiceabilityPlatformModel.GetBulkRegionJobResponse>;
+    /**
      * @param {ServiceabilityPlatformValidator.GetStoreParam} arg - Arg object
      * @returns {Promise<ServiceabilityPlatformModel.GetStoresViewResponse>} -
      *   Success response
@@ -121,6 +154,16 @@ declare class Serviceability {
      * @description: This API returns Zone List View of the application.
      */
     getZoneListView({ pageNumber, pageNo, pageSize, name, isActive, channelIds, q, zoneId, }?: ServiceabilityPlatformValidator.GetZoneListViewParam): Promise<ServiceabilityPlatformModel.ListViewResponse>;
+    /**
+     * @param {ServiceabilityPlatformValidator.PostRegionJobBulkParam} arg - Arg object
+     * @returns {Promise<ServiceabilityPlatformModel.PostBulkRegionJobResponse>}
+     *   - Success response
+     *
+     * @name postRegionJobBulk
+     * @summary: This Api creates a Bulk Job for region tat data upsert
+     * @description: This API takes request body, validates it and sends it to kafka topic
+     */
+    postRegionJobBulk({ body }?: ServiceabilityPlatformValidator.PostRegionJobBulkParam): Promise<ServiceabilityPlatformModel.PostBulkRegionJobResponse>;
     /**
      * @param {ServiceabilityPlatformValidator.UpdateDpRuleParam} arg - Arg object
      * @returns {Promise<ServiceabilityPlatformModel.DpRuleUpdateSuccessResponse>}
@@ -153,23 +196,16 @@ declare class Serviceability {
      */
     upsertDpAccount({ body }?: ServiceabilityPlatformValidator.UpsertDpAccountParam): Promise<ServiceabilityPlatformModel.CompanyDpAccountResponse>;
     /**
-     * @param {ServiceabilityPlatformValidator.UpsertDpCompanyRulesParam} arg - Arg object
+     * @param {ServiceabilityPlatformValidator.UpsertDpCompanyRulePriorityParam} arg
+     *   - Arg object
+     *
      * @returns {Promise<ServiceabilityPlatformModel.DPCompanyRuleResponse>} -
      *   Success response
-     * @name upsertDpCompanyRules
+     * @name upsertDpCompanyRulePriority
      * @summary: Upsert of DpCompanyRules in database.
      * @description: This API returns response of upsert of DpCompanyRules in mongo database.
      */
-    upsertDpCompanyRules({ body }?: ServiceabilityPlatformValidator.UpsertDpCompanyRulesParam): Promise<ServiceabilityPlatformModel.DPCompanyRuleResponse>;
-    /**
-     * @param {ServiceabilityPlatformValidator.UpsertDpRulesParam} arg - Arg object
-     * @returns {Promise<ServiceabilityPlatformModel.DpRuleSuccessResponse>} -
-     *   Success response
-     * @name upsertDpRules
-     * @summary: Upsert of DpRules in database.
-     * @description: This API returns response of upsert of DpRules in mongo database.
-     */
-    upsertDpRules({ body }?: ServiceabilityPlatformValidator.UpsertDpRulesParam): Promise<ServiceabilityPlatformModel.DpRuleSuccessResponse>;
+    upsertDpCompanyRulePriority({ body }?: ServiceabilityPlatformValidator.UpsertDpCompanyRulePriorityParam): Promise<ServiceabilityPlatformModel.DPCompanyRuleResponse>;
 }
 import ServiceabilityPlatformValidator = require("./ServiceabilityPlatformValidator");
 import ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");

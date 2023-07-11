@@ -7,17 +7,11 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  * @property {ServiceabilityPlatformModel.ApplicationCompanyDpViewRequest} body
  */
 
-/**
- * @typedef DeleteAppDpParam
- * @property {number} courierPartnerId - A `courier_partner_id` is a unique
- *   identifier of a particular delivery partner.
- */
-
 /** @typedef GetApplicationServiceabilityParam */
 
 /** @typedef GetApplicationServiceabilitySelfShipmentParam */
 
-/** @typedef GetDpApplicationRulesParam */
+/** @typedef GetDpApplicationRulePriorityParam */
 
 /**
  * @typedef GetZoneFromPincodeViewParam
@@ -58,7 +52,7 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /**
- * @typedef UpsertDpApplicationRulesParam
+ * @typedef UpsertDpApplicationRulePriorityParam
  * @property {ServiceabilityPlatformModel.DPApplicationRuleRequest} body
  */
 
@@ -67,13 +61,6 @@ class ServiceabilityPlatformApplicationValidator {
   static addAppDp() {
     return Joi.object({
       body: ServiceabilityPlatformModel.ApplicationCompanyDpViewRequest().required(),
-    }).required();
-  }
-
-  /** @returns {DeleteAppDpParam} */
-  static deleteAppDp() {
-    return Joi.object({
-      courierPartnerId: Joi.number().required(),
     }).required();
   }
 
@@ -87,8 +74,8 @@ class ServiceabilityPlatformApplicationValidator {
     return Joi.object({}).required();
   }
 
-  /** @returns {GetDpApplicationRulesParam} */
-  static getDpApplicationRules() {
+  /** @returns {GetDpApplicationRulePriorityParam} */
+  static getDpApplicationRulePriority() {
     return Joi.object({}).required();
   }
 
@@ -144,8 +131,8 @@ class ServiceabilityPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {UpsertDpApplicationRulesParam} */
-  static upsertDpApplicationRules() {
+  /** @returns {UpsertDpApplicationRulePriorityParam} */
+  static upsertDpApplicationRulePriority() {
     return Joi.object({
       body: ServiceabilityPlatformModel.DPApplicationRuleRequest().required(),
     }).required();

@@ -241,6 +241,7 @@ export = CompanyProfilePlatformModel;
  * @property {GetAddressSerializer} address
  * @property {boolean} [auto_invoice]
  * @property {AverageOrderProcessingTime} [avg_order_processing_time]
+ * @property {boolean} [bulk_shipment]
  * @property {string} code
  * @property {GetCompanySerializer} [company]
  * @property {SellerPhoneNumber[]} [contact_numbers]
@@ -315,6 +316,7 @@ export = CompanyProfilePlatformModel;
  * @property {AddressSerializer} address
  * @property {boolean} [auto_invoice]
  * @property {AverageOrderProcessingTime} [avg_order_processing_time]
+ * @property {boolean} [bulk_shipment]
  * @property {string} code
  * @property {number} company
  * @property {SellerPhoneNumber[]} [contact_numbers]
@@ -683,6 +685,7 @@ type GetLocationSerializer = {
     address: GetAddressSerializer;
     auto_invoice?: boolean;
     avg_order_processing_time?: AverageOrderProcessingTime;
+    bulk_shipment?: boolean;
     code: string;
     company?: GetCompanySerializer;
     contact_numbers?: SellerPhoneNumber[];
@@ -765,6 +768,7 @@ type LocationSerializer = {
     address: AddressSerializer;
     auto_invoice?: boolean;
     avg_order_processing_time?: AverageOrderProcessingTime;
+    bulk_shipment?: boolean;
     code: string;
     company: number;
     contact_numbers?: SellerPhoneNumber[];

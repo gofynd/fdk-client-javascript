@@ -3,6 +3,11 @@ const Joi = require("joi");
 const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 
 /**
+ * @typedef CreateDpRuleParam
+ * @property {ServiceabilityPlatformModel.DpRuleRequest} body
+ */
+
+/**
  * @typedef CreateZoneParam
  * @property {ServiceabilityPlatformModel.ZoneRequest} body
  */
@@ -16,7 +21,7 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /**
- * @typedef GetDpAccountParam
+ * @typedef GetDpAccountListParam
  * @property {number} [pageNumber] - Index of the item to start returning with
  * @property {number} [pageSize] - Determines the items to be displayed in a page
  * @property {string} [stage] - Stage of the account. enabled/disabled
@@ -24,17 +29,17 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  * @property {string} [transportType] - Filters dp accounts based on transport_type
  */
 
-/** @typedef GetDpCompanyRulesParam */
+/** @typedef GetDpCompanyRulePriorityParam */
 
 /**
- * @typedef GetDpRuleInsertParam
- * @property {number} [pageNumber] - Index of the item to start returning with
- * @property {number} [pageSize] - Determines the items to be displayed in a page
+ * @typedef GetDpRuleParam
+ * @property {string} ruleUid - A `rule_uid` is a unique identifier for a particular Dp.
  */
 
 /**
- * @typedef GetDpRulesParam
- * @property {string} ruleUid - A `rule_uid` is a unique identifier for a particular Dp.
+ * @typedef GetDpRuleListParam
+ * @property {number} [pageNumber] - Index of the item to start returning with
+ * @property {number} [pageSize] - Determines the items to be displayed in a page
  */
 
 /**
@@ -55,6 +60,17 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 /**
  * @typedef GetOptimalLocationsParam
  * @property {ServiceabilityPlatformModel.ReAssignStoreRequest} body
+ */
+
+/**
+ * @typedef GetRegionJobBulkParam
+ * @property {number} [currentPageNumber] - The current page number
+ * @property {number} [pageSize] - The page size
+ */
+
+/**
+ * @typedef GetRegionJobBulkBatchIdParam
+ * @property {string} batchId - The batch ID
  */
 
 /**
@@ -80,6 +96,11 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /**
+ * @typedef PostRegionJobBulkParam
+ * @property {ServiceabilityPlatformModel.BulkRegionJobSerializer} body
+ */
+
+/**
  * @typedef UpdateDpRuleParam
  * @property {string} ruleUid - A `rule_uid` is a unique identifier for a particular Dp.
  * @property {ServiceabilityPlatformModel.DpRulesUpdateRequest} body
@@ -97,16 +118,18 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /**
- * @typedef UpsertDpCompanyRulesParam
+ * @typedef UpsertDpCompanyRulePriorityParam
  * @property {ServiceabilityPlatformModel.DPCompanyRuleRequest} body
  */
 
-/**
- * @typedef UpsertDpRulesParam
- * @property {ServiceabilityPlatformModel.DpRuleRequest} body
- */
-
 class ServiceabilityPlatformValidator {
+  /** @returns {CreateDpRuleParam} */
+  static createDpRule() {
+    return Joi.object({
+      body: ServiceabilityPlatformModel.DpRuleRequest().required(),
+    }).required();
+  }
+
   /** @returns {CreateZoneParam} */
   static createZone() {
     return Joi.object({
@@ -127,8 +150,8 @@ class ServiceabilityPlatformValidator {
     }).required();
   }
 
-  /** @returns {GetDpAccountParam} */
-  static getDpAccount() {
+  /** @returns {GetDpAccountListParam} */
+  static getDpAccountList() {
     return Joi.object({
       pageNumber: Joi.number(),
       pageSize: Joi.number(),
@@ -138,23 +161,23 @@ class ServiceabilityPlatformValidator {
     }).required();
   }
 
-  /** @returns {GetDpCompanyRulesParam} */
-  static getDpCompanyRules() {
+  /** @returns {GetDpCompanyRulePriorityParam} */
+  static getDpCompanyRulePriority() {
     return Joi.object({}).required();
   }
 
-  /** @returns {GetDpRuleInsertParam} */
-  static getDpRuleInsert() {
+  /** @returns {GetDpRuleParam} */
+  static getDpRule() {
     return Joi.object({
-      pageNumber: Joi.number(),
-      pageSize: Joi.number(),
+      ruleUid: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {GetDpRulesParam} */
-  static getDpRules() {
+  /** @returns {GetDpRuleListParam} */
+  static getDpRuleList() {
     return Joi.object({
-      ruleUid: Joi.string().allow("").required(),
+      pageNumber: Joi.number(),
+      pageSize: Joi.number(),
     }).required();
   }
 
@@ -181,6 +204,21 @@ class ServiceabilityPlatformValidator {
   static getOptimalLocations() {
     return Joi.object({
       body: ServiceabilityPlatformModel.ReAssignStoreRequest().required(),
+    }).required();
+  }
+
+  /** @returns {GetRegionJobBulkParam} */
+  static getRegionJobBulk() {
+    return Joi.object({
+      currentPageNumber: Joi.number(),
+      pageSize: Joi.number(),
+    }).required();
+  }
+
+  /** @returns {GetRegionJobBulkBatchIdParam} */
+  static getRegionJobBulkBatchId() {
+    return Joi.object({
+      batchId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -212,6 +250,13 @@ class ServiceabilityPlatformValidator {
     }).required();
   }
 
+  /** @returns {PostRegionJobBulkParam} */
+  static postRegionJobBulk() {
+    return Joi.object({
+      body: ServiceabilityPlatformModel.BulkRegionJobSerializer().required(),
+    }).required();
+  }
+
   /** @returns {UpdateDpRuleParam} */
   static updateDpRule() {
     return Joi.object({
@@ -235,17 +280,10 @@ class ServiceabilityPlatformValidator {
     }).required();
   }
 
-  /** @returns {UpsertDpCompanyRulesParam} */
-  static upsertDpCompanyRules() {
+  /** @returns {UpsertDpCompanyRulePriorityParam} */
+  static upsertDpCompanyRulePriority() {
     return Joi.object({
       body: ServiceabilityPlatformModel.DPCompanyRuleRequest().required(),
-    }).required();
-  }
-
-  /** @returns {UpsertDpRulesParam} */
-  static upsertDpRules() {
-    return Joi.object({
-      body: ServiceabilityPlatformModel.DpRuleRequest().required(),
     }).required();
   }
 }

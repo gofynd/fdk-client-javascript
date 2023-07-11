@@ -1,5 +1,9 @@
 export = ServiceabilityPlatformValidator;
 /**
+ * @typedef CreateDpRuleParam
+ * @property {ServiceabilityPlatformModel.DpRuleRequest} body
+ */
+/**
  * @typedef CreateZoneParam
  * @property {ServiceabilityPlatformModel.ZoneRequest} body
  */
@@ -10,22 +14,22 @@ export = ServiceabilityPlatformValidator;
  * @property {number} [pageSize] - Determines the items to be displayed in a page
  */
 /**
- * @typedef GetDpAccountParam
+ * @typedef GetDpAccountListParam
  * @property {number} [pageNumber] - Index of the item to start returning with
  * @property {number} [pageSize] - Determines the items to be displayed in a page
  * @property {string} [stage] - Stage of the account. enabled/disabled
  * @property {string} [paymentMode] - Filters dp accounts based on payment mode
  * @property {string} [transportType] - Filters dp accounts based on transport_type
  */
-/** @typedef GetDpCompanyRulesParam */
+/** @typedef GetDpCompanyRulePriorityParam */
 /**
- * @typedef GetDpRuleInsertParam
- * @property {number} [pageNumber] - Index of the item to start returning with
- * @property {number} [pageSize] - Determines the items to be displayed in a page
+ * @typedef GetDpRuleParam
+ * @property {string} ruleUid - A `rule_uid` is a unique identifier for a particular Dp.
  */
 /**
- * @typedef GetDpRulesParam
- * @property {string} ruleUid - A `rule_uid` is a unique identifier for a particular Dp.
+ * @typedef GetDpRuleListParam
+ * @property {number} [pageNumber] - Index of the item to start returning with
+ * @property {number} [pageSize] - Determines the items to be displayed in a page
  */
 /**
  * @typedef GetEntityRegionViewParam
@@ -43,6 +47,15 @@ export = ServiceabilityPlatformValidator;
 /**
  * @typedef GetOptimalLocationsParam
  * @property {ServiceabilityPlatformModel.ReAssignStoreRequest} body
+ */
+/**
+ * @typedef GetRegionJobBulkParam
+ * @property {number} [currentPageNumber] - The current page number
+ * @property {number} [pageSize] - The page size
+ */
+/**
+ * @typedef GetRegionJobBulkBatchIdParam
+ * @property {string} batchId - The batch ID
  */
 /**
  * @typedef GetStoreParam
@@ -64,6 +77,10 @@ export = ServiceabilityPlatformValidator;
  * @property {string[]} [zoneId] - List of zones to query for
  */
 /**
+ * @typedef PostRegionJobBulkParam
+ * @property {ServiceabilityPlatformModel.BulkRegionJobSerializer} body
+ */
+/**
  * @typedef UpdateDpRuleParam
  * @property {string} ruleUid - A `rule_uid` is a unique identifier for a particular Dp.
  * @property {ServiceabilityPlatformModel.DpRulesUpdateRequest} body
@@ -78,54 +95,59 @@ export = ServiceabilityPlatformValidator;
  * @property {ServiceabilityPlatformModel.CompanyDpAccountRequest} body
  */
 /**
- * @typedef UpsertDpCompanyRulesParam
+ * @typedef UpsertDpCompanyRulePriorityParam
  * @property {ServiceabilityPlatformModel.DPCompanyRuleRequest} body
  */
-/**
- * @typedef UpsertDpRulesParam
- * @property {ServiceabilityPlatformModel.DpRuleRequest} body
- */
 declare class ServiceabilityPlatformValidator {
+    /** @returns {CreateDpRuleParam} */
+    static createDpRule(): CreateDpRuleParam;
     /** @returns {CreateZoneParam} */
     static createZone(): CreateZoneParam;
     /** @returns {GetAllStoresParam} */
     static getAllStores(): any;
     /** @returns {GetCompanyStoreViewParam} */
     static getCompanyStoreView(): GetCompanyStoreViewParam;
-    /** @returns {GetDpAccountParam} */
-    static getDpAccount(): GetDpAccountParam;
-    /** @returns {GetDpCompanyRulesParam} */
-    static getDpCompanyRules(): any;
-    /** @returns {GetDpRuleInsertParam} */
-    static getDpRuleInsert(): GetDpRuleInsertParam;
-    /** @returns {GetDpRulesParam} */
-    static getDpRules(): GetDpRulesParam;
+    /** @returns {GetDpAccountListParam} */
+    static getDpAccountList(): GetDpAccountListParam;
+    /** @returns {GetDpCompanyRulePriorityParam} */
+    static getDpCompanyRulePriority(): any;
+    /** @returns {GetDpRuleParam} */
+    static getDpRule(): GetDpRuleParam;
+    /** @returns {GetDpRuleListParam} */
+    static getDpRuleList(): GetDpRuleListParam;
     /** @returns {GetEntityRegionViewParam} */
     static getEntityRegionView(): GetEntityRegionViewParam;
     /** @returns {GetListViewParam} */
     static getListView(): GetListViewParam;
     /** @returns {GetOptimalLocationsParam} */
     static getOptimalLocations(): GetOptimalLocationsParam;
+    /** @returns {GetRegionJobBulkParam} */
+    static getRegionJobBulk(): GetRegionJobBulkParam;
+    /** @returns {GetRegionJobBulkBatchIdParam} */
+    static getRegionJobBulkBatchId(): GetRegionJobBulkBatchIdParam;
     /** @returns {GetStoreParam} */
     static getStore(): GetStoreParam;
     /** @returns {GetZoneDataViewParam} */
     static getZoneDataView(): GetZoneDataViewParam;
     /** @returns {GetZoneListViewParam} */
     static getZoneListView(): GetZoneListViewParam;
+    /** @returns {PostRegionJobBulkParam} */
+    static postRegionJobBulk(): PostRegionJobBulkParam;
     /** @returns {UpdateDpRuleParam} */
     static updateDpRule(): UpdateDpRuleParam;
     /** @returns {UpdateZoneControllerViewParam} */
     static updateZoneControllerView(): UpdateZoneControllerViewParam;
     /** @returns {UpsertDpAccountParam} */
     static upsertDpAccount(): UpsertDpAccountParam;
-    /** @returns {UpsertDpCompanyRulesParam} */
-    static upsertDpCompanyRules(): UpsertDpCompanyRulesParam;
-    /** @returns {UpsertDpRulesParam} */
-    static upsertDpRules(): UpsertDpRulesParam;
+    /** @returns {UpsertDpCompanyRulePriorityParam} */
+    static upsertDpCompanyRulePriority(): UpsertDpCompanyRulePriorityParam;
 }
 declare namespace ServiceabilityPlatformValidator {
-    export { CreateZoneParam, GetAllStoresParam, GetCompanyStoreViewParam, GetDpAccountParam, GetDpCompanyRulesParam, GetDpRuleInsertParam, GetDpRulesParam, GetEntityRegionViewParam, GetListViewParam, GetOptimalLocationsParam, GetStoreParam, GetZoneDataViewParam, GetZoneListViewParam, UpdateDpRuleParam, UpdateZoneControllerViewParam, UpsertDpAccountParam, UpsertDpCompanyRulesParam, UpsertDpRulesParam };
+    export { CreateDpRuleParam, CreateZoneParam, GetAllStoresParam, GetCompanyStoreViewParam, GetDpAccountListParam, GetDpCompanyRulePriorityParam, GetDpRuleParam, GetDpRuleListParam, GetEntityRegionViewParam, GetListViewParam, GetOptimalLocationsParam, GetRegionJobBulkParam, GetRegionJobBulkBatchIdParam, GetStoreParam, GetZoneDataViewParam, GetZoneListViewParam, PostRegionJobBulkParam, UpdateDpRuleParam, UpdateZoneControllerViewParam, UpsertDpAccountParam, UpsertDpCompanyRulePriorityParam };
 }
+type CreateDpRuleParam = {
+    body: ServiceabilityPlatformModel.DpRuleRequest;
+};
 type CreateZoneParam = {
     body: ServiceabilityPlatformModel.ZoneRequest;
 };
@@ -139,7 +161,7 @@ type GetCompanyStoreViewParam = {
      */
     pageSize?: number;
 };
-type GetDpAccountParam = {
+type GetDpAccountListParam = {
     /**
      * - Index of the item to start returning with
      */
@@ -161,7 +183,13 @@ type GetDpAccountParam = {
      */
     transportType?: string;
 };
-type GetDpRuleInsertParam = {
+type GetDpRuleParam = {
+    /**
+     * - A `rule_uid` is a unique identifier for a particular Dp.
+     */
+    ruleUid: string;
+};
+type GetDpRuleListParam = {
     /**
      * - Index of the item to start returning with
      */
@@ -170,12 +198,6 @@ type GetDpRuleInsertParam = {
      * - Determines the items to be displayed in a page
      */
     pageSize?: number;
-};
-type GetDpRulesParam = {
-    /**
-     * - A `rule_uid` is a unique identifier for a particular Dp.
-     */
-    ruleUid: string;
 };
 type GetEntityRegionViewParam = {
     body: ServiceabilityPlatformModel.EntityRegionView_Request;
@@ -208,6 +230,22 @@ type GetListViewParam = {
 };
 type GetOptimalLocationsParam = {
     body: ServiceabilityPlatformModel.ReAssignStoreRequest;
+};
+type GetRegionJobBulkParam = {
+    /**
+     * - The current page number
+     */
+    currentPageNumber?: number;
+    /**
+     * - The page size
+     */
+    pageSize?: number;
+};
+type GetRegionJobBulkBatchIdParam = {
+    /**
+     * - The batch ID
+     */
+    batchId: string;
 };
 type GetStoreParam = {
     /**
@@ -255,6 +293,9 @@ type GetZoneListViewParam = {
      */
     zoneId?: string[];
 };
+type PostRegionJobBulkParam = {
+    body: ServiceabilityPlatformModel.BulkRegionJobSerializer;
+};
 type UpdateDpRuleParam = {
     /**
      * - A `rule_uid` is a unique identifier for a particular Dp.
@@ -272,12 +313,9 @@ type UpdateZoneControllerViewParam = {
 type UpsertDpAccountParam = {
     body: ServiceabilityPlatformModel.CompanyDpAccountRequest;
 };
-type UpsertDpCompanyRulesParam = {
+type UpsertDpCompanyRulePriorityParam = {
     body: ServiceabilityPlatformModel.DPCompanyRuleRequest;
 };
-type UpsertDpRulesParam = {
-    body: ServiceabilityPlatformModel.DpRuleRequest;
-};
 type GetAllStoresParam = any;
-type GetDpCompanyRulesParam = any;
+type GetDpCompanyRulePriorityParam = any;
 import ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");

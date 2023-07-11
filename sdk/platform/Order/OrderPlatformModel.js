@@ -172,7 +172,7 @@ const Joi = require("joi");
 
 /**
  * @typedef B2BPODetails
- * @property {string} [docket_number]
+ * @property {string} [docker_number]
  * @property {number} [item_base_price]
  * @property {boolean} [partial_can_ret]
  * @property {number} [po_line_amount]
@@ -228,7 +228,7 @@ const Joi = require("joi");
  * @property {Object} [restore_promos]
  * @property {string} [seller_identifier]
  * @property {string} [shipment_id]
- * @property {BagReturnableCancelableStatus1} [status]
+ * @property {BagReturnableCancelableStatus} [status]
  * @property {string[]} [tags]
  * @property {string} [type]
  */
@@ -293,15 +293,6 @@ const Joi = require("joi");
 
 /**
  * @typedef BagReturnableCancelableStatus
- * @property {boolean} can_be_cancelled
- * @property {boolean} enable_tracking
- * @property {boolean} is_active
- * @property {boolean} is_customer_return_allowed
- * @property {boolean} is_returnable
- */
-
-/**
- * @typedef BagReturnableCancelableStatus1
  * @property {boolean} can_be_cancelled
  * @property {boolean} enable_tracking
  * @property {boolean} is_active
@@ -1237,7 +1228,7 @@ const Joi = require("joi");
 /**
  * @typedef OrderBagArticle
  * @property {Object} [identifiers]
- * @property {ReturnConfig1} [return_config]
+ * @property {ReturnConfig} [return_config]
  * @property {string} [size]
  * @property {string} [uid]
  */
@@ -1575,6 +1566,7 @@ const Joi = require("joi");
  * @property {Object} [payment_methods]
  * @property {string} [payment_mode]
  * @property {ShipmentPayments} [payments]
+ * @property {Object} [pdf_links]
  * @property {string} [picked_date]
  * @property {string} [platform_logo]
  * @property {Prices} [prices]
@@ -1836,13 +1828,6 @@ const Joi = require("joi");
 
 /**
  * @typedef ReturnConfig
- * @property {boolean} [returnable]
- * @property {number} [time]
- * @property {string} [unit]
- */
-
-/**
- * @typedef ReturnConfig1
  * @property {boolean} [returnable]
  * @property {number} [time]
  * @property {string} [unit]
@@ -2714,7 +2699,7 @@ class OrderPlatformModel {
   /** @returns {B2BPODetails} */
   static B2BPODetails() {
     return Joi.object({
-      docket_number: Joi.string().allow(""),
+      docker_number: Joi.string().allow(""),
       item_base_price: Joi.number(),
       partial_can_ret: Joi.boolean(),
       po_line_amount: Joi.number(),
@@ -2776,7 +2761,7 @@ class OrderPlatformModel {
       restore_promos: Joi.any(),
       seller_identifier: Joi.string().allow(""),
       shipment_id: Joi.string().allow(""),
-      status: OrderPlatformModel.BagReturnableCancelableStatus1(),
+      status: OrderPlatformModel.BagReturnableCancelableStatus(),
       tags: Joi.array().items(Joi.string().allow("")),
       type: Joi.string().allow(""),
     });
@@ -2850,17 +2835,6 @@ class OrderPlatformModel {
 
   /** @returns {BagReturnableCancelableStatus} */
   static BagReturnableCancelableStatus() {
-    return Joi.object({
-      can_be_cancelled: Joi.boolean().required(),
-      enable_tracking: Joi.boolean().required(),
-      is_active: Joi.boolean().required(),
-      is_customer_return_allowed: Joi.boolean().required(),
-      is_returnable: Joi.boolean().required(),
-    });
-  }
-
-  /** @returns {BagReturnableCancelableStatus1} */
-  static BagReturnableCancelableStatus1() {
     return Joi.object({
       can_be_cancelled: Joi.boolean().required(),
       enable_tracking: Joi.boolean().required(),
@@ -3988,7 +3962,7 @@ class OrderPlatformModel {
   static OrderBagArticle() {
     return Joi.object({
       identifiers: Joi.any(),
-      return_config: OrderPlatformModel.ReturnConfig1(),
+      return_config: OrderPlatformModel.ReturnConfig(),
       size: Joi.string().allow(""),
       uid: Joi.string().allow(""),
     });
@@ -4390,6 +4364,7 @@ class OrderPlatformModel {
       payment_methods: Joi.any(),
       payment_mode: Joi.string().allow(""),
       payments: OrderPlatformModel.ShipmentPayments(),
+      pdf_links: Joi.any(),
       picked_date: Joi.string().allow(""),
       platform_logo: Joi.string().allow(""),
       prices: OrderPlatformModel.Prices(),
@@ -4715,15 +4690,6 @@ class OrderPlatformModel {
 
   /** @returns {ReturnConfig} */
   static ReturnConfig() {
-    return Joi.object({
-      returnable: Joi.boolean(),
-      time: Joi.number(),
-      unit: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {ReturnConfig1} */
-  static ReturnConfig1() {
     return Joi.object({
       returnable: Joi.boolean(),
       time: Joi.number(),

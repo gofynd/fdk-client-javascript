@@ -3,14 +3,9 @@ export = ServiceabilityPlatformApplicationValidator;
  * @typedef AddAppDpParam
  * @property {ServiceabilityPlatformModel.ApplicationCompanyDpViewRequest} body
  */
-/**
- * @typedef DeleteAppDpParam
- * @property {number} courierPartnerId - A `courier_partner_id` is a unique
- *   identifier of a particular delivery partner.
- */
 /** @typedef GetApplicationServiceabilityParam */
 /** @typedef GetApplicationServiceabilitySelfShipmentParam */
-/** @typedef GetDpApplicationRulesParam */
+/** @typedef GetDpApplicationRulePriorityParam */
 /**
  * @typedef GetZoneFromPincodeViewParam
  * @property {ServiceabilityPlatformModel.GetZoneFromPincodeViewRequest} body
@@ -43,20 +38,18 @@ export = ServiceabilityPlatformApplicationValidator;
  * @property {ServiceabilityPlatformModel.PincodeMopData} body
  */
 /**
- * @typedef UpsertDpApplicationRulesParam
+ * @typedef UpsertDpApplicationRulePriorityParam
  * @property {ServiceabilityPlatformModel.DPApplicationRuleRequest} body
  */
 declare class ServiceabilityPlatformApplicationValidator {
     /** @returns {AddAppDpParam} */
     static addAppDp(): AddAppDpParam;
-    /** @returns {DeleteAppDpParam} */
-    static deleteAppDp(): DeleteAppDpParam;
     /** @returns {GetApplicationServiceabilityParam} */
     static getApplicationServiceability(): any;
     /** @returns {GetApplicationServiceabilitySelfShipmentParam} */
     static getApplicationServiceabilitySelfShipment(): any;
-    /** @returns {GetDpApplicationRulesParam} */
-    static getDpApplicationRules(): any;
+    /** @returns {GetDpApplicationRulePriorityParam} */
+    static getDpApplicationRulePriority(): any;
     /** @returns {GetZoneFromPincodeViewParam} */
     static getZoneFromPincodeView(): GetZoneFromPincodeViewParam;
     /** @returns {GetZonesFromApplicationIdViewParam} */
@@ -71,21 +64,14 @@ declare class ServiceabilityPlatformApplicationValidator {
     static updatePincodeCoDListing(): UpdatePincodeCoDListingParam;
     /** @returns {UpdatePincodeMopViewParam} */
     static updatePincodeMopView(): UpdatePincodeMopViewParam;
-    /** @returns {UpsertDpApplicationRulesParam} */
-    static upsertDpApplicationRules(): UpsertDpApplicationRulesParam;
+    /** @returns {UpsertDpApplicationRulePriorityParam} */
+    static upsertDpApplicationRulePriority(): UpsertDpApplicationRulePriorityParam;
 }
 declare namespace ServiceabilityPlatformApplicationValidator {
-    export { AddAppDpParam, DeleteAppDpParam, GetApplicationServiceabilityParam, GetApplicationServiceabilitySelfShipmentParam, GetDpApplicationRulesParam, GetZoneFromPincodeViewParam, GetZonesFromApplicationIdViewParam, PatchApplicationServiceabilitySelfShipmentParam, UpdatePincodeAuditHistoryParam, UpdatePincodeBulkViewParam, UpdatePincodeCoDListingParam, UpdatePincodeMopViewParam, UpsertDpApplicationRulesParam };
+    export { AddAppDpParam, GetApplicationServiceabilityParam, GetApplicationServiceabilitySelfShipmentParam, GetDpApplicationRulePriorityParam, GetZoneFromPincodeViewParam, GetZonesFromApplicationIdViewParam, PatchApplicationServiceabilitySelfShipmentParam, UpdatePincodeAuditHistoryParam, UpdatePincodeBulkViewParam, UpdatePincodeCoDListingParam, UpdatePincodeMopViewParam, UpsertDpApplicationRulePriorityParam };
 }
 type AddAppDpParam = {
     body: ServiceabilityPlatformModel.ApplicationCompanyDpViewRequest;
-};
-type DeleteAppDpParam = {
-    /**
-     * - A `courier_partner_id` is a unique
-     * identifier of a particular delivery partner.
-     */
-    courierPartnerId: number;
 };
 type GetZoneFromPincodeViewParam = {
     body: ServiceabilityPlatformModel.GetZoneFromPincodeViewRequest;
@@ -123,10 +109,10 @@ type UpdatePincodeCoDListingParam = {
 type UpdatePincodeMopViewParam = {
     body: ServiceabilityPlatformModel.PincodeMopData;
 };
-type UpsertDpApplicationRulesParam = {
+type UpsertDpApplicationRulePriorityParam = {
     body: ServiceabilityPlatformModel.DPApplicationRuleRequest;
 };
 type GetApplicationServiceabilityParam = any;
 type GetApplicationServiceabilitySelfShipmentParam = any;
-type GetDpApplicationRulesParam = any;
+type GetDpApplicationRulePriorityParam = any;
 import ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");

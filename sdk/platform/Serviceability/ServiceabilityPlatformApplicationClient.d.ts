@@ -14,18 +14,6 @@ declare class Serviceability {
      */
     addAppDp({ body }?: ServiceabilityPlatformApplicationValidator.AddAppDpParam): Promise<ServiceabilityPlatformModel.ApplicationCompanyDpViewResponse>;
     /**
-     * @param {ServiceabilityPlatformApplicationValidator.DeleteAppDpParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<ServiceabilityPlatformModel.ApplicationCompanyDpViewResponse>}
-     *   - Success response
-     *
-     * @name deleteAppDp
-     * @summary: Delete application dp data
-     * @description: This API remove application dp data.
-     */
-    deleteAppDp({ courierPartnerId }?: ServiceabilityPlatformApplicationValidator.DeleteAppDpParam): Promise<ServiceabilityPlatformModel.ApplicationCompanyDpViewResponse>;
-    /**
      * @param {ServiceabilityPlatformApplicationValidator.GetApplicationServiceabilityParam} arg
      *   - Arg object
      *
@@ -50,17 +38,17 @@ declare class Serviceability {
      */
     getApplicationServiceabilitySelfShipment({}?: any): Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>;
     /**
-     * @param {ServiceabilityPlatformApplicationValidator.GetDpApplicationRulesParam} arg
+     * @param {ServiceabilityPlatformApplicationValidator.GetDpApplicationRulePriorityParam} arg
      *   - Arg object
      *
      * @returns {Promise<ServiceabilityPlatformModel.DPApplicationRuleResponse>}
      *   - Success response
      *
-     * @name getDpApplicationRules
+     * @name getDpApplicationRulePriority
      * @summary: Get All DpApplicationRules rules added at application level from database.
      * @description: This API returns response of all rules of DpApplicationRules from mongo database.
      */
-    getDpApplicationRules({}?: any): Promise<ServiceabilityPlatformModel.DPApplicationRuleResponse>;
+    getDpApplicationRulePriority({}?: any): Promise<ServiceabilityPlatformModel.DPApplicationRuleResponse>;
     /**
      * @param {ServiceabilityPlatformApplicationValidator.GetZoneFromPincodeViewParam} arg
      *   - Arg object
@@ -145,17 +133,17 @@ declare class Serviceability {
      */
     updatePincodeMopView({ body }?: ServiceabilityPlatformApplicationValidator.UpdatePincodeMopViewParam): Promise<ServiceabilityPlatformModel.PincodeMOPresponse>;
     /**
-     * @param {ServiceabilityPlatformApplicationValidator.UpsertDpApplicationRulesParam} arg
+     * @param {ServiceabilityPlatformApplicationValidator.UpsertDpApplicationRulePriorityParam} arg
      *   - Arg object
      *
      * @returns {Promise<ServiceabilityPlatformModel.DPApplicationRuleResponse>}
      *   - Success response
      *
-     * @name upsertDpApplicationRules
+     * @name upsertDpApplicationRulePriority
      * @summary: Upsert of DpApplicationRules in database.
      * @description: This API returns response of upsert of DpApplicationRules in mongo database.
      */
-    upsertDpApplicationRules({ body }?: ServiceabilityPlatformApplicationValidator.UpsertDpApplicationRulesParam): Promise<ServiceabilityPlatformModel.DPApplicationRuleResponse>;
+    upsertDpApplicationRulePriority({ body }?: ServiceabilityPlatformApplicationValidator.UpsertDpApplicationRulePriorityParam): Promise<ServiceabilityPlatformModel.DPApplicationRuleResponse>;
 }
 import ServiceabilityPlatformApplicationValidator = require("./ServiceabilityPlatformApplicationValidator");
 import ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");

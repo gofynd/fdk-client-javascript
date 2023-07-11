@@ -1775,6 +1775,7 @@ Returns a success response
  | address | [GetAddressSerializer](#GetAddressSerializer) |  no  |  |
  | auto_invoice | boolean? |  yes  |  |
  | avg_order_processing_time | [AverageOrderProcessingTime](#AverageOrderProcessingTime)? |  yes  |  |
+ | bulk_shipment | boolean? |  yes  |  |
  | code | string |  no  |  |
  | company | [GetCompanySerializer](#GetCompanySerializer)? |  yes  |  |
  | contact_numbers | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
@@ -1889,6 +1890,7 @@ Returns a success response
  | address | [AddressSerializer](#AddressSerializer) |  no  |  |
  | auto_invoice | boolean? |  yes  |  |
  | avg_order_processing_time | [AverageOrderProcessingTime](#AverageOrderProcessingTime)? |  yes  |  |
+ | bulk_shipment | boolean? |  yes  |  |
  | code | string |  no  |  |
  | company | number |  no  |  |
  | contact_numbers | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |

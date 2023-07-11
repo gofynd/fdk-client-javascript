@@ -7023,7 +7023,7 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | docket_number | string? |  yes  |  |
+ | docker_number | string? |  yes  |  |
  | item_base_price | number? |  yes  |  |
  | partial_can_ret | boolean? |  yes  |  |
  | po_line_amount | number? |  yes  |  |
@@ -7087,7 +7087,7 @@ Verify OTP
  | restore_promos | string? |  yes  |  |
  | seller_identifier | string? |  yes  |  |
  | shipment_id | string? |  yes  |  |
- | status | [BagReturnableCancelableStatus1](#BagReturnableCancelableStatus1)? |  yes  |  |
+ | status | [BagReturnableCancelableStatus](#BagReturnableCancelableStatus)? |  yes  |  |
  | tags | [string]? |  yes  |  |
  | type | string? |  yes  |  |
  
@@ -7169,19 +7169,6 @@ Verify OTP
 ---
 
 #### [BagReturnableCancelableStatus](#BagReturnableCancelableStatus)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | can_be_cancelled | boolean |  no  |  |
- | enable_tracking | boolean |  no  |  |
- | is_active | boolean |  no  |  |
- | is_customer_return_allowed | boolean |  no  |  |
- | is_returnable | boolean |  no  |  |
- 
-
----
-
-#### [BagReturnableCancelableStatus1](#BagReturnableCancelableStatus1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -8493,7 +8480,7 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | identifiers | string? |  yes  |  |
- | return_config | [ReturnConfig1](#ReturnConfig1)? |  yes  |  |
+ | return_config | [ReturnConfig](#ReturnConfig)? |  yes  |  |
  | size | string? |  yes  |  |
  | uid | string? |  yes  |  |
  
@@ -8942,6 +8929,7 @@ Verify OTP
  | payment_methods | string? |  yes  |  |
  | payment_mode | string? |  yes  |  |
  | payments | [ShipmentPayments](#ShipmentPayments)? |  yes  |  |
+ | pdf_links | string? |  yes  |  |
  | picked_date | string? |  yes  |  |
  | platform_logo | string? |  yes  |  |
  | prices | [Prices](#Prices)? |  yes  |  |
@@ -9325,17 +9313,6 @@ Verify OTP
 ---
 
 #### [ReturnConfig](#ReturnConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | returnable | boolean? |  yes  |  |
- | time | number? |  yes  |  |
- | unit | string? |  yes  |  |
- 
-
----
-
-#### [ReturnConfig1](#ReturnConfig1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
