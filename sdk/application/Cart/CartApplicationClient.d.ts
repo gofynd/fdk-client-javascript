@@ -187,7 +187,7 @@ declare class Cart {
      * @summary: Get delivery date and options before checkout
      * @description: Use this API to get shipment details, expected delivery date, items and price breakup of the shipment.
      */
-    getShipments({ p, id, buyNow, addressId, areaCode }?: CartApplicationValidator.GetShipmentsParam): Promise<CartApplicationModel.CartShipmentsResponse>;
+    getShipments({ p, id, buyNow, addressId, areaCode, orderType }?: CartApplicationValidator.GetShipmentsParam): Promise<CartApplicationModel.CartShipmentsResponse>;
     /**
      * @param {CartApplicationValidator.RemoveAddressParam} arg - Arg object.
      * @returns {Promise<CartApplicationModel.DeleteAddressResponse>} - Success response

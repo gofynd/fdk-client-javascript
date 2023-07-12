@@ -4,10 +4,6 @@ declare class Logistic {
     _conf: any;
     _relativeUrls: {
         getAllCountries: string;
-        getCountries: string;
-        getCountry: string;
-        getLocalities: string;
-        getLocality: string;
         getOptimalLocations: string;
         getPincodeCity: string;
         getPincodeZones: string;
@@ -23,38 +19,6 @@ declare class Logistic {
      * @description: Get all countries
      */
     getAllCountries({}?: any): Promise<LogisticApplicationModel.CountryListResponse>;
-    /**
-     * @param {LogisticApplicationValidator.GetCountriesParam} arg - Arg object.
-     * @returns {Promise<LogisticApplicationModel.GetCountries>} - Success response
-     * @name getCountries
-     * @summary: Get list of all countries API
-     * @description: Get countries data
-     */
-    getCountries({}?: any): Promise<LogisticApplicationModel.GetCountries>;
-    /**
-     * @param {LogisticApplicationValidator.GetCountryParam} arg - Arg object.
-     * @returns {Promise<LogisticApplicationModel.GetCountry>} - Success response
-     * @name getCountry
-     * @summary: Get single Country API
-     * @description: Get country data
-     */
-    getCountry({ uid }?: LogisticApplicationValidator.GetCountryParam): Promise<LogisticApplicationModel.GetCountry>;
-    /**
-     * @param {LogisticApplicationValidator.GetLocalitiesParam} arg - Arg object.
-     * @returns {Promise<LogisticApplicationModel.GetLocalities>} - Success response
-     * @name getLocalities
-     * @summary: Get Localities API
-     * @description: Get Localities data
-     */
-    getLocalities({ region }?: LogisticApplicationValidator.GetLocalitiesParam): Promise<LogisticApplicationModel.GetLocalities>;
-    /**
-     * @param {LogisticApplicationValidator.GetLocalityParam} arg - Arg object.
-     * @returns {Promise<LogisticApplicationModel.GetLocality>} - Success response
-     * @name getLocality
-     * @summary: Get Locality API
-     * @description: Get Locality data
-     */
-    getLocality({ region, value }?: LogisticApplicationValidator.GetLocalityParam): Promise<LogisticApplicationModel.GetLocality>;
     /**
      * @param {LogisticApplicationValidator.GetOptimalLocationsParam} arg - Arg object.
      * @returns {Promise<LogisticApplicationModel.ReAssignStoreResponse>} -

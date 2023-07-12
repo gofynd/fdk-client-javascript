@@ -1255,9 +1255,9 @@ class Cart {
    * @summary: Get delivery date and options before checkout
    * @description: Use this API to get shipment details, expected delivery date, items and price breakup of the shipment.
    */
-  async getShipments({ p, id, buyNow, addressId, areaCode } = {}) {
+  async getShipments({ p, id, buyNow, addressId, areaCode, orderType } = {}) {
     const { error } = CartApplicationValidator.getShipments().validate(
-      { p, id, buyNow, addressId, areaCode },
+      { p, id, buyNow, addressId, areaCode, orderType },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1268,7 +1268,7 @@ class Cart {
     const {
       error: warrning,
     } = CartApplicationValidator.getShipments().validate(
-      { p, id, buyNow, addressId, areaCode },
+      { p, id, buyNow, addressId, areaCode, orderType },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -1284,6 +1284,7 @@ class Cart {
     query_params["buy_now"] = buyNow;
     query_params["address_id"] = addressId;
     query_params["area_code"] = areaCode;
+    query_params["order_type"] = orderType;
 
     const xHeaders = {};
 

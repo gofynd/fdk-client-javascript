@@ -1,19 +1,5 @@
 export = LogisticApplicationValidator;
 /** @typedef GetAllCountriesParam */
-/** @typedef GetCountriesParam */
-/**
- * @typedef GetCountryParam
- * @property {string} uid - A `uid` contains a specific unique name of a region.
- */
-/**
- * @typedef GetLocalitiesParam
- * @property {string} region - A `region` contains a specific unique name.
- */
-/**
- * @typedef GetLocalityParam
- * @property {string} region - A `region` contains a specific unique name.
- * @property {string} value - A `value` contains a specific value of the region.
- */
 /**
  * @typedef GetOptimalLocationsParam
  * @property {LogisticApplicationModel.ReAssignStoreRequest} body
@@ -33,14 +19,6 @@ export = LogisticApplicationValidator;
 declare class LogisticApplicationValidator {
     /** @returns {GetAllCountriesParam} */
     static getAllCountries(): any;
-    /** @returns {GetCountriesParam} */
-    static getCountries(): any;
-    /** @returns {GetCountryParam} */
-    static getCountry(): GetCountryParam;
-    /** @returns {GetLocalitiesParam} */
-    static getLocalities(): GetLocalitiesParam;
-    /** @returns {GetLocalityParam} */
-    static getLocality(): GetLocalityParam;
     /** @returns {GetOptimalLocationsParam} */
     static getOptimalLocations(): GetOptimalLocationsParam;
     /** @returns {GetPincodeCityParam} */
@@ -51,30 +29,8 @@ declare class LogisticApplicationValidator {
     static getTatProduct(): GetTatProductParam;
 }
 declare namespace LogisticApplicationValidator {
-    export { GetAllCountriesParam, GetCountriesParam, GetCountryParam, GetLocalitiesParam, GetLocalityParam, GetOptimalLocationsParam, GetPincodeCityParam, GetPincodeZonesParam, GetTatProductParam };
+    export { GetAllCountriesParam, GetOptimalLocationsParam, GetPincodeCityParam, GetPincodeZonesParam, GetTatProductParam };
 }
-type GetCountryParam = {
-    /**
-     * - A `uid` contains a specific unique name of a region.
-     */
-    uid: string;
-};
-type GetLocalitiesParam = {
-    /**
-     * - A `region` contains a specific unique name.
-     */
-    region: string;
-};
-type GetLocalityParam = {
-    /**
-     * - A `region` contains a specific unique name.
-     */
-    region: string;
-    /**
-     * - A `value` contains a specific value of the region.
-     */
-    value: string;
-};
 type GetOptimalLocationsParam = {
     body: LogisticApplicationModel.ReAssignStoreRequest;
 };
@@ -91,5 +47,4 @@ type GetTatProductParam = {
     body: LogisticApplicationModel.TATViewRequest;
 };
 type GetAllCountriesParam = any;
-type GetCountriesParam = any;
 import LogisticApplicationModel = require("./LogisticApplicationModel");

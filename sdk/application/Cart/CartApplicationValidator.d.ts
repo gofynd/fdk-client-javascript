@@ -140,6 +140,10 @@ export = CartApplicationValidator;
  * @property {boolean} [buyNow]
  * @property {string} [addressId] - ID allotted to the selected address
  * @property {string} [areaCode] - The PIN Code of the destination address, e.g. 400059
+ * @property {string} [orderType] - The order type of shipment HomeDelivery - If
+ *   the customer wants the order home-delivered PickAtStore - If the customer
+ *   wants the handover of an order at the store itself. Digital - If the
+ *   customer wants to buy digital voucher ( for jiogames )
  */
 /**
  * @typedef RemoveAddressParam
@@ -496,6 +500,13 @@ type GetShipmentsParam = {
      * - The PIN Code of the destination address, e.g. 400059
      */
     areaCode?: string;
+    /**
+     * - The order type of shipment HomeDelivery - If
+     * the customer wants the order home-delivered PickAtStore - If the customer
+     * wants the handover of an order at the store itself. Digital - If the
+     * customer wants to buy digital voucher ( for jiogames )
+     */
+    orderType?: string;
 };
 type RemoveAddressParam = {
     /**
