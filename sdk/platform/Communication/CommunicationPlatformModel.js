@@ -508,6 +508,34 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef GlobalVariablesGetResponse
+ * @property {Object} [editable]
+ * @property {Object} [read_only]
+ */
+
+/**
+ * @typedef GlobalVariablesPostResponse
+ * @property {string} [_id]
+ * @property {Object} [application]
+ * @property {string} [category]
+ * @property {Object} [created_at]
+ * @property {Object} [global_variables]
+ */
+
+/**
+ * @typedef GlobalVariablesPostResponseAdmin
+ * @property {string} [_id]
+ * @property {string} [category]
+ * @property {Object} [created_at]
+ * @property {Object} [global_variables]
+ */
+
+/**
+ * @typedef GlobalVariablesReq
+ * @property {Object} [global_variables]
+ */
+
+/**
  * @typedef InvalidID
  * @property {string} [message]
  * @property {string} [sentry]
@@ -1950,6 +1978,42 @@ class CommunicationPlatformModel {
     return Joi.object({
       _id: Joi.string().allow(""),
       name: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {GlobalVariablesGetResponse} */
+  static GlobalVariablesGetResponse() {
+    return Joi.object({
+      editable: Joi.any(),
+      read_only: Joi.any(),
+    });
+  }
+
+  /** @returns {GlobalVariablesPostResponse} */
+  static GlobalVariablesPostResponse() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      application: Joi.any(),
+      category: Joi.string().allow(""),
+      created_at: Joi.any(),
+      global_variables: Joi.any(),
+    });
+  }
+
+  /** @returns {GlobalVariablesPostResponseAdmin} */
+  static GlobalVariablesPostResponseAdmin() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      category: Joi.string().allow(""),
+      created_at: Joi.any(),
+      global_variables: Joi.any(),
+    });
+  }
+
+  /** @returns {GlobalVariablesReq} */
+  static GlobalVariablesReq() {
+    return Joi.object({
+      global_variables: Joi.any(),
     });
   }
 

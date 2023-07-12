@@ -36,6 +36,7 @@ Manages email, sms, push notifications sent to users
 * [getEmailTemplates](#getemailtemplates)
 * [getEventSubscriptions](#geteventsubscriptions)
 * [getGlobalProviders](#getglobalproviders)
+* [getGlobalVariables](#getglobalvariables)
 * [getJobLogs](#getjoblogs)
 * [getJobs](#getjobs)
 * [getNSampleRecordsFromCsv](#getnsamplerecordsfromcsv)
@@ -54,6 +55,7 @@ Manages email, sms, push notifications sent to users
 * [getVoiceProviders](#getvoiceproviders)
 * [getVoiceTemplateById](#getvoicetemplatebyid)
 * [getVoiceTemplates](#getvoicetemplates)
+* [postGlobalVariables](#postglobalvariables)
 * [sendCommunicationAsynchronously](#sendcommunicationasynchronously)
 * [sendCommunicationSynchronously](#sendcommunicationsynchronously)
 * [sendOtp](#sendotp)
@@ -3125,6 +3127,86 @@ Success
 ---
 
 
+### getGlobalVariables
+get global variables
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.getGlobalVariables();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.getGlobalVariables();
+```
+
+
+
+
+
+
+get global variables
+
+*Returned Response:*
+
+
+
+
+[GlobalVariablesGetResponse](#GlobalVariablesGetResponse)
+
+Refer `GlobalVariablesGetResponse` schema for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "read_only": {
+      "app.address.address_line": [],
+      "app.shipping_policy": "",
+      "app.returns_policy": "",
+      "app.terms_policy": "",
+      "app.copyright_text": null,
+      "app.address_line": "",
+      "app.city_pincode": "",
+      "app.logo_url": null,
+      "app.support_email": null,
+      "app.support_mobile": null,
+      "app.contact_us": "",
+      "app.domain": "",
+      "app.privacy_policy": "https://fynd.freshdesk.com/support/solutions/articles/33000214398-privacy-policy"
+    },
+    "editable": {
+      "service_country": "uzbekistan",
+      "service_name": "fynd",
+      "service_platform": "fynd platform"
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getJobLogs
 Get job logs
 
@@ -4864,6 +4946,79 @@ Success
       "item_total": 66,
       "has_next": true
     }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### postGlobalVariables
+post global variables
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.postGlobalVariables({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.postGlobalVariables({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [GlobalVariablesReq](#GlobalVariablesReq) | yes | Request body |
+
+
+psot global variables
+
+*Returned Response:*
+
+
+
+
+[GlobalVariablesPostResponse](#GlobalVariablesPostResponse)
+
+Refer `GlobalVariablesPostResponse` schema for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "64a2be215cc595c57fa0e40a",
+    "category": "website",
+    "application": "637b6355dc65337da9b5c951",
+    "global_variables": {
+      "service_country": "uzbekistan",
+      "service_name": "fynd-plato",
+      "service_platform": "fynd platform"
+    },
+    "created_at": "2023-07-03T12:25:05.819Z"
   }
 }
 ```
@@ -6715,6 +6870,50 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | _id | string? |  yes  |  |
  | name | string? |  yes  |  |
+ 
+
+---
+
+#### [GlobalVariablesGetResponse](#GlobalVariablesGetResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | editable | string? |  yes  |  |
+ | read_only | string? |  yes  |  |
+ 
+
+---
+
+#### [GlobalVariablesPostResponse](#GlobalVariablesPostResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | category | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | global_variables | string? |  yes  |  |
+ 
+
+---
+
+#### [GlobalVariablesPostResponseAdmin](#GlobalVariablesPostResponseAdmin)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | category | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | global_variables | string? |  yes  |  |
+ 
+
+---
+
+#### [GlobalVariablesReq](#GlobalVariablesReq)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | global_variables | string? |  yes  |  |
  
 
 ---

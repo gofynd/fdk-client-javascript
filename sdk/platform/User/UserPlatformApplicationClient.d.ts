@@ -112,7 +112,7 @@ declare class User {
      * @summary: Search an existing user.
      * @description: Use this API to retrieve an existing user from a list.
      */
-    searchUsers({ q }?: UserPlatformApplicationValidator.SearchUsersParam): Promise<UserPlatformModel.UserSearchResponseSchema>;
+    searchUsers({ q, query }?: UserPlatformApplicationValidator.SearchUsersParam): Promise<UserPlatformModel.UserSearchResponseSchema>;
     /**
      * @param {UserPlatformApplicationValidator.UnDeleteUserParam} arg - Arg object
      * @returns {Promise<UserPlatformModel.UnDeleteUserSuccess>} - Success response

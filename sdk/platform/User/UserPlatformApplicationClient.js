@@ -799,10 +799,11 @@ class User {
    * @summary: Search an existing user.
    * @description: Use this API to retrieve an existing user from a list.
    */
-  async searchUsers({ q } = {}) {
+  async searchUsers({ q, query } = {}) {
     const { error } = UserPlatformApplicationValidator.searchUsers().validate(
       {
         q,
+        query,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -816,6 +817,7 @@ class User {
     } = UserPlatformApplicationValidator.searchUsers().validate(
       {
         q,
+        query,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -828,6 +830,7 @@ class User {
 
     const query_params = {};
     query_params["q"] = q;
+    query_params["query"] = query;
 
     const response = await PlatformAPIClient.execute(
       this.config,

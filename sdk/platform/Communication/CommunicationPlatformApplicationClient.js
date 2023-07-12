@@ -1865,6 +1865,69 @@ class Communication {
   }
 
   /**
+   * @param {CommunicationPlatformApplicationValidator.GetGlobalVariablesParam} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.GlobalVariablesGetResponse>}
+   *   - Success response
+   *
+   * @name getGlobalVariables
+   * @summary: get global variables
+   * @description: get global variables
+   */
+  async getGlobalVariables({} = {}) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getGlobalVariables().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.getGlobalVariables().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > getGlobalVariables \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/global-variables`,
+      query_params,
+      undefined
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.GlobalVariablesGetResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Communication > getGlobalVariables \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
    * @param {CommunicationPlatformApplicationValidator.GetJobLogsParam} arg - Arg object
    * @returns {Promise<CommunicationPlatformModel.JobLogs>} - Success response
    * @name getJobLogs
@@ -3008,6 +3071,73 @@ class Communication {
       Logger({
         level: "WARN",
         message: `Response Validation Warnnings for platform > Communication > getVoiceTemplates \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CommunicationPlatformApplicationValidator.PostGlobalVariablesParam} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.GlobalVariablesPostResponse>}
+   *   - Success response
+   *
+   * @name postGlobalVariables
+   * @summary: post global variables
+   * @description: psot global variables
+   */
+  async postGlobalVariables({ body } = {}) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.postGlobalVariables().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.postGlobalVariables().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > postGlobalVariables \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/global-variables`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.GlobalVariablesPostResponse().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Communication > postGlobalVariables \n ${res_error}`,
       });
     }
 

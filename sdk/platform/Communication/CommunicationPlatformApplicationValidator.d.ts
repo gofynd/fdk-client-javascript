@@ -113,6 +113,7 @@ export = CommunicationPlatformApplicationValidator;
  * @property {string} [query] - Current request items count
  */
 /** @typedef GetGlobalProvidersParam */
+/** @typedef GetGlobalVariablesParam */
 /**
  * @typedef GetJobLogsParam
  * @property {number} [pageNo] - Current page no
@@ -190,6 +191,10 @@ export = CommunicationPlatformApplicationValidator;
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
+ */
+/**
+ * @typedef PostGlobalVariablesParam
+ * @property {CommunicationPlatformModel.GlobalVariablesReq} body
  */
 /**
  * @typedef SendCommunicationAsynchronouslyParam
@@ -307,6 +312,8 @@ declare class CommunicationPlatformApplicationValidator {
     static getEventSubscriptions(): GetEventSubscriptionsParam;
     /** @returns {GetGlobalProvidersParam} */
     static getGlobalProviders(): any;
+    /** @returns {GetGlobalVariablesParam} */
+    static getGlobalVariables(): any;
     /** @returns {GetJobLogsParam} */
     static getJobLogs(): GetJobLogsParam;
     /** @returns {GetJobsParam} */
@@ -341,6 +348,8 @@ declare class CommunicationPlatformApplicationValidator {
     static getVoiceTemplateById(): GetVoiceTemplateByIdParam;
     /** @returns {GetVoiceTemplatesParam} */
     static getVoiceTemplates(): GetVoiceTemplatesParam;
+    /** @returns {PostGlobalVariablesParam} */
+    static postGlobalVariables(): PostGlobalVariablesParam;
     /** @returns {SendCommunicationAsynchronouslyParam} */
     static sendCommunicationAsynchronously(): SendCommunicationAsynchronouslyParam;
     /** @returns {SendCommunicationSynchronouslyParam} */
@@ -369,7 +378,7 @@ declare class CommunicationPlatformApplicationValidator {
     static verfiyOtp(): VerfiyOtpParam;
 }
 declare namespace CommunicationPlatformApplicationValidator {
-    export { CreateAudienceParam, CreateCampaignParam, CreateEmailProviderParam, CreateEmailTemplateParam, CreateSmsProviderParam, CreateSmsTemplateParam, CreateVoiceProviderParam, CreateVoiceTemplateParam, DeleteEmailProviderByIdParam, DeleteEmailTemplateByIdParam, DeleteSmsProviderByIdParam, DeleteSmsTemplateByIdParam, DeleteVoiceTemplateByIdParam, GetAppProvidersParam, GetAudienceByIdParam, GetAudiencesParam, GetBigqueryHeadersParam, GetCampaignByIdParam, GetCampaignsParam, GetCommunicationLogsParam, GetDefaultEmailProvidersParam, GetDefaultSmsProvidersParam, GetEmailProviderByIdParam, GetEmailProvidersParam, GetEmailTemplateByIdParam, GetEmailTemplatesParam, GetEventSubscriptionsParam, GetGlobalProvidersParam, GetJobLogsParam, GetJobsParam, GetNSampleRecordsFromCsvParam, GetSmsProviderByIdParam, GetSmsProvidersParam, GetSmsTemplateByIdParam, GetSmsTemplatesParam, GetStatsOfCampaignByIdParam, GetSubscribedEmailTemplatesParam, GetSubscribedSmsTemplatesParam, GetSystemEmailTemplatesParam, GetSystemSmsTemplatesParam, GetSystemVoiceTemplatesParam, GetVoiceProviderByIdParam, GetVoiceProvidersParam, GetVoiceTemplateByIdParam, GetVoiceTemplatesParam, SendCommunicationAsynchronouslyParam, SendCommunicationSynchronouslyParam, SendOtpParam, TriggerCampaignJobParam, UpdateAppProvidersParam, UpdateAudienceByIdParam, UpdateCampaignByIdParam, UpdateEmailProviderByIdParam, UpdateEmailTemplateByIdParam, UpdateSmsProviderByIdParam, UpdateSmsTemplateByIdParam, UpdateVoiceTemplateByIdParam, VerfiyOtpParam };
+    export { CreateAudienceParam, CreateCampaignParam, CreateEmailProviderParam, CreateEmailTemplateParam, CreateSmsProviderParam, CreateSmsTemplateParam, CreateVoiceProviderParam, CreateVoiceTemplateParam, DeleteEmailProviderByIdParam, DeleteEmailTemplateByIdParam, DeleteSmsProviderByIdParam, DeleteSmsTemplateByIdParam, DeleteVoiceTemplateByIdParam, GetAppProvidersParam, GetAudienceByIdParam, GetAudiencesParam, GetBigqueryHeadersParam, GetCampaignByIdParam, GetCampaignsParam, GetCommunicationLogsParam, GetDefaultEmailProvidersParam, GetDefaultSmsProvidersParam, GetEmailProviderByIdParam, GetEmailProvidersParam, GetEmailTemplateByIdParam, GetEmailTemplatesParam, GetEventSubscriptionsParam, GetGlobalProvidersParam, GetGlobalVariablesParam, GetJobLogsParam, GetJobsParam, GetNSampleRecordsFromCsvParam, GetSmsProviderByIdParam, GetSmsProvidersParam, GetSmsTemplateByIdParam, GetSmsTemplatesParam, GetStatsOfCampaignByIdParam, GetSubscribedEmailTemplatesParam, GetSubscribedSmsTemplatesParam, GetSystemEmailTemplatesParam, GetSystemSmsTemplatesParam, GetSystemVoiceTemplatesParam, GetVoiceProviderByIdParam, GetVoiceProvidersParam, GetVoiceTemplateByIdParam, GetVoiceTemplatesParam, PostGlobalVariablesParam, SendCommunicationAsynchronouslyParam, SendCommunicationSynchronouslyParam, SendOtpParam, TriggerCampaignJobParam, UpdateAppProvidersParam, UpdateAudienceByIdParam, UpdateCampaignByIdParam, UpdateEmailProviderByIdParam, UpdateEmailTemplateByIdParam, UpdateSmsProviderByIdParam, UpdateSmsTemplateByIdParam, UpdateVoiceTemplateByIdParam, VerfiyOtpParam };
 }
 type CreateAudienceParam = {
     body: CommunicationPlatformModel.AudienceReq;
@@ -692,6 +701,9 @@ type GetVoiceTemplatesParam = {
      */
     sort?: any;
 };
+type PostGlobalVariablesParam = {
+    body: CommunicationPlatformModel.GlobalVariablesReq;
+};
 type SendCommunicationAsynchronouslyParam = {
     body: CommunicationPlatformModel.EngineRequest;
 };
@@ -763,6 +775,7 @@ type GetAppProvidersParam = any;
 type GetDefaultEmailProvidersParam = any;
 type GetDefaultSmsProvidersParam = any;
 type GetGlobalProvidersParam = any;
+type GetGlobalVariablesParam = any;
 type GetSystemEmailTemplatesParam = any;
 type GetSystemSmsTemplatesParam = any;
 import CommunicationPlatformModel = require("./CommunicationPlatformModel");

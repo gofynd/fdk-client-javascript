@@ -144,6 +144,8 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
 
 /** @typedef GetGlobalProvidersParam */
 
+/** @typedef GetGlobalVariablesParam */
+
 /**
  * @typedef GetJobLogsParam
  * @property {number} [pageNo] - Current page no
@@ -237,6 +239,11 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
+ */
+
+/**
+ * @typedef PostGlobalVariablesParam
+ * @property {CommunicationPlatformModel.GlobalVariablesReq} body
  */
 
 /**
@@ -514,6 +521,11 @@ class CommunicationPlatformApplicationValidator {
     return Joi.object({}).required();
   }
 
+  /** @returns {GetGlobalVariablesParam} */
+  static getGlobalVariables() {
+    return Joi.object({}).required();
+  }
+
   /** @returns {GetJobLogsParam} */
   static getJobLogs() {
     return Joi.object({
@@ -642,6 +654,13 @@ class CommunicationPlatformApplicationValidator {
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       sort: Joi.any(),
+    }).required();
+  }
+
+  /** @returns {PostGlobalVariablesParam} */
+  static postGlobalVariables() {
+    return Joi.object({
+      body: CommunicationPlatformModel.GlobalVariablesReq().required(),
     }).required();
   }
 

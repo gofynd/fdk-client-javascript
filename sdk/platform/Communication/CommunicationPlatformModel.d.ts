@@ -448,6 +448,30 @@ export = CommunicationPlatformModel;
  * @property {string} [name]
  */
 /**
+ * @typedef GlobalVariablesGetResponse
+ * @property {Object} [editable]
+ * @property {Object} [read_only]
+ */
+/**
+ * @typedef GlobalVariablesPostResponse
+ * @property {string} [_id]
+ * @property {Object} [application]
+ * @property {string} [category]
+ * @property {Object} [created_at]
+ * @property {Object} [global_variables]
+ */
+/**
+ * @typedef GlobalVariablesPostResponseAdmin
+ * @property {string} [_id]
+ * @property {string} [category]
+ * @property {Object} [created_at]
+ * @property {Object} [global_variables]
+ */
+/**
+ * @typedef GlobalVariablesReq
+ * @property {Object} [global_variables]
+ */
+/**
  * @typedef InvalidID
  * @property {string} [message]
  * @property {string} [sentry]
@@ -1155,7 +1179,7 @@ export = CommunicationPlatformModel;
 declare class CommunicationPlatformModel {
 }
 declare namespace CommunicationPlatformModel {
-    export { ApikeyValidatorError, ApikeyValidatorErrorMessage, AppProvider, AppProviderAdmin, AppProviderAdminObj, AppProviderReq, AppProviderRes, AppProviderResObj, AppProviderResVoice, Audience, AudienceReq, Audiences, BadRequestSchema, BigqueryHeadersReq, BigqueryHeadersRes, BigqueryHeadersResHeaders, Campaign, CampaignEmail, CampaignEmailTemplate, CampaignReq, Campaigns, CampignEmailProvider, CastToStringFail, DefaultEmailProviders, DefaultEmailProvidersObjFrom, DefaultSmsProviders, EmailProvider, EmailProviderAdmin, EmailProviderReq, EmailProviderReqFrom, EmailProviders, EmailProvidersAdmin, EmailTemplate, EmailTemplateAdmin, EmailTemplateHeaders, EmailTemplateKeys, EmailTemplateReq, EmailTemplates, EmailTemplatesAdmin, EnabledObj, EngineRequest, EngineResponse, EventSubscription, EventSubscriptions, EventSubscriptionTemplate, EventSubscriptionTemplateEmail, EventSubscriptionTemplateSms, FeedidValidatorError, FeedidValidatorErrorMessage, GenericDelete, GenericError, GenericPage, GenericSuccess, GetNRecordsCsvReq, GetNRecordsCsvRes, GetNRecordsCsvResItems, GetStats, GlobalProviders, GlobalProvidersResObj, InvalidID, InvalidInputRequiredByteOrHexError, InvalidRangeErrorReqPositive, Job, JobLog, JobLogs, Jobs, Log, LogEmail, LogMeta, LogPushnotification, Logs, Message, metaObj, MetaStructure, NameValidatorError, NameValidatorErrorMessage, NotFound, Notification, Page, PasswordValidatorError, PasswordValidatorErrorMessage, PayloadEmailProviderStructure, PayloadEmailStructure, PayloadEmailTemplateStructure, PayloadSmsProviderStructure, PayloadSmsStructure, PayloadSmsTemplateStructure, PayloadStructure, PushtokenReq, PushtokenRes, RecipientHeaders, SendOtpCommsReq, SendOtpCommsReqData, SendOtpCommsReqEmail, SendOtpCommsReqSms, SendOtpCommsRes, SendOtpCommsResEmail, SendOtpCommsResSms, SendOtpEmailCommsProvider, SendOtpEmailCommsTemplate, SendOtpSmsCommsProvider, SendOtpSmsCommsTemplate, SmsProvider, SmsProviderAdmin, SmsProviderReq, SmsProviders, SmsProvidersAdmin, SmsTemplate, SmsTemplateAdmin, SmsTemplateMessage, SmsTemplateReq, SmsTemplates, SmsTemplatesAdmin, Stats, StatsImported, StatsProcessed, StatsProcessedEmail, StatsProcessedSms, SystemEmailTemplate, SystemEmailTemplates, SystemNotification, SystemNotifications, SystemNotificationSettings, SystemNotificationsPage, SystemNotificationUser, SystemSmsTemplates, SystemVoiceTemplate, SystemVoiceTemplates, TemplateAndType, TriggerJobRequest, TriggerJobResponse, UpdateGlobalProviders, UpdateGlobalProvidersObj, UsernameValidatorError, UsernameValidatorErrorMessage, ValidatorErrorBody, ValidatorErrorMessageProperties, VerifyOtpCommsErrorRes, VerifyOtpCommsReq, VerifyOtpCommsSuccessRes, VoiceProvider, VoiceProviderReq, VoiceProviders, VoiceTemplate, VoiceTemplateDeleteFailureRes, VoiceTemplateDeleteSuccessRes, VoiceTemplateMessage, VoiceTemplateReq, VoiceTemplateRes, VoiceTemplates };
+    export { ApikeyValidatorError, ApikeyValidatorErrorMessage, AppProvider, AppProviderAdmin, AppProviderAdminObj, AppProviderReq, AppProviderRes, AppProviderResObj, AppProviderResVoice, Audience, AudienceReq, Audiences, BadRequestSchema, BigqueryHeadersReq, BigqueryHeadersRes, BigqueryHeadersResHeaders, Campaign, CampaignEmail, CampaignEmailTemplate, CampaignReq, Campaigns, CampignEmailProvider, CastToStringFail, DefaultEmailProviders, DefaultEmailProvidersObjFrom, DefaultSmsProviders, EmailProvider, EmailProviderAdmin, EmailProviderReq, EmailProviderReqFrom, EmailProviders, EmailProvidersAdmin, EmailTemplate, EmailTemplateAdmin, EmailTemplateHeaders, EmailTemplateKeys, EmailTemplateReq, EmailTemplates, EmailTemplatesAdmin, EnabledObj, EngineRequest, EngineResponse, EventSubscription, EventSubscriptions, EventSubscriptionTemplate, EventSubscriptionTemplateEmail, EventSubscriptionTemplateSms, FeedidValidatorError, FeedidValidatorErrorMessage, GenericDelete, GenericError, GenericPage, GenericSuccess, GetNRecordsCsvReq, GetNRecordsCsvRes, GetNRecordsCsvResItems, GetStats, GlobalProviders, GlobalProvidersResObj, GlobalVariablesGetResponse, GlobalVariablesPostResponse, GlobalVariablesPostResponseAdmin, GlobalVariablesReq, InvalidID, InvalidInputRequiredByteOrHexError, InvalidRangeErrorReqPositive, Job, JobLog, JobLogs, Jobs, Log, LogEmail, LogMeta, LogPushnotification, Logs, Message, metaObj, MetaStructure, NameValidatorError, NameValidatorErrorMessage, NotFound, Notification, Page, PasswordValidatorError, PasswordValidatorErrorMessage, PayloadEmailProviderStructure, PayloadEmailStructure, PayloadEmailTemplateStructure, PayloadSmsProviderStructure, PayloadSmsStructure, PayloadSmsTemplateStructure, PayloadStructure, PushtokenReq, PushtokenRes, RecipientHeaders, SendOtpCommsReq, SendOtpCommsReqData, SendOtpCommsReqEmail, SendOtpCommsReqSms, SendOtpCommsRes, SendOtpCommsResEmail, SendOtpCommsResSms, SendOtpEmailCommsProvider, SendOtpEmailCommsTemplate, SendOtpSmsCommsProvider, SendOtpSmsCommsTemplate, SmsProvider, SmsProviderAdmin, SmsProviderReq, SmsProviders, SmsProvidersAdmin, SmsTemplate, SmsTemplateAdmin, SmsTemplateMessage, SmsTemplateReq, SmsTemplates, SmsTemplatesAdmin, Stats, StatsImported, StatsProcessed, StatsProcessedEmail, StatsProcessedSms, SystemEmailTemplate, SystemEmailTemplates, SystemNotification, SystemNotifications, SystemNotificationSettings, SystemNotificationsPage, SystemNotificationUser, SystemSmsTemplates, SystemVoiceTemplate, SystemVoiceTemplates, TemplateAndType, TriggerJobRequest, TriggerJobResponse, UpdateGlobalProviders, UpdateGlobalProvidersObj, UsernameValidatorError, UsernameValidatorErrorMessage, ValidatorErrorBody, ValidatorErrorMessageProperties, VerifyOtpCommsErrorRes, VerifyOtpCommsReq, VerifyOtpCommsSuccessRes, VoiceProvider, VoiceProviderReq, VoiceProviders, VoiceTemplate, VoiceTemplateDeleteFailureRes, VoiceTemplateDeleteSuccessRes, VoiceTemplateMessage, VoiceTemplateReq, VoiceTemplateRes, VoiceTemplates };
 }
 /** @returns {ApikeyValidatorError} */
 declare function ApikeyValidatorError(): ApikeyValidatorError;
@@ -1669,6 +1693,34 @@ declare function GlobalProvidersResObj(): GlobalProvidersResObj;
 type GlobalProvidersResObj = {
     _id?: string;
     name?: string;
+};
+/** @returns {GlobalVariablesGetResponse} */
+declare function GlobalVariablesGetResponse(): GlobalVariablesGetResponse;
+type GlobalVariablesGetResponse = {
+    editable?: any;
+    read_only?: any;
+};
+/** @returns {GlobalVariablesPostResponse} */
+declare function GlobalVariablesPostResponse(): GlobalVariablesPostResponse;
+type GlobalVariablesPostResponse = {
+    _id?: string;
+    application?: any;
+    category?: string;
+    created_at?: any;
+    global_variables?: any;
+};
+/** @returns {GlobalVariablesPostResponseAdmin} */
+declare function GlobalVariablesPostResponseAdmin(): GlobalVariablesPostResponseAdmin;
+type GlobalVariablesPostResponseAdmin = {
+    _id?: string;
+    category?: string;
+    created_at?: any;
+    global_variables?: any;
+};
+/** @returns {GlobalVariablesReq} */
+declare function GlobalVariablesReq(): GlobalVariablesReq;
+type GlobalVariablesReq = {
+    global_variables?: any;
 };
 /** @returns {InvalidID} */
 declare function InvalidID(): InvalidID;

@@ -290,6 +290,18 @@ declare class Communication {
      */
     getGlobalProviders({}?: any): Promise<CommunicationPlatformModel.GlobalProviders>;
     /**
+     * @param {CommunicationPlatformApplicationValidator.GetGlobalVariablesParam} arg
+     *   - Arg object
+     *
+     * @returns {Promise<CommunicationPlatformModel.GlobalVariablesGetResponse>}
+     *   - Success response
+     *
+     * @name getGlobalVariables
+     * @summary: get global variables
+     * @description: get global variables
+     */
+    getGlobalVariables({}?: any): Promise<CommunicationPlatformModel.GlobalVariablesGetResponse>;
+    /**
      * @param {CommunicationPlatformApplicationValidator.GetJobLogsParam} arg - Arg object
      * @returns {Promise<CommunicationPlatformModel.JobLogs>} - Success response
      * @name getJobLogs
@@ -458,6 +470,18 @@ declare class Communication {
      * @description: Get voice templates
      */
     getVoiceTemplates({ pageNo, pageSize, sort }?: CommunicationPlatformApplicationValidator.GetVoiceTemplatesParam): Promise<CommunicationPlatformModel.VoiceTemplates>;
+    /**
+     * @param {CommunicationPlatformApplicationValidator.PostGlobalVariablesParam} arg
+     *   - Arg object
+     *
+     * @returns {Promise<CommunicationPlatformModel.GlobalVariablesPostResponse>}
+     *   - Success response
+     *
+     * @name postGlobalVariables
+     * @summary: post global variables
+     * @description: psot global variables
+     */
+    postGlobalVariables({ body }?: CommunicationPlatformApplicationValidator.PostGlobalVariablesParam): Promise<CommunicationPlatformModel.GlobalVariablesPostResponse>;
     /**
      * @param {CommunicationPlatformApplicationValidator.SendCommunicationAsynchronouslyParam} arg
      *   - Arg object
