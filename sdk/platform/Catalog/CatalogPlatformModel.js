@@ -764,6 +764,7 @@ class CatalogModel {
       condition: Joi.string().allow(""),
       map: Joi.any(),
       map_values: Joi.array().items(Joi.any()),
+      priority: Joi.array().items(Joi.string().allow("")),
       sort: Joi.string().allow(""),
       value: Joi.string().allow(""),
     });

@@ -4538,7 +4538,7 @@ class PlatformClient {
  * @property {Object} [restore_promos]
  * @property {string} [seller_identifier]
  * @property {string} [shipment_id]
- * @property {BagReturnableCancelableStatus} [status]
+ * @property {BagReturnableCancelableStatus1} [status]
  * @property {string[]} [tags]
  * @property {string} [type]
  */
@@ -4598,6 +4598,14 @@ class PlatformClient {
  */
 /**
  * @typedef BagReturnableCancelableStatus
+ * @property {boolean} can_be_cancelled
+ * @property {boolean} enable_tracking
+ * @property {boolean} is_active
+ * @property {boolean} is_customer_return_allowed
+ * @property {boolean} is_returnable
+ */
+/**
+ * @typedef BagReturnableCancelableStatus1
  * @property {boolean} can_be_cancelled
  * @property {boolean} enable_tracking
  * @property {boolean} is_active
@@ -5297,7 +5305,7 @@ class PlatformClient {
 /**
  * @typedef OrderBagArticle
  * @property {Object} [identifiers]
- * @property {ReturnConfig} [return_config]
+ * @property {ReturnConfig1} [return_config]
  * @property {string} [size]
  * @property {string} [uid]
  */
@@ -5854,6 +5862,12 @@ class PlatformClient {
  */
 /**
  * @typedef ReturnConfig
+ * @property {boolean} [returnable]
+ * @property {number} [time]
+ * @property {string} [unit]
+ */
+/**
+ * @typedef ReturnConfig1
  * @property {boolean} [returnable]
  * @property {number} [time]
  * @property {string} [unit]
@@ -7137,6 +7151,7 @@ class PlatformClient {
  * @property {string} [condition]
  * @property {Object} [map]
  * @property {Object[]} [map_values]
+ * @property {string[]} [priority]
  * @property {string} [sort]
  * @property {string} [value]
  */
@@ -13804,7 +13819,7 @@ class PlatformClient {
 /**
  * @typedef GetZoneFromPincodeViewResponse
  * @property {string} serviceability_type
- * @property {string[]} zones
+ * @property {Zone[]} zones
  */
 /**
  * @typedef GstCredentialsResponse
@@ -14072,6 +14087,17 @@ class PlatformClient {
 /**
  * @typedef WarningsResponse
  * @property {string} [store_address]
+ */
+/**
+ * @typedef Zone
+ * @property {string} assignment_preference
+ * @property {boolean} is_active
+ * @property {string} name
+ * @property {string} slug
+ * @property {number[]} store_ids
+ * @property {string[]} tags
+ * @property {string} type
+ * @property {string} zone_id
  */
 /**
  * @typedef ZoneDataItem

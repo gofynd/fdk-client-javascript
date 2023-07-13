@@ -37,6 +37,7 @@ declare class OrderModel {
     static BagMeta(): any;
     static BagPaymentMethods(): any;
     static BagReturnableCancelableStatus(): any;
+    static BagReturnableCancelableStatus1(): any;
     static Bags(): any;
     static BagsPage(): any;
     static BagStateMapper(): any;
@@ -179,6 +180,7 @@ declare class OrderModel {
     static ReplacementDetails(): any;
     static ResponseDetail(): any;
     static ReturnConfig(): any;
+    static ReturnConfig1(): any;
     static SendSmsPayload(): any;
     static SendUserMobileOTP(): any;
     static SendUserMobileOtpResponse(): any;

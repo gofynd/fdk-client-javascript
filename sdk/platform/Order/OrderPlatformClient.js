@@ -1832,6 +1832,7 @@ class Order {
    * @param {string} [arg.orderingChannel] -
    * @param {string} [arg.companyAffiliateTag] -
    * @param {boolean} [arg.myOrders] -
+   * @param {string} [arg.platformUserId] -
    * @returns {Promise<ShipmentInternalPlatformViewResponse>} - Success response
    * @summary:
    * @description:
@@ -1859,6 +1860,7 @@ class Order {
     orderingChannel,
     companyAffiliateTag,
     myOrders,
+    platformUserId,
   } = {}) {
     const { error } = OrderValidator.getShipments().validate(
       {
@@ -1884,6 +1886,7 @@ class Order {
         orderingChannel,
         companyAffiliateTag,
         myOrders,
+        platformUserId,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1916,6 +1919,7 @@ class Order {
         orderingChannel,
         companyAffiliateTag,
         myOrders,
+        platformUserId,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1950,6 +1954,7 @@ class Order {
     query_params["ordering_channel"] = orderingChannel;
     query_params["company_affiliate_tag"] = companyAffiliateTag;
     query_params["my_orders"] = myOrders;
+    query_params["platform_user_id"] = platformUserId;
 
     const xHeaders = {};
 

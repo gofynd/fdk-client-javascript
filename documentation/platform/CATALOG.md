@@ -19299,6 +19299,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | condition | string? |  yes  |  |
  | map | string? |  yes  |  |
  | map_values | [string]? |  yes  |  |
+ | priority | [string]? |  yes  |  |
  | sort | string? |  yes  |  |
  | value | string? |  yes  |  |
  

@@ -687,6 +687,7 @@ class PlatformApplicationClient {
 /** @typedef BagMeta */
 /** @typedef BagPaymentMethods */
 /** @typedef BagReturnableCancelableStatus */
+/** @typedef BagReturnableCancelableStatus1 */
 /** @typedef Bags */
 /** @typedef BagsPage */
 /** @typedef BagStateMapper */
@@ -829,6 +830,7 @@ class PlatformApplicationClient {
 /** @typedef ReplacementDetails */
 /** @typedef ResponseDetail */
 /** @typedef ReturnConfig */
+/** @typedef ReturnConfig1 */
 /** @typedef SendSmsPayload */
 /** @typedef SendUserMobileOTP */
 /** @typedef SendUserMobileOtpResponse */
@@ -1845,6 +1847,7 @@ class PlatformApplicationClient {
 /** @typedef TimmingResponse */
 /** @typedef UpdateZoneData */
 /** @typedef WarningsResponse */
+/** @typedef Zone */
 /** @typedef ZoneDataItem */
 /** @typedef ZoneMappingType */
 /** @typedef ZoneProductTypes */

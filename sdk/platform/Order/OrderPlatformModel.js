@@ -331,7 +331,7 @@ class OrderModel {
       restore_promos: Joi.any(),
       seller_identifier: Joi.string().allow(""),
       shipment_id: Joi.string().allow(""),
-      status: OrderModel.BagReturnableCancelableStatus(),
+      status: OrderModel.BagReturnableCancelableStatus1(),
       tags: Joi.array().items(Joi.string().allow("")),
       type: Joi.string().allow(""),
     });
@@ -395,6 +395,15 @@ class OrderModel {
     });
   }
   static BagReturnableCancelableStatus() {
+    return Joi.object({
+      can_be_cancelled: Joi.boolean().required(),
+      enable_tracking: Joi.boolean().required(),
+      is_active: Joi.boolean().required(),
+      is_customer_return_allowed: Joi.boolean().required(),
+      is_returnable: Joi.boolean().required(),
+    });
+  }
+  static BagReturnableCancelableStatus1() {
     return Joi.object({
       can_be_cancelled: Joi.boolean().required(),
       enable_tracking: Joi.boolean().required(),
@@ -1183,7 +1192,7 @@ class OrderModel {
   static OrderBagArticle() {
     return Joi.object({
       identifiers: Joi.any(),
-      return_config: OrderModel.ReturnConfig(),
+      return_config: OrderModel.ReturnConfig1(),
       size: Joi.string().allow(""),
       uid: Joi.string().allow(""),
     });
@@ -1801,6 +1810,13 @@ class OrderModel {
     });
   }
   static ReturnConfig() {
+    return Joi.object({
+      returnable: Joi.boolean(),
+      time: Joi.number(),
+      unit: Joi.string().allow(""),
+    });
+  }
+  static ReturnConfig1() {
     return Joi.object({
       returnable: Joi.boolean(),
       time: Joi.number(),

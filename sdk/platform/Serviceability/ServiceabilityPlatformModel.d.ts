@@ -86,6 +86,7 @@ declare class ServiceabilityModel {
     static TimmingResponse(): any;
     static UpdateZoneData(): any;
     static WarningsResponse(): any;
+    static Zone(): any;
     static ZoneDataItem(): any;
     static ZoneMappingType(): any;
     static ZoneProductTypes(): any;
