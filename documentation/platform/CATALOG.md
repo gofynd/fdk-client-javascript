@@ -4117,6 +4117,7 @@ const promise = platformClient.application("<APPLICATION_ID>").catalog.getAppica
  f : value,
  c : value,
  filters : value,
+ isDependent : value,
  sortOn : value,
  pageId : value,
  pageSize : value,
@@ -4129,6 +4130,7 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.getApp
  f : value,
  c : value,
  filters : value,
+ isDependent : value,
  sortOn : value,
  pageId : value,
  pageSize : value,
@@ -4147,6 +4149,7 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.getApp
 | f | string | no | The search filter parameters. All the parameter filtered from filter parameters will be passed in **f** parameter in this format. **?f=brand:voi-jeans\|\|and:::category:t-shirts\|\|shirts** |    
 | c | string | no | The search filter parameters for collection items. All the parameter filtered from filter parameters will be passed in **c** parameter in this format. **?c=brand:in:voi-jeans\|and:::category:nin:t-shirts\|shirts** |    
 | filters | boolean | no | Pass `filters` parameter to fetch the filter details. This flag is used to fetch all filters |    
+| isDependent | boolean | no | This query parameter is used to get the dependent products in the listing. |    
 | sortOn | string | no | The order to sort the list of products on. The supported sort parameters are popularity, price, redemption and discount in either ascending or descending order. See the supported values below. |    
 | pageId | string | no | Each response will contain **page_id** param, which should be sent back to make pagination work. |    
 | pageSize | number | no | Number of items to retrieve in each page. Default is 12. |    
@@ -19296,6 +19299,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | condition | string? |  yes  |  |
  | map | string? |  yes  |  |
  | map_values | [string]? |  yes  |  |
+ | priority | [string]? |  yes  |  |
  | sort | string? |  yes  |  |
  | value | string? |  yes  |  |
  

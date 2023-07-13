@@ -2,36 +2,36 @@ module.exports = {
   ApplicationConfig: require("./ApplicationConfig"),
   ApplicationClient: require("./ApplicationClient"),
   ApplicationModel: {
-    CatalogApplicationModel: require("./Catalog/CatalogApplicationModel"),
-
     CartApplicationModel: require("./Cart/CartApplicationModel"),
+
+    CatalogApplicationModel: require("./Catalog/CatalogApplicationModel"),
 
     CommonApplicationModel: require("./Common/CommonApplicationModel"),
 
+    CommunicationApplicationModel: require("./Communication/CommunicationApplicationModel"),
+
+    ConfigurationApplicationModel: require("./Configuration/ConfigurationApplicationModel"),
+
+    ContentApplicationModel: require("./Content/ContentApplicationModel"),
+
+    FileStorageApplicationModel: require("./FileStorage/FileStorageApplicationModel"),
+
     LeadApplicationModel: require("./Lead/LeadApplicationModel"),
+
+    LogisticApplicationModel: require("./Logistic/LogisticApplicationModel"),
+
+    OrderApplicationModel: require("./Order/OrderApplicationModel"),
+
+    PaymentApplicationModel: require("./Payment/PaymentApplicationModel"),
+
+    PosCartApplicationModel: require("./PosCart/PosCartApplicationModel"),
+
+    RewardsApplicationModel: require("./Rewards/RewardsApplicationModel"),
+
+    ShareApplicationModel: require("./Share/ShareApplicationModel"),
 
     ThemeApplicationModel: require("./Theme/ThemeApplicationModel"),
 
     UserApplicationModel: require("./User/UserApplicationModel"),
-
-    ContentApplicationModel: require("./Content/ContentApplicationModel"),
-
-    CommunicationApplicationModel: require("./Communication/CommunicationApplicationModel"),
-
-    ShareApplicationModel: require("./Share/ShareApplicationModel"),
-
-    FileStorageApplicationModel: require("./FileStorage/FileStorageApplicationModel"),
-
-    ConfigurationApplicationModel: require("./Configuration/ConfigurationApplicationModel"),
-
-    PaymentApplicationModel: require("./Payment/PaymentApplicationModel"),
-
-    OrderApplicationModel: require("./Order/OrderApplicationModel"),
-
-    RewardsApplicationModel: require("./Rewards/RewardsApplicationModel"),
-
-    PosCartApplicationModel: require("./PosCart/PosCartApplicationModel"),
-
-    LogisticApplicationModel: require("./Logistic/LogisticApplicationModel"),
   },
 };

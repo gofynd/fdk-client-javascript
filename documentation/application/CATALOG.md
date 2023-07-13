@@ -8975,7 +8975,9 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | display | string? |  yes  |  |
  | is_selected | boolean? |  yes  |  |
+ | logo | string? |  yes  |  |
  | name | string? |  yes  |  |
  | value | string? |  yes  |  |
  

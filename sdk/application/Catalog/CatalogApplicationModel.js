@@ -763,7 +763,9 @@ class CatalogModel {
   }
   static ProductSortOn() {
     return Joi.object({
+      display: Joi.string().allow(""),
       is_selected: Joi.boolean(),
+      logo: Joi.string().allow(""),
       name: Joi.string().allow(""),
       value: Joi.string().allow(""),
     });

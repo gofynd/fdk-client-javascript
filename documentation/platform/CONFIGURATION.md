@@ -1189,7 +1189,7 @@ const data = await platformClient.configuration.getApplications({  pageNo : valu
 | --------- | -----  | -------- | ----------- |  
 | pageNo | number | no |  |    
 | pageSize | number | no |  |    
-| q | string | no | Url encoded object used as mongodb query |  
+| q | string | no | Search param by name or domain |  
 
 
 
@@ -5055,6 +5055,7 @@ Success
  | enabled | boolean? |  yes  | Shows whether cart configuration is enabled or not |
  | max_cart_items | number? |  yes  | Maximum number of items that can be added to cart by the customer |
  | min_cart_value | number? |  yes  | Minimum cart value below which customer cannot place an order |
+ | pan_card | [PanCardConfig](#PanCardConfig)? |  yes  |  |
  | revenue_engine_coupon | boolean? |  yes  | Allow coupon apply and credits together. Default value is false. |
  
 
@@ -6782,6 +6783,17 @@ Success
  | next_id | string? |  yes  | Next page ID |
  | size | number? |  yes  | The number of items to retrieve in each page. Default value is 10. |
  | type | string |  no  | Page type |
+ 
+
+---
+
+#### [PanCardConfig](#PanCardConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cod_threshold_amount | number? |  yes  | On which COD order amount pan card number is expected from customer for order |
+ | enabled | boolean? |  yes  | If pan card accepting is enabled on cart |
+ | online_threshold_amount | number? |  yes  | On which online payment order amount pan card number is expected from customer for order |
  
 
 ---

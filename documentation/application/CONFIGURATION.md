@@ -112,14 +112,16 @@ const promise = applicationClient.configuration.getAppStaffList({  pageNo : valu
  pageSize : value,
  orderIncent : value,
  orderingStore : value,
- user : value });
+ user : value,
+ userName : value });
 
 // Async/Await
 const data = await applicationClient.configuration.getAppStaffList({  pageNo : value,
  pageSize : value,
  orderIncent : value,
  orderingStore : value,
- user : value });
+ user : value,
+ userName : value });
 ```
 
 
@@ -132,7 +134,8 @@ const data = await applicationClient.configuration.getAppStaffList({  pageNo : v
 | pageSize | number | no |  |    
 | orderIncent | boolean | no | This is a boolean value. Select `true` to retrieve the staff members eligible for getting incentives on orders. |    
 | orderingStore | number | no | ID of the ordering store. Helps in retrieving staff members working at a particular ordering store. |    
-| user | string | no | Mongo ID of the staff. Helps in retrieving the details of a particular staff member. |  
+| user | string | no | Mongo ID of the staff. Helps in retrieving the details of a particular staff member. |    
+| userName | string | no | user name of the member |  
 
 
 

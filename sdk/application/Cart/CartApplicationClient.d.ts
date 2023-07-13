@@ -8,6 +8,7 @@ declare class Cart {
         applyCoupon: string;
         applyRewardPoints: string;
         checkoutCart: string;
+        checkoutCartV2: string;
         deleteCart: string;
         getAddressById: string;
         getAddresses: string;
@@ -49,16 +50,18 @@ declare class Cart {
      * @param {boolean} [arg.b] -
      * @param {string} [arg.areaCode] -
      * @param {boolean} [arg.buyNow] -
+     * @param {string} [arg.id] -
      * @param {AddCartRequest} arg.body
      * @returns {Promise<AddCartDetailResponse>} - Success response
      * @summary: Add items to cart
      * @description: Use this API to add items to the cart.
      */
-    addItems({ body, i, b, areaCode, buyNow }?: {
+    addItems({ body, i, b, areaCode, buyNow, id }?: {
         i?: boolean;
         b?: boolean;
         areaCode?: string;
         buyNow?: boolean;
+        id?: string;
         body: AddCartRequest;
     }): Promise<AddCartDetailResponse>;
     /**
@@ -113,13 +116,25 @@ declare class Cart {
     }): Promise<CartCheckoutResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} [arg.id] - The unique identifier of the cart.
+     * @param {boolean} [arg.buyNow] - This indicates the type of cart to checkout
+     * @param {CartCheckoutDetailV2Request} arg.body
+     * @returns {Promise<CartCheckoutResponse>} - Success response
+     * @summary: Checkout all items in the cart
+     * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway.
+     */
+    checkoutCartV2({ body, buyNow }?: {
+        buyNow?: boolean;
+        body: CartCheckoutDetailV2Request;
+    }): Promise<CartCheckoutResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.id] - The unique identifier of the cart.
      * @returns {Promise<DeleteCartDetailResponse>} - Success response
      * @summary: Delete cart once user made successful checkout
      * @description: Use this API to delete the cart.
      */
     deleteCart({ id }?: {
-        id?: number;
+        id?: string;
     }): Promise<DeleteCartDetailResponse>;
     /**
      * @param {Object} arg - Arg object.
@@ -282,14 +297,16 @@ declare class Cart {
      *   /service/application/catalog/v1.0/products/
      * @param {number} [arg.pageSize] - Number of offers to be fetched to show
      * @param {string} [arg.promotionGroup] - Type of promotion groups
+     * @param {number} [arg.storeId] - Store id
      * @returns {Promise<PromotionOffersResponse>} - Success response
      * @summary: Fetch available promotions
      * @description: Use this API to get top 5 offers available for current product
      */
-    getPromotionOffers({ slug, pageSize, promotionGroup }?: {
+    getPromotionOffers({ slug, pageSize, promotionGroup, storeId }?: {
         slug?: string;
         pageSize?: number;
         promotionGroup?: string;
+        storeId?: number;
     }): Promise<PromotionOffersResponse>;
     /**
      * @param {Object} arg - Arg object.
@@ -300,16 +317,21 @@ declare class Cart {
      * @param {string} [arg.addressId] - ID allotted to the selected address
      * @param {string} [arg.areaCode] - The PIN Code of the destination address,
      *   e.g. 400059
+     * @param {string} [arg.orderType] - The order type of shipment HomeDelivery
+     *   - If the customer wants the order home-delivered PickAtStore - If the
+     *   customer wants the handover of an order at the store itself. Digital -
+     *   If the customer wants to buy digital voucher ( for jiogames )
      * @returns {Promise<CartShipmentsResponse>} - Success response
      * @summary: Get delivery date and options before checkout
      * @description: Use this API to get shipment details, expected delivery date, items and price breakup of the shipment.
      */
-    getShipments({ p, id, buyNow, addressId, areaCode }?: {
+    getShipments({ p, id, buyNow, addressId, areaCode, orderType }?: {
         p?: boolean;
         id?: string;
         buyNow?: boolean;
         addressId?: string;
         areaCode?: string;
+        orderType?: string;
     }): Promise<CartShipmentsResponse>;
     /**
      * @param {Object} arg - Arg object.
@@ -433,11 +455,15 @@ declare class Cart {
      * @param {string} [arg.paymentIdentifier] -
      * @param {string} [arg.aggregatorName] -
      * @param {string} [arg.merchantCode] -
+     * @param {string} [arg.iin] -
+     * @param {string} [arg.network] -
+     * @param {string} [arg.type] -
+     * @param {string} [arg.cardId] -
      * @returns {Promise<PaymentCouponValidate>} - Success response
      * @summary: Verify the coupon eligibility against the payment mode
      * @description: Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc.
      */
-    validateCouponForPayment({ id, buyNow, addressId, paymentMode, paymentIdentifier, aggregatorName, merchantCode, }?: {
+    validateCouponForPayment({ id, buyNow, addressId, paymentMode, paymentIdentifier, aggregatorName, merchantCode, iin, network, type, cardId, }?: {
         id?: string;
         buyNow?: boolean;
         addressId?: string;
@@ -445,5 +471,9 @@ declare class Cart {
         paymentIdentifier?: string;
         aggregatorName?: string;
         merchantCode?: string;
+        iin?: string;
+        network?: string;
+        type?: string;
+        cardId?: string;
     }): Promise<PaymentCouponValidate>;
 }

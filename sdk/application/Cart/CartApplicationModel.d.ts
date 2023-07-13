@@ -8,6 +8,7 @@ declare class CartModel {
     static AppliedFreeArticles(): any;
     static AppliedPromotion(): any;
     static ApplyCouponRequest(): any;
+    static ArticleGiftDetail(): any;
     static ArticlePriceInfo(): any;
     static BaseInfo(): any;
     static BasePrice(): any;
@@ -17,6 +18,7 @@ declare class CartModel {
     static CartBreakup(): any;
     static CartCheckoutCustomMeta(): any;
     static CartCheckoutDetailRequest(): any;
+    static CartCheckoutDetailV2Request(): any;
     static CartCheckoutResponse(): any;
     static CartCurrency(): any;
     static CartDetailResponse(): any;
@@ -32,8 +34,10 @@ declare class CartModel {
     static CheckCart(): any;
     static Coupon(): any;
     static CouponBreakup(): any;
+    static CouponDetails(): any;
     static CouponValidity(): any;
     static CurrencyInfo(): any;
+    static CustomerDetails(): any;
     static DeleteAddressResponse(): any;
     static DeleteCartDetailResponse(): any;
     static DiscountRulesApp(): any;
@@ -45,6 +49,7 @@ declare class CartModel {
     static GetCouponResponse(): any;
     static GetShareCartLinkRequest(): any;
     static GetShareCartLinkResponse(): any;
+    static GiftDetail(): any;
     static LadderOfferItem(): any;
     static LadderPrice(): any;
     static LadderPriceOffer(): any;
@@ -57,6 +62,8 @@ declare class CartModel {
     static Ownership(): any;
     static PageCoupon(): any;
     static PaymentCouponValidate(): any;
+    static PaymentMeta(): any;
+    static PaymentMethod(): any;
     static PaymentSelectionLock(): any;
     static ProductAction(): any;
     static ProductArticle(): any;
@@ -80,6 +87,8 @@ declare class CartModel {
     static ShipmentPromise(): any;
     static ShipmentResponse(): any;
     static StaffCheckout(): any;
+    static StoreInfo(): any;
+    static Tags(): any;
     static UpdateAddressResponse(): any;
     static UpdateCartDetailResponse(): any;
     static UpdateCartPaymentRequest(): any;

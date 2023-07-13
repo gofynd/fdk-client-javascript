@@ -660,7 +660,7 @@ Get TAT  data
  | articles | [string] |  no  |  |
  | configuration | string |  no  |  |
  | identifier | string |  no  |  |
- | ignored_locations | [string] |  no  |  |
+ | ignored_locations | [number] |  no  |  |
  | to_pincode | string |  no  |  |
  
 
@@ -670,8 +670,9 @@ Get TAT  data
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | articles | [string]? |  yes  |  |
+ | assigned_stores | [string]? |  yes  |  |
  | error | string |  no  |  |
+ | pystormbreaker_uuid | string |  no  |  |
  | success | boolean |  no  |  |
  | to_pincode | string |  no  |  |
  
