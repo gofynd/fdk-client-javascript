@@ -67,6 +67,7 @@ declare class OrderModel {
     static CreateOrderPayload(): any;
     static CreateOrderResponse(): any;
     static CreditBalanceInfo(): any;
+    static CreditNoteData(): any;
     static CurrentStatus(): any;
     static DataUpdates(): any;
     static Dates(): any;
@@ -142,6 +143,7 @@ declare class OrderModel {
     static PaymentInfo(): any;
     static PaymentMethod(): any;
     static PaymentMethods(): any;
+    static PDFLink(): any;
     static PDFLinks(): any;
     static PhoneDetails(): any;
     static PlatformArticleAttributes(): any;

@@ -709,6 +709,14 @@ class OrderModel {
       total_credited_balance: Joi.string().allow(""),
     });
   }
+  static CreditNoteData() {
+    return Joi.object({
+      date_of_issue: Joi.string().allow(""),
+      expiry_date: Joi.string().allow(""),
+      total_balance: Joi.number(),
+      validity: Joi.number(),
+    });
+  }
   static CurrentStatus() {
     return Joi.object({
       bag_id: Joi.number(),
@@ -1439,6 +1447,12 @@ class OrderModel {
       refund_by: Joi.string().allow(""),
     });
   }
+  static PDFLink() {
+    return Joi.object({
+      credit_note_a4: Joi.string().allow(""),
+      invoice_a4: Joi.string().allow(""),
+    });
+  }
   static PDFLinks() {
     return Joi.object({
       b2b: Joi.string().allow(""),
@@ -1583,7 +1597,7 @@ class OrderModel {
       payment_methods: Joi.any(),
       payment_mode: Joi.string().allow(""),
       payments: OrderModel.ShipmentPayments(),
-      pdf_links: Joi.any(),
+      pdf_links: OrderModel.PDFLink(),
       picked_date: Joi.string().allow(""),
       platform_logo: Joi.string().allow(""),
       prices: OrderModel.Prices(),
@@ -2023,6 +2037,7 @@ class OrderModel {
       b2c_buyer_details: Joi.any().allow(null),
       bag_weight: Joi.any(),
       box_type: Joi.string().allow("").allow(null),
+      credit_note_data: OrderModel.CreditNoteData(),
       debug_info: OrderModel.DebugInfo(),
       dimension: OrderModel.Dimensions(),
       dp_id: Joi.string().allow("").allow(null),
@@ -2043,6 +2058,7 @@ class OrderModel {
       packaging_name: Joi.string().allow(""),
       parent_dp_id: Joi.string().allow("").allow(null),
       po_number: Joi.string().allow(""),
+      refund_to: Joi.string().allow(""),
       return_affiliate_order_id: Joi.string().allow(""),
       return_affiliate_shipment_id: Joi.string().allow(""),
       return_awb_number: Joi.string().allow(""),

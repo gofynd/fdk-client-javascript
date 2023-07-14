@@ -69,6 +69,16 @@ declare class Cart {
     }): Promise<OpenApiCheckoutResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {CartDynamicInjectionAdd} arg.body
+     * @returns {Promise<CartDynamicInjectionResponse>} - Success response
+     * @summary: Create new cart dynamic injection
+     * @description: Create new cart dynamic injection
+     */
+    createCartDynamicInjection({ body }?: {
+        body: CartDynamicInjectionAdd;
+    }): Promise<CartDynamicInjectionResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {CartMetaConfigAdd} arg.body
      * @returns {Promise<CartMetaConfigAdd>} - Success response
      * @summary: Create new cart meta configuration
@@ -601,6 +611,16 @@ declare class Cart {
     }): Promise<DeleteAddressResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.id -
+     * @returns {Promise<SuccessMessage>} - Success response
+     * @summary: Remove cart dynamic injection
+     * @description: Remove cart dynamic injection
+     */
+    removeCartDynamicInjection({ id }?: {
+        id: string;
+    }): Promise<SuccessMessage>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} [arg.uid] -
      * @param {boolean} [arg.buyNow] -
      * @returns {Promise<CartDetailResponse>} - Success response
@@ -691,6 +711,18 @@ declare class Cart {
         b?: boolean;
         body: UpdateCartRequest;
     }): Promise<UpdateCartDetailResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id -
+     * @param {CartDynamicInjectionUpdate} arg.body
+     * @returns {Promise<CartDynamicInjectionResponse>} - Success response
+     * @summary: Update cart injection configuration
+     * @description: Update cart injection configuration
+     */
+    updateCartDynamicInjection({ id, body }?: {
+        id: string;
+        body: CartDynamicInjectionUpdate;
+    }): Promise<CartDynamicInjectionResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.id] -

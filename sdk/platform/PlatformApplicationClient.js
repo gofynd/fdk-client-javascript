@@ -717,6 +717,7 @@ class PlatformApplicationClient {
 /** @typedef CreateOrderPayload */
 /** @typedef CreateOrderResponse */
 /** @typedef CreditBalanceInfo */
+/** @typedef CreditNoteData */
 /** @typedef CurrentStatus */
 /** @typedef DataUpdates */
 /** @typedef Dates */
@@ -792,6 +793,7 @@ class PlatformApplicationClient {
 /** @typedef PaymentInfo */
 /** @typedef PaymentMethod */
 /** @typedef PaymentMethods */
+/** @typedef PDFLink */
 /** @typedef PDFLinks */
 /** @typedef PhoneDetails */
 /** @typedef PlatformArticleAttributes */
@@ -1493,6 +1495,7 @@ class PlatformApplicationClient {
 /** @typedef AppliedFreeArticles */
 /** @typedef AppliedPromotion */
 /** @typedef ApplyCouponRequest */
+/** @typedef Article */
 /** @typedef ArticlePriceInfo */
 /** @typedef BaseInfo */
 /** @typedef BasePrice */
@@ -1503,6 +1506,10 @@ class PlatformApplicationClient {
 /** @typedef CartCurrency */
 /** @typedef CartDeliveryModesResponse */
 /** @typedef CartDetailResponse */
+/** @typedef CartDynamicInjection */
+/** @typedef CartDynamicInjectionAdd */
+/** @typedef CartDynamicInjectionResponse */
+/** @typedef CartDynamicInjectionUpdate */
 /** @typedef CartItem */
 /** @typedef CartItemCountResponse */
 /** @typedef CartItemMeta */
@@ -1517,6 +1524,7 @@ class PlatformApplicationClient {
 /** @typedef CategoryInfo */
 /** @typedef Charges */
 /** @typedef CheckCart */
+/** @typedef Collecttion */
 /** @typedef CompareObject */
 /** @typedef Coupon */
 /** @typedef CouponAction */

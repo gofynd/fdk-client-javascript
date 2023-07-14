@@ -5,6 +5,7 @@ declare class CartValidator {
     static applyCoupon(): any;
     static checkCartServiceability(): any;
     static checkoutCart(): any;
+    static createCartDynamicInjection(): any;
     static createCartMetaConfig(): any;
     static createCoupon(): any;
     static createPromotion(): any;
@@ -38,12 +39,14 @@ declare class CartValidator {
     static platformCheckoutCartV2(): any;
     static platformUpdateCart(): any;
     static removeAddress(): any;
+    static removeCartDynamicInjection(): any;
     static removeCoupon(): any;
     static selectAddress(): any;
     static selectPaymentMode(): any;
     static selectPaymentModeV2(): any;
     static updateAddress(): any;
     static updateCart(): any;
+    static updateCartDynamicInjection(): any;
     static updateCartMeta(): any;
     static updateCartMetaConfig(): any;
     static updateCartUser(): any;

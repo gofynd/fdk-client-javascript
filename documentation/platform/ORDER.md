@@ -5541,6 +5541,18 @@ Verify OTP
 
 ---
 
+#### [CreditNoteData](#CreditNoteData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | date_of_issue | string? |  yes  |  |
+ | expiry_date | string? |  yes  |  |
+ | total_balance | number? |  yes  |  |
+ | validity | number? |  yes  |  |
+ 
+
+---
+
 #### [CurrentStatus](#CurrentStatus)
 
  | Properties | Type | Nullable | Description |
@@ -6564,6 +6576,16 @@ Verify OTP
 
 ---
 
+#### [PDFLink](#PDFLink)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | credit_note_a4 | string? |  yes  |  |
+ | invoice_a4 | string? |  yes  |  |
+ 
+
+---
+
 #### [PDFLinks](#PDFLinks)
 
  | Properties | Type | Nullable | Description |
@@ -6746,7 +6768,7 @@ Verify OTP
  | payment_methods | string? |  yes  |  |
  | payment_mode | string? |  yes  |  |
  | payments | [ShipmentPayments](#ShipmentPayments)? |  yes  |  |
- | pdf_links | string? |  yes  |  |
+ | pdf_links | [PDFLink](#PDFLink)? |  yes  |  |
  | picked_date | string? |  yes  |  |
  | platform_logo | string? |  yes  |  |
  | prices | [Prices](#Prices)? |  yes  |  |
@@ -7374,6 +7396,7 @@ Verify OTP
  | b2c_buyer_details | string? |  yes  |  |
  | bag_weight | string? |  yes  |  |
  | box_type | string? |  yes  |  |
+ | credit_note_data | [CreditNoteData](#CreditNoteData)? |  yes  |  |
  | debug_info | [DebugInfo](#DebugInfo)? |  yes  |  |
  | dimension | [Dimensions](#Dimensions)? |  yes  |  |
  | dp_id | string? |  yes  |  |
@@ -7394,6 +7417,7 @@ Verify OTP
  | packaging_name | string? |  yes  |  |
  | parent_dp_id | string? |  yes  |  |
  | po_number | string? |  yes  |  |
+ | refund_to | string? |  yes  |  |
  | return_affiliate_order_id | string? |  yes  |  |
  | return_affiliate_shipment_id | string? |  yes  |  |
  | return_awb_number | string? |  yes  |  |

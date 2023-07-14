@@ -5470,14 +5470,16 @@ const promise = applicationClient.cart.getShipments({  p : value,
  id : value,
  buyNow : value,
  addressId : value,
- areaCode : value });
+ areaCode : value,
+ orderType : value });
 
 // Async/Await
 const data = await applicationClient.cart.getShipments({  p : value,
  id : value,
  buyNow : value,
  addressId : value,
- areaCode : value });
+ areaCode : value,
+ orderType : value });
 ```
 
 
@@ -5490,7 +5492,8 @@ const data = await applicationClient.cart.getShipments({  p : value,
 | id | string | no | The unique identifier of the cart |    
 | buyNow | boolean | no |  |    
 | addressId | string | no | ID allotted to the selected address |    
-| areaCode | string | no | The PIN Code of the destination address, e.g. 400059 |  
+| areaCode | string | no | The PIN Code of the destination address, e.g. 400059 |    
+| orderType | string | no | The order type of shipment HomeDelivery - If the customer wants the order home-delivered PickAtStore - If the customer wants the handover of an order at the store itself. Digital - If the customer wants to buy digital voucher ( for jiogames ) |  
 
 
 

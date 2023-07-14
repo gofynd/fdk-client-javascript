@@ -4879,6 +4879,13 @@ class PlatformClient {
  * @property {string} [total_credited_balance]
  */
 /**
+ * @typedef CreditNoteData
+ * @property {string} [date_of_issue]
+ * @property {string} [expiry_date]
+ * @property {number} [total_balance]
+ * @property {number} [validity]
+ */
+/**
  * @typedef CurrentStatus
  * @property {number} [bag_id]
  * @property {BagStateMapper} [bag_state_mapper]
@@ -5528,6 +5535,11 @@ class PlatformClient {
  * @property {string} [refund_by]
  */
 /**
+ * @typedef PDFLink
+ * @property {string} [credit_note_a4]
+ * @property {string} [invoice_a4]
+ */
+/**
  * @typedef PDFLinks
  * @property {string} [b2b]
  * @property {string} [credit_note_url]
@@ -5662,7 +5674,7 @@ class PlatformClient {
  * @property {Object} [payment_methods]
  * @property {string} [payment_mode]
  * @property {ShipmentPayments} [payments]
- * @property {Object} [pdf_links]
+ * @property {PDFLink} [pdf_links]
  * @property {string} [picked_date]
  * @property {string} [platform_logo]
  * @property {Prices} [prices]
@@ -6055,6 +6067,7 @@ class PlatformClient {
  * @property {Object} [b2c_buyer_details]
  * @property {Object} [bag_weight]
  * @property {string} [box_type]
+ * @property {CreditNoteData} [credit_note_data]
  * @property {DebugInfo} [debug_info]
  * @property {Dimensions} [dimension]
  * @property {string} [dp_id]
@@ -6075,6 +6088,7 @@ class PlatformClient {
  * @property {string} [packaging_name]
  * @property {string} [parent_dp_id]
  * @property {string} [po_number]
+ * @property {string} [refund_to]
  * @property {string} [return_affiliate_order_id]
  * @property {string} [return_affiliate_shipment_id]
  * @property {string} [return_awb_number]
@@ -7525,15 +7539,15 @@ class PlatformClient {
  * @property {GetAddressSerializer[]} [addresses]
  * @property {string} [business_type]
  * @property {string} [company_type]
- * @property {UserSerializer1} [created_by]
+ * @property {UserSerializer2} [created_by]
  * @property {string} [created_on]
- * @property {UserSerializer1} [modified_by]
+ * @property {UserSerializer2} [modified_by]
  * @property {string} [modified_on]
  * @property {string} [name]
  * @property {string} [reject_reason]
  * @property {string} [stage]
  * @property {number} [uid]
- * @property {UserSerializer1} [verified_by]
+ * @property {UserSerializer2} [verified_by]
  * @property {string} [verified_on]
  */
 /**
@@ -7610,14 +7624,14 @@ class PlatformClient {
  * @property {string} code
  * @property {GetCompanySerializer} [company]
  * @property {SellerPhoneNumber[]} [contact_numbers]
- * @property {UserSerializer2} [created_by]
+ * @property {UserSerializer1} [created_by]
  * @property {string} [created_on]
  * @property {string} display_name
  * @property {Document[]} [documents]
  * @property {InvoiceDetailsSerializer} [gst_credentials]
  * @property {LocationIntegrationType} [integration_type]
  * @property {LocationManagerSerializer} [manager]
- * @property {UserSerializer2} [modified_by]
+ * @property {UserSerializer1} [modified_by]
  * @property {string} [modified_on]
  * @property {string} name
  * @property {string[]} [notification_emails]
@@ -7627,7 +7641,7 @@ class PlatformClient {
  * @property {string} [store_type]
  * @property {LocationDayWiseSerializer[]} [timing]
  * @property {number} [uid]
- * @property {UserSerializer2} [verified_by]
+ * @property {UserSerializer1} [verified_by]
  * @property {string} [verified_on]
  * @property {Object} [warnings]
  */
@@ -11244,6 +11258,14 @@ class PlatformClient {
  * @property {string} coupon_code
  */
 /**
+ * @typedef Article
+ * @property {string} article_id
+ * @property {string} [code]
+ * @property {Object} [meta]
+ * @property {string} [type]
+ * @property {number} [value]
+ */
+/**
  * @typedef ArticlePriceInfo
  * @property {BasePrice} [base]
  * @property {BasePrice} [converted]
@@ -11318,6 +11340,59 @@ class PlatformClient {
  * @property {string} [pan_no]
  * @property {PaymentSelectionLock} [payment_selection_lock]
  * @property {boolean} [restrict_checkout]
+ */
+/**
+ * @typedef CartDynamicInjection
+ * @property {boolean} [allowed_refund]
+ * @property {string} apply_expiry
+ * @property {Article[]} article_ids
+ * @property {boolean} article_level_distribution
+ * @property {string} cart_id
+ * @property {number} cart_value
+ * @property {Collecttion} collection
+ * @property {string} [injection_id]
+ * @property {boolean} is_authenticated
+ * @property {string} message
+ * @property {Object} [meta]
+ * @property {string} type
+ * @property {string} [user_id]
+ * @property {number} value
+ */
+/**
+ * @typedef CartDynamicInjectionAdd
+ * @property {boolean} [allowed_refund]
+ * @property {string} [apply_expiry]
+ * @property {Article[]} article_ids
+ * @property {boolean} article_level_distribution
+ * @property {string} cart_id
+ * @property {number} cart_value
+ * @property {Collecttion} collection
+ * @property {boolean} is_authenticated
+ * @property {string} message
+ * @property {Object} [meta]
+ * @property {string} type
+ * @property {string} [user_id]
+ * @property {number} value
+ */
+/**
+ * @typedef CartDynamicInjectionResponse
+ * @property {CartDynamicInjection} [data]
+ */
+/**
+ * @typedef CartDynamicInjectionUpdate
+ * @property {boolean} [allowed_refund]
+ * @property {string} [apply_expiry]
+ * @property {Article[]} article_ids
+ * @property {boolean} article_level_distribution
+ * @property {string} cart_id
+ * @property {number} cart_value
+ * @property {Collecttion} collection
+ * @property {boolean} is_authenticated
+ * @property {string} message
+ * @property {Object} [meta]
+ * @property {string} type
+ * @property {string} [user_id]
+ * @property {number} value
  */
 /**
  * @typedef CartItem
@@ -11457,6 +11532,11 @@ class PlatformClient {
  * @property {boolean} [success]
  * @property {string} [uid]
  * @property {string} [user_type]
+ */
+/**
+ * @typedef Collecttion
+ * @property {string} collected_by
+ * @property {string} refund_by
  */
 /**
  * @typedef CompareObject

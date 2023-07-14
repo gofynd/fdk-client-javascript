@@ -160,6 +160,7 @@ class CartValidator {
       buyNow: Joi.boolean(),
       addressId: Joi.string().allow(""),
       areaCode: Joi.string().allow(""),
+      orderType: Joi.string().allow(""),
     });
   }
 
