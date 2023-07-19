@@ -4,6 +4,16 @@ declare class Order {
     config: any;
     /**
      * @param {Object} arg - Arg object.
+     * @param {AttachOrderUser} arg.body
+     * @returns {Promise<AttachOrderUserResponse>} - Success response
+     * @summary:
+     * @description:
+     */
+    attachOrderUser({ body }?: {
+        body: AttachOrderUser;
+    }): Promise<AttachOrderUserResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {OrderStatus} arg.body
      * @returns {Promise<OrderStatusResult>} - Success response
      * @summary:
@@ -70,6 +80,40 @@ declare class Order {
     downloadBulkActionTemplate({ templateSlug }?: {
         templateSlug?: string;
     }): Promise<FileResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {FetchCreditBalanceRequestPayload} arg.body
+     * @returns {Promise<FetchCreditBalanceResponsePayload>} - Success response
+     * @summary:
+     * @description:
+     */
+    fetchCreditBalanceDetail({ body }?: {
+        body: FetchCreditBalanceRequestPayload;
+    }): Promise<FetchCreditBalanceResponsePayload>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {RefundModeConfigRequestPayload} arg.body
+     * @returns {Promise<RefundModeConfigResponsePayload>} - Success response
+     * @summary:
+     * @description:
+     */
+    fetchRefundModeConfig({ body }?: {
+        body: RefundModeConfigRequestPayload;
+    }): Promise<RefundModeConfigResponsePayload>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.orderId -
+     * @param {string} [arg.shipmentId] -
+     * @param {string} [arg.documentType] -
+     * @returns {Promise<GeneratePosOrderReceiptResponse>} - Success response
+     * @summary:
+     * @description:
+     */
+    generatePOSReceiptByOrderId({ orderId, shipmentId, documentType, }?: {
+        orderId: string;
+        shipmentId?: string;
+        documentType?: string;
+    }): Promise<GeneratePosOrderReceiptResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.date] - Date On which the announcement is Active
@@ -184,11 +228,12 @@ declare class Order {
      * @param {string} [arg.tags] -
      * @param {string} [arg.timeToDispatch] -
      * @param {string} [arg.paymentMethods] -
+     * @param {boolean} [arg.myOrders] -
      * @returns {Promise<LaneConfigResponse>} - Success response
      * @summary:
      * @description:
      */
-    getLaneConfig({ superLane, groupEntity, fromDate, toDate, dpIds, stores, salesChannels, paymentMode, bagStatus, searchType, searchValue, tags, timeToDispatch, paymentMethods, }?: {
+    getLaneConfig({ superLane, groupEntity, fromDate, toDate, dpIds, stores, salesChannels, paymentMode, bagStatus, searchType, searchValue, tags, timeToDispatch, paymentMethods, myOrders, }?: {
         superLane?: string;
         groupEntity?: string;
         fromDate?: string;
@@ -203,6 +248,7 @@ declare class Order {
         tags?: string;
         timeToDispatch?: string;
         paymentMethods?: string;
+        myOrders?: boolean;
     }): Promise<LaneConfigResponse>;
     /**
      * @param {Object} arg - Arg object.
@@ -238,11 +284,12 @@ declare class Order {
      * @param {number} [arg.pageSize] -
      * @param {boolean} [arg.isPrioritySort] -
      * @param {string} [arg.customMeta] -
+     * @param {boolean} [arg.myOrders] -
      * @returns {Promise<OrderListingResponse>} - Success response
      * @summary:
      * @description:
      */
-    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, }?: {
+    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, myOrders, }?: {
         lane?: string;
         searchType?: string;
         bagStatus?: string;
@@ -259,6 +306,7 @@ declare class Order {
         pageSize?: number;
         isPrioritySort?: boolean;
         customMeta?: string;
+        myOrders?: boolean;
     }): Promise<OrderListingResponse>;
     /**
      * @param {Object} arg - Arg object.
@@ -332,12 +380,13 @@ declare class Order {
      * @param {string} [arg.customMeta] -
      * @param {string} [arg.orderingChannel] -
      * @param {string} [arg.companyAffiliateTag] -
+     * @param {boolean} [arg.myOrders] -
      * @param {string} [arg.platformUserId] -
      * @returns {Promise<ShipmentInternalPlatformViewResponse>} - Success response
      * @summary:
      * @description:
      */
-    getShipments({ lane, bagStatus, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, platformUserId, }?: {
+    getShipments({ lane, bagStatus, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, myOrders, platformUserId, }?: {
         lane?: string;
         bagStatus?: string;
         statusOverrideLane?: boolean;
@@ -359,6 +408,7 @@ declare class Order {
         customMeta?: string;
         orderingChannel?: string;
         companyAffiliateTag?: string;
+        myOrders?: boolean;
         platformUserId?: string;
     }): Promise<ShipmentInternalPlatformViewResponse>;
     /**
@@ -442,6 +492,16 @@ declare class Order {
     }): Promise<OrderStatusResult>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {SendUserMobileOTP} arg.body
+     * @returns {Promise<SendUserMobileOtpResponse>} - Success response
+     * @summary:
+     * @description:
+     */
+    sendUserMobileOTP({ body }?: {
+        body: SendUserMobileOTP;
+    }): Promise<SendUserMobileOtpResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.shipmentId -
      * @param {string} [arg.name] -
      * @param {string} [arg.address] -
@@ -512,4 +572,14 @@ declare class Order {
     uploadConsent({ body }?: {
         body: UploadConsent;
     }): Promise<SuccessResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {VerifyMobileOTP} arg.body
+     * @returns {Promise<VerifyOtpResponse>} - Success response
+     * @summary:
+     * @description:
+     */
+    verifyMobileOTP({ body }?: {
+        body: VerifyMobileOTP;
+    }): Promise<VerifyOtpResponse>;
 }

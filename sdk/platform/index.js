@@ -2,48 +2,48 @@ module.exports = {
   PlatformConfig: require("./PlatformConfig"),
   PlatformClient: require("./PlatformClient"),
   PlatformModel: {
+    AuditTrailPlatformModel: require("./AuditTrail/AuditTrailPlatformModel"),
+
+    BillingPlatformModel: require("./Billing/BillingPlatformModel"),
+
+    CartPlatformModel: require("./Cart/CartPlatformModel"),
+
+    CatalogPlatformModel: require("./Catalog/CatalogPlatformModel"),
+
     CommonPlatformModel: require("./Common/CommonPlatformModel"),
 
+    CommunicationPlatformModel: require("./Communication/CommunicationPlatformModel"),
+
+    CompanyProfilePlatformModel: require("./CompanyProfile/CompanyProfilePlatformModel"),
+
+    ConfigurationPlatformModel: require("./Configuration/ConfigurationPlatformModel"),
+
+    ContentPlatformModel: require("./Content/ContentPlatformModel"),
+
+    DiscountPlatformModel: require("./Discount/DiscountPlatformModel"),
+
+    FileStoragePlatformModel: require("./FileStorage/FileStoragePlatformModel"),
+
+    FinancePlatformModel: require("./Finance/FinancePlatformModel"),
+
+    InventoryPlatformModel: require("./Inventory/InventoryPlatformModel"),
+
     LeadPlatformModel: require("./Lead/LeadPlatformModel"),
+
+    OrderPlatformModel: require("./Order/OrderPlatformModel"),
+
+    PartnerPlatformModel: require("./Partner/PartnerPlatformModel"),
+
+    PaymentPlatformModel: require("./Payment/PaymentPlatformModel"),
+
+    RewardsPlatformModel: require("./Rewards/RewardsPlatformModel"),
+
+    SharePlatformModel: require("./Share/SharePlatformModel"),
 
     ThemePlatformModel: require("./Theme/ThemePlatformModel"),
 
     UserPlatformModel: require("./User/UserPlatformModel"),
 
-    ContentPlatformModel: require("./Content/ContentPlatformModel"),
-
-    BillingPlatformModel: require("./Billing/BillingPlatformModel"),
-
-    CommunicationPlatformModel: require("./Communication/CommunicationPlatformModel"),
-
-    PaymentPlatformModel: require("./Payment/PaymentPlatformModel"),
-
-    OrderPlatformModel: require("./Order/OrderPlatformModel"),
-
-    CatalogPlatformModel: require("./Catalog/CatalogPlatformModel"),
-
-    CompanyProfilePlatformModel: require("./CompanyProfile/CompanyProfilePlatformModel"),
-
-    FileStoragePlatformModel: require("./FileStorage/FileStoragePlatformModel"),
-
-    SharePlatformModel: require("./Share/SharePlatformModel"),
-
-    InventoryPlatformModel: require("./Inventory/InventoryPlatformModel"),
-
-    ConfigurationPlatformModel: require("./Configuration/ConfigurationPlatformModel"),
-
-    CartPlatformModel: require("./Cart/CartPlatformModel"),
-
-    RewardsPlatformModel: require("./Rewards/RewardsPlatformModel"),
-
-    DiscountPlatformModel: require("./Discount/DiscountPlatformModel"),
-
-    PartnerPlatformModel: require("./Partner/PartnerPlatformModel"),
-
     WebhookPlatformModel: require("./Webhook/WebhookPlatformModel"),
-
-    AuditTrailPlatformModel: require("./AuditTrail/AuditTrailPlatformModel"),
-
-    FinancePlatformModel: require("./Finance/FinancePlatformModel"),
   },
 };

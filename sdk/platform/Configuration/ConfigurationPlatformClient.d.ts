@@ -16,7 +16,7 @@ declare class Configuration {
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] -
      * @param {number} [arg.pageSize] -
-     * @param {string} [arg.q] - Url encoded object used as mongodb query
+     * @param {string} [arg.q] - Search param by name or domain
      * @returns {Promise<ApplicationsResponse>} - Success response
      * @summary: Get list of registered sales channels under company
      * @description: Applications are sales channel websites which can be configured, personalized and customised. Use this API to fetch a list of applications created within a company.
@@ -29,7 +29,7 @@ declare class Configuration {
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] -
-     * @param {string} [arg.q] - Url encoded object used as mongodb query
+     * @param {string} [arg.q] - Search param by name or domain
      * @summary: Get list of registered sales channels under company
      * @description: Applications are sales channel websites which can be configured, personalized and customised. Use this API to fetch a list of applications created within a company.
      */

@@ -147,6 +147,7 @@ declare class ConfigurationModel {
     static OtherSellerApplications(): any;
     static OtherSellerCompany(): any;
     static Page(): any;
+    static PanCardConfig(): any;
     static PaymentModeConfig(): any;
     static PaymentSelectionLock(): any;
     static PcrFeature(): any;

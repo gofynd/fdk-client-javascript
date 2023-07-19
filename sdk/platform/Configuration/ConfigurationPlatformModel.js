@@ -23,6 +23,7 @@ class ConfigurationModel {
       enabled: Joi.boolean(),
       max_cart_items: Joi.number(),
       min_cart_value: Joi.number(),
+      pan_card: ConfigurationModel.PanCardConfig(),
       revenue_engine_coupon: Joi.boolean(),
     });
   }
@@ -1176,6 +1177,13 @@ class ConfigurationModel {
       next_id: Joi.string().allow(""),
       size: Joi.number(),
       type: Joi.string().allow("").required(),
+    });
+  }
+  static PanCardConfig() {
+    return Joi.object({
+      cod_threshold_amount: Joi.number(),
+      enabled: Joi.boolean(),
+      online_threshold_amount: Joi.number(),
     });
   }
   static PaymentModeConfig() {

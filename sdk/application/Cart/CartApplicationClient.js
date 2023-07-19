@@ -16,6 +16,7 @@ class Cart {
       applyCoupon: "/service/application/cart/v1.0/coupon",
       applyRewardPoints: "/service/application/cart/v1.0/redeem/points/",
       checkoutCart: "/service/application/cart/v1.0/checkout",
+      checkoutCartV2: "/service/application/cart/v2.0/checkout",
       deleteCart: "/service/application/cart/v1.0/cart_archive",
       getAddressById: "/service/application/cart/v1.0/address/{id}",
       getAddresses: "/service/application/cart/v1.0/address",
@@ -126,14 +127,15 @@ class Cart {
    * @param {boolean} [arg.b] -
    * @param {string} [arg.areaCode] -
    * @param {boolean} [arg.buyNow] -
+   * @param {string} [arg.id] -
    * @param {AddCartRequest} arg.body
    * @returns {Promise<AddCartDetailResponse>} - Success response
    * @summary: Add items to cart
    * @description: Use this API to add items to the cart.
    */
-  async addItems({ body, i, b, areaCode, buyNow } = {}) {
+  async addItems({ body, i, b, areaCode, buyNow, id } = {}) {
     const { error } = CartValidator.addItems().validate(
-      { body, i, b, areaCode, buyNow },
+      { body, i, b, areaCode, buyNow, id },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -142,7 +144,7 @@ class Cart {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = CartValidator.addItems().validate(
-      { body, i, b, areaCode, buyNow },
+      { body, i, b, areaCode, buyNow, id },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -158,6 +160,7 @@ class Cart {
     query_params["b"] = b;
     query_params["area_code"] = areaCode;
     query_params["buy_now"] = buyNow;
+    query_params["id"] = id;
 
     const xHeaders = {};
 
@@ -402,7 +405,72 @@ class Cart {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} [arg.id] - The unique identifier of the cart.
+   * @param {boolean} [arg.buyNow] - This indicates the type of cart to checkout
+   * @param {CartCheckoutDetailV2Request} arg.body
+   * @returns {Promise<CartCheckoutResponse>} - Success response
+   * @summary: Checkout all items in the cart
+   * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway.
+   */
+  async checkoutCartV2({ body, buyNow } = {}) {
+    const { error } = CartValidator.checkoutCartV2().validate(
+      { body, buyNow },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CartValidator.checkoutCartV2().validate(
+      { body, buyNow },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for checkoutCartV2",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["buy_now"] = buyNow;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["checkoutCartV2"],
+        params: {},
+      }),
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = CartModel.CartCheckoutResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for checkoutCartV2",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.id] - The unique identifier of the cart.
    * @returns {Promise<DeleteCartDetailResponse>} - Success response
    * @summary: Delete cart once user made successful checkout
    * @description: Use this API to delete the cart.
@@ -1172,13 +1240,14 @@ class Cart {
    *   /service/application/catalog/v1.0/products/
    * @param {number} [arg.pageSize] - Number of offers to be fetched to show
    * @param {string} [arg.promotionGroup] - Type of promotion groups
+   * @param {number} [arg.storeId] - Store id
    * @returns {Promise<PromotionOffersResponse>} - Success response
    * @summary: Fetch available promotions
    * @description: Use this API to get top 5 offers available for current product
    */
-  async getPromotionOffers({ slug, pageSize, promotionGroup } = {}) {
+  async getPromotionOffers({ slug, pageSize, promotionGroup, storeId } = {}) {
     const { error } = CartValidator.getPromotionOffers().validate(
-      { slug, pageSize, promotionGroup },
+      { slug, pageSize, promotionGroup, storeId },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1187,7 +1256,7 @@ class Cart {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = CartValidator.getPromotionOffers().validate(
-      { slug, pageSize, promotionGroup },
+      { slug, pageSize, promotionGroup, storeId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -1202,6 +1271,7 @@ class Cart {
     query_params["slug"] = slug;
     query_params["page_size"] = pageSize;
     query_params["promotion_group"] = promotionGroup;
+    query_params["store_id"] = storeId;
 
     const xHeaders = {};
 
@@ -1244,13 +1314,17 @@ class Cart {
    * @param {string} [arg.addressId] - ID allotted to the selected address
    * @param {string} [arg.areaCode] - The PIN Code of the destination address,
    *   e.g. 400059
+   * @param {string} [arg.orderType] - The order type of shipment HomeDelivery
+   *   - If the customer wants the order home-delivered PickAtStore - If the
+   *   customer wants the handover of an order at the store itself. Digital -
+   *   If the customer wants to buy digital voucher ( for jiogames )
    * @returns {Promise<CartShipmentsResponse>} - Success response
    * @summary: Get delivery date and options before checkout
    * @description: Use this API to get shipment details, expected delivery date, items and price breakup of the shipment.
    */
-  async getShipments({ p, id, buyNow, addressId, areaCode } = {}) {
+  async getShipments({ p, id, buyNow, addressId, areaCode, orderType } = {}) {
     const { error } = CartValidator.getShipments().validate(
-      { p, id, buyNow, addressId, areaCode },
+      { p, id, buyNow, addressId, areaCode, orderType },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1259,7 +1333,7 @@ class Cart {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = CartValidator.getShipments().validate(
-      { p, id, buyNow, addressId, areaCode },
+      { p, id, buyNow, addressId, areaCode, orderType },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -1276,6 +1350,7 @@ class Cart {
     query_params["buy_now"] = buyNow;
     query_params["address_id"] = addressId;
     query_params["area_code"] = areaCode;
+    query_params["order_type"] = orderType;
 
     const xHeaders = {};
 
@@ -1854,6 +1929,10 @@ class Cart {
    * @param {string} [arg.paymentIdentifier] -
    * @param {string} [arg.aggregatorName] -
    * @param {string} [arg.merchantCode] -
+   * @param {string} [arg.iin] -
+   * @param {string} [arg.network] -
+   * @param {string} [arg.type] -
+   * @param {string} [arg.cardId] -
    * @returns {Promise<PaymentCouponValidate>} - Success response
    * @summary: Verify the coupon eligibility against the payment mode
    * @description: Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc.
@@ -1866,6 +1945,10 @@ class Cart {
     paymentIdentifier,
     aggregatorName,
     merchantCode,
+    iin,
+    network,
+    type,
+    cardId,
   } = {}) {
     const { error } = CartValidator.validateCouponForPayment().validate(
       {
@@ -1876,6 +1959,10 @@ class Cart {
         paymentIdentifier,
         aggregatorName,
         merchantCode,
+        iin,
+        network,
+        type,
+        cardId,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1895,6 +1982,10 @@ class Cart {
         paymentIdentifier,
         aggregatorName,
         merchantCode,
+        iin,
+        network,
+        type,
+        cardId,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1914,6 +2005,10 @@ class Cart {
     query_params["payment_identifier"] = paymentIdentifier;
     query_params["aggregator_name"] = aggregatorName;
     query_params["merchant_code"] = merchantCode;
+    query_params["iin"] = iin;
+    query_params["network"] = network;
+    query_params["type"] = type;
+    query_params["card_id"] = cardId;
 
     const xHeaders = {};
 
