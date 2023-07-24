@@ -1930,7 +1930,7 @@ class PlatformClient {
  */
 /**
  * @typedef PromotionsResponse
- * @property {PromotionListItem} [items]
+ * @property {PromotionListItem[]} [items]
  * @property {Page} [page]
  */
 /**

@@ -1653,7 +1653,7 @@ type PromotionSchedule = {
     start: string;
 };
 type PromotionsResponse = {
-    items?: PromotionListItem;
+    items?: PromotionListItem[];
     page?: Page;
 };
 type PromotionUpdate = {
