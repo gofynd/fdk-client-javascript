@@ -14748,7 +14748,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [PromotionListItem](#PromotionListItem)? |  yes  |  |
+ | items | [[PromotionListItem](#PromotionListItem)]? |  yes  |  |
  | page | [Page](#Page)? |  yes  |  |
  
 

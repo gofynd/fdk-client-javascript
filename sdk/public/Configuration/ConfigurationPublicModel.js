@@ -27,6 +27,7 @@ class ConfigurationModel {
       redirections: Joi.array().items(
         ConfigurationModel.ApplicationRedirections()
       ),
+      slug: Joi.string().allow(""),
       token: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
       website: ConfigurationModel.ApplicationWebsite(),
@@ -98,14 +99,18 @@ class ConfigurationModel {
       __v: Joi.number(),
       _id: Joi.string().allow(""),
       capital: Joi.string().allow(""),
+      country_code: Joi.string().allow(""),
       currency: Joi.string().allow(""),
       default_currency: ConfigurationModel.LocationDefaultCurrency(),
       default_language: ConfigurationModel.LocationDefaultLanguage(),
       iso2: Joi.string().allow(""),
       iso3: Joi.string().allow(""),
+      latitude: Joi.string().allow(""),
+      longitude: Joi.string().allow(""),
       name: Joi.string().allow(""),
       parent: Joi.string().allow(""),
       phone_code: Joi.string().allow(""),
+      state_code: Joi.string().allow(""),
       type: Joi.string().allow(""),
       uid: Joi.number(),
     });

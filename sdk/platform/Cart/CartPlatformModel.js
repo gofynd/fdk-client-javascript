@@ -1408,7 +1408,7 @@ class CartModel {
   }
   static PromotionsResponse() {
     return Joi.object({
-      items: CartModel.PromotionListItem(),
+      items: Joi.array().items(CartModel.PromotionListItem()),
       page: CartModel.Page(),
     });
   }

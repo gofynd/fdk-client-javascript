@@ -1995,7 +1995,7 @@ class PlatformClient {
  */
 /**
  * @typedef PromotionsResponse
- * @property {PromotionListItem} [items]
+ * @property {PromotionListItem[]} [items]
  * @property {Page} [page]
  */
 /**
@@ -5169,14 +5169,18 @@ class PlatformClient {
  * @property {number} [__v]
  * @property {string} [_id]
  * @property {string} [capital]
+ * @property {string} [country_code]
  * @property {string} [currency]
  * @property {LocationDefaultCurrency} [default_currency]
  * @property {LocationDefaultLanguage} [default_language]
  * @property {string} [iso2]
  * @property {string} [iso3]
+ * @property {string} [latitude]
+ * @property {string} [longitude]
  * @property {string} [name]
  * @property {string} [parent]
  * @property {string} [phone_code]
+ * @property {string} [state_code]
  * @property {string} [type]
  * @property {number} [uid]
  */
@@ -6499,6 +6503,7 @@ class PlatformClient {
  * @property {string} [name]
  * @property {string} [owner]
  * @property {ApplicationRedirections[]} [redirections]
+ * @property {string} [slug]
  * @property {string} [token]
  * @property {string} [updated_at]
  * @property {ApplicationWebsite} [website]
@@ -6514,13 +6519,13 @@ class PlatformClient {
 /**
  * @typedef ApplicationDetail
  * @property {string} [_id]
- * @property {SecureUrl} banner
- * @property {string} description
+ * @property {SecureUrl} [banner]
+ * @property {string} [description]
  * @property {Domain} [domain]
  * @property {Domain[]} [domains]
- * @property {SecureUrl} favicon
- * @property {SecureUrl} logo
- * @property {SecureUrl} mobile_logo
+ * @property {SecureUrl} [favicon]
+ * @property {SecureUrl} [logo]
+ * @property {SecureUrl} [mobile_logo]
  * @property {string} name
  */
 /**

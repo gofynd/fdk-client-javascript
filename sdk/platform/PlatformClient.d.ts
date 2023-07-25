@@ -1712,7 +1712,7 @@ type PromotionSchedule = {
     start: string;
 };
 type PromotionsResponse = {
-    items?: PromotionListItem;
+    items?: PromotionListItem[];
     page?: Page;
 };
 type PromotionUpdate = {
@@ -4494,14 +4494,18 @@ type LocationCountry = {
     __v?: number;
     _id?: string;
     capital?: string;
+    country_code?: string;
     currency?: string;
     default_currency?: LocationDefaultCurrency;
     default_language?: LocationDefaultLanguage;
     iso2?: string;
     iso3?: string;
+    latitude?: string;
+    longitude?: string;
     name?: string;
     parent?: string;
     phone_code?: string;
+    state_code?: string;
     type?: string;
     uid?: number;
 };
@@ -5498,13 +5502,13 @@ type AppInventoryStores = {
 };
 type ApplicationDetail = {
     _id?: string;
-    banner: SecureUrl;
-    description: string;
+    banner?: SecureUrl;
+    description?: string;
     domain?: Domain;
     domains?: Domain[];
-    favicon: SecureUrl;
-    logo: SecureUrl;
-    mobile_logo: SecureUrl;
+    favicon?: SecureUrl;
+    logo?: SecureUrl;
+    mobile_logo?: SecureUrl;
     name: string;
 };
 type ApplicationInformation = {
