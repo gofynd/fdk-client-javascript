@@ -849,6 +849,14 @@ class PlatformClient {
  * @property {string} coupon_code
  */
 /**
+ * @typedef Article
+ * @property {string} article_id
+ * @property {string} [code]
+ * @property {Object} [meta]
+ * @property {string} [type]
+ * @property {number} [value]
+ */
+/**
  * @typedef ArticlePriceInfo
  * @property {BasePrice} [base]
  * @property {BasePrice} [converted]
@@ -1062,6 +1070,11 @@ class PlatformClient {
  * @property {boolean} [success]
  * @property {string} [uid]
  * @property {string} [user_type]
+ */
+/**
+ * @typedef Collection
+ * @property {string} collected_by
+ * @property {string} refund_by
  */
 /**
  * @typedef CompareObject
@@ -1763,6 +1776,58 @@ class PlatformClient {
  * @property {boolean} [return_allowed]
  */
 /**
+ * @typedef PriceAdjustment
+ * @property {boolean} [allowed_refund]
+ * @property {string} [apply_expiry]
+ * @property {Article[]} article_ids
+ * @property {boolean} article_level_distribution
+ * @property {string} cart_id
+ * @property {number} [cart_value]
+ * @property {Collection} collection
+ * @property {string} [id]
+ * @property {boolean} is_authenticated
+ * @property {string} message
+ * @property {Object} [meta]
+ * @property {string} type
+ * @property {number} value
+ */
+/**
+ * @typedef PriceAdjustmentAdd
+ * @property {boolean} [allowed_refund]
+ * @property {string} [apply_expiry]
+ * @property {Article[]} article_ids
+ * @property {boolean} article_level_distribution
+ * @property {string} cart_id
+ * @property {number} [cart_value]
+ * @property {Collection} collection
+ * @property {string} [created_by]
+ * @property {boolean} is_authenticated
+ * @property {string} message
+ * @property {Object} [meta]
+ * @property {string} type
+ * @property {number} value
+ */
+/**
+ * @typedef PriceAdjustmentResponse
+ * @property {PriceAdjustment} [data]
+ */
+/**
+ * @typedef PriceAdjustmentUpdate
+ * @property {boolean} [allowed_refund]
+ * @property {string} [apply_expiry]
+ * @property {Article[]} article_ids
+ * @property {boolean} article_level_distribution
+ * @property {string} cart_id
+ * @property {number} [cart_value]
+ * @property {Collection} collection
+ * @property {boolean} is_authenticated
+ * @property {string} message
+ * @property {Object} [meta]
+ * @property {string} [modified_by]
+ * @property {string} type
+ * @property {number} value
+ */
+/**
  * @typedef PriceRange
  * @property {number} [max]
  * @property {number} [min]
@@ -1930,7 +1995,7 @@ class PlatformClient {
  */
 /**
  * @typedef PromotionsResponse
- * @property {PromotionListItem[]} [items]
+ * @property {PromotionListItem} [items]
  * @property {Page} [page]
  */
 /**

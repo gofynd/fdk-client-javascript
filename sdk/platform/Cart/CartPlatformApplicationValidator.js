@@ -16,6 +16,12 @@ class CartValidator {
     }).required();
   }
 
+  static addPriceAdjustment() {
+    return Joi.object({
+      body: CartModel.PriceAdjustmentAdd().required(),
+    }).required();
+  }
+
   static applyCoupon() {
     return Joi.object({
       i: Joi.boolean(),
@@ -305,6 +311,12 @@ class CartValidator {
     }).required();
   }
 
+  static removePriceAdjustment() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static selectAddress() {
     return Joi.object({
       cartId: Joi.string().allow(""),
@@ -389,6 +401,13 @@ class CartValidator {
     return Joi.object({
       id: Joi.string().allow("").required(),
       body: CartModel.CouponPartialUpdate().required(),
+    }).required();
+  }
+
+  static updatePriceAdjustment() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      body: CartModel.PriceAdjustmentUpdate().required(),
     }).required();
   }
 

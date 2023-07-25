@@ -143,6 +143,67 @@ class Cart {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {PriceAdjustmentAdd} arg.body
+   * @returns {Promise<PriceAdjustmentResponse>} - Success response
+   * @summary: Create new price adjustment
+   * @description: Create new price adjustment
+   */
+  async addPriceAdjustment({ body } = {}) {
+    const { error } = CartValidator.addPriceAdjustment().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CartValidator.addPriceAdjustment().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for addPriceAdjustment",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/price-adjustment`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = CartModel.PriceAdjustmentResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for addPriceAdjustment",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {boolean} [arg.i] -
    * @param {boolean} [arg.b] -
    * @param {boolean} [arg.p] -
@@ -2890,6 +2951,65 @@ class Cart {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} arg.id -
+   * @returns {Promise<SuccessMessage>} - Success response
+   * @summary: Remove price adjustment
+   * @description: Remove price adjustment
+   */
+  async removePriceAdjustment({ id } = {}) {
+    const { error } = CartValidator.removePriceAdjustment().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CartValidator.removePriceAdjustment().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for removePriceAdjustment",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/price-adjustment/${id}`,
+      query_params,
+      undefined
+    );
+
+    const { error: res_error } = CartModel.SuccessMessage().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for removePriceAdjustment",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} [arg.cartId] -
    * @param {boolean} [arg.buyNow] -
    * @param {boolean} [arg.i] -
@@ -3631,6 +3751,70 @@ class Cart {
       Logger({
         level: "WARN",
         message: "Response Validation Warnnings for updateCouponPartially",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id -
+   * @param {PriceAdjustmentUpdate} arg.body
+   * @returns {Promise<PriceAdjustmentResponse>} - Success response
+   * @summary: Update price adjustment configuration
+   * @description: Update price adjustment configuration
+   */
+  async updatePriceAdjustment({ id, body } = {}) {
+    const { error } = CartValidator.updatePriceAdjustment().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = CartValidator.updatePriceAdjustment().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for updatePriceAdjustment",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/price-adjustment/${id}`,
+      query_params,
+      body
+    );
+
+    const {
+      error: res_error,
+    } = CartModel.PriceAdjustmentResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for updatePriceAdjustment",
       });
       Logger({ level: "WARN", message: res_error });
     }

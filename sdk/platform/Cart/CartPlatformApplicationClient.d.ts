@@ -29,6 +29,16 @@ declare class Cart {
     }): Promise<AddCartDetailResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {PriceAdjustmentAdd} arg.body
+     * @returns {Promise<PriceAdjustmentResponse>} - Success response
+     * @summary: Create new price adjustment
+     * @description: Create new price adjustment
+     */
+    addPriceAdjustment({ body }?: {
+        body: PriceAdjustmentAdd;
+    }): Promise<PriceAdjustmentResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {boolean} [arg.i] -
      * @param {boolean} [arg.b] -
      * @param {boolean} [arg.p] -
@@ -613,6 +623,16 @@ declare class Cart {
     }): Promise<CartDetailResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.id -
+     * @returns {Promise<SuccessMessage>} - Success response
+     * @summary: Remove price adjustment
+     * @description: Remove price adjustment
+     */
+    removePriceAdjustment({ id }?: {
+        id: string;
+    }): Promise<SuccessMessage>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} [arg.cartId] -
      * @param {boolean} [arg.buyNow] -
      * @param {boolean} [arg.i] -
@@ -768,6 +788,18 @@ declare class Cart {
         id: string;
         body: CouponPartialUpdate;
     }): Promise<SuccessMessage>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id -
+     * @param {PriceAdjustmentUpdate} arg.body
+     * @returns {Promise<PriceAdjustmentResponse>} - Success response
+     * @summary: Update price adjustment configuration
+     * @description: Update price adjustment configuration
+     */
+    updatePriceAdjustment({ id, body }?: {
+        id: string;
+        body: PriceAdjustmentUpdate;
+    }): Promise<PriceAdjustmentResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.id -

@@ -2,6 +2,7 @@ export = CartValidator;
 declare class CartValidator {
     static addAddress(): any;
     static addItems(): any;
+    static addPriceAdjustment(): any;
     static applyCoupon(): any;
     static checkCartServiceability(): any;
     static checkoutCart(): any;
@@ -39,6 +40,7 @@ declare class CartValidator {
     static platformUpdateCart(): any;
     static removeAddress(): any;
     static removeCoupon(): any;
+    static removePriceAdjustment(): any;
     static selectAddress(): any;
     static selectPaymentMode(): any;
     static selectPaymentModeV2(): any;
@@ -50,6 +52,7 @@ declare class CartValidator {
     static updateCartWithSharedItems(): any;
     static updateCoupon(): any;
     static updateCouponPartially(): any;
+    static updatePriceAdjustment(): any;
     static updatePromotion(): any;
     static updatePromotionPartially(): any;
     static updateShipments(): any;

@@ -10,6 +10,7 @@ declare class CartModel {
     static AppliedFreeArticles(): any;
     static AppliedPromotion(): any;
     static ApplyCouponRequest(): any;
+    static Article(): any;
     static ArticlePriceInfo(): any;
     static BaseInfo(): any;
     static BasePrice(): any;
@@ -34,6 +35,7 @@ declare class CartModel {
     static CategoryInfo(): any;
     static Charges(): any;
     static CheckCart(): any;
+    static Collection(): any;
     static CompareObject(): any;
     static Coupon(): any;
     static CouponAction(): any;
@@ -109,6 +111,10 @@ declare class CartModel {
     static PlatformUpdateCartRequest(): any;
     static PostOrder(): any;
     static PostOrder1(): any;
+    static PriceAdjustment(): any;
+    static PriceAdjustmentAdd(): any;
+    static PriceAdjustmentResponse(): any;
+    static PriceAdjustmentUpdate(): any;
     static PriceRange(): any;
     static ProductAction(): any;
     static ProductArticle(): any;
