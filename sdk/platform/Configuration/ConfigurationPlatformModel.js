@@ -187,7 +187,7 @@ class ConfigurationModel {
       business_highlights: ConfigurationModel.BusinessHighlights(),
       copyright_text: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
-      links: ConfigurationModel.Links(),
+      links: Joi.array().items(ConfigurationModel.Links()),
       social_links: ConfigurationModel.SocialLinks(),
       support: ConfigurationModel.InformationSupport(),
       updated_at: Joi.string().allow(""),
@@ -720,7 +720,7 @@ class ConfigurationModel {
       city: Joi.string().allow(""),
       country: Joi.string().allow(""),
       loc: Joi.string().allow(""),
-      phone: ConfigurationModel.InformationPhone(),
+      phone: Joi.array().items(ConfigurationModel.InformationPhone()),
       pincode: Joi.number(),
     });
   }

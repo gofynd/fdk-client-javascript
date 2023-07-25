@@ -5277,7 +5277,7 @@ Success
  | business_highlights | [BusinessHighlights](#BusinessHighlights)? |  yes  |  |
  | copyright_text | string? |  yes  | Copyright statement usually seen at the site's footer |
  | created_at | string? |  yes  | ISO 8601 timestamp of creation of the application information |
- | links | [Links](#Links)? |  yes  |  |
+ | links | [[Links](#Links)]? |  yes  |  |
  | social_links | [SocialLinks](#SocialLinks)? |  yes  |  |
  | support | [InformationSupport](#InformationSupport)? |  yes  |  |
  | updated_at | string? |  yes  | ISO 8601 timestamp of updation of the application information |
@@ -6106,7 +6106,7 @@ Success
  | city | string? |  yes  | Name of the city, e.g. Mumbai |
  | country | string? |  yes  | Name of the country, e.g. India |
  | loc | string? |  yes  | Co-ordinates of the location |
- | phone | [InformationPhone](#InformationPhone)? |  yes  |  |
+ | phone | [[InformationPhone](#InformationPhone)]? |  yes  |  |
  | pincode | number? |  yes  | 6-digit PIN Code of the city, e.g. 400001 |
  
 

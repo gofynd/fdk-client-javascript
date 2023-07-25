@@ -1648,7 +1648,11 @@ class PlatformApplicationClient {
 /** @typedef PaymentStatusObject */
 /** @typedef PaymentStatusUpdateRequest */
 /** @typedef PaymentStatusUpdateResponse */
+/** @typedef Payout */
+/** @typedef PayoutAggregator */
 /** @typedef PayoutBankDetails */
+/** @typedef PayoutCustomer */
+/** @typedef PayoutMoreAttributes */
 /** @typedef PayoutRequest */
 /** @typedef PayoutResponse */
 /** @typedef PayoutsResponse */

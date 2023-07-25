@@ -851,70 +851,73 @@ payouts response object
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-[
-  {
-    "unique_transfer_no": "d2ff79fcd3459831864824da8c9d7e5f",
-    "more_attributes": {
-      "city": "",
-      "state": "",
-      "country": "",
-      "bank_name": "YES",
-      "ifsc_code": "IFSCYES101",
-      "account_no": "9876541234",
-      "branch_name": "Mumbai",
-      "account_type": "current",
-      "account_holder": "Vikas Kumar"
+{
+  "items": [
+    {
+      "unique_transfer_no": "d2ff79fcd3459831864824da8c9d7e5f",
+      "more_attributes": {
+        "city": "",
+        "state": "",
+        "country": "",
+        "bank_name": "YES",
+        "ifsc_code": "IFSCYES101",
+        "account_no": "9876541234",
+        "branch_name": "Mumbai",
+        "account_type": "current",
+        "account_holder": "Vikas Kumar"
+      },
+      "transfer_type": "bank",
+      "is_default": true,
+      "is_active": true,
+      "customers": {
+        "id": 2,
+        "name": "reliance retail",
+        "mobile": "1234567890",
+        "email": "reliance@gmail.com",
+        "unique_external_id": "company:1"
+      },
+      "payouts_aggregators": [
+        {
+          "payout_details_id": 888,
+          "aggregator_id": 3,
+          "aggregator_fund_id": null
+        }
+      ]
     },
-    "transfer_type": "bank",
-    "is_default": true,
-    "is_active": true,
-    "customers": {
-      "id": 2,
-      "name": "reliance retail",
-      "mobile": "1234567890",
-      "email": "reliance@gmail.com",
-      "unique_external_id": "company:1"
-    },
-    "payouts_aggregators": [
-      {
-        "payout_details_id": 888,
-        "aggregator_id": 3,
-        "aggregator_fund_id": null
-      }
-    ]
-  },
-  {
-    "unique_transfer_no": "e388c1c5df4933fa01f6da9f92595589",
-    "more_attributes": {
-      "city": "",
-      "state": "",
-      "country": "",
-      "bank_name": "SBI",
-      "ifsc_code": "SBIN0011513",
-      "account_no": "9876543210",
-      "branch_name": "Mumbai",
-      "account_type": "saving",
-      "account_holder": "Vikas Kumar"
-    },
-    "transfer_type": "bank",
-    "is_default": false,
-    "is_active": true,
-    "customers": {
-      "id": 2,
-      "name": "reliance retail",
-      "mobile": "1234567890",
-      "email": "reliance@gmail.com",
-      "unique_external_id": "company:1"
-    },
-    "payouts_aggregators": [
-      {
-        "payout_details_id": 891,
-        "aggregator_id": 3,
-        "aggregator_fund_id": null
-      }
-    ]
-  }
-]
+    {
+      "unique_transfer_no": "e388c1c5df4933fa01f6da9f92595589",
+      "more_attributes": {
+        "city": "",
+        "state": "",
+        "country": "",
+        "bank_name": "SBI",
+        "ifsc_code": "SBIN0011513",
+        "account_no": "9876543210",
+        "branch_name": "Mumbai",
+        "account_type": "saving",
+        "account_holder": "Vikas Kumar"
+      },
+      "transfer_type": "bank",
+      "is_default": false,
+      "is_active": true,
+      "customers": {
+        "id": 2,
+        "name": "reliance retail",
+        "mobile": "1234567890",
+        "email": "reliance@gmail.com",
+        "unique_external_id": "company:1"
+      },
+      "payouts_aggregators": [
+        {
+          "payout_details_id": 891,
+          "aggregator_id": 3,
+          "aggregator_fund_id": null
+        }
+      ]
+    }
+  ],
+  "success": true
+}
 ```
 </details>
 
@@ -6360,6 +6363,32 @@ Bank details on correct Ifsc Code
 
 ---
 
+#### [Payout](#Payout)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | customers | [PayoutCustomer](#PayoutCustomer) |  no  | customers details object |
+ | is_active | boolean |  no  | Enable/DIsable Flag Payout |
+ | is_default | boolean |  no  | default or not  |
+ | more_attributes | [PayoutMoreAttributes](#PayoutMoreAttributes) |  no  | bank details object |
+ | payouts_aggregators | [[PayoutAggregator](#PayoutAggregator)]? |  yes  |  |
+ | transfer_type | string |  no  | transafer type |
+ | unique_transfer_no | string |  no  | display priority of the payment mode |
+ 
+
+---
+
+#### [PayoutAggregator](#PayoutAggregator)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator_fund_id | number? |  yes  | aggregator_fund_id |
+ | aggregator_id | number? |  yes  | aggregator_id |
+ | payout_details_id | number? |  yes  | payout_details_id |
+ 
+
+---
+
 #### [PayoutBankDetails](#PayoutBankDetails)
 
  | Properties | Type | Nullable | Description |
@@ -6374,6 +6403,36 @@ Bank details on correct Ifsc Code
  | ifsc_code | string |  no  |  |
  | pincode | number? |  yes  |  |
  | state | string? |  yes  |  |
+ 
+
+---
+
+#### [PayoutCustomer](#PayoutCustomer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | email | string? |  yes  | Customer Email |
+ | id | number? |  yes  | Customer ID |
+ | mobile | string? |  yes  | Customer Mobile No |
+ | name | string? |  yes  | Customer Name |
+ | unique_external_id | string? |  yes  | unique_external_id |
+ 
+
+---
+
+#### [PayoutMoreAttributes](#PayoutMoreAttributes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | account_holder | string? |  yes  | Account Holder Name |
+ | account_no | string? |  yes  | Account Number |
+ | account_type | string? |  yes  | Account Type Saving/Current |
+ | bank_name | string? |  yes  | Name of Bank |
+ | branch_name | string? |  yes  | Branch Name |
+ | city | string? |  yes  | City |
+ | country | string? |  yes  | Country |
+ | ifsc_code | string? |  yes  | IFSC Code |
+ | state | string? |  yes  | State |
  
 
 ---
@@ -6414,13 +6473,8 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | customers | string |  no  | customers details object |
- | is_active | boolean |  no  | Enable/DIsable Flag Payout |
- | is_default | boolean |  no  | default or not  |
- | more_attributes | string |  no  | bank details object |
- | payouts_aggregators | [string] |  no  | payout aggregator object |
- | transfer_type | string |  no  | transafer type |
- | unique_transfer_no | string |  no  | display priority of the payment mode |
+ | items | [[Payout](#Payout)] |  no  | contains list of PayoutSchema |
+ | success | boolean |  no  | Response is successful or not |
  
 
 ---
