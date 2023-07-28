@@ -21022,7 +21022,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | unit | any? |  yes  | The unit of measurement used for the net quantity of the product. |
+ | unit | string? |  yes  | The unit of measurement used for the net quantity of the product. |
  | value | number? |  yes  | The value of the net quantity of the product. |
  
 
@@ -22332,7 +22332,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | address | [string]? |  yes  |  |
- | name | any |  no  |  |
+ | name | string |  no  |  |
  | type | string? |  yes  |  |
  
 

@@ -4075,7 +4075,7 @@ class PlatformClient {
  */
 /**
  * @typedef NetQuantity
- * @property {Object} [unit]
+ * @property {string} [unit]
  * @property {number} [value]
  */
 /**
@@ -4940,7 +4940,7 @@ class PlatformClient {
 /**
  * @typedef Trader
  * @property {string[]} [address]
- * @property {Object} name
+ * @property {string} name
  * @property {string} [type]
  */
 /**
@@ -10795,7 +10795,7 @@ class PlatformClient {
  * @property {number} gst_fee
  * @property {string} [gst_tag]
  * @property {number} [gst_tax_percentage]
- * @property {string} gstin_code
+ * @property {string} [gstin_code]
  * @property {string} [hsn_code]
  * @property {string} [hsn_code_id]
  * @property {string} [igst_gst_fee]

@@ -1008,7 +1008,7 @@ class OrderModel {
       gst_fee: Joi.number().required(),
       gst_tag: Joi.string().allow(""),
       gst_tax_percentage: Joi.number(),
-      gstin_code: Joi.string().allow("").allow(null).required(),
+      gstin_code: Joi.string().allow("").allow(null),
       hsn_code: Joi.string().allow(""),
       hsn_code_id: Joi.string().allow(""),
       igst_gst_fee: Joi.string().allow(""),

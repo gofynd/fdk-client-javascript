@@ -5980,7 +5980,7 @@ Verify OTP
  | gst_fee | number |  no  |  |
  | gst_tag | string? |  yes  |  |
  | gst_tax_percentage | number? |  yes  |  |
- | gstin_code | string |  no  |  |
+ | gstin_code | string? |  yes  |  |
  | hsn_code | string? |  yes  |  |
  | hsn_code_id | string? |  yes  |  |
  | igst_gst_fee | string? |  yes  |  |

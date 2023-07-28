@@ -3537,7 +3537,7 @@ type MOQData = {
     minimum?: number;
 };
 type NetQuantity = {
-    unit?: any;
+    unit?: string;
     value?: number;
 };
 type NetQuantityResponse = {
@@ -4304,7 +4304,7 @@ type ThirdLevelChild = {
 };
 type Trader = {
     address?: string[];
-    name: any;
+    name: string;
     type?: string;
 };
 type Trader1 = {
@@ -9013,7 +9013,7 @@ type GSTDetailsData = {
     gst_fee: number;
     gst_tag?: string;
     gst_tax_percentage?: number;
-    gstin_code: string;
+    gstin_code?: string;
     hsn_code?: string;
     hsn_code_id?: string;
     igst_gst_fee?: string;
