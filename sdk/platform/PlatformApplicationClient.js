@@ -165,6 +165,7 @@ class PlatformApplicationClient {
 /** @typedef AppliedFreeArticles */
 /** @typedef AppliedPromotion */
 /** @typedef ApplyCouponRequest */
+/** @typedef Article */
 /** @typedef ArticlePriceInfo */
 /** @typedef BaseInfo */
 /** @typedef BasePrice */
@@ -189,6 +190,7 @@ class PlatformApplicationClient {
 /** @typedef CategoryInfo */
 /** @typedef Charges */
 /** @typedef CheckCart */
+/** @typedef Collection */
 /** @typedef CompareObject */
 /** @typedef Coupon */
 /** @typedef CouponAction */
@@ -264,6 +266,10 @@ class PlatformApplicationClient {
 /** @typedef PlatformUpdateCartRequest */
 /** @typedef PostOrder */
 /** @typedef PostOrder1 */
+/** @typedef PriceAdjustment */
+/** @typedef PriceAdjustmentAdd */
+/** @typedef PriceAdjustmentResponse */
+/** @typedef PriceAdjustmentUpdate */
 /** @typedef PriceRange */
 /** @typedef ProductAction */
 /** @typedef ProductArticle */
@@ -1642,7 +1648,11 @@ class PlatformApplicationClient {
 /** @typedef PaymentStatusObject */
 /** @typedef PaymentStatusUpdateRequest */
 /** @typedef PaymentStatusUpdateResponse */
+/** @typedef Payout */
+/** @typedef PayoutAggregator */
 /** @typedef PayoutBankDetails */
+/** @typedef PayoutCustomer */
+/** @typedef PayoutMoreAttributes */
 /** @typedef PayoutRequest */
 /** @typedef PayoutResponse */
 /** @typedef PayoutsResponse */

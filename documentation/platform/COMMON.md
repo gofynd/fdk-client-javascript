@@ -338,14 +338,18 @@ Success
  | __v | number? |  yes  |  |
  | _id | string? |  yes  |  |
  | capital | string? |  yes  |  |
+ | country_code | string? |  yes  |  |
  | currency | string? |  yes  |  |
  | default_currency | [LocationDefaultCurrency](#LocationDefaultCurrency)? |  yes  |  |
  | default_language | [LocationDefaultLanguage](#LocationDefaultLanguage)? |  yes  |  |
  | iso2 | string? |  yes  |  |
  | iso3 | string? |  yes  |  |
+ | latitude | string? |  yes  |  |
+ | longitude | string? |  yes  |  |
  | name | string? |  yes  |  |
  | parent | string? |  yes  |  |
  | phone_code | string? |  yes  |  |
+ | state_code | string? |  yes  |  |
  | type | string? |  yes  |  |
  | uid | number? |  yes  |  |
  
@@ -377,7 +381,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [string]? |  yes  |  |
+ | items | [[LocationCountry](#LocationCountry)]? |  yes  |  |
  
 
 ---

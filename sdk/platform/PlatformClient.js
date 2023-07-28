@@ -849,6 +849,14 @@ class PlatformClient {
  * @property {string} coupon_code
  */
 /**
+ * @typedef Article
+ * @property {string} article_id
+ * @property {string} [code]
+ * @property {Object} [meta]
+ * @property {string} [type]
+ * @property {number} [value]
+ */
+/**
  * @typedef ArticlePriceInfo
  * @property {BasePrice} [base]
  * @property {BasePrice} [converted]
@@ -1062,6 +1070,11 @@ class PlatformClient {
  * @property {boolean} [success]
  * @property {string} [uid]
  * @property {string} [user_type]
+ */
+/**
+ * @typedef Collection
+ * @property {string} collected_by
+ * @property {string} refund_by
  */
 /**
  * @typedef CompareObject
@@ -1761,6 +1774,58 @@ class PlatformClient {
  * @typedef PostOrder1
  * @property {boolean} [cancellation_allowed]
  * @property {boolean} [return_allowed]
+ */
+/**
+ * @typedef PriceAdjustment
+ * @property {boolean} [allowed_refund]
+ * @property {string} [apply_expiry]
+ * @property {Article[]} article_ids
+ * @property {boolean} article_level_distribution
+ * @property {string} cart_id
+ * @property {number} [cart_value]
+ * @property {Collection} collection
+ * @property {string} [id]
+ * @property {boolean} is_authenticated
+ * @property {string} message
+ * @property {Object} [meta]
+ * @property {string} type
+ * @property {number} value
+ */
+/**
+ * @typedef PriceAdjustmentAdd
+ * @property {boolean} [allowed_refund]
+ * @property {string} [apply_expiry]
+ * @property {Article[]} article_ids
+ * @property {boolean} article_level_distribution
+ * @property {string} cart_id
+ * @property {number} [cart_value]
+ * @property {Collection} collection
+ * @property {string} [created_by]
+ * @property {boolean} is_authenticated
+ * @property {string} message
+ * @property {Object} [meta]
+ * @property {string} type
+ * @property {number} value
+ */
+/**
+ * @typedef PriceAdjustmentResponse
+ * @property {PriceAdjustment} [data]
+ */
+/**
+ * @typedef PriceAdjustmentUpdate
+ * @property {boolean} [allowed_refund]
+ * @property {string} [apply_expiry]
+ * @property {Article[]} article_ids
+ * @property {boolean} article_level_distribution
+ * @property {string} cart_id
+ * @property {number} [cart_value]
+ * @property {Collection} collection
+ * @property {boolean} is_authenticated
+ * @property {string} message
+ * @property {Object} [meta]
+ * @property {string} [modified_by]
+ * @property {string} type
+ * @property {number} value
  */
 /**
  * @typedef PriceRange
@@ -5104,14 +5169,18 @@ class PlatformClient {
  * @property {number} [__v]
  * @property {string} [_id]
  * @property {string} [capital]
+ * @property {string} [country_code]
  * @property {string} [currency]
  * @property {LocationDefaultCurrency} [default_currency]
  * @property {LocationDefaultLanguage} [default_language]
  * @property {string} [iso2]
  * @property {string} [iso3]
+ * @property {string} [latitude]
+ * @property {string} [longitude]
  * @property {string} [name]
  * @property {string} [parent]
  * @property {string} [phone_code]
+ * @property {string} [state_code]
  * @property {string} [type]
  * @property {number} [uid]
  */
@@ -6434,6 +6503,7 @@ class PlatformClient {
  * @property {string} [name]
  * @property {string} [owner]
  * @property {ApplicationRedirections[]} [redirections]
+ * @property {string} [slug]
  * @property {string} [token]
  * @property {string} [updated_at]
  * @property {ApplicationWebsite} [website]
@@ -6449,13 +6519,13 @@ class PlatformClient {
 /**
  * @typedef ApplicationDetail
  * @property {string} [_id]
- * @property {SecureUrl} banner
- * @property {string} description
+ * @property {SecureUrl} [banner]
+ * @property {string} [description]
  * @property {Domain} [domain]
  * @property {Domain[]} [domains]
- * @property {SecureUrl} favicon
- * @property {SecureUrl} logo
- * @property {SecureUrl} mobile_logo
+ * @property {SecureUrl} [favicon]
+ * @property {SecureUrl} [logo]
+ * @property {SecureUrl} [mobile_logo]
  * @property {string} name
  */
 /**
@@ -6467,7 +6537,7 @@ class PlatformClient {
  * @property {BusinessHighlights} [business_highlights]
  * @property {string} [copyright_text]
  * @property {string} [created_at]
- * @property {Links} [links]
+ * @property {Links[]} [links]
  * @property {SocialLinks} [social_links]
  * @property {InformationSupport} [support]
  * @property {string} [updated_at]
@@ -6926,7 +6996,7 @@ class PlatformClient {
  * @property {string} [city]
  * @property {string} [country]
  * @property {string} [loc]
- * @property {InformationPhone} [phone]
+ * @property {InformationPhone[]} [phone]
  * @property {number} [pincode]
  */
 /**
@@ -12918,6 +12988,22 @@ class PlatformClient {
  * @property {boolean} [success]
  */
 /**
+ * @typedef Payout
+ * @property {PayoutCustomer} customers
+ * @property {boolean} is_active
+ * @property {boolean} is_default
+ * @property {PayoutMoreAttributes} more_attributes
+ * @property {PayoutAggregator[]} [payouts_aggregators]
+ * @property {string} transfer_type
+ * @property {string} unique_transfer_no
+ */
+/**
+ * @typedef PayoutAggregator
+ * @property {number} [aggregator_fund_id]
+ * @property {number} [aggregator_id]
+ * @property {number} [payout_details_id]
+ */
+/**
  * @typedef PayoutBankDetails
  * @property {string} [account_holder]
  * @property {string} [account_no]
@@ -12928,6 +13014,26 @@ class PlatformClient {
  * @property {string} [country]
  * @property {string} ifsc_code
  * @property {number} [pincode]
+ * @property {string} [state]
+ */
+/**
+ * @typedef PayoutCustomer
+ * @property {string} [email]
+ * @property {number} [id]
+ * @property {string} [mobile]
+ * @property {string} [name]
+ * @property {string} [unique_external_id]
+ */
+/**
+ * @typedef PayoutMoreAttributes
+ * @property {string} [account_holder]
+ * @property {string} [account_no]
+ * @property {string} [account_type]
+ * @property {string} [bank_name]
+ * @property {string} [branch_name]
+ * @property {string} [city]
+ * @property {string} [country]
+ * @property {string} [ifsc_code]
  * @property {string} [state]
  */
 /**
@@ -12954,13 +13060,8 @@ class PlatformClient {
  */
 /**
  * @typedef PayoutsResponse
- * @property {Object} customers
- * @property {boolean} is_active
- * @property {boolean} is_default
- * @property {Object} more_attributes
- * @property {Object[]} payouts_aggregators
- * @property {string} transfer_type
- * @property {Object} unique_transfer_no
+ * @property {Payout[]} items
+ * @property {boolean} success
  */
 /**
  * @typedef PollingPaymentLinkResponse

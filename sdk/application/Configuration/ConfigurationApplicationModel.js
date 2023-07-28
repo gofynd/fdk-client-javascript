@@ -93,13 +93,13 @@ class ConfigurationModel {
   static ApplicationDetail() {
     return Joi.object({
       _id: Joi.string().allow(""),
-      banner: ConfigurationModel.SecureUrl().required(),
-      description: Joi.string().allow("").required(),
+      banner: ConfigurationModel.SecureUrl(),
+      description: Joi.string().allow(""),
       domain: ConfigurationModel.Domain(),
       domains: Joi.array().items(ConfigurationModel.Domain()),
-      favicon: ConfigurationModel.SecureUrl().required(),
-      logo: ConfigurationModel.SecureUrl().required(),
-      mobile_logo: ConfigurationModel.SecureUrl().required(),
+      favicon: ConfigurationModel.SecureUrl(),
+      logo: ConfigurationModel.SecureUrl(),
+      mobile_logo: ConfigurationModel.SecureUrl(),
       name: Joi.string().allow("").required(),
     });
   }

@@ -62,7 +62,11 @@ declare class PaymentModel {
     static PaymentStatusObject(): any;
     static PaymentStatusUpdateRequest(): any;
     static PaymentStatusUpdateResponse(): any;
+    static Payout(): any;
+    static PayoutAggregator(): any;
     static PayoutBankDetails(): any;
+    static PayoutCustomer(): any;
+    static PayoutMoreAttributes(): any;
     static PayoutRequest(): any;
     static PayoutResponse(): any;
     static PayoutsResponse(): any;

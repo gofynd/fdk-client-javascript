@@ -10,6 +10,7 @@ Cart APIs
 
 * [addAddress](#addaddress)
 * [addItems](#additems)
+* [addPriceAdjustment](#addpriceadjustment)
 * [applyCoupon](#applycoupon)
 * [checkCartServiceability](#checkcartserviceability)
 * [checkoutCart](#checkoutcart)
@@ -47,6 +48,7 @@ Cart APIs
 * [platformUpdateCart](#platformupdatecart)
 * [removeAddress](#removeaddress)
 * [removeCoupon](#removecoupon)
+* [removePriceAdjustment](#removepriceadjustment)
 * [selectAddress](#selectaddress)
 * [selectPaymentMode](#selectpaymentmode)
 * [selectPaymentModeV2](#selectpaymentmodev2)
@@ -58,6 +60,7 @@ Cart APIs
 * [updateCartWithSharedItems](#updatecartwithshareditems)
 * [updateCoupon](#updatecoupon)
 * [updateCouponPartially](#updatecouponpartially)
+* [updatePriceAdjustment](#updatepriceadjustment)
 * [updatePromotion](#updatepromotion)
 * [updatePromotionPartially](#updatepromotionpartially)
 * [updateShipments](#updateshipments)
@@ -822,6 +825,87 @@ Success. Returns a cart object as shown below. Refer `AddCartDetailResponse` for
 ```
 </details>
 
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### addPriceAdjustment
+Create new price adjustment
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").cart.addPriceAdjustment({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").cart.addPriceAdjustment({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [PriceAdjustmentAdd](#PriceAdjustmentAdd) | yes | Request body |
+
+
+Create new price adjustment
+
+*Returned Response:*
+
+
+
+
+[PriceAdjustmentResponse](#PriceAdjustmentResponse)
+
+Price Adjustment Created successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "cc8154592ccb42c88b481ce4c21ab602",
+    "cart_value": 250,
+    "cart_id": "fa45f5cbd3764a6297bfa79d6bedf71c",
+    "is_authenticated": true,
+    "article_ids": [
+      {
+        "article_id": "f322167ce70f4dca8f8ac0efdc496abe",
+        "value": 100,
+        "code": "abs120",
+        "meta": {}
+      }
+    ],
+    "type": "discount",
+    "message": "Fynd Campaign 100 Rs off",
+    "value": 100,
+    "article_level_distribution": true,
+    "allow_refund": true,
+    "meta": {},
+    "collection": {
+      "collected_by": "FYND",
+      "refund_by": "FYND"
+    }
+  }
+}
+```
 </details>
 
 
@@ -8899,6 +8983,65 @@ Success. Returns coupons removed from the cart along with item details and price
 ---
 
 
+### removePriceAdjustment
+Remove price adjustment
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").cart.removePriceAdjustment({  id : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").cart.removePriceAdjustment({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes |  |  
+
+
+
+Remove price adjustment
+
+*Returned Response:*
+
+
+
+
+[SuccessMessage](#SuccessMessage)
+
+Price Adjustment data Removed successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "Price Adjustment removed successfully"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### selectAddress
 Select an address from available addresses
 
@@ -11528,6 +11671,90 @@ Coupon updated successfully
 ---
 
 
+### updatePriceAdjustment
+Update price adjustment configuration
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").cart.updatePriceAdjustment({  id : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").cart.updatePriceAdjustment({  id : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes |  |  
+| body | [PriceAdjustmentUpdate](#PriceAdjustmentUpdate) | yes | Request body |
+
+
+Update price adjustment configuration
+
+*Returned Response:*
+
+
+
+
+[PriceAdjustmentResponse](#PriceAdjustmentResponse)
+
+Price Adjustment Updated successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "cc8154592ccb42c88b481ce4c21ab602",
+    "cart_value": 250,
+    "cart_id": "fa45f5cbd3764a6297bfa79d6bedf71c",
+    "is_authenticated": true,
+    "article_ids": [
+      {
+        "article_id": "f322167ce70f4dca8f8ac0efdc496abe",
+        "value": 100,
+        "code": "abs120",
+        "meta": {}
+      }
+    ],
+    "type": "discount",
+    "message": "Fynd Campaign 100 Rs off",
+    "value": 100,
+    "article_level_distribution": true,
+    "allow_refund": true,
+    "meta": {},
+    "collection": {
+      "collected_by": "FYND",
+      "refund_by": "FYND"
+    }
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### updatePromotion
 Update existing promotion configuration
 
@@ -12750,6 +12977,19 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
+#### [Article](#Article)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | article_id | string |  no  |  |
+ | code | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | value | number? |  yes  |  |
+ 
+
+---
+
 #### [ArticlePriceInfo](#ArticlePriceInfo)
 
  | Properties | Type | Nullable | Description |
@@ -13081,6 +13321,16 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | success | boolean? |  yes  |  |
  | uid | string? |  yes  |  |
  | user_type | string? |  yes  |  |
+ 
+
+---
+
+#### [Collection](#Collection)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | collected_by | string |  no  |  |
+ | refund_by | string |  no  |  |
  
 
 ---
@@ -14157,6 +14407,78 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | ---------- | ---- | -------- | ----------- |
  | cancellation_allowed | boolean? |  yes  |  |
  | return_allowed | boolean? |  yes  |  |
+ 
+
+---
+
+#### [PriceAdjustment](#PriceAdjustment)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | allowed_refund | boolean? |  yes  |  |
+ | apply_expiry | string? |  yes  |  |
+ | article_ids | [[Article](#Article)] |  no  |  |
+ | article_level_distribution | boolean |  no  |  |
+ | cart_id | string |  no  |  |
+ | cart_value | number? |  yes  |  |
+ | collection | [Collection](#Collection) |  no  |  |
+ | id | string? |  yes  |  |
+ | is_authenticated | boolean |  no  |  |
+ | message | string |  no  |  |
+ | meta | string? |  yes  |  |
+ | type | string |  no  |  |
+ | value | number |  no  |  |
+ 
+
+---
+
+#### [PriceAdjustmentAdd](#PriceAdjustmentAdd)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | allowed_refund | boolean? |  yes  |  |
+ | apply_expiry | string? |  yes  |  |
+ | article_ids | [[Article](#Article)] |  no  |  |
+ | article_level_distribution | boolean |  no  |  |
+ | cart_id | string |  no  |  |
+ | cart_value | number? |  yes  |  |
+ | collection | [Collection](#Collection) |  no  |  |
+ | created_by | string? |  yes  |  |
+ | is_authenticated | boolean |  no  |  |
+ | message | string |  no  |  |
+ | meta | string? |  yes  |  |
+ | type | string |  no  |  |
+ | value | number |  no  |  |
+ 
+
+---
+
+#### [PriceAdjustmentResponse](#PriceAdjustmentResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [PriceAdjustment](#PriceAdjustment)? |  yes  |  |
+ 
+
+---
+
+#### [PriceAdjustmentUpdate](#PriceAdjustmentUpdate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | allowed_refund | boolean? |  yes  |  |
+ | apply_expiry | string? |  yes  |  |
+ | article_ids | [[Article](#Article)] |  no  |  |
+ | article_level_distribution | boolean |  no  |  |
+ | cart_id | string |  no  |  |
+ | cart_value | number? |  yes  |  |
+ | collection | [Collection](#Collection) |  no  |  |
+ | is_authenticated | boolean |  no  |  |
+ | message | string |  no  |  |
+ | meta | string? |  yes  |  |
+ | modified_by | string? |  yes  |  |
+ | type | string |  no  |  |
+ | value | number |  no  |  |
  
 
 ---
