@@ -39,6 +39,42 @@ class LogisticModel {
       transport_mode: Joi.string().allow(""),
     });
   }
+  static ErrorResponse() {
+    return Joi.object({
+      error: Joi.string().allow(""),
+    });
+  }
+  static GetCountries() {
+    return Joi.object({
+      items: Joi.array().items(Joi.any()),
+      page: Joi.any(),
+    });
+  }
+  static GetCountry() {
+    return Joi.object({
+      actions: Joi.any(),
+      currency: Joi.string().allow(""),
+      hierarchy: Joi.any(),
+      ios2: Joi.string().allow(""),
+      ios3: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      phone_code: Joi.string().allow(""),
+      sub_type: Joi.string().allow(""),
+      timezones: Joi.array().items(Joi.string().allow("")),
+      uid: Joi.string().allow(""),
+    });
+  }
+  static GetLocalities() {
+    return Joi.object({
+      page: LogisticModel.Page(),
+      regions: Joi.array().items(LogisticModel.Locality()),
+    });
+  }
+  static GetLocality() {
+    return Joi.object({
+      regions: LogisticModel.Locality(),
+    });
+  }
   static GetZoneFromPincodeViewRequest() {
     return Joi.object({
       country: Joi.string().allow("").required(),
@@ -51,9 +87,38 @@ class LogisticModel {
       zones: Joi.array().items(Joi.string().allow("")).required(),
     });
   }
+  static Locality() {
+    return Joi.object({
+      display_name: Joi.string().allow(""),
+      is_active: Joi.boolean(),
+      logistics: LogisticModel.Logistics(),
+      meta: Joi.any(),
+      name: Joi.string().allow(""),
+      parent_id: Joi.array().items(Joi.string().allow("")),
+      sub_type: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      uid: Joi.string().allow(""),
+    });
+  }
+  static Logistics() {
+    return Joi.object({
+      dp: Joi.any(),
+    });
+  }
   static LogisticsResponse() {
     return Joi.object({
       dp: Joi.object().pattern(/\S/, LogisticModel.DP()),
+    });
+  }
+  static Page() {
+    return Joi.object({
+      current: Joi.number(),
+      has_next: Joi.boolean(),
+      has_previous: Joi.boolean(),
+      item_total: Joi.number(),
+      next_id: Joi.string().allow(""),
+      size: Joi.number(),
+      type: Joi.string().allow("").required(),
     });
   }
   static PincodeApiResponse() {

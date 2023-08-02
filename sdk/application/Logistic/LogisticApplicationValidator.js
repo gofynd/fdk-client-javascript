@@ -6,6 +6,37 @@ class LogisticValidator {
     return Joi.object({});
   }
 
+  static getCountries() {
+    return Joi.object({
+      onboarding: Joi.boolean(),
+    });
+  }
+
+  static getCountry() {
+    return Joi.object({
+      countryIsoCode: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getLocalities() {
+    return Joi.object({
+      localityType: Joi.string().allow("").required(),
+      country: Joi.string().allow(""),
+      state: Joi.string().allow(""),
+      city: Joi.string().allow(""),
+    }).required();
+  }
+
+  static getLocality() {
+    return Joi.object({
+      localityType: Joi.string().allow("").required(),
+      localityValue: Joi.string().allow("").required(),
+      country: Joi.string().allow(""),
+      state: Joi.string().allow(""),
+      city: Joi.string().allow(""),
+    }).required();
+  }
+
   static getOptimalLocations() {
     return Joi.object({
       body: LogisticModel.ReAssignStoreRequest().required(),

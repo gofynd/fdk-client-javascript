@@ -4,6 +4,10 @@ declare class Logistic {
     _conf: any;
     _relativeUrls: {
         getAllCountries: string;
+        getCountries: string;
+        getCountry: string;
+        getLocalities: string;
+        getLocality: string;
         getOptimalLocations: string;
         getPincodeCity: string;
         getPincodeZones: string;
@@ -18,6 +22,69 @@ declare class Logistic {
      * @description: Get all countries
      */
     getAllCountries({}?: any): Promise<CountryListResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {boolean} [arg.onboarding] - Only fetch countries which allowed
+     *   for onboard on Platform.
+     * @returns {Promise<GetCountries>} - Success response
+     * @summary: Get all countries and associated data.
+     * @description: Retrieve of all countries.
+     */
+    getCountries({ onboarding }?: {
+        onboarding?: boolean;
+    }): Promise<GetCountries>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.countryIsoCode - The `country_iso_code` is ISO-2
+     *   (alpha-2) code for the country.
+     * @returns {Promise<GetCountry>} - Success response
+     * @summary: Get single country and associated data.
+     * @description: Retrieve data for a single country and address format.
+     */
+    getCountry({ countryIsoCode }?: {
+        countryIsoCode: string;
+    }): Promise<GetCountry>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.localityType - A `locality_type` contains unique
+     *   geographical division.
+     * @param {string} [arg.country] - A `country` contains a specific value of
+     *   the country iso2 code.
+     * @param {string} [arg.state] - A `state` contains a specific value of the
+     *   state, province.
+     * @param {string} [arg.city] - A `city` contains a specific value of the city.
+     * @returns {Promise<GetLocalities>} - Success response
+     * @summary: Get Localities.
+     * @description: Get Localities data.
+     */
+    getLocalities({ localityType, country, state, city }?: {
+        localityType: string;
+        country?: string;
+        state?: string;
+        city?: string;
+    }): Promise<GetLocalities>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.localityType - A `locality_type` contains value
+     *   geographical division.
+     * @param {string} arg.localityValue - A `locality_value` contains a
+     *   specific value of the locality.
+     * @param {string} [arg.country] - A `country` contains a specific value of
+     *   the country iso2 code.
+     * @param {string} [arg.state] - A `state` contains a specific value of the
+     *   state, province.
+     * @param {string} [arg.city] - A `city` contains a specific value of the city.
+     * @returns {Promise<GetLocality>} - Success response
+     * @summary: Get Locality API
+     * @description: Get Locality data
+     */
+    getLocality({ localityType, localityValue, country, state, city, }?: {
+        localityType: string;
+        localityValue: string;
+        country?: string;
+        state?: string;
+        city?: string;
+    }): Promise<GetLocality>;
     /**
      * @param {Object} arg - Arg object.
      * @param {ReAssignStoreRequest} arg.body

@@ -11,7 +11,7 @@
 * [Content](CONTENT.md) - Content System 
 * [FileStorage](FILESTORAGE.md) - File Storage 
 * [Lead](LEAD.md) - Handles communication between Staff and Users 
-* [Logistic](LOGISTIC.md) - Logistics Promise Engine APIs allows you to configure zone, pincode, TAT, logistics and many more useful features.  
+* [Logistic](LOGISTIC.md) - Logistics Promise Engine APIs allows you to configure zone, pincode, TAT, logistics and many more useful features. 
 * [Order](ORDER.md) - Handles all Application order and shipment api(s) 
 * [Payment](PAYMENT.md) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
 * [PosCart](POSCART.md) - Cart APIs 

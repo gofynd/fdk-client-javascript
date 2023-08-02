@@ -184,6 +184,7 @@ import { ApplicationConfig, ApplicationClient } from "fdk-client-javascript";
 ### Documentation
 
 - [Application Front](documentation/application/README.md)
+- [Partner Front](documentation/partner/README.md)
 - [Platform Front](documentation/platform/README.md)
 - [Public Front](documentation/public/README.md)
 

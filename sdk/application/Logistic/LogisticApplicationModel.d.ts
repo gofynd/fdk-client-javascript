@@ -4,9 +4,17 @@ declare class LogisticModel {
     static CountryListResponse(): any;
     static CountryMetaResponse(): any;
     static DP(): any;
+    static ErrorResponse(): any;
+    static GetCountries(): any;
+    static GetCountry(): any;
+    static GetLocalities(): any;
+    static GetLocality(): any;
     static GetZoneFromPincodeViewRequest(): any;
     static GetZoneFromPincodeViewResponse(): any;
+    static Locality(): any;
+    static Logistics(): any;
     static LogisticsResponse(): any;
+    static Page(): any;
     static PincodeApiResponse(): any;
     static PincodeDataResponse(): any;
     static PincodeErrorSchemaResponse(): any;
