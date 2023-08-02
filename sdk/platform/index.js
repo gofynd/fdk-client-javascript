@@ -38,6 +38,8 @@ module.exports = {
 
     RewardsPlatformModel: require("./Rewards/RewardsPlatformModel"),
 
+    ServiceabilityPlatformModel: require("./Serviceability/ServiceabilityPlatformModel"),
+
     SharePlatformModel: require("./Share/SharePlatformModel"),
 
     ThemePlatformModel: require("./Theme/ThemePlatformModel"),
