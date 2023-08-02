@@ -1,6 +1,7 @@
 
 
 const { ApplicationConfig, ApplicationClient, ApplicationModel } = require('./sdk/application'); 
+const { PartnerConfig, PartnerClient, PartnerModel } = require('./sdk/partner'); 
 const { PlatformConfig, PlatformClient, PlatformModel } = require('./sdk/platform'); 
 const { PublicConfig, PublicClient, PublicModel } = require('./sdk/public'); 
 const {fdkAxios} = require('./sdk/common/AxiosHelper');
@@ -15,6 +16,12 @@ module.exports = {
     ApplicationConfig,
     ApplicationClient,
     ApplicationModel,
+    
+    
+    
+    PartnerConfig,
+    PartnerClient,
+    PartnerModel,
     
     
     
