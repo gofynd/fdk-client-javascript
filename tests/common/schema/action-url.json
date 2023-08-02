@@ -1,0 +1,160 @@
+{
+  "tests": [
+    {
+      "name": "brand listing query param  ",
+      "action": {
+        "type": "page",
+        "page": {
+          "type": "brand",
+          "params": {
+            "slug": ["test"]
+          },
+          "query": {
+            "department": ["men", "women"]
+          }
+        }
+      },
+      "result": {
+        "path": "/brand/test/?department=men&department=women"
+      }
+    },
+    {
+      "name": "profile order shipments",
+      "action": {
+        "type": "page",
+        "page": {
+          "type": "profile-order-shipment",
+          "params": {
+            "shipmentid": [16720482187091110000]
+          }
+        }
+      },
+      "result": {
+        "path": "/profile/orders/shipment/16720482187091110000"
+      }
+    },
+    {
+      "name": "category listing query param  ",
+      "action": {
+        "type": "page",
+        "page": {
+          "type": "category",
+          "params": {
+            "slug": ["test"]
+          },
+          "query": {
+            "department": ["men", "women"]
+          }
+        }
+      },
+      "result": {
+        "path": "/category/test/?department=men&department=women"
+      }
+    },
+    {
+      "name": "products listing query param  ",
+      "action": {
+        "type": "page",
+        "page": {
+          "type": "products",
+          "query": {
+            "department": ["men", "women"]
+          }
+        }
+      },
+      "result": {
+        "path": "/products/?department=men&department=women"
+      }
+    },
+    {
+      "name": "external url action to link",
+      "action": {
+        "type": "page",
+        "page": {
+          "type": "external",
+          "query": {
+            "url": ["https://abhay.dev"]
+          }
+        }
+      },
+      "result": {
+        "path": "/external/?url=https%3A%2F%2Fabhay.dev"
+      }
+    },
+    {
+      "name": "Sections with group  ",
+      "action": {
+        "type": "page",
+        "page": {
+          "type": "sections",
+          "params": {
+            "group": ["home"]
+          }
+        }
+      },
+      "result": {
+        "path": "/sections/home"
+      }
+    },
+    {
+      "name": "login page  ",
+      "action": {
+        "type": "page",
+        "page": {
+          "type": "login"
+        }
+      },
+      "result": {
+        "path": "/auth/login"
+      }
+    },
+    {
+      "name": "register page  ",
+      "action": {
+        "type": "page",
+        "page": {
+          "type": "register"
+        }
+      },
+      "result": {
+        "path": "/auth/register"
+      }
+    },
+    {
+      "name": "Shipping policy  ",
+      "action": {
+        "type": "page",
+        "page": {
+          "type": "shipping-policy"
+        }
+      },
+      "result": {
+        "path": "/shipping-policy"
+      }
+    },
+    {
+      "name": "Return policy  ",
+      "action": {
+        "type": "page",
+        "page": {
+          "type": "return-policy"
+        }
+      },
+      "result": {
+        "path": "/return-policy"
+      }
+    },
+    {
+      "name": "Order status  ",
+      "action": {
+        "type": "page",
+        "page": {
+          "type": "order-status"
+        }
+      },
+      "result": {
+        "path": "/cart/order-status"
+      }
+    }
+  ]
+}

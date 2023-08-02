@@ -1,0 +1,697 @@
+{
+  "tests": [
+    {
+      "name": "without preceeding and ending /",
+      "path": "products?brand=nokia&brand=nightwear-loungewear&department=electronics&category=casual-shirts&l2_category=",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "products",
+            "query": {
+              "brand": ["nokia", "nightwear-loungewear"],
+              "department": ["electronics"],
+              "category": ["casual-shirts"],
+              "l2_category": [""]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "without preceeding /",
+      "path": "products/?brand=nokia&brand=nightwear-loungewear&department=electronics&category=casual-shirts&l2_category=",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "products",
+            "query": {
+              "brand": ["nokia", "nightwear-loungewear"],
+              "department": ["electronics"],
+              "category": ["casual-shirts"],
+              "l2_category": [""]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "products link",
+      "path": "/products/?brand=nokia&brand=nightwear-loungewear&department=electronics&category=casual-shirts&l2_category=",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "products",
+            "query": {
+              "brand": ["nokia", "nightwear-loungewear"],
+              "department": ["electronics"],
+              "category": ["casual-shirts"],
+              "l2_category": [""]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Brand listing url",
+      "path": "/brand/nokia?department=electronics&category=casual-shirts&l2_category=",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "brand",
+            "params": {
+              "slug": ["nokia"]
+            },
+            "query": {
+              "department": ["electronics"],
+              "category": ["casual-shirts"],
+              "l2_category": [""]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Category listing url",
+      "path": "/category/casual-shirts?brand=nightwear-loungewear&department=electronics&l2_category=",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "category",
+            "params": {
+              "slug": ["casual-shirts"]
+            },
+            "query": {
+              "brand": ["nightwear-loungewear"],
+              "department": ["electronics"],
+              "l2_category": [""]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "pdp with query param",
+      "path": "/product/my-product/?jalak=vora&jalak=jv&nikhil=manapure",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "product",
+            "query": {
+              "jalak": ["vora", "jv"],
+              "nikhil": ["manapure"]
+            },
+            "params": {
+              "slug": ["my-product"]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "pdp without query param",
+      "path": "/product/another-product",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "product",
+            "query": {},
+            "params": {
+              "slug": ["another-product"]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "categories with param variable",
+      "path": "/categories/some-dept",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "categories",
+            "query": {},
+            "params": {
+              "department": ["some-dept"]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "page with param variable ",
+      "path": "/page/another-page",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "page",
+            "query": {},
+            "params": {
+              "slug": ["another-page"]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "collection items listing with param variable",
+      "path": "/collection/another-product",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "collection",
+            "query": {},
+            "params": {
+              "slug": ["another-product"]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "non matching single slash path",
+      "path": "/xxx",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "home",
+            "query": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "non matching double slash variable",
+      "path": "/xxx/sdfa/",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "home",
+            "query": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "non matching single slash query param",
+      "path": "/xxx?asd=ss",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "home",
+            "query": {
+              "asd": ["ss"]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "home root",
+      "path": "/",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "home",
+            "query": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "non matching double slash path",
+      "path": "/produc/wierdo",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "home",
+            "query": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "External url valid with url",
+      "path": "/external/?url=https://abhay.dev",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "external",
+            "query": {
+              "url": ["https://abhay.dev"]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Sections with group",
+      "path": "/sections/home",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "sections",
+            "query": {},
+            "params": {
+              "group": ["home"]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "profile orders shipments",
+      "path": "/profile/orders/shipment/16720482187091110000",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "profile-order-shipment",
+            "params": {
+              "shipmentid": [16720482187091110000]
+            }
+          }
+        }
+      }
+    },
+
+    {
+      "name": "faq with category",
+      "path": "/faq/:category",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "faq",
+            "query": {},
+            "params": {
+              "category": ["order123"]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "blog without slug",
+      "path": "/blog",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "blog",
+            "query": {},
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "blog with slug",
+      "path": "/blog/blog1",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "blog",
+            "query": {},
+            "params": {
+              "slug": ["blog1"]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "brands listing without department",
+      "path": "/brands",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "brands",
+            "query": {},
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "brands listing with department",
+      "path": "/brands/fashion",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "brands",
+            "query": {},
+            "params": {
+              "department": ["fashion"]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "profile saved cards",
+      "path": "/profile/my-cards",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "cards",
+            "query": {},
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "profile address",
+      "path": "/profile/address",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "addresses",
+            "query": {},
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "about us",
+      "path": "/about-us",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "about-us",
+            "query": {},
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "profile orders",
+      "path": "/profile/orders",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "orders",
+            "query": {},
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "privacy policy",
+      "path": "/privacy-policy",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "policy",
+            "query": {},
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "Shipping policy",
+      "path": "/shipping-policy",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "shipping-policy",
+            "query": {},
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "Return policy",
+      "path": "/return-policy",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "return-policy",
+            "query": {},
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "Order status",
+      "path": "/cart/order-status",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "order-status",
+            "query": {},
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "product request",
+      "path": "/product-request/",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "product-request",
+            "query": {},
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "shared token",
+      "path": "/shared-cart/:1234",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "shared-cart",
+            "query": {},
+            "params": {
+              "token": ["1234"]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "order tracking without id",
+      "path": "/order-tracking",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "track-order",
+            "query": {},
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "order tracking with id",
+      "path": "/order-tracking/a23bds45",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "track-order",
+            "query": {},
+            "params": {
+              "orderId": ["a23bds45"]
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "cart delivery",
+      "path": "/cart/delivery",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "cart-delivery",
+            "query": {},
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "cart payment info",
+      "path": "/cart/payment-info",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "cart-payment",
+            "query": {},
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "cart order review",
+      "path": "/cart/order-review",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "cart-review",
+            "query": {},
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "complicated case 1",
+      "path": "/brands/mobile/dualsim",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "brands",
+            "query": {},
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "complicated case 2",
+      "path": "/categories/jeans/tappered",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "categories",
+            "query": {},
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "complicated case 3",
+      "path": "/categories/jeans/tappered",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "categories",
+            "query": {},
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "complicated case 4",
+      "path": "/categories/jeans/tappered",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "categories",
+            "query": {},
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "complicated case 5",
+      "path": "/shirt/floral",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "home",
+            "query": {},
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "complicated case 6",
+      "path": "/collection",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "home",
+            "query": {},
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "login",
+      "path": "/auth/login",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "login",
+            "query": {},
+            "params": {}
+          }
+        }
+      }
+    },
+    {
+      "name": "register",
+      "path": "/auth/register",
+      "result": {
+        "action": {
+          "type": "page",
+          "page": {
+            "type": "register",
+            "query": {},
+            "params": {}
+          }
+        }
+      }
+    }
+  ]
+}
