@@ -168,10 +168,6 @@ class PlatformClient {
  * @property {LogMetaObj} log_meta
  * @property {Object} log_payload
  */
-/**
- * @typedef ResourceNotFound
- * @property {string} [message]
- */
 
 /**
  * @typedef BadRequest
@@ -235,41 +231,6 @@ class PlatformClient {
  * @typedef CurrentPeriod
  * @property {string} [end_date]
  * @property {string} [start_date]
- */
-/**
- * @typedef DetailedPlan
- * @property {string} [_id]
- * @property {string[]} [addons]
- * @property {number} [amount]
- * @property {DetailedPlanComponents[]} [components]
- * @property {string} [country]
- * @property {string} [created_at]
- * @property {string} [currency]
- * @property {string} [description]
- * @property {boolean} [is_active]
- * @property {boolean} [is_trial_plan]
- * @property {boolean} [is_visible]
- * @property {string} [modified_at]
- * @property {string} [name]
- * @property {string} [plan_group]
- * @property {string} [product_suite_id]
- * @property {PlanRecurring} [recurring]
- * @property {string[]} [tag_lines]
- * @property {string[]} [tags]
- * @property {number} [trial_period]
- * @property {string} [type]
- */
-/**
- * @typedef DetailedPlanComponents
- * @property {Object} [config]
- * @property {string} [description]
- * @property {string} [display_text]
- * @property {boolean} [enabled]
- * @property {string} [group]
- * @property {string} [icon]
- * @property {Object} [links]
- * @property {string} [name]
- * @property {string} [slug]
  */
 /**
  * @typedef EntityChargePrice
@@ -336,44 +297,6 @@ class PlatformClient {
  * @property {string} [email]
  * @property {string} [name]
  * @property {string} [phone]
- */
-/**
- * @typedef InvoiceDetailsPaymentMethods
- * @property {InvoiceDetailsPaymentMethodsData} [data]
- * @property {number} [id]
- * @property {boolean} [is_default]
- * @property {string} [pg_payment_method_id]
- * @property {string} [type]
- */
-/**
- * @typedef InvoiceDetailsPaymentMethodsData
- * @property {string} [brand]
- * @property {InvoiceDetailsPaymentMethodsDataChecks} [checks]
- * @property {string} [country]
- * @property {number} [exp_month]
- * @property {number} [exp_year]
- * @property {string} [fingerprint]
- * @property {string} [funding]
- * @property {string} [generated_from]
- * @property {string} [last4]
- * @property {InvoiceDetailsPaymentMethodsDataNetworks} [networks]
- * @property {InvoiceDetailsPaymentMethodsDataThreeDSecureUsage} [three_d_secure_usage]
- * @property {string} [wallet]
- */
-/**
- * @typedef InvoiceDetailsPaymentMethodsDataChecks
- * @property {string} [address_line1_check]
- * @property {string} [address_postal_code_check]
- * @property {string} [cvc_check]
- */
-/**
- * @typedef InvoiceDetailsPaymentMethodsDataNetworks
- * @property {string[]} [available]
- * @property {string} [preferred]
- */
-/**
- * @typedef InvoiceDetailsPaymentMethodsDataThreeDSecureUsage
- * @property {boolean} [supported]
  */
 /**
  * @typedef InvoiceDetailsPeriod
@@ -517,16 +440,6 @@ class PlatformClient {
  * @property {EntityChargePrice} price
  * @property {string} pricing_type
  * @property {string} [term]
- */
-/**
- * @typedef Page
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {boolean} [has_previous]
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {number} [size]
- * @property {string} type
  */
 /**
  * @typedef Phone
@@ -723,14 +636,6 @@ class PlatformClient {
  * @property {string} [end_date]
  * @property {string} [start_date]
  */
-/**
- * @typedef UnauthenticatedApplication
- * @property {string} [message]
- */
-/**
- * @typedef UnauthenticatedUser
- * @property {string} [message]
- */
 
 /**
  * @typedef AbandonedCart
@@ -847,6 +752,14 @@ class PlatformClient {
 /**
  * @typedef ApplyCouponRequest
  * @property {string} coupon_code
+ */
+/**
+ * @typedef Article
+ * @property {string} article_id
+ * @property {string} [code]
+ * @property {Object} [meta]
+ * @property {string} [type]
+ * @property {number} [value]
  */
 /**
  * @typedef ArticlePriceInfo
@@ -1062,6 +975,11 @@ class PlatformClient {
  * @property {boolean} [success]
  * @property {string} [uid]
  * @property {string} [user_type]
+ */
+/**
+ * @typedef Collection
+ * @property {string} collected_by
+ * @property {string} refund_by
  */
 /**
  * @typedef CompareObject
@@ -1763,6 +1681,58 @@ class PlatformClient {
  * @property {boolean} [return_allowed]
  */
 /**
+ * @typedef PriceAdjustment
+ * @property {boolean} [allowed_refund]
+ * @property {string} [apply_expiry]
+ * @property {Article[]} article_ids
+ * @property {boolean} article_level_distribution
+ * @property {string} cart_id
+ * @property {number} [cart_value]
+ * @property {Collection} collection
+ * @property {string} [id]
+ * @property {boolean} is_authenticated
+ * @property {string} message
+ * @property {Object} [meta]
+ * @property {string} type
+ * @property {number} value
+ */
+/**
+ * @typedef PriceAdjustmentAdd
+ * @property {boolean} [allowed_refund]
+ * @property {string} [apply_expiry]
+ * @property {Article[]} article_ids
+ * @property {boolean} article_level_distribution
+ * @property {string} cart_id
+ * @property {number} [cart_value]
+ * @property {Collection} collection
+ * @property {string} [created_by]
+ * @property {boolean} is_authenticated
+ * @property {string} message
+ * @property {Object} [meta]
+ * @property {string} type
+ * @property {number} value
+ */
+/**
+ * @typedef PriceAdjustmentResponse
+ * @property {PriceAdjustment} [data]
+ */
+/**
+ * @typedef PriceAdjustmentUpdate
+ * @property {boolean} [allowed_refund]
+ * @property {string} [apply_expiry]
+ * @property {Article[]} article_ids
+ * @property {boolean} article_level_distribution
+ * @property {string} cart_id
+ * @property {number} [cart_value]
+ * @property {Collection} collection
+ * @property {boolean} is_authenticated
+ * @property {string} message
+ * @property {Object} [meta]
+ * @property {string} [modified_by]
+ * @property {string} type
+ * @property {number} value
+ */
+/**
  * @typedef PriceRange
  * @property {number} [max]
  * @property {number} [min]
@@ -1886,6 +1856,7 @@ class PlatformClient {
 /**
  * @typedef PromotionListItem
  * @property {Object} [_custom_json]
+ * @property {string} [_id]
  * @property {PromotionSchedule} [_schedule]
  * @property {string} application_id
  * @property {boolean} [apply_all_discount]
@@ -1930,7 +1901,7 @@ class PlatformClient {
  */
 /**
  * @typedef PromotionsResponse
- * @property {PromotionListItem} [items]
+ * @property {PromotionListItem[]} [items]
  * @property {Page} [page]
  */
 /**
@@ -1997,7 +1968,7 @@ class PlatformClient {
  * @property {PostOrder1} [post_order]
  * @property {number[]} [user_groups]
  * @property {string[]} [user_id]
- * @property {UserRegistered} [user_registered]
+ * @property {string} [user_registered]
  * @property {UsesRestriction1} uses
  */
 /**
@@ -2490,7 +2461,6 @@ class PlatformClient {
  * @property {string} [description]
  * @property {AttributeMasterDetails} details
  * @property {boolean} [enabled_for_end_consumer]
- * @property {string} [example]
  * @property {AttributeMasterFilter} filters
  * @property {boolean} [is_nested]
  * @property {string} [logo]
@@ -2643,7 +2613,7 @@ class PlatformClient {
  * @property {UserInfo1} [created_by]
  * @property {string} created_on
  * @property {boolean} [is_active]
- * @property {UserInfo1} [modified_by]
+ * @property {string} [modified_by]
  * @property {string} [modified_on]
  */
 /**
@@ -3771,7 +3741,7 @@ class PlatformClient {
  * @property {BrandMeta} brand
  * @property {CompanyMeta} company
  * @property {string} country_of_origin
- * @property {UserSerializer} [created_by]
+ * @property {string} [created_by]
  * @property {DimensionResponse} dimension
  * @property {string} [expiration_date]
  * @property {boolean} fragile
@@ -3784,7 +3754,7 @@ class PlatformClient {
  * @property {number} item_id
  * @property {ManufacturerResponse} manufacturer
  * @property {Object} [meta]
- * @property {UserSerializer} [modified_by]
+ * @property {string} [modified_by]
  * @property {PriceMeta} price
  * @property {Quantities} [quantities]
  * @property {Object} [raw_meta]
@@ -4286,7 +4256,7 @@ class PlatformClient {
  * @property {number} brand_uid
  * @property {string} [bulk_job_id]
  * @property {string} category_slug
- * @property {Object} [change_request_id]
+ * @property {string} [change_request_id]
  * @property {number} company_id
  * @property {string} country_of_origin
  * @property {string} currency
@@ -4904,7 +4874,7 @@ class PlatformClient {
  * @property {boolean} [is_visible]
  * @property {CollectionImage} [logo]
  * @property {Object} [meta]
- * @property {UserInfo} [modified_by]
+ * @property {string} [modified_by]
  * @property {string} [name]
  * @property {number} [priority]
  * @property {boolean} [published]
@@ -5068,7 +5038,15 @@ class PlatformClient {
  */
 /**
  * @typedef ApplicationResponse
+ * @property {string} [_id]
  * @property {Application} [application]
+ * @property {string} [code]
+ * @property {string} [created_at]
+ * @property {number} [decimal_digits]
+ * @property {boolean} [is_active]
+ * @property {string} [name]
+ * @property {string} [symbol]
+ * @property {string} [updated_at]
  */
 /**
  * @typedef ApplicationWebsite
@@ -5078,17 +5056,6 @@ class PlatformClient {
 /**
  * @typedef BadRequest
  * @property {string} [message]
- */
-/**
- * @typedef Currency
- * @property {string} [_id]
- * @property {string} [code]
- * @property {string} [created_at]
- * @property {number} [decimal_digits]
- * @property {boolean} [is_active]
- * @property {string} [name]
- * @property {string} [symbol]
- * @property {string} [updated_at]
  */
 /**
  * @typedef Domain
@@ -5104,14 +5071,18 @@ class PlatformClient {
  * @property {number} [__v]
  * @property {string} [_id]
  * @property {string} [capital]
+ * @property {string} [country_code]
  * @property {string} [currency]
  * @property {LocationDefaultCurrency} [default_currency]
  * @property {LocationDefaultLanguage} [default_language]
  * @property {string} [iso2]
  * @property {string} [iso3]
+ * @property {string} [latitude]
+ * @property {string} [longitude]
  * @property {string} [name]
  * @property {string} [parent]
  * @property {string} [phone_code]
+ * @property {string} [state_code]
  * @property {string} [type]
  * @property {number} [uid]
  */
@@ -5128,21 +5099,11 @@ class PlatformClient {
  */
 /**
  * @typedef Locations
- * @property {Object[]} [items]
+ * @property {LocationCountry} [items]
  */
 /**
  * @typedef NotFound
  * @property {string} [message]
- */
-/**
- * @typedef Page
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {boolean} [has_previous]
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {number} [size]
- * @property {string} type
  */
 /**
  * @typedef SecureUrl
@@ -5577,27 +5538,6 @@ class PlatformClient {
  * @property {PayloadSmsStructure} [sms]
  */
 /**
- * @typedef PushtokenReq
- * @property {string} [action]
- * @property {string} [bundle_identifier]
- * @property {string} [push_token]
- * @property {string} [unique_device_id]
- */
-/**
- * @typedef PushtokenRes
- * @property {string} [_id]
- * @property {string} [application_id]
- * @property {string} [bundle_identifier]
- * @property {string} [created_at]
- * @property {string} [expired_at]
- * @property {string} [platform]
- * @property {string} [push_token]
- * @property {string} [type]
- * @property {string} [unique_device_id]
- * @property {string} [updated_at]
- * @property {string} [user_id]
- */
-/**
  * @typedef RecipientHeaders
  * @property {string} [email]
  */
@@ -5837,20 +5777,6 @@ class PlatformClient {
  * @property {Page} [page]
  */
 /**
- * @typedef SystemNotificationSettings
- * @property {string} [priority]
- * @property {boolean} [sound]
- * @property {string} [time_to_live]
- */
-/**
- * @typedef SystemNotificationsPage
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {number} [item_total]
- * @property {number} [size]
- * @property {string} [type]
- */
-/**
  * @typedef SystemNotificationUser
  * @property {string} [type]
  * @property {string} [value]
@@ -5921,6 +5847,11 @@ class PlatformClient {
  * @property {number} longitude
  * @property {number} [pincode]
  * @property {string} [state]
+ */
+/**
+ * @typedef AverageOrderProcessingTime
+ * @property {number} [duration]
+ * @property {string} [duration_type]
  */
 /**
  * @typedef BrandBannerSerializer
@@ -6214,10 +6145,13 @@ class PlatformClient {
  * @property {Object} [_custom_json]
  * @property {AddressSerializer} address
  * @property {boolean} [auto_invoice]
+ * @property {AverageOrderProcessingTime} [avg_order_processing_time]
+ * @property {boolean} [bulk_shipment]
  * @property {string} code
  * @property {number} company
  * @property {SellerPhoneNumber[]} [contact_numbers]
  * @property {boolean} [credit_note]
+ * @property {boolean} [default_order_acceptance_timing]
  * @property {string} display_name
  * @property {Document[]} [documents]
  * @property {InvoiceDetailsSerializer} [gst_credentials]
@@ -6225,9 +6159,11 @@ class PlatformClient {
  * @property {LocationManagerSerializer} [manager]
  * @property {string} name
  * @property {string[]} [notification_emails]
+ * @property {LocationDayWiseSerializer[]} [order_acceptance_timing]
  * @property {ProductReturnConfigSerializer} [product_return_config]
  * @property {string} [stage]
  * @property {string} [store_type]
+ * @property {string[]} [tags]
  * @property {LocationDayWiseSerializer[]} [timing]
  * @property {number} [uid]
  * @property {Object} [warnings]
@@ -6272,6 +6208,11 @@ class PlatformClient {
  * @typedef SellerPhoneNumber
  * @property {number} country_code
  * @property {string} number
+ */
+/**
+ * @typedef StoreTagsResponseSchema
+ * @property {boolean} [success]
+ * @property {string[]} [tags]
  */
 /**
  * @typedef UpdateCompany
@@ -6434,6 +6375,7 @@ class PlatformClient {
  * @property {string} [name]
  * @property {string} [owner]
  * @property {ApplicationRedirections[]} [redirections]
+ * @property {string} [slug]
  * @property {string} [token]
  * @property {string} [updated_at]
  * @property {ApplicationWebsite} [website]
@@ -6449,13 +6391,13 @@ class PlatformClient {
 /**
  * @typedef ApplicationDetail
  * @property {string} [_id]
- * @property {SecureUrl} banner
- * @property {string} description
+ * @property {SecureUrl} [banner]
+ * @property {string} [description]
  * @property {Domain} [domain]
  * @property {Domain[]} [domains]
- * @property {SecureUrl} favicon
- * @property {SecureUrl} logo
- * @property {SecureUrl} mobile_logo
+ * @property {SecureUrl} [favicon]
+ * @property {SecureUrl} [logo]
+ * @property {SecureUrl} [mobile_logo]
  * @property {string} name
  */
 /**
@@ -6467,7 +6409,7 @@ class PlatformClient {
  * @property {BusinessHighlights} [business_highlights]
  * @property {string} [copyright_text]
  * @property {string} [created_at]
- * @property {Links} [links]
+ * @property {Links[]} [links]
  * @property {SocialLinks} [social_links]
  * @property {InformationSupport} [support]
  * @property {string} [updated_at]
@@ -6668,16 +6610,6 @@ class PlatformClient {
  * @property {Page} [page]
  */
 /**
- * @typedef CompanyAboutAddress
- * @property {string} [address1]
- * @property {string} [address2]
- * @property {string} [address_type]
- * @property {string} [city]
- * @property {string} [country]
- * @property {number} [pincode]
- * @property {string} [state]
- */
-/**
  * @typedef CompanyBrandInfo
  * @property {string} [brand_banner_portrait_url]
  * @property {string} [brand_banner_url]
@@ -6734,17 +6666,6 @@ class PlatformClient {
  */
 /**
  * @typedef Currency
- * @property {string} [_id]
- * @property {string} [code]
- * @property {string} [created_at]
- * @property {number} [decimal_digits]
- * @property {boolean} [is_active]
- * @property {string} [name]
- * @property {string} [symbol]
- * @property {string} [updated_at]
- */
-/**
- * @typedef CurrencyConfig
  * @property {string} [_id]
  * @property {string} [code]
  * @property {string} [created_at]
@@ -6926,7 +6847,7 @@ class PlatformClient {
  * @property {string} [city]
  * @property {string} [country]
  * @property {string} [loc]
- * @property {InformationPhone} [phone]
+ * @property {InformationPhone[]} [phone]
  * @property {number} [pincode]
  */
 /**
@@ -7494,10 +7415,6 @@ class PlatformClient {
  * @property {string} [title]
  */
 /**
- * @typedef UnhandledError
- * @property {string} [message]
- */
-/**
  * @typedef UpdateDomain
  * @property {string} [_id]
  * @property {boolean} [is_primary]
@@ -7513,21 +7430,6 @@ class PlatformClient {
 /**
  * @typedef UpdateIntegrationLevelRequest
  * @property {IntegrationLevel[]} [items]
- */
-/**
- * @typedef UserEmail
- * @property {boolean} [active]
- * @property {string} [email]
- * @property {boolean} [primary]
- * @property {boolean} [verified]
- */
-/**
- * @typedef UserPhoneNumber
- * @property {boolean} [active]
- * @property {number} [country_code]
- * @property {string} [phone]
- * @property {boolean} [primary]
- * @property {boolean} [verified]
  */
 /**
  * @typedef ValidationFailedResponse
@@ -7589,17 +7491,6 @@ class PlatformClient {
  * @typedef AnnouncementPageSchema
  * @property {string} [page_slug]
  * @property {string} [type]
- */
-/**
- * @typedef AnnouncementSchema
- * @property {string} [announcement]
- * @property {ScheduleStartSchema} [schedule]
- */
-/**
- * @typedef AnnouncementsResponseSchema
- * @property {Object} [announcements]
- * @property {string[]} [refresh_pages]
- * @property {number} [refresh_rate]
  */
 /**
  * @typedef ApplicationLegal
@@ -7721,11 +7612,6 @@ class PlatformClient {
  * @property {number} [status]
  */
 /**
- * @typedef ContentSchema
- * @property {string} [type]
- * @property {Object} [value]
- */
-/**
  * @typedef CreateAnnouncementSchema
  * @property {AdminAnnouncementSchema} [data]
  * @property {string} [message]
@@ -7780,29 +7666,8 @@ class PlatformClient {
  * @property {string} [name]
  */
 /**
- * @typedef CustomPage
- * @property {CustomPageSchema} [data]
- */
-/**
- * @typedef CustomPageSchema
- * @property {string} [_id]
- * @property {ScheduleSchema} [_schedule]
- * @property {string} [application]
- * @property {Object[]} [content]
- * @property {CreatedBySchema} [created_by]
- * @property {DateMeta} [date_meta]
- * @property {string} [description]
- * @property {string} [orientation]
- * @property {string} [platform]
- * @property {boolean} [published]
- * @property {string} [slug]
- * @property {string[]} [tags]
- * @property {string} [title]
- * @property {string} [type]
- */
-/**
  * @typedef DataLoaderResetResponseSchema
- * @property {string} [reset]
+ * @property {boolean} [reset]
  */
 /**
  * @typedef DataLoaderResponseSchema
@@ -7888,10 +7753,6 @@ class PlatformClient {
  * @property {string} [title]
  */
 /**
- * @typedef FaqResponseSchema
- * @property {FaqSchema[]} [faqs]
- */
-/**
  * @typedef FaqSchema
  * @property {string} [_id]
  * @property {string} [answer]
@@ -7899,10 +7760,6 @@ class PlatformClient {
  * @property {string} [question]
  * @property {string} [slug]
  * @property {string[]} [tags]
- */
-/**
- * @typedef FeatureImage
- * @property {string} [secure_url]
  */
 /**
  * @typedef GeneratedSEOContent
@@ -7944,11 +7801,6 @@ class PlatformClient {
  * @property {string} [url]
  */
 /**
- * @typedef LandingPage
- * @property {LandingPageSchema} [data]
- * @property {boolean} [success]
- */
-/**
  * @typedef LandingPageGetResponse
  * @property {LandingPageSchema[]} [items]
  * @property {Page} [page]
@@ -7974,19 +7826,6 @@ class PlatformClient {
  * @property {Language} [ar]
  * @property {Language} [en_us]
  * @property {Language} [hi]
- */
-/**
- * @typedef Navigation
- * @property {string} [_id]
- * @property {string} [application]
- * @property {CreatedBySchema} [created_by]
- * @property {DateMeta} [date_meta]
- * @property {string} [name]
- * @property {NavigationReference} [navigation]
- * @property {string} [orientation]
- * @property {string} [platform]
- * @property {string} [position]
- * @property {string} [slug]
  */
 /**
  * @typedef NavigationGetResponse
@@ -8049,19 +7888,9 @@ class PlatformClient {
  * @property {string} type
  */
 /**
- * @typedef PageContent
- * @property {string} [type]
- * @property {Object} [value]
- */
-/**
  * @typedef PageGetResponse
  * @property {PageSchema[]} [items]
  * @property {Page} [page]
- */
-/**
- * @typedef PageMeta
- * @property {string} [key]
- * @property {Object} [value]
  */
 /**
  * @typedef PageMetaSchema
@@ -8116,7 +7945,7 @@ class PlatformClient {
  */
 /**
  * @typedef PageSpec
- * @property {Object[]} [specifications]
+ * @property {PageSpecItem[]} [specifications]
  */
 /**
  * @typedef PageSpecItem
@@ -8170,12 +7999,7 @@ class PlatformClient {
  * @property {string} [cron]
  * @property {number} [duration]
  * @property {string} [end]
- * @property {Object[]} [next_schedule]
- * @property {string} [start]
- */
-/**
- * @typedef ScheduleStartSchema
- * @property {string} [end]
+ * @property {NextSchedule[]} [next_schedule]
  * @property {string} [start]
  */
 /**
@@ -8198,16 +8022,11 @@ class PlatformClient {
  * @property {string} [app]
  * @property {boolean} [cannonical_enabled]
  * @property {string} [created_at]
- * @property {Object[]} [custom_meta_tags]
+ * @property {CustomMetaTag[]} [custom_meta_tags]
  * @property {Detail} [details]
  * @property {string} [robots_txt]
  * @property {boolean} [sitemap_enabled]
  * @property {string} [updated_at]
- */
-/**
- * @typedef Slideshow
- * @property {SlideshowSchema} [data]
- * @property {boolean} [success]
  */
 /**
  * @typedef SlideshowGetResponse
@@ -8310,6 +8129,7 @@ class PlatformClient {
  * @property {number[]} [brand_ids]
  * @property {number} company_id
  * @property {string} discount_level
+ * @property {DiscountMeta} [discount_meta]
  * @property {string} discount_type
  * @property {string[]} extension_ids
  * @property {string} [file_path]
@@ -8323,6 +8143,7 @@ class PlatformClient {
 /**
  * @typedef DiscountItems
  * @property {number} [brand_uid]
+ * @property {DiscountMeta} [discount_meta]
  * @property {string} discount_type
  * @property {string} [item_code]
  * @property {string} [seller_identifier]
@@ -8337,6 +8158,7 @@ class PlatformClient {
  * @property {UserDetails} created_by
  * @property {string} created_on
  * @property {string} [discount_level]
+ * @property {DiscountMeta} [discount_meta]
  * @property {string} [discount_type]
  * @property {string} [file_path]
  * @property {boolean} is_active
@@ -8348,6 +8170,12 @@ class PlatformClient {
  * @property {number[]} [store_ids]
  * @property {ValidityObject} validity
  * @property {number} [value]
+ */
+/**
+ * @typedef DiscountMeta
+ * @property {number} [hours]
+ * @property {number} [minutes]
+ * @property {boolean} timer
  */
 /**
  * @typedef DownloadFileJob
@@ -8370,6 +8198,7 @@ class PlatformClient {
  */
 /**
  * @typedef FileJobResponse
+ * @property {string} _id
  * @property {Object} [body]
  * @property {number} company_id
  * @property {number} failed
@@ -8411,9 +8240,20 @@ class PlatformClient {
  */
 /**
  * @typedef BulkRequest
- * @property {ReqConfiguration} [configuration]
  * @property {Destination} destination
  * @property {string[]} urls
+ */
+/**
+ * @typedef BulkUploadFailFileResponseItems
+ * @property {string} [error]
+ * @property {File} [file]
+ * @property {string} [stage]
+ * @property {boolean} success
+ */
+/**
+ * @typedef BulkUploadFailResponse
+ * @property {BulkUploadFailFileResponseItems[]} files
+ * @property {Status} status
  */
 /**
  * @typedef BulkUploadResponse
@@ -8482,6 +8322,16 @@ class PlatformClient {
  * @property {string} message
  */
 /**
+ * @typedef File
+ * @property {FileSrc} src
+ */
+/**
+ * @typedef FileSrc
+ * @property {string} [method]
+ * @property {string} [namespace]
+ * @property {string} url
+ */
+/**
  * @typedef Opts
  * @property {number} [attempts]
  * @property {number} [delay]
@@ -8496,10 +8346,6 @@ class PlatformClient {
  * @property {string} [next_id]
  * @property {number} [size]
  * @property {string} type
- */
-/**
- * @typedef ReqConfiguration
- * @property {number} [concurrency]
  */
 /**
  * @typedef SignUrlRequest
@@ -8532,6 +8378,13 @@ class PlatformClient {
  * @property {Upload} upload
  */
 /**
+ * @typedef Status
+ * @property {number} failed
+ * @property {string} [result]
+ * @property {number} succeeded
+ * @property {number} total
+ */
+/**
  * @typedef Upload
  * @property {number} expiry
  * @property {string} url
@@ -8543,6 +8396,97 @@ class PlatformClient {
  * @property {string} url
  */
 
+/**
+ * @typedef ChannelDisplayName
+ * @property {string} [platform_pos]
+ */
+/**
+ * @typedef ChannelDisplayNameResponse
+ * @property {ChannelDisplayName} [data]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef CnDetails
+ * @property {string} [channel_of_issuance]
+ * @property {string} [date_issued]
+ * @property {string} [expiry_date]
+ * @property {string} [invoice_number]
+ * @property {string} [order_id]
+ * @property {string} [ordering_channel]
+ * @property {string} [shipment_id]
+ * @property {string} [staff_id]
+ * @property {string} [store_id]
+ */
+/**
+ * @typedef CnDownloadReport
+ * @property {string} [affiliate_id]
+ * @property {string} [end_date]
+ * @property {number} [page]
+ * @property {number} [pagesize]
+ * @property {string} [search]
+ * @property {string} [search_type]
+ * @property {string} [start_date]
+ * @property {string[]} [status]
+ */
+/**
+ * @typedef CnGenerateReport
+ * @property {string} [affiliate_id]
+ * @property {string} [end_date]
+ * @property {CnGenerateReportFilters} [filters]
+ * @property {GenerateReportFilters} [meta]
+ * @property {number} [page]
+ * @property {number} [pagesize]
+ * @property {string} [report_id]
+ * @property {string} [search]
+ * @property {string} [search_type]
+ * @property {string} [start_date]
+ */
+/**
+ * @typedef CnGenerateReportFilters
+ * @property {string[]} [channel_of_issuance]
+ * @property {string[]} [ordering_channel]
+ * @property {string[]} [staff_id]
+ * @property {number[]} [store_id]
+ * @property {string[]} [types_of_transaction]
+ * @property {string[]} [utilisation]
+ */
+/**
+ * @typedef CnGenerateReportItems
+ * @property {string} [credit_note_number]
+ * @property {string} [date_issued]
+ * @property {string} [expiry_date]
+ * @property {string} [invoice_number]
+ * @property {string} [order_id]
+ * @property {string} [shipment_id]
+ * @property {string} [status]
+ * @property {number} [total_amount]
+ */
+/**
+ * @typedef CnReferenceNumber
+ * @property {string} [cn_reference_number]
+ */
+/**
+ * @typedef CreateSellerCreditNoteConfig
+ * @property {string} [affiliate_id]
+ * @property {string} [currency_type]
+ * @property {boolean} [is_cn_as_refund_method]
+ * @property {CreditNoteConfigNotificationEvents} [notification_events]
+ * @property {string[]} [ordering_channel]
+ * @property {string} [sales_channel_name]
+ * @property {number} [seller_id]
+ * @property {string[]} [slug_values]
+ * @property {string[]} [source_channel]
+ * @property {number} [validity]
+ */
+/**
+ * @typedef CreateSellerCreditNoteConfigRequest
+ * @property {CreateSellerCreditNoteConfig} [data]
+ */
+/**
+ * @typedef CreateSellerCreditNoteConfigResponse
+ * @property {string} [message]
+ * @property {boolean} [success]
+ */
 /**
  * @typedef CreditlineDataPlatformPayload
  * @property {string} [end_end]
@@ -8564,6 +8508,45 @@ class PlatformClient {
  * @property {string} [message]
  * @property {Object} [page]
  * @property {boolean} [show_mr]
+ */
+/**
+ * @typedef CreditNoteConfigNotificationEvents
+ * @property {number} [expiration_reminder_to_customer]
+ */
+/**
+ * @typedef CreditNoteDetails
+ * @property {number} [available_cn_balance]
+ * @property {number} [cn_amount]
+ * @property {Object} [cn_details]
+ * @property {string} [cn_reference_number]
+ * @property {string} [cn_status]
+ * @property {string} [customer_mobile_number]
+ * @property {RedemptionDetails[]} [redemption_details]
+ * @property {number} [remaining_cn_amount]
+ */
+/**
+ * @typedef CreditNoteDetailsRequest
+ * @property {CnReferenceNumber} [data]
+ */
+/**
+ * @typedef CreditNoteDetailsResponse
+ * @property {CreditNoteDetails} [data]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef DeleteConfig
+ * @property {string} [affiliate_id]
+ * @property {number} [seller_id]
+ * @property {string[]} [slug_values]
+ */
+/**
+ * @typedef DeleteConfigRequest
+ * @property {DeleteConfig} [data]
+ */
+/**
+ * @typedef DeleteConfigResponse
+ * @property {string} [message]
+ * @property {boolean} [success]
  */
 /**
  * @typedef DownloadCreditDebitNote
@@ -8591,6 +8574,14 @@ class PlatformClient {
  * @property {string} [start_date]
  */
 /**
+ * @typedef DownloadReportCustomerCnRequest
+ * @property {CnDownloadReport} [data]
+ */
+/**
+ * @typedef DownloadReportCustomerCnResponse
+ * @property {DownloadReportResponseData[]} [data]
+ */
+/**
  * @typedef DownloadReportItems
  * @property {string} [end_date]
  * @property {GenerateReportFilters} [filters]
@@ -8606,9 +8597,46 @@ class PlatformClient {
  * @property {Page} [page]
  */
 /**
+ * @typedef DownloadReportResponseData
+ * @property {string} [created_at]
+ * @property {string} [display_name]
+ * @property {string} [download_link]
+ * @property {string} [end_date]
+ * @property {Object} [filters]
+ * @property {string} [full_name]
+ * @property {Object} [meta]
+ * @property {string} [msg]
+ * @property {string} [report_config_id]
+ * @property {string} [report_name]
+ * @property {Object} [request_dict]
+ * @property {string} [requested_by]
+ * @property {string} [start_date]
+ * @property {string} [status]
+ */
+/**
  * @typedef Error
  * @property {string} [reason]
  * @property {boolean} [success]
+ */
+/**
+ * @typedef GenerateReportCustomerCnRequest
+ * @property {CnGenerateReport} [data]
+ */
+/**
+ * @typedef GenerateReportCustomerCnResponse
+ * @property {GenerateReportCustomerCnResponseData} [data]
+ */
+/**
+ * @typedef GenerateReportCustomerCnResponseData
+ * @property {string[]} [allowed_filters]
+ * @property {string} [end_date]
+ * @property {string[]} [headers]
+ * @property {number} [item_count]
+ * @property {CnGenerateReportItems[]} [items]
+ * @property {Page} [page]
+ * @property {string[]} [primary_headers]
+ * @property {Object} [row_header_display_order]
+ * @property {string} [start_date]
  */
 /**
  * @typedef GenerateReportFilters
@@ -8653,19 +8681,55 @@ class PlatformClient {
  * @property {boolean} [success]
  */
 /**
- * @typedef GetDocs
- * @property {Object[]} [docs]
- * @property {Object[]} [items]
+ * @typedef GetCnConfigRequest
+ * @property {DeleteConfig} [data]
+ */
+/**
+ * @typedef GetCnConfigResponse
+ * @property {GetCnConfigResponseData} [data]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef GetCnConfigResponseData
+ * @property {string} [affiliate_id]
+ * @property {string} [currency_type]
+ * @property {boolean} [is_cn_as_refund_method]
+ * @property {GetCnConfigResponseMeta} [meta]
+ * @property {CreditNoteConfigNotificationEvents} [notification_events]
+ * @property {string[]} [redemption_ordering_channel]
+ * @property {number} [seller_id]
+ * @property {number} [validity]
+ */
+/**
+ * @typedef GetCnConfigResponseMeta
+ * @property {string} [reason]
+ * @property {string[]} [source_channel]
+ */
+/**
+ * @typedef GetCustomerCreditBalance
+ * @property {string} [affiliate_id]
+ * @property {string} [customer_mobile_number]
+ * @property {number} [seller_id]
+ */
+/**
+ * @typedef GetCustomerCreditBalanceRequest
+ * @property {GetCustomerCreditBalance} [data]
+ */
+/**
+ * @typedef GetCustomerCreditBalanceResponse
+ * @property {GetCustomerCreditBalanceResponseData} [data]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef GetCustomerCreditBalanceResponseData
+ * @property {string} [customer_mobile_number]
+ * @property {number} [total_credited_balance]
  */
 /**
  * @typedef GetEngineData
- * @property {GetEngineFilters} [filters]
+ * @property {Object} [filters]
  * @property {string[]} [project]
  * @property {string} [table_name]
- */
-/**
- * @typedef GetEngineFilters
- * @property {string} [config_field]
  */
 /**
  * @typedef GetEngineRequest
@@ -8679,6 +8743,20 @@ class PlatformClient {
  * @property {boolean} [success]
  */
 /**
+ * @typedef GetPdfUrlViewRequest
+ * @property {CnReferenceNumber} [data]
+ */
+/**
+ * @typedef GetPdfUrlViewResponse
+ * @property {GetPdfUrlViewResponseData} [data]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef GetPdfUrlViewResponseData
+ * @property {string} [cn_reference_number]
+ * @property {string} [s3_pdf_link]
+ */
+/**
  * @typedef GetReason
  * @property {string} [reason_type]
  */
@@ -8688,8 +8766,32 @@ class PlatformClient {
  */
 /**
  * @typedef GetReasonResponse
- * @property {GetDocs} [data]
+ * @property {number} [item_count]
+ * @property {ReasonItem[]} [item_list]
+ * @property {Page} [page]
  * @property {boolean} [success]
+ */
+/**
+ * @typedef GetReportingFilters
+ * @property {Object[]} [options]
+ * @property {string} [text]
+ * @property {string} [type]
+ * @property {string} [value]
+ */
+/**
+ * @typedef GetReportingFiltersResponse
+ * @property {GetReportingNestedFilters[]} [filters]
+ * @property {GetReportingFilters} [search]
+ * @property {GetReportingFilters} [status]
+ */
+/**
+ * @typedef GetReportingNestedFilters
+ * @property {Object[]} [options]
+ * @property {string} [placeholder_text]
+ * @property {boolean} [required]
+ * @property {string} [text]
+ * @property {string} [type]
+ * @property {string} [value]
  */
 /**
  * @typedef GetReportListData
@@ -8699,6 +8801,13 @@ class PlatformClient {
 /**
  * @typedef GetReportListRequest
  * @property {GetReportListData} [data]
+ */
+/**
+ * @typedef GetReportListResponse
+ * @property {ReportItem[]} [items]
+ * @property {Page} [page]
+ * @property {boolean} [success]
+ * @property {number} [total_count]
  */
 /**
  * @typedef InoviceListingPayloadDataFilters
@@ -8773,6 +8882,25 @@ class PlatformClient {
  * @property {string} [value]
  */
 /**
+ * @typedef IsCnRefundMethodData
+ * @property {string} [affiliate_id]
+ * @property {number} [seller_id]
+ * @property {boolean} [toggle_edit_required]
+ */
+/**
+ * @typedef IsCnRefundMethodRequest
+ * @property {IsCnRefundMethodData} [data]
+ */
+/**
+ * @typedef IsCnRefundMethodResponse
+ * @property {IsCnRefundMethodResponseData} [data]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef IsCnRefundMethodResponseData
+ * @property {boolean} [is_first_time_user]
+ */
+/**
  * @typedef IsCreditlinePayload
  * @property {string} [seller_id]
  */
@@ -8819,6 +8947,33 @@ class PlatformClient {
  * @property {Object} [meta]
  * @property {string} [redirect_url]
  * @property {string} [transaction_id]
+ */
+/**
+ * @typedef ReasonItem
+ * @property {string} [display_name]
+ * @property {string} [id]
+ * @property {string} [name]
+ */
+/**
+ * @typedef RedemptionDetails
+ * @property {number} [amount_debited]
+ * @property {string} [created_at]
+ * @property {string} [invoice_number]
+ * @property {string} [order_id]
+ * @property {string} [ordering_channel]
+ * @property {string} [shipment_id]
+ * @property {string} [staff_id]
+ * @property {string} [store_id]
+ */
+/**
+ * @typedef ReportItem
+ * @property {string[]} [allowed_filters]
+ * @property {Object} [config_meta]
+ * @property {string} [description]
+ * @property {string} [display_date]
+ * @property {string} [id]
+ * @property {string} [name]
+ * @property {string} [report_type]
  */
 /**
  * @typedef UnpaidInvoiceDataItems
@@ -9487,20 +9642,8 @@ class PlatformClient {
  * @property {string} agent_id
  */
 /**
- * @typedef CategoryData
- * @property {TicketCategory} [list]
- */
-/**
  * @typedef CloseVideoRoomResponse
  * @property {boolean} success
- */
-/**
- * @typedef CommunicationDetails
- * @property {string} [description]
- * @property {boolean} [enabled]
- * @property {string} [title]
- * @property {string} [type]
- * @property {string} [value]
  */
 /**
  * @typedef CreateCustomFormPayload
@@ -9548,11 +9691,6 @@ class PlatformClient {
  * @typedef CustomFormList
  * @property {CustomForm[]} [items]
  * @property {Page} [page]
- */
-/**
- * @typedef CustomFormSubmissionPayload
- * @property {TicketAsset[]} [attachments]
- * @property {Object[]} response
  */
 /**
  * @typedef Debug
@@ -9617,20 +9755,6 @@ class PlatformClient {
  * @property {string} access_token
  */
 /**
- * @typedef IntegrationConfig
- * @property {string} [_id]
- * @property {boolean} allow_ticket_creation
- * @property {string} [base_url]
- * @property {CategoryData} [category_data]
- * @property {string} [category_sync_apikey]
- * @property {boolean} [config_completed]
- * @property {string} [create_ticket_apikey]
- * @property {string} integration_type
- * @property {boolean} show_listing
- * @property {string} [update_ticket_apikey]
- * @property {string} [webhook_apikey]
- */
-/**
  * @typedef NotifyUser
  * @property {string} country_code
  * @property {string} phone_number
@@ -9683,23 +9807,6 @@ class PlatformClient {
  * @property {string} background_color
  * @property {string} title
  * @property {string} title_color
- */
-/**
- * @typedef SubmitCustomFormResponse
- * @property {string} message
- * @property {Ticket} [ticket]
- */
-/**
- * @typedef SupportGeneralConfig
- * @property {string} [_id]
- * @property {Object} [integration]
- * @property {boolean} [show_communication_info]
- * @property {boolean} [show_support_dris]
- * @property {CommunicationDetails} [support_communication]
- * @property {CommunicationDetails} [support_email]
- * @property {CommunicationDetails} [support_faq]
- * @property {CommunicationDetails} [support_phone]
- * @property {string} [type]
  */
 /**
  * @typedef Ticket
@@ -9759,11 +9866,6 @@ class PlatformClient {
  * @property {Object} [user]
  */
 /**
- * @typedef TicketFeedbackForm
- * @property {Object[]} [display]
- * @property {string} title
- */
-/**
  * @typedef TicketFeedbackList
  * @property {TicketFeedback[]} [items]
  */
@@ -9797,12 +9899,6 @@ class PlatformClient {
  * @property {Filter} [filters]
  * @property {Ticket[]} [items]
  * @property {Page} [page]
- */
-/**
- * @typedef TicketSubCategory
- * @property {string} display
- * @property {string} key
- * @property {TicketSubCategory} [sub_categories]
  */
 /**
  * @typedef UserSchema
@@ -10340,6 +10436,29 @@ class PlatformClient {
  * @property {BulkActionTemplate[]} [template_x_slug]
  */
 /**
+ * @typedef BulkReportsDownloadFailedResponse
+ * @property {string} [error]
+ * @property {boolean} [status]
+ */
+/**
+ * @typedef BulkReportsDownloadRequest
+ * @property {Object} [custom_filters_for_lane]
+ * @property {string} [custom_headers]
+ * @property {string[]} [entities]
+ * @property {string} [filter_type]
+ * @property {string} [from_date]
+ * @property {boolean} [is_cross_company_enabled]
+ * @property {string} [lane_type]
+ * @property {string} [report_type]
+ * @property {string[]} [store_ids]
+ * @property {string} [to_date]
+ */
+/**
+ * @typedef BulkReportsDownloadResponse
+ * @property {string} [batch_id]
+ * @property {boolean} [success]
+ */
+/**
  * @typedef BuyerDetails
  * @property {string} address
  * @property {string} [ajio_site_id]
@@ -10859,7 +10978,7 @@ class PlatformClient {
 /**
  * @typedef LineItem
  * @property {Charge[]} [charges]
- * @property {string} [custom_messasge]
+ * @property {string} [custom_message]
  * @property {string} [external_line_id]
  * @property {Object} [meta]
  * @property {number} [quantity]
@@ -11458,6 +11577,11 @@ class PlatformClient {
  * @property {string} [unit]
  */
 /**
+ * @typedef RoleBaseStateTransitionMapping
+ * @property {string[]} [next_statuses]
+ * @property {boolean} [success]
+ */
+/**
  * @typedef SendSmsPayload
  * @property {number} bag_id
  * @property {SmsDataPayload} [data]
@@ -11941,6 +12065,7 @@ class PlatformClient {
  * @typedef TaxInfo
  * @property {string} [b2b_gstin_number]
  * @property {string} [gstin]
+ * @property {string} [pan_no]
  */
 /**
  * @typedef TrackingList
@@ -12430,6 +12555,28 @@ class PlatformClient {
  * @property {string} order_id
  */
 /**
+ * @typedef AddressDetail
+ * @property {string} address
+ * @property {string} address_type
+ * @property {string} area
+ * @property {string} area_code
+ * @property {string} area_code_slug
+ * @property {string} city
+ * @property {string} country
+ * @property {string} country_iso_code
+ * @property {string} country_phone_code
+ * @property {string} [email]
+ * @property {string} [expire_at]
+ * @property {string} g_address_id
+ * @property {Object} [geo_location]
+ * @property {Object} [google_map_point]
+ * @property {string} [landmark]
+ * @property {string} name
+ * @property {string} phone
+ * @property {string} state
+ * @property {Object[]} [tags]
+ */
+/**
  * @typedef BankDetailsForOTP
  * @property {string} account_holder
  * @property {string} account_no
@@ -12588,7 +12735,7 @@ class PlatformClient {
  */
 /**
  * @typedef ErrorResponse
- * @property {ErrorDescription} [error]
+ * @property {Object} [error]
  * @property {string} message
  * @property {number} status_code
  * @property {boolean} success
@@ -12639,7 +12786,7 @@ class PlatformClient {
  * @typedef IntentApp
  * @property {string} [code]
  * @property {string} [display_name]
- * @property {PaymentModeLogo} [logos]
+ * @property {Object} [logos]
  * @property {string} [package_name]
  */
 /**
@@ -12663,6 +12810,12 @@ class PlatformClient {
 /**
  * @typedef MerchantOnBoardingResponse
  * @property {Object} data
+ * @property {boolean} success
+ */
+/**
+ * @typedef MerchnatPaymentModeResponse
+ * @property {Object[]} [items]
+ * @property {string} [message]
  * @property {boolean} success
  */
 /**
@@ -12712,6 +12865,15 @@ class PlatformClient {
  * @typedef OrderBeneficiaryResponse
  * @property {OrderBeneficiaryDetails[]} [beneficiaries]
  * @property {boolean} [show_beneficiary_details]
+ */
+/**
+ * @typedef OrderDetail
+ * @property {string} aggregator
+ * @property {Object} aggregator_order_details
+ * @property {number} amount
+ * @property {string} currency
+ * @property {string} gid
+ * @property {string} status
  */
 /**
  * @typedef Page
@@ -12833,7 +12995,7 @@ class PlatformClient {
  * @property {IntentAppErrorList[]} [intent_app_error_dict_list]
  * @property {string[]} [intent_app_error_list]
  * @property {boolean} [intent_flow]
- * @property {PaymentModeLogo} [logo_url]
+ * @property {Object} [logo_url]
  * @property {string} [merchant_code]
  * @property {string} [name]
  * @property {string} [nickname]
@@ -12877,6 +13039,47 @@ class PlatformClient {
  * @property {boolean} success
  */
 /**
+ * @typedef PaymentSessionDetail
+ * @property {string} [aggregator_customer_id]
+ * @property {string} aggregator_order_id
+ * @property {number} amount
+ * @property {number} amount_captured
+ * @property {number} [amount_refunded]
+ * @property {AddressDetail} billing_address
+ * @property {string} cancel_url
+ * @property {boolean} [captured]
+ * @property {string} [created]
+ * @property {string} currency
+ * @property {string} g_user_id
+ * @property {string} gid
+ * @property {string} [kind]
+ * @property {string} [locale]
+ * @property {string} [merchant_locale]
+ * @property {string} mode
+ * @property {string} payment_id
+ * @property {Object[]} payment_methods
+ * @property {AddressDetail} shipping_address
+ * @property {string} status
+ * @property {string} success_url
+ */
+/**
+ * @typedef PaymentSessionRequestSerializer
+ * @property {string} currency
+ * @property {string} gid
+ * @property {OrderDetail} order_details
+ * @property {PaymentSessionDetail[]} payment_details
+ * @property {string} status
+ * @property {number} total_amount
+ */
+/**
+ * @typedef PaymentSessionResponseSerializer
+ * @property {string} currency
+ * @property {string} gid
+ * @property {Object[]} platform_transaction_details
+ * @property {string} status
+ * @property {number} total_amount
+ */
+/**
  * @typedef PaymentStatusBulkHandlerRequest
  * @property {string[]} merchant_order_id
  */
@@ -12918,6 +13121,22 @@ class PlatformClient {
  * @property {boolean} [success]
  */
 /**
+ * @typedef Payout
+ * @property {PayoutCustomer} customers
+ * @property {boolean} is_active
+ * @property {boolean} is_default
+ * @property {PayoutMoreAttributes} more_attributes
+ * @property {PayoutAggregator[]} [payouts_aggregators]
+ * @property {string} transfer_type
+ * @property {string} unique_transfer_no
+ */
+/**
+ * @typedef PayoutAggregator
+ * @property {number} [aggregator_fund_id]
+ * @property {number} [aggregator_id]
+ * @property {number} [payout_details_id]
+ */
+/**
  * @typedef PayoutBankDetails
  * @property {string} [account_holder]
  * @property {string} [account_no]
@@ -12928,6 +13147,26 @@ class PlatformClient {
  * @property {string} [country]
  * @property {string} ifsc_code
  * @property {number} [pincode]
+ * @property {string} [state]
+ */
+/**
+ * @typedef PayoutCustomer
+ * @property {string} [email]
+ * @property {number} [id]
+ * @property {string} [mobile]
+ * @property {string} [name]
+ * @property {string} [unique_external_id]
+ */
+/**
+ * @typedef PayoutMoreAttributes
+ * @property {string} [account_holder]
+ * @property {string} [account_no]
+ * @property {string} [account_type]
+ * @property {string} [bank_name]
+ * @property {string} [branch_name]
+ * @property {string} [city]
+ * @property {string} [country]
+ * @property {string} [ifsc_code]
  * @property {string} [state]
  */
 /**
@@ -12954,13 +13193,8 @@ class PlatformClient {
  */
 /**
  * @typedef PayoutsResponse
- * @property {Object} customers
- * @property {boolean} is_active
- * @property {boolean} is_default
- * @property {Object} more_attributes
- * @property {Object[]} payouts_aggregators
- * @property {string} transfer_type
- * @property {Object} unique_transfer_no
+ * @property {Payout[]} items
+ * @property {boolean} success
  */
 /**
  * @typedef PollingPaymentLinkResponse
@@ -12981,6 +13215,38 @@ class PlatformClient {
  * @property {boolean} [is_verified_flag]
  * @property {string} message
  * @property {boolean} success
+ */
+/**
+ * @typedef RefundSessionDetail
+ * @property {number} amount
+ * @property {string} [balance_transaction]
+ * @property {string} created
+ * @property {string} currency
+ * @property {string} payment_id
+ * @property {string} [reason]
+ * @property {string} [receipt_number]
+ * @property {string} [refund_utr]
+ * @property {string} request_id
+ * @property {string} [source_transfer_reversal]
+ * @property {string} status
+ * @property {string} [transfer_reversal]
+ */
+/**
+ * @typedef RefundSessionRequestSerializer
+ * @property {string} currency
+ * @property {string} gid
+ * @property {PaymentSessionDetail} payment_details
+ * @property {RefundSessionDetail[]} [refund_details]
+ * @property {string} status
+ * @property {number} total_amount
+ */
+/**
+ * @typedef RefundSessionResponseSerializer
+ * @property {string} currency
+ * @property {string} gid
+ * @property {Object[]} platform_refund_details
+ * @property {string} status
+ * @property {number} total_refund_amount
  */
 /**
  * @typedef RepaymentDetailsSerialiserPayAll
@@ -13160,11 +13426,6 @@ class PlatformClient {
  * @property {string} [updated_at]
  */
 /**
- * @typedef GiveawayAudience
- * @property {string} [audience_id]
- * @property {number} [current_count]
- */
-/**
  * @typedef GiveawayResponse
  * @property {Giveaway[]} [items]
  * @property {Page} [page]
@@ -13287,8 +13548,8 @@ class PlatformClient {
  */
 /**
  * @typedef ClickStatsItem
- * @property {string} [display]
- * @property {number} [total]
+ * @property {string} display
+ * @property {number} total
  */
 /**
  * @typedef ClickStatsResponse
@@ -13466,10 +13727,6 @@ class PlatformClient {
  * @property {string} [message]
  */
 /**
- * @typedef BlitzkriegNotFoundSchema
- * @property {string} [message]
- */
-/**
  * @typedef Blocks
  * @property {string} [name]
  * @property {BlocksProps[]} [props]
@@ -13515,10 +13772,6 @@ class PlatformClient {
  * @typedef Css
  * @property {string} [link]
  * @property {string[]} [links]
- */
-/**
- * @typedef Custom
- * @property {Object} [props]
  */
 /**
  * @typedef Font
@@ -13606,10 +13859,6 @@ class PlatformClient {
  * @property {string} [name]
  */
 /**
- * @typedef Sections
- * @property {string} [attributes]
- */
-/**
  * @typedef SemiBold
  * @property {string} [file]
  * @property {string} [name]
@@ -13684,35 +13933,6 @@ class PlatformClient {
  * @property {string} [message]
  */
 /**
- * @typedef AuthenticationInternalServerErrorSchema
- * @property {string} [message]
- */
-/**
- * @typedef AuthSuccess
- * @property {string} [register_token]
- * @property {UserSchema} [user]
- * @property {boolean} [user_exists]
- */
-/**
- * @typedef AuthSuccessUser
- * @property {boolean} [active]
- * @property {AuthSuccessUserDebug} [debug]
- * @property {AuthSuccessUserEmails} [emails]
- * @property {string} [first_name]
- * @property {string} [last_name]
- */
-/**
- * @typedef AuthSuccessUserDebug
- * @property {string} [platform]
- */
-/**
- * @typedef AuthSuccessUserEmails
- * @property {boolean} [active]
- * @property {string} [email]
- * @property {boolean} [primary]
- * @property {boolean} [verified]
- */
-/**
  * @typedef BlockUserRequestSchema
  * @property {string} [reason]
  * @property {boolean} [status]
@@ -13721,10 +13941,6 @@ class PlatformClient {
 /**
  * @typedef BlockUserSuccess
  * @property {boolean} [success]
- */
-/**
- * @typedef CodeRequestBodySchema
- * @property {string} [code]
  */
 /**
  * @typedef CreateUserGroupSchema
@@ -13776,55 +13992,11 @@ class PlatformClient {
  * @property {boolean} [show_text_area]
  */
 /**
- * @typedef DeleteApplicationUserRequestSchema
- * @property {string} [otp]
- * @property {string} [reason]
- * @property {string} [reason_id]
- * @property {string} [request_id]
- * @property {string} [user_id]
- */
-/**
- * @typedef DeleteUserSuccess
- * @property {boolean} [success]
- */
-/**
- * @typedef EditEmailRequestSchema
- * @property {string} [email]
- */
-/**
- * @typedef EditMobileRequestSchema
- * @property {string} [country_code]
- * @property {string} [phone]
- */
-/**
- * @typedef EditProfileMobileSchema
- * @property {string} [country_code]
- * @property {string} [phone]
- */
-/**
- * @typedef EditProfileRequestSchema
- * @property {string} [android_hash]
- * @property {string} [country_code]
- * @property {string} [dob]
- * @property {string} [email]
- * @property {string} [first_name]
- * @property {string} [gender]
- * @property {string} [last_name]
- * @property {EditProfileMobileSchema} [mobile]
- * @property {string} [profile_pic_url]
- * @property {string} [register_token]
- * @property {string} [sender]
- */
-/**
  * @typedef Email
  * @property {boolean} [active]
  * @property {string} [email]
  * @property {boolean} [primary]
  * @property {boolean} [verified]
- */
-/**
- * @typedef EmailOtpSuccess
- * @property {boolean} [success]
  */
 /**
  * @typedef Facebook
@@ -13837,47 +14009,13 @@ class PlatformClient {
  * @property {string} [text_color]
  */
 /**
- * @typedef ForgotPasswordRequestSchema
- * @property {string} [code]
- * @property {string} [password]
- */
-/**
- * @typedef FormRegisterRequestSchema
- * @property {string} [email]
- * @property {string} [first_name]
- * @property {string} [gender]
- * @property {string} [last_name]
- * @property {string} [password]
- * @property {FormRegisterRequestSchemaPhone} [phone]
- * @property {string} [register_token]
- */
-/**
- * @typedef FormRegisterRequestSchemaPhone
- * @property {string} [country_code]
- * @property {string} [mobile]
- */
-/**
  * @typedef Google
  * @property {string} [app_id]
- */
-/**
- * @typedef HasPasswordSuccess
- * @property {boolean} [result]
  */
 /**
  * @typedef Login
  * @property {boolean} [otp]
  * @property {boolean} [password]
- */
-/**
- * @typedef LoginSuccess
- * @property {string} [register_token]
- * @property {string} [request_id]
- * @property {UserSchema} [user]
- */
-/**
- * @typedef LogoutSuccess
- * @property {boolean} [logout]
  */
 /**
  * @typedef LookAndFeel
@@ -13889,70 +14027,12 @@ class PlatformClient {
  * @property {boolean} [fynd_default]
  */
 /**
- * @typedef NotFoundSchema
- * @property {string} [message]
- */
-/**
- * @typedef OAuthRequestAppleSchema
- * @property {OAuthRequestAppleSchemaOauth} [oauth]
- * @property {OAuthRequestAppleSchemaProfile} [profile]
- * @property {string} [user_identifier]
- */
-/**
- * @typedef OAuthRequestAppleSchemaOauth
- * @property {string} [identity_token]
- */
-/**
- * @typedef OAuthRequestAppleSchemaProfile
- * @property {string} [first_name]
- * @property {string} [full_name]
- * @property {string} [last_name]
- */
-/**
- * @typedef OAuthRequestSchema
- * @property {boolean} [is_signed_in]
- * @property {OAuthRequestSchemaOauth2} [oauth2]
- * @property {OAuthRequestSchemaProfile} [profile]
- */
-/**
- * @typedef OAuthRequestSchemaOauth2
- * @property {string} [access_token]
- * @property {number} [expiry]
- * @property {string} [refresh_token]
- */
-/**
- * @typedef OAuthRequestSchemaProfile
- * @property {string} [email]
- * @property {string} [first_name]
- * @property {string} [full_name]
- * @property {string} [id]
- * @property {string} [image]
- * @property {string} [last_name]
- */
-/**
- * @typedef OtpSuccess
- * @property {string} [country_code]
- * @property {string} [message]
- * @property {string} [mobile]
- * @property {string} [register_token]
- * @property {string} [request_id]
- * @property {number} [resend_timer]
- * @property {string} [resend_token]
- * @property {boolean} [success]
- */
-/**
  * @typedef PaginationSchema
  * @property {number} [current]
  * @property {boolean} [has_next]
  * @property {number} [item_total]
  * @property {number} [size]
  * @property {string} [type]
- */
-/**
- * @typedef PasswordLoginRequestSchema
- * @property {string} [captcha_code]
- * @property {string} [password]
- * @property {string} [username]
  */
 /**
  * @typedef PhoneNumber
@@ -14001,50 +14081,6 @@ class PlatformClient {
  * @property {string} [updated_at]
  */
 /**
- * @typedef ProfileEditSuccess
- * @property {string} [country_code]
- * @property {string} [email]
- * @property {string} [message]
- * @property {string} [mobile]
- * @property {string} [register_token]
- * @property {string} [request_id]
- * @property {string} [resend_email_token]
- * @property {number} [resend_timer]
- * @property {string} [resend_token]
- * @property {boolean} [success]
- * @property {UserSchema} [user]
- * @property {boolean} [user_exists]
- * @property {boolean} [verify_email_link]
- * @property {boolean} [verify_email_otp]
- * @property {boolean} [verify_mobile_otp]
- */
-/**
- * @typedef ProfileEditSuccessSchema
- * @property {string} [email]
- * @property {string} [register_token]
- * @property {string} [user]
- * @property {boolean} [user_exists]
- * @property {boolean} [verify_email_link]
- * @property {boolean} [verify_email_otp]
- * @property {boolean} [verify_mobile_otp]
- */
-/**
- * @typedef RegisterFormSuccess
- * @property {string} [country_code]
- * @property {string} [email]
- * @property {string} [message]
- * @property {string} [mobile]
- * @property {string} [register_token]
- * @property {string} [request_id]
- * @property {string} [resend_email_token]
- * @property {number} [resend_timer]
- * @property {string} [resend_token]
- * @property {boolean} [success]
- * @property {boolean} [user_exists]
- * @property {boolean} [verify_email_otp]
- * @property {boolean} [verify_mobile_otp]
- */
-/**
  * @typedef RegisterRequiredFields
  * @property {RegisterRequiredFieldsEmail} [email]
  * @property {RegisterRequiredFieldsMobile} [mobile]
@@ -14063,77 +14099,6 @@ class PlatformClient {
  * @typedef RequiredFields
  * @property {PlatformEmail} [email]
  * @property {PlatformMobile} [mobile]
- */
-/**
- * @typedef ResetPasswordSuccess
- * @property {string} [status]
- */
-/**
- * @typedef SendEmailOtpRequestSchema
- * @property {string} [action]
- * @property {string} [email]
- * @property {string} [register_token]
- * @property {string} [token]
- */
-/**
- * @typedef SendEmailVerifyLinkSuccess
- * @property {boolean} [verify_email_link]
- */
-/**
- * @typedef SendMobileOtpRequestSchema
- * @property {string} [action]
- * @property {string} [android_hash]
- * @property {string} [captcha_code]
- * @property {string} [country_code]
- * @property {string} [force]
- * @property {string} [mobile]
- * @property {string} [token]
- */
-/**
- * @typedef SendMobileVerifyLinkSuccess
- * @property {boolean} [verify_mobile_link]
- */
-/**
- * @typedef SendOtpRequestSchema
- * @property {string} [android_hash]
- * @property {string} [captcha_code]
- * @property {string} [country_code]
- * @property {string} [mobile]
- */
-/**
- * @typedef SendOtpResponse
- * @property {string} [country_code]
- * @property {string} [email]
- * @property {string} [message]
- * @property {string} [mobile]
- * @property {string} [register_token]
- * @property {string} [request_id]
- * @property {string} [resend_email_token]
- * @property {number} [resend_timer]
- * @property {string} [resend_token]
- * @property {boolean} [success]
- * @property {boolean} [user_exists]
- * @property {boolean} [verify_email_otp]
- * @property {boolean} [verify_mobile_otp]
- */
-/**
- * @typedef SendResetPasswordEmailRequestSchema
- * @property {string} [captcha_code]
- * @property {string} [email]
- */
-/**
- * @typedef SendResetPasswordMobileRequestSchema
- * @property {string} [captcha_code]
- * @property {string} [country_code]
- * @property {string} [mobile]
- */
-/**
- * @typedef SendVerificationLinkMobileRequestSchema
- * @property {boolean} [active]
- * @property {string} [country_code]
- * @property {string} [phone]
- * @property {boolean} [primary]
- * @property {boolean} [verified]
  */
 /**
  * @typedef SessionDeleteResponseSchema
@@ -14158,10 +14123,6 @@ class PlatformClient {
  * @property {SessionListResponseInfo[]} [items]
  */
 /**
- * @typedef SessionListSuccess
- * @property {string[]} [sessions]
- */
-/**
  * @typedef Social
  * @property {boolean} [account_kit]
  * @property {boolean} [apple]
@@ -14175,18 +14136,6 @@ class PlatformClient {
  * @property {Google} [google]
  */
 /**
- * @typedef TokenRequestBodySchema
- * @property {string} [token]
- */
-/**
- * @typedef UnauthenticatedSchema
- * @property {boolean} [authenticated]
- */
-/**
- * @typedef UnauthorizedSchema
- * @property {string} [message]
- */
-/**
  * @typedef UnDeleteUserRequestSchema
  * @property {string} [reason]
  * @property {string} [reason_id]
@@ -14195,11 +14144,6 @@ class PlatformClient {
 /**
  * @typedef UnDeleteUserSuccess
  * @property {boolean} [success]
- */
-/**
- * @typedef UpdatePasswordRequestSchema
- * @property {string} [new_password]
- * @property {string} [old_password]
  */
 /**
  * @typedef UpdateUserGroupSchema
@@ -14243,10 +14187,6 @@ class PlatformClient {
  * @property {number} [uid]
  */
 /**
- * @typedef UserObjectSchema
- * @property {UserSchema} [user]
- */
-/**
  * @typedef UserPhoneNumbers
  * @property {boolean} [active]
  * @property {string} [country_code]
@@ -14277,39 +14217,6 @@ class PlatformClient {
  * @typedef UserSearchResponseSchema
  * @property {UserSchema[]} [users]
  */
-/**
- * @typedef VerifyEmailOtpRequestSchema
- * @property {string} [action]
- * @property {string} [email]
- * @property {string} [otp]
- * @property {string} [register_token]
- */
-/**
- * @typedef VerifyEmailOTPSuccess
- * @property {UserSchema} [user]
- * @property {boolean} [verify_email_link]
- */
-/**
- * @typedef VerifyEmailSuccess
- * @property {string} [message]
- */
-/**
- * @typedef VerifyMobileOTPSuccess
- * @property {UserSchema} [user]
- * @property {boolean} [verify_mobile_link]
- */
-/**
- * @typedef VerifyOtpRequestSchema
- * @property {string} [otp]
- * @property {string} [register_token]
- * @property {string} [request_id]
- */
-/**
- * @typedef VerifyOtpSuccess
- * @property {string} [register_token]
- * @property {UserSchema} [user]
- * @property {boolean} [user_exists]
- */
 
 /**
  * @typedef Association
@@ -14335,41 +14242,8 @@ class PlatformClient {
  * @property {string} [version]
  */
 /**
- * @typedef EventConfigBase
- * @property {string} [event_category]
- * @property {string} [event_name]
- * @property {string} [event_type]
- * @property {string} [version]
- */
-/**
- * @typedef EventConfigList
- * @property {EventConfig[]} [items]
- * @property {Page} [page]
- */
-/**
  * @typedef EventConfigResponse
  * @property {EventConfig[]} [event_configs]
- */
-/**
- * @typedef EventPayload
- * @property {string} [event_name]
- * @property {string} [event_trace_id]
- * @property {string} [event_type]
- * @property {number} [id]
- * @property {string} [message_id]
- * @property {boolean} [status]
- * @property {string} [version]
- */
-/**
- * @typedef EventProcessedStatus
- * @property {number} [attempt]
- * @property {string} [created_on]
- * @property {number} [id]
- * @property {string} [processed_on]
- * @property {string} [response_code]
- * @property {string} [response_message]
- * @property {boolean} [status]
- * @property {string} [subscriber_id]
  */
 /**
  * @typedef Page
@@ -14397,13 +14271,6 @@ class PlatformClient {
  * @typedef SubscriberConfigList
  * @property {SubscriberResponse[]} [items]
  * @property {Page} [page]
- */
-/**
- * @typedef SubscriberEvent
- * @property {string} [created_date]
- * @property {number} [event_id]
- * @property {number} [id]
- * @property {number} [subscriber_id]
  */
 /**
  * @typedef SubscriberResponse

@@ -15,8 +15,12 @@ class FileStorage {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.namespace - Bucket name
-   * @param {number} [arg.pageNo] - Page no
+   * @param {string} arg.namespace - Segregation of different types of
+   *   files(products, orders, logistics etc), Required for validating the
+   *   data of the file being uploaded, decides where exactly the file will be
+   *   stored inside the storage bucket.
+   * @param {number} [arg.page] - Page no
+   * @param {number} [arg.limit] - Limit
    * @returns {Promise<BrowseResponse>} - Success response
    * @summary: Browse Files
    * @description: Browse Files
@@ -24,13 +28,15 @@ class FileStorage {
   async browse({
     namespace,
 
-    pageNo,
+    page,
+    limit,
   } = {}) {
     const { error } = FileStorageValidator.browse().validate(
       {
         namespace,
 
-        pageNo,
+        page,
+        limit,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -43,7 +49,8 @@ class FileStorage {
       {
         namespace,
 
-        pageNo,
+        page,
+        limit,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -56,14 +63,15 @@ class FileStorage {
     }
 
     const query_params = {};
-    query_params["page_no"] = pageNo;
+    query_params["page"] = page;
+    query_params["limit"] = limit;
 
     const xHeaders = {};
 
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/namespaces/${namespace}/browse/`,
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/namespaces/${namespace}/browse`,
       query_params,
       undefined,
       xHeaders
@@ -85,33 +93,6 @@ class FileStorage {
     }
 
     return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.namespace - Bucket name
-   * @summary: Browse Files
-   * @description: Browse Files
-   */
-  browsePaginator({ namespace } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.browse({
-        namespace: namespace,
-
-        pageNo: pageNo,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
   }
 
   /**
@@ -183,7 +164,7 @@ class FileStorage {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/namespaces/${namespace}/upload/complete/`,
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/namespaces/${namespace}/upload/complete`,
       query_params,
       body,
       xHeaders
@@ -209,7 +190,7 @@ class FileStorage {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {boolean} [arg.sync] - Sync
+   * @param {boolean} [arg.sync] -
    * @param {BulkRequest} arg.body
    * @returns {Promise<BulkUploadResponse>} - Success response
    * @summary: Copy Files
@@ -251,7 +232,7 @@ class FileStorage {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/uploads/copy/`,
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/uploads/copy`,
       query_params,
       body,
       xHeaders
@@ -315,7 +296,7 @@ class FileStorage {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/sign-urls/`,
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/sign-urls`,
       query_params,
       body,
       xHeaders
@@ -380,7 +361,7 @@ class FileStorage {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/proxy/`,
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/proxy`,
       query_params,
       undefined,
       xHeaders
@@ -470,7 +451,7 @@ class FileStorage {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/namespaces/${namespace}/upload/start/`,
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/namespaces/${namespace}/upload/start`,
       query_params,
       body,
       xHeaders

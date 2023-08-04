@@ -297,13 +297,13 @@ Success. Check the example shown below or refer `Application` for more details.
   "modified_at": "2020-12-02T05:49:41.610Z",
   "__v": 29,
   "banner": {
-    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/landscape-banner/original/uSwlNpygq-Uniket-B2B.png"
+    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/landscape-banner/original/uSwlNpygq-Uniket-B2B.png"
   },
   "logo": {
-    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
+    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
   },
   "favicon": {
-    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/favicon/original/y3h6SSlY5-Uniket-B2B.png"
+    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/favicon/original/y3h6SSlY5-Uniket-B2B.png"
   },
   "domains": [
     {
@@ -323,7 +323,7 @@ Success. Check the example shown below or refer `Application` for more details.
   ],
   "app_type": "live",
   "mobile_logo": {
-    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
+    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
   },
   "domain": {
     "verified": true,
@@ -388,16 +388,16 @@ Success. Check the example shown below or refer `ApplicationDetail` for more det
   "name": "Uniket B2B",
   "description": "Uniket B2B - India's Fastest Growing Retail Store - Aapki Badhti Dukaan",
   "logo": {
-    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
+    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
   },
   "mobile_logo": {
-    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
+    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
   },
   "favicon": {
-    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/favicon/original/y3h6SSlY5-Uniket-B2B.png"
+    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/favicon/original/y3h6SSlY5-Uniket-B2B.png"
   },
   "banner": {
-    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/landscape-banner/original/uSwlNpygq-Uniket-B2B.png"
+    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/landscape-banner/original/uSwlNpygq-Uniket-B2B.png"
   },
   "domain": {
     "verified": true,
@@ -717,8 +717,8 @@ Success. Check the example shown below or refer `Currency` for more details.
   "code": "XAU",
   "created_at": "2020-05-22T05:03:13.429Z",
   "modified_at": "2020-06-05T09:12:04.248Z",
-  "decimal_digits": null,
-  "symbol": null
+  "decimal_digits": 1,
+  "symbol": ""
 }
 ```
 </details>
@@ -789,8 +789,8 @@ Success. Check the example shown below or refer `AppFeatureResponse` for more de
     "landing_page": {
       "launch_page": {
         "page_type": "home",
-        "params": null,
-        "query": null
+        "params": {},
+        "query": {}
       },
       "continue_as_guest": true,
       "login_btn_text": "Click here to sign-in",
@@ -1242,12 +1242,10 @@ Success. Check the example shown below or refer `ApplicationAboutResponse` for m
     "is_active": true,
     "_id": "5cd3db5e9d692cfe5302a7ba",
     "name": "Shivam Clothing Store",
-    "meta": [
-      {
-        "name": "tes",
-        "value": "test"
-      }
-    ],
+    "meta": {
+      "name": "tes",
+      "value": "test"
+    },
     "token": "xOfcP-aYE",
     "secret": "",
     "created_at": "2019-05-09T07:48:46.218Z",
@@ -1501,15 +1499,6 @@ Success
 
 ---
 
-#### [AppFeatureRequest](#AppFeatureRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | feature | [AppFeature](#AppFeature)? |  yes  |  |
- 
-
----
-
 #### [AppFeatureResponse](#AppFeatureResponse)
 
  | Properties | Type | Nullable | Description |
@@ -1586,13 +1575,13 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | _id | string? |  yes  | The unique identifier (24-digit Mongo Object ID) for the sales channel details |
- | banner | [SecureUrl](#SecureUrl) |  no  |  |
- | description | string |  no  | It gives a detailed information about the sales channel. It is required. |
+ | banner | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | description | string? |  yes  | It gives a detailed information about the sales channel. It is required. |
  | domain | [Domain](#Domain)? |  yes  |  |
  | domains | [[Domain](#Domain)]? |  yes  |  |
- | favicon | [SecureUrl](#SecureUrl) |  no  |  |
- | logo | [SecureUrl](#SecureUrl) |  no  |  |
- | mobile_logo | [SecureUrl](#SecureUrl) |  no  |  |
+ | favicon | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | logo | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | mobile_logo | [SecureUrl](#SecureUrl)? |  yes  |  |
  | name | string |  no  | Name of the sales channel. It is required. |
  
 
@@ -1659,19 +1648,6 @@ Success
 
 ---
 
-#### [ApplicationVersionRequest](#ApplicationVersionRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | string? |  yes  |  |
- | name | string |  no  |  |
- | namespace | string? |  yes  |  |
- | token | string? |  yes  |  |
- | version | string |  no  |  |
- 
-
----
-
 #### [ApplicationWebsite](#ApplicationWebsite)
 
  | Properties | Type | Nullable | Description |
@@ -1729,27 +1705,6 @@ Success
  | created_at | string? |  yes  | ISO 8601 timestamp of token creation |
  | tokens | [Tokens](#Tokens)? |  yes  |  |
  | updated_at | string? |  yes  | ISO 8601 timestamp of token updation |
- 
-
----
-
-#### [AppVersionRequest](#AppVersionRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | application | [ApplicationVersionRequest](#ApplicationVersionRequest) |  no  |  |
- | device | [Device](#Device) |  no  |  |
- | locale | string? |  yes  |  |
- | timezone | string? |  yes  |  |
- 
-
----
-
-#### [ArticleAssignmentRule](#ArticleAssignmentRule)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | store_priority | [StorePriorityRule](#StorePriorityRule)? |  yes  |  |
  
 
 ---
@@ -1944,17 +1899,6 @@ Success
 
 ---
 
-#### [Device](#Device)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | build | number? |  yes  |  |
- | model | string? |  yes  |  |
- | os | [OS](#OS) |  no  |  |
- 
-
----
-
 #### [Domain](#Domain)
 
  | Properties | Type | Nullable | Description |
@@ -2141,56 +2085,6 @@ Success
 
 ---
 
-#### [InvalidPayloadRequest](#InvalidPayloadRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  | Error message when request body payload is improper |
- 
-
----
-
-#### [InventoryArticleAssignment](#InventoryArticleAssignment)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | post_order_reassignment | boolean? |  yes  | Allow post order reassigment of article |
- | rules | [ArticleAssignmentRule](#ArticleAssignmentRule)? |  yes  |  |
- 
-
----
-
-#### [InventoryBrandRule](#InventoryBrandRule)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | brands | [number]? |  yes  |  |
- | criteria | string? |  yes  | Whether all brands are enabled, or explicitly few brands in the inventory |
- 
-
----
-
-#### [InventoryPaymentConfig](#InventoryPaymentConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | mode_of_payment | string? |  yes  | Mode of payment for the inventory of sales channel. It is required and default value is null. |
- | source | string? |  yes  | Source of the payment mode for the inventory payment of sales channel. Default value is FYND. |
- 
-
----
-
-#### [InventoryStoreRule](#InventoryStoreRule)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | criteria | string? |  yes  | Whether all stores are enabled, or explicitly few stores in the inventory, or use brands and company filter. |
- | rules | [[StoreCriteriaRule](#StoreCriteriaRule)]? |  yes  | List of rules with company and brands uids. Used when critera is `filter`. |
- | stores | [number]? |  yes  | List of store uids. Used when critera is `explicit`. |
- 
-
----
-
 #### [Ios](#Ios)
 
  | Properties | Type | Nullable | Description |
@@ -2369,26 +2263,6 @@ Success
 
 ---
 
-#### [OrderingStoresResponse](#OrderingStoresResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[OrderingStore](#OrderingStore)]? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
- 
-
----
-
-#### [OS](#OS)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string |  no  |  |
- | version | string? |  yes  |  |
- 
-
----
-
 #### [OwnerInfo](#OwnerInfo)
 
  | Properties | Type | Nullable | Description |
@@ -2553,32 +2427,12 @@ Success
 
 ---
 
-#### [StoreCriteriaRule](#StoreCriteriaRule)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | brands | [number]? |  yes  | List of brand UID |
- | companies | [number]? |  yes  | List of company UID |
- 
-
----
-
 #### [StoreLatLong](#StoreLatLong)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | coordinates | [number]? |  yes  |  |
  | type | string? |  yes  | Coordinates type of the opted store |
- 
-
----
-
-#### [StorePriorityRule](#StorePriorityRule)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | enabled | boolean? |  yes  | Shows store priority is enabled or not enabled for the article assignment. |
- | storetype_order | [string]? |  yes  |  |
  
 
 ---
@@ -2634,16 +2488,6 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | message | string? |  yes  |  |
- 
-
----
-
-#### [UpdateDialog](#UpdateDialog)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | interval | number? |  yes  |  |
- | type | string? |  yes  |  |
  
 
 ---

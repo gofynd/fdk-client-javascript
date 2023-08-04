@@ -1,6 +1,5 @@
 export = ThemeModel;
 declare class ThemeModel {
-    static AddThemeRequestSchema(): any;
     static AllAvailablePageSchema(): any;
     static AssetsSchema(): any;
     static AvailablePagePredicate(): any;
@@ -14,7 +13,6 @@ declare class ThemeModel {
     static availableSectionSchema(): any;
     static BlitzkriegApiErrorSchema(): any;
     static BlitzkriegInternalServerErrorSchema(): any;
-    static BlitzkriegNotFoundSchema(): any;
     static Blocks(): any;
     static BlocksProps(): any;
     static Bold(): any;
@@ -23,11 +21,7 @@ declare class ThemeModel {
     static Config(): any;
     static ConfigPage(): any;
     static Css(): any;
-    static Custom(): any;
     static Font(): any;
-    static FontsSchema(): any;
-    static FontsSchemaItems(): any;
-    static FontsSchemaItemsFiles(): any;
     static GlobalSchema(): any;
     static GlobalSchemaProps(): any;
     static Images(): any;
@@ -35,15 +29,11 @@ declare class ThemeModel {
     static Light(): any;
     static ListSchemaItem(): any;
     static Medium(): any;
-    static PaginationSchema(): any;
     static Preset(): any;
     static Regular(): any;
-    static Sections(): any;
     static SemiBold(): any;
     static Src(): any;
-    static ThemesListingResponseSchema(): any;
     static ThemesSchema(): any;
     static UmdJs(): any;
-    static UpgradableThemeSchema(): any;
     static Variants(): any;
 }

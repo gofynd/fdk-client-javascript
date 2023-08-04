@@ -48,6 +48,12 @@ class OrderValidator {
     }).required();
   }
 
+  static downloadLanesReport() {
+    return Joi.object({
+      body: OrderModel.BulkReportsDownloadRequest().required(),
+    }).required();
+  }
+
   static fetchCreditBalanceDetail() {
     return Joi.object({
       body: OrderModel.FetchCreditBalanceRequestPayload().required(),
@@ -65,6 +71,13 @@ class OrderValidator {
       orderId: Joi.string().allow("").required(),
       shipmentId: Joi.string().allow(""),
       documentType: Joi.string().allow(""),
+    }).required();
+  }
+
+  static getAllowedStateTransition() {
+    return Joi.object({
+      orderingChannel: Joi.string().allow("").required(),
+      status: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -200,7 +213,7 @@ class OrderValidator {
       lane: Joi.string().allow(""),
       bagStatus: Joi.string().allow(""),
       statusOverrideLane: Joi.boolean(),
-      timeToDispatch: Joi.string().allow(""),
+      timeToDispatch: Joi.number(),
       searchType: Joi.string().allow(""),
       searchValue: Joi.string().allow(""),
       fromDate: Joi.string().allow(""),
@@ -220,6 +233,7 @@ class OrderValidator {
       companyAffiliateTag: Joi.string().allow(""),
       myOrders: Joi.boolean(),
       platformUserId: Joi.string().allow(""),
+      tags: Joi.string().allow(""),
     }).required();
   }
 

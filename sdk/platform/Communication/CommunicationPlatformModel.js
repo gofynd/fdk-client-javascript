@@ -490,29 +490,6 @@ class CommunicationModel {
       sms: CommunicationModel.PayloadSmsStructure(),
     });
   }
-  static PushtokenReq() {
-    return Joi.object({
-      action: Joi.string().allow(""),
-      bundle_identifier: Joi.string().allow(""),
-      push_token: Joi.string().allow(""),
-      unique_device_id: Joi.string().allow(""),
-    });
-  }
-  static PushtokenRes() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-      application_id: Joi.string().allow(""),
-      bundle_identifier: Joi.string().allow(""),
-      created_at: Joi.string().allow(""),
-      expired_at: Joi.string().allow(""),
-      platform: Joi.string().allow(""),
-      push_token: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-      unique_device_id: Joi.string().allow(""),
-      updated_at: Joi.string().allow(""),
-      user_id: Joi.string().allow(""),
-    });
-  }
   static RecipientHeaders() {
     return Joi.object({
       email: Joi.string().allow(""),
@@ -781,22 +758,6 @@ class CommunicationModel {
       items: Joi.array().items(CommunicationModel.SystemNotification()),
       last_read_anchor: Joi.number(),
       page: CommunicationModel.Page(),
-    });
-  }
-  static SystemNotificationSettings() {
-    return Joi.object({
-      priority: Joi.string().allow(""),
-      sound: Joi.boolean(),
-      time_to_live: Joi.string().allow(""),
-    });
-  }
-  static SystemNotificationsPage() {
-    return Joi.object({
-      current: Joi.number(),
-      has_next: Joi.boolean(),
-      item_total: Joi.number(),
-      size: Joi.number(),
-      type: Joi.string().allow(""),
     });
   }
   static SystemNotificationUser() {

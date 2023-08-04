@@ -17,17 +17,6 @@ class ShareModel {
       message: Joi.string().allow(""),
     });
   }
-  static Page() {
-    return Joi.object({
-      current: Joi.number(),
-      has_next: Joi.boolean(),
-      has_previous: Joi.boolean(),
-      item_total: Joi.number(),
-      next_id: Joi.string().allow(""),
-      size: Joi.number(),
-      type: Joi.string().allow("").required(),
-    });
-  }
   static QRCodeResp() {
     return Joi.object({
       link: Joi.string().allow(""),
@@ -46,12 +35,6 @@ class ShareModel {
       force_web: Joi.boolean(),
       ios: ShareModel.RedirectDevice(),
       web: ShareModel.WebRedirect(),
-    });
-  }
-  static ShortLinkList() {
-    return Joi.object({
-      items: Joi.array().items(ShareModel.ShortLinkRes()),
-      page: ShareModel.Page(),
     });
   }
   static ShortLinkReq() {

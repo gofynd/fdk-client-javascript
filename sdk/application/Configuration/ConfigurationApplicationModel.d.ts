@@ -3,7 +3,6 @@ declare class ConfigurationModel {
     static Android(): any;
     static AppCurrencyResponse(): any;
     static AppFeature(): any;
-    static AppFeatureRequest(): any;
     static AppFeatureResponse(): any;
     static Application(): any;
     static ApplicationAboutResponse(): any;
@@ -14,14 +13,11 @@ declare class ConfigurationModel {
     static ApplicationInformation(): any;
     static ApplicationMeta(): any;
     static ApplicationRedirections(): any;
-    static ApplicationVersionRequest(): any;
     static ApplicationWebsite(): any;
     static AppStaff(): any;
     static AppStaffListResponse(): any;
     static AppStaffResponse(): any;
     static AppTokenResponse(): any;
-    static AppVersionRequest(): any;
-    static ArticleAssignmentRule(): any;
     static BlogLink(): any;
     static BusinessHighlights(): any;
     static CartFeature(): any;
@@ -38,7 +34,6 @@ declare class ConfigurationModel {
     static Debit(): any;
     static DefaultCurrency(): any;
     static DeploymentStoreSelectionFeature(): any;
-    static Device(): any;
     static Domain(): any;
     static FacebookLink(): any;
     static FeedbackFeature(): any;
@@ -57,11 +52,6 @@ declare class ConfigurationModel {
     static InformationPhone(): any;
     static InformationSupport(): any;
     static InstagramLink(): any;
-    static InvalidPayloadRequest(): any;
-    static InventoryArticleAssignment(): any;
-    static InventoryBrandRule(): any;
-    static InventoryPaymentConfig(): any;
-    static InventoryStoreRule(): any;
     static Ios(): any;
     static LandingPageFeature(): any;
     static LanguageResponse(): any;
@@ -78,8 +68,6 @@ declare class ConfigurationModel {
     static OrderingStores(): any;
     static OrderingStoreSelect(): any;
     static OrderingStoreSelectRequest(): any;
-    static OrderingStoresResponse(): any;
-    static OS(): any;
     static OwnerInfo(): any;
     static Page(): any;
     static PcrFeature(): any;
@@ -95,15 +83,12 @@ declare class ConfigurationModel {
     static Segment(): any;
     static SegmentCredentials(): any;
     static SocialLinks(): any;
-    static StoreCriteriaRule(): any;
     static StoreLatLong(): any;
-    static StorePriorityRule(): any;
     static SuccessMessageResponse(): any;
     static SupportedLanguage(): any;
     static Tokens(): any;
     static TwitterLink(): any;
     static UnhandledError(): any;
-    static UpdateDialog(): any;
     static UserEmail(): any;
     static UserPhoneNumber(): any;
     static VimeoLink(): any;

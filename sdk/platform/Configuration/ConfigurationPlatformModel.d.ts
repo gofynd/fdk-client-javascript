@@ -47,7 +47,6 @@ declare class ConfigurationModel {
     static CommunicationConfig(): any;
     static CommunicationOptinDialogFeature(): any;
     static CompaniesResponse(): any;
-    static CompanyAboutAddress(): any;
     static CompanyBrandInfo(): any;
     static CompanyByBrandsRequest(): any;
     static CompanyByBrandsResponse(): any;
@@ -59,7 +58,6 @@ declare class ConfigurationModel {
     static Credit(): any;
     static CurrenciesResponse(): any;
     static Currency(): any;
-    static CurrencyConfig(): any;
     static CurrencyFeature(): any;
     static Debit(): any;
     static DefaultCurrency(): any;
@@ -176,12 +174,9 @@ declare class ConfigurationModel {
     static TokenResponse(): any;
     static Tokens(): any;
     static TwitterLink(): any;
-    static UnhandledError(): any;
     static UpdateDomain(): any;
     static UpdateDomainTypeRequest(): any;
     static UpdateIntegrationLevelRequest(): any;
-    static UserEmail(): any;
-    static UserPhoneNumber(): any;
     static ValidationFailedResponse(): any;
     static Validators(): any;
     static VimeoLink(): any;

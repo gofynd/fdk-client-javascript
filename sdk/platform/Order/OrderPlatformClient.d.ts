@@ -7,7 +7,7 @@ declare class Order {
      * @param {AttachOrderUser} arg.body
      * @returns {Promise<AttachOrderUserResponse>} - Success response
      * @summary:
-     * @description:
+     * @description: Attach Order User
      */
     attachOrderUser({ body }?: {
         body: AttachOrderUser;
@@ -17,7 +17,7 @@ declare class Order {
      * @param {OrderStatus} arg.body
      * @returns {Promise<OrderStatusResult>} - Success response
      * @summary:
-     * @description:
+     * @description: Check order status
      */
     checkOrderStatus({ body }?: {
         body: OrderStatus;
@@ -31,7 +31,7 @@ declare class Order {
      * @param {string} [arg.method] - Provider Method to Call
      * @returns {Promise<Click2CallResponse>} - Success response
      * @summary:
-     * @description:
+     * @description: Click to Call
      */
     click2Call({ caller, receiver, bagId, callerId, method, }?: {
         caller: string;
@@ -55,7 +55,7 @@ declare class Order {
      * @param {CreateOrderAPI} arg.body
      * @returns {Promise<CreateOrderResponse>} - Success response
      * @summary:
-     * @description:
+     * @description: Create Order
      */
     createOrder({ body }?: {
         body: CreateOrderAPI;
@@ -65,7 +65,7 @@ declare class Order {
      * @param {DispatchManifest} arg.body
      * @returns {Promise<SuccessResponse>} - Success response
      * @summary:
-     * @description:
+     * @description: Dispatch Manifest
      */
     dispatchManifest({ body }?: {
         body: DispatchManifest;
@@ -75,17 +75,27 @@ declare class Order {
      * @param {string} [arg.templateSlug] - Slug name of template to be downloaded
      * @returns {Promise<FileResponse>} - Success response
      * @summary:
-     * @description:
+     * @description: Download bulk actions seller templates.
      */
     downloadBulkActionTemplate({ templateSlug }?: {
         templateSlug?: string;
     }): Promise<FileResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {BulkReportsDownloadRequest} arg.body
+     * @returns {Promise<BulkReportsDownloadResponse>} - Success response
+     * @summary:
+     * @description: downloads lanes shipment/orders.
+     */
+    downloadLanesReport({ body }?: {
+        body: BulkReportsDownloadRequest;
+    }): Promise<BulkReportsDownloadResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {FetchCreditBalanceRequestPayload} arg.body
      * @returns {Promise<FetchCreditBalanceResponsePayload>} - Success response
      * @summary:
-     * @description:
+     * @description: Fetch Credit Balance Detail
      */
     fetchCreditBalanceDetail({ body }?: {
         body: FetchCreditBalanceRequestPayload;
@@ -95,7 +105,7 @@ declare class Order {
      * @param {RefundModeConfigRequestPayload} arg.body
      * @returns {Promise<RefundModeConfigResponsePayload>} - Success response
      * @summary:
-     * @description:
+     * @description: Fetch Refund Mode Config
      */
     fetchRefundModeConfig({ body }?: {
         body: RefundModeConfigRequestPayload;
@@ -107,7 +117,7 @@ declare class Order {
      * @param {string} [arg.documentType] -
      * @returns {Promise<GeneratePosOrderReceiptResponse>} - Success response
      * @summary:
-     * @description:
+     * @description: Generate POS recipt by order id.
      */
     generatePOSReceiptByOrderId({ orderId, shipmentId, documentType, }?: {
         orderId: string;
@@ -116,11 +126,23 @@ declare class Order {
     }): Promise<GeneratePosOrderReceiptResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.orderingChannel - Ordering channel
+     * @param {string} arg.status - Current status of a shipment
+     * @returns {Promise<RoleBaseStateTransitionMapping>} - Success response
+     * @summary: To fetch next state transitions.
+     * @description: This endpoint will fetch next possible states based on logged in user
+     */
+    getAllowedStateTransition({ orderingChannel, status }?: {
+        orderingChannel: string;
+        status: string;
+    }): Promise<RoleBaseStateTransitionMapping>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} [arg.date] - Date On which the announcement is Active
      *   (Date should in ISO Datetime format IST Time)
      * @returns {Promise<AnnouncementsResponse>} - Success response
      * @summary:
-     * @description:
+     * @description: Get Announcements
      */
     getAnnouncements({ date }?: {
         date?: string;
@@ -132,7 +154,7 @@ declare class Order {
      * @param {string} [arg.channelId] - Id of application
      * @returns {Promise<BagDetailsPlatformResponse>} - Success response
      * @summary:
-     * @description:
+     * @description: Get Order Bag Details.
      */
     getBagById({ bagId, channelBagId, channelId }?: {
         bagId?: string;
@@ -153,7 +175,7 @@ declare class Order {
      * @param {number} [arg.pageSize] - Page size of data received per page
      * @returns {Promise<GetBagsPlatformResponse>} - Success response
      * @summary:
-     * @description:
+     * @description: Get Bags for the order
      */
     getBags({ bagIds, shipmentIds, orderIds, channelBagIds, channelShipmentIds, channelOrderIds, channelId, pageNo, pageSize, }?: {
         bagIds?: string;
@@ -170,7 +192,7 @@ declare class Order {
      * @param {Object} arg - Arg object.
      * @returns {Promise<BulkActionTemplateResponse>} - Success response
      * @summary:
-     * @description:
+     * @description: Get Bulk Action seller templates.
      */
     getBulkActionTemplate({}?: any): Promise<BulkActionTemplateResponse>;
     /**
@@ -189,7 +211,7 @@ declare class Order {
      * @param {number} [arg.pageSize] -
      * @returns {Promise<FileResponse>} - Success response
      * @summary:
-     * @description:
+     * @description: Generate Bulk Shipment Excel Report.
      */
     getBulkShipmentExcelFile({ salesChannels, dpIds, fromDate, toDate, stores, tags, bagStatus, paymentMethods, fileType, timeToDispatch, pageNo, pageSize, }?: {
         salesChannels?: string;
@@ -231,7 +253,7 @@ declare class Order {
      * @param {boolean} [arg.myOrders] -
      * @returns {Promise<LaneConfigResponse>} - Success response
      * @summary:
-     * @description:
+     * @description: Get lane config for the order
      */
     getLaneConfig({ superLane, groupEntity, fromDate, toDate, dpIds, stores, salesChannels, paymentMode, bagStatus, searchType, searchValue, tags, timeToDispatch, paymentMethods, myOrders, }?: {
         superLane?: string;
@@ -255,7 +277,7 @@ declare class Order {
      * @param {string} arg.orderId -
      * @returns {Promise<OrderDetailsResponse>} - Success response
      * @summary:
-     * @description:
+     * @description: Get Order Details by ID
      */
     getOrderById({ orderId }?: {
         orderId: string;
@@ -287,7 +309,7 @@ declare class Order {
      * @param {boolean} [arg.myOrders] -
      * @returns {Promise<OrderListingResponse>} - Success response
      * @summary:
-     * @description:
+     * @description: Get Orders Listing
      */
     getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, myOrders, }?: {
         lane?: string;
@@ -312,7 +334,7 @@ declare class Order {
      * @param {Object} arg - Arg object.
      * @returns {Promise<GetActionsResponse>} - Success response
      * @summary:
-     * @description:
+     * @description: Get Role Based Actions
      */
     getRoleBasedActions({}?: any): Promise<GetActionsResponse>;
     /**
@@ -321,7 +343,7 @@ declare class Order {
      * @param {string} [arg.shipmentId] - Shipment Id
      * @returns {Promise<ShipmentInfoResponse>} - Success response
      * @summary:
-     * @description:
+     * @description: Get shipment details for the given shipment.
      */
     getShipmentById({ channelShipmentId, shipmentId }?: {
         channelShipmentId?: string;
@@ -333,7 +355,7 @@ declare class Order {
      * @param {number} [arg.bagId] - Bag/Product Id
      * @returns {Promise<ShipmentHistoryResponse>} - Success response
      * @summary:
-     * @description:
+     * @description: Get Shipment History
      */
     getShipmentHistory({ shipmentId, bagId }?: {
         shipmentId?: string;
@@ -362,7 +384,7 @@ declare class Order {
      * @param {string} [arg.bagStatus] - Comma separated values of bag statuses
      * @param {boolean} [arg.statusOverrideLane] - Use this flag to fetch by
      *   bag_status and override lane
-     * @param {string} [arg.timeToDispatch] -
+     * @param {number} [arg.timeToDispatch] -
      * @param {string} [arg.searchType] - Search type key
      * @param {string} [arg.searchValue] - Search type value
      * @param {string} [arg.fromDate] - Start Date in DD-MM-YYYY format
@@ -382,15 +404,16 @@ declare class Order {
      * @param {string} [arg.companyAffiliateTag] -
      * @param {boolean} [arg.myOrders] -
      * @param {string} [arg.platformUserId] -
+     * @param {string} [arg.tags] - Comma separated values of tags
      * @returns {Promise<ShipmentInternalPlatformViewResponse>} - Success response
      * @summary:
-     * @description:
+     * @description: Get Shipments Listing for the company id
      */
-    getShipments({ lane, bagStatus, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, myOrders, platformUserId, }?: {
+    getShipments({ lane, bagStatus, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, myOrders, platformUserId, tags, }?: {
         lane?: string;
         bagStatus?: string;
         statusOverrideLane?: boolean;
-        timeToDispatch?: string;
+        timeToDispatch?: number;
         searchType?: string;
         searchValue?: string;
         fromDate?: string;
@@ -410,12 +433,13 @@ declare class Order {
         companyAffiliateTag?: string;
         myOrders?: boolean;
         platformUserId?: string;
+        tags?: string;
     }): Promise<ShipmentInternalPlatformViewResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @returns {Promise<BagStateTransitionMap>} - Success response
      * @summary:
-     * @description:
+     * @description: Get State Transition Map
      */
     getStateTransitionMap({}?: any): Promise<BagStateTransitionMap>;
     /**
@@ -424,7 +448,7 @@ declare class Order {
      * @param {string} [arg.groupEntity] - Name of group entity
      * @returns {Promise<FiltersResponse>} - Success response
      * @summary:
-     * @description:
+     * @description: Get Listing Filters
      */
     getfilters({ view, groupEntity }?: {
         view: string;
@@ -445,7 +469,7 @@ declare class Order {
      * @param {PlatformOrderUpdate} arg.body
      * @returns {Promise<ResponseDetail>} - Success response
      * @summary:
-     * @description:
+     * @description: Update Order
      */
     orderUpdate({ body }?: {
         body: PlatformOrderUpdate;
@@ -455,7 +479,7 @@ declare class Order {
      * @param {PostShipmentHistory} arg.body
      * @returns {Promise<ShipmentHistoryResponse>} - Success response
      * @summary:
-     * @description:
+     * @description: Post shipment history
      */
     postShipmentHistory({ body }?: {
         body: PostShipmentHistory;
@@ -465,7 +489,7 @@ declare class Order {
      * @param {CreateOrderPayload} arg.body
      * @returns {Promise<CreateOrderResponse>} - Success response
      * @summary:
-     * @description:
+     * @description: Process Manifest
      */
     processManifest({ body }?: {
         body: CreateOrderPayload;
@@ -485,7 +509,7 @@ declare class Order {
      * @param {SendSmsPayload} arg.body
      * @returns {Promise<OrderStatusResult>} - Success response
      * @summary:
-     * @description:
+     * @description: Send SMS Ninja Panel
      */
     sendSmsNinja({ body }?: {
         body: SendSmsPayload;
@@ -495,7 +519,7 @@ declare class Order {
      * @param {SendUserMobileOTP} arg.body
      * @returns {Promise<SendUserMobileOtpResponse>} - Success response
      * @summary:
-     * @description:
+     * @description: Send User Mobile OTP
      */
     sendUserMobileOTP({ body }?: {
         body: SendUserMobileOTP;
@@ -516,7 +540,7 @@ declare class Order {
      * @param {string} [arg.country] -
      * @returns {Promise<BaseResponse>} - Success response
      * @summary:
-     * @description:
+     * @description: Update Address for the order
      */
     updateAddress({ shipmentId, addressCategory, name, address, addressType, pincode, phone, email, landmark, city, state, country, }?: {
         shipmentId: string;
@@ -537,7 +561,7 @@ declare class Order {
      * @param {UpdatePackagingDimensionsPayload} arg.body
      * @returns {Promise<UpdatePackagingDimensionsResponse>} - Success response
      * @summary:
-     * @description:
+     * @description: Update Packaging Dimensions
      */
     updatePackagingDimensions({ body }?: {
         body: UpdatePackagingDimensionsPayload;
@@ -567,7 +591,7 @@ declare class Order {
      * @param {UploadConsent} arg.body
      * @returns {Promise<SuccessResponse>} - Success response
      * @summary:
-     * @description:
+     * @description: Upload Consent
      */
     uploadConsent({ body }?: {
         body: UploadConsent;
@@ -577,7 +601,7 @@ declare class Order {
      * @param {VerifyMobileOTP} arg.body
      * @returns {Promise<VerifyOtpResponse>} - Success response
      * @summary:
-     * @description:
+     * @description: Verify Mobile OTP
      */
     verifyMobileOTP({ body }?: {
         body: VerifyMobileOTP;

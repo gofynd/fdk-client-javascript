@@ -51,7 +51,7 @@ class PartnerValidator {
     return Joi.object({
       pageSize: Joi.number(),
       pageNo: Joi.number(),
-      query: Joi.string().allow(""),
+      query: Joi.any(),
     }).required();
   }
 

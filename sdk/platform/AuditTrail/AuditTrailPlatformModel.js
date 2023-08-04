@@ -96,10 +96,5 @@ class AuditTrailModel {
       log_payload: Joi.any().required(),
     });
   }
-  static ResourceNotFound() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-    });
-  }
 }
 module.exports = AuditTrailModel;

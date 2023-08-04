@@ -44,7 +44,7 @@ const data = await applicationClient.common.getLocations({  locationType : value
 
 
 
-
+Get countries, states, cities
 
 *Returned Response:*
 
@@ -301,22 +301,6 @@ Success
 
 ---
 
-#### [Currency](#Currency)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  | The unique identifier (24-digit Mongo Object ID) of the current sales channel supported currency |
- | code | string? |  yes  | 3-character currency code, e.g. INR, USD, EUR. |
- | created_at | string? |  yes  | ISO 8601 timestamp of sales channel support currency creation |
- | decimal_digits | number? |  yes  | Acceptable decimal limits for a given currency, e.g. 1.05$ means upto 2 decimal digits can be accepted as a valid value of a currency. |
- | is_active | boolean? |  yes  | Shows currency is enabled or not in current sales channel |
- | name | string? |  yes  | Name of the currency, e.g. Indian Rupee |
- | symbol | string? |  yes  | Unique symbol for identifying the currency, e.g. ₹ |
- | updated_at | string? |  yes  | ISO 8601 timestamp of sales channel support currency updation |
- 
-
----
-
 #### [Domain](#Domain)
 
  | Properties | Type | Nullable | Description |
@@ -338,14 +322,18 @@ Success
  | __v | number? |  yes  |  |
  | _id | string? |  yes  |  |
  | capital | string? |  yes  |  |
+ | country_code | string? |  yes  |  |
  | currency | string? |  yes  |  |
  | default_currency | [LocationDefaultCurrency](#LocationDefaultCurrency)? |  yes  |  |
  | default_language | [LocationDefaultLanguage](#LocationDefaultLanguage)? |  yes  |  |
  | iso2 | string? |  yes  |  |
  | iso3 | string? |  yes  |  |
+ | latitude | string? |  yes  |  |
+ | longitude | string? |  yes  |  |
  | name | string? |  yes  |  |
  | parent | string? |  yes  |  |
  | phone_code | string? |  yes  |  |
+ | state_code | string? |  yes  |  |
  | type | string? |  yes  |  |
  | uid | number? |  yes  |  |
  
@@ -377,7 +365,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [string]? |  yes  |  |
+ | items | [[LocationCountry](#LocationCountry)]? |  yes  |  |
  
 
 ---
@@ -387,21 +375,6 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | message | string? |  yes  | Response message for not found |
- 
-
----
-
-#### [Page](#Page)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | current | number? |  yes  | Current page number |
- | has_next | boolean? |  yes  | Next page is present or not |
- | has_previous | boolean? |  yes  | Previous page is present or not |
- | item_total | number? |  yes  | Total number of items to retrieve |
- | next_id | string? |  yes  | Next page ID |
- | size | number? |  yes  | The number of items to retrieve in each page. Default value is 10. |
- | type | string |  no  | Page type |
  
 
 ---

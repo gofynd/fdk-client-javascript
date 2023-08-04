@@ -17,7 +17,7 @@ declare class Configuration {
      *   city, provide id of state.
      * @returns {Promise<Locations>} - Success response
      * @summary: Get countries, states, cities
-     * @description:
+     * @description: Get Location configuration
      */
     getLocations({ locationType, id }?: {
         locationType?: string;

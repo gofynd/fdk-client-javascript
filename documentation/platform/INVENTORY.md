@@ -6,7 +6,7 @@
 ##### [Back to Platform docs](./README.md)
 
 ## Inventory Methods
-
+Catalog - Platform Front API's' API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features. 
 
 * [createJob](#createjob)
 * [disable](#disable)

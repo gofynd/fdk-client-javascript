@@ -55,7 +55,15 @@ class CommonModel {
   }
   static ApplicationResponse() {
     return Joi.object({
+      _id: Joi.string().allow(""),
       application: CommonModel.Application(),
+      code: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
+      decimal_digits: Joi.number(),
+      is_active: Joi.boolean(),
+      name: Joi.string().allow(""),
+      symbol: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
     });
   }
   static ApplicationWebsite() {
@@ -67,18 +75,6 @@ class CommonModel {
   static BadRequest() {
     return Joi.object({
       message: Joi.string().allow(""),
-    });
-  }
-  static Currency() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-      code: Joi.string().allow(""),
-      created_at: Joi.string().allow(""),
-      decimal_digits: Joi.number(),
-      is_active: Joi.boolean(),
-      name: Joi.string().allow(""),
-      symbol: Joi.string().allow(""),
-      updated_at: Joi.string().allow(""),
     });
   }
   static Domain() {
@@ -96,14 +92,18 @@ class CommonModel {
       __v: Joi.number(),
       _id: Joi.string().allow(""),
       capital: Joi.string().allow(""),
+      country_code: Joi.string().allow(""),
       currency: Joi.string().allow(""),
       default_currency: CommonModel.LocationDefaultCurrency(),
       default_language: CommonModel.LocationDefaultLanguage(),
       iso2: Joi.string().allow(""),
       iso3: Joi.string().allow(""),
+      latitude: Joi.string().allow(""),
+      longitude: Joi.string().allow(""),
       name: Joi.string().allow(""),
       parent: Joi.string().allow(""),
       phone_code: Joi.string().allow(""),
+      state_code: Joi.string().allow(""),
       type: Joi.string().allow(""),
       uid: Joi.number(),
     });
@@ -123,23 +123,12 @@ class CommonModel {
   }
   static Locations() {
     return Joi.object({
-      items: Joi.array().items(Joi.any()),
+      items: CommonModel.LocationCountry(),
     });
   }
   static NotFound() {
     return Joi.object({
       message: Joi.string().allow(""),
-    });
-  }
-  static Page() {
-    return Joi.object({
-      current: Joi.number(),
-      has_next: Joi.boolean(),
-      has_previous: Joi.boolean(),
-      item_total: Joi.number(),
-      next_id: Joi.string().allow(""),
-      size: Joi.number(),
-      type: Joi.string().allow("").required(),
     });
   }
   static SecureUrl() {

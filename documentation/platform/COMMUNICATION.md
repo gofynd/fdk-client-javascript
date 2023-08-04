@@ -1309,7 +1309,7 @@ Success
     ],
     "page": {
       "type": "cursor",
-      "next_id": null,
+      "next_id": "",
       "has_previous": false,
       "has_next": false
     }
@@ -1779,7 +1779,7 @@ Success
         "template": {
           "sms": {
             "subscribed": true,
-            "template": null
+            "template": ""
           },
           "email": {
             "subscribed": true,
@@ -1799,7 +1799,7 @@ Success
         "template": {
           "sms": {
             "subscribed": true,
-            "template": null
+            "template": ""
           },
           "email": {
             "subscribed": true,
@@ -1819,7 +1819,7 @@ Success
         "template": {
           "sms": {
             "subscribed": true,
-            "template": null
+            "template": ""
           },
           "email": {
             "subscribed": true,
@@ -1839,7 +1839,7 @@ Success
         "template": {
           "sms": {
             "subscribed": true,
-            "template": null
+            "template": ""
           },
           "email": {
             "subscribed": true,
@@ -2143,7 +2143,7 @@ Success
           },
           "email": {
             "subscribed": true,
-            "template": null
+            "template": ""
           }
         },
         "is_default": true,
@@ -2163,7 +2163,7 @@ Success
           },
           "email": {
             "subscribed": true,
-            "template": null
+            "template": ""
           }
         },
         "is_default": true,
@@ -2183,7 +2183,7 @@ Success
           },
           "email": {
             "subscribed": true,
-            "template": null
+            "template": ""
           }
         },
         "is_default": true,
@@ -2199,7 +2199,7 @@ Success
         "template": {
           "sms": {
             "subscribed": true,
-            "template": null
+            "template": ""
           },
           "email": {
             "subscribed": true,
@@ -2223,7 +2223,7 @@ Success
           },
           "email": {
             "subscribed": true,
-            "template": null
+            "template": ""
           }
         },
         "is_default": true,
@@ -2243,7 +2243,7 @@ Success
           },
           "email": {
             "subscribed": true,
-            "template": null
+            "template": ""
           }
         },
         "is_default": true,
@@ -2263,7 +2263,7 @@ Success
           },
           "email": {
             "subscribed": true,
-            "template": null
+            "template": ""
           }
         },
         "is_default": true,
@@ -2323,7 +2323,7 @@ Success
           },
           "email": {
             "subscribed": true,
-            "template": null
+            "template": ""
           }
         },
         "is_default": true,
@@ -2599,15 +2599,13 @@ Success
 
 ```json
 {
-  "value": [
-    {
-      "phone_number": "1234567890",
-      "email": "abcxyz@gofynd.com",
-      "firstname": "Abc",
-      "lastname": "Xyz",
-      "orderid": "1"
-    }
-  ]
+  "value": {
+    "phone_number": "1234567890",
+    "email": "abcxyz@gofynd.com",
+    "firstname": "Abc",
+    "lastname": "Xyz",
+    "orderid": "1"
+  }
 }
 ```
 </details>
@@ -3031,26 +3029,24 @@ Success
 
 ```json
 {
-  "value": [
-    {
-      "_id": "6009a1ea1f6a61d88e80a867",
-      "imported": {
-        "count": 2
+  "value": {
+    "_id": "6009a1ea1f6a61d88e80a867",
+    "imported": {
+      "count": 2
+    },
+    "processed": {
+      "email": {
+        "success": 2,
+        "failed": 0,
+        "suppressed": 0
       },
-      "processed": {
-        "email": {
-          "success": 2,
-          "failed": 0,
-          "suppressed": 0
-        },
-        "sms": {
-          "success": 0,
-          "failed": 0,
-          "suppressed": 0
-        }
+      "sms": {
+        "success": 0,
+        "failed": 0,
+        "suppressed": 0
       }
     }
-  ]
+  }
 }
 ```
 </details>
@@ -4979,37 +4975,6 @@ Success
 
 ---
 
-#### [PushtokenReq](#PushtokenReq)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | action | string? |  yes  |  |
- | bundle_identifier | string? |  yes  |  |
- | push_token | string? |  yes  |  |
- | unique_device_id | string? |  yes  |  |
- 
-
----
-
-#### [PushtokenRes](#PushtokenRes)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | application_id | string? |  yes  |  |
- | bundle_identifier | string? |  yes  |  |
- | created_at | string? |  yes  |  |
- | expired_at | string? |  yes  |  |
- | platform | string? |  yes  |  |
- | push_token | string? |  yes  |  |
- | type | string? |  yes  |  |
- | unique_device_id | string? |  yes  |  |
- | updated_at | string? |  yes  |  |
- | user_id | string? |  yes  |  |
- 
-
----
-
 #### [RecipientHeaders](#RecipientHeaders)
 
  | Properties | Type | Nullable | Description |
@@ -5400,30 +5365,6 @@ Success
  | items | [[SystemNotification](#SystemNotification)]? |  yes  |  |
  | last_read_anchor | number? |  yes  |  |
  | page | [Page](#Page)? |  yes  |  |
- 
-
----
-
-#### [SystemNotificationSettings](#SystemNotificationSettings)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | priority | string? |  yes  |  |
- | sound | boolean? |  yes  |  |
- | time_to_live | string? |  yes  |  |
- 
-
----
-
-#### [SystemNotificationsPage](#SystemNotificationsPage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | current | number? |  yes  |  |
- | has_next | boolean? |  yes  |  |
- | item_total | number? |  yes  |  |
- | size | number? |  yes  |  |
- | type | string? |  yes  |  |
  
 
 ---

@@ -61,6 +61,10 @@ class CompanyProfileValidator {
     }).required();
   }
 
+  static getLocationTags() {
+    return Joi.object({}).required();
+  }
+
   static getLocations() {
     return Joi.object({
       storeType: Joi.string().allow(""),

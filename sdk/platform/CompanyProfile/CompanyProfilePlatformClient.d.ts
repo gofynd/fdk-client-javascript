@@ -118,6 +118,13 @@ declare class CompanyProfile {
     }): Promise<GetLocationSerializer>;
     /**
      * @param {Object} arg - Arg object.
+     * @returns {Promise<StoreTagsResponseSchema>} - Success response
+     * @summary: Get tags associated with locations for a company.
+     * @description: This API fetches all the tags associated to a company.
+     */
+    getLocationTags({}?: any): Promise<StoreTagsResponseSchema>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} [arg.storeType] - Helps to sort the location list on the
      *   basis of location type.
      * @param {string} [arg.q] - Query that is to be searched.

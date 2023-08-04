@@ -3,7 +3,7 @@
 # FDK Application Front API Documentaion
 
 
-* [Cart](CART.md) - Cart APIs 
+* [Cart](CART.md) - Manages Cart, Coupons, Promotions, Checkout 
 * [Catalog](CATALOG.md) - Catalog API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
 * [Common](COMMON.md) - Application configuration apis 
 * [Communication](COMMUNICATION.md) - Manages email, sms, push notifications sent to users 

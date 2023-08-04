@@ -14,8 +14,8 @@ class ShareModel {
   }
   static ClickStatsItem() {
     return Joi.object({
-      display: Joi.string().allow(""),
-      total: Joi.number(),
+      display: Joi.string().allow("").required(),
+      total: Joi.number().required(),
     });
   }
   static ClickStatsResponse() {

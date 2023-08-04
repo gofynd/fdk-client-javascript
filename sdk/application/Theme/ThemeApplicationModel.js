@@ -1,11 +1,6 @@
 const Joi = require("joi");
 
 class ThemeModel {
-  static AddThemeRequestSchema() {
-    return Joi.object({
-      theme_id: Joi.string().allow(""),
-    });
-  }
   static AllAvailablePageSchema() {
     return Joi.object({
       pages: Joi.array().items(ThemeModel.AvailablePageSchema()),
@@ -101,11 +96,6 @@ class ThemeModel {
       message: Joi.string().allow(""),
     });
   }
-  static BlitzkriegNotFoundSchema() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-    });
-  }
   static Blocks() {
     return Joi.object({
       name: Joi.string().allow(""),
@@ -161,40 +151,10 @@ class ThemeModel {
       links: Joi.array().items(Joi.string().allow("")),
     });
   }
-  static Custom() {
-    return Joi.object({
-      props: Joi.any(),
-    });
-  }
   static Font() {
     return Joi.object({
       family: Joi.string().allow(""),
       variants: ThemeModel.Variants(),
-    });
-  }
-  static FontsSchema() {
-    return Joi.object({
-      items: ThemeModel.FontsSchemaItems(),
-      kind: Joi.string().allow(""),
-    });
-  }
-  static FontsSchemaItems() {
-    return Joi.object({
-      category: Joi.string().allow(""),
-      family: Joi.string().allow(""),
-      files: ThemeModel.FontsSchemaItemsFiles(),
-      kind: Joi.string().allow(""),
-      last_modified: Joi.string().allow(""),
-      subsets: Joi.array().items(Joi.string().allow("")),
-      variants: Joi.array().items(Joi.string().allow("")),
-      version: Joi.string().allow(""),
-    });
-  }
-  static FontsSchemaItemsFiles() {
-    return Joi.object({
-      bold: Joi.string().allow(""),
-      italic: Joi.string().allow(""),
-      regular: Joi.string().allow(""),
     });
   }
   static GlobalSchema() {
@@ -245,15 +205,6 @@ class ThemeModel {
       name: Joi.string().allow(""),
     });
   }
-  static PaginationSchema() {
-    return Joi.object({
-      current: Joi.number(),
-      has_next: Joi.boolean(),
-      item_total: Joi.number(),
-      size: Joi.number(),
-      type: Joi.string().allow(""),
-    });
-  }
   static Preset() {
     return Joi.object({
       pages: Joi.array().items(ThemeModel.AvailablePageSchema()),
@@ -265,11 +216,6 @@ class ThemeModel {
       name: Joi.string().allow(""),
     });
   }
-  static Sections() {
-    return Joi.object({
-      attributes: Joi.string().allow(""),
-    });
-  }
   static SemiBold() {
     return Joi.object({
       file: Joi.string().allow(""),
@@ -279,12 +225,6 @@ class ThemeModel {
   static Src() {
     return Joi.object({
       link: Joi.string().allow(""),
-    });
-  }
-  static ThemesListingResponseSchema() {
-    return Joi.object({
-      items: Joi.array().items(ThemeModel.ThemesSchema()),
-      page: ThemeModel.PaginationSchema(),
     });
   }
   static ThemesSchema() {
@@ -318,13 +258,6 @@ class ThemeModel {
     return Joi.object({
       link: Joi.string().allow(""),
       links: Joi.array().items(Joi.string().allow("")),
-    });
-  }
-  static UpgradableThemeSchema() {
-    return Joi.object({
-      applied_theme: Joi.string().allow(""),
-      parent_theme: Joi.string().allow(""),
-      upgrade: Joi.boolean(),
     });
   }
   static Variants() {

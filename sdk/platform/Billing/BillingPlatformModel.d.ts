@@ -10,8 +10,6 @@ declare class BillingModel {
     static CreateSubscriptionCharge(): any;
     static CreateSubscriptionResponse(): any;
     static CurrentPeriod(): any;
-    static DetailedPlan(): any;
-    static DetailedPlanComponents(): any;
     static EntityChargePrice(): any;
     static EntityChargeRecurring(): any;
     static EntitySubscription(): any;
@@ -19,11 +17,6 @@ declare class BillingModel {
     static Invoice(): any;
     static InvoiceDetails(): any;
     static InvoiceDetailsClient(): any;
-    static InvoiceDetailsPaymentMethods(): any;
-    static InvoiceDetailsPaymentMethodsData(): any;
-    static InvoiceDetailsPaymentMethodsDataChecks(): any;
-    static InvoiceDetailsPaymentMethodsDataNetworks(): any;
-    static InvoiceDetailsPaymentMethodsDataThreeDSecureUsage(): any;
     static InvoiceDetailsPeriod(): any;
     static InvoiceDetailsStatusTrail(): any;
     static InvoiceItems(): any;
@@ -38,7 +31,6 @@ declare class BillingModel {
     static InvoicesDataPeriod(): any;
     static OneTimeChargeEntity(): any;
     static OneTimeChargeItem(): any;
-    static Page(): any;
     static Phone(): any;
     static Plan(): any;
     static PlanRecurring(): any;
@@ -64,6 +56,4 @@ declare class BillingModel {
     static SubscriptionStatus(): any;
     static SubscriptionTrial(): any;
     static SubscriptionTrialPeriod(): any;
-    static UnauthenticatedApplication(): any;
-    static UnauthenticatedUser(): any;
 }

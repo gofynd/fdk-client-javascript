@@ -57,12 +57,6 @@ class RewardsModel {
       updated_at: Joi.string().allow(""),
     });
   }
-  static GiveawayAudience() {
-    return Joi.object({
-      audience_id: Joi.string().allow(""),
-      current_count: Joi.number(),
-    });
-  }
   static GiveawayResponse() {
     return Joi.object({
       items: Joi.array().items(RewardsModel.Giveaway()),

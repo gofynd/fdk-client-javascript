@@ -783,7 +783,7 @@ Success. Returns the landing page details. Check the example shown below or refe
   "value": {
     "_id": "5eaa451a21a4dd75f0fd96c5",
     "application": "5d3ebd89f540e7506b8b3548",
-    "_custom_json": null,
+    "_custom_json": {},
     "slug": "pnc-landing",
     "action": {
       "page": {
@@ -938,7 +938,7 @@ const data = await applicationClient.content.getNavigations({  pageNo : value,
 
 
 
-Use this API to fetch the navigations details which includes the items of the navigation pane. It also shows the links and sub-navigations.
+Use this API to fetch the navigations details which includes the items of the navigation panel. It also shows the links and sub-navigations.
 
 *Returned Response:*
 
@@ -1869,45 +1869,6 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
 ---
 
-#### [AdminAnnouncementSchema](#AdminAnnouncementSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | _schedule | [ScheduleSchema](#ScheduleSchema)? |  yes  |  |
- | announcement | string? |  yes  |  |
- | app | string? |  yes  |  |
- | author | [AnnouncementAuthorSchema](#AnnouncementAuthorSchema)? |  yes  |  |
- | created_at | string? |  yes  |  |
- | editor_meta | [EditorMeta](#EditorMeta)? |  yes  |  |
- | modified_at | string? |  yes  |  |
- | pages | [[AnnouncementPageSchema](#AnnouncementPageSchema)]? |  yes  |  |
- | platforms | [string]? |  yes  |  |
- | title | string? |  yes  |  |
- 
-
----
-
-#### [AnnouncementAuthorSchema](#AnnouncementAuthorSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | created_by | string? |  yes  |  |
- | modified_by | string? |  yes  |  |
- 
-
----
-
-#### [AnnouncementPageSchema](#AnnouncementPageSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | page_slug | string? |  yes  |  |
- | type | string? |  yes  |  |
- 
-
----
-
 #### [AnnouncementSchema](#AnnouncementSchema)
 
  | Properties | Type | Nullable | Description |
@@ -1988,26 +1949,6 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
 ---
 
-#### [BlogRequest](#BlogRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _custom_json | string? |  yes  |  |
- | _schedule | [CronSchedule](#CronSchedule)? |  yes  |  |
- | application | string? |  yes  |  |
- | author | [Author](#Author)? |  yes  |  |
- | content | [[ResourceContent](#ResourceContent)]? |  yes  |  |
- | feature_image | [Asset](#Asset)? |  yes  |  |
- | published | boolean? |  yes  |  |
- | reading_time | string? |  yes  |  |
- | seo | [SEO](#SEO)? |  yes  |  |
- | slug | string? |  yes  |  |
- | tags | [string]? |  yes  |  |
- | title | string? |  yes  |  |
- 
-
----
-
 #### [BlogSchema](#BlogSchema)
 
  | Properties | Type | Nullable | Description |
@@ -2026,16 +1967,6 @@ Success. Returns a JSON object containing all the tags injected in the applicati
  | seo | [SEO](#SEO)? |  yes  |  |
  | slug | string? |  yes  |  |
  | tags | [string]? |  yes  |  |
- | title | string? |  yes  |  |
- 
-
----
-
-#### [CategoryRequestSchema](#CategoryRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | slug | string? |  yes  |  |
  | title | string? |  yes  |  |
  
 
@@ -2118,93 +2049,11 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
 ---
 
-#### [ContentSchema](#ContentSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string? |  yes  |  |
- | value | string? |  yes  |  |
- 
-
----
-
-#### [CreateAnnouncementSchema](#CreateAnnouncementSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [AdminAnnouncementSchema](#AdminAnnouncementSchema)? |  yes  |  |
- | message | string? |  yes  |  |
- 
-
----
-
 #### [CreatedBySchema](#CreatedBySchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | id | string? |  yes  |  |
- 
-
----
-
-#### [CreateFaqCategoryRequestSchema](#CreateFaqCategoryRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | category | [CategoryRequestSchema](#CategoryRequestSchema)? |  yes  |  |
- 
-
----
-
-#### [CreateFaqCategorySchema](#CreateFaqCategorySchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | category | [CategorySchema](#CategorySchema)? |  yes  |  |
- 
-
----
-
-#### [CreateFaqResponseSchema](#CreateFaqResponseSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | faq | [FaqSchema](#FaqSchema)? |  yes  |  |
- 
-
----
-
-#### [CreateFaqSchema](#CreateFaqSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | faq | [FAQ](#FAQ)? |  yes  |  |
- 
-
----
-
-#### [CreateTagRequestSchema](#CreateTagRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | tags | [[CreateTagSchema](#CreateTagSchema)]? |  yes  |  |
- 
-
----
-
-#### [CreateTagSchema](#CreateTagSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | attributes | string? |  yes  |  |
- | content | string? |  yes  |  |
- | name | string? |  yes  |  |
- | pages | [string]? |  yes  |  |
- | position | string? |  yes  |  |
- | sub_type | string? |  yes  |  |
- | type | string? |  yes  |  |
- | url | string? |  yes  |  |
  
 
 ---
@@ -2228,64 +2077,6 @@ Success. Returns a JSON object containing all the tags injected in the applicati
  | _id | string? |  yes  |  |
  | content | string? |  yes  |  |
  | name | string? |  yes  |  |
- 
-
----
-
-#### [CustomPage](#CustomPage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [CustomPageSchema](#CustomPageSchema)? |  yes  |  |
- 
-
----
-
-#### [CustomPageSchema](#CustomPageSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | _schedule | [ScheduleSchema](#ScheduleSchema)? |  yes  |  |
- | application | string? |  yes  |  |
- | content | [string]? |  yes  |  |
- | created_by | [CreatedBySchema](#CreatedBySchema)? |  yes  |  |
- | date_meta | [DateMeta](#DateMeta)? |  yes  |  |
- | description | string? |  yes  |  |
- | orientation | string? |  yes  |  |
- | platform | string? |  yes  |  |
- | published | boolean? |  yes  |  |
- | slug | string? |  yes  |  |
- | tags | [string]? |  yes  |  |
- | title | string? |  yes  |  |
- | type | string? |  yes  |  |
- 
-
----
-
-#### [DataLoaderResetResponseSchema](#DataLoaderResetResponseSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | reset | string? |  yes  |  |
- 
-
----
-
-#### [DataLoaderResponseSchema](#DataLoaderResponseSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | __source | [DataLoaderSourceSchema](#DataLoaderSourceSchema)? |  yes  |  |
- | _id | string? |  yes  |  |
- | application | string? |  yes  |  |
- | company | string? |  yes  |  |
- | content | string? |  yes  |  |
- | name | string? |  yes  |  |
- | operation_id | string? |  yes  |  |
- | service | string? |  yes  |  |
- | type | string? |  yes  |  |
- | url | string? |  yes  |  |
  
 
 ---
@@ -2335,15 +2126,6 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
 ---
 
-#### [DefaultNavigationResponse](#DefaultNavigationResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[NavigationSchema](#NavigationSchema)]? |  yes  |  |
- 
-
----
-
 #### [Detail](#Detail)
 
  | Properties | Type | Nullable | Description |
@@ -2351,18 +2133,6 @@ Success. Returns a JSON object containing all the tags injected in the applicati
  | description | string? |  yes  |  |
  | image_url | string? |  yes  |  |
  | title | string? |  yes  |  |
- 
-
----
-
-#### [EditorMeta](#EditorMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | background_color | string? |  yes  |  |
- | content | string? |  yes  |  |
- | content_type | string? |  yes  |  |
- | foreground_color | string? |  yes  |  |
  
 
 ---
@@ -2383,17 +2153,6 @@ Success. Returns a JSON object containing all the tags injected in the applicati
  | ---------- | ---- | -------- | ----------- |
  | active | boolean? |  yes  |  |
  | email | [[EmailProperties](#EmailProperties)]? |  yes  |  |
- 
-
----
-
-#### [FAQ](#FAQ)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | answer | string? |  yes  |  |
- | question | string? |  yes  |  |
- | slug | string? |  yes  |  |
  
 
 ---
@@ -2438,25 +2197,6 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
 ---
 
-#### [FeatureImage](#FeatureImage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | secure_url | string? |  yes  |  |
- 
-
----
-
-#### [GetAnnouncementListSchema](#GetAnnouncementListSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[AdminAnnouncementSchema](#AdminAnnouncementSchema)]? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
- 
-
----
-
 #### [GetFaqCategoriesSchema](#GetFaqCategoriesSchema)
 
  | Properties | Type | Nullable | Description |
@@ -2480,41 +2220,6 @@ Success. Returns a JSON object containing all the tags injected in the applicati
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | faqs | [[FaqSchema](#FaqSchema)]? |  yes  |  |
- 
-
----
-
-#### [HandpickedTagSchema](#HandpickedTagSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | attributes | string? |  yes  |  |
- | content | string? |  yes  |  |
- | name | string? |  yes  |  |
- | position | string? |  yes  |  |
- | sub_type | string? |  yes  |  |
- | type | string? |  yes  |  |
- | url | string? |  yes  |  |
- 
-
----
-
-#### [LandingPage](#LandingPage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [LandingPageSchema](#LandingPageSchema)? |  yes  |  |
- | success | boolean? |  yes  |  |
- 
-
----
-
-#### [LandingPageGetResponse](#LandingPageGetResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[LandingPageSchema](#LandingPageSchema)]? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -2556,24 +2261,6 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
 ---
 
-#### [Navigation](#Navigation)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | application | string? |  yes  |  |
- | created_by | [CreatedBySchema](#CreatedBySchema)? |  yes  |  |
- | date_meta | [DateMeta](#DateMeta)? |  yes  |  |
- | name | string? |  yes  |  |
- | navigation | [NavigationReference](#NavigationReference)? |  yes  |  |
- | orientation | string? |  yes  |  |
- | platform | string? |  yes  |  |
- | position | string? |  yes  |  |
- | slug | string? |  yes  |  |
- 
-
----
-
 #### [NavigationGetResponse](#NavigationGetResponse)
 
  | Properties | Type | Nullable | Description |
@@ -2598,19 +2285,6 @@ Success. Returns a JSON object containing all the tags injected in the applicati
  | sub_navigation | [[NavigationReference](#NavigationReference)]? |  yes  |  |
  | tags | [string]? |  yes  |  |
  | type | string? |  yes  |  |
- 
-
----
-
-#### [NavigationRequest](#NavigationRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | name | string? |  yes  |  |
- | navigation | [[NavigationReference](#NavigationReference)]? |  yes  |  |
- | orientation | [Orientation](#Orientation)? |  yes  |  |
- | platform | [string]? |  yes  |  |
- | slug | string? |  yes  |  |
  
 
 ---
@@ -2669,73 +2343,12 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
 ---
 
-#### [PageContent](#PageContent)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string? |  yes  |  |
- | value | string? |  yes  |  |
- 
-
----
-
 #### [PageGetResponse](#PageGetResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | items | [[PageSchema](#PageSchema)]? |  yes  |  |
  | page | [Page](#Page)? |  yes  |  |
- 
-
----
-
-#### [PageMeta](#PageMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | key | string? |  yes  |  |
- | value | string? |  yes  |  |
- 
-
----
-
-#### [PageMetaSchema](#PageMetaSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | application_id | string? |  yes  |  |
- | custom_pages | [[PageSchema](#PageSchema)]? |  yes  |  |
- | system_pages | [[NavigationSchema](#NavigationSchema)]? |  yes  |  |
- 
-
----
-
-#### [PagePublishRequest](#PagePublishRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | publish | boolean? |  yes  |  |
- 
-
----
-
-#### [PageRequest](#PageRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _custom_json | string? |  yes  |  |
- | _schedule | [CronSchedule](#CronSchedule)? |  yes  |  |
- | application | string? |  yes  |  |
- | author | [Author](#Author)? |  yes  |  |
- | content | [string]? |  yes  |  |
- | feature_image | [Asset](#Asset)? |  yes  |  |
- | orientation | string? |  yes  |  |
- | published | boolean? |  yes  |  |
- | reading_time | string? |  yes  |  |
- | seo | [SEO](#SEO)? |  yes  |  |
- | slug | string? |  yes  |  |
- | tags | [string]? |  yes  |  |
- | title | string? |  yes  |  |
  
 
 ---
@@ -2770,62 +2383,6 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
 ---
 
-#### [PageSpec](#PageSpec)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | specifications | [[PageSpecItem](#PageSpecItem)]? |  yes  |  |
- 
-
----
-
-#### [PageSpecItem](#PageSpecItem)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display_name | string? |  yes  |  |
- | page_type | string? |  yes  |  |
- | params | [[PageSpecParam](#PageSpecParam)]? |  yes  |  |
- | query | [[PageSpecParam](#PageSpecParam)]? |  yes  |  |
- 
-
----
-
-#### [PageSpecParam](#PageSpecParam)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | key | string? |  yes  |  |
- | required | boolean? |  yes  |  |
- 
-
----
-
-#### [PathMappingSchema](#PathMappingSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | __source | [PathSourceSchema](#PathSourceSchema)? |  yes  |  |
- | _id | string? |  yes  |  |
- | application | string? |  yes  |  |
- | created_at | string? |  yes  |  |
- | redirect_from | string? |  yes  |  |
- | redirect_to | string? |  yes  |  |
- | updated_at | string? |  yes  |  |
- 
-
----
-
-#### [PathSourceSchema](#PathSourceSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | string? |  yes  |  |
- | type | string? |  yes  |  |
- 
-
----
-
 #### [PhoneProperties](#PhoneProperties)
 
  | Properties | Type | Nullable | Description |
@@ -2843,15 +2400,6 @@ Success. Returns a JSON object containing all the tags injected in the applicati
  | ---------- | ---- | -------- | ----------- |
  | active | boolean? |  yes  |  |
  | phone | [[PhoneProperties](#PhoneProperties)]? |  yes  |  |
- 
-
----
-
-#### [RemoveHandpickedSchema](#RemoveHandpickedSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | tags | [string]? |  yes  |  |
  
 
 ---
@@ -2935,16 +2483,6 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
 ---
 
-#### [Slideshow](#Slideshow)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [SlideshowSchema](#SlideshowSchema)? |  yes  |  |
- | success | boolean? |  yes  |  |
- 
-
----
-
 #### [SlideshowGetResponse](#SlideshowGetResponse)
 
  | Properties | Type | Nullable | Description |
@@ -2965,19 +2503,6 @@ Success. Returns a JSON object containing all the tags injected in the applicati
  | duration | number? |  yes  |  |
  | type | string? |  yes  |  |
  | url | string? |  yes  |  |
- 
-
----
-
-#### [SlideshowRequest](#SlideshowRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | active | boolean? |  yes  |  |
- | configuration | [ConfigurationSchema](#ConfigurationSchema)? |  yes  |  |
- | media | [SlideshowMedia](#SlideshowMedia)? |  yes  |  |
- | platform | string? |  yes  |  |
- | slug | string? |  yes  |  |
  
 
 ---
@@ -3011,15 +2536,6 @@ Success. Returns a JSON object containing all the tags injected in the applicati
  | created | boolean? |  yes  |  |
  | created_at | string? |  yes  |  |
  | updated_at | string? |  yes  |  |
- 
-
----
-
-#### [TagDeleteSuccessResponse](#TagDeleteSuccessResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean? |  yes  |  |
  
 
 ---
@@ -3059,24 +2575,6 @@ Success. Returns a JSON object containing all the tags injected in the applicati
  | _id | string? |  yes  |  |
  | application | string? |  yes  |  |
  | tags | [[TagSchema](#TagSchema)]? |  yes  |  |
- 
-
----
-
-#### [UpdateFaqCategoryRequestSchema](#UpdateFaqCategoryRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | category | [CategorySchema](#CategorySchema)? |  yes  |  |
- 
-
----
-
-#### [UpdateHandpickedSchema](#UpdateHandpickedSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | tag | [HandpickedTagSchema](#HandpickedTagSchema)? |  yes  |  |
  
 
 ---

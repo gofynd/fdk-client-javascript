@@ -352,11 +352,13 @@ Browse Files
 ```javascript
 // Promise
 const promise = platformClient.application("<APPLICATION_ID>").fileStorage.appbrowse({  namespace : value,
- pageNo : value });
+ page : value,
+ limit : value });
 
 // Async/Await
 const data = await platformClient.application("<APPLICATION_ID>").fileStorage.appbrowse({  namespace : value,
- pageNo : value });
+ page : value,
+ limit : value });
 ```
 
 
@@ -365,8 +367,9 @@ const data = await platformClient.application("<APPLICATION_ID>").fileStorage.ap
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| namespace | string | yes | bucket name |    
-| pageNo | number | no | page no |  
+| namespace | string | yes | Segregation of different types of files(products, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |    
+| page | number | no | page no |    
+| limit | number | no | Limit |  
 
 
 
@@ -411,11 +414,13 @@ Browse Files
 ```javascript
 // Promise
 const promise = platformClient.fileStorage.browse({  namespace : value,
- pageNo : value });
+ page : value,
+ limit : value });
 
 // Async/Await
 const data = await platformClient.fileStorage.browse({  namespace : value,
- pageNo : value });
+ page : value,
+ limit : value });
 ```
 
 
@@ -424,8 +429,9 @@ const data = await platformClient.fileStorage.browse({  namespace : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| namespace | string | yes | bucket name |    
-| pageNo | number | no | page no |  
+| namespace | string | yes | Segregation of different types of files(products, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |    
+| page | number | no | page no |    
+| limit | number | no | Limit |  
 
 
 
@@ -559,7 +565,7 @@ const data = await platformClient.fileStorage.copyFiles({  body : value,
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| sync | boolean | no | sync |  
+| sync | boolean | no |  |  
 | body | [BulkRequest](#BulkRequest) | yes | Request body |
 
 
@@ -660,11 +666,27 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
 
 ```json
-
+{
+  "value": {
+    "urls": [
+      {
+        "url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x0/documents/manifest/PDFs/test/s3EtYk5p9-new_fee.pdf",
+        "signed_url": "https://fynd-staging-assets-private.s3-accelerate.amazonaws.com/addsale/v2/falling-surf-7c8bb8/fyndnp/wrkr/x0/documents/manifest/PDFs/test/s3EtYk5p9-new_fee.pdf",
+        "expiry": 1800
+      }
+    ]
+  }
+}
 ```
+</details>
+
 </details>
 
 
@@ -786,7 +808,7 @@ This operation will return the url for the uploaded file.
 
 [StartResponse](#StartResponse)
 
-Success
+Success. Returns a response containing relaving and absolute_url of storage service
 
 
 
@@ -828,9 +850,30 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | configuration | [ReqConfiguration](#ReqConfiguration)? |  yes  |  |
  | destination | [Destination](#Destination) |  no  |  |
  | urls | [string] |  no  |  |
+ 
+
+---
+
+#### [BulkUploadFailFileResponseItems](#BulkUploadFailFileResponseItems)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | error | string? |  yes  |  |
+ | file | [File](#File)? |  yes  |  |
+ | stage | string? |  yes  |  |
+ | success | boolean |  no  |  |
+ 
+
+---
+
+#### [BulkUploadFailResponse](#BulkUploadFailResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | files | [[BulkUploadFailFileResponseItems](#BulkUploadFailFileResponseItems)] |  no  |  |
+ | status | [Status](#Status) |  no  |  |
  
 
 ---
@@ -936,6 +979,26 @@ Success
 
 ---
 
+#### [File](#File)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | src | [FileSrc](#FileSrc) |  no  |  |
+ 
+
+---
+
+#### [FileSrc](#FileSrc)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | method | string? |  yes  |  |
+ | namespace | string? |  yes  |  |
+ | url | string |  no  |  |
+ 
+
+---
+
 #### [Opts](#Opts)
 
  | Properties | Type | Nullable | Description |
@@ -958,15 +1021,6 @@ Success
  | next_id | string? |  yes  |  |
  | size | number? |  yes  |  |
  | type | number |  no  |  |
- 
-
----
-
-#### [ReqConfiguration](#ReqConfiguration)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | concurrency | number? |  yes  |  |
  
 
 ---
@@ -1017,6 +1071,18 @@ Success
  | size | number |  no  |  |
  | tags | [string]? |  yes  |  |
  | upload | [Upload](#Upload) |  no  |  |
+ 
+
+---
+
+#### [Status](#Status)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | failed | number |  no  |  |
+ | result | string? |  yes  |  |
+ | succeeded | number |  no  |  |
+ | total | number |  no  |  |
  
 
 ---

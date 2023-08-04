@@ -429,16 +429,16 @@ Success
   "name": "Uniket B2B",
   "description": "Uniket B2B - India's Fastest Growing Retail Store - Aapki Badhti Dukaan",
   "logo": {
-    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
+    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
   },
   "mobile_logo": {
-    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
+    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
   },
   "favicon": {
-    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/favicon/original/y3h6SSlY5-Uniket-B2B.png"
+    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/favicon/original/y3h6SSlY5-Uniket-B2B.png"
   },
   "banner": {
-    "secure_url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/application/pictures/landscape-banner/original/uSwlNpygq-Uniket-B2B.png"
+    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/landscape-banner/original/uSwlNpygq-Uniket-B2B.png"
   },
   "domain": {
     "verified": true,
@@ -528,23 +528,11 @@ Success
 
 ```json
 {
-  "items": [
-    {
-      "uid": 108,
-      "name": "Sample2 Company",
-      "company_type": "mbo"
-    },
-    {
-      "uid": 13,
-      "name": "Isabel Mazanec",
-      "company_type": "franchisee"
-    },
-    {
-      "uid": 7,
-      "name": "Zack Burgdorf",
-      "company_type": "distributor"
-    }
-  ],
+  "items": {
+    "uid": 108,
+    "name": "Sample2 Company",
+    "company_type": "mbo"
+  },
   "page": {
     "type": "number",
     "size": 200,
@@ -855,8 +843,8 @@ Success
     "landing_page": {
       "launch_page": {
         "page_type": "home",
-        "params": null,
-        "query": null
+        "params": {},
+        "query": {}
       },
       "continue_as_guest": true,
       "login_btn_text": "Click here to sign-in",
@@ -992,36 +980,15 @@ Success
 
 ```json
 {
-  "items": [
-    {
-      "_id": "5ec2c0b168fc2800017112f5",
-      "uid": 1,
-      "name": "RRL01",
-      "display_name": "RRL01",
-      "store_type": "warehouse",
-      "store_code": "WH_8513",
-      "company_id": 1
-    },
-    {
-      "_id": "5ec3b09a68fc28000171137c",
-      "modified_on": "2020-06-30T10:02:41.208Z",
-      "uid": 10,
-      "name": "Saran Ledonne",
-      "display_name": "",
-      "store_type": "high_street",
-      "store_code": "af6198fe-2c23-4441-bbf4-e694c96e255c",
-      "company_id": 1
-    },
-    {
-      "_id": "5f099b2c931b1c0001e7ccb2",
-      "display_name": "cbs 2",
-      "store_code": "HS-c9bac",
-      "name": "cbs 2",
-      "company_id": 80,
-      "store_type": "high_street",
-      "uid": 11014
-    }
-  ],
+  "items": {
+    "id": "5ec2c0b168fc2800017112f5",
+    "uid": 1,
+    "name": "RRL01",
+    "display_name": "RRL01",
+    "store_type": "warehouse",
+    "store_code": "WH_8513",
+    "company_id": 1
+  },
   "page": {
     "type": "number",
     "size": 200,
@@ -1434,22 +1401,13 @@ Success
 
 ```json
 {
-  "brands": [
-    {
-      "name": "5th Avenue",
-      "value": 476,
-      "brand_logo_url": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/--unnamed--/1595615012186.jpeg",
-      "brand_banner_url": "https://hdn-1.addsale.com/x0/seller/pictures/landscape-banner/original/--unnamed--/1595615012724.jpeg",
-      "brand_banner_portrait_url": "https://hdn-1.addsale.com/x0/seller/pictures/portrait-banner/original/--unnamed--/1595615013203.jpeg"
-    },
-    {
-      "name": "Abhay",
-      "value": 47,
-      "brand_logo_url": "https://hdn-1.fynd.com/brands/pictures/square-logo/resize-h:200,w:0/9fG6jZUJV-brand-Slamay.png",
-      "brand_banner_url": "https://hdn-1.addsale.com/x0/seller/pictures/landscape-banner/original/cpApcg_insta_01.jpg034422ca-b739-4a30-ba9c-87ca32e8c2ef/cpApcg_insta_01.jpg",
-      "brand_banner_portrait_url": "https://hdn-1.addsale.com/x0/seller/pictures/portrait-banner/original/mtaSMv_insta_01.jpga088b881-886d-4b5a-b82f-139bd2aa3f35/mtaSMv_insta_01.jpg"
-    }
-  ]
+  "brands": {
+    "name": "5th Avenue",
+    "value": 476,
+    "brand_logo_url": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/--unnamed--/1595615012186.jpeg",
+    "brand_banner_url": "https://hdn-1.addsale.com/x0/seller/pictures/landscape-banner/original/--unnamed--/1595615012724.jpeg",
+    "brand_banner_portrait_url": "https://hdn-1.addsale.com/x0/seller/pictures/portrait-banner/original/--unnamed--/1595615013203.jpeg"
+  }
 }
 ```
 </details>
@@ -1980,15 +1938,20 @@ Success
   "validators": {
     "company": {
       "browser_script": "",
-      "json_schema": {
-        "type": "object",
-        "required": [
-          "ip_address",
-          "icode",
-          "gds_entity_id",
-          "auth_key"
-        ],
-        "properties": {
+      "json_schema": [
+        {
+          "type": "object"
+        },
+        {
+          "required": [
+            "ip_address",
+            "icode",
+            "gds_entity_id",
+            "auth_key"
+          ]
+        },
+        {
+          "properties": null,
           "gds_entity_id": {
             "type": "string",
             "title": "GDS Entity ID",
@@ -2021,13 +1984,16 @@ Success
             "description": "Please select the correct SKU identifier that you use to provide inventory to Fynd."
           }
         }
-      }
+      ]
     },
     "store": {
       "browser_script": "",
-      "json_schema": {
-        "type": "object",
-        "properties": {
+      "json_schema": [
+        {
+          "type": "object"
+        },
+        {
+          "properties": null,
           "location_id": {
             "type": "string",
             "title": "Location ID",
@@ -2040,7 +2006,7 @@ Success
             "description": "Enter IP address provided by Ginesys for your POS server"
           }
         }
-      }
+      ]
     }
   },
   "description": "Sap Integration west ELM brands",
@@ -2287,16 +2253,14 @@ Success
     "store": {
       "criteria": "filter",
       "stores": [],
-      "rules": [
-        {
-          "companies": [
-            1,
-            3,
-            4
-          ],
-          "brands": []
-        }
-      ]
+      "rules": {
+        "companies": [
+          1,
+          3,
+          4
+        ],
+        "brands": []
+      }
     },
     "category": {
       "criteria": "all",
@@ -2345,18 +2309,18 @@ Success
   },
   "cart": {
     "delivery_charges": {
-      "enabled": true,
-      "charges": [
-        {
-          "threshold": 1000,
-          "charges": 49
-        },
-        {
-          "threshold": 200000,
-          "charges": 79
-        }
-      ]
+      "enabled": true
     },
+    "charges": [
+      {
+        "threshold": 1000,
+        "charges": 49
+      },
+      {
+        "threshold": 200000,
+        "charges": 79
+      }
+    ],
     "enabled": true,
     "max_cart_items": 0,
     "min_cart_value": 120,
@@ -2767,36 +2731,34 @@ Success
     "opt_type": {
       "key": "store",
       "display": "Store"
-    },
-    "items": [
-      {
-        "name": "RRL01",
-        "id": 1,
-        "store_code": "WH_8513",
-        "_id": "5ec2c0b168fc2800017112f5",
-        "modified_on": "2020-09-09T04:25:55.843Z",
-        "uid": 1,
-        "address": {
-          "state": "MAHARASHTRA",
-          "address1": "SHOPSENSE RETAIL TECHNOLOGIES PRIVATE LIMITED 1ST FLOOR WEWORK VIJAY DIAMOND, CROSS RD B, AJIT NAGAR,",
-          "lat_long": {
-            "type": "Point",
-            "coordinates": [
-              72.8691788,
-              19.1174114
-            ]
-          },
-          "address2": "KONDIVITA, ANDHERI EAST, MUMBAI, MAHARASHTRA 400069",
-          "pincode": 400059,
-          "country": "INDIA",
-          "city": "MUMBAI"
-        },
-        "display_name": "RRL01",
-        "store_type": "warehouse",
-        "company_id": 1
-      }
-    ]
+    }
   },
+  "items": {
+    "name": "RRL01",
+    "id": 1,
+    "store_code": "WH_8513",
+    "_id": "5ec2c0b168fc2800017112f5",
+    "modified_on": "2020-09-09T04:25:55.843Z",
+    "uid": 1
+  },
+  "address": {
+    "state": "MAHARASHTRA",
+    "address1": "SHOPSENSE RETAIL TECHNOLOGIES PRIVATE LIMITED 1ST FLOOR WEWORK VIJAY DIAMOND, CROSS RD B, AJIT NAGAR,",
+    "lat_long": {
+      "type": "Point",
+      "coordinates": [
+        72.8691788,
+        19.1174114
+      ]
+    },
+    "address2": "KONDIVITA, ANDHERI EAST, MUMBAI, MAHARASHTRA 400069",
+    "pincode": 400059,
+    "country": "INDIA",
+    "city": "MUMBAI"
+  },
+  "display_name": "RRL01",
+  "store_type": "warehouse",
+  "company_id": 1,
   "opt_out_inventory": {
     "store": [],
     "company": []
@@ -2960,19 +2922,17 @@ Success
 
 ```json
 {
-  "versions": [
-    {
-      "_id": "6035376ab937c5f7c5462888",
-      "application": "000000000000000000000004",
-      "platform_type": "android",
-      "build_status": "pending",
-      "version_name": "0.5.6",
-      "version_code": 1,
-      "created_at": "2021-02-23T17:12:10.977Z",
-      "modified_at": "2021-02-23T17:12:10.977Z",
-      "__v": 0
-    }
-  ],
+  "versions": {
+    "_id": "6035376ab937c5f7c5462888",
+    "application": "000000000000000000000004",
+    "platform_type": "android",
+    "build_status": "pending",
+    "version_name": "0.5.6",
+    "version_code": 1,
+    "created_at": "2021-02-23T17:12:10.977Z",
+    "modified_at": "2021-02-23T17:12:10.977Z",
+    "__v": 0
+  },
   "latest_available_version_name": "0.5.7"
 }
 ```
@@ -3403,8 +3363,8 @@ Success
   "landing_page": {
     "launch_page": {
       "page_type": "home",
-      "params": null,
-      "query": null
+      "params": {},
+      "query": {}
     },
     "continue_as_guest": true,
     "login_btn_text": "Click here to sign-in",
@@ -3596,16 +3556,14 @@ Success
     "store": {
       "criteria": "filter",
       "stores": [],
-      "rules": [
-        {
-          "companies": [
-            1,
-            3,
-            4
-          ],
-          "brands": []
-        }
-      ]
+      "rules": {
+        "companies": [
+          1,
+          3,
+          4
+        ],
+        "brands": []
+      }
     },
     "category": {
       "criteria": "all",
@@ -3654,18 +3612,18 @@ Success
   },
   "cart": {
     "delivery_charges": {
-      "enabled": true,
-      "charges": [
-        {
-          "threshold": 1000,
-          "charges": 49
-        },
-        {
-          "threshold": 200000,
-          "charges": 79
-        }
-      ]
+      "enabled": true
     },
+    "charges": [
+      {
+        "threshold": 1000,
+        "charges": 49
+      },
+      {
+        "threshold": 200000,
+        "charges": 79
+      }
+    ],
     "enabled": true,
     "max_cart_items": 0,
     "min_cart_value": 120,
@@ -4137,8 +4095,7 @@ Success
     ],
     "city": "Mumbai , Maharashtra , India",
     "country": "India",
-    "pincode": 400059,
-    "loc": null
+    "pincode": 400059
   },
   "social_links": {
     "facebook": {
@@ -4204,28 +4161,28 @@ Success
   "support": {
     "timing": "9 AM to 9 PM",
     "phone": [],
-    "email": []
+    "email": [],
+    "business_highlights": [
+      {
+        "_id": "60479413a32f774d754b00ef",
+        "title": "100% Genuine Products",
+        "icon": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/business-highlights/pictures/square-logo/original/bVlx43F2a-H6pvZ9tzp-business-logo-icon.png",
+        "sub_title": "Directly from brands"
+      },
+      {
+        "_id": "60479413a32f7717df4b00f0",
+        "title": "Credit Facility Available",
+        "icon": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/business-highlights/pictures/square-logo/original/VMnltS1m3-QuUnEjOsA-business-logo-icon.png",
+        "sub_title": "Free 30 Days Credit"
+      },
+      {
+        "_id": "60479413a32f77e70b4b00f1",
+        "title": "Assured Returns",
+        "icon": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/business-highlights/pictures/square-logo/original/cTHzgHJXK-sROtLMalN-business-logo-icon.png",
+        "sub_title": "For all damaged/wrong items"
+      }
+    ]
   },
-  "business_highlights": [
-    {
-      "_id": "60479413a32f774d754b00ef",
-      "title": "100% Genuine Products",
-      "icon": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/business-highlights/pictures/square-logo/original/bVlx43F2a-H6pvZ9tzp-business-logo-icon.png",
-      "sub_title": "Directly from brands"
-    },
-    {
-      "_id": "60479413a32f7717df4b00f0",
-      "title": "Credit Facility Available",
-      "icon": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/business-highlights/pictures/square-logo/original/VMnltS1m3-QuUnEjOsA-business-logo-icon.png",
-      "sub_title": "Free 30 Days Credit"
-    },
-    {
-      "_id": "60479413a32f77e70b4b00f1",
-      "title": "Assured Returns",
-      "icon": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/business-highlights/pictures/square-logo/original/cTHzgHJXK-sROtLMalN-business-logo-icon.png",
-      "sub_title": "For all damaged/wrong items"
-    }
-  ],
   "application": "000000000000000000000004",
   "created_at": "2020-03-09T11:25:49.921Z",
   "modified_at": "2021-03-09T15:28:19.598Z",
@@ -4374,8 +4331,8 @@ Success
   "landing_page": {
     "launch_page": {
       "page_type": "home",
-      "params": null,
-      "query": null
+      "params": {},
+      "query": {}
     },
     "continue_as_guest": true,
     "login_btn_text": "Click here to sign-in",
@@ -4580,16 +4537,14 @@ Success
     "store": {
       "criteria": "filter",
       "stores": [],
-      "rules": [
-        {
-          "companies": [
-            1,
-            3,
-            4
-          ],
-          "brands": []
-        }
-      ]
+      "rules": {
+        "companies": [
+          1,
+          3,
+          4
+        ],
+        "brands": []
+      }
     },
     "category": {
       "criteria": "all",
@@ -4638,18 +4593,18 @@ Success
   },
   "cart": {
     "delivery_charges": {
-      "enabled": true,
-      "charges": [
-        {
-          "threshold": 1000,
-          "charges": 49
-        },
-        {
-          "threshold": 200000,
-          "charges": 79
-        }
-      ]
+      "enabled": true
     },
+    "charges": [
+      {
+        "threshold": 1000,
+        "charges": 49
+      },
+      {
+        "threshold": 200000,
+        "charges": 79
+      }
+    ],
     "enabled": true,
     "max_cart_items": 0,
     "min_cart_value": 120,
@@ -5223,6 +5178,7 @@ Success
  | name | string? |  yes  | Name of the sales channel, e.g. Zenz Fashion |
  | owner | string? |  yes  | The unique identifier (24-digit Mongo Object ID) of owner who owns the application |
  | redirections | [[ApplicationRedirections](#ApplicationRedirections)]? |  yes  |  |
+ | slug | string? |  yes  |  |
  | token | string? |  yes  | Random generated fix length string for sales channel. It is required and auto-generated. |
  | updated_at | string? |  yes  | ISO 8601 timestamp of sales channel updation |
  | website | [ApplicationWebsite](#ApplicationWebsite)? |  yes  |  |
@@ -5253,13 +5209,13 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | _id | string? |  yes  | The unique identifier (24-digit Mongo Object ID) for the sales channel details |
- | banner | [SecureUrl](#SecureUrl) |  no  |  |
- | description | string |  no  | It gives a detailed information about the sales channel. It is required. |
+ | banner | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | description | string? |  yes  | It gives a detailed information about the sales channel. It is required. |
  | domain | [Domain](#Domain)? |  yes  |  |
  | domains | [[Domain](#Domain)]? |  yes  |  |
- | favicon | [SecureUrl](#SecureUrl) |  no  |  |
- | logo | [SecureUrl](#SecureUrl) |  no  |  |
- | mobile_logo | [SecureUrl](#SecureUrl) |  no  |  |
+ | favicon | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | logo | [SecureUrl](#SecureUrl)? |  yes  |  |
+ | mobile_logo | [SecureUrl](#SecureUrl)? |  yes  |  |
  | name | string |  no  | Name of the sales channel. It is required. |
  
 
@@ -5276,7 +5232,7 @@ Success
  | business_highlights | [BusinessHighlights](#BusinessHighlights)? |  yes  |  |
  | copyright_text | string? |  yes  | Copyright statement usually seen at the site's footer |
  | created_at | string? |  yes  | ISO 8601 timestamp of creation of the application information |
- | links | [Links](#Links)? |  yes  |  |
+ | links | [[Links](#Links)]? |  yes  |  |
  | social_links | [SocialLinks](#SocialLinks)? |  yes  |  |
  | support | [InformationSupport](#InformationSupport)? |  yes  |  |
  | updated_at | string? |  yes  | ISO 8601 timestamp of updation of the application information |
@@ -5624,21 +5580,6 @@ Success
 
 ---
 
-#### [CompanyAboutAddress](#CompanyAboutAddress)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | address1 | string? |  yes  | Primary address line of the company |
- | address2 | string? |  yes  | Secondary address line of the company |
- | address_type | string? |  yes  | Indicates different office types like office, registered, and home. |
- | city | string? |  yes  | City name, e.g. Mumbai |
- | country | string? |  yes  | Country name, e.g. India |
- | pincode | number? |  yes  | 6-digit PIN code of the city, e.g. 400001 |
- | state | string? |  yes  | State name, e.g. Maharashtra |
- 
-
----
-
 #### [CompanyBrandInfo](#CompanyBrandInfo)
 
  | Properties | Type | Nullable | Description |
@@ -5756,22 +5697,6 @@ Success
  | name | string? |  yes  | Name of the currency, e.g Indian Rupee |
  | symbol | string? |  yes  | Unique symbol for identifying the currency, e.g. ₹ |
  | updated_at | string? |  yes  | ISO 8601 timestamp of sales channel support currency updation |
- 
-
----
-
-#### [CurrencyConfig](#CurrencyConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  | The unique identifier (24-digit Mongo Object ID) of all the currency configuration |
- | code | string? |  yes  | 3-character currency code, e.g. INR, USD, EUR. |
- | created_at | string? |  yes  | ISO 8601 timestamp of a given currency creation |
- | decimal_digits | number? |  yes  | Acceptable decimal limits for a given currency, e.g. 1.05$ means upto 2 decimal digits can be accepted as a valid value of a currency. |
- | is_active | boolean? |  yes  | Currency is enabled or not for the current sales channel |
- | name | string? |  yes  | Name of the currency, e.g Indian Rupee |
- | symbol | string? |  yes  | Unique symbol for identifying the currency, e.g. ₹ |
- | updated_at | string? |  yes  | ISO 8601 timestamp of a given currency updation |
  
 
 ---
@@ -6105,7 +6030,7 @@ Success
  | city | string? |  yes  | Name of the city, e.g. Mumbai |
  | country | string? |  yes  | Name of the country, e.g. India |
  | loc | string? |  yes  | Co-ordinates of the location |
- | phone | [InformationPhone](#InformationPhone)? |  yes  |  |
+ | phone | [[InformationPhone](#InformationPhone)]? |  yes  |  |
  | pincode | number? |  yes  | 6-digit PIN Code of the city, e.g. 400001 |
  
 
@@ -7095,15 +7020,6 @@ Success
 
 ---
 
-#### [UnhandledError](#UnhandledError)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
- 
-
----
-
 #### [UpdateDomain](#UpdateDomain)
 
  | Properties | Type | Nullable | Description |
@@ -7132,31 +7048,6 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | items | [[IntegrationLevel](#IntegrationLevel)]? |  yes  |  |
- 
-
----
-
-#### [UserEmail](#UserEmail)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | active | boolean? |  yes  | Current email is active or not active |
- | email | string? |  yes  | Email address of the user |
- | primary | boolean? |  yes  | Indicates current email is primay email or not primary email of user |
- | verified | boolean? |  yes  | Indicates current email is verified email or not verified email |
- 
-
----
-
-#### [UserPhoneNumber](#UserPhoneNumber)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | active | boolean? |  yes  | Current phone number is active or not active |
- | country_code | number? |  yes  | Country code, e.g. +91 |
- | phone | string? |  yes  | Phone number of the user |
- | primary | boolean? |  yes  | Indicates current phone number is primay  or not primary of user |
- | verified | boolean? |  yes  | Indicates current phone number is verified or not verified |
  
 
 ---

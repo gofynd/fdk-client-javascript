@@ -84,7 +84,7 @@ declare class Partner {
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - Number of records you want to get in single page
      * @param {number} [arg.pageNo] - Number of page
-     * @param {string} [arg.query] - Filter query which we want to pass
+     * @param {Object} [arg.query] - Filter query which we want to pass
      * @returns {Promise<ExtensionResponse>} - Success response
      * @summary: Get the list of private extensions
      * @description: Use this API to get the list of private extensions
@@ -92,7 +92,7 @@ declare class Partner {
     getPrivateExtensions({ pageSize, pageNo, query }?: {
         pageSize?: number;
         pageNo?: number;
-        query?: string;
+        query?: any;
     }): Promise<ExtensionResponse>;
     /**
      * @param {Object} arg - Arg object.

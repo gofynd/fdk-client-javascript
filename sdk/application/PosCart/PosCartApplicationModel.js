@@ -238,7 +238,7 @@ class PosCartModel {
       billing_address_id: Joi.string().allow(""),
       callback_url: Joi.string().allow("").allow(null),
       custom_meta: Joi.array().items(PosCartModel.CartCheckoutCustomMeta()),
-      customer_details: PosCartModel.CustomerDetails(),
+      customer_details: Joi.any().allow(null),
       delivery_address: Joi.any(),
       extra_meta: Joi.any(),
       files: Joi.array().items(PosCartModel.Files()),

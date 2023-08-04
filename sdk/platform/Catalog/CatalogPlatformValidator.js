@@ -159,6 +159,8 @@ class CatalogValidator {
   static downloadProductTemplateViews() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
+      itemType: Joi.string().allow(""),
+      type: Joi.string().allow(""),
     }).required();
   }
 
@@ -529,6 +531,8 @@ class CatalogValidator {
   static validateProductTemplate() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
+      itemType: Joi.string().allow(""),
+      bulk: Joi.boolean(),
     }).required();
   }
 

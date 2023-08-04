@@ -569,8 +569,20 @@ Success. Refer `SessionListResponseSchema` for more details.
 {
   "value": {
     "items": [
-      "sess:123",
-      "sess:456"
+      {
+        "session_id": "134",
+        "user_agent": "134",
+        "ip": "134",
+        "domain": "134",
+        "expire_in": "134"
+      },
+      {
+        "session_id": "134",
+        "user_agent": "134",
+        "ip": "134",
+        "domain": "134",
+        "expire_in": "134"
+      }
     ]
   }
 }
@@ -1512,60 +1524,6 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
 ---
 
-#### [AuthenticationInternalServerErrorSchema](#AuthenticationInternalServerErrorSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
- 
-
----
-
-#### [AuthSuccess](#AuthSuccess)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | register_token | string? |  yes  |  |
- | user | [UserSchema](#UserSchema)? |  yes  |  |
- | user_exists | boolean? |  yes  |  |
- 
-
----
-
-#### [AuthSuccessUser](#AuthSuccessUser)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | active | boolean? |  yes  |  |
- | debug | [AuthSuccessUserDebug](#AuthSuccessUserDebug)? |  yes  |  |
- | emails | [AuthSuccessUserEmails](#AuthSuccessUserEmails)? |  yes  |  |
- | first_name | string? |  yes  |  |
- | last_name | string? |  yes  |  |
- 
-
----
-
-#### [AuthSuccessUserDebug](#AuthSuccessUserDebug)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | platform | string? |  yes  |  |
- 
-
----
-
-#### [AuthSuccessUserEmails](#AuthSuccessUserEmails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | active | boolean? |  yes  |  |
- | email | string? |  yes  |  |
- | primary | boolean? |  yes  |  |
- | verified | boolean? |  yes  |  |
- 
-
----
-
 #### [BlockUserRequestSchema](#BlockUserRequestSchema)
 
  | Properties | Type | Nullable | Description |
@@ -1582,15 +1540,6 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | success | boolean? |  yes  |  |
- 
-
----
-
-#### [CodeRequestBodySchema](#CodeRequestBodySchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | string? |  yes  |  |
  
 
 ---
@@ -1684,76 +1633,6 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
 ---
 
-#### [DeleteApplicationUserRequestSchema](#DeleteApplicationUserRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | otp | string? |  yes  |  |
- | reason | string? |  yes  |  |
- | reason_id | string? |  yes  |  |
- | request_id | string? |  yes  |  |
- | user_id | string? |  yes  |  |
- 
-
----
-
-#### [DeleteUserSuccess](#DeleteUserSuccess)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean? |  yes  |  |
- 
-
----
-
-#### [EditEmailRequestSchema](#EditEmailRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | email | string? |  yes  |  |
- 
-
----
-
-#### [EditMobileRequestSchema](#EditMobileRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | country_code | string? |  yes  |  |
- | phone | string? |  yes  |  |
- 
-
----
-
-#### [EditProfileMobileSchema](#EditProfileMobileSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | country_code | string? |  yes  |  |
- | phone | string? |  yes  |  |
- 
-
----
-
-#### [EditProfileRequestSchema](#EditProfileRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | android_hash | string? |  yes  |  |
- | country_code | string? |  yes  |  |
- | dob | string? |  yes  |  |
- | email | string? |  yes  |  |
- | first_name | string? |  yes  |  |
- | gender | string? |  yes  |  |
- | last_name | string? |  yes  |  |
- | mobile | [EditProfileMobileSchema](#EditProfileMobileSchema)? |  yes  |  |
- | profile_pic_url | string? |  yes  |  |
- | register_token | string? |  yes  |  |
- | sender | string? |  yes  |  |
- 
-
----
-
 #### [Email](#Email)
 
  | Properties | Type | Nullable | Description |
@@ -1762,15 +1641,6 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
  | email | string? |  yes  |  |
  | primary | boolean? |  yes  |  |
  | verified | boolean? |  yes  |  |
- 
-
----
-
-#### [EmailOtpSuccess](#EmailOtpSuccess)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean? |  yes  |  |
  
 
 ---
@@ -1795,55 +1665,11 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
 ---
 
-#### [ForgotPasswordRequestSchema](#ForgotPasswordRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | string? |  yes  |  |
- | password | string? |  yes  |  |
- 
-
----
-
-#### [FormRegisterRequestSchema](#FormRegisterRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | email | string? |  yes  |  |
- | first_name | string? |  yes  |  |
- | gender | string? |  yes  |  |
- | last_name | string? |  yes  |  |
- | password | string? |  yes  |  |
- | phone | [FormRegisterRequestSchemaPhone](#FormRegisterRequestSchemaPhone)? |  yes  |  |
- | register_token | string? |  yes  |  |
- 
-
----
-
-#### [FormRegisterRequestSchemaPhone](#FormRegisterRequestSchemaPhone)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | country_code | string? |  yes  |  |
- | mobile | string? |  yes  |  |
- 
-
----
-
 #### [Google](#Google)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | app_id | string? |  yes  |  |
- 
-
----
-
-#### [HasPasswordSuccess](#HasPasswordSuccess)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | result | boolean? |  yes  |  |
  
 
 ---
@@ -1854,26 +1680,6 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
  | ---------- | ---- | -------- | ----------- |
  | otp | boolean? |  yes  |  |
  | password | boolean? |  yes  |  |
- 
-
----
-
-#### [LoginSuccess](#LoginSuccess)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | register_token | string? |  yes  |  |
- | request_id | string? |  yes  |  |
- | user | [UserSchema](#UserSchema)? |  yes  |  |
- 
-
----
-
-#### [LogoutSuccess](#LogoutSuccess)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | logout | boolean? |  yes  |  |
  
 
 ---
@@ -1897,98 +1703,6 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
 ---
 
-#### [NotFoundSchema](#NotFoundSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
- 
-
----
-
-#### [OAuthRequestAppleSchema](#OAuthRequestAppleSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | oauth | [OAuthRequestAppleSchemaOauth](#OAuthRequestAppleSchemaOauth)? |  yes  |  |
- | profile | [OAuthRequestAppleSchemaProfile](#OAuthRequestAppleSchemaProfile)? |  yes  |  |
- | user_identifier | string? |  yes  |  |
- 
-
----
-
-#### [OAuthRequestAppleSchemaOauth](#OAuthRequestAppleSchemaOauth)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | identity_token | string? |  yes  |  |
- 
-
----
-
-#### [OAuthRequestAppleSchemaProfile](#OAuthRequestAppleSchemaProfile)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | first_name | string? |  yes  |  |
- | full_name | string? |  yes  |  |
- | last_name | string? |  yes  |  |
- 
-
----
-
-#### [OAuthRequestSchema](#OAuthRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_signed_in | boolean? |  yes  |  |
- | oauth2 | [OAuthRequestSchemaOauth2](#OAuthRequestSchemaOauth2)? |  yes  |  |
- | profile | [OAuthRequestSchemaProfile](#OAuthRequestSchemaProfile)? |  yes  |  |
- 
-
----
-
-#### [OAuthRequestSchemaOauth2](#OAuthRequestSchemaOauth2)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | access_token | string? |  yes  |  |
- | expiry | number? |  yes  |  |
- | refresh_token | string? |  yes  |  |
- 
-
----
-
-#### [OAuthRequestSchemaProfile](#OAuthRequestSchemaProfile)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | email | string? |  yes  |  |
- | first_name | string? |  yes  |  |
- | full_name | string? |  yes  |  |
- | id | string? |  yes  |  |
- | image | string? |  yes  |  |
- | last_name | string? |  yes  |  |
- 
-
----
-
-#### [OtpSuccess](#OtpSuccess)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | country_code | string? |  yes  |  |
- | message | string? |  yes  |  |
- | mobile | string? |  yes  |  |
- | register_token | string? |  yes  |  |
- | request_id | string? |  yes  |  |
- | resend_timer | number? |  yes  |  |
- | resend_token | string? |  yes  |  |
- | success | boolean? |  yes  |  |
- 
-
----
-
 #### [PaginationSchema](#PaginationSchema)
 
  | Properties | Type | Nullable | Description |
@@ -1998,17 +1712,6 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
  | item_total | number? |  yes  |  |
  | size | number? |  yes  |  |
  | type | string? |  yes  |  |
- 
-
----
-
-#### [PasswordLoginRequestSchema](#PasswordLoginRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | captcha_code | string? |  yes  |  |
- | password | string? |  yes  |  |
- | username | string? |  yes  |  |
  
 
 ---
@@ -2079,65 +1782,6 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
 ---
 
-#### [ProfileEditSuccess](#ProfileEditSuccess)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | country_code | string? |  yes  |  |
- | email | string? |  yes  |  |
- | message | string? |  yes  |  |
- | mobile | string? |  yes  |  |
- | register_token | string? |  yes  |  |
- | request_id | string? |  yes  |  |
- | resend_email_token | string? |  yes  |  |
- | resend_timer | number? |  yes  |  |
- | resend_token | string? |  yes  |  |
- | success | boolean? |  yes  |  |
- | user | [UserSchema](#UserSchema)? |  yes  |  |
- | user_exists | boolean? |  yes  |  |
- | verify_email_link | boolean? |  yes  |  |
- | verify_email_otp | boolean? |  yes  |  |
- | verify_mobile_otp | boolean? |  yes  |  |
- 
-
----
-
-#### [ProfileEditSuccessSchema](#ProfileEditSuccessSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | email | string? |  yes  |  |
- | register_token | string? |  yes  |  |
- | user | string? |  yes  |  |
- | user_exists | boolean? |  yes  |  |
- | verify_email_link | boolean? |  yes  |  |
- | verify_email_otp | boolean? |  yes  |  |
- | verify_mobile_otp | boolean? |  yes  |  |
- 
-
----
-
-#### [RegisterFormSuccess](#RegisterFormSuccess)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | country_code | string? |  yes  |  |
- | email | string? |  yes  |  |
- | message | string? |  yes  |  |
- | mobile | string? |  yes  |  |
- | register_token | string? |  yes  |  |
- | request_id | string? |  yes  |  |
- | resend_email_token | string? |  yes  |  |
- | resend_timer | number? |  yes  |  |
- | resend_token | string? |  yes  |  |
- | success | boolean? |  yes  |  |
- | user_exists | boolean? |  yes  |  |
- | verify_email_otp | boolean? |  yes  |  |
- | verify_mobile_otp | boolean? |  yes  |  |
- 
-
----
-
 #### [RegisterRequiredFields](#RegisterRequiredFields)
 
  | Properties | Type | Nullable | Description |
@@ -2174,127 +1818,6 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
  | ---------- | ---- | -------- | ----------- |
  | email | [PlatformEmail](#PlatformEmail)? |  yes  |  |
  | mobile | [PlatformMobile](#PlatformMobile)? |  yes  |  |
- 
-
----
-
-#### [ResetPasswordSuccess](#ResetPasswordSuccess)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | status | string? |  yes  |  |
- 
-
----
-
-#### [SendEmailOtpRequestSchema](#SendEmailOtpRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | action | string? |  yes  |  |
- | email | string? |  yes  |  |
- | register_token | string? |  yes  |  |
- | token | string? |  yes  |  |
- 
-
----
-
-#### [SendEmailVerifyLinkSuccess](#SendEmailVerifyLinkSuccess)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | verify_email_link | boolean? |  yes  |  |
- 
-
----
-
-#### [SendMobileOtpRequestSchema](#SendMobileOtpRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | action | string? |  yes  |  |
- | android_hash | string? |  yes  |  |
- | captcha_code | string? |  yes  |  |
- | country_code | string? |  yes  |  |
- | force | string? |  yes  |  |
- | mobile | string? |  yes  |  |
- | token | string? |  yes  |  |
- 
-
----
-
-#### [SendMobileVerifyLinkSuccess](#SendMobileVerifyLinkSuccess)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | verify_mobile_link | boolean? |  yes  |  |
- 
-
----
-
-#### [SendOtpRequestSchema](#SendOtpRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | android_hash | string? |  yes  |  |
- | captcha_code | string? |  yes  |  |
- | country_code | string? |  yes  |  |
- | mobile | string? |  yes  |  |
- 
-
----
-
-#### [SendOtpResponse](#SendOtpResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | country_code | string? |  yes  |  |
- | email | string? |  yes  |  |
- | message | string? |  yes  |  |
- | mobile | string? |  yes  |  |
- | register_token | string? |  yes  |  |
- | request_id | string? |  yes  |  |
- | resend_email_token | string? |  yes  |  |
- | resend_timer | number? |  yes  |  |
- | resend_token | string? |  yes  |  |
- | success | boolean? |  yes  |  |
- | user_exists | boolean? |  yes  |  |
- | verify_email_otp | boolean? |  yes  |  |
- | verify_mobile_otp | boolean? |  yes  |  |
- 
-
----
-
-#### [SendResetPasswordEmailRequestSchema](#SendResetPasswordEmailRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | captcha_code | string? |  yes  |  |
- | email | string? |  yes  |  |
- 
-
----
-
-#### [SendResetPasswordMobileRequestSchema](#SendResetPasswordMobileRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | captcha_code | string? |  yes  |  |
- | country_code | string? |  yes  |  |
- | mobile | string? |  yes  |  |
- 
-
----
-
-#### [SendVerificationLinkMobileRequestSchema](#SendVerificationLinkMobileRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | active | boolean? |  yes  |  |
- | country_code | string? |  yes  |  |
- | phone | string? |  yes  |  |
- | primary | boolean? |  yes  |  |
- | verified | boolean? |  yes  |  |
  
 
 ---
@@ -2341,15 +1864,6 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
 ---
 
-#### [SessionListSuccess](#SessionListSuccess)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | sessions | [string]? |  yes  |  |
- 
-
----
-
 #### [Social](#Social)
 
  | Properties | Type | Nullable | Description |
@@ -2373,33 +1887,6 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
 ---
 
-#### [TokenRequestBodySchema](#TokenRequestBodySchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | token | string? |  yes  |  |
- 
-
----
-
-#### [UnauthenticatedSchema](#UnauthenticatedSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | authenticated | boolean? |  yes  |  |
- 
-
----
-
-#### [UnauthorizedSchema](#UnauthorizedSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
- 
-
----
-
 #### [UnDeleteUserRequestSchema](#UnDeleteUserRequestSchema)
 
  | Properties | Type | Nullable | Description |
@@ -2416,16 +1903,6 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | success | boolean? |  yes  |  |
- 
-
----
-
-#### [UpdatePasswordRequestSchema](#UpdatePasswordRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | new_password | string? |  yes  |  |
- | old_password | string? |  yes  |  |
  
 
 ---
@@ -2496,15 +1973,6 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
 ---
 
-#### [UserObjectSchema](#UserObjectSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | user | [UserSchema](#UserSchema)? |  yes  |  |
- 
-
----
-
 #### [UserPhoneNumbers](#UserPhoneNumbers)
 
  | Properties | Type | Nullable | Description |
@@ -2547,69 +2015,6 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | users | [[UserSchema](#UserSchema)]? |  yes  |  |
- 
-
----
-
-#### [VerifyEmailOtpRequestSchema](#VerifyEmailOtpRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | action | string? |  yes  |  |
- | email | string? |  yes  |  |
- | otp | string? |  yes  |  |
- | register_token | string? |  yes  |  |
- 
-
----
-
-#### [VerifyEmailOTPSuccess](#VerifyEmailOTPSuccess)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | user | [UserSchema](#UserSchema)? |  yes  |  |
- | verify_email_link | boolean? |  yes  |  |
- 
-
----
-
-#### [VerifyEmailSuccess](#VerifyEmailSuccess)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
- 
-
----
-
-#### [VerifyMobileOTPSuccess](#VerifyMobileOTPSuccess)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | user | [UserSchema](#UserSchema)? |  yes  |  |
- | verify_mobile_link | boolean? |  yes  |  |
- 
-
----
-
-#### [VerifyOtpRequestSchema](#VerifyOtpRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | otp | string? |  yes  |  |
- | register_token | string? |  yes  |  |
- | request_id | string? |  yes  |  |
- 
-
----
-
-#### [VerifyOtpSuccess](#VerifyOtpSuccess)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | register_token | string? |  yes  |  |
- | user | [UserSchema](#UserSchema)? |  yes  |  |
- | user_exists | boolean? |  yes  |  |
  
 
 ---
