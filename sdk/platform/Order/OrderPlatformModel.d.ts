@@ -23,7 +23,6 @@ declare class OrderModel {
     static AppliedPromos(): any;
     static Article(): any;
     static ArticleDetails(): any;
-    static ArticleDetails1(): any;
     static AttachOrderUser(): any;
     static AttachOrderUserResponse(): any;
     static AttachUserInfo(): any;
@@ -50,6 +49,9 @@ declare class OrderModel {
     static Brand(): any;
     static BulkActionTemplate(): any;
     static BulkActionTemplateResponse(): any;
+    static BulkReportsDownloadFailedResponse(): any;
+    static BulkReportsDownloadRequest(): any;
+    static BulkReportsDownloadResponse(): any;
     static BuyerDetails(): any;
     static BuyRules(): any;
     static Charge(): any;
@@ -87,7 +89,6 @@ declare class OrderModel {
     static Error(): any;
     static ErrorDetail(): any;
     static ErrorResponse(): any;
-    static ErrorResponse1(): any;
     static FetchCreditBalanceRequestPayload(): any;
     static FetchCreditBalanceResponsePayload(): any;
     static FileResponse(): any;
@@ -181,6 +182,7 @@ declare class OrderModel {
     static ResponseDetail(): any;
     static ReturnConfig(): any;
     static ReturnConfig1(): any;
+    static RoleBaseStateTransitionMapping(): any;
     static SendSmsPayload(): any;
     static SendUserMobileOTP(): any;
     static SendUserMobileOtpResponse(): any;
@@ -189,7 +191,6 @@ declare class OrderModel {
     static ShipmentData(): any;
     static ShipmentDetail(): any;
     static ShipmentDetails(): any;
-    static ShipmentDetails1(): any;
     static ShipmentHistoryResponse(): any;
     static ShipmentInfoResponse(): any;
     static ShipmentInternalPlatformViewResponse(): any;

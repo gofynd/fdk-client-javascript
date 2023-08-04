@@ -38,15 +38,15 @@ declare class FileStorage {
     /**
      * @param {Object} arg - Arg object.
      * @param {boolean} [arg.sync] - Sync
-     * @param {BulkRequest} arg.body
-     * @returns {Promise<BulkUploadResponse>} - Success response
+     * @param {CopyFiles} arg.body
+     * @returns {Promise<BulkUploadSyncMode>} - Success response
      * @summary: Copy Files
      * @description: Copy Files
      */
     appCopyFiles({ body, sync }?: {
         sync?: boolean;
-        body: BulkRequest;
-    }): Promise<BulkUploadResponse>;
+        body: CopyFiles;
+    }): Promise<BulkUploadSyncMode>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.namespace - Segregation of different types of
@@ -81,29 +81,84 @@ declare class FileStorage {
     }): Promise<StartResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.namespace - Bucket name
-     * @param {number} [arg.pageNo] - Page no
+     * @param {string} arg.namespace - Segregation of different types of
+     *   files(products, orders, logistics etc), Required for validating the
+     *   data of the file being uploaded, decides where exactly the file will be
+     *   stored inside the storage bucket.
+     * @param {number} [arg.page] - Page no
+     * @param {number} [arg.limit] - Limit
      * @returns {Promise<BrowseResponse>} - Success response
      * @summary: Browse Files
      * @description: Browse Files
      */
-    appbrowse({ namespace, pageNo, }?: {
+    appbrowse({ namespace, page, limit, }?: {
         namespace: string;
-        pageNo?: number;
+        page?: number;
+        limit?: number;
     }): Promise<BrowseResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.namespace - Bucket name
-     * @param {number} arg.companyId - Company_id
-     * @param {number} arg.applicationId - Application_id
-     * @summary: Browse Files
-     * @description: Browse Files
+     * @param {number} arg.pdfTypeId -
+     * @param {string} arg.format -
+     * @returns {Promise<Object[]>} - Success response
+     * @summary: Get html template for sales channel
+     * @description: Get default html template for invoice or label
      */
-    appbrowsePaginator({ namespace, companyId, applicationId }?: {
-        namespace: string;
-        companyId: number;
-        applicationId: number;
-    }): Paginator;
+    getDefaultHtmlTemplate({ pdfTypeId, format }?: {
+        pdfTypeId: number;
+        format: string;
+    }): Promise<any[]>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} arg.pdfTypeId -
+     * @returns {Promise<DummyTemplateDataItems[]>} - Success response
+     * @summary: Get Dummy pdf data for invoice or label
+     * @description: Get Dummy pdf data for invoice or label
+     */
+    getDefaultPdfData({ pdfTypeId }?: {
+        pdfTypeId: number;
+    }): Promise<DummyTemplateDataItems[]>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} arg.pdfTypeId -
+     * @param {string} arg.format -
+     * @returns {Promise<Object[]>} - Success response
+     * @summary: Default html template
+     * @description: Get default html template data for invoice or label
+     */
+    getDefaultPdfTemplate({ pdfTypeId, format }?: {
+        pdfTypeId: number;
+        format: string;
+    }): Promise<any[]>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @returns {Promise<InvoiceTypesResponse[]>} - Success response
+     * @summary: Get all the supported invoice pdf types
+     * @description: Get all the supported invoice pdf types such as Invoice, Label, Deliver challan
+     */
+    getPdfTypes({}?: any): Promise<InvoiceTypesResponse[]>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {pdfRender} arg.body
+     * @returns {Promise<string>} - Success response
+     * @summary: Preview HTML template
+     * @description: Rendered HTML template with dummy json data
+     */
+    previewTemplate({ body }?: {
+        body: pdfRender;
+    }): Promise<string>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} arg.id -
+     * @param {pdfConfig} arg.body
+     * @returns {Promise<Object>} - Success response
+     * @summary: Update html template for invoice or label
+     * @description: Update html template for invoice such as Invoice, Label, Deliver challan
+     */
+    saveHtmlTemplate({ id, body }?: {
+        id: number;
+        body: pdfConfig;
+    }): Promise<any>;
     /**
      * @param data
      * @param {string} file_name
@@ -121,4 +176,3 @@ declare class FileStorage {
         tags: any;
     }): Promise<any>;
 }
-import Paginator = require("../../common/Paginator");

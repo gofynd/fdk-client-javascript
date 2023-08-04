@@ -48,6 +48,12 @@ class OrderValidator {
     }).required();
   }
 
+  static downloadLanesReport() {
+    return Joi.object({
+      body: OrderModel.BulkReportsDownloadRequest().required(),
+    }).required();
+  }
+
   static fetchCreditBalanceDetail() {
     return Joi.object({
       body: OrderModel.FetchCreditBalanceRequestPayload().required(),
@@ -169,6 +175,13 @@ class OrderValidator {
     }).required();
   }
 
+  static getRoleBaseStateTransition() {
+    return Joi.object({
+      orderingChannel: Joi.string().allow("").required(),
+      status: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static getRoleBasedActions() {
     return Joi.object({}).required();
   }
@@ -220,6 +233,7 @@ class OrderValidator {
       companyAffiliateTag: Joi.string().allow(""),
       myOrders: Joi.boolean(),
       platformUserId: Joi.string().allow(""),
+      tags: Joi.string().allow(""),
     }).required();
   }
 

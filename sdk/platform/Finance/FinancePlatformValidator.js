@@ -2,9 +2,33 @@ const Joi = require("joi");
 
 const FinanceModel = require("./FinancePlatformModel");
 class FinanceValidator {
+  static channelDisplayName() {
+    return Joi.object({
+      filterKey: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static createSellerCreditNoteConfig() {
+    return Joi.object({
+      body: FinanceModel.CreateSellerCreditNoteConfigRequest().required(),
+    }).required();
+  }
+
+  static creditNoteDetails() {
+    return Joi.object({
+      body: FinanceModel.CreditNoteDetailsRequest().required(),
+    }).required();
+  }
+
   static creditlineDataplatform() {
     return Joi.object({
       body: FinanceModel.CreditlineDataPlatformRequest().required(),
+    }).required();
+  }
+
+  static deleteConfig() {
+    return Joi.object({
+      body: FinanceModel.DeleteConfigRequest().required(),
     }).required();
   }
 
@@ -20,9 +44,21 @@ class FinanceValidator {
     }).required();
   }
 
+  static downloadReportCustomerCn() {
+    return Joi.object({
+      body: FinanceModel.DownloadReportCustomerCnRequest().required(),
+    }).required();
+  }
+
   static generateReport() {
     return Joi.object({
       body: FinanceModel.GenerateReportRequest().required(),
+    }).required();
+  }
+
+  static generateReportCustomerCn() {
+    return Joi.object({
+      body: FinanceModel.GenerateReportCustomerCnRequest().required(),
     }).required();
   }
 
@@ -32,9 +68,27 @@ class FinanceValidator {
     }).required();
   }
 
+  static getCnConfig() {
+    return Joi.object({
+      body: FinanceModel.GetCnConfigRequest().required(),
+    }).required();
+  }
+
+  static getCustomerCreditBalance() {
+    return Joi.object({
+      body: FinanceModel.GetCustomerCreditBalanceRequest().required(),
+    }).required();
+  }
+
   static getData() {
     return Joi.object({
       body: FinanceModel.GetEngineRequest().required(),
+    }).required();
+  }
+
+  static getPdfUrlView() {
+    return Joi.object({
+      body: FinanceModel.GetPdfUrlViewRequest().required(),
     }).required();
   }
 
@@ -47,6 +101,13 @@ class FinanceValidator {
   static getReportList() {
     return Joi.object({
       body: FinanceModel.GetReportListRequest().required(),
+    }).required();
+  }
+
+  static getReportingFilters() {
+    return Joi.object({
+      filterKey: Joi.string().allow("").required(),
+      affiliateId: Joi.string().allow(""),
     }).required();
   }
 
@@ -65,6 +126,12 @@ class FinanceValidator {
   static invoiceType() {
     return Joi.object({
       body: FinanceModel.InvoiceTypeRequest().required(),
+    }).required();
+  }
+
+  static isCnRefundMethod() {
+    return Joi.object({
+      body: FinanceModel.IsCnRefundMethodRequest().required(),
     }).required();
   }
 

@@ -469,6 +469,7 @@ class UserModel {
   static SendEmailOtpRequestSchema() {
     return Joi.object({
       action: Joi.string().allow(""),
+      captcha_code: Joi.string().allow(""),
       email: Joi.string().allow(""),
       register_token: Joi.string().allow(""),
       token: Joi.string().allow(""),

@@ -4,25 +4,21 @@ declare class FileStorage {
     config: any;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.namespace - Bucket name
-     * @param {number} [arg.pageNo] - Page no
+     * @param {string} arg.namespace - Segregation of different types of
+     *   files(products, orders, logistics etc), Required for validating the
+     *   data of the file being uploaded, decides where exactly the file will be
+     *   stored inside the storage bucket.
+     * @param {number} [arg.page] - Page no
+     * @param {number} [arg.limit] - Limit
      * @returns {Promise<BrowseResponse>} - Success response
      * @summary: Browse Files
      * @description: Browse Files
      */
-    browse({ namespace, pageNo, }?: {
+    browse({ namespace, page, limit, }?: {
         namespace: string;
-        pageNo?: number;
+        page?: number;
+        limit?: number;
     }): Promise<BrowseResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.namespace - Bucket name
-     * @summary: Browse Files
-     * @description: Browse Files
-     */
-    browsePaginator({ namespace }?: {
-        namespace: string;
-    }): Paginator;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.namespace - Segregation of different types of
@@ -57,16 +53,16 @@ declare class FileStorage {
     }): Promise<CompleteResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {boolean} [arg.sync] - Sync
-     * @param {BulkRequest} arg.body
-     * @returns {Promise<BulkUploadResponse>} - Success response
+     * @param {boolean} [arg.sync] -
+     * @param {CopyFiles} arg.body
+     * @returns {Promise<BulkUploadSyncMode>} - Success response
      * @summary: Copy Files
      * @description: Copy Files
      */
     copyFiles({ body, sync }?: {
         sync?: boolean;
-        body: BulkRequest;
-    }): Promise<BulkUploadResponse>;
+        body: CopyFiles;
+    }): Promise<BulkUploadSyncMode>;
     /**
      * @param {Object} arg - Arg object.
      * @param {SignUrlRequest} arg.body
@@ -136,4 +132,3 @@ declare class FileStorage {
         tags: any;
     }): Promise<any>;
 }
-import Paginator = require("../../common/Paginator");

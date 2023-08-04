@@ -2515,10 +2515,14 @@ Download Product Template View
 
 ```javascript
 // Promise
-const promise = platformClient.catalog.downloadProductTemplateViews({  slug : value });
+const promise = platformClient.catalog.downloadProductTemplateViews({  slug : value,
+ itemType : value,
+ type : value });
 
 // Async/Await
-const data = await platformClient.catalog.downloadProductTemplateViews({  slug : value });
+const data = await platformClient.catalog.downloadProductTemplateViews({  slug : value,
+ itemType : value,
+ type : value });
 ```
 
 
@@ -2527,7 +2531,9 @@ const data = await platformClient.catalog.downloadProductTemplateViews({  slug :
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| slug | string | yes | A `slug` is a unique identifier for a particular template. |  
+| slug | string | yes | A `slug` is a unique identifier for a particular template. |    
+| itemType | string | no | An `item_type` defines the type of item. The default value is standard. |    
+| type | string | no | Format type of the sample file. The default value is excel. |  
 
 
 
@@ -17994,10 +18000,14 @@ Validate Product Template Schema
 
 ```javascript
 // Promise
-const promise = platformClient.catalog.validateProductTemplate({  slug : value });
+const promise = platformClient.catalog.validateProductTemplate({  slug : value,
+ itemType : value,
+ bulk : value });
 
 // Async/Await
-const data = await platformClient.catalog.validateProductTemplate({  slug : value });
+const data = await platformClient.catalog.validateProductTemplate({  slug : value,
+ itemType : value,
+ bulk : value });
 ```
 
 
@@ -18006,7 +18016,9 @@ const data = await platformClient.catalog.validateProductTemplate({  slug : valu
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| slug | string | yes | A `slug` is a unique identifier for a particular template. |  
+| slug | string | yes | A `slug` is a unique identifier for a particular template. |    
+| itemType | string | no | An `item_type` defines the type of item. The default value is standard. |    
+| bulk | boolean | no | This specification determines the schema type to be retrieved. When set to true, it will return the schema for bulk data; when set to false, it will provide the schema for a single product. The default value is false. |  
 
 
 

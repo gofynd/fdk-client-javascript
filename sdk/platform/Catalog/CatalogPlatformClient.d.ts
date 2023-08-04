@@ -271,12 +271,18 @@ declare class Catalog {
      * @param {Object} arg - Arg object.
      * @param {string} arg.slug - A `slug` is a unique identifier for a
      *   particular template.
+     * @param {string} [arg.itemType] - An `item_type` defines the type of item.
+     *   The default value is standard.
+     * @param {string} [arg.type] - Format type of the sample file. The default
+     *   value is excel.
      * @returns {Promise<string>} - Success response
      * @summary: Download Product Template View
      * @description: Allows you to download product template data
      */
-    downloadProductTemplateViews({ slug }?: {
+    downloadProductTemplateViews({ slug, itemType, type }?: {
         slug: string;
+        itemType?: string;
+        type?: string;
     }): Promise<string>;
     /**
      * @param {Object} arg - Arg object.
@@ -971,12 +977,20 @@ declare class Catalog {
      * @param {Object} arg - Arg object.
      * @param {string} arg.slug - A `slug` is a unique identifier for a
      *   particular template.
+     * @param {string} [arg.itemType] - An `item_type` defines the type of item.
+     *   The default value is standard.
+     * @param {boolean} [arg.bulk] - This specification determines the schema
+     *   type to be retrieved. When set to true, it will return the schema for
+     *   bulk data; when set to false, it will provide the schema for a single
+     *   product. The default value is false.
      * @returns {Promise<TemplatesValidationResponse>} - Success response
      * @summary: Validate Product Template Schema
      * @description: Allows you to list all product templates validation values for all the fields present in the database
      */
-    validateProductTemplate({ slug }?: {
+    validateProductTemplate({ slug, itemType, bulk }?: {
         slug: string;
+        itemType?: string;
+        bulk?: boolean;
     }): Promise<TemplatesValidationResponse>;
     /**
      * @param {Object} arg - Arg object.

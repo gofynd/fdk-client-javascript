@@ -487,6 +487,70 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {BulkReportsDownloadRequest} arg.body
+   * @returns {Promise<BulkReportsDownloadResponse>} - Success response
+   * @summary:
+   * @description:
+   */
+  async downloadLanesReport({ body } = {}) {
+    const { error } = OrderValidator.downloadLanesReport().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderValidator.downloadLanesReport().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for downloadLanesReport",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/reports/lanes/download`,
+      query_params,
+      body,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = OrderModel.BulkReportsDownloadResponse().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for downloadLanesReport",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {FetchCreditBalanceRequestPayload} arg.body
    * @returns {Promise<FetchCreditBalanceResponsePayload>} - Success response
    * @summary:
@@ -1539,6 +1603,78 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} arg.orderingChannel - Ordering channel
+   * @param {string} arg.status - Current status of a shipment
+   * @returns {Promise<RoleBaseStateTransitionMapping>} - Success response
+   * @summary: To fetch next state transitions.
+   * @description: This endpoint will fetch next possible states based on logged in user
+   */
+  async getRoleBaseStateTransition({ orderingChannel, status } = {}) {
+    const { error } = OrderValidator.getRoleBaseStateTransition().validate(
+      {
+        orderingChannel,
+        status,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = OrderValidator.getRoleBaseStateTransition().validate(
+      {
+        orderingChannel,
+        status,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message:
+          "Parameter Validation warrnings for getRoleBaseStateTransition",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["ordering_channel"] = orderingChannel;
+    query_params["status"] = status;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/role/state/transitions/next`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = OrderModel.RoleBaseStateTransitionMapping().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getRoleBaseStateTransition",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @returns {Promise<GetActionsResponse>} - Success response
    * @summary:
    * @description:
@@ -1833,6 +1969,7 @@ class Order {
    * @param {string} [arg.companyAffiliateTag] -
    * @param {boolean} [arg.myOrders] -
    * @param {string} [arg.platformUserId] -
+   * @param {string} [arg.tags] - Comma separated values of tags
    * @returns {Promise<ShipmentInternalPlatformViewResponse>} - Success response
    * @summary:
    * @description:
@@ -1861,6 +1998,7 @@ class Order {
     companyAffiliateTag,
     myOrders,
     platformUserId,
+    tags,
   } = {}) {
     const { error } = OrderValidator.getShipments().validate(
       {
@@ -1887,6 +2025,7 @@ class Order {
         companyAffiliateTag,
         myOrders,
         platformUserId,
+        tags,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1920,6 +2059,7 @@ class Order {
         companyAffiliateTag,
         myOrders,
         platformUserId,
+        tags,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1955,6 +2095,7 @@ class Order {
     query_params["company_affiliate_tag"] = companyAffiliateTag;
     query_params["my_orders"] = myOrders;
     query_params["platform_user_id"] = platformUserId;
+    query_params["tags"] = tags;
 
     const xHeaders = {};
 

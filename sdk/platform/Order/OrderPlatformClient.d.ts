@@ -82,6 +82,16 @@ declare class Order {
     }): Promise<FileResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {BulkReportsDownloadRequest} arg.body
+     * @returns {Promise<BulkReportsDownloadResponse>} - Success response
+     * @summary:
+     * @description:
+     */
+    downloadLanesReport({ body }?: {
+        body: BulkReportsDownloadRequest;
+    }): Promise<BulkReportsDownloadResponse>;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {FetchCreditBalanceRequestPayload} arg.body
      * @returns {Promise<FetchCreditBalanceResponsePayload>} - Success response
      * @summary:
@@ -310,6 +320,18 @@ declare class Order {
     }): Promise<OrderListingResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.orderingChannel - Ordering channel
+     * @param {string} arg.status - Current status of a shipment
+     * @returns {Promise<RoleBaseStateTransitionMapping>} - Success response
+     * @summary: To fetch next state transitions.
+     * @description: This endpoint will fetch next possible states based on logged in user
+     */
+    getRoleBaseStateTransition({ orderingChannel, status }?: {
+        orderingChannel: string;
+        status: string;
+    }): Promise<RoleBaseStateTransitionMapping>;
+    /**
+     * @param {Object} arg - Arg object.
      * @returns {Promise<GetActionsResponse>} - Success response
      * @summary:
      * @description:
@@ -382,11 +404,12 @@ declare class Order {
      * @param {string} [arg.companyAffiliateTag] -
      * @param {boolean} [arg.myOrders] -
      * @param {string} [arg.platformUserId] -
+     * @param {string} [arg.tags] - Comma separated values of tags
      * @returns {Promise<ShipmentInternalPlatformViewResponse>} - Success response
      * @summary:
      * @description:
      */
-    getShipments({ lane, bagStatus, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, myOrders, platformUserId, }?: {
+    getShipments({ lane, bagStatus, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, myOrders, platformUserId, tags, }?: {
         lane?: string;
         bagStatus?: string;
         statusOverrideLane?: boolean;
@@ -410,6 +433,7 @@ declare class Order {
         companyAffiliateTag?: string;
         myOrders?: boolean;
         platformUserId?: string;
+        tags?: string;
     }): Promise<ShipmentInternalPlatformViewResponse>;
     /**
      * @param {Object} arg - Arg object.

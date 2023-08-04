@@ -5,7 +5,8 @@ class FileStorageValidator {
   static browse() {
     return Joi.object({
       namespace: Joi.string().allow("").required(),
-      pageNo: Joi.number(),
+      page: Joi.number(),
+      limit: Joi.number(),
     }).required();
   }
 
@@ -19,7 +20,7 @@ class FileStorageValidator {
   static copyFiles() {
     return Joi.object({
       sync: Joi.boolean(),
-      body: FileStorageModel.BulkRequest().required(),
+      body: FileStorageModel.CopyFiles().required(),
     }).required();
   }
 

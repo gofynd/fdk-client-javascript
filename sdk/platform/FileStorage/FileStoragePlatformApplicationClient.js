@@ -83,7 +83,7 @@ class FileStorage {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/namespaces/${namespace}/upload/complete/`,
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/namespaces/${namespace}/upload/complete`,
       query_params,
       body
     );
@@ -109,8 +109,8 @@ class FileStorage {
   /**
    * @param {Object} arg - Arg object.
    * @param {boolean} [arg.sync] - Sync
-   * @param {BulkRequest} arg.body
-   * @returns {Promise<BulkUploadResponse>} - Success response
+   * @param {CopyFiles} arg.body
+   * @returns {Promise<BulkUploadSyncMode>} - Success response
    * @summary: Copy Files
    * @description: Copy Files
    */
@@ -148,14 +148,14 @@ class FileStorage {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/uploads/copy/`,
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/uploads/copy`,
       query_params,
       body
     );
 
     const {
       error: res_error,
-    } = FileStorageModel.BulkUploadResponse().validate(response, {
+    } = FileStorageModel.BulkUploadSyncMode().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -238,7 +238,7 @@ class FileStorage {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/namespaces/${namespace}/upload/start/`,
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/namespaces/${namespace}/upload/start`,
       query_params,
       body
     );
@@ -263,8 +263,12 @@ class FileStorage {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.namespace - Bucket name
-   * @param {number} [arg.pageNo] - Page no
+   * @param {string} arg.namespace - Segregation of different types of
+   *   files(products, orders, logistics etc), Required for validating the
+   *   data of the file being uploaded, decides where exactly the file will be
+   *   stored inside the storage bucket.
+   * @param {number} [arg.page] - Page no
+   * @param {number} [arg.limit] - Limit
    * @returns {Promise<BrowseResponse>} - Success response
    * @summary: Browse Files
    * @description: Browse Files
@@ -272,13 +276,15 @@ class FileStorage {
   async appbrowse({
     namespace,
 
-    pageNo,
+    page,
+    limit,
   } = {}) {
     const { error } = FileStorageValidator.appbrowse().validate(
       {
         namespace,
 
-        pageNo,
+        page,
+        limit,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -291,7 +297,8 @@ class FileStorage {
       {
         namespace,
 
-        pageNo,
+        page,
+        limit,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -304,12 +311,13 @@ class FileStorage {
     }
 
     const query_params = {};
-    query_params["page_no"] = pageNo;
+    query_params["page"] = page;
+    query_params["limit"] = limit;
 
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/namespaces/${namespace}/browse/`,
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/namespaces/${namespace}/browse`,
       query_params,
       undefined
     );
@@ -334,32 +342,368 @@ class FileStorage {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.namespace - Bucket name
-   * @param {number} arg.companyId - Company_id
-   * @param {number} arg.applicationId - Application_id
-   * @summary: Browse Files
-   * @description: Browse Files
+   * @param {number} arg.pdfTypeId -
+   * @param {string} arg.format -
+   * @returns {Promise<Object[]>} - Success response
+   * @summary: Get html template for sales channel
+   * @description: Get default html template for invoice or label
    */
-  appbrowsePaginator({ namespace, companyId, applicationId } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.appbrowse({
-        namespace: namespace,
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
+  async getDefaultHtmlTemplate({ pdfTypeId, format } = {}) {
+    const { error } = FileStorageValidator.getDefaultHtmlTemplate().validate(
+      {
+        pdfTypeId,
+        format,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = FileStorageValidator.getDefaultHtmlTemplate().validate(
+      {
+        pdfTypeId,
+        format,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getDefaultHtmlTemplate",
       });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["pdf_type_id"] = pdfTypeId;
+    query_params["format"] = format;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pdf/config`,
+      query_params,
+      undefined
+    );
+
+    const { error: res_error } = Joi.array()
+      .items(Joi.any())
+      .validate(response, { abortEarly: false, allowUnknown: false });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getDefaultHtmlTemplate",
       });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} arg.pdfTypeId -
+   * @returns {Promise<DummyTemplateDataItems[]>} - Success response
+   * @summary: Get Dummy pdf data for invoice or label
+   * @description: Get Dummy pdf data for invoice or label
+   */
+  async getDefaultPdfData({ pdfTypeId } = {}) {
+    const { error } = FileStorageValidator.getDefaultPdfData().validate(
+      {
+        pdfTypeId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = FileStorageValidator.getDefaultPdfData().validate(
+      {
+        pdfTypeId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getDefaultPdfData",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["pdf_type_id"] = pdfTypeId;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pdf/mapper`,
+      query_params,
+      undefined
+    );
+
+    const { error: res_error } = Joi.array()
+      .items(FileStorageModel.DummyTemplateDataItems())
+      .validate(response, { abortEarly: false, allowUnknown: false });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getDefaultPdfData",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} arg.pdfTypeId -
+   * @param {string} arg.format -
+   * @returns {Promise<Object[]>} - Success response
+   * @summary: Default html template
+   * @description: Get default html template data for invoice or label
+   */
+  async getDefaultPdfTemplate({ pdfTypeId, format } = {}) {
+    const { error } = FileStorageValidator.getDefaultPdfTemplate().validate(
+      {
+        pdfTypeId,
+        format,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = FileStorageValidator.getDefaultPdfTemplate().validate(
+      {
+        pdfTypeId,
+        format,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getDefaultPdfTemplate",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["pdf_type_id"] = pdfTypeId;
+    query_params["format"] = format;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pdf/default-template`,
+      query_params,
+      undefined
+    );
+
+    const { error: res_error } = Joi.array()
+      .items(Joi.any())
+      .validate(response, { abortEarly: false, allowUnknown: false });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getDefaultPdfTemplate",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @returns {Promise<InvoiceTypesResponse[]>} - Success response
+   * @summary: Get all the supported invoice pdf types
+   * @description: Get all the supported invoice pdf types such as Invoice, Label, Deliver challan
+   */
+  async getPdfTypes({} = {}) {
+    const { error } = FileStorageValidator.getPdfTypes().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = FileStorageValidator.getPdfTypes().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getPdfTypes",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pdf/types`,
+      query_params,
+      undefined
+    );
+
+    const { error: res_error } = Joi.array()
+      .items(FileStorageModel.InvoiceTypesResponse())
+      .validate(response, { abortEarly: false, allowUnknown: false });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getPdfTypes",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {pdfRender} arg.body
+   * @returns {Promise<string>} - Success response
+   * @summary: Preview HTML template
+   * @description: Rendered HTML template with dummy json data
+   */
+  async previewTemplate({ body } = {}) {
+    const { error } = FileStorageValidator.previewTemplate().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = FileStorageValidator.previewTemplate().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for previewTemplate",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pdf/render`,
+      query_params,
+      body
+    );
+
+    const { error: res_error } = Joi.string()
+      .allow("")
+      .validate(response, { abortEarly: false, allowUnknown: false });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for previewTemplate",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {number} arg.id -
+   * @param {pdfConfig} arg.body
+   * @returns {Promise<Object>} - Success response
+   * @summary: Update html template for invoice or label
+   * @description: Update html template for invoice such as Invoice, Label, Deliver challan
+   */
+  async saveHtmlTemplate({ id, body } = {}) {
+    const { error } = FileStorageValidator.saveHtmlTemplate().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = FileStorageValidator.saveHtmlTemplate().validate(
+      {
+        id,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for saveHtmlTemplate",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pdf/config`,
+      query_params,
+      body
+    );
+
+    const { error: res_error } = Joi.any().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for saveHtmlTemplate",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
   }
 }
 

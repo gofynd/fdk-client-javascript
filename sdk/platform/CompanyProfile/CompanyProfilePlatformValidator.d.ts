@@ -10,6 +10,7 @@ declare class CompanyProfileValidator {
     static getBrands(): any;
     static getCompanyMetrics(): any;
     static getLocationDetail(): any;
+    static getLocationTags(): any;
     static getLocations(): any;
     static updateCompany(): any;
     static updateLocation(): any;

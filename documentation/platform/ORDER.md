@@ -15,6 +15,7 @@ Handles all platform order and shipment api(s)
 * [createOrder](#createorder)
 * [dispatchManifest](#dispatchmanifest)
 * [downloadBulkActionTemplate](#downloadbulkactiontemplate)
+* [downloadLanesReport](#downloadlanesreport)
 * [fetchCreditBalanceDetail](#fetchcreditbalancedetail)
 * [fetchRefundModeConfig](#fetchrefundmodeconfig)
 * [generatePOSReceiptByOrderId](#generateposreceiptbyorderid)
@@ -28,6 +29,7 @@ Handles all platform order and shipment api(s)
 * [getOrderById](#getorderbyid)
 * [getOrders](#getorders)
 * [getPlatformShipmentReasons](#getplatformshipmentreasons)
+* [getRoleBaseStateTransition](#getrolebasestatetransition)
 * [getRoleBasedActions](#getrolebasedactions)
 * [getShipmentById](#getshipmentbyid)
 * [getShipmentHistory](#getshipmenthistory)
@@ -468,6 +470,75 @@ We are processing the file!
   }
 }
 ```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### downloadLanesReport
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.downloadLanesReport({  body : value });
+
+// Async/Await
+const data = await platformClient.order.downloadLanesReport({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [BulkReportsDownloadRequest](#BulkReportsDownloadRequest) | yes | Request body |
+
+
+
+
+*Returned Response:*
+
+
+
+
+[BulkReportsDownloadResponse](#BulkReportsDownloadResponse)
+
+Bulk Report creation initiated.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+true
+```
+</details>
+
+<details>
+<summary><i>&nbsp; batch_id</i></summary>
+
+```json
+"0000-1111-2222-3333"
+```
+</details>
+
 </details>
 
 
@@ -2198,6 +2269,82 @@ Success. Check the example shown below or refer `ShipmentReasonsResponse` for mo
 ---
 
 
+### getRoleBaseStateTransition
+To fetch next state transitions.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.getRoleBaseStateTransition({  orderingChannel : value,
+ status : value });
+
+// Async/Await
+const data = await platformClient.order.getRoleBaseStateTransition({  orderingChannel : value,
+ status : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| orderingChannel | string | yes | Ordering channel |   
+| status | string | yes | current status of a shipment |  
+
+
+
+This endpoint will fetch next possible states based on logged in user
+
+
+*Returned Response:*
+
+
+
+
+[RoleBaseStateTransitionMapping](#RoleBaseStateTransitionMapping)
+
+Role wise state transition mapping, for next possible state
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; send state transition success</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "next_statuses": [
+      "bag_picked",
+      "delivery_done",
+      "rto_bag_delivered",
+      "rto_in_transit"
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getRoleBasedActions
 
 
@@ -2878,7 +3025,8 @@ const promise = platformClient.order.getShipments({  lane : value,
  orderingChannel : value,
  companyAffiliateTag : value,
  myOrders : value,
- platformUserId : value });
+ platformUserId : value,
+ tags : value });
 
 // Async/Await
 const data = await platformClient.order.getShipments({  lane : value,
@@ -2903,7 +3051,8 @@ const data = await platformClient.order.getShipments({  lane : value,
  orderingChannel : value,
  companyAffiliateTag : value,
  myOrders : value,
- platformUserId : value });
+ platformUserId : value,
+ tags : value });
 ```
 
 
@@ -2934,7 +3083,8 @@ const data = await platformClient.order.getShipments({  lane : value,
 | orderingChannel | string | no |  |    
 | companyAffiliateTag | string | no |  |    
 | myOrders | boolean | no |  |    
-| platformUserId | string | no |  |  
+| platformUserId | string | no |  |    
+| tags | string | no | Comma separated values of tags |  
 
 
 
@@ -4882,16 +5032,8 @@ Verify OTP
  | category | string |  no  |  |
  | dimension | string |  no  |  |
  | quantity | number |  no  |  |
- | weight | string |  no  |  |
- 
-
----
-
-#### [ArticleDetails1](#ArticleDetails1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
  | status | string? |  yes  |  |
+ | weight | string |  no  |  |
  
 
 ---
@@ -4991,7 +5133,7 @@ Verify OTP
  | affiliate_details | [AffiliateDetails](#AffiliateDetails)? |  yes  |  |
  | applied_promos | [string]? |  yes  |  |
  | article | [Article](#Article)? |  yes  |  |
- | article_details | [ArticleDetails1](#ArticleDetails1)? |  yes  |  |
+ | article_details | [ArticleDetails](#ArticleDetails)? |  yes  |  |
  | bag_status | [[BagStatusHistory](#BagStatusHistory)]? |  yes  |  |
  | bag_status_history | [BagStatusHistory](#BagStatusHistory)? |  yes  |  |
  | bag_update_time | number? |  yes  |  |
@@ -5328,6 +5470,44 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | template_x_slug | [[BulkActionTemplate](#BulkActionTemplate)]? |  yes  | Allowed bulk action template slugs |
+ 
+
+---
+
+#### [BulkReportsDownloadFailedResponse](#BulkReportsDownloadFailedResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | error | string? |  yes  |  |
+ | status | boolean? |  yes  |  |
+ 
+
+---
+
+#### [BulkReportsDownloadRequest](#BulkReportsDownloadRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | custom_filters_for_lane | string? |  yes  |  |
+ | custom_headers | string? |  yes  | Download report with specific headers |
+ | entities | [string]? |  yes  | Download for specific enitites, entities can be bag, shipment or order_id, etc. |
+ | filter_type | string? |  yes  |  |
+ | from_date | string? |  yes  |  |
+ | is_cross_company_enabled | boolean? |  yes  | Download lanes for cross company. |
+ | lane_type | string? |  yes  |  |
+ | report_type | string? |  yes  | Type of report |
+ | store_ids | [string]? |  yes  | Download for specific store ids. |
+ | to_date | string? |  yes  |  |
+ 
+
+---
+
+#### [BulkReportsDownloadResponse](#BulkReportsDownloadResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | batch_id | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -5764,20 +5944,11 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | error | string |  no  |  |
  | error_trace | string? |  yes  |  |
- | message | string? |  yes  |  |
+ | message | string |  no  |  |
  | status | number? |  yes  |  |
  | success | boolean? |  yes  |  |
- 
-
----
-
-#### [ErrorResponse1](#ErrorResponse1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | error | string |  no  |  |
- | message | string |  no  |  |
  
 
 ---
@@ -6174,7 +6345,7 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | charges | [[Charge](#Charge)]? |  yes  |  |
- | custom_messasge | string? |  yes  |  |
+ | custom_message | string? |  yes  |  |
  | external_line_id | string? |  yes  |  |
  | meta | string? |  yes  |  |
  | quantity | number? |  yes  |  |
@@ -6752,7 +6923,7 @@ Verify OTP
  | prices | [Prices](#Prices)? |  yes  |  |
  | priority_text | string? |  yes  |  |
  | shipment_created_at | string? |  yes  |  |
- | shipment_details | [ShipmentDetails1](#ShipmentDetails1)? |  yes  |  |
+ | shipment_details | [ShipmentDetails](#ShipmentDetails)? |  yes  |  |
  | shipment_id | string |  no  |  |
  | shipment_images | [string]? |  yes  |  |
  | shipment_quantity | number? |  yes  |  |
@@ -7104,6 +7275,16 @@ Verify OTP
 
 ---
 
+#### [RoleBaseStateTransitionMapping](#RoleBaseStateTransitionMapping)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | next_statuses | [string]? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
 #### [SendSmsPayload](#SendSmsPayload)
 
  | Properties | Type | Nullable | Description |
@@ -7193,24 +7374,16 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | action_to_status | string? |  yes  |  |
  | affiliate_shipment_id | string |  no  |  |
  | articles | [[ArticleDetails](#ArticleDetails)] |  no  |  |
  | box_type | string? |  yes  |  |
  | dp_id | number? |  yes  |  |
  | fulfillment_id | number |  no  |  |
- | meta | string? |  yes  |  |
- | shipments | number |  no  |  |
- 
-
----
-
-#### [ShipmentDetails1](#ShipmentDetails1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | action_to_status | string? |  yes  |  |
  | lock_message | string? |  yes  |  |
  | lock_status | boolean? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | shipments | number |  no  |  |
  
 
 ---
@@ -7815,6 +7988,7 @@ Verify OTP
  | ---------- | ---- | -------- | ----------- |
  | b2b_gstin_number | string? |  yes  |  |
  | gstin | string? |  yes  |  |
+ | pan_no | string? |  yes  |  |
  
 
 ---

@@ -5992,6 +5992,11 @@ class PlatformClient {
  * @property {string} [state]
  */
 /**
+ * @typedef AverageOrderProcessingTime
+ * @property {number} [duration]
+ * @property {string} [duration_type]
+ */
+/**
  * @typedef BrandBannerSerializer
  * @property {string} landscape
  * @property {string} portrait
@@ -6283,10 +6288,13 @@ class PlatformClient {
  * @property {Object} [_custom_json]
  * @property {AddressSerializer} address
  * @property {boolean} [auto_invoice]
+ * @property {AverageOrderProcessingTime} [avg_order_processing_time]
+ * @property {boolean} [bulk_shipment]
  * @property {string} code
  * @property {number} company
  * @property {SellerPhoneNumber[]} [contact_numbers]
  * @property {boolean} [credit_note]
+ * @property {boolean} [default_order_acceptance_timing]
  * @property {string} display_name
  * @property {Document[]} [documents]
  * @property {InvoiceDetailsSerializer} [gst_credentials]
@@ -6294,9 +6302,11 @@ class PlatformClient {
  * @property {LocationManagerSerializer} [manager]
  * @property {string} name
  * @property {string[]} [notification_emails]
+ * @property {LocationDayWiseSerializer[]} [order_acceptance_timing]
  * @property {ProductReturnConfigSerializer} [product_return_config]
  * @property {string} [stage]
  * @property {string} [store_type]
+ * @property {string[]} [tags]
  * @property {LocationDayWiseSerializer[]} [timing]
  * @property {number} [uid]
  * @property {Object} [warnings]
@@ -6341,6 +6351,11 @@ class PlatformClient {
  * @typedef SellerPhoneNumber
  * @property {number} country_code
  * @property {string} number
+ */
+/**
+ * @typedef StoreTagsResponseSchema
+ * @property {boolean} [success]
+ * @property {string[]} [tags]
  */
 /**
  * @typedef UpdateCompany
@@ -8380,6 +8395,7 @@ class PlatformClient {
  * @property {number[]} [brand_ids]
  * @property {number} company_id
  * @property {string} discount_level
+ * @property {DiscountMeta} [discount_meta]
  * @property {string} discount_type
  * @property {string[]} extension_ids
  * @property {string} [file_path]
@@ -8393,6 +8409,7 @@ class PlatformClient {
 /**
  * @typedef DiscountItems
  * @property {number} [brand_uid]
+ * @property {DiscountMeta} [discount_meta]
  * @property {string} discount_type
  * @property {string} [item_code]
  * @property {string} [seller_identifier]
@@ -8407,6 +8424,7 @@ class PlatformClient {
  * @property {UserDetails} created_by
  * @property {string} created_on
  * @property {string} [discount_level]
+ * @property {DiscountMeta} [discount_meta]
  * @property {string} [discount_type]
  * @property {string} [file_path]
  * @property {boolean} is_active
@@ -8418,6 +8436,12 @@ class PlatformClient {
  * @property {number[]} [store_ids]
  * @property {ValidityObject} validity
  * @property {number} [value]
+ */
+/**
+ * @typedef DiscountMeta
+ * @property {number} [hours]
+ * @property {number} [minutes]
+ * @property {boolean} timer
  */
 /**
  * @typedef DownloadFileJob
@@ -8440,6 +8464,7 @@ class PlatformClient {
  */
 /**
  * @typedef FileJobResponse
+ * @property {string} _id
  * @property {Object} [body]
  * @property {number} company_id
  * @property {number} failed
@@ -8475,15 +8500,31 @@ class PlatformClient {
  */
 
 /**
+ * @typedef Brand
+ * @property {string} logo
+ * @property {string} name
+ */
+/**
  * @typedef BrowseResponse
  * @property {DbRecord[]} items
  * @property {Page} page
  */
 /**
  * @typedef BulkRequest
- * @property {ReqConfiguration} [configuration]
  * @property {Destination} destination
  * @property {string[]} urls
+ */
+/**
+ * @typedef BulkUploadFailFileResponseItems
+ * @property {string} [error]
+ * @property {File} [file]
+ * @property {string} [stage]
+ * @property {boolean} success
+ */
+/**
+ * @typedef BulkUploadFailResponse
+ * @property {Object[]} files
+ * @property {Status} status
  */
 /**
  * @typedef BulkUploadResponse
@@ -8491,10 +8532,32 @@ class PlatformClient {
  * @property {string} tracking_url
  */
 /**
+ * @typedef BulkUploadSyncMode
+ * @property {FilesSuccess[]} [files]
+ * @property {Status} status
+ */
+/**
  * @typedef CDN
  * @property {string} absolute_url
  * @property {string} relative_url
  * @property {string} url
+ */
+/**
+ * @typedef companyDetail
+ * @property {string} address
+ * @property {string} cin
+ * @property {string} [city]
+ * @property {string} [country]
+ * @property {string} [country_code]
+ * @property {string} [email]
+ * @property {string} gstin
+ * @property {string} name
+ * @property {string} pan
+ * @property {string} [phone_no]
+ * @property {string} [state]
+ * @property {string} [state_code]
+ * @property {string} [website_url]
+ * @property {string} [zip_code]
  */
 /**
  * @typedef CompleteResponse
@@ -8513,6 +8576,16 @@ class PlatformClient {
  * @property {Upload} upload
  */
 /**
+ * @typedef CopyFiles
+ * @property {DestinationNamespace} destination
+ * @property {string[]} urls
+ */
+/**
+ * @typedef CopyFilesWithRewrite
+ * @property {DestinationBasepath} destination
+ * @property {string[]} urls
+ */
+/**
  * @typedef CopyFileTask
  * @property {number} attempts_made
  * @property {BulkRequest} data
@@ -8525,6 +8598,33 @@ class PlatformClient {
  * @property {number} progress
  * @property {string[]} [stacktrace]
  * @property {number} timestamp
+ */
+/**
+ * @typedef customerBillingDetail
+ * @property {string} address
+ * @property {string} [city]
+ * @property {string} [country]
+ * @property {string} [country_code]
+ * @property {string} [email]
+ * @property {string} [gstin]
+ * @property {string} name
+ * @property {string} [phone_no]
+ * @property {string} [state]
+ * @property {string} [state_code]
+ * @property {string} [zip_code]
+ */
+/**
+ * @typedef customerShippingDetail
+ * @property {string} address
+ * @property {string} [city]
+ * @property {string} [country]
+ * @property {string} [country_code]
+ * @property {string} [gstin]
+ * @property {string} name
+ * @property {string} phone_no
+ * @property {string} [state]
+ * @property {string} [state_code]
+ * @property {string} [zip_code]
  */
 /**
  * @typedef DbRecord
@@ -8548,8 +8648,92 @@ class PlatformClient {
  * @property {string} rewrite
  */
 /**
+ * @typedef DestinationBasepath
+ * @property {string} basepath
+ * @property {string} rewrite
+ */
+/**
+ * @typedef DestinationNamespace
+ * @property {string} [namespace]
+ */
+/**
+ * @typedef DummyTemplateDataItems
+ * @property {number} [__v]
+ * @property {string} [_id]
+ * @property {DummyTemplateDataPayload} payload
+ * @property {number} [pdf_type_id]
+ */
+/**
+ * @typedef DummyTemplateDataPayload
+ * @property {number} [amount_paid]
+ * @property {number} amount_to_be_collected
+ * @property {string} [awb_number_barcode]
+ * @property {companyDetail} [company_detail]
+ * @property {string} currency_code
+ * @property {customerBillingDetail} [customer_billing_detail]
+ * @property {customerShippingDetail} [customer_shipping_detail]
+ * @property {string[]} [declaration_texts]
+ * @property {Object} [delivery_partner_detail]
+ * @property {string} [disclaimer]
+ * @property {DummyTemplateDataPayloadImage} [image]
+ * @property {Object} [invoice_detail]
+ * @property {boolean} [is_self_pickup]
+ * @property {boolean} [is_self_ship]
+ * @property {boolean} [is_test]
+ * @property {Object} [meta]
+ * @property {payments[]} [payments]
+ * @property {productTable} [product_table]
+ * @property {registeredCompanyDetail} [registered_company_detail]
+ * @property {returnDetail} [return_detail]
+ * @property {string} shipment_id
+ * @property {string} [shipment_id_barcode]
+ * @property {string} [signed_qrcode]
+ * @property {storeDetail} [store_detail]
+ * @property {taxTable} [tax_table]
+ * @property {string} [upi_qrcode]
+ */
+/**
+ * @typedef DummyTemplateDataPayloadImage
+ * @property {string} sales_channel_logo
+ */
+/**
  * @typedef FailedResponse
  * @property {string} message
+ */
+/**
+ * @typedef File
+ * @property {FileSrc} src
+ */
+/**
+ * @typedef FileSrc
+ * @property {string} [method]
+ * @property {string} [namespace]
+ * @property {string} url
+ */
+/**
+ * @typedef FilesSuccess
+ * @property {File} [file]
+ * @property {boolean} success
+ */
+/**
+ * @typedef invoiceDetail
+ * @property {string} [channel_order_id]
+ * @property {string} [external_order_id]
+ * @property {string} invoice_date
+ * @property {string} invoice_id
+ * @property {string} [irn]
+ * @property {string} [order_id]
+ * @property {string} shipment_id
+ */
+/**
+ * @typedef InvoiceTypesResponse
+ * @property {number} __v
+ * @property {string} _id
+ * @property {string[]} format
+ * @property {string} name
+ * @property {number} pdf_type_id
+ * @property {Object} schema
+ * @property {boolean} visibility
  */
 /**
  * @typedef Opts
@@ -8568,8 +8752,71 @@ class PlatformClient {
  * @property {string} type
  */
 /**
- * @typedef ReqConfiguration
- * @property {number} [concurrency]
+ * @typedef payments
+ * @property {number} [amount]
+ * @property {string} [date]
+ * @property {string} [payment_type]
+ * @property {string} [transaction_id]
+ */
+/**
+ * @typedef pdfConfig
+ * @property {string} [format]
+ * @property {number} [pdf_type_id]
+ * @property {string} [template]
+ */
+/**
+ * @typedef pdfRender
+ * @property {string} [format]
+ * @property {DummyTemplateDataItems[]} [payload]
+ * @property {string} [template]
+ */
+/**
+ * @typedef Products
+ * @property {Brand} [brand]
+ * @property {number} [discount]
+ * @property {string} [hsn_code]
+ * @property {string} item_code
+ * @property {number} [mrp]
+ * @property {string} name
+ * @property {string} seller_identifier
+ * @property {string} size
+ * @property {Object} [tax]
+ * @property {number} [taxable_amount]
+ * @property {number} [total]
+ * @property {number} [total_taxable_amount]
+ * @property {number} [total_units]
+ */
+/**
+ * @typedef productTable
+ * @property {string} [cod_charges]
+ * @property {string} [delivery_charge_text]
+ * @property {string} [delivery_charges]
+ * @property {string} [fynd_discounts]
+ * @property {number} [grand_total]
+ * @property {Products[]} products
+ * @property {string} [total_in_words]
+ * @property {number} [total_items]
+ */
+/**
+ * @typedef registeredCompanyDetail
+ * @property {string} address
+ * @property {string} city
+ * @property {string} [country]
+ * @property {string} [country_code]
+ * @property {string} [state]
+ * @property {string} [state_code]
+ * @property {string} [zip_code]
+ */
+/**
+ * @typedef returnDetail
+ * @property {string} address
+ * @property {string} [city]
+ * @property {string} [country]
+ * @property {string} [country_code]
+ * @property {string} [gstin]
+ * @property {string} [state]
+ * @property {string} [state_code]
+ * @property {string} [zip_code]
  */
 /**
  * @typedef SignUrlRequest
@@ -8602,6 +8849,37 @@ class PlatformClient {
  * @property {Upload} upload
  */
 /**
+ * @typedef Status
+ * @property {number} failed
+ * @property {string} [result]
+ * @property {number} succeeded
+ * @property {number} total
+ */
+/**
+ * @typedef storeDetail
+ * @property {string} address
+ * @property {string} [city]
+ * @property {string} [country]
+ * @property {string} [country_code]
+ * @property {string} gstin
+ * @property {string} [state]
+ * @property {string} [state_code]
+ * @property {string} store_name
+ * @property {string} [zip_code]
+ */
+/**
+ * @typedef TaxeItems
+ * @property {string} hsn_code
+ * @property {Object} tax
+ * @property {number} [total]
+ */
+/**
+ * @typedef taxTable
+ * @property {number} grand_total
+ * @property {string} [tax_in_words]
+ * @property {TaxeItems[]} taxes
+ */
+/**
  * @typedef Upload
  * @property {number} expiry
  * @property {string} url
@@ -8613,6 +8891,97 @@ class PlatformClient {
  * @property {string} url
  */
 
+/**
+ * @typedef ChannelDisplayName
+ * @property {string} [platform_pos]
+ */
+/**
+ * @typedef ChannelDisplayNameResponse
+ * @property {ChannelDisplayName} [data]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef CnDetails
+ * @property {string} [channel_of_issuance]
+ * @property {string} [date_issued]
+ * @property {string} [expiry_date]
+ * @property {string} [invoice_number]
+ * @property {string} [order_id]
+ * @property {string} [ordering_channel]
+ * @property {string} [shipment_id]
+ * @property {string} [staff_id]
+ * @property {string} [store_id]
+ */
+/**
+ * @typedef CnDownloadReport
+ * @property {string} [affiliate_id]
+ * @property {string} [end_date]
+ * @property {number} [page]
+ * @property {number} [pagesize]
+ * @property {string} [search]
+ * @property {string} [search_type]
+ * @property {string} [start_date]
+ * @property {string[]} [status]
+ */
+/**
+ * @typedef CnGenerateReport
+ * @property {string} [affiliate_id]
+ * @property {string} [end_date]
+ * @property {CnGenerateReportFilters} [filters]
+ * @property {GenerateReportFilters} [meta]
+ * @property {number} [page]
+ * @property {number} [pagesize]
+ * @property {string} [report_id]
+ * @property {string} [search]
+ * @property {string} [search_type]
+ * @property {string} [start_date]
+ */
+/**
+ * @typedef CnGenerateReportFilters
+ * @property {string[]} [channel_of_issuance]
+ * @property {string[]} [ordering_channel]
+ * @property {string[]} [staff_id]
+ * @property {number[]} [store_id]
+ * @property {string[]} [types_of_transaction]
+ * @property {string[]} [utilisation]
+ */
+/**
+ * @typedef CnGenerateReportItems
+ * @property {string} [credit_note_number]
+ * @property {string} [date_issued]
+ * @property {string} [expiry_date]
+ * @property {string} [invoice_number]
+ * @property {string} [order_id]
+ * @property {string} [shipment_id]
+ * @property {string} [status]
+ * @property {number} [total_amount]
+ */
+/**
+ * @typedef CnReferenceNumber
+ * @property {string} [cn_reference_number]
+ */
+/**
+ * @typedef CreateSellerCreditNoteConfig
+ * @property {string} [affiliate_id]
+ * @property {string} [currency_type]
+ * @property {boolean} [is_cn_as_refund_method]
+ * @property {CreditNoteConfigNotificationEvents} [notification_events]
+ * @property {string[]} [ordering_channel]
+ * @property {string} [sales_channel_name]
+ * @property {number} [seller_id]
+ * @property {string[]} [slug_values]
+ * @property {string[]} [source_channel]
+ * @property {number} [validity]
+ */
+/**
+ * @typedef CreateSellerCreditNoteConfigRequest
+ * @property {CreateSellerCreditNoteConfig} [data]
+ */
+/**
+ * @typedef CreateSellerCreditNoteConfigResponse
+ * @property {string} [message]
+ * @property {boolean} [success]
+ */
 /**
  * @typedef CreditlineDataPlatformPayload
  * @property {string} [end_end]
@@ -8634,6 +9003,45 @@ class PlatformClient {
  * @property {string} [message]
  * @property {Object} [page]
  * @property {boolean} [show_mr]
+ */
+/**
+ * @typedef CreditNoteConfigNotificationEvents
+ * @property {number} [expiration_reminder_to_customer]
+ */
+/**
+ * @typedef CreditNoteDetails
+ * @property {number} [available_cn_balance]
+ * @property {number} [cn_amount]
+ * @property {Object} [cn_details]
+ * @property {string} [cn_reference_number]
+ * @property {string} [cn_status]
+ * @property {string} [customer_mobile_number]
+ * @property {RedemptionDetails[]} [redemption_details]
+ * @property {number} [remaining_cn_amount]
+ */
+/**
+ * @typedef CreditNoteDetailsRequest
+ * @property {CnReferenceNumber} [data]
+ */
+/**
+ * @typedef CreditNoteDetailsResponse
+ * @property {CreditNoteDetails} [data]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef DeleteConfig
+ * @property {string} [affiliate_id]
+ * @property {number} [seller_id]
+ * @property {string[]} [slug_values]
+ */
+/**
+ * @typedef DeleteConfigRequest
+ * @property {DeleteConfig} [data]
+ */
+/**
+ * @typedef DeleteConfigResponse
+ * @property {string} [message]
+ * @property {boolean} [success]
  */
 /**
  * @typedef DownloadCreditDebitNote
@@ -8661,6 +9069,14 @@ class PlatformClient {
  * @property {string} [start_date]
  */
 /**
+ * @typedef DownloadReportCustomerCnRequest
+ * @property {CnDownloadReport} [data]
+ */
+/**
+ * @typedef DownloadReportCustomerCnResponse
+ * @property {DownloadReportResponseData[]} [data]
+ */
+/**
  * @typedef DownloadReportItems
  * @property {string} [end_date]
  * @property {GenerateReportFilters} [filters]
@@ -8676,9 +9092,46 @@ class PlatformClient {
  * @property {Page} [page]
  */
 /**
+ * @typedef DownloadReportResponseData
+ * @property {string} [created_at]
+ * @property {string} [display_name]
+ * @property {string} [download_link]
+ * @property {string} [end_date]
+ * @property {Object} [filters]
+ * @property {string} [full_name]
+ * @property {Object} [meta]
+ * @property {string} [msg]
+ * @property {string} [report_config_id]
+ * @property {string} [report_name]
+ * @property {Object} [request_dict]
+ * @property {string} [requested_by]
+ * @property {string} [start_date]
+ * @property {string} [status]
+ */
+/**
  * @typedef Error
  * @property {string} [reason]
  * @property {boolean} [success]
+ */
+/**
+ * @typedef GenerateReportCustomerCnRequest
+ * @property {CnGenerateReport} [data]
+ */
+/**
+ * @typedef GenerateReportCustomerCnResponse
+ * @property {GenerateReportCustomerCnResponseData} [data]
+ */
+/**
+ * @typedef GenerateReportCustomerCnResponseData
+ * @property {string[]} [allowed_filters]
+ * @property {string} [end_date]
+ * @property {string[]} [headers]
+ * @property {number} [item_count]
+ * @property {CnGenerateReportItems[]} [items]
+ * @property {Page} [page]
+ * @property {string[]} [primary_headers]
+ * @property {Object} [row_header_display_order]
+ * @property {string} [start_date]
  */
 /**
  * @typedef GenerateReportFilters
@@ -8723,19 +9176,55 @@ class PlatformClient {
  * @property {boolean} [success]
  */
 /**
- * @typedef GetDocs
- * @property {Object[]} [docs]
- * @property {Object[]} [items]
+ * @typedef GetCnConfigRequest
+ * @property {DeleteConfig} [data]
+ */
+/**
+ * @typedef GetCnConfigResponse
+ * @property {GetCnConfigResponseData} [data]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef GetCnConfigResponseData
+ * @property {string} [affiliate_id]
+ * @property {string} [currency_type]
+ * @property {boolean} [is_cn_as_refund_method]
+ * @property {GetCnConfigResponseMeta} [meta]
+ * @property {CreditNoteConfigNotificationEvents} [notification_events]
+ * @property {string[]} [redemption_ordering_channel]
+ * @property {number} [seller_id]
+ * @property {number} [validity]
+ */
+/**
+ * @typedef GetCnConfigResponseMeta
+ * @property {string} [reason]
+ * @property {string[]} [source_channel]
+ */
+/**
+ * @typedef GetCustomerCreditBalance
+ * @property {string} [affiliate_id]
+ * @property {string} [customer_mobile_number]
+ * @property {number} [seller_id]
+ */
+/**
+ * @typedef GetCustomerCreditBalanceRequest
+ * @property {GetCustomerCreditBalance} [data]
+ */
+/**
+ * @typedef GetCustomerCreditBalanceResponse
+ * @property {GetCustomerCreditBalanceResponseData} [data]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef GetCustomerCreditBalanceResponseData
+ * @property {string} [customer_mobile_number]
+ * @property {number} [total_credited_balance]
  */
 /**
  * @typedef GetEngineData
- * @property {GetEngineFilters} [filters]
+ * @property {Object} [filters]
  * @property {string[]} [project]
  * @property {string} [table_name]
- */
-/**
- * @typedef GetEngineFilters
- * @property {string} [config_field]
  */
 /**
  * @typedef GetEngineRequest
@@ -8749,6 +9238,20 @@ class PlatformClient {
  * @property {boolean} [success]
  */
 /**
+ * @typedef GetPdfUrlViewRequest
+ * @property {CnReferenceNumber} [data]
+ */
+/**
+ * @typedef GetPdfUrlViewResponse
+ * @property {GetPdfUrlViewResponseData} [data]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef GetPdfUrlViewResponseData
+ * @property {string} [cn_reference_number]
+ * @property {string} [s3_pdf_link]
+ */
+/**
  * @typedef GetReason
  * @property {string} [reason_type]
  */
@@ -8758,8 +9261,32 @@ class PlatformClient {
  */
 /**
  * @typedef GetReasonResponse
- * @property {GetDocs} [data]
+ * @property {number} [item_count]
+ * @property {ReasonItem[]} [item_list]
+ * @property {Page} [page]
  * @property {boolean} [success]
+ */
+/**
+ * @typedef GetReportingFilters
+ * @property {Object[]} [options]
+ * @property {string} [text]
+ * @property {string} [type]
+ * @property {string} [value]
+ */
+/**
+ * @typedef GetReportingFiltersResponse
+ * @property {GetReportingNestedFilters[]} [filters]
+ * @property {GetReportingFilters} [search]
+ * @property {GetReportingFilters} [status]
+ */
+/**
+ * @typedef GetReportingNestedFilters
+ * @property {Object[]} [options]
+ * @property {string} [placeholder_text]
+ * @property {boolean} [required]
+ * @property {string} [text]
+ * @property {string} [type]
+ * @property {string} [value]
  */
 /**
  * @typedef GetReportListData
@@ -8769,6 +9296,13 @@ class PlatformClient {
 /**
  * @typedef GetReportListRequest
  * @property {GetReportListData} [data]
+ */
+/**
+ * @typedef GetReportListResponse
+ * @property {ReportItem[]} [items]
+ * @property {Page} [page]
+ * @property {boolean} [success]
+ * @property {number} [total_count]
  */
 /**
  * @typedef InoviceListingPayloadDataFilters
@@ -8843,6 +9377,25 @@ class PlatformClient {
  * @property {string} [value]
  */
 /**
+ * @typedef IsCnRefundMethodData
+ * @property {string} [affiliate_id]
+ * @property {number} [seller_id]
+ * @property {boolean} [toggle_edit_required]
+ */
+/**
+ * @typedef IsCnRefundMethodRequest
+ * @property {IsCnRefundMethodData} [data]
+ */
+/**
+ * @typedef IsCnRefundMethodResponse
+ * @property {IsCnRefundMethodResponseData} [data]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef IsCnRefundMethodResponseData
+ * @property {boolean} [is_first_time_user]
+ */
+/**
  * @typedef IsCreditlinePayload
  * @property {string} [seller_id]
  */
@@ -8889,6 +9442,33 @@ class PlatformClient {
  * @property {Object} [meta]
  * @property {string} [redirect_url]
  * @property {string} [transaction_id]
+ */
+/**
+ * @typedef ReasonItem
+ * @property {string} [display_name]
+ * @property {string} [id]
+ * @property {string} [name]
+ */
+/**
+ * @typedef RedemptionDetails
+ * @property {number} [amount_debited]
+ * @property {string} [created_at]
+ * @property {string} [invoice_number]
+ * @property {string} [order_id]
+ * @property {string} [ordering_channel]
+ * @property {string} [shipment_id]
+ * @property {string} [staff_id]
+ * @property {string} [store_id]
+ */
+/**
+ * @typedef ReportItem
+ * @property {string[]} [allowed_filters]
+ * @property {Object} [config_meta]
+ * @property {string} [description]
+ * @property {string} [display_date]
+ * @property {string} [id]
+ * @property {string} [name]
+ * @property {string} [report_type]
  */
 /**
  * @typedef UnpaidInvoiceDataItems
@@ -10097,11 +10677,8 @@ class PlatformClient {
  * @property {Object} category
  * @property {Object} dimension
  * @property {number} quantity
- * @property {Object} weight
- */
-/**
- * @typedef ArticleDetails1
  * @property {Object} [status]
+ * @property {Object} weight
  */
 /**
  * @typedef AttachOrderUser
@@ -10161,7 +10738,7 @@ class PlatformClient {
  * @property {AffiliateDetails} [affiliate_details]
  * @property {Object[]} [applied_promos]
  * @property {Article} [article]
- * @property {ArticleDetails1} [article_details]
+ * @property {ArticleDetails} [article_details]
  * @property {BagStatusHistory[]} [bag_status]
  * @property {BagStatusHistory} [bag_status_history]
  * @property {number} [bag_update_time]
@@ -10408,6 +10985,29 @@ class PlatformClient {
 /**
  * @typedef BulkActionTemplateResponse
  * @property {BulkActionTemplate[]} [template_x_slug]
+ */
+/**
+ * @typedef BulkReportsDownloadFailedResponse
+ * @property {string} [error]
+ * @property {boolean} [status]
+ */
+/**
+ * @typedef BulkReportsDownloadRequest
+ * @property {Object} [custom_filters_for_lane]
+ * @property {string} [custom_headers]
+ * @property {string[]} [entities]
+ * @property {string} [filter_type]
+ * @property {string} [from_date]
+ * @property {boolean} [is_cross_company_enabled]
+ * @property {string} [lane_type]
+ * @property {string} [report_type]
+ * @property {string[]} [store_ids]
+ * @property {string} [to_date]
+ */
+/**
+ * @typedef BulkReportsDownloadResponse
+ * @property {string} [batch_id]
+ * @property {boolean} [success]
  */
 /**
  * @typedef BuyerDetails
@@ -10659,15 +11259,11 @@ class PlatformClient {
  */
 /**
  * @typedef ErrorResponse
+ * @property {string} error
  * @property {string} [error_trace]
- * @property {string} [message]
+ * @property {string} message
  * @property {number} [status]
  * @property {boolean} [success]
- */
-/**
- * @typedef ErrorResponse1
- * @property {string} error
- * @property {string} message
  */
 /**
  * @typedef FetchCreditBalanceRequestPayload
@@ -10929,7 +11525,7 @@ class PlatformClient {
 /**
  * @typedef LineItem
  * @property {Charge[]} [charges]
- * @property {string} [custom_messasge]
+ * @property {string} [custom_message]
  * @property {string} [external_line_id]
  * @property {Object} [meta]
  * @property {number} [quantity]
@@ -11323,7 +11919,7 @@ class PlatformClient {
  * @property {Prices} [prices]
  * @property {string} [priority_text]
  * @property {string} [shipment_created_at]
- * @property {ShipmentDetails1} [shipment_details]
+ * @property {ShipmentDetails} [shipment_details]
  * @property {string} shipment_id
  * @property {string[]} [shipment_images]
  * @property {number} [shipment_quantity]
@@ -11528,6 +12124,11 @@ class PlatformClient {
  * @property {string} [unit]
  */
 /**
+ * @typedef RoleBaseStateTransitionMapping
+ * @property {string[]} [next_statuses]
+ * @property {boolean} [success]
+ */
+/**
  * @typedef SendSmsPayload
  * @property {number} bag_id
  * @property {SmsDataPayload} [data]
@@ -11579,19 +12180,16 @@ class PlatformClient {
  */
 /**
  * @typedef ShipmentDetails
+ * @property {Object} [action_to_status]
  * @property {string} affiliate_shipment_id
  * @property {ArticleDetails[]} articles
  * @property {string} [box_type]
  * @property {number} [dp_id]
  * @property {number} fulfillment_id
- * @property {Object} [meta]
- * @property {number} shipments
- */
-/**
- * @typedef ShipmentDetails1
- * @property {Object} [action_to_status]
  * @property {string} [lock_message]
  * @property {boolean} [lock_status]
+ * @property {Object} [meta]
+ * @property {number} shipments
  */
 /**
  * @typedef ShipmentHistoryResponse
@@ -12011,6 +12609,7 @@ class PlatformClient {
  * @typedef TaxInfo
  * @property {string} [b2b_gstin_number]
  * @property {string} [gstin]
+ * @property {string} [pan_no]
  */
 /**
  * @typedef TrackingList
@@ -12500,6 +13099,28 @@ class PlatformClient {
  * @property {string} order_id
  */
 /**
+ * @typedef AddressDetail
+ * @property {string} address
+ * @property {string} address_type
+ * @property {string} area
+ * @property {string} area_code
+ * @property {string} area_code_slug
+ * @property {string} city
+ * @property {string} country
+ * @property {string} country_iso_code
+ * @property {string} country_phone_code
+ * @property {string} [email]
+ * @property {string} [expire_at]
+ * @property {string} g_address_id
+ * @property {Object} [geo_location]
+ * @property {Object} [google_map_point]
+ * @property {string} [landmark]
+ * @property {string} name
+ * @property {string} phone
+ * @property {string} state
+ * @property {Object[]} [tags]
+ */
+/**
  * @typedef BankDetailsForOTP
  * @property {string} account_holder
  * @property {string} account_no
@@ -12736,6 +13357,12 @@ class PlatformClient {
  * @property {boolean} success
  */
 /**
+ * @typedef MerchnatPaymentModeResponse
+ * @property {Object[]} [items]
+ * @property {string} [message]
+ * @property {boolean} success
+ */
+/**
  * @typedef MultiTenderPaymentMeta
  * @property {string} [current_status]
  * @property {Object} [extra_meta]
@@ -12782,6 +13409,15 @@ class PlatformClient {
  * @typedef OrderBeneficiaryResponse
  * @property {OrderBeneficiaryDetails[]} [beneficiaries]
  * @property {boolean} [show_beneficiary_details]
+ */
+/**
+ * @typedef OrderDetail
+ * @property {string} aggregator
+ * @property {Object} aggregator_order_details
+ * @property {number} amount
+ * @property {string} currency
+ * @property {string} gid
+ * @property {string} status
  */
 /**
  * @typedef Page
@@ -12947,6 +13583,47 @@ class PlatformClient {
  * @property {boolean} success
  */
 /**
+ * @typedef PaymentSessionDetail
+ * @property {string} [aggregator_customer_id]
+ * @property {string} aggregator_order_id
+ * @property {number} amount
+ * @property {number} amount_captured
+ * @property {number} [amount_refunded]
+ * @property {AddressDetail} billing_address
+ * @property {string} cancel_url
+ * @property {boolean} [captured]
+ * @property {string} [created]
+ * @property {string} currency
+ * @property {string} g_user_id
+ * @property {string} gid
+ * @property {string} [kind]
+ * @property {string} [locale]
+ * @property {string} [merchant_locale]
+ * @property {string} mode
+ * @property {string} payment_id
+ * @property {Object[]} payment_methods
+ * @property {AddressDetail} shipping_address
+ * @property {string} status
+ * @property {string} success_url
+ */
+/**
+ * @typedef PaymentSessionRequestSerializer
+ * @property {string} currency
+ * @property {string} gid
+ * @property {OrderDetail} order_details
+ * @property {PaymentSessionDetail[]} payment_details
+ * @property {string} status
+ * @property {number} total_amount
+ */
+/**
+ * @typedef PaymentSessionResponseSerializer
+ * @property {string} currency
+ * @property {string} gid
+ * @property {Object[]} platform_transaction_details
+ * @property {string} status
+ * @property {number} total_amount
+ */
+/**
  * @typedef PaymentStatusBulkHandlerRequest
  * @property {string[]} merchant_order_id
  */
@@ -13082,6 +13759,38 @@ class PlatformClient {
  * @property {boolean} [is_verified_flag]
  * @property {string} message
  * @property {boolean} success
+ */
+/**
+ * @typedef RefundSessionDetail
+ * @property {number} amount
+ * @property {string} [balance_transaction]
+ * @property {string} created
+ * @property {string} currency
+ * @property {string} payment_id
+ * @property {string} [reason]
+ * @property {string} [receipt_number]
+ * @property {string} [refund_utr]
+ * @property {string} request_id
+ * @property {string} [source_transfer_reversal]
+ * @property {string} status
+ * @property {string} [transfer_reversal]
+ */
+/**
+ * @typedef RefundSessionRequestSerializer
+ * @property {string} currency
+ * @property {string} gid
+ * @property {PaymentSessionDetail} payment_details
+ * @property {RefundSessionDetail[]} [refund_details]
+ * @property {string} status
+ * @property {number} total_amount
+ */
+/**
+ * @typedef RefundSessionResponseSerializer
+ * @property {string} currency
+ * @property {string} gid
+ * @property {Object[]} platform_refund_details
+ * @property {string} status
+ * @property {number} total_refund_amount
  */
 /**
  * @typedef RepaymentDetailsSerialiserPayAll
@@ -14172,6 +14881,7 @@ class PlatformClient {
 /**
  * @typedef SendEmailOtpRequestSchema
  * @property {string} [action]
+ * @property {string} [captcha_code]
  * @property {string} [email]
  * @property {string} [register_token]
  * @property {string} [token]

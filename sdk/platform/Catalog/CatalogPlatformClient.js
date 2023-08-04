@@ -1605,14 +1605,20 @@ class Catalog {
    * @param {Object} arg - Arg object.
    * @param {string} arg.slug - A `slug` is a unique identifier for a
    *   particular template.
+   * @param {string} [arg.itemType] - An `item_type` defines the type of item.
+   *   The default value is standard.
+   * @param {string} [arg.type] - Format type of the sample file. The default
+   *   value is excel.
    * @returns {Promise<string>} - Success response
    * @summary: Download Product Template View
    * @description: Allows you to download product template data
    */
-  async downloadProductTemplateViews({ slug } = {}) {
+  async downloadProductTemplateViews({ slug, itemType, type } = {}) {
     const { error } = CatalogValidator.downloadProductTemplateViews().validate(
       {
         slug,
+        itemType,
+        type,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1626,6 +1632,8 @@ class Catalog {
     } = CatalogValidator.downloadProductTemplateViews().validate(
       {
         slug,
+        itemType,
+        type,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1639,6 +1647,8 @@ class Catalog {
     }
 
     const query_params = {};
+    query_params["item_type"] = itemType;
+    query_params["type"] = type;
 
     const xHeaders = {};
 
@@ -5294,14 +5304,22 @@ class Catalog {
    * @param {Object} arg - Arg object.
    * @param {string} arg.slug - A `slug` is a unique identifier for a
    *   particular template.
+   * @param {string} [arg.itemType] - An `item_type` defines the type of item.
+   *   The default value is standard.
+   * @param {boolean} [arg.bulk] - This specification determines the schema
+   *   type to be retrieved. When set to true, it will return the schema for
+   *   bulk data; when set to false, it will provide the schema for a single
+   *   product. The default value is false.
    * @returns {Promise<TemplatesValidationResponse>} - Success response
    * @summary: Validate Product Template Schema
    * @description: Allows you to list all product templates validation values for all the fields present in the database
    */
-  async validateProductTemplate({ slug } = {}) {
+  async validateProductTemplate({ slug, itemType, bulk } = {}) {
     const { error } = CatalogValidator.validateProductTemplate().validate(
       {
         slug,
+        itemType,
+        bulk,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -5315,6 +5333,8 @@ class Catalog {
     } = CatalogValidator.validateProductTemplate().validate(
       {
         slug,
+        itemType,
+        bulk,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -5327,6 +5347,8 @@ class Catalog {
     }
 
     const query_params = {};
+    query_params["item_type"] = itemType;
+    query_params["bulk"] = bulk;
 
     const xHeaders = {};
 

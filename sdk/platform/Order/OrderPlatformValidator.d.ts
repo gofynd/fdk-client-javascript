@@ -7,6 +7,7 @@ declare class OrderValidator {
     static createOrder(): any;
     static dispatchManifest(): any;
     static downloadBulkActionTemplate(): any;
+    static downloadLanesReport(): any;
     static fetchCreditBalanceDetail(): any;
     static fetchRefundModeConfig(): any;
     static generatePOSReceiptByOrderId(): any;
@@ -19,6 +20,7 @@ declare class OrderValidator {
     static getLaneConfig(): any;
     static getOrderById(): any;
     static getOrders(): any;
+    static getRoleBaseStateTransition(): any;
     static getRoleBasedActions(): any;
     static getShipmentById(): any;
     static getShipmentHistory(): any;

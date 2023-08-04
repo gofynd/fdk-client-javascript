@@ -74,6 +74,22 @@ class PaymentValidator {
     }).required();
   }
 
+  static getMerchantAggregatorPaymentModeDetails() {
+    return Joi.object({
+      aggregatorId: Joi.number().required(),
+      businessUnit: Joi.string().allow("").required(),
+      device: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static getMerchantPaymentOption() {
+    return Joi.object({}).required();
+  }
+
+  static getPGConfigAggregators() {
+    return Joi.object({}).required();
+  }
+
   static getPaymentCodeOption() {
     return Joi.object({}).required();
   }
@@ -143,6 +159,19 @@ class PaymentValidator {
     }).required();
   }
 
+  static patchMerchantAggregatorPaymentModeDetails() {
+    return Joi.object({
+      aggregatorId: Joi.number().required(),
+      body: PaymentModel.MerchnatPaymentModeResponse().required(),
+    }).required();
+  }
+
+  static patchMerchantPaymentOption() {
+    return Joi.object({
+      body: PaymentModel.MerchnatPaymentModeResponse().required(),
+    }).required();
+  }
+
   static paymentStatusBulk() {
     return Joi.object({
       body: PaymentModel.PaymentStatusBulkHandlerRequest().required(),
@@ -194,6 +223,21 @@ class PaymentValidator {
   static updateEdcDevice() {
     return Joi.object({
       body: PaymentModel.EdcAddRequest().required(),
+    }).required();
+  }
+
+  static updatePaymentSession() {
+    return Joi.object({
+      gid: Joi.string().allow("").required(),
+      body: PaymentModel.PaymentSessionRequestSerializer().required(),
+    }).required();
+  }
+
+  static updateRefundSession() {
+    return Joi.object({
+      gid: Joi.string().allow("").required(),
+      requestId: Joi.string().allow("").required(),
+      body: PaymentModel.RefundSessionRequestSerializer().required(),
     }).required();
   }
 
