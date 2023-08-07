@@ -1972,7 +1972,7 @@ class CatalogModel {
   }
   static NetQuantity() {
     return Joi.object({
-      unit: Joi.any(),
+      unit: Joi.string().allow(""),
       value: Joi.number(),
     });
   }
@@ -2932,7 +2932,7 @@ class CatalogModel {
   static Trader() {
     return Joi.object({
       address: Joi.array().items(Joi.string().allow("")),
-      name: Joi.any().required(),
+      name: Joi.string().allow("").required(),
       type: Joi.string().allow(""),
     });
   }

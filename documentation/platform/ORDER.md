@@ -5024,16 +5024,8 @@ Verify OTP
  | category | string |  no  |  |
  | dimension | string |  no  |  |
  | quantity | number |  no  |  |
- | weight | string |  no  |  |
- 
-
----
-
-#### [ArticleDetails1](#ArticleDetails1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
  | status | string? |  yes  |  |
+ | weight | string |  no  |  |
  
 
 ---
@@ -5133,7 +5125,7 @@ Verify OTP
  | affiliate_details | [AffiliateDetails](#AffiliateDetails)? |  yes  |  |
  | applied_promos | [string]? |  yes  |  |
  | article | [Article](#Article)? |  yes  |  |
- | article_details | [ArticleDetails1](#ArticleDetails1)? |  yes  |  |
+ | article_details | [ArticleDetails](#ArticleDetails)? |  yes  |  |
  | bag_status | [[BagStatusHistory](#BagStatusHistory)]? |  yes  |  |
  | bag_status_history | [BagStatusHistory](#BagStatusHistory)? |  yes  |  |
  | bag_update_time | number? |  yes  |  |
@@ -5944,20 +5936,11 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | error | string |  no  |  |
  | error_trace | string? |  yes  |  |
- | message | string? |  yes  |  |
+ | message | string |  no  |  |
  | status | number? |  yes  |  |
  | success | boolean? |  yes  |  |
- 
-
----
-
-#### [ErrorResponse1](#ErrorResponse1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | error | string |  no  |  |
- | message | string |  no  |  |
  
 
 ---
@@ -6160,7 +6143,7 @@ Verify OTP
  | gst_fee | number |  no  |  |
  | gst_tag | string? |  yes  |  |
  | gst_tax_percentage | number? |  yes  |  |
- | gstin_code | string |  no  |  |
+ | gstin_code | string? |  yes  |  |
  | hsn_code | string? |  yes  |  |
  | hsn_code_id | string? |  yes  |  |
  | igst_gst_fee | string? |  yes  |  |
@@ -6932,7 +6915,7 @@ Verify OTP
  | prices | [Prices](#Prices)? |  yes  |  |
  | priority_text | string? |  yes  |  |
  | shipment_created_at | string? |  yes  |  |
- | shipment_details | [ShipmentDetails1](#ShipmentDetails1)? |  yes  |  |
+ | shipment_details | [ShipmentDetails](#ShipmentDetails)? |  yes  |  |
  | shipment_id | string |  no  |  |
  | shipment_images | [string]? |  yes  |  |
  | shipment_quantity | number? |  yes  |  |
@@ -7383,24 +7366,16 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | action_to_status | string? |  yes  |  |
  | affiliate_shipment_id | string |  no  |  |
  | articles | [[ArticleDetails](#ArticleDetails)] |  no  |  |
  | box_type | string? |  yes  |  |
  | dp_id | number? |  yes  |  |
  | fulfillment_id | number |  no  |  |
- | meta | string? |  yes  |  |
- | shipments | number |  no  |  |
- 
-
----
-
-#### [ShipmentDetails1](#ShipmentDetails1)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | action_to_status | string? |  yes  |  |
  | lock_message | string? |  yes  |  |
  | lock_status | boolean? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | shipments | number |  no  |  |
  
 
 ---

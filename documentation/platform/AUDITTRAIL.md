@@ -227,10 +227,14 @@ Get paginated audit logs
 
 ```javascript
 // Promise
-const promise = platformClient.auditTrail.getAuditLogs({  qs : value });
+const promise = platformClient.auditTrail.getAuditLogs({  qs : value,
+ limit : value,
+ sort : value });
 
 // Async/Await
-const data = await platformClient.auditTrail.getAuditLogs({  qs : value });
+const data = await platformClient.auditTrail.getAuditLogs({  qs : value,
+ limit : value,
+ sort : value });
 ```
 
 
@@ -239,7 +243,9 @@ const data = await platformClient.auditTrail.getAuditLogs({  qs : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| qs | string | yes | Logs Query |  
+| qs | string | yes | Logs Query |    
+| limit | number | no | Current request items count |    
+| sort | Object | no | To sort based on _id |  
 
 
 

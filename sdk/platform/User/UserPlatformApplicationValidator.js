@@ -84,6 +84,7 @@ class UserValidator {
   static searchUsers() {
     return Joi.object({
       q: Joi.string().allow(""),
+      query: Joi.array().items(Joi.string().allow("")),
     }).required();
   }
 

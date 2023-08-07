@@ -25,12 +25,16 @@ declare class AuditTrail {
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.qs - Logs Query
+     * @param {number} [arg.limit] - Current request items count
+     * @param {Object} [arg.sort] - To sort based on _id
      * @returns {Promise<LogSchemaResponse>} - Success response
      * @summary: Get paginated audit logs
      * @description: Get a paginated set of logs that can be filtered using the available set of parameters and get the relevant group of logs
      */
-    getAuditLogs({ qs }?: {
+    getAuditLogs({ qs, limit, sort }?: {
         qs: string;
+        limit?: number;
+        sort?: any;
     }): Promise<LogSchemaResponse>;
     /**
      * @param {Object} arg - Arg object.

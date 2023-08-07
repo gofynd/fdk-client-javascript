@@ -784,14 +784,17 @@ class User {
    * @param {Object} arg - Arg object.
    * @param {string} [arg.q] - The search query. Mobile number or email ID of
    *   a customer.
+   * @param {any[]} [arg.query] - The search queries. Mobile numbers or email
+   *   IDs of customers.
    * @returns {Promise<UserSearchResponseSchema>} - Success response
    * @summary: Search an existing user.
    * @description: Use this API to retrieve an existing user from a list.
    */
-  async searchUsers({ q } = {}) {
+  async searchUsers({ q, query } = {}) {
     const { error } = UserValidator.searchUsers().validate(
       {
         q,
+        query,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -803,6 +806,7 @@ class User {
     const { error: warrning } = UserValidator.searchUsers().validate(
       {
         q,
+        query,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -816,6 +820,7 @@ class User {
 
     const query_params = {};
     query_params["q"] = q;
+    query_params["query"] = query;
 
     const response = await PlatformAPIClient.execute(
       this.config,

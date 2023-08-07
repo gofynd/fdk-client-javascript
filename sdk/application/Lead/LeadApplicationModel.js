@@ -9,6 +9,7 @@ class LeadModel {
       created_by: Joi.any(),
       priority: LeadModel.PriorityEnum(),
       status: Joi.string().allow(""),
+      subscribers: Joi.array().items(Joi.string().allow("")),
     });
   }
   static CreatedOn() {
@@ -222,7 +223,9 @@ class LeadModel {
 
       "log",
 
-      "comment"
+      "comment",
+
+      "thread"
     );
   }
 

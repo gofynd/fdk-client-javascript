@@ -17,5 +17,5 @@
 * [PosCart](POSCART.md) - Cart APIs 
 * [Rewards](REWARDS.md) - Earn and redeem reward points 
 * [Share](SHARE.md) - Short link and QR Code 
-* [Theme](THEME.md) - Responsible for themes 
+* [Theme](THEME.md) - Responsible for Storefront 
 * [User](USER.md) - Authentication Service 

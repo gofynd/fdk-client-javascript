@@ -146,12 +146,15 @@ declare class User {
      * @param {Object} arg - Arg object.
      * @param {string} [arg.q] - The search query. Mobile number or email ID of
      *   a customer.
+     * @param {any[]} [arg.query] - The search queries. Mobile numbers or email
+     *   IDs of customers.
      * @returns {Promise<UserSearchResponseSchema>} - Success response
      * @summary: Search an existing user.
      * @description: Use this API to retrieve an existing user from a list.
      */
-    searchUsers({ q }?: {
+    searchUsers({ q, query }?: {
         q?: string;
+        query?: any[];
     }): Promise<UserSearchResponseSchema>;
     /**
      * @param {Object} arg - Arg object.

@@ -1,5 +1,7 @@
 module.exports = {
   PartnerConfig: require("./PartnerConfig"),
   PartnerClient: require("./PartnerClient"),
-  PartnerModel: {},
+  PartnerModel: {
+    ThemePartnerModel: require("./Theme/ThemePartnerModel"),
+  },
 };

@@ -2,6 +2,12 @@ const Joi = require("joi");
 
 const ThemeModel = require("./ThemePlatformModel");
 class ThemeValidator {
+  static addThemeToApplication() {
+    return Joi.object({
+      body: ThemeModel.CompanyThemeSchema().required(),
+    }).required();
+  }
+
   static addToThemeLibrary() {
     return Joi.object({
       body: ThemeModel.AddThemeRequestSchema().required(),
@@ -10,7 +16,7 @@ class ThemeValidator {
 
   static applyTheme() {
     return Joi.object({
-      body: ThemeModel.AddThemeRequestSchema().required(),
+      themeId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -27,12 +33,6 @@ class ThemeValidator {
     }).required();
   }
 
-  static createTheme() {
-    return Joi.object({
-      body: ThemeModel.ThemesSchema().required(),
-    }).required();
-  }
-
   static deletePage() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
@@ -46,10 +46,24 @@ class ThemeValidator {
     }).required();
   }
 
+  static duplicateTheme() {
+    return Joi.object({
+      themeId: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static getAllPages() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
     }).required();
+  }
+
+  static getApplicationThemes() {
+    return Joi.object({}).required();
+  }
+
+  static getApplicationThemesCount() {
+    return Joi.object({}).required();
   }
 
   static getAppliedTheme() {
@@ -141,7 +155,14 @@ class ThemeValidator {
   static updateTheme() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
-      body: ThemeModel.ThemesSchema().required(),
+      body: ThemeModel.UpdateThemeRequestBody().required(),
+    }).required();
+  }
+
+  static updateThemeName() {
+    return Joi.object({
+      themeId: Joi.string().allow("").required(),
+      body: ThemeModel.UpdateThemeNameRequestBody().required(),
     }).required();
   }
 

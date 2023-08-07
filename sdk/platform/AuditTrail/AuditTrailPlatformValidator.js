@@ -17,6 +17,8 @@ class AuditTrailValidator {
   static getAuditLogs() {
     return Joi.object({
       qs: Joi.string().allow("").required(),
+      limit: Joi.number(),
+      sort: Joi.any(),
     }).required();
   }
 

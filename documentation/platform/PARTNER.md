@@ -218,17 +218,8 @@ Success
   "ext_version": "1.0",
   "company": "1",
   "scope": [
-    {
-      "name": "Sales Channels",
-      "description": "Allows to add and manage new and existing sales channels"
-    },
-    {
-      "name": "Settings",
-      "description": "Allows you to configure and customize features across multiple touchpoints in the application."
-    },
-    {
-      "type": "string"
-    }
+    "company/saleschannel",
+    "company/application/settings"
   ],
   "installed": true,
   "is_saleschannel": false

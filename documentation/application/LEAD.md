@@ -1146,6 +1146,7 @@ Success
  | created_by | string? |  yes  | Creator of the ticket |
  | priority | [PriorityEnum](#PriorityEnum)? |  yes  |  |
  | status | string? |  yes  | Status of the ticket |
+ | subscribers | [string]? |  yes  |  |
  
 
 ---
@@ -1472,6 +1473,7 @@ Success
  | rating | rating | This means history event is a rating |
  | log | log | This means history event is a changelog |
  | comment | comment | This means history event is a comment |
+ | thread | thread | This means history event is a thread |
 
 ---
 

@@ -12,9 +12,9 @@ class Theme {
     this._conf = _conf;
     this._relativeUrls = {
       getAllPages: "/service/application/theme/v1.0/{theme_id}/page",
-      getAppliedTheme: "/service/application/theme/v1.0/applied-theme",
+      getAppliedTheme: "/service/application/theme/v2.0/applied-theme",
       getPage: "/service/application/theme/v1.0/{theme_id}/{page_value}",
-      getThemeForPreview: "/service/application/theme/v1.0/{theme_id}/preview",
+      getThemeForPreview: "/service/application/theme/v2.0/{theme_id}/preview",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {

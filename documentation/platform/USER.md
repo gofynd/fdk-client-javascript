@@ -1030,10 +1030,12 @@ Search an existing user.
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").user.searchUsers({  q : value });
+const promise = platformClient.application("<APPLICATION_ID>").user.searchUsers({  q : value,
+ query : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").user.searchUsers({  q : value });
+const data = await platformClient.application("<APPLICATION_ID>").user.searchUsers({  q : value,
+ query : value });
 ```
 
 
@@ -1042,7 +1044,8 @@ const data = await platformClient.application("<APPLICATION_ID>").user.searchUse
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| q | string | no | The search query. Mobile number or email ID of a customer. |  
+| q | string | no | The search query. Mobile number or email ID of a customer. |    
+| query | Array<any> | no | The search queries. Mobile numbers or email IDs of customers. |  
 
 
 

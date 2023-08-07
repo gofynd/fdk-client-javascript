@@ -1,13 +1,16 @@
 export = ThemeValidator;
 declare class ThemeValidator {
+    static addThemeToApplication(): any;
     static addToThemeLibrary(): any;
     static applyTheme(): any;
     static archiveTheme(): any;
     static createPage(): any;
-    static createTheme(): any;
     static deletePage(): any;
     static deleteTheme(): any;
+    static duplicateTheme(): any;
     static getAllPages(): any;
+    static getApplicationThemes(): any;
+    static getApplicationThemesCount(): any;
     static getAppliedTheme(): any;
     static getFonts(): any;
     static getPage(): any;
@@ -23,5 +26,6 @@ declare class ThemeValidator {
     static updateMultiplePages(): any;
     static updatePage(): any;
     static updateTheme(): any;
+    static updateThemeName(): any;
     static upgradeTheme(): any;
 }
