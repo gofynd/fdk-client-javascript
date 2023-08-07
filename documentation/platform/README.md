@@ -21,6 +21,7 @@
 * [Partner](PARTNER.md) - Partner configuration apis 
 * [Payment](PAYMENT.md) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
 * [Rewards](REWARDS.md) - Earn and redeem reward points 
+* [Serviceability](SERVICEABILITY.md) - Logistics Configuration API's allows you to configure zone, application logistics and many more useful features.  
 * [Share](SHARE.md) - Short link and QR Code 
 * [Theme](THEME.md) - Responsible for themes 
 * [User](USER.md) - Authentication Service 

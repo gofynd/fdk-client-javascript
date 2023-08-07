@@ -1833,6 +1833,7 @@ class Order {
    * @param {string} [arg.companyAffiliateTag] -
    * @param {boolean} [arg.myOrders] -
    * @param {string} [arg.platformUserId] -
+   * @param {string} [arg.tags] - Comma separated values of tags
    * @returns {Promise<ShipmentInternalPlatformViewResponse>} - Success response
    * @summary:
    * @description:
@@ -1861,6 +1862,7 @@ class Order {
     companyAffiliateTag,
     myOrders,
     platformUserId,
+    tags,
   } = {}) {
     const { error } = OrderValidator.getShipments().validate(
       {
@@ -1887,6 +1889,7 @@ class Order {
         companyAffiliateTag,
         myOrders,
         platformUserId,
+        tags,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1920,6 +1923,7 @@ class Order {
         companyAffiliateTag,
         myOrders,
         platformUserId,
+        tags,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1955,6 +1959,7 @@ class Order {
     query_params["company_affiliate_tag"] = companyAffiliateTag;
     query_params["my_orders"] = myOrders;
     query_params["platform_user_id"] = platformUserId;
+    query_params["tags"] = tags;
 
     const xHeaders = {};
 

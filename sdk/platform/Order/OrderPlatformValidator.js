@@ -220,6 +220,7 @@ class OrderValidator {
       companyAffiliateTag: Joi.string().allow(""),
       myOrders: Joi.boolean(),
       platformUserId: Joi.string().allow(""),
+      tags: Joi.string().allow(""),
     }).required();
   }
 
