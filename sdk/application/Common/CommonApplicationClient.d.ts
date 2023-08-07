@@ -17,7 +17,7 @@ declare class Common {
      *   city, provide id of state.
      * @returns {Promise<Locations>} - Success response
      * @summary: Get countries, states, cities
-     * @description:
+     * @description: Get countries, states, cities
      */
     getLocations({ locationType, id }?: {
         locationType?: string;

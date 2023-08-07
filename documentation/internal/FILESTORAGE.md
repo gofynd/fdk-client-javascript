@@ -215,7 +215,7 @@ Success
  | document_type | string? |  yes  |  |
  | invoice_document_type | string? |  yes  |  |
  | label_document_type | string? |  yes  |  |
- | shipment_ids | [any] |  no  |  |
+ | shipment_ids | [string] |  no  |  |
  | store_code | string |  no  |  |
  | uid | string |  no  |  |
  

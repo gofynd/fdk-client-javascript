@@ -38,15 +38,15 @@ declare class FileStorage {
     /**
      * @param {Object} arg - Arg object.
      * @param {boolean} [arg.sync] - Sync
-     * @param {CopyFiles} arg.body
-     * @returns {Promise<BulkUploadSyncMode>} - Success response
+     * @param {BulkRequest} arg.body
+     * @returns {Promise<BulkUploadResponse>} - Success response
      * @summary: Copy Files
      * @description: Copy Files
      */
     appCopyFiles({ body, sync }?: {
         sync?: boolean;
-        body: CopyFiles;
-    }): Promise<BulkUploadSyncMode>;
+        body: BulkRequest;
+    }): Promise<BulkUploadResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.namespace - Segregation of different types of
@@ -96,69 +96,6 @@ declare class FileStorage {
         page?: number;
         limit?: number;
     }): Promise<BrowseResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {number} arg.pdfTypeId -
-     * @param {string} arg.format -
-     * @returns {Promise<Object[]>} - Success response
-     * @summary: Get html template for sales channel
-     * @description: Get default html template for invoice or label
-     */
-    getDefaultHtmlTemplate({ pdfTypeId, format }?: {
-        pdfTypeId: number;
-        format: string;
-    }): Promise<any[]>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {number} arg.pdfTypeId -
-     * @returns {Promise<DummyTemplateDataItems[]>} - Success response
-     * @summary: Get Dummy pdf data for invoice or label
-     * @description: Get Dummy pdf data for invoice or label
-     */
-    getDefaultPdfData({ pdfTypeId }?: {
-        pdfTypeId: number;
-    }): Promise<DummyTemplateDataItems[]>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {number} arg.pdfTypeId -
-     * @param {string} arg.format -
-     * @returns {Promise<Object[]>} - Success response
-     * @summary: Default html template
-     * @description: Get default html template data for invoice or label
-     */
-    getDefaultPdfTemplate({ pdfTypeId, format }?: {
-        pdfTypeId: number;
-        format: string;
-    }): Promise<any[]>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<InvoiceTypesResponse[]>} - Success response
-     * @summary: Get all the supported invoice pdf types
-     * @description: Get all the supported invoice pdf types such as Invoice, Label, Deliver challan
-     */
-    getPdfTypes({}?: any): Promise<InvoiceTypesResponse[]>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {pdfRender} arg.body
-     * @returns {Promise<string>} - Success response
-     * @summary: Preview HTML template
-     * @description: Rendered HTML template with dummy json data
-     */
-    previewTemplate({ body }?: {
-        body: pdfRender;
-    }): Promise<string>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {number} arg.id -
-     * @param {pdfConfig} arg.body
-     * @returns {Promise<Object>} - Success response
-     * @summary: Update html template for invoice or label
-     * @description: Update html template for invoice such as Invoice, Label, Deliver challan
-     */
-    saveHtmlTemplate({ id, body }?: {
-        id: number;
-        body: pdfConfig;
-    }): Promise<any>;
     /**
      * @param data
      * @param {string} file_name

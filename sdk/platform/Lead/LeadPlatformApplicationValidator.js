@@ -14,7 +14,7 @@ class LeadValidator {
     }).required();
   }
 
-  static createHistory() {
+  static createNewHistory() {
     return Joi.object({
       id: Joi.string().allow("").required(),
       body: LeadModel.TicketHistoryPayload().required(),
@@ -28,7 +28,7 @@ class LeadValidator {
     }).required();
   }
 
-  static editTicket() {
+  static editNewTicket() {
     return Joi.object({
       id: Joi.string().allow("").required(),
       body: LeadModel.EditTicketPayload().required(),
@@ -45,19 +45,19 @@ class LeadValidator {
     return Joi.object({}).required();
   }
 
-  static getTicket() {
+  static getNewTicket() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  static getTicketHistory() {
+  static getNewTicketHistory() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  static getTickets() {
+  static getNewTickets() {
     return Joi.object({
       items: Joi.boolean(),
       filters: Joi.boolean(),
@@ -68,13 +68,13 @@ class LeadValidator {
     }).required();
   }
 
-  static getTokenForVideoRoom() {
+  static getNewTokenForVideoRoom() {
     return Joi.object({
       uniqueName: Joi.string().allow("").required(),
     }).required();
   }
 
-  static getVideoParticipants() {
+  static getNewVideoParticipants() {
     return Joi.object({
       uniqueName: Joi.string().allow("").required(),
     }).required();

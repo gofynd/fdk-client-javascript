@@ -417,17 +417,6 @@ class ConfigurationModel {
       page: ConfigurationModel.Page(),
     });
   }
-  static CompanyAboutAddress() {
-    return Joi.object({
-      address1: Joi.string().allow(""),
-      address2: Joi.string().allow(""),
-      address_type: Joi.string().allow(""),
-      city: Joi.string().allow(""),
-      country: Joi.string().allow(""),
-      pincode: Joi.number(),
-      state: Joi.string().allow(""),
-    });
-  }
   static CompanyBrandInfo() {
     return Joi.object({
       brand_banner_portrait_url: Joi.string().allow(""),
@@ -494,18 +483,6 @@ class ConfigurationModel {
     });
   }
   static Currency() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-      code: Joi.string().allow(""),
-      created_at: Joi.string().allow(""),
-      decimal_digits: Joi.number(),
-      is_active: Joi.boolean(),
-      name: Joi.string().allow(""),
-      symbol: Joi.string().allow(""),
-      updated_at: Joi.string().allow(""),
-    });
-  }
-  static CurrencyConfig() {
     return Joi.object({
       _id: Joi.string().allow(""),
       code: Joi.string().allow(""),
@@ -1372,11 +1349,6 @@ class ConfigurationModel {
       title: Joi.string().allow(""),
     });
   }
-  static UnhandledError() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-    });
-  }
   static UpdateDomain() {
     return Joi.object({
       _id: Joi.string().allow(""),
@@ -1395,23 +1367,6 @@ class ConfigurationModel {
   static UpdateIntegrationLevelRequest() {
     return Joi.object({
       items: Joi.array().items(ConfigurationModel.IntegrationLevel()),
-    });
-  }
-  static UserEmail() {
-    return Joi.object({
-      active: Joi.boolean(),
-      email: Joi.string().allow(""),
-      primary: Joi.boolean(),
-      verified: Joi.boolean(),
-    });
-  }
-  static UserPhoneNumber() {
-    return Joi.object({
-      active: Joi.boolean(),
-      country_code: Joi.number(),
-      phone: Joi.string().allow(""),
-      primary: Joi.boolean(),
-      verified: Joi.boolean(),
     });
   }
   static ValidationFailedResponse() {

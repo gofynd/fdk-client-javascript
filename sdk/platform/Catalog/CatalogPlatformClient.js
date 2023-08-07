@@ -2847,7 +2847,7 @@ class Catalog {
    * @param {AssignStore} arg.body
    * @returns {Promise<StoreAssignResponse>} - Success response
    * @summary: Location Reassignment
-   * @description:
+   * @description: Location Reassignment
    */
   async getOptimalLocations({ body } = {}) {
     const { error } = CatalogValidator.getOptimalLocations().validate(

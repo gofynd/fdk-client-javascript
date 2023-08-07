@@ -675,7 +675,7 @@ Success.
   "value": {
     "_id": "5eaa451a21a4dd75f0fd96c5",
     "application": "5d3ebd89f540e7506b8b3548",
-    "_custom_json": null,
+    "_custom_json": {},
     "slug": "pnc-landing",
     "action": {
       "page": {
@@ -1825,7 +1825,7 @@ Success.
   "value": {
     "_id": "5eaa451a21a4dd75f0fd96c5",
     "application": "5d3ebd89f540e7506b8b3548",
-    "_custom_json": null,
+    "_custom_json": {},
     "slug": "pnc-landing",
     "action": {
       "page": {
@@ -2668,10 +2668,10 @@ Success. Refer `AdminAnnouncementSchema` for more details.
           "end": "2021-02-18T22:00:00.000Z"
         }
       ],
-      "cron": null,
+      "cron": "",
       "start": "2021-02-10T20:40:00.000Z",
       "end": "2021-02-18T22:00:00.000Z",
-      "duration": null
+      "duration": 0
     },
     "app": "000000000000000000000001",
     "author": {
@@ -2772,10 +2772,10 @@ Success. Refer `GetAnnouncementListSchema` for more details.
         },
         "_schedule": {
           "published": true,
-          "cron": null,
+          "cron": "",
           "start": "2021-02-10T20:40:00.000Z",
           "end": "2021-02-18T22:00:00.000Z",
-          "duration": null,
+          "duration": 0,
           "next_schedule": [
             {
               "start": "2021-02-10T20:40:00.000Z",
@@ -4343,7 +4343,7 @@ Success. Refer `LandingPageGetResponse` for more details.
         },
         "application": "5cd3db5e9d692cfe5302a7bb",
         "archived": false,
-        "_custom_json": null,
+        "_custom_json": {},
         "__v": 0
       }
     ],
@@ -5980,7 +5980,7 @@ Success.
 
 ```json
 {
-  "success": "true"
+  "success": true
 }
 ```
 </details>
@@ -6712,7 +6712,7 @@ Success.
   "value": {
     "_id": "5eaa451a21a4dd75f0fd96c5",
     "application": "5d3ebd89f540e7506b8b3548",
-    "_custom_json": null,
+    "_custom_json": {},
     "slug": "pnc-landing",
     "action": {
       "page": {
@@ -7721,27 +7721,6 @@ Success. Refer `Support` for more details.
 
 ---
 
-#### [AnnouncementSchema](#AnnouncementSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | announcement | string? |  yes  |  |
- | schedule | [ScheduleStartSchema](#ScheduleStartSchema)? |  yes  |  |
- 
-
----
-
-#### [AnnouncementsResponseSchema](#AnnouncementsResponseSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | announcements | [String: [[AnnouncementSchema](#AnnouncementSchema)]]? |  yes  |  |
- | refresh_pages | [string]? |  yes  | list of page slugs on which announcement should be fetched as soon as they are loaded |
- | refresh_rate | number? |  yes  | number of seconds after which api should hit again to fetch new announcements |
- 
-
----
-
 #### [ApplicationLegal](#ApplicationLegal)
 
  | Properties | Type | Nullable | Description |
@@ -7931,16 +7910,6 @@ Success. Refer `Support` for more details.
 
 ---
 
-#### [ContentSchema](#ContentSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string? |  yes  |  |
- | value | string? |  yes  |  |
- 
-
----
-
 #### [CreateAnnouncementSchema](#CreateAnnouncementSchema)
 
  | Properties | Type | Nullable | Description |
@@ -8045,42 +8014,11 @@ Success. Refer `Support` for more details.
 
 ---
 
-#### [CustomPage](#CustomPage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [CustomPageSchema](#CustomPageSchema)? |  yes  |  |
- 
-
----
-
-#### [CustomPageSchema](#CustomPageSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | _schedule | [ScheduleSchema](#ScheduleSchema)? |  yes  |  |
- | application | string? |  yes  |  |
- | content | [string]? |  yes  |  |
- | created_by | [CreatedBySchema](#CreatedBySchema)? |  yes  |  |
- | date_meta | [DateMeta](#DateMeta)? |  yes  |  |
- | description | string? |  yes  |  |
- | orientation | string? |  yes  |  |
- | platform | string? |  yes  |  |
- | published | boolean? |  yes  |  |
- | slug | string? |  yes  |  |
- | tags | [string]? |  yes  |  |
- | title | string? |  yes  |  |
- | type | string? |  yes  |  |
- 
-
----
-
 #### [DataLoaderResetResponseSchema](#DataLoaderResetResponseSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | reset | string? |  yes  |  |
+ | reset | boolean? |  yes  |  |
  
 
 ---
@@ -8228,15 +8166,6 @@ Success. Refer `Support` for more details.
 
 ---
 
-#### [FaqResponseSchema](#FaqResponseSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | faqs | [[FaqSchema](#FaqSchema)]? |  yes  |  |
- 
-
----
-
 #### [FaqSchema](#FaqSchema)
 
  | Properties | Type | Nullable | Description |
@@ -8247,15 +8176,6 @@ Success. Refer `Support` for more details.
  | question | string? |  yes  |  |
  | slug | string? |  yes  |  |
  | tags | [string]? |  yes  |  |
- 
-
----
-
-#### [FeatureImage](#FeatureImage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | secure_url | string? |  yes  |  |
  
 
 ---
@@ -8334,16 +8254,6 @@ Success. Refer `Support` for more details.
 
 ---
 
-#### [LandingPage](#LandingPage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [LandingPageSchema](#LandingPageSchema)? |  yes  |  |
- | success | boolean? |  yes  |  |
- 
-
----
-
 #### [LandingPageGetResponse](#LandingPageGetResponse)
 
  | Properties | Type | Nullable | Description |
@@ -8387,24 +8297,6 @@ Success. Refer `Support` for more details.
  | ar | [Language](#Language)? |  yes  |  |
  | en_us | [Language](#Language)? |  yes  |  |
  | hi | [Language](#Language)? |  yes  |  |
- 
-
----
-
-#### [Navigation](#Navigation)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | application | string? |  yes  |  |
- | created_by | [CreatedBySchema](#CreatedBySchema)? |  yes  |  |
- | date_meta | [DateMeta](#DateMeta)? |  yes  |  |
- | name | string? |  yes  |  |
- | navigation | [NavigationReference](#NavigationReference)? |  yes  |  |
- | orientation | string? |  yes  |  |
- | platform | string? |  yes  |  |
- | position | string? |  yes  |  |
- | slug | string? |  yes  |  |
  
 
 ---
@@ -8504,32 +8396,12 @@ Success. Refer `Support` for more details.
 
 ---
 
-#### [PageContent](#PageContent)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string? |  yes  |  |
- | value | string? |  yes  |  |
- 
-
----
-
 #### [PageGetResponse](#PageGetResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | items | [[PageSchema](#PageSchema)]? |  yes  |  |
  | page | [Page](#Page)? |  yes  |  |
- 
-
----
-
-#### [PageMeta](#PageMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | key | string? |  yes  |  |
- | value | string? |  yes  |  |
  
 
 ---
@@ -8714,16 +8586,6 @@ Success. Refer `Support` for more details.
 
 ---
 
-#### [ScheduleStartSchema](#ScheduleStartSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | end | string? |  yes  |  |
- | start | string? |  yes  |  |
- 
-
----
-
 #### [SEO](#SEO)
 
  | Properties | Type | Nullable | Description |
@@ -8766,16 +8628,6 @@ Success. Refer `Support` for more details.
  | robots_txt | string? |  yes  |  |
  | sitemap_enabled | boolean? |  yes  |  |
  | updated_at | string? |  yes  |  |
- 
-
----
-
-#### [Slideshow](#Slideshow)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [SlideshowSchema](#SlideshowSchema)? |  yes  |  |
- | success | boolean? |  yes  |  |
  
 
 ---

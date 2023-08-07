@@ -522,7 +522,7 @@ Success. Check the example shown below or refer `OrderById` for more details.
                   "sku_code": "SHIRT-01"
                 },
                 "item_name": "FYND Black T-Shirt 03",
-                "gst_fee": "28.52",
+                "gst_fee": 28.52,
                 "gst_tag": "SGST"
               }
             ],
@@ -564,7 +564,7 @@ Success. Check the example shown below or refer `OrderById` for more details.
           "area": "asd",
           "city": "Mumbai",
           "name": "Vaishakh Shetty",
-          "email": null,
+          "email": "vaishakh@gofynd.com",
           "phone": "9892133001",
           "state": "Maharashtra",
           "address": "dsa",
@@ -925,7 +925,7 @@ Success. Check the example shown below or refer `OrderById` for more details.
                   "sku_code": "SHIRT-01"
                 },
                 "item_name": "FYND Black T-Shirt 03",
-                "gst_fee": "28.52",
+                "gst_fee": 28.52,
                 "gst_tag": "SGST"
               }
             ],
@@ -967,7 +967,7 @@ Success. Check the example shown below or refer `OrderById` for more details.
           "area": "asd",
           "city": "Mumbai",
           "name": "Vaishakh Shetty",
-          "email": null,
+          "email": "vaishakh@gofynd.com",
           "phone": "9892133001",
           "state": "Maharashtra",
           "address": "dsa",
@@ -1504,7 +1504,7 @@ Success. Check the example shown below or refer `PosOrderById` for more details.
                   "sku_code": "PUMATSHIRT"
                 },
                 "item_name": "Puma Men Tshirt",
-                "gst_fee": "152.38",
+                "gst_fee": 152.38,
                 "gst_tag": "IGST"
               }
             ],
@@ -1900,7 +1900,7 @@ Success. Check the example shown below or refer `ShipmentById` for more details.
               "sku_code": "987432134"
             },
             "item_name": "Tissues",
-            "gst_fee": "7.62",
+            "gst_fee": 7.62,
             "gst_tag": "SGST"
           }
         ],
@@ -2389,17 +2389,19 @@ Successfully updateShipmentStatus!
 {
   "statuses": [
     {
-      "shipments": {
-        "16291129095851065963": {
-          "status": 400,
-          "message": {
-            "16291129095851065963": "Invalid State Transition bag_invoiced detected for given entity"
-          },
-          "code": null,
-          "exception": "ValidationError",
-          "stack_trace": null
+      "shipments": [
+        {
+          "16291129095851065963": {
+            "status": 400,
+            "message": {
+              "16291129095851065963": "Invalid State Transition bag_invoiced detected for given entity"
+            },
+            "code": null,
+            "exception": "ValidationError",
+            "stack_trace": null
+          }
         }
-      }
+      ]
     }
   ]
 }

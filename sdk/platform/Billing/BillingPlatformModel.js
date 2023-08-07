@@ -74,43 +74,6 @@ class BillingModel {
       start_date: Joi.string().allow(""),
     });
   }
-  static DetailedPlan() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-      addons: Joi.array().items(Joi.string().allow("")),
-      amount: Joi.number(),
-      components: Joi.array().items(BillingModel.DetailedPlanComponents()),
-      country: Joi.string().allow(""),
-      created_at: Joi.string().allow(""),
-      currency: Joi.string().allow(""),
-      description: Joi.string().allow(""),
-      is_active: Joi.boolean(),
-      is_trial_plan: Joi.boolean(),
-      is_visible: Joi.boolean(),
-      modified_at: Joi.string().allow(""),
-      name: Joi.string().allow(""),
-      plan_group: Joi.string().allow(""),
-      product_suite_id: Joi.string().allow(""),
-      recurring: BillingModel.PlanRecurring(),
-      tag_lines: Joi.array().items(Joi.string().allow("")),
-      tags: Joi.array().items(Joi.string().allow("")),
-      trial_period: Joi.number(),
-      type: Joi.string().allow(""),
-    });
-  }
-  static DetailedPlanComponents() {
-    return Joi.object({
-      config: Joi.any(),
-      description: Joi.string().allow(""),
-      display_text: Joi.string().allow(""),
-      enabled: Joi.boolean(),
-      group: Joi.string().allow(""),
-      icon: Joi.string().allow(""),
-      links: Joi.any(),
-      name: Joi.string().allow(""),
-      slug: Joi.string().allow(""),
-    });
-  }
   static EntityChargePrice() {
     return Joi.object({
       amount: Joi.number().required(),
@@ -182,49 +145,6 @@ class BillingModel {
       email: Joi.string().allow(""),
       name: Joi.string().allow(""),
       phone: Joi.string().allow(""),
-    });
-  }
-  static InvoiceDetailsPaymentMethods() {
-    return Joi.object({
-      data: BillingModel.InvoiceDetailsPaymentMethodsData(),
-      id: Joi.number(),
-      is_default: Joi.boolean(),
-      pg_payment_method_id: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-    });
-  }
-  static InvoiceDetailsPaymentMethodsData() {
-    return Joi.object({
-      brand: Joi.string().allow(""),
-      checks: BillingModel.InvoiceDetailsPaymentMethodsDataChecks(),
-      country: Joi.string().allow(""),
-      exp_month: Joi.number(),
-      exp_year: Joi.number(),
-      fingerprint: Joi.string().allow(""),
-      funding: Joi.string().allow(""),
-      generated_from: Joi.string().allow(""),
-      last4: Joi.string().allow(""),
-      networks: BillingModel.InvoiceDetailsPaymentMethodsDataNetworks(),
-      three_d_secure_usage: BillingModel.InvoiceDetailsPaymentMethodsDataThreeDSecureUsage(),
-      wallet: Joi.string().allow(""),
-    });
-  }
-  static InvoiceDetailsPaymentMethodsDataChecks() {
-    return Joi.object({
-      address_line1_check: Joi.string().allow(""),
-      address_postal_code_check: Joi.string().allow(""),
-      cvc_check: Joi.string().allow(""),
-    });
-  }
-  static InvoiceDetailsPaymentMethodsDataNetworks() {
-    return Joi.object({
-      available: Joi.array().items(Joi.string().allow("")),
-      preferred: Joi.string().allow(""),
-    });
-  }
-  static InvoiceDetailsPaymentMethodsDataThreeDSecureUsage() {
-    return Joi.object({
-      supported: Joi.boolean(),
     });
   }
   static InvoiceDetailsPeriod() {
@@ -382,17 +302,6 @@ class BillingModel {
       price: BillingModel.EntityChargePrice().required(),
       pricing_type: Joi.string().allow("").required(),
       term: Joi.string().allow(""),
-    });
-  }
-  static Page() {
-    return Joi.object({
-      current: Joi.number(),
-      has_next: Joi.boolean(),
-      has_previous: Joi.boolean(),
-      item_total: Joi.number(),
-      next_id: Joi.string().allow(""),
-      size: Joi.number(),
-      type: Joi.string().allow("").required(),
     });
   }
   static Phone() {
@@ -613,16 +522,6 @@ class BillingModel {
     return Joi.object({
       end_date: Joi.string().allow(""),
       start_date: Joi.string().allow(""),
-    });
-  }
-  static UnauthenticatedApplication() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-    });
-  }
-  static UnauthenticatedUser() {
-    return Joi.object({
-      message: Joi.string().allow(""),
     });
   }
 }

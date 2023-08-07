@@ -564,7 +564,7 @@ class CatalogModel {
       created_by: CatalogModel.UserDetail(),
       created_on: Joi.string().allow("").required(),
       is_active: Joi.boolean(),
-      logo: Joi.any(),
+      logo: Joi.string().allow("").allow(null),
       meta: Joi.any(),
       modified_by: CatalogModel.UserDetail(),
       modified_on: Joi.string().allow("").required(),

@@ -11,6 +11,7 @@ declare class OrderValidator {
     static fetchCreditBalanceDetail(): any;
     static fetchRefundModeConfig(): any;
     static generatePOSReceiptByOrderId(): any;
+    static getAllowedStateTransition(): any;
     static getAnnouncements(): any;
     static getBagById(): any;
     static getBags(): any;
@@ -20,7 +21,6 @@ declare class OrderValidator {
     static getLaneConfig(): any;
     static getOrderById(): any;
     static getOrders(): any;
-    static getRoleBaseStateTransition(): any;
     static getRoleBasedActions(): any;
     static getShipmentById(): any;
     static getShipmentHistory(): any;

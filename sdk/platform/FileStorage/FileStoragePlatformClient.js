@@ -191,8 +191,8 @@ class FileStorage {
   /**
    * @param {Object} arg - Arg object.
    * @param {boolean} [arg.sync] -
-   * @param {CopyFiles} arg.body
-   * @returns {Promise<BulkUploadSyncMode>} - Success response
+   * @param {BulkRequest} arg.body
+   * @returns {Promise<BulkUploadResponse>} - Success response
    * @summary: Copy Files
    * @description: Copy Files
    */
@@ -240,7 +240,7 @@ class FileStorage {
 
     const {
       error: res_error,
-    } = FileStorageModel.BulkUploadSyncMode().validate(response, {
+    } = FileStorageModel.BulkUploadResponse().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });

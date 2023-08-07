@@ -251,14 +251,14 @@ Success. Check example below or refer `OrderDiscountResponse` for more details.
       "currency": "INR",
       "percent": 0,
       "display_absoulte": "0.00",
-      "display_percent": 0
+      "display_percent": "0%"
     },
     "base_discount": {
       "absolute": 0,
       "currency": "INR",
       "percent": 0,
       "display_absoulte": "0.00",
-      "display_percent": 0
+      "display_percent": "0"
     },
     "points": 0,
     "applied_rule_bucket": {

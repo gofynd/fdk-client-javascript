@@ -31,7 +31,7 @@ declare class Lead {
      * @summary: Create history for specific application level ticket
      * @description: Create history for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
      */
-    createHistory({ id, body }?: {
+    createNewHistory({ id, body }?: {
         id: string;
         body: TicketHistoryPayload;
     }): Promise<TicketHistory>;
@@ -55,7 +55,7 @@ declare class Lead {
      * @summary: Edits ticket details of a application level ticket
      * @description: Edits ticket details of a application level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes
      */
-    editTicket({ id, body }?: {
+    editNewTicket({ id, body }?: {
         id: string;
         body: EditTicketPayload;
     }): Promise<Ticket>;
@@ -83,7 +83,7 @@ declare class Lead {
      * @summary: Retreives ticket details of a application level ticket
      * @description: Retreives ticket details of a application level ticket with ticket ID
      */
-    getTicket({ id }?: {
+    getNewTicket({ id }?: {
         id: string;
     }): Promise<Ticket>;
     /**
@@ -93,7 +93,7 @@ declare class Lead {
      * @summary: Gets history list for specific application level ticket
      * @description: Gets history list for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
      */
-    getTicketHistory({ id }?: {
+    getNewTicketHistory({ id }?: {
         id: string;
     }): Promise<TicketHistoryList>;
     /**
@@ -110,7 +110,7 @@ declare class Lead {
      * @summary: Gets the list of Application level Tickets and/or ticket filters depending on query params
      * @description: Gets the list of Application level Tickets and/or ticket filters
      */
-    getTickets({ items, filters, q, status, priority, category }?: {
+    getNewTickets({ items, filters, q, status, priority, category }?: {
         items?: boolean;
         filters?: boolean;
         q?: string;
@@ -125,7 +125,7 @@ declare class Lead {
      * @summary: Get Token to join a specific Video Room using it's unqiue name
      * @description: Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
      */
-    getTokenForVideoRoom({ uniqueName }?: {
+    getNewTokenForVideoRoom({ uniqueName }?: {
         uniqueName: string;
     }): Promise<GetTokenForVideoRoomResponse>;
     /**
@@ -135,7 +135,7 @@ declare class Lead {
      * @summary: Get participants of a specific Video Room using it's unique name
      * @description: Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
      */
-    getVideoParticipants({ uniqueName }?: {
+    getNewVideoParticipants({ uniqueName }?: {
         uniqueName: string;
     }): Promise<GetParticipantsInsideVideoRoomResponse>;
     /**

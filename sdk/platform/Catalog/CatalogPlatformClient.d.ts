@@ -503,7 +503,7 @@ declare class Catalog {
      * @param {AssignStore} arg.body
      * @returns {Promise<StoreAssignResponse>} - Success response
      * @summary: Location Reassignment
-     * @description:
+     * @description: Location Reassignment
      */
     getOptimalLocations({ body }?: {
         body: AssignStore;

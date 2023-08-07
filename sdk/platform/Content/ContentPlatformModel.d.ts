@@ -5,8 +5,6 @@ declare class ContentModel {
     static AdminAnnouncementSchema(): any;
     static AnnouncementAuthorSchema(): any;
     static AnnouncementPageSchema(): any;
-    static AnnouncementSchema(): any;
-    static AnnouncementsResponseSchema(): any;
     static ApplicationLegal(): any;
     static ApplicationLegalFAQ(): any;
     static Asset(): any;
@@ -21,7 +19,6 @@ declare class ContentModel {
     static ConfigurationSchema(): any;
     static ContactSchema(): any;
     static ContentAPIError(): any;
-    static ContentSchema(): any;
     static CreateAnnouncementSchema(): any;
     static CreatedBySchema(): any;
     static CreateFaqCategoryRequestSchema(): any;
@@ -32,8 +29,6 @@ declare class ContentModel {
     static CreateTagSchema(): any;
     static CronSchedule(): any;
     static CustomMetaTag(): any;
-    static CustomPage(): any;
-    static CustomPageSchema(): any;
     static DataLoaderResetResponseSchema(): any;
     static DataLoaderResponseSchema(): any;
     static DataLoaderSchema(): any;
@@ -47,9 +42,7 @@ declare class ContentModel {
     static EmailSchema(): any;
     static FAQ(): any;
     static FAQCategorySchema(): any;
-    static FaqResponseSchema(): any;
     static FaqSchema(): any;
-    static FeatureImage(): any;
     static GeneratedSEOContent(): any;
     static GenerateSEOContent(): any;
     static GetAnnouncementListSchema(): any;
@@ -57,12 +50,10 @@ declare class ContentModel {
     static GetFaqCategoryBySlugSchema(): any;
     static GetFaqSchema(): any;
     static HandpickedTagSchema(): any;
-    static LandingPage(): any;
     static LandingPageGetResponse(): any;
     static LandingPageSchema(): any;
     static Language(): any;
     static LocaleLanguage(): any;
-    static Navigation(): any;
     static NavigationGetResponse(): any;
     static NavigationReference(): any;
     static NavigationRequest(): any;
@@ -70,9 +61,7 @@ declare class ContentModel {
     static NextSchedule(): any;
     static Orientation(): any;
     static Page(): any;
-    static PageContent(): any;
     static PageGetResponse(): any;
-    static PageMeta(): any;
     static PageMetaSchema(): any;
     static PagePublishRequest(): any;
     static PageRequest(): any;
@@ -87,12 +76,10 @@ declare class ContentModel {
     static RemoveHandpickedSchema(): any;
     static ResourceContent(): any;
     static ScheduleSchema(): any;
-    static ScheduleStartSchema(): any;
     static SEO(): any;
     static SeoComponent(): any;
     static SEOImage(): any;
     static SeoSchema(): any;
-    static Slideshow(): any;
     static SlideshowGetResponse(): any;
     static SlideshowMedia(): any;
     static SlideshowRequest(): any;

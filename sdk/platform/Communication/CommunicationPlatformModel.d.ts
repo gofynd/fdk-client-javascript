@@ -56,8 +56,6 @@ declare class CommunicationModel {
     static PayloadSmsStructure(): any;
     static PayloadSmsTemplateStructure(): any;
     static PayloadStructure(): any;
-    static PushtokenReq(): any;
-    static PushtokenRes(): any;
     static RecipientHeaders(): any;
     static SendOtpCommsReq(): any;
     static SendOtpCommsReqData(): any;
@@ -89,8 +87,6 @@ declare class CommunicationModel {
     static SystemEmailTemplates(): any;
     static SystemNotification(): any;
     static SystemNotifications(): any;
-    static SystemNotificationSettings(): any;
-    static SystemNotificationsPage(): any;
     static SystemNotificationUser(): any;
     static SystemSmsTemplate(): any;
     static SystemSmsTemplates(): any;

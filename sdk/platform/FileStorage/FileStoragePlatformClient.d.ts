@@ -54,15 +54,15 @@ declare class FileStorage {
     /**
      * @param {Object} arg - Arg object.
      * @param {boolean} [arg.sync] -
-     * @param {CopyFiles} arg.body
-     * @returns {Promise<BulkUploadSyncMode>} - Success response
+     * @param {BulkRequest} arg.body
+     * @returns {Promise<BulkUploadResponse>} - Success response
      * @summary: Copy Files
      * @description: Copy Files
      */
     copyFiles({ body, sync }?: {
         sync?: boolean;
-        body: CopyFiles;
-    }): Promise<BulkUploadSyncMode>;
+        body: BulkRequest;
+    }): Promise<BulkUploadResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {SignUrlRequest} arg.body

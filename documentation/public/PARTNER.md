@@ -108,7 +108,7 @@ Success
         "https://hdn-1.addsale.com/x0/misc/pictures/free-icon/original/O3Wng4Rqn-600x900.png"
       ]
     },
-    "description": "<p>Sample public extension</p>",
+    "description": "Sample public extension",
     "demo_url": "",
     "video_url": [
       {

@@ -740,6 +740,7 @@ ok
       }
     ],
     "page": {
+      "type": "string",
       "item_total": 2,
       "size": 10,
       "current": 1,
@@ -1388,16 +1389,6 @@ Success
  | rule | [RewardsRule](#RewardsRule)? |  yes  |  |
  | title | string? |  yes  |  |
  | updated_at | string? |  yes  |  |
- 
-
----
-
-#### [GiveawayAudience](#GiveawayAudience)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | audience_id | string? |  yes  |  |
- | current_count | number? |  yes  |  |
  
 
 ---

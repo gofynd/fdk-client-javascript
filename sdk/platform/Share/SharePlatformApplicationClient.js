@@ -269,49 +269,6 @@ class Share {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Company Id
-   * @param {string} arg.applicationId - Application Id
-   * @param {number} [arg.pageSize] - Current page size
-   * @param {string} [arg.createdBy] - Short link creator
-   * @param {string} [arg.active] - Short link active status
-   * @param {string} [arg.q] - Search text for original and short url
-   * @summary: Get short links
-   * @description: Get short links
-   */
-  getShortLinksPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-    createdBy,
-    active,
-    q,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getShortLinks({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        createdBy: createdBy,
-        active: active,
-        q: q,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @param {string} arg.id - Short link document identifier
    * @param {ShortLinkReq} arg.body
    * @returns {Promise<ShortLinkRes>} - Success response

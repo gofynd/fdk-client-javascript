@@ -101,11 +101,6 @@ class ThemeModel {
       message: Joi.string().allow(""),
     });
   }
-  static BlitzkriegNotFoundSchema() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-    });
-  }
   static Blocks() {
     return Joi.object({
       name: Joi.string().allow(""),
@@ -159,11 +154,6 @@ class ThemeModel {
     return Joi.object({
       link: Joi.string().allow(""),
       links: Joi.array().items(Joi.string().allow("")),
-    });
-  }
-  static Custom() {
-    return Joi.object({
-      props: Joi.any(),
     });
   }
   static Font() {
@@ -263,11 +253,6 @@ class ThemeModel {
     return Joi.object({
       file: Joi.string().allow(""),
       name: Joi.string().allow(""),
-    });
-  }
-  static Sections() {
-    return Joi.object({
-      attributes: Joi.string().allow(""),
     });
   }
   static SemiBold() {

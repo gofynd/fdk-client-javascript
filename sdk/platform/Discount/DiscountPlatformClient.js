@@ -444,6 +444,56 @@ class Discount {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} [arg.view] - Listing or calender. Default is listing.
+   * @param {string} [arg.q] - The search query. This can be a partial or
+   *   complete name of a discount.
+   * @param {number} [arg.pageSize] - Page size. Default is 12.
+   * @param {boolean} [arg.archived] - Archived. Default is false.
+   * @param {number} [arg.month] - Month. Default is current month.
+   * @param {number} [arg.year] - Year. Default is current year.
+   * @param {string} [arg.type] - Basic or custom.
+   * @param {string[]} [arg.appIds] - Application ids.
+   * @summary: Fetch discount list.
+   * @description: Fetch discount list.
+   */
+  getDiscountsPaginator({
+    view,
+    q,
+    pageSize,
+    archived,
+    month,
+    year,
+    type,
+    appIds,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getDiscounts({
+        view: view,
+        q: q,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        archived: archived,
+        month: month,
+        year: year,
+        type: type,
+        appIds: appIds,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} arg.id - Id
    * @returns {Promise<FileJobResponse>} - Success response
    * @summary: Download File Job.

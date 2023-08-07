@@ -5190,15 +5190,6 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 ### Schemas
 
 
-#### [AddThemeRequestSchema](#AddThemeRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | theme_id | string? |  yes  |  |
- 
-
----
-
 #### [AllAvailablePageSchema](#AllAvailablePageSchema)
 
  | Properties | Type | Nullable | Description |
@@ -5344,15 +5335,6 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
 ---
 
-#### [BlitzkriegNotFoundSchema](#BlitzkriegNotFoundSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
- 
-
----
-
 #### [Blocks](#Blocks)
 
  | Properties | Type | Nullable | Description |
@@ -5440,58 +5422,12 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
 ---
 
-#### [Custom](#Custom)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | props | string? |  yes  |  |
- 
-
----
-
 #### [Font](#Font)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | family | string? |  yes  |  |
  | variants | [Variants](#Variants)? |  yes  |  |
- 
-
----
-
-#### [FontsSchema](#FontsSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [FontsSchemaItems](#FontsSchemaItems)? |  yes  |  |
- | kind | string? |  yes  |  |
- 
-
----
-
-#### [FontsSchemaItems](#FontsSchemaItems)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | category | string? |  yes  |  |
- | family | string? |  yes  |  |
- | files | [FontsSchemaItemsFiles](#FontsSchemaItemsFiles)? |  yes  |  |
- | kind | string? |  yes  |  |
- | last_modified | string? |  yes  |  |
- | subsets | [string]? |  yes  |  |
- | variants | [string]? |  yes  |  |
- | version | string? |  yes  |  |
- 
-
----
-
-#### [FontsSchemaItemsFiles](#FontsSchemaItemsFiles)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | bold | string? |  yes  |  |
- | italic | string? |  yes  |  |
- | regular | string? |  yes  |  |
  
 
 ---
@@ -5572,19 +5508,6 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
 ---
 
-#### [PaginationSchema](#PaginationSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | current | number? |  yes  |  |
- | has_next | boolean? |  yes  |  |
- | item_total | number? |  yes  |  |
- | size | number? |  yes  |  |
- | type | string? |  yes  |  |
- 
-
----
-
 #### [Preset](#Preset)
 
  | Properties | Type | Nullable | Description |
@@ -5604,15 +5527,6 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
 
 ---
 
-#### [Sections](#Sections)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | attributes | string? |  yes  |  |
- 
-
----
-
 #### [SemiBold](#SemiBold)
 
  | Properties | Type | Nullable | Description |
@@ -5628,16 +5542,6 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | link | string? |  yes  |  |
- 
-
----
-
-#### [ThemesListingResponseSchema](#ThemesListingResponseSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[ThemesSchema](#ThemesSchema)]? |  yes  |  |
- | page | [PaginationSchema](#PaginationSchema)? |  yes  |  |
  
 
 ---
@@ -5677,17 +5581,6 @@ Success. Returns a JSON object of the theme. Check the example shown below or re
  | ---------- | ---- | -------- | ----------- |
  | link | string? |  yes  |  |
  | links | [string]? |  yes  |  |
- 
-
----
-
-#### [UpgradableThemeSchema](#UpgradableThemeSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | applied_theme | string? |  yes  |  |
- | parent_theme | string? |  yes  |  |
- | upgrade | boolean? |  yes  |  |
  
 
 ---

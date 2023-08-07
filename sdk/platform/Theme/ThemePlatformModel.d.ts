@@ -14,7 +14,6 @@ declare class ThemeModel {
     static availableSectionSchema(): any;
     static BlitzkriegApiErrorSchema(): any;
     static BlitzkriegInternalServerErrorSchema(): any;
-    static BlitzkriegNotFoundSchema(): any;
     static Blocks(): any;
     static BlocksProps(): any;
     static Bold(): any;
@@ -23,7 +22,6 @@ declare class ThemeModel {
     static Config(): any;
     static ConfigPage(): any;
     static Css(): any;
-    static Custom(): any;
     static Font(): any;
     static FontsSchema(): any;
     static FontsSchemaItems(): any;
@@ -38,7 +36,6 @@ declare class ThemeModel {
     static PaginationSchema(): any;
     static Preset(): any;
     static Regular(): any;
-    static Sections(): any;
     static SemiBold(): any;
     static Src(): any;
     static ThemesListingResponseSchema(): any;

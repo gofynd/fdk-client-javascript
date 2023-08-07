@@ -20,7 +20,7 @@ class FileStorageValidator {
   static copyFiles() {
     return Joi.object({
       sync: Joi.boolean(),
-      body: FileStorageModel.CopyFiles().required(),
+      body: FileStorageModel.BulkRequest().required(),
     }).required();
   }
 

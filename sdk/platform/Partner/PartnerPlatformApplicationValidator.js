@@ -11,14 +11,14 @@ class PartnerValidator {
 
   static getProxyPath() {
     return Joi.object({
-      extensionId: Joi.string().allow(""),
+      extensionId: Joi.string().allow("").required(),
     }).required();
   }
 
   static getProxyPathAttachedPath() {
     return Joi.object({
-      extensionId: Joi.string().allow(""),
-      attachedPath: Joi.string().allow(""),
+      extensionId: Joi.string().allow("").required(),
+      attachedPath: Joi.string().allow("").required(),
     }).required();
   }
 

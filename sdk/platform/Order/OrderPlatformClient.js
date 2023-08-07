@@ -16,7 +16,7 @@ class Order {
    * @param {AttachOrderUser} arg.body
    * @returns {Promise<AttachOrderUserResponse>} - Success response
    * @summary:
-   * @description:
+   * @description: Attach Order User
    */
   async attachOrderUser({ body } = {}) {
     const { error } = OrderValidator.attachOrderUser().validate(
@@ -80,7 +80,7 @@ class Order {
    * @param {OrderStatus} arg.body
    * @returns {Promise<OrderStatusResult>} - Success response
    * @summary:
-   * @description:
+   * @description: Check order status
    */
   async checkOrderStatus({ body } = {}) {
     const { error } = OrderValidator.checkOrderStatus().validate(
@@ -148,7 +148,7 @@ class Order {
    * @param {string} [arg.method] - Provider Method to Call
    * @returns {Promise<Click2CallResponse>} - Success response
    * @summary:
-   * @description:
+   * @description: Click to Call
    */
   async click2Call({
     caller,
@@ -298,7 +298,7 @@ class Order {
    * @param {CreateOrderAPI} arg.body
    * @returns {Promise<CreateOrderResponse>} - Success response
    * @summary:
-   * @description:
+   * @description: Create Order
    */
   async createOrder({ body } = {}) {
     const { error } = OrderValidator.createOrder().validate(
@@ -362,7 +362,7 @@ class Order {
    * @param {DispatchManifest} arg.body
    * @returns {Promise<SuccessResponse>} - Success response
    * @summary:
-   * @description:
+   * @description: Dispatch Manifest
    */
   async dispatchManifest({ body } = {}) {
     const { error } = OrderValidator.dispatchManifest().validate(
@@ -424,7 +424,7 @@ class Order {
    * @param {string} [arg.templateSlug] - Slug name of template to be downloaded
    * @returns {Promise<FileResponse>} - Success response
    * @summary:
-   * @description:
+   * @description: Download bulk actions seller templates.
    */
   async downloadBulkActionTemplate({ templateSlug } = {}) {
     const { error } = OrderValidator.downloadBulkActionTemplate().validate(
@@ -490,7 +490,7 @@ class Order {
    * @param {BulkReportsDownloadRequest} arg.body
    * @returns {Promise<BulkReportsDownloadResponse>} - Success response
    * @summary:
-   * @description:
+   * @description: downloads lanes shipment/orders.
    */
   async downloadLanesReport({ body } = {}) {
     const { error } = OrderValidator.downloadLanesReport().validate(
@@ -554,7 +554,7 @@ class Order {
    * @param {FetchCreditBalanceRequestPayload} arg.body
    * @returns {Promise<FetchCreditBalanceResponsePayload>} - Success response
    * @summary:
-   * @description:
+   * @description: Fetch Credit Balance Detail
    */
   async fetchCreditBalanceDetail({ body } = {}) {
     const { error } = OrderValidator.fetchCreditBalanceDetail().validate(
@@ -620,7 +620,7 @@ class Order {
    * @param {RefundModeConfigRequestPayload} arg.body
    * @returns {Promise<RefundModeConfigResponsePayload>} - Success response
    * @summary:
-   * @description:
+   * @description: Fetch Refund Mode Config
    */
   async fetchRefundModeConfig({ body } = {}) {
     const { error } = OrderValidator.fetchRefundModeConfig().validate(
@@ -686,7 +686,7 @@ class Order {
    * @param {string} [arg.documentType] -
    * @returns {Promise<GeneratePosOrderReceiptResponse>} - Success response
    * @summary:
-   * @description:
+   * @description: Generate POS recipt by order id.
    */
   async generatePOSReceiptByOrderId({
     orderId,
@@ -761,11 +761,82 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
+   * @param {string} arg.orderingChannel - Ordering channel
+   * @param {string} arg.status - Current status of a shipment
+   * @returns {Promise<RoleBaseStateTransitionMapping>} - Success response
+   * @summary: To fetch next state transitions.
+   * @description: This endpoint will fetch next possible states based on logged in user
+   */
+  async getAllowedStateTransition({ orderingChannel, status } = {}) {
+    const { error } = OrderValidator.getAllowedStateTransition().validate(
+      {
+        orderingChannel,
+        status,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = OrderValidator.getAllowedStateTransition().validate(
+      {
+        orderingChannel,
+        status,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getAllowedStateTransition",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+    query_params["ordering_channel"] = orderingChannel;
+    query_params["status"] = status;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/allowed/state/transition`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = OrderModel.RoleBaseStateTransitionMapping().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getAllowedStateTransition",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} [arg.date] - Date On which the announcement is Active
    *   (Date should in ISO Datetime format IST Time)
    * @returns {Promise<AnnouncementsResponse>} - Success response
    * @summary:
-   * @description:
+   * @description: Get Announcements
    */
   async getAnnouncements({ date } = {}) {
     const { error } = OrderValidator.getAnnouncements().validate(
@@ -832,7 +903,7 @@ class Order {
    * @param {string} [arg.channelId] - Id of application
    * @returns {Promise<BagDetailsPlatformResponse>} - Success response
    * @summary:
-   * @description:
+   * @description: Get Order Bag Details.
    */
   async getBagById({ bagId, channelBagId, channelId } = {}) {
     const { error } = OrderValidator.getBagById().validate(
@@ -912,7 +983,7 @@ class Order {
    * @param {number} [arg.pageSize] - Page size of data received per page
    * @returns {Promise<GetBagsPlatformResponse>} - Success response
    * @summary:
-   * @description:
+   * @description: Get Bags for the order
    */
   async getBags({
     bagIds,
@@ -1010,7 +1081,7 @@ class Order {
    * @param {Object} arg - Arg object.
    * @returns {Promise<BulkActionTemplateResponse>} - Success response
    * @summary:
-   * @description:
+   * @description: Get Bulk Action seller templates.
    */
   async getBulkActionTemplate({} = {}) {
     const { error } = OrderValidator.getBulkActionTemplate().validate(
@@ -1081,7 +1152,7 @@ class Order {
    * @param {number} [arg.pageSize] -
    * @returns {Promise<FileResponse>} - Success response
    * @summary:
-   * @description:
+   * @description: Generate Bulk Shipment Excel Report.
    */
   async getBulkShipmentExcelFile({
     salesChannels,
@@ -1265,7 +1336,7 @@ class Order {
    * @param {boolean} [arg.myOrders] -
    * @returns {Promise<LaneConfigResponse>} - Success response
    * @summary:
-   * @description:
+   * @description: Get lane config for the order
    */
   async getLaneConfig({
     superLane,
@@ -1388,7 +1459,7 @@ class Order {
    * @param {string} arg.orderId -
    * @returns {Promise<OrderDetailsResponse>} - Success response
    * @summary:
-   * @description:
+   * @description: Get Order Details by ID
    */
   async getOrderById({ orderId } = {}) {
     const { error } = OrderValidator.getOrderById().validate(
@@ -1475,7 +1546,7 @@ class Order {
    * @param {boolean} [arg.myOrders] -
    * @returns {Promise<OrderListingResponse>} - Success response
    * @summary:
-   * @description:
+   * @description: Get Orders Listing
    */
   async getOrders({
     lane,
@@ -1603,81 +1674,9 @@ class Order {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.orderingChannel - Ordering channel
-   * @param {string} arg.status - Current status of a shipment
-   * @returns {Promise<RoleBaseStateTransitionMapping>} - Success response
-   * @summary: To fetch next state transitions.
-   * @description: This endpoint will fetch next possible states based on logged in user
-   */
-  async getRoleBaseStateTransition({ orderingChannel, status } = {}) {
-    const { error } = OrderValidator.getRoleBaseStateTransition().validate(
-      {
-        orderingChannel,
-        status,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderValidator.getRoleBaseStateTransition().validate(
-      {
-        orderingChannel,
-        status,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message:
-          "Parameter Validation warrnings for getRoleBaseStateTransition",
-      });
-      Logger({ level: "WARN", message: warrning });
-    }
-
-    const query_params = {};
-    query_params["ordering_channel"] = orderingChannel;
-    query_params["status"] = status;
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/role/state/transitions/next`,
-      query_params,
-      undefined,
-      xHeaders
-    );
-
-    const {
-      error: res_error,
-    } = OrderModel.RoleBaseStateTransitionMapping().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: "Response Validation Warnnings for getRoleBaseStateTransition",
-      });
-      Logger({ level: "WARN", message: res_error });
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
    * @returns {Promise<GetActionsResponse>} - Success response
    * @summary:
-   * @description:
+   * @description: Get Role Based Actions
    */
   async getRoleBasedActions({} = {}) {
     const { error } = OrderValidator.getRoleBasedActions().validate(
@@ -1738,7 +1737,7 @@ class Order {
    * @param {string} [arg.shipmentId] - Shipment Id
    * @returns {Promise<ShipmentInfoResponse>} - Success response
    * @summary:
-   * @description:
+   * @description: Get shipment details for the given shipment.
    */
   async getShipmentById({ channelShipmentId, shipmentId } = {}) {
     const { error } = OrderValidator.getShipmentById().validate(
@@ -1807,7 +1806,7 @@ class Order {
    * @param {number} [arg.bagId] - Bag/Product Id
    * @returns {Promise<ShipmentHistoryResponse>} - Success response
    * @summary:
-   * @description:
+   * @description: Get Shipment History
    */
   async getShipmentHistory({ shipmentId, bagId } = {}) {
     const { error } = OrderValidator.getShipmentHistory().validate(
@@ -1949,7 +1948,7 @@ class Order {
    * @param {string} [arg.bagStatus] - Comma separated values of bag statuses
    * @param {boolean} [arg.statusOverrideLane] - Use this flag to fetch by
    *   bag_status and override lane
-   * @param {string} [arg.timeToDispatch] -
+   * @param {number} [arg.timeToDispatch] -
    * @param {string} [arg.searchType] - Search type key
    * @param {string} [arg.searchValue] - Search type value
    * @param {string} [arg.fromDate] - Start Date in DD-MM-YYYY format
@@ -1972,7 +1971,7 @@ class Order {
    * @param {string} [arg.tags] - Comma separated values of tags
    * @returns {Promise<ShipmentInternalPlatformViewResponse>} - Success response
    * @summary:
-   * @description:
+   * @description: Get Shipments Listing for the company id
    */
   async getShipments({
     lane,
@@ -2130,7 +2129,7 @@ class Order {
    * @param {Object} arg - Arg object.
    * @returns {Promise<BagStateTransitionMap>} - Success response
    * @summary:
-   * @description:
+   * @description: Get State Transition Map
    */
   async getStateTransitionMap({} = {}) {
     const { error } = OrderValidator.getStateTransitionMap().validate(
@@ -2191,7 +2190,7 @@ class Order {
    * @param {string} [arg.groupEntity] - Name of group entity
    * @returns {Promise<FiltersResponse>} - Success response
    * @summary:
-   * @description:
+   * @description: Get Listing Filters
    */
   async getfilters({ view, groupEntity } = {}) {
     const { error } = OrderValidator.getfilters().validate(
@@ -2323,7 +2322,7 @@ class Order {
    * @param {PlatformOrderUpdate} arg.body
    * @returns {Promise<ResponseDetail>} - Success response
    * @summary:
-   * @description:
+   * @description: Update Order
    */
   async orderUpdate({ body } = {}) {
     const { error } = OrderValidator.orderUpdate().validate(
@@ -2385,7 +2384,7 @@ class Order {
    * @param {PostShipmentHistory} arg.body
    * @returns {Promise<ShipmentHistoryResponse>} - Success response
    * @summary:
-   * @description:
+   * @description: Post shipment history
    */
   async postShipmentHistory({ body } = {}) {
     const { error } = OrderValidator.postShipmentHistory().validate(
@@ -2449,7 +2448,7 @@ class Order {
    * @param {CreateOrderPayload} arg.body
    * @returns {Promise<CreateOrderResponse>} - Success response
    * @summary:
-   * @description:
+   * @description: Process Manifest
    */
   async processManifest({ body } = {}) {
     const { error } = OrderValidator.processManifest().validate(
@@ -2577,7 +2576,7 @@ class Order {
    * @param {SendSmsPayload} arg.body
    * @returns {Promise<OrderStatusResult>} - Success response
    * @summary:
-   * @description:
+   * @description: Send SMS Ninja Panel
    */
   async sendSmsNinja({ body } = {}) {
     const { error } = OrderValidator.sendSmsNinja().validate(
@@ -2641,7 +2640,7 @@ class Order {
    * @param {SendUserMobileOTP} arg.body
    * @returns {Promise<SendUserMobileOtpResponse>} - Success response
    * @summary:
-   * @description:
+   * @description: Send User Mobile OTP
    */
   async sendUserMobileOTP({ body } = {}) {
     const { error } = OrderValidator.sendUserMobileOTP().validate(
@@ -2716,7 +2715,7 @@ class Order {
    * @param {string} [arg.country] -
    * @returns {Promise<BaseResponse>} - Success response
    * @summary:
-   * @description:
+   * @description: Update Address for the order
    */
   async updateAddress({
     shipmentId,
@@ -2828,7 +2827,7 @@ class Order {
    * @param {UpdatePackagingDimensionsPayload} arg.body
    * @returns {Promise<UpdatePackagingDimensionsResponse>} - Success response
    * @summary:
-   * @description:
+   * @description: Update Packaging Dimensions
    */
   async updatePackagingDimensions({ body } = {}) {
     const { error } = OrderValidator.updatePackagingDimensions().validate(
@@ -3022,7 +3021,7 @@ class Order {
    * @param {UploadConsent} arg.body
    * @returns {Promise<SuccessResponse>} - Success response
    * @summary:
-   * @description:
+   * @description: Upload Consent
    */
   async uploadConsent({ body } = {}) {
     const { error } = OrderValidator.uploadConsent().validate(
@@ -3084,7 +3083,7 @@ class Order {
    * @param {VerifyMobileOTP} arg.body
    * @returns {Promise<VerifyOtpResponse>} - Success response
    * @summary:
-   * @description:
+   * @description: Verify Mobile OTP
    */
   async verifyMobileOTP({ body } = {}) {
     const { error } = OrderValidator.verifyMobileOTP().validate(

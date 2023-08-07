@@ -1,9 +1,6 @@
 import { ApplicationConfig } from "./sdk/application";
 import { ApplicationClient } from "./sdk/application";
 import { ApplicationModel } from "./sdk/application";
-import { InternalConfig } from "./sdk/internal";
-import { InternalClient } from "./sdk/internal";
-import { InternalModel } from "./sdk/internal";
 import { PanelConfig } from "./sdk/panel";
 import { PanelClient } from "./sdk/panel";
 import { PanelModel } from "./sdk/panel";
@@ -22,4 +19,4 @@ import { WebhookModel } from "./sdk/webhook";
 import { fdkAxios } from "./sdk/common/AxiosHelper";
 import Utility = require("./sdk/common/Utility");
 import Constant = require("./sdk/common/Constant");
-export { ApplicationConfig, ApplicationClient, ApplicationModel, InternalConfig, InternalClient, InternalModel, PanelConfig, PanelClient, PanelModel, PartnerConfig, PartnerClient, PartnerModel, PlatformConfig, PlatformClient, PlatformModel, PublicConfig, PublicClient, PublicModel, WebhookConfig, WebhookClient, WebhookModel, fdkAxios as FdkAxios, Utility, Constant };
+export { ApplicationConfig, ApplicationClient, ApplicationModel, PanelConfig, PanelClient, PanelModel, PartnerConfig, PartnerClient, PartnerModel, PlatformConfig, PlatformClient, PlatformModel, PublicConfig, PublicClient, PublicModel, WebhookConfig, WebhookClient, WebhookModel, fdkAxios as FdkAxios, Utility, Constant };

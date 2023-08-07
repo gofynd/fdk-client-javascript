@@ -74,6 +74,13 @@ class OrderValidator {
     }).required();
   }
 
+  static getAllowedStateTransition() {
+    return Joi.object({
+      orderingChannel: Joi.string().allow("").required(),
+      status: Joi.string().allow("").required(),
+    }).required();
+  }
+
   static getAnnouncements() {
     return Joi.object({
       date: Joi.string().allow(""),
@@ -175,13 +182,6 @@ class OrderValidator {
     }).required();
   }
 
-  static getRoleBaseStateTransition() {
-    return Joi.object({
-      orderingChannel: Joi.string().allow("").required(),
-      status: Joi.string().allow("").required(),
-    }).required();
-  }
-
   static getRoleBasedActions() {
     return Joi.object({}).required();
   }
@@ -213,7 +213,7 @@ class OrderValidator {
       lane: Joi.string().allow(""),
       bagStatus: Joi.string().allow(""),
       statusOverrideLane: Joi.boolean(),
-      timeToDispatch: Joi.string().allow(""),
+      timeToDispatch: Joi.number(),
       searchType: Joi.string().allow(""),
       searchValue: Joi.string().allow(""),
       fromDate: Joi.string().allow(""),

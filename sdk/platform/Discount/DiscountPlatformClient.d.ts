@@ -83,6 +83,30 @@ declare class Discount {
     }): Promise<ListOrCalender>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} [arg.view] - Listing or calender. Default is listing.
+     * @param {string} [arg.q] - The search query. This can be a partial or
+     *   complete name of a discount.
+     * @param {number} [arg.pageSize] - Page size. Default is 12.
+     * @param {boolean} [arg.archived] - Archived. Default is false.
+     * @param {number} [arg.month] - Month. Default is current month.
+     * @param {number} [arg.year] - Year. Default is current year.
+     * @param {string} [arg.type] - Basic or custom.
+     * @param {string[]} [arg.appIds] - Application ids.
+     * @summary: Fetch discount list.
+     * @description: Fetch discount list.
+     */
+    getDiscountsPaginator({ view, q, pageSize, archived, month, year, type, appIds, }?: {
+        view?: string;
+        q?: string;
+        pageSize?: number;
+        archived?: boolean;
+        month?: number;
+        year?: number;
+        type?: string;
+        appIds?: string[];
+    }): Paginator;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} arg.id - Id
      * @returns {Promise<FileJobResponse>} - Success response
      * @summary: Download File Job.
@@ -138,3 +162,4 @@ declare class Discount {
         body: FileJobRequest;
     }): Promise<FileJobResponse>;
 }
+import Paginator = require("../../common/Paginator");

@@ -212,7 +212,7 @@ class PaymentModel {
   }
   static ErrorResponse() {
     return Joi.object({
-      error: PaymentModel.ErrorDescription(),
+      error: Joi.any().allow(null),
       message: Joi.string().allow("").required(),
       status_code: Joi.number().required(),
       success: Joi.boolean().required(),
@@ -271,7 +271,7 @@ class PaymentModel {
     return Joi.object({
       code: Joi.string().allow("").allow(null),
       display_name: Joi.string().allow("").allow(null),
-      logos: PaymentModel.PaymentModeLogo(),
+      logos: Joi.any().allow(null),
       package_name: Joi.string().allow("").allow(null),
     });
   }
@@ -506,7 +506,7 @@ class PaymentModel {
       ),
       intent_app_error_list: Joi.array().items(Joi.string().allow("")),
       intent_flow: Joi.boolean().allow(null),
-      logo_url: PaymentModel.PaymentModeLogo(),
+      logo_url: Joi.any().allow(null),
       merchant_code: Joi.string().allow("").allow(null),
       name: Joi.string().allow("").allow(null),
       nickname: Joi.string().allow("").allow(null),

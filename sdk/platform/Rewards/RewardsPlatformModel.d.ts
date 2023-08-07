@@ -6,7 +6,6 @@ declare class RewardsModel {
     static ConfigurationRes(): any;
     static E(): any;
     static Giveaway(): any;
-    static GiveawayAudience(): any;
     static GiveawayResponse(): any;
     static HistoryRes(): any;
     static Offer(): any;

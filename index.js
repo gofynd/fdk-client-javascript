@@ -1,7 +1,6 @@
 
 
 const { ApplicationConfig, ApplicationClient, ApplicationModel } = require('./sdk/application'); 
-const { InternalConfig, InternalClient, InternalModel } = require('./sdk/internal'); 
 const { PanelConfig, PanelClient, PanelModel } = require('./sdk/panel'); 
 const { PartnerConfig, PartnerClient, PartnerModel } = require('./sdk/partner'); 
 const { PlatformConfig, PlatformClient, PlatformModel } = require('./sdk/platform'); 
@@ -19,12 +18,6 @@ module.exports = {
     ApplicationConfig,
     ApplicationClient,
     ApplicationModel,
-    
-    
-    
-    InternalConfig,
-    InternalClient,
-    InternalModel,
     
     
     

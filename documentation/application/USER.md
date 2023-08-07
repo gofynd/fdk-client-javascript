@@ -900,8 +900,8 @@ Success. Returns a JSON object containing the all the platform configurations. R
 ```json
 {
   "active": true,
-  "mobile_image": null,
-  "desktop_image": null,
+  "mobile_image": "",
+  "desktop_image": "",
   "social": {
     "facebook": true,
     "google": true,
@@ -3109,24 +3109,6 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
 ---
 
-#### [ArchiveUserRequestSchema](#ArchiveUserRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | user_id | string? |  yes  |  |
- 
-
----
-
-#### [ArchiveUserSuccess](#ArchiveUserSuccess)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean? |  yes  |  |
- 
-
----
-
 #### [AuthenticationApiErrorSchema](#AuthenticationApiErrorSchema)
 
  | Properties | Type | Nullable | Description |
@@ -3156,134 +3138,11 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
 ---
 
-#### [AuthSuccessUser](#AuthSuccessUser)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | active | boolean? |  yes  |  |
- | debug | [AuthSuccessUserDebug](#AuthSuccessUserDebug)? |  yes  |  |
- | emails | [AuthSuccessUserEmails](#AuthSuccessUserEmails)? |  yes  |  |
- | first_name | string? |  yes  |  |
- | last_name | string? |  yes  |  |
- 
-
----
-
-#### [AuthSuccessUserDebug](#AuthSuccessUserDebug)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | platform | string? |  yes  |  |
- 
-
----
-
-#### [AuthSuccessUserEmails](#AuthSuccessUserEmails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | active | boolean? |  yes  |  |
- | email | string? |  yes  |  |
- | primary | boolean? |  yes  |  |
- | verified | boolean? |  yes  |  |
- 
-
----
-
-#### [BlockUserRequestSchema](#BlockUserRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | reason | string? |  yes  |  |
- | status | boolean? |  yes  |  |
- | user_id | [string]? |  yes  |  |
- 
-
----
-
-#### [BlockUserSuccess](#BlockUserSuccess)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean? |  yes  |  |
- 
-
----
-
 #### [CodeRequestBodySchema](#CodeRequestBodySchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | code | string? |  yes  |  |
- 
-
----
-
-#### [CreateUserGroupSchema](#CreateUserGroupSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | description | string |  no  |  |
- | file_url | string |  no  |  |
- | name | string |  no  |  |
- 
-
----
-
-#### [CreateUserRequestSchema](#CreateUserRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | email | string? |  yes  |  |
- | first_name | string? |  yes  |  |
- | gender | string? |  yes  |  |
- | last_name | string? |  yes  |  |
- | meta | string? |  yes  |  |
- | phone_number | string |  no  |  |
- | username | string |  no  |  |
- 
-
----
-
-#### [CreateUserResponseSchema](#CreateUserResponseSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | user | [UserSchema](#UserSchema)? |  yes  |  |
- 
-
----
-
-#### [CreateUserSessionRequestSchema](#CreateUserSessionRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | domain | string? |  yes  |  |
- | max_age | number? |  yes  |  |
- | user_id | string? |  yes  |  |
- 
-
----
-
-#### [CreateUserSessionResponseSchema](#CreateUserSessionResponseSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | cookie | string? |  yes  |  |
- | domain | string? |  yes  |  |
- | http_only | boolean? |  yes  |  |
- | max_age | number? |  yes  |  |
- | secure | boolean? |  yes  |  |
- 
-
----
-
-#### [CustomerListResponseSchema](#CustomerListResponseSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[UserSchema](#UserSchema)]? |  yes  |  |
- | page | [PaginationSchema](#PaginationSchema)? |  yes  |  |
  
 
 ---
@@ -3521,15 +3380,6 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
 ---
 
-#### [NotFoundSchema](#NotFoundSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
- 
-
----
-
 #### [OAuthRequestAppleSchema](#OAuthRequestAppleSchema)
 
  | Properties | Type | Nullable | Description |
@@ -3609,19 +3459,6 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
  | resend_timer | number? |  yes  |  |
  | resend_token | string? |  yes  |  |
  | success | boolean? |  yes  |  |
- 
-
----
-
-#### [PaginationSchema](#PaginationSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | current | number? |  yes  |  |
- | has_next | boolean? |  yes  |  |
- | item_total | number? |  yes  |  |
- | size | number? |  yes  |  |
- | type | string? |  yes  |  |
  
 
 ---
@@ -3718,21 +3555,6 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
  | resend_token | string? |  yes  |  |
  | success | boolean? |  yes  |  |
  | user | [UserSchema](#UserSchema)? |  yes  |  |
- | user_exists | boolean? |  yes  |  |
- | verify_email_link | boolean? |  yes  |  |
- | verify_email_otp | boolean? |  yes  |  |
- | verify_mobile_otp | boolean? |  yes  |  |
- 
-
----
-
-#### [ProfileEditSuccessSchema](#ProfileEditSuccessSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | email | string? |  yes  |  |
- | register_token | string? |  yes  |  |
- | user | string? |  yes  |  |
  | user_exists | boolean? |  yes  |  |
  | verify_email_link | boolean? |  yes  |  |
  | verify_email_otp | boolean? |  yes  |  |
@@ -3924,15 +3746,6 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
 ---
 
-#### [SessionDeleteResponseSchema](#SessionDeleteResponseSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [string]? |  yes  |  |
- 
-
----
-
 #### [SessionExpiry](#SessionExpiry)
 
  | Properties | Type | Nullable | Description |
@@ -3940,28 +3753,6 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
  | duration | number? |  yes  |  |
  | is_rolling | boolean? |  yes  |  |
  | type | string? |  yes  |  |
- 
-
----
-
-#### [SessionListResponseInfo](#SessionListResponseInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | domain | string? |  yes  |  |
- | expire_in | string? |  yes  |  |
- | ip | string? |  yes  |  |
- | session_id | string? |  yes  |  |
- | user_agent | string? |  yes  |  |
- 
-
----
-
-#### [SessionListResponseSchema](#SessionListResponseSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[SessionListResponseInfo](#SessionListResponseInfo)]? |  yes  |  |
  
 
 ---
@@ -4007,44 +3798,6 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
 ---
 
-#### [UnauthenticatedSchema](#UnauthenticatedSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | authenticated | boolean? |  yes  |  |
- 
-
----
-
-#### [UnauthorizedSchema](#UnauthorizedSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
- 
-
----
-
-#### [UnDeleteUserRequestSchema](#UnDeleteUserRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | reason | string? |  yes  |  |
- | reason_id | string? |  yes  |  |
- | user_id | string? |  yes  |  |
- 
-
----
-
-#### [UnDeleteUserSuccess](#UnDeleteUserSuccess)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean? |  yes  |  |
- 
-
----
-
 #### [UpdatePasswordRequestSchema](#UpdatePasswordRequestSchema)
 
  | Properties | Type | Nullable | Description |
@@ -4055,90 +3808,11 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
 ---
 
-#### [UpdateUserGroupSchema](#UpdateUserGroupSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | description | string? |  yes  |  |
- | file_url | string? |  yes  |  |
- | name | string? |  yes  |  |
- 
-
----
-
-#### [UpdateUserRequestSchema](#UpdateUserRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | emails | [[UserEmails](#UserEmails)]? |  yes  |  |
- | external_id | string? |  yes  |  |
- | first_name | string? |  yes  |  |
- | gender | string? |  yes  |  |
- | last_name | string? |  yes  |  |
- | meta | string? |  yes  |  |
- | phone_numbers | [[UserPhoneNumbers](#UserPhoneNumbers)]? |  yes  |  |
- 
-
----
-
-#### [UserEmails](#UserEmails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | active | boolean? |  yes  |  |
- | email | string? |  yes  |  |
- | primary | boolean? |  yes  |  |
- | verified | boolean? |  yes  |  |
- 
-
----
-
-#### [UserGroupListResponseSchema](#UserGroupListResponseSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[UserGroupResponseSchema](#UserGroupResponseSchema)]? |  yes  |  |
- | page | [PaginationSchema](#PaginationSchema)? |  yes  |  |
- 
-
----
-
-#### [UserGroupResponseSchema](#UserGroupResponseSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | __v | number? |  yes  |  |
- | _id | string? |  yes  |  |
- | application_id | string? |  yes  |  |
- | created_at | string? |  yes  |  |
- | description | string? |  yes  |  |
- | file_url | string? |  yes  |  |
- | modified_at | string? |  yes  |  |
- | name | string? |  yes  |  |
- | status | string? |  yes  |  |
- | uid | number? |  yes  |  |
- 
-
----
-
 #### [UserObjectSchema](#UserObjectSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | user | [UserSchema](#UserSchema)? |  yes  |  |
- 
-
----
-
-#### [UserPhoneNumbers](#UserPhoneNumbers)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | active | boolean? |  yes  |  |
- | country_code | string? |  yes  |  |
- | phone | string? |  yes  |  |
- | primary | boolean? |  yes  |  |
- | verified | boolean? |  yes  |  |
  
 
 ---
@@ -4163,15 +3837,6 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
  | updated_at | string? |  yes  |  |
  | user_id | string? |  yes  |  |
  | username | string? |  yes  |  |
- 
-
----
-
-#### [UserSearchResponseSchema](#UserSearchResponseSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | users | [[UserSchema](#UserSchema)]? |  yes  |  |
  
 
 ---
