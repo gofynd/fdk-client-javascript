@@ -18,25 +18,25 @@ declare class Partner {
     }): Promise<AddProxyResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.extensionId] - Extension id
+     * @param {string} arg.extensionId - Extension id
      * @returns {Promise<getProxyPathRes>} - Success response
      * @summary: Proxy
      * @description: Use this API to get proxy url
      */
     getProxyPath({ extensionId }?: {
-        extensionId?: string;
+        extensionId: string;
     }): Promise<getProxyPathRes>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.extensionId] - Extension id
-     * @param {string} [arg.attachedPath] - Application id
+     * @param {string} arg.extensionId - Extension id
+     * @param {string} arg.attachedPath - Application id
      * @returns {Promise<AddProxyResponse>} - Success response
      * @summary: Proxy
      * @description: Use this API to get proxy url
      */
     getProxyPathAttachedPath({ extensionId, attachedPath }?: {
-        extensionId?: string;
-        attachedPath?: string;
+        extensionId: string;
+        attachedPath: string;
     }): Promise<AddProxyResponse>;
     /**
      * @param {Object} arg - Arg object.

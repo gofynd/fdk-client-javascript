@@ -8,8 +8,6 @@ declare class CommunicationModel {
     static CommunicationConsentChannelsWhatsapp(): any;
     static CommunicationConsentReq(): any;
     static CommunicationConsentRes(): any;
-    static NotFound(): any;
-    static Page(): any;
     static PushtokenReq(): any;
     static PushtokenRes(): any;
 }

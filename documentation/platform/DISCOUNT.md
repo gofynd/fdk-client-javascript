@@ -714,6 +714,7 @@ Success
  | brand_ids | [number]? |  yes  |  |
  | company_id | number |  no  |  |
  | discount_level | string |  no  |  |
+ | discount_meta | [DiscountMeta](#DiscountMeta)? |  yes  |  |
  | discount_type | string |  no  |  |
  | extension_ids | [string] |  no  |  |
  | file_path | string? |  yes  |  |
@@ -732,6 +733,7 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | brand_uid | number? |  yes  |  |
+ | discount_meta | [DiscountMeta](#DiscountMeta)? |  yes  |  |
  | discount_type | string |  no  |  |
  | item_code | string? |  yes  |  |
  | seller_identifier | string? |  yes  |  |
@@ -751,6 +753,7 @@ Success
  | created_by | [UserDetails](#UserDetails) |  no  |  |
  | created_on | string |  no  |  |
  | discount_level | string? |  yes  |  |
+ | discount_meta | [DiscountMeta](#DiscountMeta)? |  yes  |  |
  | discount_type | string? |  yes  |  |
  | file_path | string? |  yes  |  |
  | is_active | boolean |  no  |  |
@@ -762,6 +765,17 @@ Success
  | store_ids | [number]? |  yes  |  |
  | validity | [ValidityObject](#ValidityObject) |  no  |  |
  | value | number? |  yes  |  |
+ 
+
+---
+
+#### [DiscountMeta](#DiscountMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | hours | number? |  yes  | The time in hours before the discount ends when the countdown timer should start. |
+ | minutes | number? |  yes  | The time in minutes before the discount ends when the countdown timer should start. |
+ | timer | boolean |  no  | Determines whether the discount countdown is visible or not. |
  
 
 ---
@@ -799,6 +813,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | _id | string |  no  | A unique identifier to distinguish and identify a job. |
  | body | string? |  yes  |  |
  | company_id | number |  no  |  |
  | failed | number |  no  |  |

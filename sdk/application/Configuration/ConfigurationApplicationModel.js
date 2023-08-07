@@ -32,11 +32,6 @@ class ConfigurationModel {
       updated_at: Joi.string().allow(""),
     });
   }
-  static AppFeatureRequest() {
-    return Joi.object({
-      feature: ConfigurationModel.AppFeature(),
-    });
-  }
   static AppFeatureResponse() {
     return Joi.object({
       feature: ConfigurationModel.AppFeature(),
@@ -148,15 +143,6 @@ class ConfigurationModel {
       type: Joi.string().allow(""),
     });
   }
-  static ApplicationVersionRequest() {
-    return Joi.object({
-      id: Joi.string().allow(""),
-      name: Joi.string().allow("").required(),
-      namespace: Joi.string().allow(""),
-      token: Joi.string().allow(""),
-      version: Joi.string().allow("").required(),
-    });
-  }
   static ApplicationWebsite() {
     return Joi.object({
       basepath: Joi.string().allow(""),
@@ -196,19 +182,6 @@ class ConfigurationModel {
       created_at: Joi.string().allow(""),
       tokens: ConfigurationModel.Tokens(),
       updated_at: Joi.string().allow(""),
-    });
-  }
-  static AppVersionRequest() {
-    return Joi.object({
-      application: ConfigurationModel.ApplicationVersionRequest().required(),
-      device: ConfigurationModel.Device().required(),
-      locale: Joi.string().allow(""),
-      timezone: Joi.string().allow(""),
-    });
-  }
-  static ArticleAssignmentRule() {
-    return Joi.object({
-      store_priority: ConfigurationModel.StorePriorityRule(),
     });
   }
   static BlogLink() {
@@ -337,13 +310,6 @@ class ConfigurationModel {
       type: Joi.string().allow(""),
     });
   }
-  static Device() {
-    return Joi.object({
-      build: Joi.number(),
-      model: Joi.string().allow(""),
-      os: ConfigurationModel.OS().required(),
-    });
-  }
   static Domain() {
     return Joi.object({
       _id: Joi.string().allow(""),
@@ -456,36 +422,6 @@ class ConfigurationModel {
       icon: Joi.string().allow(""),
       link: Joi.string().allow(""),
       title: Joi.string().allow(""),
-    });
-  }
-  static InvalidPayloadRequest() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-    });
-  }
-  static InventoryArticleAssignment() {
-    return Joi.object({
-      post_order_reassignment: Joi.boolean(),
-      rules: ConfigurationModel.ArticleAssignmentRule(),
-    });
-  }
-  static InventoryBrandRule() {
-    return Joi.object({
-      brands: Joi.array().items(Joi.number()),
-      criteria: Joi.string().allow(""),
-    });
-  }
-  static InventoryPaymentConfig() {
-    return Joi.object({
-      mode_of_payment: Joi.string().allow(""),
-      source: Joi.string().allow(""),
-    });
-  }
-  static InventoryStoreRule() {
-    return Joi.object({
-      criteria: Joi.string().allow(""),
-      rules: Joi.array().items(ConfigurationModel.StoreCriteriaRule()),
-      stores: Joi.array().items(Joi.number()),
     });
   }
   static Ios() {
@@ -602,18 +538,6 @@ class ConfigurationModel {
       ordering_store: ConfigurationModel.OrderingStoreSelect().required(),
     });
   }
-  static OrderingStoresResponse() {
-    return Joi.object({
-      items: Joi.array().items(ConfigurationModel.OrderingStore()),
-      page: ConfigurationModel.Page(),
-    });
-  }
-  static OS() {
-    return Joi.object({
-      name: Joi.string().allow("").required(),
-      version: Joi.string().allow(""),
-    });
-  }
   static OwnerInfo() {
     return Joi.object({
       _id: Joi.string().allow(""),
@@ -718,22 +642,10 @@ class ConfigurationModel {
       youtube: ConfigurationModel.YoutubeLink(),
     });
   }
-  static StoreCriteriaRule() {
-    return Joi.object({
-      brands: Joi.array().items(Joi.number()),
-      companies: Joi.array().items(Joi.number()),
-    });
-  }
   static StoreLatLong() {
     return Joi.object({
       coordinates: Joi.array().items(Joi.number()),
       type: Joi.string().allow(""),
-    });
-  }
-  static StorePriorityRule() {
-    return Joi.object({
-      enabled: Joi.boolean(),
-      storetype_order: Joi.array().items(Joi.string().allow("")),
     });
   }
   static SuccessMessageResponse() {
@@ -769,12 +681,6 @@ class ConfigurationModel {
   static UnhandledError() {
     return Joi.object({
       message: Joi.string().allow(""),
-    });
-  }
-  static UpdateDialog() {
-    return Joi.object({
-      interval: Joi.number(),
-      type: Joi.string().allow(""),
     });
   }
   static UserEmail() {

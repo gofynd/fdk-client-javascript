@@ -1,6 +1,7 @@
 export = PaymentModel;
 declare class PaymentModel {
     static AddBeneficiaryDetailsOTPRequest(): any;
+    static AddressDetail(): any;
     static BankDetailsForOTP(): any;
     static CancelOrResendPaymentLinkRequest(): any;
     static CancelPaymentLinkResponse(): any;
@@ -37,11 +38,13 @@ declare class PaymentModel {
     static LinkStatus(): any;
     static MerchantOnBoardingRequest(): any;
     static MerchantOnBoardingResponse(): any;
+    static MerchnatPaymentModeResponse(): any;
     static MultiTenderPaymentMeta(): any;
     static MultiTenderPaymentMethod(): any;
     static NotFoundResourceError(): any;
     static OrderBeneficiaryDetails(): any;
     static OrderBeneficiaryResponse(): any;
+    static OrderDetail(): any;
     static Page(): any;
     static PaymentCode(): any;
     static PaymentConfirmationRequest(): any;
@@ -57,6 +60,9 @@ declare class PaymentModel {
     static PaymentObjectListSerializer(): any;
     static PaymentOptions(): any;
     static PaymentOptionsResponse(): any;
+    static PaymentSessionDetail(): any;
+    static PaymentSessionRequestSerializer(): any;
+    static PaymentSessionResponseSerializer(): any;
     static PaymentStatusBulkHandlerRequest(): any;
     static PaymentStatusBulkHandlerResponse(): any;
     static PaymentStatusObject(): any;
@@ -72,6 +78,9 @@ declare class PaymentModel {
     static PayoutsResponse(): any;
     static PollingPaymentLinkResponse(): any;
     static RefundAccountResponse(): any;
+    static RefundSessionDetail(): any;
+    static RefundSessionRequestSerializer(): any;
+    static RefundSessionResponseSerializer(): any;
     static RepaymentDetailsSerialiserPayAll(): any;
     static RepaymentRequestDetails(): any;
     static RepaymentResponse(): any;

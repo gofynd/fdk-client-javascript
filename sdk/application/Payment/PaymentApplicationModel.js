@@ -307,13 +307,19 @@ class PaymentModel {
   }
   static CreditSummary() {
     return Joi.object({
+      activation_url: Joi.string().allow("").allow(null),
       amount_available: PaymentModel.BalanceDetails(),
       balance: PaymentModel.BalanceDetails(),
       buyer_status: Joi.string().allow("").allow(null),
       credit_line_id: Joi.string().allow("").allow(null),
+      due_amount: PaymentModel.BalanceDetails(),
+      is_eligible_for_txn: Joi.boolean().allow(null),
+      limit: PaymentModel.BalanceDetails(),
       merchant_customer_ref_id: Joi.string().allow("").allow(null),
+      repayment_url: Joi.string().allow("").allow(null),
       status: Joi.string().allow("").allow(null),
       status_message: Joi.string().allow("").allow(null),
+      total_due_amount: PaymentModel.BalanceDetails(),
     });
   }
   static CustomerCreditSummaryResponse() {
@@ -401,7 +407,7 @@ class PaymentModel {
   }
   static ErrorResponse() {
     return Joi.object({
-      error: PaymentModel.ErrorDescription(),
+      error: Joi.any().allow(null),
       message: Joi.string().allow("").required(),
       status_code: Joi.number().required(),
       success: Joi.boolean().required(),
@@ -422,7 +428,7 @@ class PaymentModel {
   }
   static HttpErrorCodeAndResponse() {
     return Joi.object({
-      error: PaymentModel.ErrorCodeAndDescription().required(),
+      error: PaymentModel.ErrorCodeAndDescription(),
       success: Joi.boolean().required(),
     });
   }
@@ -437,7 +443,7 @@ class PaymentModel {
     return Joi.object({
       code: Joi.string().allow("").allow(null),
       display_name: Joi.string().allow("").allow(null),
-      logos: PaymentModel.PaymentModeLogo(),
+      logos: Joi.any().allow(null),
       package_name: Joi.string().allow("").allow(null),
     });
   }
@@ -487,9 +493,13 @@ class PaymentModel {
   }
   static OnboardSummary() {
     return Joi.object({
+      activation_url: Joi.string().allow(""),
+      is_eligible_for_txn: Joi.boolean(),
+      merchant_customer_ref_id: Joi.string().allow(""),
       redirect_url: Joi.string().allow("").required(),
       session: Joi.any().required(),
       status: Joi.boolean().required(),
+      status_remark: Joi.string().allow(""),
     });
   }
   static OrderBeneficiaryDetails() {
@@ -539,20 +549,20 @@ class PaymentModel {
   }
   static PaymentFlow() {
     return Joi.object({
-      ajiodhan: PaymentModel.AggregatorRoute(),
-      bqr_razorpay: PaymentModel.AggregatorRoute(),
-      ccavenue: PaymentModel.AggregatorRoute(),
-      epaylater: PaymentModel.AggregatorRoute(),
-      fynd: PaymentModel.AggregatorRoute(),
-      jiopay: PaymentModel.AggregatorRoute(),
-      juspay: PaymentModel.AggregatorRoute(),
-      mswipe: PaymentModel.AggregatorRoute(),
-      payubiz: PaymentModel.AggregatorRoute(),
-      razorpay: PaymentModel.AggregatorRoute(),
-      rupifi: PaymentModel.AggregatorRoute(),
-      simpl: PaymentModel.AggregatorRoute(),
-      stripe: PaymentModel.AggregatorRoute(),
-      upi_razorpay: PaymentModel.AggregatorRoute(),
+      ajiodhan: Joi.any().allow(null),
+      bqr_razorpay: Joi.any().allow(null),
+      ccavenue: Joi.any().allow(null),
+      epaylater: Joi.any().allow(null),
+      fynd: Joi.any().allow(null),
+      jiopay: Joi.any().allow(null),
+      juspay: Joi.any().allow(null),
+      mswipe: Joi.any().allow(null),
+      payubiz: Joi.any().allow(null),
+      razorpay: Joi.any().allow(null),
+      rupifi: Joi.any().allow(null),
+      simpl: Joi.any().allow(null),
+      stripe: Joi.any().allow(null),
+      upi_razorpay: Joi.any().allow(null),
     });
   }
   static PaymentInitializationRequest() {
@@ -630,7 +640,7 @@ class PaymentModel {
       ),
       intent_app_error_list: Joi.array().items(Joi.string().allow("")),
       intent_flow: Joi.boolean().allow(null),
-      logo_url: PaymentModel.PaymentModeLogo(),
+      logo_url: Joi.any().allow(null),
       merchant_code: Joi.string().allow("").allow(null),
       name: Joi.string().allow("").allow(null),
       nickname: Joi.string().allow("").allow(null),

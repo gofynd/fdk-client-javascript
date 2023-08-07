@@ -2,6 +2,8 @@ export = FileStorageModel;
 declare class FileStorageModel {
     static BrowseResponse(): any;
     static BulkRequest(): any;
+    static BulkUploadFailFileResponseItems(): any;
+    static BulkUploadFailResponse(): any;
     static BulkUploadResponse(): any;
     static CDN(): any;
     static CompleteResponse(): any;
@@ -9,13 +11,15 @@ declare class FileStorageModel {
     static DbRecord(): any;
     static Destination(): any;
     static FailedResponse(): any;
+    static File(): any;
+    static FileSrc(): any;
     static Opts(): any;
     static Page(): any;
-    static ReqConfiguration(): any;
     static SignUrlRequest(): any;
     static SignUrlResponse(): any;
     static StartRequest(): any;
     static StartResponse(): any;
+    static Status(): any;
     static Upload(): any;
     static Urls(): any;
 }

@@ -23,6 +23,7 @@ class DiscountModel {
       brand_ids: Joi.array().items(Joi.number()),
       company_id: Joi.number().required(),
       discount_level: Joi.string().allow("").required(),
+      discount_meta: DiscountModel.DiscountMeta(),
       discount_type: Joi.string().allow("").required(),
       extension_ids: Joi.array().items(Joi.string().allow("")).required(),
       file_path: Joi.string().allow(""),
@@ -37,6 +38,7 @@ class DiscountModel {
   static DiscountItems() {
     return Joi.object({
       brand_uid: Joi.number(),
+      discount_meta: DiscountModel.DiscountMeta(),
       discount_type: Joi.string().allow("").required(),
       item_code: Joi.string().allow(""),
       seller_identifier: Joi.string().allow(""),
@@ -52,6 +54,7 @@ class DiscountModel {
       created_by: DiscountModel.UserDetails().required(),
       created_on: Joi.string().allow("").required(),
       discount_level: Joi.string().allow(""),
+      discount_meta: DiscountModel.DiscountMeta(),
       discount_type: Joi.string().allow(""),
       file_path: Joi.string().allow(""),
       is_active: Joi.boolean().required(),
@@ -63,6 +66,13 @@ class DiscountModel {
       store_ids: Joi.array().items(Joi.number()),
       validity: DiscountModel.ValidityObject().required(),
       value: Joi.number(),
+    });
+  }
+  static DiscountMeta() {
+    return Joi.object({
+      hours: Joi.number(),
+      minutes: Joi.number(),
+      timer: Joi.boolean().required(),
     });
   }
   static DownloadFileJob() {
@@ -88,6 +98,7 @@ class DiscountModel {
   }
   static FileJobResponse() {
     return Joi.object({
+      _id: Joi.string().allow("").required(),
       body: Joi.any(),
       company_id: Joi.number().required(),
       failed: Joi.number().required(),

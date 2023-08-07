@@ -55,7 +55,15 @@ class CommonModel {
   }
   static ApplicationResponse() {
     return Joi.object({
+      _id: Joi.string().allow(""),
       application: CommonModel.Application(),
+      code: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
+      decimal_digits: Joi.number(),
+      is_active: Joi.boolean(),
+      name: Joi.string().allow(""),
+      symbol: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
     });
   }
   static ApplicationWebsite() {
@@ -67,18 +75,6 @@ class CommonModel {
   static BadRequest() {
     return Joi.object({
       message: Joi.string().allow(""),
-    });
-  }
-  static Currency() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-      code: Joi.string().allow(""),
-      created_at: Joi.string().allow(""),
-      decimal_digits: Joi.number(),
-      is_active: Joi.boolean(),
-      name: Joi.string().allow(""),
-      symbol: Joi.string().allow(""),
-      updated_at: Joi.string().allow(""),
     });
   }
   static Domain() {
@@ -127,23 +123,12 @@ class CommonModel {
   }
   static Locations() {
     return Joi.object({
-      items: Joi.array().items(Joi.any()),
+      items: CommonModel.LocationCountry(),
     });
   }
   static NotFound() {
     return Joi.object({
       message: Joi.string().allow(""),
-    });
-  }
-  static Page() {
-    return Joi.object({
-      current: Joi.number(),
-      has_next: Joi.boolean(),
-      has_previous: Joi.boolean(),
-      item_total: Joi.number(),
-      next_id: Joi.string().allow(""),
-      size: Joi.number(),
-      type: Joi.string().allow("").required(),
     });
   }
   static SecureUrl() {

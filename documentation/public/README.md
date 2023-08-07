@@ -4,5 +4,6 @@
 
 
 * [Configuration](CONFIGURATION.md) - Application configuration apis 
-* [Inventory](INVENTORY.md) -  
+* [Inventory](INVENTORY.md) - Inventory Swoop API's 
+* [Partner](PARTNER.md) - Partner configuration apis 
 * [Webhook](WEBHOOK.md) - Webhook dispatcher with retry and one event to many subscriber vice versa 

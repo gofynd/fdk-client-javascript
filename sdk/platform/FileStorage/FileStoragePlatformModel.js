@@ -9,9 +9,24 @@ class FileStorageModel {
   }
   static BulkRequest() {
     return Joi.object({
-      configuration: FileStorageModel.ReqConfiguration(),
       destination: FileStorageModel.Destination().required(),
       urls: Joi.array().items(Joi.string().allow("")).required(),
+    });
+  }
+  static BulkUploadFailFileResponseItems() {
+    return Joi.object({
+      error: Joi.string().allow(""),
+      file: FileStorageModel.File(),
+      stage: Joi.string().allow(""),
+      success: Joi.boolean().required(),
+    });
+  }
+  static BulkUploadFailResponse() {
+    return Joi.object({
+      files: Joi.array()
+        .items(FileStorageModel.BulkUploadFailFileResponseItems())
+        .required(),
+      status: FileStorageModel.Status().required(),
     });
   }
   static BulkUploadResponse() {
@@ -87,6 +102,18 @@ class FileStorageModel {
       message: Joi.string().allow("").required(),
     });
   }
+  static File() {
+    return Joi.object({
+      src: FileStorageModel.FileSrc().required(),
+    });
+  }
+  static FileSrc() {
+    return Joi.object({
+      method: Joi.string().allow(""),
+      namespace: Joi.string().allow(""),
+      url: Joi.string().allow("").required(),
+    });
+  }
   static Opts() {
     return Joi.object({
       attempts: Joi.number(),
@@ -103,11 +130,6 @@ class FileStorageModel {
       next_id: Joi.string().allow(""),
       size: Joi.number(),
       type: Joi.string().allow("").required(),
-    });
-  }
-  static ReqConfiguration() {
-    return Joi.object({
-      concurrency: Joi.number(),
     });
   }
   static SignUrlRequest() {
@@ -142,6 +164,14 @@ class FileStorageModel {
       size: Joi.number().required(),
       tags: Joi.array().items(Joi.string().allow("")),
       upload: FileStorageModel.Upload().required(),
+    });
+  }
+  static Status() {
+    return Joi.object({
+      failed: Joi.number().required(),
+      result: Joi.string().allow(""),
+      succeeded: Joi.number().required(),
+      total: Joi.number().required(),
     });
   }
   static Upload() {

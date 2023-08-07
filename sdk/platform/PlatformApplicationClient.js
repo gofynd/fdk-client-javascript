@@ -20,6 +20,8 @@ const Payment = require("./Payment/PaymentPlatformApplicationClient");
 
 const Rewards = require("./Rewards/RewardsPlatformApplicationClient");
 
+const Serviceability = require("./Serviceability/ServiceabilityPlatformApplicationClient");
+
 const Share = require("./Share/SharePlatformApplicationClient");
 
 const Theme = require("./Theme/ThemePlatformApplicationClient");
@@ -56,6 +58,8 @@ class PlatformApplicationClient {
 
     this.rewards = new Rewards(config, applicationId);
 
+    this.serviceability = new Serviceability(config, applicationId);
+
     this.share = new Share(config, applicationId);
 
     this.theme = new Theme(config, applicationId);
@@ -86,7 +90,6 @@ class PlatformApplicationClient {
 /** @typedef LogSchemaResponse */
 /** @typedef Modifier */
 /** @typedef RequestBodyAuditLog */
-/** @typedef ResourceNotFound */
 
 /** @typedef BadRequest */
 /** @typedef CancelSubscriptionReq */
@@ -98,8 +101,6 @@ class PlatformApplicationClient {
 /** @typedef CreateSubscriptionCharge */
 /** @typedef CreateSubscriptionResponse */
 /** @typedef CurrentPeriod */
-/** @typedef DetailedPlan */
-/** @typedef DetailedPlanComponents */
 /** @typedef EntityChargePrice */
 /** @typedef EntityChargeRecurring */
 /** @typedef EntitySubscription */
@@ -107,11 +108,6 @@ class PlatformApplicationClient {
 /** @typedef Invoice */
 /** @typedef InvoiceDetails */
 /** @typedef InvoiceDetailsClient */
-/** @typedef InvoiceDetailsPaymentMethods */
-/** @typedef InvoiceDetailsPaymentMethodsData */
-/** @typedef InvoiceDetailsPaymentMethodsDataChecks */
-/** @typedef InvoiceDetailsPaymentMethodsDataNetworks */
-/** @typedef InvoiceDetailsPaymentMethodsDataThreeDSecureUsage */
 /** @typedef InvoiceDetailsPeriod */
 /** @typedef InvoiceDetailsStatusTrail */
 /** @typedef InvoiceItems */
@@ -126,7 +122,6 @@ class PlatformApplicationClient {
 /** @typedef InvoicesDataPeriod */
 /** @typedef OneTimeChargeEntity */
 /** @typedef OneTimeChargeItem */
-/** @typedef Page */
 /** @typedef Phone */
 /** @typedef Plan */
 /** @typedef PlanRecurring */
@@ -152,8 +147,6 @@ class PlatformApplicationClient {
 /** @typedef SubscriptionStatus */
 /** @typedef SubscriptionTrial */
 /** @typedef SubscriptionTrialPeriod */
-/** @typedef UnauthenticatedApplication */
-/** @typedef UnauthenticatedUser */
 
 /** @typedef AbandonedCart */
 /** @typedef AbandonedCartResponse */
@@ -661,14 +654,12 @@ class PlatformApplicationClient {
 /** @typedef ApplicationResponse */
 /** @typedef ApplicationWebsite */
 /** @typedef BadRequest */
-/** @typedef Currency */
 /** @typedef Domain */
 /** @typedef LocationCountry */
 /** @typedef LocationDefaultCurrency */
 /** @typedef LocationDefaultLanguage */
 /** @typedef Locations */
 /** @typedef NotFound */
-/** @typedef Page */
 /** @typedef SecureUrl */
 
 /** @typedef Audience */
@@ -727,8 +718,6 @@ class PlatformApplicationClient {
 /** @typedef PayloadSmsStructure */
 /** @typedef PayloadSmsTemplateStructure */
 /** @typedef PayloadStructure */
-/** @typedef PushtokenReq */
-/** @typedef PushtokenRes */
 /** @typedef RecipientHeaders */
 /** @typedef SendOtpCommsReq */
 /** @typedef SendOtpCommsReqData */
@@ -760,8 +749,6 @@ class PlatformApplicationClient {
 /** @typedef SystemEmailTemplates */
 /** @typedef SystemNotification */
 /** @typedef SystemNotifications */
-/** @typedef SystemNotificationSettings */
-/** @typedef SystemNotificationsPage */
 /** @typedef SystemNotificationUser */
 /** @typedef SystemSmsTemplate */
 /** @typedef SystemSmsTemplates */
@@ -773,6 +760,7 @@ class PlatformApplicationClient {
 /** @typedef VerifyOtpCommsSuccessRes */
 
 /** @typedef AddressSerializer */
+/** @typedef AverageOrderProcessingTime */
 /** @typedef BrandBannerSerializer */
 /** @typedef BulkLocationSerializer */
 /** @typedef BusinessCountryInfo */
@@ -810,6 +798,7 @@ class PlatformApplicationClient {
 /** @typedef ProductReturnConfigSerializer */
 /** @typedef ProfileSuccessResponse */
 /** @typedef SellerPhoneNumber */
+/** @typedef StoreTagsResponseSchema */
 /** @typedef UpdateCompany */
 /** @typedef UserSerializer */
 /** @typedef Website */
@@ -861,7 +850,6 @@ class PlatformApplicationClient {
 /** @typedef CommunicationConfig */
 /** @typedef CommunicationOptinDialogFeature */
 /** @typedef CompaniesResponse */
-/** @typedef CompanyAboutAddress */
 /** @typedef CompanyBrandInfo */
 /** @typedef CompanyByBrandsRequest */
 /** @typedef CompanyByBrandsResponse */
@@ -873,7 +861,6 @@ class PlatformApplicationClient {
 /** @typedef Credit */
 /** @typedef CurrenciesResponse */
 /** @typedef Currency */
-/** @typedef CurrencyConfig */
 /** @typedef CurrencyFeature */
 /** @typedef Debit */
 /** @typedef DefaultCurrency */
@@ -990,12 +977,9 @@ class PlatformApplicationClient {
 /** @typedef TokenResponse */
 /** @typedef Tokens */
 /** @typedef TwitterLink */
-/** @typedef UnhandledError */
 /** @typedef UpdateDomain */
 /** @typedef UpdateDomainTypeRequest */
 /** @typedef UpdateIntegrationLevelRequest */
-/** @typedef UserEmail */
-/** @typedef UserPhoneNumber */
 /** @typedef ValidationFailedResponse */
 /** @typedef Validators */
 /** @typedef VimeoLink */
@@ -1006,8 +990,6 @@ class PlatformApplicationClient {
 /** @typedef AdminAnnouncementSchema */
 /** @typedef AnnouncementAuthorSchema */
 /** @typedef AnnouncementPageSchema */
-/** @typedef AnnouncementSchema */
-/** @typedef AnnouncementsResponseSchema */
 /** @typedef ApplicationLegal */
 /** @typedef ApplicationLegalFAQ */
 /** @typedef Asset */
@@ -1022,7 +1004,6 @@ class PlatformApplicationClient {
 /** @typedef ConfigurationSchema */
 /** @typedef ContactSchema */
 /** @typedef ContentAPIError */
-/** @typedef ContentSchema */
 /** @typedef CreateAnnouncementSchema */
 /** @typedef CreatedBySchema */
 /** @typedef CreateFaqCategoryRequestSchema */
@@ -1033,8 +1014,6 @@ class PlatformApplicationClient {
 /** @typedef CreateTagSchema */
 /** @typedef CronSchedule */
 /** @typedef CustomMetaTag */
-/** @typedef CustomPage */
-/** @typedef CustomPageSchema */
 /** @typedef DataLoaderResetResponseSchema */
 /** @typedef DataLoaderResponseSchema */
 /** @typedef DataLoaderSchema */
@@ -1048,9 +1027,7 @@ class PlatformApplicationClient {
 /** @typedef EmailSchema */
 /** @typedef FAQ */
 /** @typedef FAQCategorySchema */
-/** @typedef FaqResponseSchema */
 /** @typedef FaqSchema */
-/** @typedef FeatureImage */
 /** @typedef GeneratedSEOContent */
 /** @typedef GenerateSEOContent */
 /** @typedef GetAnnouncementListSchema */
@@ -1058,12 +1035,10 @@ class PlatformApplicationClient {
 /** @typedef GetFaqCategoryBySlugSchema */
 /** @typedef GetFaqSchema */
 /** @typedef HandpickedTagSchema */
-/** @typedef LandingPage */
 /** @typedef LandingPageGetResponse */
 /** @typedef LandingPageSchema */
 /** @typedef Language */
 /** @typedef LocaleLanguage */
-/** @typedef Navigation */
 /** @typedef NavigationGetResponse */
 /** @typedef NavigationReference */
 /** @typedef NavigationRequest */
@@ -1071,9 +1046,7 @@ class PlatformApplicationClient {
 /** @typedef NextSchedule */
 /** @typedef Orientation */
 /** @typedef Page */
-/** @typedef PageContent */
 /** @typedef PageGetResponse */
-/** @typedef PageMeta */
 /** @typedef PageMetaSchema */
 /** @typedef PagePublishRequest */
 /** @typedef PageRequest */
@@ -1088,12 +1061,10 @@ class PlatformApplicationClient {
 /** @typedef RemoveHandpickedSchema */
 /** @typedef ResourceContent */
 /** @typedef ScheduleSchema */
-/** @typedef ScheduleStartSchema */
 /** @typedef SEO */
 /** @typedef SeoComponent */
 /** @typedef SEOImage */
 /** @typedef SeoSchema */
-/** @typedef Slideshow */
 /** @typedef SlideshowGetResponse */
 /** @typedef SlideshowMedia */
 /** @typedef SlideshowRequest */
@@ -1112,6 +1083,7 @@ class PlatformApplicationClient {
 /** @typedef CreateUpdateDiscount */
 /** @typedef DiscountItems */
 /** @typedef DiscountJob */
+/** @typedef DiscountMeta */
 /** @typedef DownloadFileJob */
 /** @typedef FileJobRequest */
 /** @typedef FileJobResponse */
@@ -1122,6 +1094,8 @@ class PlatformApplicationClient {
 
 /** @typedef BrowseResponse */
 /** @typedef BulkRequest */
+/** @typedef BulkUploadFailFileResponseItems */
+/** @typedef BulkUploadFailResponse */
 /** @typedef BulkUploadResponse */
 /** @typedef CDN */
 /** @typedef CompleteResponse */
@@ -1129,27 +1103,53 @@ class PlatformApplicationClient {
 /** @typedef DbRecord */
 /** @typedef Destination */
 /** @typedef FailedResponse */
+/** @typedef File */
+/** @typedef FileSrc */
 /** @typedef Opts */
 /** @typedef Page */
-/** @typedef ReqConfiguration */
 /** @typedef SignUrlRequest */
 /** @typedef SignUrlResponse */
 /** @typedef StartRequest */
 /** @typedef StartResponse */
+/** @typedef Status */
 /** @typedef Upload */
 /** @typedef Urls */
 
+/** @typedef ChannelDisplayName */
+/** @typedef ChannelDisplayNameResponse */
+/** @typedef CnDetails */
+/** @typedef CnDownloadReport */
+/** @typedef CnGenerateReport */
+/** @typedef CnGenerateReportFilters */
+/** @typedef CnGenerateReportItems */
+/** @typedef CnReferenceNumber */
+/** @typedef CreateSellerCreditNoteConfig */
+/** @typedef CreateSellerCreditNoteConfigRequest */
+/** @typedef CreateSellerCreditNoteConfigResponse */
 /** @typedef CreditlineDataPlatformPayload */
 /** @typedef CreditlineDataPlatformRequest */
 /** @typedef CreditlineDataPlatformResponse */
+/** @typedef CreditNoteConfigNotificationEvents */
+/** @typedef CreditNoteDetails */
+/** @typedef CreditNoteDetailsRequest */
+/** @typedef CreditNoteDetailsResponse */
+/** @typedef DeleteConfig */
+/** @typedef DeleteConfigRequest */
+/** @typedef DeleteConfigResponse */
 /** @typedef DownloadCreditDebitNote */
 /** @typedef DownloadCreditDebitNoteRequest */
 /** @typedef DownloadCreditDebitNoteResponse */
 /** @typedef DownloadCreditDebitNoteResponseData */
 /** @typedef DownloadReport */
+/** @typedef DownloadReportCustomerCnRequest */
+/** @typedef DownloadReportCustomerCnResponse */
 /** @typedef DownloadReportItems */
 /** @typedef DownloadReportList */
+/** @typedef DownloadReportResponseData */
 /** @typedef Error */
+/** @typedef GenerateReportCustomerCnRequest */
+/** @typedef GenerateReportCustomerCnResponse */
+/** @typedef GenerateReportCustomerCnResponseData */
 /** @typedef GenerateReportFilters */
 /** @typedef GenerateReportJson */
 /** @typedef GenerateReportMeta */
@@ -1157,16 +1157,29 @@ class PlatformApplicationClient {
 /** @typedef GenerateReportRequest */
 /** @typedef GetAffiliate */
 /** @typedef GetAffiliateResponse */
-/** @typedef GetDocs */
+/** @typedef GetCnConfigRequest */
+/** @typedef GetCnConfigResponse */
+/** @typedef GetCnConfigResponseData */
+/** @typedef GetCnConfigResponseMeta */
+/** @typedef GetCustomerCreditBalance */
+/** @typedef GetCustomerCreditBalanceRequest */
+/** @typedef GetCustomerCreditBalanceResponse */
+/** @typedef GetCustomerCreditBalanceResponseData */
 /** @typedef GetEngineData */
-/** @typedef GetEngineFilters */
 /** @typedef GetEngineRequest */
 /** @typedef GetEngineResponse */
+/** @typedef GetPdfUrlViewRequest */
+/** @typedef GetPdfUrlViewResponse */
+/** @typedef GetPdfUrlViewResponseData */
 /** @typedef GetReason */
 /** @typedef GetReasonRequest */
 /** @typedef GetReasonResponse */
+/** @typedef GetReportingFilters */
+/** @typedef GetReportingFiltersResponse */
+/** @typedef GetReportingNestedFilters */
 /** @typedef GetReportListData */
 /** @typedef GetReportListRequest */
+/** @typedef GetReportListResponse */
 /** @typedef InoviceListingPayloadDataFilters */
 /** @typedef InvoiceListingPayloadData */
 /** @typedef InvoiceListingRequest */
@@ -1179,6 +1192,10 @@ class PlatformApplicationClient {
 /** @typedef InvoiceTypeRequest */
 /** @typedef InvoiceTypeResponse */
 /** @typedef InvoiceTypeResponseItems */
+/** @typedef IsCnRefundMethodData */
+/** @typedef IsCnRefundMethodRequest */
+/** @typedef IsCnRefundMethodResponse */
+/** @typedef IsCnRefundMethodResponseData */
 /** @typedef IsCreditlinePayload */
 /** @typedef IsCreditlinePlatformRequest */
 /** @typedef IsCreditlinePlatformResponse */
@@ -1186,6 +1203,9 @@ class PlatformApplicationClient {
 /** @typedef PaymentProcessPayload */
 /** @typedef PaymentProcessRequest */
 /** @typedef PaymentProcessResponse */
+/** @typedef ReasonItem */
+/** @typedef RedemptionDetails */
+/** @typedef ReportItem */
 /** @typedef UnpaidInvoiceDataItems */
 
 /** @typedef ArchiveConfig */
@@ -1250,16 +1270,13 @@ class PlatformApplicationClient {
 
 /** @typedef AddTicketPayload */
 /** @typedef AgentChangePayload */
-/** @typedef CategoryData */
 /** @typedef CloseVideoRoomResponse */
-/** @typedef CommunicationDetails */
 /** @typedef CreateCustomFormPayload */
 /** @typedef CreatedOn */
 /** @typedef CreateVideoRoomPayload */
 /** @typedef CreateVideoRoomResponse */
 /** @typedef CustomForm */
 /** @typedef CustomFormList */
-/** @typedef CustomFormSubmissionPayload */
 /** @typedef Debug */
 /** @typedef EditCustomFormPayload */
 /** @typedef EditTicketPayload */
@@ -1269,7 +1286,6 @@ class PlatformApplicationClient {
 /** @typedef Filter */
 /** @typedef GetParticipantsInsideVideoRoomResponse */
 /** @typedef GetTokenForVideoRoomResponse */
-/** @typedef IntegrationConfig */
 /** @typedef NotifyUser */
 /** @typedef Page */
 /** @typedef Participant */
@@ -1278,22 +1294,18 @@ class PlatformApplicationClient {
 /** @typedef Priority */
 /** @typedef Status */
 /** @typedef SubmitButton */
-/** @typedef SubmitCustomFormResponse */
-/** @typedef SupportGeneralConfig */
 /** @typedef Ticket */
 /** @typedef TicketAsset */
 /** @typedef TicketCategory */
 /** @typedef TicketContent */
 /** @typedef TicketContext */
 /** @typedef TicketFeedback */
-/** @typedef TicketFeedbackForm */
 /** @typedef TicketFeedbackList */
 /** @typedef TicketFeedbackPayload */
 /** @typedef TicketHistory */
 /** @typedef TicketHistoryList */
 /** @typedef TicketHistoryPayload */
 /** @typedef TicketList */
-/** @typedef TicketSubCategory */
 /** @typedef UserSchema */
 
 /** @typedef ActionInfo */
@@ -1346,6 +1358,9 @@ class PlatformApplicationClient {
 /** @typedef Brand */
 /** @typedef BulkActionTemplate */
 /** @typedef BulkActionTemplateResponse */
+/** @typedef BulkReportsDownloadFailedResponse */
+/** @typedef BulkReportsDownloadRequest */
+/** @typedef BulkReportsDownloadResponse */
 /** @typedef BuyerDetails */
 /** @typedef BuyRules */
 /** @typedef Charge */
@@ -1477,6 +1492,7 @@ class PlatformApplicationClient {
 /** @typedef ResponseDetail */
 /** @typedef ReturnConfig */
 /** @typedef ReturnConfig1 */
+/** @typedef RoleBaseStateTransitionMapping */
 /** @typedef SendSmsPayload */
 /** @typedef SendUserMobileOTP */
 /** @typedef SendUserMobileOtpResponse */
@@ -1587,6 +1603,7 @@ class PlatformApplicationClient {
 /** @typedef UninstallExtension */
 
 /** @typedef AddBeneficiaryDetailsOTPRequest */
+/** @typedef AddressDetail */
 /** @typedef BankDetailsForOTP */
 /** @typedef CancelOrResendPaymentLinkRequest */
 /** @typedef CancelPaymentLinkResponse */
@@ -1623,11 +1640,13 @@ class PlatformApplicationClient {
 /** @typedef LinkStatus */
 /** @typedef MerchantOnBoardingRequest */
 /** @typedef MerchantOnBoardingResponse */
+/** @typedef MerchnatPaymentModeResponse */
 /** @typedef MultiTenderPaymentMeta */
 /** @typedef MultiTenderPaymentMethod */
 /** @typedef NotFoundResourceError */
 /** @typedef OrderBeneficiaryDetails */
 /** @typedef OrderBeneficiaryResponse */
+/** @typedef OrderDetail */
 /** @typedef Page */
 /** @typedef PaymentCode */
 /** @typedef PaymentConfirmationRequest */
@@ -1643,6 +1662,9 @@ class PlatformApplicationClient {
 /** @typedef PaymentObjectListSerializer */
 /** @typedef PaymentOptions */
 /** @typedef PaymentOptionsResponse */
+/** @typedef PaymentSessionDetail */
+/** @typedef PaymentSessionRequestSerializer */
+/** @typedef PaymentSessionResponseSerializer */
 /** @typedef PaymentStatusBulkHandlerRequest */
 /** @typedef PaymentStatusBulkHandlerResponse */
 /** @typedef PaymentStatusObject */
@@ -1658,6 +1680,9 @@ class PlatformApplicationClient {
 /** @typedef PayoutsResponse */
 /** @typedef PollingPaymentLinkResponse */
 /** @typedef RefundAccountResponse */
+/** @typedef RefundSessionDetail */
+/** @typedef RefundSessionRequestSerializer */
+/** @typedef RefundSessionResponseSerializer */
 /** @typedef RepaymentDetailsSerialiserPayAll */
 /** @typedef RepaymentRequestDetails */
 /** @typedef RepaymentResponse */
@@ -1684,7 +1709,6 @@ class PlatformApplicationClient {
 /** @typedef ConfigurationRes */
 /** @typedef E */
 /** @typedef Giveaway */
-/** @typedef GiveawayAudience */
 /** @typedef GiveawayResponse */
 /** @typedef HistoryRes */
 /** @typedef Offer */
@@ -1699,6 +1723,101 @@ class PlatformApplicationClient {
 /** @typedef SetConfigurationRes */
 /** @typedef ShareMessages */
 /** @typedef UserRes */
+
+/** @typedef AddressResponse */
+/** @typedef ApplicationCompanyDpViewRequest */
+/** @typedef ApplicationCompanyDpViewResponse */
+/** @typedef ApplicationSelfShipConfig */
+/** @typedef ApplicationSelfShipConfigResponse */
+/** @typedef ApplicationServiceabilityConfig */
+/** @typedef ApplicationServiceabilityConfigResponse */
+/** @typedef CommonError */
+/** @typedef CompanyDpAccountListResponse */
+/** @typedef CompanyDpAccountRequest */
+/** @typedef CompanyDpAccountResponse */
+/** @typedef CompanyStoreView_PageItems */
+/** @typedef CompanyStoreView_Response */
+/** @typedef ContactNumberResponse */
+/** @typedef CreatedByResponse */
+/** @typedef CreateZoneData */
+/** @typedef DocumentsResponse */
+/** @typedef Dp */
+/** @typedef Dp1 */
+/** @typedef DpAccountFailureResponse */
+/** @typedef DPApplicationRuleRequest */
+/** @typedef DPApplicationRuleResponse */
+/** @typedef DPCompanyRuleRequest */
+/** @typedef DPCompanyRuleResponse */
+/** @typedef DpIds */
+/** @typedef DpMultipleRuleSuccessResponse */
+/** @typedef DpRule */
+/** @typedef DpRuleRequest */
+/** @typedef DpRuleResponse */
+/** @typedef DpRuleSuccessResponse */
+/** @typedef DpRulesUpdateRequest */
+/** @typedef DpRuleUpdateSuccessResponse */
+/** @typedef DpSchemaInRuleListing */
+/** @typedef EinvoiceResponse */
+/** @typedef EntityRegionView_Error */
+/** @typedef EntityRegionView_Items */
+/** @typedef EntityRegionView_page */
+/** @typedef EntityRegionView_Request */
+/** @typedef EntityRegionView_Response */
+/** @typedef Error */
+/** @typedef ErrorResponse */
+/** @typedef EwayBillResponse */
+/** @typedef FailureResponse */
+/** @typedef GetSingleZoneDataViewResponse */
+/** @typedef GetStoresViewResponse */
+/** @typedef GetZoneDataViewChannels */
+/** @typedef GetZoneDataViewItems */
+/** @typedef GetZoneFromApplicationIdViewResponse */
+/** @typedef GetZoneFromPincodeViewRequest */
+/** @typedef GetZoneFromPincodeViewResponse */
+/** @typedef GstCredentialsResponse */
+/** @typedef IntegrationTypeResponse */
+/** @typedef ItemResponse */
+/** @typedef ListViewChannels */
+/** @typedef ListViewItems */
+/** @typedef ListViewProduct */
+/** @typedef ListViewResponse */
+/** @typedef ListViewSummary */
+/** @typedef LogisticsResponse */
+/** @typedef ManagerResponse */
+/** @typedef MobileNo */
+/** @typedef ModifiedByResponse */
+/** @typedef OpeningClosing */
+/** @typedef Page */
+/** @typedef PincodeBulkViewResponse */
+/** @typedef PincodeCodStatusListingPage */
+/** @typedef PincodeCodStatusListingRequest */
+/** @typedef PincodeCodStatusListingResponse */
+/** @typedef PincodeCodStatusListingSummary */
+/** @typedef PincodeMopBulkData */
+/** @typedef PincodeMopData */
+/** @typedef PincodeMOPresponse */
+/** @typedef PincodeMopUpdateAuditHistoryPaging */
+/** @typedef PincodeMopUpdateAuditHistoryRequest */
+/** @typedef PincodeMopUpdateAuditHistoryResponse */
+/** @typedef PincodeMopUpdateAuditHistoryResponseData */
+/** @typedef PincodeMopUpdateResponse */
+/** @typedef ProductReturnConfigResponse */
+/** @typedef ReAssignStoreRequest */
+/** @typedef ReAssignStoreResponse */
+/** @typedef SelfShipResponse */
+/** @typedef ServiceabilityErrorResponse */
+/** @typedef ServiceabilityPageResponse */
+/** @typedef TimmingResponse */
+/** @typedef UpdateZoneData */
+/** @typedef WarningsResponse */
+/** @typedef Zone */
+/** @typedef ZoneDataItem */
+/** @typedef ZoneMappingType */
+/** @typedef ZoneProductTypes */
+/** @typedef ZoneRequest */
+/** @typedef ZoneResponse */
+/** @typedef ZoneSuccessResponse */
+/** @typedef ZoneUpdateRequest */
 
 /** @typedef Attribution */
 /** @typedef CampaignShortLink */
@@ -1729,7 +1848,6 @@ class PlatformApplicationClient {
 /** @typedef availableSectionSchema */
 /** @typedef BlitzkriegApiErrorSchema */
 /** @typedef BlitzkriegInternalServerErrorSchema */
-/** @typedef BlitzkriegNotFoundSchema */
 /** @typedef Blocks */
 /** @typedef BlocksProps */
 /** @typedef Bold */
@@ -1738,7 +1856,6 @@ class PlatformApplicationClient {
 /** @typedef Config */
 /** @typedef ConfigPage */
 /** @typedef Css */
-/** @typedef Custom */
 /** @typedef Font */
 /** @typedef FontsSchema */
 /** @typedef FontsSchemaItems */
@@ -1753,7 +1870,6 @@ class PlatformApplicationClient {
 /** @typedef PaginationSchema */
 /** @typedef Preset */
 /** @typedef Regular */
-/** @typedef Sections */
 /** @typedef SemiBold */
 /** @typedef Src */
 /** @typedef ThemesListingResponseSchema */
@@ -1766,14 +1882,8 @@ class PlatformApplicationClient {
 /** @typedef ArchiveUserRequestSchema */
 /** @typedef ArchiveUserSuccess */
 /** @typedef AuthenticationApiErrorSchema */
-/** @typedef AuthenticationInternalServerErrorSchema */
-/** @typedef AuthSuccess */
-/** @typedef AuthSuccessUser */
-/** @typedef AuthSuccessUserDebug */
-/** @typedef AuthSuccessUserEmails */
 /** @typedef BlockUserRequestSchema */
 /** @typedef BlockUserSuccess */
-/** @typedef CodeRequestBodySchema */
 /** @typedef CreateUserGroupSchema */
 /** @typedef CreateUserRequestSchema */
 /** @typedef CreateUserResponseSchema */
@@ -1782,98 +1892,46 @@ class PlatformApplicationClient {
 /** @typedef CustomerListResponseSchema */
 /** @typedef DeleteAccountConsent */
 /** @typedef DeleteAccountReasons */
-/** @typedef DeleteApplicationUserRequestSchema */
-/** @typedef DeleteUserSuccess */
-/** @typedef EditEmailRequestSchema */
-/** @typedef EditMobileRequestSchema */
-/** @typedef EditProfileMobileSchema */
-/** @typedef EditProfileRequestSchema */
 /** @typedef Email */
-/** @typedef EmailOtpSuccess */
 /** @typedef Facebook */
 /** @typedef FlashCard */
-/** @typedef ForgotPasswordRequestSchema */
-/** @typedef FormRegisterRequestSchema */
-/** @typedef FormRegisterRequestSchemaPhone */
 /** @typedef Google */
-/** @typedef HasPasswordSuccess */
 /** @typedef Login */
-/** @typedef LoginSuccess */
-/** @typedef LogoutSuccess */
 /** @typedef LookAndFeel */
 /** @typedef MetaSchema */
-/** @typedef NotFoundSchema */
-/** @typedef OAuthRequestAppleSchema */
-/** @typedef OAuthRequestAppleSchemaOauth */
-/** @typedef OAuthRequestAppleSchemaProfile */
-/** @typedef OAuthRequestSchema */
-/** @typedef OAuthRequestSchemaOauth2 */
-/** @typedef OAuthRequestSchemaProfile */
-/** @typedef OtpSuccess */
 /** @typedef PaginationSchema */
-/** @typedef PasswordLoginRequestSchema */
 /** @typedef PhoneNumber */
 /** @typedef PlatformEmail */
 /** @typedef PlatformMobile */
 /** @typedef PlatformSchema */
-/** @typedef ProfileEditSuccess */
-/** @typedef ProfileEditSuccessSchema */
-/** @typedef RegisterFormSuccess */
 /** @typedef RegisterRequiredFields */
 /** @typedef RegisterRequiredFieldsEmail */
 /** @typedef RegisterRequiredFieldsMobile */
 /** @typedef RequiredFields */
-/** @typedef ResetPasswordSuccess */
-/** @typedef SendEmailOtpRequestSchema */
-/** @typedef SendEmailVerifyLinkSuccess */
-/** @typedef SendMobileOtpRequestSchema */
-/** @typedef SendMobileVerifyLinkSuccess */
-/** @typedef SendOtpRequestSchema */
-/** @typedef SendOtpResponse */
-/** @typedef SendResetPasswordEmailRequestSchema */
-/** @typedef SendResetPasswordMobileRequestSchema */
-/** @typedef SendVerificationLinkMobileRequestSchema */
 /** @typedef SessionDeleteResponseSchema */
 /** @typedef SessionExpiry */
 /** @typedef SessionListResponseInfo */
 /** @typedef SessionListResponseSchema */
-/** @typedef SessionListSuccess */
 /** @typedef Social */
 /** @typedef SocialTokens */
-/** @typedef TokenRequestBodySchema */
-/** @typedef UnauthenticatedSchema */
-/** @typedef UnauthorizedSchema */
 /** @typedef UnDeleteUserRequestSchema */
 /** @typedef UnDeleteUserSuccess */
-/** @typedef UpdatePasswordRequestSchema */
 /** @typedef UpdateUserGroupSchema */
 /** @typedef UpdateUserRequestSchema */
 /** @typedef UserEmails */
 /** @typedef UserGroupListResponseSchema */
 /** @typedef UserGroupResponseSchema */
-/** @typedef UserObjectSchema */
 /** @typedef UserPhoneNumbers */
 /** @typedef UserSchema */
 /** @typedef UserSearchResponseSchema */
-/** @typedef VerifyEmailOtpRequestSchema */
-/** @typedef VerifyEmailOTPSuccess */
-/** @typedef VerifyEmailSuccess */
-/** @typedef VerifyMobileOTPSuccess */
-/** @typedef VerifyOtpRequestSchema */
-/** @typedef VerifyOtpSuccess */
 
 /** @typedef Association */
 /** @typedef AuthMeta */
 /** @typedef EventConfig */
-/** @typedef EventConfigBase */
-/** @typedef EventConfigList */
 /** @typedef EventConfigResponse */
-/** @typedef EventPayload */
-/** @typedef EventProcessedStatus */
 /** @typedef Page */
 /** @typedef SubscriberConfig */
 /** @typedef SubscriberConfigList */
-/** @typedef SubscriberEvent */
 /** @typedef SubscriberResponse */
 
 module.exports = PlatformApplicationClient;

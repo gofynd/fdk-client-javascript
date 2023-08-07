@@ -1358,6 +1358,7 @@ class CartModel {
   static PromotionListItem() {
     return Joi.object({
       _custom_json: Joi.any(),
+      _id: Joi.string().allow(""),
       _schedule: CartModel.PromotionSchedule(),
       application_id: Joi.string().allow("").required(),
       apply_all_discount: Joi.boolean(),
@@ -1481,7 +1482,7 @@ class CartModel {
       post_order: CartModel.PostOrder1(),
       user_groups: Joi.array().items(Joi.number()),
       user_id: Joi.array().items(Joi.string().allow("")),
-      user_registered: CartModel.UserRegistered(),
+      user_registered: Joi.string().allow("").allow(null),
       uses: CartModel.UsesRestriction1().required(),
     });
   }

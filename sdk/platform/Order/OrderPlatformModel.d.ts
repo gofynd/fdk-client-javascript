@@ -50,6 +50,9 @@ declare class OrderModel {
     static Brand(): any;
     static BulkActionTemplate(): any;
     static BulkActionTemplateResponse(): any;
+    static BulkReportsDownloadFailedResponse(): any;
+    static BulkReportsDownloadRequest(): any;
+    static BulkReportsDownloadResponse(): any;
     static BuyerDetails(): any;
     static BuyRules(): any;
     static Charge(): any;
@@ -181,6 +184,7 @@ declare class OrderModel {
     static ResponseDetail(): any;
     static ReturnConfig(): any;
     static ReturnConfig1(): any;
+    static RoleBaseStateTransitionMapping(): any;
     static SendSmsPayload(): any;
     static SendUserMobileOTP(): any;
     static SendUserMobileOtpResponse(): any;

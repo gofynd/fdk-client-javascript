@@ -502,7 +502,8 @@ Returns a success response
 
 ```json
 {
-  "batch_id": "507f1f77bcf86cd799439011"
+  "batch_id": "507f1f77bcf86cd799439011",
+  "created_on": "2022-12-31T23:59:59Z"
 }
 ```
 </details>
@@ -559,7 +560,8 @@ Returns a success response
 
 ```json
 {
-  "batch_id": "507f1f77bcf86cd799439011"
+  "batch_id": "507f1f77bcf86cd799439011",
+  "created_on": "2022-12-31T23:59:59Z"
 }
 ```
 </details>
@@ -676,7 +678,7 @@ List of all the collections including the one you added. See example below or re
 {
   "uid": "604f585a7051e30001173ac1",
   "type": "query",
-  "query": {},
+  "query": [],
   "name": "New",
   "banners": {
     "portrait": {
@@ -2434,7 +2436,7 @@ Returns a success response
   "success": true,
   "data": {
     "item_id": 114,
-    "size": 3,
+    "size": "3",
     "company_id": 1
   }
 }
@@ -2515,10 +2517,14 @@ Download Product Template View
 
 ```javascript
 // Promise
-const promise = platformClient.catalog.downloadProductTemplateViews({  slug : value });
+const promise = platformClient.catalog.downloadProductTemplateViews({  slug : value,
+ itemType : value,
+ type : value });
 
 // Async/Await
-const data = await platformClient.catalog.downloadProductTemplateViews({  slug : value });
+const data = await platformClient.catalog.downloadProductTemplateViews({  slug : value,
+ itemType : value,
+ type : value });
 ```
 
 
@@ -2527,7 +2533,9 @@ const data = await platformClient.catalog.downloadProductTemplateViews({  slug :
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| slug | string | yes | A `slug` is a unique identifier for a particular template. |  
+| slug | string | yes | A `slug` is a unique identifier for a particular template. |    
+| itemType | string | no | An `item_type` defines the type of item. The default value is standard. |    
+| type | string | no | Format type of the sample file. The default value is excel. |  
 
 
 
@@ -2757,23 +2765,29 @@ List of collections. See example below or refer `GetCollectionListingResponse` f
     "size": 19,
     "has_previous": false,
     "has_next": true,
-    "item_total": 190
+    "item_total": 190,
+    "type": "products"
   },
   "items": [
     {
       "uid": "6040fed076d8a500011ef829",
       "type": "query",
-      "query": {
-        "brand": [
-          "6",
-          "3",
-          "4",
-          "2"
-        ],
-        "min_price_effective": "[6319,INR TO 11805,INR]",
-        "platform_discount": "[15 TO 39]",
-        "sort_on": "price_asc"
-      },
+      "query": [
+        {
+          "attribute": "",
+          "op": "in",
+          "value": [],
+          "brand": [
+            "6",
+            "3",
+            "4",
+            "2"
+          ],
+          "min_price_effective": "[6319,INR TO 11805,INR]",
+          "platform_discount": "[15 TO 39]",
+          "sort_on": "price_asc"
+        }
+      ],
       "name": "test1",
       "banners": {
         "portrait": {
@@ -2830,7 +2844,7 @@ List of collections. See example below or refer `GetCollectionListingResponse` f
     {
       "uid": "6040a9b250f97e0001886294",
       "type": "items",
-      "query": {},
+      "query": [],
       "name": "newapiplaform",
       "banners": {
         "portrait": {
@@ -2890,7 +2904,7 @@ List of collections. See example below or refer `GetCollectionListingResponse` f
     {
       "uid": "603f68fd953a69000145dc92",
       "type": "query",
-      "query": {},
+      "query": [],
       "name": "new",
       "banners": {
         "portrait": {
@@ -3093,11 +3107,15 @@ List of all HSN Codes. See example below or refer `HsnCodesListingResponseSchema
         }
       ],
       "hsn_code": "123fght3",
-      "uid": "123fgh43-1"
+      "uid": "123fgh43-1",
+      "country_code": "IN",
+      "reporting_hsn": "",
+      "taxes": [],
+      "type": "goods"
     }
   ],
   "page": {
-    "current": 1,
+    "current": "1",
     "type": "number",
     "size": 8,
     "has_previous": false,
@@ -3161,7 +3179,8 @@ List of custom search keywords. See example below or refer `GetSearchWordsRespon
     "size": 1,
     "has_previous": false,
     "has_next": false,
-    "item_count": 1
+    "item_count": 1,
+    "type": "products"
   },
   "items": [
     {
@@ -3756,6 +3775,8 @@ Company profile object. See example below or refer `LocationListSerializer` for 
   },
   "items": [
     {
+      "phone_number": "+919876543210",
+      "code": "",
       "uid": 2,
       "address": {
         "address1": "POLARIS 2ND FLOOR, ANDHERI",
@@ -3953,12 +3974,12 @@ The Product object. See example below or refer `ApplicationProductListingRespons
       "departments": [
         1
       ],
-      "created_on": 1599024995,
+      "created_on": "2022-12-31T23:59:59Z",
       "created_by": {
         "username": "919049753052_37528",
         "user_id": "5"
       },
-      "modified_on": 1627642010,
+      "modified_on": "2022-12-31T23:59:59Z",
       "modified_by": {
         "username": "xxxxxxxxxx",
         "user_id": "xxxxxxxxxxx"
@@ -3969,7 +3990,7 @@ The Product object. See example below or refer `ApplicationProductListingRespons
         "username": "Silverbolt",
         "user_id": "0"
       },
-      "verified_on": 1626965521,
+      "verified_on": "1626965521",
       "all_sizes": [
         {
           "item_code": "TVSET111",
@@ -4028,10 +4049,14 @@ The Product object. See example below or refer `ApplicationProductListingRespons
       "all_identifiers": [
         "19WE100"
       ],
-      "trader": {
-        "address": "sdfdsfsdf",
-        "name": "asdasd"
-      },
+      "trader": [
+        {
+          "address": [
+            "sdfdsfsdf"
+          ],
+          "name": "asdasd"
+        }
+      ],
       "trader_type": "Packer",
       "verification_status": "pending",
       "sizes": [
@@ -4318,7 +4343,7 @@ List of Products. See example below or refer `ApplicationProductListingResponse`
         "display": "Monica Hampton",
         "name": "material",
         "kind": "multivalued",
-        "logo": ""
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/image%20Nature.svg"
       },
       "values": [
         {
@@ -4334,7 +4359,7 @@ List of Products. See example below or refer `ApplicationProductListingResponse`
         "display": "John Mendoza",
         "name": "weight",
         "kind": "multivalued",
-        "logo": ""
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/image%20Nature.svg"
       },
       "values": [
         {
@@ -4350,7 +4375,7 @@ List of Products. See example below or refer `ApplicationProductListingResponse`
         "display": "Kimberly Mcdaniel",
         "name": "gender",
         "kind": "multivalued",
-        "logo": ""
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/image%20Nature.svg"
       },
       "values": [
         {
@@ -4366,7 +4391,7 @@ List of Products. See example below or refer `ApplicationProductListingResponse`
         "display": "Kimberly Davidson",
         "name": "color",
         "kind": "multivalued",
-        "logo": ""
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/image%20Nature.svg"
       },
       "values": [
         {
@@ -4382,7 +4407,7 @@ List of Products. See example below or refer `ApplicationProductListingResponse`
         "display": "Available",
         "name": "is_available",
         "kind": "singlevalued",
-        "logo": ""
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/image%20Nature.svg"
       },
       "values": [
         {
@@ -5167,6 +5192,7 @@ List of Departments. See example below or refer `BrandListingResponse` for detai
 {
   "items": [
     {
+      "app_id": "000000000000000000000001",
       "uid": 1,
       "name": "Barry, Jennings and Larson",
       "slug": "Hess-Inc",
@@ -5181,10 +5207,7 @@ List of Departments. See example below or refer `BrandListingResponse` for detai
         },
         "type": "page"
       },
-      "logo": {
-        "type": "image",
-        "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
-      },
+      "logo": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg",
       "banners": {
         "portrait": {
           "type": "image",
@@ -5259,7 +5282,8 @@ List of custom autocomplete keywords. See example below or refer `GetAutocomplet
     "size": 1,
     "has_previous": false,
     "has_next": false,
-    "item_count": 1
+    "item_count": 1,
+    "type": "products"
   },
   "items": [
     {
@@ -5271,7 +5295,7 @@ List of custom autocomplete keywords. See example below or refer `GetAutocomplet
       "is_active": true,
       "results": [
         {
-          "_custom_json": {},
+          "_custom_json": null,
           "display": "Helllow",
           "logo": {
             "url": "https://hdn-1.addsale.com/addsale/company/61/applications/600a5b3fe0991a4718cdb448/company/1/application/000000000000000000000001/search/pictures/square-logo/original/n_8bvEaBw-Helllow.png"
@@ -5786,12 +5810,17 @@ The Collection object. See example below or refer `CollectionDetailResponse` for
 {
   "uid": "5ec5fc757cb1e4740a17da23",
   "type": "query",
-  "query": {
-    "l3_categories": [
-      "12"
-    ],
-    "sort_on": "discount_asc"
-  },
+  "query": [
+    {
+      "attribute": "",
+      "value": [],
+      "op": "in",
+      "l3_categories": [
+        "12"
+      ],
+      "sort_on": "discount_asc"
+    }
+  ],
   "name": "new",
   "banners": {
     "portrait": {
@@ -6892,40 +6921,42 @@ configuration details for catalog. See example below or refer `GetConfigMetadata
       ]
     }
   ],
-  "values": {
-    "type": [
-      {
-        "key": "range",
-        "display": "Range Bar"
-      },
-      {
-        "key": "intervals",
-        "display": "Bucket Values"
-      },
-      {
-        "key": "multivalued",
-        "display": "Single"
-      },
-      {
-        "key": "singlevalued",
-        "display": "Single"
-      }
-    ],
-    "sort": [
-      {
-        "key": "count",
-        "display": "Product Count"
-      },
-      {
-        "key": "ascending",
-        "display": "Ascending"
-      },
-      {
-        "key": "descending",
-        "display": "Descending"
-      }
-    ]
-  },
+  "values": [
+    {
+      "type": [
+        {
+          "key": "range",
+          "display": "Range Bar"
+        },
+        {
+          "key": "intervals",
+          "display": "Bucket Values"
+        },
+        {
+          "key": "multivalued",
+          "display": "Single"
+        },
+        {
+          "key": "singlevalued",
+          "display": "Single"
+        }
+      ],
+      "sort": [
+        {
+          "key": "count",
+          "display": "Product Count"
+        },
+        {
+          "key": "ascending",
+          "display": "Ascending"
+        },
+        {
+          "key": "descending",
+          "display": "Descending"
+        }
+      ]
+    }
+  ],
   "condition": [
     {
       "key": "OR",
@@ -7123,6 +7154,7 @@ Get application level configured catalog details. See example below or refer `Ge
         "allow_single": false
       },
       "sort": {
+        "default_key": "",
         "default": "",
         "config": [
           {
@@ -7356,7 +7388,9 @@ Departments Data. See example below or refer `DepartmentsResponse` for details
 
 ```json
 {
-  "page": {},
+  "page": {
+    "type": ""
+  },
   "items": [
     {
       "uid": 5,
@@ -7895,7 +7929,38 @@ returns a list of all inventory grouped by size and store
 {
   "items": [
     {
+      "manufacturer": {
+        "address": "luffy",
+        "name": "luffy",
+        "is_default": true
+      },
+      "identifier": {},
+      "fynd_item_code": "1234",
+      "fynd_article_code": "1234",
+      "fragile": true,
+      "dimension": {
+        "is_default": true,
+        "height": 1,
+        "length": 1,
+        "width": 1,
+        "unit": "km"
+      },
+      "country_of_origin": "",
+      "company": {
+        "id": 1
+      },
+      "brand": {
+        "id": 1,
+        "name": "luffy"
+      },
+      "total_quantity": 10,
+      "weight": {
+        "is_default": true,
+        "shipping": 12,
+        "unit": "kg"
+      },
       "store": {
+        "id": 1,
         "name": "yosss sdd dsdyo",
         "store_code": "sanic6sdfsf7",
         "uid": 59,
@@ -7935,228 +8000,14 @@ returns a list of all inventory grouped by size and store
       "seller_identifier": "RTYUIDSDFV",
       "item_id": 7500651,
       "quantity": 10,
-      "price": 1234,
-      "price_effective": 1234,
-      "price_transfer": 0,
+      "price": {
+        "currency": "INR",
+        "effective": 1234,
+        "transfer": 0,
+        "marked": 0
+      },
       "currency": "INR",
       "sellable_quantity": 10,
-      "identifiers": [
-        {
-          "gtin_type": "sku_code",
-          "gtin_value": "RTYUIDSDFV",
-          "primary": true
-        }
-      ]
-    },
-    {
-      "store": {
-        "name": "Saran Ledonne",
-        "store_code": "af6198fe-2c23-4441-bbf4-e694c96e255c",
-        "uid": 10,
-        "address": {
-          "state": "MAHA",
-          "address1": "NO",
-          "lat_long": {
-            "type": "Point",
-            "coordinates": [
-              1,
-              1
-            ]
-          },
-          "address2": "",
-          "pincode": 400072,
-          "country": "INDIA",
-          "city": "MUMBAI"
-        },
-        "manager": {
-          "name": "abc",
-          "email": "rehman@cashkart.com",
-          "mobile_no": {
-            "number": "9167943983",
-            "country_code": 91
-          }
-        },
-        "integration_type": {
-          "order": "browntape",
-          "inventory": "browntape"
-        },
-        "_custom_json": {}
-      },
-      "uid": "10_RTYUIDSDFV",
-      "size": "AAX1 (1 PCS)",
-      "inventory_updated_on": "2021-04-06T03:29:35.291000",
-      "seller_identifier": "RTYUIDSDFV",
-      "item_id": 7500651,
-      "quantity": 10,
-      "price": 1234,
-      "price_effective": 1234,
-      "price_transfer": 0,
-      "currency": "INR",
-      "sellable_quantity": 10,
-      "identifiers": [
-        {
-          "gtin_type": "sku_code",
-          "gtin_value": "RTYUIDSDFV",
-          "primary": true
-        }
-      ]
-    },
-    {
-      "store": {
-        "name": "ABC-1-17",
-        "store_code": "ABC-1-17",
-        "uid": 11061,
-        "address": {
-          "state": "MAHARASHTRA",
-          "address1": "14/1, VINOBHA BHAVE NAGAR",
-          "lat_long": {
-            "type": "Point",
-            "coordinates": [
-              1,
-              1
-            ]
-          },
-          "address2": "VINOBHA BHAVE NAGAR, KURLA WEST, KURLA, ",
-          "pincode": 400070,
-          "country": "INDIA",
-          "city": "MUMBAI"
-        },
-        "manager": {
-          "name": "Fahim",
-          "email": "fahimsakri@gofynd.com",
-          "mobile_no": {
-            "number": "9594495254",
-            "country_code": 91
-          }
-        },
-        "integration_type": {
-          "order": "browntape",
-          "inventory": "browntape"
-        },
-        "_custom_json": {}
-      },
-      "uid": "11061_RTYUIDSDFV",
-      "size": "AAX1 (1 PCS)",
-      "inventory_updated_on": "2021-03-17T12:35:29.992000",
-      "seller_identifier": "RTYUIDSDFV",
-      "item_id": 7500651,
-      "quantity": 10000000,
-      "price": 1234,
-      "price_effective": 1234,
-      "price_transfer": 0,
-      "currency": "INR",
-      "sellable_quantity": 10000000,
-      "order_committed_quantity": 0,
-      "identifiers": [
-        {
-          "gtin_type": "sku_code",
-          "gtin_value": "RTYUIDSDFV",
-          "primary": true
-        }
-      ]
-    },
-    {
-      "store": {
-        "name": "RRL01",
-        "store_code": "WH_8513",
-        "uid": 1,
-        "address": {
-          "state": "MAHARASHTRA",
-          "address1": "SHOPSENSE RETAIL TECHNOLOGIES PRIVATE LIMITED 1ST FLOOR WEWORK VIJAY DIAMOND, CROSS RD B, AJIT NAGAR,",
-          "lat_long": {
-            "type": "Point",
-            "coordinates": [
-              72.8691788,
-              19.1174114
-            ]
-          },
-          "address2": "KONDIVITA, ANDHERI EAST, MUMBAI, MAHARASHTRA 400069",
-          "pincode": 400059,
-          "country": "INDIA",
-          "city": "MUMBAI"
-        },
-        "manager": {
-          "name": "ASHISH CHANDORKAR",
-          "email": "ASHISHCHANDORKAR@FYND.COM",
-          "mobile_no": {
-            "number": "8369782851",
-            "country_code": 91
-          }
-        },
-        "integration_type": {
-          "order": "browntape",
-          "inventory": "browntape"
-        },
-        "_custom_json": {}
-      },
-      "uid": "1_RTYUIDSDFV",
-      "size": "AAX1 (1 PCS)",
-      "inventory_updated_on": "2021-03-31T19:00:10.943000",
-      "seller_identifier": "RTYUIDSDFV",
-      "item_id": 7500651,
-      "quantity": 39,
-      "price": 1234,
-      "price_effective": 1234,
-      "price_transfer": 0,
-      "currency": "INR",
-      "sellable_quantity": 18,
-      "order_committed_quantity": 7,
-      "not_available_quantity": 0,
-      "damaged_quantity": 0,
-      "identifiers": [
-        {
-          "gtin_type": "sku_code",
-          "gtin_value": "RTYUIDSDFV",
-          "primary": true
-        }
-      ]
-    },
-    {
-      "store": {
-        "name": "RRL01",
-        "store_code": "WH_8513",
-        "uid": 1,
-        "address": {
-          "state": "MAHARASHTRA",
-          "address1": "SHOPSENSE RETAIL TECHNOLOGIES PRIVATE LIMITED 1ST FLOOR WEWORK VIJAY DIAMOND, CROSS RD B, AJIT NAGAR,",
-          "lat_long": {
-            "type": "Point",
-            "coordinates": [
-              72.8691788,
-              19.1174114
-            ]
-          },
-          "address2": "KONDIVITA, ANDHERI EAST, MUMBAI, MAHARASHTRA 400069",
-          "pincode": 400059,
-          "country": "INDIA",
-          "city": "MUMBAI"
-        },
-        "manager": {
-          "name": "ASHISH CHANDORKAR",
-          "email": "ASHISHCHANDORKAR@FYND.COM",
-          "mobile_no": {
-            "number": "8369782851",
-            "country_code": 91
-          }
-        },
-        "integration_type": {
-          "order": "browntape",
-          "inventory": "browntape"
-        },
-        "_custom_json": {}
-      },
-      "uid": "1_rtyuidsdfv",
-      "size": "AAX1 (1 PCS)",
-      "inventory_updated_on": "2020-07-07T10:37:06.146000",
-      "seller_identifier": "RTYUIDSDFV",
-      "item_id": 7500651,
-      "quantity": 39,
-      "price": 1234,
-      "price_effective": 1234,
-      "price_transfer": 0,
-      "currency": "INR",
-      "sellable_quantity": 0,
-      "order_committed_quantity": 39,
       "identifiers": [
         {
           "gtin_type": "sku_code",
@@ -8232,20 +8083,6 @@ Size guide object. See example below or refer `GenderDetailSchema` for details
 ```json
 {
   "description": "Clothing department needs gener attribute",
-  "schema": {
-    "format": "",
-    "mandatory": false,
-    "multi": true,
-    "enum": [
-      "Men",
-      "Women",
-      "Boy",
-      "Girl",
-      "more",
-      "men"
-    ],
-    "type": "str"
-  },
   "meta": {
     "enriched": false,
     "mandatory_details": {
@@ -9318,10 +9155,7 @@ List of bulk Inventory upload jobs. See `BulkInventoryGetSchema` for details
       "is_active": true,
       "cancelled": 0,
       "failed_records": [
-        {
-          "identifiers": "1.91887E+11",
-          "message": "Invalid identifier: 1.91887E+11. Product not found."
-        }
+        "Invalid identifier: 1.91887E+11. Product not found."
       ],
       "total": 1,
       "stage": "failed",
@@ -9356,10 +9190,7 @@ List of bulk Inventory upload jobs. See `BulkInventoryGetSchema` for details
       "stage": "failed",
       "cancelled_records": [],
       "failed_records": [
-        {
-          "identifiers": "1.91887E+11",
-          "message": "Invalid identifier: 1.91887E+11. Product not found."
-        }
+        "Invalid identifier: 1.91887E+11. Product not found."
       ],
       "file_path": "https://hdn-1.addsale.com/x0/company/1/self/documents/inventory-import/free/original/NSTuhgsgq-product_inventory.csv",
       "is_active": true,
@@ -9547,13 +9378,11 @@ returns a list of all inventory grouped by size and store
       "price_transfer": 0,
       "currency": "INR",
       "sellable_quantity": 10,
-      "identifiers": [
-        {
-          "gtin_type": "sku_code",
-          "gtin_value": "RTYUIDSDFV",
-          "primary": true
-        }
-      ]
+      "identifiers": {
+        "gtin_type": "sku_code",
+        "gtin_value": "RTYUIDSDFV",
+        "primary": true
+      }
     },
     {
       "store": {
@@ -9600,13 +9429,11 @@ returns a list of all inventory grouped by size and store
       "price_transfer": 0,
       "currency": "INR",
       "sellable_quantity": 10,
-      "identifiers": [
-        {
-          "gtin_type": "sku_code",
-          "gtin_value": "RTYUIDSDFV",
-          "primary": true
-        }
-      ]
+      "identifiers": {
+        "gtin_type": "sku_code",
+        "gtin_value": "RTYUIDSDFV",
+        "primary": true
+      }
     },
     {
       "store": {
@@ -9654,13 +9481,11 @@ returns a list of all inventory grouped by size and store
       "currency": "INR",
       "sellable_quantity": 10000000,
       "order_committed_quantity": 0,
-      "identifiers": [
-        {
-          "gtin_type": "sku_code",
-          "gtin_value": "RTYUIDSDFV",
-          "primary": true
-        }
-      ]
+      "identifiers": {
+        "gtin_type": "sku_code",
+        "gtin_value": "RTYUIDSDFV",
+        "primary": true
+      }
     },
     {
       "store": {
@@ -9710,13 +9535,11 @@ returns a list of all inventory grouped by size and store
       "order_committed_quantity": 7,
       "not_available_quantity": 0,
       "damaged_quantity": 0,
-      "identifiers": [
-        {
-          "gtin_type": "sku_code",
-          "gtin_value": "RTYUIDSDFV",
-          "primary": true
-        }
-      ]
+      "identifiers": {
+        "gtin_type": "sku_code",
+        "gtin_value": "RTYUIDSDFV",
+        "primary": true
+      }
     },
     {
       "store": {
@@ -9764,13 +9587,11 @@ returns a list of all inventory grouped by size and store
       "currency": "INR",
       "sellable_quantity": 0,
       "order_committed_quantity": 39,
-      "identifiers": [
-        {
-          "gtin_type": "sku_code",
-          "gtin_value": "RTYUIDSDFV",
-          "primary": true
-        }
-      ]
+      "identifiers": {
+        "gtin_type": "sku_code",
+        "gtin_value": "RTYUIDSDFV",
+        "primary": true
+      }
     }
   ],
   "page": {
@@ -9855,7 +9676,38 @@ returns a list of all inventory grouped by size and store
 {
   "items": [
     {
+      "manufacturer": {
+        "address": "luffy",
+        "name": "luffy",
+        "is_default": true
+      },
+      "identifier": {},
+      "fynd_item_code": "1234",
+      "fynd_article_code": "1234",
+      "fragile": true,
+      "dimension": {
+        "is_default": true,
+        "height": 1,
+        "length": 1,
+        "width": 1,
+        "unit": "km"
+      },
+      "country_of_origin": "",
+      "company": {
+        "id": 1
+      },
+      "brand": {
+        "id": 1,
+        "name": "luffy"
+      },
+      "total_quantity": 10,
+      "weight": {
+        "is_default": true,
+        "shipping": 12,
+        "unit": "kg"
+      },
       "store": {
+        "id": 1,
         "name": "yosss sdd dsdyo",
         "store_code": "sanic6sdfsf7",
         "uid": 59,
@@ -9895,228 +9747,14 @@ returns a list of all inventory grouped by size and store
       "seller_identifier": "RTYUIDSDFV",
       "item_id": 7500651,
       "quantity": 10,
-      "price": 1234,
-      "price_effective": 1234,
-      "price_transfer": 0,
+      "price": {
+        "currency": "INR",
+        "effective": 1234,
+        "transfer": 0,
+        "marked": 0
+      },
       "currency": "INR",
       "sellable_quantity": 10,
-      "identifiers": [
-        {
-          "gtin_type": "sku_code",
-          "gtin_value": "RTYUIDSDFV",
-          "primary": true
-        }
-      ]
-    },
-    {
-      "store": {
-        "name": "Saran Ledonne",
-        "store_code": "af6198fe-2c23-4441-bbf4-e694c96e255c",
-        "uid": 10,
-        "address": {
-          "state": "MAHA",
-          "address1": "NO",
-          "lat_long": {
-            "type": "Point",
-            "coordinates": [
-              1,
-              1
-            ]
-          },
-          "address2": "",
-          "pincode": 400072,
-          "country": "INDIA",
-          "city": "MUMBAI"
-        },
-        "manager": {
-          "name": "abc",
-          "email": "rehman@cashkart.com",
-          "mobile_no": {
-            "number": "9167943983",
-            "country_code": 91
-          }
-        },
-        "integration_type": {
-          "order": "browntape",
-          "inventory": "browntape"
-        },
-        "_custom_json": {}
-      },
-      "uid": "10_RTYUIDSDFV",
-      "size": "AAX1 (1 PCS)",
-      "inventory_updated_on": "2021-04-06T03:29:35.291000",
-      "seller_identifier": "RTYUIDSDFV",
-      "item_id": 7500651,
-      "quantity": 10,
-      "price": 1234,
-      "price_effective": 1234,
-      "price_transfer": 0,
-      "currency": "INR",
-      "sellable_quantity": 10,
-      "identifiers": [
-        {
-          "gtin_type": "sku_code",
-          "gtin_value": "RTYUIDSDFV",
-          "primary": true
-        }
-      ]
-    },
-    {
-      "store": {
-        "name": "ABC-1-17",
-        "store_code": "ABC-1-17",
-        "uid": 11061,
-        "address": {
-          "state": "MAHARASHTRA",
-          "address1": "14/1, VINOBHA BHAVE NAGAR",
-          "lat_long": {
-            "type": "Point",
-            "coordinates": [
-              1,
-              1
-            ]
-          },
-          "address2": "VINOBHA BHAVE NAGAR, KURLA WEST, KURLA, ",
-          "pincode": 400070,
-          "country": "INDIA",
-          "city": "MUMBAI"
-        },
-        "manager": {
-          "name": "Fahim",
-          "email": "fahimsakri@gofynd.com",
-          "mobile_no": {
-            "number": "9594495254",
-            "country_code": 91
-          }
-        },
-        "integration_type": {
-          "order": "browntape",
-          "inventory": "browntape"
-        },
-        "_custom_json": {}
-      },
-      "uid": "11061_RTYUIDSDFV",
-      "size": "AAX1 (1 PCS)",
-      "inventory_updated_on": "2021-03-17T12:35:29.992000",
-      "seller_identifier": "RTYUIDSDFV",
-      "item_id": 7500651,
-      "quantity": 10000000,
-      "price": 1234,
-      "price_effective": 1234,
-      "price_transfer": 0,
-      "currency": "INR",
-      "sellable_quantity": 10000000,
-      "order_committed_quantity": 0,
-      "identifiers": [
-        {
-          "gtin_type": "sku_code",
-          "gtin_value": "RTYUIDSDFV",
-          "primary": true
-        }
-      ]
-    },
-    {
-      "store": {
-        "name": "RRL01",
-        "store_code": "WH_8513",
-        "uid": 1,
-        "address": {
-          "state": "MAHARASHTRA",
-          "address1": "SHOPSENSE RETAIL TECHNOLOGIES PRIVATE LIMITED 1ST FLOOR WEWORK VIJAY DIAMOND, CROSS RD B, AJIT NAGAR,",
-          "lat_long": {
-            "type": "Point",
-            "coordinates": [
-              72.8691788,
-              19.1174114
-            ]
-          },
-          "address2": "KONDIVITA, ANDHERI EAST, MUMBAI, MAHARASHTRA 400069",
-          "pincode": 400059,
-          "country": "INDIA",
-          "city": "MUMBAI"
-        },
-        "manager": {
-          "name": "ASHISH CHANDORKAR",
-          "email": "ASHISHCHANDORKAR@FYND.COM",
-          "mobile_no": {
-            "number": "8369782851",
-            "country_code": 91
-          }
-        },
-        "integration_type": {
-          "order": "browntape",
-          "inventory": "browntape"
-        },
-        "_custom_json": {}
-      },
-      "uid": "1_RTYUIDSDFV",
-      "size": "AAX1 (1 PCS)",
-      "inventory_updated_on": "2021-03-31T19:00:10.943000",
-      "seller_identifier": "RTYUIDSDFV",
-      "item_id": 7500651,
-      "quantity": 39,
-      "price": 1234,
-      "price_effective": 1234,
-      "price_transfer": 0,
-      "currency": "INR",
-      "sellable_quantity": 18,
-      "order_committed_quantity": 7,
-      "not_available_quantity": 0,
-      "damaged_quantity": 0,
-      "identifiers": [
-        {
-          "gtin_type": "sku_code",
-          "gtin_value": "RTYUIDSDFV",
-          "primary": true
-        }
-      ]
-    },
-    {
-      "store": {
-        "name": "RRL01",
-        "store_code": "WH_8513",
-        "uid": 1,
-        "address": {
-          "state": "MAHARASHTRA",
-          "address1": "SHOPSENSE RETAIL TECHNOLOGIES PRIVATE LIMITED 1ST FLOOR WEWORK VIJAY DIAMOND, CROSS RD B, AJIT NAGAR,",
-          "lat_long": {
-            "type": "Point",
-            "coordinates": [
-              72.8691788,
-              19.1174114
-            ]
-          },
-          "address2": "KONDIVITA, ANDHERI EAST, MUMBAI, MAHARASHTRA 400069",
-          "pincode": 400059,
-          "country": "INDIA",
-          "city": "MUMBAI"
-        },
-        "manager": {
-          "name": "ASHISH CHANDORKAR",
-          "email": "ASHISHCHANDORKAR@FYND.COM",
-          "mobile_no": {
-            "number": "8369782851",
-            "country_code": 91
-          }
-        },
-        "integration_type": {
-          "order": "browntape",
-          "inventory": "browntape"
-        },
-        "_custom_json": {}
-      },
-      "uid": "1_rtyuidsdfv",
-      "size": "AAX1 (1 PCS)",
-      "inventory_updated_on": "2020-07-07T10:37:06.146000",
-      "seller_identifier": "RTYUIDSDFV",
-      "item_id": 7500651,
-      "quantity": 39,
-      "price": 1234,
-      "price_effective": 1234,
-      "price_transfer": 0,
-      "currency": "INR",
-      "sellable_quantity": 0,
-      "order_committed_quantity": 39,
       "identifiers": [
         {
           "gtin_type": "sku_code",
@@ -10431,7 +10069,7 @@ const data = await platformClient.catalog.getOptimalLocations({  body : value })
 | body | [AssignStore](#AssignStore) | yes | Request body |
 
 
-
+Location Reassignment
 
 *Returned Response:*
 
@@ -10450,29 +10088,25 @@ Returns a success response
 
 ```json
 {
-  "items": [
-    {
-      "meta": {},
-      "store_id": 11550,
-      "size": "OS",
-      "_id": "61161830f1061e7c7f81d8ed",
-      "store_pincode": 201303,
-      "company_id": 783,
-      "s_city": "NOIDA",
-      "quantity": 1,
-      "price_effective": 995,
-      "status": true,
-      "price_marked": 995,
-      "uid": "11550_000000410234883001",
-      "article_assignment": {
-        "strategy": "app-config",
-        "level": "multi-company"
-      },
-      "item_id": 75252658,
-      "strategy_wise_listing": [],
-      "index": 0
-    }
-  ]
+  "meta": {},
+  "store_id": 11550,
+  "size": "OS",
+  "_id": "61161830f1061e7c7f81d8ed",
+  "store_pincode": 201303,
+  "company_id": 783,
+  "s_city": "NOIDA",
+  "quantity": 1,
+  "price_effective": 995,
+  "status": true,
+  "price_marked": 995,
+  "uid": "11550_000000410234883001",
+  "article_assignment": {
+    "strategy": "app-config",
+    "level": "multi-company"
+  },
+  "item_id": 75252658,
+  "strategy_wise_listing": [],
+  "index": 0
 }
 ```
 </details>
@@ -10608,7 +10242,7 @@ Product object. See example below or refer `product.utils.format_product_respons
     ],
     "id": "63edf95bf314486d44a6b361",
     "brand": {
-      "name": null,
+      "name": "name",
       "logo": {
         "aspect_ratio": "1:1",
         "aspect_ratio_f": 1,
@@ -10783,6 +10417,7 @@ List of bulk asset jobs List. See `BulkUtil.modify_batch_response` for details
     }
   ],
   "page": {
+    "type": "",
     "current": 1,
     "size": 3,
     "has_previous": false,
@@ -11295,47 +10930,48 @@ List of bulk product upload jobs. See `BulkRequestGetSchema` for details
 
 ```json
 {
-  "items": [
-    {
-      "stage": "completed",
-      "company_id": 61,
-      "is_active": true,
-      "cancelled_records": [],
-      "failed": 0,
-      "template_tag": "footwear",
-      "modified_on": "2021-03-12T08:11:08.646000Z",
-      "created_on": "2021-03-12T08:11:06.848000Z",
-      "failed_records": [],
-      "created_by": {
-        "username": "yadavanuja039_gmail_com_82948",
-        "user_id": "23218433",
-        "full_name": "Anuja Yadav"
-      },
-      "total": 1,
-      "file_path": "https://hdn-1.fynd.com/company/61/self/documents/product-import/free/original/mkX5ApRmw-sample_bulk_products_footwear.xlsx",
-      "succeed": 1,
-      "modified_by": {
-        "username": "Silverbolt",
-        "user_id": "0"
-      },
-      "cancelled": 0,
-      "template": {
-        "name": "Footwear",
-        "banner": "https://hdn-1.fynd.com/seller/pictures/landscape-banner/original/nFPtXR_Beauty_&_Personal_Care_L.jpgf30455a5-d265-4382-b513-65afb9240320/nFPtXR_Beauty_and_Personal_Care_L.jpg",
-        "slug": "footwear",
-        "logo": "https://hdn-1.fynd.com/seller/pictures/logo/original/9Y2UEp_ssssss.jpg7359e4c6-4c53-4dbe-a920-ef8ac658afb1/9Y2UEp_ssssss.jpg",
-        "departments": [
-          "men",
-          "women",
-          "kids",
-          "fashion"
-        ],
-        "description": "Footwear is a garment worn on the feet to protect against environmental adversities like heat or ground textures. Example: Sports Shoes"
-      },
-      "id": "604b221a73bfa20001cb00e8"
-    }
-  ],
+  "items": {
+    "stage": "completed",
+    "company_id": 61,
+    "is_active": true,
+    "cancelled_records": [],
+    "failed": 0,
+    "template_tag": "footwear",
+    "modified_on": "2021-03-12T08:11:08.646000Z",
+    "created_on": "2021-03-12T08:11:06.848000Z",
+    "failed_records": [],
+    "created_by": {
+      "username": "yadavanuja039_gmail_com_82948",
+      "user_id": "23218433",
+      "full_name": "Anuja Yadav"
+    },
+    "total": 1,
+    "file_path": "https://hdn-1.fynd.com/company/61/self/documents/product-import/free/original/mkX5ApRmw-sample_bulk_products_footwear.xlsx",
+    "succeed": 1,
+    "modified_by": {
+      "username": "Silverbolt",
+      "user_id": "0"
+    },
+    "cancelled": 0,
+    "template": {
+      "is_expirable": false,
+      "is_physical": true,
+      "name": "Footwear",
+      "banner": "https://hdn-1.fynd.com/seller/pictures/landscape-banner/original/nFPtXR_Beauty_&_Personal_Care_L.jpgf30455a5-d265-4382-b513-65afb9240320/nFPtXR_Beauty_and_Personal_Care_L.jpg",
+      "slug": "footwear",
+      "logo": "https://hdn-1.fynd.com/seller/pictures/logo/original/9Y2UEp_ssssss.jpg7359e4c6-4c53-4dbe-a920-ef8ac658afb1/9Y2UEp_ssssss.jpg",
+      "departments": [
+        "men",
+        "women",
+        "kids",
+        "fashion"
+      ],
+      "description": "Footwear is a garment worn on the feet to protect against environmental adversities like heat or ground textures. Example: Sports Shoes"
+    },
+    "id": "604b221a73bfa20001cb00e8"
+  },
   "page": {
+    "type": "",
     "current": 1,
     "size": 26,
     "has_previous": false,
@@ -11407,7 +11043,8 @@ List of bundle configured for a company. See example below or refer `GetProductB
     "total": 1,
     "has_previous": false,
     "has_next": false,
-    "total_item_count": 4
+    "total_item_count": 4,
+    "type": "products"
   },
   "items": [
     {
@@ -12285,12 +11922,12 @@ Product Meta. See example below for details
       "departments": [
         1
       ],
-      "created_on": 1599024995,
+      "created_on": "2022-12-31T23:59:59Z",
       "created_by": {
         "username": "919049753052_37528",
         "user_id": "5"
       },
-      "modified_on": 1627642010,
+      "modified_on": "2022-12-31T23:59:59Z",
       "modified_by": {
         "username": "xxxxxxxxxx",
         "user_id": "xxxxxxxxxxx"
@@ -12330,7 +11967,7 @@ Product Meta. See example below for details
       "variants": {},
       "product_publish": {
         "is_set": false,
-        "product_online_date": 1626965521
+        "product_online_date": "2022-12-31T23:59:59Z"
       },
       "is_dependent": false,
       "is_physical": true,
@@ -12360,10 +11997,14 @@ Product Meta. See example below for details
       "all_identifiers": [
         "19WE100"
       ],
-      "trader": {
-        "address": "sdfdsfsdf",
-        "name": "asdasd"
-      },
+      "trader": [
+        {
+          "address": [
+            "sdfdsfsdf"
+          ],
+          "name": "asdasd"
+        }
+      ],
       "trader_type": "Packer",
       "verification_status": "pending",
       "sizes": [
@@ -12475,6 +12116,9 @@ The attached items of an collection. See example below or refer `GetCollectionQu
 
 ```json
 {
+  "operators": {
+    "additionalProperties": ""
+  },
   "filters": [
     {
       "key": {
@@ -12621,7 +12265,7 @@ The attached items of an collection. See example below or refer `GetCollectionQu
         "display": "Set",
         "name": "is_set",
         "kind": "multivalued",
-        "logo": ""
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Size%20Depth.png"
       },
       "values": [
         {
@@ -12637,7 +12281,7 @@ The attached items of an collection. See example below or refer `GetCollectionQu
         "display": "Product Fit",
         "name": "product_fit",
         "kind": "multivalued",
-        "logo": ""
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Size%20Depth.png"
       },
       "values": [
         {
@@ -12653,7 +12297,7 @@ The attached items of an collection. See example below or refer `GetCollectionQu
         "display": "Primary Material",
         "name": "primary_material",
         "kind": "multivalued",
-        "logo": ""
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Size%20Depth.png"
       },
       "values": [
         {
@@ -12669,7 +12313,7 @@ The attached items of an collection. See example below or refer `GetCollectionQu
         "display": "Gender",
         "name": "gender",
         "kind": "multivalued",
-        "logo": ""
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Size%20Depth.png"
       },
       "values": [
         {
@@ -12691,7 +12335,7 @@ The attached items of an collection. See example below or refer `GetCollectionQu
         "display": "Primary Colour",
         "name": "primary_color",
         "kind": "multivalued",
-        "logo": ""
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Size%20Depth.png"
       },
       "values": [
         {
@@ -12719,7 +12363,8 @@ The attached items of an collection. See example below or refer `GetCollectionQu
           "selected_max": 9,
           "query_format": "[{} TO {}]",
           "display_format": "{} - {}",
-          "display": "0 - 9"
+          "display": "0 - 9",
+          "value": ""
         }
       ]
     },
@@ -12736,11 +12381,13 @@ The attached items of an collection. See example below or refer `GetCollectionQu
           "min": 398,
           "max": 24999,
           "is_selected": false,
-          "selected_min": 398.8,
-          "selected_max": 24998.77,
+          "selected_min": 398,
+          "selected_max": 24998,
           "currency_code": "INR",
           "currency_symbol": "₹",
-          "query_format": "[{},INR TO {},INR]"
+          "query_format": "[{},INR TO {},INR]",
+          "display": "0 - 9",
+          "value": ""
         }
       ]
     },
@@ -12761,7 +12408,8 @@ The attached items of an collection. See example below or refer `GetCollectionQu
           "selected_max": 50,
           "query_format": "[{} TO {}]",
           "display_format": "{} - {}",
-          "display": "0 - 50"
+          "display": "0 - 50",
+          "value": ""
         }
       ]
     }
@@ -13499,6 +13147,7 @@ Category Meta. See example below or refer `CategoryResponse` for details
 ```json
 {
   "page": {
+    "type": "",
     "current": 1,
     "size": 58,
     "has_previous": false,
@@ -13968,6 +13617,7 @@ List of departments data. See example below or refer `DepartmentsResponse` for d
 ```json
 {
   "page": {
+    "type": "",
     "current": 1,
     "size": 1,
     "has_previous": false,
@@ -14411,39 +14061,37 @@ Returns a list of inventory export jobs
 
 ```json
 {
-  "items": [
-    {
-      "url": "https://regrowth.s3.amazonaws.com/slingshot-catalogues/seller-catalog/577/ab469da4-b9a5-11ed-955a-d6fb21611540/ab469da4-b9a5-11ed-955a-d6fb21611540.zip",
-      "type": "excel",
-      "created_on": "2023-03-03T09:27:51.262000Z",
-      "_id": "6401bd972a2e6c3d508c9203",
-      "task_id": "ab469da4-b9a5-11ed-955a-d6fb21611540",
-      "filters": {
-        "brand_ids": [
-          2751
-        ],
-        "store_ids": [
-          3622
-        ],
-        "brands": [
-          "Puma"
-        ],
-        "stores": [
-          "Vikings Cbs"
-        ]
-      },
-      "modified_on": "2023-03-03T09:27:51.262000",
-      "status": "success",
-      "notification_emails": [],
-      "created_by": {
-        "username": "rohanshah@fynd.com",
-        "user_id": "5e199e6998cfe1776f1385dc"
-      },
-      "completed_on": "2023-03-03T09:33:11.416000Z",
-      "seller_id": 577,
-      "id": "6401bd972a2e6c3d508c9203"
-    }
-  ]
+  "items": {
+    "url": "https://regrowth.s3.amazonaws.com/slingshot-catalogues/seller-catalog/577/ab469da4-b9a5-11ed-955a-d6fb21611540/ab469da4-b9a5-11ed-955a-d6fb21611540.zip",
+    "type": "excel",
+    "created_on": "2023-03-03T09:27:51.262000Z",
+    "_id": "6401bd972a2e6c3d508c9203",
+    "task_id": "ab469da4-b9a5-11ed-955a-d6fb21611540",
+    "filters": {
+      "brand_ids": [
+        2751
+      ],
+      "store_ids": [
+        3622
+      ],
+      "brands": [
+        "Puma"
+      ],
+      "stores": [
+        "Vikings Cbs"
+      ]
+    },
+    "modified_on": "2023-03-03T09:27:51.262000",
+    "status": "success",
+    "notification_emails": [],
+    "created_by": {
+      "username": "rohanshah@fynd.com",
+      "user_id": "5e199e6998cfe1776f1385dc"
+    },
+    "completed_on": "2023-03-03T09:33:11.416000Z",
+    "seller_id": 577,
+    "id": "6401bd972a2e6c3d508c9203"
+  }
 }
 ```
 </details>
@@ -14506,1851 +14154,182 @@ List of product templates. See example below or refer `TemplatesResponse` for de
     "size": 3,
     "has_previous": false,
     "has_next": true,
-    "item_total": 36
+    "item_total": 36,
+    "type": ""
   },
-  "items": [
-    {
-      "name": "Accessories",
-      "categories": [
-        "accessories-adornments",
-        "messenger-bags",
-        "wallets",
-        "satchels",
-        "backpacks",
-        "laptop-bags",
-        "briefcases",
-        "suitcases",
-        "duffles",
-        "analog-watches",
-        "chronograph-watches",
-        "digital-watches",
-        "aviators",
-        "wayfarers",
-        "round-sunglasses",
-        "cateye-sunglasses",
-        "rectangle-sunglasses",
-        "oversized-sunglasses",
-        "browline-sunglasses",
-        "square-sunglasses",
-        "sports-sunglasses",
-        "belts",
-        "ties",
-        "cufflinks",
-        "pocket-squares",
-        "tie-pins",
-        "brooches",
-        "baseball-caps",
-        "hats",
-        "shawls",
-        "mufflers",
-        "stoles",
-        "socks",
-        "dupattas",
-        "handbags",
-        "clutches",
-        "totes",
-        "sling-bags",
-        "hobos",
-        "scarves",
-        "stockings",
-        "hairbands",
-        "hair-clips",
-        "pouches",
-        "oval-sunglasses",
-        "gloves",
-        "frames",
-        "maang-tikka",
-        "bags",
-        "sunglasses",
-        "mittens",
-        "money-clips",
-        "card-cases",
-        "brushes",
-        "horns",
-        "spray",
-        "cleaner",
-        "cream",
-        "polishes",
-        "decoration-charms",
-        "care-kits",
-        "trees",
-        "shoe-bag",
-        "laces",
-        "insoles",
-        "handkerchief",
-        "toy-box",
-        "play-gym",
-        "camera-bag",
-        "fanny-pack",
-        "usb-cable",
-        "rca-cable",
-        "usb-c-to-multiport-adapter",
-        "batteries",
-        "power-banks",
-        "lightning-cable",
-        "tos-cable",
-        "aux-cable",
-        "hdmi-cable",
-        "charging-cable",
-        "mini-display-port-hdmi-cable",
-        "thunderbolt-cable",
-        "bluetooth-headphones",
-        "headphone",
-        "bluetooth-earphones",
-        "earphones",
-        "hard-disk-drive",
-        "photo-frame",
-        "notebook",
-        "pen",
-        "luggage-tag",
-        "stationery-combo",
-        "jewellery-case",
-        "folder",
-        "key-chain",
-        "suspender",
-        "cummerbund",
-        "cravet",
-        "toiletry-bag",
-        "cosmetic-bag",
-        "gift-bag",
-        "packaging-material",
-        "spectacle-case",
-        "cuff-bands",
-        "playing-cards",
-        "kalangi",
-        "kataar",
-        "safa",
-        "watch-case",
-        "paper-weight",
-        "caps",
-        "visor-caps",
-        "bucket-hats",
-        "beanie-caps",
-        "cowboy-hats",
-        "gatsby-caps",
-        "fedora-hats",
-        "rain-cover",
-        "round-glasses",
-        "rectangle-glasses",
-        "cateye-glasses",
-        "aviator-glasses",
-        "square-glasses",
-        "oval-glasses",
-        "almond-glasses",
-        "wayfarer-glasses",
-        "toric-contact-lenses",
-        "daily-disposable",
-        "monthly-reusable",
-        "multifocal-varifocal",
-        "solutions-accessories",
-        "coloured-lenses"
-      ],
-      "description": "This is the file validation template for the fashion department and accessories category.",
-      "departments": [
-        "electronics",
-        "men",
-        "women",
-        "kids",
-        "toys"
-      ],
-      "attributes": [
-        "gender",
-        "age-group",
-        "occasion",
-        "collection",
-        "season",
-        "color",
-        "material",
-        "product_type",
-        "pattern",
-        "closure_type",
-        "product_length",
-        "feature",
-        "care_instructions",
-        "package_contents",
-        "essential",
-        "gst-inclusive",
-        "gst-if-exclusive",
-        "fragile",
-        "manufacturer-packer-importer-name",
-        "manufacturer-packer-importer-address"
-      ],
-      "slug": "accessories",
-      "banner": "https://hdn-1.fynd.com/seller/pictures/landscape-banner/original/F4W6Pd_DEFAULT-BANNER_LANDSCAPE.jpgd54cb24d-dd2c-441c-bca0-8f65ea3b101c/F4W6Pd_DEFAULT-BANNER_LANDSCAPE.jpg",
-      "logo": "https://hdn-1.fynd.com/seller/pictures/logo/original/hkE1dC_0DEFAULT-LOGO.jpgfb5b1b31-9449-43db-9049-435fec88ee77/hkE1dC_0DEFAULT-LOGO.jpg",
-      "is_physical": true,
-      "id": "5f04a23544a2e5404274bc07"
-    },
-    {
-      "slug": "all-attributes-template",
-      "categories": [
-        "hd-television"
-      ],
-      "banner": "https://hdn-1.addsale.com/x0/seller/pictures/landscape-banner/original/tBqIbw_dj.jpg0b8e229f-45bd-4a96-97a5-3e5b193828d2/tBqIbw_dj.jpg",
-      "name": "All attributes Template",
-      "attributes": [
-        "test-attribute-3",
-        "test-attribute",
-        "test-attribute-1",
-        "test-attribute-4",
-        "gender",
-        "neck-type",
-        "qwertyu",
-        "testtt-attribute-5",
-        "storage_humidity",
-        "operating_humidity",
-        "certifications",
-        "aspect_ratio",
-        "storage_temperature",
-        "memory_details",
-        "cache_memory",
-        "operating_temperature",
-        "expansion_slots",
-        "included_software",
-        "web_camera",
-        "video_memory",
-        "optical_drive",
-        "hard_drive_speed",
-        "hard_drive_type",
-        "hard_drive",
-        "speaker_type",
-        "core_type",
-        "processor_core",
-        "processor_model_number",
-        "processor_speed",
-        "processor_brand",
-        "processor_sub_brand",
-        "battery_cell",
-        "laptop_type",
-        "graphics_card_model",
-        "accessories",
-        "services",
-        "promotion_freebie",
-        "action",
-        "home_delivery",
-        "colour_reproduction",
-        "brightness",
-        "data_transfer_on_cloud",
-        "card_reader",
-        "battery_filter",
-        "volumetric_weight_in_kg",
-        "price_filter",
-        "brands_filter",
-        "number_of_usb_ports_filter",
-        "number_of_hdmi_ports_filter",
-        "smart_tv_filter",
-        "resolution_filter",
-        "display_technology",
-        "panel_type",
-        "record_as_you_watch",
-        "schedule_recording",
-        "no_of_channels",
-        "additional_side_panel_ports",
-        "response_time",
-        "contrast_ratio",
-        "hdmi_arc",
-        "tv_operating_system",
-        "refresh_rate",
-        "connect_to_router_via",
-        "connect_to_home_theatre_via",
-        "no_of_hdmi_ports",
-        "no_of_usb_ports",
-        "standby_power_consumption",
-        "connect_to_set_top_box_via",
-        "stream_content_from_devices",
-        "surround_sound_technology",
-        "tv_speaker_type",
-        "graphics_card_sub_brand",
-        "hdr",
-        "power_supply",
-        "power_consumption",
-        "connect_to_dvd_players_via",
-        "graphics_card_brand",
-        "rated_speaker_output_power_rms",
-        "3d_technology",
-        "optimized_heat_dissipation",
-        "backlit_keyboard_support",
-        "ethernet_lan_support",
-        "hdmi_support",
-        "anti_glare_screen",
-        "phone_network_and_connectivity",
-        "storage_filter",
-        "ram_filter",
-        "pallet",
-        "waterproof",
-        "selfie_camera_filter",
-        "primary_camera_filter",
-        "screen_size_filter",
-        "battery_power_features",
-        "in_the_box_warranty",
-        "features",
-        "screen_display_camera",
-        "phone_battery_charge_time",
-        "network_inter_device_connectivity",
-        "phone_os",
-        "phone_build_convenience",
-        "phone_hardware_storage",
-        "testcomparsion",
-        "country_of_origin",
-        "manufacturer_packer_importer_address",
-        "manufacturer_packer_importer_name",
-        "warranty_type",
-        "dlna_compliant",
-        "user_guides_attachment",
-        "resq_support_guide_attachment",
-        "water_resistant",
-        "speaker_support",
-        "fm_radio",
-        "nfc_support",
-        "package_content",
-        "talk_time",
-        "standby_time",
-        "quick_charge",
-        "preloaded_apps",
-        "metal_frame",
-        "touch_screen",
-        "glass_type",
-        "meta_description",
-        "short_description",
-        "is_flammable",
-        "transfer_price_tp",
-        "screen_size",
-        "bluetooth",
-        "wi_fi",
-        "3g",
-        "internal_storage",
-        "in_the_box",
-        "memory_ram",
-        "4g",
-        "usb",
-        "otg_support",
-        "edge",
-        "nfc",
-        "microphone",
-        "dummy_int",
-        "product_details",
-        "subtitle",
-        "general_information",
-        "expandable",
-        "style_note",
-        "is_waterproof",
-        "brand_name",
-        "color",
-        "model",
-        "product_type",
-        "series",
-        "product_identifiers",
-        "style",
-        "sub_brand",
-        "socks_length",
-        "heel_height",
-        "occasion",
-        "storage",
-        "season",
-        "processor",
-        "collection",
-        "storage_type",
-        "topwear_length",
-        "bottomwear_length",
-        "denim_type",
-        "boot_length",
-        "dial_shape",
-        "thickness",
-        "lens_colour",
-        "sensors",
-        "dial_colour",
-        "material",
-        "usb_support",
-        "fingerprint_recognition",
-        "strap_type",
-        "operating_system",
-        "frame_style",
-        "brand_rating",
-        "operating_system_type",
-        "4g_bands",
-        "strap_colour",
-        "4g_support",
-        "2g_bands",
-        "frame_colour",
-        "video_formats",
-        "3g_bands",
-        "feature",
-        "3g_support",
-        "movement_type",
-        "bluetooth_version",
-        "pattern",
-        "wi_fi_support",
-        "bluetooth_support",
-        "inner_material",
-        "selfie_camera",
-        "closure_type",
-        "screen_resolution",
-        "product_fit",
-        "screen_size_diagonal",
-        "dimensions",
-        "display_type",
-        "plating",
-        "primary_camera",
-        "toe_type",
-        "dual_camera_rear",
-        "clasp_type",
-        "ram",
-        "padding",
-        "microphone_support",
-        "sim_type",
-        "capacity",
-        "arch_type",
-        "stone_type",
-        "warranty_description",
-        "additional_connectivity",
-        "compartments",
-        "audio_formats",
-        "sleeve_type",
-        "audio_jack",
-        "diameter",
-        "battery_capacity",
-        "sleeve_length",
-        "battery_operated",
-        "product_length",
-        "battery_run_time",
-        "neck_type",
-        "battery_type",
-        "collar_type",
-        "battery_voltage",
-        "cellular_technology",
-        "waist_rise",
-        "edge_support",
-        "coverage",
-        "expandable_memory",
-        "package_contents",
-        "gprs_support",
-        "care_instructions",
-        "hybrid_sim_slot",
-        "model_info",
-        "variant",
-        "warranty",
-        "complexion",
-        "skin_type",
-        "spf",
-        "speciality",
-        "finish",
-        "lasting_power",
-        "benefits",
-        "hair_type",
-        "fragrance_family",
-        "fragrance_type",
-        "product_format",
-        "active_ingredients",
-        "ingredients",
-        "how_to_use",
-        "shelf_life",
-        "safety_warning",
-        "testtt-attribute-6"
-      ],
-      "departments": [
-        "electronics"
-      ],
-      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/7V0z2B_dj.jpg21ac07ea-9f83-403e-ad37-69076c6c5c46/7V0z2B_dj.jpg",
-      "description": "Blah Blah",
-      "is_physical": true,
-      "id": "5ed5f84d2abe0f0001174d73"
-    },
-    {
-      "name": "Baby Care & Toys",
-      "categories": [
-        "kids-puzzles",
-        "kids-shirts"
-      ],
-      "description": "This is the file validation template for the Baby Care & Toys department.",
-      "departments": [
-        "baby-care-kids-essentials",
-        "toys",
-        "kids"
-      ],
-      "attributes": [
-        "gender",
-        "age-group",
-        "occasion",
-        "collection",
-        "season",
-        "color",
-        "material",
-        "product_type",
-        "no-of-pieces",
-        "battery_operated",
-        "is-portable",
-        "is_flammable",
-        "capacity",
-        "carrying-capacity",
-        "inner-dimension",
-        "seat-dimension",
-        "package_contents",
-        "additional-features",
-        "certification",
-        "essential",
-        "gst-inclusive",
-        "gst-if-exclusive",
-        "fragile",
-        "manufacturer-packer-importer-name",
-        "manufacturer-packer-importer-address"
-      ],
-      "slug": "baby-care-toys",
-      "banner": "https://hdn-1.fynd.com/seller/pictures/landscape-banner/original/Ikt1sK_DEFAULT-BANNER_LANDSCAPE.jpg7f923d3d-abc9-4a2e-9a49-204a36e1073c/Ikt1sK_DEFAULT-BANNER_LANDSCAPE.jpg",
-      "logo": "https://hdn-1.fynd.com/seller/pictures/logo/original/saEu9Z_0DEFAULT-LOGO.jpg4cd36f29-a15b-4ec1-ab33-1162ede2c61f/saEu9Z_0DEFAULT-LOGO.jpg",
-      "is_physical": true,
-      "id": "5f04a24944a2e5404274bc09"
-    },
-    {
-      "name": "Bags",
-      "categories": [
-        "seal-bags",
-        "reusable-bag",
-        "poly-bag",
-        "shoe-bag",
-        "sling-bags",
-        "bags"
-      ],
-      "description": "This is the file validation template for the fashion department and bags category.",
-      "departments": [
-        "kids",
-        "women",
-        "men"
-      ],
-      "attributes": [
-        "gender",
-        "age-group",
-        "color",
-        "outer-material",
-        "inner_material",
-        "product_type",
-        "collection",
-        "occasion",
-        "season",
-        "pattern",
-        "closure_type",
-        "care_instructions",
-        "compartments",
-        "expandable",
-        "water-resistence",
-        "water-resistence-details",
-        "water-proof",
-        "water-proof-details",
-        "warranty_type",
-        "warranty_description",
-        "package_contents",
-        "essential",
-        "gst-inclusive",
-        "gst-if-exclusive",
-        "fragile",
-        "manufacturer-packer-importer-name",
-        "manufacturer-packer-importer-address"
-      ],
-      "slug": "bags",
-      "banner": "https://hdn-1.fynd.com/seller/pictures/landscape-banner/original/ejcGMm_DEFAULT-BANNER_LANDSCAPE.jpg658c38fd-d6de-4fcf-9f0e-3a886b2e2225/ejcGMm_DEFAULT-BANNER_LANDSCAPE.jpg",
-      "logo": "https://hdn-1.fynd.com/seller/pictures/logo/original/GIysAV_0DEFAULT-LOGO.jpgf1942433-2bcb-4939-9128-675f66cd6d70/GIysAV_0DEFAULT-LOGO.jpg",
-      "is_physical": true,
-      "id": "5f04a24a44a2e5404274bc0b"
-    },
-    {
-      "modified_on": "2020-08-19T04:04:30.421000Z",
-      "logo": "https://hdn-1.addsale.com/x0/products/pictures/template/logo/original/fW2zqHspe-q1.png",
-      "created_on": "2020-08-19T04:04:30.421000Z",
-      "banner": "https://hdn-1.addsale.com/x0/products/pictures/template/banner/original/_YRvLuMDn-q1.jpeg",
-      "attributes": [
-        "base-material"
-      ],
-      "modified_by": {
-        "username": "fahimsakri_gofynd_com_44938",
-        "user_id": "10"
-      },
-      "departments": [
-        "men-s-fashion",
-        "kids",
-        "women-s-fashion",
-        "beauty-personal-care"
-      ],
-      "slug": "base-template",
-      "description": "ad",
-      "name": "Base Template",
-      "categories": [
-        "adcdas"
-      ],
-      "created_by": {
-        "username": "fahimsakri_gofynd_com_44938",
-        "user_id": "10"
-      },
-      "is_physical": true,
-      "id": "5f3ca4ce3f7e74000111925f"
-    },
-    {
-      "description": "This is the file validation template for the Beauty & Personal Care department. ",
-      "name": "Beauty & Personal Care",
-      "slug": "beauty-personal-care",
-      "departments": [
-        "beauty-personal-care"
-      ],
-      "attributes": [
-        "gender",
-        "age-group",
-        "occasion",
-        "collection",
-        "season",
-        "color",
-        "product_type",
-        "complexion",
-        "skin_type",
-        "spf",
-        "speciality",
-        "finish",
-        "lasting_power",
-        "coverage",
-        "hair_type",
-        "fragrance_family",
-        "fragrance_type",
-        "closure_type",
-        "capacity",
-        "product_format",
-        "active_ingredients",
-        "benefits",
-        "how-to-use",
-        "shelf_life",
-        "safety_warning",
-        "mask_type",
-        "material",
-        "adjustable",
-        "reusable",
-        "foldable",
-        "filtration",
-        "compatible_filter",
-        "package_contents",
-        "warranty_type",
-        "warranty_description",
-        "essential",
-        "gst-inclusive",
-        "gst-if-exclusive",
-        "fragile",
-        "manufacturer-packer-importer-name",
-        "manufacturer-packer-importer-address"
-      ],
-      "categories": [
-        "foundation",
-        "concealer",
-        "mascara",
-        "kajal",
-        "eyeshadow",
-        "false-eyelashes",
-        "eyebrow-enhancer",
-        "eyeliner",
-        "personal-care-gift-sets",
-        "primer",
-        "compact",
-        "hair-removal-cream",
-        "lip-liner",
-        "nail-polish-remover",
-        "liquid-lipstick",
-        "lipstick",
-        "nail-polish",
-        "moisturizing-socks",
-        "hand-cream",
-        "sindoor",
-        "crayon-lipstick",
-        "eye-brushes",
-        "manicure-kits",
-        "lip-gloss",
-        "makeup-remover",
-        "nail-art-kit",
-        "foot-cream",
-        "bb-cream",
-        "brush-sets",
-        "pedicure-kits",
-        "face-brushes",
-        "highlighters",
-        "lip-balm",
-        "lip-brushes",
-        "sunscreen",
-        "trimmer",
-        "facial-kits",
-        "colour-contact-lens",
-        "body-wash",
-        "toners",
-        "cleanser",
-        "epilator",
-        "eye-gels",
-        "face-wash",
-        "eye-masks",
-        "eye-creams",
-        "facial-wipes",
-        "masks",
-        "perfume",
-        "moisturizer",
-        "serum",
-        "night-cream",
-        "shoe-deodorant",
-        "razor",
-        "soaps",
-        "body-scrubs",
-        "day-cream",
-        "deodorants",
-        "eye-roll-on",
-        "eye-serums",
-        "attar",
-        "bath-sets",
-        "bathing-accessories",
-        "scrubs",
-        "sets",
-        "underarm-roll-on",
-        "wax-strips",
-        "body-creams",
-        "body-lotions",
-        "talcum-powders",
-        "body-butters",
-        "body-mousse",
-        "hair-brushes",
-        "combs",
-        "hair-spa",
-        "hair-colour",
-        "hair-spa-kits",
-        "hair-cream",
-        "hair-extensions",
-        "anti-stretch-mark-cream",
-        "body-oils",
-        "body-souffles",
-        "conditioner",
-        "hair-accessories",
-        "hair-oil",
-        "hair-serum",
-        "hair-spray",
-        "shampoo",
-        "body-mists",
-        "body-sprays",
-        "liquid-soap",
-        "beard-oil",
-        "beard-colour",
-        "beard-wash",
-        "beard-balm",
-        "nail-cutter",
-        "home-fragrance",
-        "gift-set",
-        "hand-soap",
-        "hand-sanitizer",
-        "face-oil",
-        "body-massage-balm",
-        "face-gel",
-        "face-mist",
-        "bath-oil",
-        "insect-repellent",
-        "anti-ageing-cream",
-        "bath-salt",
-        "anti-acne-cream",
-        "face-massage-cream",
-        "whitening-cream",
-        "anti-wrinkle-cream",
-        "foot-spray",
-        "anti-blemish-cream",
-        "blush",
-        "makeup-fixer",
-        "makeup-kit",
-        "sponge",
-        "foot-scrub",
-        "eyeshadow-palette",
-        "cc-cream",
-        "eye-wipes",
-        "head-wrap",
-        "patches",
-        "nipple-butter",
-        "pillow-spray",
-        "pillow-roll-on",
-        "fragrance-plug",
-        "pain-relief-balm",
-        "headache-roll-on",
-        "mirror",
-        "toilet-seat-spray",
-        "intimate-wash",
-        "massager",
-        "makeup-accessories",
-        "pillow",
-        "nail-accessories",
-        "sanitary-napkins",
-        "protective-mask",
-        "kohl-kajal",
-        "natural-lipstick",
-        "pearl-lipstick",
-        "creme-lipstick",
-        "matte-lipstick",
-        "glossy-lipstick",
-        "compact-spray",
-        "compact-stick",
-        "compact-powder",
-        "highlighter-cake",
-        "blush-highlighter",
-        "kajal-stick",
-        "compact-cake",
-        "roll-on-kajal-pencil",
-        "liquid-compact",
-        "stick-highlighter",
-        "kajal-pencil",
-        "gel-kajal",
-        "liquid-glossy-lipstick",
-        "liquid-matte-lipstick",
-        "crayon-matte-lipstick",
-        "liquid-creme-lipstick",
-        "crayon-glossy-lipstick",
-        "natural-lip-gloss",
-        "liquid-natural-lipstick",
-        "crayon-creme-lipstick",
-        "pearl-lip-gloss",
-        "liquid-pearl-lipstick",
-        "crayon-natural-lipstick",
-        "liquid-highlighter",
-        "crayon-pearl-lipstick",
-        "glossy-lip-gloss",
-        "matte-lip-gloss",
-        "creme-lip-gloss",
-        "eye-concealer",
-        "object-disinfectant",
-        "face-disinfectant",
-        "vegetable-fruit-wash",
-        "infrared-thermometer",
-        "safety-goggle",
-        "personal-protective-equipment-kit",
-        "examination-gloves",
-        "face-shield"
-      ],
-      "banner": "https://hdn-1.fynd.com/seller/pictures/landscape-banner/original/ZxNlYp_DEFAULT-BANNER_LANDSCAPE.jpg66a71bf3-c1a7-4aa0-98e6-f2a837caa59a/ZxNlYp_DEFAULT-BANNER_LANDSCAPE.jpg",
-      "logo": "https://hdn-1.fynd.com/seller/pictures/logo/original/OInLCX_0DEFAULT-LOGO.jpg03aeaeb8-2d04-4694-b641-f60fbdea5c4d/OInLCX_0DEFAULT-LOGO.jpg",
-      "is_physical": true,
-      "id": "5f05b34844a2e571575f3047"
-    },
-    {
-      "name": "Clothing",
-      "categories": [
-        "casual-shirts",
-        "formal-shirts",
-        "sweaters",
-        "sweatshirts",
-        "hoodies",
-        "cardigans",
-        "suits",
-        "front-open-jackets",
-        "blazers",
-        "waistcoats",
-        "jeans",
-        "chinos",
-        "cargos",
-        "corduroys",
-        "formal-trousers",
-        "3-4ths",
-        "trunks",
-        "boardshorts",
-        "rashguard",
-        "briefs",
-        "trackpants",
-        "tracksuits",
-        "joggers",
-        "t-shirts",
-        "shorts",
-        "gowns",
-        "blouson-top",
-        "tunics",
-        "corsets",
-        "kaftan-top",
-        "shift-dress",
-        "jumpsuits",
-        "jeggings",
-        "skirts",
-        "palazzos",
-        "culottes",
-        "leggings",
-        "shrugs",
-        "sports-bra",
-        "bikinis",
-        "swimsuit",
-        "sarong",
-        "kaftan",
-        "shapewear",
-        "camisole",
-        "activewear-tops",
-        "tights",
-        "yoga-pants",
-        "capris",
-        "harem",
-        "bomber-jackets",
-        "gilet",
-        "leather-jackets",
-        "polos",
-        "bodycon-dress",
-        "off-shoulder-dress",
-        "skater-dress",
-        "maxi-dress",
-        "sheath-dress",
-        "sweater-dress",
-        "tube-dress",
-        "slip-dress",
-        "asymmetric-dress",
-        "bodysuit",
-        "peplum-top",
-        "crop-top",
-        "tiered-dress",
-        "maxi-top",
-        "tank-top",
-        "tube-top",
-        "strappy-top",
-        "activewear-jackets",
-        "denim-jackets",
-        "windcheater",
-        "peplum-dress",
-        "off-shoulder-top",
-        "shirt-dress",
-        "kids-shirts",
-        "twin-sets",
-        "dungarees",
-        "trousers",
-        "western-jackets",
-        "frocks",
-        "dresses",
-        "tops",
-        "casual-pants",
-        "beachwear-bottoms",
-        "coat",
-        "fusion-set",
-        "indowestern-kurta",
-        "tapered-jeans",
-        "joggers-jeans",
-        "straight-chinos",
-        "tapered-chinos",
-        "double-breasted-suits",
-        "activewear-crop-tops",
-        "flat-front-formal-trousers",
-        "pleated-formal-trousers",
-        "straight-formal-trousers",
-        "straight-jeans",
-        "flared-jeans",
-        "tapered-formal-trousers",
-        "straight-skirt",
-        "flared-skirt",
-        "asymmetric-skirt",
-        "pleated-corduroys",
-        "tapered-corduroys",
-        "straight-corduroys",
-        "cropped-chinos",
-        "cropped-corduroys",
-        "bootcut-jeans",
-        "drop-crotch-jeans",
-        "cropped-jeans",
-        "bootcut-formal-trousers",
-        "cropped-formal-trousers",
-        "five-buttoned-suits",
-        "tuxedo-suits",
-        "one-buttoned-suits",
-        "two-buttoned-suits",
-        "four-buttoned-suits",
-        "three-buttoned-suits",
-        "pleated-chinos",
-        "pleated-jeans",
-        "beachwear-bikini-tops",
-        "pleated-skirt",
-        "flared-formal-trousers",
-        "activewear-tank-tops",
-        "beachwear-bikini-bottoms",
-        "pencil-skirt",
-        "activewear-blouse",
-        "casual-joggers"
-      ],
-      "description": "This is the file validation template for the fashion department and clothing category.",
-      "departments": [
-        "men",
-        "women",
-        "kids",
-        "clothing"
-      ],
-      "attributes": [
-        "gender",
-        "age-group",
-        "color",
-        "material",
-        "occasion",
-        "collection",
-        "season",
-        "product_fit",
-        "product_type",
-        "product_length",
-        "pattern",
-        "sleeve_type",
-        "sleeve_length",
-        "closure_type",
-        "neck_type",
-        "waist_rise",
-        "denim-fade",
-        "care_instructions",
-        "package_contents",
-        "number-of-pockets",
-        "model_info",
-        "essential",
-        "gst-inclusive",
-        "gst-if-exclusive",
-        "fragile",
-        "manufacturer-packer-importer-name",
-        "manufacturer-packer-importer-address"
-      ],
-      "slug": "clothing",
-      "banner": "https://hdn-1.fynd.com/seller/pictures/landscape-banner/original/720R34_DEFAULT-BANNER_LANDSCAPE.jpga765babe-cfaa-4cc5-9da7-f4e1402fa97e/720R34_DEFAULT-BANNER_LANDSCAPE.jpg",
-      "logo": "https://hdn-1.fynd.com/seller/pictures/logo/original/jKZEs7_0DEFAULT-LOGO.jpg78413c0a-11a8-43f8-88ad-1442e9fdb898/jKZEs7_0DEFAULT-LOGO.jpg",
-      "is_physical": true,
-      "id": "5f04a25044a2e5404274bc0e"
-    },
-    {
-      "description": "asdd",
-      "attributes": [
-        "color",
-        "warranty_type",
-        "care_instructions"
-      ],
-      "modified_on": "2020-08-20T16:15:33.598000Z",
-      "modified_by": {
-        "username": "fahimsakri_gofynd_com_44938",
-        "user_id": "10"
-      },
-      "name": "FA-Template",
-      "categories": [
-        "vision-qa-f9447f89-d2da-41fc-ac33-b9f286308c14"
-      ],
-      "logo": "https://hdn-1.addsale.com/x0/products/pictures/template/logo/original/fW2zqHspe-q1.png",
-      "departments": [
-        "electronics"
-      ],
-      "banner": "https://hdn-1.addsale.com/x0/products/pictures/template/banner/original/L_u77Mz4T-FA-Template.png",
-      "slug": "fa-template",
-      "created_on": "2020-08-19T09:51:08.215000Z",
-      "created_by": {
-        "username": "fahimsakri_gofynd_com_44938",
-        "user_id": "10"
-      },
-      "is_physical": true,
-      "id": "5f3cf60c9788cc00018ab276"
-    },
-    {
-      "name": "Footwear",
-      "categories": [
-        "sneakers",
-        "running-shoes",
-        "hiking-shoes",
-        "football-shoes",
-        "indoor-sports-shoes",
-        "trainers",
-        "outdoor-sports-shoes",
-        "moccasins",
-        "loafers",
-        "boat-shoes",
-        "brogues",
-        "derby-shoes",
-        "oxfords",
-        "monk-strap-shoes",
-        "lace-ups",
-        "formal-slip-ons",
-        "boots",
-        "sandals",
-        "flip-flops",
-        "floaters",
-        "d-orsay",
-        "espadrilles",
-        "pointed-toe",
-        "flat-slip-ons",
-        "gladiators",
-        "flat-sandals",
-        "stilettos",
-        "wedges",
-        "block-heels",
-        "kitten-heels",
-        "louis-heels",
-        "cone-heels",
-        "heel-sandals",
-        "ballerinas",
-        "casual-slip-ons",
-        "casual-lace-ups",
-        "ethnic-sandals",
-        "clogs",
-        "slippers",
-        "school-shoes",
-        "high-heels",
-        "flats",
-        "mules",
-        "crocs",
-        "heels-pumps",
-        "mojaris",
-        "jutties",
-        "labour-shoes"
-      ],
-      "description": "This is the file validation template for the fashion department and footwear category.",
-      "departments": [
-        "men",
-        "women",
-        "kids"
-      ],
-      "attributes": [
-        "gender",
-        "age-group",
-        "color",
-        "outer-material",
-        "inner_material",
-        "sole-material",
-        "occasion",
-        "collection",
-        "season",
-        "product_type",
-        "pattern",
-        "closure_type",
-        "toe_type",
-        "arch_type",
-        "heel_height",
-        "heel-height-unit-of-measure",
-        "care_instructions",
-        "package_contents",
-        "water-resistence",
-        "water-resistence-details",
-        "water-proof",
-        "water-proof-details",
-        "warranty_type",
-        "warranty_description",
-        "essential",
-        "gst-inclusive",
-        "gst-if-exclusive",
-        "fragile",
-        "manufacturer-packer-importer-name",
-        "manufacturer-packer-importer-address"
-      ],
-      "slug": "footwear",
-      "banner": "https://hdn-1.fynd.com/seller/pictures/landscape-banner/original/phMzNh_DEFAULT-BANNER_LANDSCAPE.jpgf06e7d2f-15a0-405a-b37b-1333c618abdb/phMzNh_DEFAULT-BANNER_LANDSCAPE.jpg",
-      "logo": "https://hdn-1.fynd.com/seller/pictures/logo/original/PkIwbo_0DEFAULT-LOGO.jpgbb9acb1b-5e2c-44d4-918a-9429367ccb7d/PkIwbo_0DEFAULT-LOGO.jpg",
-      "is_physical": true,
-      "id": "5f04a25344a2e5404274bc10"
-    },
-    {
-      "slug": "groceries",
-      "name": "Groceries",
-      "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/EtkWQm_fruit___vegetable_logo.jpgc541c78c-dabc-4823-bb72-c4bd3e5db449/EtkWQm_fruit___vegetable_logo.jpg",
-      "departments": [
-        "groceries"
-      ],
-      "description": "Groceries",
-      "banner": "https://hdn-1.addsale.com/x0/seller/pictures/landscape-banner/original/BPjEl6_fruit___vegetable_logo.jpg577eb6bb-de4e-444c-a86a-bc23e0d97178/BPjEl6_fruit___vegetable_logo.jpg",
-      "attributes": [
-        "ingredient-type",
-        "manufacturer_packer_importer_address"
-      ],
-      "categories": [
-        "buns",
-        "non-veg-pickle",
-        "condensed-milk",
-        "shoe-shiners",
-        "bath-stool-tub-basin-sets",
-        "soda-cocktail-mix",
-        "tofu",
-        "buckets-mugs",
-        "fresh-mutton",
-        "games-calculators",
-        "kolam",
-        "namkeen-savoury-snacks",
-        "gift-bags",
-        "honey",
-        "cutlery-spoons-fork",
-        "pita",
-        "potato-onion-tomato",
-        "apples-pomegranate",
-        "dishwash-powder",
-        "country-eggs",
-        "fish-tuna",
-        "coconut-milk",
-        "sugarfree-sweeteners",
-        "cups-mugs-tumblers",
-        "turkey",
-        "breakfast-snack-mixes",
-        "diabetic-drinks",
-        "other-dal",
-        "herbs-seasoning",
-        "incense-sticks",
-        "scissor",
-        "slice-cakes",
-        "dips-dressings",
-        "files",
-        "lavash",
-        "flakes",
-        "tawa-sauce-pan",
-        "breads",
-        "jaggery",
-        "soya-chunks",
-        "exotic-vegetables",
-        "wine-rise-vinegar",
-        "recipe-packs",
-        "pen",
-        "cookware-sets",
-        "jam-conserve-marmalade",
-        "holi-pichkari",
-        "knives-peelers",
-        "chicken-sausages",
-        "poha",
-        "jowar-flour",
-        "cook-serve",
-        "unsweetened-cold-press",
-        "decorations",
-        "dust-cloth-wipes",
-        "jelly",
-        "gift-boxes",
-        "organic-cold-press-oil",
-        "glucose-powder-tablets",
-        "frozen-non-veg-snacks",
-        "leafy-vegetables",
-        "salted-biscuits",
-        "cooking-chocolates-cocoa",
-        "marinated-meat",
-        "berries",
-        "basmati-rice",
-        "ground-coffee",
-        "cut-vegetables",
-        "moong-dal",
-        "glue",
-        "fabric-pre-post-wash",
-        "canola-rapeseed-oil",
-        "water-fridge-bottle",
-        "frozen-fish-seafood",
-        "choppers-graters",
-        "soya",
-        "kiwi-melon-citrus-fruits",
-        "buttermilk",
-        "focaccia",
-        "healthy-baked-snacks",
-        "bowls",
-        "car-freshener",
-        "nachos",
-        "powdered-spices",
-        "rawa",
-        "pressure-cookers",
-        "chips",
-        "cream-rolls",
-        "tape",
-        "bajra",
-        "jowar",
-        "ice-cream",
-        "wicks",
-        "cooking-pastes",
-        "erasers-sharpeners",
-        "imported-fruits",
-        "notebooks",
-        "masoor-dal",
-        "canned-seafood",
-        "regular-white-vinegar",
-        "croissants-bread",
-        "pasta",
-        "root-vegetables",
-        "whole-spices",
-        "chana-dal",
-        "glassware",
-        "cucumber-gourds-capsicum",
-        "papads-ready-to-fry",
-        "lamp",
-        "hakka-noodles",
-        "balsamic-cider-vinegar",
-        "garbage-bags",
-        "pumpkin-drumstick",
-        "other-plastic-ware",
-        "frozen-indian-breads",
-        "glucose-milk-biscuits",
-        "non-alcoholic-drinks",
-        "paneer",
-        "toor-dal",
-        "fresh-salads-sprouts",
-        "fresh-chicken",
-        "wheat-flour",
-        "fruits-pulps",
-        "cheese-spread",
-        "camphor",
-        "cabbage-broccoli-cauliflower",
-        "sugar",
-        "candles",
-        "plates",
-        "mangoes",
-        "aerated-drinks",
-        "toffee-candy-lollypop",
-        "pizza-base",
-        "thai-asian-sauce",
-        "shoe-brushes",
-        "gas-stove",
-        "sports-energy-drinks",
-        "shrikhand",
-        "hangers-clips-ropes",
-        "croutons",
-        "floor-other-cleaners",
-        "toilet-cleaners",
-        "macaroni",
-        "folders",
-        "choco-nut-spread",
-        "salts",
-        "butter",
-        "pavs",
-        "hangers",
-        "khari",
-        "frozen-veg-snacks",
-        "tea-cakes",
-        "seasonal-fruits",
-        "olive",
-        "seasonal-accessories",
-        "cream",
-        "heat-eat-ready-meals",
-        "dishwash-liquid-paste",
-        "rubs",
-        "beans-pulses",
-        "seasonal-vegetables",
-        "besan",
-        "shoe-polish",
-        "packaged-water",
-        "kids-cereal",
-        "instant-coffee",
-        "powdered-milk",
-        "dishwash-bar",
-        "home-baking",
-        "laundry-storage-baskets",
-        "detergent-liquid",
-        "instant-noodles",
-        "canned-food",
-        "disposable-cups-plates",
-        "brinjals",
-        "imported-cleaners",
-        "tinned-packed-sweets",
-        "container-set",
-        "lamp-oil",
-        "mayonnaise",
-        "wall-hooks",
-        "spreads",
-        "juices",
-        "quinoa-grains",
-        "pooja-thali",
-        "milk",
-        "syrups-concentrates",
-        "cut-fruit-tender-coconut",
-        "kitchen-rolls",
-        "cold-drinks",
-        "vessels",
-        "premium-cookies",
-        "pooja-bells",
-        "other-pooja-needs",
-        "rise-flour",
-        "breadcrumbs",
-        "cup-cakes",
-        "berry",
-        "regional-rice",
-        "regional-grains",
-        "chilli-soya-sauce",
-        "gourmet-popcorn",
-        "beans-okra",
-        "wafers",
-        "sparkling-drinks",
-        "muffins",
-        "daliya",
-        "match-box",
-        "bagels-bread",
-        "rice-products",
-        "dry-fruits",
-        "dal-mix",
-        "flavoured-water",
-        "roasted-seeds-nuts",
-        "marshmallow",
-        "toilet-paper",
-        "wet-wipes",
-        "fruit-baskets",
-        "leaf-dust-tea",
-        "rakhi",
-        "insect-repellent",
-        "bajra-flour",
-        "ghee",
-        "lunch-boxes",
-        "cup-noodles",
-        "chocolates",
-        "candle-holder",
-        "frozen-mutton",
-        "marie-health-digestive",
-        "pencils",
-        "turkey-duck",
-        "vermicelli",
-        "exotic-flavoured-tea",
-        "powdered-mixes",
-        "urad-dal",
-        "toilet-other-brushes",
-        "jalapeno",
-        "maida",
-        "chutney",
-        "fresh-sweets",
-        "dessert-mixes",
-        "instant-pasta",
-        "kitchen-tools-other-accessories",
-        "mushrooms",
-        "chilli-lemon-garlic-ginger",
-        "gherkin",
-        "cooking-oil",
-        "curry-paste",
-        "tumblers",
-        "lamb",
-        "cheese",
-        "other-seafood",
-        "other-meat",
-        "frozen-chicken",
-        "banana-sapota-papaya",
-        "granola-cereal-bars",
-        "sabudana",
-        "cream-biscuits",
-        "bread-sticks",
-        "chia-seeds",
-        "utensil-scrub-pad-glove",
-        "soya-granules",
-        "soups",
-        "spring-water",
-        "rusks",
-        "olive-oil",
-        "organic-eggs",
-        "aluminium-foil-cling-wrap",
-        "colours-crayons",
-        "corn-snacks",
-        "pulses",
-        "protein-eggs",
-        "tomatoes-vegetables",
-        "cookies",
-        "still-drinks",
-        "mustard-cheese-sauce",
-        "regional-flour",
-        "detergent-powder",
-        "flavoured-other-oils",
-        "chikki-gajak",
-        "curd",
-        "strainers-ladle-spatula",
-        "holi-colours",
-        "trail-cocktail-mixes",
-        "baking-cake-decoration",
-        "biscuits",
-        "pencil-box",
-        "muesli",
-        "air-freshener",
-        "quinoa",
-        "metal-furniture-cleaners",
-        "green-tea",
-        "paper-napkin",
-        "flavoured-milk",
-        "mints-chewing-gum",
-        "lighters",
-        "lassi",
-        "edamame-beans",
-        "dry-fish",
-        "blended-masalas",
-        "tomato-ketchup",
-        "kadai-fry-pans",
-        "dustbins",
-        "syrups",
-        "wheat",
-        "kitchen-glass-drains",
-        "pork-ham",
-        "panini",
-        "flours-pre-mixes",
-        "cfl-led-bulbs",
-        "baguette-bread",
-        "brooms-dust-pans",
-        "prawns-shrimps",
-        "soap-cases-dispensers",
-        "oats-porridge",
-        "mops-wipers",
-        "exam-pads",
-        "tea-bags",
-        "pastries",
-        "mosquito-repellent",
-        "cut-peeled-veggies",
-        "pickle",
-        "brownies",
-        "margarine",
-        "soya-milk",
-        "fresh-fish",
-        "cloth-dryer-iron-table",
-        "gift-wrap",
-        "farm-eggs",
-        "detergent-bar",
-        "battery-electricals"
-      ],
-      "is_physical": true,
-      "id": "5efc43b13b4ca00001328666"
-    },
-    {
-      "description": "This is the file validation template for the Home & Living Department",
-      "name": "Home & Living",
-      "slug": "home-living",
-      "departments": [
-        "home-living"
-      ],
-      "categories": [
-        "slippers",
-        "chairs",
-        "table",
-        "beds",
-        "vases",
-        "bed-sheets",
-        "dining-table",
-        "blankets",
-        "bath-robe",
-        "bathing-accessories",
-        "napkins",
-        "hanger",
-        "lunch-box",
-        "photo-frame",
-        "toiletry-bag",
-        "pillow",
-        "cup-saucer",
-        "pet-collar-charm",
-        "alarm-clocks",
-        "dessert-plates",
-        "vintage-clocks",
-        "tissue-holder",
-        "flush-mount-lights",
-        "jewellery-box-stands",
-        "desk-accessories",
-        "serving-sets",
-        "cake-stands",
-        "bath-towel",
-        "cutlery",
-        "knives",
-        "knives-holder",
-        "pillow-covers",
-        "placemats",
-        "saucer",
-        "coasters",
-        "tea-sets",
-        "forks",
-        "shower-curtains",
-        "serving-bowls",
-        "soap-dispensers",
-        "spoons",
-        "bath-mats",
-        "table-runner",
-        "bed-covers",
-        "tea-coffee-accessories",
-        "coverlets",
-        "soap-dishes",
-        "duvet",
-        "bed-sheets-sets",
-        "duvet-cover",
-        "bolster-pillows",
-        "quilts-rajais",
-        "mattress",
-        "bed-linen-set",
-        "candles",
-        "clothes-storage",
-        "shoe-racks",
-        "cushion-fillers",
-        "scented-candles",
-        "art-pieces",
-        "key-holder",
-        "planters",
-        "showpieces",
-        "decals-stickers",
-        "mirrors",
-        "clocks",
-        "coffee-tables",
-        "dining-benches",
-        "ottoman",
-        "artificial-flowers",
-        "dining-chair",
-        "dining-table-set",
-        "drapery",
-        "console-table",
-        "baking-mould",
-        "cup",
-        "dohars",
-        "cushion-covers",
-        "fountains",
-        "comforters",
-        "mugs",
-        "flowerpot",
-        "cushions",
-        "decorative-objects",
-        "napkin-holder",
-        "trays",
-        "table-cloth",
-        "tea-cosy",
-        "shower-caps",
-        "shower-mats",
-        "bed-skirts",
-        "wardrobe-organisers",
-        "mattress-protectors",
-        "pillow-protectors",
-        "tea-light-candles",
-        "sculptures",
-        "faux-plants",
-        "vintage-finds",
-        "wall-art",
-        "dressing-tables",
-        "benches",
-        "sofas",
-        "storage-trunks",
-        "curtains",
-        "side-table",
-        "pillow-shams",
-        "wind-chimes",
-        "candle-holders",
-        "cheese-boards",
-        "serving-platters",
-        "pitchers",
-        "drinking-glasses",
-        "pet-collar",
-        "bathroom-faucets",
-        "lamp-bases",
-        "wreath",
-        "pendant-lamps",
-        "hearth-fireplace",
-        "sconces",
-        "succulents-plants",
-        "fireplace-screens",
-        "garlands",
-        "electric-fireplaces",
-        "storage-boxes",
-        "elecrtonics-tech-accessories",
-        "diffusers",
-        "potpourri",
-        "throws",
-        "ceiling-lights",
-        "pet-feeding-bowl",
-        "chandeliers",
-        "carpets",
-        "salad-plates",
-        "room-partitions",
-        "bar-accessories",
-        "decorative-lights",
-        "hand-towel",
-        "lamp-shades",
-        "face-towel",
-        "study-table-lamps",
-        "floor-runner",
-        "wall-lamps",
-        "frying-pan",
-        "door-mats",
-        "carafe",
-        "dinner-plates",
-        "snifter",
-        "dinner-set",
-        "peg-measure",
-        "platters",
-        "shot-bottles",
-        "bathroom-caddy",
-        "vinegar-dispenser",
-        "toilet-brush-holder",
-        "cutlery-holder",
-        "toothbrush-holder",
-        "kitchen-trolly",
-        "stemware",
-        "measuring-cup",
-        "baking-tray",
-        "strainer",
-        "stew-pan",
-        "whisk",
-        "cocktail-shaker",
-        "flask",
-        "food-container",
-        "string-lights",
-        "bottle-holder",
-        "poufs",
-        "chopping-board",
-        "fireplace-tools",
-        "dish-rack",
-        "log-racks-holders",
-        "ladle",
-        "aroma-oils",
-        "peeler",
-        "incense-sticks-holders",
-        "tongs",
-        "incense-sticks",
-        "kettle",
-        "kulladhs",
-        "table-linen-set",
-        "handbag-organiser",
-        "upholstery",
-        "laundry-bag",
-        "floor-lamps",
-        "magazine-organiser",
-        "lighting-accessories",
-        "makeup-organiser",
-        "table-lamps",
-        "shelf-liner",
-        "rugs-dhurries",
-        "shoes-organiser",
-        "sweater-bag",
-        "bowls",
-        "decanters",
-        "garbage-bag",
-        "beach-towel",
-        "bookcase",
-        "towel-set",
-        "pool-table",
-        "bath-rug",
-        "poker-table",
-        "shower-holder",
-        "table-tennis",
-        "towel-holder",
-        "bar-counter-stools",
-        "bath-mirror",
-        "bar-carts",
-        "towel-rod",
-        "bar-furniture",
-        "floor-mats",
-        "bedside-table",
-        "kadhai",
-        "foundations",
-        "sauce-pan",
-        "pillow-inserts",
-        "tawa",
-        "bathroom-vanities",
-        "cocktail-set",
-        "lounging-relaxing-furniture",
-        "canister",
-        "oil-dispenser",
-        "salt-pepper-shakers",
-        "spatula",
-        "casserole",
-        "handi",
-        "glasses",
-        "kitchen-linen-set",
-        "wardrobe-organiser",
-        "jewellery-organiser",
-        "separators",
-        "closet-storage",
-        "garbage-bag-holder",
-        "hooks",
-        "foosball-table",
-        "board-game",
-        "wall-shelves",
-        "media-furniture",
-        "file-cabinets",
-        "leather-furniture",
-        "buffets-sidebars",
-        "mattress-pads",
-        "wastebaskets",
-        "hampers-baskets",
-        "outdoor-dining-furniture",
-        "entry-furniture",
-        "water-jugs",
-        "table-covers",
-        "lanterns",
-        "desk-organiser",
-        "drawer-organiser",
-        "suit-organiser",
-        "swab-storage",
-        "tote-basket",
-        "hanger-holder",
-        "cabinet",
-        "hockey-table",
-        "shuffleboard",
-        "game-accessories",
-        "desk",
-        "office-chairs",
-        "dining-storage",
-        "kitchen-island",
-        "nightstands",
-        "duvet-inserts",
-        "mattress-toppers",
-        "medicine-cabinets",
-        "bathroom-hardware-accessories",
-        "salt-pepper-grinders",
-        "water-bottle"
-      ],
-      "attributes": [
-        "occasion",
-        "collection",
-        "color",
-        "material",
-        "product_type",
-        "bed_size",
-        "utility",
-        "quality",
-        "pattern",
-        "filling",
-        "shape",
-        "sheet-type",
-        "sheet_size",
-        "thread_count",
-        "product-dimensions",
-        "pocket_depth",
-        "group-id",
-        "variation-type",
-        "variation-based-on",
-        "capacity",
-        "dishwasher_safe",
-        "microwave_safe",
-        "oven_safe",
-        "additional-features",
-        "care_instructions",
-        "package_contents",
-        "sales_package",
-        "warranty_type",
-        "warranty_description",
-        "gst-inclusive",
-        "gst-if-exclusive",
-        "fragile",
-        "manufacturer-packer-importer-name",
-        "manufacturer-packer-importer-address"
-      ],
-      "banner": "https://hdn-1.fynd.com/seller/pictures/landscape-banner/original/EHRCqs_DEFAULT-BANNER_LANDSCAPE.jpgc596e149-f6e1-4695-9446-9a8b88797d4c/EHRCqs_DEFAULT-BANNER_LANDSCAPE.jpg",
-      "logo": "https://hdn-1.fynd.com/seller/pictures/logo/original/UAiJlq_0DEFAULT-LOGO.jpg25c9816d-2376-4eaf-b4ab-accb37e9a564/UAiJlq_0DEFAULT-LOGO.jpg",
-      "is_physical": true,
-      "id": "5f05acfa44a2e55081728be2"
-    },
-    {
-      "categories": [
-        "3-ply-box",
-        "5-ply-box",
-        "7-ply-box",
-        "9-ply-box",
-        "bubble-roll",
-        "card-board-roll",
-        "courier-bag",
-        "courier-pouch",
-        "die-cut-box",
-        "double-side-tape",
-        "drawer-box",
-        "duct-tape",
-        "filament-tape",
-        "laminated-box",
-        "packaging-tape",
-        "poly-bag",
-        "printed-tape",
-        "reusable-bag",
-        "seal-bags",
-        "stretch-wrap",
-        "suit-box",
-        "zip-lock-bags",
-        "box"
-      ],
-      "name": "Industrial Supplies",
-      "banner": "https://hdn-1.fynd.com/seller/pictures/landscape-banner/original/9DpMn3_Beauty_&_Personal_Care_L.jpg80d89967-9c2c-498b-a79c-d176b3e71ea5/9DpMn3_Beauty_and_Personal_Care_L.jpg",
-      "slug": "industrial-supplies",
-      "attributes": [
-        "color",
-        "primary_color",
-        "style",
-        "features",
-        "safety_warning",
-        "is_flammable",
-        "water_resistant",
-        "product_details",
-        "package_contents",
-        "essential",
-        "pallet"
-      ],
-      "logo": "https://hdn-1.fynd.com/seller/pictures/logo/original/I2NV2c_indi.jpg2eaf85b5-8076-4b0b-8f01-f119d6d8b559/I2NV2c_indi.jpg",
-      "departments": [
-        "industrial-supplies"
-      ],
-      "description": "Products used for business and industrial manufacturing process comes under this category. Example: Packaging Material",
-      "modified_by": {
-        "username": "meghagolecha_fynd_com_89167",
-        "user_id": "23244269"
-      },
-      "modified_on": "2020-08-20T19:12:26.040000Z",
-      "is_active": true,
-      "is_physical": true,
-      "id": "5f11eced5ca7f90001685a70"
-    }
-  ]
+  "items": {
+    "name": "Accessories",
+    "categories": [
+      "accessories-adornments",
+      "messenger-bags",
+      "wallets",
+      "satchels",
+      "backpacks",
+      "laptop-bags",
+      "briefcases",
+      "suitcases",
+      "duffles",
+      "analog-watches",
+      "chronograph-watches",
+      "digital-watches",
+      "aviators",
+      "wayfarers",
+      "round-sunglasses",
+      "cateye-sunglasses",
+      "rectangle-sunglasses",
+      "oversized-sunglasses",
+      "browline-sunglasses",
+      "square-sunglasses",
+      "sports-sunglasses",
+      "belts",
+      "ties",
+      "cufflinks",
+      "pocket-squares",
+      "tie-pins",
+      "brooches",
+      "baseball-caps",
+      "hats",
+      "shawls",
+      "mufflers",
+      "stoles",
+      "socks",
+      "dupattas",
+      "handbags",
+      "clutches",
+      "totes",
+      "sling-bags",
+      "hobos",
+      "scarves",
+      "stockings",
+      "hairbands",
+      "hair-clips",
+      "pouches",
+      "oval-sunglasses",
+      "gloves",
+      "frames",
+      "maang-tikka",
+      "bags",
+      "sunglasses",
+      "mittens",
+      "money-clips",
+      "card-cases",
+      "brushes",
+      "horns",
+      "spray",
+      "cleaner",
+      "cream",
+      "polishes",
+      "decoration-charms",
+      "care-kits",
+      "trees",
+      "shoe-bag",
+      "laces",
+      "insoles",
+      "handkerchief",
+      "toy-box",
+      "play-gym",
+      "camera-bag",
+      "fanny-pack",
+      "usb-cable",
+      "rca-cable",
+      "usb-c-to-multiport-adapter",
+      "batteries",
+      "power-banks",
+      "lightning-cable",
+      "tos-cable",
+      "aux-cable",
+      "hdmi-cable",
+      "charging-cable",
+      "mini-display-port-hdmi-cable",
+      "thunderbolt-cable",
+      "bluetooth-headphones",
+      "headphone",
+      "bluetooth-earphones",
+      "earphones",
+      "hard-disk-drive",
+      "photo-frame",
+      "notebook",
+      "pen",
+      "luggage-tag",
+      "stationery-combo",
+      "jewellery-case",
+      "folder",
+      "key-chain",
+      "suspender",
+      "cummerbund",
+      "cravet",
+      "toiletry-bag",
+      "cosmetic-bag",
+      "gift-bag",
+      "packaging-material",
+      "spectacle-case",
+      "cuff-bands",
+      "playing-cards",
+      "kalangi",
+      "kataar",
+      "safa",
+      "watch-case",
+      "paper-weight",
+      "caps",
+      "visor-caps",
+      "bucket-hats",
+      "beanie-caps",
+      "cowboy-hats",
+      "gatsby-caps",
+      "fedora-hats",
+      "rain-cover",
+      "round-glasses",
+      "rectangle-glasses",
+      "cateye-glasses",
+      "aviator-glasses",
+      "square-glasses",
+      "oval-glasses",
+      "almond-glasses",
+      "wayfarer-glasses",
+      "toric-contact-lenses",
+      "daily-disposable",
+      "monthly-reusable",
+      "multifocal-varifocal",
+      "solutions-accessories",
+      "coloured-lenses"
+    ],
+    "description": "This is the file validation template for the fashion department and accessories category.",
+    "departments": [
+      "electronics",
+      "men",
+      "women",
+      "kids",
+      "toys"
+    ],
+    "attributes": [
+      "gender",
+      "age-group",
+      "occasion",
+      "collection",
+      "season",
+      "color",
+      "material",
+      "product_type",
+      "pattern",
+      "closure_type",
+      "product_length",
+      "feature",
+      "care_instructions",
+      "package_contents",
+      "essential",
+      "gst-inclusive",
+      "gst-if-exclusive",
+      "fragile",
+      "manufacturer-packer-importer-name",
+      "manufacturer-packer-importer-address"
+    ],
+    "slug": "accessories",
+    "banner": "https://hdn-1.fynd.com/seller/pictures/landscape-banner/original/F4W6Pd_DEFAULT-BANNER_LANDSCAPE.jpgd54cb24d-dd2c-441c-bca0-8f65ea3b101c/F4W6Pd_DEFAULT-BANNER_LANDSCAPE.jpg",
+    "logo": "https://hdn-1.fynd.com/seller/pictures/logo/original/hkE1dC_0DEFAULT-LOGO.jpgfb5b1b31-9449-43db-9049-435fec88ee77/hkE1dC_0DEFAULT-LOGO.jpg",
+    "is_physical": true,
+    "id": "5f04a23544a2e5404274bc07",
+    "is_expirable": true
+  }
 }
 ```
 </details>
@@ -16411,7 +14390,9 @@ List of all categories attached to departments specified. See example below or r
 
 ```json
 {
-  "page": {},
+  "page": {
+    "type": ""
+  },
   "items": []
 }
 ```
@@ -17102,19 +15083,22 @@ The Collection object. See example below or refer `UpdateCollectionSchema` for d
 {
   "uid": "604f585a7051e30001173ac1",
   "type": "query",
-  "query": {},
+  "query": [],
   "name": "New",
   "banners": {
     "portrait": {
+      "aspect_ratio": "16:9",
       "type": "image",
       "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588858137/production/applications/app_000000000000000000000001/media/collection/portrait/xzuftshmmw4yuwzb12pm.png"
     },
     "landscape": {
+      "aspect_ratio": "16:9",
       "type": "image",
       "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857999/production/applications/app_000000000000000000000001/media/collection/landscape/avm7xibo2jgk8glc4bwl.png"
     }
   },
   "logo": {
+    "aspect_ratio": "16:9",
     "type": "image",
     "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857854/production/applications/app_000000000000000000000001/media/collection/logo/w9ns7nfgv7fk45xqrpoh.png"
   },
@@ -17146,10 +15130,10 @@ The Collection object. See example below or refer `UpdateCollectionSchema` for d
   "_custom_json": {},
   "_locale_language": {},
   "_schedule": {
-    "start": "2021-03-15T12:51:21.333000+00:00Z",
+    "start": "2022-12-31T23:59:59Z",
     "next_schedule": [
       {
-        "start": "2021-03-15T12:51:21.333000+00:00Z",
+        "start": "2022-12-31T23:59:59Z",
         "end": null
       }
     ],
@@ -17287,7 +15271,8 @@ Success Response. See example below or refer `DepartmentCreateResponseSchema` fo
     "username": "31315573458_05620",
     "user_id": "f5b6a546565146sdfg584c342"
   },
-  "modified_on": "2022-08-09T15:44:02.540740"
+  "modified_on": "2022-08-09T15:44:02.540740",
+  "created_on": "2022-08-09T15:44:02.540740"
 }
 ```
 </details>
@@ -17971,7 +15956,8 @@ Returns a success response
 
 ```json
 {
-  "batch_id": "507f1f77bcf86cd799439011"
+  "batch_id": "507f1f77bcf86cd799439011",
+  "created_on": "2022-12-31T23:59:59Z"
 }
 ```
 </details>
@@ -17994,10 +15980,14 @@ Validate Product Template Schema
 
 ```javascript
 // Promise
-const promise = platformClient.catalog.validateProductTemplate({  slug : value });
+const promise = platformClient.catalog.validateProductTemplate({  slug : value,
+ itemType : value,
+ bulk : value });
 
 // Async/Await
-const data = await platformClient.catalog.validateProductTemplate({  slug : value });
+const data = await platformClient.catalog.validateProductTemplate({  slug : value,
+ itemType : value,
+ bulk : value });
 ```
 
 
@@ -18006,7 +15996,9 @@ const data = await platformClient.catalog.validateProductTemplate({  slug : valu
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| slug | string | yes | A `slug` is a unique identifier for a particular template. |  
+| slug | string | yes | A `slug` is a unique identifier for a particular template. |    
+| itemType | string | no | An `item_type` defines the type of item. The default value is standard. |    
+| bulk | boolean | no | This specification determines the schema type to be retrieved. When set to true, it will return the schema for bulk data; when set to false, it will provide the schema for a single product. The default value is false. |  
 
 
 
@@ -18028,7 +16020,7 @@ List of fields and validation values fro each. See example below or refer `Templ
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-null
+{}
 ```
 </details>
 
@@ -18090,13 +16082,13 @@ List of fields and validation values fro each. See example below or refer `Inven
     "type": "object",
     "properties": {
       "item": {
-        "$ref": ""
+        "$ref": "#/components/schemas/ItemQuery"
       },
       "sizes": {
         "title": "Sizes",
         "type": "array",
         "items": {
-          "$ref": ""
+          "$ref": "#/components/schemas/ItemQuery"
         }
       }
     },
@@ -18577,7 +16569,6 @@ List of fields and validation values fro each. See example below or refer `Inven
  | description | string? |  yes  |  |
  | details | [AttributeMasterDetails](#AttributeMasterDetails) |  no  |  |
  | enabled_for_end_consumer | boolean? |  yes  |  |
- | example | string? |  yes  |  |
  | filters | [AttributeMasterFilter](#AttributeMasterFilter) |  no  |  |
  | is_nested | boolean? |  yes  |  |
  | logo | string? |  yes  |  |
@@ -21022,7 +19013,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | unit | any? |  yes  | The unit of measurement used for the net quantity of the product. |
+ | unit | string? |  yes  | The unit of measurement used for the net quantity of the product. |
  | value | number? |  yes  | The value of the net quantity of the product. |
  
 
@@ -21433,7 +19424,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | brand_uid | number |  no  |  |
  | bulk_job_id | string? |  yes  |  |
  | category_slug | string |  no  |  |
- | change_request_id | any? |  yes  |  |
+ | change_request_id | string? |  yes  |  |
  | company_id | number |  no  |  |
  | country_of_origin | string |  no  |  |
  | currency | string |  no  |  |
@@ -22332,7 +20323,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | address | [string]? |  yes  |  |
- | name | any |  no  |  |
+ | name | string |  no  |  |
  | type | string? |  yes  |  |
  
 

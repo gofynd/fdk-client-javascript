@@ -772,7 +772,6 @@ Success
       "client": {
         "address_lines": [
           "TV TOWER, Foot Over Bridge Khar",
-          null,
           "Mumbai, 400079, Maharashtra, India"
         ],
         "name": "RELIANCE RETAIL LTD",
@@ -817,7 +816,7 @@ Success
       "modified_at": "2020-12-16T07:00:22.980Z",
       "hash_identifier": "575999aca03e36f0fa54db5235bc7f25",
       "payment_method": {
-        "pg_payment_method_id": null
+        "pg_payment_method_id": ""
       }
     },
     "invoice_items": [
@@ -1057,7 +1056,6 @@ Success
           "phone": "91 1234567890",
           "address_lines": [
             "TV TOWER, Foot Over Bridge Khar",
-            null,
             "Mumbai, 400079, Maharashtra, India"
           ]
         },
@@ -1102,7 +1100,7 @@ Success
         "modified_at": "2020-12-16T07:00:22.980Z",
         "hash_identifier": "575999aca03e36f0fa54db5235bc7f25",
         "payment_method": {
-          "pg_payment_method_id": null
+          "pg_payment_method_id": ""
         },
         "invoice_items": [
           {
@@ -1647,7 +1645,7 @@ Success
       "hash_identifier": "987abf78c61bfef585242bbbeaab1b59",
       "pdf_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/company/13781/self/subscription/documents/invoices/original/U6ffgNlo_-PS-P-A00515-FY24-paid.pdf"
     },
-    "mandate_amount": 630000,
+    "mandate_amount": "630000",
     "current_subscriptions": [
       {
         "current_period": {
@@ -2108,51 +2106,6 @@ Success
 
 ---
 
-#### [DetailedPlan](#DetailedPlan)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | addons | [string]? |  yes  |  |
- | amount | number? |  yes  |  |
- | components | [[DetailedPlanComponents](#DetailedPlanComponents)]? |  yes  |  |
- | country | string? |  yes  |  |
- | created_at | string? |  yes  |  |
- | currency | string? |  yes  |  |
- | description | string? |  yes  |  |
- | is_active | boolean? |  yes  |  |
- | is_trial_plan | boolean? |  yes  |  |
- | is_visible | boolean? |  yes  |  |
- | modified_at | string? |  yes  |  |
- | name | string? |  yes  |  |
- | plan_group | string? |  yes  |  |
- | product_suite_id | string? |  yes  |  |
- | recurring | [PlanRecurring](#PlanRecurring)? |  yes  |  |
- | tag_lines | [string]? |  yes  |  |
- | tags | [string]? |  yes  |  |
- | trial_period | number? |  yes  |  |
- | type | string? |  yes  |  |
- 
-
----
-
-#### [DetailedPlanComponents](#DetailedPlanComponents)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | config | string? |  yes  |  |
- | description | string? |  yes  |  |
- | display_text | string? |  yes  |  |
- | enabled | boolean? |  yes  |  |
- | group | string? |  yes  |  |
- | icon | string? |  yes  |  |
- | links | string? |  yes  |  |
- | name | string? |  yes  |  |
- | slug | string? |  yes  |  |
- 
-
----
-
 #### [EntityChargePrice](#EntityChargePrice)
 
  | Properties | Type | Nullable | Description |
@@ -2250,69 +2203,6 @@ Success
  | email | string? |  yes  |  |
  | name | string? |  yes  |  |
  | phone | string? |  yes  |  |
- 
-
----
-
-#### [InvoiceDetailsPaymentMethods](#InvoiceDetailsPaymentMethods)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [InvoiceDetailsPaymentMethodsData](#InvoiceDetailsPaymentMethodsData)? |  yes  |  |
- | id | number? |  yes  |  |
- | is_default | boolean? |  yes  |  |
- | pg_payment_method_id | string? |  yes  |  |
- | type | string? |  yes  |  |
- 
-
----
-
-#### [InvoiceDetailsPaymentMethodsData](#InvoiceDetailsPaymentMethodsData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | brand | string? |  yes  |  |
- | checks | [InvoiceDetailsPaymentMethodsDataChecks](#InvoiceDetailsPaymentMethodsDataChecks)? |  yes  |  |
- | country | string? |  yes  |  |
- | exp_month | number? |  yes  |  |
- | exp_year | number? |  yes  |  |
- | fingerprint | string? |  yes  |  |
- | funding | string? |  yes  |  |
- | generated_from | string? |  yes  |  |
- | last4 | string? |  yes  |  |
- | networks | [InvoiceDetailsPaymentMethodsDataNetworks](#InvoiceDetailsPaymentMethodsDataNetworks)? |  yes  |  |
- | three_d_secure_usage | [InvoiceDetailsPaymentMethodsDataThreeDSecureUsage](#InvoiceDetailsPaymentMethodsDataThreeDSecureUsage)? |  yes  |  |
- | wallet | string? |  yes  |  |
- 
-
----
-
-#### [InvoiceDetailsPaymentMethodsDataChecks](#InvoiceDetailsPaymentMethodsDataChecks)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | address_line1_check | string? |  yes  |  |
- | address_postal_code_check | string? |  yes  |  |
- | cvc_check | string? |  yes  |  |
- 
-
----
-
-#### [InvoiceDetailsPaymentMethodsDataNetworks](#InvoiceDetailsPaymentMethodsDataNetworks)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | available | [string]? |  yes  |  |
- | preferred | string? |  yes  |  |
- 
-
----
-
-#### [InvoiceDetailsPaymentMethodsDataThreeDSecureUsage](#InvoiceDetailsPaymentMethodsDataThreeDSecureUsage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | supported | boolean? |  yes  |  |
  
 
 ---
@@ -2526,21 +2416,6 @@ Success
  | price | [EntityChargePrice](#EntityChargePrice) |  no  |  |
  | pricing_type | string |  no  |  |
  | term | string? |  yes  |  |
- 
-
----
-
-#### [Page](#Page)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | current | number? |  yes  |  |
- | has_next | boolean? |  yes  |  |
- | has_previous | boolean? |  yes  |  |
- | item_total | number? |  yes  |  |
- | next_id | string? |  yes  |  |
- | size | number? |  yes  |  |
- | type | string |  no  |  |
  
 
 ---
@@ -2861,24 +2736,6 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | end_date | string? |  yes  |  |
  | start_date | string? |  yes  |  |
- 
-
----
-
-#### [UnauthenticatedApplication](#UnauthenticatedApplication)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  | Failure message. |
- 
-
----
-
-#### [UnauthenticatedUser](#UnauthenticatedUser)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  | Failure message. |
  
 
 ---

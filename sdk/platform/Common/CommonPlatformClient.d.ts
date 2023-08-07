@@ -4,14 +4,13 @@ declare class Common {
     config: any;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.locationType] - Provide location type to query on.
-     *   Possible values : country, state, city
+     * @param {string} [arg.locationType] -
      * @param {string} [arg.id] - Field is optional when location_type is
-     *   country. If querying for state, provide id of country. If querying for
-     *   city, provide id of state.
+     *   country. If querying for state, provide id of the country. If querying
+     *   for city, provide id of the state.
      * @returns {Promise<Locations>} - Success response
      * @summary: Get countries, states, cities
-     * @description:
+     * @description: Retrieve a list of countries, states, or cities based on the provided location_type and id parameters.
      */
     getLocations({ locationType, id }?: {
         locationType?: string;

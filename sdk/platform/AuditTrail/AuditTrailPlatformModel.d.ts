@@ -14,5 +14,4 @@ declare class AuditTrailModel {
     static LogSchemaResponse(): any;
     static Modifier(): any;
     static RequestBodyAuditLog(): any;
-    static ResourceNotFound(): any;
 }

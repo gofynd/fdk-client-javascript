@@ -30,7 +30,8 @@ class FileStorageValidator {
     return Joi.object({
       namespace: Joi.string().allow("").required(),
 
-      pageNo: Joi.number(),
+      page: Joi.number(),
+      limit: Joi.number(),
     }).required();
   }
 }

@@ -91,7 +91,7 @@ class LogisticModel {
     return Joi.object({
       display_name: Joi.string().allow(""),
       is_active: Joi.boolean(),
-      logistics: LogisticModel.Logistics(),
+      logistics: LogisticModel.LogisticsDPSchema(),
       meta: Joi.any(),
       name: Joi.string().allow(""),
       parent_id: Joi.array().items(Joi.string().allow("")),
@@ -100,7 +100,7 @@ class LogisticModel {
       uid: Joi.string().allow(""),
     });
   }
-  static Logistics() {
+  static LogisticsDPSchema() {
     return Joi.object({
       dp: Joi.any(),
     });

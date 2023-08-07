@@ -140,8 +140,8 @@ class Lead {
    * @summary: Create history for specific application level ticket
    * @description: Create history for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
    */
-  async createHistory({ id, body } = {}) {
-    const { error } = LeadValidator.createHistory().validate(
+  async createNewHistory({ id, body } = {}) {
+    const { error } = LeadValidator.createNewHistory().validate(
       {
         id,
         body,
@@ -153,7 +153,7 @@ class Lead {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadValidator.createHistory().validate(
+    const { error: warrning } = LeadValidator.createNewHistory().validate(
       {
         id,
         body,
@@ -163,7 +163,7 @@ class Lead {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for createHistory",
+        message: "Parameter Validation warrnings for createNewHistory",
       });
       Logger({ level: "WARN", message: warrning });
     }
@@ -186,7 +186,7 @@ class Lead {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for createHistory",
+        message: "Response Validation Warnnings for createNewHistory",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -264,8 +264,8 @@ class Lead {
    * @summary: Edits ticket details of a application level ticket
    * @description: Edits ticket details of a application level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes
    */
-  async editTicket({ id, body } = {}) {
-    const { error } = LeadValidator.editTicket().validate(
+  async editNewTicket({ id, body } = {}) {
+    const { error } = LeadValidator.editNewTicket().validate(
       {
         id,
         body,
@@ -277,7 +277,7 @@ class Lead {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadValidator.editTicket().validate(
+    const { error: warrning } = LeadValidator.editNewTicket().validate(
       {
         id,
         body,
@@ -287,7 +287,7 @@ class Lead {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for editTicket",
+        message: "Parameter Validation warrnings for editNewTicket",
       });
       Logger({ level: "WARN", message: warrning });
     }
@@ -310,7 +310,7 @@ class Lead {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for editTicket",
+        message: "Response Validation Warnnings for editNewTicket",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -438,8 +438,8 @@ class Lead {
    * @summary: Retreives ticket details of a application level ticket
    * @description: Retreives ticket details of a application level ticket with ticket ID
    */
-  async getTicket({ id } = {}) {
-    const { error } = LeadValidator.getTicket().validate(
+  async getNewTicket({ id } = {}) {
+    const { error } = LeadValidator.getNewTicket().validate(
       {
         id,
       },
@@ -450,7 +450,7 @@ class Lead {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadValidator.getTicket().validate(
+    const { error: warrning } = LeadValidator.getNewTicket().validate(
       {
         id,
       },
@@ -459,7 +459,7 @@ class Lead {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getTicket",
+        message: "Parameter Validation warrnings for getNewTicket",
       });
       Logger({ level: "WARN", message: warrning });
     }
@@ -482,7 +482,7 @@ class Lead {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getTicket",
+        message: "Response Validation Warnnings for getNewTicket",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -497,8 +497,8 @@ class Lead {
    * @summary: Gets history list for specific application level ticket
    * @description: Gets history list for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
    */
-  async getTicketHistory({ id } = {}) {
-    const { error } = LeadValidator.getTicketHistory().validate(
+  async getNewTicketHistory({ id } = {}) {
+    const { error } = LeadValidator.getNewTicketHistory().validate(
       {
         id,
       },
@@ -509,7 +509,7 @@ class Lead {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadValidator.getTicketHistory().validate(
+    const { error: warrning } = LeadValidator.getNewTicketHistory().validate(
       {
         id,
       },
@@ -518,7 +518,7 @@ class Lead {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getTicketHistory",
+        message: "Parameter Validation warrnings for getNewTicketHistory",
       });
       Logger({ level: "WARN", message: warrning });
     }
@@ -543,7 +543,7 @@ class Lead {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getTicketHistory",
+        message: "Response Validation Warnnings for getNewTicketHistory",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -565,8 +565,8 @@ class Lead {
    * @summary: Gets the list of Application level Tickets and/or ticket filters depending on query params
    * @description: Gets the list of Application level Tickets and/or ticket filters
    */
-  async getTickets({ items, filters, q, status, priority, category } = {}) {
-    const { error } = LeadValidator.getTickets().validate(
+  async getNewTickets({ items, filters, q, status, priority, category } = {}) {
+    const { error } = LeadValidator.getNewTickets().validate(
       {
         items,
         filters,
@@ -582,7 +582,7 @@ class Lead {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadValidator.getTickets().validate(
+    const { error: warrning } = LeadValidator.getNewTickets().validate(
       {
         items,
         filters,
@@ -596,7 +596,7 @@ class Lead {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getTickets",
+        message: "Parameter Validation warrnings for getNewTickets",
       });
       Logger({ level: "WARN", message: warrning });
     }
@@ -625,7 +625,7 @@ class Lead {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getTickets",
+        message: "Response Validation Warnnings for getNewTickets",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -640,8 +640,8 @@ class Lead {
    * @summary: Get Token to join a specific Video Room using it's unqiue name
    * @description: Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
    */
-  async getTokenForVideoRoom({ uniqueName } = {}) {
-    const { error } = LeadValidator.getTokenForVideoRoom().validate(
+  async getNewTokenForVideoRoom({ uniqueName } = {}) {
+    const { error } = LeadValidator.getNewTokenForVideoRoom().validate(
       {
         uniqueName,
       },
@@ -652,7 +652,9 @@ class Lead {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadValidator.getTokenForVideoRoom().validate(
+    const {
+      error: warrning,
+    } = LeadValidator.getNewTokenForVideoRoom().validate(
       {
         uniqueName,
       },
@@ -661,7 +663,7 @@ class Lead {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getTokenForVideoRoom",
+        message: "Parameter Validation warrnings for getNewTokenForVideoRoom",
       });
       Logger({ level: "WARN", message: warrning });
     }
@@ -686,7 +688,7 @@ class Lead {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getTokenForVideoRoom",
+        message: "Response Validation Warnnings for getNewTokenForVideoRoom",
       });
       Logger({ level: "WARN", message: res_error });
     }
@@ -701,8 +703,8 @@ class Lead {
    * @summary: Get participants of a specific Video Room using it's unique name
    * @description: Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
    */
-  async getVideoParticipants({ uniqueName } = {}) {
-    const { error } = LeadValidator.getVideoParticipants().validate(
+  async getNewVideoParticipants({ uniqueName } = {}) {
+    const { error } = LeadValidator.getNewVideoParticipants().validate(
       {
         uniqueName,
       },
@@ -713,7 +715,9 @@ class Lead {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = LeadValidator.getVideoParticipants().validate(
+    const {
+      error: warrning,
+    } = LeadValidator.getNewVideoParticipants().validate(
       {
         uniqueName,
       },
@@ -722,7 +726,7 @@ class Lead {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getVideoParticipants",
+        message: "Parameter Validation warrnings for getNewVideoParticipants",
       });
       Logger({ level: "WARN", message: warrning });
     }
@@ -747,7 +751,7 @@ class Lead {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getVideoParticipants",
+        message: "Response Validation Warnnings for getNewVideoParticipants",
       });
       Logger({ level: "WARN", message: res_error });
     }

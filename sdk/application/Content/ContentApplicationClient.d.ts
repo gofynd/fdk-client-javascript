@@ -146,7 +146,7 @@ declare class Content {
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
      * @returns {Promise<NavigationGetResponse>} - Success response
      * @summary: Get the navigation
-     * @description: Use this API to fetch the navigations details which includes the items of the navigation pane. It also shows the links and sub-navigations.
+     * @description: Use this API to fetch the navigations details which includes the items of the navigation panel. It also shows the links and sub-navigations.
      */
     getNavigations({ pageNo, pageSize }?: {
         pageNo?: number;
@@ -156,7 +156,7 @@ declare class Content {
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
      * @summary: Get the navigation
-     * @description: Use this API to fetch the navigations details which includes the items of the navigation pane. It also shows the links and sub-navigations.
+     * @description: Use this API to fetch the navigations details which includes the items of the navigation panel. It also shows the links and sub-navigations.
      */
     getNavigationsPaginator({ pageSize }?: {
         pageSize?: number;

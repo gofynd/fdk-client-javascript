@@ -40,7 +40,7 @@ class Common {
    *   city, provide id of state.
    * @returns {Promise<Locations>} - Success response
    * @summary: Get countries, states, cities
-   * @description:
+   * @description: Get countries, states, cities
    */
   async getLocations({ locationType, id } = {}) {
     const { error } = CommonValidator.getLocations().validate(

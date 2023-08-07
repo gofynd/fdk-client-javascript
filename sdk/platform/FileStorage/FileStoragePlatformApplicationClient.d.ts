@@ -81,29 +81,21 @@ declare class FileStorage {
     }): Promise<StartResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.namespace - Bucket name
-     * @param {number} [arg.pageNo] - Page no
+     * @param {string} arg.namespace - Segregation of different types of
+     *   files(products, orders, logistics etc), Required for validating the
+     *   data of the file being uploaded, decides where exactly the file will be
+     *   stored inside the storage bucket.
+     * @param {number} [arg.page] - Page no
+     * @param {number} [arg.limit] - Limit
      * @returns {Promise<BrowseResponse>} - Success response
      * @summary: Browse Files
      * @description: Browse Files
      */
-    appbrowse({ namespace, pageNo, }?: {
+    appbrowse({ namespace, page, limit, }?: {
         namespace: string;
-        pageNo?: number;
+        page?: number;
+        limit?: number;
     }): Promise<BrowseResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.namespace - Bucket name
-     * @param {number} arg.companyId - Company_id
-     * @param {number} arg.applicationId - Application_id
-     * @summary: Browse Files
-     * @description: Browse Files
-     */
-    appbrowsePaginator({ namespace, companyId, applicationId }?: {
-        namespace: string;
-        companyId: number;
-        applicationId: number;
-    }): Paginator;
     /**
      * @param data
      * @param {string} file_name
@@ -121,4 +113,3 @@ declare class FileStorage {
         tags: any;
     }): Promise<any>;
 }
-import Paginator = require("../../common/Paginator");

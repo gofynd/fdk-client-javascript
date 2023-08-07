@@ -12,7 +12,7 @@ declare class LogisticModel {
     static GetZoneFromPincodeViewRequest(): any;
     static GetZoneFromPincodeViewResponse(): any;
     static Locality(): any;
-    static Logistics(): any;
+    static LogisticsDPSchema(): any;
     static LogisticsResponse(): any;
     static Page(): any;
     static PincodeApiResponse(): any;

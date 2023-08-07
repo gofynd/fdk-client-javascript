@@ -16,6 +16,12 @@ class CompanyProfileModel {
       state: Joi.string().allow(""),
     });
   }
+  static AverageOrderProcessingTime() {
+    return Joi.object({
+      duration: Joi.number(),
+      duration_type: Joi.string().allow(""),
+    });
+  }
   static BrandBannerSerializer() {
     return Joi.object({
       landscape: Joi.string().allow("").required(),
@@ -342,12 +348,15 @@ class CompanyProfileModel {
       _custom_json: Joi.any(),
       address: CompanyProfileModel.AddressSerializer().required(),
       auto_invoice: Joi.boolean(),
+      avg_order_processing_time: CompanyProfileModel.AverageOrderProcessingTime(),
+      bulk_shipment: Joi.boolean(),
       code: Joi.string().allow("").required(),
       company: Joi.number().required(),
       contact_numbers: Joi.array().items(
         CompanyProfileModel.SellerPhoneNumber()
       ),
       credit_note: Joi.boolean(),
+      default_order_acceptance_timing: Joi.boolean(),
       display_name: Joi.string().allow("").required(),
       documents: Joi.array().items(CompanyProfileModel.Document()),
       gst_credentials: CompanyProfileModel.InvoiceDetailsSerializer(),
@@ -355,9 +364,13 @@ class CompanyProfileModel {
       manager: CompanyProfileModel.LocationManagerSerializer(),
       name: Joi.string().allow("").required(),
       notification_emails: Joi.array().items(Joi.string().allow("")),
+      order_acceptance_timing: Joi.array().items(
+        CompanyProfileModel.LocationDayWiseSerializer()
+      ),
       product_return_config: CompanyProfileModel.ProductReturnConfigSerializer(),
       stage: Joi.string().allow(""),
       store_type: Joi.string().allow(""),
+      tags: Joi.array().items(Joi.string().allow("")),
       timing: Joi.array().items(
         CompanyProfileModel.LocationDayWiseSerializer()
       ),
@@ -410,6 +423,12 @@ class CompanyProfileModel {
     return Joi.object({
       country_code: Joi.number().required(),
       number: Joi.string().allow("").required(),
+    });
+  }
+  static StoreTagsResponseSchema() {
+    return Joi.object({
+      success: Joi.boolean(),
+      tags: Joi.array().items(Joi.string().allow("")),
     });
   }
   static UpdateCompany() {

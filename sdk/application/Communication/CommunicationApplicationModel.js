@@ -55,22 +55,6 @@ class CommunicationModel {
       user_id: Joi.string().allow(""),
     });
   }
-  static NotFound() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-    });
-  }
-  static Page() {
-    return Joi.object({
-      current: Joi.number(),
-      has_next: Joi.boolean(),
-      has_previous: Joi.boolean(),
-      item_total: Joi.number(),
-      next_id: Joi.string().allow(""),
-      size: Joi.number(),
-      type: Joi.string().allow("").required(),
-    });
-  }
   static PushtokenReq() {
     return Joi.object({
       action: Joi.string().allow(""),

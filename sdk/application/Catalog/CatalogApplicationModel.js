@@ -267,6 +267,14 @@ class CatalogModel {
       width: Joi.number().required(),
     });
   }
+  static DiscountMeta() {
+    return Joi.object({
+      end: Joi.string().allow(""),
+      start: Joi.string().allow(""),
+      start_timer_in_minutes: Joi.number(),
+      timer: Joi.boolean().required(),
+    });
+  }
   static ErrorResponse() {
     return Joi.object({
       error: Joi.string().allow(""),
@@ -556,7 +564,7 @@ class CatalogModel {
       created_by: CatalogModel.UserDetail(),
       created_on: Joi.string().allow("").required(),
       is_active: Joi.boolean(),
-      logo: Joi.any(),
+      logo: Joi.string().allow("").allow(null),
       meta: Joi.any(),
       modified_by: CatalogModel.UserDetail(),
       modified_on: Joi.string().allow("").required(),
@@ -702,7 +710,9 @@ class CatalogModel {
     return Joi.object({
       article_assignment: CatalogModel.ArticleAssignmentV3(),
       article_id: Joi.string().allow(""),
+      delivery_promise: CatalogModel.PromiseSchema(),
       discount: Joi.string().allow(""),
+      discount_meta: CatalogModel.DiscountMeta(),
       grouped_attributes: Joi.array().items(
         CatalogModel.SellerGroupAttributes()
       ),
@@ -732,8 +742,9 @@ class CatalogModel {
   static ProductSizes() {
     return Joi.object({
       discount: Joi.string().allow(""),
+      discount_meta: CatalogModel.DiscountMeta(),
       multi_size: Joi.boolean(),
-      price: CatalogModel.ProductListingPrice(),
+      price: CatalogModel.ProductSizesPrice(),
       sellable: Joi.boolean(),
       size_chart: CatalogModel.SizeChart(),
       sizes: Joi.array().items(CatalogModel.ProductSize()),
@@ -754,6 +765,13 @@ class CatalogModel {
       sort_on: Joi.array().items(
         CatalogModel.ProductSizeSellerFilterSchemaV3()
       ),
+    });
+  }
+  static ProductSizesPrice() {
+    return Joi.object({
+      effective: CatalogModel.Price(),
+      marked: CatalogModel.Price(),
+      selling: CatalogModel.Price(),
     });
   }
   static ProductSizeStores() {
@@ -785,9 +803,11 @@ class CatalogModel {
   }
   static ProductStockPriceV3() {
     return Joi.object({
-      currency: Joi.string().allow(""),
+      currency_code: Joi.string().allow(""),
+      currency_symbol: Joi.string().allow(""),
       effective: Joi.number(),
       marked: Joi.number(),
+      selling: Joi.number(),
     });
   }
   static ProductStockStatusItem() {
@@ -850,6 +870,12 @@ class CatalogModel {
   static ProductVariantsResponse() {
     return Joi.object({
       variants: Joi.array().items(CatalogModel.ProductVariantResponse()),
+    });
+  }
+  static PromiseSchema() {
+    return Joi.object({
+      max: Joi.string().allow(""),
+      min: Joi.string().allow(""),
     });
   }
   static ReturnConfigSchemaV3() {

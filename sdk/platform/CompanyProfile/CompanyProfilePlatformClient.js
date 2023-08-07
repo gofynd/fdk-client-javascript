@@ -700,6 +700,67 @@ class CompanyProfile {
 
   /**
    * @param {Object} arg - Arg object.
+   * @returns {Promise<StoreTagsResponseSchema>} - Success response
+   * @summary: Get tags associated with locations for a company.
+   * @description: This API fetches all the tags associated to a company.
+   */
+  async getLocationTags({} = {}) {
+    const { error } = CompanyProfileValidator.getLocationTags().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CompanyProfileValidator.getLocationTags().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: "Parameter Validation warrnings for getLocationTags",
+      });
+      Logger({ level: "WARN", message: warrning });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/tags`,
+      query_params,
+      undefined,
+      xHeaders
+    );
+
+    const {
+      error: res_error,
+    } = CompanyProfileModel.StoreTagsResponseSchema().validate(response, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: "Response Validation Warnnings for getLocationTags",
+      });
+      Logger({ level: "WARN", message: res_error });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
    * @param {string} [arg.storeType] - Helps to sort the location list on the
    *   basis of location type.
    * @param {string} [arg.q] - Query that is to be searched.

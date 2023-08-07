@@ -54,25 +54,6 @@ declare class Share {
     }): Promise<ShortLinkList>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} arg.companyId - Company Id
-     * @param {string} arg.applicationId - Application Id
-     * @param {number} [arg.pageSize] - Current page size
-     * @param {string} [arg.createdBy] - Short link creator
-     * @param {string} [arg.active] - Short link active status
-     * @param {string} [arg.q] - Search text for original and short url
-     * @summary: Get short links
-     * @description: Get short links
-     */
-    getShortLinksPaginator({ companyId, applicationId, pageSize, createdBy, active, q, }?: {
-        companyId: string;
-        applicationId: string;
-        pageSize?: number;
-        createdBy?: string;
-        active?: string;
-        q?: string;
-    }): Paginator;
-    /**
-     * @param {Object} arg - Arg object.
      * @param {string} arg.id - Short link document identifier
      * @param {ShortLinkReq} arg.body
      * @returns {Promise<ShortLinkRes>} - Success response
@@ -84,4 +65,3 @@ declare class Share {
         body: ShortLinkReq;
     }): Promise<ShortLinkRes>;
 }
-import Paginator = require("../../common/Paginator");

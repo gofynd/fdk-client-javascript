@@ -142,14 +142,18 @@ class AuditTrail {
   /**
    * @param {Object} arg - Arg object.
    * @param {string} arg.qs - Logs Query
+   * @param {number} [arg.limit] - Current request items count
+   * @param {Object} [arg.sort] - To sort based on _id
    * @returns {Promise<LogSchemaResponse>} - Success response
    * @summary: Get paginated audit logs
    * @description: Get a paginated set of logs that can be filtered using the available set of parameters and get the relevant group of logs
    */
-  async getAuditLogs({ qs } = {}) {
+  async getAuditLogs({ qs, limit, sort } = {}) {
     const { error } = AuditTrailValidator.getAuditLogs().validate(
       {
         qs,
+        limit,
+        sort,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -161,6 +165,8 @@ class AuditTrail {
     const { error: warrning } = AuditTrailValidator.getAuditLogs().validate(
       {
         qs,
+        limit,
+        sort,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -174,6 +180,8 @@ class AuditTrail {
 
     const query_params = {};
     query_params["qs"] = qs;
+    query_params["limit"] = limit;
+    query_params["sort"] = sort;
 
     const xHeaders = {};
 

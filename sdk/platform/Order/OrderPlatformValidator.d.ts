@@ -7,9 +7,11 @@ declare class OrderValidator {
     static createOrder(): any;
     static dispatchManifest(): any;
     static downloadBulkActionTemplate(): any;
+    static downloadLanesReport(): any;
     static fetchCreditBalanceDetail(): any;
     static fetchRefundModeConfig(): any;
     static generatePOSReceiptByOrderId(): any;
+    static getAllowedStateTransition(): any;
     static getAnnouncements(): any;
     static getBagById(): any;
     static getBags(): any;

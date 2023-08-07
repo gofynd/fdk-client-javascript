@@ -568,6 +568,32 @@ class OrderModel {
       template_x_slug: Joi.array().items(OrderModel.BulkActionTemplate()),
     });
   }
+  static BulkReportsDownloadFailedResponse() {
+    return Joi.object({
+      error: Joi.string().allow(""),
+      status: Joi.boolean(),
+    });
+  }
+  static BulkReportsDownloadRequest() {
+    return Joi.object({
+      custom_filters_for_lane: Joi.any(),
+      custom_headers: Joi.string().allow(""),
+      entities: Joi.array().items(Joi.string().allow("")),
+      filter_type: Joi.string().allow(""),
+      from_date: Joi.string().allow(""),
+      is_cross_company_enabled: Joi.boolean(),
+      lane_type: Joi.string().allow(""),
+      report_type: Joi.string().allow(""),
+      store_ids: Joi.array().items(Joi.string().allow("")),
+      to_date: Joi.string().allow(""),
+    });
+  }
+  static BulkReportsDownloadResponse() {
+    return Joi.object({
+      batch_id: Joi.string().allow(""),
+      success: Joi.boolean(),
+    });
+  }
   static BuyerDetails() {
     return Joi.object({
       address: Joi.string().allow("").allow(null).required(),
@@ -1008,7 +1034,7 @@ class OrderModel {
       gst_fee: Joi.number().required(),
       gst_tag: Joi.string().allow(""),
       gst_tax_percentage: Joi.number(),
-      gstin_code: Joi.string().allow("").allow(null).required(),
+      gstin_code: Joi.string().allow("").allow(null),
       hsn_code: Joi.string().allow(""),
       hsn_code_id: Joi.string().allow(""),
       igst_gst_fee: Joi.string().allow(""),
@@ -1156,7 +1182,7 @@ class OrderModel {
   static LineItem() {
     return Joi.object({
       charges: Joi.array().items(OrderModel.Charge()),
-      custom_messasge: Joi.string().allow(""),
+      custom_message: Joi.string().allow(""),
       external_line_id: Joi.string().allow(""),
       meta: Joi.any(),
       quantity: Joi.number(),
@@ -1823,6 +1849,12 @@ class OrderModel {
       unit: Joi.string().allow(""),
     });
   }
+  static RoleBaseStateTransitionMapping() {
+    return Joi.object({
+      next_statuses: Joi.array().items(Joi.string().allow("")),
+      success: Joi.boolean(),
+    });
+  }
   static SendSmsPayload() {
     return Joi.object({
       bag_id: Joi.number().required(),
@@ -2354,6 +2386,7 @@ class OrderModel {
     return Joi.object({
       b2b_gstin_number: Joi.string().allow(""),
       gstin: Joi.string().allow(""),
+      pan_no: Joi.string().allow(""),
     });
   }
   static TrackingList() {

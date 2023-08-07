@@ -83,7 +83,7 @@ class FileStorage {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/namespaces/${namespace}/upload/complete/`,
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/namespaces/${namespace}/upload/complete`,
       query_params,
       body
     );
@@ -148,7 +148,7 @@ class FileStorage {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/uploads/copy/`,
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/uploads/copy`,
       query_params,
       body
     );
@@ -238,7 +238,7 @@ class FileStorage {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/namespaces/${namespace}/upload/start/`,
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/namespaces/${namespace}/upload/start`,
       query_params,
       body
     );
@@ -263,8 +263,12 @@ class FileStorage {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.namespace - Bucket name
-   * @param {number} [arg.pageNo] - Page no
+   * @param {string} arg.namespace - Segregation of different types of
+   *   files(products, orders, logistics etc), Required for validating the
+   *   data of the file being uploaded, decides where exactly the file will be
+   *   stored inside the storage bucket.
+   * @param {number} [arg.page] - Page no
+   * @param {number} [arg.limit] - Limit
    * @returns {Promise<BrowseResponse>} - Success response
    * @summary: Browse Files
    * @description: Browse Files
@@ -272,13 +276,15 @@ class FileStorage {
   async appbrowse({
     namespace,
 
-    pageNo,
+    page,
+    limit,
   } = {}) {
     const { error } = FileStorageValidator.appbrowse().validate(
       {
         namespace,
 
-        pageNo,
+        page,
+        limit,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -291,7 +297,8 @@ class FileStorage {
       {
         namespace,
 
-        pageNo,
+        page,
+        limit,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -304,12 +311,13 @@ class FileStorage {
     }
 
     const query_params = {};
-    query_params["page_no"] = pageNo;
+    query_params["page"] = page;
+    query_params["limit"] = limit;
 
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/namespaces/${namespace}/browse/`,
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/namespaces/${namespace}/browse`,
       query_params,
       undefined
     );
@@ -330,36 +338,6 @@ class FileStorage {
     }
 
     return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.namespace - Bucket name
-   * @param {number} arg.companyId - Company_id
-   * @param {number} arg.applicationId - Application_id
-   * @summary: Browse Files
-   * @description: Browse Files
-   */
-  appbrowsePaginator({ namespace, companyId, applicationId } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.appbrowse({
-        namespace: namespace,
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
   }
 }
 

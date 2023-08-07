@@ -40,7 +40,7 @@ class Configuration {
    *   city, provide id of state.
    * @returns {Promise<Locations>} - Success response
    * @summary: Get countries, states, cities
-   * @description:
+   * @description: Get Location configuration
    */
   async getLocations({ locationType, id } = {}) {
     const { error } = ConfigurationValidator.getLocations().validate(
