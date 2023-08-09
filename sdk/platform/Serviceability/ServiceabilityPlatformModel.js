@@ -472,10 +472,8 @@ class ServiceabilityModel {
   static ListViewResponse() {
     return Joi.object({
       items: Joi.array().items(ServiceabilityModel.ListViewItems()).required(),
-      page: Joi.array().items(ServiceabilityModel.ZoneDataItem()).required(),
-      summary: Joi.array()
-        .items(ServiceabilityModel.ListViewSummary())
-        .required(),
+      page: ServiceabilityModel.ZoneDataItem().required(),
+      summary: ServiceabilityModel.ListViewSummary().required(),
     });
   }
   static ListViewSummary() {

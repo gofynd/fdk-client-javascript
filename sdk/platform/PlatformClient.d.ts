@@ -11496,8 +11496,8 @@ type ListViewProduct = {
 };
 type ListViewResponse = {
     items: ListViewItems[];
-    page: ZoneDataItem[];
-    summary: ListViewSummary[];
+    page: ZoneDataItem;
+    summary: ListViewSummary;
 };
 type ListViewSummary = {
     total_active_zones: number;

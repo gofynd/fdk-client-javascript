@@ -2744,8 +2744,8 @@ Response status_code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | items | [[ListViewItems](#ListViewItems)] |  no  |  |
- | page | [[ZoneDataItem](#ZoneDataItem)] |  no  |  |
- | summary | [[ListViewSummary](#ListViewSummary)] |  no  |  |
+ | page | [ZoneDataItem](#ZoneDataItem) |  no  |  |
+ | summary | [ListViewSummary](#ListViewSummary) |  no  |  |
  
 
 ---

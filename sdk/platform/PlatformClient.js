@@ -13778,8 +13778,8 @@ class PlatformClient {
 /**
  * @typedef ListViewResponse
  * @property {ListViewItems[]} items
- * @property {ZoneDataItem[]} page
- * @property {ListViewSummary[]} summary
+ * @property {ZoneDataItem} page
+ * @property {ListViewSummary} summary
  */
 /**
  * @typedef ListViewSummary
