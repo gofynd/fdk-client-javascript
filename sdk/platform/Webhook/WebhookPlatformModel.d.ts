@@ -1,12 +1,38 @@
 export = WebhookModel;
 declare class WebhookModel {
     static Association(): any;
+    static AssociationDetails(): any;
     static AuthMeta(): any;
+    static CancelResponse(): any;
+    static CdnObject(): any;
+    static Error(): any;
+    static Event(): any;
     static EventConfig(): any;
     static EventConfigResponse(): any;
+    static EventCountItem(): any;
+    static EventProcessedSuccessResponse(): any;
+    static EventProcessReportObject(): any;
+    static EventProcessReports(): any;
+    static EventProcessRequest(): any;
+    static EventSuccessResponse(): any;
+    static FailedEventsCountSuccessResponse(): any;
+    static FilterResponseObject(): any;
+    static FilterValues(): any;
+    static HistoryFilters(): any;
+    static HistoryPayload(): any;
+    static HistoryResponse(): any;
+    static HistoryResponseObject(): any;
+    static ManualRetryFailedResponse(): any;
     static Page(): any;
+    static PingWebhook(): any;
+    static PingWebhookResponse(): any;
+    static ReportFilterResponse(): any;
+    static ReportFiltersPayload(): any;
+    static RetryStatusResponse(): any;
     static SubscriberConfig(): any;
     static SubscriberConfigList(): any;
     static SubscriberResponse(): any;
+    static UploadServiceObject(): any;
+    static Url(): any;
     static SubscriberStatus(): any;
 }

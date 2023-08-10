@@ -841,7 +841,7 @@ class ConfigurationModel {
   static InventoryStore() {
     return Joi.object({
       criteria: Joi.string().allow(""),
-      rules: ConfigurationModel.AppStoreRules(),
+      rules: Joi.array().items(ConfigurationModel.AppStoreRules()),
       stores: Joi.array().items(Joi.any()),
     });
   }

@@ -25,4 +25,4 @@
 * [Share](SHARE.md) - Short link and QR Code 
 * [Theme](THEME.md) - Responsible for themes 
 * [User](USER.md) - Authentication Service 
-* [Webhook](WEBHOOK.md) - Webhook dispatcher with retry and one event to many subscriber vice versa 
+* [Webhook](WEBHOOK.md) - This service provides functionality to emits different events to the subscribed webhook url's. It auto retry three times for all the failed events after certain interval as well as you can also retry manually the failed events and can view the reports. 

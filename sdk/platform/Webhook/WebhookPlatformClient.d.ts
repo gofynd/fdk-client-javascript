@@ -4,6 +4,26 @@ declare class Webhook {
     config: any;
     /**
      * @param {Object} arg - Arg object.
+     * @param {string} arg.filename - Filename of the specific report export to cancel.
+     * @returns {Promise<CancelResponse>} - Success response
+     * @summary: Cancel a report export
+     * @description: Cancel the export of a specific report for a company.
+     */
+    cancelJobByName({ filename }?: {
+        filename: string;
+    }): Promise<CancelResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {EventProcessRequest} arg.body
+     * @returns {Promise<Object>} - Success response
+     * @summary: Download processed events report for a company
+     * @description: Download reports for a specific company based on the provided filters.
+     */
+    downloadDeliveryReport({ body }?: {
+        body: EventProcessRequest;
+    }): Promise<any>;
+    /**
+     * @param {Object} arg - Arg object.
      * @returns {Promise<EventConfigResponse>} - Success response
      * @summary:
      * @description: Get All Webhook Events
@@ -11,7 +31,55 @@ declare class Webhook {
     fetchAllEventConfigurations({}?: any): Promise<EventConfigResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} arg.subscriberId - Subscriber ID
+     * @param {EventProcessRequest} arg.body
+     * @returns {Promise<EventProcessReports>} - Success response
+     * @summary: Get processed events report for a company
+     * @description: Retrieve a list of processed events for a specific company based on the provided filters.
+     */
+    getDeliveryReports({ body }?: {
+        body: EventProcessRequest;
+    }): Promise<EventProcessReports>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {EventProcessRequest} arg.body
+     * @returns {Promise<FailedEventsCountSuccessResponse>} - Success response
+     * @summary: Get the count of failed events for a company within a specified date range.
+     * @description: Retrieves the count of failed events for a specific company within the specified date range. The user can filter the count based on specific event types if provided.
+     */
+    getEventCounts({ body }?: {
+        body: EventProcessRequest;
+    }): Promise<FailedEventsCountSuccessResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {HistoryPayload} arg.body
+     * @returns {Promise<HistoryResponse>} - Success response
+     * @summary: Get report download history
+     * @description: Retrieve history reports for a specific company based on the provided filters.
+     */
+    getHistoricalReports({ body }?: {
+        body: HistoryPayload;
+    }): Promise<HistoryResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @returns {Promise<RetryStatusResponse>} - Success response
+     * @summary: Get the retry status for a company's failed events.
+     * @description: Retrieves the status of retry for a specific company's failed events. This endpoint returns the total number of events, the count of successfully retried events, the count of failed retry attempts, and the overall status of the retry process.
+     */
+    getManualRetryStatus({}?: any): Promise<RetryStatusResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {ReportFiltersPayload} arg.body
+     * @returns {Promise<ReportFilterResponse>} - Success response
+     * @summary: Get filters for a company
+     * @description: Retrieve filters for a specific company based on the provided subscriber IDs.
+     */
+    getReportFilters({ body }?: {
+        body: ReportFiltersPayload;
+    }): Promise<ReportFilterResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {number} arg.subscriberId - The ID of the company for which manual
+     *   retry is to be initiated.
      * @returns {Promise<SubscriberResponse>} - Success response
      * @summary: Get Subscriber By Subscriber ID
      * @description: Get Subscriber By Subscriber ID
@@ -23,7 +91,7 @@ declare class Webhook {
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - Page Number
      * @param {number} [arg.pageSize] - Page Size
-     * @param {string} [arg.extensionId] - Extension ID
+     * @param {number} [arg.extensionId] - Extension_id
      * @returns {Promise<SubscriberResponse>} - Success response
      * @summary: Get Subscribers By Company ID
      * @description: Get Subscribers By CompanyId
@@ -31,13 +99,14 @@ declare class Webhook {
     getSubscribersByCompany({ pageNo, pageSize, extensionId }?: {
         pageNo?: number;
         pageSize?: number;
-        extensionId?: string;
+        extensionId?: number;
     }): Promise<SubscriberResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - Page Number
      * @param {number} [arg.pageSize] - Page Size
-     * @param {string} arg.extensionId - Extension ID
+     * @param {number} arg.extensionId - The ID of the company for which manual
+     *   retry is to be initiated.
      * @returns {Promise<SubscriberConfigList>} - Success response
      * @summary: Get Subscribers By Extension ID
      * @description: Get Subscribers By ExtensionID
@@ -45,8 +114,35 @@ declare class Webhook {
     getSubscribersByExtensionId({ extensionId, pageNo, pageSize }?: {
         pageNo?: number;
         pageSize?: number;
-        extensionId: string;
+        extensionId: number;
     }): Promise<SubscriberConfigList>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @returns {Promise<EventSuccessResponse>} - Success response
+     * @summary: Cancel the active manual retry for a company's failed events.
+     * @description: Cancels the active manual retry for a specific company's failed events. If a manual retry is currently in progress, it will be cancelled.
+     */
+    manualRetryCancel({}?: any): Promise<EventSuccessResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {EventProcessRequest} arg.body
+     * @returns {Promise<EventProcessedSuccessResponse>} - Success response
+     * @summary: Initiate a manual retry for event processing.
+     * @description: Initiates a manual retry for event processing for a specific company. This endpoint allows the user to specify the date range (start_date and end_date) within which the events should be retried.
+     */
+    manualRetryOfFailedEvent({ body }?: {
+        body: EventProcessRequest;
+    }): Promise<EventProcessedSuccessResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {PingWebhook} arg.body
+     * @returns {Promise<PingWebhookResponse>} - Success response
+     * @summary: Ping and validate webhook url
+     * @description: Ping and validate webhook url
+     */
+    pingWebhook({ body }?: {
+        body: PingWebhook;
+    }): Promise<PingWebhookResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {SubscriberConfig} arg.body

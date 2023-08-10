@@ -2,8 +2,48 @@ const Joi = require("joi");
 
 const WebhookModel = require("./WebhookPlatformModel");
 class WebhookValidator {
+  static cancelJobByName() {
+    return Joi.object({
+      filename: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static downloadDeliveryReport() {
+    return Joi.object({
+      body: WebhookModel.EventProcessRequest().required(),
+    }).required();
+  }
+
   static fetchAllEventConfigurations() {
     return Joi.object({}).required();
+  }
+
+  static getDeliveryReports() {
+    return Joi.object({
+      body: WebhookModel.EventProcessRequest().required(),
+    }).required();
+  }
+
+  static getEventCounts() {
+    return Joi.object({
+      body: WebhookModel.EventProcessRequest().required(),
+    }).required();
+  }
+
+  static getHistoricalReports() {
+    return Joi.object({
+      body: WebhookModel.HistoryPayload().required(),
+    }).required();
+  }
+
+  static getManualRetryStatus() {
+    return Joi.object({}).required();
+  }
+
+  static getReportFilters() {
+    return Joi.object({
+      body: WebhookModel.ReportFiltersPayload().required(),
+    }).required();
   }
 
   static getSubscriberById() {
@@ -16,7 +56,7 @@ class WebhookValidator {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      extensionId: Joi.string().allow(""),
+      extensionId: Joi.number(),
     }).required();
   }
 
@@ -24,7 +64,23 @@ class WebhookValidator {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      extensionId: Joi.string().allow("").required(),
+      extensionId: Joi.number().required(),
+    }).required();
+  }
+
+  static manualRetryCancel() {
+    return Joi.object({}).required();
+  }
+
+  static manualRetryOfFailedEvent() {
+    return Joi.object({
+      body: WebhookModel.EventProcessRequest().required(),
+    }).required();
+  }
+
+  static pingWebhook() {
+    return Joi.object({
+      body: WebhookModel.PingWebhook().required(),
     }).required();
   }
 

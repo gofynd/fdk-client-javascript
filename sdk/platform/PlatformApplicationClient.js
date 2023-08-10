@@ -1331,7 +1331,6 @@ class PlatformApplicationClient {
 /** @typedef AppliedPromos */
 /** @typedef Article */
 /** @typedef ArticleDetails */
-/** @typedef ArticleDetails1 */
 /** @typedef AttachOrderUser */
 /** @typedef AttachOrderUserResponse */
 /** @typedef AttachUserInfo */
@@ -1398,7 +1397,6 @@ class PlatformApplicationClient {
 /** @typedef Error */
 /** @typedef ErrorDetail */
 /** @typedef ErrorResponse */
-/** @typedef ErrorResponse1 */
 /** @typedef FetchCreditBalanceRequestPayload */
 /** @typedef FetchCreditBalanceResponsePayload */
 /** @typedef FileResponse */
@@ -1501,7 +1499,6 @@ class PlatformApplicationClient {
 /** @typedef ShipmentData */
 /** @typedef ShipmentDetail */
 /** @typedef ShipmentDetails */
-/** @typedef ShipmentDetails1 */
 /** @typedef ShipmentHistoryResponse */
 /** @typedef ShipmentInfoResponse */
 /** @typedef ShipmentInternalPlatformViewResponse */
@@ -1923,12 +1920,38 @@ class PlatformApplicationClient {
 /** @typedef UserSearchResponseSchema */
 
 /** @typedef Association */
+/** @typedef AssociationDetails */
 /** @typedef AuthMeta */
+/** @typedef CancelResponse */
+/** @typedef CdnObject */
+/** @typedef Error */
+/** @typedef Event */
 /** @typedef EventConfig */
 /** @typedef EventConfigResponse */
+/** @typedef EventCountItem */
+/** @typedef EventProcessedSuccessResponse */
+/** @typedef EventProcessReportObject */
+/** @typedef EventProcessReports */
+/** @typedef EventProcessRequest */
+/** @typedef EventSuccessResponse */
+/** @typedef FailedEventsCountSuccessResponse */
+/** @typedef FilterResponseObject */
+/** @typedef FilterValues */
+/** @typedef HistoryFilters */
+/** @typedef HistoryPayload */
+/** @typedef HistoryResponse */
+/** @typedef HistoryResponseObject */
+/** @typedef ManualRetryFailedResponse */
 /** @typedef Page */
+/** @typedef PingWebhook */
+/** @typedef PingWebhookResponse */
+/** @typedef ReportFilterResponse */
+/** @typedef ReportFiltersPayload */
+/** @typedef RetryStatusResponse */
 /** @typedef SubscriberConfig */
 /** @typedef SubscriberConfigList */
 /** @typedef SubscriberResponse */
+/** @typedef UploadServiceObject */
+/** @typedef Url */
 
 module.exports = PlatformApplicationClient;

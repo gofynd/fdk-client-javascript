@@ -6978,7 +6978,7 @@ class PlatformClient {
 /**
  * @typedef InventoryStore
  * @property {string} [criteria]
- * @property {AppStoreRules} [rules]
+ * @property {AppStoreRules[]} [rules]
  * @property {Object[]} [stores]
  */
 /**
@@ -10127,11 +10127,8 @@ class PlatformClient {
  * @property {Object} category
  * @property {Object} dimension
  * @property {number} quantity
- * @property {Object} weight
- */
-/**
- * @typedef ArticleDetails1
  * @property {Object} [status]
+ * @property {Object} weight
  */
 /**
  * @typedef AttachOrderUser
@@ -10191,7 +10188,7 @@ class PlatformClient {
  * @property {AffiliateDetails} [affiliate_details]
  * @property {Object[]} [applied_promos]
  * @property {Article} [article]
- * @property {ArticleDetails1} [article_details]
+ * @property {ArticleDetails} [article_details]
  * @property {BagStatusHistory[]} [bag_status]
  * @property {BagStatusHistory} [bag_status_history]
  * @property {number} [bag_update_time]
@@ -10712,15 +10709,11 @@ class PlatformClient {
  */
 /**
  * @typedef ErrorResponse
+ * @property {string} error
  * @property {string} [error_trace]
- * @property {string} [message]
+ * @property {string} message
  * @property {number} [status]
  * @property {boolean} [success]
- */
-/**
- * @typedef ErrorResponse1
- * @property {string} error
- * @property {string} message
  */
 /**
  * @typedef FetchCreditBalanceRequestPayload
@@ -11376,7 +11369,7 @@ class PlatformClient {
  * @property {Prices} [prices]
  * @property {string} [priority_text]
  * @property {string} [shipment_created_at]
- * @property {ShipmentDetails1} [shipment_details]
+ * @property {ShipmentDetails} [shipment_details]
  * @property {string} shipment_id
  * @property {string[]} [shipment_images]
  * @property {number} [shipment_quantity]
@@ -11637,19 +11630,16 @@ class PlatformClient {
  */
 /**
  * @typedef ShipmentDetails
+ * @property {Object} [action_to_status]
  * @property {string} affiliate_shipment_id
  * @property {ArticleDetails[]} articles
  * @property {string} [box_type]
  * @property {number} [dp_id]
  * @property {number} fulfillment_id
- * @property {Object} [meta]
- * @property {number} shipments
- */
-/**
- * @typedef ShipmentDetails1
- * @property {Object} [action_to_status]
  * @property {string} [lock_message]
  * @property {boolean} [lock_status]
+ * @property {Object} [meta]
+ * @property {number} shipments
  */
 /**
  * @typedef ShipmentHistoryResponse
@@ -14789,9 +14779,32 @@ class PlatformClient {
  * @property {string} [extension_id]
  */
 /**
+ * @typedef AssociationDetails
+ * @property {number} [company_id]
+ */
+/**
  * @typedef AuthMeta
  * @property {string} [secret]
  * @property {string} [type]
+ */
+/**
+ * @typedef CancelResponse
+ * @property {number} [code]
+ */
+/**
+ * @typedef CdnObject
+ * @property {Url[]} [urls]
+ */
+/**
+ * @typedef Error
+ * @property {string} [error]
+ */
+/**
+ * @typedef Event
+ * @property {string} [event_category]
+ * @property {string} [event_name]
+ * @property {string} [event_type]
+ * @property {string} [version]
  */
 /**
  * @typedef EventConfig
@@ -14809,6 +14822,98 @@ class PlatformClient {
  * @property {EventConfig[]} [event_configs]
  */
 /**
+ * @typedef EventCountItem
+ * @property {number} [count]
+ * @property {string} [status]
+ */
+/**
+ * @typedef EventProcessedSuccessResponse
+ * @property {string} [message]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef EventProcessReportObject
+ * @property {number} [attempt]
+ * @property {string} [data]
+ * @property {string} [event_name]
+ * @property {number} [last_attempted_on]
+ * @property {string} [name]
+ * @property {number} [response_code]
+ * @property {string} [response_message]
+ * @property {number} [response_time]
+ * @property {string} [status]
+ * @property {string} [webhook_url]
+ */
+/**
+ * @typedef EventProcessReports
+ * @property {Page} [page]
+ * @property {EventProcessReportObject[]} [rows]
+ */
+/**
+ * @typedef EventProcessRequest
+ * @property {string} [end_date]
+ * @property {Event[]} [event]
+ * @property {string} [search_text]
+ * @property {string} [start_date]
+ * @property {number[]} [subscriber_ids]
+ */
+/**
+ * @typedef EventSuccessResponse
+ * @property {string} [message]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef FailedEventsCountSuccessResponse
+ * @property {EventCountItem[]} [items]
+ */
+/**
+ * @typedef FilterResponseObject
+ * @property {string} [filter_name]
+ * @property {FilterValues[]} [values]
+ */
+/**
+ * @typedef FilterValues
+ * @property {string} [text]
+ * @property {Object} [value]
+ */
+/**
+ * @typedef HistoryFilters
+ * @property {string} [end_date]
+ * @property {string} [start_date]
+ * @property {string} [status]
+ * @property {number[]} [subscribers]
+ */
+/**
+ * @typedef HistoryPayload
+ * @property {number} [page_no]
+ * @property {number} [page_size]
+ * @property {string} [type]
+ */
+/**
+ * @typedef HistoryResponse
+ * @property {HistoryResponseObject[]} [items]
+ */
+/**
+ * @typedef HistoryResponseObject
+ * @property {AssociationDetails} [association]
+ * @property {string} [created_on]
+ * @property {string} [filename]
+ * @property {HistoryFilters} [filters]
+ * @property {number} [id]
+ * @property {string} [message]
+ * @property {string} [status]
+ * @property {string} [updated_on]
+ * @property {UploadServiceObject} [upload_service_response]
+ */
+/**
+ * @typedef ManualRetryFailedResponse
+ * @property {string} [message]
+ * @property {Object} [meta]
+ * @property {string} [request_id]
+ * @property {string} [stack_trace]
+ * @property {boolean} [success]
+ */
+/**
  * @typedef Page
  * @property {number} [current]
  * @property {boolean} [has_next]
@@ -14817,6 +14922,33 @@ class PlatformClient {
  * @property {string} [next_id]
  * @property {number} [size]
  * @property {string} type
+ */
+/**
+ * @typedef PingWebhook
+ * @property {Object} [auth_meta]
+ * @property {Object} [custom_headers]
+ * @property {string} [webhook_url]
+ */
+/**
+ * @typedef PingWebhookResponse
+ * @property {number} [code]
+ * @property {string} [message]
+ * @property {string} [status]
+ */
+/**
+ * @typedef ReportFilterResponse
+ * @property {FilterResponseObject[]} [items]
+ */
+/**
+ * @typedef ReportFiltersPayload
+ * @property {number[]} [subscriber_ids]
+ */
+/**
+ * @typedef RetryStatusResponse
+ * @property {number} [failure_count]
+ * @property {string} [status]
+ * @property {number} [success_count]
+ * @property {number} [total_event]
  */
 /**
  * @typedef SubscriberConfig
@@ -14848,6 +14980,15 @@ class PlatformClient {
  * @property {SubscriberStatus} [status]
  * @property {string} [updated_on]
  * @property {string} [webhook_url]
+ */
+/**
+ * @typedef UploadServiceObject
+ * @property {CdnObject} [cdn]
+ */
+/**
+ * @typedef Url
+ * @property {string} [name]
+ * @property {string} [url]
  */
 
 module.exports = PlatformClient;
