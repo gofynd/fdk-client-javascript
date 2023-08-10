@@ -168,7 +168,7 @@ class PaymentValidator {
 
   static patchMerchantPaymentOption() {
     return Joi.object({
-      body: PaymentModel.MerchnatPaymentModeResponse().required(),
+      body: PaymentModel.MerchnatPaymentModeRequest().required(),
     }).required();
   }
 

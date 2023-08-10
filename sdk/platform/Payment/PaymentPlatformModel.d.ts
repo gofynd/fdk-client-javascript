@@ -38,6 +38,7 @@ declare class PaymentModel {
     static LinkStatus(): any;
     static MerchantOnBoardingRequest(): any;
     static MerchantOnBoardingResponse(): any;
+    static MerchnatPaymentModeRequest(): any;
     static MerchnatPaymentModeResponse(): any;
     static MultiTenderPaymentMeta(): any;
     static MultiTenderPaymentMethod(): any;

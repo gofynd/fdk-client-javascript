@@ -1544,6 +1544,7 @@ class Order {
    * @param {boolean} [arg.isPrioritySort] -
    * @param {string} [arg.customMeta] -
    * @param {boolean} [arg.myOrders] -
+   * @param {string} [arg.customerId] -
    * @returns {Promise<OrderListingResponse>} - Success response
    * @summary:
    * @description: Get Orders Listing
@@ -1566,6 +1567,7 @@ class Order {
     isPrioritySort,
     customMeta,
     myOrders,
+    customerId,
   } = {}) {
     const { error } = OrderValidator.getOrders().validate(
       {
@@ -1586,6 +1588,7 @@ class Order {
         isPrioritySort,
         customMeta,
         myOrders,
+        customerId,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1613,6 +1616,7 @@ class Order {
         isPrioritySort,
         customMeta,
         myOrders,
+        customerId,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1642,6 +1646,7 @@ class Order {
     query_params["is_priority_sort"] = isPrioritySort;
     query_params["custom_meta"] = customMeta;
     query_params["my_orders"] = myOrders;
+    query_params["customer_id"] = customerId;
 
     const xHeaders = {};
 
@@ -1969,6 +1974,7 @@ class Order {
    * @param {boolean} [arg.myOrders] -
    * @param {string} [arg.platformUserId] -
    * @param {string} [arg.tags] - Comma separated values of tags
+   * @param {string} [arg.customerId] -
    * @returns {Promise<ShipmentInternalPlatformViewResponse>} - Success response
    * @summary:
    * @description: Get Shipments Listing for the company id
@@ -1998,6 +2004,7 @@ class Order {
     myOrders,
     platformUserId,
     tags,
+    customerId,
   } = {}) {
     const { error } = OrderValidator.getShipments().validate(
       {
@@ -2025,6 +2032,7 @@ class Order {
         myOrders,
         platformUserId,
         tags,
+        customerId,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2059,6 +2067,7 @@ class Order {
         myOrders,
         platformUserId,
         tags,
+        customerId,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -2095,6 +2104,7 @@ class Order {
     query_params["my_orders"] = myOrders;
     query_params["platform_user_id"] = platformUserId;
     query_params["tags"] = tags;
+    query_params["customer_id"] = customerId;
 
     const xHeaders = {};
 

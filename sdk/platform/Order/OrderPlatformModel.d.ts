@@ -23,6 +23,7 @@ declare class OrderModel {
     static AppliedPromos(): any;
     static Article(): any;
     static ArticleDetails(): any;
+    static ArticleDetails1(): any;
     static AttachOrderUser(): any;
     static AttachOrderUserResponse(): any;
     static AttachUserInfo(): any;
@@ -89,6 +90,7 @@ declare class OrderModel {
     static Error(): any;
     static ErrorDetail(): any;
     static ErrorResponse(): any;
+    static ErrorResponse1(): any;
     static FetchCreditBalanceRequestPayload(): any;
     static FetchCreditBalanceResponsePayload(): any;
     static FileResponse(): any;
@@ -191,6 +193,7 @@ declare class OrderModel {
     static ShipmentData(): any;
     static ShipmentDetail(): any;
     static ShipmentDetails(): any;
+    static ShipmentDetails1(): any;
     static ShipmentHistoryResponse(): any;
     static ShipmentInfoResponse(): any;
     static ShipmentInternalPlatformViewResponse(): any;

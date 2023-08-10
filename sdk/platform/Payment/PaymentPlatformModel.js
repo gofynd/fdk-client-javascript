@@ -302,6 +302,12 @@ class PaymentModel {
       success: Joi.boolean().required(),
     });
   }
+  static MerchnatPaymentModeRequest() {
+    return Joi.object({
+      offline: Joi.any().allow(null),
+      online: Joi.any().allow(null),
+    });
+  }
   static MerchnatPaymentModeResponse() {
     return Joi.object({
       items: Joi.array().items(Joi.any()),

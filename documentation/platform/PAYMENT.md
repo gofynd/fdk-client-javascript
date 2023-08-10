@@ -4861,7 +4861,7 @@ const data = await platformClient.application("<APPLICATION_ID>").payment.patchM
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
-| body | [MerchnatPaymentModeResponse](#MerchnatPaymentModeResponse) | yes | Request body |
+| body | [MerchnatPaymentModeRequest](#MerchnatPaymentModeRequest) | yes | Request body |
 
 
 To updated online payment as active/inactive or offline payment configuration like cod charges, anonymous cod allowed flags.
@@ -6575,6 +6575,16 @@ Bank details on correct Ifsc Code
  | ---------- | ---- | -------- | ----------- |
  | data | string |  no  |  |
  | success | boolean |  no  | Success/Failure of the transaction |
+ 
+
+---
+
+#### [MerchnatPaymentModeRequest](#MerchnatPaymentModeRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | offline | string? |  yes  | Details to be updated for online payment configuration. |
+ | online | string? |  yes  | Details to be updated for offline payment configuration. |
  
 
 ---

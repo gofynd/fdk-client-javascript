@@ -1482,7 +1482,7 @@ class CartModel {
       post_order: CartModel.PostOrder1(),
       user_groups: Joi.array().items(Joi.number()),
       user_id: Joi.array().items(Joi.string().allow("")),
-      user_registered: Joi.string().allow("").allow(null),
+      user_registered: Joi.any().allow(null),
       uses: CartModel.UsesRestriction1().required(),
     });
   }

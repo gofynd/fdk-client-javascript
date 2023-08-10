@@ -179,6 +179,7 @@ class OrderValidator {
       isPrioritySort: Joi.boolean(),
       customMeta: Joi.string().allow(""),
       myOrders: Joi.boolean(),
+      customerId: Joi.string().allow(""),
     }).required();
   }
 
@@ -234,6 +235,7 @@ class OrderValidator {
       myOrders: Joi.boolean(),
       platformUserId: Joi.string().allow(""),
       tags: Joi.string().allow(""),
+      customerId: Joi.string().allow(""),
     }).required();
   }
 

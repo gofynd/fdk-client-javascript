@@ -307,11 +307,12 @@ declare class Order {
      * @param {boolean} [arg.isPrioritySort] -
      * @param {string} [arg.customMeta] -
      * @param {boolean} [arg.myOrders] -
+     * @param {string} [arg.customerId] -
      * @returns {Promise<OrderListingResponse>} - Success response
      * @summary:
      * @description: Get Orders Listing
      */
-    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, myOrders, }?: {
+    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, myOrders, customerId, }?: {
         lane?: string;
         searchType?: string;
         bagStatus?: string;
@@ -329,6 +330,7 @@ declare class Order {
         isPrioritySort?: boolean;
         customMeta?: string;
         myOrders?: boolean;
+        customerId?: string;
     }): Promise<OrderListingResponse>;
     /**
      * @param {Object} arg - Arg object.
@@ -405,11 +407,12 @@ declare class Order {
      * @param {boolean} [arg.myOrders] -
      * @param {string} [arg.platformUserId] -
      * @param {string} [arg.tags] - Comma separated values of tags
+     * @param {string} [arg.customerId] -
      * @returns {Promise<ShipmentInternalPlatformViewResponse>} - Success response
      * @summary:
      * @description: Get Shipments Listing for the company id
      */
-    getShipments({ lane, bagStatus, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, myOrders, platformUserId, tags, }?: {
+    getShipments({ lane, bagStatus, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, myOrders, platformUserId, tags, customerId, }?: {
         lane?: string;
         bagStatus?: string;
         statusOverrideLane?: boolean;
@@ -434,6 +437,7 @@ declare class Order {
         myOrders?: boolean;
         platformUserId?: string;
         tags?: string;
+        customerId?: string;
     }): Promise<ShipmentInternalPlatformViewResponse>;
     /**
      * @param {Object} arg - Arg object.

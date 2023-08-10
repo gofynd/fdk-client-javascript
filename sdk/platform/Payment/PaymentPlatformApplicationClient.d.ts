@@ -293,13 +293,13 @@ declare class Payment {
     }): Promise<MerchnatPaymentModeResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {MerchnatPaymentModeResponse} arg.body
+     * @param {MerchnatPaymentModeRequest} arg.body
      * @returns {Promise<MerchnatPaymentModeResponse>} - Success response
      * @summary: Update Payment modes and COD details.
      * @description: To updated online payment as active/inactive or offline payment configuration like cod charges, anonymous cod allowed flags.
      */
     patchMerchantPaymentOption({ body }?: {
-        body: MerchnatPaymentModeResponse;
+        body: MerchnatPaymentModeRequest;
     }): Promise<MerchnatPaymentModeResponse>;
     /**
      * @param {Object} arg - Arg object.
