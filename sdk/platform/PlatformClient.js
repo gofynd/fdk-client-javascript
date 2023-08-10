@@ -13621,6 +13621,7 @@ class PlatformClient {
  */
 /**
  * @typedef EntityRegionView_Items
+ * @property {string} [display_name]
  * @property {string} name
  * @property {string} sub_type
  * @property {string} uid

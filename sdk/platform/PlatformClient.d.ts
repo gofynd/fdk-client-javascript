@@ -11370,6 +11370,7 @@ type EntityRegionView_Error = {
     value?: string;
 };
 type EntityRegionView_Items = {
+    display_name?: string;
     name: string;
     sub_type: string;
     uid: string;

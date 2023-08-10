@@ -286,6 +286,7 @@ class ServiceabilityModel {
   }
   static EntityRegionView_Items() {
     return Joi.object({
+      display_name: Joi.string().allow(""),
       name: Joi.string().allow("").required(),
       sub_type: Joi.string().allow("").required(),
       uid: Joi.string().allow("").required(),

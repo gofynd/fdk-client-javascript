@@ -2482,6 +2482,7 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | display_name | string? |  yes  |  |
  | name | string |  no  |  |
  | sub_type | string |  no  |  |
  | uid | string |  no  |  |
