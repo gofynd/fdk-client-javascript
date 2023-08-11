@@ -53,6 +53,16 @@ declare class Configuration {
     }): Promise<GetIntegrationsOptInsResponse>;
     /**
      * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each
+     *   page. Default value is 10.
+     * @summary: Get all available integration opt-ins
+     * @description: Use this API to get a list of all available integrations in a company
+     */
+    getAvailableOptInsPaginator({ pageSize }?: {
+        pageSize?: number;
+    }): Paginator;
+    /**
+     * @param {Object} arg - Arg object.
      * @param {string} [arg.q] - Search text for brand name
      * @returns {Promise<BrandsByCompanyResponse>} - Success response
      * @summary: Get brands by company.
@@ -214,6 +224,20 @@ declare class Configuration {
         pageNo?: number;
         pageSize?: number;
     }): Promise<GetIntegrationsOptInsResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.level - Store or company
+     * @param {number} arg.uid - Unique identifier of the selected integration level.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each
+     *   page. Default value is 10.
+     * @summary: Get company/store level integration opt-ins
+     * @description: Use this API to get the store-level/company-level integrations configured in a company
+     */
+    getSelectedOptInsPaginator({ level, uid, pageSize }?: {
+        level: string;
+        uid: number;
+        pageSize?: number;
+    }): Paginator;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageNo] - The page number to navigate through the
