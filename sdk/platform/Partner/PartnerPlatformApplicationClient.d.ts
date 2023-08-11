@@ -4,29 +4,21 @@ declare class Partner {
     config: any;
     applicationId: any;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.extensionId - Extension id for which proxy URL will
-     *   be generated
-     * @param {AddProxyReq} arg.body
-     * @returns {Promise<AddProxyResponse>} - Success response
+     * @param {PartnerPlatformApplicationValidator.AddProxyPathParam} arg - Arg object
+     * @returns {Promise<PartnerPlatformModel.AddProxyResponse>} - Success response
+     * @name addProxyPath
      * @summary: Create proxy URL for the external URL
-     * @description: Use this API to generate proxy URL for the external URL
+     * @description: Use this API to generate proxy URL for the external URL - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/addProxyPath/).
      */
-    addProxyPath({ extensionId, body }?: {
-        extensionId: string;
-        body: AddProxyReq;
-    }): Promise<AddProxyResponse>;
+    addProxyPath({ extensionId, body }?: PartnerPlatformApplicationValidator.AddProxyPathParam): Promise<PartnerPlatformModel.AddProxyResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.extensionId - Extension id for which proxy URL needs
-     *   to be removed
-     * @param {string} arg.attachedPath - Attachaed path slug
-     * @returns {Promise<RemoveProxyResponse>} - Success response
+     * @param {PartnerPlatformApplicationValidator.RemoveProxyPathParam} arg - Arg object
+     * @returns {Promise<PartnerPlatformModel.RemoveProxyResponse>} - Success response
+     * @name removeProxyPath
      * @summary: Remove proxy URL for the external URL
-     * @description: Use this API to remove the proxy URL which is already generated for the external URL
+     * @description: Use this API to remove the proxy URL which is already generated for the external URL - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/removeProxyPath/).
      */
-    removeProxyPath({ extensionId, attachedPath }?: {
-        extensionId: string;
-        attachedPath: string;
-    }): Promise<RemoveProxyResponse>;
+    removeProxyPath({ extensionId, attachedPath }?: PartnerPlatformApplicationValidator.RemoveProxyPathParam): Promise<PartnerPlatformModel.RemoveProxyResponse>;
 }
+import PartnerPlatformApplicationValidator = require("./PartnerPlatformApplicationValidator");
+import PartnerPlatformModel = require("./PartnerPlatformModel");

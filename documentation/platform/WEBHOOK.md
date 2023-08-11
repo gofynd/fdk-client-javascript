@@ -1922,7 +1922,7 @@ Success
  | event_id | [number]? |  yes  |  |
  | id | number? |  yes  |  |
  | name | string? |  yes  |  |
- | status | [SubscriberStatus](#SubscriberStatus)? |  yes  |  |
+ | status | string? |  yes  | active: Status is active inactive: Status is inactive blocked: Subscriber is blocked by system due to multiple failed delivery attempts. |
  | webhook_url | string? |  yes  |  |
  
 
@@ -1950,7 +1950,7 @@ Success
  | event_configs | [[EventConfig](#EventConfig)]? |  yes  |  |
  | id | number? |  yes  |  |
  | name | string? |  yes  |  |
- | status | [SubscriberStatus](#SubscriberStatus)? |  yes  |  |
+ | status | string? |  yes  | active: Status is active inactive: Status is inactive blocked: Subscriber is blocked by system due to multiple failed delivery attempts. |
  | updated_on | string? |  yes  |  |
  | webhook_url | string? |  yes  |  |
  
@@ -1975,28 +1975,6 @@ Success
  
 
 ---
-
-
-
-
-### Enums
-
-
-
-
-
- #### [SubscriberStatus](#SubscriberStatus)
- Type : string
-
- | Name | Value | Description |
- | ---- | ----- | ----------- |
- | active | active | Status is active |
- | inactive | inactive | Status is inactive |
- | blocked | blocked | Subscriber is blocked by system due to multiple failed delivery attempts. |
-
----
-
-
 
 
 

@@ -1,6 +1,32 @@
 const Joi = require("joi");
 
-class WebhookModel {
+/**
+ * @typedef EventConfig
+ * @property {string} [created_on]
+ * @property {string} [description]
+ * @property {string} [display_name]
+ * @property {string} [event_category]
+ * @property {string} [event_name]
+ * @property {string} [event_type]
+ * @property {number} [id]
+ * @property {string} [version]
+ */
+
+/**
+ * @typedef EventConfigBase
+ * @property {string} [event_category]
+ * @property {string} [event_name]
+ * @property {string} [event_type]
+ * @property {string} [version]
+ */
+
+/**
+ * @typedef EventConfigResponse
+ * @property {EventConfig[]} [event_configs]
+ */
+
+class WebhookPublicModel {
+  /** @returns {EventConfig} */
   static EventConfig() {
     return Joi.object({
       created_on: Joi.string().allow(""),
@@ -13,6 +39,8 @@ class WebhookModel {
       version: Joi.string().allow(""),
     });
   }
+
+  /** @returns {EventConfigBase} */
   static EventConfigBase() {
     return Joi.object({
       event_category: Joi.string().allow(""),
@@ -21,10 +49,12 @@ class WebhookModel {
       version: Joi.string().allow(""),
     });
   }
+
+  /** @returns {EventConfigResponse} */
   static EventConfigResponse() {
     return Joi.object({
-      event_configs: Joi.array().items(WebhookModel.EventConfig()),
+      event_configs: Joi.array().items(WebhookPublicModel.EventConfig()),
     });
   }
 }
-module.exports = WebhookModel;
+module.exports = WebhookPublicModel;

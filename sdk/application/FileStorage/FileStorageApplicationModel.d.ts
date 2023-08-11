@@ -1,12 +1,149 @@
-export = FileStorageModel;
-declare class FileStorageModel {
-    static CDN(): any;
-    static CompleteResponse(): any;
-    static FailedResponse(): any;
-    static SignUrlRequest(): any;
-    static SignUrlResponse(): any;
-    static StartRequest(): any;
-    static StartResponse(): any;
-    static Upload(): any;
-    static Urls(): any;
+export = FileStorageApplicationModel;
+/**
+ * @typedef CDN
+ * @property {string} absolute_url
+ * @property {string} relative_url
+ * @property {string} url
+ */
+/**
+ * @typedef CompleteResponse
+ * @property {string} _id
+ * @property {CDN} cdn
+ * @property {string} content_type
+ * @property {string} created_on
+ * @property {string} file_name
+ * @property {string} file_path
+ * @property {string} modified_on
+ * @property {string} namespace
+ * @property {string} operation
+ * @property {number} size
+ * @property {boolean} success
+ * @property {string[]} [tags]
+ * @property {Upload} upload
+ */
+/**
+ * @typedef FailedResponse
+ * @property {string} message
+ */
+/**
+ * @typedef SignUrlRequest
+ * @property {number} expiry
+ * @property {string[]} urls
+ */
+/**
+ * @typedef SignUrlResponse
+ * @property {Urls[]} urls
+ */
+/**
+ * @typedef StartRequest
+ * @property {string} content_type
+ * @property {string} file_name
+ * @property {Object} [params]
+ * @property {number} size
+ * @property {string[]} [tags]
+ */
+/**
+ * @typedef StartResponse
+ * @property {CDN} cdn
+ * @property {string} content_type
+ * @property {string} file_name
+ * @property {string} file_path
+ * @property {string} [method]
+ * @property {string} namespace
+ * @property {string} operation
+ * @property {number} size
+ * @property {string[]} [tags]
+ * @property {Upload} upload
+ */
+/**
+ * @typedef Upload
+ * @property {number} expiry
+ * @property {string} url
+ */
+/**
+ * @typedef Urls
+ * @property {number} expiry
+ * @property {string} signed_url
+ * @property {string} url
+ */
+declare class FileStorageApplicationModel {
 }
+declare namespace FileStorageApplicationModel {
+    export { CDN, CompleteResponse, FailedResponse, SignUrlRequest, SignUrlResponse, StartRequest, StartResponse, Upload, Urls };
+}
+/** @returns {CDN} */
+declare function CDN(): CDN;
+type CDN = {
+    absolute_url: string;
+    relative_url: string;
+    url: string;
+};
+/** @returns {CompleteResponse} */
+declare function CompleteResponse(): CompleteResponse;
+type CompleteResponse = {
+    _id: string;
+    cdn: CDN;
+    content_type: string;
+    created_on: string;
+    file_name: string;
+    file_path: string;
+    modified_on: string;
+    namespace: string;
+    operation: string;
+    size: number;
+    success: boolean;
+    tags?: string[];
+    upload: Upload;
+};
+/** @returns {FailedResponse} */
+declare function FailedResponse(): FailedResponse;
+type FailedResponse = {
+    message: string;
+};
+/** @returns {SignUrlRequest} */
+declare function SignUrlRequest(): SignUrlRequest;
+type SignUrlRequest = {
+    expiry: number;
+    urls: string[];
+};
+/** @returns {SignUrlResponse} */
+declare function SignUrlResponse(): SignUrlResponse;
+type SignUrlResponse = {
+    urls: Urls[];
+};
+/** @returns {StartRequest} */
+declare function StartRequest(): StartRequest;
+type StartRequest = {
+    content_type: string;
+    file_name: string;
+    params?: any;
+    size: number;
+    tags?: string[];
+};
+/** @returns {StartResponse} */
+declare function StartResponse(): StartResponse;
+type StartResponse = {
+    cdn: CDN;
+    content_type: string;
+    file_name: string;
+    file_path: string;
+    method?: string;
+    namespace: string;
+    operation: string;
+    size: number;
+    tags?: string[];
+    upload: Upload;
+};
+/** @returns {Upload} */
+declare function Upload(): Upload;
+type Upload = {
+    expiry: number;
+    url: string;
+};
+/** @returns {Urls} */
+declare function Urls(): Urls;
+type Urls = {
+    expiry: number;
+    signed_url: string;
+    url: string;
+};

@@ -1,8 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
-const CommunicationValidator = require("./CommunicationPlatformValidator");
-const CommunicationModel = require("./CommunicationPlatformModel");
+const CommunicationPlatformValidator = require("./CommunicationPlatformValidator");
+const CommunicationPlatformModel = require("./CommunicationPlatformModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -12,15 +12,19 @@ class Communication {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] -
-   * @param {number} [arg.pageSize] -
-   * @returns {Promise<SystemNotifications>} - Success response
+   * @param {CommunicationPlatformValidator.GetSystemNotificationsParam} arg
+   *   - Arg object
+   *
+   * @returns {Promise<CommunicationPlatformModel.SystemNotifications>} -
+   *   Success response
+   * @name getSystemNotifications
    * @summary: Get system notifications
-   * @description: Get system notifications
+   * @description: Get system notifications - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSystemNotifications/).
    */
   async getSystemNotifications({ pageNo, pageSize } = {}) {
-    const { error } = CommunicationValidator.getSystemNotifications().validate(
+    const {
+      error,
+    } = CommunicationPlatformValidator.getSystemNotifications().validate(
       {
         pageNo,
         pageSize,
@@ -34,7 +38,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationValidator.getSystemNotifications().validate(
+    } = CommunicationPlatformValidator.getSystemNotifications().validate(
       {
         pageNo,
         pageSize,
@@ -44,9 +48,8 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getSystemNotifications",
+        message: `Parameter Validation warrnings for platform > Communication > getSystemNotifications \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -66,7 +69,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationModel.SystemNotifications().validate(response, {
+    } = CommunicationPlatformModel.SystemNotifications().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -74,9 +77,8 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getSystemNotifications",
+        message: `Response Validation Warnnings for platform > Communication > getSystemNotifications \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -85,6 +87,7 @@ class Communication {
   /**
    * @param {Object} arg - Arg object.
    * @param {number} [arg.pageSize] -
+   * @returns {Paginator<CommunicationPlatformModel.SystemNotifications>}
    * @summary: Get system notifications
    * @description: Get system notifications
    */

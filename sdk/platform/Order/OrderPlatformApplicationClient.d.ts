@@ -4,23 +4,25 @@ declare class Order {
     config: any;
     applicationId: any;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.action -
-     * @returns {Promise<ShipmentReasonsResponse>} - Success response
+     * @param {OrderPlatformApplicationValidator.GetPlatformShipmentReasonsParam} arg
+     *   - Arg object
+     *
+     * @returns {Promise<OrderPlatformModel.ShipmentReasonsResponse>} - Success response
+     * @name getPlatformShipmentReasons
      * @summary: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
-     * @description: Using action, get reasons behind full or partial cancellation of a shipment
+     * @description: Using action, get reasons behind full or partial cancellation of a shipment - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getPlatformShipmentReasons/).
      */
-    getPlatformShipmentReasons({ action }?: {
-        action: string;
-    }): Promise<ShipmentReasonsResponse>;
+    getPlatformShipmentReasons({ action }?: OrderPlatformApplicationValidator.GetPlatformShipmentReasonsParam): Promise<OrderPlatformModel.ShipmentReasonsResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.shipmentId - Shipment Id
-     * @returns {Promise<PlatformShipmentTrack>} - Success response
+     * @param {OrderPlatformApplicationValidator.TrackShipmentPlatformParam} arg
+     *   - Arg object
+     *
+     * @returns {Promise<OrderPlatformModel.PlatformShipmentTrack>} - Success response
+     * @name trackShipmentPlatform
      * @summary: Track shipment
-     * @description: Track Shipment by shipment id, for application based on application Id
+     * @description: Track Shipment by shipment id, for application based on application Id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/trackShipmentPlatform/).
      */
-    trackShipmentPlatform({ shipmentId }?: {
-        shipmentId: string;
-    }): Promise<PlatformShipmentTrack>;
+    trackShipmentPlatform({ shipmentId }?: OrderPlatformApplicationValidator.TrackShipmentPlatformParam): Promise<OrderPlatformModel.PlatformShipmentTrack>;
 }
+import OrderPlatformApplicationValidator = require("./OrderPlatformApplicationValidator");
+import OrderPlatformModel = require("./OrderPlatformModel");

@@ -2,8 +2,8 @@ const PublicAPIClient = require("../PublicAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
-const InventoryValidator = require("./InventoryPublicValidator");
-const InventoryModel = require("./InventoryPublicModel");
+const InventoryPublicValidator = require("./InventoryPublicValidator");
+const InventoryPublicModel = require("./InventoryPublicModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -38,15 +38,15 @@ class Inventory {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.userName - Integration id
-   * @param {string} arg.password - Company/store token
-   * @returns {Promise<ResponseEnvelopeApikeyModel>} - Success response
+   * @param {InventoryPublicValidator.GetApiKeyParam} arg - Arg object.
+   * @returns {Promise<InventoryPublicModel.ResponseEnvelopeApikeyModel>} -
+   *   Success response
+   * @name getApiKey
    * @summary: Get apikey  for  Company  to call other Slingshot Configuration APIs
-   * @description: REST Endpoint that returns apikey by username by password
+   * @description: REST Endpoint that returns apikey by username by password - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/inventory/getApiKey/).
    */
   async getApiKey({ userName, password } = {}) {
-    const { error } = InventoryValidator.getApiKey().validate(
+    const { error } = InventoryPublicValidator.getApiKey().validate(
       { userName, password },
       { abortEarly: false, allowUnknown: true }
     );
@@ -55,16 +55,15 @@ class Inventory {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = InventoryValidator.getApiKey().validate(
+    const { error: warrning } = InventoryPublicValidator.getApiKey().validate(
       { userName, password },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getApiKey",
+        message: `Parameter Validation warrnings for public > Inventory > getApiKey \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -87,7 +86,7 @@ class Inventory {
 
     const {
       error: res_error,
-    } = InventoryModel.ResponseEnvelopeApikeyModel().validate(response, {
+    } = InventoryPublicModel.ResponseEnvelopeApikeyModel().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -95,23 +94,24 @@ class Inventory {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getApiKey",
+        message: `Response Validation Warnnings for public > Inventory > getApiKey \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.apikey - Api key
-   * @returns {Promise<ResponseEnvelopeSlingshotConfigurationDetail>} - Success response
+   * @param {InventoryPublicValidator.GetConfigByApiKeyParam} arg - Arg object.
+   * @returns {Promise<InventoryPublicModel.ResponseEnvelopeSlingshotConfigurationDetail>}
+   *   - Success response
+   *
+   * @name getConfigByApiKey
    * @summary: Get Slingshot Configuration Of  A Company using API key
-   * @description: REST Endpoint that returns all configuration detail of a company
+   * @description: REST Endpoint that returns all configuration detail of a company - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/inventory/getConfigByApiKey/).
    */
   async getConfigByApiKey({ apikey } = {}) {
-    const { error } = InventoryValidator.getConfigByApiKey().validate(
+    const { error } = InventoryPublicValidator.getConfigByApiKey().validate(
       { apikey },
       { abortEarly: false, allowUnknown: true }
     );
@@ -120,16 +120,17 @@ class Inventory {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = InventoryValidator.getConfigByApiKey().validate(
+    const {
+      error: warrning,
+    } = InventoryPublicValidator.getConfigByApiKey().validate(
       { apikey },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getConfigByApiKey",
+        message: `Parameter Validation warrnings for public > Inventory > getConfigByApiKey \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -151,7 +152,7 @@ class Inventory {
 
     const {
       error: res_error,
-    } = InventoryModel.ResponseEnvelopeSlingshotConfigurationDetail().validate(
+    } = InventoryPublicModel.ResponseEnvelopeSlingshotConfigurationDetail().validate(
       response,
       { abortEarly: false, allowUnknown: false }
     );
@@ -159,23 +160,23 @@ class Inventory {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getConfigByApiKey",
+        message: `Response Validation Warnnings for public > Inventory > getConfigByApiKey \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.code - Job Code
-   * @returns {Promise<ResponseEnvelopeJobConfigDTO>} - Success response
+   * @param {InventoryPublicValidator.GetJobByCodeParam} arg - Arg object.
+   * @returns {Promise<InventoryPublicModel.ResponseEnvelopeJobConfigDTO>} -
+   *   Success response
+   * @name getJobByCode
    * @summary: Get Job Config By Code
-   * @description: REST Endpoint that returns job config by code
+   * @description: REST Endpoint that returns job config by code - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/inventory/getJobByCode/).
    */
   async getJobByCode({ code } = {}) {
-    const { error } = InventoryValidator.getJobByCode().validate(
+    const { error } = InventoryPublicValidator.getJobByCode().validate(
       { code },
       { abortEarly: false, allowUnknown: true }
     );
@@ -184,16 +185,17 @@ class Inventory {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = InventoryValidator.getJobByCode().validate(
+    const {
+      error: warrning,
+    } = InventoryPublicValidator.getJobByCode().validate(
       { code },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getJobByCode",
+        message: `Parameter Validation warrnings for public > Inventory > getJobByCode \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -214,7 +216,7 @@ class Inventory {
 
     const {
       error: res_error,
-    } = InventoryModel.ResponseEnvelopeJobConfigDTO().validate(response, {
+    } = InventoryPublicModel.ResponseEnvelopeJobConfigDTO().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -222,24 +224,22 @@ class Inventory {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getJobByCode",
+        message: `Response Validation Warnnings for public > Inventory > getJobByCode \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {boolean} [arg.dailyJob] - Daily Job Flag
-   * @param {string} [arg.jobCode] - Email Job Code
-   * @returns {Promise<ResponseEnvelopeObject>} - Success response
+   * @param {InventoryPublicValidator.GetJobCodesMetricsParam} arg - Arg object.
+   * @returns {Promise<InventoryPublicModel.ResponseEnvelopeObject>} - Success response
+   * @name getJobCodesMetrics
    * @summary: Find all the JobCodes from Metrics Collection based on the field Values
-   * @description: Endpoint to return all JobCodes present in Metrics Collection
+   * @description: Endpoint to return all JobCodes present in Metrics Collection - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/inventory/getJobCodesMetrics/).
    */
   async getJobCodesMetrics({ dailyJob, jobCode } = {}) {
-    const { error } = InventoryValidator.getJobCodesMetrics().validate(
+    const { error } = InventoryPublicValidator.getJobCodesMetrics().validate(
       { dailyJob, jobCode },
       { abortEarly: false, allowUnknown: true }
     );
@@ -250,16 +250,15 @@ class Inventory {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = InventoryValidator.getJobCodesMetrics().validate(
+    } = InventoryPublicValidator.getJobCodesMetrics().validate(
       { dailyJob, jobCode },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getJobCodesMetrics",
+        message: `Parameter Validation warrnings for public > Inventory > getJobCodesMetrics \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -282,7 +281,7 @@ class Inventory {
 
     const {
       error: res_error,
-    } = InventoryModel.ResponseEnvelopeObject().validate(response, {
+    } = InventoryPublicModel.ResponseEnvelopeObject().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -290,26 +289,28 @@ class Inventory {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getJobCodesMetrics",
+        message: `Response Validation Warnnings for public > Inventory > getJobCodesMetrics \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.integrationType - Integration Type
-   * @param {boolean} [arg.disable] - JobConfig current state
-   * @returns {Promise<ResponseEnvelopeListJobConfigDTO>} - Success response
+   * @param {InventoryPublicValidator.GetJobConfigByIntegrationTypeParam} arg
+   *   - Arg object.
+   *
+   * @returns {Promise<InventoryPublicModel.ResponseEnvelopeListJobConfigDTO>}
+   *   - Success response
+   *
+   * @name getJobConfigByIntegrationType
    * @summary: Get Job Configs By Integration Type
-   * @description: REST Endpoint that returns all job Configs by Integration Type
+   * @description: REST Endpoint that returns all job Configs by Integration Type - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/inventory/getJobConfigByIntegrationType/).
    */
   async getJobConfigByIntegrationType({ integrationType, disable } = {}) {
     const {
       error,
-    } = InventoryValidator.getJobConfigByIntegrationType().validate(
+    } = InventoryPublicValidator.getJobConfigByIntegrationType().validate(
       { integrationType, disable },
       { abortEarly: false, allowUnknown: true }
     );
@@ -320,17 +321,15 @@ class Inventory {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = InventoryValidator.getJobConfigByIntegrationType().validate(
+    } = InventoryPublicValidator.getJobConfigByIntegrationType().validate(
       { integrationType, disable },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message:
-          "Parameter Validation warrnings for getJobConfigByIntegrationType",
+        message: `Parameter Validation warrnings for public > Inventory > getJobConfigByIntegrationType \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -353,32 +352,32 @@ class Inventory {
 
     const {
       error: res_error,
-    } = InventoryModel.ResponseEnvelopeListJobConfigDTO().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = InventoryPublicModel.ResponseEnvelopeListJobConfigDTO().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message:
-          "Response Validation Warnnings for getJobConfigByIntegrationType",
+        message: `Response Validation Warnnings for public > Inventory > getJobConfigByIntegrationType \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {EmailJobMetrics} arg.body
-   * @returns {Promise<ResponseEnvelopeEmailJobMetrics>} - Success response
+   * @param {InventoryPublicValidator.SaveJobCodesMetricsParam} arg - Arg object.
+   * @returns {Promise<InventoryPublicModel.ResponseEnvelopeEmailJobMetrics>}
+   *   - Success response
+   *
+   * @name saveJobCodesMetrics
    * @summary: Save JobCode Metrics
-   * @description: Endpoint to save JobCode Metrics
+   * @description: Endpoint to save JobCode Metrics - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/inventory/saveJobCodesMetrics/).
    */
   async saveJobCodesMetrics({ body } = {}) {
-    const { error } = InventoryValidator.saveJobCodesMetrics().validate(
+    const { error } = InventoryPublicValidator.saveJobCodesMetrics().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -389,16 +388,15 @@ class Inventory {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = InventoryValidator.saveJobCodesMetrics().validate(
+    } = InventoryPublicValidator.saveJobCodesMetrics().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for saveJobCodesMetrics",
+        message: `Parameter Validation warrnings for public > Inventory > saveJobCodesMetrics \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -419,17 +417,16 @@ class Inventory {
 
     const {
       error: res_error,
-    } = InventoryModel.ResponseEnvelopeEmailJobMetrics().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = InventoryPublicModel.ResponseEnvelopeEmailJobMetrics().validate(
+      response,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for saveJobCodesMetrics",
+        message: `Response Validation Warnnings for public > Inventory > saveJobCodesMetrics \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

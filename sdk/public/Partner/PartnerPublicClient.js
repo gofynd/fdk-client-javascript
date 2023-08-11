@@ -2,8 +2,8 @@ const PublicAPIClient = require("../PublicAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
-const PartnerValidator = require("./PartnerPublicValidator");
-const PartnerModel = require("./PartnerPublicModel");
+const PartnerPublicValidator = require("./PartnerPublicValidator");
+const PartnerPublicModel = require("./PartnerPublicModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -31,14 +31,16 @@ class Partner {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.slug - Pass the slug of the extension
-   * @returns {Promise<ExtensionUsingSlug>} - Success response
+   * @param {PartnerPublicValidator.GetPanelExtensionDetailsParam} arg - Arg object.
+   * @returns {Promise<PartnerPublicModel.ExtensionUsingSlug>} - Success response
+   * @name getPanelExtensionDetails
    * @summary: Get extension details
-   * @description: Use this API to get extension details
+   * @description: Use this API to get extension details - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/partner/getPanelExtensionDetails/).
    */
   async getPanelExtensionDetails({ slug } = {}) {
-    const { error } = PartnerValidator.getPanelExtensionDetails().validate(
+    const {
+      error,
+    } = PartnerPublicValidator.getPanelExtensionDetails().validate(
       { slug },
       { abortEarly: false, allowUnknown: true }
     );
@@ -49,16 +51,15 @@ class Partner {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PartnerValidator.getPanelExtensionDetails().validate(
+    } = PartnerPublicValidator.getPanelExtensionDetails().validate(
       { slug },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getPanelExtensionDetails",
+        message: `Parameter Validation warrnings for public > Partner > getPanelExtensionDetails \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -79,7 +80,7 @@ class Partner {
 
     const {
       error: res_error,
-    } = PartnerModel.ExtensionUsingSlug().validate(response, {
+    } = PartnerPublicModel.ExtensionUsingSlug().validate(response, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -87,9 +88,8 @@ class Partner {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getPanelExtensionDetails",
+        message: `Response Validation Warnnings for public > Partner > getPanelExtensionDetails \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

@@ -23,35 +23,23 @@ declare class Configuration {
     _urls: {};
     updateUrls(urls: any): void;
     /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<AppCurrencyResponse>} - Success response
+     * @param {ConfigurationApplicationValidator.GetAppCurrenciesParam} arg - Arg object.
+     * @returns {Promise<ConfigurationApplicationModel.AppCurrencyResponse>} -
+     *   Success response
+     * @name getAppCurrencies
      * @summary: Get currencies enabled in the application
-     * @description: Use this API to get a list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
+     * @description: Use this API to get a list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getAppCurrencies/).
      */
-    getAppCurrencies({}?: any): Promise<AppCurrencyResponse>;
+    getAppCurrencies({}?: any): Promise<ConfigurationApplicationModel.AppCurrencyResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNo] -
-     * @param {number} [arg.pageSize] -
-     * @param {boolean} [arg.orderIncent] - This is a boolean value. Select
-     *   `true` to retrieve the staff members eligible for getting incentives on orders.
-     * @param {number} [arg.orderingStore] - ID of the ordering store. Helps in
-     *   retrieving staff members working at a particular ordering store.
-     * @param {string} [arg.user] - Mongo ID of the staff. Helps in retrieving
-     *   the details of a particular staff member.
-     * @param {string} [arg.userName] - User name of the member
-     * @returns {Promise<AppStaffListResponse>} - Success response
+     * @param {ConfigurationApplicationValidator.GetAppStaffListParam} arg - Arg object.
+     * @returns {Promise<ConfigurationApplicationModel.AppStaffListResponse>} -
+     *   Success response
+     * @name getAppStaffList
      * @summary: Get a list of staff.
-     * @description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
+     * @description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getAppStaffList/).
      */
-    getAppStaffList({ pageNo, pageSize, orderIncent, orderingStore, user, userName, }?: {
-        pageNo?: number;
-        pageSize?: number;
-        orderIncent?: boolean;
-        orderingStore?: number;
-        user?: string;
-        userName?: string;
-    }): Promise<AppStaffListResponse>;
+    getAppStaffList({ pageNo, pageSize, orderIncent, orderingStore, user, userName, }?: ConfigurationApplicationValidator.GetAppStaffListParam): Promise<ConfigurationApplicationModel.AppStaffListResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] -
@@ -62,6 +50,7 @@ declare class Configuration {
      * @param {string} [arg.user] - Mongo ID of the staff. Helps in retrieving
      *   the details of a particular staff member.
      * @param {string} [arg.userName] - User name of the member
+     * @returns {Paginator<ConfigurationApplicationModel.AppStaffListResponse>}
      * @summary: Get a list of staff.
      * @description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
      */
@@ -71,144 +60,154 @@ declare class Configuration {
         orderingStore?: number;
         user?: string;
         userName?: string;
-    }): Paginator;
+    }): Paginator<ConfigurationApplicationModel.AppStaffListResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {boolean} [arg.orderIncent] - This is a boolean value. Select
-     *   `true` to retrieve the staff members eligible for getting incentives on orders.
-     * @param {number} [arg.orderingStore] - ID of the ordering store. Helps in
-     *   retrieving staff members working at a particular ordering store.
-     * @param {string} [arg.user] - Mongo ID of the staff. Helps in retrieving
-     *   the details of a particular staff member.
-     * @returns {Promise<AppStaffResponse>} - Success response
+     * @param {ConfigurationApplicationValidator.GetAppStaffsParam} arg - Arg object.
+     * @returns {Promise<ConfigurationApplicationModel.AppStaffResponse>} -
+     *   Success response
+     * @name getAppStaffs
      * @summary: Get a list of staff.
-     * @description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
+     * @description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getAppStaffs/).
      */
-    getAppStaffs({ orderIncent, orderingStore, user }?: {
-        orderIncent?: boolean;
-        orderingStore?: number;
-        user?: string;
-    }): Promise<AppStaffResponse>;
+    getAppStaffs({ orderIncent, orderingStore, user }?: ConfigurationApplicationValidator.GetAppStaffsParam): Promise<ConfigurationApplicationModel.AppStaffResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<Application>} - Success response
+     * @param {ConfigurationApplicationValidator.GetApplicationParam} arg - Arg object.
+     * @returns {Promise<ConfigurationApplicationModel.Application>} - Success response
+     * @name getApplication
      * @summary: Get current sales channel details
-     * @description: Use this API to get the current sales channel details which includes configurations that indicate the status of the website, domain, ID, tokens, images, etc.
+     * @description: Use this API to get the current sales channel details which includes configurations that indicate the status of the website, domain, ID, tokens, images, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getApplication/).
      */
-    getApplication({}?: any): Promise<Application>;
+    getApplication({}?: any): Promise<ConfigurationApplicationModel.Application>;
     /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<ApplicationDetail>} - Success response
+     * @param {ConfigurationApplicationValidator.GetBasicDetailsParam} arg - Arg object.
+     * @returns {Promise<ConfigurationApplicationModel.ApplicationDetail>} -
+     *   Success response
+     * @name getBasicDetails
      * @summary: Get basic details of the application
-     * @description: Use this API to retrieve only the basic details of the application which includes channel name, description, banner, logo, favicon, domain details, etc.
+     * @description: Use this API to retrieve only the basic details of the application which includes channel name, description, banner, logo, favicon, domain details, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getBasicDetails/).
      */
-    getBasicDetails({}?: any): Promise<ApplicationDetail>;
+    getBasicDetails({}?: any): Promise<ConfigurationApplicationModel.ApplicationDetail>;
     /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<ApplicationInformation>} - Success response
+     * @param {ConfigurationApplicationValidator.GetContactInfoParam} arg - Arg object.
+     * @returns {Promise<ConfigurationApplicationModel.ApplicationInformation>}
+     *   - Success response
+     *
+     * @name getContactInfo
      * @summary: Get application information
-     * @description: Use this API to retrieve information about the social links, address and contact information of the company/seller/brand operating the application.
+     * @description: Use this API to retrieve information about the social links, address and contact information of the company/seller/brand operating the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getContactInfo/).
      */
-    getContactInfo({}?: any): Promise<ApplicationInformation>;
+    getContactInfo({}?: any): Promise<ConfigurationApplicationModel.ApplicationInformation>;
     /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<CurrenciesResponse>} - Success response
+     * @param {ConfigurationApplicationValidator.GetCurrenciesParam} arg - Arg object.
+     * @returns {Promise<ConfigurationApplicationModel.CurrenciesResponse>} -
+     *   Success response
+     * @name getCurrencies
      * @summary: Get all currencies list
-     * @description: Use this API to get a list of currencies available. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
+     * @description: Use this API to get a list of currencies available. Moreover, get the name, code, symbol, and the decimal digits of the currencies. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getCurrencies/).
      */
-    getCurrencies({}?: any): Promise<CurrenciesResponse>;
+    getCurrencies({}?: any): Promise<ConfigurationApplicationModel.CurrenciesResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Object ID assigned to the currency
-     * @returns {Promise<Currency>} - Success response
+     * @param {ConfigurationApplicationValidator.GetCurrencyByIdParam} arg - Arg object.
+     * @returns {Promise<ConfigurationApplicationModel.Currency>} - Success response
+     * @name getCurrencyById
      * @summary: Get currency by its ID
-     * @description: Use this API to retrieve a currency using its ID.
+     * @description: Use this API to retrieve a currency using its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getCurrencyById/).
      */
-    getCurrencyById({ id }?: {
-        id: string;
-    }): Promise<Currency>;
+    getCurrencyById({ id }?: ConfigurationApplicationValidator.GetCurrencyByIdParam): Promise<ConfigurationApplicationModel.Currency>;
     /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<AppFeatureResponse>} - Success response
+     * @param {ConfigurationApplicationValidator.GetFeaturesParam} arg - Arg object.
+     * @returns {Promise<ConfigurationApplicationModel.AppFeatureResponse>} -
+     *   Success response
+     * @name getFeatures
      * @summary: Get features of application
-     * @description: Use this API to retrieve the configuration of features such as product detail, landing page, options in the login/registration screen, communication opt-in, cart options and many more.
+     * @description: Use this API to retrieve the configuration of features such as product detail, landing page, options in the login/registration screen, communication opt-in, cart options and many more. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getFeatures/).
      */
-    getFeatures({}?: any): Promise<AppFeatureResponse>;
+    getFeatures({}?: any): Promise<ConfigurationApplicationModel.AppFeatureResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<AppTokenResponse>} - Success response
+     * @param {ConfigurationApplicationValidator.GetIntegrationTokensParam} arg
+     *   - Arg object.
+     *
+     * @returns {Promise<ConfigurationApplicationModel.AppTokenResponse>} -
+     *   Success response
+     * @name getIntegrationTokens
      * @summary: Get integration tokens
-     * @description: Use this API to retrieve the tokens used while integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map and Facebook. **Note** - Token values are encrypted with AES encryption using a secret key. Kindly reach out to the developers for obtaining the secret key.
+     * @description: Use this API to retrieve the tokens used while integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map and Facebook. **Note** - Token values are encrypted with AES encryption using a secret key. Kindly reach out to the developers for obtaining the secret key. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getIntegrationTokens/).
      */
-    getIntegrationTokens({}?: any): Promise<AppTokenResponse>;
+    getIntegrationTokens({}?: any): Promise<ConfigurationApplicationModel.AppTokenResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<LanguageResponse>} - Success response
+     * @param {ConfigurationApplicationValidator.GetLanguagesParam} arg - Arg object.
+     * @returns {Promise<ConfigurationApplicationModel.LanguageResponse>} -
+     *   Success response
+     * @name getLanguages
      * @summary: Get list of languages
-     * @description: Use this API to get a list of languages supported in the application
+     * @description: Use this API to get a list of languages supported in the application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getLanguages/).
      */
-    getLanguages({}?: any): Promise<LanguageResponse>;
+    getLanguages({}?: any): Promise<ConfigurationApplicationModel.LanguageResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {OrderingStoreSelectRequest} arg.body
-     * @returns {Promise<SuccessMessageResponse>} - Success response
+     * @param {ConfigurationApplicationValidator.GetOrderingStoreCookieParam} arg
+     *   - Arg object.
+     *
+     * @returns {Promise<ConfigurationApplicationModel.SuccessMessageResponse>}
+     *   - Success response
+     *
+     * @name getOrderingStoreCookie
      * @summary: Get an Ordering Store signed cookie on selection of ordering store.
-     * @description: Use this API to get an Ordering Store signed cookie upon selecting an ordering store. This will be used by the cart service to verify a coupon against the selected ordering store in cart.
+     * @description: Use this API to get an Ordering Store signed cookie upon selecting an ordering store. This will be used by the cart service to verify a coupon against the selected ordering store in cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getOrderingStoreCookie/).
      */
-    getOrderingStoreCookie({ body }?: {
-        body: OrderingStoreSelectRequest;
-    }): Promise<SuccessMessageResponse>;
+    getOrderingStoreCookie({ body }?: ConfigurationApplicationValidator.GetOrderingStoreCookieParam): Promise<ConfigurationApplicationModel.SuccessMessageResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNo] - The page number to navigate through the
-     *   given set of results. Default value is 1.
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each
-     *   page. Default value is 10.
-     * @param {string} [arg.q] - Store code or name of the ordering store.
-     * @returns {Promise<OrderingStores>} - Success response
+     * @param {ConfigurationApplicationValidator.GetOrderingStoresParam} arg - Arg object.
+     * @returns {Promise<ConfigurationApplicationModel.OrderingStores>} - Success response
+     * @name getOrderingStores
      * @summary: Get all deployment stores
-     * @description: Use this API to retrieve the details of all the deployment stores (the selling locations where the application will be utilized for placing orders).
+     * @description: Use this API to retrieve the details of all the deployment stores (the selling locations where the application will be utilized for placing orders). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getOrderingStores/).
      */
-    getOrderingStores({ pageNo, pageSize, q }?: {
-        pageNo?: number;
-        pageSize?: number;
-        q?: string;
-    }): Promise<OrderingStores>;
+    getOrderingStores({ pageNo, pageSize, q }?: ConfigurationApplicationValidator.GetOrderingStoresParam): Promise<ConfigurationApplicationModel.OrderingStores>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each
      *   page. Default value is 10.
      * @param {string} [arg.q] - Store code or name of the ordering store.
+     * @returns {Paginator<ConfigurationApplicationModel.OrderingStores>}
      * @summary: Get all deployment stores
      * @description: Use this API to retrieve the details of all the deployment stores (the selling locations where the application will be utilized for placing orders).
      */
     getOrderingStoresPaginator({ pageSize, q }?: {
         pageSize?: number;
         q?: string;
-    }): Paginator;
+    }): Paginator<ConfigurationApplicationModel.OrderingStores>;
     /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<ApplicationAboutResponse>} - Success response
+     * @param {ConfigurationApplicationValidator.GetOwnerInfoParam} arg - Arg object.
+     * @returns {Promise<ConfigurationApplicationModel.ApplicationAboutResponse>}
+     *   - Success response
+     *
+     * @name getOwnerInfo
      * @summary: Get sales channel, owner and seller information
-     * @description: Use this API to get the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, etc. This API also retrieves the seller and owner information such as address, email address, and phone number.
+     * @description: Use this API to get the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, etc. This API also retrieves the seller and owner information such as address, email address, and phone number. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getOwnerInfo/).
      */
-    getOwnerInfo({}?: any): Promise<ApplicationAboutResponse>;
+    getOwnerInfo({}?: any): Promise<ConfigurationApplicationModel.ApplicationAboutResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {number} arg.storeId - Store uid
-     * @returns {Promise<OrderingStore>} - Success response
+     * @param {ConfigurationApplicationValidator.GetStoreDetailByIdParam} arg -
+     *   Arg object.
+     * @returns {Promise<ConfigurationApplicationModel.OrderingStore>} - Success response
+     * @name getStoreDetailById
      * @summary: Get ordering store details
-     * @description: Use this API to retrieve the details of given stores uid (the selling locations where the application will be utilized for placing orders).
+     * @description: Use this API to retrieve the details of given stores uid (the selling locations where the application will be utilized for placing orders). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getStoreDetailById/).
      */
-    getStoreDetailById({ storeId }?: {
-        storeId: number;
-    }): Promise<OrderingStore>;
+    getStoreDetailById({ storeId }?: ConfigurationApplicationValidator.GetStoreDetailByIdParam): Promise<ConfigurationApplicationModel.OrderingStore>;
     /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<SuccessMessageResponse>} - Success response
+     * @param {ConfigurationApplicationValidator.RemoveOrderingStoreCookieParam} arg
+     *   - Arg object.
+     *
+     * @returns {Promise<ConfigurationApplicationModel.SuccessMessageResponse>}
+     *   - Success response
+     *
+     * @name removeOrderingStoreCookie
      * @summary: Unset the Ordering Store signed cookie.
-     * @description: Use this API to unset the Ordering Store cookie upon changing the sales channel, by its domain URL, in the Universal Fynd Store app.
+     * @description: Use this API to unset the Ordering Store cookie upon changing the sales channel, by its domain URL, in the Universal Fynd Store app. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/removeOrderingStoreCookie/).
      */
-    removeOrderingStoreCookie({}?: any): Promise<SuccessMessageResponse>;
+    removeOrderingStoreCookie({}?: any): Promise<ConfigurationApplicationModel.SuccessMessageResponse>;
 }
+import ConfigurationApplicationModel = require("./ConfigurationApplicationModel");
+import ConfigurationApplicationValidator = require("./ConfigurationApplicationValidator");
 import Paginator = require("../../common/Paginator");

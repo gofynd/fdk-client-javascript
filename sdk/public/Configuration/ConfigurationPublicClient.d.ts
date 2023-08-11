@@ -9,30 +9,21 @@ declare class Configuration {
     _urls: {};
     updateUrls(urls: any): void;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.locationType] - Provide location type to query on.
-     *   Possible values : country, state, city
-     * @param {string} [arg.id] - Field is optional when location_type is
-     *   country. If querying for state, provide id of country. If querying for
-     *   city, provide id of state.
-     * @returns {Promise<Locations>} - Success response
+     * @param {ConfigurationPublicValidator.GetLocationsParam} arg - Arg object.
+     * @returns {Promise<ConfigurationPublicModel.Locations>} - Success response
+     * @name getLocations
      * @summary: Get countries, states, cities
-     * @description: Get Location configuration
+     * @description: Get Location configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/configuration/getLocations/).
      */
-    getLocations({ locationType, id }?: {
-        locationType?: string;
-        id?: string;
-    }): Promise<Locations>;
+    getLocations({ locationType, id }?: ConfigurationPublicValidator.GetLocationsParam): Promise<ConfigurationPublicModel.Locations>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.authorization] -
-     * @param {string} [arg.query] - Provide application name
-     * @returns {Promise<ApplicationResponse>} - Success response
+     * @param {ConfigurationPublicValidator.SearchApplicationParam} arg - Arg object.
+     * @returns {Promise<ConfigurationPublicModel.ApplicationResponse>} - Success response
+     * @name searchApplication
      * @summary: Search Application
-     * @description: Provide application name or domain url
+     * @description: Provide application name or domain url - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/configuration/searchApplication/).
      */
-    searchApplication({ authorization, query }?: {
-        authorization?: string;
-        query?: string;
-    }): Promise<ApplicationResponse>;
+    searchApplication({ authorization, query }?: ConfigurationPublicValidator.SearchApplicationParam): Promise<ConfigurationPublicModel.ApplicationResponse>;
 }
+import ConfigurationPublicValidator = require("./ConfigurationPublicValidator");
+import ConfigurationPublicModel = require("./ConfigurationPublicModel");
