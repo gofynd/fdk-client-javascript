@@ -148,6 +148,18 @@ const cookieJar = require('path/to/cookieJar') // replace with actual path
 let cookies = await cookieJar.getCookies("https://api.fynd.com");
 ```
 ---
+### Get response headers
+To retrieve the response headers, simply set the `headers` option to `true` when calling the desired method. Below is an example demonstrating how to achieve this:
+```javascript
+const options = {
+  headers: true
+}
+const [response, headers] = await platformClient.application("<APPLICATION_ID>").theme.getAllPages.({"theme_id": "<THEME_ID>"}, options);
+console.log("[API RESPONSE]: ", response);
+console.log("[RESPONSE HEADERS]: ", headers);
+```
+
+---
 
 ### Log Curl
 To print the curl command in the console for all network calls made using `applicationClient` or `platformClient`, set the logger level to debug.
