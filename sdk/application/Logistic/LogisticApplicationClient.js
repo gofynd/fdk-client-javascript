@@ -2,8 +2,8 @@ const ApplicationAPIClient = require("../ApplicationAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
-const LogisticApplicationValidator = require("./LogisticApplicationValidator");
-const LogisticApplicationModel = require("./LogisticApplicationModel");
+const LogisticValidator = require("./LogisticApplicationValidator");
+const LogisticModel = require("./LogisticApplicationModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -35,14 +35,13 @@ class Logistic {
   }
 
   /**
-   * @param {LogisticApplicationValidator.GetAllCountriesParam} arg - Arg object.
-   * @returns {Promise<LogisticApplicationModel.CountryListResponse>} - Success response
-   * @name getAllCountries
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CountryListResponse>} - Success response
    * @summary: Get Country List
-   * @description: Get all countries - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getAllCountries/).
+   * @description: Get all countries
    */
-  async getAllCountries({} = {}) {
-    const { error } = LogisticApplicationValidator.getAllCountries().validate(
+  async getAllCountries({ headers } = { headers: false }) {
+    const { error } = LogisticValidator.getAllCountries().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -51,17 +50,16 @@ class Logistic {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = LogisticApplicationValidator.getAllCountries().validate(
+    const { error: warrning } = LogisticValidator.getAllCountries().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Logistic > getAllCountries \n ${warrning}`,
+        message: "Parameter Validation warrnings for getAllCountries",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -77,12 +75,18 @@ class Logistic {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = LogisticApplicationModel.CountryListResponse().validate(response, {
+    } = LogisticModel.CountryListResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -90,25 +94,24 @@ class Logistic {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Logistic > getAllCountries \n ${res_error}`,
+        message: "Response Validation Warnnings for getAllCountries",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {LogisticApplicationValidator.GetOptimalLocationsParam} arg - Arg object.
-   * @returns {Promise<LogisticApplicationModel.ReAssignStoreResponse>} -
-   *   Success response
-   * @name getOptimalLocations
+   * @param {Object} arg - Arg object.
+   * @param {ReAssignStoreRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ReAssignStoreResponse>} - Success response
    * @summary: GET zone from the Pincode.
-   * @description: This API returns zone from the Pincode View. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getOptimalLocations/).
+   * @description: This API returns zone from the Pincode View.
    */
-  async getOptimalLocations({ body } = {}) {
-    const {
-      error,
-    } = LogisticApplicationValidator.getOptimalLocations().validate(
+  async getOptimalLocations({ body } = {}, { headers } = { headers: false }) {
+    const { error } = LogisticValidator.getOptimalLocations().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -119,15 +122,16 @@ class Logistic {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = LogisticApplicationValidator.getOptimalLocations().validate(
+    } = LogisticValidator.getOptimalLocations().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Logistic > getOptimalLocations \n ${warrning}`,
+        message: "Parameter Validation warrnings for getOptimalLocations",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -143,12 +147,18 @@ class Logistic {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = LogisticApplicationModel.ReAssignStoreResponse().validate(response, {
+    } = LogisticModel.ReAssignStoreResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -156,22 +166,25 @@ class Logistic {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Logistic > getOptimalLocations \n ${res_error}`,
+        message: "Response Validation Warnnings for getOptimalLocations",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {LogisticApplicationValidator.GetPincodeCityParam} arg - Arg object.
-   * @returns {Promise<LogisticApplicationModel.PincodeApiResponse>} - Success response
-   * @name getPincodeCity
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.pincode - A `pincode` contains a specific address of
+   *   a location.
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<PincodeApiResponse>} - Success response
    * @summary: Get Pincode API
-   * @description: Get pincode data - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getPincodeCity/).
+   * @description: Get pincode data
    */
-  async getPincodeCity({ pincode } = {}) {
-    const { error } = LogisticApplicationValidator.getPincodeCity().validate(
+  async getPincodeCity({ pincode } = {}, { headers } = { headers: false }) {
+    const { error } = LogisticValidator.getPincodeCity().validate(
       { pincode },
       { abortEarly: false, allowUnknown: true }
     );
@@ -180,17 +193,16 @@ class Logistic {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = LogisticApplicationValidator.getPincodeCity().validate(
+    const { error: warrning } = LogisticValidator.getPincodeCity().validate(
       { pincode },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Logistic > getPincodeCity \n ${warrning}`,
+        message: "Parameter Validation warrnings for getPincodeCity",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -206,12 +218,18 @@ class Logistic {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = LogisticApplicationModel.PincodeApiResponse().validate(response, {
+    } = LogisticModel.PincodeApiResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -219,24 +237,24 @@ class Logistic {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Logistic > getPincodeCity \n ${res_error}`,
+        message: "Response Validation Warnnings for getPincodeCity",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {LogisticApplicationValidator.GetPincodeZonesParam} arg - Arg object.
-   * @returns {Promise<LogisticApplicationModel.GetZoneFromPincodeViewResponse>}
-   *   - Success response
-   *
-   * @name getPincodeZones
+   * @param {Object} arg - Arg object.
+   * @param {GetZoneFromPincodeViewRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<GetZoneFromPincodeViewResponse>} - Success response
    * @summary: GET zone from the Pincode.
-   * @description: This API returns zone from the Pincode View. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getPincodeZones/).
+   * @description: This API returns zone from the Pincode View.
    */
-  async getPincodeZones({ body } = {}) {
-    const { error } = LogisticApplicationValidator.getPincodeZones().validate(
+  async getPincodeZones({ body } = {}, { headers } = { headers: false }) {
+    const { error } = LogisticValidator.getPincodeZones().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -245,17 +263,16 @@ class Logistic {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = LogisticApplicationValidator.getPincodeZones().validate(
+    const { error: warrning } = LogisticValidator.getPincodeZones().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Logistic > getPincodeZones \n ${warrning}`,
+        message: "Parameter Validation warrnings for getPincodeZones",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -271,35 +288,43 @@ class Logistic {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = LogisticApplicationModel.GetZoneFromPincodeViewResponse().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = LogisticModel.GetZoneFromPincodeViewResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Logistic > getPincodeZones \n ${res_error}`,
+        message: "Response Validation Warnnings for getPincodeZones",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {LogisticApplicationValidator.GetTatProductParam} arg - Arg object.
-   * @returns {Promise<LogisticApplicationModel.TATViewResponse>} - Success response
-   * @name getTatProduct
+   * @param {Object} arg - Arg object.
+   * @param {TATViewRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<TATViewResponse>} - Success response
    * @summary: Get TAT API
-   * @description: Get TAT data - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getTatProduct/).
+   * @description: Get TAT data
    */
-  async getTatProduct({ body } = {}) {
-    const { error } = LogisticApplicationValidator.getTatProduct().validate(
+  async getTatProduct({ body } = {}, { headers } = { headers: false }) {
+    const { error } = LogisticValidator.getTatProduct().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -308,17 +333,16 @@ class Logistic {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = LogisticApplicationValidator.getTatProduct().validate(
+    const { error: warrning } = LogisticValidator.getTatProduct().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Logistic > getTatProduct \n ${warrning}`,
+        message: "Parameter Validation warrnings for getTatProduct",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -334,12 +358,18 @@ class Logistic {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = LogisticApplicationModel.TATViewResponse().validate(response, {
+    } = LogisticModel.TATViewResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -347,8 +377,9 @@ class Logistic {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Logistic > getTatProduct \n ${res_error}`,
+        message: "Response Validation Warnnings for getTatProduct",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

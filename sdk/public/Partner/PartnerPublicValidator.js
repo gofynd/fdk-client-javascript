@@ -1,14 +1,7 @@
 const Joi = require("joi");
 
-const PartnerPublicModel = require("./PartnerPublicModel");
-
-/**
- * @typedef GetPanelExtensionDetailsParam
- * @property {string} slug - Pass the slug of the extension
- */
-
-class PartnerPublicValidator {
-  /** @returns {GetPanelExtensionDetailsParam} */
+const PartnerModel = require("./PartnerPublicModel");
+class PartnerValidator {
   static getPanelExtensionDetails() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
@@ -16,4 +9,4 @@ class PartnerPublicValidator {
   }
 }
 
-module.exports = PartnerPublicValidator;
+module.exports = PartnerValidator;

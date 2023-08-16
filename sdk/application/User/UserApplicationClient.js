@@ -2,8 +2,8 @@ const ApplicationAPIClient = require("../ApplicationAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
-const UserApplicationValidator = require("./UserApplicationValidator");
-const UserApplicationModel = require("./UserApplicationModel");
+const UserValidator = require("./UserApplicationValidator");
+const UserModel = require("./UserApplicationModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -85,14 +85,16 @@ class User {
   }
 
   /**
-   * @param {UserApplicationValidator.AddEmailParam} arg - Arg object.
-   * @returns {Promise<UserApplicationModel.VerifyEmailOTPSuccess>} - Success response
-   * @name addEmail
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.platform] - ID of the application
+   * @param {EditEmailRequestSchema} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<VerifyEmailOTPSuccess>} - Success response
    * @summary: Add email to profile
-   * @description: Use this API to add a new email address to a profile - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/addEmail/).
+   * @description: Use this API to add a new email address to a profile
    */
-  async addEmail({ body, platform } = {}) {
-    const { error } = UserApplicationValidator.addEmail().validate(
+  async addEmail({ body, platform } = {}, { headers } = { headers: false }) {
+    const { error } = UserValidator.addEmail().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: true }
     );
@@ -101,15 +103,16 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserApplicationValidator.addEmail().validate(
+    const { error: warrning } = UserValidator.addEmail().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > User > addEmail \n ${warrning}`,
+        message: "Parameter Validation warrnings for addEmail",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -126,12 +129,18 @@ class User {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserApplicationModel.VerifyEmailOTPSuccess().validate(response, {
+    } = UserModel.VerifyEmailOTPSuccess().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -139,22 +148,28 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > User > addEmail \n ${res_error}`,
+        message: "Response Validation Warnnings for addEmail",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.AddMobileNumberParam} arg - Arg object.
-   * @returns {Promise<UserApplicationModel.VerifyMobileOTPSuccess>} - Success response
-   * @name addMobileNumber
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.platform] - ID of the application
+   * @param {EditMobileRequestSchema} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<VerifyMobileOTPSuccess>} - Success response
    * @summary: Add mobile number to profile
-   * @description: Use this API to add a new mobile number to a profile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/addMobileNumber/).
+   * @description: Use this API to add a new mobile number to a profile.
    */
-  async addMobileNumber({ body, platform } = {}) {
-    const { error } = UserApplicationValidator.addMobileNumber().validate(
+  async addMobileNumber(
+    { body, platform } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = UserValidator.addMobileNumber().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: true }
     );
@@ -163,17 +178,16 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.addMobileNumber().validate(
+    const { error: warrning } = UserValidator.addMobileNumber().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > User > addMobileNumber \n ${warrning}`,
+        message: "Parameter Validation warrnings for addMobileNumber",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -190,12 +204,18 @@ class User {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserApplicationModel.VerifyMobileOTPSuccess().validate(response, {
+    } = UserModel.VerifyMobileOTPSuccess().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -203,22 +223,36 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > User > addMobileNumber \n ${res_error}`,
+        message: "Response Validation Warnnings for addMobileNumber",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.DeleteEmailParam} arg - Arg object.
-   * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
-   * @name deleteEmail
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.platform] - ID of the application
+   * @param {boolean} arg.active - This is a boolean value to check if email
+   *   ID is active 1. True - Email ID is active 2.False - Email ID is inactive
+   * @param {boolean} arg.primary - This is a boolean value to check if email
+   *   ID is primary (main email ID) 1. True - Email ID is primary 2.False -
+   *   Email ID is not primary
+   * @param {boolean} arg.verified - This is a boolean value to check if email
+   *   ID is verified 1. True - Email ID is verified 2.False - Email ID is not
+   *   verified yet
+   * @param {string} arg.email - The email ID to delete
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<LoginSuccess>} - Success response
    * @summary: Delete email from profile
-   * @description: Use this API to delete an email address from a profile - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/deleteEmail/).
+   * @description: Use this API to delete an email address from a profile
    */
-  async deleteEmail({ active, primary, verified, email, platform } = {}) {
-    const { error } = UserApplicationValidator.deleteEmail().validate(
+  async deleteEmail(
+    { active, primary, verified, email, platform } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = UserValidator.deleteEmail().validate(
       { active, primary, verified, email, platform },
       { abortEarly: false, allowUnknown: true }
     );
@@ -227,15 +261,16 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserApplicationValidator.deleteEmail().validate(
+    const { error: warrning } = UserValidator.deleteEmail().validate(
       { active, primary, verified, email, platform },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > User > deleteEmail \n ${warrning}`,
+        message: "Parameter Validation warrnings for deleteEmail",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -256,42 +291,54 @@ class User {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.LoginSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = UserModel.LoginSuccess().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > User > deleteEmail \n ${res_error}`,
+        message: "Response Validation Warnnings for deleteEmail",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.DeleteMobileNumberParam} arg - Arg object.
-   * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
-   * @name deleteMobileNumber
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.platform] - ID of the application
+   * @param {boolean} arg.active - This is a boolean value to check if mobile
+   *   number is active 1.True - Number is active 2. False - Number is inactive
+   * @param {boolean} arg.primary - This is a boolean value to check if mobile
+   *   number is primary number (main number) 1. True - Number is primary 2.
+   *   False - Number is not primary
+   * @param {boolean} arg.verified - This is a boolean value to check if
+   *   mobile number is verified 1. True - Number is verified 2.False - Number
+   *   is not verified yet
+   * @param {string} arg.countryCode - Country code of the phone number, e.g. 91
+   * @param {string} arg.phone - Phone number
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<LoginSuccess>} - Success response
    * @summary: Delete mobile number from profile
-   * @description: Use this API to delete a mobile number from a profile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/deleteMobileNumber/).
+   * @description: Use this API to delete a mobile number from a profile.
    */
-  async deleteMobileNumber({
-    active,
-    primary,
-    verified,
-    countryCode,
-    phone,
-    platform,
-  } = {}) {
-    const { error } = UserApplicationValidator.deleteMobileNumber().validate(
+  async deleteMobileNumber(
+    { active, primary, verified, countryCode, phone, platform } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = UserValidator.deleteMobileNumber().validate(
       { active, primary, verified, countryCode, phone, platform },
       { abortEarly: false, allowUnknown: true }
     );
@@ -300,17 +347,16 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.deleteMobileNumber().validate(
+    const { error: warrning } = UserValidator.deleteMobileNumber().validate(
       { active, primary, verified, countryCode, phone, platform },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > User > deleteMobileNumber \n ${warrning}`,
+        message: "Parameter Validation warrnings for deleteMobileNumber",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -332,35 +378,41 @@ class User {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.LoginSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = UserModel.LoginSuccess().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > User > deleteMobileNumber \n ${res_error}`,
+        message: "Response Validation Warnnings for deleteMobileNumber",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.DeleteUserParam} arg - Arg object.
-   * @returns {Promise<UserApplicationModel.DeleteUserSuccess>} - Success response
-   * @name deleteUser
+   * @param {Object} arg - Arg object.
+   * @param {DeleteApplicationUserRequestSchema} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<DeleteUserSuccess>} - Success response
    * @summary: verify otp and delete user
-   * @description: verify otp and delete user - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/deleteUser/).
+   * @description: verify otp and delete user
    */
-  async deleteUser({ body } = {}) {
-    const { error } = UserApplicationValidator.deleteUser().validate(
+  async deleteUser({ body } = {}, { headers } = { headers: false }) {
+    const { error } = UserValidator.deleteUser().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -369,15 +421,16 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserApplicationValidator.deleteUser().validate(
+    const { error: warrning } = UserValidator.deleteUser().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > User > deleteUser \n ${warrning}`,
+        message: "Parameter Validation warrnings for deleteUser",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -393,12 +446,18 @@ class User {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserApplicationModel.DeleteUserSuccess().validate(response, {
+    } = UserModel.DeleteUserSuccess().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -406,22 +465,24 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > User > deleteUser \n ${res_error}`,
+        message: "Response Validation Warnnings for deleteUser",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.ForgotPasswordParam} arg - Arg object.
-   * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
-   * @name forgotPassword
+   * @param {Object} arg - Arg object.
+   * @param {ForgotPasswordRequestSchema} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<LoginSuccess>} - Success response
    * @summary: Forgot Password
-   * @description: Use this API to reset a password using the code sent on email or SMS. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/forgotPassword/).
+   * @description: Use this API to reset a password using the code sent on email or SMS.
    */
-  async forgotPassword({ body } = {}) {
-    const { error } = UserApplicationValidator.forgotPassword().validate(
+  async forgotPassword({ body } = {}, { headers } = { headers: false }) {
+    const { error } = UserValidator.forgotPassword().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -430,17 +491,16 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.forgotPassword().validate(
+    const { error: warrning } = UserValidator.forgotPassword().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > User > forgotPassword \n ${warrning}`,
+        message: "Parameter Validation warrnings for forgotPassword",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -456,37 +516,39 @@ class User {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.LoginSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = UserModel.LoginSuccess().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > User > forgotPassword \n ${res_error}`,
+        message: "Response Validation Warnnings for forgotPassword",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.GetListOfActiveSessionsParam} arg - Arg object.
-   * @returns {Promise<UserApplicationModel.SessionListSuccess>} - Success response
-   * @name getListOfActiveSessions
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<SessionListSuccess>} - Success response
    * @summary: Get list of sessions
-   * @description: Use this API to retrieve all active sessions of a user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/getListOfActiveSessions/).
+   * @description: Use this API to retrieve all active sessions of a user.
    */
-  async getListOfActiveSessions({} = {}) {
-    const {
-      error,
-    } = UserApplicationValidator.getListOfActiveSessions().validate(
+  async getListOfActiveSessions({ headers } = { headers: false }) {
+    const { error } = UserValidator.getListOfActiveSessions().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -497,15 +559,16 @@ class User {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = UserApplicationValidator.getListOfActiveSessions().validate(
+    } = UserValidator.getListOfActiveSessions().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > User > getListOfActiveSessions \n ${warrning}`,
+        message: "Parameter Validation warrnings for getListOfActiveSessions",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -521,12 +584,18 @@ class User {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserApplicationModel.SessionListSuccess().validate(response, {
+    } = UserModel.SessionListSuccess().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -534,22 +603,22 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > User > getListOfActiveSessions \n ${res_error}`,
+        message: "Response Validation Warnnings for getListOfActiveSessions",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.GetLoggedInUserParam} arg - Arg object.
-   * @returns {Promise<UserApplicationModel.UserObjectSchema>} - Success response
-   * @name getLoggedInUser
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<UserObjectSchema>} - Success response
    * @summary: Get logged in user
-   * @description: Use this API  to get the details of a logged in user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/getLoggedInUser/).
+   * @description: Use this API  to get the details of a logged in user.
    */
-  async getLoggedInUser({} = {}) {
-    const { error } = UserApplicationValidator.getLoggedInUser().validate(
+  async getLoggedInUser({ headers } = { headers: false }) {
+    const { error } = UserValidator.getLoggedInUser().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -558,17 +627,16 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.getLoggedInUser().validate(
+    const { error: warrning } = UserValidator.getLoggedInUser().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > User > getLoggedInUser \n ${warrning}`,
+        message: "Parameter Validation warrnings for getLoggedInUser",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -584,12 +652,18 @@ class User {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserApplicationModel.UserObjectSchema().validate(response, {
+    } = UserModel.UserObjectSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -597,22 +671,24 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > User > getLoggedInUser \n ${res_error}`,
+        message: "Response Validation Warnnings for getLoggedInUser",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.GetPlatformConfigParam} arg - Arg object.
-   * @returns {Promise<UserApplicationModel.PlatformSchema>} - Success response
-   * @name getPlatformConfig
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.name] - Name of the application, e.g. Fynd
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<PlatformSchema>} - Success response
    * @summary: Get platform configurations
-   * @description: Use this API to get all the platform configurations such as mobile image, desktop image, social logins, and all other text. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/getPlatformConfig/).
+   * @description: Use this API to get all the platform configurations such as mobile image, desktop image, social logins, and all other text.
    */
-  async getPlatformConfig({ name } = {}) {
-    const { error } = UserApplicationValidator.getPlatformConfig().validate(
+  async getPlatformConfig({ name } = {}, { headers } = { headers: false }) {
+    const { error } = UserValidator.getPlatformConfig().validate(
       { name },
       { abortEarly: false, allowUnknown: true }
     );
@@ -621,17 +697,16 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.getPlatformConfig().validate(
+    const { error: warrning } = UserValidator.getPlatformConfig().validate(
       { name },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > User > getPlatformConfig \n ${warrning}`,
+        message: "Parameter Validation warrnings for getPlatformConfig",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -648,12 +723,18 @@ class User {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserApplicationModel.PlatformSchema().validate(response, {
+    } = UserModel.PlatformSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -661,22 +742,22 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > User > getPlatformConfig \n ${res_error}`,
+        message: "Response Validation Warnnings for getPlatformConfig",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.HasPasswordParam} arg - Arg object.
-   * @returns {Promise<UserApplicationModel.HasPasswordSuccess>} - Success response
-   * @name hasPassword
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<HasPasswordSuccess>} - Success response
    * @summary: Check password
-   * @description: Use this API to check if user has created a password for login. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/hasPassword/).
+   * @description: Use this API to check if user has created a password for login.
    */
-  async hasPassword({} = {}) {
-    const { error } = UserApplicationValidator.hasPassword().validate(
+  async hasPassword({ headers } = { headers: false }) {
+    const { error } = UserValidator.hasPassword().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -685,15 +766,16 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserApplicationValidator.hasPassword().validate(
+    const { error: warrning } = UserValidator.hasPassword().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > User > hasPassword \n ${warrning}`,
+        message: "Parameter Validation warrnings for hasPassword",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -709,12 +791,18 @@ class User {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserApplicationModel.HasPasswordSuccess().validate(response, {
+    } = UserModel.HasPasswordSuccess().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -722,22 +810,28 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > User > hasPassword \n ${res_error}`,
+        message: "Response Validation Warnnings for hasPassword",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.LoginWithAppleIOSParam} arg - Arg object.
-   * @returns {Promise<UserApplicationModel.AuthSuccess>} - Success response
-   * @name loginWithAppleIOS
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.platform] - ID of the application
+   * @param {OAuthRequestAppleSchema} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<AuthSuccess>} - Success response
    * @summary: Login or Register using Apple on iOS
-   * @description: Use this API to login or register in iOS app using Apple Account credentials. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithAppleIOS/).
+   * @description: Use this API to login or register in iOS app using Apple Account credentials.
    */
-  async loginWithAppleIOS({ body, platform } = {}) {
-    const { error } = UserApplicationValidator.loginWithAppleIOS().validate(
+  async loginWithAppleIOS(
+    { body, platform } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = UserValidator.loginWithAppleIOS().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: true }
     );
@@ -746,17 +840,16 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.loginWithAppleIOS().validate(
+    const { error: warrning } = UserValidator.loginWithAppleIOS().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > User > loginWithAppleIOS \n ${warrning}`,
+        message: "Parameter Validation warrnings for loginWithAppleIOS",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -773,37 +866,44 @@ class User {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.AuthSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = UserModel.AuthSuccess().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > User > loginWithAppleIOS \n ${res_error}`,
+        message: "Response Validation Warnnings for loginWithAppleIOS",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.LoginWithEmailAndPasswordParam} arg - Arg object.
-   * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
-   * @name loginWithEmailAndPassword
+   * @param {Object} arg - Arg object.
+   * @param {PasswordLoginRequestSchema} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<LoginSuccess>} - Success response
    * @summary: Login or Register with password
-   * @description: Use this API to login or register using an email address and password. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithEmailAndPassword/).
+   * @description: Use this API to login or register using an email address and password.
    */
-  async loginWithEmailAndPassword({ body } = {}) {
-    const {
-      error,
-    } = UserApplicationValidator.loginWithEmailAndPassword().validate(
+  async loginWithEmailAndPassword(
+    { body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = UserValidator.loginWithEmailAndPassword().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -814,15 +914,16 @@ class User {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = UserApplicationValidator.loginWithEmailAndPassword().validate(
+    } = UserValidator.loginWithEmailAndPassword().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > User > loginWithEmailAndPassword \n ${warrning}`,
+        message: "Parameter Validation warrnings for loginWithEmailAndPassword",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -838,35 +939,45 @@ class User {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.LoginSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = UserModel.LoginSuccess().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > User > loginWithEmailAndPassword \n ${res_error}`,
+        message: "Response Validation Warnnings for loginWithEmailAndPassword",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.LoginWithFacebookParam} arg - Arg object.
-   * @returns {Promise<UserApplicationModel.AuthSuccess>} - Success response
-   * @name loginWithFacebook
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.platform] - ID of the application
+   * @param {OAuthRequestSchema} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<AuthSuccess>} - Success response
    * @summary: Login or Register using Facebook
-   * @description: Use this API to login or register using Facebook credentials. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithFacebook/).
+   * @description: Use this API to login or register using Facebook credentials.
    */
-  async loginWithFacebook({ body, platform } = {}) {
-    const { error } = UserApplicationValidator.loginWithFacebook().validate(
+  async loginWithFacebook(
+    { body, platform } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = UserValidator.loginWithFacebook().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: true }
     );
@@ -875,17 +986,16 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.loginWithFacebook().validate(
+    const { error: warrning } = UserValidator.loginWithFacebook().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > User > loginWithFacebook \n ${warrning}`,
+        message: "Parameter Validation warrnings for loginWithFacebook",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -902,35 +1012,45 @@ class User {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.AuthSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = UserModel.AuthSuccess().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > User > loginWithFacebook \n ${res_error}`,
+        message: "Response Validation Warnnings for loginWithFacebook",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.LoginWithGoogleParam} arg - Arg object.
-   * @returns {Promise<UserApplicationModel.AuthSuccess>} - Success response
-   * @name loginWithGoogle
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.platform] - ID of the application
+   * @param {OAuthRequestSchema} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<AuthSuccess>} - Success response
    * @summary: Login or Register using Google
-   * @description: Use this API to login or register using Google Account credentials. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithGoogle/).
+   * @description: Use this API to login or register using Google Account credentials.
    */
-  async loginWithGoogle({ body, platform } = {}) {
-    const { error } = UserApplicationValidator.loginWithGoogle().validate(
+  async loginWithGoogle(
+    { body, platform } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = UserValidator.loginWithGoogle().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: true }
     );
@@ -939,17 +1059,16 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.loginWithGoogle().validate(
+    const { error: warrning } = UserValidator.loginWithGoogle().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > User > loginWithGoogle \n ${warrning}`,
+        message: "Parameter Validation warrnings for loginWithGoogle",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -966,37 +1085,45 @@ class User {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.AuthSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = UserModel.AuthSuccess().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > User > loginWithGoogle \n ${res_error}`,
+        message: "Response Validation Warnnings for loginWithGoogle",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.LoginWithGoogleAndroidParam} arg - Arg object.
-   * @returns {Promise<UserApplicationModel.AuthSuccess>} - Success response
-   * @name loginWithGoogleAndroid
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.platform] - ID of the application
+   * @param {OAuthRequestSchema} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<AuthSuccess>} - Success response
    * @summary: Login or Register using Google on Android
-   * @description: Use this API to login or register in Android app using Google Account credentials. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithGoogleAndroid/).
+   * @description: Use this API to login or register in Android app using Google Account credentials.
    */
-  async loginWithGoogleAndroid({ body, platform } = {}) {
-    const {
-      error,
-    } = UserApplicationValidator.loginWithGoogleAndroid().validate(
+  async loginWithGoogleAndroid(
+    { body, platform } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = UserValidator.loginWithGoogleAndroid().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1005,17 +1132,16 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.loginWithGoogleAndroid().validate(
+    const { error: warrning } = UserValidator.loginWithGoogleAndroid().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > User > loginWithGoogleAndroid \n ${warrning}`,
+        message: "Parameter Validation warrnings for loginWithGoogleAndroid",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1032,35 +1158,45 @@ class User {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.AuthSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = UserModel.AuthSuccess().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > User > loginWithGoogleAndroid \n ${res_error}`,
+        message: "Response Validation Warnnings for loginWithGoogleAndroid",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.LoginWithGoogleIOSParam} arg - Arg object.
-   * @returns {Promise<UserApplicationModel.AuthSuccess>} - Success response
-   * @name loginWithGoogleIOS
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.platform] - ID of the application
+   * @param {OAuthRequestSchema} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<AuthSuccess>} - Success response
    * @summary: Login or Register using Google on iOS
-   * @description: Use this API to login or register in iOS app using Google Account credentials. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithGoogleIOS/).
+   * @description: Use this API to login or register in iOS app using Google Account credentials.
    */
-  async loginWithGoogleIOS({ body, platform } = {}) {
-    const { error } = UserApplicationValidator.loginWithGoogleIOS().validate(
+  async loginWithGoogleIOS(
+    { body, platform } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = UserValidator.loginWithGoogleIOS().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1069,17 +1205,16 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.loginWithGoogleIOS().validate(
+    const { error: warrning } = UserValidator.loginWithGoogleIOS().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > User > loginWithGoogleIOS \n ${warrning}`,
+        message: "Parameter Validation warrnings for loginWithGoogleIOS",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1096,35 +1231,45 @@ class User {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.AuthSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = UserModel.AuthSuccess().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > User > loginWithGoogleIOS \n ${res_error}`,
+        message: "Response Validation Warnnings for loginWithGoogleIOS",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.LoginWithOTPParam} arg - Arg object.
-   * @returns {Promise<UserApplicationModel.SendOtpResponse>} - Success response
-   * @name loginWithOTP
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.platform] - ID of the application
+   * @param {SendOtpRequestSchema} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<SendOtpResponse>} - Success response
    * @summary: Login or Register with OTP
-   * @description: Use this API to login or register with a One-time Password (OTP) sent via Email or SMS. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithOTP/).
+   * @description: Use this API to login or register with a One-time Password (OTP) sent via Email or SMS.
    */
-  async loginWithOTP({ body, platform } = {}) {
-    const { error } = UserApplicationValidator.loginWithOTP().validate(
+  async loginWithOTP(
+    { body, platform } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = UserValidator.loginWithOTP().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1133,17 +1278,16 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.loginWithOTP().validate(
+    const { error: warrning } = UserValidator.loginWithOTP().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > User > loginWithOTP \n ${warrning}`,
+        message: "Parameter Validation warrnings for loginWithOTP",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1160,12 +1304,18 @@ class User {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserApplicationModel.SendOtpResponse().validate(response, {
+    } = UserModel.SendOtpResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1173,22 +1323,24 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > User > loginWithOTP \n ${res_error}`,
+        message: "Response Validation Warnnings for loginWithOTP",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.LoginWithTokenParam} arg - Arg object.
-   * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
-   * @name loginWithToken
+   * @param {Object} arg - Arg object.
+   * @param {TokenRequestBodySchema} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<LoginSuccess>} - Success response
    * @summary: Login or Register with token
-   * @description: Use this API to login or register using a token for authentication. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithToken/).
+   * @description: Use this API to login or register using a token for authentication.
    */
-  async loginWithToken({ body } = {}) {
-    const { error } = UserApplicationValidator.loginWithToken().validate(
+  async loginWithToken({ body } = {}, { headers } = { headers: false }) {
+    const { error } = UserValidator.loginWithToken().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1197,17 +1349,16 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.loginWithToken().validate(
+    const { error: warrning } = UserValidator.loginWithToken().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > User > loginWithToken \n ${warrning}`,
+        message: "Parameter Validation warrnings for loginWithToken",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1223,35 +1374,39 @@ class User {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.LoginSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = UserModel.LoginSuccess().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > User > loginWithToken \n ${res_error}`,
+        message: "Response Validation Warnnings for loginWithToken",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.LogoutParam} arg - Arg object.
-   * @returns {Promise<UserApplicationModel.LogoutSuccess>} - Success response
-   * @name logout
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<LogoutSuccess>} - Success response
    * @summary: Logs out currently logged in user
-   * @description: Use this API to check to logout a user from the app. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/logout/).
+   * @description: Use this API to check to logout a user from the app.
    */
-  async logout({} = {}) {
-    const { error } = UserApplicationValidator.logout().validate(
+  async logout({ headers } = { headers: false }) {
+    const { error } = UserValidator.logout().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -1260,15 +1415,16 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserApplicationValidator.logout().validate(
+    const { error: warrning } = UserValidator.logout().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > User > logout \n ${warrning}`,
+        message: "Parameter Validation warrnings for logout",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1284,12 +1440,18 @@ class User {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserApplicationModel.LogoutSuccess().validate(response, {
+    } = UserModel.LogoutSuccess().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1297,22 +1459,28 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > User > logout \n ${res_error}`,
+        message: "Response Validation Warnnings for logout",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.RegisterWithFormParam} arg - Arg object.
-   * @returns {Promise<UserApplicationModel.RegisterFormSuccess>} - Success response
-   * @name registerWithForm
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.platform] - ID of the application
+   * @param {FormRegisterRequestSchema} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<RegisterFormSuccess>} - Success response
    * @summary: Registration using a form
-   * @description: Use this API to perform user registration by sending form data in the request body. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/registerWithForm/).
+   * @description: Use this API to perform user registration by sending form data in the request body.
    */
-  async registerWithForm({ body, platform } = {}) {
-    const { error } = UserApplicationValidator.registerWithForm().validate(
+  async registerWithForm(
+    { body, platform } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = UserValidator.registerWithForm().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1321,17 +1489,16 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.registerWithForm().validate(
+    const { error: warrning } = UserValidator.registerWithForm().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > User > registerWithForm \n ${warrning}`,
+        message: "Parameter Validation warrnings for registerWithForm",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1348,12 +1515,18 @@ class User {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserApplicationModel.RegisterFormSuccess().validate(response, {
+    } = UserModel.RegisterFormSuccess().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1361,22 +1534,28 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > User > registerWithForm \n ${res_error}`,
+        message: "Response Validation Warnnings for registerWithForm",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.SendOTPOnEmailParam} arg - Arg object.
-   * @returns {Promise<UserApplicationModel.EmailOtpSuccess>} - Success response
-   * @name sendOTPOnEmail
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.platform] - ID of the application
+   * @param {SendEmailOtpRequestSchema} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<EmailOtpSuccess>} - Success response
    * @summary: Send OTP on email
-   * @description: Use this API to send an OTP to an email ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendOTPOnEmail/).
+   * @description: Use this API to send an OTP to an email ID.
    */
-  async sendOTPOnEmail({ body, platform } = {}) {
-    const { error } = UserApplicationValidator.sendOTPOnEmail().validate(
+  async sendOTPOnEmail(
+    { body, platform } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = UserValidator.sendOTPOnEmail().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1385,17 +1564,16 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.sendOTPOnEmail().validate(
+    const { error: warrning } = UserValidator.sendOTPOnEmail().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > User > sendOTPOnEmail \n ${warrning}`,
+        message: "Parameter Validation warrnings for sendOTPOnEmail",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1412,12 +1590,18 @@ class User {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserApplicationModel.EmailOtpSuccess().validate(response, {
+    } = UserModel.EmailOtpSuccess().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1425,22 +1609,28 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > User > sendOTPOnEmail \n ${res_error}`,
+        message: "Response Validation Warnnings for sendOTPOnEmail",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.SendOTPOnMobileParam} arg - Arg object.
-   * @returns {Promise<UserApplicationModel.OtpSuccess>} - Success response
-   * @name sendOTPOnMobile
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.platform] - ID of the application
+   * @param {SendMobileOtpRequestSchema} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<OtpSuccess>} - Success response
    * @summary: Send OTP on mobile
-   * @description: Use this API to send an OTP to a mobile number. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendOTPOnMobile/).
+   * @description: Use this API to send an OTP to a mobile number.
    */
-  async sendOTPOnMobile({ body, platform } = {}) {
-    const { error } = UserApplicationValidator.sendOTPOnMobile().validate(
+  async sendOTPOnMobile(
+    { body, platform } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = UserValidator.sendOTPOnMobile().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1449,17 +1639,16 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.sendOTPOnMobile().validate(
+    const { error: warrning } = UserValidator.sendOTPOnMobile().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > User > sendOTPOnMobile \n ${warrning}`,
+        message: "Parameter Validation warrnings for sendOTPOnMobile",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1476,12 +1665,16 @@ class User {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.OtpSuccess().validate(response, {
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = UserModel.OtpSuccess().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1489,24 +1682,28 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > User > sendOTPOnMobile \n ${res_error}`,
+        message: "Response Validation Warnnings for sendOTPOnMobile",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.SendResetPasswordEmailParam} arg - Arg object.
-   * @returns {Promise<UserApplicationModel.ResetPasswordSuccess>} - Success response
-   * @name sendResetPasswordEmail
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.platform] - ID of the application
+   * @param {SendResetPasswordEmailRequestSchema} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ResetPasswordSuccess>} - Success response
    * @summary: Reset Password
-   * @description: Use this API to reset a password using the link sent on email. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendResetPasswordEmail/).
+   * @description: Use this API to reset a password using the link sent on email.
    */
-  async sendResetPasswordEmail({ body, platform } = {}) {
-    const {
-      error,
-    } = UserApplicationValidator.sendResetPasswordEmail().validate(
+  async sendResetPasswordEmail(
+    { body, platform } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = UserValidator.sendResetPasswordEmail().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1515,17 +1712,16 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.sendResetPasswordEmail().validate(
+    const { error: warrning } = UserValidator.sendResetPasswordEmail().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > User > sendResetPasswordEmail \n ${warrning}`,
+        message: "Parameter Validation warrnings for sendResetPasswordEmail",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1542,12 +1738,18 @@ class User {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserApplicationModel.ResetPasswordSuccess().validate(response, {
+    } = UserModel.ResetPasswordSuccess().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1555,24 +1757,28 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > User > sendResetPasswordEmail \n ${res_error}`,
+        message: "Response Validation Warnnings for sendResetPasswordEmail",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.SendResetPasswordMobileParam} arg - Arg object.
-   * @returns {Promise<UserApplicationModel.ResetPasswordSuccess>} - Success response
-   * @name sendResetPasswordMobile
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.platform] - ID of the application
+   * @param {SendResetPasswordMobileRequestSchema} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ResetPasswordSuccess>} - Success response
    * @summary: Reset Password
-   * @description: Use this API to reset a password using the link sent on mobile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendResetPasswordMobile/).
+   * @description: Use this API to reset a password using the link sent on mobile.
    */
-  async sendResetPasswordMobile({ body, platform } = {}) {
-    const {
-      error,
-    } = UserApplicationValidator.sendResetPasswordMobile().validate(
+  async sendResetPasswordMobile(
+    { body, platform } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = UserValidator.sendResetPasswordMobile().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1583,15 +1789,16 @@ class User {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = UserApplicationValidator.sendResetPasswordMobile().validate(
+    } = UserValidator.sendResetPasswordMobile().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > User > sendResetPasswordMobile \n ${warrning}`,
+        message: "Parameter Validation warrnings for sendResetPasswordMobile",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1608,12 +1815,18 @@ class User {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserApplicationModel.ResetPasswordSuccess().validate(response, {
+    } = UserModel.ResetPasswordSuccess().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1621,22 +1834,24 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > User > sendResetPasswordMobile \n ${res_error}`,
+        message: "Response Validation Warnnings for sendResetPasswordMobile",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.SendResetTokenParam} arg - Arg object.
-   * @returns {Promise<UserApplicationModel.ResetPasswordSuccess>} - Success response
-   * @name sendResetToken
+   * @param {Object} arg - Arg object.
+   * @param {CodeRequestBodySchema} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ResetPasswordSuccess>} - Success response
    * @summary: Reset Password using token
-   * @description: Use this API to send code to reset password. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendResetToken/).
+   * @description: Use this API to send code to reset password.
    */
-  async sendResetToken({ body } = {}) {
-    const { error } = UserApplicationValidator.sendResetToken().validate(
+  async sendResetToken({ body } = {}, { headers } = { headers: false }) {
+    const { error } = UserValidator.sendResetToken().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1645,17 +1860,16 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.sendResetToken().validate(
+    const { error: warrning } = UserValidator.sendResetToken().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > User > sendResetToken \n ${warrning}`,
+        message: "Parameter Validation warrnings for sendResetToken",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1671,12 +1885,18 @@ class User {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserApplicationModel.ResetPasswordSuccess().validate(response, {
+    } = UserModel.ResetPasswordSuccess().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1684,26 +1904,28 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > User > sendResetToken \n ${res_error}`,
+        message: "Response Validation Warnnings for sendResetToken",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.SendVerificationLinkToEmailParam} arg -
-   *   Arg object.
-   * @returns {Promise<UserApplicationModel.SendEmailVerifyLinkSuccess>} -
-   *   Success response
-   * @name sendVerificationLinkToEmail
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.platform] - ID of the application
+   * @param {EditEmailRequestSchema} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<SendEmailVerifyLinkSuccess>} - Success response
    * @summary: Send verification link to email
-   * @description: Use this API to send verification link to an email address. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendVerificationLinkToEmail/).
+   * @description: Use this API to send verification link to an email address.
    */
-  async sendVerificationLinkToEmail({ body, platform } = {}) {
-    const {
-      error,
-    } = UserApplicationValidator.sendVerificationLinkToEmail().validate(
+  async sendVerificationLinkToEmail(
+    { body, platform } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = UserValidator.sendVerificationLinkToEmail().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1714,15 +1936,17 @@ class User {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = UserApplicationValidator.sendVerificationLinkToEmail().validate(
+    } = UserValidator.sendVerificationLinkToEmail().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > User > sendVerificationLinkToEmail \n ${warrning}`,
+        message:
+          "Parameter Validation warrnings for sendVerificationLinkToEmail",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1739,12 +1963,18 @@ class User {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserApplicationModel.SendEmailVerifyLinkSuccess().validate(response, {
+    } = UserModel.SendEmailVerifyLinkSuccess().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1752,27 +1982,29 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > User > sendVerificationLinkToEmail \n ${res_error}`,
+        message:
+          "Response Validation Warnnings for sendVerificationLinkToEmail",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.SendVerificationLinkToMobileParam} arg
-   *   - Arg object.
-   *
-   * @returns {Promise<UserApplicationModel.SendMobileVerifyLinkSuccess>} -
-   *   Success response
-   * @name sendVerificationLinkToMobile
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.platform] - ID of the application
+   * @param {SendVerificationLinkMobileRequestSchema} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<SendMobileVerifyLinkSuccess>} - Success response
    * @summary: Send verification link to mobile
-   * @description: Use this API to send a verification link to a mobile number - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendVerificationLinkToMobile/).
+   * @description: Use this API to send a verification link to a mobile number
    */
-  async sendVerificationLinkToMobile({ body, platform } = {}) {
-    const {
-      error,
-    } = UserApplicationValidator.sendVerificationLinkToMobile().validate(
+  async sendVerificationLinkToMobile(
+    { body, platform } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = UserValidator.sendVerificationLinkToMobile().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1783,15 +2015,17 @@ class User {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = UserApplicationValidator.sendVerificationLinkToMobile().validate(
+    } = UserValidator.sendVerificationLinkToMobile().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > User > sendVerificationLinkToMobile \n ${warrning}`,
+        message:
+          "Parameter Validation warrnings for sendVerificationLinkToMobile",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1808,12 +2042,18 @@ class User {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserApplicationModel.SendMobileVerifyLinkSuccess().validate(response, {
+    } = UserModel.SendMobileVerifyLinkSuccess().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1821,22 +2061,25 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > User > sendVerificationLinkToMobile \n ${res_error}`,
+        message:
+          "Response Validation Warnnings for sendVerificationLinkToMobile",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.SetEmailAsPrimaryParam} arg - Arg object.
-   * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
-   * @name setEmailAsPrimary
+   * @param {Object} arg - Arg object.
+   * @param {EditEmailRequestSchema} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<LoginSuccess>} - Success response
    * @summary: Set email as primary
-   * @description: Use this API to set an email address as primary. Primary email ID is a email address used for all future communications. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/setEmailAsPrimary/).
+   * @description: Use this API to set an email address as primary. Primary email ID is a email address used for all future communications.
    */
-  async setEmailAsPrimary({ body } = {}) {
-    const { error } = UserApplicationValidator.setEmailAsPrimary().validate(
+  async setEmailAsPrimary({ body } = {}, { headers } = { headers: false }) {
+    const { error } = UserValidator.setEmailAsPrimary().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1845,17 +2088,16 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.setEmailAsPrimary().validate(
+    const { error: warrning } = UserValidator.setEmailAsPrimary().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > User > setEmailAsPrimary \n ${warrning}`,
+        message: "Parameter Validation warrnings for setEmailAsPrimary",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1871,37 +2113,44 @@ class User {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.LoginSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = UserModel.LoginSuccess().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > User > setEmailAsPrimary \n ${res_error}`,
+        message: "Response Validation Warnnings for setEmailAsPrimary",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.SetMobileNumberAsPrimaryParam} arg - Arg object.
-   * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
-   * @name setMobileNumberAsPrimary
+   * @param {Object} arg - Arg object.
+   * @param {SendVerificationLinkMobileRequestSchema} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<LoginSuccess>} - Success response
    * @summary: Set mobile as primary
-   * @description: Use this API to set a mobile number as primary. Primary number is a verified number used for all future communications. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/setMobileNumberAsPrimary/).
+   * @description: Use this API to set a mobile number as primary. Primary number is a verified number used for all future communications.
    */
-  async setMobileNumberAsPrimary({ body } = {}) {
-    const {
-      error,
-    } = UserApplicationValidator.setMobileNumberAsPrimary().validate(
+  async setMobileNumberAsPrimary(
+    { body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = UserValidator.setMobileNumberAsPrimary().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1912,15 +2161,16 @@ class User {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = UserApplicationValidator.setMobileNumberAsPrimary().validate(
+    } = UserValidator.setMobileNumberAsPrimary().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > User > setMobileNumberAsPrimary \n ${warrning}`,
+        message: "Parameter Validation warrnings for setMobileNumberAsPrimary",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1936,35 +2186,41 @@ class User {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
 
-    const {
-      error: res_error,
-    } = UserApplicationModel.LoginSuccess().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = UserModel.LoginSuccess().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > User > setMobileNumberAsPrimary \n ${res_error}`,
+        message: "Response Validation Warnnings for setMobileNumberAsPrimary",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.UpdatePasswordParam} arg - Arg object.
-   * @returns {Promise<UserApplicationModel.VerifyEmailSuccess>} - Success response
-   * @name updatePassword
+   * @param {Object} arg - Arg object.
+   * @param {UpdatePasswordRequestSchema} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<VerifyEmailSuccess>} - Success response
    * @summary: Update user password
-   * @description: Use this API to update the password. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/updatePassword/).
+   * @description: Use this API to update the password.
    */
-  async updatePassword({ body } = {}) {
-    const { error } = UserApplicationValidator.updatePassword().validate(
+  async updatePassword({ body } = {}, { headers } = { headers: false }) {
+    const { error } = UserValidator.updatePassword().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1973,17 +2229,16 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.updatePassword().validate(
+    const { error: warrning } = UserValidator.updatePassword().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > User > updatePassword \n ${warrning}`,
+        message: "Parameter Validation warrnings for updatePassword",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1999,12 +2254,18 @@ class User {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserApplicationModel.VerifyEmailSuccess().validate(response, {
+    } = UserModel.VerifyEmailSuccess().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2012,22 +2273,28 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > User > updatePassword \n ${res_error}`,
+        message: "Response Validation Warnnings for updatePassword",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.UpdateProfileParam} arg - Arg object.
-   * @returns {Promise<UserApplicationModel.ProfileEditSuccess>} - Success response
-   * @name updateProfile
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.platform] - ID of the application
+   * @param {EditProfileRequestSchema} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ProfileEditSuccess>} - Success response
    * @summary: Edit Profile Details
-   * @description: Use this API to update details in the user profile. Details can be first name, last name, gender, email, phone number, or profile picture. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/updateProfile/).
+   * @description: Use this API to update details in the user profile. Details can be first name, last name, gender, email, phone number, or profile picture.
    */
-  async updateProfile({ body, platform } = {}) {
-    const { error } = UserApplicationValidator.updateProfile().validate(
+  async updateProfile(
+    { body, platform } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = UserValidator.updateProfile().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2036,17 +2303,16 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.updateProfile().validate(
+    const { error: warrning } = UserValidator.updateProfile().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > User > updateProfile \n ${warrning}`,
+        message: "Parameter Validation warrnings for updateProfile",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2063,12 +2329,18 @@ class User {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserApplicationModel.ProfileEditSuccess().validate(response, {
+    } = UserModel.ProfileEditSuccess().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2076,22 +2348,24 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > User > updateProfile \n ${res_error}`,
+        message: "Response Validation Warnnings for updateProfile",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.VerifyEmailParam} arg - Arg object.
-   * @returns {Promise<UserApplicationModel.VerifyEmailSuccess>} - Success response
-   * @name verifyEmail
+   * @param {Object} arg - Arg object.
+   * @param {CodeRequestBodySchema} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<VerifyEmailSuccess>} - Success response
    * @summary: Verify email
-   * @description: Use this API to send a verification code to verify an email. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyEmail/).
+   * @description: Use this API to send a verification code to verify an email.
    */
-  async verifyEmail({ body } = {}) {
-    const { error } = UserApplicationValidator.verifyEmail().validate(
+  async verifyEmail({ body } = {}, { headers } = { headers: false }) {
+    const { error } = UserValidator.verifyEmail().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2100,15 +2374,16 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = UserApplicationValidator.verifyEmail().validate(
+    const { error: warrning } = UserValidator.verifyEmail().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > User > verifyEmail \n ${warrning}`,
+        message: "Parameter Validation warrnings for verifyEmail",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2124,12 +2399,18 @@ class User {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserApplicationModel.VerifyEmailSuccess().validate(response, {
+    } = UserModel.VerifyEmailSuccess().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2137,22 +2418,28 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > User > verifyEmail \n ${res_error}`,
+        message: "Response Validation Warnnings for verifyEmail",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.VerifyEmailOTPParam} arg - Arg object.
-   * @returns {Promise<UserApplicationModel.VerifyOtpSuccess>} - Success response
-   * @name verifyEmailOTP
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.platform] - ID of the application
+   * @param {VerifyEmailOtpRequestSchema} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<VerifyOtpSuccess>} - Success response
    * @summary: Verify OTP on email
-   * @description: Use this API to verify the OTP received on an email ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyEmailOTP/).
+   * @description: Use this API to verify the OTP received on an email ID.
    */
-  async verifyEmailOTP({ body, platform } = {}) {
-    const { error } = UserApplicationValidator.verifyEmailOTP().validate(
+  async verifyEmailOTP(
+    { body, platform } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = UserValidator.verifyEmailOTP().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2161,17 +2448,16 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.verifyEmailOTP().validate(
+    const { error: warrning } = UserValidator.verifyEmailOTP().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > User > verifyEmailOTP \n ${warrning}`,
+        message: "Parameter Validation warrnings for verifyEmailOTP",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2188,12 +2474,18 @@ class User {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserApplicationModel.VerifyOtpSuccess().validate(response, {
+    } = UserModel.VerifyOtpSuccess().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2201,22 +2493,24 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > User > verifyEmailOTP \n ${res_error}`,
+        message: "Response Validation Warnnings for verifyEmailOTP",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.VerifyMobileParam} arg - Arg object.
-   * @returns {Promise<UserApplicationModel.VerifyEmailSuccess>} - Success response
-   * @name verifyMobile
+   * @param {Object} arg - Arg object.
+   * @param {CodeRequestBodySchema} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<VerifyEmailSuccess>} - Success response
    * @summary: Verify mobile
-   * @description: Use this API to send a verification code to verify a mobile number. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyMobile/).
+   * @description: Use this API to send a verification code to verify a mobile number.
    */
-  async verifyMobile({ body } = {}) {
-    const { error } = UserApplicationValidator.verifyMobile().validate(
+  async verifyMobile({ body } = {}, { headers } = { headers: false }) {
+    const { error } = UserValidator.verifyMobile().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2225,17 +2519,16 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.verifyMobile().validate(
+    const { error: warrning } = UserValidator.verifyMobile().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > User > verifyMobile \n ${warrning}`,
+        message: "Parameter Validation warrnings for verifyMobile",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2251,12 +2544,18 @@ class User {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserApplicationModel.VerifyEmailSuccess().validate(response, {
+    } = UserModel.VerifyEmailSuccess().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2264,22 +2563,28 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > User > verifyMobile \n ${res_error}`,
+        message: "Response Validation Warnnings for verifyMobile",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserApplicationValidator.VerifyMobileOTPParam} arg - Arg object.
-   * @returns {Promise<UserApplicationModel.VerifyOtpSuccess>} - Success response
-   * @name verifyMobileOTP
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.platform] - ID of the application
+   * @param {VerifyOtpRequestSchema} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<VerifyOtpSuccess>} - Success response
    * @summary: Verify OTP on mobile
-   * @description: Use this API to verify the OTP received on a mobile number. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyMobileOTP/).
+   * @description: Use this API to verify the OTP received on a mobile number.
    */
-  async verifyMobileOTP({ body, platform } = {}) {
-    const { error } = UserApplicationValidator.verifyMobileOTP().validate(
+  async verifyMobileOTP(
+    { body, platform } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = UserValidator.verifyMobileOTP().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2288,17 +2593,16 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserApplicationValidator.verifyMobileOTP().validate(
+    const { error: warrning } = UserValidator.verifyMobileOTP().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > User > verifyMobileOTP \n ${warrning}`,
+        message: "Parameter Validation warrnings for verifyMobileOTP",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2315,12 +2619,18 @@ class User {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserApplicationModel.VerifyOtpSuccess().validate(response, {
+    } = UserModel.VerifyOtpSuccess().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2328,8 +2638,9 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > User > verifyMobileOTP \n ${res_error}`,
+        message: "Response Validation Warnnings for verifyMobileOTP",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

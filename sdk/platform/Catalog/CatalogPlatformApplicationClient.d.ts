@@ -4,173 +4,252 @@ declare class Catalog {
     config: any;
     applicationId: any;
     /**
-     * @param {CatalogPlatformApplicationValidator.AddCollectionItemsParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.UpdatedResponse>} - Success response
-     * @name addCollectionItems
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - A `id` is a unique identifier of a collection.
+     * @param {CollectionItemUpdate} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<UpdatedResponse>} - Success response
      * @summary: Add items to a collection
-     * @description: Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/addCollectionItems/).
+     * @description: Adds items to a collection specified by its `id`. See `CollectionItemRequest` for the list of attributes needed to add items to an collection.
      */
-    addCollectionItems({ id, body }?: CatalogPlatformApplicationValidator.AddCollectionItemsParam): Promise<CatalogPlatformModel.UpdatedResponse>;
+    addCollectionItems({ id, body }?: {
+        id: string;
+        body: CollectionItemUpdate;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<UpdatedResponse>;
     /**
-     * @param {CatalogPlatformApplicationValidator.CreateCollectionParam} arg - Arg object
-     * @returns {Promise<CatalogPlatformModel.CollectionCreateResponse>} -
-     *   Success response
-     * @name createCollection
+     * @param {Object} arg - Arg object.
+     * @param {CreateCollection} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CollectionCreateResponse>} - Success response
      * @summary: Add a Collection
-     * @description: Create a collection. See `CreateCollectionRequestSchema` for the list of attributes needed to create a collection and collections/query-options for the available options to create a collection. On successful request, returns a paginated list of collections specified in `CollectionCreateResponse` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createCollection/).
+     * @description: Create a collection. See `CreateCollectionRequestSchema` for the list of attributes needed to create a collection and collections/query-options for the available options to create a collection. On successful request, returns a paginated list of collections specified in `CollectionCreateResponse`
      */
-    createCollection({ body }?: CatalogPlatformApplicationValidator.CreateCollectionParam): Promise<CatalogPlatformModel.CollectionCreateResponse>;
+    createCollection({ body }?: {
+        body: CreateCollection;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<CollectionCreateResponse>;
     /**
-     * @param {CatalogPlatformApplicationValidator.CreateConfigurationByTypeParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.GetAppCatalogConfiguration>} -
-     *   Success response
-     * @name createConfigurationByType
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.type - Type can be brands, categories etc.
+     * @param {AppConfiguration} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<GetAppCatalogConfiguration>} - Success response
      * @summary: Add configuration for categories and brands
-     * @description: Add configuration for categories & brands. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createConfigurationByType/).
+     * @description: Add configuration for categories & brands.
      */
-    createConfigurationByType({ type, body }?: CatalogPlatformApplicationValidator.CreateConfigurationByTypeParam): Promise<CatalogPlatformModel.GetAppCatalogConfiguration>;
+    createConfigurationByType({ type, body }?: {
+        type: string;
+        body: AppConfiguration;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<GetAppCatalogConfiguration>;
     /**
-     * @param {CatalogPlatformApplicationValidator.CreateConfigurationProductListingParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.GetAppCatalogConfiguration>} -
-     *   Success response
-     * @name createConfigurationProductListing
+     * @param {Object} arg - Arg object.
+     * @param {AppConfiguration} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<GetAppCatalogConfiguration>} - Success response
      * @summary: Add configuration for products & listings
-     * @description: Add configuration for products & listing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createConfigurationProductListing/).
+     * @description: Add configuration for products & listing.
      */
-    createConfigurationProductListing({ body }?: CatalogPlatformApplicationValidator.CreateConfigurationProductListingParam): Promise<CatalogPlatformModel.GetAppCatalogConfiguration>;
+    createConfigurationProductListing({ body }?: {
+        body: AppConfiguration;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<GetAppCatalogConfiguration>;
     /**
-     * @param {CatalogPlatformApplicationValidator.CreateCustomAutocompleteRuleParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.CreateAutocompleteWordsResponse>}
-     *   - Success response
-     *
-     * @name createCustomAutocompleteRule
+     * @param {Object} arg - Arg object.
+     * @param {CreateAutocompleteKeyword} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CreateAutocompleteWordsResponse>} - Success response
      * @summary: Add a Custom Autocomplete Keywords
-     * @description: Create a Custom Autocomplete Keywords. See `CreateAutocompleteKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateAutocompleteKeywordSchema` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createCustomAutocompleteRule/).
+     * @description: Create a Custom Autocomplete Keywords. See `CreateAutocompleteKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateAutocompleteKeywordSchema`
      */
-    createCustomAutocompleteRule({ body }?: CatalogPlatformApplicationValidator.CreateCustomAutocompleteRuleParam): Promise<CatalogPlatformModel.CreateAutocompleteWordsResponse>;
+    createCustomAutocompleteRule({ body }?: {
+        body: CreateAutocompleteKeyword;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<CreateAutocompleteWordsResponse>;
     /**
-     * @param {CatalogPlatformApplicationValidator.CreateCustomKeywordParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.GetSearchWordsData>} - Success response
-     * @name createCustomKeyword
+     * @param {Object} arg - Arg object.
+     * @param {CreateSearchKeyword} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<GetSearchWordsData>} - Success response
      * @summary: Add a Custom Search Keywords
-     * @description: Create a Custom Search Keywords. See `CreateSearchKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateSearchKeywordSchema` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createCustomKeyword/).
+     * @description: Create a Custom Search Keywords. See `CreateSearchKeywordSchema` for the list of attributes needed to create a mapping and /collections/query-options for the available options to create a rule. On successful request, returns a paginated list of collections specified in `CreateSearchKeywordSchema`
      */
-    createCustomKeyword({ body }?: CatalogPlatformApplicationValidator.CreateCustomKeywordParam): Promise<CatalogPlatformModel.GetSearchWordsData>;
+    createCustomKeyword({ body }?: {
+        body: CreateSearchKeyword;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<GetSearchWordsData>;
     /**
-     * @param {CatalogPlatformApplicationValidator.CreateGroupConfigurationParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.AppConfigurationDetail>} - Success response
-     * @name createGroupConfiguration
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.configType - A `config_type` is a unique identifier
+     *   for a particular group configuration type.
+     * @param {AppConfigurationDetail} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<AppConfigurationDetail>} - Success response
      * @summary: Create configuration for Group config types.
-     * @description: Create configuration for Group config types. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createGroupConfiguration/).
+     * @description: Create configuration for Group config types.
      */
-    createGroupConfiguration({ configType, body }?: CatalogPlatformApplicationValidator.CreateGroupConfigurationParam): Promise<CatalogPlatformModel.AppConfigurationDetail>;
+    createGroupConfiguration({ configType, body }?: {
+        configType: string;
+        body: AppConfigurationDetail;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<AppConfigurationDetail>;
     /**
-     * @param {CatalogPlatformApplicationValidator.CreateListingConfigurationParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.AppConfigurationsSort>} - Success response
-     * @name createListingConfiguration
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.configType - A `config_type` is a unique identifier
+     *   for a particular listing configuration type.
+     * @param {AppConfigurationsSort} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<AppConfigurationsSort>} - Success response
      * @summary: Add configuration for listings
-     * @description: Add configuration for listing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createListingConfiguration/).
+     * @description: Add configuration for listing.
      */
-    createListingConfiguration({ configType, body }?: CatalogPlatformApplicationValidator.CreateListingConfigurationParam): Promise<CatalogPlatformModel.AppConfigurationsSort>;
+    createListingConfiguration({ configType, body }?: {
+        configType: string;
+        body: AppConfigurationsSort;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<AppConfigurationsSort>;
     /**
-     * @param {CatalogPlatformApplicationValidator.DeleteAutocompleteKeywordParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.DeleteResponse>} - Success response
-     * @name deleteAutocompleteKeyword
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - A `id` is a unique identifier for a particular
+     *   detail. Pass the `id` of the keywords which you want to delete.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<DeleteResponse>} - Success response
      * @summary: Delete a Autocomplete Keywords
-     * @description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteAutocompleteKeyword/).
+     * @description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
      */
-    deleteAutocompleteKeyword({ id }?: CatalogPlatformApplicationValidator.DeleteAutocompleteKeywordParam): Promise<CatalogPlatformModel.DeleteResponse>;
+    deleteAutocompleteKeyword({ id }?: {
+        id: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<DeleteResponse>;
     /**
-     * @param {CatalogPlatformApplicationValidator.DeleteCollectionParam} arg - Arg object
-     * @returns {Promise<CatalogPlatformModel.DeleteResponse>} - Success response
-     * @name deleteCollection
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - A `id` is a unique identifier of a collection.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<DeleteResponse>} - Success response
      * @summary: Delete a Collection
-     * @description: Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteCollection/).
+     * @description: Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully
      */
-    deleteCollection({ id }?: CatalogPlatformApplicationValidator.DeleteCollectionParam): Promise<CatalogPlatformModel.DeleteResponse>;
+    deleteCollection({ id }?: {
+        id: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<DeleteResponse>;
     /**
-     * @param {CatalogPlatformApplicationValidator.DeleteGroupConfigurationParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.ConfigSuccessResponse>} - Success response
-     * @name deleteGroupConfiguration
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.configType - A `config_type` is a unique identifier
+     *   for a particular group configuration type.
+     * @param {string} arg.groupSlug - A `group_slug` is a unique identifier of
+     *   a particular configuration.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ConfigSuccessResponse>} - Success response
      * @summary: Delete configuration of the product config type of the application.
-     * @description: Delete configuration of the product config type of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteGroupConfiguration/).
+     * @description: Delete configuration of the product config type of the application.
      */
-    deleteGroupConfiguration({ configType, groupSlug }?: CatalogPlatformApplicationValidator.DeleteGroupConfigurationParam): Promise<CatalogPlatformModel.ConfigSuccessResponse>;
+    deleteGroupConfiguration({ configType, groupSlug }?: {
+        configType: string;
+        groupSlug: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ConfigSuccessResponse>;
     /**
-     * @param {CatalogPlatformApplicationValidator.DeleteListingConfigurationParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.ConfigSuccessResponse>} - Success response
-     * @name deleteListingConfiguration
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.configType - A `config_type` is a unique identifier
+     *   for a particular listing configuration type.
+     * @param {string} arg.configId - A `config_id` is a unique identifier of a
+     *   particular configuration.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ConfigSuccessResponse>} - Success response
      * @summary: Delete configuration for listings
-     * @description: Delete configuration for listing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteListingConfiguration/).
+     * @description: Delete configuration for listing.
      */
-    deleteListingConfiguration({ configType, configId }?: CatalogPlatformApplicationValidator.DeleteListingConfigurationParam): Promise<CatalogPlatformModel.ConfigSuccessResponse>;
+    deleteListingConfiguration({ configType, configId }?: {
+        configType: string;
+        configId: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ConfigSuccessResponse>;
     /**
-     * @param {CatalogPlatformApplicationValidator.DeleteSearchKeywordsParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.DeleteResponse>} - Success response
-     * @name deleteSearchKeywords
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - A `id` is a unique identifier for a particular
+     *   detail. Pass the `id` of the keywords which you want to delete.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<DeleteResponse>} - Success response
      * @summary: Delete a Search Keywords
-     * @description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteSearchKeywords/).
+     * @description: Delete a keywords by it's id. Returns an object that tells whether the keywords was deleted successfully
      */
-    deleteSearchKeywords({ id }?: CatalogPlatformApplicationValidator.DeleteSearchKeywordsParam): Promise<CatalogPlatformModel.DeleteResponse>;
+    deleteSearchKeywords({ id }?: {
+        id: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<DeleteResponse>;
     /**
-     * @param {CatalogPlatformApplicationValidator.GetAllCollectionsParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.GetCollectionListingResponse>} -
-     *   Success response
-     * @name getAllCollections
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.q] - Get collection list filtered by q string,
+     * @param {string} [arg.scheduleStatus] - Get collection list filtered by
+     *   scheduled status,
+     * @param {string} [arg.type] - Type of the collections
+     * @param {string[]} [arg.tags] - Each response will contain next_id param,
+     *   which should be sent back to make pagination work.
+     * @param {boolean} [arg.isActive] - Get collections filtered by active status.
+     * @param {number} [arg.pageNo] - The page number to navigate through the
+     *   given set of results.
+     * @param {number} [arg.pageSize] - Number of items to retrieve in each
+     *   page. Default is 12.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<GetCollectionListingResponse>} - Success response
      * @summary: List all the collections
-     * @description: A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections as specified in `CollectionListingSchema` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAllCollections/).
+     * @description: A Collection allows you to organize your products into hierarchical groups. For example, a dress might be in the category _Clothing_, the individual product might also be in the collection _Summer_. On successful request, returns all the collections as specified in `CollectionListingSchema`
      */
-    getAllCollections({ q, scheduleStatus, type, tags, isActive, pageNo, pageSize, }?: CatalogPlatformApplicationValidator.GetAllCollectionsParam): Promise<CatalogPlatformModel.GetCollectionListingResponse>;
+    getAllCollections({ q, scheduleStatus, type, tags, isActive, pageNo, pageSize }?: {
+        q?: string;
+        scheduleStatus?: string;
+        type?: string;
+        tags?: string[];
+        isActive?: boolean;
+        pageNo?: number;
+        pageSize?: number;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<GetCollectionListingResponse>;
     /**
-     * @param {CatalogPlatformApplicationValidator.GetAllSearchKeywordParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.GetSearchWordsResponse>} - Success response
-     * @name getAllSearchKeyword
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<GetSearchWordsResponse>} - Success response
      * @summary: List all Search Custom Keyword Listing
-     * @description: Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAllSearchKeyword/).
+     * @description: Custom Search Keyword allows you to map conditions with keywords to give you the ultimate results
      */
-    getAllSearchKeyword({}?: any): Promise<CatalogPlatformModel.GetSearchWordsResponse>;
+    getAllSearchKeyword({ headers }?: import("../PlatformAPIClient").Options): Promise<GetSearchWordsResponse>;
     /**
-     * @param {CatalogPlatformApplicationValidator.GetAppInventoryParam} arg - Arg object
-     * @returns {Promise<CatalogPlatformModel.InventoryStockResponse>} - Success response
-     * @name getAppInventory
+     * @param {Object} arg - Arg object.
+     * @param {number[]} [arg.itemIds] - The Item Id of the product.
+     * @param {number[]} [arg.storeIds] - The Store Id of products to fetch inventory.
+     * @param {number[]} [arg.brandIds] - The Brand Id of products to fetch inventory.
+     * @param {string[]} [arg.sellerIdentifiers] - Unique seller_identifier of
+     *   the product.
+     * @param {string} [arg.timestamp] - Timestamp in UTC format (2020-07-23T10:27:50Z)
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @param {string} [arg.pageId] - Page ID to retrieve next set of results.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<InventoryStockResponse>} - Success response
      * @summary: Get the stock of a product
-     * @description: Retrieve the available Inventory of the products. Use this API to get the Inventory status of products with the filters of timestamp, store_ids, brand_ids, item_id - Items - Pagination - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppInventory/).
+     * @description: Retrieve the available Inventory of the products. Use this API to get the Inventory status of products with the filters of timestamp, store_ids, brand_ids, item_id - Items - Pagination
      */
-    getAppInventory({ itemIds, storeIds, brandIds, sellerIdentifiers, timestamp, pageSize, pageId, }?: CatalogPlatformApplicationValidator.GetAppInventoryParam): Promise<CatalogPlatformModel.InventoryStockResponse>;
+    getAppInventory({ itemIds, storeIds, brandIds, sellerIdentifiers, timestamp, pageSize, pageId, }?: {
+        itemIds?: number[];
+        storeIds?: number[];
+        brandIds?: number[];
+        sellerIdentifiers?: string[];
+        timestamp?: string;
+        pageSize?: number;
+        pageId?: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<InventoryStockResponse>;
     /**
-     * @param {CatalogPlatformApplicationValidator.GetAppLocationsParam} arg - Arg object
-     * @returns {Promise<CatalogPlatformModel.LocationListSerializer>} - Success response
-     * @name getAppLocations
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.storeType] - Helps to sort the location list on the
+     *   basis of location type.
+     * @param {number[]} [arg.uid] - Helps to sort the location list on the
+     *   basis of uid list.
+     * @param {string} [arg.q] - Query that is to be searched.
+     * @param {string} [arg.stage] - To filter companies on basis of verified or
+     *   unverified companies.
+     * @param {number} [arg.pageNo] - The page number to navigate through the
+     *   given set of results
+     * @param {number} [arg.pageSize] - Number of items to retrieve in each
+     *   page. Default is 20.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<LocationListSerializer>} - Success response
      * @summary: Get list of locations
-     * @description: This API allows to view all the locations asscoiated to a application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppLocations/).
+     * @description: This API allows to view all the locations asscoiated to a application.
      */
-    getAppLocations({ storeType, uid, q, stage, pageNo, pageSize }?: CatalogPlatformApplicationValidator.GetAppLocationsParam): Promise<CatalogPlatformModel.LocationListSerializer>;
+    getAppLocations({ storeType, uid, q, stage, pageNo, pageSize }?: {
+        storeType?: string;
+        uid?: number[];
+        q?: string;
+        stage?: string;
+        pageNo?: number;
+        pageSize?: number;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<LocationListSerializer>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.companyId - Id of the company whose locations are to fetched
@@ -185,7 +264,6 @@ declare class Catalog {
      *   unverified companies.
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
      *   page. Default is 20.
-     * @returns {Paginator<CatalogPlatformModel.LocationListSerializer>}
      * @summary: Get list of locations
      * @description: This API allows to view all the locations asscoiated to a application.
      */
@@ -197,35 +275,93 @@ declare class Catalog {
         q?: string;
         stage?: string;
         pageSize?: number;
-    }): Paginator<CatalogPlatformModel.LocationListSerializer>;
+    }): Paginator;
     /**
-     * @param {CatalogPlatformApplicationValidator.GetAppProductParam} arg - Arg object
-     * @returns {Promise<CatalogPlatformModel.OwnerAppItemResponse>} - Success response
-     * @name getAppProduct
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.itemId - Product id for a particular product.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OwnerAppItemResponse>} - Success response
      * @summary: Get company application product data.
-     * @description: Products are the core resource of an application. If successful, returns a Company Application Product resource in the response body depending upon filter sent. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppProduct/).
+     * @description: Products are the core resource of an application. If successful, returns a Company Application Product resource in the response body depending upon filter sent.
      */
-    getAppProduct({ itemId }?: CatalogPlatformApplicationValidator.GetAppProductParam): Promise<CatalogPlatformModel.OwnerAppItemResponse>;
+    getAppProduct({ itemId }?: {
+        itemId: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<OwnerAppItemResponse>;
     /**
-     * @param {CatalogPlatformApplicationValidator.GetAppProductsParam} arg - Arg object
-     * @returns {Promise<CatalogPlatformModel.ProductListingResponse>} - Success response
-     * @name getAppProducts
+     * @param {Object} arg - Arg object.
+     * @param {number[]} [arg.brandIds] - Get multiple products filtered by Brand Ids
+     * @param {number[]} [arg.categoryIds] - Get multiple products filtered by
+     *   Category Ids
+     * @param {number[]} [arg.departmentIds] - Get multiple products filtered by
+     *   Department Ids
+     * @param {string[]} [arg.tags] - Get multiple products filtered by tags
+     * @param {number[]} [arg.itemIds] - Get multiple products filtered by Item Ids
+     * @param {number} [arg.pageNo] - The page number to navigate through the
+     *   given set of results
+     * @param {number} [arg.pageSize] - Number of items to retrieve in each
+     *   page. Default is 10.
+     * @param {string} [arg.q] - Search with Item Code, Name, Slug or Identifier.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ProductListingResponse>} - Success response
      * @summary: Get applicationwise products
-     * @description: Products are the core resource of an application. Products can be associated by categories, collections, brands and more. If successful, returns a Product resource in the response body specified in `ApplicationProductListingResponseDatabasePowered` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppProducts/).
+     * @description: Products are the core resource of an application. Products can be associated by categories, collections, brands and more. If successful, returns a Product resource in the response body specified in `ApplicationProductListingResponseDatabasePowered`
      */
-    getAppProducts({ brandIds, categoryIds, departmentIds, tags, itemIds, pageNo, pageSize, q, }?: CatalogPlatformApplicationValidator.GetAppProductsParam): Promise<CatalogPlatformModel.ProductListingResponse>;
+    getAppProducts({ brandIds, categoryIds, departmentIds, tags, itemIds, pageNo, pageSize, q, }?: {
+        brandIds?: number[];
+        categoryIds?: number[];
+        departmentIds?: number[];
+        tags?: string[];
+        itemIds?: number[];
+        pageNo?: number;
+        pageSize?: number;
+        q?: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ProductListingResponse>;
     /**
-     * @param {CatalogPlatformApplicationValidator.GetAppicationProductsParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.ApplicationProductListingResponse>}
-     *   - Success response
-     *
-     * @name getAppicationProducts
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.q] - The search query. This can be a partial or
+     *   complete name of a either a product, brand or category
+     * @param {string} [arg.f] - The search filter parameters. All the parameter
+     *   filtered from filter parameters will be passed in **f** parameter in
+     *   this format. **?f=brand:voi-jeans||and:::category:t-shirts||shirts**
+     * @param {string} [arg.c] - The search filter parameters for collection
+     *   items. All the parameter filtered from filter parameters will be passed
+     *   in **c** parameter in this format.
+     *   **?c=brand:in:voi-jeans|and:::category:nin:t-shirts|shirts**
+     * @param {boolean} [arg.filters] - Pass `filters` parameter to fetch the
+     *   filter details. This flag is used to fetch all filters
+     * @param {boolean} [arg.isDependent] - This query parameter is used to get
+     *   the dependent products in the listing.
+     * @param {string} [arg.sortOn] - The order to sort the list of products on.
+     *   The supported sort parameters are popularity, price, redemption and
+     *   discount in either ascending or descending order. See the supported
+     *   values below.
+     * @param {string} [arg.pageId] - Each response will contain **page_id**
+     *   param, which should be sent back to make pagination work.
+     * @param {number} [arg.pageSize] - Number of items to retrieve in each
+     *   page. Default is 12.
+     * @param {number} [arg.pageNo] - If page_type is number then pass it to
+     *   fetch page items. Default is 1.
+     * @param {string} [arg.pageType] - For pagination type should be cursor or
+     *   number. Default is cursor.
+     * @param {number[]} [arg.itemIds] - Item Ids of product
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ApplicationProductListingResponse>} - Success response
      * @summary: List the products
-     * @description: List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ApplicationProductListingResponse` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppicationProducts/).
+     * @description: List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ApplicationProductListingResponse`
      */
-    getAppicationProducts({ q, f, c, filters, isDependent, sortOn, pageId, pageSize, pageNo, pageType, itemIds, }?: CatalogPlatformApplicationValidator.GetAppicationProductsParam): Promise<CatalogPlatformModel.ApplicationProductListingResponse>;
+    getAppicationProducts({ q, f, c, filters, isDependent, sortOn, pageId, pageSize, pageNo, pageType, itemIds, }?: {
+        q?: string;
+        f?: string;
+        c?: string;
+        filters?: boolean;
+        isDependent?: boolean;
+        sortOn?: string;
+        pageId?: string;
+        pageSize?: number;
+        pageNo?: number;
+        pageType?: string;
+        itemIds?: number[];
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ApplicationProductListingResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.companyId - A `company_id` is a unique identifier for
@@ -252,7 +388,6 @@ declare class Catalog {
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
      *   page. Default is 12.
      * @param {number[]} [arg.itemIds] - Item Ids of product
-     * @returns {Paginator<CatalogPlatformModel.ApplicationProductListingResponse>}
      * @summary: List the products
      * @description: List all the products associated with a brand, collection or category in a requested sort order. The API additionally supports arbitrary search queries that may refer the name of any product, brand, category or collection. If successful, returns a paginated list of products specified in `ApplicationProductListingResponse`
      */
@@ -267,17 +402,25 @@ declare class Catalog {
         sortOn?: string;
         pageSize?: number;
         itemIds?: number[];
-    }): Paginator<CatalogPlatformModel.ApplicationProductListingResponse>;
+    }): Paginator;
     /**
-     * @param {CatalogPlatformApplicationValidator.GetApplicationBrandListingParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.BrandListingResponse>} - Success response
-     * @name getApplicationBrandListing
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageNo] - The page number to navigate through the
+     *   given set of results
+     * @param {number} [arg.pageSize] - Number of items to retrieve in each
+     *   page. Default is 12.
+     * @param {string} [arg.q] - Search query with brand name.Use this parameter
+     *   to search brands by brand name.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<BrandListingResponse>} - Success response
      * @summary: List all the brands for the application
-     * @description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getApplicationBrandListing/).
+     * @description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
      */
-    getApplicationBrandListing({ pageNo, pageSize, q }?: CatalogPlatformApplicationValidator.GetApplicationBrandListingParam): Promise<CatalogPlatformModel.BrandListingResponse>;
+    getApplicationBrandListing({ pageNo, pageSize, q }?: {
+        pageNo?: number;
+        pageSize?: number;
+        q?: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<BrandListingResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.companyId - A `company_id` is a unique identifier for
@@ -288,7 +431,6 @@ declare class Catalog {
      *   page. Default is 12.
      * @param {string} [arg.q] - Search query with brand name.Use this parameter
      *   to search brands by brand name.
-     * @returns {Paginator<CatalogPlatformModel.BrandListingResponse>}
      * @summary: List all the brands for the application
      * @description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
      */
@@ -297,17 +439,33 @@ declare class Catalog {
         applicationId: string;
         pageSize?: number;
         q?: string;
-    }): Paginator<CatalogPlatformModel.BrandListingResponse>;
+    }): Paginator;
     /**
-     * @param {CatalogPlatformApplicationValidator.GetApplicationBrandsParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.BrandListingResponse>} - Success response
-     * @name getApplicationBrands
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.department] - The name of the department. Use this
+     *   parameter to filter products by a particular department. See below the
+     *   list of available departments. You can retrieve available departments
+     *   from the **v1.0/departments/** API
+     * @param {number} [arg.pageNo] - The page number to navigate through the
+     *   given set of results
+     * @param {number} [arg.pageSize] - Number of items to retrieve in each
+     *   page. Default is 12.
+     * @param {string} [arg.q] - Search query with brand name.Use this parameter
+     *   to search brands by brand name.
+     * @param {number[]} [arg.brandId] - Helps to sort the brands list on the
+     *   basis of uid list.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<BrandListingResponse>} - Success response
      * @summary: List all the brands
-     * @description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getApplicationBrands/).
+     * @description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
      */
-    getApplicationBrands({ department, pageNo, pageSize, q, brandId, }?: CatalogPlatformApplicationValidator.GetApplicationBrandsParam): Promise<CatalogPlatformModel.BrandListingResponse>;
+    getApplicationBrands({ department, pageNo, pageSize, q, brandId }?: {
+        department?: string;
+        pageNo?: number;
+        pageSize?: number;
+        q?: string;
+        brandId?: number[];
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<BrandListingResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.companyId - A `company_id` is a unique identifier for
@@ -324,7 +482,6 @@ declare class Catalog {
      *   to search brands by brand name.
      * @param {number[]} [arg.brandId] - Helps to sort the brands list on the
      *   basis of uid list.
-     * @returns {Paginator<CatalogPlatformModel.BrandListingResponse>}
      * @summary: List all the brands
      * @description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
      */
@@ -335,17 +492,28 @@ declare class Catalog {
         pageSize?: number;
         q?: string;
         brandId?: number[];
-    }): Paginator<CatalogPlatformModel.BrandListingResponse>;
+    }): Paginator;
     /**
-     * @param {CatalogPlatformApplicationValidator.GetApplicationCategoryListingParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.BrandListingResponse>} - Success response
-     * @name getApplicationCategoryListing
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.departmentId] - A `department_id` is a unique
+     *   identifier for a particular department.
+     * @param {number} [arg.pageNo] - The page number to navigate through the
+     *   given set of results
+     * @param {number} [arg.pageSize] - Number of items to retrieve in each
+     *   page. Default is 12.
+     * @param {string} [arg.q] - Search query with brand name.Use this parameter
+     *   to search brands by brand name.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<BrandListingResponse>} - Success response
      * @summary: List all the brands for the application
-     * @description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getApplicationCategoryListing/).
+     * @description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
      */
-    getApplicationCategoryListing({ departmentId, pageNo, pageSize, q, }?: CatalogPlatformApplicationValidator.GetApplicationCategoryListingParam): Promise<CatalogPlatformModel.BrandListingResponse>;
+    getApplicationCategoryListing({ departmentId, pageNo, pageSize, q }?: {
+        departmentId?: number;
+        pageNo?: number;
+        pageSize?: number;
+        q?: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<BrandListingResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.companyId - A `company_id` is a unique identifier for
@@ -358,7 +526,6 @@ declare class Catalog {
      *   page. Default is 12.
      * @param {string} [arg.q] - Search query with brand name.Use this parameter
      *   to search brands by brand name.
-     * @returns {Paginator<CatalogPlatformModel.BrandListingResponse>}
      * @summary: List all the brands for the application
      * @description: A brand is the name under which a product is being sold. Use this API to list all the brands. You can pass optionally filter the brands by the department. If successful, returns a paginated list of brands specified in `BrandListingResponse`
      */
@@ -368,19 +535,25 @@ declare class Catalog {
         departmentId?: number;
         pageSize?: number;
         q?: string;
-    }): Paginator<CatalogPlatformModel.BrandListingResponse>;
+    }): Paginator;
     /**
-     * @param {CatalogPlatformApplicationValidator.GetApplicationDepartmentListingParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.ApplicationDepartmentListingResponse>}
-     *   - Success response
-     *
-     * @name getApplicationDepartmentListing
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageNo] - The page number to navigate through the
+     *   given set of results
+     * @param {number} [arg.pageSize] - Number of items to retrieve in each
+     *   page. Default is 12.
+     * @param {string} [arg.q] - Search query with brand name.Use this parameter
+     *   to search department by name.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ApplicationDepartmentListingResponse>} - Success response
      * @summary: List all the departments for the application
-     * @description: Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the application departments. If successful, returns the list of departments specified in `ApplicationDepartmentListingResponse` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getApplicationDepartmentListing/).
+     * @description: Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the application departments. If successful, returns the list of departments specified in `ApplicationDepartmentListingResponse`
      */
-    getApplicationDepartmentListing({ pageNo, pageSize, q }?: CatalogPlatformApplicationValidator.GetApplicationDepartmentListingParam): Promise<CatalogPlatformModel.ApplicationDepartmentListingResponse>;
+    getApplicationDepartmentListing({ pageNo, pageSize, q }?: {
+        pageNo?: number;
+        pageSize?: number;
+        q?: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ApplicationDepartmentListingResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.companyId - A `company_id` is a unique identifier for
@@ -391,7 +564,6 @@ declare class Catalog {
      *   page. Default is 12.
      * @param {string} [arg.q] - Search query with brand name.Use this parameter
      *   to search department by name.
-     * @returns {Paginator<CatalogPlatformModel.ApplicationDepartmentListingResponse>}
      * @summary: List all the departments for the application
      * @description: Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the application departments. If successful, returns the list of departments specified in `ApplicationDepartmentListingResponse`
      */
@@ -400,302 +572,393 @@ declare class Catalog {
         applicationId: string;
         pageSize?: number;
         q?: string;
-    }): Paginator<CatalogPlatformModel.ApplicationDepartmentListingResponse>;
+    }): Paginator;
     /**
-     * @param {CatalogPlatformApplicationValidator.GetAutocompleteConfigParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.GetAutocompleteWordsResponse>} -
-     *   Success response
-     * @name getAutocompleteConfig
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<GetAutocompleteWordsResponse>} - Success response
      * @summary: List all Autocomplete Keyword Listing
-     * @description: Custom Autocomplete Keyword allows you to map conditions with keywords to give you the ultimate results - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAutocompleteConfig/).
+     * @description: Custom Autocomplete Keyword allows you to map conditions with keywords to give you the ultimate results
      */
-    getAutocompleteConfig({}?: any): Promise<CatalogPlatformModel.GetAutocompleteWordsResponse>;
+    getAutocompleteConfig({ headers }?: import("../PlatformAPIClient").Options): Promise<GetAutocompleteWordsResponse>;
     /**
-     * @param {CatalogPlatformApplicationValidator.GetAutocompleteKeywordDetailParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.GetAutocompleteWordsResponse>} -
-     *   Success response
-     * @name getAutocompleteKeywordDetail
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - A `id` is a unique identifier for a particular
+     *   detail. Pass the `id` of the keywords which you want to retrieve.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<GetAutocompleteWordsResponse>} - Success response
      * @summary: Get a Autocomplete Keywords Details
-     * @description: Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAutocompleteKeywordDetail/).
+     * @description: Get the details of a words by its `id`. If successful, returns a keywords resource in the response body specified in `GetAutocompleteWordsResponseSchema`
      */
-    getAutocompleteKeywordDetail({ id }?: CatalogPlatformApplicationValidator.GetAutocompleteKeywordDetailParam): Promise<CatalogPlatformModel.GetAutocompleteWordsResponse>;
+    getAutocompleteKeywordDetail({ id }?: {
+        id: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<GetAutocompleteWordsResponse>;
     /**
-     * @param {CatalogPlatformApplicationValidator.GetCatalogConfigurationParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.GetCatalogConfigurationMetaData>}
-     *   - Success response
-     *
-     * @name getCatalogConfiguration
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<GetCatalogConfigurationMetaData>} - Success response
      * @summary: Get configuration meta  details for catalog for admin panel
-     * @description: configuration meta  details for catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCatalogConfiguration/).
+     * @description: configuration meta  details for catalog.
      */
-    getCatalogConfiguration({}?: any): Promise<CatalogPlatformModel.GetCatalogConfigurationMetaData>;
+    getCatalogConfiguration({ headers }?: import("../PlatformAPIClient").Options): Promise<GetCatalogConfigurationMetaData>;
     /**
-     * @param {CatalogPlatformApplicationValidator.GetCatalogInsightsParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.CatalogInsightResponse>} - Success response
-     * @name getCatalogInsights
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.brand] - Brand slug
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogInsightResponse>} - Success response
      * @summary: Analytics data of catalog and inventory.
-     * @description: Catalog Insights api returns the count of catalog related data like products, brands, departments and categories that have been made live as per configuration of the app. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCatalogInsights/).
+     * @description: Catalog Insights api returns the count of catalog related data like products, brands, departments and categories that have been made live as per configuration of the app.
      */
-    getCatalogInsights({ brand }?: CatalogPlatformApplicationValidator.GetCatalogInsightsParam): Promise<CatalogPlatformModel.CatalogInsightResponse>;
+    getCatalogInsights({ brand }?: {
+        brand?: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<CatalogInsightResponse>;
     /**
-     * @param {CatalogPlatformApplicationValidator.GetCategoriesParam} arg - Arg object
-     * @returns {Promise<CatalogPlatformModel.CategoryListingResponse>} - Success response
-     * @name getCategories
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.department] - The name of the department. Use this
+     *   parameter to filter products by a particular department. See below the
+     *   list of available departments. You can retrieve available departments
+     *   from the **v1.0/departments/** API
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CategoryListingResponse>} - Success response
      * @summary: List all the categories
-     * @description: List all the categories. You can optionally pass filter the brands by the department. If successful, returns a paginated list of brands specified in `CategoryListingResponse` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCategories/).
+     * @description: List all the categories. You can optionally pass filter the brands by the department. If successful, returns a paginated list of brands specified in `CategoryListingResponse`
      */
-    getCategories({ department }?: CatalogPlatformApplicationValidator.GetCategoriesParam): Promise<CatalogPlatformModel.CategoryListingResponse>;
+    getCategories({ department }?: {
+        department?: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<CategoryListingResponse>;
     /**
-     * @param {CatalogPlatformApplicationValidator.GetCollectionDetailParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.CollectionDetailResponse>} -
-     *   Success response
-     * @name getCollectionDetail
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.slug - A `slug` is a human readable, URL friendly
+     *   unique identifier of an object. Pass the `slug` of the collection which
+     *   you want to retrieve.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CollectionDetailResponse>} - Success response
      * @summary: Get a particular collection
-     * @description: Get the details of a collection by its `slug`. If successful, returns a Collection resource in the response body specified in `CollectionDetailResponse` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCollectionDetail/).
+     * @description: Get the details of a collection by its `slug`. If successful, returns a Collection resource in the response body specified in `CollectionDetailResponse`
      */
-    getCollectionDetail({ slug }?: CatalogPlatformApplicationValidator.GetCollectionDetailParam): Promise<CatalogPlatformModel.CollectionDetailResponse>;
+    getCollectionDetail({ slug }?: {
+        slug: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<CollectionDetailResponse>;
     /**
-     * @param {CatalogPlatformApplicationValidator.GetCollectionItemsParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.GetCollectionItemsResponse>} -
-     *   Success response
-     * @name getCollectionItems
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - A `id` is a unique identifier of a collection.
+     * @param {string} [arg.sortOn] - Each response will contain sort_on param,
+     *   which should be sent back to make pagination work.
+     * @param {string} [arg.pageId] - Each response will contain next_id param,
+     *   which should be sent back to make pagination work.
+     * @param {number} [arg.pageSize] - Number of items to retrieve in each
+     *   page. Default is 12.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<GetCollectionItemsResponse>} - Success response
      * @summary: Get the items for a collection
-     * @description: Get items from a collection specified by its `id`. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCollectionItems/).
+     * @description: Get items from a collection specified by its `id`.
      */
-    getCollectionItems({ id, sortOn, pageId, pageSize }?: CatalogPlatformApplicationValidator.GetCollectionItemsParam): Promise<CatalogPlatformModel.GetCollectionItemsResponse>;
+    getCollectionItems({ id, sortOn, pageId, pageSize }?: {
+        id: string;
+        sortOn?: string;
+        pageId?: string;
+        pageSize?: number;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<GetCollectionItemsResponse>;
     /**
-     * @param {CatalogPlatformApplicationValidator.GetConfigurationByTypeParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.GetAppCatalogEntityConfiguration>}
-     *   - Success response
-     *
-     * @name getConfigurationByType
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.type - Type can be brands, categories etc.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<GetAppCatalogEntityConfiguration>} - Success response
      * @summary: Get configured details for catalog
-     * @description: configured details for catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getConfigurationByType/).
+     * @description: configured details for catalog.
      */
-    getConfigurationByType({ type }?: CatalogPlatformApplicationValidator.GetConfigurationByTypeParam): Promise<CatalogPlatformModel.GetAppCatalogEntityConfiguration>;
+    getConfigurationByType({ type }?: {
+        type: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<GetAppCatalogEntityConfiguration>;
     /**
-     * @param {CatalogPlatformApplicationValidator.GetConfigurationMetadataParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.GetConfigMetadataResponse>} -
-     *   Success response
-     * @name getConfigurationMetadata
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.configType - A `config_type` is an identifier that
+     *   defines a specific type of configuration.
+     * @param {string} [arg.templateSlug] - Get configuration list filtered by
+     *   `template_slug` string. This is for the details and comparision groups.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<GetConfigMetadataResponse>} - Success response
      * @summary: Get configuration metadata details for catalog for admin panel
-     * @description: Get the configuraion metadata details for catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getConfigurationMetadata/).
+     * @description: Get the configuraion metadata details for catalog.
      */
-    getConfigurationMetadata({ configType, templateSlug }?: CatalogPlatformApplicationValidator.GetConfigurationMetadataParam): Promise<CatalogPlatformModel.GetConfigMetadataResponse>;
+    getConfigurationMetadata({ configType, templateSlug }?: {
+        configType: string;
+        templateSlug?: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<GetConfigMetadataResponse>;
     /**
-     * @param {CatalogPlatformApplicationValidator.GetConfigurationsParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.GetAppCatalogConfiguration>} -
-     *   Success response
-     * @name getConfigurations
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<GetAppCatalogConfiguration>} - Success response
      * @summary: Get configured details for catalog
-     * @description: configured details for catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getConfigurations/).
+     * @description: configured details for catalog.
      */
-    getConfigurations({}?: any): Promise<CatalogPlatformModel.GetAppCatalogConfiguration>;
+    getConfigurations({ headers }?: import("../PlatformAPIClient").Options): Promise<GetAppCatalogConfiguration>;
     /**
-     * @param {CatalogPlatformApplicationValidator.GetDepartmentsParam} arg - Arg object
-     * @returns {Promise<CatalogPlatformModel.DepartmentResponse>} - Success response
-     * @name getDepartments
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<DepartmentResponse>} - Success response
      * @summary: List all the departments
-     * @description: Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the departments. If successful, returns the list of departments specified in `DepartmentResponse` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getDepartments/).
+     * @description: Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the departments. If successful, returns the list of departments specified in `DepartmentResponse`
      */
-    getDepartments({}?: any): Promise<CatalogPlatformModel.DepartmentResponse>;
+    getDepartments({ headers }?: import("../PlatformAPIClient").Options): Promise<DepartmentResponse>;
     /**
-     * @param {CatalogPlatformApplicationValidator.GetDiscountedInventoryBySizeIdentifierParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.InventorySellerIdentifierResponsePaginated>}
-     *   - Success response
-     *
-     * @name getDiscountedInventoryBySizeIdentifier
+     * @param {Object} arg - Arg object.
+     * @param {number} arg.itemId - Item code of the product of which size is to be get.
+     * @param {string} arg.sizeIdentifier - Size Identifier (Seller Identifier
+     *   or Primary Identifier) of which inventory is to get.
+     * @param {number} [arg.pageNo] - The page number to navigate through the
+     *   given set of results
+     * @param {number} [arg.pageSize] - Number of items to retrieve in each
+     *   page. Default is 12.
+     * @param {string} [arg.q] - Search with help of store code.
+     * @param {number[]} [arg.locationIds] - Search by store ids.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<InventorySellerIdentifierResponsePaginated>} - Success response
      * @summary: Get Inventory for company
-     * @description: This API allows get Inventory data for particular company grouped by size and store. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getDiscountedInventoryBySizeIdentifier/).
+     * @description: This API allows get Inventory data for particular company grouped by size and store.
      */
-    getDiscountedInventoryBySizeIdentifier({ itemId, sizeIdentifier, pageNo, pageSize, q, locationIds, }?: CatalogPlatformApplicationValidator.GetDiscountedInventoryBySizeIdentifierParam): Promise<CatalogPlatformModel.InventorySellerIdentifierResponsePaginated>;
+    getDiscountedInventoryBySizeIdentifier({ itemId, sizeIdentifier, pageNo, pageSize, q, locationIds }?: {
+        itemId: number;
+        sizeIdentifier: string;
+        pageNo?: number;
+        pageSize?: number;
+        q?: string;
+        locationIds?: number[];
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<InventorySellerIdentifierResponsePaginated>;
     /**
-     * @param {CatalogPlatformApplicationValidator.GetGroupConfigurationsParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.GetConfigResponse>} - Success response
-     * @name getGroupConfigurations
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.configType - A `config_type` is an identifier that
+     *   defines a specific type of configuration.
+     * @param {number} [arg.pageNo] - The page number to navigate through the
+     *   given set of results.
+     * @param {number} [arg.pageSize] - Number of items to retrieve in each
+     *   page. Default is 12.
+     * @param {string} [arg.search] - Get configuration list filtered by `search` string.
+     * @param {string} [arg.templateSlug] - Get configuration list filtered by
+     *   `template_slug` string. This is for the details and comparision groups.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<GetConfigResponse>} - Success response
      * @summary: Get the details of the application configured configurations of group config types.
-     * @description: Get the details of the application configured configurations of group config types. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getGroupConfigurations/).
+     * @description: Get the details of the application configured configurations of group config types.
      */
-    getGroupConfigurations({ configType, pageNo, pageSize, search, templateSlug, }?: CatalogPlatformApplicationValidator.GetGroupConfigurationsParam): Promise<CatalogPlatformModel.GetConfigResponse>;
+    getGroupConfigurations({ configType, pageNo, pageSize, search, templateSlug }?: {
+        configType: string;
+        pageNo?: number;
+        pageSize?: number;
+        search?: string;
+        templateSlug?: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<GetConfigResponse>;
     /**
-     * @param {CatalogPlatformApplicationValidator.GetListingConfigurationsParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.GetConfigResponse>} - Success response
-     * @name getListingConfigurations
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.configType - A `config_type` is an identifier that
+     *   defines a specific type of configuration.
+     * @param {number} [arg.pageNo] - The page number to navigate through the
+     *   given set of results.
+     * @param {number} [arg.pageSize] - Number of items to retrieve in each
+     *   page. Default is 12.
+     * @param {string} [arg.search] - Get configuration list filtered by `search` string.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<GetConfigResponse>} - Success response
      * @summary: Get the details of the application configured configurations of listing config types.
-     * @description: Get the details of the application configured configurations of listing config types. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getListingConfigurations/).
+     * @description: Get the details of the application configured configurations of listing config types.
      */
-    getListingConfigurations({ configType, pageNo, pageSize, search, }?: CatalogPlatformApplicationValidator.GetListingConfigurationsParam): Promise<CatalogPlatformModel.GetConfigResponse>;
+    getListingConfigurations({ configType, pageNo, pageSize, search }?: {
+        configType: string;
+        pageNo?: number;
+        pageSize?: number;
+        search?: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<GetConfigResponse>;
     /**
-     * @param {CatalogPlatformApplicationValidator.GetProductDetailBySlugParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.ProductDetail>} - Success response
-     * @name getProductDetailBySlug
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.slug - The unique identifier of a product. i.e;
+     *   `slug` of a product. You can retrieve these from the APIs that list
+     *   products like **v1.0/products/**
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ProductDetail>} - Success response
      * @summary: Get a product
-     * @description: Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given **slug**. If successful, returns a Product resource in the response body specified in `ProductDetail` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProductDetailBySlug/).
+     * @description: Products are the core resource of an application. Products can be associated by categories, collections, brands and more. This API retrieves the product specified by the given **slug**. If successful, returns a Product resource in the response body specified in `ProductDetail`
      */
-    getProductDetailBySlug({ slug }?: CatalogPlatformApplicationValidator.GetProductDetailBySlugParam): Promise<CatalogPlatformModel.ProductDetail>;
+    getProductDetailBySlug({ slug }?: {
+        slug: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ProductDetail>;
     /**
-     * @param {CatalogPlatformApplicationValidator.GetQueryFiltersParam} arg - Arg object
-     * @returns {Promise<CatalogPlatformModel.GetCollectionQueryOptionResponse>}
-     *   - Success response
-     *
-     * @name getQueryFilters
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<GetCollectionQueryOptionResponse>} - Success response
      * @summary: Get query filters to configure a collection
-     * @description: Get query filters to configure a collection - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getQueryFilters/).
+     * @description: Get query filters to configure a collection
      */
-    getQueryFilters({}?: any): Promise<CatalogPlatformModel.GetCollectionQueryOptionResponse>;
+    getQueryFilters({ headers }?: import("../PlatformAPIClient").Options): Promise<GetCollectionQueryOptionResponse>;
     /**
-     * @param {CatalogPlatformApplicationValidator.GetSearchKeywordsParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.GetSearchWordsDetailResponse>} -
-     *   Success response
-     * @name getSearchKeywords
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - A `id` is a unique identifier for a particular
+     *   detail. Pass the `id` of the keywords which you want to retrieve.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<GetSearchWordsDetailResponse>} - Success response
      * @summary: Get a Search Keywords Details
-     * @description: Get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getSearchKeywords/).
+     * @description: Get the details of a words by its `id`. If successful, returns a Collection resource in the response body specified in `GetSearchWordsDetailResponseSchema`
      */
-    getSearchKeywords({ id }?: CatalogPlatformApplicationValidator.GetSearchKeywordsParam): Promise<CatalogPlatformModel.GetSearchWordsDetailResponse>;
+    getSearchKeywords({ id }?: {
+        id: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<GetSearchWordsDetailResponse>;
     /**
-     * @param {CatalogPlatformApplicationValidator.UpdateAllowSingleParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.ConfigSuccessResponse>} - Success response
-     * @name updateAllowSingle
+     * @param {Object} arg - Arg object.
+     * @param {AllowSingleRequest} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ConfigSuccessResponse>} - Success response
      * @summary: Update allow single flag for filters of the application.
-     * @description: Update allow single flag for filters of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAllowSingle/).
+     * @description: Update allow single flag for filters of the application.
      */
-    updateAllowSingle({ body }?: CatalogPlatformApplicationValidator.UpdateAllowSingleParam): Promise<CatalogPlatformModel.ConfigSuccessResponse>;
+    updateAllowSingle({ body }?: {
+        body: AllowSingleRequest;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ConfigSuccessResponse>;
     /**
-     * @param {CatalogPlatformApplicationValidator.UpdateAppBrandParam} arg - Arg object
-     * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
-     * @name updateAppBrand
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.brandUid - Brand id for which the custom_json is associated.
+     * @param {ApplicationBrandJson} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<SuccessResponse1>} - Success response
      * @summary: Update a single custom json.
-     * @description: This API helps to update data associated to a item custom meta. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppBrand/).
+     * @description: This API helps to update data associated to a item custom meta.
      */
-    updateAppBrand({ brandUid, body }?: CatalogPlatformApplicationValidator.UpdateAppBrandParam): Promise<CatalogPlatformModel.SuccessResponse1>;
+    updateAppBrand({ brandUid, body }?: {
+        brandUid: string;
+        body: ApplicationBrandJson;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<SuccessResponse1>;
     /**
-     * @param {CatalogPlatformApplicationValidator.UpdateAppCategoryParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
-     * @name updateAppCategory
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.categoryUid - Category id for which the custom_json
+     *   is associated.
+     * @param {ApplicationCategoryJson} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<SuccessResponse1>} - Success response
      * @summary: Update a single custom json.
-     * @description: This API helps to update data associated to a item custom meta. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppCategory/).
+     * @description: This API helps to update data associated to a item custom meta.
      */
-    updateAppCategory({ categoryUid, body }?: CatalogPlatformApplicationValidator.UpdateAppCategoryParam): Promise<CatalogPlatformModel.SuccessResponse1>;
+    updateAppCategory({ categoryUid, body }?: {
+        categoryUid: string;
+        body: ApplicationCategoryJson;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<SuccessResponse1>;
     /**
-     * @param {CatalogPlatformApplicationValidator.UpdateAppDepartmentParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
-     * @name updateAppDepartment
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.departmentUid - Department id for which the
+     *   custom_json is associated.
+     * @param {ApplicationDepartmentJson} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<SuccessResponse1>} - Success response
      * @summary: Update a single custom json.
-     * @description: This API helps to update data associated to a item custom meta. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppDepartment/).
+     * @description: This API helps to update data associated to a item custom meta.
      */
-    updateAppDepartment({ departmentUid, body }?: CatalogPlatformApplicationValidator.UpdateAppDepartmentParam): Promise<CatalogPlatformModel.SuccessResponse1>;
+    updateAppDepartment({ departmentUid, body }?: {
+        departmentUid: string;
+        body: ApplicationDepartmentJson;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<SuccessResponse1>;
     /**
-     * @param {CatalogPlatformApplicationValidator.UpdateAppLocationParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
-     * @name updateAppLocation
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.storeUid - Store id for which the custom_json is associated.
+     * @param {ApplicationStoreJson} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<SuccessResponse1>} - Success response
      * @summary: Update a single custom json.
-     * @description: This API helps to update data associated to a item custom meta. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppLocation/).
+     * @description: This API helps to update data associated to a item custom meta.
      */
-    updateAppLocation({ storeUid, body }?: CatalogPlatformApplicationValidator.UpdateAppLocationParam): Promise<CatalogPlatformModel.SuccessResponse1>;
+    updateAppLocation({ storeUid, body }?: {
+        storeUid: string;
+        body: ApplicationStoreJson;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<SuccessResponse1>;
     /**
-     * @param {CatalogPlatformApplicationValidator.UpdateAppProductParam} arg - Arg object
-     * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
-     * @name updateAppProduct
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.itemId - Product id for which the custom_meta is associated.
+     * @param {ApplicationItemMeta} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<SuccessResponse1>} - Success response
      * @summary: Update a single custom meta.
-     * @description: This API helps to update data associated to a item custom meta. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAppProduct/).
+     * @description: This API helps to update data associated to a item custom meta.
      */
-    updateAppProduct({ itemId, body }?: CatalogPlatformApplicationValidator.UpdateAppProductParam): Promise<CatalogPlatformModel.SuccessResponse1>;
+    updateAppProduct({ itemId, body }?: {
+        itemId: string;
+        body: ApplicationItemMeta;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<SuccessResponse1>;
     /**
-     * @param {CatalogPlatformApplicationValidator.UpdateAutocompleteKeywordParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.GetAutocompleteWordsResponse>} -
-     *   Success response
-     * @name updateAutocompleteKeyword
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - A `id` is a unique identifier for a particular
+     *   detail. Pass the `id` of the keywords which you want to delete.
+     * @param {CreateAutocompleteKeyword} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<GetAutocompleteWordsResponse>} - Success response
      * @summary: Create & Update Autocomplete Keyword
-     * @description: Update a mapping by it's id. On successful request, returns the updated Keyword mapping - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateAutocompleteKeyword/).
+     * @description: Update a mapping by it's id. On successful request, returns the updated Keyword mapping
      */
-    updateAutocompleteKeyword({ id, body }?: CatalogPlatformApplicationValidator.UpdateAutocompleteKeywordParam): Promise<CatalogPlatformModel.GetAutocompleteWordsResponse>;
+    updateAutocompleteKeyword({ id, body }?: {
+        id: string;
+        body: CreateAutocompleteKeyword;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<GetAutocompleteWordsResponse>;
     /**
-     * @param {CatalogPlatformApplicationValidator.UpdateCollectionParam} arg - Arg object
-     * @returns {Promise<CatalogPlatformModel.UpdateCollection>} - Success response
-     * @name updateCollection
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - A `id` is a unique identifier of a collection.
+     * @param {UpdateCollection} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<UpdateCollection>} - Success response
      * @summary: Update a collection
-     * @description: Update a collection by it's id. On successful request, returns the updated collection - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateCollection/).
+     * @description: Update a collection by it's id. On successful request, returns the updated collection
      */
-    updateCollection({ id, body }?: CatalogPlatformApplicationValidator.UpdateCollectionParam): Promise<CatalogPlatformModel.UpdateCollection>;
+    updateCollection({ id, body }?: {
+        id: string;
+        body: UpdateCollection;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<UpdateCollection>;
     /**
-     * @param {CatalogPlatformApplicationValidator.UpdateDefaultSortParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.ConfigSuccessResponse>} - Success response
-     * @name updateDefaultSort
+     * @param {Object} arg - Arg object.
+     * @param {DefaultKeyRequest} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ConfigSuccessResponse>} - Success response
      * @summary: Update the default sort key configuration for the application.
-     * @description: Update the default sort key configuration for the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateDefaultSort/).
+     * @description: Update the default sort key configuration for the application.
      */
-    updateDefaultSort({ body }?: CatalogPlatformApplicationValidator.UpdateDefaultSortParam): Promise<CatalogPlatformModel.ConfigSuccessResponse>;
+    updateDefaultSort({ body }?: {
+        body: DefaultKeyRequest;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ConfigSuccessResponse>;
     /**
-     * @param {CatalogPlatformApplicationValidator.UpdateGroupConfigurationParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.AppConfigurationDetail>} - Success response
-     * @name updateGroupConfiguration
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.configType - A `config_type` is a unique identifier
+     *   for a particular group configuration type.
+     * @param {string} arg.groupSlug - A `group_slug` is a unique identifier of
+     *   a particular configuration.
+     * @param {AppConfigurationDetail} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<AppConfigurationDetail>} - Success response
      * @summary: Update the group configurations for the application.
-     * @description: Update the group configurations for the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateGroupConfiguration/).
+     * @description: Update the group configurations for the application.
      */
-    updateGroupConfiguration({ configType, groupSlug, body }?: CatalogPlatformApplicationValidator.UpdateGroupConfigurationParam): Promise<CatalogPlatformModel.AppConfigurationDetail>;
+    updateGroupConfiguration({ configType, groupSlug, body }?: {
+        configType: string;
+        groupSlug: string;
+        body: AppConfigurationDetail;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<AppConfigurationDetail>;
     /**
-     * @param {CatalogPlatformApplicationValidator.UpdateListingConfigurationParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.AppConfigurationsSort>} - Success response
-     * @name updateListingConfiguration
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.configType - A `config_type` is a unique identifier
+     *   for a particular listing configuration type.
+     * @param {string} arg.configId - A `config_id` is a unique identifier of a
+     *   particular configuration.
+     * @param {AppConfigurationsSort} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<AppConfigurationsSort>} - Success response
      * @summary: Update configuration for listings
-     * @description: Update configuration for listing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateListingConfiguration/).
+     * @description: Update configuration for listing.
      */
-    updateListingConfiguration({ configType, configId, body }?: CatalogPlatformApplicationValidator.UpdateListingConfigurationParam): Promise<CatalogPlatformModel.AppConfigurationsSort>;
+    updateListingConfiguration({ configType, configId, body }?: {
+        configType: string;
+        configId: string;
+        body: AppConfigurationsSort;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<AppConfigurationsSort>;
     /**
-     * @param {CatalogPlatformApplicationValidator.UpdateSearchKeywordsParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CatalogPlatformModel.GetSearchWordsData>} - Success response
-     * @name updateSearchKeywords
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - A `id` is a unique identifier for a particular
+     *   detail. Pass the `id` of the keywords which you want to delete.
+     * @param {CreateSearchKeyword} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<GetSearchWordsData>} - Success response
      * @summary: Update Search Keyword
-     * @description: Update Search Keyword by its id. On successful request, returns the updated collection - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateSearchKeywords/).
+     * @description: Update Search Keyword by its id. On successful request, returns the updated collection
      */
-    updateSearchKeywords({ id, body }?: CatalogPlatformApplicationValidator.UpdateSearchKeywordsParam): Promise<CatalogPlatformModel.GetSearchWordsData>;
+    updateSearchKeywords({ id, body }?: {
+        id: string;
+        body: CreateSearchKeyword;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<GetSearchWordsData>;
 }
-import CatalogPlatformApplicationValidator = require("./CatalogPlatformApplicationValidator");
-import CatalogPlatformModel = require("./CatalogPlatformModel");
 import Paginator = require("../../common/Paginator");

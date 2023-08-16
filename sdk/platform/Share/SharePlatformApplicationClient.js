@@ -1,8 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
-const SharePlatformApplicationValidator = require("./SharePlatformApplicationValidator");
-const SharePlatformModel = require("./SharePlatformModel");
+const ShareValidator = require("./SharePlatformApplicationValidator");
+const ShareModel = require("./SharePlatformModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -13,16 +13,15 @@ class Share {
   }
 
   /**
-   * @param {SharePlatformApplicationValidator.CreateShortLinkParam} arg - Arg object
-   * @returns {Promise<SharePlatformModel.ShortLinkRes>} - Success response
-   * @name createShortLink
+   * @param {Object} arg - Arg object.
+   * @param {ShortLinkReq} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ShortLinkRes>} - Success response
    * @summary: Create short link
-   * @description: Create short link - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/share/createShortLink/).
+   * @description: Create short link
    */
-  async createShortLink({ body } = {}) {
-    const {
-      error,
-    } = SharePlatformApplicationValidator.createShortLink().validate(
+  async createShortLink({ body } = {}, { headers } = { headers: false }) {
+    const { error } = ShareValidator.createShortLink().validate(
       {
         body,
       },
@@ -33,9 +32,7 @@ class Share {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = SharePlatformApplicationValidator.createShortLink().validate(
+    const { error: warrning } = ShareValidator.createShortLink().validate(
       {
         body,
       },
@@ -44,8 +41,9 @@ class Share {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Share > createShortLink \n ${warrning}`,
+        message: "Parameter Validation warrnings for createShortLink",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -55,12 +53,19 @@ class Share {
       "post",
       `/service/platform/share/v1.0/company/${this.config.companyId}/application/${this.applicationId}/links/short-link/`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = SharePlatformModel.ShortLinkRes().validate(response, {
+    } = ShareModel.ShortLinkRes().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -68,24 +73,24 @@ class Share {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Share > createShortLink \n ${res_error}`,
+        message: "Response Validation Warnnings for createShortLink",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {SharePlatformApplicationValidator.GetShortLinkByHashParam} arg - Arg object
-   * @returns {Promise<SharePlatformModel.ShortLinkRes>} - Success response
-   * @name getShortLinkByHash
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.hash - Hash of short url
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ShortLinkRes>} - Success response
    * @summary: Get short link by hash
-   * @description: Get short link by hash - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/share/getShortLinkByHash/).
+   * @description: Get short link by hash
    */
-  async getShortLinkByHash({ hash } = {}) {
-    const {
-      error,
-    } = SharePlatformApplicationValidator.getShortLinkByHash().validate(
+  async getShortLinkByHash({ hash } = {}, { headers } = { headers: false }) {
+    const { error } = ShareValidator.getShortLinkByHash().validate(
       {
         hash,
       },
@@ -96,9 +101,7 @@ class Share {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = SharePlatformApplicationValidator.getShortLinkByHash().validate(
+    const { error: warrning } = ShareValidator.getShortLinkByHash().validate(
       {
         hash,
       },
@@ -107,8 +110,9 @@ class Share {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Share > getShortLinkByHash \n ${warrning}`,
+        message: "Parameter Validation warrnings for getShortLinkByHash",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -118,12 +122,19 @@ class Share {
       "get",
       `/service/platform/share/v1.0/company/${this.config.companyId}/application/${this.applicationId}/links/short-link/${hash}/`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = SharePlatformModel.ShortLinkRes().validate(response, {
+    } = ShareModel.ShortLinkRes().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -131,26 +142,28 @@ class Share {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Share > getShortLinkByHash \n ${res_error}`,
+        message: "Response Validation Warnnings for getShortLinkByHash",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {SharePlatformApplicationValidator.GetShortLinkClickStatsParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<SharePlatformModel.ClickStatsResponse>} - Success response
-   * @name getShortLinkClickStats
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.surlId - Short link ID for which click statistics are
+   *   to be retrieved.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ClickStatsResponse>} - Success response
    * @summary: Get click statistics for a short link
-   * @description: Retrieve click statistics for a given short link ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/share/getShortLinkClickStats/).
+   * @description: Retrieve click statistics for a given short link ID.
    */
-  async getShortLinkClickStats({ surlId } = {}) {
-    const {
-      error,
-    } = SharePlatformApplicationValidator.getShortLinkClickStats().validate(
+  async getShortLinkClickStats(
+    { surlId } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ShareValidator.getShortLinkClickStats().validate(
       { surlId },
       { abortEarly: false, allowUnknown: true }
     );
@@ -161,15 +174,16 @@ class Share {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = SharePlatformApplicationValidator.getShortLinkClickStats().validate(
+    } = ShareValidator.getShortLinkClickStats().validate(
       { surlId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Share > getShortLinkClickStats \n ${warrning}`,
+        message: "Parameter Validation warrnings for getShortLinkClickStats",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -180,12 +194,19 @@ class Share {
       "get",
       `/service/platform/share/v1.0/company/${this.config.companyId}/application/${this.applicationId}/links/short-link/click-stats`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = SharePlatformModel.ClickStatsResponse().validate(response, {
+    } = ShareModel.ClickStatsResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -193,24 +214,31 @@ class Share {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Share > getShortLinkClickStats \n ${res_error}`,
+        message: "Response Validation Warnnings for getShortLinkClickStats",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {SharePlatformApplicationValidator.GetShortLinksParam} arg - Arg object
-   * @returns {Promise<SharePlatformModel.ShortLinkList>} - Success response
-   * @name getShortLinks
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNo] - Current page number
+   * @param {number} [arg.pageSize] - Current page size
+   * @param {string} [arg.createdBy] - Short link creator
+   * @param {string} [arg.active] - Short link active status
+   * @param {string} [arg.q] - Search text for original and short url
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ShortLinkList>} - Success response
    * @summary: Get short links
-   * @description: Get short links - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/share/getShortLinks/).
+   * @description: Get short links
    */
-  async getShortLinks({ pageNo, pageSize, createdBy, active, q } = {}) {
-    const {
-      error,
-    } = SharePlatformApplicationValidator.getShortLinks().validate(
+  async getShortLinks(
+    { pageNo, pageSize, createdBy, active, q } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ShareValidator.getShortLinks().validate(
       {
         pageNo,
         pageSize,
@@ -225,9 +253,7 @@ class Share {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = SharePlatformApplicationValidator.getShortLinks().validate(
+    const { error: warrning } = ShareValidator.getShortLinks().validate(
       {
         pageNo,
         pageSize,
@@ -240,8 +266,9 @@ class Share {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Share > getShortLinks \n ${warrning}`,
+        message: "Parameter Validation warrnings for getShortLinks",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -256,12 +283,19 @@ class Share {
       "get",
       `/service/platform/share/v1.0/company/${this.config.companyId}/application/${this.applicationId}/links/short-link/`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = SharePlatformModel.ShortLinkList().validate(response, {
+    } = ShareModel.ShortLinkList().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -269,26 +303,28 @@ class Share {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Share > getShortLinks \n ${res_error}`,
+        message: "Response Validation Warnnings for getShortLinks",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {SharePlatformApplicationValidator.UpdateShortLinkByIdParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<SharePlatformModel.ShortLinkRes>} - Success response
-   * @name updateShortLinkById
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Short link document identifier
+   * @param {ShortLinkReq} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ShortLinkRes>} - Success response
    * @summary: Update short link by id
-   * @description: Update short link by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/share/updateShortLinkById/).
+   * @description: Update short link by id
    */
-  async updateShortLinkById({ id, body } = {}) {
-    const {
-      error,
-    } = SharePlatformApplicationValidator.updateShortLinkById().validate(
+  async updateShortLinkById(
+    { id, body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ShareValidator.updateShortLinkById().validate(
       {
         id,
         body,
@@ -300,9 +336,7 @@ class Share {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = SharePlatformApplicationValidator.updateShortLinkById().validate(
+    const { error: warrning } = ShareValidator.updateShortLinkById().validate(
       {
         id,
         body,
@@ -312,8 +346,9 @@ class Share {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Share > updateShortLinkById \n ${warrning}`,
+        message: "Parameter Validation warrnings for updateShortLinkById",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -323,12 +358,19 @@ class Share {
       "patch",
       `/service/platform/share/v1.0/company/${this.config.companyId}/application/${this.applicationId}/links/short-link/${id}/`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = SharePlatformModel.ShortLinkRes().validate(response, {
+    } = ShareModel.ShortLinkRes().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -336,8 +378,9 @@ class Share {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Share > updateShortLinkById \n ${res_error}`,
+        message: "Response Validation Warnnings for updateShortLinkById",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

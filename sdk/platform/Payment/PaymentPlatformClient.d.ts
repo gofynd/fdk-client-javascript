@@ -3,96 +3,116 @@ declare class Payment {
     constructor(config: any);
     config: any;
     /**
-     * @param {PaymentPlatformValidator.ActivateAndDectivatePayoutParam} arg - Arg object
-     * @returns {Promise<PaymentPlatformModel.UpdatePayoutResponse>} - Success response
-     * @name activateAndDectivatePayout
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.uniqueTransferNo - Unique transfer id
+     * @param {UpdatePayoutRequest} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<UpdatePayoutResponse>} - Success response
      * @summary: Partial Update Payout
-     * @description: Partial Update Payout - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/activateAndDectivatePayout/).
+     * @description: Partial Update Payout
      */
-    activateAndDectivatePayout({ uniqueTransferNo, body }?: PaymentPlatformValidator.ActivateAndDectivatePayoutParam): Promise<PaymentPlatformModel.UpdatePayoutResponse>;
+    activateAndDectivatePayout({ uniqueTransferNo, body }?: {
+        uniqueTransferNo: string;
+        body: UpdatePayoutRequest;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<UpdatePayoutResponse>;
     /**
-     * @param {PaymentPlatformValidator.DeletePayoutParam} arg - Arg object
-     * @returns {Promise<PaymentPlatformModel.DeletePayoutResponse>} - Success response
-     * @name deletePayout
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.uniqueTransferNo - Unique transfer id
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<DeletePayoutResponse>} - Success response
      * @summary: Delete Payout
-     * @description: Delete Payout - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/deletePayout/).
+     * @description: Delete Payout
      */
-    deletePayout({ uniqueTransferNo }?: PaymentPlatformValidator.DeletePayoutParam): Promise<PaymentPlatformModel.DeletePayoutResponse>;
+    deletePayout({ uniqueTransferNo }?: {
+        uniqueTransferNo: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<DeletePayoutResponse>;
     /**
-     * @param {PaymentPlatformValidator.DeleteSubscriptionPaymentMethodParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<PaymentPlatformModel.DeleteSubscriptionPaymentMethodResponse>}
-     *   - Success response
-     *
-     * @name deleteSubscriptionPaymentMethod
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.uniqueExternalId -
+     * @param {string} arg.paymentMethodId -
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<DeleteSubscriptionPaymentMethodResponse>} - Success response
      * @summary: Delete Subscription Payment Method
-     * @description: Uses this api to Delete Subscription Payment Method - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/deleteSubscriptionPaymentMethod/).
+     * @description: Uses this api to Delete Subscription Payment Method
      */
-    deleteSubscriptionPaymentMethod({ uniqueExternalId, paymentMethodId, }?: PaymentPlatformValidator.DeleteSubscriptionPaymentMethodParam): Promise<PaymentPlatformModel.DeleteSubscriptionPaymentMethodResponse>;
+    deleteSubscriptionPaymentMethod({ uniqueExternalId, paymentMethodId }?: {
+        uniqueExternalId: string;
+        paymentMethodId: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<DeleteSubscriptionPaymentMethodResponse>;
     /**
-     * @param {PaymentPlatformValidator.GetAllPayoutsParam} arg - Arg object
-     * @returns {Promise<PaymentPlatformModel.PayoutsResponse>} - Success response
-     * @name getAllPayouts
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.uniqueExternalId] - Fetch payouts using unique external id
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<PayoutsResponse>} - Success response
      * @summary: Get All Payouts
-     * @description: Get All Payouts - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getAllPayouts/).
+     * @description: Get All Payouts
      */
-    getAllPayouts({ uniqueExternalId }?: PaymentPlatformValidator.GetAllPayoutsParam): Promise<PaymentPlatformModel.PayoutsResponse>;
+    getAllPayouts({ uniqueExternalId }?: {
+        uniqueExternalId?: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<PayoutsResponse>;
     /**
-     * @param {PaymentPlatformValidator.GetSubscriptionConfigParam} arg - Arg object
-     * @returns {Promise<PaymentPlatformModel.SubscriptionConfigResponse>} -
-     *   Success response
-     * @name getSubscriptionConfig
+     * @param {Object} arg - Arg object.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<SubscriptionConfigResponse>} - Success response
      * @summary: List Subscription Config
-     * @description: Get all  Subscription Config details - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getSubscriptionConfig/).
+     * @description: Get all  Subscription Config details
      */
-    getSubscriptionConfig({}?: any): Promise<PaymentPlatformModel.SubscriptionConfigResponse>;
+    getSubscriptionConfig({ headers }?: any): Promise<SubscriptionConfigResponse>;
     /**
-     * @param {PaymentPlatformValidator.GetSubscriptionPaymentMethodParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<PaymentPlatformModel.SubscriptionPaymentMethodResponse>}
-     *   - Success response
-     *
-     * @name getSubscriptionPaymentMethod
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.uniqueExternalId] - Unique external id
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<SubscriptionPaymentMethodResponse>} - Success response
      * @summary: List Subscription Payment Method
-     * @description: Get all  Subscription  Payment Method - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getSubscriptionPaymentMethod/).
+     * @description: Get all  Subscription  Payment Method
      */
-    getSubscriptionPaymentMethod({ uniqueExternalId }?: PaymentPlatformValidator.GetSubscriptionPaymentMethodParam): Promise<PaymentPlatformModel.SubscriptionPaymentMethodResponse>;
+    getSubscriptionPaymentMethod({ uniqueExternalId }?: {
+        uniqueExternalId?: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<SubscriptionPaymentMethodResponse>;
     /**
-     * @param {PaymentPlatformValidator.SavePayoutParam} arg - Arg object
-     * @returns {Promise<PaymentPlatformModel.PayoutResponse>} - Success response
-     * @name savePayout
+     * @param {Object} arg - Arg object.
+     * @param {PayoutRequest} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<PayoutResponse>} - Success response
      * @summary: Save Payout
-     * @description: Save Payout - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/savePayout/).
+     * @description: Save Payout
      */
-    savePayout({ body }?: PaymentPlatformValidator.SavePayoutParam): Promise<PaymentPlatformModel.PayoutResponse>;
+    savePayout({ body }?: {
+        body: PayoutRequest;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<PayoutResponse>;
     /**
-     * @param {PaymentPlatformValidator.SaveSubscriptionSetupIntentParam} arg - Arg object
-     * @returns {Promise<PaymentPlatformModel.SaveSubscriptionSetupIntentResponse>}
-     *   - Success response
-     *
-     * @name saveSubscriptionSetupIntent
+     * @param {Object} arg - Arg object.
+     * @param {SaveSubscriptionSetupIntentRequest} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<SaveSubscriptionSetupIntentResponse>} - Success response
      * @summary: Save Subscription Setup Intent
-     * @description: Uses this api to Save Subscription Setup Intent - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/saveSubscriptionSetupIntent/).
+     * @description: Uses this api to Save Subscription Setup Intent
      */
-    saveSubscriptionSetupIntent({ body }?: PaymentPlatformValidator.SaveSubscriptionSetupIntentParam): Promise<PaymentPlatformModel.SaveSubscriptionSetupIntentResponse>;
+    saveSubscriptionSetupIntent({ body }?: {
+        body: SaveSubscriptionSetupIntentRequest;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<SaveSubscriptionSetupIntentResponse>;
     /**
-     * @param {PaymentPlatformValidator.UpdatePayoutParam} arg - Arg object
-     * @returns {Promise<PaymentPlatformModel.UpdatePayoutResponse>} - Success response
-     * @name updatePayout
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.uniqueTransferNo - Unique transfer id
+     * @param {PayoutRequest} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<UpdatePayoutResponse>} - Success response
      * @summary: Update Payout
-     * @description: Update Payout - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/updatePayout/).
+     * @description: Update Payout
      */
-    updatePayout({ uniqueTransferNo, body }?: PaymentPlatformValidator.UpdatePayoutParam): Promise<PaymentPlatformModel.UpdatePayoutResponse>;
+    updatePayout({ uniqueTransferNo, body }?: {
+        uniqueTransferNo: string;
+        body: PayoutRequest;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<UpdatePayoutResponse>;
     /**
-     * @param {PaymentPlatformValidator.VerifyIfscCodeParam} arg - Arg object
-     * @returns {Promise<PaymentPlatformModel.IfscCodeResponse>} - Success response
-     * @name verifyIfscCode
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.ifscCode] -
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<IfscCodeResponse>} - Success response
      * @summary: Ifsc Code Verification
-     * @description: Get True/False for correct IFSC Code for adding bank details for refund - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/verifyIfscCode/).
+     * @description: Get True/False for correct IFSC Code for adding bank details for refund
      */
-    verifyIfscCode({ ifscCode }?: PaymentPlatformValidator.VerifyIfscCodeParam): Promise<PaymentPlatformModel.IfscCodeResponse>;
+    verifyIfscCode({ ifscCode }?: {
+        ifscCode?: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<IfscCodeResponse>;
 }
-import PaymentPlatformValidator = require("./PaymentPlatformValidator");
-import PaymentPlatformModel = require("./PaymentPlatformModel");

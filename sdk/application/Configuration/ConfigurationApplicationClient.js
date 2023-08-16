@@ -2,8 +2,8 @@ const ApplicationAPIClient = require("../ApplicationAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
-const ConfigurationApplicationValidator = require("./ConfigurationApplicationValidator");
-const ConfigurationApplicationModel = require("./ConfigurationApplicationModel");
+const ConfigurationValidator = require("./ConfigurationApplicationValidator");
+const ConfigurationModel = require("./ConfigurationApplicationModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -49,17 +49,13 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationApplicationValidator.GetAppCurrenciesParam} arg - Arg object.
-   * @returns {Promise<ConfigurationApplicationModel.AppCurrencyResponse>} -
-   *   Success response
-   * @name getAppCurrencies
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<AppCurrencyResponse>} - Success response
    * @summary: Get currencies enabled in the application
-   * @description: Use this API to get a list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getAppCurrencies/).
+   * @description: Use this API to get a list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
    */
-  async getAppCurrencies({} = {}) {
-    const {
-      error,
-    } = ConfigurationApplicationValidator.getAppCurrencies().validate(
+  async getAppCurrencies({ headers } = { headers: false }) {
+    const { error } = ConfigurationValidator.getAppCurrencies().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -70,15 +66,16 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationApplicationValidator.getAppCurrencies().validate(
+    } = ConfigurationValidator.getAppCurrencies().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Configuration > getAppCurrencies \n ${warrning}`,
+        message: "Parameter Validation warrnings for getAppCurrencies",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -94,12 +91,18 @@ class Configuration {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ConfigurationApplicationModel.AppCurrencyResponse().validate(response, {
+    } = ConfigurationModel.AppCurrencyResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -107,32 +110,35 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Configuration > getAppCurrencies \n ${res_error}`,
+        message: "Response Validation Warnnings for getAppCurrencies",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ConfigurationApplicationValidator.GetAppStaffListParam} arg - Arg object.
-   * @returns {Promise<ConfigurationApplicationModel.AppStaffListResponse>} -
-   *   Success response
-   * @name getAppStaffList
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNo] -
+   * @param {number} [arg.pageSize] -
+   * @param {boolean} [arg.orderIncent] - This is a boolean value. Select
+   *   `true` to retrieve the staff members eligible for getting incentives on orders.
+   * @param {number} [arg.orderingStore] - ID of the ordering store. Helps in
+   *   retrieving staff members working at a particular ordering store.
+   * @param {string} [arg.user] - Mongo ID of the staff. Helps in retrieving
+   *   the details of a particular staff member.
+   * @param {string} [arg.userName] - User name of the member
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<AppStaffListResponse>} - Success response
    * @summary: Get a list of staff.
-   * @description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getAppStaffList/).
+   * @description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
    */
-  async getAppStaffList({
-    pageNo,
-    pageSize,
-    orderIncent,
-    orderingStore,
-    user,
-    userName,
-  } = {}) {
-    const {
-      error,
-    } = ConfigurationApplicationValidator.getAppStaffList().validate(
+  async getAppStaffList(
+    { pageNo, pageSize, orderIncent, orderingStore, user, userName } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ConfigurationValidator.getAppStaffList().validate(
       { pageNo, pageSize, orderIncent, orderingStore, user, userName },
       { abortEarly: false, allowUnknown: true }
     );
@@ -143,15 +149,16 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationApplicationValidator.getAppStaffList().validate(
+    } = ConfigurationValidator.getAppStaffList().validate(
       { pageNo, pageSize, orderIncent, orderingStore, user, userName },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Configuration > getAppStaffList \n ${warrning}`,
+        message: "Parameter Validation warrnings for getAppStaffList",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -173,21 +180,28 @@ class Configuration {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ConfigurationApplicationModel.AppStaffListResponse().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = ConfigurationModel.AppStaffListResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Configuration > getAppStaffList \n ${res_error}`,
+        message: "Response Validation Warnnings for getAppStaffList",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -203,7 +217,6 @@ class Configuration {
    * @param {string} [arg.user] - Mongo ID of the staff. Helps in retrieving
    *   the details of a particular staff member.
    * @param {string} [arg.userName] - User name of the member
-   * @returns {Paginator<ConfigurationApplicationModel.AppStaffListResponse>}
    * @summary: Get a list of staff.
    * @description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
    */
@@ -238,15 +251,23 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationApplicationValidator.GetAppStaffsParam} arg - Arg object.
-   * @returns {Promise<ConfigurationApplicationModel.AppStaffResponse>} -
-   *   Success response
-   * @name getAppStaffs
+   * @param {Object} arg - Arg object.
+   * @param {boolean} [arg.orderIncent] - This is a boolean value. Select
+   *   `true` to retrieve the staff members eligible for getting incentives on orders.
+   * @param {number} [arg.orderingStore] - ID of the ordering store. Helps in
+   *   retrieving staff members working at a particular ordering store.
+   * @param {string} [arg.user] - Mongo ID of the staff. Helps in retrieving
+   *   the details of a particular staff member.
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<AppStaffResponse>} - Success response
    * @summary: Get a list of staff.
-   * @description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getAppStaffs/).
+   * @description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application.
    */
-  async getAppStaffs({ orderIncent, orderingStore, user } = {}) {
-    const { error } = ConfigurationApplicationValidator.getAppStaffs().validate(
+  async getAppStaffs(
+    { orderIncent, orderingStore, user } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ConfigurationValidator.getAppStaffs().validate(
       { orderIncent, orderingStore, user },
       { abortEarly: false, allowUnknown: true }
     );
@@ -255,17 +276,16 @@ class Configuration {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ConfigurationApplicationValidator.getAppStaffs().validate(
+    const { error: warrning } = ConfigurationValidator.getAppStaffs().validate(
       { orderIncent, orderingStore, user },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Configuration > getAppStaffs \n ${warrning}`,
+        message: "Parameter Validation warrnings for getAppStaffs",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -284,12 +304,18 @@ class Configuration {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ConfigurationApplicationModel.AppStaffResponse().validate(response, {
+    } = ConfigurationModel.AppStaffResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -297,24 +323,22 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Configuration > getAppStaffs \n ${res_error}`,
+        message: "Response Validation Warnnings for getAppStaffs",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ConfigurationApplicationValidator.GetApplicationParam} arg - Arg object.
-   * @returns {Promise<ConfigurationApplicationModel.Application>} - Success response
-   * @name getApplication
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<Application>} - Success response
    * @summary: Get current sales channel details
-   * @description: Use this API to get the current sales channel details which includes configurations that indicate the status of the website, domain, ID, tokens, images, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getApplication/).
+   * @description: Use this API to get the current sales channel details which includes configurations that indicate the status of the website, domain, ID, tokens, images, etc.
    */
-  async getApplication({} = {}) {
-    const {
-      error,
-    } = ConfigurationApplicationValidator.getApplication().validate(
+  async getApplication({ headers } = { headers: false }) {
+    const { error } = ConfigurationValidator.getApplication().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -325,15 +349,16 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationApplicationValidator.getApplication().validate(
+    } = ConfigurationValidator.getApplication().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Configuration > getApplication \n ${warrning}`,
+        message: "Parameter Validation warrnings for getApplication",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -349,12 +374,18 @@ class Configuration {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ConfigurationApplicationModel.Application().validate(response, {
+    } = ConfigurationModel.Application().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -362,25 +393,22 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Configuration > getApplication \n ${res_error}`,
+        message: "Response Validation Warnnings for getApplication",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ConfigurationApplicationValidator.GetBasicDetailsParam} arg - Arg object.
-   * @returns {Promise<ConfigurationApplicationModel.ApplicationDetail>} -
-   *   Success response
-   * @name getBasicDetails
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ApplicationDetail>} - Success response
    * @summary: Get basic details of the application
-   * @description: Use this API to retrieve only the basic details of the application which includes channel name, description, banner, logo, favicon, domain details, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getBasicDetails/).
+   * @description: Use this API to retrieve only the basic details of the application which includes channel name, description, banner, logo, favicon, domain details, etc.
    */
-  async getBasicDetails({} = {}) {
-    const {
-      error,
-    } = ConfigurationApplicationValidator.getBasicDetails().validate(
+  async getBasicDetails({ headers } = { headers: false }) {
+    const { error } = ConfigurationValidator.getBasicDetails().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -391,15 +419,16 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationApplicationValidator.getBasicDetails().validate(
+    } = ConfigurationValidator.getBasicDetails().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Configuration > getBasicDetails \n ${warrning}`,
+        message: "Parameter Validation warrnings for getBasicDetails",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -415,12 +444,18 @@ class Configuration {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ConfigurationApplicationModel.ApplicationDetail().validate(response, {
+    } = ConfigurationModel.ApplicationDetail().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -428,26 +463,22 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Configuration > getBasicDetails \n ${res_error}`,
+        message: "Response Validation Warnnings for getBasicDetails",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ConfigurationApplicationValidator.GetContactInfoParam} arg - Arg object.
-   * @returns {Promise<ConfigurationApplicationModel.ApplicationInformation>}
-   *   - Success response
-   *
-   * @name getContactInfo
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ApplicationInformation>} - Success response
    * @summary: Get application information
-   * @description: Use this API to retrieve information about the social links, address and contact information of the company/seller/brand operating the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getContactInfo/).
+   * @description: Use this API to retrieve information about the social links, address and contact information of the company/seller/brand operating the application.
    */
-  async getContactInfo({} = {}) {
-    const {
-      error,
-    } = ConfigurationApplicationValidator.getContactInfo().validate(
+  async getContactInfo({ headers } = { headers: false }) {
+    const { error } = ConfigurationValidator.getContactInfo().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -458,15 +489,16 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationApplicationValidator.getContactInfo().validate(
+    } = ConfigurationValidator.getContactInfo().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Configuration > getContactInfo \n ${warrning}`,
+        message: "Parameter Validation warrnings for getContactInfo",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -482,38 +514,41 @@ class Configuration {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ConfigurationApplicationModel.ApplicationInformation().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = ConfigurationModel.ApplicationInformation().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Configuration > getContactInfo \n ${res_error}`,
+        message: "Response Validation Warnnings for getContactInfo",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ConfigurationApplicationValidator.GetCurrenciesParam} arg - Arg object.
-   * @returns {Promise<ConfigurationApplicationModel.CurrenciesResponse>} -
-   *   Success response
-   * @name getCurrencies
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CurrenciesResponse>} - Success response
    * @summary: Get all currencies list
-   * @description: Use this API to get a list of currencies available. Moreover, get the name, code, symbol, and the decimal digits of the currencies. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getCurrencies/).
+   * @description: Use this API to get a list of currencies available. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
    */
-  async getCurrencies({} = {}) {
-    const {
-      error,
-    } = ConfigurationApplicationValidator.getCurrencies().validate(
+  async getCurrencies({ headers } = { headers: false }) {
+    const { error } = ConfigurationValidator.getCurrencies().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -522,17 +557,16 @@ class Configuration {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ConfigurationApplicationValidator.getCurrencies().validate(
+    const { error: warrning } = ConfigurationValidator.getCurrencies().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Configuration > getCurrencies \n ${warrning}`,
+        message: "Parameter Validation warrnings for getCurrencies",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -548,12 +582,18 @@ class Configuration {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ConfigurationApplicationModel.CurrenciesResponse().validate(response, {
+    } = ConfigurationModel.CurrenciesResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -561,24 +601,24 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Configuration > getCurrencies \n ${res_error}`,
+        message: "Response Validation Warnnings for getCurrencies",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ConfigurationApplicationValidator.GetCurrencyByIdParam} arg - Arg object.
-   * @returns {Promise<ConfigurationApplicationModel.Currency>} - Success response
-   * @name getCurrencyById
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Object ID assigned to the currency
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<Currency>} - Success response
    * @summary: Get currency by its ID
-   * @description: Use this API to retrieve a currency using its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getCurrencyById/).
+   * @description: Use this API to retrieve a currency using its ID.
    */
-  async getCurrencyById({ id } = {}) {
-    const {
-      error,
-    } = ConfigurationApplicationValidator.getCurrencyById().validate(
+  async getCurrencyById({ id } = {}, { headers } = { headers: false }) {
+    const { error } = ConfigurationValidator.getCurrencyById().validate(
       { id },
       { abortEarly: false, allowUnknown: true }
     );
@@ -589,15 +629,16 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationApplicationValidator.getCurrencyById().validate(
+    } = ConfigurationValidator.getCurrencyById().validate(
       { id },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Configuration > getCurrencyById \n ${warrning}`,
+        message: "Parameter Validation warrnings for getCurrencyById",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -613,12 +654,18 @@ class Configuration {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ConfigurationApplicationModel.Currency().validate(response, {
+    } = ConfigurationModel.Currency().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -626,23 +673,22 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Configuration > getCurrencyById \n ${res_error}`,
+        message: "Response Validation Warnnings for getCurrencyById",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ConfigurationApplicationValidator.GetFeaturesParam} arg - Arg object.
-   * @returns {Promise<ConfigurationApplicationModel.AppFeatureResponse>} -
-   *   Success response
-   * @name getFeatures
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<AppFeatureResponse>} - Success response
    * @summary: Get features of application
-   * @description: Use this API to retrieve the configuration of features such as product detail, landing page, options in the login/registration screen, communication opt-in, cart options and many more. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getFeatures/).
+   * @description: Use this API to retrieve the configuration of features such as product detail, landing page, options in the login/registration screen, communication opt-in, cart options and many more.
    */
-  async getFeatures({} = {}) {
-    const { error } = ConfigurationApplicationValidator.getFeatures().validate(
+  async getFeatures({ headers } = { headers: false }) {
+    const { error } = ConfigurationValidator.getFeatures().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -651,17 +697,16 @@ class Configuration {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ConfigurationApplicationValidator.getFeatures().validate(
+    const { error: warrning } = ConfigurationValidator.getFeatures().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Configuration > getFeatures \n ${warrning}`,
+        message: "Parameter Validation warrnings for getFeatures",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -677,12 +722,18 @@ class Configuration {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ConfigurationApplicationModel.AppFeatureResponse().validate(response, {
+    } = ConfigurationModel.AppFeatureResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -690,27 +741,22 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Configuration > getFeatures \n ${res_error}`,
+        message: "Response Validation Warnnings for getFeatures",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ConfigurationApplicationValidator.GetIntegrationTokensParam} arg
-   *   - Arg object.
-   *
-   * @returns {Promise<ConfigurationApplicationModel.AppTokenResponse>} -
-   *   Success response
-   * @name getIntegrationTokens
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<AppTokenResponse>} - Success response
    * @summary: Get integration tokens
-   * @description: Use this API to retrieve the tokens used while integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map and Facebook. **Note** - Token values are encrypted with AES encryption using a secret key. Kindly reach out to the developers for obtaining the secret key. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getIntegrationTokens/).
+   * @description: Use this API to retrieve the tokens used while integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map and Facebook. **Note** - Token values are encrypted with AES encryption using a secret key. Kindly reach out to the developers for obtaining the secret key.
    */
-  async getIntegrationTokens({} = {}) {
-    const {
-      error,
-    } = ConfigurationApplicationValidator.getIntegrationTokens().validate(
+  async getIntegrationTokens({ headers } = { headers: false }) {
+    const { error } = ConfigurationValidator.getIntegrationTokens().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -721,15 +767,16 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationApplicationValidator.getIntegrationTokens().validate(
+    } = ConfigurationValidator.getIntegrationTokens().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Configuration > getIntegrationTokens \n ${warrning}`,
+        message: "Parameter Validation warrnings for getIntegrationTokens",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -745,12 +792,18 @@ class Configuration {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ConfigurationApplicationModel.AppTokenResponse().validate(response, {
+    } = ConfigurationModel.AppTokenResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -758,23 +811,22 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Configuration > getIntegrationTokens \n ${res_error}`,
+        message: "Response Validation Warnnings for getIntegrationTokens",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ConfigurationApplicationValidator.GetLanguagesParam} arg - Arg object.
-   * @returns {Promise<ConfigurationApplicationModel.LanguageResponse>} -
-   *   Success response
-   * @name getLanguages
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<LanguageResponse>} - Success response
    * @summary: Get list of languages
-   * @description: Use this API to get a list of languages supported in the application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getLanguages/).
+   * @description: Use this API to get a list of languages supported in the application
    */
-  async getLanguages({} = {}) {
-    const { error } = ConfigurationApplicationValidator.getLanguages().validate(
+  async getLanguages({ headers } = { headers: false }) {
+    const { error } = ConfigurationValidator.getLanguages().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -783,17 +835,16 @@ class Configuration {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ConfigurationApplicationValidator.getLanguages().validate(
+    const { error: warrning } = ConfigurationValidator.getLanguages().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Configuration > getLanguages \n ${warrning}`,
+        message: "Parameter Validation warrnings for getLanguages",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -809,12 +860,18 @@ class Configuration {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ConfigurationApplicationModel.LanguageResponse().validate(response, {
+    } = ConfigurationModel.LanguageResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -822,28 +879,27 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Configuration > getLanguages \n ${res_error}`,
+        message: "Response Validation Warnnings for getLanguages",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ConfigurationApplicationValidator.GetOrderingStoreCookieParam} arg
-   *   - Arg object.
-   *
-   * @returns {Promise<ConfigurationApplicationModel.SuccessMessageResponse>}
-   *   - Success response
-   *
-   * @name getOrderingStoreCookie
+   * @param {Object} arg - Arg object.
+   * @param {OrderingStoreSelectRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<SuccessMessageResponse>} - Success response
    * @summary: Get an Ordering Store signed cookie on selection of ordering store.
-   * @description: Use this API to get an Ordering Store signed cookie upon selecting an ordering store. This will be used by the cart service to verify a coupon against the selected ordering store in cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getOrderingStoreCookie/).
+   * @description: Use this API to get an Ordering Store signed cookie upon selecting an ordering store. This will be used by the cart service to verify a coupon against the selected ordering store in cart.
    */
-  async getOrderingStoreCookie({ body } = {}) {
-    const {
-      error,
-    } = ConfigurationApplicationValidator.getOrderingStoreCookie().validate(
+  async getOrderingStoreCookie(
+    { body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ConfigurationValidator.getOrderingStoreCookie().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -854,15 +910,16 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationApplicationValidator.getOrderingStoreCookie().validate(
+    } = ConfigurationValidator.getOrderingStoreCookie().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Configuration > getOrderingStoreCookie \n ${warrning}`,
+        message: "Parameter Validation warrnings for getOrderingStoreCookie",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -878,37 +935,50 @@ class Configuration {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ConfigurationApplicationModel.SuccessMessageResponse().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = ConfigurationModel.SuccessMessageResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Configuration > getOrderingStoreCookie \n ${res_error}`,
+        message: "Response Validation Warnnings for getOrderingStoreCookie",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ConfigurationApplicationValidator.GetOrderingStoresParam} arg - Arg object.
-   * @returns {Promise<ConfigurationApplicationModel.OrderingStores>} - Success response
-   * @name getOrderingStores
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNo] - The page number to navigate through the
+   *   given set of results. Default value is 1.
+   * @param {number} [arg.pageSize] - The number of items to retrieve in each
+   *   page. Default value is 10.
+   * @param {string} [arg.q] - Store code or name of the ordering store.
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<OrderingStores>} - Success response
    * @summary: Get all deployment stores
-   * @description: Use this API to retrieve the details of all the deployment stores (the selling locations where the application will be utilized for placing orders). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getOrderingStores/).
+   * @description: Use this API to retrieve the details of all the deployment stores (the selling locations where the application will be utilized for placing orders).
    */
-  async getOrderingStores({ pageNo, pageSize, q } = {}) {
-    const {
-      error,
-    } = ConfigurationApplicationValidator.getOrderingStores().validate(
+  async getOrderingStores(
+    { pageNo, pageSize, q } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ConfigurationValidator.getOrderingStores().validate(
       { pageNo, pageSize, q },
       { abortEarly: false, allowUnknown: true }
     );
@@ -919,15 +989,16 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationApplicationValidator.getOrderingStores().validate(
+    } = ConfigurationValidator.getOrderingStores().validate(
       { pageNo, pageSize, q },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Configuration > getOrderingStores \n ${warrning}`,
+        message: "Parameter Validation warrnings for getOrderingStores",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -946,12 +1017,18 @@ class Configuration {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ConfigurationApplicationModel.OrderingStores().validate(response, {
+    } = ConfigurationModel.OrderingStores().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -959,8 +1036,9 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Configuration > getOrderingStores \n ${res_error}`,
+        message: "Response Validation Warnnings for getOrderingStores",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -971,7 +1049,6 @@ class Configuration {
    * @param {number} [arg.pageSize] - The number of items to retrieve in each
    *   page. Default value is 10.
    * @param {string} [arg.q] - Store code or name of the ordering store.
-   * @returns {Paginator<ConfigurationApplicationModel.OrderingStores>}
    * @summary: Get all deployment stores
    * @description: Use this API to retrieve the details of all the deployment stores (the selling locations where the application will be utilized for placing orders).
    */
@@ -997,16 +1074,13 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationApplicationValidator.GetOwnerInfoParam} arg - Arg object.
-   * @returns {Promise<ConfigurationApplicationModel.ApplicationAboutResponse>}
-   *   - Success response
-   *
-   * @name getOwnerInfo
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ApplicationAboutResponse>} - Success response
    * @summary: Get sales channel, owner and seller information
-   * @description: Use this API to get the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, etc. This API also retrieves the seller and owner information such as address, email address, and phone number. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getOwnerInfo/).
+   * @description: Use this API to get the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, etc. This API also retrieves the seller and owner information such as address, email address, and phone number.
    */
-  async getOwnerInfo({} = {}) {
-    const { error } = ConfigurationApplicationValidator.getOwnerInfo().validate(
+  async getOwnerInfo({ headers } = { headers: false }) {
+    const { error } = ConfigurationValidator.getOwnerInfo().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -1015,17 +1089,16 @@ class Configuration {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ConfigurationApplicationValidator.getOwnerInfo().validate(
+    const { error: warrning } = ConfigurationValidator.getOwnerInfo().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Configuration > getOwnerInfo \n ${warrning}`,
+        message: "Parameter Validation warrnings for getOwnerInfo",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1041,38 +1114,43 @@ class Configuration {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ConfigurationApplicationModel.ApplicationAboutResponse().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = ConfigurationModel.ApplicationAboutResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Configuration > getOwnerInfo \n ${res_error}`,
+        message: "Response Validation Warnnings for getOwnerInfo",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ConfigurationApplicationValidator.GetStoreDetailByIdParam} arg -
-   *   Arg object.
-   * @returns {Promise<ConfigurationApplicationModel.OrderingStore>} - Success response
-   * @name getStoreDetailById
+   * @param {Object} arg - Arg object.
+   * @param {number} arg.storeId - Store uid
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<OrderingStore>} - Success response
    * @summary: Get ordering store details
-   * @description: Use this API to retrieve the details of given stores uid (the selling locations where the application will be utilized for placing orders). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getStoreDetailById/).
+   * @description: Use this API to retrieve the details of given stores uid (the selling locations where the application will be utilized for placing orders).
    */
-  async getStoreDetailById({ storeId } = {}) {
-    const {
-      error,
-    } = ConfigurationApplicationValidator.getStoreDetailById().validate(
+  async getStoreDetailById({ storeId } = {}, { headers } = { headers: false }) {
+    const { error } = ConfigurationValidator.getStoreDetailById().validate(
       { storeId },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1083,15 +1161,16 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationApplicationValidator.getStoreDetailById().validate(
+    } = ConfigurationValidator.getStoreDetailById().validate(
       { storeId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Configuration > getStoreDetailById \n ${warrning}`,
+        message: "Parameter Validation warrnings for getStoreDetailById",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1107,12 +1186,18 @@ class Configuration {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ConfigurationApplicationModel.OrderingStore().validate(response, {
+    } = ConfigurationModel.OrderingStore().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1120,28 +1205,24 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Configuration > getStoreDetailById \n ${res_error}`,
+        message: "Response Validation Warnnings for getStoreDetailById",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ConfigurationApplicationValidator.RemoveOrderingStoreCookieParam} arg
-   *   - Arg object.
-   *
-   * @returns {Promise<ConfigurationApplicationModel.SuccessMessageResponse>}
-   *   - Success response
-   *
-   * @name removeOrderingStoreCookie
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<SuccessMessageResponse>} - Success response
    * @summary: Unset the Ordering Store signed cookie.
-   * @description: Use this API to unset the Ordering Store cookie upon changing the sales channel, by its domain URL, in the Universal Fynd Store app. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/removeOrderingStoreCookie/).
+   * @description: Use this API to unset the Ordering Store cookie upon changing the sales channel, by its domain URL, in the Universal Fynd Store app.
    */
-  async removeOrderingStoreCookie({} = {}) {
+  async removeOrderingStoreCookie({ headers } = { headers: false }) {
     const {
       error,
-    } = ConfigurationApplicationValidator.removeOrderingStoreCookie().validate(
+    } = ConfigurationValidator.removeOrderingStoreCookie().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -1152,15 +1233,16 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationApplicationValidator.removeOrderingStoreCookie().validate(
+    } = ConfigurationValidator.removeOrderingStoreCookie().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Configuration > removeOrderingStoreCookie \n ${warrning}`,
+        message: "Parameter Validation warrnings for removeOrderingStoreCookie",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1176,21 +1258,28 @@ class Configuration {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ConfigurationApplicationModel.SuccessMessageResponse().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = ConfigurationModel.SuccessMessageResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Configuration > removeOrderingStoreCookie \n ${res_error}`,
+        message: "Response Validation Warnnings for removeOrderingStoreCookie",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

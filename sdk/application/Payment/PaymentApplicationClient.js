@@ -2,8 +2,8 @@ const ApplicationAPIClient = require("../ApplicationAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
-const PaymentApplicationValidator = require("./PaymentApplicationValidator");
-const PaymentApplicationModel = require("./PaymentApplicationModel");
+const PaymentValidator = require("./PaymentApplicationValidator");
+const PaymentModel = require("./PaymentApplicationModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -99,17 +99,15 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.AddBeneficiaryDetailsParam} arg - Arg object.
-   * @returns {Promise<PaymentApplicationModel.RefundAccountResponse>} -
-   *   Success response
-   * @name addBeneficiaryDetails
+   * @param {Object} arg - Arg object.
+   * @param {AddBeneficiaryDetailsRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<RefundAccountResponse>} - Success response
    * @summary: Save bank details for cancelled/returned order
-   * @description: Use this API to save the bank details for a returned or cancelled order to refund the amount. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/addBeneficiaryDetails/).
+   * @description: Use this API to save the bank details for a returned or cancelled order to refund the amount.
    */
-  async addBeneficiaryDetails({ body } = {}) {
-    const {
-      error,
-    } = PaymentApplicationValidator.addBeneficiaryDetails().validate(
+  async addBeneficiaryDetails({ body } = {}, { headers } = { headers: false }) {
+    const { error } = PaymentValidator.addBeneficiaryDetails().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -120,15 +118,16 @@ class Payment {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PaymentApplicationValidator.addBeneficiaryDetails().validate(
+    } = PaymentValidator.addBeneficiaryDetails().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > addBeneficiaryDetails \n ${warrning}`,
+        message: "Parameter Validation warrnings for addBeneficiaryDetails",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -144,12 +143,18 @@ class Payment {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.RefundAccountResponse().validate(response, {
+    } = PaymentModel.RefundAccountResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -157,27 +162,27 @@ class Payment {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > addBeneficiaryDetails \n ${res_error}`,
+        message: "Response Validation Warnnings for addBeneficiaryDetails",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.AddRefundBankAccountUsingOTPParam} arg
-   *   - Arg object.
-   *
-   * @returns {Promise<PaymentApplicationModel.RefundAccountResponse>} -
-   *   Success response
-   * @name addRefundBankAccountUsingOTP
+   * @param {Object} arg - Arg object.
+   * @param {AddBeneficiaryDetailsOTPRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<RefundAccountResponse>} - Success response
    * @summary: Save bank details for cancelled/returned order
-   * @description: Use this API to save bank details for returned/cancelled order to refund amount in his account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/addRefundBankAccountUsingOTP/).
+   * @description: Use this API to save bank details for returned/cancelled order to refund amount in his account.
    */
-  async addRefundBankAccountUsingOTP({ body } = {}) {
-    const {
-      error,
-    } = PaymentApplicationValidator.addRefundBankAccountUsingOTP().validate(
+  async addRefundBankAccountUsingOTP(
+    { body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PaymentValidator.addRefundBankAccountUsingOTP().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -188,15 +193,17 @@ class Payment {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PaymentApplicationValidator.addRefundBankAccountUsingOTP().validate(
+    } = PaymentValidator.addRefundBankAccountUsingOTP().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > addRefundBankAccountUsingOTP \n ${warrning}`,
+        message:
+          "Parameter Validation warrnings for addRefundBankAccountUsingOTP",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -212,12 +219,18 @@ class Payment {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.RefundAccountResponse().validate(response, {
+    } = PaymentModel.RefundAccountResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -225,24 +238,25 @@ class Payment {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > addRefundBankAccountUsingOTP \n ${res_error}`,
+        message:
+          "Response Validation Warnnings for addRefundBankAccountUsingOTP",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.AttachCardToCustomerParam} arg - Arg object.
-   * @returns {Promise<PaymentApplicationModel.AttachCardsResponse>} - Success response
-   * @name attachCardToCustomer
+   * @param {Object} arg - Arg object.
+   * @param {AttachCardRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<AttachCardsResponse>} - Success response
    * @summary: Attach a saved card to customer.
-   * @description: Use this API to attach a customer's saved card at the payment gateway, such as Stripe, Juspay. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/attachCardToCustomer/).
+   * @description: Use this API to attach a customer's saved card at the payment gateway, such as Stripe, Juspay.
    */
-  async attachCardToCustomer({ body } = {}) {
-    const {
-      error,
-    } = PaymentApplicationValidator.attachCardToCustomer().validate(
+  async attachCardToCustomer({ body } = {}, { headers } = { headers: false }) {
+    const { error } = PaymentValidator.attachCardToCustomer().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -253,15 +267,16 @@ class Payment {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PaymentApplicationValidator.attachCardToCustomer().validate(
+    } = PaymentValidator.attachCardToCustomer().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > attachCardToCustomer \n ${warrning}`,
+        message: "Parameter Validation warrnings for attachCardToCustomer",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -277,12 +292,18 @@ class Payment {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.AttachCardsResponse().validate(response, {
+    } = PaymentModel.AttachCardsResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -290,23 +311,24 @@ class Payment {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > attachCardToCustomer \n ${res_error}`,
+        message: "Response Validation Warnnings for attachCardToCustomer",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.CancelPaymentLinkParam} arg - Arg object.
-   * @returns {Promise<PaymentApplicationModel.CancelPaymentLinkResponse>} -
-   *   Success response
-   * @name cancelPaymentLink
+   * @param {Object} arg - Arg object.
+   * @param {CancelOrResendPaymentLinkRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CancelPaymentLinkResponse>} - Success response
    * @summary: Cancel payment link
-   * @description: Use this API to cancel a payment link for the customer - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/cancelPaymentLink/).
+   * @description: Use this API to cancel a payment link for the customer
    */
-  async cancelPaymentLink({ body } = {}) {
-    const { error } = PaymentApplicationValidator.cancelPaymentLink().validate(
+  async cancelPaymentLink({ body } = {}, { headers } = { headers: false }) {
+    const { error } = PaymentValidator.cancelPaymentLink().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -315,17 +337,16 @@ class Payment {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentApplicationValidator.cancelPaymentLink().validate(
+    const { error: warrning } = PaymentValidator.cancelPaymentLink().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > cancelPaymentLink \n ${warrning}`,
+        message: "Parameter Validation warrnings for cancelPaymentLink",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -341,12 +362,18 @@ class Payment {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.CancelPaymentLinkResponse().validate(response, {
+    } = PaymentModel.CancelPaymentLinkResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -354,22 +381,28 @@ class Payment {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > cancelPaymentLink \n ${res_error}`,
+        message: "Response Validation Warnnings for cancelPaymentLink",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.CardDetailsParam} arg - Arg object.
-   * @returns {Promise<PaymentApplicationModel.CardDetailsResponse>} - Success response
-   * @name cardDetails
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.cardInfo - Card first 6 digit IIN(prefix) number.
+   * @param {string} [arg.aggregator] -
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CardDetailsResponse>} - Success response
    * @summary: API to get Card info from PG
-   * @description: API to get Card info from PG - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/cardDetails/).
+   * @description: API to get Card info from PG
    */
-  async cardDetails({ cardInfo, aggregator } = {}) {
-    const { error } = PaymentApplicationValidator.cardDetails().validate(
+  async cardDetails(
+    { cardInfo, aggregator } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PaymentValidator.cardDetails().validate(
       { cardInfo, aggregator },
       { abortEarly: false, allowUnknown: true }
     );
@@ -378,17 +411,16 @@ class Payment {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentApplicationValidator.cardDetails().validate(
+    const { error: warrning } = PaymentValidator.cardDetails().validate(
       { cardInfo, aggregator },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > cardDetails \n ${warrning}`,
+        message: "Parameter Validation warrnings for cardDetails",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -405,12 +437,18 @@ class Payment {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.CardDetailsResponse().validate(response, {
+    } = PaymentModel.CardDetailsResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -418,28 +456,27 @@ class Payment {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > cardDetails \n ${res_error}`,
+        message: "Response Validation Warnnings for cardDetails",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.CheckAndUpdatePaymentStatusParam} arg
-   *   - Arg object.
-   *
-   * @returns {Promise<PaymentApplicationModel.PaymentStatusUpdateResponse>}
-   *   - Success response
-   *
-   * @name checkAndUpdatePaymentStatus
+   * @param {Object} arg - Arg object.
+   * @param {PaymentStatusUpdateRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<PaymentStatusUpdateResponse>} - Success response
    * @summary: Performs continuous polling to check status of payment on the server
-   * @description: Use this API to perform continuous polling at intervals to check the status of payment until timeout. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/checkAndUpdatePaymentStatus/).
+   * @description: Use this API to perform continuous polling at intervals to check the status of payment until timeout.
    */
-  async checkAndUpdatePaymentStatus({ body } = {}) {
-    const {
-      error,
-    } = PaymentApplicationValidator.checkAndUpdatePaymentStatus().validate(
+  async checkAndUpdatePaymentStatus(
+    { body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PaymentValidator.checkAndUpdatePaymentStatus().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -450,15 +487,17 @@ class Payment {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PaymentApplicationValidator.checkAndUpdatePaymentStatus().validate(
+    } = PaymentValidator.checkAndUpdatePaymentStatus().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > checkAndUpdatePaymentStatus \n ${warrning}`,
+        message:
+          "Parameter Validation warrnings for checkAndUpdatePaymentStatus",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -474,41 +513,49 @@ class Payment {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.PaymentStatusUpdateResponse().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = PaymentModel.PaymentStatusUpdateResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > checkAndUpdatePaymentStatus \n ${res_error}`,
+        message:
+          "Response Validation Warnnings for checkAndUpdatePaymentStatus",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.CheckAndUpdatePaymentStatusPaymentLinkParam} arg
-   *   - Arg object.
-   *
-   * @returns {Promise<PaymentApplicationModel.PaymentStatusUpdateResponse>}
-   *   - Success response
-   *
-   * @name checkAndUpdatePaymentStatusPaymentLink
+   * @param {Object} arg - Arg object.
+   * @param {PaymentStatusUpdateRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<PaymentStatusUpdateResponse>} - Success response
    * @summary: Performs continuous polling to check status of payment on the server
-   * @description: Use this API to perform continuous polling at intervals to check the status of payment until timeout. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/checkAndUpdatePaymentStatusPaymentLink/).
+   * @description: Use this API to perform continuous polling at intervals to check the status of payment until timeout.
    */
-  async checkAndUpdatePaymentStatusPaymentLink({ body } = {}) {
+  async checkAndUpdatePaymentStatusPaymentLink(
+    { body } = {},
+    { headers } = { headers: false }
+  ) {
     const {
       error,
-    } = PaymentApplicationValidator.checkAndUpdatePaymentStatusPaymentLink().validate(
+    } = PaymentValidator.checkAndUpdatePaymentStatusPaymentLink().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -519,15 +566,17 @@ class Payment {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PaymentApplicationValidator.checkAndUpdatePaymentStatusPaymentLink().validate(
+    } = PaymentValidator.checkAndUpdatePaymentStatusPaymentLink().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > checkAndUpdatePaymentStatusPaymentLink \n ${warrning}`,
+        message:
+          "Parameter Validation warrnings for checkAndUpdatePaymentStatusPaymentLink",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -543,35 +592,44 @@ class Payment {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.PaymentStatusUpdateResponse().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = PaymentModel.PaymentStatusUpdateResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > checkAndUpdatePaymentStatusPaymentLink \n ${res_error}`,
+        message:
+          "Response Validation Warnnings for checkAndUpdatePaymentStatusPaymentLink",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.CheckCreditParam} arg - Arg object.
-   * @returns {Promise<PaymentApplicationModel.CheckCreditResponse>} - Success response
-   * @name checkCredit
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.aggregator] -
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CheckCreditResponse>} - Success response
    * @summary: API to fetch the customer credit summary
-   * @description: Use this API to fetch the customer credit summary. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/checkCredit/).
+   * @description: Use this API to fetch the customer credit summary.
    */
-  async checkCredit({ aggregator } = {}) {
-    const { error } = PaymentApplicationValidator.checkCredit().validate(
+  async checkCredit({ aggregator } = {}, { headers } = { headers: false }) {
+    const { error } = PaymentValidator.checkCredit().validate(
       { aggregator },
       { abortEarly: false, allowUnknown: true }
     );
@@ -580,17 +638,16 @@ class Payment {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentApplicationValidator.checkCredit().validate(
+    const { error: warrning } = PaymentValidator.checkCredit().validate(
       { aggregator },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > checkCredit \n ${warrning}`,
+        message: "Parameter Validation warrnings for checkCredit",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -607,12 +664,18 @@ class Payment {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.CheckCreditResponse().validate(response, {
+    } = PaymentModel.CheckCreditResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -620,27 +683,27 @@ class Payment {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > checkCredit \n ${res_error}`,
+        message: "Response Validation Warnnings for checkCredit",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.CreateOrderHandlerPaymentLinkParam} arg
-   *   - Arg object.
-   *
-   * @returns {Promise<PaymentApplicationModel.CreateOrderUserResponse>} -
-   *   Success response
-   * @name createOrderHandlerPaymentLink
+   * @param {Object} arg - Arg object.
+   * @param {CreateOrderUserRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CreateOrderUserResponse>} - Success response
    * @summary: Create Order user
-   * @description: Use this API to create a order and payment on aggregator side - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/createOrderHandlerPaymentLink/).
+   * @description: Use this API to create a order and payment on aggregator side
    */
-  async createOrderHandlerPaymentLink({ body } = {}) {
-    const {
-      error,
-    } = PaymentApplicationValidator.createOrderHandlerPaymentLink().validate(
+  async createOrderHandlerPaymentLink(
+    { body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PaymentValidator.createOrderHandlerPaymentLink().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -651,15 +714,17 @@ class Payment {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PaymentApplicationValidator.createOrderHandlerPaymentLink().validate(
+    } = PaymentValidator.createOrderHandlerPaymentLink().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > createOrderHandlerPaymentLink \n ${warrning}`,
+        message:
+          "Parameter Validation warrnings for createOrderHandlerPaymentLink",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -675,12 +740,18 @@ class Payment {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.CreateOrderUserResponse().validate(response, {
+    } = PaymentModel.CreateOrderUserResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -688,23 +759,25 @@ class Payment {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > createOrderHandlerPaymentLink \n ${res_error}`,
+        message:
+          "Response Validation Warnnings for createOrderHandlerPaymentLink",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.CreatePaymentLinkParam} arg - Arg object.
-   * @returns {Promise<PaymentApplicationModel.CreatePaymentLinkResponse>} -
-   *   Success response
-   * @name createPaymentLink
+   * @param {Object} arg - Arg object.
+   * @param {CreatePaymentLinkRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CreatePaymentLinkResponse>} - Success response
    * @summary: Create payment link
-   * @description: Use this API to create a payment link for the customer - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/createPaymentLink/).
+   * @description: Use this API to create a payment link for the customer
    */
-  async createPaymentLink({ body } = {}) {
-    const { error } = PaymentApplicationValidator.createPaymentLink().validate(
+  async createPaymentLink({ body } = {}, { headers } = { headers: false }) {
+    const { error } = PaymentValidator.createPaymentLink().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -713,17 +786,16 @@ class Payment {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentApplicationValidator.createPaymentLink().validate(
+    const { error: warrning } = PaymentValidator.createPaymentLink().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > createPaymentLink \n ${warrning}`,
+        message: "Parameter Validation warrnings for createPaymentLink",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -739,12 +811,18 @@ class Payment {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.CreatePaymentLinkResponse().validate(response, {
+    } = PaymentModel.CreatePaymentLinkResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -752,26 +830,27 @@ class Payment {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > createPaymentLink \n ${res_error}`,
+        message: "Response Validation Warnnings for createPaymentLink",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.CustomerCreditSummaryParam} arg - Arg object.
-   * @returns {Promise<PaymentApplicationModel.CustomerCreditSummaryResponse>}
-   *   - Success response
-   *
-   * @name customerCreditSummary
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.aggregator] -
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CustomerCreditSummaryResponse>} - Success response
    * @summary: API to fetch the customer credit summary
-   * @description: Use this API to fetch the customer credit summary. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/customerCreditSummary/).
+   * @description: Use this API to fetch the customer credit summary.
    */
-  async customerCreditSummary({ aggregator } = {}) {
-    const {
-      error,
-    } = PaymentApplicationValidator.customerCreditSummary().validate(
+  async customerCreditSummary(
+    { aggregator } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PaymentValidator.customerCreditSummary().validate(
       { aggregator },
       { abortEarly: false, allowUnknown: true }
     );
@@ -782,15 +861,16 @@ class Payment {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PaymentApplicationValidator.customerCreditSummary().validate(
+    } = PaymentValidator.customerCreditSummary().validate(
       { aggregator },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > customerCreditSummary \n ${warrning}`,
+        message: "Parameter Validation warrnings for customerCreditSummary",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -807,36 +887,43 @@ class Payment {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.CustomerCreditSummaryResponse().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = PaymentModel.CustomerCreditSummaryResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > customerCreditSummary \n ${res_error}`,
+        message: "Response Validation Warnnings for customerCreditSummary",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.CustomerOnboardParam} arg - Arg object.
-   * @returns {Promise<PaymentApplicationModel.CustomerOnboardingResponse>} -
-   *   Success response
-   * @name customerOnboard
+   * @param {Object} arg - Arg object.
+   * @param {CustomerOnboardingRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CustomerOnboardingResponse>} - Success response
    * @summary: API to fetch the customer credit summary
-   * @description: Use this API to fetch the customer credit summary. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/customerOnboard/).
+   * @description: Use this API to fetch the customer credit summary.
    */
-  async customerOnboard({ body } = {}) {
-    const { error } = PaymentApplicationValidator.customerOnboard().validate(
+  async customerOnboard({ body } = {}, { headers } = { headers: false }) {
+    const { error } = PaymentValidator.customerOnboard().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -845,17 +932,16 @@ class Payment {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentApplicationValidator.customerOnboard().validate(
+    const { error: warrning } = PaymentValidator.customerOnboard().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > customerOnboard \n ${warrning}`,
+        message: "Parameter Validation warrnings for customerOnboard",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -871,35 +957,43 @@ class Payment {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.CustomerOnboardingResponse().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = PaymentModel.CustomerOnboardingResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > customerOnboard \n ${res_error}`,
+        message: "Response Validation Warnnings for customerOnboard",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.DeleteUserCardParam} arg - Arg object.
-   * @returns {Promise<PaymentApplicationModel.DeleteCardsResponse>} - Success response
-   * @name deleteUserCard
+   * @param {Object} arg - Arg object.
+   * @param {DeletehCardRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<DeleteCardsResponse>} - Success response
    * @summary: Delete a card
-   * @description: Use this API to delete a card added by a user on the payment gateway and clear the cache. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/deleteUserCard/).
+   * @description: Use this API to delete a card added by a user on the payment gateway and clear the cache.
    */
-  async deleteUserCard({ body } = {}) {
-    const { error } = PaymentApplicationValidator.deleteUserCard().validate(
+  async deleteUserCard({ body } = {}, { headers } = { headers: false }) {
+    const { error } = PaymentValidator.deleteUserCard().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -908,17 +1002,16 @@ class Payment {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentApplicationValidator.deleteUserCard().validate(
+    const { error: warrning } = PaymentValidator.deleteUserCard().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > deleteUserCard \n ${warrning}`,
+        message: "Parameter Validation warrnings for deleteUserCard",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -934,12 +1027,18 @@ class Payment {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.DeleteCardsResponse().validate(response, {
+    } = PaymentModel.DeleteCardsResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -947,28 +1046,29 @@ class Payment {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > deleteUserCard \n ${res_error}`,
+        message: "Response Validation Warnnings for deleteUserCard",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.EnableOrDisableRefundTransferModeParam} arg
-   *   - Arg object.
-   *
-   * @returns {Promise<PaymentApplicationModel.UpdateRefundTransferModeResponse>}
-   *   - Success response
-   *
-   * @name enableOrDisableRefundTransferMode
+   * @param {Object} arg - Arg object.
+   * @param {UpdateRefundTransferModeRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<UpdateRefundTransferModeResponse>} - Success response
    * @summary: Enable/Disable a mode for transferring a refund
-   * @description: Activate or Deactivate Transfer Mode to collect Beneficiary Details for Refund - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/enableOrDisableRefundTransferMode/).
+   * @description: Activate or Deactivate Transfer Mode to collect Beneficiary Details for Refund
    */
-  async enableOrDisableRefundTransferMode({ body } = {}) {
+  async enableOrDisableRefundTransferMode(
+    { body } = {},
+    { headers } = { headers: false }
+  ) {
     const {
       error,
-    } = PaymentApplicationValidator.enableOrDisableRefundTransferMode().validate(
+    } = PaymentValidator.enableOrDisableRefundTransferMode().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -979,15 +1079,17 @@ class Payment {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PaymentApplicationValidator.enableOrDisableRefundTransferMode().validate(
+    } = PaymentValidator.enableOrDisableRefundTransferMode().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > enableOrDisableRefundTransferMode \n ${warrning}`,
+        message:
+          "Parameter Validation warrnings for enableOrDisableRefundTransferMode",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1003,39 +1105,47 @@ class Payment {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.UpdateRefundTransferModeResponse().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = PaymentModel.UpdateRefundTransferModeResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > enableOrDisableRefundTransferMode \n ${res_error}`,
+        message:
+          "Response Validation Warnnings for enableOrDisableRefundTransferMode",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.GetActiveCardAggregatorParam} arg - Arg object.
-   * @returns {Promise<PaymentApplicationModel.ActiveCardPaymentGatewayResponse>}
-   *   - Success response
-   *
-   * @name getActiveCardAggregator
+   * @param {Object} arg - Arg object.
+   * @param {boolean} [arg.refresh] -
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ActiveCardPaymentGatewayResponse>} - Success response
    * @summary: Fetch active payment gateway for card payments
-   * @description: Use this API to retrieve an active payment aggregator along with the Customer ID. This is applicable for cards payments only. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getActiveCardAggregator/).
+   * @description: Use this API to retrieve an active payment aggregator along with the Customer ID. This is applicable for cards payments only.
    */
-  async getActiveCardAggregator({ refresh } = {}) {
-    const {
-      error,
-    } = PaymentApplicationValidator.getActiveCardAggregator().validate(
+  async getActiveCardAggregator(
+    { refresh } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PaymentValidator.getActiveCardAggregator().validate(
       { refresh },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1046,15 +1156,16 @@ class Payment {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PaymentApplicationValidator.getActiveCardAggregator().validate(
+    } = PaymentValidator.getActiveCardAggregator().validate(
       { refresh },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > getActiveCardAggregator \n ${warrning}`,
+        message: "Parameter Validation warrnings for getActiveCardAggregator",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1071,39 +1182,41 @@ class Payment {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.ActiveCardPaymentGatewayResponse().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = PaymentModel.ActiveCardPaymentGatewayResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > getActiveCardAggregator \n ${res_error}`,
+        message: "Response Validation Warnnings for getActiveCardAggregator",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.GetActiveRefundTransferModesParam} arg
-   *   - Arg object.
-   *
-   * @returns {Promise<PaymentApplicationModel.TransferModeResponse>} - Success response
-   * @name getActiveRefundTransferModes
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<TransferModeResponse>} - Success response
    * @summary: Lists the mode of refund
-   * @description: Use this API to retrieve eligible refund modes (such as Netbanking) and add the beneficiary details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getActiveRefundTransferModes/).
+   * @description: Use this API to retrieve eligible refund modes (such as Netbanking) and add the beneficiary details.
    */
-  async getActiveRefundTransferModes({} = {}) {
-    const {
-      error,
-    } = PaymentApplicationValidator.getActiveRefundTransferModes().validate(
+  async getActiveRefundTransferModes({ headers } = { headers: false }) {
+    const { error } = PaymentValidator.getActiveRefundTransferModes().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -1114,15 +1227,17 @@ class Payment {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PaymentApplicationValidator.getActiveRefundTransferModes().validate(
+    } = PaymentValidator.getActiveRefundTransferModes().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > getActiveRefundTransferModes \n ${warrning}`,
+        message:
+          "Parameter Validation warrnings for getActiveRefundTransferModes",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1138,12 +1253,18 @@ class Payment {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.TransferModeResponse().validate(response, {
+    } = PaymentModel.TransferModeResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1151,22 +1272,28 @@ class Payment {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > getActiveRefundTransferModes \n ${res_error}`,
+        message:
+          "Response Validation Warnnings for getActiveRefundTransferModes",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.GetActiveUserCardsParam} arg - Arg object.
-   * @returns {Promise<PaymentApplicationModel.ListCardsResponse>} - Success response
-   * @name getActiveUserCards
+   * @param {Object} arg - Arg object.
+   * @param {boolean} [arg.forceRefresh] -
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ListCardsResponse>} - Success response
    * @summary: Fetch the list of cards saved by the user
-   * @description: Use this API to retrieve a list of cards stored by user from an active payment gateway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getActiveUserCards/).
+   * @description: Use this API to retrieve a list of cards stored by user from an active payment gateway.
    */
-  async getActiveUserCards({ forceRefresh } = {}) {
-    const { error } = PaymentApplicationValidator.getActiveUserCards().validate(
+  async getActiveUserCards(
+    { forceRefresh } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PaymentValidator.getActiveUserCards().validate(
       { forceRefresh },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1175,17 +1302,16 @@ class Payment {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentApplicationValidator.getActiveUserCards().validate(
+    const { error: warrning } = PaymentValidator.getActiveUserCards().validate(
       { forceRefresh },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > getActiveUserCards \n ${warrning}`,
+        message: "Parameter Validation warrnings for getActiveUserCards",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1202,12 +1328,18 @@ class Payment {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.ListCardsResponse().validate(response, {
+    } = PaymentModel.ListCardsResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1215,26 +1347,30 @@ class Payment {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > getActiveUserCards \n ${res_error}`,
+        message: "Response Validation Warnnings for getActiveUserCards",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.GetAggregatorsConfigParam} arg - Arg object.
-   * @returns {Promise<PaymentApplicationModel.AggregatorsConfigDetailResponse>}
-   *   - Success response
-   *
-   * @name getAggregatorsConfig
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.xApiToken] - Used for basic authentication.
+   * @param {boolean} [arg.refresh] - This is a boolean value. Select `true`
+   *   to remove temporary cache files on payment gateway and replace with the
+   *   latest one.
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<AggregatorsConfigDetailResponse>} - Success response
    * @summary: Get payment gateway keys
-   * @description: Use this API to retrieve the payment gateway key, secrets, merchant, SDK/API details to complete a payment at front-end. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getAggregatorsConfig/).
+   * @description: Use this API to retrieve the payment gateway key, secrets, merchant, SDK/API details to complete a payment at front-end.
    */
-  async getAggregatorsConfig({ xApiToken, refresh } = {}) {
-    const {
-      error,
-    } = PaymentApplicationValidator.getAggregatorsConfig().validate(
+  async getAggregatorsConfig(
+    { xApiToken, refresh } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PaymentValidator.getAggregatorsConfig().validate(
       { xApiToken, refresh },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1245,15 +1381,16 @@ class Payment {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PaymentApplicationValidator.getAggregatorsConfig().validate(
+    } = PaymentValidator.getAggregatorsConfig().validate(
       { xApiToken, refresh },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > getAggregatorsConfig \n ${warrning}`,
+        message: "Parameter Validation warrnings for getAggregatorsConfig",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1271,40 +1408,41 @@ class Payment {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.AggregatorsConfigDetailResponse().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = PaymentModel.AggregatorsConfigDetailResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > getAggregatorsConfig \n ${res_error}`,
+        message: "Response Validation Warnnings for getAggregatorsConfig",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.GetEpaylaterBannerDetailsParam} arg
-   *   - Arg object.
-   *
-   * @returns {Promise<PaymentApplicationModel.EpaylaterBannerResponse>} -
-   *   Success response
-   * @name getEpaylaterBannerDetails
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<EpaylaterBannerResponse>} - Success response
    * @summary: Get Epaylater Enabled
-   * @description: Get Epaylater Enabled if user is tentatively approved by epaylater - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getEpaylaterBannerDetails/).
+   * @description: Get Epaylater Enabled if user is tentatively approved by epaylater
    */
-  async getEpaylaterBannerDetails({} = {}) {
-    const {
-      error,
-    } = PaymentApplicationValidator.getEpaylaterBannerDetails().validate(
+  async getEpaylaterBannerDetails({ headers } = { headers: false }) {
+    const { error } = PaymentValidator.getEpaylaterBannerDetails().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -1315,15 +1453,16 @@ class Payment {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PaymentApplicationValidator.getEpaylaterBannerDetails().validate(
+    } = PaymentValidator.getEpaylaterBannerDetails().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > getEpaylaterBannerDetails \n ${warrning}`,
+        message: "Parameter Validation warrnings for getEpaylaterBannerDetails",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1339,12 +1478,18 @@ class Payment {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.EpaylaterBannerResponse().validate(response, {
+    } = PaymentModel.EpaylaterBannerResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1352,27 +1497,28 @@ class Payment {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > getEpaylaterBannerDetails \n ${res_error}`,
+        message: "Response Validation Warnnings for getEpaylaterBannerDetails",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.GetOrderBeneficiariesDetailParam} arg
-   *   - Arg object.
-   *
-   * @returns {Promise<PaymentApplicationModel.OrderBeneficiaryResponse>} -
-   *   Success response
-   * @name getOrderBeneficiariesDetail
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.orderId - A unique number used for identifying and
+   *   tracking your orders.
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<OrderBeneficiaryResponse>} - Success response
    * @summary: Lists the beneficiary of a refund
-   * @description: Use this API to get the details of all active beneficiary added by a user for refund. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getOrderBeneficiariesDetail/).
+   * @description: Use this API to get the details of all active beneficiary added by a user for refund.
    */
-  async getOrderBeneficiariesDetail({ orderId } = {}) {
-    const {
-      error,
-    } = PaymentApplicationValidator.getOrderBeneficiariesDetail().validate(
+  async getOrderBeneficiariesDetail(
+    { orderId } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PaymentValidator.getOrderBeneficiariesDetail().validate(
       { orderId },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1383,15 +1529,17 @@ class Payment {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PaymentApplicationValidator.getOrderBeneficiariesDetail().validate(
+    } = PaymentValidator.getOrderBeneficiariesDetail().validate(
       { orderId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > getOrderBeneficiariesDetail \n ${warrning}`,
+        message:
+          "Parameter Validation warrnings for getOrderBeneficiariesDetail",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1408,12 +1556,18 @@ class Payment {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.OrderBeneficiaryResponse().validate(response, {
+    } = PaymentModel.OrderBeneficiaryResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1421,23 +1575,28 @@ class Payment {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > getOrderBeneficiariesDetail \n ${res_error}`,
+        message:
+          "Response Validation Warnnings for getOrderBeneficiariesDetail",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.GetPaymentLinkParam} arg - Arg object.
-   * @returns {Promise<PaymentApplicationModel.GetPaymentLinkResponse>} -
-   *   Success response
-   * @name getPaymentLink
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.paymentLinkId] -
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<GetPaymentLinkResponse>} - Success response
    * @summary: Get payment link
-   * @description: Use this API to get a payment link - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getPaymentLink/).
+   * @description: Use this API to get a payment link
    */
-  async getPaymentLink({ paymentLinkId } = {}) {
-    const { error } = PaymentApplicationValidator.getPaymentLink().validate(
+  async getPaymentLink(
+    { paymentLinkId } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PaymentValidator.getPaymentLink().validate(
       { paymentLinkId },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1446,17 +1605,16 @@ class Payment {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentApplicationValidator.getPaymentLink().validate(
+    const { error: warrning } = PaymentValidator.getPaymentLink().validate(
       { paymentLinkId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > getPaymentLink \n ${warrning}`,
+        message: "Parameter Validation warrnings for getPaymentLink",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1473,12 +1631,18 @@ class Payment {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.GetPaymentLinkResponse().validate(response, {
+    } = PaymentModel.GetPaymentLinkResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1486,33 +1650,45 @@ class Payment {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > getPaymentLink \n ${res_error}`,
+        message: "Response Validation Warnnings for getPaymentLink",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.GetPaymentModeRoutesParam} arg - Arg object.
-   * @returns {Promise<PaymentApplicationModel.PaymentModeRouteResponse>} -
-   *   Success response
-   * @name getPaymentModeRoutes
+   * @param {Object} arg - Arg object.
+   * @param {number} arg.amount - Payable amount.
+   * @param {string} arg.cartId - Identifier of the cart.
+   * @param {string} arg.pincode - The PIN Code of the destination address, e.g. 400059
+   * @param {string} arg.checkoutMode - Option to checkout for self or for others.
+   * @param {boolean} [arg.refresh] - This is a boolean value. Select `true`
+   *   to remove temporary cache files on payment gateway and replace with the
+   *   latest one.
+   * @param {string} [arg.cardReference] - Card reference id of user's debit
+   *   or credit card.
+   * @param {string} [arg.userDetails] - URIencoded JSON containing details of
+   *   an anonymous user.
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<PaymentModeRouteResponse>} - Success response
    * @summary: Get applicable payment options
-   * @description: Use this API to get all valid payment options for doing a payment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getPaymentModeRoutes/).
+   * @description: Use this API to get all valid payment options for doing a payment.
    */
-  async getPaymentModeRoutes({
-    amount,
-    cartId,
-    pincode,
-    checkoutMode,
-    refresh,
-    cardReference,
-    userDetails,
-  } = {}) {
-    const {
-      error,
-    } = PaymentApplicationValidator.getPaymentModeRoutes().validate(
+  async getPaymentModeRoutes(
+    {
+      amount,
+      cartId,
+      pincode,
+      checkoutMode,
+      refresh,
+      cardReference,
+      userDetails,
+    } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PaymentValidator.getPaymentModeRoutes().validate(
       {
         amount,
         cartId,
@@ -1531,7 +1707,7 @@ class Payment {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PaymentApplicationValidator.getPaymentModeRoutes().validate(
+    } = PaymentValidator.getPaymentModeRoutes().validate(
       {
         amount,
         cartId,
@@ -1546,8 +1722,9 @@ class Payment {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > getPaymentModeRoutes \n ${warrning}`,
+        message: "Parameter Validation warrnings for getPaymentModeRoutes",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1570,12 +1747,18 @@ class Payment {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.PaymentModeRouteResponse().validate(response, {
+    } = PaymentModel.PaymentModeRouteResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1583,27 +1766,29 @@ class Payment {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > getPaymentModeRoutes \n ${res_error}`,
+        message: "Response Validation Warnnings for getPaymentModeRoutes",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.GetPaymentModeRoutesPaymentLinkParam} arg
-   *   - Arg object.
-   *
-   * @returns {Promise<PaymentApplicationModel.PaymentModeRouteResponse>} -
-   *   Success response
-   * @name getPaymentModeRoutesPaymentLink
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.paymentLinkId - Payment link id
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<PaymentModeRouteResponse>} - Success response
    * @summary: Get applicable payment options for payment link
-   * @description: Use this API to get all valid payment options for doing a payment through payment link - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getPaymentModeRoutesPaymentLink/).
+   * @description: Use this API to get all valid payment options for doing a payment through payment link
    */
-  async getPaymentModeRoutesPaymentLink({ paymentLinkId } = {}) {
+  async getPaymentModeRoutesPaymentLink(
+    { paymentLinkId } = {},
+    { headers } = { headers: false }
+  ) {
     const {
       error,
-    } = PaymentApplicationValidator.getPaymentModeRoutesPaymentLink().validate(
+    } = PaymentValidator.getPaymentModeRoutesPaymentLink().validate(
       { paymentLinkId },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1614,15 +1799,17 @@ class Payment {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PaymentApplicationValidator.getPaymentModeRoutesPaymentLink().validate(
+    } = PaymentValidator.getPaymentModeRoutesPaymentLink().validate(
       { paymentLinkId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > getPaymentModeRoutesPaymentLink \n ${warrning}`,
+        message:
+          "Parameter Validation warrnings for getPaymentModeRoutesPaymentLink",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1639,12 +1826,18 @@ class Payment {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.PaymentModeRouteResponse().validate(response, {
+    } = PaymentModel.PaymentModeRouteResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1652,34 +1845,50 @@ class Payment {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > getPaymentModeRoutesPaymentLink \n ${res_error}`,
+        message:
+          "Response Validation Warnnings for getPaymentModeRoutesPaymentLink",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.GetPosPaymentModeRoutesParam} arg - Arg object.
-   * @returns {Promise<PaymentApplicationModel.PaymentModeRouteResponse>} -
-   *   Success response
-   * @name getPosPaymentModeRoutes
+   * @param {Object} arg - Arg object.
+   * @param {number} arg.amount - Payable amount.
+   * @param {string} arg.cartId - Identifier of the cart.
+   * @param {string} arg.pincode - The PIN Code of the destination address, e.g. 400059
+   * @param {string} arg.checkoutMode - Option to checkout for self or for others.
+   * @param {boolean} [arg.refresh] - This is a boolean value. Select `true`
+   *   to remove temporary cache files on payment gateway and replace with the
+   *   latest one.
+   * @param {string} [arg.cardReference] - Card reference id of user's debit
+   *   or credit card.
+   * @param {string} arg.orderType - The order type of shipment * HomeDelivery
+   *   - If the customer wants the order home-delivered * PickAtStore - If the
+   *   customer wants the handover of an order at the store itself.
+   * @param {string} [arg.userDetails] - URIencoded JSON containing details of
+   *   an anonymous user.
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<PaymentModeRouteResponse>} - Success response
    * @summary: Get applicable payment options for Point-of-Sale (POS)
-   * @description: Use this API to get all valid payment options for doing a payment in POS. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getPosPaymentModeRoutes/).
+   * @description: Use this API to get all valid payment options for doing a payment in POS.
    */
-  async getPosPaymentModeRoutes({
-    amount,
-    cartId,
-    pincode,
-    checkoutMode,
-    orderType,
-    refresh,
-    cardReference,
-    userDetails,
-  } = {}) {
-    const {
-      error,
-    } = PaymentApplicationValidator.getPosPaymentModeRoutes().validate(
+  async getPosPaymentModeRoutes(
+    {
+      amount,
+      cartId,
+      pincode,
+      checkoutMode,
+      orderType,
+      refresh,
+      cardReference,
+      userDetails,
+    } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PaymentValidator.getPosPaymentModeRoutes().validate(
       {
         amount,
         cartId,
@@ -1699,7 +1908,7 @@ class Payment {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PaymentApplicationValidator.getPosPaymentModeRoutes().validate(
+    } = PaymentValidator.getPosPaymentModeRoutes().validate(
       {
         amount,
         cartId,
@@ -1715,8 +1924,9 @@ class Payment {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > getPosPaymentModeRoutes \n ${warrning}`,
+        message: "Parameter Validation warrnings for getPosPaymentModeRoutes",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1740,12 +1950,18 @@ class Payment {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.PaymentModeRouteResponse().validate(response, {
+    } = PaymentModel.PaymentModeRouteResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1753,24 +1969,22 @@ class Payment {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > getPosPaymentModeRoutes \n ${res_error}`,
+        message: "Response Validation Warnnings for getPosPaymentModeRoutes",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.GetRupifiBannerDetailsParam} arg - Arg object.
-   * @returns {Promise<PaymentApplicationModel.RupifiBannerResponse>} - Success response
-   * @name getRupifiBannerDetails
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<RupifiBannerResponse>} - Success response
    * @summary: Get CreditLine Offer
-   * @description: Get CreditLine Offer if user is tentatively approved by rupifi - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getRupifiBannerDetails/).
+   * @description: Get CreditLine Offer if user is tentatively approved by rupifi
    */
-  async getRupifiBannerDetails({} = {}) {
-    const {
-      error,
-    } = PaymentApplicationValidator.getRupifiBannerDetails().validate(
+  async getRupifiBannerDetails({ headers } = { headers: false }) {
+    const { error } = PaymentValidator.getRupifiBannerDetails().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -1781,15 +1995,16 @@ class Payment {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PaymentApplicationValidator.getRupifiBannerDetails().validate(
+    } = PaymentValidator.getRupifiBannerDetails().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > getRupifiBannerDetails \n ${warrning}`,
+        message: "Parameter Validation warrnings for getRupifiBannerDetails",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1805,12 +2020,18 @@ class Payment {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.RupifiBannerResponse().validate(response, {
+    } = PaymentModel.RupifiBannerResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1818,27 +2039,28 @@ class Payment {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > getRupifiBannerDetails \n ${res_error}`,
+        message: "Response Validation Warnnings for getRupifiBannerDetails",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.GetUserBeneficiariesDetailParam} arg
-   *   - Arg object.
-   *
-   * @returns {Promise<PaymentApplicationModel.OrderBeneficiaryResponse>} -
-   *   Success response
-   * @name getUserBeneficiariesDetail
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.orderId - A unique number used for identifying and
+   *   tracking your orders.
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<OrderBeneficiaryResponse>} - Success response
    * @summary: Lists the beneficiary of a refund
-   * @description: Use this API to get the details of all active beneficiary added by a user for refund. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getUserBeneficiariesDetail/).
+   * @description: Use this API to get the details of all active beneficiary added by a user for refund.
    */
-  async getUserBeneficiariesDetail({ orderId } = {}) {
-    const {
-      error,
-    } = PaymentApplicationValidator.getUserBeneficiariesDetail().validate(
+  async getUserBeneficiariesDetail(
+    { orderId } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PaymentValidator.getUserBeneficiariesDetail().validate(
       { orderId },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1849,15 +2071,17 @@ class Payment {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PaymentApplicationValidator.getUserBeneficiariesDetail().validate(
+    } = PaymentValidator.getUserBeneficiariesDetail().validate(
       { orderId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > getUserBeneficiariesDetail \n ${warrning}`,
+        message:
+          "Parameter Validation warrnings for getUserBeneficiariesDetail",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1874,12 +2098,18 @@ class Payment {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.OrderBeneficiaryResponse().validate(response, {
+    } = PaymentModel.OrderBeneficiaryResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1887,24 +2117,24 @@ class Payment {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > getUserBeneficiariesDetail \n ${res_error}`,
+        message: "Response Validation Warnnings for getUserBeneficiariesDetail",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.InitialisePaymentParam} arg - Arg object.
-   * @returns {Promise<PaymentApplicationModel.PaymentInitializationResponse>}
-   *   - Success response
-   *
-   * @name initialisePayment
+   * @param {Object} arg - Arg object.
+   * @param {PaymentInitializationRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<PaymentInitializationResponse>} - Success response
    * @summary: Initialize a payment (server-to-server) for UPI and BharatQR
-   * @description: PUse this API to inititate payment using UPI, BharatQR, wherein the UPI requests are send to the app and QR code is displayed on the screen. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/initialisePayment/).
+   * @description: PUse this API to inititate payment using UPI, BharatQR, wherein the UPI requests are send to the app and QR code is displayed on the screen.
    */
-  async initialisePayment({ body } = {}) {
-    const { error } = PaymentApplicationValidator.initialisePayment().validate(
+  async initialisePayment({ body } = {}, { headers } = { headers: false }) {
+    const { error } = PaymentValidator.initialisePayment().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1913,17 +2143,16 @@ class Payment {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentApplicationValidator.initialisePayment().validate(
+    const { error: warrning } = PaymentValidator.initialisePayment().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > initialisePayment \n ${warrning}`,
+        message: "Parameter Validation warrnings for initialisePayment",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1939,41 +2168,46 @@ class Payment {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.PaymentInitializationResponse().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = PaymentModel.PaymentInitializationResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > initialisePayment \n ${res_error}`,
+        message: "Response Validation Warnnings for initialisePayment",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.InitialisePaymentPaymentLinkParam} arg
-   *   - Arg object.
-   *
-   * @returns {Promise<PaymentApplicationModel.PaymentInitializationResponse>}
-   *   - Success response
-   *
-   * @name initialisePaymentPaymentLink
+   * @param {Object} arg - Arg object.
+   * @param {PaymentInitializationRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<PaymentInitializationResponse>} - Success response
    * @summary: Initialize a payment (server-to-server) for UPI and BharatQR
-   * @description: Use this API to inititate payment using UPI, BharatQR, wherein the UPI requests are send to the app and QR code is displayed on the screen. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/initialisePaymentPaymentLink/).
+   * @description: Use this API to inititate payment using UPI, BharatQR, wherein the UPI requests are send to the app and QR code is displayed on the screen.
    */
-  async initialisePaymentPaymentLink({ body } = {}) {
-    const {
-      error,
-    } = PaymentApplicationValidator.initialisePaymentPaymentLink().validate(
+  async initialisePaymentPaymentLink(
+    { body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PaymentValidator.initialisePaymentPaymentLink().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1984,15 +2218,17 @@ class Payment {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PaymentApplicationValidator.initialisePaymentPaymentLink().validate(
+    } = PaymentValidator.initialisePaymentPaymentLink().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > initialisePaymentPaymentLink \n ${warrning}`,
+        message:
+          "Parameter Validation warrnings for initialisePaymentPaymentLink",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2008,39 +2244,47 @@ class Payment {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.PaymentInitializationResponse().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = PaymentModel.PaymentInitializationResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > initialisePaymentPaymentLink \n ${res_error}`,
+        message:
+          "Response Validation Warnnings for initialisePaymentPaymentLink",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.OutstandingOrderDetailsParam} arg - Arg object.
-   * @returns {Promise<PaymentApplicationModel.OutstandingOrderDetailsResponse>}
-   *   - Success response
-   *
-   * @name outstandingOrderDetails
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.aggregator] -
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<OutstandingOrderDetailsResponse>} - Success response
    * @summary: API to fetch the outstanding order details
-   * @description: Use this API to fetch the outstanding order details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/outstandingOrderDetails/).
+   * @description: Use this API to fetch the outstanding order details.
    */
-  async outstandingOrderDetails({ aggregator } = {}) {
-    const {
-      error,
-    } = PaymentApplicationValidator.outstandingOrderDetails().validate(
+  async outstandingOrderDetails(
+    { aggregator } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PaymentValidator.outstandingOrderDetails().validate(
       { aggregator },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2051,15 +2295,16 @@ class Payment {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PaymentApplicationValidator.outstandingOrderDetails().validate(
+    } = PaymentValidator.outstandingOrderDetails().validate(
       { aggregator },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > outstandingOrderDetails \n ${warrning}`,
+        message: "Parameter Validation warrnings for outstandingOrderDetails",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2076,36 +2321,46 @@ class Payment {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.OutstandingOrderDetailsResponse().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = PaymentModel.OutstandingOrderDetailsResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > outstandingOrderDetails \n ${res_error}`,
+        message: "Response Validation Warnnings for outstandingOrderDetails",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.PaidOrderDetailsParam} arg - Arg object.
-   * @returns {Promise<PaymentApplicationModel.PaidOrderDetailsResponse>} -
-   *   Success response
-   * @name paidOrderDetails
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.aggregator] -
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<PaidOrderDetailsResponse>} - Success response
    * @summary: API to fetch the paid order details
-   * @description: Use this API to fetch the paid order details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/paidOrderDetails/).
+   * @description: Use this API to fetch the paid order details.
    */
-  async paidOrderDetails({ aggregator } = {}) {
-    const { error } = PaymentApplicationValidator.paidOrderDetails().validate(
+  async paidOrderDetails(
+    { aggregator } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PaymentValidator.paidOrderDetails().validate(
       { aggregator },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2114,17 +2369,16 @@ class Payment {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentApplicationValidator.paidOrderDetails().validate(
+    const { error: warrning } = PaymentValidator.paidOrderDetails().validate(
       { aggregator },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > paidOrderDetails \n ${warrning}`,
+        message: "Parameter Validation warrnings for paidOrderDetails",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2141,12 +2395,18 @@ class Payment {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.PaidOrderDetailsResponse().validate(response, {
+    } = PaymentModel.PaidOrderDetailsResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2154,23 +2414,27 @@ class Payment {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > paidOrderDetails \n ${res_error}`,
+        message: "Response Validation Warnnings for paidOrderDetails",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.PollingPaymentLinkParam} arg - Arg object.
-   * @returns {Promise<PaymentApplicationModel.PollingPaymentLinkResponse>} -
-   *   Success response
-   * @name pollingPaymentLink
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.paymentLinkId] -
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<PollingPaymentLinkResponse>} - Success response
    * @summary: Used for polling if payment successful or not
-   * @description: Use this API to poll if payment through payment was successful or not - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/pollingPaymentLink/).
+   * @description: Use this API to poll if payment through payment was successful or not
    */
-  async pollingPaymentLink({ paymentLinkId } = {}) {
-    const { error } = PaymentApplicationValidator.pollingPaymentLink().validate(
+  async pollingPaymentLink(
+    { paymentLinkId } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PaymentValidator.pollingPaymentLink().validate(
       { paymentLinkId },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2179,17 +2443,16 @@ class Payment {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentApplicationValidator.pollingPaymentLink().validate(
+    const { error: warrning } = PaymentValidator.pollingPaymentLink().validate(
       { paymentLinkId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > pollingPaymentLink \n ${warrning}`,
+        message: "Parameter Validation warrnings for pollingPaymentLink",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2206,39 +2469,49 @@ class Payment {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.PollingPaymentLinkResponse().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = PaymentModel.PollingPaymentLinkResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > pollingPaymentLink \n ${res_error}`,
+        message: "Response Validation Warnnings for pollingPaymentLink",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.RedirectToAggregatorParam} arg - Arg object.
-   * @returns {Promise<PaymentApplicationModel.RedirectToAggregatorResponse>}
-   *   - Success response
-   *
-   * @name redirectToAggregator
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.source] - This is a String value that contains
+   *   callback URL as value.
+   * @param {string} [arg.aggregator] - This is a String value that contains
+   *   aggregator name as value.
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<RedirectToAggregatorResponse>} - Success response
    * @summary: API to get the redirect url to redirect the user to aggregator's page
-   * @description: Use this API to get the redirect url to redirect the user to aggregator's page - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/redirectToAggregator/).
+   * @description: Use this API to get the redirect url to redirect the user to aggregator's page
    */
-  async redirectToAggregator({ source, aggregator } = {}) {
-    const {
-      error,
-    } = PaymentApplicationValidator.redirectToAggregator().validate(
+  async redirectToAggregator(
+    { source, aggregator } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PaymentValidator.redirectToAggregator().validate(
       { source, aggregator },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2249,15 +2522,16 @@ class Payment {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PaymentApplicationValidator.redirectToAggregator().validate(
+    } = PaymentValidator.redirectToAggregator().validate(
       { source, aggregator },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > redirectToAggregator \n ${warrning}`,
+        message: "Parameter Validation warrnings for redirectToAggregator",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2275,35 +2549,43 @@ class Payment {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.RedirectToAggregatorResponse().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = PaymentModel.RedirectToAggregatorResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > redirectToAggregator \n ${res_error}`,
+        message: "Response Validation Warnnings for redirectToAggregator",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.RenderHTMLParam} arg - Arg object.
-   * @returns {Promise<PaymentApplicationModel.renderHTMLResponse>} - Success response
-   * @name renderHTML
+   * @param {Object} arg - Arg object.
+   * @param {renderHTMLRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<renderHTMLResponse>} - Success response
    * @summary: Convert base64 string to HTML form
-   * @description: Use this API to decode base64 html form to plain HTML string. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/renderHTML/).
+   * @description: Use this API to decode base64 html form to plain HTML string.
    */
-  async renderHTML({ body } = {}) {
-    const { error } = PaymentApplicationValidator.renderHTML().validate(
+  async renderHTML({ body } = {}, { headers } = { headers: false }) {
+    const { error } = PaymentValidator.renderHTML().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2312,17 +2594,16 @@ class Payment {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentApplicationValidator.renderHTML().validate(
+    const { error: warrning } = PaymentValidator.renderHTML().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > renderHTML \n ${warrning}`,
+        message: "Parameter Validation warrnings for renderHTML",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2338,12 +2619,18 @@ class Payment {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.renderHTMLResponse().validate(response, {
+    } = PaymentModel.renderHTMLResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2351,26 +2638,24 @@ class Payment {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > renderHTML \n ${res_error}`,
+        message: "Response Validation Warnnings for renderHTML",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.ResendOrCancelPaymentParam} arg - Arg object.
-   * @returns {Promise<PaymentApplicationModel.ResendOrCancelPaymentResponse>}
-   *   - Success response
-   *
-   * @name resendOrCancelPayment
+   * @param {Object} arg - Arg object.
+   * @param {ResendOrCancelPaymentRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ResendOrCancelPaymentResponse>} - Success response
    * @summary: API to resend and cancel a payment link which was already generated.
-   * @description: Use this API to perform resend or cancel a payment link based on request payload. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/resendOrCancelPayment/).
+   * @description: Use this API to perform resend or cancel a payment link based on request payload.
    */
-  async resendOrCancelPayment({ body } = {}) {
-    const {
-      error,
-    } = PaymentApplicationValidator.resendOrCancelPayment().validate(
+  async resendOrCancelPayment({ body } = {}, { headers } = { headers: false }) {
+    const { error } = PaymentValidator.resendOrCancelPayment().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2381,15 +2666,16 @@ class Payment {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PaymentApplicationValidator.resendOrCancelPayment().validate(
+    } = PaymentValidator.resendOrCancelPayment().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > resendOrCancelPayment \n ${warrning}`,
+        message: "Parameter Validation warrnings for resendOrCancelPayment",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2405,36 +2691,43 @@ class Payment {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.ResendOrCancelPaymentResponse().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = PaymentModel.ResendOrCancelPaymentResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > resendOrCancelPayment \n ${res_error}`,
+        message: "Response Validation Warnnings for resendOrCancelPayment",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.ResendPaymentLinkParam} arg - Arg object.
-   * @returns {Promise<PaymentApplicationModel.ResendPaymentLinkResponse>} -
-   *   Success response
-   * @name resendPaymentLink
+   * @param {Object} arg - Arg object.
+   * @param {CancelOrResendPaymentLinkRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ResendPaymentLinkResponse>} - Success response
    * @summary: Resend payment link
-   * @description: Use this API to resend a payment link for the customer - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/resendPaymentLink/).
+   * @description: Use this API to resend a payment link for the customer
    */
-  async resendPaymentLink({ body } = {}) {
-    const { error } = PaymentApplicationValidator.resendPaymentLink().validate(
+  async resendPaymentLink({ body } = {}, { headers } = { headers: false }) {
+    const { error } = PaymentValidator.resendPaymentLink().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2443,17 +2736,16 @@ class Payment {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentApplicationValidator.resendPaymentLink().validate(
+    const { error: warrning } = PaymentValidator.resendPaymentLink().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > resendPaymentLink \n ${warrning}`,
+        message: "Parameter Validation warrnings for resendPaymentLink",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2469,12 +2761,18 @@ class Payment {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.ResendPaymentLinkResponse().validate(response, {
+    } = PaymentModel.ResendPaymentLinkResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2482,27 +2780,27 @@ class Payment {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > resendPaymentLink \n ${res_error}`,
+        message: "Response Validation Warnnings for resendPaymentLink",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.UpdateDefaultBeneficiaryParam} arg -
-   *   Arg object.
-   * @returns {Promise<PaymentApplicationModel.SetDefaultBeneficiaryResponse>}
-   *   - Success response
-   *
-   * @name updateDefaultBeneficiary
+   * @param {Object} arg - Arg object.
+   * @param {SetDefaultBeneficiaryRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<SetDefaultBeneficiaryResponse>} - Success response
    * @summary: Set a default beneficiary for a refund
-   * @description: Use this API to set a default beneficiary for getting a refund. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/updateDefaultBeneficiary/).
+   * @description: Use this API to set a default beneficiary for getting a refund.
    */
-  async updateDefaultBeneficiary({ body } = {}) {
-    const {
-      error,
-    } = PaymentApplicationValidator.updateDefaultBeneficiary().validate(
+  async updateDefaultBeneficiary(
+    { body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PaymentValidator.updateDefaultBeneficiary().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2513,15 +2811,16 @@ class Payment {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PaymentApplicationValidator.updateDefaultBeneficiary().validate(
+    } = PaymentValidator.updateDefaultBeneficiary().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > updateDefaultBeneficiary \n ${warrning}`,
+        message: "Parameter Validation warrnings for updateDefaultBeneficiary",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2537,35 +2836,43 @@ class Payment {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.SetDefaultBeneficiaryResponse().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = PaymentModel.SetDefaultBeneficiaryResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > updateDefaultBeneficiary \n ${res_error}`,
+        message: "Response Validation Warnnings for updateDefaultBeneficiary",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.ValidateVPAParam} arg - Arg object.
-   * @returns {Promise<PaymentApplicationModel.ValidateVPAResponse>} - Success response
-   * @name validateVPA
+   * @param {Object} arg - Arg object.
+   * @param {ValidateVPARequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ValidateVPAResponse>} - Success response
    * @summary: API to Validate UPI ID
-   * @description: API to Validate UPI ID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/validateVPA/).
+   * @description: API to Validate UPI ID
    */
-  async validateVPA({ body } = {}) {
-    const { error } = PaymentApplicationValidator.validateVPA().validate(
+  async validateVPA({ body } = {}, { headers } = { headers: false }) {
+    const { error } = PaymentValidator.validateVPA().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2574,17 +2881,16 @@ class Payment {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentApplicationValidator.validateVPA().validate(
+    const { error: warrning } = PaymentValidator.validateVPA().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > validateVPA \n ${warrning}`,
+        message: "Parameter Validation warrnings for validateVPA",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2600,12 +2906,18 @@ class Payment {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.ValidateVPAResponse().validate(response, {
+    } = PaymentModel.ValidateVPAResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2613,25 +2925,27 @@ class Payment {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > validateVPA \n ${res_error}`,
+        message: "Response Validation Warnnings for validateVPA",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.VerifyAndChargePaymentParam} arg - Arg object.
-   * @returns {Promise<PaymentApplicationModel.ChargeCustomerResponse>} -
-   *   Success response
-   * @name verifyAndChargePayment
+   * @param {Object} arg - Arg object.
+   * @param {ChargeCustomerRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ChargeCustomerResponse>} - Success response
    * @summary: Verify and charge payment
-   * @description: Use this API to verify and check the status of a payment transaction (server-to-server) made through aggregators like Simpl and Mswipe. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/verifyAndChargePayment/).
+   * @description: Use this API to verify and check the status of a payment transaction (server-to-server) made through aggregators like Simpl and Mswipe.
    */
-  async verifyAndChargePayment({ body } = {}) {
-    const {
-      error,
-    } = PaymentApplicationValidator.verifyAndChargePayment().validate(
+  async verifyAndChargePayment(
+    { body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PaymentValidator.verifyAndChargePayment().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2642,15 +2956,16 @@ class Payment {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PaymentApplicationValidator.verifyAndChargePayment().validate(
+    } = PaymentValidator.verifyAndChargePayment().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > verifyAndChargePayment \n ${warrning}`,
+        message: "Parameter Validation warrnings for verifyAndChargePayment",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2666,12 +2981,18 @@ class Payment {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.ChargeCustomerResponse().validate(response, {
+    } = PaymentModel.ChargeCustomerResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2679,26 +3000,27 @@ class Payment {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > verifyAndChargePayment \n ${res_error}`,
+        message: "Response Validation Warnnings for verifyAndChargePayment",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.VerifyCustomerForPaymentParam} arg -
-   *   Arg object.
-   * @returns {Promise<PaymentApplicationModel.ValidateCustomerResponse>} -
-   *   Success response
-   * @name verifyCustomerForPayment
+   * @param {Object} arg - Arg object.
+   * @param {ValidateCustomerRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ValidateCustomerResponse>} - Success response
    * @summary: Validate customer for payment
-   * @description: Use this API to check if the customer is eligible to use credit-line facilities such as Simpl Pay Later and Rupifi. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/verifyCustomerForPayment/).
+   * @description: Use this API to check if the customer is eligible to use credit-line facilities such as Simpl Pay Later and Rupifi.
    */
-  async verifyCustomerForPayment({ body } = {}) {
-    const {
-      error,
-    } = PaymentApplicationValidator.verifyCustomerForPayment().validate(
+  async verifyCustomerForPayment(
+    { body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PaymentValidator.verifyCustomerForPayment().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2709,15 +3031,16 @@ class Payment {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PaymentApplicationValidator.verifyCustomerForPayment().validate(
+    } = PaymentValidator.verifyCustomerForPayment().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > verifyCustomerForPayment \n ${warrning}`,
+        message: "Parameter Validation warrnings for verifyCustomerForPayment",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2733,12 +3056,18 @@ class Payment {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.ValidateCustomerResponse().validate(response, {
+    } = PaymentModel.ValidateCustomerResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2746,22 +3075,25 @@ class Payment {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > verifyCustomerForPayment \n ${res_error}`,
+        message: "Response Validation Warnnings for verifyCustomerForPayment",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.VerifyIfscCodeParam} arg - Arg object.
-   * @returns {Promise<PaymentApplicationModel.IfscCodeResponse>} - Success response
-   * @name verifyIfscCode
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.ifscCode] - A 11-digit alphanumeric code that
+   *   uniquely identifies a bank branch.
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<IfscCodeResponse>} - Success response
    * @summary: Verify IFSC Code
-   * @description: Use this API to check whether the 11-digit IFSC code is valid and to fetch the bank details for refund. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/verifyIfscCode/).
+   * @description: Use this API to check whether the 11-digit IFSC code is valid and to fetch the bank details for refund.
    */
-  async verifyIfscCode({ ifscCode } = {}) {
-    const { error } = PaymentApplicationValidator.verifyIfscCode().validate(
+  async verifyIfscCode({ ifscCode } = {}, { headers } = { headers: false }) {
+    const { error } = PaymentValidator.verifyIfscCode().validate(
       { ifscCode },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2770,17 +3102,16 @@ class Payment {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentApplicationValidator.verifyIfscCode().validate(
+    const { error: warrning } = PaymentValidator.verifyIfscCode().validate(
       { ifscCode },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > verifyIfscCode \n ${warrning}`,
+        message: "Parameter Validation warrnings for verifyIfscCode",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2797,12 +3128,18 @@ class Payment {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.IfscCodeResponse().validate(response, {
+    } = PaymentModel.IfscCodeResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2810,28 +3147,29 @@ class Payment {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > verifyIfscCode \n ${res_error}`,
+        message: "Response Validation Warnnings for verifyIfscCode",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.VerifyOtpAndAddBeneficiaryForBankParam} arg
-   *   - Arg object.
-   *
-   * @returns {Promise<PaymentApplicationModel.AddBeneficiaryViaOtpVerificationResponse>}
-   *   - Success response
-   *
-   * @name verifyOtpAndAddBeneficiaryForBank
+   * @param {Object} arg - Arg object.
+   * @param {AddBeneficiaryViaOtpVerificationRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<AddBeneficiaryViaOtpVerificationResponse>} - Success response
    * @summary: Verify the beneficiary details using OTP
-   * @description: Use this API to perform an OTP validation before saving the beneficiary details added for a refund. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/verifyOtpAndAddBeneficiaryForBank/).
+   * @description: Use this API to perform an OTP validation before saving the beneficiary details added for a refund.
    */
-  async verifyOtpAndAddBeneficiaryForBank({ body } = {}) {
+  async verifyOtpAndAddBeneficiaryForBank(
+    { body } = {},
+    { headers } = { headers: false }
+  ) {
     const {
       error,
-    } = PaymentApplicationValidator.verifyOtpAndAddBeneficiaryForBank().validate(
+    } = PaymentValidator.verifyOtpAndAddBeneficiaryForBank().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2842,15 +3180,17 @@ class Payment {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PaymentApplicationValidator.verifyOtpAndAddBeneficiaryForBank().validate(
+    } = PaymentValidator.verifyOtpAndAddBeneficiaryForBank().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > verifyOtpAndAddBeneficiaryForBank \n ${warrning}`,
+        message:
+          "Parameter Validation warrnings for verifyOtpAndAddBeneficiaryForBank",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2866,39 +3206,49 @@ class Payment {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.AddBeneficiaryViaOtpVerificationResponse().validate(
-      response,
+    } = PaymentModel.AddBeneficiaryViaOtpVerificationResponse().validate(
+      responseData,
       { abortEarly: false, allowUnknown: false }
     );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > verifyOtpAndAddBeneficiaryForBank \n ${res_error}`,
+        message:
+          "Response Validation Warnnings for verifyOtpAndAddBeneficiaryForBank",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentApplicationValidator.VerifyOtpAndAddBeneficiaryForWalletParam} arg
-   *   - Arg object.
-   *
-   * @returns {Promise<PaymentApplicationModel.WalletOtpResponse>} - Success response
-   * @name verifyOtpAndAddBeneficiaryForWallet
+   * @param {Object} arg - Arg object.
+   * @param {WalletOtpRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<WalletOtpResponse>} - Success response
    * @summary: Send OTP on adding a wallet beneficiary
-   * @description: Use this API to send an OTP while adding a wallet beneficiary by mobile no. verification. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/verifyOtpAndAddBeneficiaryForWallet/).
+   * @description: Use this API to send an OTP while adding a wallet beneficiary by mobile no. verification.
    */
-  async verifyOtpAndAddBeneficiaryForWallet({ body } = {}) {
+  async verifyOtpAndAddBeneficiaryForWallet(
+    { body } = {},
+    { headers } = { headers: false }
+  ) {
     const {
       error,
-    } = PaymentApplicationValidator.verifyOtpAndAddBeneficiaryForWallet().validate(
+    } = PaymentValidator.verifyOtpAndAddBeneficiaryForWallet().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2909,15 +3259,17 @@ class Payment {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PaymentApplicationValidator.verifyOtpAndAddBeneficiaryForWallet().validate(
+    } = PaymentValidator.verifyOtpAndAddBeneficiaryForWallet().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > verifyOtpAndAddBeneficiaryForWallet \n ${warrning}`,
+        message:
+          "Parameter Validation warrnings for verifyOtpAndAddBeneficiaryForWallet",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2933,12 +3285,18 @@ class Payment {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentApplicationModel.WalletOtpResponse().validate(response, {
+    } = PaymentModel.WalletOtpResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2946,8 +3304,10 @@ class Payment {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > verifyOtpAndAddBeneficiaryForWallet \n ${res_error}`,
+        message:
+          "Response Validation Warnnings for verifyOtpAndAddBeneficiaryForWallet",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

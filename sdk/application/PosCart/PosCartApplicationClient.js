@@ -2,8 +2,8 @@ const ApplicationAPIClient = require("../ApplicationAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
-const PosCartApplicationValidator = require("./PosCartApplicationValidator");
-const PosCartApplicationModel = require("./PosCartApplicationModel");
+const PosCartValidator = require("./PosCartApplicationValidator");
+const PosCartModel = require("./PosCartApplicationModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -60,14 +60,15 @@ class PosCart {
   }
 
   /**
-   * @param {PosCartApplicationValidator.AddAddressParam} arg - Arg object.
-   * @returns {Promise<PosCartApplicationModel.SaveAddressResponse>} - Success response
-   * @name addAddress
+   * @param {Object} arg - Arg object.
+   * @param {Address} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<SaveAddressResponse>} - Success response
    * @summary: Add address to an account
-   * @description: Use this API to add an address to an account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/addAddress/).
+   * @description: Use this API to add an address to an account.
    */
-  async addAddress({ body } = {}) {
-    const { error } = PosCartApplicationValidator.addAddress().validate(
+  async addAddress({ body } = {}, { headers } = { headers: false }) {
+    const { error } = PosCartValidator.addAddress().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -76,17 +77,16 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PosCartApplicationValidator.addAddress().validate(
+    const { error: warrning } = PosCartValidator.addAddress().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > PosCart > addAddress \n ${warrning}`,
+        message: "Parameter Validation warrnings for addAddress",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -102,12 +102,18 @@ class PosCart {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PosCartApplicationModel.SaveAddressResponse().validate(response, {
+    } = PosCartModel.SaveAddressResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -115,23 +121,32 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > addAddress \n ${res_error}`,
+        message: "Response Validation Warnnings for addAddress",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PosCartApplicationValidator.AddItemsParam} arg - Arg object.
-   * @returns {Promise<PosCartApplicationModel.AddCartDetailResponse>} -
-   *   Success response
-   * @name addItems
+   * @param {Object} arg - Arg object.
+   * @param {boolean} [arg.i] -
+   * @param {boolean} [arg.b] -
+   * @param {string} [arg.areaCode] -
+   * @param {boolean} [arg.buyNow] -
+   * @param {string} [arg.id] -
+   * @param {AddCartRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<AddCartDetailResponse>} - Success response
    * @summary: Add items to cart
-   * @description: Use this API to add items to the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/addItems/).
+   * @description: Use this API to add items to the cart.
    */
-  async addItems({ body, i, b, areaCode, buyNow, id } = {}) {
-    const { error } = PosCartApplicationValidator.addItems().validate(
+  async addItems(
+    { body, i, b, areaCode, buyNow, id } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PosCartValidator.addItems().validate(
       { body, i, b, areaCode, buyNow, id },
       { abortEarly: false, allowUnknown: true }
     );
@@ -140,15 +155,16 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = PosCartApplicationValidator.addItems().validate(
+    const { error: warrning } = PosCartValidator.addItems().validate(
       { body, i, b, areaCode, buyNow, id },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > PosCart > addItems \n ${warrning}`,
+        message: "Parameter Validation warrnings for addItems",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -169,12 +185,18 @@ class PosCart {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PosCartApplicationModel.AddCartDetailResponse().validate(response, {
+    } = PosCartModel.AddCartDetailResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -182,22 +204,32 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > addItems \n ${res_error}`,
+        message: "Response Validation Warnnings for addItems",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PosCartApplicationValidator.ApplyCouponParam} arg - Arg object.
-   * @returns {Promise<PosCartApplicationModel.CartDetailResponse>} - Success response
-   * @name applyCoupon
+   * @param {Object} arg - Arg object.
+   * @param {boolean} [arg.i] -
+   * @param {boolean} [arg.b] -
+   * @param {boolean} [arg.p] -
+   * @param {string} [arg.id] -
+   * @param {boolean} [arg.buyNow] -
+   * @param {ApplyCouponRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CartDetailResponse>} - Success response
    * @summary: Apply Coupon
-   * @description: Use this API to apply coupons on items in the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/applyCoupon/).
+   * @description: Use this API to apply coupons on items in the cart.
    */
-  async applyCoupon({ body, i, b, p, id, buyNow } = {}) {
-    const { error } = PosCartApplicationValidator.applyCoupon().validate(
+  async applyCoupon(
+    { body, i, b, p, id, buyNow } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PosCartValidator.applyCoupon().validate(
       { body, i, b, p, id, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
@@ -206,17 +238,16 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PosCartApplicationValidator.applyCoupon().validate(
+    const { error: warrning } = PosCartValidator.applyCoupon().validate(
       { body, i, b, p, id, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > PosCart > applyCoupon \n ${warrning}`,
+        message: "Parameter Validation warrnings for applyCoupon",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -237,12 +268,18 @@ class PosCart {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PosCartApplicationModel.CartDetailResponse().validate(response, {
+    } = PosCartModel.CartDetailResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -250,22 +287,31 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > applyCoupon \n ${res_error}`,
+        message: "Response Validation Warnnings for applyCoupon",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PosCartApplicationValidator.ApplyRewardPointsParam} arg - Arg object.
-   * @returns {Promise<PosCartApplicationModel.CartDetailResponse>} - Success response
-   * @name applyRewardPoints
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.id] -
+   * @param {boolean} [arg.i] -
+   * @param {boolean} [arg.b] -
+   * @param {boolean} [arg.buyNow] -
+   * @param {RewardPointRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CartDetailResponse>} - Success response
    * @summary: Apply reward points at cart
-   * @description: Use this API to redeem a fixed no. of reward points by applying it to the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/applyRewardPoints/).
+   * @description: Use this API to redeem a fixed no. of reward points by applying it to the cart.
    */
-  async applyRewardPoints({ body, id, i, b, buyNow } = {}) {
-    const { error } = PosCartApplicationValidator.applyRewardPoints().validate(
+  async applyRewardPoints(
+    { body, id, i, b, buyNow } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PosCartValidator.applyRewardPoints().validate(
       { body, id, i, b, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
@@ -274,17 +320,16 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PosCartApplicationValidator.applyRewardPoints().validate(
+    const { error: warrning } = PosCartValidator.applyRewardPoints().validate(
       { body, id, i, b, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > PosCart > applyRewardPoints \n ${warrning}`,
+        message: "Parameter Validation warrnings for applyRewardPoints",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -304,12 +349,18 @@ class PosCart {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PosCartApplicationModel.CartDetailResponse().validate(response, {
+    } = PosCartModel.CartDetailResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -317,22 +368,25 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > applyRewardPoints \n ${res_error}`,
+        message: "Response Validation Warnnings for applyRewardPoints",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PosCartApplicationValidator.CheckoutCartParam} arg - Arg object.
-   * @returns {Promise<PosCartApplicationModel.CartCheckoutResponse>} - Success response
-   * @name checkoutCart
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.id] -
+   * @param {CartPosCheckoutDetailRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CartCheckoutResponse>} - Success response
    * @summary: Checkout all items in the cart
-   * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be generated directly, whereas for other checkout modes, user will be redirected to a payment gateway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/checkoutCart/).
+   * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be generated directly, whereas for other checkout modes, user will be redirected to a payment gateway.
    */
-  async checkoutCart({ body, id } = {}) {
-    const { error } = PosCartApplicationValidator.checkoutCart().validate(
+  async checkoutCart({ body, id } = {}, { headers } = { headers: false }) {
+    const { error } = PosCartValidator.checkoutCart().validate(
       { body, id },
       { abortEarly: false, allowUnknown: true }
     );
@@ -341,17 +395,16 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PosCartApplicationValidator.checkoutCart().validate(
+    const { error: warrning } = PosCartValidator.checkoutCart().validate(
       { body, id },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > PosCart > checkoutCart \n ${warrning}`,
+        message: "Parameter Validation warrnings for checkoutCart",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -368,12 +421,18 @@ class PosCart {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PosCartApplicationModel.CartCheckoutResponse().validate(response, {
+    } = PosCartModel.CartCheckoutResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -381,30 +440,33 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > checkoutCart \n ${res_error}`,
+        message: "Response Validation Warnnings for checkoutCart",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PosCartApplicationValidator.GetAddressByIdParam} arg - Arg object.
-   * @returns {Promise<PosCartApplicationModel.Address>} - Success response
-   * @name getAddressById
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id -
+   * @param {string} [arg.cartId] -
+   * @param {boolean} [arg.buyNow] -
+   * @param {string} [arg.mobileNo] -
+   * @param {string} [arg.checkoutMode] -
+   * @param {string} [arg.tags] -
+   * @param {boolean} [arg.isDefault] -
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<Address>} - Success response
    * @summary: Fetch a single address by its ID
-   * @description: Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `Address`. Attibutes listed below are optional  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getAddressById/).
+   * @description: Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `Address`. Attibutes listed below are optional
    */
-  async getAddressById({
-    id,
-    cartId,
-    buyNow,
-    mobileNo,
-    checkoutMode,
-    tags,
-    isDefault,
-  } = {}) {
-    const { error } = PosCartApplicationValidator.getAddressById().validate(
+  async getAddressById(
+    { id, cartId, buyNow, mobileNo, checkoutMode, tags, isDefault } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PosCartValidator.getAddressById().validate(
       { id, cartId, buyNow, mobileNo, checkoutMode, tags, isDefault },
       { abortEarly: false, allowUnknown: true }
     );
@@ -413,17 +475,16 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PosCartApplicationValidator.getAddressById().validate(
+    const { error: warrning } = PosCartValidator.getAddressById().validate(
       { id, cartId, buyNow, mobileNo, checkoutMode, tags, isDefault },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > PosCart > getAddressById \n ${warrning}`,
+        message: "Parameter Validation warrnings for getAddressById",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -445,12 +506,16 @@ class PosCart {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
 
-    const {
-      error: res_error,
-    } = PosCartApplicationModel.Address().validate(response, {
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = PosCartModel.Address().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -458,29 +523,32 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > getAddressById \n ${res_error}`,
+        message: "Response Validation Warnnings for getAddressById",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PosCartApplicationValidator.GetAddressesParam} arg - Arg object.
-   * @returns {Promise<PosCartApplicationModel.GetAddressesResponse>} - Success response
-   * @name getAddresses
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.cartId] -
+   * @param {boolean} [arg.buyNow] -
+   * @param {string} [arg.mobileNo] -
+   * @param {string} [arg.checkoutMode] -
+   * @param {string} [arg.tags] -
+   * @param {boolean} [arg.isDefault] -
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<GetAddressesResponse>} - Success response
    * @summary: Fetch address
-   * @description: Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getAddresses/).
+   * @description: Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional
    */
-  async getAddresses({
-    cartId,
-    buyNow,
-    mobileNo,
-    checkoutMode,
-    tags,
-    isDefault,
-  } = {}) {
-    const { error } = PosCartApplicationValidator.getAddresses().validate(
+  async getAddresses(
+    { cartId, buyNow, mobileNo, checkoutMode, tags, isDefault } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PosCartValidator.getAddresses().validate(
       { cartId, buyNow, mobileNo, checkoutMode, tags, isDefault },
       { abortEarly: false, allowUnknown: true }
     );
@@ -489,17 +557,16 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PosCartApplicationValidator.getAddresses().validate(
+    const { error: warrning } = PosCartValidator.getAddresses().validate(
       { cartId, buyNow, mobileNo, checkoutMode, tags, isDefault },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > PosCart > getAddresses \n ${warrning}`,
+        message: "Parameter Validation warrnings for getAddresses",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -521,12 +588,18 @@ class PosCart {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PosCartApplicationModel.GetAddressesResponse().validate(response, {
+    } = PosCartModel.GetAddressesResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -534,27 +607,28 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > getAddresses \n ${res_error}`,
+        message: "Response Validation Warnnings for getAddresses",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PosCartApplicationValidator.GetAvailableDeliveryModesParam} arg
-   *   - Arg object.
-   *
-   * @returns {Promise<PosCartApplicationModel.CartDeliveryModesResponse>} -
-   *   Success response
-   * @name getAvailableDeliveryModes
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.areaCode -
+   * @param {string} [arg.id] -
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CartDeliveryModesResponse>} - Success response
    * @summary: Get available delivery modes for cart
-   * @description: Use this API to get the delivery modes (home-delivery/store-pickup) along with a list of pickup stores available for a given cart at a given PIN Code. User can then view the address of a pickup store with the help of store-address API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getAvailableDeliveryModes/).
+   * @description: Use this API to get the delivery modes (home-delivery/store-pickup) along with a list of pickup stores available for a given cart at a given PIN Code. User can then view the address of a pickup store with the help of store-address API.
    */
-  async getAvailableDeliveryModes({ areaCode, id } = {}) {
-    const {
-      error,
-    } = PosCartApplicationValidator.getAvailableDeliveryModes().validate(
+  async getAvailableDeliveryModes(
+    { areaCode, id } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PosCartValidator.getAvailableDeliveryModes().validate(
       { areaCode, id },
       { abortEarly: false, allowUnknown: true }
     );
@@ -565,15 +639,16 @@ class PosCart {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PosCartApplicationValidator.getAvailableDeliveryModes().validate(
+    } = PosCartValidator.getAvailableDeliveryModes().validate(
       { areaCode, id },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > PosCart > getAvailableDeliveryModes \n ${warrning}`,
+        message: "Parameter Validation warrnings for getAvailableDeliveryModes",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -591,12 +666,18 @@ class PosCart {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PosCartApplicationModel.CartDeliveryModesResponse().validate(response, {
+    } = PosCartModel.CartDeliveryModesResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -604,24 +685,32 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > getAvailableDeliveryModes \n ${res_error}`,
+        message: "Response Validation Warnnings for getAvailableDeliveryModes",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PosCartApplicationValidator.GetBulkDiscountOffersParam} arg - Arg object.
-   * @returns {Promise<PosCartApplicationModel.BulkPriceResponse>} - Success response
-   * @name getBulkDiscountOffers
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.itemId] - The Item ID of the product
+   * @param {string} [arg.articleId] - Article Mongo ID
+   * @param {number} [arg.uid] - UID of the product
+   * @param {string} [arg.slug] - A short, human-readable, URL-friendly
+   *   identifier of a product. You can get slug value from the endpoint
+   *   /service/application/catalog/v1.0/products/
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<BulkPriceResponse>} - Success response
    * @summary: Get discount offers based on quantity
-   * @description: Use this API to get a list of applicable offers along with current, next and best offer for given product. Either one of uid, item_id, slug should be present. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getBulkDiscountOffers/).
+   * @description: Use this API to get a list of applicable offers along with current, next and best offer for given product. Either one of uid, item_id, slug should be present.
    */
-  async getBulkDiscountOffers({ itemId, articleId, uid, slug } = {}) {
-    const {
-      error,
-    } = PosCartApplicationValidator.getBulkDiscountOffers().validate(
+  async getBulkDiscountOffers(
+    { itemId, articleId, uid, slug } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PosCartValidator.getBulkDiscountOffers().validate(
       { itemId, articleId, uid, slug },
       { abortEarly: false, allowUnknown: true }
     );
@@ -632,15 +721,16 @@ class PosCart {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PosCartApplicationValidator.getBulkDiscountOffers().validate(
+    } = PosCartValidator.getBulkDiscountOffers().validate(
       { itemId, articleId, uid, slug },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > PosCart > getBulkDiscountOffers \n ${warrning}`,
+        message: "Parameter Validation warrnings for getBulkDiscountOffers",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -660,12 +750,18 @@ class PosCart {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PosCartApplicationModel.BulkPriceResponse().validate(response, {
+    } = PosCartModel.BulkPriceResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -673,22 +769,32 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > getBulkDiscountOffers \n ${res_error}`,
+        message: "Response Validation Warnnings for getBulkDiscountOffers",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PosCartApplicationValidator.GetCartParam} arg - Arg object.
-   * @returns {Promise<PosCartApplicationModel.CartDetailResponse>} - Success response
-   * @name getCart
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.id] -
+   * @param {boolean} [arg.i] -
+   * @param {boolean} [arg.b] -
+   * @param {number} [arg.assignCardId] -
+   * @param {string} [arg.areaCode] -
+   * @param {boolean} [arg.buyNow] -
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CartDetailResponse>} - Success response
    * @summary: Fetch all items added to the cart
-   * @description: Use this API to get details of all the items added to a cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getCart/).
+   * @description: Use this API to get details of all the items added to a cart.
    */
-  async getCart({ id, i, b, assignCardId, areaCode, buyNow } = {}) {
-    const { error } = PosCartApplicationValidator.getCart().validate(
+  async getCart(
+    { id, i, b, assignCardId, areaCode, buyNow } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PosCartValidator.getCart().validate(
       { id, i, b, assignCardId, areaCode, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
@@ -697,15 +803,16 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = PosCartApplicationValidator.getCart().validate(
+    const { error: warrning } = PosCartValidator.getCart().validate(
       { id, i, b, assignCardId, areaCode, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > PosCart > getCart \n ${warrning}`,
+        message: "Parameter Validation warrnings for getCart",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -727,12 +834,18 @@ class PosCart {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PosCartApplicationModel.CartDetailResponse().validate(response, {
+    } = PosCartModel.CartDetailResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -740,24 +853,24 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > getCart \n ${res_error}`,
+        message: "Response Validation Warnnings for getCart",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PosCartApplicationValidator.GetCartLastModifiedParam} arg - Arg object.
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.id] -
+   * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<any>} - Success response
-   * @name getCartLastModified
    * @summary: Fetch last-modified timestamp
-   * @description: Use this API to fetch Last-Modified timestamp in header metadata. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getCartLastModified/).
+   * @description: Use this API to fetch Last-Modified timestamp in header metadata.
    */
-  async getCartLastModified({ id } = {}) {
-    const {
-      error,
-    } = PosCartApplicationValidator.getCartLastModified().validate(
+  async getCartLastModified({ id } = {}, { headers } = { headers: false }) {
+    const { error } = PosCartValidator.getCartLastModified().validate(
       { id },
       { abortEarly: false, allowUnknown: true }
     );
@@ -766,17 +879,16 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PosCartApplicationValidator.getCartLastModified().validate(
+    const { error: warrning } = PosCartValidator.getCartLastModified().validate(
       { id },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > PosCart > getCartLastModified \n ${warrning}`,
+        message: "Parameter Validation warrnings for getCartLastModified",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -793,33 +905,40 @@ class PosCart {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const { error: res_error } = Joi.string()
       .allow("")
-      .validate(response, { abortEarly: false, allowUnknown: false });
+      .validate(responseData, { abortEarly: false, allowUnknown: false });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > getCartLastModified \n ${res_error}`,
+        message: "Response Validation Warnnings for getCartLastModified",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PosCartApplicationValidator.GetCartShareLinkParam} arg - Arg object.
-   * @returns {Promise<PosCartApplicationModel.GetShareCartLinkResponse>} -
-   *   Success response
-   * @name getCartShareLink
+   * @param {Object} arg - Arg object.
+   * @param {GetShareCartLinkRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<GetShareCartLinkResponse>} - Success response
    * @summary: Generate token for sharing the cart
-   * @description: Use this API to generate a shared cart snapshot and return a shortlink token. The link can be shared with other users for getting the same items in their cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getCartShareLink/).
+   * @description: Use this API to generate a shared cart snapshot and return a shortlink token. The link can be shared with other users for getting the same items in their cart.
    */
-  async getCartShareLink({ body } = {}) {
-    const { error } = PosCartApplicationValidator.getCartShareLink().validate(
+  async getCartShareLink({ body } = {}, { headers } = { headers: false }) {
+    const { error } = PosCartValidator.getCartShareLink().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -828,17 +947,16 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PosCartApplicationValidator.getCartShareLink().validate(
+    const { error: warrning } = PosCartValidator.getCartShareLink().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > PosCart > getCartShareLink \n ${warrning}`,
+        message: "Parameter Validation warrnings for getCartShareLink",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -854,12 +972,18 @@ class PosCart {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PosCartApplicationModel.GetShareCartLinkResponse().validate(response, {
+    } = PosCartModel.GetShareCartLinkResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -867,22 +991,24 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > getCartShareLink \n ${res_error}`,
+        message: "Response Validation Warnnings for getCartShareLink",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PosCartApplicationValidator.GetCartSharedItemsParam} arg - Arg object.
-   * @returns {Promise<PosCartApplicationModel.SharedCartResponse>} - Success response
-   * @name getCartSharedItems
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.token - Token of the shared short link
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<SharedCartResponse>} - Success response
    * @summary: Get details of a shared cart
-   * @description: Use this API to get the shared cart details as per the token generated using the share-cart API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getCartSharedItems/).
+   * @description: Use this API to get the shared cart details as per the token generated using the share-cart API.
    */
-  async getCartSharedItems({ token } = {}) {
-    const { error } = PosCartApplicationValidator.getCartSharedItems().validate(
+  async getCartSharedItems({ token } = {}, { headers } = { headers: false }) {
+    const { error } = PosCartValidator.getCartSharedItems().validate(
       { token },
       { abortEarly: false, allowUnknown: true }
     );
@@ -891,17 +1017,16 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PosCartApplicationValidator.getCartSharedItems().validate(
+    const { error: warrning } = PosCartValidator.getCartSharedItems().validate(
       { token },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > PosCart > getCartSharedItems \n ${warrning}`,
+        message: "Parameter Validation warrnings for getCartSharedItems",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -917,12 +1042,18 @@ class PosCart {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PosCartApplicationModel.SharedCartResponse().validate(response, {
+    } = PosCartModel.SharedCartResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -930,22 +1061,25 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > getCartSharedItems \n ${res_error}`,
+        message: "Response Validation Warnnings for getCartSharedItems",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PosCartApplicationValidator.GetCouponsParam} arg - Arg object.
-   * @returns {Promise<PosCartApplicationModel.GetCouponResponse>} - Success response
-   * @name getCoupons
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.id] -
+   * @param {boolean} [arg.buyNow] -
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<GetCouponResponse>} - Success response
    * @summary: Fetch Coupon
-   * @description: Use this API to get a list of available coupons along with their details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getCoupons/).
+   * @description: Use this API to get a list of available coupons along with their details.
    */
-  async getCoupons({ id, buyNow } = {}) {
-    const { error } = PosCartApplicationValidator.getCoupons().validate(
+  async getCoupons({ id, buyNow } = {}, { headers } = { headers: false }) {
+    const { error } = PosCartValidator.getCoupons().validate(
       { id, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
@@ -954,17 +1088,16 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PosCartApplicationValidator.getCoupons().validate(
+    const { error: warrning } = PosCartValidator.getCoupons().validate(
       { id, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > PosCart > getCoupons \n ${warrning}`,
+        message: "Parameter Validation warrnings for getCoupons",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -982,12 +1115,18 @@ class PosCart {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PosCartApplicationModel.GetCouponResponse().validate(response, {
+    } = PosCartModel.GetCouponResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -995,23 +1134,25 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > getCoupons \n ${res_error}`,
+        message: "Response Validation Warnnings for getCoupons",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PosCartApplicationValidator.GetItemCountParam} arg - Arg object.
-   * @returns {Promise<PosCartApplicationModel.CartItemCountResponse>} -
-   *   Success response
-   * @name getItemCount
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.id] - The unique identifier of the cart.
+   * @param {boolean} [arg.buyNow] -
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CartItemCountResponse>} - Success response
    * @summary: Count items in the cart
-   * @description: Use this API to get the total number of items present in cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getItemCount/).
+   * @description: Use this API to get the total number of items present in cart.
    */
-  async getItemCount({ id, buyNow } = {}) {
-    const { error } = PosCartApplicationValidator.getItemCount().validate(
+  async getItemCount({ id, buyNow } = {}, { headers } = { headers: false }) {
+    const { error } = PosCartValidator.getItemCount().validate(
       { id, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1020,17 +1161,16 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PosCartApplicationValidator.getItemCount().validate(
+    const { error: warrning } = PosCartValidator.getItemCount().validate(
       { id, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > PosCart > getItemCount \n ${warrning}`,
+        message: "Parameter Validation warrnings for getItemCount",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1048,12 +1188,18 @@ class PosCart {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PosCartApplicationModel.CartItemCountResponse().validate(response, {
+    } = PosCartModel.CartItemCountResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1061,31 +1207,45 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > getItemCount \n ${res_error}`,
+        message: "Response Validation Warnnings for getItemCount",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PosCartApplicationValidator.GetShipmentsParam} arg - Arg object.
-   * @returns {Promise<PosCartApplicationModel.CartShipmentsResponse>} -
-   *   Success response
-   * @name getShipments
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pickAtStoreUid] -
+   * @param {number} [arg.orderingStoreId] -
+   * @param {boolean} [arg.p] - This is a boolean value. Select `true` for
+   *   getting a payment option in response.
+   * @param {string} [arg.id] - The unique identifier of the cart
+   * @param {string} [arg.addressId] - ID allotted to the selected address
+   * @param {string} [arg.areaCode] - The PIN Code of the destination address,
+   *   e.g. 400059
+   * @param {string} [arg.orderType] - The order type of shipment HomeDelivery
+   *   - If the customer wants the order home-delivered PickAtStore - If the
+   *   customer wants the handover of an order at the store itself.
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CartShipmentsResponse>} - Success response
    * @summary: Get delivery date and options before checkout
-   * @description: Use this API to get shipment details, expected delivery date, items and price breakup of the shipment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getShipments/).
+   * @description: Use this API to get shipment details, expected delivery date, items and price breakup of the shipment.
    */
-  async getShipments({
-    pickAtStoreUid,
-    orderingStoreId,
-    p,
-    id,
-    addressId,
-    areaCode,
-    orderType,
-  } = {}) {
-    const { error } = PosCartApplicationValidator.getShipments().validate(
+  async getShipments(
+    {
+      pickAtStoreUid,
+      orderingStoreId,
+      p,
+      id,
+      addressId,
+      areaCode,
+      orderType,
+    } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PosCartValidator.getShipments().validate(
       {
         pickAtStoreUid,
         orderingStoreId,
@@ -1102,9 +1262,7 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PosCartApplicationValidator.getShipments().validate(
+    const { error: warrning } = PosCartValidator.getShipments().validate(
       {
         pickAtStoreUid,
         orderingStoreId,
@@ -1119,8 +1277,9 @@ class PosCart {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > PosCart > getShipments \n ${warrning}`,
+        message: "Parameter Validation warrnings for getShipments",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1143,12 +1302,18 @@ class PosCart {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PosCartApplicationModel.CartShipmentsResponse().validate(response, {
+    } = PosCartModel.CartShipmentsResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1156,24 +1321,27 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > getShipments \n ${res_error}`,
+        message: "Response Validation Warnnings for getShipments",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PosCartApplicationValidator.GetStoreAddressByUidParam} arg - Arg object.
-   * @returns {Promise<PosCartApplicationModel.StoreDetailsResponse>} - Success response
-   * @name getStoreAddressByUid
+   * @param {Object} arg - Arg object.
+   * @param {number} arg.storeUid -
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<StoreDetailsResponse>} - Success response
    * @summary: Get list of stores for give uids
-   * @description: Use this API to get the store details by entering the unique identifier of the pickup stores shown in the response of available-delivery-mode API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getStoreAddressByUid/).
+   * @description: Use this API to get the store details by entering the unique identifier of the pickup stores shown in the response of available-delivery-mode API.
    */
-  async getStoreAddressByUid({ storeUid } = {}) {
-    const {
-      error,
-    } = PosCartApplicationValidator.getStoreAddressByUid().validate(
+  async getStoreAddressByUid(
+    { storeUid } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PosCartValidator.getStoreAddressByUid().validate(
       { storeUid },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1184,15 +1352,16 @@ class PosCart {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PosCartApplicationValidator.getStoreAddressByUid().validate(
+    } = PosCartValidator.getStoreAddressByUid().validate(
       { storeUid },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > PosCart > getStoreAddressByUid \n ${warrning}`,
+        message: "Parameter Validation warrnings for getStoreAddressByUid",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1209,12 +1378,18 @@ class PosCart {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PosCartApplicationModel.StoreDetailsResponse().validate(response, {
+    } = PosCartModel.StoreDetailsResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1222,23 +1397,24 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > getStoreAddressByUid \n ${res_error}`,
+        message: "Response Validation Warnnings for getStoreAddressByUid",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PosCartApplicationValidator.RemoveAddressParam} arg - Arg object.
-   * @returns {Promise<PosCartApplicationModel.DeleteAddressResponse>} -
-   *   Success response
-   * @name removeAddress
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - ID allotted to the selected address
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<DeleteAddressResponse>} - Success response
    * @summary: Remove address associated with an account
-   * @description: Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/removeAddress/).
+   * @description: Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not.
    */
-  async removeAddress({ id } = {}) {
-    const { error } = PosCartApplicationValidator.removeAddress().validate(
+  async removeAddress({ id } = {}, { headers } = { headers: false }) {
+    const { error } = PosCartValidator.removeAddress().validate(
       { id },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1247,17 +1423,16 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PosCartApplicationValidator.removeAddress().validate(
+    const { error: warrning } = PosCartValidator.removeAddress().validate(
       { id },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > PosCart > removeAddress \n ${warrning}`,
+        message: "Parameter Validation warrnings for removeAddress",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1273,12 +1448,18 @@ class PosCart {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PosCartApplicationModel.DeleteAddressResponse().validate(response, {
+    } = PosCartModel.DeleteAddressResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1286,22 +1467,25 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > removeAddress \n ${res_error}`,
+        message: "Response Validation Warnnings for removeAddress",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PosCartApplicationValidator.RemoveCouponParam} arg - Arg object.
-   * @returns {Promise<PosCartApplicationModel.CartDetailResponse>} - Success response
-   * @name removeCoupon
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.id] -
+   * @param {boolean} [arg.buyNow] -
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CartDetailResponse>} - Success response
    * @summary: Remove Coupon Applied
-   * @description: Remove Coupon applied on the cart by passing uid in request body. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/removeCoupon/).
+   * @description: Remove Coupon applied on the cart by passing uid in request body.
    */
-  async removeCoupon({ id, buyNow } = {}) {
-    const { error } = PosCartApplicationValidator.removeCoupon().validate(
+  async removeCoupon({ id, buyNow } = {}, { headers } = { headers: false }) {
+    const { error } = PosCartValidator.removeCoupon().validate(
       { id, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1310,17 +1494,16 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PosCartApplicationValidator.removeCoupon().validate(
+    const { error: warrning } = PosCartValidator.removeCoupon().validate(
       { id, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > PosCart > removeCoupon \n ${warrning}`,
+        message: "Parameter Validation warrnings for removeCoupon",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1338,12 +1521,18 @@ class PosCart {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PosCartApplicationModel.CartDetailResponse().validate(response, {
+    } = PosCartModel.CartDetailResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1351,22 +1540,31 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > removeCoupon \n ${res_error}`,
+        message: "Response Validation Warnnings for removeCoupon",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PosCartApplicationValidator.SelectAddressParam} arg - Arg object.
-   * @returns {Promise<PosCartApplicationModel.CartDetailResponse>} - Success response
-   * @name selectAddress
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.cartId] -
+   * @param {boolean} [arg.buyNow] -
+   * @param {boolean} [arg.i] -
+   * @param {boolean} [arg.b] -
+   * @param {SelectCartAddressRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CartDetailResponse>} - Success response
    * @summary: Select an address from available addresses
-   * @description: Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/selectAddress/).
+   * @description: Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object.
    */
-  async selectAddress({ body, cartId, buyNow, i, b } = {}) {
-    const { error } = PosCartApplicationValidator.selectAddress().validate(
+  async selectAddress(
+    { body, cartId, buyNow, i, b } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PosCartValidator.selectAddress().validate(
       { body, cartId, buyNow, i, b },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1375,17 +1573,16 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PosCartApplicationValidator.selectAddress().validate(
+    const { error: warrning } = PosCartValidator.selectAddress().validate(
       { body, cartId, buyNow, i, b },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > PosCart > selectAddress \n ${warrning}`,
+        message: "Parameter Validation warrnings for selectAddress",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1405,12 +1602,18 @@ class PosCart {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PosCartApplicationModel.CartDetailResponse().validate(response, {
+    } = PosCartModel.CartDetailResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1418,22 +1621,29 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > selectAddress \n ${res_error}`,
+        message: "Response Validation Warnnings for selectAddress",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PosCartApplicationValidator.SelectPaymentModeParam} arg - Arg object.
-   * @returns {Promise<PosCartApplicationModel.CartDetailResponse>} - Success response
-   * @name selectPaymentMode
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.id] -
+   * @param {boolean} [arg.buyNow] -
+   * @param {UpdateCartPaymentRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CartDetailResponse>} - Success response
    * @summary: Update cart payment
-   * @description: Use this API to update cart payment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/selectPaymentMode/).
+   * @description: Use this API to update cart payment.
    */
-  async selectPaymentMode({ body, id, buyNow } = {}) {
-    const { error } = PosCartApplicationValidator.selectPaymentMode().validate(
+  async selectPaymentMode(
+    { body, id, buyNow } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PosCartValidator.selectPaymentMode().validate(
       { body, id, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1442,17 +1652,16 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PosCartApplicationValidator.selectPaymentMode().validate(
+    const { error: warrning } = PosCartValidator.selectPaymentMode().validate(
       { body, id, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > PosCart > selectPaymentMode \n ${warrning}`,
+        message: "Parameter Validation warrnings for selectPaymentMode",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1470,12 +1679,18 @@ class PosCart {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PosCartApplicationModel.CartDetailResponse().validate(response, {
+    } = PosCartModel.CartDetailResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1483,23 +1698,25 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > selectPaymentMode \n ${res_error}`,
+        message: "Response Validation Warnnings for selectPaymentMode",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PosCartApplicationValidator.UpdateAddressParam} arg - Arg object.
-   * @returns {Promise<PosCartApplicationModel.UpdateAddressResponse>} -
-   *   Success response
-   * @name updateAddress
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - ID allotted to the selected address
+   * @param {Address} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<UpdateAddressResponse>} - Success response
    * @summary: Update address added to an account
-   * @description: Use this API to update an existing address in the account. Request object should contain attributes mentioned in Address  can be updated. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/updateAddress/).
+   * @description: Use this API to update an existing address in the account. Request object should contain attributes mentioned in Address  can be updated.
    */
-  async updateAddress({ id, body } = {}) {
-    const { error } = PosCartApplicationValidator.updateAddress().validate(
+  async updateAddress({ id, body } = {}, { headers } = { headers: false }) {
+    const { error } = PosCartValidator.updateAddress().validate(
       { id, body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1508,17 +1725,16 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PosCartApplicationValidator.updateAddress().validate(
+    const { error: warrning } = PosCartValidator.updateAddress().validate(
       { id, body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > PosCart > updateAddress \n ${warrning}`,
+        message: "Parameter Validation warrnings for updateAddress",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1534,12 +1750,18 @@ class PosCart {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PosCartApplicationModel.UpdateAddressResponse().validate(response, {
+    } = PosCartModel.UpdateAddressResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1547,23 +1769,32 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > updateAddress \n ${res_error}`,
+        message: "Response Validation Warnnings for updateAddress",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PosCartApplicationValidator.UpdateCartParam} arg - Arg object.
-   * @returns {Promise<PosCartApplicationModel.UpdateCartDetailResponse>} -
-   *   Success response
-   * @name updateCart
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.id] -
+   * @param {boolean} [arg.i] -
+   * @param {boolean} [arg.b] -
+   * @param {string} [arg.areaCode] -
+   * @param {boolean} [arg.buyNow] -
+   * @param {UpdateCartRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<UpdateCartDetailResponse>} - Success response
    * @summary: Update items in the cart
-   * @description: Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/updateCart/).
+   * @description: Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size.
    */
-  async updateCart({ body, id, i, b, areaCode, buyNow } = {}) {
-    const { error } = PosCartApplicationValidator.updateCart().validate(
+  async updateCart(
+    { body, id, i, b, areaCode, buyNow } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PosCartValidator.updateCart().validate(
       { body, id, i, b, areaCode, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1572,17 +1803,16 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PosCartApplicationValidator.updateCart().validate(
+    const { error: warrning } = PosCartValidator.updateCart().validate(
       { body, id, i, b, areaCode, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > PosCart > updateCart \n ${warrning}`,
+        message: "Parameter Validation warrnings for updateCart",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1603,12 +1833,18 @@ class PosCart {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PosCartApplicationModel.UpdateCartDetailResponse().validate(response, {
+    } = PosCartModel.UpdateCartDetailResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1616,22 +1852,29 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > updateCart \n ${res_error}`,
+        message: "Response Validation Warnnings for updateCart",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PosCartApplicationValidator.UpdateCartMetaParam} arg - Arg object.
-   * @returns {Promise<PosCartApplicationModel.CartMetaResponse>} - Success response
-   * @name updateCartMeta
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.id] -
+   * @param {boolean} [arg.buyNow] -
+   * @param {CartMetaRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CartMetaResponse>} - Success response
    * @summary: Update the cart meta
-   * @description: Use this API to update cart meta like checkout_mode and gstin. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/updateCartMeta/).
+   * @description: Use this API to update cart meta like checkout_mode and gstin.
    */
-  async updateCartMeta({ body, id, buyNow } = {}) {
-    const { error } = PosCartApplicationValidator.updateCartMeta().validate(
+  async updateCartMeta(
+    { body, id, buyNow } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PosCartValidator.updateCartMeta().validate(
       { body, id, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1640,17 +1883,16 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PosCartApplicationValidator.updateCartMeta().validate(
+    const { error: warrning } = PosCartValidator.updateCartMeta().validate(
       { body, id, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > PosCart > updateCartMeta \n ${warrning}`,
+        message: "Parameter Validation warrnings for updateCartMeta",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1668,12 +1910,18 @@ class PosCart {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PosCartApplicationModel.CartMetaResponse().validate(response, {
+    } = PosCartModel.CartMetaResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1681,26 +1929,29 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > updateCartMeta \n ${res_error}`,
+        message: "Response Validation Warnnings for updateCartMeta",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PosCartApplicationValidator.UpdateCartWithSharedItemsParam} arg
-   *   - Arg object.
-   *
-   * @returns {Promise<PosCartApplicationModel.SharedCartResponse>} - Success response
-   * @name updateCartWithSharedItems
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.token - Token of the shared short link
+   * @param {string} arg.action - Operation to perform on the existing cart
+   *   merge or replace.
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<SharedCartResponse>} - Success response
    * @summary: Merge or replace existing cart
-   * @description: Use this API to merge the shared cart with existing cart, or replace the existing cart with the shared cart. The `action` parameter is used to indicate the operation Merge or Replace. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/updateCartWithSharedItems/).
+   * @description: Use this API to merge the shared cart with existing cart, or replace the existing cart with the shared cart. The `action` parameter is used to indicate the operation Merge or Replace.
    */
-  async updateCartWithSharedItems({ token, action } = {}) {
-    const {
-      error,
-    } = PosCartApplicationValidator.updateCartWithSharedItems().validate(
+  async updateCartWithSharedItems(
+    { token, action } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PosCartValidator.updateCartWithSharedItems().validate(
       { token, action },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1711,15 +1962,16 @@ class PosCart {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PosCartApplicationValidator.updateCartWithSharedItems().validate(
+    } = PosCartValidator.updateCartWithSharedItems().validate(
       { token, action },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > PosCart > updateCartWithSharedItems \n ${warrning}`,
+        message: "Parameter Validation warrnings for updateCartWithSharedItems",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1735,12 +1987,18 @@ class PosCart {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PosCartApplicationModel.SharedCartResponse().validate(response, {
+    } = PosCartModel.SharedCartResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1748,31 +2006,38 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > updateCartWithSharedItems \n ${res_error}`,
+        message: "Response Validation Warnnings for updateCartWithSharedItems",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PosCartApplicationValidator.UpdateShipmentsParam} arg - Arg object.
-   * @returns {Promise<PosCartApplicationModel.CartShipmentsResponse>} -
-   *   Success response
-   * @name updateShipments
+   * @param {Object} arg - Arg object.
+   * @param {boolean} [arg.i] - This is a boolean value. Select `true` to
+   *   retrieve all the items added in the cart.
+   * @param {boolean} [arg.p] - This is a boolean value. Select `true` for
+   *   getting a payment option in response.
+   * @param {string} [arg.id] - The unique identifier of the cart
+   * @param {string} [arg.addressId] - ID allotted to an address
+   * @param {string} [arg.areaCode] - The PIN Code of the destination address,
+   *   e.g. 400059
+   * @param {string} [arg.orderType] - The order type of shipment HomeDelivery
+   *   - If the customer wants the order home-delivered PickAtStore - If the
+   *   customer wants the handover of an order at the store itself.
+   * @param {UpdateCartShipmentRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CartShipmentsResponse>} - Success response
    * @summary: Update shipment delivery type and quantity before checkout
-   * @description: Use this API to update the delivery type and quantity as per customer's preference for either store pick-up or home-delivery. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/updateShipments/).
+   * @description: Use this API to update the delivery type and quantity as per customer's preference for either store pick-up or home-delivery.
    */
-  async updateShipments({
-    body,
-    i,
-    p,
-    id,
-    addressId,
-    areaCode,
-    orderType,
-  } = {}) {
-    const { error } = PosCartApplicationValidator.updateShipments().validate(
+  async updateShipments(
+    { body, i, p, id, addressId, areaCode, orderType } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PosCartValidator.updateShipments().validate(
       { body, i, p, id, addressId, areaCode, orderType },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1781,17 +2046,16 @@ class PosCart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PosCartApplicationValidator.updateShipments().validate(
+    const { error: warrning } = PosCartValidator.updateShipments().validate(
       { body, i, p, id, addressId, areaCode, orderType },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > PosCart > updateShipments \n ${warrning}`,
+        message: "Parameter Validation warrnings for updateShipments",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1813,12 +2077,18 @@ class PosCart {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PosCartApplicationModel.CartShipmentsResponse().validate(response, {
+    } = PosCartModel.CartShipmentsResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1826,38 +2096,49 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > updateShipments \n ${res_error}`,
+        message: "Response Validation Warnnings for updateShipments",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PosCartApplicationValidator.ValidateCouponForPaymentParam} arg -
-   *   Arg object.
-   * @returns {Promise<PosCartApplicationModel.PaymentCouponValidate>} -
-   *   Success response
-   * @name validateCouponForPayment
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.id] -
+   * @param {boolean} [arg.buyNow] -
+   * @param {string} [arg.addressId] -
+   * @param {string} [arg.paymentMode] -
+   * @param {string} [arg.paymentIdentifier] -
+   * @param {string} [arg.aggregatorName] -
+   * @param {string} [arg.merchantCode] -
+   * @param {string} [arg.iin] -
+   * @param {string} [arg.network] -
+   * @param {string} [arg.type] -
+   * @param {string} [arg.cardId] -
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<PaymentCouponValidate>} - Success response
    * @summary: Verify the coupon eligibility against the payment mode
-   * @description: Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/validateCouponForPayment/).
+   * @description: Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc.
    */
-  async validateCouponForPayment({
-    id,
-    buyNow,
-    addressId,
-    paymentMode,
-    paymentIdentifier,
-    aggregatorName,
-    merchantCode,
-    iin,
-    network,
-    type,
-    cardId,
-  } = {}) {
-    const {
-      error,
-    } = PosCartApplicationValidator.validateCouponForPayment().validate(
+  async validateCouponForPayment(
+    {
+      id,
+      buyNow,
+      addressId,
+      paymentMode,
+      paymentIdentifier,
+      aggregatorName,
+      merchantCode,
+      iin,
+      network,
+      type,
+      cardId,
+    } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PosCartValidator.validateCouponForPayment().validate(
       {
         id,
         buyNow,
@@ -1880,7 +2161,7 @@ class PosCart {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PosCartApplicationValidator.validateCouponForPayment().validate(
+    } = PosCartValidator.validateCouponForPayment().validate(
       {
         id,
         buyNow,
@@ -1899,8 +2180,9 @@ class PosCart {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > PosCart > validateCouponForPayment \n ${warrning}`,
+        message: "Parameter Validation warrnings for validateCouponForPayment",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1927,12 +2209,18 @@ class PosCart {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PosCartApplicationModel.PaymentCouponValidate().validate(response, {
+    } = PosCartModel.PaymentCouponValidate().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1940,8 +2228,9 @@ class PosCart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > validateCouponForPayment \n ${res_error}`,
+        message: "Response Validation Warnnings for validateCouponForPayment",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

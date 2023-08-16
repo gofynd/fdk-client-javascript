@@ -1,8 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
-const ContentPlatformApplicationValidator = require("./ContentPlatformApplicationValidator");
-const ContentPlatformModel = require("./ContentPlatformModel");
+const ContentValidator = require("./ContentPlatformApplicationValidator");
+const ContentModel = require("./ContentPlatformModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -13,17 +13,15 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.AddDataLoaderParam} arg - Arg object
-   * @returns {Promise<ContentPlatformModel.DataLoaderResponseSchema>} -
-   *   Success response
-   * @name addDataLoader
+   * @param {Object} arg - Arg object.
+   * @param {DataLoaderSchema} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<DataLoaderResponseSchema>} - Success response
    * @summary: Adds a data loader
-   * @description: Use this API to add data loader. This includes the data loader name, operationId, service name and its type (url/function) with corresponding value. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/addDataLoader/).
+   * @description: Use this API to add data loader. This includes the data loader name, operationId, service name and its type (url/function) with corresponding value.
    */
-  async addDataLoader({ body } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.addDataLoader().validate(
+  async addDataLoader({ body } = {}, { headers } = { headers: false }) {
+    const { error } = ContentValidator.addDataLoader().validate(
       {
         body,
       },
@@ -34,9 +32,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.addDataLoader().validate(
+    const { error: warrning } = ContentValidator.addDataLoader().validate(
       {
         body,
       },
@@ -45,8 +41,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > addDataLoader \n ${warrning}`,
+        message: "Parameter Validation warrnings for addDataLoader",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -56,12 +53,19 @@ class Content {
       "post",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/data-loader`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.DataLoaderResponseSchema().validate(response, {
+    } = ContentModel.DataLoaderResponseSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -69,22 +73,25 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > addDataLoader \n ${res_error}`,
+        message: "Response Validation Warnnings for addDataLoader",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.AddFaqParam} arg - Arg object
-   * @returns {Promise<ContentPlatformModel.CreateFaqResponseSchema>} - Success response
-   * @name addFaq
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.categoryId - ID allotted to an FAQ category.
+   * @param {CreateFaqSchema} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CreateFaqResponseSchema>} - Success response
    * @summary: Create an FAQ
-   * @description: FAQs help users to solve an issue or know more about a process. Use this API to create an FAQ for a given FAQ category. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/addFaq/).
+   * @description: FAQs help users to solve an issue or know more about a process. Use this API to create an FAQ for a given FAQ category.
    */
-  async addFaq({ categoryId, body } = {}) {
-    const { error } = ContentPlatformApplicationValidator.addFaq().validate(
+  async addFaq({ categoryId, body } = {}, { headers } = { headers: false }) {
+    const { error } = ContentValidator.addFaq().validate(
       {
         categoryId,
         body,
@@ -96,9 +103,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.addFaq().validate(
+    const { error: warrning } = ContentValidator.addFaq().validate(
       {
         categoryId,
         body,
@@ -108,8 +113,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > addFaq \n ${warrning}`,
+        message: "Parameter Validation warrnings for addFaq",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -119,12 +125,19 @@ class Content {
       "post",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${categoryId}/faq`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.CreateFaqResponseSchema().validate(response, {
+    } = ContentModel.CreateFaqResponseSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -132,24 +145,24 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > addFaq \n ${res_error}`,
+        message: "Response Validation Warnnings for addFaq",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.AddInjectableTagParam} arg - Arg object
-   * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
-   * @name addInjectableTag
+   * @param {Object} arg - Arg object.
+   * @param {CreateTagRequestSchema} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<TagsSchema>} - Success response
    * @summary: Add a tag
-   * @description: CSS and JS can be injected in the application (website) with the help of tags. Use this API to create such tags by entering the tag name, tag type (css/js), url and position of the tag. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/addInjectableTag/).
+   * @description: CSS and JS can be injected in the application (website) with the help of tags. Use this API to create such tags by entering the tag name, tag type (css/js), url and position of the tag.
    */
-  async addInjectableTag({ body } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.addInjectableTag().validate(
+  async addInjectableTag({ body } = {}, { headers } = { headers: false }) {
+    const { error } = ContentValidator.addInjectableTag().validate(
       {
         body,
       },
@@ -160,9 +173,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.addInjectableTag().validate(
+    const { error: warrning } = ContentValidator.addInjectableTag().validate(
       {
         body,
       },
@@ -171,8 +182,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > addInjectableTag \n ${warrning}`,
+        message: "Parameter Validation warrnings for addInjectableTag",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -182,12 +194,19 @@ class Content {
       "put",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags/add`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.TagsSchema().validate(response, {
+    } = ContentModel.TagsSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -195,26 +214,27 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > addInjectableTag \n ${res_error}`,
+        message: "Response Validation Warnnings for addInjectableTag",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.AddPathRedirectionRulesParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<ContentPlatformModel.PathMappingSchema>} - Success response
-   * @name addPathRedirectionRules
+   * @param {Object} arg - Arg object.
+   * @param {PathMappingSchema} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PathMappingSchema>} - Success response
    * @summary: Save path based redirection rules
-   * @description: Use this API to add redirection rules - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/addPathRedirectionRules/).
+   * @description: Use this API to add redirection rules
    */
-  async addPathRedirectionRules({ body } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.addPathRedirectionRules().validate(
+  async addPathRedirectionRules(
+    { body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ContentValidator.addPathRedirectionRules().validate(
       {
         body,
       },
@@ -227,7 +247,7 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformApplicationValidator.addPathRedirectionRules().validate(
+    } = ContentValidator.addPathRedirectionRules().validate(
       {
         body,
       },
@@ -236,8 +256,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > addPathRedirectionRules \n ${warrning}`,
+        message: "Parameter Validation warrnings for addPathRedirectionRules",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -247,12 +268,19 @@ class Content {
       "post",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/path-mappings`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.PathMappingSchema().validate(response, {
+    } = ContentModel.PathMappingSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -260,27 +288,24 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > addPathRedirectionRules \n ${res_error}`,
+        message: "Response Validation Warnnings for addPathRedirectionRules",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.CreateAnnouncementParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<ContentPlatformModel.CreateAnnouncementSchema>} -
-   *   Success response
-   * @name createAnnouncement
+   * @param {Object} arg - Arg object.
+   * @param {AdminAnnouncementSchema} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CreateAnnouncementSchema>} - Success response
    * @summary: Create an announcement
-   * @description: Announcements are useful to highlight a message or information on top of a webpage. Use this API to create an announcement. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createAnnouncement/).
+   * @description: Announcements are useful to highlight a message or information on top of a webpage. Use this API to create an announcement.
    */
-  async createAnnouncement({ body } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.createAnnouncement().validate(
+  async createAnnouncement({ body } = {}, { headers } = { headers: false }) {
+    const { error } = ContentValidator.createAnnouncement().validate(
       {
         body,
       },
@@ -291,9 +316,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.createAnnouncement().validate(
+    const { error: warrning } = ContentValidator.createAnnouncement().validate(
       {
         body,
       },
@@ -302,8 +325,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > createAnnouncement \n ${warrning}`,
+        message: "Parameter Validation warrnings for createAnnouncement",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -313,12 +337,19 @@ class Content {
       "post",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.CreateAnnouncementSchema().validate(response, {
+    } = ContentModel.CreateAnnouncementSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -326,22 +357,24 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > createAnnouncement \n ${res_error}`,
+        message: "Response Validation Warnnings for createAnnouncement",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.CreateBlogParam} arg - Arg object
-   * @returns {Promise<ContentPlatformModel.BlogSchema>} - Success response
-   * @name createBlog
+   * @param {Object} arg - Arg object.
+   * @param {BlogRequest} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<BlogSchema>} - Success response
    * @summary: Create a blog
-   * @description: Use this API to create a blog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createBlog/).
+   * @description: Use this API to create a blog.
    */
-  async createBlog({ body } = {}) {
-    const { error } = ContentPlatformApplicationValidator.createBlog().validate(
+  async createBlog({ body } = {}, { headers } = { headers: false }) {
+    const { error } = ContentValidator.createBlog().validate(
       {
         body,
       },
@@ -352,9 +385,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.createBlog().validate(
+    const { error: warrning } = ContentValidator.createBlog().validate(
       {
         body,
       },
@@ -363,8 +394,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > createBlog \n ${warrning}`,
+        message: "Parameter Validation warrnings for createBlog",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -374,12 +406,19 @@ class Content {
       "post",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.BlogSchema().validate(response, {
+    } = ContentModel.BlogSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -387,26 +426,24 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > createBlog \n ${res_error}`,
+        message: "Response Validation Warnnings for createBlog",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.CreateFaqCategoryParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<ContentPlatformModel.CreateFaqCategorySchema>} - Success response
-   * @name createFaqCategory
+   * @param {Object} arg - Arg object.
+   * @param {CreateFaqCategoryRequestSchema} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CreateFaqCategorySchema>} - Success response
    * @summary: Create an FAQ category
-   * @description: FAQs help users to solve an issue or know more about a process. FAQs can be categorized separately, for e.g. some questions can be related to payment, some could be related to purchase, shipping, navigating, etc. Use this API to create an FAQ category. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createFaqCategory/).
+   * @description: FAQs help users to solve an issue or know more about a process. FAQs can be categorized separately, for e.g. some questions can be related to payment, some could be related to purchase, shipping, navigating, etc. Use this API to create an FAQ category.
    */
-  async createFaqCategory({ body } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.createFaqCategory().validate(
+  async createFaqCategory({ body } = {}, { headers } = { headers: false }) {
+    const { error } = ContentValidator.createFaqCategory().validate(
       {
         body,
       },
@@ -417,9 +454,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.createFaqCategory().validate(
+    const { error: warrning } = ContentValidator.createFaqCategory().validate(
       {
         body,
       },
@@ -428,8 +463,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > createFaqCategory \n ${warrning}`,
+        message: "Parameter Validation warrnings for createFaqCategory",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -439,12 +475,19 @@ class Content {
       "post",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.CreateFaqCategorySchema().validate(response, {
+    } = ContentModel.CreateFaqCategorySchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -452,26 +495,24 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > createFaqCategory \n ${res_error}`,
+        message: "Response Validation Warnnings for createFaqCategory",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.CreateLandingPageParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<ContentPlatformModel.LandingPageSchema>} - Success response
-   * @name createLandingPage
+   * @param {Object} arg - Arg object.
+   * @param {LandingPageSchema} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<LandingPageSchema>} - Success response
    * @summary: Create a landing page
-   * @description: Landing page is the first page that a prospect lands upon while visiting a website. Use this API to create a landing page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createLandingPage/).
+   * @description: Landing page is the first page that a prospect lands upon while visiting a website. Use this API to create a landing page.
    */
-  async createLandingPage({ body } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.createLandingPage().validate(
+  async createLandingPage({ body } = {}, { headers } = { headers: false }) {
+    const { error } = ContentValidator.createLandingPage().validate(
       {
         body,
       },
@@ -482,9 +523,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.createLandingPage().validate(
+    const { error: warrning } = ContentValidator.createLandingPage().validate(
       {
         body,
       },
@@ -493,8 +532,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > createLandingPage \n ${warrning}`,
+        message: "Parameter Validation warrnings for createLandingPage",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -504,12 +544,19 @@ class Content {
       "post",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page/`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.LandingPageSchema().validate(response, {
+    } = ContentModel.LandingPageSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -517,24 +564,24 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > createLandingPage \n ${res_error}`,
+        message: "Response Validation Warnnings for createLandingPage",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.CreateNavigationParam} arg - Arg object
-   * @returns {Promise<ContentPlatformModel.NavigationSchema>} - Success response
-   * @name createNavigation
+   * @param {Object} arg - Arg object.
+   * @param {NavigationRequest} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<NavigationSchema>} - Success response
    * @summary: Create a navigation
-   * @description: Navigation is the arrangement of navigational items to ease the accessibility of resources for users on a website. Use this API to create a navigation. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createNavigation/).
+   * @description: Navigation is the arrangement of navigational items to ease the accessibility of resources for users on a website. Use this API to create a navigation.
    */
-  async createNavigation({ body } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.createNavigation().validate(
+  async createNavigation({ body } = {}, { headers } = { headers: false }) {
+    const { error } = ContentValidator.createNavigation().validate(
       {
         body,
       },
@@ -545,9 +592,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.createNavigation().validate(
+    const { error: warrning } = ContentValidator.createNavigation().validate(
       {
         body,
       },
@@ -556,8 +601,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > createNavigation \n ${warrning}`,
+        message: "Parameter Validation warrnings for createNavigation",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -567,12 +613,19 @@ class Content {
       "post",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.NavigationSchema().validate(response, {
+    } = ContentModel.NavigationSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -580,22 +633,24 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > createNavigation \n ${res_error}`,
+        message: "Response Validation Warnnings for createNavigation",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.CreatePageParam} arg - Arg object
-   * @returns {Promise<ContentPlatformModel.PageSchema>} - Success response
-   * @name createPage
+   * @param {Object} arg - Arg object.
+   * @param {PageRequest} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PageSchema>} - Success response
    * @summary: Create a page
-   * @description: Use this API to create a custom page using a title, seo, publish status, feature image, tags, meta, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createPage/).
+   * @description: Use this API to create a custom page using a title, seo, publish status, feature image, tags, meta, etc.
    */
-  async createPage({ body } = {}) {
-    const { error } = ContentPlatformApplicationValidator.createPage().validate(
+  async createPage({ body } = {}, { headers } = { headers: false }) {
+    const { error } = ContentValidator.createPage().validate(
       {
         body,
       },
@@ -606,9 +661,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.createPage().validate(
+    const { error: warrning } = ContentValidator.createPage().validate(
       {
         body,
       },
@@ -617,8 +670,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > createPage \n ${warrning}`,
+        message: "Parameter Validation warrnings for createPage",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -628,12 +682,19 @@ class Content {
       "post",
       `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/pages/`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.PageSchema().validate(response, {
+    } = ContentModel.PageSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -641,26 +702,24 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > createPage \n ${res_error}`,
+        message: "Response Validation Warnnings for createPage",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.CreatePagePreviewParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<ContentPlatformModel.PageSchema>} - Success response
-   * @name createPagePreview
+   * @param {Object} arg - Arg object.
+   * @param {PageRequest} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PageSchema>} - Success response
    * @summary: Create a page preview
-   * @description: Use this API to create a page preview to check the appearance of a custom page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createPagePreview/).
+   * @description: Use this API to create a page preview to check the appearance of a custom page.
    */
-  async createPagePreview({ body } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.createPagePreview().validate(
+  async createPagePreview({ body } = {}, { headers } = { headers: false }) {
+    const { error } = ContentValidator.createPagePreview().validate(
       {
         body,
       },
@@ -671,9 +730,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.createPagePreview().validate(
+    const { error: warrning } = ContentValidator.createPagePreview().validate(
       {
         body,
       },
@@ -682,8 +739,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > createPagePreview \n ${warrning}`,
+        message: "Parameter Validation warrnings for createPagePreview",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -693,12 +751,19 @@ class Content {
       "post",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/preview/`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.PageSchema().validate(response, {
+    } = ContentModel.PageSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -706,24 +771,24 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > createPagePreview \n ${res_error}`,
+        message: "Response Validation Warnnings for createPagePreview",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.CreateSlideshowParam} arg - Arg object
-   * @returns {Promise<ContentPlatformModel.SlideshowSchema>} - Success response
-   * @name createSlideshow
+   * @param {Object} arg - Arg object.
+   * @param {SlideshowRequest} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<SlideshowSchema>} - Success response
    * @summary: Create a slideshow
-   * @description: A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to create a slideshow. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createSlideshow/).
+   * @description: A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to create a slideshow.
    */
-  async createSlideshow({ body } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.createSlideshow().validate(
+  async createSlideshow({ body } = {}, { headers } = { headers: false }) {
+    const { error } = ContentValidator.createSlideshow().validate(
       {
         body,
       },
@@ -734,9 +799,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.createSlideshow().validate(
+    const { error: warrning } = ContentValidator.createSlideshow().validate(
       {
         body,
       },
@@ -745,8 +808,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > createSlideshow \n ${warrning}`,
+        message: "Parameter Validation warrnings for createSlideshow",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -756,12 +820,19 @@ class Content {
       "post",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.SlideshowSchema().validate(response, {
+    } = ContentModel.SlideshowSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -769,26 +840,22 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > createSlideshow \n ${res_error}`,
+        message: "Response Validation Warnnings for createSlideshow",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.DeleteAllInjectableTagsParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
-   * @name deleteAllInjectableTags
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<TagsSchema>} - Success response
    * @summary: Delete tags in application
-   * @description: Use this API to delete all the existing tags at once. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteAllInjectableTags/).
+   * @description: Use this API to delete all the existing tags at once.
    */
-  async deleteAllInjectableTags({} = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.deleteAllInjectableTags().validate(
+  async deleteAllInjectableTags({ headers } = { headers: false }) {
+    const { error } = ContentValidator.deleteAllInjectableTags().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -799,15 +866,16 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformApplicationValidator.deleteAllInjectableTags().validate(
+    } = ContentValidator.deleteAllInjectableTags().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > deleteAllInjectableTags \n ${warrning}`,
+        message: "Parameter Validation warrnings for deleteAllInjectableTags",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -817,12 +885,19 @@ class Content {
       "delete",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.TagsSchema().validate(response, {
+    } = ContentModel.TagsSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -830,27 +905,27 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > deleteAllInjectableTags \n ${res_error}`,
+        message: "Response Validation Warnnings for deleteAllInjectableTags",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.DeleteAnnouncementParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<ContentPlatformModel.CreateAnnouncementSchema>} -
-   *   Success response
-   * @name deleteAnnouncement
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.announcementId - ID allotted to the announcement.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CreateAnnouncementSchema>} - Success response
    * @summary: Delete announcement by id
-   * @description: Use this API to delete an existing announcement. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteAnnouncement/).
+   * @description: Use this API to delete an existing announcement.
    */
-  async deleteAnnouncement({ announcementId } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.deleteAnnouncement().validate(
+  async deleteAnnouncement(
+    { announcementId } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ContentValidator.deleteAnnouncement().validate(
       {
         announcementId,
       },
@@ -861,9 +936,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.deleteAnnouncement().validate(
+    const { error: warrning } = ContentValidator.deleteAnnouncement().validate(
       {
         announcementId,
       },
@@ -872,8 +945,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > deleteAnnouncement \n ${warrning}`,
+        message: "Parameter Validation warrnings for deleteAnnouncement",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -883,12 +957,19 @@ class Content {
       "delete",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements/${announcementId}`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.CreateAnnouncementSchema().validate(response, {
+    } = ContentModel.CreateAnnouncementSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -896,22 +977,24 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > deleteAnnouncement \n ${res_error}`,
+        message: "Response Validation Warnnings for deleteAnnouncement",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.DeleteBlogParam} arg - Arg object
-   * @returns {Promise<ContentPlatformModel.BlogSchema>} - Success response
-   * @name deleteBlog
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - ID allotted to the blog.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<BlogSchema>} - Success response
    * @summary: Delete blogs
-   * @description: Use this API to delete a blog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteBlog/).
+   * @description: Use this API to delete a blog.
    */
-  async deleteBlog({ id } = {}) {
-    const { error } = ContentPlatformApplicationValidator.deleteBlog().validate(
+  async deleteBlog({ id } = {}, { headers } = { headers: false }) {
+    const { error } = ContentValidator.deleteBlog().validate(
       {
         id,
       },
@@ -922,9 +1005,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.deleteBlog().validate(
+    const { error: warrning } = ContentValidator.deleteBlog().validate(
       {
         id,
       },
@@ -933,8 +1014,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > deleteBlog \n ${warrning}`,
+        message: "Parameter Validation warrnings for deleteBlog",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -944,12 +1026,19 @@ class Content {
       "delete",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/${id}`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.BlogSchema().validate(response, {
+    } = ContentModel.BlogSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -957,25 +1046,27 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > deleteBlog \n ${res_error}`,
+        message: "Response Validation Warnnings for deleteBlog",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.DeleteDataLoaderParam} arg - Arg object
-   * @returns {Promise<ContentPlatformModel.DataLoaderResponseSchema>} -
-   *   Success response
-   * @name deleteDataLoader
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.dataLoaderId - ID allotted to the data loader.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<DataLoaderResponseSchema>} - Success response
    * @summary: Delete data loader in application
-   * @description: Use this API to delete data loader. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteDataLoader/).
+   * @description: Use this API to delete data loader.
    */
-  async deleteDataLoader({ dataLoaderId } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.deleteDataLoader().validate(
+  async deleteDataLoader(
+    { dataLoaderId } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ContentValidator.deleteDataLoader().validate(
       {
         dataLoaderId,
       },
@@ -986,9 +1077,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.deleteDataLoader().validate(
+    const { error: warrning } = ContentValidator.deleteDataLoader().validate(
       {
         dataLoaderId,
       },
@@ -997,8 +1086,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > deleteDataLoader \n ${warrning}`,
+        message: "Parameter Validation warrnings for deleteDataLoader",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1008,12 +1098,19 @@ class Content {
       "delete",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/data-loader/${dataLoaderId}`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.DataLoaderResponseSchema().validate(response, {
+    } = ContentModel.DataLoaderResponseSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1021,22 +1118,28 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > deleteDataLoader \n ${res_error}`,
+        message: "Response Validation Warnnings for deleteDataLoader",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.DeleteFaqParam} arg - Arg object
-   * @returns {Promise<ContentPlatformModel.CreateFaqResponseSchema>} - Success response
-   * @name deleteFaq
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.categoryId - ID allotted to an FAQ category.
+   * @param {string} arg.faqId - ID allotted to an FAQ.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CreateFaqResponseSchema>} - Success response
    * @summary: Delete an FAQ
-   * @description: Use this API to delete an existing FAQ. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteFaq/).
+   * @description: Use this API to delete an existing FAQ.
    */
-  async deleteFaq({ categoryId, faqId } = {}) {
-    const { error } = ContentPlatformApplicationValidator.deleteFaq().validate(
+  async deleteFaq(
+    { categoryId, faqId } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ContentValidator.deleteFaq().validate(
       {
         categoryId,
         faqId,
@@ -1048,9 +1151,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.deleteFaq().validate(
+    const { error: warrning } = ContentValidator.deleteFaq().validate(
       {
         categoryId,
         faqId,
@@ -1060,8 +1161,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > deleteFaq \n ${warrning}`,
+        message: "Parameter Validation warrnings for deleteFaq",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1071,12 +1173,19 @@ class Content {
       "delete",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${categoryId}/faq/${faqId}`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.CreateFaqResponseSchema().validate(response, {
+    } = ContentModel.CreateFaqResponseSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1084,26 +1193,24 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > deleteFaq \n ${res_error}`,
+        message: "Response Validation Warnnings for deleteFaq",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.DeleteFaqCategoryParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<ContentPlatformModel.FaqSchema>} - Success response
-   * @name deleteFaqCategory
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - ID allotted to an FAQ category.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<FaqSchema>} - Success response
    * @summary: Delete an FAQ category
-   * @description: Use this API to delete an FAQ category. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteFaqCategory/).
+   * @description: Use this API to delete an FAQ category.
    */
-  async deleteFaqCategory({ id } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.deleteFaqCategory().validate(
+  async deleteFaqCategory({ id } = {}, { headers } = { headers: false }) {
+    const { error } = ContentValidator.deleteFaqCategory().validate(
       {
         id,
       },
@@ -1114,9 +1221,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.deleteFaqCategory().validate(
+    const { error: warrning } = ContentValidator.deleteFaqCategory().validate(
       {
         id,
       },
@@ -1125,8 +1230,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > deleteFaqCategory \n ${warrning}`,
+        message: "Parameter Validation warrnings for deleteFaqCategory",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1136,39 +1242,42 @@ class Content {
       "delete",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${id}`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
 
-    const {
-      error: res_error,
-    } = ContentPlatformModel.FaqSchema().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = ContentModel.FaqSchema().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > deleteFaqCategory \n ${res_error}`,
+        message: "Response Validation Warnnings for deleteFaqCategory",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.DeleteLandingPageParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<ContentPlatformModel.LandingPageSchema>} - Success response
-   * @name deleteLandingPage
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - ID allotted to a landing page.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<LandingPageSchema>} - Success response
    * @summary: Delete a landing page
-   * @description: Use this API to delete an existing landing page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteLandingPage/).
+   * @description: Use this API to delete an existing landing page.
    */
-  async deleteLandingPage({ id } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.deleteLandingPage().validate(
+  async deleteLandingPage({ id } = {}, { headers } = { headers: false }) {
+    const { error } = ContentValidator.deleteLandingPage().validate(
       {
         id,
       },
@@ -1179,9 +1288,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.deleteLandingPage().validate(
+    const { error: warrning } = ContentValidator.deleteLandingPage().validate(
       {
         id,
       },
@@ -1190,8 +1297,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > deleteLandingPage \n ${warrning}`,
+        message: "Parameter Validation warrnings for deleteLandingPage",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1201,12 +1309,19 @@ class Content {
       "delete",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page/${id}`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.LandingPageSchema().validate(response, {
+    } = ContentModel.LandingPageSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1214,24 +1329,24 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > deleteLandingPage \n ${res_error}`,
+        message: "Response Validation Warnnings for deleteLandingPage",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.DeleteNavigationParam} arg - Arg object
-   * @returns {Promise<ContentPlatformModel.NavigationSchema>} - Success response
-   * @name deleteNavigation
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - ID allotted to the navigation.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<NavigationSchema>} - Success response
    * @summary: Delete a navigation
-   * @description: Use this API to delete an existing navigation. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteNavigation/).
+   * @description: Use this API to delete an existing navigation.
    */
-  async deleteNavigation({ id } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.deleteNavigation().validate(
+  async deleteNavigation({ id } = {}, { headers } = { headers: false }) {
+    const { error } = ContentValidator.deleteNavigation().validate(
       {
         id,
       },
@@ -1242,9 +1357,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.deleteNavigation().validate(
+    const { error: warrning } = ContentValidator.deleteNavigation().validate(
       {
         id,
       },
@@ -1253,8 +1366,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > deleteNavigation \n ${warrning}`,
+        message: "Parameter Validation warrnings for deleteNavigation",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1264,12 +1378,19 @@ class Content {
       "delete",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/${id}`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.NavigationSchema().validate(response, {
+    } = ContentModel.NavigationSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1277,22 +1398,24 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > deleteNavigation \n ${res_error}`,
+        message: "Response Validation Warnnings for deleteNavigation",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.DeletePageParam} arg - Arg object
-   * @returns {Promise<ContentPlatformModel.PageSchema>} - Success response
-   * @name deletePage
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - ID allotted to the page.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PageSchema>} - Success response
    * @summary: Delete a page
-   * @description: Use this API to delete an existing page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deletePage/).
+   * @description: Use this API to delete an existing page.
    */
-  async deletePage({ id } = {}) {
-    const { error } = ContentPlatformApplicationValidator.deletePage().validate(
+  async deletePage({ id } = {}, { headers } = { headers: false }) {
+    const { error } = ContentValidator.deletePage().validate(
       {
         id,
       },
@@ -1303,9 +1426,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.deletePage().validate(
+    const { error: warrning } = ContentValidator.deletePage().validate(
       {
         id,
       },
@@ -1314,8 +1435,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > deletePage \n ${warrning}`,
+        message: "Parameter Validation warrnings for deletePage",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1325,12 +1447,19 @@ class Content {
       "delete",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/${id}`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.PageSchema().validate(response, {
+    } = ContentModel.PageSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1338,26 +1467,27 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > deletePage \n ${res_error}`,
+        message: "Response Validation Warnnings for deletePage",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.DeletePathRedirectionRulesParam} arg
-   *   - Arg object
-   *
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.pathId - ID allotted to the path redirection rule.
+   * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<Object>} - Success response
-   * @name deletePathRedirectionRules
    * @summary: Delete path based redirection rules
-   * @description: Use this API to delete redirection rules - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deletePathRedirectionRules/).
+   * @description: Use this API to delete redirection rules
    */
-  async deletePathRedirectionRules({ pathId } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.deletePathRedirectionRules().validate(
+  async deletePathRedirectionRules(
+    { pathId } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ContentValidator.deletePathRedirectionRules().validate(
       {
         pathId,
       },
@@ -1370,7 +1500,7 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformApplicationValidator.deletePathRedirectionRules().validate(
+    } = ContentValidator.deletePathRedirectionRules().validate(
       {
         pathId,
       },
@@ -1379,8 +1509,10 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > deletePathRedirectionRules \n ${warrning}`,
+        message:
+          "Parameter Validation warrnings for deletePathRedirectionRules",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1390,10 +1522,17 @@ class Content {
       "delete",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/path-mappings/${pathId}`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
 
-    const { error: res_error } = Joi.any().validate(response, {
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = Joi.any().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1401,24 +1540,24 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > deletePathRedirectionRules \n ${res_error}`,
+        message: "Response Validation Warnnings for deletePathRedirectionRules",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.DeleteSlideshowParam} arg - Arg object
-   * @returns {Promise<ContentPlatformModel.SlideshowSchema>} - Success response
-   * @name deleteSlideshow
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - ID allotted to the slideshow.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<SlideshowSchema>} - Success response
    * @summary: Delete a slideshow
-   * @description: Use this API to delete an existing slideshow. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteSlideshow/).
+   * @description: Use this API to delete an existing slideshow.
    */
-  async deleteSlideshow({ id } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.deleteSlideshow().validate(
+  async deleteSlideshow({ id } = {}, { headers } = { headers: false }) {
+    const { error } = ContentValidator.deleteSlideshow().validate(
       {
         id,
       },
@@ -1429,9 +1568,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.deleteSlideshow().validate(
+    const { error: warrning } = ContentValidator.deleteSlideshow().validate(
       {
         id,
       },
@@ -1440,8 +1577,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > deleteSlideshow \n ${warrning}`,
+        message: "Parameter Validation warrnings for deleteSlideshow",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1451,12 +1589,19 @@ class Content {
       "delete",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/${id}`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.SlideshowSchema().validate(response, {
+    } = ContentModel.SlideshowSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1464,25 +1609,28 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > deleteSlideshow \n ${res_error}`,
+        message: "Response Validation Warnnings for deleteSlideshow",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.EditDataLoaderParam} arg - Arg object
-   * @returns {Promise<ContentPlatformModel.DataLoaderResponseSchema>} -
-   *   Success response
-   * @name editDataLoader
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.dataLoaderId - ID allotted to the data loader.
+   * @param {DataLoaderSchema} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<DataLoaderResponseSchema>} - Success response
    * @summary: Edit a data loader by id
-   * @description: Use this API to edit the details of an existing data loader by its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/editDataLoader/).
+   * @description: Use this API to edit the details of an existing data loader by its ID.
    */
-  async editDataLoader({ dataLoaderId, body } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.editDataLoader().validate(
+  async editDataLoader(
+    { dataLoaderId, body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ContentValidator.editDataLoader().validate(
       {
         dataLoaderId,
         body,
@@ -1494,9 +1642,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.editDataLoader().validate(
+    const { error: warrning } = ContentValidator.editDataLoader().validate(
       {
         dataLoaderId,
         body,
@@ -1506,8 +1652,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > editDataLoader \n ${warrning}`,
+        message: "Parameter Validation warrnings for editDataLoader",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1517,12 +1664,19 @@ class Content {
       "put",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/data-loader/${dataLoaderId}`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.DataLoaderResponseSchema().validate(response, {
+    } = ContentModel.DataLoaderResponseSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1530,26 +1684,28 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > editDataLoader \n ${res_error}`,
+        message: "Response Validation Warnnings for editDataLoader",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.EditInjectableTagParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
-   * @name editInjectableTag
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.tagId - ID allotted to the tag.
+   * @param {UpdateHandpickedSchema} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<TagsSchema>} - Success response
    * @summary: Edit a tag by id
-   * @description: Use this API to edit the details of an existing tag by its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/editInjectableTag/).
+   * @description: Use this API to edit the details of an existing tag by its ID.
    */
-  async editInjectableTag({ tagId, body } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.editInjectableTag().validate(
+  async editInjectableTag(
+    { tagId, body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ContentValidator.editInjectableTag().validate(
       {
         tagId,
         body,
@@ -1561,9 +1717,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.editInjectableTag().validate(
+    const { error: warrning } = ContentValidator.editInjectableTag().validate(
       {
         tagId,
         body,
@@ -1573,8 +1727,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > editInjectableTag \n ${warrning}`,
+        message: "Parameter Validation warrnings for editInjectableTag",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1584,12 +1739,19 @@ class Content {
       "put",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags/edit/handpicked/${tagId}`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.TagsSchema().validate(response, {
+    } = ContentModel.TagsSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1597,24 +1759,29 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > editInjectableTag \n ${res_error}`,
+        message: "Response Validation Warnnings for editInjectableTag",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.GenerateSEOTitleParam} arg - Arg object
-   * @returns {Promise<ContentPlatformModel.GeneratedSEOContent>} - Success response
-   * @name generateSEOTitle
+   * @param {Object} arg - Arg object.
+   * @param {GenerationEntityType} arg.type - String representing the type of
+   *   SEO content to be generated. Possible values are: title, description
+   * @param {GenerateSEOContent} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<GeneratedSEOContent>} - Success response
    * @summary: Get SEO meta tag title for content
-   * @description: Use this API to get GPT3 generated SEO meta tag title for content - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/generateSEOTitle/).
+   * @description: Use this API to get GPT3 generated SEO meta tag title for content
    */
-  async generateSEOTitle({ type, body } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.generateSEOTitle().validate(
+  async generateSEOTitle(
+    { type, body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ContentValidator.generateSEOTitle().validate(
       {
         type,
         body,
@@ -1626,9 +1793,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.generateSEOTitle().validate(
+    const { error: warrning } = ContentValidator.generateSEOTitle().validate(
       {
         type,
         body,
@@ -1638,8 +1803,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > generateSEOTitle \n ${warrning}`,
+        message: "Parameter Validation warrnings for generateSEOTitle",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1649,12 +1815,19 @@ class Content {
       "post",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/generate-seo/${type}`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.GeneratedSEOContent().validate(response, {
+    } = ContentModel.GeneratedSEOContent().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1662,26 +1835,27 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > generateSEOTitle \n ${res_error}`,
+        message: "Response Validation Warnnings for generateSEOTitle",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.GetAnnouncementByIdParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<ContentPlatformModel.AdminAnnouncementSchema>} - Success response
-   * @name getAnnouncementById
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.announcementId - ID allotted to the announcement.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<AdminAnnouncementSchema>} - Success response
    * @summary: Get announcement by ID
-   * @description: Use this API to retrieve an announcement and its details such as the target platform and pages on which it's applicable - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAnnouncementById/).
+   * @description: Use this API to retrieve an announcement and its details such as the target platform and pages on which it's applicable
    */
-  async getAnnouncementById({ announcementId } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.getAnnouncementById().validate(
+  async getAnnouncementById(
+    { announcementId } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ContentValidator.getAnnouncementById().validate(
       {
         announcementId,
       },
@@ -1692,9 +1866,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.getAnnouncementById().validate(
+    const { error: warrning } = ContentValidator.getAnnouncementById().validate(
       {
         announcementId,
       },
@@ -1703,8 +1875,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getAnnouncementById \n ${warrning}`,
+        message: "Parameter Validation warrnings for getAnnouncementById",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1714,12 +1887,19 @@ class Content {
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements/${announcementId}`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.AdminAnnouncementSchema().validate(response, {
+    } = ContentModel.AdminAnnouncementSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1727,27 +1907,30 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > getAnnouncementById \n ${res_error}`,
+        message: "Response Validation Warnnings for getAnnouncementById",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.GetAnnouncementsListParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<ContentPlatformModel.GetAnnouncementListSchema>} -
-   *   Success response
-   * @name getAnnouncementsList
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNo] - The page number to navigate through the
+   *   given set of results. Default value is 1.
+   * @param {number} [arg.pageSize] - The number of items to retrieve in each
+   *   page. Default value is 10.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<GetAnnouncementListSchema>} - Success response
    * @summary: Get a list of announcements
-   * @description: Announcements are useful to highlight a message or information on top of a webpage. Use this API to retrieve a list of announcements.	 - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAnnouncementsList/).
+   * @description: Announcements are useful to highlight a message or information on top of a webpage. Use this API to retrieve a list of announcements.
    */
-  async getAnnouncementsList({ pageNo, pageSize } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.getAnnouncementsList().validate(
+  async getAnnouncementsList(
+    { pageNo, pageSize } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ContentValidator.getAnnouncementsList().validate(
       {
         pageNo,
         pageSize,
@@ -1761,7 +1944,7 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformApplicationValidator.getAnnouncementsList().validate(
+    } = ContentValidator.getAnnouncementsList().validate(
       {
         pageNo,
         pageSize,
@@ -1771,8 +1954,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getAnnouncementsList \n ${warrning}`,
+        message: "Parameter Validation warrnings for getAnnouncementsList",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1784,12 +1968,19 @@ class Content {
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.GetAnnouncementListSchema().validate(response, {
+    } = ContentModel.GetAnnouncementListSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1797,8 +1988,9 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > getAnnouncementsList \n ${res_error}`,
+        message: "Response Validation Warnnings for getAnnouncementsList",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -1812,7 +2004,6 @@ class Content {
    *   created within a business account.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each
    *   page. Default value is 10.
-   * @returns {Paginator<ContentPlatformModel.GetAnnouncementListSchema>}
    * @summary: Get a list of announcements
    * @description: Announcements are useful to highlight a message or information on top of a webpage. Use this API to retrieve a list of announcements.
    */
@@ -1839,16 +2030,16 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.GetBlogBySlugParam} arg - Arg object
-   * @returns {Promise<ContentPlatformModel.BlogSchema>} - Success response
-   * @name getBlogBySlug
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.slug - A short, human-readable, URL-friendly
+   *   identifier of a blog page. You can get slug value of a blog from `getBlogs` API.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<BlogSchema>} - Success response
    * @summary: Get blog by slug
-   * @description: Use this API to retrieve the components of a blog, such as title, slug, feature image, content, schedule, publish status, author, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getBlogBySlug/).
+   * @description: Use this API to retrieve the components of a blog, such as title, slug, feature image, content, schedule, publish status, author, etc.
    */
-  async getBlogBySlug({ slug } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.getBlogBySlug().validate(
+  async getBlogBySlug({ slug } = {}, { headers } = { headers: false }) {
+    const { error } = ContentValidator.getBlogBySlug().validate(
       {
         slug,
       },
@@ -1859,9 +2050,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.getBlogBySlug().validate(
+    const { error: warrning } = ContentValidator.getBlogBySlug().validate(
       {
         slug,
       },
@@ -1870,8 +2059,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getBlogBySlug \n ${warrning}`,
+        message: "Parameter Validation warrnings for getBlogBySlug",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1881,12 +2071,19 @@ class Content {
       "get",
       `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/${slug}`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.BlogSchema().validate(response, {
+    } = ContentModel.BlogSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1894,22 +2091,27 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > getBlogBySlug \n ${res_error}`,
+        message: "Response Validation Warnnings for getBlogBySlug",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.GetBlogsParam} arg - Arg object
-   * @returns {Promise<ContentPlatformModel.BlogGetResponse>} - Success response
-   * @name getBlogs
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNo] - The page number to navigate through the
+   *   given set of results. Default value is 1.
+   * @param {number} [arg.pageSize] - The number of items to retrieve in each
+   *   page. Default value is 10.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<BlogGetResponse>} - Success response
    * @summary: Get blogs
-   * @description: Use this API to get a list of blogs along with their details, such as the title, reading time, publish status, feature image, tags, author, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getBlogs/).
+   * @description: Use this API to get a list of blogs along with their details, such as the title, reading time, publish status, feature image, tags, author, etc.
    */
-  async getBlogs({ pageNo, pageSize } = {}) {
-    const { error } = ContentPlatformApplicationValidator.getBlogs().validate(
+  async getBlogs({ pageNo, pageSize } = {}, { headers } = { headers: false }) {
+    const { error } = ContentValidator.getBlogs().validate(
       {
         pageNo,
         pageSize,
@@ -1921,9 +2123,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.getBlogs().validate(
+    const { error: warrning } = ContentValidator.getBlogs().validate(
       {
         pageNo,
         pageSize,
@@ -1933,8 +2133,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getBlogs \n ${warrning}`,
+        message: "Parameter Validation warrnings for getBlogs",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1946,12 +2147,19 @@ class Content {
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.BlogGetResponse().validate(response, {
+    } = ContentModel.BlogGetResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1959,8 +2167,9 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > getBlogs \n ${res_error}`,
+        message: "Response Validation Warnnings for getBlogs",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -1974,7 +2183,6 @@ class Content {
    *   created within a business account.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each
    *   page. Default value is 10.
-   * @returns {Paginator<ContentPlatformModel.BlogGetResponse>}
    * @summary: Get blogs
    * @description: Use this API to get a list of blogs along with their details, such as the title, reading time, publish status, feature image, tags, author, etc.
    */
@@ -2001,16 +2209,16 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.GetComponentByIdParam} arg - Arg object
-   * @returns {Promise<ContentPlatformModel.BlogSchema>} - Success response
-   * @name getComponentById
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.slug - A short, human-readable, URL-friendly
+   *   identifier of a blog page. You can get slug value of a blog from `getBlogs` API.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<BlogSchema>} - Success response
    * @summary: Get components of a blog
-   * @description: Use this API to retrieve the components of a blog, such as title, slug, feature image, content, schedule, publish status, author, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getComponentById/).
+   * @description: Use this API to retrieve the components of a blog, such as title, slug, feature image, content, schedule, publish status, author, etc.
    */
-  async getComponentById({ slug } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.getComponentById().validate(
+  async getComponentById({ slug } = {}, { headers } = { headers: false }) {
+    const { error } = ContentValidator.getComponentById().validate(
       {
         slug,
       },
@@ -2021,9 +2229,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.getComponentById().validate(
+    const { error: warrning } = ContentValidator.getComponentById().validate(
       {
         slug,
       },
@@ -2032,8 +2238,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getComponentById \n ${warrning}`,
+        message: "Parameter Validation warrnings for getComponentById",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2043,12 +2250,19 @@ class Content {
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/${slug}`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.BlogSchema().validate(response, {
+    } = ContentModel.BlogSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2056,24 +2270,22 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > getComponentById \n ${res_error}`,
+        message: "Response Validation Warnnings for getComponentById",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.GetDataLoadersParam} arg - Arg object
-   * @returns {Promise<ContentPlatformModel.DataLoadersSchema>} - Success response
-   * @name getDataLoaders
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<DataLoadersSchema>} - Success response
    * @summary: Get all the data loaders in an application
-   * @description: Use this to get all data loaders of an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getDataLoaders/).
+   * @description: Use this to get all data loaders of an application
    */
-  async getDataLoaders({} = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.getDataLoaders().validate(
+  async getDataLoaders({ headers } = { headers: false }) {
+    const { error } = ContentValidator.getDataLoaders().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -2082,17 +2294,16 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.getDataLoaders().validate(
+    const { error: warrning } = ContentValidator.getDataLoaders().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getDataLoaders \n ${warrning}`,
+        message: "Parameter Validation warrnings for getDataLoaders",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2102,12 +2313,19 @@ class Content {
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/data-loader`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.DataLoadersSchema().validate(response, {
+    } = ContentModel.DataLoadersSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2115,27 +2333,22 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > getDataLoaders \n ${res_error}`,
+        message: "Response Validation Warnnings for getDataLoaders",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.GetDefaultNavigationsParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<ContentPlatformModel.DefaultNavigationResponse>} -
-   *   Success response
-   * @name getDefaultNavigations
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<DefaultNavigationResponse>} - Success response
    * @summary: Get default navigations
-   * @description: On any website (application), there are navigations that are present by default. Use this API to retrieve those default navigations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getDefaultNavigations/).
+   * @description: On any website (application), there are navigations that are present by default. Use this API to retrieve those default navigations.
    */
-  async getDefaultNavigations({} = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.getDefaultNavigations().validate(
+  async getDefaultNavigations({ headers } = { headers: false }) {
+    const { error } = ContentValidator.getDefaultNavigations().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -2146,15 +2359,16 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformApplicationValidator.getDefaultNavigations().validate(
+    } = ContentValidator.getDefaultNavigations().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getDefaultNavigations \n ${warrning}`,
+        message: "Parameter Validation warrnings for getDefaultNavigations",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2164,12 +2378,19 @@ class Content {
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/default`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.DefaultNavigationResponse().validate(response, {
+    } = ContentModel.DefaultNavigationResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2177,24 +2398,27 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > getDefaultNavigations \n ${res_error}`,
+        message: "Response Validation Warnnings for getDefaultNavigations",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.GetFaqByIdOrSlugParam} arg - Arg object
-   * @returns {Promise<ContentPlatformModel.CreateFaqResponseSchema>} - Success response
-   * @name getFaqByIdOrSlug
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.idOrSlug - ID or the slug allotted to an FAQ
+   *   category. Slug is a short, human-readable, URL-friendly identifier of
+   *   an object. You can get slug value of an FAQ category from
+   *   `getFaqCategories` API.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CreateFaqResponseSchema>} - Success response
    * @summary: Get an FAQ
-   * @description: Use this API to retrieve a specific FAQ. You will get the question and answer of that FAQ. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getFaqByIdOrSlug/).
+   * @description: Use this API to retrieve a specific FAQ. You will get the question and answer of that FAQ.
    */
-  async getFaqByIdOrSlug({ idOrSlug } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.getFaqByIdOrSlug().validate(
+  async getFaqByIdOrSlug({ idOrSlug } = {}, { headers } = { headers: false }) {
+    const { error } = ContentValidator.getFaqByIdOrSlug().validate(
       {
         idOrSlug,
       },
@@ -2205,9 +2429,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.getFaqByIdOrSlug().validate(
+    const { error: warrning } = ContentValidator.getFaqByIdOrSlug().validate(
       {
         idOrSlug,
       },
@@ -2216,8 +2438,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getFaqByIdOrSlug \n ${warrning}`,
+        message: "Parameter Validation warrnings for getFaqByIdOrSlug",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2227,12 +2450,19 @@ class Content {
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/${idOrSlug}`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.CreateFaqResponseSchema().validate(response, {
+    } = ContentModel.CreateFaqResponseSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2240,24 +2470,22 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > getFaqByIdOrSlug \n ${res_error}`,
+        message: "Response Validation Warnnings for getFaqByIdOrSlug",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.GetFaqCategoriesParam} arg - Arg object
-   * @returns {Promise<ContentPlatformModel.GetFaqCategoriesSchema>} - Success response
-   * @name getFaqCategories
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<GetFaqCategoriesSchema>} - Success response
    * @summary: Get a list of FAQ categories
-   * @description: FAQs can be divided into categories. Use this API to get a list of FAQ categories. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getFaqCategories/).
+   * @description: FAQs can be divided into categories. Use this API to get a list of FAQ categories.
    */
-  async getFaqCategories({} = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.getFaqCategories().validate(
+  async getFaqCategories({ headers } = { headers: false }) {
+    const { error } = ContentValidator.getFaqCategories().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -2266,17 +2494,16 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.getFaqCategories().validate(
+    const { error: warrning } = ContentValidator.getFaqCategories().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getFaqCategories \n ${warrning}`,
+        message: "Parameter Validation warrnings for getFaqCategories",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2286,12 +2513,19 @@ class Content {
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/categories`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.GetFaqCategoriesSchema().validate(response, {
+    } = ContentModel.GetFaqCategoriesSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2299,27 +2533,30 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > getFaqCategories \n ${res_error}`,
+        message: "Response Validation Warnnings for getFaqCategories",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.GetFaqCategoryBySlugOrIdParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<ContentPlatformModel.GetFaqCategoryBySlugSchema>} -
-   *   Success response
-   * @name getFaqCategoryBySlugOrId
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.idOrSlug - ID or the slug allotted to an FAQ
+   *   category. Slug is a short, human-readable, URL-friendly identifier of
+   *   an object. You can get slug value of an FAQ category from
+   *   `getFaqCategories` API.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<GetFaqCategoryBySlugSchema>} - Success response
    * @summary: Get an FAQ category by slug or id
-   * @description: FAQs can be divided into categories. Use this API to get an FAQ categories using its slug or ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getFaqCategoryBySlugOrId/).
+   * @description: FAQs can be divided into categories. Use this API to get an FAQ categories using its slug or ID.
    */
-  async getFaqCategoryBySlugOrId({ idOrSlug } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.getFaqCategoryBySlugOrId().validate(
+  async getFaqCategoryBySlugOrId(
+    { idOrSlug } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ContentValidator.getFaqCategoryBySlugOrId().validate(
       {
         idOrSlug,
       },
@@ -2332,7 +2569,7 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformApplicationValidator.getFaqCategoryBySlugOrId().validate(
+    } = ContentValidator.getFaqCategoryBySlugOrId().validate(
       {
         idOrSlug,
       },
@@ -2341,8 +2578,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getFaqCategoryBySlugOrId \n ${warrning}`,
+        message: "Parameter Validation warrnings for getFaqCategoryBySlugOrId",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2352,12 +2590,19 @@ class Content {
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${idOrSlug}`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.GetFaqCategoryBySlugSchema().validate(response, {
+    } = ContentModel.GetFaqCategoryBySlugSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2365,26 +2610,30 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > getFaqCategoryBySlugOrId \n ${res_error}`,
+        message: "Response Validation Warnnings for getFaqCategoryBySlugOrId",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.GetFaqsByCategoryIdOrSlugParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<ContentPlatformModel.GetFaqSchema>} - Success response
-   * @name getFaqsByCategoryIdOrSlug
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.idOrSlug - ID or the slug allotted to an FAQ
+   *   category. Slug is a short, human-readable, URL-friendly identifier of
+   *   an object. You can get slug value of an FAQ category from
+   *   `getFaqCategories` API.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<GetFaqSchema>} - Success response
    * @summary: Get question and answers within an FAQ category
-   * @description: Use this API to retrieve all the commonly asked question and answers belonging to an FAQ category. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getFaqsByCategoryIdOrSlug/).
+   * @description: Use this API to retrieve all the commonly asked question and answers belonging to an FAQ category.
    */
-  async getFaqsByCategoryIdOrSlug({ idOrSlug } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.getFaqsByCategoryIdOrSlug().validate(
+  async getFaqsByCategoryIdOrSlug(
+    { idOrSlug } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ContentValidator.getFaqsByCategoryIdOrSlug().validate(
       {
         idOrSlug,
       },
@@ -2397,7 +2646,7 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformApplicationValidator.getFaqsByCategoryIdOrSlug().validate(
+    } = ContentValidator.getFaqsByCategoryIdOrSlug().validate(
       {
         idOrSlug,
       },
@@ -2406,8 +2655,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getFaqsByCategoryIdOrSlug \n ${warrning}`,
+        message: "Parameter Validation warrnings for getFaqsByCategoryIdOrSlug",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2417,12 +2667,19 @@ class Content {
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${idOrSlug}/faqs`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.GetFaqSchema().validate(response, {
+    } = ContentModel.GetFaqSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2430,26 +2687,22 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > getFaqsByCategoryIdOrSlug \n ${res_error}`,
+        message: "Response Validation Warnnings for getFaqsByCategoryIdOrSlug",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.GetInjectableTagsParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
-   * @name getInjectableTags
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<TagsSchema>} - Success response
    * @summary: Get all the tags in an application
-   * @description: Use this API to get all the CSS and JS injected in the application in the form of tags. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getInjectableTags/).
+   * @description: Use this API to get all the CSS and JS injected in the application in the form of tags.
    */
-  async getInjectableTags({} = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.getInjectableTags().validate(
+  async getInjectableTags({ headers } = { headers: false }) {
+    const { error } = ContentValidator.getInjectableTags().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -2458,17 +2711,16 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.getInjectableTags().validate(
+    const { error: warrning } = ContentValidator.getInjectableTags().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getInjectableTags \n ${warrning}`,
+        message: "Parameter Validation warrnings for getInjectableTags",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2478,12 +2730,19 @@ class Content {
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.TagsSchema().validate(response, {
+    } = ContentModel.TagsSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2491,24 +2750,30 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > getInjectableTags \n ${res_error}`,
+        message: "Response Validation Warnnings for getInjectableTags",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.GetLandingPagesParam} arg - Arg object
-   * @returns {Promise<ContentPlatformModel.LandingPageGetResponse>} - Success response
-   * @name getLandingPages
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNo] - The page number to navigate through the
+   *   given set of results. Default value is 1.
+   * @param {number} [arg.pageSize] - The number of items to retrieve in each
+   *   page. Default value is 10.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<LandingPageGetResponse>} - Success response
    * @summary: Get landing pages
-   * @description: Landing page is the first page that a prospect lands upon while visiting a website. Use this API to fetch a list of landing pages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getLandingPages/).
+   * @description: Landing page is the first page that a prospect lands upon while visiting a website. Use this API to fetch a list of landing pages.
    */
-  async getLandingPages({ pageNo, pageSize } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.getLandingPages().validate(
+  async getLandingPages(
+    { pageNo, pageSize } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ContentValidator.getLandingPages().validate(
       {
         pageNo,
         pageSize,
@@ -2520,9 +2785,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.getLandingPages().validate(
+    const { error: warrning } = ContentValidator.getLandingPages().validate(
       {
         pageNo,
         pageSize,
@@ -2532,8 +2795,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getLandingPages \n ${warrning}`,
+        message: "Parameter Validation warrnings for getLandingPages",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2545,12 +2809,19 @@ class Content {
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page/`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.LandingPageGetResponse().validate(response, {
+    } = ContentModel.LandingPageGetResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2558,8 +2829,9 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > getLandingPages \n ${res_error}`,
+        message: "Response Validation Warnnings for getLandingPages",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -2573,7 +2845,6 @@ class Content {
    *   created within a business account.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each
    *   page. Default value is 10.
-   * @returns {Paginator<ContentPlatformModel.LandingPageGetResponse>}
    * @summary: Get landing pages
    * @description: Landing page is the first page that a prospect lands upon while visiting a website. Use this API to fetch a list of landing pages.
    */
@@ -2600,18 +2871,13 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.GetLegalInformationParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<ContentPlatformModel.ApplicationLegal>} - Success response
-   * @name getLegalInformation
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ApplicationLegal>} - Success response
    * @summary: Get legal information
-   * @description: Use this API to get the legal information of an application, which includes Policy, Terms and Conditions, Shipping Policy and FAQ regarding the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getLegalInformation/).
+   * @description: Use this API to get the legal information of an application, which includes Policy, Terms and Conditions, Shipping Policy and FAQ regarding the application.
    */
-  async getLegalInformation({} = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.getLegalInformation().validate(
+  async getLegalInformation({ headers } = { headers: false }) {
+    const { error } = ContentValidator.getLegalInformation().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -2620,17 +2886,16 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.getLegalInformation().validate(
+    const { error: warrning } = ContentValidator.getLegalInformation().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getLegalInformation \n ${warrning}`,
+        message: "Parameter Validation warrnings for getLegalInformation",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2640,12 +2905,19 @@ class Content {
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/legal`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.ApplicationLegal().validate(response, {
+    } = ContentModel.ApplicationLegal().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2653,26 +2925,31 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > getLegalInformation \n ${res_error}`,
+        message: "Response Validation Warnnings for getLegalInformation",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.GetNavigationBySlugParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<ContentPlatformModel.NavigationSchema>} - Success response
-   * @name getNavigationBySlug
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.slug - A short, human-readable, URL-friendly
+   *   identifier of a navigation. You can get slug value of a navigation from
+   *   `getNavigations` API.
+   * @param {string} arg.devicePlatform - Filter navigations by platform.
+   *   Acceptable values are: web, android, ios, all
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<NavigationSchema>} - Success response
    * @summary: Get a navigation by slug
-   * @description: Use this API to retrieve a navigation by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getNavigationBySlug/).
+   * @description: Use this API to retrieve a navigation by its slug.
    */
-  async getNavigationBySlug({ slug, devicePlatform } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.getNavigationBySlug().validate(
+  async getNavigationBySlug(
+    { slug, devicePlatform } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ContentValidator.getNavigationBySlug().validate(
       {
         slug,
         devicePlatform,
@@ -2684,9 +2961,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.getNavigationBySlug().validate(
+    const { error: warrning } = ContentValidator.getNavigationBySlug().validate(
       {
         slug,
         devicePlatform,
@@ -2696,8 +2971,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getNavigationBySlug \n ${warrning}`,
+        message: "Parameter Validation warrnings for getNavigationBySlug",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2708,12 +2984,19 @@ class Content {
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/${slug}`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.NavigationSchema().validate(response, {
+    } = ContentModel.NavigationSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2721,24 +3004,32 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > getNavigationBySlug \n ${res_error}`,
+        message: "Response Validation Warnnings for getNavigationBySlug",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.GetNavigationsParam} arg - Arg object
-   * @returns {Promise<ContentPlatformModel.NavigationGetResponse>} - Success response
-   * @name getNavigations
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.devicePlatform - Filter navigations by platform.
+   *   Acceptable values are: web, android, ios, all
+   * @param {number} [arg.pageNo] - The page number to navigate through the
+   *   given set of results. Default value is 1.
+   * @param {number} [arg.pageSize] - The number of items to retrieve in each
+   *   page. Default value is 10.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<NavigationGetResponse>} - Success response
    * @summary: Get navigations
-   * @description: Use this API to fetch the navigations details which includes the items of the navigation pane. It also shows the orientation, links, sub-navigations, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getNavigations/).
+   * @description: Use this API to fetch the navigations details which includes the items of the navigation pane. It also shows the orientation, links, sub-navigations, etc.
    */
-  async getNavigations({ devicePlatform, pageNo, pageSize } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.getNavigations().validate(
+  async getNavigations(
+    { devicePlatform, pageNo, pageSize } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ContentValidator.getNavigations().validate(
       {
         devicePlatform,
         pageNo,
@@ -2751,9 +3042,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.getNavigations().validate(
+    const { error: warrning } = ContentValidator.getNavigations().validate(
       {
         devicePlatform,
         pageNo,
@@ -2764,8 +3053,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getNavigations \n ${warrning}`,
+        message: "Parameter Validation warrnings for getNavigations",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2778,12 +3068,19 @@ class Content {
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.NavigationGetResponse().validate(response, {
+    } = ContentModel.NavigationGetResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2791,8 +3088,9 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > getNavigations \n ${res_error}`,
+        message: "Response Validation Warnnings for getNavigations",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -2808,7 +3106,6 @@ class Content {
    *   Acceptable values are: web, android, ios, all
    * @param {number} [arg.pageSize] - The number of items to retrieve in each
    *   page. Default value is 10.
-   * @returns {Paginator<ContentPlatformModel.NavigationGetResponse>}
    * @summary: Get navigations
    * @description: Use this API to fetch the navigations details which includes the items of the navigation pane. It also shows the orientation, links, sub-navigations, etc.
    */
@@ -2841,16 +3138,16 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.GetPageBySlugParam} arg - Arg object
-   * @returns {Promise<ContentPlatformModel.PageSchema>} - Success response
-   * @name getPageBySlug
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.slug - A short, human-readable, URL-friendly
+   *   identifier of a page. You can get slug value of a page from `getPages` API.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PageSchema>} - Success response
    * @summary: Get page by slug
-   * @description: Use this API to retrieve the components of a page, such as its title, seo, publish status, feature image, tags, schedule, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPageBySlug/).
+   * @description: Use this API to retrieve the components of a page, such as its title, seo, publish status, feature image, tags, schedule, etc.
    */
-  async getPageBySlug({ slug } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.getPageBySlug().validate(
+  async getPageBySlug({ slug } = {}, { headers } = { headers: false }) {
+    const { error } = ContentValidator.getPageBySlug().validate(
       {
         slug,
       },
@@ -2861,9 +3158,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.getPageBySlug().validate(
+    const { error: warrning } = ContentValidator.getPageBySlug().validate(
       {
         slug,
       },
@@ -2872,8 +3167,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getPageBySlug \n ${warrning}`,
+        message: "Parameter Validation warrnings for getPageBySlug",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2883,12 +3179,19 @@ class Content {
       "get",
       `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/pages/${slug}`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.PageSchema().validate(response, {
+    } = ContentModel.PageSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2896,24 +3199,22 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > getPageBySlug \n ${res_error}`,
+        message: "Response Validation Warnnings for getPageBySlug",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.GetPageMetaParam} arg - Arg object
-   * @returns {Promise<ContentPlatformModel.PageMetaSchema>} - Success response
-   * @name getPageMeta
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PageMetaSchema>} - Success response
    * @summary: Get page meta
-   * @description: Use this API to get the meta of custom pages (blog, page) and default system pages (e.g. home/brand/category/collection). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPageMeta/).
+   * @description: Use this API to get the meta of custom pages (blog, page) and default system pages (e.g. home/brand/category/collection).
    */
-  async getPageMeta({} = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.getPageMeta().validate(
+  async getPageMeta({ headers } = { headers: false }) {
+    const { error } = ContentValidator.getPageMeta().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -2922,17 +3223,16 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.getPageMeta().validate(
+    const { error: warrning } = ContentValidator.getPageMeta().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getPageMeta \n ${warrning}`,
+        message: "Parameter Validation warrnings for getPageMeta",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2942,12 +3242,19 @@ class Content {
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/meta`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.PageMetaSchema().validate(response, {
+    } = ContentModel.PageMetaSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2955,24 +3262,22 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > getPageMeta \n ${res_error}`,
+        message: "Response Validation Warnnings for getPageMeta",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.GetPageSpecParam} arg - Arg object
-   * @returns {Promise<ContentPlatformModel.PageSpec>} - Success response
-   * @name getPageSpec
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PageSpec>} - Success response
    * @summary: Get page spec
-   * @description: Use this API to get the specifications of a page, such as page type, display name, params and query. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPageSpec/).
+   * @description: Use this API to get the specifications of a page, such as page type, display name, params and query.
    */
-  async getPageSpec({} = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.getPageSpec().validate(
+  async getPageSpec({ headers } = { headers: false }) {
+    const { error } = ContentValidator.getPageSpec().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -2981,17 +3286,16 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.getPageSpec().validate(
+    const { error: warrning } = ContentValidator.getPageSpec().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getPageSpec \n ${warrning}`,
+        message: "Parameter Validation warrnings for getPageSpec",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3001,35 +3305,45 @@ class Content {
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/spec`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
 
-    const {
-      error: res_error,
-    } = ContentPlatformModel.PageSpec().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = ContentModel.PageSpec().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > getPageSpec \n ${res_error}`,
+        message: "Response Validation Warnnings for getPageSpec",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.GetPagesParam} arg - Arg object
-   * @returns {Promise<ContentPlatformModel.PageGetResponse>} - Success response
-   * @name getPages
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNo] - The page number to navigate through the
+   *   given set of results. Default value is 1.
+   * @param {number} [arg.pageSize] - The number of items to retrieve in each
+   *   page. Default value is 10.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PageGetResponse>} - Success response
    * @summary: Get a list of pages
-   * @description: Use this API to retrieve a list of pages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPages/).
+   * @description: Use this API to retrieve a list of pages.
    */
-  async getPages({ pageNo, pageSize } = {}) {
-    const { error } = ContentPlatformApplicationValidator.getPages().validate(
+  async getPages({ pageNo, pageSize } = {}, { headers } = { headers: false }) {
+    const { error } = ContentValidator.getPages().validate(
       {
         pageNo,
         pageSize,
@@ -3041,9 +3355,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.getPages().validate(
+    const { error: warrning } = ContentValidator.getPages().validate(
       {
         pageNo,
         pageSize,
@@ -3053,8 +3365,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getPages \n ${warrning}`,
+        message: "Parameter Validation warrnings for getPages",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3066,12 +3379,19 @@ class Content {
       "get",
       `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/pages/`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.PageGetResponse().validate(response, {
+    } = ContentModel.PageGetResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3079,8 +3399,9 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > getPages \n ${res_error}`,
+        message: "Response Validation Warnnings for getPages",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -3094,7 +3415,6 @@ class Content {
    *   created within a business account.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each
    *   page. Default value is 10.
-   * @returns {Paginator<ContentPlatformModel.PageGetResponse>}
    * @summary: Get a list of pages
    * @description: Use this API to retrieve a list of pages.
    */
@@ -3121,18 +3441,18 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.GetPathRedirectionRuleParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<ContentPlatformModel.PathMappingSchema>} - Success response
-   * @name getPathRedirectionRule
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.pathId - ID allotted to the path redirection rule.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PathMappingSchema>} - Success response
    * @summary: Get path based redirection rule
-   * @description: Use this API to get path based redirection rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPathRedirectionRule/).
+   * @description: Use this API to get path based redirection rule.
    */
-  async getPathRedirectionRule({ pathId } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.getPathRedirectionRule().validate(
+  async getPathRedirectionRule(
+    { pathId } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ContentValidator.getPathRedirectionRule().validate(
       {
         pathId,
       },
@@ -3145,7 +3465,7 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformApplicationValidator.getPathRedirectionRule().validate(
+    } = ContentValidator.getPathRedirectionRule().validate(
       {
         pathId,
       },
@@ -3154,8 +3474,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getPathRedirectionRule \n ${warrning}`,
+        message: "Parameter Validation warrnings for getPathRedirectionRule",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3165,12 +3486,19 @@ class Content {
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/path-mappings/${pathId}`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.PathMappingSchema().validate(response, {
+    } = ContentModel.PathMappingSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3178,26 +3506,30 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > getPathRedirectionRule \n ${res_error}`,
+        message: "Response Validation Warnnings for getPathRedirectionRule",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.GetPathRedirectionRulesParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<ContentPlatformModel.PathMappingSchema>} - Success response
-   * @name getPathRedirectionRules
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageSize] - The number of items to retrieve in each
+   *   page. Default value is 5.
+   * @param {number} [arg.pageNo] - The page number to navigate through the
+   *   given set of results. Default value is 1.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PathMappingSchema>} - Success response
    * @summary: Get path based redirection rules
-   * @description: Use this API to get path based redirection rules. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPathRedirectionRules/).
+   * @description: Use this API to get path based redirection rules.
    */
-  async getPathRedirectionRules({ pageSize, pageNo } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.getPathRedirectionRules().validate(
+  async getPathRedirectionRules(
+    { pageSize, pageNo } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ContentValidator.getPathRedirectionRules().validate(
       {
         pageSize,
         pageNo,
@@ -3211,7 +3543,7 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformApplicationValidator.getPathRedirectionRules().validate(
+    } = ContentValidator.getPathRedirectionRules().validate(
       {
         pageSize,
         pageNo,
@@ -3221,8 +3553,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getPathRedirectionRules \n ${warrning}`,
+        message: "Parameter Validation warrnings for getPathRedirectionRules",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3234,12 +3567,19 @@ class Content {
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/path-mappings`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.PathMappingSchema().validate(response, {
+    } = ContentModel.PathMappingSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3247,26 +3587,22 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > getPathRedirectionRules \n ${res_error}`,
+        message: "Response Validation Warnnings for getPathRedirectionRules",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.GetSEOConfigurationParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<ContentPlatformModel.SeoComponent>} - Success response
-   * @name getSEOConfiguration
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<SeoComponent>} - Success response
    * @summary: Get SEO configuration of an application
-   * @description: Use this API to know how the SEO is configured in the application. This includes the sitemap, robot.txt, custom meta tags, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getSEOConfiguration/).
+   * @description: Use this API to know how the SEO is configured in the application. This includes the sitemap, robot.txt, custom meta tags, etc.
    */
-  async getSEOConfiguration({} = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.getSEOConfiguration().validate(
+  async getSEOConfiguration({ headers } = { headers: false }) {
+    const { error } = ContentValidator.getSEOConfiguration().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -3275,17 +3611,16 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.getSEOConfiguration().validate(
+    const { error: warrning } = ContentValidator.getSEOConfiguration().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getSEOConfiguration \n ${warrning}`,
+        message: "Parameter Validation warrnings for getSEOConfiguration",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3295,12 +3630,19 @@ class Content {
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/seo`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.SeoComponent().validate(response, {
+    } = ContentModel.SeoComponent().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3308,26 +3650,31 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > getSEOConfiguration \n ${res_error}`,
+        message: "Response Validation Warnnings for getSEOConfiguration",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.GetSlideshowBySlugParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<ContentPlatformModel.SlideshowSchema>} - Success response
-   * @name getSlideshowBySlug
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.slug - A short, human-readable, URL-friendly
+   *   identifier of a slideshow. You can get slug value of a page from
+   *   `getSlideshows` API.
+   * @param {string} arg.devicePlatform - Filter slideshows by platform.
+   *   Acceptable values are: web, android, ios and all
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<SlideshowSchema>} - Success response
    * @summary: Get slideshow by slug
-   * @description: Use this API to retrieve the details of a slideshow by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getSlideshowBySlug/).
+   * @description: Use this API to retrieve the details of a slideshow by its slug.
    */
-  async getSlideshowBySlug({ slug, devicePlatform } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.getSlideshowBySlug().validate(
+  async getSlideshowBySlug(
+    { slug, devicePlatform } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ContentValidator.getSlideshowBySlug().validate(
       {
         slug,
         devicePlatform,
@@ -3339,9 +3686,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.getSlideshowBySlug().validate(
+    const { error: warrning } = ContentValidator.getSlideshowBySlug().validate(
       {
         slug,
         devicePlatform,
@@ -3351,8 +3696,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getSlideshowBySlug \n ${warrning}`,
+        message: "Parameter Validation warrnings for getSlideshowBySlug",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3363,12 +3709,19 @@ class Content {
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/${slug}`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.SlideshowSchema().validate(response, {
+    } = ContentModel.SlideshowSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3376,24 +3729,32 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > getSlideshowBySlug \n ${res_error}`,
+        message: "Response Validation Warnnings for getSlideshowBySlug",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.GetSlideshowsParam} arg - Arg object
-   * @returns {Promise<ContentPlatformModel.SlideshowGetResponse>} - Success response
-   * @name getSlideshows
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.devicePlatform - Filter slideshows by platform.
+   *   Acceptable values are: web, android, ios and all
+   * @param {number} [arg.pageNo] - The page number to navigate through the
+   *   given set of results. Default value is 1.
+   * @param {number} [arg.pageSize] - The number of items to retrieve in each
+   *   page. Default value is 10.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<SlideshowGetResponse>} - Success response
    * @summary: Get slideshows
-   * @description: A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to fetch a list of slideshows. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getSlideshows/).
+   * @description: A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to fetch a list of slideshows.
    */
-  async getSlideshows({ devicePlatform, pageNo, pageSize } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.getSlideshows().validate(
+  async getSlideshows(
+    { devicePlatform, pageNo, pageSize } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ContentValidator.getSlideshows().validate(
       {
         devicePlatform,
         pageNo,
@@ -3406,9 +3767,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.getSlideshows().validate(
+    const { error: warrning } = ContentValidator.getSlideshows().validate(
       {
         devicePlatform,
         pageNo,
@@ -3419,8 +3778,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getSlideshows \n ${warrning}`,
+        message: "Parameter Validation warrnings for getSlideshows",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3433,12 +3793,19 @@ class Content {
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.SlideshowGetResponse().validate(response, {
+    } = ContentModel.SlideshowGetResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3446,8 +3813,9 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > getSlideshows \n ${res_error}`,
+        message: "Response Validation Warnnings for getSlideshows",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -3463,7 +3831,6 @@ class Content {
    *   Acceptable values are: web, android, ios and all
    * @param {number} [arg.pageSize] - The number of items to retrieve in each
    *   page. Default value is 10.
-   * @returns {Paginator<ContentPlatformModel.SlideshowGetResponse>}
    * @summary: Get slideshows
    * @description: A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to fetch a list of slideshows.
    */
@@ -3496,18 +3863,13 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.GetSupportInformationParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<ContentPlatformModel.Support>} - Success response
-   * @name getSupportInformation
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<Support>} - Success response
    * @summary: Get support information
-   * @description: Use this API to get the contact details for customer support, including emails and phone numbers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getSupportInformation/).
+   * @description: Use this API to get the contact details for customer support, including emails and phone numbers.
    */
-  async getSupportInformation({} = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.getSupportInformation().validate(
+  async getSupportInformation({ headers } = { headers: false }) {
+    const { error } = ContentValidator.getSupportInformation().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -3518,15 +3880,16 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformApplicationValidator.getSupportInformation().validate(
+    } = ContentValidator.getSupportInformation().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > getSupportInformation \n ${warrning}`,
+        message: "Parameter Validation warrnings for getSupportInformation",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3536,12 +3899,17 @@ class Content {
       "get",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/support`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
 
-    const {
-      error: res_error,
-    } = ContentPlatformModel.Support().validate(response, {
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = ContentModel.Support().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3549,27 +3917,24 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > getSupportInformation \n ${res_error}`,
+        message: "Response Validation Warnnings for getSupportInformation",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.RemoveInjectableTagParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<ContentPlatformModel.TagDeleteSuccessResponse>} -
-   *   Success response
-   * @name removeInjectableTag
+   * @param {Object} arg - Arg object.
+   * @param {RemoveHandpickedSchema} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<TagDeleteSuccessResponse>} - Success response
    * @summary: Remove a tag
-   * @description: Use this API to delete an existing tag. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/removeInjectableTag/).
+   * @description: Use this API to delete an existing tag.
    */
-  async removeInjectableTag({ body } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.removeInjectableTag().validate(
+  async removeInjectableTag({ body } = {}, { headers } = { headers: false }) {
+    const { error } = ContentValidator.removeInjectableTag().validate(
       {
         body,
       },
@@ -3580,9 +3945,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.removeInjectableTag().validate(
+    const { error: warrning } = ContentValidator.removeInjectableTag().validate(
       {
         body,
       },
@@ -3591,8 +3954,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > removeInjectableTag \n ${warrning}`,
+        message: "Parameter Validation warrnings for removeInjectableTag",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3602,12 +3966,19 @@ class Content {
       "put",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags/remove/handpicked`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.TagDeleteSuccessResponse().validate(response, {
+    } = ContentModel.TagDeleteSuccessResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3615,25 +3986,28 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > removeInjectableTag \n ${res_error}`,
+        message: "Response Validation Warnnings for removeInjectableTag",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.ResetDataLoaderParam} arg - Arg object
-   * @returns {Promise<ContentPlatformModel.DataLoaderResetResponseSchema>} -
-   *   Success response
-   * @name resetDataLoader
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.service - Name of service.
+   * @param {string} arg.operationId - Name of operation id of the service.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<DataLoaderResetResponseSchema>} - Success response
    * @summary: Reset a data loader by serive name and operation Id
-   * @description: Use this API to reselect a data loader. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/resetDataLoader/).
+   * @description: Use this API to reselect a data loader.
    */
-  async resetDataLoader({ service, operationId } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.resetDataLoader().validate(
+  async resetDataLoader(
+    { service, operationId } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ContentValidator.resetDataLoader().validate(
       {
         service,
         operationId,
@@ -3645,9 +4019,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.resetDataLoader().validate(
+    const { error: warrning } = ContentValidator.resetDataLoader().validate(
       {
         service,
         operationId,
@@ -3657,8 +4029,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > resetDataLoader \n ${warrning}`,
+        message: "Parameter Validation warrnings for resetDataLoader",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3668,38 +4041,47 @@ class Content {
       "put",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/data-loader/${service}/${operationId}/reset`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.DataLoaderResetResponseSchema().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = ContentModel.DataLoaderResetResponseSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > resetDataLoader \n ${res_error}`,
+        message: "Response Validation Warnnings for resetDataLoader",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.SelectDataLoaderParam} arg - Arg object
-   * @returns {Promise<ContentPlatformModel.DataLoaderResponseSchema>} -
-   *   Success response
-   * @name selectDataLoader
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.dataLoaderId - ID allotted to the data loader.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<DataLoaderResponseSchema>} - Success response
    * @summary: Select a data loader by id
-   * @description: Use this API to select a data loader to be used in applications. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/selectDataLoader/).
+   * @description: Use this API to select a data loader to be used in applications.
    */
-  async selectDataLoader({ dataLoaderId } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.selectDataLoader().validate(
+  async selectDataLoader(
+    { dataLoaderId } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ContentValidator.selectDataLoader().validate(
       {
         dataLoaderId,
       },
@@ -3710,9 +4092,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.selectDataLoader().validate(
+    const { error: warrning } = ContentValidator.selectDataLoader().validate(
       {
         dataLoaderId,
       },
@@ -3721,8 +4101,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > selectDataLoader \n ${warrning}`,
+        message: "Parameter Validation warrnings for selectDataLoader",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3732,12 +4113,19 @@ class Content {
       "put",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/data-loader/${dataLoaderId}/select`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.DataLoaderResponseSchema().validate(response, {
+    } = ContentModel.DataLoaderResponseSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3745,27 +4133,28 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > selectDataLoader \n ${res_error}`,
+        message: "Response Validation Warnnings for selectDataLoader",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.UpdateAnnouncementParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<ContentPlatformModel.CreateAnnouncementSchema>} -
-   *   Success response
-   * @name updateAnnouncement
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.announcementId - ID allotted to the announcement.
+   * @param {AdminAnnouncementSchema} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CreateAnnouncementSchema>} - Success response
    * @summary: Update an announcement
-   * @description: Use this API to edit an existing announcement and its details such as the target platform and pages on which it's applicable - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateAnnouncement/).
+   * @description: Use this API to edit an existing announcement and its details such as the target platform and pages on which it's applicable
    */
-  async updateAnnouncement({ announcementId, body } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.updateAnnouncement().validate(
+  async updateAnnouncement(
+    { announcementId, body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ContentValidator.updateAnnouncement().validate(
       {
         announcementId,
         body,
@@ -3777,9 +4166,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.updateAnnouncement().validate(
+    const { error: warrning } = ContentValidator.updateAnnouncement().validate(
       {
         announcementId,
         body,
@@ -3789,8 +4176,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > updateAnnouncement \n ${warrning}`,
+        message: "Parameter Validation warrnings for updateAnnouncement",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3800,12 +4188,19 @@ class Content {
       "put",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements/${announcementId}`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.CreateAnnouncementSchema().validate(response, {
+    } = ContentModel.CreateAnnouncementSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3813,27 +4208,28 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > updateAnnouncement \n ${res_error}`,
+        message: "Response Validation Warnnings for updateAnnouncement",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.UpdateAnnouncementScheduleParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<ContentPlatformModel.CreateAnnouncementSchema>} -
-   *   Success response
-   * @name updateAnnouncementSchedule
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.announcementId - ID allotted to the announcement.
+   * @param {ScheduleSchema} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CreateAnnouncementSchema>} - Success response
    * @summary: Update the schedule and the publish status of an announcement
-   * @description: Use this API to edit the duration, i.e. start date-time and end date-time of an announcement. Moreover, you can enable/disable an announcement using this API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateAnnouncementSchedule/).
+   * @description: Use this API to edit the duration, i.e. start date-time and end date-time of an announcement. Moreover, you can enable/disable an announcement using this API.
    */
-  async updateAnnouncementSchedule({ announcementId, body } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.updateAnnouncementSchedule().validate(
+  async updateAnnouncementSchedule(
+    { announcementId, body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ContentValidator.updateAnnouncementSchedule().validate(
       {
         announcementId,
         body,
@@ -3847,7 +4243,7 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformApplicationValidator.updateAnnouncementSchedule().validate(
+    } = ContentValidator.updateAnnouncementSchedule().validate(
       {
         announcementId,
         body,
@@ -3857,8 +4253,10 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > updateAnnouncementSchedule \n ${warrning}`,
+        message:
+          "Parameter Validation warrnings for updateAnnouncementSchedule",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3868,12 +4266,19 @@ class Content {
       "patch",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements/${announcementId}`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.CreateAnnouncementSchema().validate(response, {
+    } = ContentModel.CreateAnnouncementSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3881,22 +4286,25 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > updateAnnouncementSchedule \n ${res_error}`,
+        message: "Response Validation Warnnings for updateAnnouncementSchedule",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.UpdateBlogParam} arg - Arg object
-   * @returns {Promise<ContentPlatformModel.BlogSchema>} - Success response
-   * @name updateBlog
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - ID allotted to the blog.
+   * @param {BlogRequest} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<BlogSchema>} - Success response
    * @summary: Update a blog
-   * @description: Use this API to update the details of an existing blog which includes title, feature image, content, SEO details, expiry, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateBlog/).
+   * @description: Use this API to update the details of an existing blog which includes title, feature image, content, SEO details, expiry, etc.
    */
-  async updateBlog({ id, body } = {}) {
-    const { error } = ContentPlatformApplicationValidator.updateBlog().validate(
+  async updateBlog({ id, body } = {}, { headers } = { headers: false }) {
+    const { error } = ContentValidator.updateBlog().validate(
       {
         id,
         body,
@@ -3908,9 +4316,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.updateBlog().validate(
+    const { error: warrning } = ContentValidator.updateBlog().validate(
       {
         id,
         body,
@@ -3920,8 +4326,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > updateBlog \n ${warrning}`,
+        message: "Parameter Validation warrnings for updateBlog",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3931,12 +4338,19 @@ class Content {
       "put",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/${id}`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.BlogSchema().validate(response, {
+    } = ContentModel.BlogSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3944,22 +4358,29 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > updateBlog \n ${res_error}`,
+        message: "Response Validation Warnnings for updateBlog",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.UpdateFaqParam} arg - Arg object
-   * @returns {Promise<ContentPlatformModel.CreateFaqResponseSchema>} - Success response
-   * @name updateFaq
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.categoryId - ID allotted to an FAQ category.
+   * @param {string} arg.faqId - ID allotted to an FAQ.
+   * @param {CreateFaqSchema} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CreateFaqResponseSchema>} - Success response
    * @summary: Update an FAQ
-   * @description: Use this API to edit an existing FAQ. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateFaq/).
+   * @description: Use this API to edit an existing FAQ.
    */
-  async updateFaq({ categoryId, faqId, body } = {}) {
-    const { error } = ContentPlatformApplicationValidator.updateFaq().validate(
+  async updateFaq(
+    { categoryId, faqId, body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ContentValidator.updateFaq().validate(
       {
         categoryId,
         faqId,
@@ -3972,9 +4393,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.updateFaq().validate(
+    const { error: warrning } = ContentValidator.updateFaq().validate(
       {
         categoryId,
         faqId,
@@ -3985,8 +4404,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > updateFaq \n ${warrning}`,
+        message: "Parameter Validation warrnings for updateFaq",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3996,12 +4416,19 @@ class Content {
       "put",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${categoryId}/faq/${faqId}`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.CreateFaqResponseSchema().validate(response, {
+    } = ContentModel.CreateFaqResponseSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -4009,26 +4436,25 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > updateFaq \n ${res_error}`,
+        message: "Response Validation Warnnings for updateFaq",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.UpdateFaqCategoryParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<ContentPlatformModel.CreateFaqCategorySchema>} - Success response
-   * @name updateFaqCategory
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - ID allotted to an FAQ category.
+   * @param {UpdateFaqCategoryRequestSchema} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CreateFaqCategorySchema>} - Success response
    * @summary: Update an FAQ category
-   * @description: Use this API to edit an existing FAQ category. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateFaqCategory/).
+   * @description: Use this API to edit an existing FAQ category.
    */
-  async updateFaqCategory({ id, body } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.updateFaqCategory().validate(
+  async updateFaqCategory({ id, body } = {}, { headers } = { headers: false }) {
+    const { error } = ContentValidator.updateFaqCategory().validate(
       {
         id,
         body,
@@ -4040,9 +4466,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.updateFaqCategory().validate(
+    const { error: warrning } = ContentValidator.updateFaqCategory().validate(
       {
         id,
         body,
@@ -4052,8 +4476,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > updateFaqCategory \n ${warrning}`,
+        message: "Parameter Validation warrnings for updateFaqCategory",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -4063,12 +4488,19 @@ class Content {
       "put",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${id}`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.CreateFaqCategorySchema().validate(response, {
+    } = ContentModel.CreateFaqCategorySchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -4076,26 +4508,24 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > updateFaqCategory \n ${res_error}`,
+        message: "Response Validation Warnnings for updateFaqCategory",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.UpdateInjectableTagParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
-   * @name updateInjectableTag
+   * @param {Object} arg - Arg object.
+   * @param {CreateTagRequestSchema} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<TagsSchema>} - Success response
    * @summary: Update a tag
-   * @description: Use this API to edit the details of an existing tag. This includes the tag name, tag type (css/js), url and position of the tag. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateInjectableTag/).
+   * @description: Use this API to edit the details of an existing tag. This includes the tag name, tag type (css/js), url and position of the tag.
    */
-  async updateInjectableTag({ body } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.updateInjectableTag().validate(
+  async updateInjectableTag({ body } = {}, { headers } = { headers: false }) {
+    const { error } = ContentValidator.updateInjectableTag().validate(
       {
         body,
       },
@@ -4106,9 +4536,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.updateInjectableTag().validate(
+    const { error: warrning } = ContentValidator.updateInjectableTag().validate(
       {
         body,
       },
@@ -4117,8 +4545,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > updateInjectableTag \n ${warrning}`,
+        message: "Parameter Validation warrnings for updateInjectableTag",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -4128,12 +4557,19 @@ class Content {
       "put",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.TagsSchema().validate(response, {
+    } = ContentModel.TagsSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -4141,26 +4577,25 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > updateInjectableTag \n ${res_error}`,
+        message: "Response Validation Warnnings for updateInjectableTag",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.UpdateLandingPageParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<ContentPlatformModel.LandingPageSchema>} - Success response
-   * @name updateLandingPage
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - ID allotted to a landing page.
+   * @param {LandingPageSchema} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<LandingPageSchema>} - Success response
    * @summary: Update a landing page
-   * @description: Use this API to edit the details of an existing landing page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateLandingPage/).
+   * @description: Use this API to edit the details of an existing landing page.
    */
-  async updateLandingPage({ id, body } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.updateLandingPage().validate(
+  async updateLandingPage({ id, body } = {}, { headers } = { headers: false }) {
+    const { error } = ContentValidator.updateLandingPage().validate(
       {
         id,
         body,
@@ -4172,9 +4607,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.updateLandingPage().validate(
+    const { error: warrning } = ContentValidator.updateLandingPage().validate(
       {
         id,
         body,
@@ -4184,8 +4617,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > updateLandingPage \n ${warrning}`,
+        message: "Parameter Validation warrnings for updateLandingPage",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -4195,12 +4629,19 @@ class Content {
       "put",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page/${id}`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.LandingPageSchema().validate(response, {
+    } = ContentModel.LandingPageSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -4208,26 +4649,27 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > updateLandingPage \n ${res_error}`,
+        message: "Response Validation Warnnings for updateLandingPage",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.UpdateLegalInformationParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<ContentPlatformModel.ApplicationLegal>} - Success response
-   * @name updateLegalInformation
+   * @param {Object} arg - Arg object.
+   * @param {ApplicationLegal} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ApplicationLegal>} - Success response
    * @summary: Save legal information
-   * @description: Use this API to edit, update and save the legal information of an application, which includes Policy, Terms and Conditions, Shipping Policy and FAQ regarding the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateLegalInformation/).
+   * @description: Use this API to edit, update and save the legal information of an application, which includes Policy, Terms and Conditions, Shipping Policy and FAQ regarding the application.
    */
-  async updateLegalInformation({ body } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.updateLegalInformation().validate(
+  async updateLegalInformation(
+    { body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ContentValidator.updateLegalInformation().validate(
       {
         body,
       },
@@ -4240,7 +4682,7 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformApplicationValidator.updateLegalInformation().validate(
+    } = ContentValidator.updateLegalInformation().validate(
       {
         body,
       },
@@ -4249,8 +4691,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > updateLegalInformation \n ${warrning}`,
+        message: "Parameter Validation warrnings for updateLegalInformation",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -4260,12 +4703,19 @@ class Content {
       "post",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/legal`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.ApplicationLegal().validate(response, {
+    } = ContentModel.ApplicationLegal().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -4273,24 +4723,25 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > updateLegalInformation \n ${res_error}`,
+        message: "Response Validation Warnnings for updateLegalInformation",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.UpdateNavigationParam} arg - Arg object
-   * @returns {Promise<ContentPlatformModel.NavigationSchema>} - Success response
-   * @name updateNavigation
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - ID allotted to the navigation.
+   * @param {NavigationRequest} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<NavigationSchema>} - Success response
    * @summary: Update a navigation
-   * @description: Use this API to edit the details of an existing navigation. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateNavigation/).
+   * @description: Use this API to edit the details of an existing navigation.
    */
-  async updateNavigation({ id, body } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.updateNavigation().validate(
+  async updateNavigation({ id, body } = {}, { headers } = { headers: false }) {
+    const { error } = ContentValidator.updateNavigation().validate(
       {
         id,
         body,
@@ -4302,9 +4753,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.updateNavigation().validate(
+    const { error: warrning } = ContentValidator.updateNavigation().validate(
       {
         id,
         body,
@@ -4314,8 +4763,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > updateNavigation \n ${warrning}`,
+        message: "Parameter Validation warrnings for updateNavigation",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -4325,12 +4775,19 @@ class Content {
       "put",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/${id}`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.NavigationSchema().validate(response, {
+    } = ContentModel.NavigationSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -4338,22 +4795,25 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > updateNavigation \n ${res_error}`,
+        message: "Response Validation Warnnings for updateNavigation",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.UpdatePageParam} arg - Arg object
-   * @returns {Promise<ContentPlatformModel.PageSchema>} - Success response
-   * @name updatePage
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - ID allotted to the page.
+   * @param {PageSchema} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PageSchema>} - Success response
    * @summary: Update a page
-   * @description: Use this API to edit the details of an existing page, such as its title, seo, publish status, feature image, tags, schedule, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updatePage/).
+   * @description: Use this API to edit the details of an existing page, such as its title, seo, publish status, feature image, tags, schedule, etc.
    */
-  async updatePage({ id, body } = {}) {
-    const { error } = ContentPlatformApplicationValidator.updatePage().validate(
+  async updatePage({ id, body } = {}, { headers } = { headers: false }) {
+    const { error } = ContentValidator.updatePage().validate(
       {
         id,
         body,
@@ -4365,9 +4825,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.updatePage().validate(
+    const { error: warrning } = ContentValidator.updatePage().validate(
       {
         id,
         body,
@@ -4377,8 +4835,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > updatePage \n ${warrning}`,
+        message: "Parameter Validation warrnings for updatePage",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -4388,12 +4847,19 @@ class Content {
       "put",
       `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/pages/${id}`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.PageSchema().validate(response, {
+    } = ContentModel.PageSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -4401,26 +4867,29 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > updatePage \n ${res_error}`,
+        message: "Response Validation Warnnings for updatePage",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.UpdatePagePreviewParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<ContentPlatformModel.PageSchema>} - Success response
-   * @name updatePagePreview
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.slug - A short, human-readable, URL-friendly
+   *   identifier of a page. You can get slug value of a page from `getPages` API.
+   * @param {PagePublishRequest} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PageSchema>} - Success response
    * @summary: Change the publish status of a page
-   * @description: Use this API to change the publish status of an existing page. Allows you to publish and unpublish the page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updatePagePreview/).
+   * @description: Use this API to change the publish status of an existing page. Allows you to publish and unpublish the page.
    */
-  async updatePagePreview({ slug, body } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.updatePagePreview().validate(
+  async updatePagePreview(
+    { slug, body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ContentValidator.updatePagePreview().validate(
       {
         slug,
         body,
@@ -4432,9 +4901,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.updatePagePreview().validate(
+    const { error: warrning } = ContentValidator.updatePagePreview().validate(
       {
         slug,
         body,
@@ -4444,8 +4911,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > updatePagePreview \n ${warrning}`,
+        message: "Parameter Validation warrnings for updatePagePreview",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -4455,12 +4923,19 @@ class Content {
       "put",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/publish/${slug}`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.PageSchema().validate(response, {
+    } = ContentModel.PageSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -4468,26 +4943,28 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > updatePagePreview \n ${res_error}`,
+        message: "Response Validation Warnnings for updatePagePreview",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.UpdatePathRedirectionRulesParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<ContentPlatformModel.PathMappingSchema>} - Success response
-   * @name updatePathRedirectionRules
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.pathId - ID allotted to the path redirection rule.
+   * @param {PathMappingSchema} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PathMappingSchema>} - Success response
    * @summary: Update path based redirection rules
-   * @description: Use this API to update redirection rules - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updatePathRedirectionRules/).
+   * @description: Use this API to update redirection rules
    */
-  async updatePathRedirectionRules({ pathId, body } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.updatePathRedirectionRules().validate(
+  async updatePathRedirectionRules(
+    { pathId, body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ContentValidator.updatePathRedirectionRules().validate(
       {
         pathId,
         body,
@@ -4501,7 +4978,7 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformApplicationValidator.updatePathRedirectionRules().validate(
+    } = ContentValidator.updatePathRedirectionRules().validate(
       {
         pathId,
         body,
@@ -4511,8 +4988,10 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > updatePathRedirectionRules \n ${warrning}`,
+        message:
+          "Parameter Validation warrnings for updatePathRedirectionRules",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -4522,12 +5001,19 @@ class Content {
       "put",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/path-mappings/${pathId}`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.PathMappingSchema().validate(response, {
+    } = ContentModel.PathMappingSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -4535,26 +5021,27 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > updatePathRedirectionRules \n ${res_error}`,
+        message: "Response Validation Warnnings for updatePathRedirectionRules",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.UpdateSEOConfigurationParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<ContentPlatformModel.SeoSchema>} - Success response
-   * @name updateSEOConfiguration
+   * @param {Object} arg - Arg object.
+   * @param {SeoComponent} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<SeoSchema>} - Success response
    * @summary: Update SEO of application
-   * @description: Use this API to edit the SEO details of an application. This includes the sitemap, robot.txt, custom meta tags, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateSEOConfiguration/).
+   * @description: Use this API to edit the SEO details of an application. This includes the sitemap, robot.txt, custom meta tags, etc.
    */
-  async updateSEOConfiguration({ body } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.updateSEOConfiguration().validate(
+  async updateSEOConfiguration(
+    { body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ContentValidator.updateSEOConfiguration().validate(
       {
         body,
       },
@@ -4567,7 +5054,7 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformApplicationValidator.updateSEOConfiguration().validate(
+    } = ContentValidator.updateSEOConfiguration().validate(
       {
         body,
       },
@@ -4576,8 +5063,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > updateSEOConfiguration \n ${warrning}`,
+        message: "Parameter Validation warrnings for updateSEOConfiguration",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -4587,37 +5075,43 @@ class Content {
       "post",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/seo`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
 
-    const {
-      error: res_error,
-    } = ContentPlatformModel.SeoSchema().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = ContentModel.SeoSchema().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > updateSEOConfiguration \n ${res_error}`,
+        message: "Response Validation Warnnings for updateSEOConfiguration",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.UpdateSlideshowParam} arg - Arg object
-   * @returns {Promise<ContentPlatformModel.SlideshowSchema>} - Success response
-   * @name updateSlideshow
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - ID allotted to the slideshow.
+   * @param {SlideshowRequest} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<SlideshowSchema>} - Success response
    * @summary: Update a slideshow
-   * @description: Use this API to edit the details of an existing slideshow. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateSlideshow/).
+   * @description: Use this API to edit the details of an existing slideshow.
    */
-  async updateSlideshow({ id, body } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.updateSlideshow().validate(
+  async updateSlideshow({ id, body } = {}, { headers } = { headers: false }) {
+    const { error } = ContentValidator.updateSlideshow().validate(
       {
         id,
         body,
@@ -4629,9 +5123,7 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.updateSlideshow().validate(
+    const { error: warrning } = ContentValidator.updateSlideshow().validate(
       {
         id,
         body,
@@ -4641,8 +5133,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > updateSlideshow \n ${warrning}`,
+        message: "Parameter Validation warrnings for updateSlideshow",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -4652,12 +5145,19 @@ class Content {
       "put",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/${id}`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentPlatformModel.SlideshowSchema().validate(response, {
+    } = ContentModel.SlideshowSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -4665,26 +5165,27 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > updateSlideshow \n ${res_error}`,
+        message: "Response Validation Warnnings for updateSlideshow",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.UpdateSupportInformationParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<ContentPlatformModel.Support>} - Success response
-   * @name updateSupportInformation
+   * @param {Object} arg - Arg object.
+   * @param {Support} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<Support>} - Success response
    * @summary: Update the support data of an application
-   * @description: Use this API to edit the existing contact details for customer support, including emails and phone numbers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateSupportInformation/).
+   * @description: Use this API to edit the existing contact details for customer support, including emails and phone numbers.
    */
-  async updateSupportInformation({ body } = {}) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.updateSupportInformation().validate(
+  async updateSupportInformation(
+    { body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ContentValidator.updateSupportInformation().validate(
       {
         body,
       },
@@ -4697,7 +5198,7 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentPlatformApplicationValidator.updateSupportInformation().validate(
+    } = ContentValidator.updateSupportInformation().validate(
       {
         body,
       },
@@ -4706,8 +5207,9 @@ class Content {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > updateSupportInformation \n ${warrning}`,
+        message: "Parameter Validation warrnings for updateSupportInformation",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -4717,12 +5219,17 @@ class Content {
       "post",
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/support`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
 
-    const {
-      error: res_error,
-    } = ContentPlatformModel.Support().validate(response, {
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = ContentModel.Support().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -4730,8 +5237,9 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > updateSupportInformation \n ${res_error}`,
+        message: "Response Validation Warnnings for updateSupportInformation",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

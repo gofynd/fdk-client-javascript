@@ -4,149 +4,216 @@ declare class User {
     config: any;
     applicationId: any;
     /**
-     * @param {UserPlatformApplicationValidator.ArchiveUserParam} arg - Arg object
-     * @returns {Promise<UserPlatformModel.ArchiveUserSuccess>} - Success response
-     * @name archiveUser
+     * @param {Object} arg - Arg object.
+     * @param {ArchiveUserRequestSchema} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ArchiveUserSuccess>} - Success response
      * @summary: archive user
-     * @description: archive user - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/archiveUser/).
+     * @description: archive user
      */
-    archiveUser({ body }?: UserPlatformApplicationValidator.ArchiveUserParam): Promise<UserPlatformModel.ArchiveUserSuccess>;
+    archiveUser({ body }?: {
+        body: ArchiveUserRequestSchema;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ArchiveUserSuccess>;
     /**
-     * @param {UserPlatformApplicationValidator.BlockOrUnblockUsersParam} arg - Arg object
-     * @returns {Promise<UserPlatformModel.BlockUserSuccess>} - Success response
-     * @name blockOrUnblockUsers
+     * @param {Object} arg - Arg object.
+     * @param {BlockUserRequestSchema} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<BlockUserSuccess>} - Success response
      * @summary: Block/Unblock user
-     * @description: Block/Unblock user - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/blockOrUnblockUsers/).
+     * @description: Block/Unblock user
      */
-    blockOrUnblockUsers({ body }?: UserPlatformApplicationValidator.BlockOrUnblockUsersParam): Promise<UserPlatformModel.BlockUserSuccess>;
+    blockOrUnblockUsers({ body }?: {
+        body: BlockUserRequestSchema;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<BlockUserSuccess>;
     /**
-     * @param {UserPlatformApplicationValidator.CreateUserParam} arg - Arg object
-     * @returns {Promise<UserPlatformModel.CreateUserResponseSchema>} - Success response
-     * @name createUser
+     * @param {Object} arg - Arg object.
+     * @param {CreateUserRequestSchema} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CreateUserResponseSchema>} - Success response
      * @summary: Create user
-     * @description: Create user - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/createUser/).
+     * @description: Create user
      */
-    createUser({ body }?: UserPlatformApplicationValidator.CreateUserParam): Promise<UserPlatformModel.CreateUserResponseSchema>;
+    createUser({ body }?: {
+        body: CreateUserRequestSchema;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<CreateUserResponseSchema>;
     /**
-     * @param {UserPlatformApplicationValidator.CreateUserGroupParam} arg - Arg object
-     * @returns {Promise<UserPlatformModel.UserGroupResponseSchema>} - Success response
-     * @name createUserGroup
+     * @param {Object} arg - Arg object.
+     * @param {CreateUserGroupSchema} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<UserGroupResponseSchema>} - Success response
      * @summary: Create an User Group
-     * @description: Use this API to create new user Group - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/createUserGroup/).
+     * @description: Use this API to create new user Group
      */
-    createUserGroup({ body }?: UserPlatformApplicationValidator.CreateUserGroupParam): Promise<UserPlatformModel.UserGroupResponseSchema>;
+    createUserGroup({ body }?: {
+        body: CreateUserGroupSchema;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<UserGroupResponseSchema>;
     /**
-     * @param {UserPlatformApplicationValidator.CreateUserSessionParam} arg - Arg object
-     * @returns {Promise<UserPlatformModel.CreateUserSessionResponseSchema>} -
-     *   Success response
-     * @name createUserSession
+     * @param {Object} arg - Arg object.
+     * @param {CreateUserSessionRequestSchema} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CreateUserSessionResponseSchema>} - Success response
      * @summary: Create user session
-     * @description: Create user session - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/createUserSession/).
+     * @description: Create user session
      */
-    createUserSession({ body }?: UserPlatformApplicationValidator.CreateUserSessionParam): Promise<UserPlatformModel.CreateUserSessionResponseSchema>;
+    createUserSession({ body }?: {
+        body: CreateUserSessionRequestSchema;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<CreateUserSessionResponseSchema>;
     /**
-     * @param {UserPlatformApplicationValidator.DeleteActiveSessionsParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<UserPlatformModel.SessionDeleteResponseSchema>} -
-     *   Success response
-     * @name deleteActiveSessions
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - ID of a customer.
+     * @param {string} arg.reason - Reason to delete sessions.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<SessionDeleteResponseSchema>} - Success response
      * @summary: Delete a list of all session for a user
-     * @description: Use this API to Delete a list of session of customers who have registered in the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/deleteActiveSessions/).
+     * @description: Use this API to Delete a list of session of customers who have registered in the application.
      */
-    deleteActiveSessions({ id, reason }?: UserPlatformApplicationValidator.DeleteActiveSessionsParam): Promise<UserPlatformModel.SessionDeleteResponseSchema>;
+    deleteActiveSessions({ id, reason }?: {
+        id: string;
+        reason: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<SessionDeleteResponseSchema>;
     /**
-     * @param {UserPlatformApplicationValidator.DeleteSessionParam} arg - Arg object
-     * @returns {Promise<UserPlatformModel.SessionDeleteResponseSchema>} -
-     *   Success response
-     * @name deleteSession
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - ID of a customer.
+     * @param {string} arg.sessionId - Session ID of a customer.
+     * @param {string} arg.reason - Reason for deleting session.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<SessionDeleteResponseSchema>} - Success response
      * @summary: Delete a session for a user
-     * @description: Use this API to Delete a session of customers who have registered in the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/deleteSession/).
+     * @description: Use this API to Delete a session of customers who have registered in the application.
      */
-    deleteSession({ id, sessionId, reason }?: UserPlatformApplicationValidator.DeleteSessionParam): Promise<UserPlatformModel.SessionDeleteResponseSchema>;
+    deleteSession({ id, sessionId, reason }?: {
+        id: string;
+        sessionId: string;
+        reason: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<SessionDeleteResponseSchema>;
     /**
-     * @param {UserPlatformApplicationValidator.GetActiveSessionsParam} arg - Arg object
-     * @returns {Promise<UserPlatformModel.SessionListResponseSchema>} - Success response
-     * @name getActiveSessions
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - ID of a customer.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<SessionListResponseSchema>} - Success response
      * @summary: Get a list of all session with info for a user
-     * @description: Use this API to retrieve a list of session with info of customers who have registered in the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getActiveSessions/).
+     * @description: Use this API to retrieve a list of session with info of customers who have registered in the application.
      */
-    getActiveSessions({ id }?: UserPlatformApplicationValidator.GetActiveSessionsParam): Promise<UserPlatformModel.SessionListResponseSchema>;
+    getActiveSessions({ id }?: {
+        id: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<SessionListResponseSchema>;
     /**
-     * @param {UserPlatformApplicationValidator.GetCustomersParam} arg - Arg object
-     * @returns {Promise<UserPlatformModel.CustomerListResponseSchema>} - Success response
-     * @name getCustomers
+     * @param {Object} arg - Arg object.
+     * @param {Object} [arg.q] - The search query. Mobile number or email ID of
+     *   a customer.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each
+     *   page. Default value is 10.
+     * @param {number} [arg.pageNo] - The page number to navigate through the
+     *   given set of results. Default value is 1.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CustomerListResponseSchema>} - Success response
      * @summary: Get a list of customers
-     * @description: Use this API to retrieve a list of customers who have registered in the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getCustomers/).
+     * @description: Use this API to retrieve a list of customers who have registered in the application.
      */
-    getCustomers({ q, pageSize, pageNo }?: UserPlatformApplicationValidator.GetCustomersParam): Promise<UserPlatformModel.CustomerListResponseSchema>;
+    getCustomers({ q, pageSize, pageNo }?: {
+        q?: any;
+        pageSize?: number;
+        pageNo?: number;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<CustomerListResponseSchema>;
     /**
-     * @param {UserPlatformApplicationValidator.GetPlatformConfigParam} arg - Arg object
-     * @returns {Promise<UserPlatformModel.PlatformSchema>} - Success response
-     * @name getPlatformConfig
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<PlatformSchema>} - Success response
      * @summary: Get platform configurations
-     * @description: Use this API to get all the platform configurations such as mobile image, desktop image, social logins, and all other text. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getPlatformConfig/).
+     * @description: Use this API to get all the platform configurations such as mobile image, desktop image, social logins, and all other text.
      */
-    getPlatformConfig({}?: any): Promise<UserPlatformModel.PlatformSchema>;
+    getPlatformConfig({ headers }?: import("../PlatformAPIClient").Options): Promise<PlatformSchema>;
     /**
-     * @param {UserPlatformApplicationValidator.GetUserGroupByIdParam} arg - Arg object
-     * @returns {Promise<UserPlatformModel.UserGroupResponseSchema>} - Success response
-     * @name getUserGroupById
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.groupId - Numeric ID allotted to a User Group
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<UserGroupResponseSchema>} - Success response
      * @summary: Get an User Group by Id
-     * @description: Use this API to get details of an existing user Group - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUserGroupById/).
+     * @description: Use this API to get details of an existing user Group
      */
-    getUserGroupById({ groupId }?: UserPlatformApplicationValidator.GetUserGroupByIdParam): Promise<UserPlatformModel.UserGroupResponseSchema>;
+    getUserGroupById({ groupId }?: {
+        groupId: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<UserGroupResponseSchema>;
     /**
-     * @param {UserPlatformApplicationValidator.GetUserGroupsParam} arg - Arg object
-     * @returns {Promise<UserPlatformModel.UserGroupListResponseSchema>} -
-     *   Success response
-     * @name getUserGroups
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.pageNo] - Page number for pagination result
+     * @param {string} [arg.pageSize] - Page size for pagination result
+     * @param {string} [arg.name] - To seartch for User Groups which contains
+     *   given string in their name
+     * @param {string} [arg.status] - To get User Groups with given status
+     * @param {number} [arg.groupUid] - To get User Groups with given uid
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<UserGroupListResponseSchema>} - Success response
      * @summary: Get User Groups mathcing criteria
-     * @description: Use this API to get User Groups mathing criteria passed in query - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUserGroups/).
+     * @description: Use this API to get User Groups mathing criteria passed in query
      */
-    getUserGroups({ pageNo, pageSize, name, status, groupUid }?: UserPlatformApplicationValidator.GetUserGroupsParam): Promise<UserPlatformModel.UserGroupListResponseSchema>;
+    getUserGroups({ pageNo, pageSize, name, status, groupUid }?: {
+        pageNo?: string;
+        pageSize?: string;
+        name?: string;
+        status?: string;
+        groupUid?: number;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<UserGroupListResponseSchema>;
     /**
-     * @param {UserPlatformApplicationValidator.SearchUsersParam} arg - Arg object
-     * @returns {Promise<UserPlatformModel.UserSearchResponseSchema>} - Success response
-     * @name searchUsers
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.q] - The search query. Mobile number or email ID of
+     *   a customer.
+     * @param {any[]} [arg.query] - The search queries. Mobile numbers or email
+     *   IDs of customers.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<UserSearchResponseSchema>} - Success response
      * @summary: Search an existing user.
-     * @description: Use this API to retrieve an existing user from a list. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/searchUsers/).
+     * @description: Use this API to retrieve an existing user from a list.
      */
-    searchUsers({ q, query }?: UserPlatformApplicationValidator.SearchUsersParam): Promise<UserPlatformModel.UserSearchResponseSchema>;
+    searchUsers({ q, query }?: {
+        q?: string;
+        query?: any[];
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<UserSearchResponseSchema>;
     /**
-     * @param {UserPlatformApplicationValidator.UnDeleteUserParam} arg - Arg object
-     * @returns {Promise<UserPlatformModel.UnDeleteUserSuccess>} - Success response
-     * @name unDeleteUser
+     * @param {Object} arg - Arg object.
+     * @param {UnDeleteUserRequestSchema} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<UnDeleteUserSuccess>} - Success response
      * @summary: undelete user who deleted from application and have not elapsed the platform configured delete days
-     * @description: undelete user who deleted from application and have not elapsed the platform configured delete days - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/unDeleteUser/).
+     * @description: undelete user who deleted from application and have not elapsed the platform configured delete days
      */
-    unDeleteUser({ body }?: UserPlatformApplicationValidator.UnDeleteUserParam): Promise<UserPlatformModel.UnDeleteUserSuccess>;
+    unDeleteUser({ body }?: {
+        body: UnDeleteUserRequestSchema;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<UnDeleteUserSuccess>;
     /**
-     * @param {UserPlatformApplicationValidator.UpdatePlatformConfigParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<UserPlatformModel.PlatformSchema>} - Success response
-     * @name updatePlatformConfig
+     * @param {Object} arg - Arg object.
+     * @param {PlatformSchema} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<PlatformSchema>} - Success response
      * @summary: Update platform configurations
-     * @description: Use this API to edit the existing platform configurations such as mobile image, desktop image, social logins, and all other text. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/updatePlatformConfig/).
+     * @description: Use this API to edit the existing platform configurations such as mobile image, desktop image, social logins, and all other text.
      */
-    updatePlatformConfig({ body }?: UserPlatformApplicationValidator.UpdatePlatformConfigParam): Promise<UserPlatformModel.PlatformSchema>;
+    updatePlatformConfig({ body }?: {
+        body: PlatformSchema;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<PlatformSchema>;
     /**
-     * @param {UserPlatformApplicationValidator.UpdateUserParam} arg - Arg object
-     * @returns {Promise<UserPlatformModel.CreateUserResponseSchema>} - Success response
-     * @name updateUser
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.userId - User ID
+     * @param {UpdateUserRequestSchema} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CreateUserResponseSchema>} - Success response
      * @summary: Update user
-     * @description: Use this API to update user details, Note: Existing emails and phone numbers of user will be replaced directly if phone_numbers or emails field sent in request data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/updateUser/).
+     * @description: Use this API to update user details, Note: Existing emails and phone numbers of user will be replaced directly if phone_numbers or emails field sent in request data.
      */
-    updateUser({ userId, body }?: UserPlatformApplicationValidator.UpdateUserParam): Promise<UserPlatformModel.CreateUserResponseSchema>;
+    updateUser({ userId, body }?: {
+        userId: string;
+        body: UpdateUserRequestSchema;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<CreateUserResponseSchema>;
     /**
-     * @param {UserPlatformApplicationValidator.UpdateUserGroupParam} arg - Arg object
-     * @returns {Promise<UserPlatformModel.UserGroupResponseSchema>} - Success response
-     * @name updateUserGroup
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.groupId - Numeric ID allotted to a User Group
+     * @param {UpdateUserGroupSchema} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<UserGroupResponseSchema>} - Success response
      * @summary: Update an User Group
-     * @description: Use this API to update an existing user Group - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/updateUserGroup/).
+     * @description: Use this API to update an existing user Group
      */
-    updateUserGroup({ groupId, body }?: UserPlatformApplicationValidator.UpdateUserGroupParam): Promise<UserPlatformModel.UserGroupResponseSchema>;
+    updateUserGroup({ groupId, body }?: {
+        groupId: string;
+        body: UpdateUserGroupSchema;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<UserGroupResponseSchema>;
 }
-import UserPlatformApplicationValidator = require("./UserPlatformApplicationValidator");
-import UserPlatformModel = require("./UserPlatformModel");

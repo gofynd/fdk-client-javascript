@@ -2,8 +2,8 @@ const ApplicationAPIClient = require("../ApplicationAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
-const RewardsApplicationValidator = require("./RewardsApplicationValidator");
-const RewardsApplicationModel = require("./RewardsApplicationModel");
+const RewardsValidator = require("./RewardsApplicationValidator");
+const RewardsModel = require("./RewardsApplicationModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -41,15 +41,15 @@ class Rewards {
   }
 
   /**
-   * @param {RewardsApplicationValidator.CatalogueOrderParam} arg - Arg object.
-   * @returns {Promise<RewardsApplicationModel.CatalogueOrderResponse>} -
-   *   Success response
-   * @name catalogueOrder
+   * @param {Object} arg - Arg object.
+   * @param {CatalogueOrderRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CatalogueOrderResponse>} - Success response
    * @summary: Get all transactions of reward points
-   * @description: Use this API to evaluate the amount of reward points that could be earned on any catalogue product. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/rewards/catalogueOrder/).
+   * @description: Use this API to evaluate the amount of reward points that could be earned on any catalogue product.
    */
-  async catalogueOrder({ body } = {}) {
-    const { error } = RewardsApplicationValidator.catalogueOrder().validate(
+  async catalogueOrder({ body } = {}, { headers } = { headers: false }) {
+    const { error } = RewardsValidator.catalogueOrder().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -58,17 +58,16 @@ class Rewards {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = RewardsApplicationValidator.catalogueOrder().validate(
+    const { error: warrning } = RewardsValidator.catalogueOrder().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Rewards > catalogueOrder \n ${warrning}`,
+        message: "Parameter Validation warrnings for catalogueOrder",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -84,12 +83,18 @@ class Rewards {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = RewardsApplicationModel.CatalogueOrderResponse().validate(response, {
+    } = RewardsModel.CatalogueOrderResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -97,22 +102,24 @@ class Rewards {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Rewards > catalogueOrder \n ${res_error}`,
+        message: "Response Validation Warnnings for catalogueOrder",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {RewardsApplicationValidator.GetOfferByNameParam} arg - Arg object.
-   * @returns {Promise<RewardsApplicationModel.Offer>} - Success response
-   * @name getOfferByName
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.name - The name given to the offer.
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<Offer>} - Success response
    * @summary: Get offer by name
-   * @description: Use this API to get fetch the specific offer details and configuration by the name of the offer. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/rewards/getOfferByName/).
+   * @description: Use this API to get fetch the specific offer details and configuration by the name of the offer.
    */
-  async getOfferByName({ name } = {}) {
-    const { error } = RewardsApplicationValidator.getOfferByName().validate(
+  async getOfferByName({ name } = {}, { headers } = { headers: false }) {
+    const { error } = RewardsValidator.getOfferByName().validate(
       { name },
       { abortEarly: false, allowUnknown: true }
     );
@@ -121,17 +128,16 @@ class Rewards {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = RewardsApplicationValidator.getOfferByName().validate(
+    const { error: warrning } = RewardsValidator.getOfferByName().validate(
       { name },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Rewards > getOfferByName \n ${warrning}`,
+        message: "Parameter Validation warrnings for getOfferByName",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -147,12 +153,16 @@ class Rewards {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
 
-    const {
-      error: res_error,
-    } = RewardsApplicationModel.Offer().validate(response, {
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = RewardsModel.Offer().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -160,23 +170,24 @@ class Rewards {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Rewards > getOfferByName \n ${res_error}`,
+        message: "Response Validation Warnnings for getOfferByName",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {RewardsApplicationValidator.GetOrderDiscountParam} arg - Arg object.
-   * @returns {Promise<RewardsApplicationModel.OrderDiscountResponse>} -
-   *   Success response
-   * @name getOrderDiscount
+   * @param {Object} arg - Arg object.
+   * @param {OrderDiscountRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<OrderDiscountResponse>} - Success response
    * @summary: Calculates the discount on order-amount
-   * @description: Use this API to calculate the discount on the order amount, based on all the amount range configured in Order Discount offer. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/rewards/getOrderDiscount/).
+   * @description: Use this API to calculate the discount on the order amount, based on all the amount range configured in Order Discount offer.
    */
-  async getOrderDiscount({ body } = {}) {
-    const { error } = RewardsApplicationValidator.getOrderDiscount().validate(
+  async getOrderDiscount({ body } = {}, { headers } = { headers: false }) {
+    const { error } = RewardsValidator.getOrderDiscount().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -185,17 +196,16 @@ class Rewards {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = RewardsApplicationValidator.getOrderDiscount().validate(
+    const { error: warrning } = RewardsValidator.getOrderDiscount().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Rewards > getOrderDiscount \n ${warrning}`,
+        message: "Parameter Validation warrnings for getOrderDiscount",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -211,12 +221,18 @@ class Rewards {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = RewardsApplicationModel.OrderDiscountResponse().validate(response, {
+    } = RewardsModel.OrderDiscountResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -224,22 +240,22 @@ class Rewards {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Rewards > getOrderDiscount \n ${res_error}`,
+        message: "Response Validation Warnnings for getOrderDiscount",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {RewardsApplicationValidator.GetUserPointsParam} arg - Arg object.
-   * @returns {Promise<RewardsApplicationModel.PointsResponse>} - Success response
-   * @name getUserPoints
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<PointsResponse>} - Success response
    * @summary: Get total available points of a user
-   * @description: Use this API to retrieve total available points of a user for current application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/rewards/getUserPoints/).
+   * @description: Use this API to retrieve total available points of a user for current application.
    */
-  async getUserPoints({} = {}) {
-    const { error } = RewardsApplicationValidator.getUserPoints().validate(
+  async getUserPoints({ headers } = { headers: false }) {
+    const { error } = RewardsValidator.getUserPoints().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -248,17 +264,16 @@ class Rewards {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = RewardsApplicationValidator.getUserPoints().validate(
+    const { error: warrning } = RewardsValidator.getUserPoints().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Rewards > getUserPoints \n ${warrning}`,
+        message: "Parameter Validation warrnings for getUserPoints",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -274,12 +289,18 @@ class Rewards {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = RewardsApplicationModel.PointsResponse().validate(response, {
+    } = RewardsModel.PointsResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -287,25 +308,29 @@ class Rewards {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Rewards > getUserPoints \n ${res_error}`,
+        message: "Response Validation Warnnings for getUserPoints",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {RewardsApplicationValidator.GetUserPointsHistoryParam} arg - Arg object.
-   * @returns {Promise<RewardsApplicationModel.PointsHistoryResponse>} -
-   *   Success response
-   * @name getUserPointsHistory
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.pageId] - PageID is the ID of the requested page.
+   *   For first request it should be kept empty.
+   * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<PointsHistoryResponse>} - Success response
    * @summary: Get all transactions of reward points
-   * @description: Use this API to fetch a list of points transactions like giveaway points, signup points, referral points, order earn points, redeem points and expired points. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/rewards/getUserPointsHistory/).
+   * @description: Use this API to fetch a list of points transactions like giveaway points, signup points, referral points, order earn points, redeem points and expired points.
    */
-  async getUserPointsHistory({ pageId, pageSize } = {}) {
-    const {
-      error,
-    } = RewardsApplicationValidator.getUserPointsHistory().validate(
+  async getUserPointsHistory(
+    { pageId, pageSize } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = RewardsValidator.getUserPointsHistory().validate(
       { pageId, pageSize },
       { abortEarly: false, allowUnknown: true }
     );
@@ -316,15 +341,16 @@ class Rewards {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = RewardsApplicationValidator.getUserPointsHistory().validate(
+    } = RewardsValidator.getUserPointsHistory().validate(
       { pageId, pageSize },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Rewards > getUserPointsHistory \n ${warrning}`,
+        message: "Parameter Validation warrnings for getUserPointsHistory",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -342,12 +368,18 @@ class Rewards {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = RewardsApplicationModel.PointsHistoryResponse().validate(response, {
+    } = RewardsModel.PointsHistoryResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -355,8 +387,9 @@ class Rewards {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Rewards > getUserPointsHistory \n ${res_error}`,
+        message: "Response Validation Warnnings for getUserPointsHistory",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -365,7 +398,6 @@ class Rewards {
   /**
    * @param {Object} arg - Arg object.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-   * @returns {Paginator<RewardsApplicationModel.PointsHistoryResponse>}
    * @summary: Get all transactions of reward points
    * @description: Use this API to fetch a list of points transactions like giveaway points, signup points, referral points, order earn points, redeem points and expired points.
    */
@@ -390,17 +422,13 @@ class Rewards {
   }
 
   /**
-   * @param {RewardsApplicationValidator.GetUserReferralDetailsParam} arg - Arg object.
-   * @returns {Promise<RewardsApplicationModel.ReferralDetailsResponse>} -
-   *   Success response
-   * @name getUserReferralDetails
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ReferralDetailsResponse>} - Success response
    * @summary: Get referral details of a user
-   * @description: Use this API to retrieve the referral details like referral code of a user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/rewards/getUserReferralDetails/).
+   * @description: Use this API to retrieve the referral details like referral code of a user.
    */
-  async getUserReferralDetails({} = {}) {
-    const {
-      error,
-    } = RewardsApplicationValidator.getUserReferralDetails().validate(
+  async getUserReferralDetails({ headers } = { headers: false }) {
+    const { error } = RewardsValidator.getUserReferralDetails().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -411,15 +439,16 @@ class Rewards {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = RewardsApplicationValidator.getUserReferralDetails().validate(
+    } = RewardsValidator.getUserReferralDetails().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Rewards > getUserReferralDetails \n ${warrning}`,
+        message: "Parameter Validation warrnings for getUserReferralDetails",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -435,12 +464,18 @@ class Rewards {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = RewardsApplicationModel.ReferralDetailsResponse().validate(response, {
+    } = RewardsModel.ReferralDetailsResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -448,23 +483,24 @@ class Rewards {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Rewards > getUserReferralDetails \n ${res_error}`,
+        message: "Response Validation Warnnings for getUserReferralDetails",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {RewardsApplicationValidator.RedeemReferralCodeParam} arg - Arg object.
-   * @returns {Promise<RewardsApplicationModel.RedeemReferralCodeResponse>} -
-   *   Success response
-   * @name redeemReferralCode
+   * @param {Object} arg - Arg object.
+   * @param {RedeemReferralCodeRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<RedeemReferralCodeResponse>} - Success response
    * @summary: Redeems a referral code and credits reward points to referee and the referrer as per the configuration
-   * @description: Use this API to enter a referral code following which, the configured points would be credited to a user's reward points account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/rewards/redeemReferralCode/).
+   * @description: Use this API to enter a referral code following which, the configured points would be credited to a user's reward points account.
    */
-  async redeemReferralCode({ body } = {}) {
-    const { error } = RewardsApplicationValidator.redeemReferralCode().validate(
+  async redeemReferralCode({ body } = {}, { headers } = { headers: false }) {
+    const { error } = RewardsValidator.redeemReferralCode().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -473,17 +509,16 @@ class Rewards {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = RewardsApplicationValidator.redeemReferralCode().validate(
+    const { error: warrning } = RewardsValidator.redeemReferralCode().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Rewards > redeemReferralCode \n ${warrning}`,
+        message: "Parameter Validation warrnings for redeemReferralCode",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -499,21 +534,28 @@ class Rewards {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = RewardsApplicationModel.RedeemReferralCodeResponse().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = RewardsModel.RedeemReferralCodeResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Rewards > redeemReferralCode \n ${res_error}`,
+        message: "Response Validation Warnnings for redeemReferralCode",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

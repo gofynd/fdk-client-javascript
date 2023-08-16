@@ -1,8 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
-const CommunicationPlatformValidator = require("./CommunicationPlatformValidator");
-const CommunicationPlatformModel = require("./CommunicationPlatformModel");
+const CommunicationValidator = require("./CommunicationPlatformValidator");
+const CommunicationModel = require("./CommunicationPlatformModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -12,19 +12,19 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformValidator.GetSystemNotificationsParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<CommunicationPlatformModel.SystemNotifications>} -
-   *   Success response
-   * @name getSystemNotifications
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNo] -
+   * @param {number} [arg.pageSize] -
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<SystemNotifications>} - Success response
    * @summary: Get system notifications
-   * @description: Get system notifications - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSystemNotifications/).
+   * @description: Get system notifications
    */
-  async getSystemNotifications({ pageNo, pageSize } = {}) {
-    const {
-      error,
-    } = CommunicationPlatformValidator.getSystemNotifications().validate(
+  async getSystemNotifications(
+    { pageNo, pageSize } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CommunicationValidator.getSystemNotifications().validate(
       {
         pageNo,
         pageSize,
@@ -38,7 +38,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformValidator.getSystemNotifications().validate(
+    } = CommunicationValidator.getSystemNotifications().validate(
       {
         pageNo,
         pageSize,
@@ -48,8 +48,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > getSystemNotifications \n ${warrning}`,
+        message: "Parameter Validation warrnings for getSystemNotifications",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -64,12 +65,18 @@ class Communication {
       `/service/platform/communication/v1.0/company/${this.config.companyId}/notification/system-notifications/`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.SystemNotifications().validate(response, {
+    } = CommunicationModel.SystemNotifications().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -77,38 +84,12 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > getSystemNotifications \n ${res_error}`,
+        message: "Response Validation Warnnings for getSystemNotifications",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageSize] -
-   * @returns {Paginator<CommunicationPlatformModel.SystemNotifications>}
-   * @summary: Get system notifications
-   * @description: Get system notifications
-   */
-  getSystemNotificationsPaginator({ pageSize } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getSystemNotifications({
-        pageNo: pageNo,
-        pageSize: pageSize,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
   }
 }
 

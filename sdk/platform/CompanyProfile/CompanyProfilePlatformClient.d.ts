@@ -3,132 +3,162 @@ declare class CompanyProfile {
     constructor(config: any);
     config: any;
     /**
-     * @param {CompanyProfilePlatformValidator.CbsOnboardGetParam} arg - Arg object
-     * @returns {Promise<CompanyProfilePlatformModel.GetCompanyProfileSerializerResponse>}
-     *   - Success response
-     *
-     * @name cbsOnboardGet
+     * @param {Object} arg - Arg object.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<GetCompanyProfileSerializerResponse>} - Success response
      * @summary: Get company profile
-     * @description: This API allows to view the company profile of the seller account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/cbsOnboardGet/).
+     * @description: This API allows to view the company profile of the seller account.
      */
-    cbsOnboardGet({}?: any): Promise<CompanyProfilePlatformModel.GetCompanyProfileSerializerResponse>;
+    cbsOnboardGet({ headers }?: any): Promise<GetCompanyProfileSerializerResponse>;
     /**
-     * @param {CompanyProfilePlatformValidator.CreateBrandParam} arg - Arg object
-     * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
-     *   Success response
-     * @name createBrand
+     * @param {Object} arg - Arg object.
+     * @param {CreateUpdateBrandRequestSerializer} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ProfileSuccessResponse>} - Success response
      * @summary: Create a Brand.
-     * @description: This API allows to create a brand associated to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/createBrand/).
+     * @description: This API allows to create a brand associated to a company.
      */
-    createBrand({ body }?: CompanyProfilePlatformValidator.CreateBrandParam): Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>;
+    createBrand({ body }?: {
+        body: CreateUpdateBrandRequestSerializer;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ProfileSuccessResponse>;
     /**
-     * @param {CompanyProfilePlatformValidator.CreateCompanyBrandMappingParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
-     *   Success response
-     * @name createCompanyBrandMapping
+     * @param {Object} arg - Arg object.
+     * @param {CompanyBrandPostRequestSerializer} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ProfileSuccessResponse>} - Success response
      * @summary: Create a company brand mapping.
-     * @description: This API allows to create a company brand mapping, for a already existing brand in the system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/createCompanyBrandMapping/).
+     * @description: This API allows to create a company brand mapping, for a already existing brand in the system.
      */
-    createCompanyBrandMapping({ body }?: CompanyProfilePlatformValidator.CreateCompanyBrandMappingParam): Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>;
+    createCompanyBrandMapping({ body }?: {
+        body: CompanyBrandPostRequestSerializer;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ProfileSuccessResponse>;
     /**
-     * @param {CompanyProfilePlatformValidator.CreateLocationParam} arg - Arg object
-     * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
-     *   Success response
-     * @name createLocation
+     * @param {Object} arg - Arg object.
+     * @param {LocationSerializer} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ProfileSuccessResponse>} - Success response
      * @summary: Create a location associated to a company.
-     * @description: This API allows to edit a location associated to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/createLocation/).
+     * @description: This API allows to edit a location associated to a company.
      */
-    createLocation({ body }?: CompanyProfilePlatformValidator.CreateLocationParam): Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>;
+    createLocation({ body }?: {
+        body: LocationSerializer;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ProfileSuccessResponse>;
     /**
-     * @param {CompanyProfilePlatformValidator.CreateLocationBulkParam} arg - Arg object
-     * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
-     *   Success response
-     * @name createLocationBulk
+     * @param {Object} arg - Arg object.
+     * @param {BulkLocationSerializer} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ProfileSuccessResponse>} - Success response
      * @summary: Create a location asscoiated to a company in bulk.
-     * @description: This API allows to create a location associated to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/createLocationBulk/).
+     * @description: This API allows to create a location associated to a company.
      */
-    createLocationBulk({ body }?: CompanyProfilePlatformValidator.CreateLocationBulkParam): Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>;
+    createLocationBulk({ body }?: {
+        body: BulkLocationSerializer;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ProfileSuccessResponse>;
     /**
-     * @param {CompanyProfilePlatformValidator.EditBrandParam} arg - Arg object
-     * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
-     *   Success response
-     * @name editBrand
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.brandId - Id of the brand to be viewed.
+     * @param {CreateUpdateBrandRequestSerializer} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ProfileSuccessResponse>} - Success response
      * @summary: Edit a brand.
-     * @description: This API allows to edit meta of a brand. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/editBrand/).
+     * @description: This API allows to edit meta of a brand.
      */
-    editBrand({ brandId, body }?: CompanyProfilePlatformValidator.EditBrandParam): Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>;
+    editBrand({ brandId, body }?: {
+        brandId: string;
+        body: CreateUpdateBrandRequestSerializer;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ProfileSuccessResponse>;
     /**
-     * @param {CompanyProfilePlatformValidator.GetBrandParam} arg - Arg object
-     * @returns {Promise<CompanyProfilePlatformModel.GetBrandResponseSerializer>}
-     *   - Success response
-     *
-     * @name getBrand
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.brandId - Id of the brand to be viewed.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<GetBrandResponseSerializer>} - Success response
      * @summary: Get a single company brand.
-     * @description: This API helps to get data associated to a particular company brand. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getBrand/).
+     * @description: This API helps to get data associated to a particular company brand.
      */
-    getBrand({ brandId }?: CompanyProfilePlatformValidator.GetBrandParam): Promise<CompanyProfilePlatformModel.GetBrandResponseSerializer>;
+    getBrand({ brandId }?: {
+        brandId: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<GetBrandResponseSerializer>;
     /**
-     * @param {CompanyProfilePlatformValidator.GetBrandsParam} arg - Arg object
-     * @returns {Promise<CompanyProfilePlatformModel.CompanyBrandListSerializer>}
-     *   - Success response
-     *
-     * @name getBrands
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageNo] - The page number to navigate through the
+     *   given set of results
+     * @param {number} [arg.pageSize] - Number of items to retrieve in each
+     *   page. Default is 10.
+     * @param {string} [arg.q] - Search term for name.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CompanyBrandListSerializer>} - Success response
      * @summary: Get brands associated to a company
-     * @description: This API helps to get view brands associated to a particular company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getBrands/).
+     * @description: This API helps to get view brands associated to a particular company.
      */
-    getBrands({ pageNo, pageSize, q }?: CompanyProfilePlatformValidator.GetBrandsParam): Promise<CompanyProfilePlatformModel.CompanyBrandListSerializer>;
+    getBrands({ pageNo, pageSize, q }?: {
+        pageNo?: number;
+        pageSize?: number;
+        q?: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<CompanyBrandListSerializer>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
      *   page. Default is 10.
      * @param {string} [arg.q] - Search term for name.
-     * @returns {Paginator<CompanyProfilePlatformModel.CompanyBrandListSerializer>}
      * @summary: Get brands associated to a company
      * @description: This API helps to get view brands associated to a particular company.
      */
     getBrandsPaginator({ pageSize, q }?: {
         pageSize?: number;
         q?: string;
-    }): Paginator<CompanyProfilePlatformModel.CompanyBrandListSerializer>;
+    }): Paginator;
     /**
-     * @param {CompanyProfilePlatformValidator.GetCompanyMetricsParam} arg - Arg object
-     * @returns {Promise<CompanyProfilePlatformModel.MetricsSerializer>} -
-     *   Success response
-     * @name getCompanyMetrics
+     * @param {Object} arg - Arg object.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<MetricsSerializer>} - Success response
      * @summary: Get company metrics
-     * @description: This API allows to view the company metrics, i.e. the status of its brand and stores. Also its allows to view the number of products, company documents & store documents which are verified and unverified. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getCompanyMetrics/).
+     * @description: This API allows to view the company metrics, i.e. the status of its brand and stores. Also its allows to view the number of products, company documents & store documents which are verified and unverified.
      */
-    getCompanyMetrics({}?: any): Promise<CompanyProfilePlatformModel.MetricsSerializer>;
+    getCompanyMetrics({ headers }?: any): Promise<MetricsSerializer>;
     /**
-     * @param {CompanyProfilePlatformValidator.GetLocationDetailParam} arg - Arg object
-     * @returns {Promise<CompanyProfilePlatformModel.GetLocationSerializer>} -
-     *   Success response
-     * @name getLocationDetail
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.locationId - Id of the location which you want to view.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<GetLocationSerializer>} - Success response
      * @summary: Get details of a specific location.
-     * @description: This API helps to get data associated to a specific location. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getLocationDetail/).
+     * @description: This API helps to get data associated to a specific location.
      */
-    getLocationDetail({ locationId }?: CompanyProfilePlatformValidator.GetLocationDetailParam): Promise<CompanyProfilePlatformModel.GetLocationSerializer>;
+    getLocationDetail({ locationId }?: {
+        locationId: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<GetLocationSerializer>;
     /**
-     * @param {CompanyProfilePlatformValidator.GetLocationTagsParam} arg - Arg object
-     * @returns {Promise<CompanyProfilePlatformModel.StoreTagsResponseSchema>}
-     *   - Success response
-     *
-     * @name getLocationTags
+     * @param {Object} arg - Arg object.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<StoreTagsResponseSchema>} - Success response
      * @summary: Get tags associated with locations for a company.
-     * @description: This API fetches all the tags associated to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getLocationTags/).
+     * @description: This API fetches all the tags associated to a company.
      */
-    getLocationTags({}?: any): Promise<CompanyProfilePlatformModel.StoreTagsResponseSchema>;
+    getLocationTags({ headers }?: any): Promise<StoreTagsResponseSchema>;
     /**
-     * @param {CompanyProfilePlatformValidator.GetLocationsParam} arg - Arg object
-     * @returns {Promise<CompanyProfilePlatformModel.LocationListSerializer>} -
-     *   Success response
-     * @name getLocations
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.storeType] - Helps to sort the location list on the
+     *   basis of location type.
+     * @param {string} [arg.q] - Query that is to be searched.
+     * @param {string} [arg.stage] - To filter companies on basis of verified or
+     *   unverified companies.
+     * @param {number} [arg.pageNo] - The page number to navigate through the
+     *   given set of results
+     * @param {number} [arg.pageSize] - Number of items to retrieve in each
+     *   page. Default is 10.
+     * @param {number[]} [arg.locationIds] - Helps to filter stores on the basis of uids.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<LocationListSerializer>} - Success response
      * @summary: Get list of locations
-     * @description: This API allows to view all the locations associated to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getLocations/).
+     * @description: This API allows to view all the locations associated to a company.
      */
-    getLocations({ storeType, q, stage, pageNo, pageSize, locationIds, }?: CompanyProfilePlatformValidator.GetLocationsParam): Promise<CompanyProfilePlatformModel.LocationListSerializer>;
+    getLocations({ storeType, q, stage, pageNo, pageSize, locationIds }?: {
+        storeType?: string;
+        q?: string;
+        stage?: string;
+        pageNo?: number;
+        pageSize?: number;
+        locationIds?: number[];
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<LocationListSerializer>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.storeType] - Helps to sort the location list on the
@@ -139,7 +169,6 @@ declare class CompanyProfile {
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
      *   page. Default is 10.
      * @param {number[]} [arg.locationIds] - Helps to filter stores on the basis of uids.
-     * @returns {Paginator<CompanyProfilePlatformModel.LocationListSerializer>}
      * @summary: Get list of locations
      * @description: This API allows to view all the locations associated to a company.
      */
@@ -149,26 +178,30 @@ declare class CompanyProfile {
         stage?: string;
         pageSize?: number;
         locationIds?: number[];
-    }): Paginator<CompanyProfilePlatformModel.LocationListSerializer>;
+    }): Paginator;
     /**
-     * @param {CompanyProfilePlatformValidator.UpdateCompanyParam} arg - Arg object
-     * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
-     *   Success response
-     * @name updateCompany
+     * @param {Object} arg - Arg object.
+     * @param {UpdateCompany} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ProfileSuccessResponse>} - Success response
      * @summary: Edit company profile
-     * @description: This API allows to edit the company profile of the seller account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/updateCompany/).
+     * @description: This API allows to edit the company profile of the seller account.
      */
-    updateCompany({ body }?: CompanyProfilePlatformValidator.UpdateCompanyParam): Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>;
+    updateCompany({ body }?: {
+        body: UpdateCompany;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ProfileSuccessResponse>;
     /**
-     * @param {CompanyProfilePlatformValidator.UpdateLocationParam} arg - Arg object
-     * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
-     *   Success response
-     * @name updateLocation
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.locationId - Id of the location which you want to edit.
+     * @param {LocationSerializer} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ProfileSuccessResponse>} - Success response
      * @summary: Edit a location asscoiated to a company.
-     * @description: This API allows to edit a location associated to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/updateLocation/).
+     * @description: This API allows to edit a location associated to a company.
      */
-    updateLocation({ locationId, body }?: CompanyProfilePlatformValidator.UpdateLocationParam): Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>;
+    updateLocation({ locationId, body }?: {
+        locationId: string;
+        body: LocationSerializer;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ProfileSuccessResponse>;
 }
-import CompanyProfilePlatformModel = require("./CompanyProfilePlatformModel");
-import CompanyProfilePlatformValidator = require("./CompanyProfilePlatformValidator");
 import Paginator = require("../../common/Paginator");

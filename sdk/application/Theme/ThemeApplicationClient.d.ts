@@ -11,37 +11,45 @@ declare class Theme {
     _urls: {};
     updateUrls(urls: any): void;
     /**
-     * @param {ThemeApplicationValidator.GetAllPagesParam} arg - Arg object.
-     * @returns {Promise<ThemeApplicationModel.AllAvailablePageSchema>} - Success response
-     * @name getAllPages
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.themeId - ID of the theme to be retrieved
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<AllAvailablePageSchema>} - Success response
      * @summary: Get all pages of a theme
-     * @description: Use this API to retrieve all the available pages of a theme by its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getAllPages/).
+     * @description: Use this API to retrieve all the available pages of a theme by its ID.
      */
-    getAllPages({ themeId }?: ThemeApplicationValidator.GetAllPagesParam): Promise<ThemeApplicationModel.AllAvailablePageSchema>;
+    getAllPages({ themeId }?: {
+        themeId: string;
+    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<AllAvailablePageSchema>;
     /**
-     * @param {ThemeApplicationValidator.GetAppliedThemeParam} arg - Arg object.
-     * @returns {Promise<ThemeApplicationModel.ThemesSchema>} - Success response
-     * @name getAppliedTheme
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<ThemesSchema>} - Success response
      * @summary: Get the theme currently applied to an application
-     * @description: An application has multiple themes, but only one theme can be applied at a time. Use this API to retrieve the theme currently applied to the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getAppliedTheme/).
+     * @description: An application has multiple themes, but only one theme can be applied at a time. Use this API to retrieve the theme currently applied to the application.
      */
-    getAppliedTheme({}?: any): Promise<ThemeApplicationModel.ThemesSchema>;
+    getAppliedTheme({ headers }?: import("../ApplicationAPIClient").Options): Promise<ThemesSchema>;
     /**
-     * @param {ThemeApplicationValidator.GetPageParam} arg - Arg object.
-     * @returns {Promise<ThemeApplicationModel.AvailablePageSchema>} - Success response
-     * @name getPage
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.themeId - ID of the theme to be retrieved
+     * @param {string} arg.pageValue - Value of the page to be retrieved
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<AvailablePageSchema>} - Success response
      * @summary: Get page of a theme
-     * @description: Use this API to retrieve a page of a theme. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getPage/).
+     * @description: Use this API to retrieve a page of a theme.
      */
-    getPage({ themeId, pageValue }?: ThemeApplicationValidator.GetPageParam): Promise<ThemeApplicationModel.AvailablePageSchema>;
+    getPage({ themeId, pageValue }?: {
+        themeId: string;
+        pageValue: string;
+    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<AvailablePageSchema>;
     /**
-     * @param {ThemeApplicationValidator.GetThemeForPreviewParam} arg - Arg object.
-     * @returns {Promise<ThemeApplicationModel.ThemesSchema>} - Success response
-     * @name getThemeForPreview
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.themeId - ID of the theme to be retrieved
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<ThemesSchema>} - Success response
      * @summary: Get a theme for a preview
-     * @description: A theme can be previewed before applying it. Use this API to retrieve the preview of a theme by its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getThemeForPreview/).
+     * @description: A theme can be previewed before applying it. Use this API to retrieve the preview of a theme by its ID.
      */
-    getThemeForPreview({ themeId }?: ThemeApplicationValidator.GetThemeForPreviewParam): Promise<ThemeApplicationModel.ThemesSchema>;
+    getThemeForPreview({ themeId }?: {
+        themeId: string;
+    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<ThemesSchema>;
 }
-import ThemeApplicationValidator = require("./ThemeApplicationValidator");
-import ThemeApplicationModel = require("./ThemeApplicationModel");

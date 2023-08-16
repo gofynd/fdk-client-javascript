@@ -2,8 +2,8 @@ const ApplicationAPIClient = require("../ApplicationAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
-const CartApplicationValidator = require("./CartApplicationValidator");
-const CartApplicationModel = require("./CartApplicationModel");
+const CartValidator = require("./CartApplicationValidator");
+const CartModel = require("./CartApplicationModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -59,14 +59,15 @@ class Cart {
   }
 
   /**
-   * @param {CartApplicationValidator.AddAddressParam} arg - Arg object.
-   * @returns {Promise<CartApplicationModel.SaveAddressResponse>} - Success response
-   * @name addAddress
+   * @param {Object} arg - Arg object.
+   * @param {Address} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<SaveAddressResponse>} - Success response
    * @summary: Add address to an account
-   * @description: Use this API to add an address to an account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/addAddress/).
+   * @description: Use this API to add an address to an account.
    */
-  async addAddress({ body } = {}) {
-    const { error } = CartApplicationValidator.addAddress().validate(
+  async addAddress({ body } = {}, { headers } = { headers: false }) {
+    const { error } = CartValidator.addAddress().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -75,15 +76,16 @@ class Cart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CartApplicationValidator.addAddress().validate(
+    const { error: warrning } = CartValidator.addAddress().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Cart > addAddress \n ${warrning}`,
+        message: "Parameter Validation warrnings for addAddress",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -99,12 +101,18 @@ class Cart {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CartApplicationModel.SaveAddressResponse().validate(response, {
+    } = CartModel.SaveAddressResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -112,22 +120,32 @@ class Cart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Cart > addAddress \n ${res_error}`,
+        message: "Response Validation Warnnings for addAddress",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CartApplicationValidator.AddItemsParam} arg - Arg object.
-   * @returns {Promise<CartApplicationModel.AddCartDetailResponse>} - Success response
-   * @name addItems
+   * @param {Object} arg - Arg object.
+   * @param {boolean} [arg.i] -
+   * @param {boolean} [arg.b] -
+   * @param {string} [arg.areaCode] -
+   * @param {boolean} [arg.buyNow] -
+   * @param {string} [arg.id] -
+   * @param {AddCartRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<AddCartDetailResponse>} - Success response
    * @summary: Add items to cart
-   * @description: Use this API to add items to the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/addItems/).
+   * @description: Use this API to add items to the cart.
    */
-  async addItems({ body, i, b, areaCode, buyNow, id } = {}) {
-    const { error } = CartApplicationValidator.addItems().validate(
+  async addItems(
+    { body, i, b, areaCode, buyNow, id } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CartValidator.addItems().validate(
       { body, i, b, areaCode, buyNow, id },
       { abortEarly: false, allowUnknown: true }
     );
@@ -136,15 +154,16 @@ class Cart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CartApplicationValidator.addItems().validate(
+    const { error: warrning } = CartValidator.addItems().validate(
       { body, i, b, areaCode, buyNow, id },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Cart > addItems \n ${warrning}`,
+        message: "Parameter Validation warrnings for addItems",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -165,12 +184,18 @@ class Cart {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CartApplicationModel.AddCartDetailResponse().validate(response, {
+    } = CartModel.AddCartDetailResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -178,22 +203,32 @@ class Cart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Cart > addItems \n ${res_error}`,
+        message: "Response Validation Warnnings for addItems",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CartApplicationValidator.ApplyCouponParam} arg - Arg object.
-   * @returns {Promise<CartApplicationModel.CartDetailResponse>} - Success response
-   * @name applyCoupon
+   * @param {Object} arg - Arg object.
+   * @param {boolean} [arg.i] -
+   * @param {boolean} [arg.b] -
+   * @param {boolean} [arg.p] -
+   * @param {string} [arg.id] -
+   * @param {boolean} [arg.buyNow] -
+   * @param {ApplyCouponRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CartDetailResponse>} - Success response
    * @summary: Apply Coupon
-   * @description: Use this API to apply coupons on items in the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/applyCoupon/).
+   * @description: Use this API to apply coupons on items in the cart.
    */
-  async applyCoupon({ body, i, b, p, id, buyNow } = {}) {
-    const { error } = CartApplicationValidator.applyCoupon().validate(
+  async applyCoupon(
+    { body, i, b, p, id, buyNow } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CartValidator.applyCoupon().validate(
       { body, i, b, p, id, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
@@ -202,15 +237,16 @@ class Cart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CartApplicationValidator.applyCoupon().validate(
+    const { error: warrning } = CartValidator.applyCoupon().validate(
       { body, i, b, p, id, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Cart > applyCoupon \n ${warrning}`,
+        message: "Parameter Validation warrnings for applyCoupon",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -231,12 +267,18 @@ class Cart {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CartApplicationModel.CartDetailResponse().validate(response, {
+    } = CartModel.CartDetailResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -244,22 +286,31 @@ class Cart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Cart > applyCoupon \n ${res_error}`,
+        message: "Response Validation Warnnings for applyCoupon",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CartApplicationValidator.ApplyRewardPointsParam} arg - Arg object.
-   * @returns {Promise<CartApplicationModel.CartDetailResponse>} - Success response
-   * @name applyRewardPoints
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.id] -
+   * @param {boolean} [arg.i] -
+   * @param {boolean} [arg.b] -
+   * @param {boolean} [arg.buyNow] -
+   * @param {RewardPointRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CartDetailResponse>} - Success response
    * @summary: Apply reward points at cart
-   * @description: Use this API to redeem a fixed no. of reward points by applying it to the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/applyRewardPoints/).
+   * @description: Use this API to redeem a fixed no. of reward points by applying it to the cart.
    */
-  async applyRewardPoints({ body, id, i, b, buyNow } = {}) {
-    const { error } = CartApplicationValidator.applyRewardPoints().validate(
+  async applyRewardPoints(
+    { body, id, i, b, buyNow } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CartValidator.applyRewardPoints().validate(
       { body, id, i, b, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
@@ -268,17 +319,16 @@ class Cart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CartApplicationValidator.applyRewardPoints().validate(
+    const { error: warrning } = CartValidator.applyRewardPoints().validate(
       { body, id, i, b, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Cart > applyRewardPoints \n ${warrning}`,
+        message: "Parameter Validation warrnings for applyRewardPoints",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -298,12 +348,18 @@ class Cart {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CartApplicationModel.CartDetailResponse().validate(response, {
+    } = CartModel.CartDetailResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -311,22 +367,25 @@ class Cart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Cart > applyRewardPoints \n ${res_error}`,
+        message: "Response Validation Warnnings for applyRewardPoints",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CartApplicationValidator.CheckoutCartParam} arg - Arg object.
-   * @returns {Promise<CartApplicationModel.CartCheckoutResponse>} - Success response
-   * @name checkoutCart
+   * @param {Object} arg - Arg object.
+   * @param {boolean} [arg.buyNow] - This indicates the type of cart to checkout
+   * @param {CartCheckoutDetailRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CartCheckoutResponse>} - Success response
    * @summary: Checkout all items in the cart
-   * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/checkoutCart/).
+   * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway.
    */
-  async checkoutCart({ body, buyNow } = {}) {
-    const { error } = CartApplicationValidator.checkoutCart().validate(
+  async checkoutCart({ body, buyNow } = {}, { headers } = { headers: false }) {
+    const { error } = CartValidator.checkoutCart().validate(
       { body, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
@@ -335,17 +394,16 @@ class Cart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CartApplicationValidator.checkoutCart().validate(
+    const { error: warrning } = CartValidator.checkoutCart().validate(
       { body, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Cart > checkoutCart \n ${warrning}`,
+        message: "Parameter Validation warrnings for checkoutCart",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -362,12 +420,18 @@ class Cart {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CartApplicationModel.CartCheckoutResponse().validate(response, {
+    } = CartModel.CartCheckoutResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -375,22 +439,28 @@ class Cart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Cart > checkoutCart \n ${res_error}`,
+        message: "Response Validation Warnnings for checkoutCart",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CartApplicationValidator.CheckoutCartV2Param} arg - Arg object.
-   * @returns {Promise<CartApplicationModel.CartCheckoutResponse>} - Success response
-   * @name checkoutCartV2
+   * @param {Object} arg - Arg object.
+   * @param {boolean} [arg.buyNow] - This indicates the type of cart to checkout
+   * @param {CartCheckoutDetailV2Request} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CartCheckoutResponse>} - Success response
    * @summary: Checkout all items in the cart
-   * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/checkoutCartV2/).
+   * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway.
    */
-  async checkoutCartV2({ body, buyNow } = {}) {
-    const { error } = CartApplicationValidator.checkoutCartV2().validate(
+  async checkoutCartV2(
+    { body, buyNow } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CartValidator.checkoutCartV2().validate(
       { body, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
@@ -399,17 +469,16 @@ class Cart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CartApplicationValidator.checkoutCartV2().validate(
+    const { error: warrning } = CartValidator.checkoutCartV2().validate(
       { body, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Cart > checkoutCartV2 \n ${warrning}`,
+        message: "Parameter Validation warrnings for checkoutCartV2",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -426,12 +495,18 @@ class Cart {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CartApplicationModel.CartCheckoutResponse().validate(response, {
+    } = CartModel.CartCheckoutResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -439,23 +514,24 @@ class Cart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Cart > checkoutCartV2 \n ${res_error}`,
+        message: "Response Validation Warnnings for checkoutCartV2",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CartApplicationValidator.DeleteCartParam} arg - Arg object.
-   * @returns {Promise<CartApplicationModel.DeleteCartDetailResponse>} -
-   *   Success response
-   * @name deleteCart
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.id] - The unique identifier of the cart.
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<DeleteCartDetailResponse>} - Success response
    * @summary: Delete cart once user made successful checkout
-   * @description: Use this API to delete the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/deleteCart/).
+   * @description: Use this API to delete the cart.
    */
-  async deleteCart({ id } = {}) {
-    const { error } = CartApplicationValidator.deleteCart().validate(
+  async deleteCart({ id } = {}, { headers } = { headers: false }) {
+    const { error } = CartValidator.deleteCart().validate(
       { id },
       { abortEarly: false, allowUnknown: true }
     );
@@ -464,15 +540,16 @@ class Cart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CartApplicationValidator.deleteCart().validate(
+    const { error: warrning } = CartValidator.deleteCart().validate(
       { id },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Cart > deleteCart \n ${warrning}`,
+        message: "Parameter Validation warrnings for deleteCart",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -489,12 +566,18 @@ class Cart {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CartApplicationModel.DeleteCartDetailResponse().validate(response, {
+    } = CartModel.DeleteCartDetailResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -502,30 +585,33 @@ class Cart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Cart > deleteCart \n ${res_error}`,
+        message: "Response Validation Warnnings for deleteCart",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CartApplicationValidator.GetAddressByIdParam} arg - Arg object.
-   * @returns {Promise<CartApplicationModel.Address>} - Success response
-   * @name getAddressById
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id -
+   * @param {string} [arg.cartId] -
+   * @param {boolean} [arg.buyNow] -
+   * @param {string} [arg.mobileNo] -
+   * @param {string} [arg.checkoutMode] -
+   * @param {string} [arg.tags] -
+   * @param {boolean} [arg.isDefault] -
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<Address>} - Success response
    * @summary: Fetch a single address by its ID
-   * @description: Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `Address`. Attibutes listed below are optional mobile_no checkout_mode tags default - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getAddressById/).
+   * @description: Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `Address`. Attibutes listed below are optional mobile_no checkout_mode tags default
    */
-  async getAddressById({
-    id,
-    cartId,
-    buyNow,
-    mobileNo,
-    checkoutMode,
-    tags,
-    isDefault,
-  } = {}) {
-    const { error } = CartApplicationValidator.getAddressById().validate(
+  async getAddressById(
+    { id, cartId, buyNow, mobileNo, checkoutMode, tags, isDefault } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CartValidator.getAddressById().validate(
       { id, cartId, buyNow, mobileNo, checkoutMode, tags, isDefault },
       { abortEarly: false, allowUnknown: true }
     );
@@ -534,17 +620,16 @@ class Cart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CartApplicationValidator.getAddressById().validate(
+    const { error: warrning } = CartValidator.getAddressById().validate(
       { id, cartId, buyNow, mobileNo, checkoutMode, tags, isDefault },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Cart > getAddressById \n ${warrning}`,
+        message: "Parameter Validation warrnings for getAddressById",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -566,12 +651,16 @@ class Cart {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
 
-    const {
-      error: res_error,
-    } = CartApplicationModel.Address().validate(response, {
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = CartModel.Address().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -579,29 +668,32 @@ class Cart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Cart > getAddressById \n ${res_error}`,
+        message: "Response Validation Warnnings for getAddressById",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CartApplicationValidator.GetAddressesParam} arg - Arg object.
-   * @returns {Promise<CartApplicationModel.GetAddressesResponse>} - Success response
-   * @name getAddresses
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.cartId] -
+   * @param {boolean} [arg.buyNow] -
+   * @param {string} [arg.mobileNo] -
+   * @param {string} [arg.checkoutMode] -
+   * @param {string} [arg.tags] -
+   * @param {boolean} [arg.isDefault] -
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<GetAddressesResponse>} - Success response
    * @summary: Fetch address
-   * @description: Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional uid address_id mobile_no checkout_mode tags default - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getAddresses/).
+   * @description: Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional uid address_id mobile_no checkout_mode tags default
    */
-  async getAddresses({
-    cartId,
-    buyNow,
-    mobileNo,
-    checkoutMode,
-    tags,
-    isDefault,
-  } = {}) {
-    const { error } = CartApplicationValidator.getAddresses().validate(
+  async getAddresses(
+    { cartId, buyNow, mobileNo, checkoutMode, tags, isDefault } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CartValidator.getAddresses().validate(
       { cartId, buyNow, mobileNo, checkoutMode, tags, isDefault },
       { abortEarly: false, allowUnknown: true }
     );
@@ -610,17 +702,16 @@ class Cart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CartApplicationValidator.getAddresses().validate(
+    const { error: warrning } = CartValidator.getAddresses().validate(
       { cartId, buyNow, mobileNo, checkoutMode, tags, isDefault },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Cart > getAddresses \n ${warrning}`,
+        message: "Parameter Validation warrnings for getAddresses",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -642,12 +733,18 @@ class Cart {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CartApplicationModel.GetAddressesResponse().validate(response, {
+    } = CartModel.GetAddressesResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -655,22 +752,32 @@ class Cart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Cart > getAddresses \n ${res_error}`,
+        message: "Response Validation Warnnings for getAddresses",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CartApplicationValidator.GetBulkDiscountOffersParam} arg - Arg object.
-   * @returns {Promise<CartApplicationModel.BulkPriceResponse>} - Success response
-   * @name getBulkDiscountOffers
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.itemId] - The Item ID of the product
+   * @param {string} [arg.articleId] - Article Mongo ID
+   * @param {number} [arg.uid] - UID of the product
+   * @param {string} [arg.slug] - A short, human-readable, URL-friendly
+   *   identifier of a product. You can get slug value from the endpoint
+   *   /service/application/catalog/v1.0/products/
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<BulkPriceResponse>} - Success response
    * @summary: Get discount offers based on quantity
-   * @description: Use this API to get a list of applicable offers along with current, next and best offer for given product. Either one of uid, item_id, slug should be present. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getBulkDiscountOffers/).
+   * @description: Use this API to get a list of applicable offers along with current, next and best offer for given product. Either one of uid, item_id, slug should be present.
    */
-  async getBulkDiscountOffers({ itemId, articleId, uid, slug } = {}) {
-    const { error } = CartApplicationValidator.getBulkDiscountOffers().validate(
+  async getBulkDiscountOffers(
+    { itemId, articleId, uid, slug } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CartValidator.getBulkDiscountOffers().validate(
       { itemId, articleId, uid, slug },
       { abortEarly: false, allowUnknown: true }
     );
@@ -679,17 +786,16 @@ class Cart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CartApplicationValidator.getBulkDiscountOffers().validate(
+    const { error: warrning } = CartValidator.getBulkDiscountOffers().validate(
       { itemId, articleId, uid, slug },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Cart > getBulkDiscountOffers \n ${warrning}`,
+        message: "Parameter Validation warrnings for getBulkDiscountOffers",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -709,12 +815,18 @@ class Cart {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CartApplicationModel.BulkPriceResponse().validate(response, {
+    } = CartModel.BulkPriceResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -722,22 +834,32 @@ class Cart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Cart > getBulkDiscountOffers \n ${res_error}`,
+        message: "Response Validation Warnnings for getBulkDiscountOffers",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CartApplicationValidator.GetCartParam} arg - Arg object.
-   * @returns {Promise<CartApplicationModel.CartDetailResponse>} - Success response
-   * @name getCart
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.id] -
+   * @param {boolean} [arg.i] -
+   * @param {boolean} [arg.b] -
+   * @param {number} [arg.assignCardId] -
+   * @param {string} [arg.areaCode] -
+   * @param {boolean} [arg.buyNow] -
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CartDetailResponse>} - Success response
    * @summary: Fetch all items added to the cart
-   * @description: Use this API to get details of all the items added to a cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCart/).
+   * @description: Use this API to get details of all the items added to a cart.
    */
-  async getCart({ id, i, b, assignCardId, areaCode, buyNow } = {}) {
-    const { error } = CartApplicationValidator.getCart().validate(
+  async getCart(
+    { id, i, b, assignCardId, areaCode, buyNow } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CartValidator.getCart().validate(
       { id, i, b, assignCardId, areaCode, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
@@ -746,15 +868,16 @@ class Cart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CartApplicationValidator.getCart().validate(
+    const { error: warrning } = CartValidator.getCart().validate(
       { id, i, b, assignCardId, areaCode, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Cart > getCart \n ${warrning}`,
+        message: "Parameter Validation warrnings for getCart",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -776,12 +899,18 @@ class Cart {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CartApplicationModel.CartDetailResponse().validate(response, {
+    } = CartModel.CartDetailResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -789,22 +918,24 @@ class Cart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Cart > getCart \n ${res_error}`,
+        message: "Response Validation Warnnings for getCart",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CartApplicationValidator.GetCartLastModifiedParam} arg - Arg object.
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.id] -
+   * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<any>} - Success response
-   * @name getCartLastModified
    * @summary: Fetch last-modified timestamp
-   * @description: Use this API to fetch Last-Modified timestamp in header metadata. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCartLastModified/).
+   * @description: Use this API to fetch Last-Modified timestamp in header metadata.
    */
-  async getCartLastModified({ id } = {}) {
-    const { error } = CartApplicationValidator.getCartLastModified().validate(
+  async getCartLastModified({ id } = {}, { headers } = { headers: false }) {
+    const { error } = CartValidator.getCartLastModified().validate(
       { id },
       { abortEarly: false, allowUnknown: true }
     );
@@ -813,17 +944,16 @@ class Cart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CartApplicationValidator.getCartLastModified().validate(
+    const { error: warrning } = CartValidator.getCartLastModified().validate(
       { id },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Cart > getCartLastModified \n ${warrning}`,
+        message: "Parameter Validation warrnings for getCartLastModified",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -840,33 +970,40 @@ class Cart {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const { error: res_error } = Joi.string()
       .allow("")
-      .validate(response, { abortEarly: false, allowUnknown: false });
+      .validate(responseData, { abortEarly: false, allowUnknown: false });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Cart > getCartLastModified \n ${res_error}`,
+        message: "Response Validation Warnnings for getCartLastModified",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CartApplicationValidator.GetCartShareLinkParam} arg - Arg object.
-   * @returns {Promise<CartApplicationModel.GetShareCartLinkResponse>} -
-   *   Success response
-   * @name getCartShareLink
+   * @param {Object} arg - Arg object.
+   * @param {GetShareCartLinkRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<GetShareCartLinkResponse>} - Success response
    * @summary: Generate token for sharing the cart
-   * @description: Use this API to generate a shared cart snapshot and return a shortlink token. The link can be shared with other users for getting the same items in their cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCartShareLink/).
+   * @description: Use this API to generate a shared cart snapshot and return a shortlink token. The link can be shared with other users for getting the same items in their cart.
    */
-  async getCartShareLink({ body } = {}) {
-    const { error } = CartApplicationValidator.getCartShareLink().validate(
+  async getCartShareLink({ body } = {}, { headers } = { headers: false }) {
+    const { error } = CartValidator.getCartShareLink().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -875,17 +1012,16 @@ class Cart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CartApplicationValidator.getCartShareLink().validate(
+    const { error: warrning } = CartValidator.getCartShareLink().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Cart > getCartShareLink \n ${warrning}`,
+        message: "Parameter Validation warrnings for getCartShareLink",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -901,12 +1037,18 @@ class Cart {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CartApplicationModel.GetShareCartLinkResponse().validate(response, {
+    } = CartModel.GetShareCartLinkResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -914,22 +1056,24 @@ class Cart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Cart > getCartShareLink \n ${res_error}`,
+        message: "Response Validation Warnnings for getCartShareLink",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CartApplicationValidator.GetCartSharedItemsParam} arg - Arg object.
-   * @returns {Promise<CartApplicationModel.SharedCartResponse>} - Success response
-   * @name getCartSharedItems
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.token - Token of the shared short link
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<SharedCartResponse>} - Success response
    * @summary: Get details of a shared cart
-   * @description: Use this API to get the shared cart details as per the token generated using the share-cart API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCartSharedItems/).
+   * @description: Use this API to get the shared cart details as per the token generated using the share-cart API.
    */
-  async getCartSharedItems({ token } = {}) {
-    const { error } = CartApplicationValidator.getCartSharedItems().validate(
+  async getCartSharedItems({ token } = {}, { headers } = { headers: false }) {
+    const { error } = CartValidator.getCartSharedItems().validate(
       { token },
       { abortEarly: false, allowUnknown: true }
     );
@@ -938,17 +1082,16 @@ class Cart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CartApplicationValidator.getCartSharedItems().validate(
+    const { error: warrning } = CartValidator.getCartSharedItems().validate(
       { token },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Cart > getCartSharedItems \n ${warrning}`,
+        message: "Parameter Validation warrnings for getCartSharedItems",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -964,12 +1107,18 @@ class Cart {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CartApplicationModel.SharedCartResponse().validate(response, {
+    } = CartModel.SharedCartResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -977,22 +1126,25 @@ class Cart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Cart > getCartSharedItems \n ${res_error}`,
+        message: "Response Validation Warnnings for getCartSharedItems",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CartApplicationValidator.GetCouponsParam} arg - Arg object.
-   * @returns {Promise<CartApplicationModel.GetCouponResponse>} - Success response
-   * @name getCoupons
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.id] -
+   * @param {boolean} [arg.buyNow] -
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<GetCouponResponse>} - Success response
    * @summary: Fetch Coupon
-   * @description: Use this API to get a list of available coupons along with their details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCoupons/).
+   * @description: Use this API to get a list of available coupons along with their details.
    */
-  async getCoupons({ id, buyNow } = {}) {
-    const { error } = CartApplicationValidator.getCoupons().validate(
+  async getCoupons({ id, buyNow } = {}, { headers } = { headers: false }) {
+    const { error } = CartValidator.getCoupons().validate(
       { id, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1001,15 +1153,16 @@ class Cart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CartApplicationValidator.getCoupons().validate(
+    const { error: warrning } = CartValidator.getCoupons().validate(
       { id, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Cart > getCoupons \n ${warrning}`,
+        message: "Parameter Validation warrnings for getCoupons",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1027,12 +1180,18 @@ class Cart {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CartApplicationModel.GetCouponResponse().validate(response, {
+    } = CartModel.GetCouponResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1040,22 +1199,25 @@ class Cart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Cart > getCoupons \n ${res_error}`,
+        message: "Response Validation Warnnings for getCoupons",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CartApplicationValidator.GetItemCountParam} arg - Arg object.
-   * @returns {Promise<CartApplicationModel.CartItemCountResponse>} - Success response
-   * @name getItemCount
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.id] - The unique identifier of the cart.
+   * @param {boolean} [arg.buyNow] -
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CartItemCountResponse>} - Success response
    * @summary: Count items in the cart
-   * @description: Use this API to get the total number of items present in cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getItemCount/).
+   * @description: Use this API to get the total number of items present in cart.
    */
-  async getItemCount({ id, buyNow } = {}) {
-    const { error } = CartApplicationValidator.getItemCount().validate(
+  async getItemCount({ id, buyNow } = {}, { headers } = { headers: false }) {
+    const { error } = CartValidator.getItemCount().validate(
       { id, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1064,17 +1226,16 @@ class Cart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CartApplicationValidator.getItemCount().validate(
+    const { error: warrning } = CartValidator.getItemCount().validate(
       { id, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Cart > getItemCount \n ${warrning}`,
+        message: "Parameter Validation warrnings for getItemCount",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1092,12 +1253,18 @@ class Cart {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CartApplicationModel.CartItemCountResponse().validate(response, {
+    } = CartModel.CartItemCountResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1105,22 +1272,34 @@ class Cart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Cart > getItemCount \n ${res_error}`,
+        message: "Response Validation Warnnings for getItemCount",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CartApplicationValidator.GetLadderOffersParam} arg - Arg object.
-   * @returns {Promise<CartApplicationModel.LadderPriceOffers>} - Success response
-   * @name getLadderOffers
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.slug - A short, human-readable, URL-friendly
+   *   identifier of a product. You can get slug value from the endpoint
+   *   /service/application/catalog/v1.0/products/
+   * @param {string} [arg.storeId] - Store uid of assigned store on PDP page.
+   *   If not passed default first created ladder will be returned
+   * @param {string} [arg.promotionId] - Get ladder information of given
+   *   promotion id explicitely
+   * @param {number} [arg.pageSize] - Number of offers to be fetched to show
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<LadderPriceOffers>} - Success response
    * @summary: Fetch ladder price promotion
-   * @description: Use this API to get applicable ladder price promotion for current product - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getLadderOffers/).
+   * @description: Use this API to get applicable ladder price promotion for current product
    */
-  async getLadderOffers({ slug, storeId, promotionId, pageSize } = {}) {
-    const { error } = CartApplicationValidator.getLadderOffers().validate(
+  async getLadderOffers(
+    { slug, storeId, promotionId, pageSize } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CartValidator.getLadderOffers().validate(
       { slug, storeId, promotionId, pageSize },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1129,17 +1308,16 @@ class Cart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CartApplicationValidator.getLadderOffers().validate(
+    const { error: warrning } = CartValidator.getLadderOffers().validate(
       { slug, storeId, promotionId, pageSize },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Cart > getLadderOffers \n ${warrning}`,
+        message: "Parameter Validation warrnings for getLadderOffers",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1159,12 +1337,18 @@ class Cart {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CartApplicationModel.LadderPriceOffers().validate(response, {
+    } = CartModel.LadderPriceOffers().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1172,22 +1356,32 @@ class Cart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Cart > getLadderOffers \n ${res_error}`,
+        message: "Response Validation Warnnings for getLadderOffers",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CartApplicationValidator.GetPromotionOffersParam} arg - Arg object.
-   * @returns {Promise<CartApplicationModel.PromotionOffersResponse>} - Success response
-   * @name getPromotionOffers
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.slug] - A short, human-readable, URL-friendly
+   *   identifier of a product. You can get slug value from the endpoint
+   *   /service/application/catalog/v1.0/products/
+   * @param {number} [arg.pageSize] - Number of offers to be fetched to show
+   * @param {string} [arg.promotionGroup] - Type of promotion groups
+   * @param {number} [arg.storeId] - Store id
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<PromotionOffersResponse>} - Success response
    * @summary: Fetch available promotions
-   * @description: Use this API to get top 5 offers available for current product - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getPromotionOffers/).
+   * @description: Use this API to get top 5 offers available for current product
    */
-  async getPromotionOffers({ slug, pageSize, promotionGroup, storeId } = {}) {
-    const { error } = CartApplicationValidator.getPromotionOffers().validate(
+  async getPromotionOffers(
+    { slug, pageSize, promotionGroup, storeId } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CartValidator.getPromotionOffers().validate(
       { slug, pageSize, promotionGroup, storeId },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1196,17 +1390,16 @@ class Cart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CartApplicationValidator.getPromotionOffers().validate(
+    const { error: warrning } = CartValidator.getPromotionOffers().validate(
       { slug, pageSize, promotionGroup, storeId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Cart > getPromotionOffers \n ${warrning}`,
+        message: "Parameter Validation warrnings for getPromotionOffers",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1226,12 +1419,18 @@ class Cart {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CartApplicationModel.PromotionOffersResponse().validate(response, {
+    } = CartModel.PromotionOffersResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1239,22 +1438,37 @@ class Cart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Cart > getPromotionOffers \n ${res_error}`,
+        message: "Response Validation Warnnings for getPromotionOffers",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CartApplicationValidator.GetShipmentsParam} arg - Arg object.
-   * @returns {Promise<CartApplicationModel.CartShipmentsResponse>} - Success response
-   * @name getShipments
+   * @param {Object} arg - Arg object.
+   * @param {boolean} [arg.p] - This is a boolean value. Select `true` for
+   *   getting a payment option in response.
+   * @param {string} [arg.id] - The unique identifier of the cart
+   * @param {boolean} [arg.buyNow] -
+   * @param {string} [arg.addressId] - ID allotted to the selected address
+   * @param {string} [arg.areaCode] - The PIN Code of the destination address,
+   *   e.g. 400059
+   * @param {string} [arg.orderType] - The order type of shipment HomeDelivery
+   *   - If the customer wants the order home-delivered PickAtStore - If the
+   *   customer wants the handover of an order at the store itself. Digital -
+   *   If the customer wants to buy digital voucher ( for jiogames )
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CartShipmentsResponse>} - Success response
    * @summary: Get delivery date and options before checkout
-   * @description: Use this API to get shipment details, expected delivery date, items and price breakup of the shipment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getShipments/).
+   * @description: Use this API to get shipment details, expected delivery date, items and price breakup of the shipment.
    */
-  async getShipments({ p, id, buyNow, addressId, areaCode, orderType } = {}) {
-    const { error } = CartApplicationValidator.getShipments().validate(
+  async getShipments(
+    { p, id, buyNow, addressId, areaCode, orderType } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CartValidator.getShipments().validate(
       { p, id, buyNow, addressId, areaCode, orderType },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1263,17 +1477,16 @@ class Cart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CartApplicationValidator.getShipments().validate(
+    const { error: warrning } = CartValidator.getShipments().validate(
       { p, id, buyNow, addressId, areaCode, orderType },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Cart > getShipments \n ${warrning}`,
+        message: "Parameter Validation warrnings for getShipments",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1295,12 +1508,18 @@ class Cart {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CartApplicationModel.CartShipmentsResponse().validate(response, {
+    } = CartModel.CartShipmentsResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1308,22 +1527,24 @@ class Cart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Cart > getShipments \n ${res_error}`,
+        message: "Response Validation Warnnings for getShipments",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CartApplicationValidator.RemoveAddressParam} arg - Arg object.
-   * @returns {Promise<CartApplicationModel.DeleteAddressResponse>} - Success response
-   * @name removeAddress
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - ID allotted to the selected address
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<DeleteAddressResponse>} - Success response
    * @summary: Remove address associated with an account
-   * @description: Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/removeAddress/).
+   * @description: Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not.
    */
-  async removeAddress({ id } = {}) {
-    const { error } = CartApplicationValidator.removeAddress().validate(
+  async removeAddress({ id } = {}, { headers } = { headers: false }) {
+    const { error } = CartValidator.removeAddress().validate(
       { id },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1332,17 +1553,16 @@ class Cart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CartApplicationValidator.removeAddress().validate(
+    const { error: warrning } = CartValidator.removeAddress().validate(
       { id },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Cart > removeAddress \n ${warrning}`,
+        message: "Parameter Validation warrnings for removeAddress",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1358,12 +1578,18 @@ class Cart {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CartApplicationModel.DeleteAddressResponse().validate(response, {
+    } = CartModel.DeleteAddressResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1371,22 +1597,25 @@ class Cart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Cart > removeAddress \n ${res_error}`,
+        message: "Response Validation Warnnings for removeAddress",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CartApplicationValidator.RemoveCouponParam} arg - Arg object.
-   * @returns {Promise<CartApplicationModel.CartDetailResponse>} - Success response
-   * @name removeCoupon
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.id] -
+   * @param {boolean} [arg.buyNow] -
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CartDetailResponse>} - Success response
    * @summary: Remove Coupon Applied
-   * @description: Remove Coupon applied on the cart by passing uid in request body. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/removeCoupon/).
+   * @description: Remove Coupon applied on the cart by passing uid in request body.
    */
-  async removeCoupon({ id, buyNow } = {}) {
-    const { error } = CartApplicationValidator.removeCoupon().validate(
+  async removeCoupon({ id, buyNow } = {}, { headers } = { headers: false }) {
+    const { error } = CartValidator.removeCoupon().validate(
       { id, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1395,17 +1624,16 @@ class Cart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CartApplicationValidator.removeCoupon().validate(
+    const { error: warrning } = CartValidator.removeCoupon().validate(
       { id, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Cart > removeCoupon \n ${warrning}`,
+        message: "Parameter Validation warrnings for removeCoupon",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1423,12 +1651,18 @@ class Cart {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CartApplicationModel.CartDetailResponse().validate(response, {
+    } = CartModel.CartDetailResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1436,22 +1670,31 @@ class Cart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Cart > removeCoupon \n ${res_error}`,
+        message: "Response Validation Warnnings for removeCoupon",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CartApplicationValidator.SelectAddressParam} arg - Arg object.
-   * @returns {Promise<CartApplicationModel.CartDetailResponse>} - Success response
-   * @name selectAddress
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.cartId] -
+   * @param {boolean} [arg.buyNow] -
+   * @param {boolean} [arg.i] -
+   * @param {boolean} [arg.b] -
+   * @param {SelectCartAddressRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CartDetailResponse>} - Success response
    * @summary: Select an address from available addresses
-   * @description: Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. address_id billing_address_id uid - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/selectAddress/).
+   * @description: Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. address_id billing_address_id uid
    */
-  async selectAddress({ body, cartId, buyNow, i, b } = {}) {
-    const { error } = CartApplicationValidator.selectAddress().validate(
+  async selectAddress(
+    { body, cartId, buyNow, i, b } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CartValidator.selectAddress().validate(
       { body, cartId, buyNow, i, b },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1460,17 +1703,16 @@ class Cart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CartApplicationValidator.selectAddress().validate(
+    const { error: warrning } = CartValidator.selectAddress().validate(
       { body, cartId, buyNow, i, b },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Cart > selectAddress \n ${warrning}`,
+        message: "Parameter Validation warrnings for selectAddress",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1490,12 +1732,18 @@ class Cart {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CartApplicationModel.CartDetailResponse().validate(response, {
+    } = CartModel.CartDetailResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1503,22 +1751,29 @@ class Cart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Cart > selectAddress \n ${res_error}`,
+        message: "Response Validation Warnnings for selectAddress",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CartApplicationValidator.SelectPaymentModeParam} arg - Arg object.
-   * @returns {Promise<CartApplicationModel.CartDetailResponse>} - Success response
-   * @name selectPaymentMode
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.id] -
+   * @param {boolean} [arg.buyNow] -
+   * @param {UpdateCartPaymentRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CartDetailResponse>} - Success response
    * @summary: Update cart payment
-   * @description: Use this API to update cart payment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/selectPaymentMode/).
+   * @description: Use this API to update cart payment.
    */
-  async selectPaymentMode({ body, id, buyNow } = {}) {
-    const { error } = CartApplicationValidator.selectPaymentMode().validate(
+  async selectPaymentMode(
+    { body, id, buyNow } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CartValidator.selectPaymentMode().validate(
       { body, id, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1527,17 +1782,16 @@ class Cart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CartApplicationValidator.selectPaymentMode().validate(
+    const { error: warrning } = CartValidator.selectPaymentMode().validate(
       { body, id, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Cart > selectPaymentMode \n ${warrning}`,
+        message: "Parameter Validation warrnings for selectPaymentMode",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1555,12 +1809,18 @@ class Cart {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CartApplicationModel.CartDetailResponse().validate(response, {
+    } = CartModel.CartDetailResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1568,22 +1828,25 @@ class Cart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Cart > selectPaymentMode \n ${res_error}`,
+        message: "Response Validation Warnnings for selectPaymentMode",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CartApplicationValidator.UpdateAddressParam} arg - Arg object.
-   * @returns {Promise<CartApplicationModel.UpdateAddressResponse>} - Success response
-   * @name updateAddress
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - ID allotted to the selected address
+   * @param {Address} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<UpdateAddressResponse>} - Success response
    * @summary: Update address added to an account
-   * @description: Use this API to update an existing address in the account. Request object should contain attributes mentioned in Address can be updated. These attributes are: is_default_address landmark area pincode email address_type name address_id address - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/updateAddress/).
+   * @description: Use this API to update an existing address in the account. Request object should contain attributes mentioned in Address can be updated. These attributes are: is_default_address landmark area pincode email address_type name address_id address
    */
-  async updateAddress({ id, body } = {}) {
-    const { error } = CartApplicationValidator.updateAddress().validate(
+  async updateAddress({ id, body } = {}, { headers } = { headers: false }) {
+    const { error } = CartValidator.updateAddress().validate(
       { id, body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1592,17 +1855,16 @@ class Cart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CartApplicationValidator.updateAddress().validate(
+    const { error: warrning } = CartValidator.updateAddress().validate(
       { id, body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Cart > updateAddress \n ${warrning}`,
+        message: "Parameter Validation warrnings for updateAddress",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1618,12 +1880,18 @@ class Cart {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CartApplicationModel.UpdateAddressResponse().validate(response, {
+    } = CartModel.UpdateAddressResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1631,23 +1899,32 @@ class Cart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Cart > updateAddress \n ${res_error}`,
+        message: "Response Validation Warnnings for updateAddress",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CartApplicationValidator.UpdateCartParam} arg - Arg object.
-   * @returns {Promise<CartApplicationModel.UpdateCartDetailResponse>} -
-   *   Success response
-   * @name updateCart
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.id] -
+   * @param {boolean} [arg.i] -
+   * @param {boolean} [arg.b] -
+   * @param {string} [arg.areaCode] -
+   * @param {boolean} [arg.buyNow] -
+   * @param {UpdateCartRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<UpdateCartDetailResponse>} - Success response
    * @summary: Update items in the cart
-   * @description: Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs operation:  Operation for current api call. update_item for update items. remove_item for removing items. item_id "/platform/content/v1/products/" item_size "/platform/content/v1/products/:slug/sizes/" quantity item quantity (must be greater than or equal to 1) article_id "/content​/v1​/products​/:identifier​/sizes​/price​/" item_index item position in the cart (must be greater than or equal to 0) - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/updateCart/).
+   * @description: Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs operation:  Operation for current api call. update_item for update items. remove_item for removing items. item_id "/platform/content/v1/products/" item_size "/platform/content/v1/products/:slug/sizes/" quantity item quantity (must be greater than or equal to 1) article_id "/content​/v1​/products​/:identifier​/sizes​/price​/" item_index item position in the cart (must be greater than or equal to 0)
    */
-  async updateCart({ body, id, i, b, areaCode, buyNow } = {}) {
-    const { error } = CartApplicationValidator.updateCart().validate(
+  async updateCart(
+    { body, id, i, b, areaCode, buyNow } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CartValidator.updateCart().validate(
       { body, id, i, b, areaCode, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1656,15 +1933,16 @@ class Cart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CartApplicationValidator.updateCart().validate(
+    const { error: warrning } = CartValidator.updateCart().validate(
       { body, id, i, b, areaCode, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Cart > updateCart \n ${warrning}`,
+        message: "Parameter Validation warrnings for updateCart",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1685,12 +1963,18 @@ class Cart {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CartApplicationModel.UpdateCartDetailResponse().validate(response, {
+    } = CartModel.UpdateCartDetailResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1698,22 +1982,29 @@ class Cart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Cart > updateCart \n ${res_error}`,
+        message: "Response Validation Warnnings for updateCart",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CartApplicationValidator.UpdateCartMetaParam} arg - Arg object.
-   * @returns {Promise<CartApplicationModel.CartMetaResponse>} - Success response
-   * @name updateCartMeta
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.id] -
+   * @param {boolean} [arg.buyNow] -
+   * @param {CartMetaRequest} arg.body
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CartMetaResponse>} - Success response
    * @summary: Update the cart meta
-   * @description: Use this API to update cart meta like checkout_mode and gstin. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/updateCartMeta/).
+   * @description: Use this API to update cart meta like checkout_mode and gstin.
    */
-  async updateCartMeta({ body, id, buyNow } = {}) {
-    const { error } = CartApplicationValidator.updateCartMeta().validate(
+  async updateCartMeta(
+    { body, id, buyNow } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CartValidator.updateCartMeta().validate(
       { body, id, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1722,17 +2013,16 @@ class Cart {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CartApplicationValidator.updateCartMeta().validate(
+    const { error: warrning } = CartValidator.updateCartMeta().validate(
       { body, id, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Cart > updateCartMeta \n ${warrning}`,
+        message: "Parameter Validation warrnings for updateCartMeta",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1750,12 +2040,18 @@ class Cart {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CartApplicationModel.CartMetaResponse().validate(response, {
+    } = CartModel.CartMetaResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1763,24 +2059,29 @@ class Cart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Cart > updateCartMeta \n ${res_error}`,
+        message: "Response Validation Warnnings for updateCartMeta",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CartApplicationValidator.UpdateCartWithSharedItemsParam} arg - Arg object.
-   * @returns {Promise<CartApplicationModel.SharedCartResponse>} - Success response
-   * @name updateCartWithSharedItems
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.token - Token of the shared short link
+   * @param {string} arg.action - Operation to perform on the existing cart
+   *   merge or replace.
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<SharedCartResponse>} - Success response
    * @summary: Merge or replace existing cart
-   * @description: Use this API to merge the shared cart with existing cart, or replace the existing cart with the shared cart. The `action` parameter is used to indicate the operation Merge or Replace. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/updateCartWithSharedItems/).
+   * @description: Use this API to merge the shared cart with existing cart, or replace the existing cart with the shared cart. The `action` parameter is used to indicate the operation Merge or Replace.
    */
-  async updateCartWithSharedItems({ token, action } = {}) {
-    const {
-      error,
-    } = CartApplicationValidator.updateCartWithSharedItems().validate(
+  async updateCartWithSharedItems(
+    { token, action } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CartValidator.updateCartWithSharedItems().validate(
       { token, action },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1791,15 +2092,16 @@ class Cart {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CartApplicationValidator.updateCartWithSharedItems().validate(
+    } = CartValidator.updateCartWithSharedItems().validate(
       { token, action },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Cart > updateCartWithSharedItems \n ${warrning}`,
+        message: "Parameter Validation warrnings for updateCartWithSharedItems",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1815,12 +2117,18 @@ class Cart {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CartApplicationModel.SharedCartResponse().validate(response, {
+    } = CartModel.SharedCartResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1828,36 +2136,49 @@ class Cart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Cart > updateCartWithSharedItems \n ${res_error}`,
+        message: "Response Validation Warnnings for updateCartWithSharedItems",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CartApplicationValidator.ValidateCouponForPaymentParam} arg - Arg object.
-   * @returns {Promise<CartApplicationModel.PaymentCouponValidate>} - Success response
-   * @name validateCouponForPayment
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.id] -
+   * @param {boolean} [arg.buyNow] -
+   * @param {string} [arg.addressId] -
+   * @param {string} [arg.paymentMode] -
+   * @param {string} [arg.paymentIdentifier] -
+   * @param {string} [arg.aggregatorName] -
+   * @param {string} [arg.merchantCode] -
+   * @param {string} [arg.iin] -
+   * @param {string} [arg.network] -
+   * @param {string} [arg.type] -
+   * @param {string} [arg.cardId] -
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<PaymentCouponValidate>} - Success response
    * @summary: Verify the coupon eligibility against the payment mode
-   * @description: Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/validateCouponForPayment/).
+   * @description: Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc.
    */
-  async validateCouponForPayment({
-    id,
-    buyNow,
-    addressId,
-    paymentMode,
-    paymentIdentifier,
-    aggregatorName,
-    merchantCode,
-    iin,
-    network,
-    type,
-    cardId,
-  } = {}) {
-    const {
-      error,
-    } = CartApplicationValidator.validateCouponForPayment().validate(
+  async validateCouponForPayment(
+    {
+      id,
+      buyNow,
+      addressId,
+      paymentMode,
+      paymentIdentifier,
+      aggregatorName,
+      merchantCode,
+      iin,
+      network,
+      type,
+      cardId,
+    } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CartValidator.validateCouponForPayment().validate(
       {
         id,
         buyNow,
@@ -1880,7 +2201,7 @@ class Cart {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CartApplicationValidator.validateCouponForPayment().validate(
+    } = CartValidator.validateCouponForPayment().validate(
       {
         id,
         buyNow,
@@ -1899,8 +2220,9 @@ class Cart {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Cart > validateCouponForPayment \n ${warrning}`,
+        message: "Parameter Validation warrnings for validateCouponForPayment",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1927,12 +2249,18 @@ class Cart {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CartApplicationModel.PaymentCouponValidate().validate(response, {
+    } = CartModel.PaymentCouponValidate().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1940,8 +2268,9 @@ class Cart {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Cart > validateCouponForPayment \n ${res_error}`,
+        message: "Response Validation Warnnings for validateCouponForPayment",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

@@ -1,6 +1,11 @@
 const { fdkAxios } = require("../common/AxiosHelper");
 const { btoa } = require("isomorphic-base64");
 
+/**
+ * @typedef {Object} Options
+ * @property {boolean} headers - Whether headers are returned or not.
+ */
+
 class APIClient {
   /**
    * @param {object} conf
@@ -8,10 +13,9 @@ class APIClient {
    * @param {string} url
    * @param {object} query
    * @param {object} body
-   * @param {object} xHeaders
    */
 
-  static execute(conf, method, url, query, body, xHeaders) {
+  static execute(conf, method, url, query, body, xHeaders, options) {
     const token = btoa(`${conf.applicationID}:${conf.applicationToken}`);
 
     let headers = { Authorization: "Bearer " + token };
@@ -38,6 +42,7 @@ class APIClient {
       params: query,
       data: body,
       headers: { ...headers, ...extraHeaders, ...xHeaders },
+      _returnHeaders: options.headers,
     };
     rawRequest = JSON.parse(JSON.stringify(rawRequest));
 

@@ -8,17 +8,7 @@ const Webhook = require("./Webhook/WebhookPublicClient");
 
 const { FDKClientValidationError } = require("../common/FDKError");
 
-/**
- * Represents the client for the public APIs.
- *
- * @class
- */
 class PublicClient {
-  /**
-   * Creates an instance of PublicClient.
-   *
-   * @param {import("./PublicConfig")} config - The configuration for the public client.
-   */
   constructor(config) {
     this.config = config;
 
@@ -31,12 +21,6 @@ class PublicClient {
     this.webhook = new Webhook(config);
   }
 
-  /**
-   * Sets the extra headers for the public client.
-   *
-   * @param {object} header - The header object to set.
-   * @throws {FDKClientValidationError} When the provided header is not an object.
-   */
   setExtraHeaders(header) {
     if (typeof header === "object") {
       this.config.extraHeaders.push(header);

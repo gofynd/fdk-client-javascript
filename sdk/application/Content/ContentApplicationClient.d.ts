@@ -26,203 +26,241 @@ declare class Content {
     _urls: {};
     updateUrls(urls: any): void;
     /**
-     * @param {ContentApplicationValidator.GetAnnouncementsParam} arg - Arg object.
-     * @returns {Promise<ContentApplicationModel.AnnouncementsResponseSchema>}
-     *   - Success response
-     *
-     * @name getAnnouncements
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<AnnouncementsResponseSchema>} - Success response
      * @summary: Get live announcements
-     * @description: Announcements are useful to highlight a message or information on top of a webpage. Use this API to retrieve live announcements. Get announcements on individual pages or for all pages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getAnnouncements/).
+     * @description: Announcements are useful to highlight a message or information on top of a webpage. Use this API to retrieve live announcements. Get announcements on individual pages or for all pages.
      */
-    getAnnouncements({}?: any): Promise<ContentApplicationModel.AnnouncementsResponseSchema>;
+    getAnnouncements({ headers }?: import("../ApplicationAPIClient").Options): Promise<AnnouncementsResponseSchema>;
     /**
-     * @param {ContentApplicationValidator.GetBlogParam} arg - Arg object.
-     * @returns {Promise<ContentApplicationModel.BlogSchema>} - Success response
-     * @name getBlog
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.slug - A short, human-readable, URL-friendly
+     *   identifier of a blog. You can get slug value from the endpoint
+     *   /service/application/content/v1.0/blogs/.
+     * @param {string} [arg.rootId] - ID given to the HTML element
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<BlogSchema>} - Success response
      * @summary: Get a blog
-     * @description: Use this API to get the details of a blog using its slug. Details include the title, reading time, publish status, feature image, tags, author, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getBlog/).
+     * @description: Use this API to get the details of a blog using its slug. Details include the title, reading time, publish status, feature image, tags, author, etc.
      */
-    getBlog({ slug, rootId }?: ContentApplicationValidator.GetBlogParam): Promise<ContentApplicationModel.BlogSchema>;
+    getBlog({ slug, rootId }?: {
+        slug: string;
+        rootId?: string;
+    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<BlogSchema>;
     /**
-     * @param {ContentApplicationValidator.GetBlogsParam} arg - Arg object.
-     * @returns {Promise<ContentApplicationModel.BlogGetResponse>} - Success response
-     * @name getBlogs
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageNo] - The page number to navigate through the
+     *   given set of results. Default value is 1.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<BlogGetResponse>} - Success response
      * @summary: Get a list of blogs
-     * @description: Use this API to get all the blogs. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getBlogs/).
+     * @description: Use this API to get all the blogs.
      */
-    getBlogs({ pageNo, pageSize }?: ContentApplicationValidator.GetBlogsParam): Promise<ContentApplicationModel.BlogGetResponse>;
+    getBlogs({ pageNo, pageSize }?: {
+        pageNo?: number;
+        pageSize?: number;
+    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<BlogGetResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @returns {Paginator<ContentApplicationModel.BlogGetResponse>}
      * @summary: Get a list of blogs
      * @description: Use this API to get all the blogs.
      */
     getBlogsPaginator({ pageSize }?: {
         pageSize?: number;
-    }): Paginator<ContentApplicationModel.BlogGetResponse>;
+    }): Paginator;
     /**
-     * @param {ContentApplicationValidator.GetDataLoadersParam} arg - Arg object.
-     * @returns {Promise<ContentApplicationModel.DataLoadersSchema>} - Success response
-     * @name getDataLoaders
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<DataLoadersSchema>} - Success response
      * @summary: Get the data loaders associated with an application
-     * @description: Use this API to get all selected data loaders of the application in the form of tags. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getDataLoaders/).
+     * @description: Use this API to get all selected data loaders of the application in the form of tags.
      */
-    getDataLoaders({}?: any): Promise<ContentApplicationModel.DataLoadersSchema>;
+    getDataLoaders({ headers }?: import("../ApplicationAPIClient").Options): Promise<DataLoadersSchema>;
     /**
-     * @param {ContentApplicationValidator.GetFaqBySlugParam} arg - Arg object.
-     * @returns {Promise<ContentApplicationModel.FaqSchema>} - Success response
-     * @name getFaqBySlug
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.slug - A short, human-readable, URL-friendly
+     *   identifier of an FAQ. You can get slug value from the endpoint
+     *   /service/application/content/v1.0/faq.
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<FaqSchema>} - Success response
      * @summary: Get an FAQ
-     * @description: Use this API to get a particular FAQ by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getFaqBySlug/).
+     * @description: Use this API to get a particular FAQ by its slug.
      */
-    getFaqBySlug({ slug }?: ContentApplicationValidator.GetFaqBySlugParam): Promise<ContentApplicationModel.FaqSchema>;
+    getFaqBySlug({ slug }?: {
+        slug: string;
+    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<FaqSchema>;
     /**
-     * @param {ContentApplicationValidator.GetFaqCategoriesParam} arg - Arg object.
-     * @returns {Promise<ContentApplicationModel.GetFaqCategoriesSchema>} -
-     *   Success response
-     * @name getFaqCategories
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<GetFaqCategoriesSchema>} - Success response
      * @summary: Get a list of FAQ categories
-     * @description: FAQs can be divided into categories. Use this API to get a list of FAQ categories. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getFaqCategories/).
+     * @description: FAQs can be divided into categories. Use this API to get a list of FAQ categories.
      */
-    getFaqCategories({}?: any): Promise<ContentApplicationModel.GetFaqCategoriesSchema>;
+    getFaqCategories({ headers }?: import("../ApplicationAPIClient").Options): Promise<GetFaqCategoriesSchema>;
     /**
-     * @param {ContentApplicationValidator.GetFaqCategoryBySlugParam} arg - Arg object.
-     * @returns {Promise<ContentApplicationModel.GetFaqCategoryBySlugSchema>} -
-     *   Success response
-     * @name getFaqCategoryBySlug
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.slug - A short, human-readable, URL-friendly
+     *   identifier of an FAQ category. You can get slug value from the endpoint
+     *   /service/application/content/v1.0/faq/categories.
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<GetFaqCategoryBySlugSchema>} - Success response
      * @summary: Get the FAQ category
-     * @description: FAQs can be divided into categories. Use this API to get the category to which an FAQ belongs. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getFaqCategoryBySlug/).
+     * @description: FAQs can be divided into categories. Use this API to get the category to which an FAQ belongs.
      */
-    getFaqCategoryBySlug({ slug }?: ContentApplicationValidator.GetFaqCategoryBySlugParam): Promise<ContentApplicationModel.GetFaqCategoryBySlugSchema>;
+    getFaqCategoryBySlug({ slug }?: {
+        slug: string;
+    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<GetFaqCategoryBySlugSchema>;
     /**
-     * @param {ContentApplicationValidator.GetFaqsParam} arg - Arg object.
-     * @returns {Promise<ContentApplicationModel.FaqResponseSchema>} - Success response
-     * @name getFaqs
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<FaqResponseSchema>} - Success response
      * @summary: Get a list of FAQs
-     * @description: Use this API to get a list of frequently asked questions. Users will benefit from it when facing any issue with the website. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getFaqs/).
+     * @description: Use this API to get a list of frequently asked questions. Users will benefit from it when facing any issue with the website.
      */
-    getFaqs({}?: any): Promise<ContentApplicationModel.FaqResponseSchema>;
+    getFaqs({ headers }?: import("../ApplicationAPIClient").Options): Promise<FaqResponseSchema>;
     /**
-     * @param {ContentApplicationValidator.GetFaqsByCategorySlugParam} arg - Arg object.
-     * @returns {Promise<ContentApplicationModel.GetFaqSchema>} - Success response
-     * @name getFaqsByCategorySlug
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.slug - A short, human-readable, URL-friendly
+     *   identifier of an FAQ category. You can get slug value from the endpoint
+     *   /service/application/content/v1.0/faq/categories.
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<GetFaqSchema>} - Success response
      * @summary: Get FAQs using the slug of FAQ category
-     * @description: FAQs can be divided into categories. Use this API to get all the FAQs belonging to a category by using the category slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getFaqsByCategorySlug/).
+     * @description: FAQs can be divided into categories. Use this API to get all the FAQs belonging to a category by using the category slug.
      */
-    getFaqsByCategorySlug({ slug }?: ContentApplicationValidator.GetFaqsByCategorySlugParam): Promise<ContentApplicationModel.GetFaqSchema>;
+    getFaqsByCategorySlug({ slug }?: {
+        slug: string;
+    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<GetFaqSchema>;
     /**
-     * @param {ContentApplicationValidator.GetLandingPageParam} arg - Arg object.
-     * @returns {Promise<ContentApplicationModel.LandingPageSchema>} - Success response
-     * @name getLandingPage
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<LandingPageSchema>} - Success response
      * @summary: Get the landing page
-     * @description: Landing page is the first page that a prospect lands upon while visiting a website. Use this API to fetch the details of a landing page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getLandingPage/).
+     * @description: Landing page is the first page that a prospect lands upon while visiting a website. Use this API to fetch the details of a landing page.
      */
-    getLandingPage({}?: any): Promise<ContentApplicationModel.LandingPageSchema>;
+    getLandingPage({ headers }?: import("../ApplicationAPIClient").Options): Promise<LandingPageSchema>;
     /**
-     * @param {ContentApplicationValidator.GetLegalInformationParam} arg - Arg object.
-     * @returns {Promise<ContentApplicationModel.ApplicationLegal>} - Success response
-     * @name getLegalInformation
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<ApplicationLegal>} - Success response
      * @summary: Get legal information
-     * @description: Use this API to get the legal information of an application, which includes Privacy Policy, Terms and Conditions, Shipping Policy and FAQs regarding the usage of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getLegalInformation/).
+     * @description: Use this API to get the legal information of an application, which includes Privacy Policy, Terms and Conditions, Shipping Policy and FAQs regarding the usage of the application.
      */
-    getLegalInformation({}?: any): Promise<ContentApplicationModel.ApplicationLegal>;
+    getLegalInformation({ headers }?: import("../ApplicationAPIClient").Options): Promise<ApplicationLegal>;
     /**
-     * @param {ContentApplicationValidator.GetNavigationsParam} arg - Arg object.
-     * @returns {Promise<ContentApplicationModel.NavigationGetResponse>} -
-     *   Success response
-     * @name getNavigations
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageNo] - The page number to navigate through the
+     *   given set of results. Default value is 1.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<NavigationGetResponse>} - Success response
      * @summary: Get the navigation
-     * @description: Use this API to fetch the navigations details which includes the items of the navigation panel. It also shows the links and sub-navigations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getNavigations/).
+     * @description: Use this API to fetch the navigations details which includes the items of the navigation panel. It also shows the links and sub-navigations.
      */
-    getNavigations({ pageNo, pageSize }?: ContentApplicationValidator.GetNavigationsParam): Promise<ContentApplicationModel.NavigationGetResponse>;
+    getNavigations({ pageNo, pageSize }?: {
+        pageNo?: number;
+        pageSize?: number;
+    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<NavigationGetResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @returns {Paginator<ContentApplicationModel.NavigationGetResponse>}
      * @summary: Get the navigation
      * @description: Use this API to fetch the navigations details which includes the items of the navigation panel. It also shows the links and sub-navigations.
      */
     getNavigationsPaginator({ pageSize }?: {
         pageSize?: number;
-    }): Paginator<ContentApplicationModel.NavigationGetResponse>;
+    }): Paginator;
     /**
-     * @param {ContentApplicationValidator.GetPageParam} arg - Arg object.
-     * @returns {Promise<ContentApplicationModel.PageSchema>} - Success response
-     * @name getPage
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.slug - A short, human-readable, URL-friendly
+     *   identifier of a page. You can get slug value from the endpoint
+     *   /service/application/content/v2.0/pages/.
+     * @param {string} [arg.rootId] - ID given to the HTML element
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<PageSchema>} - Success response
      * @summary: Get a page
-     * @description: Use this API to get the details of a page using its slug. Details include the title, seo, publish status, feature image, tags, meta, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getPage/).
+     * @description: Use this API to get the details of a page using its slug. Details include the title, seo, publish status, feature image, tags, meta, etc.
      */
-    getPage({ slug, rootId }?: ContentApplicationValidator.GetPageParam): Promise<ContentApplicationModel.PageSchema>;
+    getPage({ slug, rootId }?: {
+        slug: string;
+        rootId?: string;
+    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<PageSchema>;
     /**
-     * @param {ContentApplicationValidator.GetPagesParam} arg - Arg object.
-     * @returns {Promise<ContentApplicationModel.PageGetResponse>} - Success response
-     * @name getPages
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageNo] - The page number to navigate through the
+     *   given set of results. Default value is 1.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<PageGetResponse>} - Success response
      * @summary: Get all pages
-     * @description: Use this API to get a list of pages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getPages/).
+     * @description: Use this API to get a list of pages.
      */
-    getPages({ pageNo, pageSize }?: ContentApplicationValidator.GetPagesParam): Promise<ContentApplicationModel.PageGetResponse>;
+    getPages({ pageNo, pageSize }?: {
+        pageNo?: number;
+        pageSize?: number;
+    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<PageGetResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @returns {Paginator<ContentApplicationModel.PageGetResponse>}
      * @summary: Get all pages
      * @description: Use this API to get a list of pages.
      */
     getPagesPaginator({ pageSize }?: {
         pageSize?: number;
-    }): Paginator<ContentApplicationModel.PageGetResponse>;
+    }): Paginator;
     /**
-     * @param {ContentApplicationValidator.GetSEOConfigurationParam} arg - Arg object.
-     * @returns {Promise<ContentApplicationModel.SeoComponent>} - Success response
-     * @name getSEOConfiguration
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<SeoComponent>} - Success response
      * @summary: Get the SEO of an application
-     * @description: Use this API to get the SEO details of an application, which includes a robot.txt, meta-tags and sitemap. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSEOConfiguration/).
+     * @description: Use this API to get the SEO details of an application, which includes a robot.txt, meta-tags and sitemap.
      */
-    getSEOConfiguration({}?: any): Promise<ContentApplicationModel.SeoComponent>;
+    getSEOConfiguration({ headers }?: import("../ApplicationAPIClient").Options): Promise<SeoComponent>;
     /**
-     * @param {ContentApplicationValidator.GetSlideshowParam} arg - Arg object.
-     * @returns {Promise<ContentApplicationModel.SlideshowSchema>} - Success response
-     * @name getSlideshow
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.slug - A short, human-readable, URL-friendly
+     *   identifier of a slideshow. You can get slug value from the endpoint
+     *   /service/application/content/v1.0/slideshow/.
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<SlideshowSchema>} - Success response
      * @summary: Get a slideshow
-     * @description: A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to fetch a slideshow using its `slug`. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSlideshow/).
+     * @description: A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to fetch a slideshow using its `slug`.
      */
-    getSlideshow({ slug }?: ContentApplicationValidator.GetSlideshowParam): Promise<ContentApplicationModel.SlideshowSchema>;
+    getSlideshow({ slug }?: {
+        slug: string;
+    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<SlideshowSchema>;
     /**
-     * @param {ContentApplicationValidator.GetSlideshowsParam} arg - Arg object.
-     * @returns {Promise<ContentApplicationModel.SlideshowGetResponse>} - Success response
-     * @name getSlideshows
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageNo] - The page number to navigate through the
+     *   given set of results. Default value is 1.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<SlideshowGetResponse>} - Success response
      * @summary: Get the slideshows
-     * @description: Use this API to get a list of slideshows along with their details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSlideshows/).
+     * @description: Use this API to get a list of slideshows along with their details.
      */
-    getSlideshows({ pageNo, pageSize }?: ContentApplicationValidator.GetSlideshowsParam): Promise<ContentApplicationModel.SlideshowGetResponse>;
+    getSlideshows({ pageNo, pageSize }?: {
+        pageNo?: number;
+        pageSize?: number;
+    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<SlideshowGetResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @returns {Paginator<ContentApplicationModel.SlideshowGetResponse>}
      * @summary: Get the slideshows
      * @description: Use this API to get a list of slideshows along with their details.
      */
     getSlideshowsPaginator({ pageSize }?: {
         pageSize?: number;
-    }): Paginator<ContentApplicationModel.SlideshowGetResponse>;
+    }): Paginator;
     /**
-     * @param {ContentApplicationValidator.GetSupportInformationParam} arg - Arg object.
-     * @returns {Promise<ContentApplicationModel.Support>} - Success response
-     * @name getSupportInformation
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<Support>} - Success response
      * @summary: Get the support information
-     * @description: Use this API to get contact details for customer support including emails and phone numbers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSupportInformation/).
+     * @description: Use this API to get contact details for customer support including emails and phone numbers.
      */
-    getSupportInformation({}?: any): Promise<ContentApplicationModel.Support>;
+    getSupportInformation({ headers }?: import("../ApplicationAPIClient").Options): Promise<Support>;
     /**
-     * @param {ContentApplicationValidator.GetTagsParam} arg - Arg object.
-     * @returns {Promise<ContentApplicationModel.TagsSchema>} - Success response
-     * @name getTags
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<TagsSchema>} - Success response
      * @summary: Get the tags associated with an application
-     * @description: Use this API to get all the CSS and JS injected in the application in the form of tags. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getTags/).
+     * @description: Use this API to get all the CSS and JS injected in the application in the form of tags.
      */
-    getTags({}?: any): Promise<ContentApplicationModel.TagsSchema>;
+    getTags({ headers }?: import("../ApplicationAPIClient").Options): Promise<TagsSchema>;
 }
-import ContentApplicationModel = require("./ContentApplicationModel");
-import ContentApplicationValidator = require("./ContentApplicationValidator");
 import Paginator = require("../../common/Paginator");

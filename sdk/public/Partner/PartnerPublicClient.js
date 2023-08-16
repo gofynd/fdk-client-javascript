@@ -2,8 +2,8 @@ const PublicAPIClient = require("../PublicAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
-const PartnerPublicValidator = require("./PartnerPublicValidator");
-const PartnerPublicModel = require("./PartnerPublicModel");
+const PartnerValidator = require("./PartnerPublicValidator");
+const PartnerModel = require("./PartnerPublicModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -31,16 +31,18 @@ class Partner {
   }
 
   /**
-   * @param {PartnerPublicValidator.GetPanelExtensionDetailsParam} arg - Arg object.
-   * @returns {Promise<PartnerPublicModel.ExtensionUsingSlug>} - Success response
-   * @name getPanelExtensionDetails
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.slug - Pass the slug of the extension
+   * @param {import("../PublicAPIClient").Options} - Options
+   * @returns {Promise<ExtensionUsingSlug>} - Success response
    * @summary: Get extension details
-   * @description: Use this API to get extension details - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/partner/getPanelExtensionDetails/).
+   * @description: Use this API to get extension details
    */
-  async getPanelExtensionDetails({ slug } = {}) {
-    const {
-      error,
-    } = PartnerPublicValidator.getPanelExtensionDetails().validate(
+  async getPanelExtensionDetails(
+    { slug } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PartnerValidator.getPanelExtensionDetails().validate(
       { slug },
       { abortEarly: false, allowUnknown: true }
     );
@@ -51,15 +53,16 @@ class Partner {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PartnerPublicValidator.getPanelExtensionDetails().validate(
+    } = PartnerValidator.getPanelExtensionDetails().validate(
       { slug },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for public > Partner > getPanelExtensionDetails \n ${warrning}`,
+        message: "Parameter Validation warrnings for getPanelExtensionDetails",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -75,12 +78,18 @@ class Partner {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PartnerPublicModel.ExtensionUsingSlug().validate(response, {
+    } = PartnerModel.ExtensionUsingSlug().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -88,8 +97,9 @@ class Partner {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for public > Partner > getPanelExtensionDetails \n ${res_error}`,
+        message: "Response Validation Warnnings for getPanelExtensionDetails",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

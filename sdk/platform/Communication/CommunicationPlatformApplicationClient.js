@@ -1,8 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
-const CommunicationPlatformApplicationValidator = require("./CommunicationPlatformApplicationValidator");
-const CommunicationPlatformModel = require("./CommunicationPlatformModel");
+const CommunicationValidator = require("./CommunicationPlatformApplicationValidator");
+const CommunicationModel = require("./CommunicationPlatformModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -13,18 +13,15 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.CreateAudienceParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<CommunicationPlatformModel.Audience>} - Success response
-   * @name createAudience
+   * @param {Object} arg - Arg object.
+   * @param {AudienceReq} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<Audience>} - Success response
    * @summary: Create audience
-   * @description: Create audience - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createAudience/).
+   * @description: Create audience
    */
-  async createAudience({ body } = {}) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.createAudience().validate(
+  async createAudience({ body } = {}, { headers } = { headers: false }) {
+    const { error } = CommunicationValidator.createAudience().validate(
       {
         body,
       },
@@ -37,7 +34,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.createAudience().validate(
+    } = CommunicationValidator.createAudience().validate(
       {
         body,
       },
@@ -46,8 +43,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > createAudience \n ${warrning}`,
+        message: "Parameter Validation warrnings for createAudience",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -57,12 +55,19 @@ class Communication {
       "post",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.Audience().validate(response, {
+    } = CommunicationModel.Audience().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -70,26 +75,24 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > createAudience \n ${res_error}`,
+        message: "Response Validation Warnnings for createAudience",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.CreateCampaignParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<CommunicationPlatformModel.Campaign>} - Success response
-   * @name createCampaign
+   * @param {Object} arg - Arg object.
+   * @param {CampaignReq} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<Campaign>} - Success response
    * @summary: Create campaign
-   * @description: Create campaign - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createCampaign/).
+   * @description: Create campaign
    */
-  async createCampaign({ body } = {}) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.createCampaign().validate(
+  async createCampaign({ body } = {}, { headers } = { headers: false }) {
+    const { error } = CommunicationValidator.createCampaign().validate(
       {
         body,
       },
@@ -102,7 +105,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.createCampaign().validate(
+    } = CommunicationValidator.createCampaign().validate(
       {
         body,
       },
@@ -111,8 +114,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > createCampaign \n ${warrning}`,
+        message: "Parameter Validation warrnings for createCampaign",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -122,12 +126,19 @@ class Communication {
       "post",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.Campaign().validate(response, {
+    } = CommunicationModel.Campaign().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -135,26 +146,24 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > createCampaign \n ${res_error}`,
+        message: "Response Validation Warnnings for createCampaign",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.CreateEmailProviderParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<CommunicationPlatformModel.EmailProvider>} - Success response
-   * @name createEmailProvider
+   * @param {Object} arg - Arg object.
+   * @param {EmailProviderReq} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<EmailProvider>} - Success response
    * @summary: Create email provider
-   * @description: Create email provider - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createEmailProvider/).
+   * @description: Create email provider
    */
-  async createEmailProvider({ body } = {}) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.createEmailProvider().validate(
+  async createEmailProvider({ body } = {}, { headers } = { headers: false }) {
+    const { error } = CommunicationValidator.createEmailProvider().validate(
       {
         body,
       },
@@ -167,7 +176,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.createEmailProvider().validate(
+    } = CommunicationValidator.createEmailProvider().validate(
       {
         body,
       },
@@ -176,8 +185,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > createEmailProvider \n ${warrning}`,
+        message: "Parameter Validation warrnings for createEmailProvider",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -187,12 +197,19 @@ class Communication {
       "post",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.EmailProvider().validate(response, {
+    } = CommunicationModel.EmailProvider().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -200,26 +217,24 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > createEmailProvider \n ${res_error}`,
+        message: "Response Validation Warnnings for createEmailProvider",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.CreateEmailTemplateParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<CommunicationPlatformModel.EmailTemplateRes>} - Success response
-   * @name createEmailTemplate
+   * @param {Object} arg - Arg object.
+   * @param {EmailTemplateReq} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<EmailTemplateRes>} - Success response
    * @summary: Create email template
-   * @description: Create email template - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createEmailTemplate/).
+   * @description: Create email template
    */
-  async createEmailTemplate({ body } = {}) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.createEmailTemplate().validate(
+  async createEmailTemplate({ body } = {}, { headers } = { headers: false }) {
+    const { error } = CommunicationValidator.createEmailTemplate().validate(
       {
         body,
       },
@@ -232,7 +247,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.createEmailTemplate().validate(
+    } = CommunicationValidator.createEmailTemplate().validate(
       {
         body,
       },
@@ -241,8 +256,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > createEmailTemplate \n ${warrning}`,
+        message: "Parameter Validation warrnings for createEmailTemplate",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -252,12 +268,19 @@ class Communication {
       "post",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.EmailTemplateRes().validate(response, {
+    } = CommunicationModel.EmailTemplateRes().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -265,26 +288,24 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > createEmailTemplate \n ${res_error}`,
+        message: "Response Validation Warnnings for createEmailTemplate",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.CreateSmsProviderParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<CommunicationPlatformModel.SmsProvider>} - Success response
-   * @name createSmsProvider
+   * @param {Object} arg - Arg object.
+   * @param {SmsProviderReq} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<SmsProvider>} - Success response
    * @summary: Create sms provider
-   * @description: Create sms provider - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createSmsProvider/).
+   * @description: Create sms provider
    */
-  async createSmsProvider({ body } = {}) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.createSmsProvider().validate(
+  async createSmsProvider({ body } = {}, { headers } = { headers: false }) {
+    const { error } = CommunicationValidator.createSmsProvider().validate(
       {
         body,
       },
@@ -297,7 +318,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.createSmsProvider().validate(
+    } = CommunicationValidator.createSmsProvider().validate(
       {
         body,
       },
@@ -306,8 +327,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > createSmsProvider \n ${warrning}`,
+        message: "Parameter Validation warrnings for createSmsProvider",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -317,12 +339,19 @@ class Communication {
       "post",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.SmsProvider().validate(response, {
+    } = CommunicationModel.SmsProvider().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -330,26 +359,24 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > createSmsProvider \n ${res_error}`,
+        message: "Response Validation Warnnings for createSmsProvider",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.CreateSmsTemplateParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<CommunicationPlatformModel.SmsTemplateRes>} - Success response
-   * @name createSmsTemplate
+   * @param {Object} arg - Arg object.
+   * @param {SmsTemplateReq} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<SmsTemplateRes>} - Success response
    * @summary: Create sms template
-   * @description: Create sms template - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createSmsTemplate/).
+   * @description: Create sms template
    */
-  async createSmsTemplate({ body } = {}) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.createSmsTemplate().validate(
+  async createSmsTemplate({ body } = {}, { headers } = { headers: false }) {
+    const { error } = CommunicationValidator.createSmsTemplate().validate(
       {
         body,
       },
@@ -362,7 +389,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.createSmsTemplate().validate(
+    } = CommunicationValidator.createSmsTemplate().validate(
       {
         body,
       },
@@ -371,8 +398,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > createSmsTemplate \n ${warrning}`,
+        message: "Parameter Validation warrnings for createSmsTemplate",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -382,12 +410,19 @@ class Communication {
       "post",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.SmsTemplateRes().validate(response, {
+    } = CommunicationModel.SmsTemplateRes().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -395,28 +430,24 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > createSmsTemplate \n ${res_error}`,
+        message: "Response Validation Warnnings for createSmsTemplate",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.DeleteEmailTemplateByIdParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<CommunicationPlatformModel.EmailTemplateDeleteSuccessRes>}
-   *   - Success response
-   *
-   * @name deleteEmailTemplateById
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Email template id
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<EmailTemplateDeleteSuccessRes>} - Success response
    * @summary: Delete email template by id
-   * @description: Delete email template by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/deleteEmailTemplateById/).
+   * @description: Delete email template by id
    */
-  async deleteEmailTemplateById({ id } = {}) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.deleteEmailTemplateById().validate(
+  async deleteEmailTemplateById({ id } = {}, { headers } = { headers: false }) {
+    const { error } = CommunicationValidator.deleteEmailTemplateById().validate(
       {
         id,
       },
@@ -429,7 +460,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.deleteEmailTemplateById().validate(
+    } = CommunicationValidator.deleteEmailTemplateById().validate(
       {
         id,
       },
@@ -438,8 +469,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > deleteEmailTemplateById \n ${warrning}`,
+        message: "Parameter Validation warrnings for deleteEmailTemplateById",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -449,41 +481,44 @@ class Communication {
       "delete",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates/${id}`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.EmailTemplateDeleteSuccessRes().validate(
-      response,
+    } = CommunicationModel.EmailTemplateDeleteSuccessRes().validate(
+      responseData,
       { abortEarly: false, allowUnknown: false }
     );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > deleteEmailTemplateById \n ${res_error}`,
+        message: "Response Validation Warnnings for deleteEmailTemplateById",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.DeleteSmsTemplateByIdParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<CommunicationPlatformModel.SmsTemplateDeleteSuccessRes>}
-   *   - Success response
-   *
-   * @name deleteSmsTemplateById
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Sms template id
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<SmsTemplateDeleteSuccessRes>} - Success response
    * @summary: Delete sms template by id
-   * @description: Delete sms template by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/deleteSmsTemplateById/).
+   * @description: Delete sms template by id
    */
-  async deleteSmsTemplateById({ id } = {}) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.deleteSmsTemplateById().validate(
+  async deleteSmsTemplateById({ id } = {}, { headers } = { headers: false }) {
+    const { error } = CommunicationValidator.deleteSmsTemplateById().validate(
       {
         id,
       },
@@ -496,7 +531,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.deleteSmsTemplateById().validate(
+    } = CommunicationValidator.deleteSmsTemplateById().validate(
       {
         id,
       },
@@ -505,8 +540,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > deleteSmsTemplateById \n ${warrning}`,
+        message: "Parameter Validation warrnings for deleteSmsTemplateById",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -516,39 +552,44 @@ class Communication {
       "delete",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates/${id}`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.SmsTemplateDeleteSuccessRes().validate(
-      response,
+    } = CommunicationModel.SmsTemplateDeleteSuccessRes().validate(
+      responseData,
       { abortEarly: false, allowUnknown: false }
     );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > deleteSmsTemplateById \n ${res_error}`,
+        message: "Response Validation Warnnings for deleteSmsTemplateById",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.GetAudienceByIdParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<CommunicationPlatformModel.Audience>} - Success response
-   * @name getAudienceById
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Audience id
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<Audience>} - Success response
    * @summary: Get audience by id
-   * @description: Get audience by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getAudienceById/).
+   * @description: Get audience by id
    */
-  async getAudienceById({ id } = {}) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.getAudienceById().validate(
+  async getAudienceById({ id } = {}, { headers } = { headers: false }) {
+    const { error } = CommunicationValidator.getAudienceById().validate(
       {
         id,
       },
@@ -561,7 +602,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.getAudienceById().validate(
+    } = CommunicationValidator.getAudienceById().validate(
       {
         id,
       },
@@ -570,8 +611,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > getAudienceById \n ${warrning}`,
+        message: "Parameter Validation warrnings for getAudienceById",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -581,12 +623,19 @@ class Communication {
       "get",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources/${id}`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.Audience().validate(response, {
+    } = CommunicationModel.Audience().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -594,26 +643,29 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > getAudienceById \n ${res_error}`,
+        message: "Response Validation Warnnings for getAudienceById",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.GetAudiencesParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<CommunicationPlatformModel.Audiences>} - Success response
-   * @name getAudiences
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNo] - Current page no
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {Object} [arg.sort] - To sort based on created_at
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<Audiences>} - Success response
    * @summary: Get audiences
-   * @description: Get audiences - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getAudiences/).
+   * @description: Get audiences
    */
-  async getAudiences({ pageNo, pageSize, sort } = {}) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.getAudiences().validate(
+  async getAudiences(
+    { pageNo, pageSize, sort } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CommunicationValidator.getAudiences().validate(
       {
         pageNo,
         pageSize,
@@ -626,9 +678,7 @@ class Communication {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationPlatformApplicationValidator.getAudiences().validate(
+    const { error: warrning } = CommunicationValidator.getAudiences().validate(
       {
         pageNo,
         pageSize,
@@ -639,8 +689,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > getAudiences \n ${warrning}`,
+        message: "Parameter Validation warrnings for getAudiences",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -653,12 +704,19 @@ class Communication {
       "get",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.Audiences().validate(response, {
+    } = CommunicationModel.Audiences().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -666,8 +724,9 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > getAudiences \n ${res_error}`,
+        message: "Response Validation Warnnings for getAudiences",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -675,51 +734,14 @@ class Communication {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Company id
-   * @param {string} arg.applicationId - Application id
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @returns {Paginator<CommunicationPlatformModel.Audiences>}
-   * @summary: Get audiences
-   * @description: Get audiences
-   */
-  getAudiencesPaginator({ companyId, applicationId, pageSize, sort } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getAudiences({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {CommunicationPlatformApplicationValidator.GetBigqueryHeadersParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<CommunicationPlatformModel.BigqueryHeadersRes>} -
-   *   Success response
-   * @name getBigqueryHeaders
+   * @param {BigqueryHeadersReq} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<BigqueryHeadersRes>} - Success response
    * @summary: Get bigquery headers
-   * @description: Get bigquery headers - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getBigqueryHeaders/).
+   * @description: Get bigquery headers
    */
-  async getBigqueryHeaders({ body } = {}) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.getBigqueryHeaders().validate(
+  async getBigqueryHeaders({ body } = {}, { headers } = { headers: false }) {
+    const { error } = CommunicationValidator.getBigqueryHeaders().validate(
       {
         body,
       },
@@ -732,7 +754,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.getBigqueryHeaders().validate(
+    } = CommunicationValidator.getBigqueryHeaders().validate(
       {
         body,
       },
@@ -741,8 +763,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > getBigqueryHeaders \n ${warrning}`,
+        message: "Parameter Validation warrnings for getBigqueryHeaders",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -752,12 +775,19 @@ class Communication {
       "post",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/bigquery-headers`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.BigqueryHeadersRes().validate(response, {
+    } = CommunicationModel.BigqueryHeadersRes().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -765,26 +795,24 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > getBigqueryHeaders \n ${res_error}`,
+        message: "Response Validation Warnnings for getBigqueryHeaders",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.GetCampaignByIdParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<CommunicationPlatformModel.Campaign>} - Success response
-   * @name getCampaignById
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Campaign id
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<Campaign>} - Success response
    * @summary: Get campaign by id
-   * @description: Get campaign by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getCampaignById/).
+   * @description: Get campaign by id
    */
-  async getCampaignById({ id } = {}) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.getCampaignById().validate(
+  async getCampaignById({ id } = {}, { headers } = { headers: false }) {
+    const { error } = CommunicationValidator.getCampaignById().validate(
       {
         id,
       },
@@ -797,7 +825,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.getCampaignById().validate(
+    } = CommunicationValidator.getCampaignById().validate(
       {
         id,
       },
@@ -806,8 +834,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > getCampaignById \n ${warrning}`,
+        message: "Parameter Validation warrnings for getCampaignById",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -817,12 +846,19 @@ class Communication {
       "get",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns/${id}`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.Campaign().validate(response, {
+    } = CommunicationModel.Campaign().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -830,26 +866,29 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > getCampaignById \n ${res_error}`,
+        message: "Response Validation Warnnings for getCampaignById",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.GetCampaignsParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<CommunicationPlatformModel.Campaigns>} - Success response
-   * @name getCampaigns
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNo] - Current page no
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {Object} [arg.sort] - To sort based on created_at
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<Campaigns>} - Success response
    * @summary: Get campaigns
-   * @description: Get campaigns - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getCampaigns/).
+   * @description: Get campaigns
    */
-  async getCampaigns({ pageNo, pageSize, sort } = {}) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.getCampaigns().validate(
+  async getCampaigns(
+    { pageNo, pageSize, sort } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CommunicationValidator.getCampaigns().validate(
       {
         pageNo,
         pageSize,
@@ -862,9 +901,7 @@ class Communication {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationPlatformApplicationValidator.getCampaigns().validate(
+    const { error: warrning } = CommunicationValidator.getCampaigns().validate(
       {
         pageNo,
         pageSize,
@@ -875,8 +912,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > getCampaigns \n ${warrning}`,
+        message: "Parameter Validation warrnings for getCampaigns",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -889,12 +927,19 @@ class Communication {
       "get",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.Campaigns().validate(response, {
+    } = CommunicationModel.Campaigns().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -902,8 +947,9 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > getCampaigns \n ${res_error}`,
+        message: "Response Validation Warnnings for getCampaigns",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -911,50 +957,20 @@ class Communication {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Company id
-   * @param {string} arg.applicationId - Application id
+   * @param {string} [arg.pageId] - Current page no
    * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @returns {Paginator<CommunicationPlatformModel.Campaigns>}
-   * @summary: Get campaigns
-   * @description: Get campaigns
-   */
-  getCampaignsPaginator({ companyId, applicationId, pageSize, sort } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getCampaigns({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {CommunicationPlatformApplicationValidator.GetCommunicationLogsParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<CommunicationPlatformModel.Logs>} - Success response
-   * @name getCommunicationLogs
+   * @param {Object} [arg.sort] - To sort based on _id
+   * @param {Object} [arg.query] -
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<Logs>} - Success response
    * @summary: Get communication logs
-   * @description: Get communication logs - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getCommunicationLogs/).
+   * @description: Get communication logs
    */
-  async getCommunicationLogs({ pageId, pageSize, sort, query } = {}) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.getCommunicationLogs().validate(
+  async getCommunicationLogs(
+    { pageId, pageSize, sort, query } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CommunicationValidator.getCommunicationLogs().validate(
       {
         pageId,
         pageSize,
@@ -970,7 +986,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.getCommunicationLogs().validate(
+    } = CommunicationValidator.getCommunicationLogs().validate(
       {
         pageId,
         pageSize,
@@ -982,8 +998,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > getCommunicationLogs \n ${warrning}`,
+        message: "Parameter Validation warrnings for getCommunicationLogs",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -997,12 +1014,19 @@ class Communication {
       "get",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/log`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.Logs().validate(response, {
+    } = CommunicationModel.Logs().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1010,8 +1034,9 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > getCommunicationLogs \n ${res_error}`,
+        message: "Response Validation Warnnings for getCommunicationLogs",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -1019,58 +1044,14 @@ class Communication {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Company id
-   * @param {string} arg.applicationId - Application id
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on _id
-   * @param {Object} [arg.query] -
-   * @returns {Paginator<CommunicationPlatformModel.Logs>}
-   * @summary: Get communication logs
-   * @description: Get communication logs
-   */
-  getCommunicationLogsPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-    sort,
-    query,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "cursor";
-      const data = await this.getCommunicationLogs({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageId: pageId,
-        pageSize: pageSize,
-        sort: sort,
-        query: query,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {CommunicationPlatformApplicationValidator.GetEmailProviderByIdParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<CommunicationPlatformModel.EmailProvider>} - Success response
-   * @name getEmailProviderById
+   * @param {string} arg.id - Email provider id
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<EmailProvider>} - Success response
    * @summary: Get email provider by id
-   * @description: Get email provider by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getEmailProviderById/).
+   * @description: Get email provider by id
    */
-  async getEmailProviderById({ id } = {}) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.getEmailProviderById().validate(
+  async getEmailProviderById({ id } = {}, { headers } = { headers: false }) {
+    const { error } = CommunicationValidator.getEmailProviderById().validate(
       {
         id,
       },
@@ -1083,7 +1064,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.getEmailProviderById().validate(
+    } = CommunicationValidator.getEmailProviderById().validate(
       {
         id,
       },
@@ -1092,8 +1073,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > getEmailProviderById \n ${warrning}`,
+        message: "Parameter Validation warrnings for getEmailProviderById",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1103,12 +1085,19 @@ class Communication {
       "get",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers/${id}`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.EmailProvider().validate(response, {
+    } = CommunicationModel.EmailProvider().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1116,26 +1105,29 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > getEmailProviderById \n ${res_error}`,
+        message: "Response Validation Warnnings for getEmailProviderById",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.GetEmailProvidersParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<CommunicationPlatformModel.EmailProviders>} - Success response
-   * @name getEmailProviders
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNo] - Current page no
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {Object} [arg.sort] - To sort based on created_at
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<EmailProviders>} - Success response
    * @summary: Get email providers
-   * @description: Get email providers - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getEmailProviders/).
+   * @description: Get email providers
    */
-  async getEmailProviders({ pageNo, pageSize, sort } = {}) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.getEmailProviders().validate(
+  async getEmailProviders(
+    { pageNo, pageSize, sort } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CommunicationValidator.getEmailProviders().validate(
       {
         pageNo,
         pageSize,
@@ -1150,7 +1142,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.getEmailProviders().validate(
+    } = CommunicationValidator.getEmailProviders().validate(
       {
         pageNo,
         pageSize,
@@ -1161,8 +1153,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > getEmailProviders \n ${warrning}`,
+        message: "Parameter Validation warrnings for getEmailProviders",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1175,12 +1168,19 @@ class Communication {
       "get",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.EmailProviders().validate(response, {
+    } = CommunicationModel.EmailProviders().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1188,26 +1188,24 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > getEmailProviders \n ${res_error}`,
+        message: "Response Validation Warnnings for getEmailProviders",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.GetEmailTemplateByIdParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<CommunicationPlatformModel.EmailTemplate>} - Success response
-   * @name getEmailTemplateById
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Email template id
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<EmailTemplate>} - Success response
    * @summary: Get email template by id
-   * @description: Get email template by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getEmailTemplateById/).
+   * @description: Get email template by id
    */
-  async getEmailTemplateById({ id } = {}) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.getEmailTemplateById().validate(
+  async getEmailTemplateById({ id } = {}, { headers } = { headers: false }) {
+    const { error } = CommunicationValidator.getEmailTemplateById().validate(
       {
         id,
       },
@@ -1220,7 +1218,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.getEmailTemplateById().validate(
+    } = CommunicationValidator.getEmailTemplateById().validate(
       {
         id,
       },
@@ -1229,8 +1227,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > getEmailTemplateById \n ${warrning}`,
+        message: "Parameter Validation warrnings for getEmailTemplateById",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1240,12 +1239,19 @@ class Communication {
       "get",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates/${id}`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.EmailTemplate().validate(response, {
+    } = CommunicationModel.EmailTemplate().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1253,26 +1259,29 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > getEmailTemplateById \n ${res_error}`,
+        message: "Response Validation Warnnings for getEmailTemplateById",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.GetEmailTemplatesParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<CommunicationPlatformModel.EmailTemplates>} - Success response
-   * @name getEmailTemplates
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNo] - Current page no
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {Object} [arg.sort] - To sort based on created_at
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<EmailTemplates>} - Success response
    * @summary: Get email templates
-   * @description: Get email templates - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getEmailTemplates/).
+   * @description: Get email templates
    */
-  async getEmailTemplates({ pageNo, pageSize, sort } = {}) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.getEmailTemplates().validate(
+  async getEmailTemplates(
+    { pageNo, pageSize, sort } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CommunicationValidator.getEmailTemplates().validate(
       {
         pageNo,
         pageSize,
@@ -1287,7 +1296,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.getEmailTemplates().validate(
+    } = CommunicationValidator.getEmailTemplates().validate(
       {
         pageNo,
         pageSize,
@@ -1298,8 +1307,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > getEmailTemplates \n ${warrning}`,
+        message: "Parameter Validation warrnings for getEmailTemplates",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1312,12 +1322,19 @@ class Communication {
       "get",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.EmailTemplates().validate(response, {
+    } = CommunicationModel.EmailTemplates().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1325,27 +1342,29 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > getEmailTemplates \n ${res_error}`,
+        message: "Response Validation Warnnings for getEmailTemplates",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.GetEventSubscriptionsParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<CommunicationPlatformModel.EventSubscriptions>} -
-   *   Success response
-   * @name getEventSubscriptions
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNo] - Current page no
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {string} [arg.populate] - Populate fields
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<EventSubscriptions>} - Success response
    * @summary: Get event subscriptions
-   * @description: Get event subscriptions - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getEventSubscriptions/).
+   * @description: Get event subscriptions
    */
-  async getEventSubscriptions({ pageNo, pageSize, populate } = {}) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.getEventSubscriptions().validate(
+  async getEventSubscriptions(
+    { pageNo, pageSize, populate } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CommunicationValidator.getEventSubscriptions().validate(
       {
         pageNo,
         pageSize,
@@ -1360,7 +1379,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.getEventSubscriptions().validate(
+    } = CommunicationValidator.getEventSubscriptions().validate(
       {
         pageNo,
         pageSize,
@@ -1371,8 +1390,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > getEventSubscriptions \n ${warrning}`,
+        message: "Parameter Validation warrnings for getEventSubscriptions",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1385,12 +1405,19 @@ class Communication {
       "get",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/event/event-subscriptions`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.EventSubscriptions().validate(response, {
+    } = CommunicationModel.EventSubscriptions().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1398,8 +1425,9 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > getEventSubscriptions \n ${res_error}`,
+        message: "Response Validation Warnnings for getEventSubscriptions",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -1407,53 +1435,19 @@ class Communication {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Company id
-   * @param {string} arg.applicationId - Application id
+   * @param {number} [arg.pageNo] - Current page no
    * @param {number} [arg.pageSize] - Current request items count
-   * @param {string} [arg.populate] - Populate fields
-   * @returns {Paginator<CommunicationPlatformModel.EventSubscriptions>}
-   * @summary: Get event subscriptions
-   * @description: Get event subscriptions
-   */
-  getEventSubscriptionsPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-    populate,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getEventSubscriptions({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        populate: populate,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {CommunicationPlatformApplicationValidator.GetJobLogsParam} arg - Arg object
-   * @returns {Promise<CommunicationPlatformModel.JobLogs>} - Success response
-   * @name getJobLogs
+   * @param {Object} [arg.sort] - To sort based on created_at
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<JobLogs>} - Success response
    * @summary: Get job logs
-   * @description: Get job logs - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getJobLogs/).
+   * @description: Get job logs
    */
-  async getJobLogs({ pageNo, pageSize, sort } = {}) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.getJobLogs().validate(
+  async getJobLogs(
+    { pageNo, pageSize, sort } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CommunicationValidator.getJobLogs().validate(
       {
         pageNo,
         pageSize,
@@ -1466,9 +1460,7 @@ class Communication {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationPlatformApplicationValidator.getJobLogs().validate(
+    const { error: warrning } = CommunicationValidator.getJobLogs().validate(
       {
         pageNo,
         pageSize,
@@ -1479,8 +1471,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > getJobLogs \n ${warrning}`,
+        message: "Parameter Validation warrnings for getJobLogs",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1493,12 +1486,19 @@ class Communication {
       "get",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/jobs/logs`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.JobLogs().validate(response, {
+    } = CommunicationModel.JobLogs().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1506,24 +1506,29 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > getJobLogs \n ${res_error}`,
+        message: "Response Validation Warnnings for getJobLogs",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.GetJobsParam} arg - Arg object
-   * @returns {Promise<CommunicationPlatformModel.Jobs>} - Success response
-   * @name getJobs
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNo] - Current page no
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {Object} [arg.sort] - To sort based on created_at
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<Jobs>} - Success response
    * @summary: Get jobs
-   * @description: Get jobs - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getJobs/).
+   * @description: Get jobs
    */
-  async getJobs({ pageNo, pageSize, sort } = {}) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.getJobs().validate(
+  async getJobs(
+    { pageNo, pageSize, sort } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CommunicationValidator.getJobs().validate(
       {
         pageNo,
         pageSize,
@@ -1536,9 +1541,7 @@ class Communication {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationPlatformApplicationValidator.getJobs().validate(
+    const { error: warrning } = CommunicationValidator.getJobs().validate(
       {
         pageNo,
         pageSize,
@@ -1549,8 +1552,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > getJobs \n ${warrning}`,
+        message: "Parameter Validation warrnings for getJobs",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1563,12 +1567,19 @@ class Communication {
       "get",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/jobs/jobs`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.Jobs().validate(response, {
+    } = CommunicationModel.Jobs().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1576,8 +1587,9 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > getJobs \n ${res_error}`,
+        message: "Response Validation Warnnings for getJobs",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -1585,50 +1597,19 @@ class Communication {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Company id
-   * @param {string} arg.applicationId - Application id
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @returns {Paginator<CommunicationPlatformModel.Jobs>}
-   * @summary: Get jobs
-   * @description: Get jobs
-   */
-  getJobsPaginator({ companyId, applicationId, pageSize, sort } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getJobs({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {CommunicationPlatformApplicationValidator.GetNSampleRecordsFromCsvParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<CommunicationPlatformModel.GetNRecordsCsvRes>} - Success response
-   * @name getNSampleRecordsFromCsv
+   * @param {GetNRecordsCsvReq} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<GetNRecordsCsvRes>} - Success response
    * @summary: Get n sample records from csv
-   * @description: Get n sample records from csv - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getNSampleRecordsFromCsv/).
+   * @description: Get n sample records from csv
    */
-  async getNSampleRecordsFromCsv({ body } = {}) {
+  async getNSampleRecordsFromCsv(
+    { body } = {},
+    { headers } = { headers: false }
+  ) {
     const {
       error,
-    } = CommunicationPlatformApplicationValidator.getNSampleRecordsFromCsv().validate(
+    } = CommunicationValidator.getNSampleRecordsFromCsv().validate(
       {
         body,
       },
@@ -1641,7 +1622,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.getNSampleRecordsFromCsv().validate(
+    } = CommunicationValidator.getNSampleRecordsFromCsv().validate(
       {
         body,
       },
@@ -1650,8 +1631,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > getNSampleRecordsFromCsv \n ${warrning}`,
+        message: "Parameter Validation warrnings for getNSampleRecordsFromCsv",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1661,12 +1643,19 @@ class Communication {
       "post",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/get-n-records`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.GetNRecordsCsvRes().validate(response, {
+    } = CommunicationModel.GetNRecordsCsvRes().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1674,26 +1663,24 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > getNSampleRecordsFromCsv \n ${res_error}`,
+        message: "Response Validation Warnnings for getNSampleRecordsFromCsv",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.GetSmsProviderByIdParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<CommunicationPlatformModel.SmsProvider>} - Success response
-   * @name getSmsProviderById
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Sms provider id
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<SmsProvider>} - Success response
    * @summary: Get sms provider by id
-   * @description: Get sms provider by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSmsProviderById/).
+   * @description: Get sms provider by id
    */
-  async getSmsProviderById({ id } = {}) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.getSmsProviderById().validate(
+  async getSmsProviderById({ id } = {}, { headers } = { headers: false }) {
+    const { error } = CommunicationValidator.getSmsProviderById().validate(
       {
         id,
       },
@@ -1706,7 +1693,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.getSmsProviderById().validate(
+    } = CommunicationValidator.getSmsProviderById().validate(
       {
         id,
       },
@@ -1715,8 +1702,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > getSmsProviderById \n ${warrning}`,
+        message: "Parameter Validation warrnings for getSmsProviderById",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1726,12 +1714,19 @@ class Communication {
       "get",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers/${id}`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.SmsProvider().validate(response, {
+    } = CommunicationModel.SmsProvider().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1739,26 +1734,29 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > getSmsProviderById \n ${res_error}`,
+        message: "Response Validation Warnnings for getSmsProviderById",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.GetSmsProvidersParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<CommunicationPlatformModel.SmsProviders>} - Success response
-   * @name getSmsProviders
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNo] - Current page no
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {Object} [arg.sort] - To sort based on created_at
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<SmsProviders>} - Success response
    * @summary: Get sms providers
-   * @description: Get sms providers - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSmsProviders/).
+   * @description: Get sms providers
    */
-  async getSmsProviders({ pageNo, pageSize, sort } = {}) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.getSmsProviders().validate(
+  async getSmsProviders(
+    { pageNo, pageSize, sort } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CommunicationValidator.getSmsProviders().validate(
       {
         pageNo,
         pageSize,
@@ -1773,7 +1771,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.getSmsProviders().validate(
+    } = CommunicationValidator.getSmsProviders().validate(
       {
         pageNo,
         pageSize,
@@ -1784,8 +1782,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > getSmsProviders \n ${warrning}`,
+        message: "Parameter Validation warrnings for getSmsProviders",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1798,12 +1797,19 @@ class Communication {
       "get",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.SmsProviders().validate(response, {
+    } = CommunicationModel.SmsProviders().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1811,8 +1817,9 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > getSmsProviders \n ${res_error}`,
+        message: "Response Validation Warnnings for getSmsProviders",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -1820,50 +1827,14 @@ class Communication {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Company id
-   * @param {string} arg.applicationId - Application id
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @returns {Paginator<CommunicationPlatformModel.SmsProviders>}
-   * @summary: Get sms providers
-   * @description: Get sms providers
-   */
-  getSmsProvidersPaginator({ companyId, applicationId, pageSize, sort } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getSmsProviders({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {CommunicationPlatformApplicationValidator.GetSmsTemplateByIdParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<CommunicationPlatformModel.SmsTemplate>} - Success response
-   * @name getSmsTemplateById
+   * @param {string} arg.id - Sms template id
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<SmsTemplate>} - Success response
    * @summary: Get sms template by id
-   * @description: Get sms template by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSmsTemplateById/).
+   * @description: Get sms template by id
    */
-  async getSmsTemplateById({ id } = {}) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.getSmsTemplateById().validate(
+  async getSmsTemplateById({ id } = {}, { headers } = { headers: false }) {
+    const { error } = CommunicationValidator.getSmsTemplateById().validate(
       {
         id,
       },
@@ -1876,7 +1847,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.getSmsTemplateById().validate(
+    } = CommunicationValidator.getSmsTemplateById().validate(
       {
         id,
       },
@@ -1885,8 +1856,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > getSmsTemplateById \n ${warrning}`,
+        message: "Parameter Validation warrnings for getSmsTemplateById",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1896,12 +1868,19 @@ class Communication {
       "get",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates/${id}`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.SmsTemplate().validate(response, {
+    } = CommunicationModel.SmsTemplate().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1909,26 +1888,29 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > getSmsTemplateById \n ${res_error}`,
+        message: "Response Validation Warnnings for getSmsTemplateById",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.GetSmsTemplatesParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<CommunicationPlatformModel.SmsTemplates>} - Success response
-   * @name getSmsTemplates
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNo] - Current page no
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {Object} [arg.sort] - To sort based on created_at
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<SmsTemplates>} - Success response
    * @summary: Get sms templates
-   * @description: Get sms templates - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSmsTemplates/).
+   * @description: Get sms templates
    */
-  async getSmsTemplates({ pageNo, pageSize, sort } = {}) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.getSmsTemplates().validate(
+  async getSmsTemplates(
+    { pageNo, pageSize, sort } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CommunicationValidator.getSmsTemplates().validate(
       {
         pageNo,
         pageSize,
@@ -1943,7 +1925,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.getSmsTemplates().validate(
+    } = CommunicationValidator.getSmsTemplates().validate(
       {
         pageNo,
         pageSize,
@@ -1954,8 +1936,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > getSmsTemplates \n ${warrning}`,
+        message: "Parameter Validation warrnings for getSmsTemplates",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1968,12 +1951,19 @@ class Communication {
       "get",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.SmsTemplates().validate(response, {
+    } = CommunicationModel.SmsTemplates().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1981,8 +1971,9 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > getSmsTemplates \n ${res_error}`,
+        message: "Response Validation Warnnings for getSmsTemplates",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -1990,50 +1981,14 @@ class Communication {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Company id
-   * @param {string} arg.applicationId - Application id
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @returns {Paginator<CommunicationPlatformModel.SmsTemplates>}
-   * @summary: Get sms templates
-   * @description: Get sms templates
-   */
-  getSmsTemplatesPaginator({ companyId, applicationId, pageSize, sort } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getSmsTemplates({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {CommunicationPlatformApplicationValidator.GetStatsOfCampaignByIdParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<CommunicationPlatformModel.GetStats>} - Success response
-   * @name getStatsOfCampaignById
+   * @param {string} arg.id - Campaign id
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<GetStats>} - Success response
    * @summary: Get stats of campaign by id
-   * @description: Get stats of campaign by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getStatsOfCampaignById/).
+   * @description: Get stats of campaign by id
    */
-  async getStatsOfCampaignById({ id } = {}) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.getStatsOfCampaignById().validate(
+  async getStatsOfCampaignById({ id } = {}, { headers } = { headers: false }) {
+    const { error } = CommunicationValidator.getStatsOfCampaignById().validate(
       {
         id,
       },
@@ -2046,7 +2001,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.getStatsOfCampaignById().validate(
+    } = CommunicationValidator.getStatsOfCampaignById().validate(
       {
         id,
       },
@@ -2055,8 +2010,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > getStatsOfCampaignById \n ${warrning}`,
+        message: "Parameter Validation warrnings for getStatsOfCampaignById",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2066,12 +2022,19 @@ class Communication {
       "get",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/get-stats/${id}`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.GetStats().validate(response, {
+    } = CommunicationModel.GetStats().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2079,27 +2042,29 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > getStatsOfCampaignById \n ${res_error}`,
+        message: "Response Validation Warnnings for getStatsOfCampaignById",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.GetSystemEmailTemplatesParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<CommunicationPlatformModel.SystemEmailTemplates>} -
-   *   Success response
-   * @name getSystemEmailTemplates
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNo] - Current page no
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {Object} [arg.sort] - To sort based on created_at
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<SystemEmailTemplates>} - Success response
    * @summary: Get system email templates
-   * @description: Get system email templates - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSystemEmailTemplates/).
+   * @description: Get system email templates
    */
-  async getSystemEmailTemplates({ pageNo, pageSize, sort } = {}) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.getSystemEmailTemplates().validate(
+  async getSystemEmailTemplates(
+    { pageNo, pageSize, sort } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CommunicationValidator.getSystemEmailTemplates().validate(
       {
         pageNo,
         pageSize,
@@ -2114,7 +2079,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.getSystemEmailTemplates().validate(
+    } = CommunicationValidator.getSystemEmailTemplates().validate(
       {
         pageNo,
         pageSize,
@@ -2125,8 +2090,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > getSystemEmailTemplates \n ${warrning}`,
+        message: "Parameter Validation warrnings for getSystemEmailTemplates",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2139,12 +2105,19 @@ class Communication {
       "get",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/system-templates`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.SystemEmailTemplates().validate(response, {
+    } = CommunicationModel.SystemEmailTemplates().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2152,27 +2125,31 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > getSystemEmailTemplates \n ${res_error}`,
+        message: "Response Validation Warnnings for getSystemEmailTemplates",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.GetSystemSystemTemplatesParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<CommunicationPlatformModel.SystemSmsTemplates>} -
-   *   Success response
-   * @name getSystemSystemTemplates
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNo] - Current page no
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {Object} [arg.sort] - To sort based on created_at
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<SystemSmsTemplates>} - Success response
    * @summary: Get system sms templates
-   * @description: Get system sms templates - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSystemSystemTemplates/).
+   * @description: Get system sms templates
    */
-  async getSystemSystemTemplates({ pageNo, pageSize, sort } = {}) {
+  async getSystemSystemTemplates(
+    { pageNo, pageSize, sort } = {},
+    { headers } = { headers: false }
+  ) {
     const {
       error,
-    } = CommunicationPlatformApplicationValidator.getSystemSystemTemplates().validate(
+    } = CommunicationValidator.getSystemSystemTemplates().validate(
       {
         pageNo,
         pageSize,
@@ -2187,7 +2164,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.getSystemSystemTemplates().validate(
+    } = CommunicationValidator.getSystemSystemTemplates().validate(
       {
         pageNo,
         pageSize,
@@ -2198,8 +2175,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > getSystemSystemTemplates \n ${warrning}`,
+        message: "Parameter Validation warrnings for getSystemSystemTemplates",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2212,12 +2190,19 @@ class Communication {
       "get",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/system-templates`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.SystemSmsTemplates().validate(response, {
+    } = CommunicationModel.SystemSmsTemplates().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2225,8 +2210,9 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > getSystemSystemTemplates \n ${res_error}`,
+        message: "Response Validation Warnnings for getSystemSystemTemplates",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -2234,55 +2220,19 @@ class Communication {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Company id
-   * @param {string} arg.applicationId - Application id
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @returns {Paginator<CommunicationPlatformModel.SystemSmsTemplates>}
-   * @summary: Get system sms templates
-   * @description: Get system sms templates
-   */
-  getSystemSystemTemplatesPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-    sort,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getSystemSystemTemplates({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
-  }
-
-  /**
-   * @param {CommunicationPlatformApplicationValidator.SendCommunicationAsynchronouslyParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<CommunicationPlatformModel.EngineResponse>} - Success response
-   * @name sendCommunicationAsynchronously
+   * @param {EngineRequest} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<EngineResponse>} - Success response
    * @summary: Send email or sms asynchronously
-   * @description: Send email or sms asynchronously - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/sendCommunicationAsynchronously/).
+   * @description: Send email or sms asynchronously
    */
-  async sendCommunicationAsynchronously({ body } = {}) {
+  async sendCommunicationAsynchronously(
+    { body } = {},
+    { headers } = { headers: false }
+  ) {
     const {
       error,
-    } = CommunicationPlatformApplicationValidator.sendCommunicationAsynchronously().validate(
+    } = CommunicationValidator.sendCommunicationAsynchronously().validate(
       {
         body,
       },
@@ -2295,7 +2245,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.sendCommunicationAsynchronously().validate(
+    } = CommunicationValidator.sendCommunicationAsynchronously().validate(
       {
         body,
       },
@@ -2304,8 +2254,10 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > sendCommunicationAsynchronously \n ${warrning}`,
+        message:
+          "Parameter Validation warrnings for sendCommunicationAsynchronously",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2315,12 +2267,19 @@ class Communication {
       "post",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/engine/send-async`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.EngineResponse().validate(response, {
+    } = CommunicationModel.EngineResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2328,26 +2287,30 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > sendCommunicationAsynchronously \n ${res_error}`,
+        message:
+          "Response Validation Warnnings for sendCommunicationAsynchronously",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.SendCommunicationSynchronouslyParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<CommunicationPlatformModel.EngineResponse>} - Success response
-   * @name sendCommunicationSynchronously
+   * @param {Object} arg - Arg object.
+   * @param {EngineRequest} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<EngineResponse>} - Success response
    * @summary: Send email or sms synchronously
-   * @description: Send email or sms synchronously - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/sendCommunicationSynchronously/).
+   * @description: Send email or sms synchronously
    */
-  async sendCommunicationSynchronously({ body } = {}) {
+  async sendCommunicationSynchronously(
+    { body } = {},
+    { headers } = { headers: false }
+  ) {
     const {
       error,
-    } = CommunicationPlatformApplicationValidator.sendCommunicationSynchronously().validate(
+    } = CommunicationValidator.sendCommunicationSynchronously().validate(
       {
         body,
       },
@@ -2360,7 +2323,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.sendCommunicationSynchronously().validate(
+    } = CommunicationValidator.sendCommunicationSynchronously().validate(
       {
         body,
       },
@@ -2369,8 +2332,10 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > sendCommunicationSynchronously \n ${warrning}`,
+        message:
+          "Parameter Validation warrnings for sendCommunicationSynchronously",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2380,12 +2345,19 @@ class Communication {
       "post",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/engine/send-instant`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.EngineResponse().validate(response, {
+    } = CommunicationModel.EngineResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2393,24 +2365,25 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > sendCommunicationSynchronously \n ${res_error}`,
+        message:
+          "Response Validation Warnnings for sendCommunicationSynchronously",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.SendOtpParam} arg - Arg object
-   * @returns {Promise<CommunicationPlatformModel.SendOtpCommsRes>} - Success response
-   * @name sendOtp
+   * @param {Object} arg - Arg object.
+   * @param {SendOtpCommsReq} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<SendOtpCommsRes>} - Success response
    * @summary: Send OTP using email and sms
-   * @description: Send OTP Comms via email and sms - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/sendOtp/).
+   * @description: Send OTP Comms via email and sms
    */
-  async sendOtp({ body } = {}) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.sendOtp().validate(
+  async sendOtp({ body } = {}, { headers } = { headers: false }) {
+    const { error } = CommunicationValidator.sendOtp().validate(
       {
         body,
       },
@@ -2421,9 +2394,7 @@ class Communication {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationPlatformApplicationValidator.sendOtp().validate(
+    const { error: warrning } = CommunicationValidator.sendOtp().validate(
       {
         body,
       },
@@ -2432,8 +2403,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > sendOtp \n ${warrning}`,
+        message: "Parameter Validation warrnings for sendOtp",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2443,12 +2415,19 @@ class Communication {
       "post",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/otp/send-otp-comms`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.SendOtpCommsRes().validate(response, {
+    } = CommunicationModel.SendOtpCommsRes().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2456,27 +2435,24 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > sendOtp \n ${res_error}`,
+        message: "Response Validation Warnnings for sendOtp",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.TriggerCampaignJobParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<CommunicationPlatformModel.TriggerJobResponse>} -
-   *   Success response
-   * @name triggerCampaignJob
+   * @param {Object} arg - Arg object.
+   * @param {TriggerJobRequest} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<TriggerJobResponse>} - Success response
    * @summary: Trigger campaign job
-   * @description: Trigger campaign job - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/triggerCampaignJob/).
+   * @description: Trigger campaign job
    */
-  async triggerCampaignJob({ body } = {}) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.triggerCampaignJob().validate(
+  async triggerCampaignJob({ body } = {}, { headers } = { headers: false }) {
+    const { error } = CommunicationValidator.triggerCampaignJob().validate(
       {
         body,
       },
@@ -2489,7 +2465,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.triggerCampaignJob().validate(
+    } = CommunicationValidator.triggerCampaignJob().validate(
       {
         body,
       },
@@ -2498,8 +2474,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > triggerCampaignJob \n ${warrning}`,
+        message: "Parameter Validation warrnings for triggerCampaignJob",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2509,12 +2486,19 @@ class Communication {
       "post",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/jobs/trigger-job`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.TriggerJobResponse().validate(response, {
+    } = CommunicationModel.TriggerJobResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2522,26 +2506,28 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > triggerCampaignJob \n ${res_error}`,
+        message: "Response Validation Warnnings for triggerCampaignJob",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.UpdateAudienceByIdParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<CommunicationPlatformModel.Audience>} - Success response
-   * @name updateAudienceById
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Audience id
+   * @param {AudienceReq} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<Audience>} - Success response
    * @summary: Update audience by id
-   * @description: Update audience by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateAudienceById/).
+   * @description: Update audience by id
    */
-  async updateAudienceById({ id, body } = {}) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.updateAudienceById().validate(
+  async updateAudienceById(
+    { id, body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CommunicationValidator.updateAudienceById().validate(
       {
         id,
         body,
@@ -2555,7 +2541,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.updateAudienceById().validate(
+    } = CommunicationValidator.updateAudienceById().validate(
       {
         id,
         body,
@@ -2565,8 +2551,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > updateAudienceById \n ${warrning}`,
+        message: "Parameter Validation warrnings for updateAudienceById",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2576,12 +2563,19 @@ class Communication {
       "put",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources/${id}`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.Audience().validate(response, {
+    } = CommunicationModel.Audience().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2589,26 +2583,28 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > updateAudienceById \n ${res_error}`,
+        message: "Response Validation Warnnings for updateAudienceById",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.UpdateCampaignByIdParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<CommunicationPlatformModel.Campaign>} - Success response
-   * @name updateCampaignById
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Campaign id
+   * @param {CampaignReq} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<Campaign>} - Success response
    * @summary: Update campaign by id
-   * @description: Update campaign by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateCampaignById/).
+   * @description: Update campaign by id
    */
-  async updateCampaignById({ id, body } = {}) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.updateCampaignById().validate(
+  async updateCampaignById(
+    { id, body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CommunicationValidator.updateCampaignById().validate(
       {
         id,
         body,
@@ -2622,7 +2618,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.updateCampaignById().validate(
+    } = CommunicationValidator.updateCampaignById().validate(
       {
         id,
         body,
@@ -2632,8 +2628,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > updateCampaignById \n ${warrning}`,
+        message: "Parameter Validation warrnings for updateCampaignById",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2643,12 +2640,19 @@ class Communication {
       "put",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/campaigns/campaigns/${id}`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.Campaign().validate(response, {
+    } = CommunicationModel.Campaign().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2656,26 +2660,28 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > updateCampaignById \n ${res_error}`,
+        message: "Response Validation Warnnings for updateCampaignById",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.UpdateEmailProviderByIdParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<CommunicationPlatformModel.EmailProvider>} - Success response
-   * @name updateEmailProviderById
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Email provider id
+   * @param {EmailProviderReq} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<EmailProvider>} - Success response
    * @summary: Update email provider by id
-   * @description: Update email provider by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateEmailProviderById/).
+   * @description: Update email provider by id
    */
-  async updateEmailProviderById({ id, body } = {}) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.updateEmailProviderById().validate(
+  async updateEmailProviderById(
+    { id, body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CommunicationValidator.updateEmailProviderById().validate(
       {
         id,
         body,
@@ -2689,7 +2695,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.updateEmailProviderById().validate(
+    } = CommunicationValidator.updateEmailProviderById().validate(
       {
         id,
         body,
@@ -2699,8 +2705,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > updateEmailProviderById \n ${warrning}`,
+        message: "Parameter Validation warrnings for updateEmailProviderById",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2710,12 +2717,19 @@ class Communication {
       "put",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers/${id}`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.EmailProvider().validate(response, {
+    } = CommunicationModel.EmailProvider().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2723,26 +2737,28 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > updateEmailProviderById \n ${res_error}`,
+        message: "Response Validation Warnnings for updateEmailProviderById",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.UpdateEmailTemplateByIdParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<CommunicationPlatformModel.EmailTemplateRes>} - Success response
-   * @name updateEmailTemplateById
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Email template id
+   * @param {EmailTemplateReq} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<EmailTemplateRes>} - Success response
    * @summary: Update email template by id
-   * @description: Update email template by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateEmailTemplateById/).
+   * @description: Update email template by id
    */
-  async updateEmailTemplateById({ id, body } = {}) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.updateEmailTemplateById().validate(
+  async updateEmailTemplateById(
+    { id, body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CommunicationValidator.updateEmailTemplateById().validate(
       {
         id,
         body,
@@ -2756,7 +2772,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.updateEmailTemplateById().validate(
+    } = CommunicationValidator.updateEmailTemplateById().validate(
       {
         id,
         body,
@@ -2766,8 +2782,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > updateEmailTemplateById \n ${warrning}`,
+        message: "Parameter Validation warrnings for updateEmailTemplateById",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2777,12 +2794,19 @@ class Communication {
       "put",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/templates/${id}`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.EmailTemplateRes().validate(response, {
+    } = CommunicationModel.EmailTemplateRes().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2790,26 +2814,28 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > updateEmailTemplateById \n ${res_error}`,
+        message: "Response Validation Warnnings for updateEmailTemplateById",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.UpdateSmsProviderByIdParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<CommunicationPlatformModel.SmsProvider>} - Success response
-   * @name updateSmsProviderById
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Sms provider id
+   * @param {SmsProviderReq} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<SmsProvider>} - Success response
    * @summary: Update sms provider by id
-   * @description: Update sms provider by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateSmsProviderById/).
+   * @description: Update sms provider by id
    */
-  async updateSmsProviderById({ id, body } = {}) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.updateSmsProviderById().validate(
+  async updateSmsProviderById(
+    { id, body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CommunicationValidator.updateSmsProviderById().validate(
       {
         id,
         body,
@@ -2823,7 +2849,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.updateSmsProviderById().validate(
+    } = CommunicationValidator.updateSmsProviderById().validate(
       {
         id,
         body,
@@ -2833,8 +2859,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > updateSmsProviderById \n ${warrning}`,
+        message: "Parameter Validation warrnings for updateSmsProviderById",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2844,12 +2871,19 @@ class Communication {
       "put",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers/${id}`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.SmsProvider().validate(response, {
+    } = CommunicationModel.SmsProvider().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2857,26 +2891,28 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > updateSmsProviderById \n ${res_error}`,
+        message: "Response Validation Warnnings for updateSmsProviderById",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.UpdateSmsTemplateByIdParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<CommunicationPlatformModel.SmsTemplateRes>} - Success response
-   * @name updateSmsTemplateById
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - Sms template id
+   * @param {SmsTemplateReq} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<SmsTemplateRes>} - Success response
    * @summary: Update sms template by id
-   * @description: Update sms template by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateSmsTemplateById/).
+   * @description: Update sms template by id
    */
-  async updateSmsTemplateById({ id, body } = {}) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.updateSmsTemplateById().validate(
+  async updateSmsTemplateById(
+    { id, body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CommunicationValidator.updateSmsTemplateById().validate(
       {
         id,
         body,
@@ -2890,7 +2926,7 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.updateSmsTemplateById().validate(
+    } = CommunicationValidator.updateSmsTemplateById().validate(
       {
         id,
         body,
@@ -2900,8 +2936,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > updateSmsTemplateById \n ${warrning}`,
+        message: "Parameter Validation warrnings for updateSmsTemplateById",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2911,12 +2948,19 @@ class Communication {
       "put",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/templates/${id}`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.SmsTemplateRes().validate(response, {
+    } = CommunicationModel.SmsTemplateRes().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2924,26 +2968,24 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > updateSmsTemplateById \n ${res_error}`,
+        message: "Response Validation Warnnings for updateSmsTemplateById",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.VerfiyOtpParam} arg - Arg object
-   * @returns {Promise<CommunicationPlatformModel.VerifyOtpCommsSuccessRes>}
-   *   - Success response
-   *
-   * @name verfiyOtp
+   * @param {Object} arg - Arg object.
+   * @param {VerifyOtpCommsReq} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<VerifyOtpCommsSuccessRes>} - Success response
    * @summary: Verify OTP sent via email and sms
-   * @description: Verify OTP sent via email and sms - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/verfiyOtp/).
+   * @description: Verify OTP sent via email and sms
    */
-  async verfiyOtp({ body } = {}) {
-    const {
-      error,
-    } = CommunicationPlatformApplicationValidator.verfiyOtp().validate(
+  async verfiyOtp({ body } = {}, { headers } = { headers: false }) {
+    const { error } = CommunicationValidator.verfiyOtp().validate(
       {
         body,
       },
@@ -2954,9 +2996,7 @@ class Communication {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommunicationPlatformApplicationValidator.verfiyOtp().validate(
+    const { error: warrning } = CommunicationValidator.verfiyOtp().validate(
       {
         body,
       },
@@ -2965,8 +3005,9 @@ class Communication {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > verfiyOtp \n ${warrning}`,
+        message: "Parameter Validation warrnings for verfiyOtp",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2976,21 +3017,29 @@ class Communication {
       "post",
       `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/otp/verify-otp-comms`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.VerifyOtpCommsSuccessRes().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = CommunicationModel.VerifyOtpCommsSuccessRes().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > verfiyOtp \n ${res_error}`,
+        message: "Response Validation Warnnings for verfiyOtp",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

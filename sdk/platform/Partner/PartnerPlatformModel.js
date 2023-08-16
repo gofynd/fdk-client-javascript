@@ -1,49 +1,12 @@
 const Joi = require("joi");
 
-/**
- * @typedef AddProxyReq
- * @property {string} [attached_path] - Proxy path slug
- * @property {string} [proxy_url] - The external URL for which the proxy URL
- *   will be generated
- */
-
-/**
- * @typedef AddProxyResponse
- * @property {string} [_id]
- * @property {string} [application_id]
- * @property {string} [attached_path]
- * @property {string} [company_id]
- * @property {string} [created_at]
- * @property {string} [extension_id]
- * @property {string} [modified_at]
- * @property {string} [proxy_url]
- */
-
-/**
- * @typedef APIError
- * @property {string} [code]
- * @property {string} [info] - Error code description link
- * @property {string} [message]
- * @property {Object} [meta]
- * @property {string} [request_id]
- */
-
-/**
- * @typedef RemoveProxyResponse
- * @property {Object} [data]
- * @property {string} [message]
- */
-
-class PartnerPlatformModel {
-  /** @returns {AddProxyReq} */
+class PartnerModel {
   static AddProxyReq() {
     return Joi.object({
       attached_path: Joi.string().allow(""),
       proxy_url: Joi.string().allow(""),
     });
   }
-
-  /** @returns {AddProxyResponse} */
   static AddProxyResponse() {
     return Joi.object({
       _id: Joi.string().allow(""),
@@ -56,8 +19,6 @@ class PartnerPlatformModel {
       proxy_url: Joi.string().allow(""),
     });
   }
-
-  /** @returns {APIError} */
   static APIError() {
     return Joi.object({
       code: Joi.string().allow(""),
@@ -67,8 +28,6 @@ class PartnerPlatformModel {
       request_id: Joi.string().allow(""),
     });
   }
-
-  /** @returns {RemoveProxyResponse} */
   static RemoveProxyResponse() {
     return Joi.object({
       data: Joi.any(),
@@ -76,4 +35,4 @@ class PartnerPlatformModel {
     });
   }
 }
-module.exports = PartnerPlatformModel;
+module.exports = PartnerModel;

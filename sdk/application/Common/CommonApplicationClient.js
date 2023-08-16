@@ -2,8 +2,8 @@ const ApplicationAPIClient = require("../ApplicationAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
-const CommonApplicationValidator = require("./CommonApplicationValidator");
-const CommonApplicationModel = require("./CommonApplicationModel");
+const CommonValidator = require("./CommonApplicationValidator");
+const CommonModel = require("./CommonApplicationModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -32,14 +32,22 @@ class Common {
   }
 
   /**
-   * @param {CommonApplicationValidator.GetLocationsParam} arg - Arg object.
-   * @returns {Promise<CommonApplicationModel.Locations>} - Success response
-   * @name getLocations
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.locationType] - Provide location type to query on.
+   *   Possible values : country, state, city
+   * @param {string} [arg.id] - Field is optional when location_type is
+   *   country. If querying for state, provide id of country. If querying for
+   *   city, provide id of state.
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<Locations>} - Success response
    * @summary: Get countries, states, cities
-   * @description: Get countries, states, cities - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/common/getLocations/).
+   * @description: Get countries, states, cities
    */
-  async getLocations({ locationType, id } = {}) {
-    const { error } = CommonApplicationValidator.getLocations().validate(
+  async getLocations(
+    { locationType, id } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CommonValidator.getLocations().validate(
       { locationType, id },
       { abortEarly: false, allowUnknown: true }
     );
@@ -48,17 +56,16 @@ class Common {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommonApplicationValidator.getLocations().validate(
+    const { error: warrning } = CommonValidator.getLocations().validate(
       { locationType, id },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Common > getLocations \n ${warrning}`,
+        message: "Parameter Validation warrnings for getLocations",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -76,35 +83,45 @@ class Common {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
 
-    const {
-      error: res_error,
-    } = CommonApplicationModel.Locations().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = CommonModel.Locations().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Common > getLocations \n ${res_error}`,
+        message: "Response Validation Warnnings for getLocations",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CommonApplicationValidator.SearchApplicationParam} arg - Arg object.
-   * @returns {Promise<CommonApplicationModel.ApplicationResponse>} - Success response
-   * @name searchApplication
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.authorization] -
+   * @param {string} [arg.query] - Provide application name
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ApplicationResponse>} - Success response
    * @summary: Search Application
-   * @description: Provide application name or domain url - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/common/searchApplication/).
+   * @description: Provide application name or domain url
    */
-  async searchApplication({ authorization, query } = {}) {
-    const { error } = CommonApplicationValidator.searchApplication().validate(
+  async searchApplication(
+    { authorization, query } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CommonValidator.searchApplication().validate(
       { authorization, query },
       { abortEarly: false, allowUnknown: true }
     );
@@ -113,17 +130,16 @@ class Common {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CommonApplicationValidator.searchApplication().validate(
+    const { error: warrning } = CommonValidator.searchApplication().validate(
       { authorization, query },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Common > searchApplication \n ${warrning}`,
+        message: "Parameter Validation warrnings for searchApplication",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -141,12 +157,18 @@ class Common {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CommonApplicationModel.ApplicationResponse().validate(response, {
+    } = CommonModel.ApplicationResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -154,8 +176,9 @@ class Common {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for application > Common > searchApplication \n ${res_error}`,
+        message: "Response Validation Warnnings for searchApplication",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

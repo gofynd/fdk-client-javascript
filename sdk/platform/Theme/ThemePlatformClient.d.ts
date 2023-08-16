@@ -3,29 +3,33 @@ declare class Theme {
     constructor(config: any);
     config: any;
     /**
-     * @param {ThemePlatformValidator.AddMarketplaceThemeToCompanyParam} arg - Arg object
-     * @returns {Promise<ThemePlatformModel.CompanyThemeSchema>} - Success response
-     * @name addMarketplaceThemeToCompany
+     * @param {Object} arg - Arg object.
+     * @param {ThemeReq} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CompanyThemeSchema>} - Success response
      * @summary: Add a theme to a company
-     * @description: Add a marketplace theme to a company by providing the theme ID and company ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/addMarketplaceThemeToCompany/).
+     * @description: Add a marketplace theme to a company by providing the theme ID and company ID.
      */
-    addMarketplaceThemeToCompany({ body }?: ThemePlatformValidator.AddMarketplaceThemeToCompanyParam): Promise<ThemePlatformModel.CompanyThemeSchema>;
+    addMarketplaceThemeToCompany({ body }?: {
+        body: ThemeReq;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<CompanyThemeSchema>;
     /**
-     * @param {ThemePlatformValidator.DeleteCompanyThemeParam} arg - Arg object
-     * @returns {Promise<ThemePlatformModel.CompanyThemeSchema>} - Success response
-     * @name deleteCompanyTheme
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.themeId - The ID of the theme.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CompanyThemeSchema>} - Success response
      * @summary: Delete a theme
-     * @description: Delete a specific theme for a company by providing the company ID and theme ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/deleteCompanyTheme/).
+     * @description: Delete a specific theme for a company by providing the company ID and theme ID.
      */
-    deleteCompanyTheme({ themeId }?: ThemePlatformValidator.DeleteCompanyThemeParam): Promise<ThemePlatformModel.CompanyThemeSchema>;
+    deleteCompanyTheme({ themeId }?: {
+        themeId: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<CompanyThemeSchema>;
     /**
-     * @param {ThemePlatformValidator.GetCompanyLevelThemesParam} arg - Arg object
-     * @returns {Promise<ThemePlatformModel.CompanyThemeSchema[]>} - Success response
-     * @name getCompanyLevelThemes
+     * @param {Object} arg - Arg object.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CompanyThemeSchema[]>} - Success response
      * @summary: Get themes for a company
-     * @description: Retrieve a list of themes available for a specific company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getCompanyLevelThemes/).
+     * @description: Retrieve a list of themes available for a specific company.
      */
-    getCompanyLevelThemes({}?: any): Promise<ThemePlatformModel.CompanyThemeSchema[]>;
+    getCompanyLevelThemes({ headers }?: any): Promise<CompanyThemeSchema[]>;
 }
-import ThemePlatformValidator = require("./ThemePlatformValidator");
-import ThemePlatformModel = require("./ThemePlatformModel");

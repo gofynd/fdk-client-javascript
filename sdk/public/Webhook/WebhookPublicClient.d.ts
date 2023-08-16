@@ -9,21 +9,21 @@ declare class Webhook {
     _urls: {};
     updateUrls(urls: any): void;
     /**
-     * @param {WebhookPublicValidator.FetchAllWebhookEventsParam} arg - Arg object.
-     * @returns {Promise<WebhookPublicModel.EventConfigResponse>} - Success response
-     * @name fetchAllWebhookEvents
+     * @param {import("../PublicAPIClient").Options} - Options
+     * @returns {Promise<EventConfigResponse>} - Success response
      * @summary: Get All Webhook Events
-     * @description: Get All Webhook Events - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/webhook/fetchAllWebhookEvents/).
+     * @description: Get All Webhook Events
      */
-    fetchAllWebhookEvents({}?: any): Promise<WebhookPublicModel.EventConfigResponse>;
+    fetchAllWebhookEvents({ headers }?: any): Promise<EventConfigResponse>;
     /**
-     * @param {WebhookPublicValidator.QueryWebhookEventDetailsParam} arg - Arg object.
-     * @returns {Promise<WebhookPublicModel.EventConfigResponse>} - Success response
-     * @name queryWebhookEventDetails
+     * @param {Object} arg - Arg object.
+     * @param {EventConfigBase[]} arg.body
+     * @param {import("../PublicAPIClient").Options} - Options
+     * @returns {Promise<EventConfigResponse>} - Success response
      * @summary: Send webhook event name, type, version, category in request body to get complete details of event from server
-     * @description: Get Webhook Event Details for provided events - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/webhook/queryWebhookEventDetails/).
+     * @description: Get Webhook Event Details for provided events
      */
-    queryWebhookEventDetails({ body }?: WebhookPublicValidator.QueryWebhookEventDetailsParam): Promise<WebhookPublicModel.EventConfigResponse>;
+    queryWebhookEventDetails({ body }?: {
+        body: EventConfigBase[];
+    }, { headers }?: any): Promise<EventConfigResponse>;
 }
-import WebhookPublicModel = require("./WebhookPublicModel");
-import WebhookPublicValidator = require("./WebhookPublicValidator");

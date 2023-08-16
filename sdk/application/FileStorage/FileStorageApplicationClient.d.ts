@@ -10,9 +10,14 @@ declare class FileStorage {
     _urls: {};
     updateUrls(urls: any): void;
     /**
-     * @param {FileStorageApplicationValidator.CompleteUploadParam} arg - Arg object.
-     * @returns {Promise<FileStorageApplicationModel.CompleteResponse>} - Success response
-     * @name completeUpload
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.namespace - Segregation of different types of
+     *   files(products, orders, logistics etc), Required for validating the
+     *   data of the file being uploaded, decides where exactly the file will be
+     *   stored inside the storage bucket.
+     * @param {StartResponse} arg.body
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<CompleteResponse>} - Success response
      * @summary: Completes the upload process. After successfully uploading a file, call this API to finish the upload process.
      * @description: Use this API to perform the third step of uploading (i.e. **Complete**) an arbitrarily sized buffer or blob.
      *
@@ -32,21 +37,31 @@ declare class FileStorage {
      * ### Complete
      * After successfully upload, call the `completeUpload` API to finish the upload process.
      * This operation will return the URL of the uploaded file.
-     *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/completeUpload/).
      */
-    completeUpload({ namespace, body }?: FileStorageApplicationValidator.CompleteUploadParam): Promise<FileStorageApplicationModel.CompleteResponse>;
+    completeUpload({ namespace, body }?: {
+        namespace: string;
+        body: StartResponse;
+    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<CompleteResponse>;
     /**
-     * @param {FileStorageApplicationValidator.SignUrlsParam} arg - Arg object.
-     * @returns {Promise<FileStorageApplicationModel.SignUrlResponse>} - Success response
-     * @name signUrls
+     * @param {Object} arg - Arg object.
+     * @param {SignUrlRequest} arg.body
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<SignUrlResponse>} - Success response
      * @summary: Explain here
-     * @description: Describe here - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/signUrls/).
+     * @description: Describe here
      */
-    signUrls({ body }?: FileStorageApplicationValidator.SignUrlsParam): Promise<FileStorageApplicationModel.SignUrlResponse>;
+    signUrls({ body }?: {
+        body: SignUrlRequest;
+    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<SignUrlResponse>;
     /**
-     * @param {FileStorageApplicationValidator.StartUploadParam} arg - Arg object.
-     * @returns {Promise<FileStorageApplicationModel.StartResponse>} - Success response
-     * @name startUpload
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.namespace - Segregation of different types of
+     *   files(products, orders, logistics etc), Required for validating the
+     *   data of the file being uploaded, decides where exactly the file will be
+     *   stored inside the storage bucket.
+     * @param {StartRequest} arg.body
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<StartResponse>} - Success response
      * @summary: Initiates an upload and returns a storage link that is valid for 30 minutes. You can use the storage link to make subsequent upload request with file buffer or blob.
      * @description: Use this API to perform the first step of uploading (i.e. **Start**) an arbitrarily sized buffer or blob.
      *
@@ -66,9 +81,11 @@ declare class FileStorage {
      * ### Complete
      * After successfully upload, call the `completeUpload` API to finish the upload process.
      * This operation will return the URL of the uploaded file.
-     *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/startUpload/).
      */
-    startUpload({ namespace, body }?: FileStorageApplicationValidator.StartUploadParam): Promise<FileStorageApplicationModel.StartResponse>;
+    startUpload({ namespace, body }?: {
+        namespace: string;
+        body: StartRequest;
+    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<StartResponse>;
     /**
      * @param data
      * @param {string} file_name
@@ -86,5 +103,3 @@ declare class FileStorage {
         tags: any;
     }): Promise<any>;
 }
-import FileStorageApplicationValidator = require("./FileStorageApplicationValidator");
-import FileStorageApplicationModel = require("./FileStorageApplicationModel");

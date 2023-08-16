@@ -1,8 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
-const UserPlatformApplicationValidator = require("./UserPlatformApplicationValidator");
-const UserPlatformModel = require("./UserPlatformModel");
+const UserValidator = require("./UserPlatformApplicationValidator");
+const UserModel = require("./UserPlatformModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -13,14 +13,15 @@ class User {
   }
 
   /**
-   * @param {UserPlatformApplicationValidator.ArchiveUserParam} arg - Arg object
-   * @returns {Promise<UserPlatformModel.ArchiveUserSuccess>} - Success response
-   * @name archiveUser
+   * @param {Object} arg - Arg object.
+   * @param {ArchiveUserRequestSchema} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ArchiveUserSuccess>} - Success response
    * @summary: archive user
-   * @description: archive user - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/archiveUser/).
+   * @description: archive user
    */
-  async archiveUser({ body } = {}) {
-    const { error } = UserPlatformApplicationValidator.archiveUser().validate(
+  async archiveUser({ body } = {}, { headers } = { headers: false }) {
+    const { error } = UserValidator.archiveUser().validate(
       {
         body,
       },
@@ -31,9 +32,7 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserPlatformApplicationValidator.archiveUser().validate(
+    const { error: warrning } = UserValidator.archiveUser().validate(
       {
         body,
       },
@@ -42,8 +41,9 @@ class User {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > User > archiveUser \n ${warrning}`,
+        message: "Parameter Validation warrnings for archiveUser",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -53,12 +53,19 @@ class User {
       "put",
       `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/archive`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserPlatformModel.ArchiveUserSuccess().validate(response, {
+    } = UserModel.ArchiveUserSuccess().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -66,24 +73,24 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > User > archiveUser \n ${res_error}`,
+        message: "Response Validation Warnnings for archiveUser",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserPlatformApplicationValidator.BlockOrUnblockUsersParam} arg - Arg object
-   * @returns {Promise<UserPlatformModel.BlockUserSuccess>} - Success response
-   * @name blockOrUnblockUsers
+   * @param {Object} arg - Arg object.
+   * @param {BlockUserRequestSchema} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<BlockUserSuccess>} - Success response
    * @summary: Block/Unblock user
-   * @description: Block/Unblock user - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/blockOrUnblockUsers/).
+   * @description: Block/Unblock user
    */
-  async blockOrUnblockUsers({ body } = {}) {
-    const {
-      error,
-    } = UserPlatformApplicationValidator.blockOrUnblockUsers().validate(
+  async blockOrUnblockUsers({ body } = {}, { headers } = { headers: false }) {
+    const { error } = UserValidator.blockOrUnblockUsers().validate(
       {
         body,
       },
@@ -94,9 +101,7 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserPlatformApplicationValidator.blockOrUnblockUsers().validate(
+    const { error: warrning } = UserValidator.blockOrUnblockUsers().validate(
       {
         body,
       },
@@ -105,8 +110,9 @@ class User {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > User > blockOrUnblockUsers \n ${warrning}`,
+        message: "Parameter Validation warrnings for blockOrUnblockUsers",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -116,12 +122,19 @@ class User {
       "put",
       `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/activation`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserPlatformModel.BlockUserSuccess().validate(response, {
+    } = UserModel.BlockUserSuccess().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -129,22 +142,24 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > User > blockOrUnblockUsers \n ${res_error}`,
+        message: "Response Validation Warnnings for blockOrUnblockUsers",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserPlatformApplicationValidator.CreateUserParam} arg - Arg object
-   * @returns {Promise<UserPlatformModel.CreateUserResponseSchema>} - Success response
-   * @name createUser
+   * @param {Object} arg - Arg object.
+   * @param {CreateUserRequestSchema} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CreateUserResponseSchema>} - Success response
    * @summary: Create user
-   * @description: Create user - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/createUser/).
+   * @description: Create user
    */
-  async createUser({ body } = {}) {
-    const { error } = UserPlatformApplicationValidator.createUser().validate(
+  async createUser({ body } = {}, { headers } = { headers: false }) {
+    const { error } = UserValidator.createUser().validate(
       {
         body,
       },
@@ -155,9 +170,7 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserPlatformApplicationValidator.createUser().validate(
+    const { error: warrning } = UserValidator.createUser().validate(
       {
         body,
       },
@@ -166,8 +179,9 @@ class User {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > User > createUser \n ${warrning}`,
+        message: "Parameter Validation warrnings for createUser",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -177,12 +191,19 @@ class User {
       "post",
       `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserPlatformModel.CreateUserResponseSchema().validate(response, {
+    } = UserModel.CreateUserResponseSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -190,24 +211,24 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > User > createUser \n ${res_error}`,
+        message: "Response Validation Warnnings for createUser",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserPlatformApplicationValidator.CreateUserGroupParam} arg - Arg object
-   * @returns {Promise<UserPlatformModel.UserGroupResponseSchema>} - Success response
-   * @name createUserGroup
+   * @param {Object} arg - Arg object.
+   * @param {CreateUserGroupSchema} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<UserGroupResponseSchema>} - Success response
    * @summary: Create an User Group
-   * @description: Use this API to create new user Group - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/createUserGroup/).
+   * @description: Use this API to create new user Group
    */
-  async createUserGroup({ body } = {}) {
-    const {
-      error,
-    } = UserPlatformApplicationValidator.createUserGroup().validate(
+  async createUserGroup({ body } = {}, { headers } = { headers: false }) {
+    const { error } = UserValidator.createUserGroup().validate(
       {
         body,
       },
@@ -218,9 +239,7 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserPlatformApplicationValidator.createUserGroup().validate(
+    const { error: warrning } = UserValidator.createUserGroup().validate(
       {
         body,
       },
@@ -229,8 +248,9 @@ class User {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > User > createUserGroup \n ${warrning}`,
+        message: "Parameter Validation warrnings for createUserGroup",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -240,12 +260,19 @@ class User {
       "post",
       `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/user_group`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserPlatformModel.UserGroupResponseSchema().validate(response, {
+    } = UserModel.UserGroupResponseSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -253,25 +280,24 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > User > createUserGroup \n ${res_error}`,
+        message: "Response Validation Warnnings for createUserGroup",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserPlatformApplicationValidator.CreateUserSessionParam} arg - Arg object
-   * @returns {Promise<UserPlatformModel.CreateUserSessionResponseSchema>} -
-   *   Success response
-   * @name createUserSession
+   * @param {Object} arg - Arg object.
+   * @param {CreateUserSessionRequestSchema} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CreateUserSessionResponseSchema>} - Success response
    * @summary: Create user session
-   * @description: Create user session - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/createUserSession/).
+   * @description: Create user session
    */
-  async createUserSession({ body } = {}) {
-    const {
-      error,
-    } = UserPlatformApplicationValidator.createUserSession().validate(
+  async createUserSession({ body } = {}, { headers } = { headers: false }) {
+    const { error } = UserValidator.createUserSession().validate(
       {
         body,
       },
@@ -282,9 +308,7 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserPlatformApplicationValidator.createUserSession().validate(
+    const { error: warrning } = UserValidator.createUserSession().validate(
       {
         body,
       },
@@ -293,8 +317,9 @@ class User {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > User > createUserSession \n ${warrning}`,
+        message: "Parameter Validation warrnings for createUserSession",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -304,12 +329,19 @@ class User {
       "post",
       `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/session`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserPlatformModel.CreateUserSessionResponseSchema().validate(response, {
+    } = UserModel.CreateUserSessionResponseSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -317,27 +349,28 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > User > createUserSession \n ${res_error}`,
+        message: "Response Validation Warnnings for createUserSession",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserPlatformApplicationValidator.DeleteActiveSessionsParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<UserPlatformModel.SessionDeleteResponseSchema>} -
-   *   Success response
-   * @name deleteActiveSessions
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - ID of a customer.
+   * @param {string} arg.reason - Reason to delete sessions.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<SessionDeleteResponseSchema>} - Success response
    * @summary: Delete a list of all session for a user
-   * @description: Use this API to Delete a list of session of customers who have registered in the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/deleteActiveSessions/).
+   * @description: Use this API to Delete a list of session of customers who have registered in the application.
    */
-  async deleteActiveSessions({ id, reason } = {}) {
-    const {
-      error,
-    } = UserPlatformApplicationValidator.deleteActiveSessions().validate(
+  async deleteActiveSessions(
+    { id, reason } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = UserValidator.deleteActiveSessions().validate(
       {
         id,
         reason,
@@ -349,9 +382,7 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserPlatformApplicationValidator.deleteActiveSessions().validate(
+    const { error: warrning } = UserValidator.deleteActiveSessions().validate(
       {
         id,
         reason,
@@ -361,8 +392,9 @@ class User {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > User > deleteActiveSessions \n ${warrning}`,
+        message: "Parameter Validation warrnings for deleteActiveSessions",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -374,12 +406,19 @@ class User {
       "delete",
       `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/sessions`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserPlatformModel.SessionDeleteResponseSchema().validate(response, {
+    } = UserModel.SessionDeleteResponseSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -387,23 +426,29 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > User > deleteActiveSessions \n ${res_error}`,
+        message: "Response Validation Warnnings for deleteActiveSessions",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserPlatformApplicationValidator.DeleteSessionParam} arg - Arg object
-   * @returns {Promise<UserPlatformModel.SessionDeleteResponseSchema>} -
-   *   Success response
-   * @name deleteSession
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - ID of a customer.
+   * @param {string} arg.sessionId - Session ID of a customer.
+   * @param {string} arg.reason - Reason for deleting session.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<SessionDeleteResponseSchema>} - Success response
    * @summary: Delete a session for a user
-   * @description: Use this API to Delete a session of customers who have registered in the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/deleteSession/).
+   * @description: Use this API to Delete a session of customers who have registered in the application.
    */
-  async deleteSession({ id, sessionId, reason } = {}) {
-    const { error } = UserPlatformApplicationValidator.deleteSession().validate(
+  async deleteSession(
+    { id, sessionId, reason } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = UserValidator.deleteSession().validate(
       {
         id,
         sessionId,
@@ -416,9 +461,7 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserPlatformApplicationValidator.deleteSession().validate(
+    const { error: warrning } = UserValidator.deleteSession().validate(
       {
         id,
         sessionId,
@@ -429,8 +472,9 @@ class User {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > User > deleteSession \n ${warrning}`,
+        message: "Parameter Validation warrnings for deleteSession",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -443,12 +487,19 @@ class User {
       "delete",
       `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/session`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserPlatformModel.SessionDeleteResponseSchema().validate(response, {
+    } = UserModel.SessionDeleteResponseSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -456,24 +507,24 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > User > deleteSession \n ${res_error}`,
+        message: "Response Validation Warnnings for deleteSession",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserPlatformApplicationValidator.GetActiveSessionsParam} arg - Arg object
-   * @returns {Promise<UserPlatformModel.SessionListResponseSchema>} - Success response
-   * @name getActiveSessions
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.id - ID of a customer.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<SessionListResponseSchema>} - Success response
    * @summary: Get a list of all session with info for a user
-   * @description: Use this API to retrieve a list of session with info of customers who have registered in the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getActiveSessions/).
+   * @description: Use this API to retrieve a list of session with info of customers who have registered in the application.
    */
-  async getActiveSessions({ id } = {}) {
-    const {
-      error,
-    } = UserPlatformApplicationValidator.getActiveSessions().validate(
+  async getActiveSessions({ id } = {}, { headers } = { headers: false }) {
+    const { error } = UserValidator.getActiveSessions().validate(
       {
         id,
       },
@@ -484,9 +535,7 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserPlatformApplicationValidator.getActiveSessions().validate(
+    const { error: warrning } = UserValidator.getActiveSessions().validate(
       {
         id,
       },
@@ -495,8 +544,9 @@ class User {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > User > getActiveSessions \n ${warrning}`,
+        message: "Parameter Validation warrnings for getActiveSessions",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -507,12 +557,19 @@ class User {
       "get",
       `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/sessions`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserPlatformModel.SessionListResponseSchema().validate(response, {
+    } = UserModel.SessionListResponseSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -520,22 +577,32 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > User > getActiveSessions \n ${res_error}`,
+        message: "Response Validation Warnnings for getActiveSessions",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserPlatformApplicationValidator.GetCustomersParam} arg - Arg object
-   * @returns {Promise<UserPlatformModel.CustomerListResponseSchema>} - Success response
-   * @name getCustomers
+   * @param {Object} arg - Arg object.
+   * @param {Object} [arg.q] - The search query. Mobile number or email ID of
+   *   a customer.
+   * @param {number} [arg.pageSize] - The number of items to retrieve in each
+   *   page. Default value is 10.
+   * @param {number} [arg.pageNo] - The page number to navigate through the
+   *   given set of results. Default value is 1.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CustomerListResponseSchema>} - Success response
    * @summary: Get a list of customers
-   * @description: Use this API to retrieve a list of customers who have registered in the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getCustomers/).
+   * @description: Use this API to retrieve a list of customers who have registered in the application.
    */
-  async getCustomers({ q, pageSize, pageNo } = {}) {
-    const { error } = UserPlatformApplicationValidator.getCustomers().validate(
+  async getCustomers(
+    { q, pageSize, pageNo } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = UserValidator.getCustomers().validate(
       {
         q,
         pageSize,
@@ -548,9 +615,7 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserPlatformApplicationValidator.getCustomers().validate(
+    const { error: warrning } = UserValidator.getCustomers().validate(
       {
         q,
         pageSize,
@@ -561,8 +626,9 @@ class User {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > User > getCustomers \n ${warrning}`,
+        message: "Parameter Validation warrnings for getCustomers",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -575,12 +641,19 @@ class User {
       "get",
       `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/list`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserPlatformModel.CustomerListResponseSchema().validate(response, {
+    } = UserModel.CustomerListResponseSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -588,24 +661,22 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > User > getCustomers \n ${res_error}`,
+        message: "Response Validation Warnnings for getCustomers",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserPlatformApplicationValidator.GetPlatformConfigParam} arg - Arg object
-   * @returns {Promise<UserPlatformModel.PlatformSchema>} - Success response
-   * @name getPlatformConfig
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PlatformSchema>} - Success response
    * @summary: Get platform configurations
-   * @description: Use this API to get all the platform configurations such as mobile image, desktop image, social logins, and all other text. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getPlatformConfig/).
+   * @description: Use this API to get all the platform configurations such as mobile image, desktop image, social logins, and all other text.
    */
-  async getPlatformConfig({} = {}) {
-    const {
-      error,
-    } = UserPlatformApplicationValidator.getPlatformConfig().validate(
+  async getPlatformConfig({ headers } = { headers: false }) {
+    const { error } = UserValidator.getPlatformConfig().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -614,17 +685,16 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserPlatformApplicationValidator.getPlatformConfig().validate(
+    const { error: warrning } = UserValidator.getPlatformConfig().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > User > getPlatformConfig \n ${warrning}`,
+        message: "Parameter Validation warrnings for getPlatformConfig",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -634,12 +704,19 @@ class User {
       "get",
       `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/platform/config`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserPlatformModel.PlatformSchema().validate(response, {
+    } = UserModel.PlatformSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -647,24 +724,24 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > User > getPlatformConfig \n ${res_error}`,
+        message: "Response Validation Warnnings for getPlatformConfig",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserPlatformApplicationValidator.GetUserGroupByIdParam} arg - Arg object
-   * @returns {Promise<UserPlatformModel.UserGroupResponseSchema>} - Success response
-   * @name getUserGroupById
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.groupId - Numeric ID allotted to a User Group
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<UserGroupResponseSchema>} - Success response
    * @summary: Get an User Group by Id
-   * @description: Use this API to get details of an existing user Group - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUserGroupById/).
+   * @description: Use this API to get details of an existing user Group
    */
-  async getUserGroupById({ groupId } = {}) {
-    const {
-      error,
-    } = UserPlatformApplicationValidator.getUserGroupById().validate(
+  async getUserGroupById({ groupId } = {}, { headers } = { headers: false }) {
+    const { error } = UserValidator.getUserGroupById().validate(
       {
         groupId,
       },
@@ -675,9 +752,7 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserPlatformApplicationValidator.getUserGroupById().validate(
+    const { error: warrning } = UserValidator.getUserGroupById().validate(
       {
         groupId,
       },
@@ -686,8 +761,9 @@ class User {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > User > getUserGroupById \n ${warrning}`,
+        message: "Parameter Validation warrnings for getUserGroupById",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -697,12 +773,19 @@ class User {
       "get",
       `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/user_group/${groupId}`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserPlatformModel.UserGroupResponseSchema().validate(response, {
+    } = UserModel.UserGroupResponseSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -710,23 +793,32 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > User > getUserGroupById \n ${res_error}`,
+        message: "Response Validation Warnnings for getUserGroupById",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserPlatformApplicationValidator.GetUserGroupsParam} arg - Arg object
-   * @returns {Promise<UserPlatformModel.UserGroupListResponseSchema>} -
-   *   Success response
-   * @name getUserGroups
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.pageNo] - Page number for pagination result
+   * @param {string} [arg.pageSize] - Page size for pagination result
+   * @param {string} [arg.name] - To seartch for User Groups which contains
+   *   given string in their name
+   * @param {string} [arg.status] - To get User Groups with given status
+   * @param {number} [arg.groupUid] - To get User Groups with given uid
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<UserGroupListResponseSchema>} - Success response
    * @summary: Get User Groups mathcing criteria
-   * @description: Use this API to get User Groups mathing criteria passed in query - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUserGroups/).
+   * @description: Use this API to get User Groups mathing criteria passed in query
    */
-  async getUserGroups({ pageNo, pageSize, name, status, groupUid } = {}) {
-    const { error } = UserPlatformApplicationValidator.getUserGroups().validate(
+  async getUserGroups(
+    { pageNo, pageSize, name, status, groupUid } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = UserValidator.getUserGroups().validate(
       {
         pageNo,
         pageSize,
@@ -741,9 +833,7 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserPlatformApplicationValidator.getUserGroups().validate(
+    const { error: warrning } = UserValidator.getUserGroups().validate(
       {
         pageNo,
         pageSize,
@@ -756,8 +846,9 @@ class User {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > User > getUserGroups \n ${warrning}`,
+        message: "Parameter Validation warrnings for getUserGroups",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -772,12 +863,19 @@ class User {
       "get",
       `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/user_group`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserPlatformModel.UserGroupListResponseSchema().validate(response, {
+    } = UserModel.UserGroupListResponseSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -785,22 +883,27 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > User > getUserGroups \n ${res_error}`,
+        message: "Response Validation Warnnings for getUserGroups",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserPlatformApplicationValidator.SearchUsersParam} arg - Arg object
-   * @returns {Promise<UserPlatformModel.UserSearchResponseSchema>} - Success response
-   * @name searchUsers
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.q] - The search query. Mobile number or email ID of
+   *   a customer.
+   * @param {any[]} [arg.query] - The search queries. Mobile numbers or email
+   *   IDs of customers.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<UserSearchResponseSchema>} - Success response
    * @summary: Search an existing user.
-   * @description: Use this API to retrieve an existing user from a list. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/searchUsers/).
+   * @description: Use this API to retrieve an existing user from a list.
    */
-  async searchUsers({ q, query } = {}) {
-    const { error } = UserPlatformApplicationValidator.searchUsers().validate(
+  async searchUsers({ q, query } = {}, { headers } = { headers: false }) {
+    const { error } = UserValidator.searchUsers().validate(
       {
         q,
         query,
@@ -812,9 +915,7 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserPlatformApplicationValidator.searchUsers().validate(
+    const { error: warrning } = UserValidator.searchUsers().validate(
       {
         q,
         query,
@@ -824,8 +925,9 @@ class User {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > User > searchUsers \n ${warrning}`,
+        message: "Parameter Validation warrnings for searchUsers",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -837,12 +939,19 @@ class User {
       "get",
       `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/search`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserPlatformModel.UserSearchResponseSchema().validate(response, {
+    } = UserModel.UserSearchResponseSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -850,22 +959,24 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > User > searchUsers \n ${res_error}`,
+        message: "Response Validation Warnnings for searchUsers",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserPlatformApplicationValidator.UnDeleteUserParam} arg - Arg object
-   * @returns {Promise<UserPlatformModel.UnDeleteUserSuccess>} - Success response
-   * @name unDeleteUser
+   * @param {Object} arg - Arg object.
+   * @param {UnDeleteUserRequestSchema} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<UnDeleteUserSuccess>} - Success response
    * @summary: undelete user who deleted from application and have not elapsed the platform configured delete days
-   * @description: undelete user who deleted from application and have not elapsed the platform configured delete days - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/unDeleteUser/).
+   * @description: undelete user who deleted from application and have not elapsed the platform configured delete days
    */
-  async unDeleteUser({ body } = {}) {
-    const { error } = UserPlatformApplicationValidator.unDeleteUser().validate(
+  async unDeleteUser({ body } = {}, { headers } = { headers: false }) {
+    const { error } = UserValidator.unDeleteUser().validate(
       {
         body,
       },
@@ -876,9 +987,7 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserPlatformApplicationValidator.unDeleteUser().validate(
+    const { error: warrning } = UserValidator.unDeleteUser().validate(
       {
         body,
       },
@@ -887,8 +996,9 @@ class User {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > User > unDeleteUser \n ${warrning}`,
+        message: "Parameter Validation warrnings for unDeleteUser",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -898,12 +1008,19 @@ class User {
       "put",
       `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/undelete`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserPlatformModel.UnDeleteUserSuccess().validate(response, {
+    } = UserModel.UnDeleteUserSuccess().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -911,26 +1028,24 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > User > unDeleteUser \n ${res_error}`,
+        message: "Response Validation Warnnings for unDeleteUser",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserPlatformApplicationValidator.UpdatePlatformConfigParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<UserPlatformModel.PlatformSchema>} - Success response
-   * @name updatePlatformConfig
+   * @param {Object} arg - Arg object.
+   * @param {PlatformSchema} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PlatformSchema>} - Success response
    * @summary: Update platform configurations
-   * @description: Use this API to edit the existing platform configurations such as mobile image, desktop image, social logins, and all other text. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/updatePlatformConfig/).
+   * @description: Use this API to edit the existing platform configurations such as mobile image, desktop image, social logins, and all other text.
    */
-  async updatePlatformConfig({ body } = {}) {
-    const {
-      error,
-    } = UserPlatformApplicationValidator.updatePlatformConfig().validate(
+  async updatePlatformConfig({ body } = {}, { headers } = { headers: false }) {
+    const { error } = UserValidator.updatePlatformConfig().validate(
       {
         body,
       },
@@ -941,9 +1056,7 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserPlatformApplicationValidator.updatePlatformConfig().validate(
+    const { error: warrning } = UserValidator.updatePlatformConfig().validate(
       {
         body,
       },
@@ -952,8 +1065,9 @@ class User {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > User > updatePlatformConfig \n ${warrning}`,
+        message: "Parameter Validation warrnings for updatePlatformConfig",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -963,12 +1077,19 @@ class User {
       "post",
       `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/platform/config`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserPlatformModel.PlatformSchema().validate(response, {
+    } = UserModel.PlatformSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -976,22 +1097,25 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > User > updatePlatformConfig \n ${res_error}`,
+        message: "Response Validation Warnnings for updatePlatformConfig",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserPlatformApplicationValidator.UpdateUserParam} arg - Arg object
-   * @returns {Promise<UserPlatformModel.CreateUserResponseSchema>} - Success response
-   * @name updateUser
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.userId - User ID
+   * @param {UpdateUserRequestSchema} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CreateUserResponseSchema>} - Success response
    * @summary: Update user
-   * @description: Use this API to update user details, Note: Existing emails and phone numbers of user will be replaced directly if phone_numbers or emails field sent in request data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/updateUser/).
+   * @description: Use this API to update user details, Note: Existing emails and phone numbers of user will be replaced directly if phone_numbers or emails field sent in request data.
    */
-  async updateUser({ userId, body } = {}) {
-    const { error } = UserPlatformApplicationValidator.updateUser().validate(
+  async updateUser({ userId, body } = {}, { headers } = { headers: false }) {
+    const { error } = UserValidator.updateUser().validate(
       {
         userId,
         body,
@@ -1003,9 +1127,7 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserPlatformApplicationValidator.updateUser().validate(
+    const { error: warrning } = UserValidator.updateUser().validate(
       {
         userId,
         body,
@@ -1015,8 +1137,9 @@ class User {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > User > updateUser \n ${warrning}`,
+        message: "Parameter Validation warrnings for updateUser",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1026,12 +1149,19 @@ class User {
       "put",
       `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/${userId}`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserPlatformModel.CreateUserResponseSchema().validate(response, {
+    } = UserModel.CreateUserResponseSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1039,24 +1169,28 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > User > updateUser \n ${res_error}`,
+        message: "Response Validation Warnnings for updateUser",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {UserPlatformApplicationValidator.UpdateUserGroupParam} arg - Arg object
-   * @returns {Promise<UserPlatformModel.UserGroupResponseSchema>} - Success response
-   * @name updateUserGroup
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.groupId - Numeric ID allotted to a User Group
+   * @param {UpdateUserGroupSchema} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<UserGroupResponseSchema>} - Success response
    * @summary: Update an User Group
-   * @description: Use this API to update an existing user Group - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/updateUserGroup/).
+   * @description: Use this API to update an existing user Group
    */
-  async updateUserGroup({ groupId, body } = {}) {
-    const {
-      error,
-    } = UserPlatformApplicationValidator.updateUserGroup().validate(
+  async updateUserGroup(
+    { groupId, body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = UserValidator.updateUserGroup().validate(
       {
         groupId,
         body,
@@ -1068,9 +1202,7 @@ class User {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = UserPlatformApplicationValidator.updateUserGroup().validate(
+    const { error: warrning } = UserValidator.updateUserGroup().validate(
       {
         groupId,
         body,
@@ -1080,8 +1212,9 @@ class User {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > User > updateUserGroup \n ${warrning}`,
+        message: "Parameter Validation warrnings for updateUserGroup",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1091,12 +1224,19 @@ class User {
       "put",
       `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/user_group/${groupId}`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = UserPlatformModel.UserGroupResponseSchema().validate(response, {
+    } = UserModel.UserGroupResponseSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1104,8 +1244,9 @@ class User {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > User > updateUserGroup \n ${res_error}`,
+        message: "Response Validation Warnnings for updateUserGroup",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

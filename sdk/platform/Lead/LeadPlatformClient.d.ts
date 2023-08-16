@@ -3,69 +3,83 @@ declare class Lead {
     constructor(config: any);
     config: any;
     /**
-     * @param {LeadPlatformValidator.CreateHistoryParam} arg - Arg object
-     * @returns {Promise<LeadPlatformModel.TicketHistory>} - Success response
-     * @name createHistory
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - Ticket ID for which history is created
+     * @param {TicketHistoryPayload} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<TicketHistory>} - Success response
      * @summary: Create history for specific company level ticket
-     * @description: Create history for specific company level ticket, this history is seen on ticket detail page, this can be comment, log or rating. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/createHistory/).
+     * @description: Create history for specific company level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
      */
-    createHistory({ id, body }?: LeadPlatformValidator.CreateHistoryParam): Promise<LeadPlatformModel.TicketHistory>;
+    createHistory({ id, body }?: {
+        id: string;
+        body: TicketHistoryPayload;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<TicketHistory>;
     /**
-     * @param {LeadPlatformValidator.CreateTicketParam} arg - Arg object
-     * @returns {Promise<LeadPlatformModel.Ticket>} - Success response
-     * @name createTicket
+     * @param {Object} arg - Arg object.
+     * @param {AddTicketPayload} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<Ticket>} - Success response
      * @summary: Creates a company level ticket
-     * @description: Creates a company level ticket - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/createTicket/).
+     * @description: Creates a company level ticket
      */
-    createTicket({ body }?: LeadPlatformValidator.CreateTicketParam): Promise<LeadPlatformModel.Ticket>;
+    createTicket({ body }?: {
+        body: AddTicketPayload;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<Ticket>;
     /**
-     * @param {LeadPlatformValidator.EditTicketParam} arg - Arg object
-     * @returns {Promise<LeadPlatformModel.Ticket>} - Success response
-     * @name editTicket
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - Ticket ID of ticket to be edited
+     * @param {EditTicketPayload} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<Ticket>} - Success response
      * @summary: Edits ticket details of a company level ticket
-     * @description: Edits ticket details of a company level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/editTicket/).
+     * @description: Edits ticket details of a company level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes
      */
-    editTicket({ id, body }?: LeadPlatformValidator.EditTicketParam): Promise<LeadPlatformModel.Ticket>;
+    editTicket({ id, body }?: {
+        id: string;
+        body: EditTicketPayload;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<Ticket>;
     /**
-     * @param {LeadPlatformValidator.GetFeedbacksParam} arg - Arg object
-     * @returns {Promise<LeadPlatformModel.TicketFeedbackList>} - Success response
-     * @name getFeedbacks
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - Ticket ID for which feedbacks are to be fetched
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<TicketFeedbackList>} - Success response
      * @summary: Gets a list of feedback submitted against that ticket
-     * @description: Gets a list of feedback submitted against that ticket - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getFeedbacks/).
+     * @description: Gets a list of feedback submitted against that ticket
      */
-    getFeedbacks({ id }?: LeadPlatformValidator.GetFeedbacksParam): Promise<LeadPlatformModel.TicketFeedbackList>;
+    getFeedbacks({ id }?: {
+        id: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<TicketFeedbackList>;
     /**
-     * @param {LeadPlatformValidator.GetGeneralConfigParam} arg - Arg object
-     * @returns {Promise<LeadPlatformModel.CloseVideoRoomResponse>} - Success response
-     * @name getGeneralConfig
+     * @param {Object} arg - Arg object.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CloseVideoRoomResponse>} - Success response
      * @summary: Get general support configuration.
-     * @description: Get general support configuration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getGeneralConfig/).
+     * @description: Get general support configuration.
      */
-    getGeneralConfig({}?: any): Promise<LeadPlatformModel.CloseVideoRoomResponse>;
+    getGeneralConfig({ headers }?: any): Promise<CloseVideoRoomResponse>;
     /**
-     * @param {LeadPlatformValidator.GetTicketParam} arg - Arg object
-     * @returns {Promise<LeadPlatformModel.Ticket>} - Success response
-     * @name getTicket
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - Tiket ID of the ticket to be fetched
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<Ticket>} - Success response
      * @summary: Retreives ticket details of a company level ticket with ticket ID
-     * @description: Retreives ticket details of a company level ticket - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getTicket/).
+     * @description: Retreives ticket details of a company level ticket
      */
-    getTicket({ id }?: LeadPlatformValidator.GetTicketParam): Promise<LeadPlatformModel.Ticket>;
+    getTicket({ id }?: {
+        id: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<Ticket>;
     /**
-     * @param {LeadPlatformValidator.GetTicketHistoryParam} arg - Arg object
-     * @returns {Promise<LeadPlatformModel.TicketHistoryList>} - Success response
-     * @name getTicketHistory
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - Ticket ID for which history is to be fetched
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<TicketHistoryList>} - Success response
      * @summary: Gets history list for specific company level ticket
-     * @description: Gets history list for specific company level ticket, this history is seen on ticket detail page, this can be comment, log or rating. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getTicketHistory/).
+     * @description: Gets history list for specific company level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
      */
-    getTicketHistory({ id }?: LeadPlatformValidator.GetTicketHistoryParam): Promise<LeadPlatformModel.TicketHistoryList>;
-    /**
-     * @param {LeadPlatformValidator.GetTicketsParam} arg - Arg object
-     * @returns {Promise<LeadPlatformModel.TicketList>} - Success response
-     * @name getTickets
-     * @summary: Gets the list of company level tickets and/or ticket filters depending on query params
-     * @description: Gets the list of company level tickets and/or ticket filters - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getTickets/).
-     */
-    getTickets({ items, filters, q, status, priority, category, pageNo, pageSize, }?: LeadPlatformValidator.GetTicketsParam): Promise<LeadPlatformModel.TicketList>;
+    getTicketHistory({ id }?: {
+        id: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<TicketHistoryList>;
     /**
      * @param {Object} arg - Arg object.
      * @param {boolean} [arg.items] - Decides that the reponse will contain the
@@ -74,11 +88,39 @@ declare class Lead {
      *   the ticket filters
      * @param {string} [arg.q] - Search through ticket titles and description
      * @param {string} [arg.status] - Filter tickets on status
-     * @param {LeadPlatformModel.PriorityEnum} [arg.priority] - Filter tickets on priority
+     * @param {PriorityEnum} [arg.priority] - Filter tickets on priority
+     * @param {string} [arg.category] - Filter tickets on category
+     * @param {number} [arg.pageNo] - The page number to navigate through the
+     *   given set of results.
+     * @param {number} [arg.pageSize] - Number of items to retrieve in each
+     *   page. Default is 12.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<TicketList>} - Success response
+     * @summary: Gets the list of company level tickets and/or ticket filters depending on query params
+     * @description: Gets the list of company level tickets and/or ticket filters
+     */
+    getTickets({ items, filters, q, status, priority, category, pageNo, pageSize }?: {
+        items?: boolean;
+        filters?: boolean;
+        q?: string;
+        status?: string;
+        priority?: PriorityEnum;
+        category?: string;
+        pageNo?: number;
+        pageSize?: number;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<TicketList>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {boolean} [arg.items] - Decides that the reponse will contain the
+     *   list of tickets
+     * @param {boolean} [arg.filters] - Decides that the reponse will contain
+     *   the ticket filters
+     * @param {string} [arg.q] - Search through ticket titles and description
+     * @param {string} [arg.status] - Filter tickets on status
+     * @param {PriorityEnum} [arg.priority] - Filter tickets on priority
      * @param {string} [arg.category] - Filter tickets on category
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
      *   page. Default is 12.
-     * @returns {Paginator<LeadPlatformModel.TicketList>}
      * @summary: Gets the list of company level tickets and/or ticket filters depending on query params
      * @description: Gets the list of company level tickets and/or ticket filters
      */
@@ -87,38 +129,44 @@ declare class Lead {
         filters?: boolean;
         q?: string;
         status?: string;
-        priority?: LeadPlatformModel.PriorityEnum;
+        priority?: PriorityEnum;
         category?: string;
         pageSize?: number;
-    }): Paginator<LeadPlatformModel.TicketList>;
+    }): Paginator;
     /**
-     * @param {LeadPlatformValidator.GetTokenForVideoRoomParam} arg - Arg object
-     * @returns {Promise<LeadPlatformModel.GetTokenForVideoRoomResponse>} -
-     *   Success response
-     * @name getTokenForVideoRoom
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.uniqueName - Unique name of video room
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<GetTokenForVideoRoomResponse>} - Success response
      * @summary: Get Token to join a specific Video Room using it's unqiue name
-     * @description: Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getTokenForVideoRoom/).
+     * @description: Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
      */
-    getTokenForVideoRoom({ uniqueName }?: LeadPlatformValidator.GetTokenForVideoRoomParam): Promise<LeadPlatformModel.GetTokenForVideoRoomResponse>;
+    getTokenForVideoRoom({ uniqueName }?: {
+        uniqueName: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<GetTokenForVideoRoomResponse>;
     /**
-     * @param {LeadPlatformValidator.GetVideoParticipantsParam} arg - Arg object
-     * @returns {Promise<LeadPlatformModel.GetParticipantsInsideVideoRoomResponse>}
-     *   - Success response
-     *
-     * @name getVideoParticipants
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.uniqueName - Unique name of Video Room
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<GetParticipantsInsideVideoRoomResponse>} - Success response
      * @summary: Get participants of a specific Video Room using it's unique name
-     * @description: Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getVideoParticipants/).
+     * @description: Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
      */
-    getVideoParticipants({ uniqueName }?: LeadPlatformValidator.GetVideoParticipantsParam): Promise<LeadPlatformModel.GetParticipantsInsideVideoRoomResponse>;
+    getVideoParticipants({ uniqueName }?: {
+        uniqueName: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<GetParticipantsInsideVideoRoomResponse>;
     /**
-     * @param {LeadPlatformValidator.SubmitFeedbackParam} arg - Arg object
-     * @returns {Promise<LeadPlatformModel.TicketFeedback>} - Success response
-     * @name submitFeedback
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - Ticket ID for which feedback is to be submitted
+     * @param {TicketFeedbackPayload} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<TicketFeedback>} - Success response
      * @summary: Submit a response for feeback form against that ticket
-     * @description: Submit a response for feeback form against that ticket - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/submitFeedback/).
+     * @description: Submit a response for feeback form against that ticket
      */
-    submitFeedback({ id, body }?: LeadPlatformValidator.SubmitFeedbackParam): Promise<LeadPlatformModel.TicketFeedback>;
+    submitFeedback({ id, body }?: {
+        id: string;
+        body: TicketFeedbackPayload;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<TicketFeedback>;
 }
-import LeadPlatformValidator = require("./LeadPlatformValidator");
-import LeadPlatformModel = require("./LeadPlatformModel");
 import Paginator = require("../../common/Paginator");

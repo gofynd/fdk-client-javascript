@@ -1,177 +1,66 @@
 const Joi = require("joi");
 
-/**
- * @typedef Attribution
- * @property {string} [campaign_cookie_expiry]
- */
-
-/**
- * @typedef CampaignShortLink
- * @property {string} [medium]
- * @property {string} [source]
- */
-
-/**
- * @typedef ErrorRes
- * @property {string} [message]
- */
-
-/**
- * @typedef QRCodeResp
- * @property {string} [link]
- * @property {string} [svg]
- */
-
-/**
- * @typedef RedirectDevice
- * @property {string} [link]
- * @property {string} [type]
- */
-
-/**
- * @typedef Redirects
- * @property {RedirectDevice} [android]
- * @property {boolean} [force_web]
- * @property {RedirectDevice} [ios]
- * @property {WebRedirect} [web]
- */
-
-/**
- * @typedef ShortLinkReq
- * @property {boolean} [active]
- * @property {Attribution} [attribution]
- * @property {CampaignShortLink} [campaign]
- * @property {number} [count]
- * @property {boolean} [enable_tracking]
- * @property {string} [expire_at]
- * @property {string} [hash]
- * @property {boolean} [personalized] - To create personalized short links.
- * @property {Redirects} [redirects]
- * @property {SocialMediaTags} [social_media_tags]
- * @property {string} title - Give a name to the link.
- * @property {string} url - The web address to shorten.
- */
-
-/**
- * @typedef ShortLinkRes
- * @property {string} [_id]
- * @property {boolean} [active]
- * @property {boolean} [app_redirect]
- * @property {string} [application]
- * @property {Attribution} [attribution]
- * @property {CampaignShortLink} [campaign]
- * @property {number} [count]
- * @property {string} [created_at]
- * @property {string} [created_by]
- * @property {boolean} [enable_tracking]
- * @property {string} [expire_at]
- * @property {string} [fallback]
- * @property {Object} [meta]
- * @property {boolean} [personalized] - To create personalized short links
- * @property {Redirects} [redirects]
- * @property {SocialMediaTags} [social_media_tags]
- * @property {string} [title]
- * @property {string} [updated_at]
- * @property {UrlInfo} [url]
- * @property {string} [user_id]
- */
-
-/**
- * @typedef SocialMediaTags
- * @property {string} [description]
- * @property {string} [image]
- * @property {string} [title]
- */
-
-/**
- * @typedef UrlInfo
- * @property {string} [hash]
- * @property {string} [original]
- * @property {string} [short]
- */
-
-/**
- * @typedef WebRedirect
- * @property {string} [link]
- * @property {string} [type]
- */
-
-class ShareApplicationModel {
-  /** @returns {Attribution} */
+class ShareModel {
   static Attribution() {
     return Joi.object({
       campaign_cookie_expiry: Joi.string().allow(""),
     });
   }
-
-  /** @returns {CampaignShortLink} */
   static CampaignShortLink() {
     return Joi.object({
       medium: Joi.string().allow(""),
       source: Joi.string().allow(""),
     });
   }
-
-  /** @returns {ErrorRes} */
   static ErrorRes() {
     return Joi.object({
       message: Joi.string().allow(""),
     });
   }
-
-  /** @returns {QRCodeResp} */
   static QRCodeResp() {
     return Joi.object({
       link: Joi.string().allow(""),
       svg: Joi.string().allow(""),
     });
   }
-
-  /** @returns {RedirectDevice} */
   static RedirectDevice() {
     return Joi.object({
       link: Joi.string().allow(""),
       type: Joi.string().allow(""),
     });
   }
-
-  /** @returns {Redirects} */
   static Redirects() {
     return Joi.object({
-      android: ShareApplicationModel.RedirectDevice(),
+      android: ShareModel.RedirectDevice(),
       force_web: Joi.boolean(),
-      ios: ShareApplicationModel.RedirectDevice(),
-      web: ShareApplicationModel.WebRedirect(),
+      ios: ShareModel.RedirectDevice(),
+      web: ShareModel.WebRedirect(),
     });
   }
-
-  /** @returns {ShortLinkReq} */
   static ShortLinkReq() {
     return Joi.object({
       active: Joi.boolean(),
-      attribution: ShareApplicationModel.Attribution(),
-      campaign: ShareApplicationModel.CampaignShortLink(),
+      attribution: ShareModel.Attribution(),
+      campaign: ShareModel.CampaignShortLink(),
       count: Joi.number(),
       enable_tracking: Joi.boolean(),
       expire_at: Joi.string().allow(""),
       hash: Joi.string().allow(""),
       personalized: Joi.boolean(),
-      redirects: ShareApplicationModel.Redirects(),
-      social_media_tags: ShareApplicationModel.SocialMediaTags(),
+      redirects: ShareModel.Redirects(),
+      social_media_tags: ShareModel.SocialMediaTags(),
       title: Joi.string().allow("").required(),
       url: Joi.string().allow("").required(),
     });
   }
-
-  /** @returns {ShortLinkRes} */
   static ShortLinkRes() {
     return Joi.object({
       _id: Joi.string().allow(""),
       active: Joi.boolean(),
       app_redirect: Joi.boolean(),
       application: Joi.string().allow(""),
-      attribution: ShareApplicationModel.Attribution(),
-      campaign: ShareApplicationModel.CampaignShortLink(),
+      attribution: ShareModel.Attribution(),
+      campaign: ShareModel.CampaignShortLink(),
       count: Joi.number(),
       created_at: Joi.string().allow(""),
       created_by: Joi.string().allow(""),
@@ -180,16 +69,14 @@ class ShareApplicationModel {
       fallback: Joi.string().allow(""),
       meta: Joi.any(),
       personalized: Joi.boolean(),
-      redirects: ShareApplicationModel.Redirects(),
-      social_media_tags: ShareApplicationModel.SocialMediaTags(),
+      redirects: ShareModel.Redirects(),
+      social_media_tags: ShareModel.SocialMediaTags(),
       title: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
-      url: ShareApplicationModel.UrlInfo(),
+      url: ShareModel.UrlInfo(),
       user_id: Joi.string().allow(""),
     });
   }
-
-  /** @returns {SocialMediaTags} */
   static SocialMediaTags() {
     return Joi.object({
       description: Joi.string().allow(""),
@@ -197,8 +84,6 @@ class ShareApplicationModel {
       title: Joi.string().allow(""),
     });
   }
-
-  /** @returns {UrlInfo} */
   static UrlInfo() {
     return Joi.object({
       hash: Joi.string().allow(""),
@@ -206,8 +91,6 @@ class ShareApplicationModel {
       short: Joi.string().allow(""),
     });
   }
-
-  /** @returns {WebRedirect} */
   static WebRedirect() {
     return Joi.object({
       link: Joi.string().allow(""),
@@ -215,4 +98,4 @@ class ShareApplicationModel {
     });
   }
 }
-module.exports = ShareApplicationModel;
+module.exports = ShareModel;

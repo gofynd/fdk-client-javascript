@@ -1,104 +1,11 @@
 const Joi = require("joi");
 
-const ContentApplicationModel = require("./ContentApplicationModel");
-
-/** @typedef GetAnnouncementsParam */
-
-/**
- * @typedef GetBlogParam
- * @property {string} slug - A short, human-readable, URL-friendly identifier of
- *   a blog. You can get slug value from the endpoint
- *   /service/application/content/v1.0/blogs/.
- * @property {string} [rootId] - ID given to the HTML element
- */
-
-/**
- * @typedef GetBlogsParam
- * @property {number} [pageNo] - The page number to navigate through the given
- *   set of results. Default value is 1.
- * @property {number} [pageSize] - The number of items to retrieve in each page.
- */
-
-/** @typedef GetDataLoadersParam */
-
-/**
- * @typedef GetFaqBySlugParam
- * @property {string} slug - A short, human-readable, URL-friendly identifier of
- *   an FAQ. You can get slug value from the endpoint
- *   /service/application/content/v1.0/faq.
- */
-
-/** @typedef GetFaqCategoriesParam */
-
-/**
- * @typedef GetFaqCategoryBySlugParam
- * @property {string} slug - A short, human-readable, URL-friendly identifier of
- *   an FAQ category. You can get slug value from the endpoint
- *   /service/application/content/v1.0/faq/categories.
- */
-
-/** @typedef GetFaqsParam */
-
-/**
- * @typedef GetFaqsByCategorySlugParam
- * @property {string} slug - A short, human-readable, URL-friendly identifier of
- *   an FAQ category. You can get slug value from the endpoint
- *   /service/application/content/v1.0/faq/categories.
- */
-
-/** @typedef GetLandingPageParam */
-
-/** @typedef GetLegalInformationParam */
-
-/**
- * @typedef GetNavigationsParam
- * @property {number} [pageNo] - The page number to navigate through the given
- *   set of results. Default value is 1.
- * @property {number} [pageSize] - The number of items to retrieve in each page.
- */
-
-/**
- * @typedef GetPageParam
- * @property {string} slug - A short, human-readable, URL-friendly identifier of
- *   a page. You can get slug value from the endpoint
- *   /service/application/content/v2.0/pages/.
- * @property {string} [rootId] - ID given to the HTML element
- */
-
-/**
- * @typedef GetPagesParam
- * @property {number} [pageNo] - The page number to navigate through the given
- *   set of results. Default value is 1.
- * @property {number} [pageSize] - The number of items to retrieve in each page.
- */
-
-/** @typedef GetSEOConfigurationParam */
-
-/**
- * @typedef GetSlideshowParam
- * @property {string} slug - A short, human-readable, URL-friendly identifier of
- *   a slideshow. You can get slug value from the endpoint
- *   /service/application/content/v1.0/slideshow/.
- */
-
-/**
- * @typedef GetSlideshowsParam
- * @property {number} [pageNo] - The page number to navigate through the given
- *   set of results. Default value is 1.
- * @property {number} [pageSize] - The number of items to retrieve in each page.
- */
-
-/** @typedef GetSupportInformationParam */
-
-/** @typedef GetTagsParam */
-
-class ContentApplicationValidator {
-  /** @returns {GetAnnouncementsParam} */
+const ContentModel = require("./ContentApplicationModel");
+class ContentValidator {
   static getAnnouncements() {
     return Joi.object({});
   }
 
-  /** @returns {GetBlogParam} */
   static getBlog() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
@@ -106,7 +13,6 @@ class ContentApplicationValidator {
     }).required();
   }
 
-  /** @returns {GetBlogsParam} */
   static getBlogs() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -114,53 +20,44 @@ class ContentApplicationValidator {
     });
   }
 
-  /** @returns {GetDataLoadersParam} */
   static getDataLoaders() {
     return Joi.object({});
   }
 
-  /** @returns {GetFaqBySlugParam} */
   static getFaqBySlug() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {GetFaqCategoriesParam} */
   static getFaqCategories() {
     return Joi.object({});
   }
 
-  /** @returns {GetFaqCategoryBySlugParam} */
   static getFaqCategoryBySlug() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {GetFaqsParam} */
   static getFaqs() {
     return Joi.object({});
   }
 
-  /** @returns {GetFaqsByCategorySlugParam} */
   static getFaqsByCategorySlug() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {GetLandingPageParam} */
   static getLandingPage() {
     return Joi.object({});
   }
 
-  /** @returns {GetLegalInformationParam} */
   static getLegalInformation() {
     return Joi.object({});
   }
 
-  /** @returns {GetNavigationsParam} */
   static getNavigations() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -168,7 +65,6 @@ class ContentApplicationValidator {
     });
   }
 
-  /** @returns {GetPageParam} */
   static getPage() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
@@ -176,7 +72,6 @@ class ContentApplicationValidator {
     }).required();
   }
 
-  /** @returns {GetPagesParam} */
   static getPages() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -184,19 +79,16 @@ class ContentApplicationValidator {
     });
   }
 
-  /** @returns {GetSEOConfigurationParam} */
   static getSEOConfiguration() {
     return Joi.object({});
   }
 
-  /** @returns {GetSlideshowParam} */
   static getSlideshow() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {GetSlideshowsParam} */
   static getSlideshows() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -204,15 +96,13 @@ class ContentApplicationValidator {
     });
   }
 
-  /** @returns {GetSupportInformationParam} */
   static getSupportInformation() {
     return Joi.object({});
   }
 
-  /** @returns {GetTagsParam} */
   static getTags() {
     return Joi.object({});
   }
 }
 
-module.exports = ContentApplicationValidator;
+module.exports = ContentValidator;

@@ -1,8 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
-const FileStoragePlatformApplicationValidator = require("./FileStoragePlatformApplicationValidator");
-const FileStoragePlatformModel = require("./FileStoragePlatformModel");
+const FileStorageValidator = require("./FileStoragePlatformApplicationValidator");
+const FileStorageModel = require("./FileStoragePlatformModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -15,11 +15,14 @@ class FileStorage {
   }
 
   /**
-   * @param {FileStoragePlatformApplicationValidator.AppCompleteUploadParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<FileStoragePlatformModel.CompleteResponse>} - Success response
-   * @name appCompleteUpload
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.namespace - Segregation of different types of
+   *   files(products, orders, logistics etc), Required for validating the
+   *   data of the file being uploaded, decides where exactly the file will be
+   *   stored inside the storage bucket.
+   * @param {StartResponse} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CompleteResponse>} - Success response
    * @summary: This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
    * @description: Uploads an arbitrarily sized buffer or blob.
    *
@@ -39,16 +42,12 @@ class FileStorage {
    * ### Complete
    * After successfully upload, call `appCompleteUpload` api to complete the upload process.
    * This operation will return the url for the uploaded file.
-   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/appCompleteUpload/).
    */
-  async appCompleteUpload({
-    namespace,
-
-    body,
-  } = {}) {
-    const {
-      error,
-    } = FileStoragePlatformApplicationValidator.appCompleteUpload().validate(
+  async appCompleteUpload(
+    { namespace, body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = FileStorageValidator.appCompleteUpload().validate(
       {
         namespace,
 
@@ -63,7 +62,7 @@ class FileStorage {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = FileStoragePlatformApplicationValidator.appCompleteUpload().validate(
+    } = FileStorageValidator.appCompleteUpload().validate(
       {
         namespace,
 
@@ -74,8 +73,9 @@ class FileStorage {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > FileStorage > appCompleteUpload \n ${warrning}`,
+        message: "Parameter Validation warrnings for appCompleteUpload",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -85,12 +85,19 @@ class FileStorage {
       "post",
       `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/namespaces/${namespace}/upload/complete`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = FileStoragePlatformModel.CompleteResponse().validate(response, {
+    } = FileStorageModel.CompleteResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -98,24 +105,25 @@ class FileStorage {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > FileStorage > appCompleteUpload \n ${res_error}`,
+        message: "Response Validation Warnnings for appCompleteUpload",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {FileStoragePlatformApplicationValidator.AppCopyFilesParam} arg - Arg object
-   * @returns {Promise<FileStoragePlatformModel.BulkUploadResponse>} - Success response
-   * @name appCopyFiles
+   * @param {Object} arg - Arg object.
+   * @param {boolean} [arg.sync] - Sync
+   * @param {BulkRequest} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<BulkUploadResponse>} - Success response
    * @summary: Copy Files
-   * @description: Copy Files - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/appCopyFiles/).
+   * @description: Copy Files
    */
-  async appCopyFiles({ body, sync } = {}) {
-    const {
-      error,
-    } = FileStoragePlatformApplicationValidator.appCopyFiles().validate(
+  async appCopyFiles({ body, sync } = {}, { headers } = { headers: false }) {
+    const { error } = FileStorageValidator.appCopyFiles().validate(
       {
         body,
         sync,
@@ -127,9 +135,7 @@ class FileStorage {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = FileStoragePlatformApplicationValidator.appCopyFiles().validate(
+    const { error: warrning } = FileStorageValidator.appCopyFiles().validate(
       {
         body,
         sync,
@@ -139,8 +145,9 @@ class FileStorage {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > FileStorage > appCopyFiles \n ${warrning}`,
+        message: "Parameter Validation warrnings for appCopyFiles",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -151,12 +158,19 @@ class FileStorage {
       "post",
       `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/uploads/copy`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = FileStoragePlatformModel.BulkUploadResponse().validate(response, {
+    } = FileStorageModel.BulkUploadResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -164,19 +178,23 @@ class FileStorage {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > FileStorage > appCopyFiles \n ${res_error}`,
+        message: "Response Validation Warnnings for appCopyFiles",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {FileStoragePlatformApplicationValidator.AppStartUploadParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<FileStoragePlatformModel.StartResponse>} - Success response
-   * @name appStartUpload
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.namespace - Segregation of different types of
+   *   files(products, orders, logistics etc), Required for validating the
+   *   data of the file being uploaded, decides where exactly the file will be
+   *   stored inside the storage bucket.
+   * @param {StartRequest} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<StartResponse>} - Success response
    * @summary: This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.
    * @description: Uploads an arbitrarily sized buffer or blob.
    *
@@ -196,16 +214,12 @@ class FileStorage {
    * ### Complete
    * After successfully upload, call `appCompleteUpload` api to complete the upload process.
    * This operation will return the url for the uploaded file.
-   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/appStartUpload/).
    */
-  async appStartUpload({
-    namespace,
-
-    body,
-  } = {}) {
-    const {
-      error,
-    } = FileStoragePlatformApplicationValidator.appStartUpload().validate(
+  async appStartUpload(
+    { namespace, body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = FileStorageValidator.appStartUpload().validate(
       {
         namespace,
 
@@ -218,9 +232,7 @@ class FileStorage {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = FileStoragePlatformApplicationValidator.appStartUpload().validate(
+    const { error: warrning } = FileStorageValidator.appStartUpload().validate(
       {
         namespace,
 
@@ -231,8 +243,9 @@ class FileStorage {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > FileStorage > appStartUpload \n ${warrning}`,
+        message: "Parameter Validation warrnings for appStartUpload",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -242,12 +255,19 @@ class FileStorage {
       "post",
       `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/namespaces/${namespace}/upload/start`,
       query_params,
-      body
+      body,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = FileStoragePlatformModel.StartResponse().validate(response, {
+    } = FileStorageModel.StartResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -255,29 +275,32 @@ class FileStorage {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > FileStorage > appStartUpload \n ${res_error}`,
+        message: "Response Validation Warnnings for appStartUpload",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {FileStoragePlatformApplicationValidator.AppbrowseParam} arg - Arg object
-   * @returns {Promise<FileStoragePlatformModel.BrowseResponse>} - Success response
-   * @name appbrowse
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.namespace - Segregation of different types of
+   *   files(products, orders, logistics etc), Required for validating the
+   *   data of the file being uploaded, decides where exactly the file will be
+   *   stored inside the storage bucket.
+   * @param {number} [arg.page] - Page no
+   * @param {number} [arg.limit] - Limit
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<BrowseResponse>} - Success response
    * @summary: Browse Files
-   * @description: Browse Files - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/appbrowse/).
+   * @description: Browse Files
    */
-  async appbrowse({
-    namespace,
-
-    page,
-    limit,
-  } = {}) {
-    const {
-      error,
-    } = FileStoragePlatformApplicationValidator.appbrowse().validate(
+  async appbrowse(
+    { namespace, page, limit } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = FileStorageValidator.appbrowse().validate(
       {
         namespace,
 
@@ -291,9 +314,7 @@ class FileStorage {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = FileStoragePlatformApplicationValidator.appbrowse().validate(
+    const { error: warrning } = FileStorageValidator.appbrowse().validate(
       {
         namespace,
 
@@ -305,8 +326,9 @@ class FileStorage {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > FileStorage > appbrowse \n ${warrning}`,
+        message: "Parameter Validation warrnings for appbrowse",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -318,12 +340,19 @@ class FileStorage {
       "get",
       `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/namespaces/${namespace}/browse`,
       query_params,
-      undefined
+      undefined,
+      undefined,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = FileStoragePlatformModel.BrowseResponse().validate(response, {
+    } = FileStorageModel.BrowseResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -331,8 +360,9 @@ class FileStorage {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > FileStorage > appbrowse \n ${res_error}`,
+        message: "Response Validation Warnnings for appbrowse",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

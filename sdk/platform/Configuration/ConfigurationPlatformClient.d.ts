@@ -3,257 +3,305 @@ declare class Configuration {
     constructor(config: any);
     config: any;
     /**
-     * @param {ConfigurationPlatformValidator.CreateApplicationParam} arg - Arg object
-     * @returns {Promise<ConfigurationPlatformModel.CreateAppResponse>} - Success response
-     * @name createApplication
+     * @param {Object} arg - Arg object.
+     * @param {CreateApplicationRequest} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CreateAppResponse>} - Success response
      * @summary: Create a new sales channel
-     * @description: Applications are sales channel websites which can be configured, personalized and customized. Use this API to create a new application in the current company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/createApplication/).
+     * @description: Applications are sales channel websites which can be configured, personalized and customized. Use this API to create a new application in the current company.
      */
-    createApplication({ body }?: ConfigurationPlatformValidator.CreateApplicationParam): Promise<ConfigurationPlatformModel.CreateAppResponse>;
+    createApplication({ body }?: {
+        body: CreateApplicationRequest;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<CreateAppResponse>;
     /**
-     * @param {ConfigurationPlatformValidator.GetApplicationsParam} arg - Arg object
-     * @returns {Promise<ConfigurationPlatformModel.ApplicationsResponse>} -
-     *   Success response
-     * @name getApplications
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageNo] -
+     * @param {number} [arg.pageSize] -
+     * @param {string} [arg.q] - Search param by name or domain
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ApplicationsResponse>} - Success response
      * @summary: Get list of registered sales channels under company
-     * @description: Applications are sales channel websites which can be configured, personalized and customised. Use this API to fetch a list of applications created within a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getApplications/).
+     * @description: Applications are sales channel websites which can be configured, personalized and customised. Use this API to fetch a list of applications created within a company.
      */
-    getApplications({ pageNo, pageSize, q }?: ConfigurationPlatformValidator.GetApplicationsParam): Promise<ConfigurationPlatformModel.ApplicationsResponse>;
+    getApplications({ pageNo, pageSize, q }?: {
+        pageNo?: number;
+        pageSize?: number;
+        q?: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ApplicationsResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] -
      * @param {string} [arg.q] - Search param by name or domain
-     * @returns {Paginator<ConfigurationPlatformModel.ApplicationsResponse>}
      * @summary: Get list of registered sales channels under company
      * @description: Applications are sales channel websites which can be configured, personalized and customised. Use this API to fetch a list of applications created within a company.
      */
     getApplicationsPaginator({ pageSize, q }?: {
         pageSize?: number;
         q?: string;
-    }): Paginator<ConfigurationPlatformModel.ApplicationsResponse>;
-    /**
-     * @param {ConfigurationPlatformValidator.GetAvailableOptInsParam} arg - Arg object
-     * @returns {Promise<ConfigurationPlatformModel.GetIntegrationsOptInsResponse>}
-     *   - Success response
-     *
-     * @name getAvailableOptIns
-     * @summary: Get all available integration opt-ins
-     * @description: Use this API to get a list of all available integrations in a company - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAvailableOptIns/).
-     */
-    getAvailableOptIns({ pageNo, pageSize }?: ConfigurationPlatformValidator.GetAvailableOptInsParam): Promise<ConfigurationPlatformModel.GetIntegrationsOptInsResponse>;
+    }): Paginator;
     /**
      * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageNo] - The page number to navigate through the
+     *   given set of results. Default value is 1.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each
      *   page. Default value is 10.
-     * @returns {Paginator<ConfigurationPlatformModel.GetIntegrationsOptInsResponse>}
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<GetIntegrationsOptInsResponse>} - Success response
      * @summary: Get all available integration opt-ins
      * @description: Use this API to get a list of all available integrations in a company
      */
-    getAvailableOptInsPaginator({ pageSize }?: {
+    getAvailableOptIns({ pageNo, pageSize }?: {
+        pageNo?: number;
         pageSize?: number;
-    }): Paginator<ConfigurationPlatformModel.GetIntegrationsOptInsResponse>;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<GetIntegrationsOptInsResponse>;
     /**
-     * @param {ConfigurationPlatformValidator.GetBrandsByCompanyParam} arg - Arg object
-     * @returns {Promise<ConfigurationPlatformModel.BrandsByCompanyResponse>} -
-     *   Success response
-     * @name getBrandsByCompany
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.q] - Search text for brand name
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<BrandsByCompanyResponse>} - Success response
      * @summary: Get brands by company.
-     * @description: Use this API to get all the brands added in a company. Get all the brand names, along with URLs of their logo, banner, and portrait image. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getBrandsByCompany/).
+     * @description: Use this API to get all the brands added in a company. Get all the brand names, along with URLs of their logo, banner, and portrait image.
      */
-    getBrandsByCompany({ q }?: ConfigurationPlatformValidator.GetBrandsByCompanyParam): Promise<ConfigurationPlatformModel.BrandsByCompanyResponse>;
+    getBrandsByCompany({ q }?: {
+        q?: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<BrandsByCompanyResponse>;
     /**
-     * @param {ConfigurationPlatformValidator.GetCompanyByBrandsParam} arg - Arg object
-     * @returns {Promise<ConfigurationPlatformModel.CompanyByBrandsResponse>} -
-     *   Success response
-     * @name getCompanyByBrands
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageNo] - The page number to navigate through the
+     *   given set of results. Default value is 1.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each
+     *   page. Default value is 10.
+     * @param {CompanyByBrandsRequest} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CompanyByBrandsResponse>} - Success response
      * @summary: Get company by brand uids
-     * @description: Use this API to get a list of companies by the brands they deal - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getCompanyByBrands/).
+     * @description: Use this API to get a list of companies by the brands they deal
      */
-    getCompanyByBrands({ body, pageNo, pageSize }?: ConfigurationPlatformValidator.GetCompanyByBrandsParam): Promise<ConfigurationPlatformModel.CompanyByBrandsResponse>;
+    getCompanyByBrands({ body, pageNo, pageSize }?: {
+        pageNo?: number;
+        pageSize?: number;
+        body: CompanyByBrandsRequest;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<CompanyByBrandsResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each
      *   page. Default value is 10.
-     * @param {ConfigurationPlatformModel.CompanyByBrandsRequest} arg.body
-     * @returns {Paginator<ConfigurationPlatformModel.CompanyByBrandsResponse>}
+     * @param {CompanyByBrandsRequest} arg.body
      * @summary: Get company by brand uids
      * @description: Use this API to get a list of companies by the brands they deal
      */
     getCompanyByBrandsPaginator({ pageSize, body }?: {
         pageSize?: number;
-        body: ConfigurationPlatformModel.CompanyByBrandsRequest;
-    }): Paginator<ConfigurationPlatformModel.CompanyByBrandsResponse>;
+        body: CompanyByBrandsRequest;
+    }): Paginator;
     /**
-     * @param {ConfigurationPlatformValidator.GetCurrenciesParam} arg - Arg object
-     * @returns {Promise<ConfigurationPlatformModel.CurrenciesResponse>} -
-     *   Success response
-     * @name getCurrencies
+     * @param {Object} arg - Arg object.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CurrenciesResponse>} - Success response
      * @summary: Get all currencies
-     * @description: Use this API to get a list of currencies allowed in the company. Moreover, get the name, code, symbol, and the decimal digits of the currencies. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getCurrencies/).
+     * @description: Use this API to get a list of currencies allowed in the company. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
      */
-    getCurrencies({}?: any): Promise<ConfigurationPlatformModel.CurrenciesResponse>;
+    getCurrencies({ headers }?: any): Promise<CurrenciesResponse>;
     /**
-     * @param {ConfigurationPlatformValidator.GetDomainAvailibilityParam} arg - Arg object
-     * @returns {Promise<ConfigurationPlatformModel.DomainSuggestionsResponse>}
-     *   - Success response
-     *
-     * @name getDomainAvailibility
+     * @param {Object} arg - Arg object.
+     * @param {DomainSuggestionsRequest} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<DomainSuggestionsResponse>} - Success response
      * @summary: Check domain availability before linking to application
-     * @description: Use this API to check the domain availability before linking it to application. Also sends domain suggestions that are similar to the queried domain. Note - Custom domain search is currently powered by GoDaddy provider. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getDomainAvailibility/).
+     * @description: Use this API to check the domain availability before linking it to application. Also sends domain suggestions that are similar to the queried domain. Note - Custom domain search is currently powered by GoDaddy provider.
      */
-    getDomainAvailibility({ body }?: ConfigurationPlatformValidator.GetDomainAvailibilityParam): Promise<ConfigurationPlatformModel.DomainSuggestionsResponse>;
+    getDomainAvailibility({ body }?: {
+        body: DomainSuggestionsRequest;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<DomainSuggestionsResponse>;
     /**
-     * @param {ConfigurationPlatformValidator.GetIntegrationByIdParam} arg - Arg object
-     * @returns {Promise<ConfigurationPlatformModel.Integration>} - Success response
-     * @name getIntegrationById
+     * @param {Object} arg - Arg object.
+     * @param {number} arg.id - Integration id
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<Integration>} - Success response
      * @summary: Get integration data by its ID
-     * @description: Use this API to fetch the details of an integration (such as Ginesys, SAP, etc.) using its ID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getIntegrationById/).
+     * @description: Use this API to fetch the details of an integration (such as Ginesys, SAP, etc.) using its ID
      */
-    getIntegrationById({ id }?: ConfigurationPlatformValidator.GetIntegrationByIdParam): Promise<ConfigurationPlatformModel.Integration>;
+    getIntegrationById({ id }?: {
+        id: number;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<Integration>;
     /**
-     * @param {ConfigurationPlatformValidator.GetIntegrationByLevelIdParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<ConfigurationPlatformModel.IntegrationLevel>} - Success response
-     * @name getIntegrationByLevelId
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - Integration ID (24-digit Mongo Object ID)
+     * @param {string} arg.level - Integration level, `store` or `company`
+     * @param {number} arg.uid - Unique identifier of integration level (store/company)
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<IntegrationLevel>} - Success response
      * @summary: Get integration config at a particular level (store/company)
-     * @description: Use this API to get the configuration details of an integration such as token, permissions, level, opted value, uid, meta, location ID, etc. at a particular level (store/company). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getIntegrationByLevelId/).
+     * @description: Use this API to get the configuration details of an integration such as token, permissions, level, opted value, uid, meta, location ID, etc. at a particular level (store/company).
      */
-    getIntegrationByLevelId({ id, level, uid }?: ConfigurationPlatformValidator.GetIntegrationByLevelIdParam): Promise<ConfigurationPlatformModel.IntegrationLevel>;
+    getIntegrationByLevelId({ id, level, uid }?: {
+        id: string;
+        level: string;
+        uid: number;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<IntegrationLevel>;
     /**
-     * @param {ConfigurationPlatformValidator.GetIntegrationLevelConfigParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<ConfigurationPlatformModel.IntegrationConfigResponse>}
-     *   - Success response
-     *
-     * @name getIntegrationLevelConfig
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - Integration ID (24-digit Mongo Object ID)
+     * @param {string} arg.level - Store or company
+     * @param {boolean} [arg.opted] - True means get the opted stores. False
+     *   means get the stores that aren't opted.
+     * @param {boolean} [arg.checkPermission] - Filter on if permissions (for
+     *   inventory/order) are present
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<IntegrationConfigResponse>} - Success response
      * @summary: Get integration level config
-     * @description: Use this API to get the configuration details of an integration such as token, permissions, level, opted value, uid, meta, location ID, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getIntegrationLevelConfig/).
+     * @description: Use this API to get the configuration details of an integration such as token, permissions, level, opted value, uid, meta, location ID, etc.
      */
-    getIntegrationLevelConfig({ id, level, opted, checkPermission }?: ConfigurationPlatformValidator.GetIntegrationLevelConfigParam): Promise<ConfigurationPlatformModel.IntegrationConfigResponse>;
+    getIntegrationLevelConfig({ id, level, opted, checkPermission }?: {
+        id: string;
+        level: string;
+        opted?: boolean;
+        checkPermission?: boolean;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<IntegrationConfigResponse>;
     /**
-     * @param {ConfigurationPlatformValidator.GetLevelActiveIntegrationsParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<ConfigurationPlatformModel.OptedStoreIntegration>} -
-     *   Success response
-     * @name getLevelActiveIntegrations
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - Integration ID (24-digit Mongo Object ID)
+     * @param {string} arg.level - Integration level, `store` or `company`
+     * @param {number} arg.uid - Unique identifier of integration level (store/company)
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OptedStoreIntegration>} - Success response
      * @summary: Check active integration at store
-     * @description: Use this API to check if a store is already opted-in for any integration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getLevelActiveIntegrations/).
+     * @description: Use this API to check if a store is already opted-in for any integration
      */
-    getLevelActiveIntegrations({ id, level, uid }?: ConfigurationPlatformValidator.GetLevelActiveIntegrationsParam): Promise<ConfigurationPlatformModel.OptedStoreIntegration>;
+    getLevelActiveIntegrations({ id, level, uid }?: {
+        id: string;
+        level: string;
+        uid: number;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<OptedStoreIntegration>;
     /**
-     * @param {ConfigurationPlatformValidator.GetOtherSellerApplicationByIdParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<ConfigurationPlatformModel.OptedApplicationResponse>}
-     *   - Success response
-     *
-     * @name getOtherSellerApplicationById
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - Application Id
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OptedApplicationResponse>} - Success response
      * @summary: Get other seller's sales channel by ID
-     * @description: Use application ID to fetch details of a seller application that was not created within the current company. but has opted for the current company's inventory - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getOtherSellerApplicationById/).
+     * @description: Use application ID to fetch details of a seller application that was not created within the current company. but has opted for the current company's inventory
      */
-    getOtherSellerApplicationById({ id }?: ConfigurationPlatformValidator.GetOtherSellerApplicationByIdParam): Promise<ConfigurationPlatformModel.OptedApplicationResponse>;
+    getOtherSellerApplicationById({ id }?: {
+        id: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<OptedApplicationResponse>;
     /**
-     * @param {ConfigurationPlatformValidator.GetOtherSellerApplicationsParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<ConfigurationPlatformModel.OtherSellerApplications>} -
-     *   Success response
-     * @name getOtherSellerApplications
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageNo] - The page number to navigate through the
+     *   given set of results. Default value is 1.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each
+     *   page. Default value is 10.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OtherSellerApplications>} - Success response
      * @summary: Get other seller sales channels
-     * @description: Use this API to fetch all other seller applications that were not created within the current company. but have opted for the current company's inventory - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getOtherSellerApplications/).
+     * @description: Use this API to fetch all other seller applications that were not created within the current company. but have opted for the current company's inventory
      */
-    getOtherSellerApplications({ pageNo, pageSize }?: ConfigurationPlatformValidator.GetOtherSellerApplicationsParam): Promise<ConfigurationPlatformModel.OtherSellerApplications>;
+    getOtherSellerApplications({ pageNo, pageSize }?: {
+        pageNo?: number;
+        pageSize?: number;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<OtherSellerApplications>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each
      *   page. Default value is 10.
-     * @returns {Paginator<ConfigurationPlatformModel.OtherSellerApplications>}
      * @summary: Get other seller sales channels
      * @description: Use this API to fetch all other seller applications that were not created within the current company. but have opted for the current company's inventory
      */
     getOtherSellerApplicationsPaginator({ pageSize }?: {
         pageSize?: number;
-    }): Paginator<ConfigurationPlatformModel.OtherSellerApplications>;
-    /**
-     * @param {ConfigurationPlatformValidator.GetSelectedOptInsParam} arg - Arg object
-     * @returns {Promise<ConfigurationPlatformModel.GetIntegrationsOptInsResponse>}
-     *   - Success response
-     *
-     * @name getSelectedOptIns
-     * @summary: Get company/store level integration opt-ins
-     * @description: Use this API to get the store-level/company-level integrations configured in a company - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getSelectedOptIns/).
-     */
-    getSelectedOptIns({ level, uid, pageNo, pageSize }?: ConfigurationPlatformValidator.GetSelectedOptInsParam): Promise<ConfigurationPlatformModel.GetIntegrationsOptInsResponse>;
+    }): Paginator;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.level - Store or company
      * @param {number} arg.uid - Unique identifier of the selected integration level.
+     * @param {number} [arg.pageNo] - The page number to navigate through the
+     *   given set of results. Default value is 1.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each
      *   page. Default value is 10.
-     * @returns {Paginator<ConfigurationPlatformModel.GetIntegrationsOptInsResponse>}
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<GetIntegrationsOptInsResponse>} - Success response
      * @summary: Get company/store level integration opt-ins
      * @description: Use this API to get the store-level/company-level integrations configured in a company
      */
-    getSelectedOptInsPaginator({ level, uid, pageSize }?: {
+    getSelectedOptIns({ level, uid, pageNo, pageSize }?: {
         level: string;
         uid: number;
+        pageNo?: number;
         pageSize?: number;
-    }): Paginator<ConfigurationPlatformModel.GetIntegrationsOptInsResponse>;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<GetIntegrationsOptInsResponse>;
     /**
-     * @param {ConfigurationPlatformValidator.GetStoreByBrandsParam} arg - Arg object
-     * @returns {Promise<ConfigurationPlatformModel.StoreByBrandsResponse>} -
-     *   Success response
-     * @name getStoreByBrands
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageNo] - The page number to navigate through the
+     *   given set of results. Default value is 1.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each
+     *   page. Default value is 10.
+     * @param {StoreByBrandsRequest} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<StoreByBrandsResponse>} - Success response
      * @summary: Get stores by brand uids for the current company
-     * @description: Use this API to get a list of selling locations (stores) by the brands they deal. Store has information about store name, store type, store code, store address, and company detail. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getStoreByBrands/).
+     * @description: Use this API to get a list of selling locations (stores) by the brands they deal. Store has information about store name, store type, store code, store address, and company detail.
      */
-    getStoreByBrands({ body, pageNo, pageSize }?: ConfigurationPlatformValidator.GetStoreByBrandsParam): Promise<ConfigurationPlatformModel.StoreByBrandsResponse>;
+    getStoreByBrands({ body, pageNo, pageSize }?: {
+        pageNo?: number;
+        pageSize?: number;
+        body: StoreByBrandsRequest;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<StoreByBrandsResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each
      *   page. Default value is 10.
-     * @param {ConfigurationPlatformModel.StoreByBrandsRequest} arg.body
-     * @returns {Paginator<ConfigurationPlatformModel.StoreByBrandsResponse>}
+     * @param {StoreByBrandsRequest} arg.body
      * @summary: Get stores by brand uids for the current company
      * @description: Use this API to get a list of selling locations (stores) by the brands they deal. Store has information about store name, store type, store code, store address, and company detail.
      */
     getStoreByBrandsPaginator({ pageSize, body }?: {
         pageSize?: number;
-        body: ConfigurationPlatformModel.StoreByBrandsRequest;
-    }): Paginator<ConfigurationPlatformModel.StoreByBrandsResponse>;
+        body: StoreByBrandsRequest;
+    }): Paginator;
     /**
-     * @param {ConfigurationPlatformValidator.OptOutFromApplicationParam} arg - Arg object
-     * @returns {Promise<ConfigurationPlatformModel.SuccessMessageResponse>} -
-     *   Success response
-     * @name optOutFromApplication
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - Alphanumeric ID allotted to an application
+     *   (sales channel website) created within a business account.
+     * @param {OptOutInventory} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<SuccessMessageResponse>} - Success response
      * @summary: Opt-out company or store from other seller application
-     * @description: Use this API to opt-out your company or store from other seller application. The specific seller application will no longer fetch inventory from your company or store. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/optOutFromApplication/).
+     * @description: Use this API to opt-out your company or store from other seller application. The specific seller application will no longer fetch inventory from your company or store.
      */
-    optOutFromApplication({ id, body }?: ConfigurationPlatformValidator.OptOutFromApplicationParam): Promise<ConfigurationPlatformModel.SuccessMessageResponse>;
+    optOutFromApplication({ id, body }?: {
+        id: string;
+        body: OptOutInventory;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<SuccessMessageResponse>;
     /**
-     * @param {ConfigurationPlatformValidator.UpdateLevelIntegrationParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<ConfigurationPlatformModel.IntegrationLevel>} - Success response
-     * @name updateLevelIntegration
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - Integration ID (24-digit Mongo Object ID)
+     * @param {string} arg.level - Integration level, `store` or `company`
+     * @param {UpdateIntegrationLevelRequest} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<IntegrationLevel>} - Success response
      * @summary: Update a store level integration you opted
-     * @description: Use this API to update the configuration details of an integration such as token, permissions, level, opted value, uid, meta, location ID, etc. at a particular level (store/company). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateLevelIntegration/).
+     * @description: Use this API to update the configuration details of an integration such as token, permissions, level, opted value, uid, meta, location ID, etc. at a particular level (store/company).
      */
-    updateLevelIntegration({ id, level, body }?: ConfigurationPlatformValidator.UpdateLevelIntegrationParam): Promise<ConfigurationPlatformModel.IntegrationLevel>;
+    updateLevelIntegration({ id, level, body }?: {
+        id: string;
+        level: string;
+        body: UpdateIntegrationLevelRequest;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<IntegrationLevel>;
     /**
-     * @param {ConfigurationPlatformValidator.UpdateLevelUidIntegrationParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<ConfigurationPlatformModel.IntegrationLevel>} - Success response
-     * @name updateLevelUidIntegration
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - Integration ID (24-digit Mongo Object ID)
+     * @param {string} arg.level - Integration level, `store` or `company`
+     * @param {number} arg.uid - Unique identifier of integration level (store/company)
+     * @param {IntegrationLevel} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<IntegrationLevel>} - Success response
      * @summary: Update integration level by store UID
-     * @description: Update the level of integration by store UID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateLevelUidIntegration/).
+     * @description: Update the level of integration by store UID
      */
-    updateLevelUidIntegration({ id, level, uid, body }?: ConfigurationPlatformValidator.UpdateLevelUidIntegrationParam): Promise<ConfigurationPlatformModel.IntegrationLevel>;
+    updateLevelUidIntegration({ id, level, uid, body }?: {
+        id: string;
+        level: string;
+        uid: number;
+        body: IntegrationLevel;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<IntegrationLevel>;
 }
-import ConfigurationPlatformValidator = require("./ConfigurationPlatformValidator");
-import ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
 import Paginator = require("../../common/Paginator");

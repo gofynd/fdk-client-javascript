@@ -34,13 +34,7 @@ const User = require("./User/UserApplicationClient");
 
 const { FDKClientValidationError } = require("../common/FDKError");
 
-/**
- * Represents the client for the application.
- *
- * @class
- */
 class ApplicationClient {
-  /** @param {import("./ApplicationConfig")} config - The application configuration. */
   constructor(config) {
     this.config = config;
 
@@ -77,23 +71,10 @@ class ApplicationClient {
     this.user = new User(config);
   }
 
-  /**
-   * Sets the cookie for the application.
-   *
-   * @param {string} cookie - The cookie to set, This cookie will be included
-   *   in the headers of every subsequent request.
-   */
   setCookie(cookie) {
     this.config.cookie = cookie;
   }
 
-  /**
-   * Sets the location details for the application.
-   *
-   * @param {import("./ApplicationModels").LocationObject} locationDetails -
-   *   The location details to set.
-   * @throws {FDKClientValidationError} When the location details validation fails.
-   */
   setLocationDetails(locationDetails) {
     const {
       error,
@@ -110,12 +91,6 @@ class ApplicationClient {
     };
   }
 
-  /**
-   * Sets the currency code in ApplicationConfig.
-   *
-   * @param {string} currencyCode - The currency code to set.
-   * @throws {FDKClientValidationError} When the provided currency code is not a string.
-   */
   setCurrencyCode(currencyCode) {
     if (typeof currencyCode !== "string") {
       throw new FDKClientValidationError("Currency code should be string only");
@@ -123,12 +98,6 @@ class ApplicationClient {
     this.config.currencyCode = currencyCode;
   }
 
-  /**
-   * Sets the extra headers for the application.
-   *
-   * @param {object} header - The header object to set.
-   * @throws {FDKClientValidationError} When the provided header is not an object.
-   */
   setExtraHeaders(header) {
     if (typeof header === "object") {
       this.config.extraHeaders.push(header);

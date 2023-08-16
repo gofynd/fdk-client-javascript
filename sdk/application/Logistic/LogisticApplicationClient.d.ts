@@ -12,48 +12,55 @@ declare class Logistic {
     _urls: {};
     updateUrls(urls: any): void;
     /**
-     * @param {LogisticApplicationValidator.GetAllCountriesParam} arg - Arg object.
-     * @returns {Promise<LogisticApplicationModel.CountryListResponse>} - Success response
-     * @name getAllCountries
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<CountryListResponse>} - Success response
      * @summary: Get Country List
-     * @description: Get all countries - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getAllCountries/).
+     * @description: Get all countries
      */
-    getAllCountries({}?: any): Promise<LogisticApplicationModel.CountryListResponse>;
+    getAllCountries({ headers }?: import("../ApplicationAPIClient").Options): Promise<CountryListResponse>;
     /**
-     * @param {LogisticApplicationValidator.GetOptimalLocationsParam} arg - Arg object.
-     * @returns {Promise<LogisticApplicationModel.ReAssignStoreResponse>} -
-     *   Success response
-     * @name getOptimalLocations
+     * @param {Object} arg - Arg object.
+     * @param {ReAssignStoreRequest} arg.body
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<ReAssignStoreResponse>} - Success response
      * @summary: GET zone from the Pincode.
-     * @description: This API returns zone from the Pincode View. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getOptimalLocations/).
+     * @description: This API returns zone from the Pincode View.
      */
-    getOptimalLocations({ body }?: LogisticApplicationValidator.GetOptimalLocationsParam): Promise<LogisticApplicationModel.ReAssignStoreResponse>;
+    getOptimalLocations({ body }?: {
+        body: ReAssignStoreRequest;
+    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<ReAssignStoreResponse>;
     /**
-     * @param {LogisticApplicationValidator.GetPincodeCityParam} arg - Arg object.
-     * @returns {Promise<LogisticApplicationModel.PincodeApiResponse>} - Success response
-     * @name getPincodeCity
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.pincode - A `pincode` contains a specific address of
+     *   a location.
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<PincodeApiResponse>} - Success response
      * @summary: Get Pincode API
-     * @description: Get pincode data - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getPincodeCity/).
+     * @description: Get pincode data
      */
-    getPincodeCity({ pincode }?: LogisticApplicationValidator.GetPincodeCityParam): Promise<LogisticApplicationModel.PincodeApiResponse>;
+    getPincodeCity({ pincode }?: {
+        pincode: string;
+    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<PincodeApiResponse>;
     /**
-     * @param {LogisticApplicationValidator.GetPincodeZonesParam} arg - Arg object.
-     * @returns {Promise<LogisticApplicationModel.GetZoneFromPincodeViewResponse>}
-     *   - Success response
-     *
-     * @name getPincodeZones
+     * @param {Object} arg - Arg object.
+     * @param {GetZoneFromPincodeViewRequest} arg.body
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<GetZoneFromPincodeViewResponse>} - Success response
      * @summary: GET zone from the Pincode.
-     * @description: This API returns zone from the Pincode View. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getPincodeZones/).
+     * @description: This API returns zone from the Pincode View.
      */
-    getPincodeZones({ body }?: LogisticApplicationValidator.GetPincodeZonesParam): Promise<LogisticApplicationModel.GetZoneFromPincodeViewResponse>;
+    getPincodeZones({ body }?: {
+        body: GetZoneFromPincodeViewRequest;
+    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<GetZoneFromPincodeViewResponse>;
     /**
-     * @param {LogisticApplicationValidator.GetTatProductParam} arg - Arg object.
-     * @returns {Promise<LogisticApplicationModel.TATViewResponse>} - Success response
-     * @name getTatProduct
+     * @param {Object} arg - Arg object.
+     * @param {TATViewRequest} arg.body
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<TATViewResponse>} - Success response
      * @summary: Get TAT API
-     * @description: Get TAT data - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getTatProduct/).
+     * @description: Get TAT data
      */
-    getTatProduct({ body }?: LogisticApplicationValidator.GetTatProductParam): Promise<LogisticApplicationModel.TATViewResponse>;
+    getTatProduct({ body }?: {
+        body: TATViewRequest;
+    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<TATViewResponse>;
 }
-import LogisticApplicationModel = require("./LogisticApplicationModel");
-import LogisticApplicationValidator = require("./LogisticApplicationValidator");

@@ -1,110 +1,37 @@
 const Joi = require("joi");
 
-const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
-
-/**
- * @typedef AddAppDpParam
- * @property {ServiceabilityPlatformModel.ApplicationCompanyDpViewRequest} body
- */
-
-/**
- * @typedef DeleteAppDpParam
- * @property {number} courierPartnerId - A `courier_partner_id` is a unique
- *   identifier of a particular delivery partner.
- */
-
-/** @typedef GetApplicationServiceabilityParam */
-
-/** @typedef GetDpApplicationRulesParam */
-
-/** @typedef GetSelfShipParam */
-
-/**
- * @typedef GetZoneFromPincodeViewParam
- * @property {ServiceabilityPlatformModel.GetZoneFromPincodeViewRequest} body
- */
-
-/**
- * @typedef GetZonesFromApplicationIdViewParam
- * @property {number} [pageNo] - Index of the item to start returning with
- * @property {number} [pageSize] - Determines the items to be displayed in a page
- * @property {string[]} [zoneId] - List of zones to query for
- * @property {string} [q] - Search with name as a free text
- */
-
-/**
- * @typedef UpdateApplicationServiceabilityParam
- * @property {ServiceabilityPlatformModel.ServiceabilityPayloadSchema} body
- */
-
-/**
- * @typedef UpdatePincodeAuditHistoryParam
- * @property {ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryRequest} body
- */
-
-/**
- * @typedef UpdatePincodeBulkViewParam
- * @property {ServiceabilityPlatformModel.PincodeMopBulkData} body
- */
-
-/**
- * @typedef UpdatePincodeCoDListingParam
- * @property {ServiceabilityPlatformModel.PincodeCodStatusListingRequest} body
- */
-
-/**
- * @typedef UpdatePincodeMopViewParam
- * @property {ServiceabilityPlatformModel.PincodeMopData} body
- */
-
-/**
- * @typedef UpdateSelfShipParam
- * @property {ServiceabilityPlatformModel.SelfShipResponse} body
- */
-
-/**
- * @typedef UpsertDpApplicationRulesParam
- * @property {ServiceabilityPlatformModel.DPApplicationRuleRequest} body
- */
-
-class ServiceabilityPlatformApplicationValidator {
-  /** @returns {AddAppDpParam} */
+const ServiceabilityModel = require("./ServiceabilityPlatformModel");
+class ServiceabilityValidator {
   static addAppDp() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.ApplicationCompanyDpViewRequest().required(),
+      body: ServiceabilityModel.ApplicationCompanyDpViewRequest().required(),
     }).required();
   }
 
-  /** @returns {DeleteAppDpParam} */
   static deleteAppDp() {
     return Joi.object({
       courierPartnerId: Joi.number().required(),
     }).required();
   }
 
-  /** @returns {GetApplicationServiceabilityParam} */
   static getApplicationServiceability() {
     return Joi.object({}).required();
   }
 
-  /** @returns {GetDpApplicationRulesParam} */
   static getDpApplicationRules() {
     return Joi.object({}).required();
   }
 
-  /** @returns {GetSelfShipParam} */
   static getSelfShip() {
     return Joi.object({}).required();
   }
 
-  /** @returns {GetZoneFromPincodeViewParam} */
   static getZoneFromPincodeView() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.GetZoneFromPincodeViewRequest().required(),
+      body: ServiceabilityModel.GetZoneFromPincodeViewRequest().required(),
     }).required();
   }
 
-  /** @returns {GetZonesFromApplicationIdViewParam} */
   static getZonesFromApplicationIdView() {
     return Joi.object({
       pageNo: Joi.number(),
@@ -114,54 +41,47 @@ class ServiceabilityPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {UpdateApplicationServiceabilityParam} */
   static updateApplicationServiceability() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.ServiceabilityPayloadSchema().required(),
+      body: ServiceabilityModel.ServiceabilityPayloadSchema().required(),
     }).required();
   }
 
-  /** @returns {UpdatePincodeAuditHistoryParam} */
   static updatePincodeAuditHistory() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryRequest().required(),
+      body: ServiceabilityModel.PincodeMopUpdateAuditHistoryRequest().required(),
     }).required();
   }
 
-  /** @returns {UpdatePincodeBulkViewParam} */
   static updatePincodeBulkView() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.PincodeMopBulkData().required(),
+      body: ServiceabilityModel.PincodeMopBulkData().required(),
     }).required();
   }
 
-  /** @returns {UpdatePincodeCoDListingParam} */
   static updatePincodeCoDListing() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.PincodeCodStatusListingRequest().required(),
+      body: ServiceabilityModel.PincodeCodStatusListingRequest().required(),
     }).required();
   }
 
-  /** @returns {UpdatePincodeMopViewParam} */
   static updatePincodeMopView() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.PincodeMopData().required(),
+      body: ServiceabilityModel.PincodeMopData().required(),
     }).required();
   }
 
-  /** @returns {UpdateSelfShipParam} */
   static updateSelfShip() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.SelfShipResponse().required(),
+      body: ServiceabilityModel.SelfShipResponse().required(),
     }).required();
   }
 
-  /** @returns {UpsertDpApplicationRulesParam} */
   static upsertDpApplicationRules() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.DPApplicationRuleRequest().required(),
+      body: ServiceabilityModel.DPApplicationRuleRequest().required(),
     }).required();
   }
 }
 
-module.exports = ServiceabilityPlatformApplicationValidator;
+module.exports = ServiceabilityValidator;

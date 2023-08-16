@@ -14,62 +14,80 @@ declare class Share {
     _urls: {};
     updateUrls(urls: any): void;
     /**
-     * @param {ShareApplicationValidator.CreateShortLinkParam} arg - Arg object.
-     * @returns {Promise<ShareApplicationModel.ShortLinkRes>} - Success response
-     * @name createShortLink
+     * @param {Object} arg - Arg object.
+     * @param {ShortLinkReq} arg.body
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<ShortLinkRes>} - Success response
      * @summary: Create a short link
-     * @description: Use this API to create a short link that is easy to write/share/read as compared to long URLs. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/createShortLink/).
+     * @description: Use this API to create a short link that is easy to write/share/read as compared to long URLs.
      */
-    createShortLink({ body }?: ShareApplicationValidator.CreateShortLinkParam): Promise<ShareApplicationModel.ShortLinkRes>;
+    createShortLink({ body }?: {
+        body: ShortLinkReq;
+    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<ShortLinkRes>;
     /**
-     * @param {ShareApplicationValidator.GetApplicationQRCodeParam} arg - Arg object.
-     * @returns {Promise<ShareApplicationModel.QRCodeResp>} - Success response
-     * @name getApplicationQRCode
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<QRCodeResp>} - Success response
      * @summary: Create QR Code of an app
-     * @description: Use this API to create a QR code of an app for sharing it with users who want to use the app. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/getApplicationQRCode/).
+     * @description: Use this API to create a QR code of an app for sharing it with users who want to use the app.
      */
-    getApplicationQRCode({}?: any): Promise<ShareApplicationModel.QRCodeResp>;
+    getApplicationQRCode({ headers }?: import("../ApplicationAPIClient").Options): Promise<QRCodeResp>;
     /**
-     * @param {ShareApplicationValidator.GetCollectionQRCodeBySlugParam} arg - Arg object.
-     * @returns {Promise<ShareApplicationModel.QRCodeResp>} - Success response
-     * @name getCollectionQRCodeBySlug
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.slug - A short, human-readable, URL-friendly
+     *   identifier of a collection. You can get slug value from the endpoint.
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<QRCodeResp>} - Success response
      * @summary: Create QR Code of a collection
-     * @description: Use this API to create a QR code of a collection of products for sharing it with users who want to view/purchase the collection. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/getCollectionQRCodeBySlug/).
+     * @description: Use this API to create a QR code of a collection of products for sharing it with users who want to view/purchase the collection.
      */
-    getCollectionQRCodeBySlug({ slug }?: ShareApplicationValidator.GetCollectionQRCodeBySlugParam): Promise<ShareApplicationModel.QRCodeResp>;
+    getCollectionQRCodeBySlug({ slug }?: {
+        slug: string;
+    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<QRCodeResp>;
     /**
-     * @param {ShareApplicationValidator.GetOriginalShortLinkByHashParam} arg -
-     *   Arg object.
-     * @returns {Promise<ShareApplicationModel.ShortLinkRes>} - Success response
-     * @name getOriginalShortLinkByHash
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.hash - A string value used for converting long URL to
+     *   short URL and vice-versa.
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<ShortLinkRes>} - Success response
      * @summary: Get original link by hash
-     * @description: Use this API to retrieve the original link from a short-link by using a hash value. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/getOriginalShortLinkByHash/).
+     * @description: Use this API to retrieve the original link from a short-link by using a hash value.
      */
-    getOriginalShortLinkByHash({ hash }?: ShareApplicationValidator.GetOriginalShortLinkByHashParam): Promise<ShareApplicationModel.ShortLinkRes>;
+    getOriginalShortLinkByHash({ hash }?: {
+        hash: string;
+    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<ShortLinkRes>;
     /**
-     * @param {ShareApplicationValidator.GetProductQRCodeBySlugParam} arg - Arg object.
-     * @returns {Promise<ShareApplicationModel.QRCodeResp>} - Success response
-     * @name getProductQRCodeBySlug
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.slug - A short, human-readable, URL-friendly
+     *   identifier of a product. You can get slug value from the endpoint.
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<QRCodeResp>} - Success response
      * @summary: Create QR Code of a product
-     * @description: Use this API to create a QR code of a product for sharing it with users who want to view/purchase the product. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/getProductQRCodeBySlug/).
+     * @description: Use this API to create a QR code of a product for sharing it with users who want to view/purchase the product.
      */
-    getProductQRCodeBySlug({ slug }?: ShareApplicationValidator.GetProductQRCodeBySlugParam): Promise<ShareApplicationModel.QRCodeResp>;
+    getProductQRCodeBySlug({ slug }?: {
+        slug: string;
+    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<QRCodeResp>;
     /**
-     * @param {ShareApplicationValidator.GetShortLinkByHashParam} arg - Arg object.
-     * @returns {Promise<ShareApplicationModel.ShortLinkRes>} - Success response
-     * @name getShortLinkByHash
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.hash - A string value used for converting long URL to
+     *   short URL and vice-versa.
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<ShortLinkRes>} - Success response
      * @summary: Get short link by hash
-     * @description: Use this API to get a short link by using a hash value. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/getShortLinkByHash/).
+     * @description: Use this API to get a short link by using a hash value.
      */
-    getShortLinkByHash({ hash }?: ShareApplicationValidator.GetShortLinkByHashParam): Promise<ShareApplicationModel.ShortLinkRes>;
+    getShortLinkByHash({ hash }?: {
+        hash: string;
+    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<ShortLinkRes>;
     /**
-     * @param {ShareApplicationValidator.GetUrlQRCodeParam} arg - Arg object.
-     * @returns {Promise<ShareApplicationModel.QRCodeResp>} - Success response
-     * @name getUrlQRCode
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.url - A link or a web address
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<QRCodeResp>} - Success response
      * @summary: Create QR Code of a URL
-     * @description: Use this API to create a QR code of a URL for sharing it with users who want to visit the link. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/getUrlQRCode/).
+     * @description: Use this API to create a QR code of a URL for sharing it with users who want to visit the link.
      */
-    getUrlQRCode({ url }?: ShareApplicationValidator.GetUrlQRCodeParam): Promise<ShareApplicationModel.QRCodeResp>;
+    getUrlQRCode({ url }?: {
+        url: string;
+    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<QRCodeResp>;
 }
-import ShareApplicationValidator = require("./ShareApplicationValidator");
-import ShareApplicationModel = require("./ShareApplicationModel");

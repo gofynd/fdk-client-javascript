@@ -2,8 +2,8 @@ const PublicAPIClient = require("../PublicAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
-const ConfigurationPublicValidator = require("./ConfigurationPublicValidator");
-const ConfigurationPublicModel = require("./ConfigurationPublicModel");
+const ConfigurationValidator = require("./ConfigurationPublicValidator");
+const ConfigurationModel = require("./ConfigurationPublicModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -32,14 +32,22 @@ class Configuration {
   }
 
   /**
-   * @param {ConfigurationPublicValidator.GetLocationsParam} arg - Arg object.
-   * @returns {Promise<ConfigurationPublicModel.Locations>} - Success response
-   * @name getLocations
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.locationType] - Provide location type to query on.
+   *   Possible values : country, state, city
+   * @param {string} [arg.id] - Field is optional when location_type is
+   *   country. If querying for state, provide id of country. If querying for
+   *   city, provide id of state.
+   * @param {import("../PublicAPIClient").Options} - Options
+   * @returns {Promise<Locations>} - Success response
    * @summary: Get countries, states, cities
-   * @description: Get Location configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/configuration/getLocations/).
+   * @description: Get Location configuration
    */
-  async getLocations({ locationType, id } = {}) {
-    const { error } = ConfigurationPublicValidator.getLocations().validate(
+  async getLocations(
+    { locationType, id } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ConfigurationValidator.getLocations().validate(
       { locationType, id },
       { abortEarly: false, allowUnknown: true }
     );
@@ -48,17 +56,16 @@ class Configuration {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ConfigurationPublicValidator.getLocations().validate(
+    const { error: warrning } = ConfigurationValidator.getLocations().validate(
       { locationType, id },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for public > Configuration > getLocations \n ${warrning}`,
+        message: "Parameter Validation warrnings for getLocations",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -76,12 +83,18 @@ class Configuration {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ConfigurationPublicModel.Locations().validate(response, {
+    } = ConfigurationModel.Locations().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -89,22 +102,28 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for public > Configuration > getLocations \n ${res_error}`,
+        message: "Response Validation Warnnings for getLocations",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ConfigurationPublicValidator.SearchApplicationParam} arg - Arg object.
-   * @returns {Promise<ConfigurationPublicModel.ApplicationResponse>} - Success response
-   * @name searchApplication
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.authorization] -
+   * @param {string} [arg.query] - Provide application name
+   * @param {import("../PublicAPIClient").Options} - Options
+   * @returns {Promise<ApplicationResponse>} - Success response
    * @summary: Search Application
-   * @description: Provide application name or domain url - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/configuration/searchApplication/).
+   * @description: Provide application name or domain url
    */
-  async searchApplication({ authorization, query } = {}) {
-    const { error } = ConfigurationPublicValidator.searchApplication().validate(
+  async searchApplication(
+    { authorization, query } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ConfigurationValidator.searchApplication().validate(
       { authorization, query },
       { abortEarly: false, allowUnknown: true }
     );
@@ -115,15 +134,16 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationPublicValidator.searchApplication().validate(
+    } = ConfigurationValidator.searchApplication().validate(
       { authorization, query },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for public > Configuration > searchApplication \n ${warrning}`,
+        message: "Parameter Validation warrnings for searchApplication",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -141,12 +161,18 @@ class Configuration {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ConfigurationPublicModel.ApplicationResponse().validate(response, {
+    } = ConfigurationModel.ApplicationResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -154,8 +180,9 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for public > Configuration > searchApplication \n ${res_error}`,
+        message: "Response Validation Warnnings for searchApplication",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

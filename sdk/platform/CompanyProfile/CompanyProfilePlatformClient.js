@@ -1,8 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
-const CompanyProfilePlatformValidator = require("./CompanyProfilePlatformValidator");
-const CompanyProfilePlatformModel = require("./CompanyProfilePlatformModel");
+const CompanyProfileValidator = require("./CompanyProfilePlatformValidator");
+const CompanyProfileModel = require("./CompanyProfilePlatformModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -12,16 +12,14 @@ class CompanyProfile {
   }
 
   /**
-   * @param {CompanyProfilePlatformValidator.CbsOnboardGetParam} arg - Arg object
-   * @returns {Promise<CompanyProfilePlatformModel.GetCompanyProfileSerializerResponse>}
-   *   - Success response
-   *
-   * @name cbsOnboardGet
+   * @param {Object} arg - Arg object.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<GetCompanyProfileSerializerResponse>} - Success response
    * @summary: Get company profile
-   * @description: This API allows to view the company profile of the seller account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/cbsOnboardGet/).
+   * @description: This API allows to view the company profile of the seller account.
    */
-  async cbsOnboardGet({} = {}) {
-    const { error } = CompanyProfilePlatformValidator.cbsOnboardGet().validate(
+  async cbsOnboardGet({ headers } = { headers: false }) {
+    const { error } = CompanyProfileValidator.cbsOnboardGet().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -32,15 +30,16 @@ class CompanyProfile {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CompanyProfilePlatformValidator.cbsOnboardGet().validate(
+    } = CompanyProfileValidator.cbsOnboardGet().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > CompanyProfile > cbsOnboardGet \n ${warrning}`,
+        message: "Parameter Validation warrnings for cbsOnboardGet",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -53,36 +52,43 @@ class CompanyProfile {
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CompanyProfilePlatformModel.GetCompanyProfileSerializerResponse().validate(
-      response,
+    } = CompanyProfileModel.GetCompanyProfileSerializerResponse().validate(
+      responseData,
       { abortEarly: false, allowUnknown: false }
     );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > CompanyProfile > cbsOnboardGet \n ${res_error}`,
+        message: "Response Validation Warnnings for cbsOnboardGet",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CompanyProfilePlatformValidator.CreateBrandParam} arg - Arg object
-   * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
-   *   Success response
-   * @name createBrand
+   * @param {Object} arg - Arg object.
+   * @param {CreateUpdateBrandRequestSerializer} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ProfileSuccessResponse>} - Success response
    * @summary: Create a Brand.
-   * @description: This API allows to create a brand associated to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/createBrand/).
+   * @description: This API allows to create a brand associated to a company.
    */
-  async createBrand({ body } = {}) {
-    const { error } = CompanyProfilePlatformValidator.createBrand().validate(
+  async createBrand({ body } = {}, { headers } = { headers: false }) {
+    const { error } = CompanyProfileValidator.createBrand().validate(
       {
         body,
       },
@@ -93,9 +99,7 @@ class CompanyProfile {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CompanyProfilePlatformValidator.createBrand().validate(
+    const { error: warrning } = CompanyProfileValidator.createBrand().validate(
       {
         body,
       },
@@ -104,8 +108,9 @@ class CompanyProfile {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > CompanyProfile > createBrand \n ${warrning}`,
+        message: "Parameter Validation warrnings for createBrand",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -118,40 +123,48 @@ class CompanyProfile {
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/`,
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CompanyProfilePlatformModel.ProfileSuccessResponse().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = CompanyProfileModel.ProfileSuccessResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > CompanyProfile > createBrand \n ${res_error}`,
+        message: "Response Validation Warnnings for createBrand",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CompanyProfilePlatformValidator.CreateCompanyBrandMappingParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
-   *   Success response
-   * @name createCompanyBrandMapping
+   * @param {Object} arg - Arg object.
+   * @param {CompanyBrandPostRequestSerializer} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ProfileSuccessResponse>} - Success response
    * @summary: Create a company brand mapping.
-   * @description: This API allows to create a company brand mapping, for a already existing brand in the system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/createCompanyBrandMapping/).
+   * @description: This API allows to create a company brand mapping, for a already existing brand in the system.
    */
-  async createCompanyBrandMapping({ body } = {}) {
+  async createCompanyBrandMapping(
+    { body } = {},
+    { headers } = { headers: false }
+  ) {
     const {
       error,
-    } = CompanyProfilePlatformValidator.createCompanyBrandMapping().validate(
+    } = CompanyProfileValidator.createCompanyBrandMapping().validate(
       {
         body,
       },
@@ -164,7 +177,7 @@ class CompanyProfile {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CompanyProfilePlatformValidator.createCompanyBrandMapping().validate(
+    } = CompanyProfileValidator.createCompanyBrandMapping().validate(
       {
         body,
       },
@@ -173,8 +186,9 @@ class CompanyProfile {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > CompanyProfile > createCompanyBrandMapping \n ${warrning}`,
+        message: "Parameter Validation warrnings for createCompanyBrandMapping",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -187,36 +201,43 @@ class CompanyProfile {
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/company-brand`,
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CompanyProfilePlatformModel.ProfileSuccessResponse().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = CompanyProfileModel.ProfileSuccessResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > CompanyProfile > createCompanyBrandMapping \n ${res_error}`,
+        message: "Response Validation Warnnings for createCompanyBrandMapping",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CompanyProfilePlatformValidator.CreateLocationParam} arg - Arg object
-   * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
-   *   Success response
-   * @name createLocation
+   * @param {Object} arg - Arg object.
+   * @param {LocationSerializer} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ProfileSuccessResponse>} - Success response
    * @summary: Create a location associated to a company.
-   * @description: This API allows to edit a location associated to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/createLocation/).
+   * @description: This API allows to edit a location associated to a company.
    */
-  async createLocation({ body } = {}) {
-    const { error } = CompanyProfilePlatformValidator.createLocation().validate(
+  async createLocation({ body } = {}, { headers } = { headers: false }) {
+    const { error } = CompanyProfileValidator.createLocation().validate(
       {
         body,
       },
@@ -229,7 +250,7 @@ class CompanyProfile {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CompanyProfilePlatformValidator.createLocation().validate(
+    } = CompanyProfileValidator.createLocation().validate(
       {
         body,
       },
@@ -238,8 +259,9 @@ class CompanyProfile {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > CompanyProfile > createLocation \n ${warrning}`,
+        message: "Parameter Validation warrnings for createLocation",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -252,38 +274,43 @@ class CompanyProfile {
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location`,
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CompanyProfilePlatformModel.ProfileSuccessResponse().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = CompanyProfileModel.ProfileSuccessResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > CompanyProfile > createLocation \n ${res_error}`,
+        message: "Response Validation Warnnings for createLocation",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CompanyProfilePlatformValidator.CreateLocationBulkParam} arg - Arg object
-   * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
-   *   Success response
-   * @name createLocationBulk
+   * @param {Object} arg - Arg object.
+   * @param {BulkLocationSerializer} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ProfileSuccessResponse>} - Success response
    * @summary: Create a location asscoiated to a company in bulk.
-   * @description: This API allows to create a location associated to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/createLocationBulk/).
+   * @description: This API allows to create a location associated to a company.
    */
-  async createLocationBulk({ body } = {}) {
-    const {
-      error,
-    } = CompanyProfilePlatformValidator.createLocationBulk().validate(
+  async createLocationBulk({ body } = {}, { headers } = { headers: false }) {
+    const { error } = CompanyProfileValidator.createLocationBulk().validate(
       {
         body,
       },
@@ -296,7 +323,7 @@ class CompanyProfile {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CompanyProfilePlatformValidator.createLocationBulk().validate(
+    } = CompanyProfileValidator.createLocationBulk().validate(
       {
         body,
       },
@@ -305,8 +332,9 @@ class CompanyProfile {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > CompanyProfile > createLocationBulk \n ${warrning}`,
+        message: "Parameter Validation warrnings for createLocationBulk",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -319,36 +347,44 @@ class CompanyProfile {
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/bulk`,
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CompanyProfilePlatformModel.ProfileSuccessResponse().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = CompanyProfileModel.ProfileSuccessResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > CompanyProfile > createLocationBulk \n ${res_error}`,
+        message: "Response Validation Warnnings for createLocationBulk",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CompanyProfilePlatformValidator.EditBrandParam} arg - Arg object
-   * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
-   *   Success response
-   * @name editBrand
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.brandId - Id of the brand to be viewed.
+   * @param {CreateUpdateBrandRequestSerializer} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ProfileSuccessResponse>} - Success response
    * @summary: Edit a brand.
-   * @description: This API allows to edit meta of a brand. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/editBrand/).
+   * @description: This API allows to edit meta of a brand.
    */
-  async editBrand({ brandId, body } = {}) {
-    const { error } = CompanyProfilePlatformValidator.editBrand().validate(
+  async editBrand({ brandId, body } = {}, { headers } = { headers: false }) {
+    const { error } = CompanyProfileValidator.editBrand().validate(
       {
         brandId,
         body,
@@ -360,9 +396,7 @@ class CompanyProfile {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CompanyProfilePlatformValidator.editBrand().validate(
+    const { error: warrning } = CompanyProfileValidator.editBrand().validate(
       {
         brandId,
         body,
@@ -372,8 +406,9 @@ class CompanyProfile {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > CompanyProfile > editBrand \n ${warrning}`,
+        message: "Parameter Validation warrnings for editBrand",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -386,37 +421,43 @@ class CompanyProfile {
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/${brandId}`,
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CompanyProfilePlatformModel.ProfileSuccessResponse().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = CompanyProfileModel.ProfileSuccessResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > CompanyProfile > editBrand \n ${res_error}`,
+        message: "Response Validation Warnnings for editBrand",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CompanyProfilePlatformValidator.GetBrandParam} arg - Arg object
-   * @returns {Promise<CompanyProfilePlatformModel.GetBrandResponseSerializer>}
-   *   - Success response
-   *
-   * @name getBrand
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.brandId - Id of the brand to be viewed.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<GetBrandResponseSerializer>} - Success response
    * @summary: Get a single company brand.
-   * @description: This API helps to get data associated to a particular company brand. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getBrand/).
+   * @description: This API helps to get data associated to a particular company brand.
    */
-  async getBrand({ brandId } = {}) {
-    const { error } = CompanyProfilePlatformValidator.getBrand().validate(
+  async getBrand({ brandId } = {}, { headers } = { headers: false }) {
+    const { error } = CompanyProfileValidator.getBrand().validate(
       {
         brandId,
       },
@@ -427,9 +468,7 @@ class CompanyProfile {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CompanyProfilePlatformValidator.getBrand().validate(
+    const { error: warrning } = CompanyProfileValidator.getBrand().validate(
       {
         brandId,
       },
@@ -438,8 +477,9 @@ class CompanyProfile {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > CompanyProfile > getBrand \n ${warrning}`,
+        message: "Parameter Validation warrnings for getBrand",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -452,37 +492,50 @@ class CompanyProfile {
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/brand/${brandId}`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CompanyProfilePlatformModel.GetBrandResponseSerializer().validate(
-      response,
+    } = CompanyProfileModel.GetBrandResponseSerializer().validate(
+      responseData,
       { abortEarly: false, allowUnknown: false }
     );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > CompanyProfile > getBrand \n ${res_error}`,
+        message: "Response Validation Warnnings for getBrand",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CompanyProfilePlatformValidator.GetBrandsParam} arg - Arg object
-   * @returns {Promise<CompanyProfilePlatformModel.CompanyBrandListSerializer>}
-   *   - Success response
-   *
-   * @name getBrands
+   * @param {Object} arg - Arg object.
+   * @param {number} [arg.pageNo] - The page number to navigate through the
+   *   given set of results
+   * @param {number} [arg.pageSize] - Number of items to retrieve in each
+   *   page. Default is 10.
+   * @param {string} [arg.q] - Search term for name.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CompanyBrandListSerializer>} - Success response
    * @summary: Get brands associated to a company
-   * @description: This API helps to get view brands associated to a particular company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getBrands/).
+   * @description: This API helps to get view brands associated to a particular company.
    */
-  async getBrands({ pageNo, pageSize, q } = {}) {
-    const { error } = CompanyProfilePlatformValidator.getBrands().validate(
+  async getBrands(
+    { pageNo, pageSize, q } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CompanyProfileValidator.getBrands().validate(
       {
         pageNo,
         pageSize,
@@ -495,9 +548,7 @@ class CompanyProfile {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CompanyProfilePlatformValidator.getBrands().validate(
+    const { error: warrning } = CompanyProfileValidator.getBrands().validate(
       {
         pageNo,
         pageSize,
@@ -508,8 +559,9 @@ class CompanyProfile {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > CompanyProfile > getBrands \n ${warrning}`,
+        message: "Parameter Validation warrnings for getBrands",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -525,21 +577,28 @@ class CompanyProfile {
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/company-brand`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CompanyProfilePlatformModel.CompanyBrandListSerializer().validate(
-      response,
+    } = CompanyProfileModel.CompanyBrandListSerializer().validate(
+      responseData,
       { abortEarly: false, allowUnknown: false }
     );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > CompanyProfile > getBrands \n ${res_error}`,
+        message: "Response Validation Warnnings for getBrands",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -550,7 +609,6 @@ class CompanyProfile {
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
    *   page. Default is 10.
    * @param {string} [arg.q] - Search term for name.
-   * @returns {Paginator<CompanyProfilePlatformModel.CompanyBrandListSerializer>}
    * @summary: Get brands associated to a company
    * @description: This API helps to get view brands associated to a particular company.
    */
@@ -576,17 +634,14 @@ class CompanyProfile {
   }
 
   /**
-   * @param {CompanyProfilePlatformValidator.GetCompanyMetricsParam} arg - Arg object
-   * @returns {Promise<CompanyProfilePlatformModel.MetricsSerializer>} -
-   *   Success response
-   * @name getCompanyMetrics
+   * @param {Object} arg - Arg object.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<MetricsSerializer>} - Success response
    * @summary: Get company metrics
-   * @description: This API allows to view the company metrics, i.e. the status of its brand and stores. Also its allows to view the number of products, company documents & store documents which are verified and unverified. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getCompanyMetrics/).
+   * @description: This API allows to view the company metrics, i.e. the status of its brand and stores. Also its allows to view the number of products, company documents & store documents which are verified and unverified.
    */
-  async getCompanyMetrics({} = {}) {
-    const {
-      error,
-    } = CompanyProfilePlatformValidator.getCompanyMetrics().validate(
+  async getCompanyMetrics({ headers } = { headers: false }) {
+    const { error } = CompanyProfileValidator.getCompanyMetrics().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -597,15 +652,16 @@ class CompanyProfile {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CompanyProfilePlatformValidator.getCompanyMetrics().validate(
+    } = CompanyProfileValidator.getCompanyMetrics().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > CompanyProfile > getCompanyMetrics \n ${warrning}`,
+        message: "Parameter Validation warrnings for getCompanyMetrics",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -618,12 +674,18 @@ class CompanyProfile {
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/metrics`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CompanyProfilePlatformModel.MetricsSerializer().validate(response, {
+    } = CompanyProfileModel.MetricsSerializer().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -631,25 +693,27 @@ class CompanyProfile {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > CompanyProfile > getCompanyMetrics \n ${res_error}`,
+        message: "Response Validation Warnnings for getCompanyMetrics",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CompanyProfilePlatformValidator.GetLocationDetailParam} arg - Arg object
-   * @returns {Promise<CompanyProfilePlatformModel.GetLocationSerializer>} -
-   *   Success response
-   * @name getLocationDetail
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.locationId - Id of the location which you want to view.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<GetLocationSerializer>} - Success response
    * @summary: Get details of a specific location.
-   * @description: This API helps to get data associated to a specific location. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getLocationDetail/).
+   * @description: This API helps to get data associated to a specific location.
    */
-  async getLocationDetail({ locationId } = {}) {
-    const {
-      error,
-    } = CompanyProfilePlatformValidator.getLocationDetail().validate(
+  async getLocationDetail(
+    { locationId } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CompanyProfileValidator.getLocationDetail().validate(
       {
         locationId,
       },
@@ -662,7 +726,7 @@ class CompanyProfile {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CompanyProfilePlatformValidator.getLocationDetail().validate(
+    } = CompanyProfileValidator.getLocationDetail().validate(
       {
         locationId,
       },
@@ -671,8 +735,9 @@ class CompanyProfile {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > CompanyProfile > getLocationDetail \n ${warrning}`,
+        message: "Parameter Validation warrnings for getLocationDetail",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -685,12 +750,18 @@ class CompanyProfile {
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/${locationId}`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CompanyProfilePlatformModel.GetLocationSerializer().validate(response, {
+    } = CompanyProfileModel.GetLocationSerializer().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -698,26 +769,23 @@ class CompanyProfile {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > CompanyProfile > getLocationDetail \n ${res_error}`,
+        message: "Response Validation Warnnings for getLocationDetail",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CompanyProfilePlatformValidator.GetLocationTagsParam} arg - Arg object
-   * @returns {Promise<CompanyProfilePlatformModel.StoreTagsResponseSchema>}
-   *   - Success response
-   *
-   * @name getLocationTags
+   * @param {Object} arg - Arg object.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<StoreTagsResponseSchema>} - Success response
    * @summary: Get tags associated with locations for a company.
-   * @description: This API fetches all the tags associated to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getLocationTags/).
+   * @description: This API fetches all the tags associated to a company.
    */
-  async getLocationTags({} = {}) {
-    const {
-      error,
-    } = CompanyProfilePlatformValidator.getLocationTags().validate(
+  async getLocationTags({ headers } = { headers: false }) {
+    const { error } = CompanyProfileValidator.getLocationTags().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -728,15 +796,16 @@ class CompanyProfile {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CompanyProfilePlatformValidator.getLocationTags().validate(
+    } = CompanyProfileValidator.getLocationTags().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > CompanyProfile > getLocationTags \n ${warrning}`,
+        message: "Parameter Validation warrnings for getLocationTags",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -749,43 +818,55 @@ class CompanyProfile {
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/tags`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CompanyProfilePlatformModel.StoreTagsResponseSchema().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = CompanyProfileModel.StoreTagsResponseSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > CompanyProfile > getLocationTags \n ${res_error}`,
+        message: "Response Validation Warnnings for getLocationTags",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CompanyProfilePlatformValidator.GetLocationsParam} arg - Arg object
-   * @returns {Promise<CompanyProfilePlatformModel.LocationListSerializer>} -
-   *   Success response
-   * @name getLocations
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.storeType] - Helps to sort the location list on the
+   *   basis of location type.
+   * @param {string} [arg.q] - Query that is to be searched.
+   * @param {string} [arg.stage] - To filter companies on basis of verified or
+   *   unverified companies.
+   * @param {number} [arg.pageNo] - The page number to navigate through the
+   *   given set of results
+   * @param {number} [arg.pageSize] - Number of items to retrieve in each
+   *   page. Default is 10.
+   * @param {number[]} [arg.locationIds] - Helps to filter stores on the basis of uids.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<LocationListSerializer>} - Success response
    * @summary: Get list of locations
-   * @description: This API allows to view all the locations associated to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getLocations/).
+   * @description: This API allows to view all the locations associated to a company.
    */
-  async getLocations({
-    storeType,
-    q,
-    stage,
-    pageNo,
-    pageSize,
-    locationIds,
-  } = {}) {
-    const { error } = CompanyProfilePlatformValidator.getLocations().validate(
+  async getLocations(
+    { storeType, q, stage, pageNo, pageSize, locationIds } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CompanyProfileValidator.getLocations().validate(
       {
         storeType,
         q,
@@ -801,9 +882,7 @@ class CompanyProfile {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CompanyProfilePlatformValidator.getLocations().validate(
+    const { error: warrning } = CompanyProfileValidator.getLocations().validate(
       {
         storeType,
         q,
@@ -817,8 +896,9 @@ class CompanyProfile {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > CompanyProfile > getLocations \n ${warrning}`,
+        message: "Parameter Validation warrnings for getLocations",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -837,21 +917,28 @@ class CompanyProfile {
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CompanyProfilePlatformModel.LocationListSerializer().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = CompanyProfileModel.LocationListSerializer().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > CompanyProfile > getLocations \n ${res_error}`,
+        message: "Response Validation Warnnings for getLocations",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -867,7 +954,6 @@ class CompanyProfile {
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
    *   page. Default is 10.
    * @param {number[]} [arg.locationIds] - Helps to filter stores on the basis of uids.
-   * @returns {Paginator<CompanyProfilePlatformModel.LocationListSerializer>}
    * @summary: Get list of locations
    * @description: This API allows to view all the locations associated to a company.
    */
@@ -896,15 +982,15 @@ class CompanyProfile {
   }
 
   /**
-   * @param {CompanyProfilePlatformValidator.UpdateCompanyParam} arg - Arg object
-   * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
-   *   Success response
-   * @name updateCompany
+   * @param {Object} arg - Arg object.
+   * @param {UpdateCompany} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ProfileSuccessResponse>} - Success response
    * @summary: Edit company profile
-   * @description: This API allows to edit the company profile of the seller account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/updateCompany/).
+   * @description: This API allows to edit the company profile of the seller account.
    */
-  async updateCompany({ body } = {}) {
-    const { error } = CompanyProfilePlatformValidator.updateCompany().validate(
+  async updateCompany({ body } = {}, { headers } = { headers: false }) {
+    const { error } = CompanyProfileValidator.updateCompany().validate(
       {
         body,
       },
@@ -917,7 +1003,7 @@ class CompanyProfile {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CompanyProfilePlatformValidator.updateCompany().validate(
+    } = CompanyProfileValidator.updateCompany().validate(
       {
         body,
       },
@@ -926,8 +1012,9 @@ class CompanyProfile {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > CompanyProfile > updateCompany \n ${warrning}`,
+        message: "Parameter Validation warrnings for updateCompany",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -940,36 +1027,47 @@ class CompanyProfile {
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}`,
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CompanyProfilePlatformModel.ProfileSuccessResponse().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = CompanyProfileModel.ProfileSuccessResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > CompanyProfile > updateCompany \n ${res_error}`,
+        message: "Response Validation Warnnings for updateCompany",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {CompanyProfilePlatformValidator.UpdateLocationParam} arg - Arg object
-   * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
-   *   Success response
-   * @name updateLocation
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.locationId - Id of the location which you want to edit.
+   * @param {LocationSerializer} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ProfileSuccessResponse>} - Success response
    * @summary: Edit a location asscoiated to a company.
-   * @description: This API allows to edit a location associated to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/updateLocation/).
+   * @description: This API allows to edit a location associated to a company.
    */
-  async updateLocation({ locationId, body } = {}) {
-    const { error } = CompanyProfilePlatformValidator.updateLocation().validate(
+  async updateLocation(
+    { locationId, body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = CompanyProfileValidator.updateLocation().validate(
       {
         locationId,
         body,
@@ -983,7 +1081,7 @@ class CompanyProfile {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CompanyProfilePlatformValidator.updateLocation().validate(
+    } = CompanyProfileValidator.updateLocation().validate(
       {
         locationId,
         body,
@@ -993,8 +1091,9 @@ class CompanyProfile {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > CompanyProfile > updateLocation \n ${warrning}`,
+        message: "Parameter Validation warrnings for updateLocation",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1007,21 +1106,28 @@ class CompanyProfile {
       `/service/platform/company-profile/v1.0/company/${this.config.companyId}/location/${locationId}`,
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CompanyProfilePlatformModel.ProfileSuccessResponse().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = CompanyProfileModel.ProfileSuccessResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > CompanyProfile > updateLocation \n ${res_error}`,
+        message: "Response Validation Warnnings for updateLocation",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

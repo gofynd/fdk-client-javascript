@@ -4,56 +4,67 @@ declare class Rewards {
     config: any;
     applicationId: any;
     /**
-     * @param {RewardsPlatformApplicationValidator.GetGiveawayByIdParam} arg - Arg object
-     * @returns {Promise<RewardsPlatformModel.Giveaway>} - Success response
-     * @name getGiveawayById
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - Giveaway ID
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<Giveaway>} - Success response
      * @summary: Get giveaway by ID.
-     * @description: Retrieve the specific giveaway by giveaway ID. It will show all the details of the requested giveaway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/getGiveawayById/).
+     * @description: Retrieve the specific giveaway by giveaway ID. It will show all the details of the requested giveaway.
      */
-    getGiveawayById({ id }?: RewardsPlatformApplicationValidator.GetGiveawayByIdParam): Promise<RewardsPlatformModel.Giveaway>;
+    getGiveawayById({ id }?: {
+        id: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<Giveaway>;
     /**
-     * @param {RewardsPlatformApplicationValidator.GetOfferByNameParam} arg - Arg object
-     * @returns {Promise<RewardsPlatformModel.Offer>} - Success response
-     * @name getOfferByName
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.name - The name given to the offer.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<Offer>} - Success response
      * @summary: Fetch a offer by its name
-     * @description: Fetch the specific offer details and configuration by the name of the offer. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/getOfferByName/).
+     * @description: Fetch the specific offer details and configuration by the name of the offer.
      */
-    getOfferByName({ name }?: RewardsPlatformApplicationValidator.GetOfferByNameParam): Promise<RewardsPlatformModel.Offer>;
+    getOfferByName({ name }?: {
+        name: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<Offer>;
     /**
-     * @param {RewardsPlatformApplicationValidator.GetRewardsConfigurationParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<RewardsPlatformModel.ConfigurationRes>} - Success response
-     * @name getRewardsConfiguration
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ConfigurationRes>} - Success response
      * @summary: Get all valid android paths
-     * @description: Use this API to get a list of valid android paths required by the Rewards INIT API to validate a fraudulent device. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/getRewardsConfiguration/).
+     * @description: Use this API to get a list of valid android paths required by the Rewards INIT API to validate a fraudulent device.
      */
-    getRewardsConfiguration({}?: any): Promise<RewardsPlatformModel.ConfigurationRes>;
+    getRewardsConfiguration({ headers }?: import("../PlatformAPIClient").Options): Promise<ConfigurationRes>;
     /**
-     * @param {RewardsPlatformApplicationValidator.GetUserDetailsParam} arg - Arg object
-     * @returns {Promise<RewardsPlatformModel.UserRes>} - Success response
-     * @name getUserDetails
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.userId - User id
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<UserRes>} - Success response
      * @summary: Get user reward details
-     * @description: Fetches the user details and the user reward details with their current reward points for the specific user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/getUserDetails/).
+     * @description: Fetches the user details and the user reward details with their current reward points for the specific user.
      */
-    getUserDetails({ userId }?: RewardsPlatformApplicationValidator.GetUserDetailsParam): Promise<RewardsPlatformModel.UserRes>;
+    getUserDetails({ userId }?: {
+        userId: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<UserRes>;
     /**
-     * @param {RewardsPlatformApplicationValidator.GetUserPointsHistoryParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<RewardsPlatformModel.HistoryRes>} - Success response
-     * @name getUserPointsHistory
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.userId - User id
+     * @param {string} [arg.pageId] - PageID is the ID of the requested page.
+     *   For first request it should be kept empty.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<HistoryRes>} - Success response
      * @summary: Get all transactions of reward points
-     * @description: Fetches a list of points transactions like giveaway points, signup points, referral points, order earn points, redeem points and expired points. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/getUserPointsHistory/).
+     * @description: Fetches a list of points transactions like giveaway points, signup points, referral points, order earn points, redeem points and expired points.
      */
-    getUserPointsHistory({ userId, pageId, pageSize, }?: RewardsPlatformApplicationValidator.GetUserPointsHistoryParam): Promise<RewardsPlatformModel.HistoryRes>;
+    getUserPointsHistory({ userId, pageId, pageSize }?: {
+        userId: string;
+        pageId?: string;
+        pageSize?: number;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<HistoryRes>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.userId - User id
      * @param {string} arg.companyId - Company id
      * @param {string} arg.applicationId - Application id
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @returns {Paginator<RewardsPlatformModel.HistoryRes>}
      * @summary: Get all transactions of reward points
      * @description: Fetches a list of points transactions like giveaway points, signup points, referral points, order earn points, redeem points and expired points.
      */
@@ -62,68 +73,87 @@ declare class Rewards {
         companyId: string;
         applicationId: string;
         pageSize?: number;
-    }): Paginator<RewardsPlatformModel.HistoryRes>;
+    }): Paginator;
     /**
-     * @param {RewardsPlatformApplicationValidator.SaveGiveAwayParam} arg - Arg object
-     * @returns {Promise<RewardsPlatformModel.Giveaway>} - Success response
-     * @name saveGiveAway
+     * @param {Object} arg - Arg object.
+     * @param {Giveaway} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<Giveaway>} - Success response
      * @summary: List of giveaways of the current application.
-     * @description: Creates a new giveaway in the current application, specifying the target audience, points allocation, as well as the name and display name of the giveaway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/saveGiveAway/).
+     * @description: Creates a new giveaway in the current application, specifying the target audience, points allocation, as well as the name and display name of the giveaway.
      */
-    saveGiveAway({ body }?: RewardsPlatformApplicationValidator.SaveGiveAwayParam): Promise<RewardsPlatformModel.Giveaway>;
+    saveGiveAway({ body }?: {
+        body: Giveaway;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<Giveaway>;
     /**
-     * @param {RewardsPlatformApplicationValidator.SetRewardsConfigurationParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<RewardsPlatformModel.SetConfigurationRes>} - Success response
-     * @name setRewardsConfiguration
+     * @param {Object} arg - Arg object.
+     * @param {ConfigurationRequest} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<SetConfigurationRes>} - Success response
      * @summary: Updates the collection with given android paths.
-     * @description: Updates the configuration or inserts new records with the given android paths. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/setRewardsConfiguration/).
+     * @description: Updates the configuration or inserts new records with the given android paths.
      */
-    setRewardsConfiguration({ body }?: RewardsPlatformApplicationValidator.SetRewardsConfigurationParam): Promise<RewardsPlatformModel.SetConfigurationRes>;
+    setRewardsConfiguration({ body }?: {
+        body: ConfigurationRequest;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<SetConfigurationRes>;
     /**
-     * @param {RewardsPlatformApplicationValidator.ShowGiveawaysParam} arg - Arg object
-     * @returns {Promise<RewardsPlatformModel.GiveawayResponse>} - Success response
-     * @name showGiveaways
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.pageId - Pagination page id
+     * @param {number} arg.pageSize - Pagination page size
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<GiveawayResponse>} - Success response
      * @summary: List of giveaways of the current application.
-     * @description: Fetch the detailed compilation of live, completed, and scheduled point-based giveaways created. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/showGiveaways/).
+     * @description: Fetch the detailed compilation of live, completed, and scheduled point-based giveaways created.
      */
-    showGiveaways({ pageId, pageSize }?: RewardsPlatformApplicationValidator.ShowGiveawaysParam): Promise<RewardsPlatformModel.GiveawayResponse>;
+    showGiveaways({ pageId, pageSize }?: {
+        pageId: string;
+        pageSize: number;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<GiveawayResponse>;
     /**
-     * @param {RewardsPlatformApplicationValidator.ShowOffersParam} arg - Arg object
-     * @returns {Promise<RewardsPlatformModel.Offer[]>} - Success response
-     * @name showOffers
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<Offer[]>} - Success response
      * @summary: List of offers of the current application.
-     * @description: Retrieve the list of offers within the current application, including order_discount, order, sign_up, and referral, along with their respective details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/showOffers/).
+     * @description: Retrieve the list of offers within the current application, including order_discount, order, sign_up, and referral, along with their respective details.
      */
-    showOffers({}?: any): Promise<RewardsPlatformModel.Offer[]>;
+    showOffers({ headers }?: import("../PlatformAPIClient").Options): Promise<Offer[]>;
     /**
-     * @param {RewardsPlatformApplicationValidator.UpdateGiveAwayParam} arg - Arg object
-     * @returns {Promise<RewardsPlatformModel.Giveaway>} - Success response
-     * @name updateGiveAway
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - Giveaway ID
+     * @param {Giveaway} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<Giveaway>} - Success response
      * @summary: Updates the giveaway by it's ID.
-     * @description: Make the necessary updates to the giveaway based on its giveaway ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/updateGiveAway/).
+     * @description: Make the necessary updates to the giveaway based on its giveaway ID.
      */
-    updateGiveAway({ id, body }?: RewardsPlatformApplicationValidator.UpdateGiveAwayParam): Promise<RewardsPlatformModel.Giveaway>;
+    updateGiveAway({ id, body }?: {
+        id: string;
+        body: Giveaway;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<Giveaway>;
     /**
-     * @param {RewardsPlatformApplicationValidator.UpdateOfferByNameParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<RewardsPlatformModel.Offer>} - Success response
-     * @name updateOfferByName
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.name - The name given to the offer.
+     * @param {Offer} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<Offer>} - Success response
      * @summary: Update offer by name
-     * @description: Update the specific offer details and its configuration by offer name. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/updateOfferByName/).
+     * @description: Update the specific offer details and its configuration by offer name.
      */
-    updateOfferByName({ name, body, }?: RewardsPlatformApplicationValidator.UpdateOfferByNameParam): Promise<RewardsPlatformModel.Offer>;
+    updateOfferByName({ name, body }?: {
+        name: string;
+        body: Offer;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<Offer>;
     /**
-     * @param {RewardsPlatformApplicationValidator.UpdateUserStatusParam} arg - Arg object
-     * @returns {Promise<RewardsPlatformModel.AppUser>} - Success response
-     * @name updateUserStatus
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.userId - User id
+     * @param {AppUser} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<AppUser>} - Success response
      * @summary: Update user status
-     * @description: Update the user status by marking them as a block or unblock. It can be done by changing the active flag in request body. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/updateUserStatus/).
+     * @description: Update the user status by marking them as a block or unblock. It can be done by changing the active flag in request body.
      */
-    updateUserStatus({ userId, body, }?: RewardsPlatformApplicationValidator.UpdateUserStatusParam): Promise<RewardsPlatformModel.AppUser>;
+    updateUserStatus({ userId, body }?: {
+        userId: string;
+        body: AppUser;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<AppUser>;
 }
-import RewardsPlatformApplicationValidator = require("./RewardsPlatformApplicationValidator");
-import RewardsPlatformModel = require("./RewardsPlatformModel");
 import Paginator = require("../../common/Paginator");

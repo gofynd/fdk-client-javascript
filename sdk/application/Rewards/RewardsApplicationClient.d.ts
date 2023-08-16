@@ -14,77 +14,85 @@ declare class Rewards {
     _urls: {};
     updateUrls(urls: any): void;
     /**
-     * @param {RewardsApplicationValidator.CatalogueOrderParam} arg - Arg object.
-     * @returns {Promise<RewardsApplicationModel.CatalogueOrderResponse>} -
-     *   Success response
-     * @name catalogueOrder
+     * @param {Object} arg - Arg object.
+     * @param {CatalogueOrderRequest} arg.body
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<CatalogueOrderResponse>} - Success response
      * @summary: Get all transactions of reward points
-     * @description: Use this API to evaluate the amount of reward points that could be earned on any catalogue product. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/rewards/catalogueOrder/).
+     * @description: Use this API to evaluate the amount of reward points that could be earned on any catalogue product.
      */
-    catalogueOrder({ body }?: RewardsApplicationValidator.CatalogueOrderParam): Promise<RewardsApplicationModel.CatalogueOrderResponse>;
+    catalogueOrder({ body }?: {
+        body: CatalogueOrderRequest;
+    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<CatalogueOrderResponse>;
     /**
-     * @param {RewardsApplicationValidator.GetOfferByNameParam} arg - Arg object.
-     * @returns {Promise<RewardsApplicationModel.Offer>} - Success response
-     * @name getOfferByName
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.name - The name given to the offer.
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<Offer>} - Success response
      * @summary: Get offer by name
-     * @description: Use this API to get fetch the specific offer details and configuration by the name of the offer. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/rewards/getOfferByName/).
+     * @description: Use this API to get fetch the specific offer details and configuration by the name of the offer.
      */
-    getOfferByName({ name }?: RewardsApplicationValidator.GetOfferByNameParam): Promise<RewardsApplicationModel.Offer>;
+    getOfferByName({ name }?: {
+        name: string;
+    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<Offer>;
     /**
-     * @param {RewardsApplicationValidator.GetOrderDiscountParam} arg - Arg object.
-     * @returns {Promise<RewardsApplicationModel.OrderDiscountResponse>} -
-     *   Success response
-     * @name getOrderDiscount
+     * @param {Object} arg - Arg object.
+     * @param {OrderDiscountRequest} arg.body
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<OrderDiscountResponse>} - Success response
      * @summary: Calculates the discount on order-amount
-     * @description: Use this API to calculate the discount on the order amount, based on all the amount range configured in Order Discount offer. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/rewards/getOrderDiscount/).
+     * @description: Use this API to calculate the discount on the order amount, based on all the amount range configured in Order Discount offer.
      */
-    getOrderDiscount({ body }?: RewardsApplicationValidator.GetOrderDiscountParam): Promise<RewardsApplicationModel.OrderDiscountResponse>;
+    getOrderDiscount({ body }?: {
+        body: OrderDiscountRequest;
+    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<OrderDiscountResponse>;
     /**
-     * @param {RewardsApplicationValidator.GetUserPointsParam} arg - Arg object.
-     * @returns {Promise<RewardsApplicationModel.PointsResponse>} - Success response
-     * @name getUserPoints
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<PointsResponse>} - Success response
      * @summary: Get total available points of a user
-     * @description: Use this API to retrieve total available points of a user for current application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/rewards/getUserPoints/).
+     * @description: Use this API to retrieve total available points of a user for current application.
      */
-    getUserPoints({}?: any): Promise<RewardsApplicationModel.PointsResponse>;
+    getUserPoints({ headers }?: import("../ApplicationAPIClient").Options): Promise<PointsResponse>;
     /**
-     * @param {RewardsApplicationValidator.GetUserPointsHistoryParam} arg - Arg object.
-     * @returns {Promise<RewardsApplicationModel.PointsHistoryResponse>} -
-     *   Success response
-     * @name getUserPointsHistory
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.pageId] - PageID is the ID of the requested page.
+     *   For first request it should be kept empty.
+     * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<PointsHistoryResponse>} - Success response
      * @summary: Get all transactions of reward points
-     * @description: Use this API to fetch a list of points transactions like giveaway points, signup points, referral points, order earn points, redeem points and expired points. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/rewards/getUserPointsHistory/).
+     * @description: Use this API to fetch a list of points transactions like giveaway points, signup points, referral points, order earn points, redeem points and expired points.
      */
-    getUserPointsHistory({ pageId, pageSize }?: RewardsApplicationValidator.GetUserPointsHistoryParam): Promise<RewardsApplicationModel.PointsHistoryResponse>;
+    getUserPointsHistory({ pageId, pageSize }?: {
+        pageId?: string;
+        pageSize?: number;
+    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<PointsHistoryResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-     * @returns {Paginator<RewardsApplicationModel.PointsHistoryResponse>}
      * @summary: Get all transactions of reward points
      * @description: Use this API to fetch a list of points transactions like giveaway points, signup points, referral points, order earn points, redeem points and expired points.
      */
     getUserPointsHistoryPaginator({ pageSize }?: {
         pageSize?: number;
-    }): Paginator<RewardsApplicationModel.PointsHistoryResponse>;
+    }): Paginator;
     /**
-     * @param {RewardsApplicationValidator.GetUserReferralDetailsParam} arg - Arg object.
-     * @returns {Promise<RewardsApplicationModel.ReferralDetailsResponse>} -
-     *   Success response
-     * @name getUserReferralDetails
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<ReferralDetailsResponse>} - Success response
      * @summary: Get referral details of a user
-     * @description: Use this API to retrieve the referral details like referral code of a user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/rewards/getUserReferralDetails/).
+     * @description: Use this API to retrieve the referral details like referral code of a user.
      */
-    getUserReferralDetails({}?: any): Promise<RewardsApplicationModel.ReferralDetailsResponse>;
+    getUserReferralDetails({ headers }?: import("../ApplicationAPIClient").Options): Promise<ReferralDetailsResponse>;
     /**
-     * @param {RewardsApplicationValidator.RedeemReferralCodeParam} arg - Arg object.
-     * @returns {Promise<RewardsApplicationModel.RedeemReferralCodeResponse>} -
-     *   Success response
-     * @name redeemReferralCode
+     * @param {Object} arg - Arg object.
+     * @param {RedeemReferralCodeRequest} arg.body
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<RedeemReferralCodeResponse>} - Success response
      * @summary: Redeems a referral code and credits reward points to referee and the referrer as per the configuration
-     * @description: Use this API to enter a referral code following which, the configured points would be credited to a user's reward points account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/rewards/redeemReferralCode/).
+     * @description: Use this API to enter a referral code following which, the configured points would be credited to a user's reward points account.
      */
-    redeemReferralCode({ body }?: RewardsApplicationValidator.RedeemReferralCodeParam): Promise<RewardsApplicationModel.RedeemReferralCodeResponse>;
+    redeemReferralCode({ body }?: {
+        body: RedeemReferralCodeRequest;
+    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<RedeemReferralCodeResponse>;
 }
-import RewardsApplicationValidator = require("./RewardsApplicationValidator");
-import RewardsApplicationModel = require("./RewardsApplicationModel");
 import Paginator = require("../../common/Paginator");

@@ -1,26 +1,16 @@
 const Joi = require("joi");
 
-const WebhookPublicModel = require("./WebhookPublicModel");
-
-/** @typedef FetchAllWebhookEventsParam */
-
-/**
- * @typedef QueryWebhookEventDetailsParam
- * @property {WebhookPublicModel.EventConfigBase[]} body
- */
-
-class WebhookPublicValidator {
-  /** @returns {FetchAllWebhookEventsParam} */
+const WebhookModel = require("./WebhookPublicModel");
+class WebhookValidator {
   static fetchAllWebhookEvents() {
     return Joi.object({});
   }
 
-  /** @returns {QueryWebhookEventDetailsParam} */
   static queryWebhookEventDetails() {
     return Joi.object({
-      body: Joi.array().items(WebhookPublicModel.EventConfigBase()).required(),
+      body: Joi.array().items(WebhookModel.EventConfigBase()).required(),
     }).required();
   }
 }
 
-module.exports = WebhookPublicValidator;
+module.exports = WebhookValidator;

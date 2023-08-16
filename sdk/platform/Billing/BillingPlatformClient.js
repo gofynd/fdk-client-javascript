@@ -1,8 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
-const BillingPlatformValidator = require("./BillingPlatformValidator");
-const BillingPlatformModel = require("./BillingPlatformModel");
+const BillingValidator = require("./BillingPlatformValidator");
+const BillingModel = require("./BillingPlatformModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -12,16 +12,18 @@ class Billing {
   }
 
   /**
-   * @param {BillingPlatformValidator.ActivateSubscriptionPlanParam} arg - Arg object
-   * @returns {Promise<BillingPlatformModel.SubscriptionActivateRes>} - Success response
-   * @name activateSubscriptionPlan
+   * @param {Object} arg - Arg object.
+   * @param {SubscriptionActivateReq} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<SubscriptionActivateRes>} - Success response
    * @summary: Activate subscription
-   * @description: It will activate subscription plan for customer - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/activateSubscriptionPlan/).
+   * @description: It will activate subscription plan for customer
    */
-  async activateSubscriptionPlan({ body } = {}) {
-    const {
-      error,
-    } = BillingPlatformValidator.activateSubscriptionPlan().validate(
+  async activateSubscriptionPlan(
+    { body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = BillingValidator.activateSubscriptionPlan().validate(
       {
         body,
       },
@@ -34,7 +36,7 @@ class Billing {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = BillingPlatformValidator.activateSubscriptionPlan().validate(
+    } = BillingValidator.activateSubscriptionPlan().validate(
       {
         body,
       },
@@ -43,8 +45,9 @@ class Billing {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Billing > activateSubscriptionPlan \n ${warrning}`,
+        message: "Parameter Validation warrnings for activateSubscriptionPlan",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -57,12 +60,18 @@ class Billing {
       `/service/platform/billing/v1.0/company/${this.config.companyId}/subscription/activate`,
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = BillingPlatformModel.SubscriptionActivateRes().validate(response, {
+    } = BillingModel.SubscriptionActivateRes().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -70,24 +79,28 @@ class Billing {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Billing > activateSubscriptionPlan \n ${res_error}`,
+        message: "Response Validation Warnnings for activateSubscriptionPlan",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {BillingPlatformValidator.CancelSubscriptionChargeParam} arg - Arg object
-   * @returns {Promise<BillingPlatformModel.EntitySubscription>} - Success response
-   * @name cancelSubscriptionCharge
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.extensionId - Extension _id
+   * @param {string} arg.subscriptionId - Subscription charge _id
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<EntitySubscription>} - Success response
    * @summary: Cancel subscription charge
-   * @description: Cancel subscription and attached charges. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/cancelSubscriptionCharge/).
+   * @description: Cancel subscription and attached charges.
    */
-  async cancelSubscriptionCharge({ extensionId, subscriptionId } = {}) {
-    const {
-      error,
-    } = BillingPlatformValidator.cancelSubscriptionCharge().validate(
+  async cancelSubscriptionCharge(
+    { extensionId, subscriptionId } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = BillingValidator.cancelSubscriptionCharge().validate(
       {
         extensionId,
         subscriptionId,
@@ -101,7 +114,7 @@ class Billing {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = BillingPlatformValidator.cancelSubscriptionCharge().validate(
+    } = BillingValidator.cancelSubscriptionCharge().validate(
       {
         extensionId,
         subscriptionId,
@@ -111,8 +124,9 @@ class Billing {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Billing > cancelSubscriptionCharge \n ${warrning}`,
+        message: "Parameter Validation warrnings for cancelSubscriptionCharge",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -125,12 +139,18 @@ class Billing {
       `/service/platform/billing/v1.0/company/${this.config.companyId}/extension/${extensionId}/subscription/${subscriptionId}/cancel`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = BillingPlatformModel.EntitySubscription().validate(response, {
+    } = BillingModel.EntitySubscription().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -138,24 +158,27 @@ class Billing {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Billing > cancelSubscriptionCharge \n ${res_error}`,
+        message: "Response Validation Warnnings for cancelSubscriptionCharge",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {BillingPlatformValidator.CancelSubscriptionPlanParam} arg - Arg object
-   * @returns {Promise<BillingPlatformModel.CancelSubscriptionRes>} - Success response
-   * @name cancelSubscriptionPlan
+   * @param {Object} arg - Arg object.
+   * @param {CancelSubscriptionReq} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CancelSubscriptionRes>} - Success response
    * @summary: Cancel subscription
-   * @description: It will cancel current active subscription. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/cancelSubscriptionPlan/).
+   * @description: It will cancel current active subscription.
    */
-  async cancelSubscriptionPlan({ body } = {}) {
-    const {
-      error,
-    } = BillingPlatformValidator.cancelSubscriptionPlan().validate(
+  async cancelSubscriptionPlan(
+    { body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = BillingValidator.cancelSubscriptionPlan().validate(
       {
         body,
       },
@@ -168,7 +191,7 @@ class Billing {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = BillingPlatformValidator.cancelSubscriptionPlan().validate(
+    } = BillingValidator.cancelSubscriptionPlan().validate(
       {
         body,
       },
@@ -177,8 +200,9 @@ class Billing {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Billing > cancelSubscriptionPlan \n ${warrning}`,
+        message: "Parameter Validation warrnings for cancelSubscriptionPlan",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -191,12 +215,18 @@ class Billing {
       `/service/platform/billing/v1.0/company/${this.config.companyId}/subscription/cancel`,
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = BillingPlatformModel.CancelSubscriptionRes().validate(response, {
+    } = BillingModel.CancelSubscriptionRes().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -204,22 +234,28 @@ class Billing {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Billing > cancelSubscriptionPlan \n ${res_error}`,
+        message: "Response Validation Warnnings for cancelSubscriptionPlan",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {BillingPlatformValidator.CheckCouponValidityParam} arg - Arg object
-   * @returns {Promise<BillingPlatformModel.CheckValidityResponse>} - Success response
-   * @name checkCouponValidity
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.plan - ID of the plan.
+   * @param {string} arg.couponCode - Coupon code.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CheckValidityResponse>} - Success response
    * @summary: Check coupon validity
-   * @description: Check coupon validity. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/checkCouponValidity/).
+   * @description: Check coupon validity.
    */
-  async checkCouponValidity({ plan, couponCode } = {}) {
-    const { error } = BillingPlatformValidator.checkCouponValidity().validate(
+  async checkCouponValidity(
+    { plan, couponCode } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = BillingValidator.checkCouponValidity().validate(
       {
         plan,
         couponCode,
@@ -231,9 +267,7 @@ class Billing {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = BillingPlatformValidator.checkCouponValidity().validate(
+    const { error: warrning } = BillingValidator.checkCouponValidity().validate(
       {
         plan,
         couponCode,
@@ -243,8 +277,9 @@ class Billing {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Billing > checkCouponValidity \n ${warrning}`,
+        message: "Parameter Validation warrnings for checkCouponValidity",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -259,12 +294,18 @@ class Billing {
       `/service/platform/billing/v1.0/company/${this.config.companyId}/coupon/check-validity`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = BillingPlatformModel.CheckValidityResponse().validate(response, {
+    } = BillingModel.CheckValidityResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -272,23 +313,28 @@ class Billing {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Billing > checkCouponValidity \n ${res_error}`,
+        message: "Response Validation Warnnings for checkCouponValidity",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {BillingPlatformValidator.CreateOneTimeChargeParam} arg - Arg object
-   * @returns {Promise<BillingPlatformModel.CreateOneTimeChargeResponse>} -
-   *   Success response
-   * @name createOneTimeCharge
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.extensionId - Extension _id
+   * @param {CreateOneTimeCharge} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CreateOneTimeChargeResponse>} - Success response
    * @summary: Create one time subscription charge
-   * @description: Register one time subscription charge for a seller of your extension. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/createOneTimeCharge/).
+   * @description: Register one time subscription charge for a seller of your extension.
    */
-  async createOneTimeCharge({ extensionId, body } = {}) {
-    const { error } = BillingPlatformValidator.createOneTimeCharge().validate(
+  async createOneTimeCharge(
+    { extensionId, body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = BillingValidator.createOneTimeCharge().validate(
       {
         extensionId,
         body,
@@ -300,9 +346,7 @@ class Billing {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = BillingPlatformValidator.createOneTimeCharge().validate(
+    const { error: warrning } = BillingValidator.createOneTimeCharge().validate(
       {
         extensionId,
         body,
@@ -312,8 +356,9 @@ class Billing {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Billing > createOneTimeCharge \n ${warrning}`,
+        message: "Parameter Validation warrnings for createOneTimeCharge",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -326,12 +371,18 @@ class Billing {
       `/service/platform/billing/v1.0/company/${this.config.companyId}/extension/${extensionId}/one_time_charge`,
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = BillingPlatformModel.CreateOneTimeChargeResponse().validate(response, {
+    } = BillingModel.CreateOneTimeChargeResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -339,25 +390,28 @@ class Billing {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Billing > createOneTimeCharge \n ${res_error}`,
+        message: "Response Validation Warnnings for createOneTimeCharge",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {BillingPlatformValidator.CreateSubscriptionChargeParam} arg - Arg object
-   * @returns {Promise<BillingPlatformModel.CreateSubscriptionResponse>} -
-   *   Success response
-   * @name createSubscriptionCharge
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.extensionId - Extension _id
+   * @param {CreateSubscriptionCharge} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CreateSubscriptionResponse>} - Success response
    * @summary: Create subscription charge
-   * @description: Register subscription charge for a seller of your extension. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/createSubscriptionCharge/).
+   * @description: Register subscription charge for a seller of your extension.
    */
-  async createSubscriptionCharge({ extensionId, body } = {}) {
-    const {
-      error,
-    } = BillingPlatformValidator.createSubscriptionCharge().validate(
+  async createSubscriptionCharge(
+    { extensionId, body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = BillingValidator.createSubscriptionCharge().validate(
       {
         extensionId,
         body,
@@ -371,7 +425,7 @@ class Billing {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = BillingPlatformValidator.createSubscriptionCharge().validate(
+    } = BillingValidator.createSubscriptionCharge().validate(
       {
         extensionId,
         body,
@@ -381,8 +435,9 @@ class Billing {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Billing > createSubscriptionCharge \n ${warrning}`,
+        message: "Parameter Validation warrnings for createSubscriptionCharge",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -395,12 +450,18 @@ class Billing {
       `/service/platform/billing/v1.0/company/${this.config.companyId}/extension/${extensionId}/subscription`,
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = BillingPlatformModel.CreateSubscriptionResponse().validate(response, {
+    } = BillingModel.CreateSubscriptionResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -408,22 +469,28 @@ class Billing {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Billing > createSubscriptionCharge \n ${res_error}`,
+        message: "Response Validation Warnnings for createSubscriptionCharge",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {BillingPlatformValidator.GetChargeDetailsParam} arg - Arg object
-   * @returns {Promise<BillingPlatformModel.OneTimeChargeEntity>} - Success response
-   * @name getChargeDetails
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.extensionId - Extension _id
+   * @param {string} arg.chargeId - Standalone charge _id
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<OneTimeChargeEntity>} - Success response
    * @summary: Get subscription charge details
-   * @description: Get created subscription charge details - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getChargeDetails/).
+   * @description: Get created subscription charge details
    */
-  async getChargeDetails({ extensionId, chargeId } = {}) {
-    const { error } = BillingPlatformValidator.getChargeDetails().validate(
+  async getChargeDetails(
+    { extensionId, chargeId } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = BillingValidator.getChargeDetails().validate(
       {
         extensionId,
         chargeId,
@@ -435,9 +502,7 @@ class Billing {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = BillingPlatformValidator.getChargeDetails().validate(
+    const { error: warrning } = BillingValidator.getChargeDetails().validate(
       {
         extensionId,
         chargeId,
@@ -447,8 +512,9 @@ class Billing {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Billing > getChargeDetails \n ${warrning}`,
+        message: "Parameter Validation warrnings for getChargeDetails",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -461,12 +527,18 @@ class Billing {
       `/service/platform/billing/v1.0/company/${this.config.companyId}/extension/${extensionId}/charge/${chargeId}`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = BillingPlatformModel.OneTimeChargeEntity().validate(response, {
+    } = BillingModel.OneTimeChargeEntity().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -474,22 +546,23 @@ class Billing {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Billing > getChargeDetails \n ${res_error}`,
+        message: "Response Validation Warnnings for getChargeDetails",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {BillingPlatformValidator.GetCustomerDetailParam} arg - Arg object
-   * @returns {Promise<BillingPlatformModel.SubscriptionCustomer>} - Success response
-   * @name getCustomerDetail
+   * @param {Object} arg - Arg object.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<SubscriptionCustomer>} - Success response
    * @summary: Get subscription customer detail
-   * @description: Get subscription customer detail. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getCustomerDetail/).
+   * @description: Get subscription customer detail.
    */
-  async getCustomerDetail({} = {}) {
-    const { error } = BillingPlatformValidator.getCustomerDetail().validate(
+  async getCustomerDetail({ headers } = { headers: false }) {
+    const { error } = BillingValidator.getCustomerDetail().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -498,17 +571,16 @@ class Billing {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = BillingPlatformValidator.getCustomerDetail().validate(
+    const { error: warrning } = BillingValidator.getCustomerDetail().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Billing > getCustomerDetail \n ${warrning}`,
+        message: "Parameter Validation warrnings for getCustomerDetail",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -521,12 +593,18 @@ class Billing {
       `/service/platform/billing/v1.0/company/${this.config.companyId}/subscription/customer-detail`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = BillingPlatformModel.SubscriptionCustomer().validate(response, {
+    } = BillingModel.SubscriptionCustomer().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -534,22 +612,23 @@ class Billing {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Billing > getCustomerDetail \n ${res_error}`,
+        message: "Response Validation Warnnings for getCustomerDetail",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {BillingPlatformValidator.GetFeatureLimitConfigParam} arg - Arg object
-   * @returns {Promise<BillingPlatformModel.SubscriptionLimit>} - Success response
-   * @name getFeatureLimitConfig
+   * @param {Object} arg - Arg object.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<SubscriptionLimit>} - Success response
    * @summary: Get subscription subscription limits
-   * @description: Get subscription subscription limits. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getFeatureLimitConfig/).
+   * @description: Get subscription subscription limits.
    */
-  async getFeatureLimitConfig({} = {}) {
-    const { error } = BillingPlatformValidator.getFeatureLimitConfig().validate(
+  async getFeatureLimitConfig({ headers } = { headers: false }) {
+    const { error } = BillingValidator.getFeatureLimitConfig().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -560,15 +639,16 @@ class Billing {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = BillingPlatformValidator.getFeatureLimitConfig().validate(
+    } = BillingValidator.getFeatureLimitConfig().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Billing > getFeatureLimitConfig \n ${warrning}`,
+        message: "Parameter Validation warrnings for getFeatureLimitConfig",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -581,12 +661,18 @@ class Billing {
       `/service/platform/billing/v1.0/company/${this.config.companyId}/subscription/current-limit`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = BillingPlatformModel.SubscriptionLimit().validate(response, {
+    } = BillingModel.SubscriptionLimit().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -594,22 +680,24 @@ class Billing {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Billing > getFeatureLimitConfig \n ${res_error}`,
+        message: "Response Validation Warnnings for getFeatureLimitConfig",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {BillingPlatformValidator.GetInvoiceByIdParam} arg - Arg object
-   * @returns {Promise<BillingPlatformModel.Invoice>} - Success response
-   * @name getInvoiceById
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.invoiceId - Invoice id
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<Invoice>} - Success response
    * @summary: Get invoice by id
-   * @description: Get invoice by id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getInvoiceById/).
+   * @description: Get invoice by id.
    */
-  async getInvoiceById({ invoiceId } = {}) {
-    const { error } = BillingPlatformValidator.getInvoiceById().validate(
+  async getInvoiceById({ invoiceId } = {}, { headers } = { headers: false }) {
+    const { error } = BillingValidator.getInvoiceById().validate(
       {
         invoiceId,
       },
@@ -620,9 +708,7 @@ class Billing {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = BillingPlatformValidator.getInvoiceById().validate(
+    const { error: warrning } = BillingValidator.getInvoiceById().validate(
       {
         invoiceId,
       },
@@ -631,8 +717,9 @@ class Billing {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Billing > getInvoiceById \n ${warrning}`,
+        message: "Parameter Validation warrnings for getInvoiceById",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -645,12 +732,16 @@ class Billing {
       `/service/platform/billing/v1.0/company/${this.config.companyId}/invoice/${invoiceId}`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
 
-    const {
-      error: res_error,
-    } = BillingPlatformModel.Invoice().validate(response, {
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = BillingModel.Invoice().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -658,22 +749,23 @@ class Billing {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Billing > getInvoiceById \n ${res_error}`,
+        message: "Response Validation Warnnings for getInvoiceById",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {BillingPlatformValidator.GetInvoicesParam} arg - Arg object
-   * @returns {Promise<BillingPlatformModel.Invoices>} - Success response
-   * @name getInvoices
+   * @param {Object} arg - Arg object.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<Invoices>} - Success response
    * @summary: Get invoices
-   * @description: Get invoices. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getInvoices/).
+   * @description: Get invoices.
    */
-  async getInvoices({} = {}) {
-    const { error } = BillingPlatformValidator.getInvoices().validate(
+  async getInvoices({ headers } = { headers: false }) {
+    const { error } = BillingValidator.getInvoices().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -682,15 +774,16 @@ class Billing {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = BillingPlatformValidator.getInvoices().validate(
+    const { error: warrning } = BillingValidator.getInvoices().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Billing > getInvoices \n ${warrning}`,
+        message: "Parameter Validation warrnings for getInvoices",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -703,36 +796,40 @@ class Billing {
       `/service/platform/billing/v1.0/company/${this.config.companyId}/invoice/list`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
 
-    const {
-      error: res_error,
-    } = BillingPlatformModel.Invoices().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = BillingModel.Invoices().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Billing > getInvoices \n ${res_error}`,
+        message: "Response Validation Warnnings for getInvoices",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {BillingPlatformValidator.GetSubscriptionParam} arg - Arg object
-   * @returns {Promise<BillingPlatformModel.SubscriptionStatus>} - Success response
-   * @name getSubscription
+   * @param {Object} arg - Arg object.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<SubscriptionStatus>} - Success response
    * @summary: Get current subscription detail
    * @description: If subscription is active then it will return is_enabled true and return subscription object. If subscription is not active then is_enabled false and message.
-   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getSubscription/).
    */
-  async getSubscription({} = {}) {
-    const { error } = BillingPlatformValidator.getSubscription().validate(
+  async getSubscription({ headers } = { headers: false }) {
+    const { error } = BillingValidator.getSubscription().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -741,17 +838,16 @@ class Billing {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = BillingPlatformValidator.getSubscription().validate(
+    const { error: warrning } = BillingValidator.getSubscription().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Billing > getSubscription \n ${warrning}`,
+        message: "Parameter Validation warrnings for getSubscription",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -764,12 +860,18 @@ class Billing {
       `/service/platform/billing/v1.0/company/${this.config.companyId}/subscription/current`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = BillingPlatformModel.SubscriptionStatus().validate(response, {
+    } = BillingModel.SubscriptionStatus().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -777,22 +879,28 @@ class Billing {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Billing > getSubscription \n ${res_error}`,
+        message: "Response Validation Warnnings for getSubscription",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {BillingPlatformValidator.GetSubscriptionChargeParam} arg - Arg object
-   * @returns {Promise<BillingPlatformModel.EntitySubscription>} - Success response
-   * @name getSubscriptionCharge
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.extensionId - Extension _id
+   * @param {string} arg.subscriptionId - Subscription charge _id
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<EntitySubscription>} - Success response
    * @summary: Get subscription charge details
-   * @description: Get created subscription charge details - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getSubscriptionCharge/).
+   * @description: Get created subscription charge details
    */
-  async getSubscriptionCharge({ extensionId, subscriptionId } = {}) {
-    const { error } = BillingPlatformValidator.getSubscriptionCharge().validate(
+  async getSubscriptionCharge(
+    { extensionId, subscriptionId } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = BillingValidator.getSubscriptionCharge().validate(
       {
         extensionId,
         subscriptionId,
@@ -806,7 +914,7 @@ class Billing {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = BillingPlatformValidator.getSubscriptionCharge().validate(
+    } = BillingValidator.getSubscriptionCharge().validate(
       {
         extensionId,
         subscriptionId,
@@ -816,8 +924,9 @@ class Billing {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Billing > getSubscriptionCharge \n ${warrning}`,
+        message: "Parameter Validation warrnings for getSubscriptionCharge",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -830,12 +939,18 @@ class Billing {
       `/service/platform/billing/v1.0/company/${this.config.companyId}/extension/${extensionId}/subscription/${subscriptionId}`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = BillingPlatformModel.EntitySubscription().validate(response, {
+    } = BillingModel.EntitySubscription().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -843,22 +958,24 @@ class Billing {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Billing > getSubscriptionCharge \n ${res_error}`,
+        message: "Response Validation Warnnings for getSubscriptionCharge",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {BillingPlatformValidator.UpsertCustomerDetailParam} arg - Arg object
-   * @returns {Promise<BillingPlatformModel.SubscriptionCustomer>} - Success response
-   * @name upsertCustomerDetail
+   * @param {Object} arg - Arg object.
+   * @param {SubscriptionCustomerCreate} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<SubscriptionCustomer>} - Success response
    * @summary: Upsert subscription customer detail
-   * @description: Upsert subscription customer detail. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/upsertCustomerDetail/).
+   * @description: Upsert subscription customer detail.
    */
-  async upsertCustomerDetail({ body } = {}) {
-    const { error } = BillingPlatformValidator.upsertCustomerDetail().validate(
+  async upsertCustomerDetail({ body } = {}, { headers } = { headers: false }) {
+    const { error } = BillingValidator.upsertCustomerDetail().validate(
       {
         body,
       },
@@ -871,7 +988,7 @@ class Billing {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = BillingPlatformValidator.upsertCustomerDetail().validate(
+    } = BillingValidator.upsertCustomerDetail().validate(
       {
         body,
       },
@@ -880,8 +997,9 @@ class Billing {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Billing > upsertCustomerDetail \n ${warrning}`,
+        message: "Parameter Validation warrnings for upsertCustomerDetail",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -894,12 +1012,18 @@ class Billing {
       `/service/platform/billing/v1.0/company/${this.config.companyId}/subscription/customer-detail`,
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = BillingPlatformModel.SubscriptionCustomer().validate(response, {
+    } = BillingModel.SubscriptionCustomer().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -907,8 +1031,9 @@ class Billing {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Billing > upsertCustomerDetail \n ${res_error}`,
+        message: "Response Validation Warnnings for upsertCustomerDetail",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

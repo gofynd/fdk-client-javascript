@@ -1,8 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
-const ThemePlatformValidator = require("./ThemePlatformValidator");
-const ThemePlatformModel = require("./ThemePlatformModel");
+const ThemeValidator = require("./ThemePlatformValidator");
+const ThemeModel = require("./ThemePlatformModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -12,16 +12,18 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformValidator.AddMarketplaceThemeToCompanyParam} arg - Arg object
-   * @returns {Promise<ThemePlatformModel.CompanyThemeSchema>} - Success response
-   * @name addMarketplaceThemeToCompany
+   * @param {Object} arg - Arg object.
+   * @param {ThemeReq} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CompanyThemeSchema>} - Success response
    * @summary: Add a theme to a company
-   * @description: Add a marketplace theme to a company by providing the theme ID and company ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/addMarketplaceThemeToCompany/).
+   * @description: Add a marketplace theme to a company by providing the theme ID and company ID.
    */
-  async addMarketplaceThemeToCompany({ body } = {}) {
-    const {
-      error,
-    } = ThemePlatformValidator.addMarketplaceThemeToCompany().validate(
+  async addMarketplaceThemeToCompany(
+    { body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ThemeValidator.addMarketplaceThemeToCompany().validate(
       {
         body,
       },
@@ -34,7 +36,7 @@ class Theme {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ThemePlatformValidator.addMarketplaceThemeToCompany().validate(
+    } = ThemeValidator.addMarketplaceThemeToCompany().validate(
       {
         body,
       },
@@ -43,8 +45,10 @@ class Theme {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Theme > addMarketplaceThemeToCompany \n ${warrning}`,
+        message:
+          "Parameter Validation warrnings for addMarketplaceThemeToCompany",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -57,12 +61,18 @@ class Theme {
       `/service/platform/theme/v2.0/company/${this.config.companyId}`,
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ThemePlatformModel.CompanyThemeSchema().validate(response, {
+    } = ThemeModel.CompanyThemeSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -70,22 +80,25 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Theme > addMarketplaceThemeToCompany \n ${res_error}`,
+        message:
+          "Response Validation Warnnings for addMarketplaceThemeToCompany",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ThemePlatformValidator.DeleteCompanyThemeParam} arg - Arg object
-   * @returns {Promise<ThemePlatformModel.CompanyThemeSchema>} - Success response
-   * @name deleteCompanyTheme
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.themeId - The ID of the theme.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CompanyThemeSchema>} - Success response
    * @summary: Delete a theme
-   * @description: Delete a specific theme for a company by providing the company ID and theme ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/deleteCompanyTheme/).
+   * @description: Delete a specific theme for a company by providing the company ID and theme ID.
    */
-  async deleteCompanyTheme({ themeId } = {}) {
-    const { error } = ThemePlatformValidator.deleteCompanyTheme().validate(
+  async deleteCompanyTheme({ themeId } = {}, { headers } = { headers: false }) {
+    const { error } = ThemeValidator.deleteCompanyTheme().validate(
       {
         themeId,
       },
@@ -96,9 +109,7 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ThemePlatformValidator.deleteCompanyTheme().validate(
+    const { error: warrning } = ThemeValidator.deleteCompanyTheme().validate(
       {
         themeId,
       },
@@ -107,8 +118,9 @@ class Theme {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Theme > deleteCompanyTheme \n ${warrning}`,
+        message: "Parameter Validation warrnings for deleteCompanyTheme",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -121,12 +133,18 @@ class Theme {
       `/service/platform/theme/v2.0/company/${this.config.companyId}/${themeId}`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ThemePlatformModel.CompanyThemeSchema().validate(response, {
+    } = ThemeModel.CompanyThemeSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -134,22 +152,23 @@ class Theme {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Theme > deleteCompanyTheme \n ${res_error}`,
+        message: "Response Validation Warnnings for deleteCompanyTheme",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {ThemePlatformValidator.GetCompanyLevelThemesParam} arg - Arg object
-   * @returns {Promise<ThemePlatformModel.CompanyThemeSchema[]>} - Success response
-   * @name getCompanyLevelThemes
+   * @param {Object} arg - Arg object.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CompanyThemeSchema[]>} - Success response
    * @summary: Get themes for a company
-   * @description: Retrieve a list of themes available for a specific company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getCompanyLevelThemes/).
+   * @description: Retrieve a list of themes available for a specific company.
    */
-  async getCompanyLevelThemes({} = {}) {
-    const { error } = ThemePlatformValidator.getCompanyLevelThemes().validate(
+  async getCompanyLevelThemes({ headers } = { headers: false }) {
+    const { error } = ThemeValidator.getCompanyLevelThemes().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -158,17 +177,16 @@ class Theme {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ThemePlatformValidator.getCompanyLevelThemes().validate(
+    const { error: warrning } = ThemeValidator.getCompanyLevelThemes().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Theme > getCompanyLevelThemes \n ${warrning}`,
+        message: "Parameter Validation warrnings for getCompanyLevelThemes",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -181,18 +199,25 @@ class Theme {
       `/service/platform/theme/v2.0/company/${this.config.companyId}/themes`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
 
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
     const { error: res_error } = Joi.array()
-      .items(ThemePlatformModel.CompanyThemeSchema())
-      .validate(response, { abortEarly: false, allowUnknown: false });
+      .items(ThemeModel.CompanyThemeSchema())
+      .validate(responseData, { abortEarly: false, allowUnknown: false });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Theme > getCompanyLevelThemes \n ${res_error}`,
+        message: "Response Validation Warnnings for getCompanyLevelThemes",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

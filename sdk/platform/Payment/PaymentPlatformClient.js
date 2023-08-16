@@ -1,8 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
-const PaymentPlatformValidator = require("./PaymentPlatformValidator");
-const PaymentPlatformModel = require("./PaymentPlatformModel");
+const PaymentValidator = require("./PaymentPlatformValidator");
+const PaymentModel = require("./PaymentPlatformModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -12,16 +12,19 @@ class Payment {
   }
 
   /**
-   * @param {PaymentPlatformValidator.ActivateAndDectivatePayoutParam} arg - Arg object
-   * @returns {Promise<PaymentPlatformModel.UpdatePayoutResponse>} - Success response
-   * @name activateAndDectivatePayout
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.uniqueTransferNo - Unique transfer id
+   * @param {UpdatePayoutRequest} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<UpdatePayoutResponse>} - Success response
    * @summary: Partial Update Payout
-   * @description: Partial Update Payout - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/activateAndDectivatePayout/).
+   * @description: Partial Update Payout
    */
-  async activateAndDectivatePayout({ uniqueTransferNo, body } = {}) {
-    const {
-      error,
-    } = PaymentPlatformValidator.activateAndDectivatePayout().validate(
+  async activateAndDectivatePayout(
+    { uniqueTransferNo, body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PaymentValidator.activateAndDectivatePayout().validate(
       {
         uniqueTransferNo,
         body,
@@ -35,7 +38,7 @@ class Payment {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PaymentPlatformValidator.activateAndDectivatePayout().validate(
+    } = PaymentValidator.activateAndDectivatePayout().validate(
       {
         uniqueTransferNo,
         body,
@@ -45,8 +48,10 @@ class Payment {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Payment > activateAndDectivatePayout \n ${warrning}`,
+        message:
+          "Parameter Validation warrnings for activateAndDectivatePayout",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -59,12 +64,18 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/payouts/${uniqueTransferNo}`,
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.UpdatePayoutResponse().validate(response, {
+    } = PaymentModel.UpdatePayoutResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -72,22 +83,27 @@ class Payment {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Payment > activateAndDectivatePayout \n ${res_error}`,
+        message: "Response Validation Warnnings for activateAndDectivatePayout",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentPlatformValidator.DeletePayoutParam} arg - Arg object
-   * @returns {Promise<PaymentPlatformModel.DeletePayoutResponse>} - Success response
-   * @name deletePayout
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.uniqueTransferNo - Unique transfer id
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<DeletePayoutResponse>} - Success response
    * @summary: Delete Payout
-   * @description: Delete Payout - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/deletePayout/).
+   * @description: Delete Payout
    */
-  async deletePayout({ uniqueTransferNo } = {}) {
-    const { error } = PaymentPlatformValidator.deletePayout().validate(
+  async deletePayout(
+    { uniqueTransferNo } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PaymentValidator.deletePayout().validate(
       {
         uniqueTransferNo,
       },
@@ -98,9 +114,7 @@ class Payment {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentPlatformValidator.deletePayout().validate(
+    const { error: warrning } = PaymentValidator.deletePayout().validate(
       {
         uniqueTransferNo,
       },
@@ -109,8 +123,9 @@ class Payment {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Payment > deletePayout \n ${warrning}`,
+        message: "Parameter Validation warrnings for deletePayout",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -123,12 +138,18 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/payouts/${uniqueTransferNo}`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.DeletePayoutResponse().validate(response, {
+    } = PaymentModel.DeletePayoutResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -136,31 +157,30 @@ class Payment {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Payment > deletePayout \n ${res_error}`,
+        message: "Response Validation Warnnings for deletePayout",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentPlatformValidator.DeleteSubscriptionPaymentMethodParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<PaymentPlatformModel.DeleteSubscriptionPaymentMethodResponse>}
-   *   - Success response
-   *
-   * @name deleteSubscriptionPaymentMethod
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.uniqueExternalId -
+   * @param {string} arg.paymentMethodId -
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<DeleteSubscriptionPaymentMethodResponse>} - Success response
    * @summary: Delete Subscription Payment Method
-   * @description: Uses this api to Delete Subscription Payment Method - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/deleteSubscriptionPaymentMethod/).
+   * @description: Uses this api to Delete Subscription Payment Method
    */
-  async deleteSubscriptionPaymentMethod({
-    uniqueExternalId,
-    paymentMethodId,
-  } = {}) {
+  async deleteSubscriptionPaymentMethod(
+    { uniqueExternalId, paymentMethodId } = {},
+    { headers } = { headers: false }
+  ) {
     const {
       error,
-    } = PaymentPlatformValidator.deleteSubscriptionPaymentMethod().validate(
+    } = PaymentValidator.deleteSubscriptionPaymentMethod().validate(
       {
         uniqueExternalId,
         paymentMethodId,
@@ -174,7 +194,7 @@ class Payment {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PaymentPlatformValidator.deleteSubscriptionPaymentMethod().validate(
+    } = PaymentValidator.deleteSubscriptionPaymentMethod().validate(
       {
         uniqueExternalId,
         paymentMethodId,
@@ -184,8 +204,10 @@ class Payment {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Payment > deleteSubscriptionPaymentMethod \n ${warrning}`,
+        message:
+          "Parameter Validation warrnings for deleteSubscriptionPaymentMethod",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -200,35 +222,47 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/subscription/methods`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.DeleteSubscriptionPaymentMethodResponse().validate(
-      response,
+    } = PaymentModel.DeleteSubscriptionPaymentMethodResponse().validate(
+      responseData,
       { abortEarly: false, allowUnknown: false }
     );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Payment > deleteSubscriptionPaymentMethod \n ${res_error}`,
+        message:
+          "Response Validation Warnnings for deleteSubscriptionPaymentMethod",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentPlatformValidator.GetAllPayoutsParam} arg - Arg object
-   * @returns {Promise<PaymentPlatformModel.PayoutsResponse>} - Success response
-   * @name getAllPayouts
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.uniqueExternalId] - Fetch payouts using unique external id
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PayoutsResponse>} - Success response
    * @summary: Get All Payouts
-   * @description: Get All Payouts - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getAllPayouts/).
+   * @description: Get All Payouts
    */
-  async getAllPayouts({ uniqueExternalId } = {}) {
-    const { error } = PaymentPlatformValidator.getAllPayouts().validate(
+  async getAllPayouts(
+    { uniqueExternalId } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PaymentValidator.getAllPayouts().validate(
       {
         uniqueExternalId,
       },
@@ -239,9 +273,7 @@ class Payment {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentPlatformValidator.getAllPayouts().validate(
+    const { error: warrning } = PaymentValidator.getAllPayouts().validate(
       {
         uniqueExternalId,
       },
@@ -250,8 +282,9 @@ class Payment {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Payment > getAllPayouts \n ${warrning}`,
+        message: "Parameter Validation warrnings for getAllPayouts",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -265,12 +298,18 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/payouts`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.PayoutsResponse().validate(response, {
+    } = PaymentModel.PayoutsResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -278,23 +317,23 @@ class Payment {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Payment > getAllPayouts \n ${res_error}`,
+        message: "Response Validation Warnnings for getAllPayouts",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentPlatformValidator.GetSubscriptionConfigParam} arg - Arg object
-   * @returns {Promise<PaymentPlatformModel.SubscriptionConfigResponse>} -
-   *   Success response
-   * @name getSubscriptionConfig
+   * @param {Object} arg - Arg object.
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<SubscriptionConfigResponse>} - Success response
    * @summary: List Subscription Config
-   * @description: Get all  Subscription Config details - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getSubscriptionConfig/).
+   * @description: Get all  Subscription Config details
    */
-  async getSubscriptionConfig({} = {}) {
-    const { error } = PaymentPlatformValidator.getSubscriptionConfig().validate(
+  async getSubscriptionConfig({ headers } = { headers: false }) {
+    const { error } = PaymentValidator.getSubscriptionConfig().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -305,15 +344,16 @@ class Payment {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PaymentPlatformValidator.getSubscriptionConfig().validate(
+    } = PaymentValidator.getSubscriptionConfig().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Payment > getSubscriptionConfig \n ${warrning}`,
+        message: "Parameter Validation warrnings for getSubscriptionConfig",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -326,12 +366,18 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/subscription/configs`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.SubscriptionConfigResponse().validate(response, {
+    } = PaymentModel.SubscriptionConfigResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -339,28 +385,27 @@ class Payment {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Payment > getSubscriptionConfig \n ${res_error}`,
+        message: "Response Validation Warnnings for getSubscriptionConfig",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentPlatformValidator.GetSubscriptionPaymentMethodParam} arg
-   *   - Arg object
-   *
-   * @returns {Promise<PaymentPlatformModel.SubscriptionPaymentMethodResponse>}
-   *   - Success response
-   *
-   * @name getSubscriptionPaymentMethod
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.uniqueExternalId] - Unique external id
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<SubscriptionPaymentMethodResponse>} - Success response
    * @summary: List Subscription Payment Method
-   * @description: Get all  Subscription  Payment Method - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getSubscriptionPaymentMethod/).
+   * @description: Get all  Subscription  Payment Method
    */
-  async getSubscriptionPaymentMethod({ uniqueExternalId } = {}) {
-    const {
-      error,
-    } = PaymentPlatformValidator.getSubscriptionPaymentMethod().validate(
+  async getSubscriptionPaymentMethod(
+    { uniqueExternalId } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PaymentValidator.getSubscriptionPaymentMethod().validate(
       {
         uniqueExternalId,
       },
@@ -373,7 +418,7 @@ class Payment {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PaymentPlatformValidator.getSubscriptionPaymentMethod().validate(
+    } = PaymentValidator.getSubscriptionPaymentMethod().validate(
       {
         uniqueExternalId,
       },
@@ -382,8 +427,10 @@ class Payment {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Payment > getSubscriptionPaymentMethod \n ${warrning}`,
+        message:
+          "Parameter Validation warrnings for getSubscriptionPaymentMethod",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -397,35 +444,44 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/subscription/methods`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.SubscriptionPaymentMethodResponse().validate(
-      response,
+    } = PaymentModel.SubscriptionPaymentMethodResponse().validate(
+      responseData,
       { abortEarly: false, allowUnknown: false }
     );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Payment > getSubscriptionPaymentMethod \n ${res_error}`,
+        message:
+          "Response Validation Warnnings for getSubscriptionPaymentMethod",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentPlatformValidator.SavePayoutParam} arg - Arg object
-   * @returns {Promise<PaymentPlatformModel.PayoutResponse>} - Success response
-   * @name savePayout
+   * @param {Object} arg - Arg object.
+   * @param {PayoutRequest} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PayoutResponse>} - Success response
    * @summary: Save Payout
-   * @description: Save Payout - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/savePayout/).
+   * @description: Save Payout
    */
-  async savePayout({ body } = {}) {
-    const { error } = PaymentPlatformValidator.savePayout().validate(
+  async savePayout({ body } = {}, { headers } = { headers: false }) {
+    const { error } = PaymentValidator.savePayout().validate(
       {
         body,
       },
@@ -436,7 +492,7 @@ class Payment {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = PaymentPlatformValidator.savePayout().validate(
+    const { error: warrning } = PaymentValidator.savePayout().validate(
       {
         body,
       },
@@ -445,8 +501,9 @@ class Payment {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Payment > savePayout \n ${warrning}`,
+        message: "Parameter Validation warrnings for savePayout",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -459,12 +516,18 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/payouts`,
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.PayoutResponse().validate(response, {
+    } = PaymentModel.PayoutResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -472,26 +535,27 @@ class Payment {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Payment > savePayout \n ${res_error}`,
+        message: "Response Validation Warnnings for savePayout",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentPlatformValidator.SaveSubscriptionSetupIntentParam} arg - Arg object
-   * @returns {Promise<PaymentPlatformModel.SaveSubscriptionSetupIntentResponse>}
-   *   - Success response
-   *
-   * @name saveSubscriptionSetupIntent
+   * @param {Object} arg - Arg object.
+   * @param {SaveSubscriptionSetupIntentRequest} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<SaveSubscriptionSetupIntentResponse>} - Success response
    * @summary: Save Subscription Setup Intent
-   * @description: Uses this api to Save Subscription Setup Intent - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/saveSubscriptionSetupIntent/).
+   * @description: Uses this api to Save Subscription Setup Intent
    */
-  async saveSubscriptionSetupIntent({ body } = {}) {
-    const {
-      error,
-    } = PaymentPlatformValidator.saveSubscriptionSetupIntent().validate(
+  async saveSubscriptionSetupIntent(
+    { body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PaymentValidator.saveSubscriptionSetupIntent().validate(
       {
         body,
       },
@@ -504,7 +568,7 @@ class Payment {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PaymentPlatformValidator.saveSubscriptionSetupIntent().validate(
+    } = PaymentValidator.saveSubscriptionSetupIntent().validate(
       {
         body,
       },
@@ -513,8 +577,10 @@ class Payment {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Payment > saveSubscriptionSetupIntent \n ${warrning}`,
+        message:
+          "Parameter Validation warrnings for saveSubscriptionSetupIntent",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -527,35 +593,48 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/subscription/setup/intent`,
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.SaveSubscriptionSetupIntentResponse().validate(
-      response,
+    } = PaymentModel.SaveSubscriptionSetupIntentResponse().validate(
+      responseData,
       { abortEarly: false, allowUnknown: false }
     );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Payment > saveSubscriptionSetupIntent \n ${res_error}`,
+        message:
+          "Response Validation Warnnings for saveSubscriptionSetupIntent",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentPlatformValidator.UpdatePayoutParam} arg - Arg object
-   * @returns {Promise<PaymentPlatformModel.UpdatePayoutResponse>} - Success response
-   * @name updatePayout
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.uniqueTransferNo - Unique transfer id
+   * @param {PayoutRequest} arg.body
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<UpdatePayoutResponse>} - Success response
    * @summary: Update Payout
-   * @description: Update Payout - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/updatePayout/).
+   * @description: Update Payout
    */
-  async updatePayout({ uniqueTransferNo, body } = {}) {
-    const { error } = PaymentPlatformValidator.updatePayout().validate(
+  async updatePayout(
+    { uniqueTransferNo, body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = PaymentValidator.updatePayout().validate(
       {
         uniqueTransferNo,
         body,
@@ -567,9 +646,7 @@ class Payment {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentPlatformValidator.updatePayout().validate(
+    const { error: warrning } = PaymentValidator.updatePayout().validate(
       {
         uniqueTransferNo,
         body,
@@ -579,8 +656,9 @@ class Payment {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Payment > updatePayout \n ${warrning}`,
+        message: "Parameter Validation warrnings for updatePayout",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -593,12 +671,18 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/payouts/${uniqueTransferNo}`,
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.UpdatePayoutResponse().validate(response, {
+    } = PaymentModel.UpdatePayoutResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -606,22 +690,24 @@ class Payment {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Payment > updatePayout \n ${res_error}`,
+        message: "Response Validation Warnnings for updatePayout",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {PaymentPlatformValidator.VerifyIfscCodeParam} arg - Arg object
-   * @returns {Promise<PaymentPlatformModel.IfscCodeResponse>} - Success response
-   * @name verifyIfscCode
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.ifscCode] -
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<IfscCodeResponse>} - Success response
    * @summary: Ifsc Code Verification
-   * @description: Get True/False for correct IFSC Code for adding bank details for refund - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/verifyIfscCode/).
+   * @description: Get True/False for correct IFSC Code for adding bank details for refund
    */
-  async verifyIfscCode({ ifscCode } = {}) {
-    const { error } = PaymentPlatformValidator.verifyIfscCode().validate(
+  async verifyIfscCode({ ifscCode } = {}, { headers } = { headers: false }) {
+    const { error } = PaymentValidator.verifyIfscCode().validate(
       {
         ifscCode,
       },
@@ -632,9 +718,7 @@ class Payment {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = PaymentPlatformValidator.verifyIfscCode().validate(
+    const { error: warrning } = PaymentValidator.verifyIfscCode().validate(
       {
         ifscCode,
       },
@@ -643,8 +727,9 @@ class Payment {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Payment > verifyIfscCode \n ${warrning}`,
+        message: "Parameter Validation warrnings for verifyIfscCode",
       });
+      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -658,12 +743,18 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/ifsc-code/verify`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.IfscCodeResponse().validate(response, {
+    } = PaymentModel.IfscCodeResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -671,8 +762,9 @@ class Payment {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Payment > verifyIfscCode \n ${res_error}`,
+        message: "Response Validation Warnnings for verifyIfscCode",
       });
+      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

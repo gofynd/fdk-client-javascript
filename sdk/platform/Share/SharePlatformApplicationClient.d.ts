@@ -4,49 +4,69 @@ declare class Share {
     config: any;
     applicationId: any;
     /**
-     * @param {SharePlatformApplicationValidator.CreateShortLinkParam} arg - Arg object
-     * @returns {Promise<SharePlatformModel.ShortLinkRes>} - Success response
-     * @name createShortLink
+     * @param {Object} arg - Arg object.
+     * @param {ShortLinkReq} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ShortLinkRes>} - Success response
      * @summary: Create short link
-     * @description: Create short link - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/share/createShortLink/).
+     * @description: Create short link
      */
-    createShortLink({ body }?: SharePlatformApplicationValidator.CreateShortLinkParam): Promise<SharePlatformModel.ShortLinkRes>;
+    createShortLink({ body }?: {
+        body: ShortLinkReq;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ShortLinkRes>;
     /**
-     * @param {SharePlatformApplicationValidator.GetShortLinkByHashParam} arg - Arg object
-     * @returns {Promise<SharePlatformModel.ShortLinkRes>} - Success response
-     * @name getShortLinkByHash
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.hash - Hash of short url
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ShortLinkRes>} - Success response
      * @summary: Get short link by hash
-     * @description: Get short link by hash - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/share/getShortLinkByHash/).
+     * @description: Get short link by hash
      */
-    getShortLinkByHash({ hash }?: SharePlatformApplicationValidator.GetShortLinkByHashParam): Promise<SharePlatformModel.ShortLinkRes>;
+    getShortLinkByHash({ hash }?: {
+        hash: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ShortLinkRes>;
     /**
-     * @param {SharePlatformApplicationValidator.GetShortLinkClickStatsParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<SharePlatformModel.ClickStatsResponse>} - Success response
-     * @name getShortLinkClickStats
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.surlId - Short link ID for which click statistics are
+     *   to be retrieved.
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ClickStatsResponse>} - Success response
      * @summary: Get click statistics for a short link
-     * @description: Retrieve click statistics for a given short link ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/share/getShortLinkClickStats/).
+     * @description: Retrieve click statistics for a given short link ID.
      */
-    getShortLinkClickStats({ surlId }?: SharePlatformApplicationValidator.GetShortLinkClickStatsParam): Promise<SharePlatformModel.ClickStatsResponse>;
+    getShortLinkClickStats({ surlId }?: {
+        surlId: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ClickStatsResponse>;
     /**
-     * @param {SharePlatformApplicationValidator.GetShortLinksParam} arg - Arg object
-     * @returns {Promise<SharePlatformModel.ShortLinkList>} - Success response
-     * @name getShortLinks
+     * @param {Object} arg - Arg object.
+     * @param {number} [arg.pageNo] - Current page number
+     * @param {number} [arg.pageSize] - Current page size
+     * @param {string} [arg.createdBy] - Short link creator
+     * @param {string} [arg.active] - Short link active status
+     * @param {string} [arg.q] - Search text for original and short url
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ShortLinkList>} - Success response
      * @summary: Get short links
-     * @description: Get short links - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/share/getShortLinks/).
+     * @description: Get short links
      */
-    getShortLinks({ pageNo, pageSize, createdBy, active, q }?: SharePlatformApplicationValidator.GetShortLinksParam): Promise<SharePlatformModel.ShortLinkList>;
+    getShortLinks({ pageNo, pageSize, createdBy, active, q }?: {
+        pageNo?: number;
+        pageSize?: number;
+        createdBy?: string;
+        active?: string;
+        q?: string;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ShortLinkList>;
     /**
-     * @param {SharePlatformApplicationValidator.UpdateShortLinkByIdParam} arg
-     *   - Arg object
-     *
-     * @returns {Promise<SharePlatformModel.ShortLinkRes>} - Success response
-     * @name updateShortLinkById
+     * @param {Object} arg - Arg object.
+     * @param {string} arg.id - Short link document identifier
+     * @param {ShortLinkReq} arg.body
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ShortLinkRes>} - Success response
      * @summary: Update short link by id
-     * @description: Update short link by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/share/updateShortLinkById/).
+     * @description: Update short link by id
      */
-    updateShortLinkById({ id, body }?: SharePlatformApplicationValidator.UpdateShortLinkByIdParam): Promise<SharePlatformModel.ShortLinkRes>;
+    updateShortLinkById({ id, body }?: {
+        id: string;
+        body: ShortLinkReq;
+    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ShortLinkRes>;
 }
-import SharePlatformApplicationValidator = require("./SharePlatformApplicationValidator");
-import SharePlatformModel = require("./SharePlatformModel");
