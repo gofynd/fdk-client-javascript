@@ -3,180 +3,156 @@ declare class Webhook {
     constructor(config: any);
     config: any;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.filename - Filename of the specific report export to cancel.
+     * @param {WebhookPlatformValidator.CancelJobByNameParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CancelResponse>} - Success response
+     * @returns {Promise<WebhookPlatformModel.CancelResponse>} - Success response
+     * @name cancelJobByName
      * @summary: Cancel a report export
-     * @description: Cancel the export of a specific report for a company.
+     * @description: Cancel the export of a specific report for a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/cancelJobByName/).
      */
-    cancelJobByName({ filename }?: {
-        filename: string;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<CancelResponse>;
+    cancelJobByName({ filename }?: WebhookPlatformValidator.CancelJobByNameParam, { headers }?: import("../PlatformAPIClient").Options): Promise<WebhookPlatformModel.CancelResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {EventProcessRequest} arg.body
+     * @param {WebhookPlatformValidator.DownloadDeliveryReportParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<Object>} - Success response
+     * @name downloadDeliveryReport
      * @summary: Download processed events report for a company
-     * @description: Download reports for a specific company based on the provided filters.
+     * @description: Download reports for a specific company based on the provided filters. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/downloadDeliveryReport/).
      */
-    downloadDeliveryReport({ body }?: {
-        body: EventProcessRequest;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<any>;
+    downloadDeliveryReport({ body }?: WebhookPlatformValidator.DownloadDeliveryReportParam, { headers }?: import("../PlatformAPIClient").Options): Promise<any>;
     /**
-     * @param {Object} arg - Arg object.
+     * @param {WebhookPlatformValidator.FetchAllEventConfigurationsParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<EventConfigResponse>} - Success response
+     * @returns {Promise<WebhookPlatformModel.EventConfigResponse>} - Success response
+     * @name fetchAllEventConfigurations
      * @summary:
-     * @description: Get All Webhook Events
+     * @description: Get All Webhook Events - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/fetchAllEventConfigurations/).
      */
-    fetchAllEventConfigurations({ headers }?: any): Promise<EventConfigResponse>;
+    fetchAllEventConfigurations({ headers }?: any): Promise<WebhookPlatformModel.EventConfigResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {EventProcessRequest} arg.body
+     * @param {WebhookPlatformValidator.GetDeliveryReportsParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<EventProcessReports>} - Success response
+     * @returns {Promise<WebhookPlatformModel.EventProcessReports>} - Success response
+     * @name getDeliveryReports
      * @summary: Get processed events report for a company
-     * @description: Retrieve a list of processed events for a specific company based on the provided filters.
+     * @description: Retrieve a list of processed events for a specific company based on the provided filters. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getDeliveryReports/).
      */
-    getDeliveryReports({ body }?: {
-        body: EventProcessRequest;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<EventProcessReports>;
+    getDeliveryReports({ body }?: WebhookPlatformValidator.GetDeliveryReportsParam, { headers }?: import("../PlatformAPIClient").Options): Promise<WebhookPlatformModel.EventProcessReports>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {EventProcessRequest} arg.body
+     * @param {WebhookPlatformValidator.GetEventCountsParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<FailedEventsCountSuccessResponse>} - Success response
+     * @returns {Promise<WebhookPlatformModel.FailedEventsCountSuccessResponse>}
+     *   - Success response
+     *
+     * @name getEventCounts
      * @summary: Get the count of failed events for a company within a specified date range.
      * @description: Retrieves the count of failed events for a specific company within the specified date range. The user can filter the count based on specific event types if provided.
+     *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getEventCounts/).
      */
-    getEventCounts({ body }?: {
-        body: EventProcessRequest;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<FailedEventsCountSuccessResponse>;
+    getEventCounts({ body }?: WebhookPlatformValidator.GetEventCountsParam, { headers }?: import("../PlatformAPIClient").Options): Promise<WebhookPlatformModel.FailedEventsCountSuccessResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {HistoryPayload} arg.body
+     * @param {WebhookPlatformValidator.GetHistoricalReportsParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<HistoryResponse>} - Success response
+     * @returns {Promise<WebhookPlatformModel.HistoryResponse>} - Success response
+     * @name getHistoricalReports
      * @summary: Get report download history
-     * @description: Retrieve history reports for a specific company based on the provided filters.
+     * @description: Retrieve history reports for a specific company based on the provided filters. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getHistoricalReports/).
      */
-    getHistoricalReports({ body }?: {
-        body: HistoryPayload;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<HistoryResponse>;
+    getHistoricalReports({ body }?: WebhookPlatformValidator.GetHistoricalReportsParam, { headers }?: import("../PlatformAPIClient").Options): Promise<WebhookPlatformModel.HistoryResponse>;
     /**
-     * @param {Object} arg - Arg object.
+     * @param {WebhookPlatformValidator.GetManualRetryStatusParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<RetryStatusResponse>} - Success response
+     * @returns {Promise<WebhookPlatformModel.RetryStatusResponse>} - Success response
+     * @name getManualRetryStatus
      * @summary: Get the retry status for a company's failed events.
      * @description: Retrieves the status of retry for a specific company's failed events. This endpoint returns the total number of events, the count of successfully retried events, the count of failed retry attempts, and the overall status of the retry process.
+     *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getManualRetryStatus/).
      */
-    getManualRetryStatus({ headers }?: any): Promise<RetryStatusResponse>;
+    getManualRetryStatus({ headers }?: any): Promise<WebhookPlatformModel.RetryStatusResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {ReportFiltersPayload} arg.body
+     * @param {WebhookPlatformValidator.GetReportFiltersParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ReportFilterResponse>} - Success response
+     * @returns {Promise<WebhookPlatformModel.ReportFilterResponse>} - Success response
+     * @name getReportFilters
      * @summary: Get filters for a company
-     * @description: Retrieve filters for a specific company based on the provided subscriber IDs.
+     * @description: Retrieve filters for a specific company based on the provided subscriber IDs. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getReportFilters/).
      */
-    getReportFilters({ body }?: {
-        body: ReportFiltersPayload;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ReportFilterResponse>;
+    getReportFilters({ body }?: WebhookPlatformValidator.GetReportFiltersParam, { headers }?: import("../PlatformAPIClient").Options): Promise<WebhookPlatformModel.ReportFilterResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {number} arg.subscriberId - The ID of the company for which manual
-     *   retry is to be initiated.
+     * @param {WebhookPlatformValidator.GetSubscriberByIdParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<SubscriberResponse>} - Success response
+     * @returns {Promise<WebhookPlatformModel.SubscriberResponse>} - Success response
+     * @name getSubscriberById
      * @summary: Get Subscriber By Subscriber ID
-     * @description: Get Subscriber By Subscriber ID
+     * @description: Get Subscriber By Subscriber ID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getSubscriberById/).
      */
-    getSubscriberById({ subscriberId }?: {
-        subscriberId: number;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<SubscriberResponse>;
+    getSubscriberById({ subscriberId }?: WebhookPlatformValidator.GetSubscriberByIdParam, { headers }?: import("../PlatformAPIClient").Options): Promise<WebhookPlatformModel.SubscriberResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNo] - Page Number
-     * @param {number} [arg.pageSize] - Page Size
-     * @param {number} [arg.extensionId] - Extension_id
+     * @param {WebhookPlatformValidator.GetSubscribersByCompanyParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<SubscriberResponse>} - Success response
+     * @returns {Promise<WebhookPlatformModel.SubscriberResponse>} - Success response
+     * @name getSubscribersByCompany
      * @summary: Get Subscribers By Company ID
-     * @description: Get Subscribers By CompanyId
+     * @description: Get Subscribers By CompanyId - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getSubscribersByCompany/).
      */
-    getSubscribersByCompany({ pageNo, pageSize, extensionId }?: {
-        pageNo?: number;
-        pageSize?: number;
-        extensionId?: number;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<SubscriberResponse>;
+    getSubscribersByCompany({ pageNo, pageSize, extensionId }?: WebhookPlatformValidator.GetSubscribersByCompanyParam, { headers }?: import("../PlatformAPIClient").Options): Promise<WebhookPlatformModel.SubscriberResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNo] - Page Number
-     * @param {number} [arg.pageSize] - Page Size
-     * @param {number} arg.extensionId - The ID of the company for which manual
-     *   retry is to be initiated.
+     * @param {WebhookPlatformValidator.GetSubscribersByExtensionIdParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<SubscriberConfigList>} - Success response
+     * @returns {Promise<WebhookPlatformModel.SubscriberConfigList>} - Success response
+     * @name getSubscribersByExtensionId
      * @summary: Get Subscribers By Extension ID
-     * @description: Get Subscribers By ExtensionID
+     * @description: Get Subscribers By ExtensionID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getSubscribersByExtensionId/).
      */
-    getSubscribersByExtensionId({ extensionId, pageNo, pageSize }?: {
-        pageNo?: number;
-        pageSize?: number;
-        extensionId: number;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<SubscriberConfigList>;
+    getSubscribersByExtensionId({ extensionId, pageNo, pageSize }?: WebhookPlatformValidator.GetSubscribersByExtensionIdParam, { headers }?: import("../PlatformAPIClient").Options): Promise<WebhookPlatformModel.SubscriberConfigList>;
     /**
-     * @param {Object} arg - Arg object.
+     * @param {WebhookPlatformValidator.ManualRetryCancelParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<EventSuccessResponse>} - Success response
+     * @returns {Promise<WebhookPlatformModel.EventSuccessResponse>} - Success response
+     * @name manualRetryCancel
      * @summary: Cancel the active manual retry for a company's failed events.
      * @description: Cancels the active manual retry for a specific company's failed events. If a manual retry is currently in progress, it will be cancelled.
+     *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/manualRetryCancel/).
      */
-    manualRetryCancel({ headers }?: any): Promise<EventSuccessResponse>;
+    manualRetryCancel({ headers }?: any): Promise<WebhookPlatformModel.EventSuccessResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {EventProcessRequest} arg.body
+     * @param {WebhookPlatformValidator.ManualRetryOfFailedEventParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<EventProcessedSuccessResponse>} - Success response
+     * @returns {Promise<WebhookPlatformModel.EventProcessedSuccessResponse>} -
+     *   Success response
+     * @name manualRetryOfFailedEvent
      * @summary: Initiate a manual retry for event processing.
      * @description: Initiates a manual retry for event processing for a specific company. This endpoint allows the user to specify the date range (start_date and end_date) within which the events should be retried.
+     *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/manualRetryOfFailedEvent/).
      */
-    manualRetryOfFailedEvent({ body }?: {
-        body: EventProcessRequest;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<EventProcessedSuccessResponse>;
+    manualRetryOfFailedEvent({ body }?: WebhookPlatformValidator.ManualRetryOfFailedEventParam, { headers }?: import("../PlatformAPIClient").Options): Promise<WebhookPlatformModel.EventProcessedSuccessResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {PingWebhook} arg.body
+     * @param {WebhookPlatformValidator.PingWebhookParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<PingWebhookResponse>} - Success response
+     * @returns {Promise<WebhookPlatformModel.PingWebhookResponse>} - Success response
+     * @name pingWebhook
      * @summary: Ping and validate webhook url
-     * @description: Ping and validate webhook url
+     * @description: Ping and validate webhook url - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/pingWebhook/).
      */
-    pingWebhook({ body }?: {
-        body: PingWebhook;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<PingWebhookResponse>;
+    pingWebhook({ body }?: WebhookPlatformValidator.PingWebhookParam, { headers }?: import("../PlatformAPIClient").Options): Promise<WebhookPlatformModel.PingWebhookResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {SubscriberConfig} arg.body
+     * @param {WebhookPlatformValidator.RegisterSubscriberToEventParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<SubscriberConfig>} - Success response
+     * @returns {Promise<WebhookPlatformModel.SubscriberConfig>} - Success response
+     * @name registerSubscriberToEvent
      * @summary: Register Subscriber
-     * @description: Register Subscriber
+     * @description: Register Subscriber - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/registerSubscriberToEvent/).
      */
-    registerSubscriberToEvent({ body }?: {
-        body: SubscriberConfig;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<SubscriberConfig>;
+    registerSubscriberToEvent({ body }?: WebhookPlatformValidator.RegisterSubscriberToEventParam, { headers }?: import("../PlatformAPIClient").Options): Promise<WebhookPlatformModel.SubscriberConfig>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {SubscriberConfig} arg.body
+     * @param {WebhookPlatformValidator.UpdateSubscriberConfigParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<SubscriberConfig>} - Success response
+     * @returns {Promise<WebhookPlatformModel.SubscriberConfig>} - Success response
+     * @name updateSubscriberConfig
      * @summary: Update Subscriber
-     * @description: Update Subscriber
+     * @description: Update Subscriber - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/updateSubscriberConfig/).
      */
-    updateSubscriberConfig({ body }?: {
-        body: SubscriberConfig;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<SubscriberConfig>;
+    updateSubscriberConfig({ body }?: WebhookPlatformValidator.UpdateSubscriberConfigParam, { headers }?: import("../PlatformAPIClient").Options): Promise<WebhookPlatformModel.SubscriberConfig>;
 }
+import WebhookPlatformValidator = require("./WebhookPlatformValidator");
+import WebhookPlatformModel = require("./WebhookPlatformModel");

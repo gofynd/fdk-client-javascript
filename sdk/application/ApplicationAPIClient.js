@@ -13,6 +13,7 @@ class APIClient {
    * @param {string} url
    * @param {object} query
    * @param {object} body
+   * @param {object} xHeaders
    */
 
   static execute(conf, method, url, query, body, xHeaders, options) {

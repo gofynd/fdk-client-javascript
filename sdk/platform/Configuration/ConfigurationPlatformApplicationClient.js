@@ -1,8 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
-const ConfigurationValidator = require("./ConfigurationPlatformApplicationValidator");
-const ConfigurationModel = require("./ConfigurationPlatformModel");
+const ConfigurationPlatformApplicationValidator = require("./ConfigurationPlatformApplicationValidator");
+const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -13,15 +13,17 @@ class Configuration {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {DomainAddRequest} arg.body
+   * @param {ConfigurationPlatformApplicationValidator.AddDomainParam} arg - Arg object
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Domain>} - Success response
+   * @returns {Promise<ConfigurationPlatformModel.Domain>} - Success response
+   * @name addDomain
    * @summary: Add new domain to current sales channel
-   * @description: Add a new domain to current sales channel, including pre-defined domain (free domain) or custom domain (owned by the brand)
+   * @description: Add a new domain to current sales channel, including pre-defined domain (free domain) or custom domain (owned by the brand) - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/addDomain/).
    */
   async addDomain({ body } = {}, { headers } = { headers: false }) {
-    const { error } = ConfigurationValidator.addDomain().validate(
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.addDomain().validate(
       {
         body,
       },
@@ -32,7 +34,9 @@ class Configuration {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ConfigurationValidator.addDomain().validate(
+    const {
+      error: warrning,
+    } = ConfigurationPlatformApplicationValidator.addDomain().validate(
       {
         body,
       },
@@ -41,9 +45,8 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for addDomain",
+        message: `Parameter Validation warrnings for platform > Configuration > addDomain \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -65,7 +68,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.Domain().validate(responseData, {
+    } = ConfigurationPlatformModel.Domain().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -73,24 +76,27 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for addDomain",
+        message: `Response Validation Warnnings for platform > Configuration > addDomain \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {UpdateDomainTypeRequest} arg.body
+   * @param {ConfigurationPlatformApplicationValidator.ChangeDomainTypeParam} arg
+   *   - Arg object
+   *
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<DomainsResponse>} - Success response
+   * @returns {Promise<ConfigurationPlatformModel.DomainsResponse>} - Success response
+   * @name changeDomainType
    * @summary: Change the type of domain in the current sales channel
-   * @description: Primary domain is used as the URL of your website. Short link domain is comparatively smaller and used while generating short links. Use this API to change a domain to either Primary or a Shortlink domain.
+   * @description: Primary domain is used as the URL of your website. Short link domain is comparatively smaller and used while generating short links. Use this API to change a domain to either Primary or a Shortlink domain. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/changeDomainType/).
    */
   async changeDomainType({ body } = {}, { headers } = { headers: false }) {
-    const { error } = ConfigurationValidator.changeDomainType().validate(
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.changeDomainType().validate(
       {
         body,
       },
@@ -103,7 +109,7 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.changeDomainType().validate(
+    } = ConfigurationPlatformApplicationValidator.changeDomainType().validate(
       {
         body,
       },
@@ -112,9 +118,8 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for changeDomainType",
+        message: `Parameter Validation warrnings for platform > Configuration > changeDomainType \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -136,7 +141,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.DomainsResponse().validate(responseData, {
+    } = ConfigurationPlatformModel.DomainsResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -144,9 +149,8 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for changeDomainType",
+        message: `Response Validation Warnnings for platform > Configuration > changeDomainType \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -154,12 +158,15 @@ class Configuration {
 
   /**
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<TokenResponse>} - Success response
+   * @returns {Promise<ConfigurationPlatformModel.TokenResponse>} - Success response
+   * @name getAppApiTokens
    * @summary: Get social tokens for the sales channel
-   * @description: Use this API to retrieve the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google, and Facebook auth. **Note** - Token values are encrypted with AES encryption using a secret key.
+   * @description: Use this API to retrieve the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google, and Facebook auth. **Note** - Token values are encrypted with AES encryption using a secret key. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppApiTokens/).
    */
   async getAppApiTokens({ headers } = { headers: false }) {
-    const { error } = ConfigurationValidator.getAppApiTokens().validate(
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.getAppApiTokens().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -170,16 +177,15 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.getAppApiTokens().validate(
+    } = ConfigurationPlatformApplicationValidator.getAppApiTokens().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getAppApiTokens",
+        message: `Parameter Validation warrnings for platform > Configuration > getAppApiTokens \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -201,7 +207,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.TokenResponse().validate(responseData, {
+    } = ConfigurationPlatformModel.TokenResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -209,9 +215,8 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getAppApiTokens",
+        message: `Response Validation Warnnings for platform > Configuration > getAppApiTokens \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -219,12 +224,15 @@ class Configuration {
 
   /**
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ApplicationDetail>} - Success response
+   * @returns {Promise<ConfigurationPlatformModel.ApplicationDetail>} - Success response
+   * @name getAppBasicDetails
    * @summary: Get sales channel details
-   * @description: Shows basic sales channel details like name, description, logo, domain, company ID, and other related information.
+   * @description: Shows basic sales channel details like name, description, logo, domain, company ID, and other related information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppBasicDetails/).
    */
   async getAppBasicDetails({ headers } = { headers: false }) {
-    const { error } = ConfigurationValidator.getAppBasicDetails().validate(
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.getAppBasicDetails().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -235,16 +243,15 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.getAppBasicDetails().validate(
+    } = ConfigurationPlatformApplicationValidator.getAppBasicDetails().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getAppBasicDetails",
+        message: `Parameter Validation warrnings for platform > Configuration > getAppBasicDetails \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -266,7 +273,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.ApplicationDetail().validate(responseData, {
+    } = ConfigurationPlatformModel.ApplicationDetail().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -274,31 +281,30 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getAppBasicDetails",
+        message: `Response Validation Warnnings for platform > Configuration > getAppBasicDetails \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.uid] - UID of companies to be fetched
-   * @param {number} [arg.pageNo] - The current page number to navigate
-   *   through the given set of results. Default value is 1.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each
-   *   page. Default value is 10.
+   * @param {ConfigurationPlatformApplicationValidator.GetAppCompaniesParam} arg
+   *   - Arg object
+   *
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CompaniesResponse>} - Success response
+   * @returns {Promise<ConfigurationPlatformModel.CompaniesResponse>} - Success response
+   * @name getAppCompanies
    * @summary: Get companies enabled in the sales channel inventory
-   * @description: Fetch info of all the companies (e.g. name, uid, and company type) whose inventory is fetched into the current sales channel application
+   * @description: Fetch info of all the companies (e.g. name, uid, and company type) whose inventory is fetched into the current sales channel application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppCompanies/).
    */
   async getAppCompanies(
     { uid, pageNo, pageSize } = {},
     { headers } = { headers: false }
   ) {
-    const { error } = ConfigurationValidator.getAppCompanies().validate(
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.getAppCompanies().validate(
       {
         uid,
         pageNo,
@@ -313,7 +319,7 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.getAppCompanies().validate(
+    } = ConfigurationPlatformApplicationValidator.getAppCompanies().validate(
       {
         uid,
         pageNo,
@@ -324,9 +330,8 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getAppCompanies",
+        message: `Parameter Validation warrnings for platform > Configuration > getAppCompanies \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -351,7 +356,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.CompaniesResponse().validate(responseData, {
+    } = ConfigurationPlatformModel.CompaniesResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -359,9 +364,8 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getAppCompanies",
+        message: `Response Validation Warnnings for platform > Configuration > getAppCompanies \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -376,6 +380,7 @@ class Configuration {
    * @param {number} [arg.uid] - UID of companies to be fetched
    * @param {number} [arg.pageSize] - The number of items to retrieve in each
    *   page. Default value is 10.
+   * @returns {Paginator<ConfigurationPlatformModel.CompaniesResponse>}
    * @summary: Get companies enabled in the sales channel inventory
    * @description: Fetch info of all the companies (e.g. name, uid, and company type) whose inventory is fetched into the current sales channel application
    */
@@ -404,12 +409,16 @@ class Configuration {
 
   /**
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ApplicationInformation>} - Success response
+   * @returns {Promise<ConfigurationPlatformModel.ApplicationInformation>} -
+   *   Success response
+   * @name getAppContactInfo
    * @summary: Get current information of the sales channel
-   * @description: Fetch data such as social links, copyright text, business highlights, address and contact information of the company/seller/brand operating the application.
+   * @description: Fetch data such as social links, copyright text, business highlights, address and contact information of the company/seller/brand operating the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppContactInfo/).
    */
   async getAppContactInfo({ headers } = { headers: false }) {
-    const { error } = ConfigurationValidator.getAppContactInfo().validate(
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.getAppContactInfo().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -420,16 +429,15 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.getAppContactInfo().validate(
+    } = ConfigurationPlatformApplicationValidator.getAppContactInfo().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getAppContactInfo",
+        message: `Parameter Validation warrnings for platform > Configuration > getAppContactInfo \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -451,17 +459,16 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.ApplicationInformation().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ConfigurationPlatformModel.ApplicationInformation().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getAppContactInfo",
+        message: `Response Validation Warnnings for platform > Configuration > getAppContactInfo \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -469,12 +476,16 @@ class Configuration {
 
   /**
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<AppSupportedCurrency>} - Success response
+   * @returns {Promise<ConfigurationPlatformModel.AppSupportedCurrency>} -
+   *   Success response
+   * @name getAppCurrencyConfig
    * @summary: Get currencies supported in the application
-   * @description: Get a list of currencies supported in the current sales channel. Moreover, get the cuurency that is set as the default one in the application.
+   * @description: Get a list of currencies supported in the current sales channel. Moreover, get the cuurency that is set as the default one in the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppCurrencyConfig/).
    */
   async getAppCurrencyConfig({ headers } = { headers: false }) {
-    const { error } = ConfigurationValidator.getAppCurrencyConfig().validate(
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.getAppCurrencyConfig().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -485,16 +496,15 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.getAppCurrencyConfig().validate(
+    } = ConfigurationPlatformApplicationValidator.getAppCurrencyConfig().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getAppCurrencyConfig",
+        message: `Parameter Validation warrnings for platform > Configuration > getAppCurrencyConfig \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -516,17 +526,16 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.AppSupportedCurrency().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ConfigurationPlatformModel.AppSupportedCurrency().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getAppCurrencyConfig",
+        message: `Response Validation Warnnings for platform > Configuration > getAppCurrencyConfig \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -534,12 +543,16 @@ class Configuration {
 
   /**
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<AppFeatureResponse>} - Success response
+   * @returns {Promise<ConfigurationPlatformModel.AppFeatureResponse>} -
+   *   Success response
+   * @name getAppFeatures
    * @summary: Get the sales channel configuration and features
-   * @description: Shows feature configuration of sales channel websites, such as product detail, landing page, options in the login/registration screen, home page, listing page, reward points, communication opt-in, cart options and many more.
+   * @description: Shows feature configuration of sales channel websites, such as product detail, landing page, options in the login/registration screen, home page, listing page, reward points, communication opt-in, cart options and many more. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppFeatures/).
    */
   async getAppFeatures({ headers } = { headers: false }) {
-    const { error } = ConfigurationValidator.getAppFeatures().validate(
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.getAppFeatures().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -550,16 +563,15 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.getAppFeatures().validate(
+    } = ConfigurationPlatformApplicationValidator.getAppFeatures().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getAppFeatures",
+        message: `Parameter Validation warrnings for platform > Configuration > getAppFeatures \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -581,7 +593,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.AppFeatureResponse().validate(responseData, {
+    } = ConfigurationPlatformModel.AppFeatureResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -589,30 +601,30 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getAppFeatures",
+        message: `Response Validation Warnnings for platform > Configuration > getAppFeatures \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - The current page number to navigate
-   *   through the given set of results. Default value is 1.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each
-   *   page. Default value is 10.
+   * @param {ConfigurationPlatformApplicationValidator.GetAppStoresParam} arg
+   *   - Arg object
+   *
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<StoresResponse>} - Success response
+   * @returns {Promise<ConfigurationPlatformModel.StoresResponse>} - Success response
+   * @name getAppStores
    * @summary: Get stores enabled in the sales channel inventory
-   * @description: Fetch info of all the companies (e.g. uid, name, display name, store type, store code and company id) whose inventory is fetched into the current sales channel application
+   * @description: Fetch info of all the companies (e.g. uid, name, display name, store type, store code and company id) whose inventory is fetched into the current sales channel application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppStores/).
    */
   async getAppStores(
     { pageNo, pageSize } = {},
     { headers } = { headers: false }
   ) {
-    const { error } = ConfigurationValidator.getAppStores().validate(
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.getAppStores().validate(
       {
         pageNo,
         pageSize,
@@ -624,7 +636,9 @@ class Configuration {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ConfigurationValidator.getAppStores().validate(
+    const {
+      error: warrning,
+    } = ConfigurationPlatformApplicationValidator.getAppStores().validate(
       {
         pageNo,
         pageSize,
@@ -634,9 +648,8 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getAppStores",
+        message: `Parameter Validation warrnings for platform > Configuration > getAppStores \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -660,7 +673,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.StoresResponse().validate(responseData, {
+    } = ConfigurationPlatformModel.StoresResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -668,9 +681,8 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getAppStores",
+        message: `Response Validation Warnnings for platform > Configuration > getAppStores \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -684,6 +696,7 @@ class Configuration {
    *   application (sales channel website) created within a business account
    * @param {number} [arg.pageSize] - The number of items to retrieve in each
    *   page. Default value is 10.
+   * @returns {Paginator<ConfigurationPlatformModel.StoresResponse>}
    * @summary: Get stores enabled in the sales channel inventory
    * @description: Fetch info of all the companies (e.g. uid, name, display name, store type, store code and company id) whose inventory is fetched into the current sales channel application
    */
@@ -711,12 +724,16 @@ class Configuration {
 
   /**
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<AppCurrencyResponse>} - Success response
+   * @returns {Promise<ConfigurationPlatformModel.AppCurrencyResponse>} -
+   *   Success response
+   * @name getAppSupportedCurrency
    * @summary: Get currencies enabled in the application
-   * @description: Use this API to get a list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies.
+   * @description: Use this API to get a list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppSupportedCurrency/).
    */
   async getAppSupportedCurrency({ headers } = { headers: false }) {
-    const { error } = ConfigurationValidator.getAppSupportedCurrency().validate(
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.getAppSupportedCurrency().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -727,16 +744,15 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.getAppSupportedCurrency().validate(
+    } = ConfigurationPlatformApplicationValidator.getAppSupportedCurrency().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getAppSupportedCurrency",
+        message: `Parameter Validation warrnings for platform > Configuration > getAppSupportedCurrency \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -758,17 +774,16 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.AppCurrencyResponse().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ConfigurationPlatformModel.AppCurrencyResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getAppSupportedCurrency",
+        message: `Response Validation Warnnings for platform > Configuration > getAppSupportedCurrency \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -776,12 +791,15 @@ class Configuration {
 
   /**
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Application>} - Success response
+   * @returns {Promise<ConfigurationPlatformModel.Application>} - Success response
+   * @name getApplicationById
    * @summary: Get sales channel data by ID
-   * @description: Use application ID to get the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, token, etc.
+   * @description: Use application ID to get the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, token, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getApplicationById/).
    */
   async getApplicationById({ headers } = { headers: false }) {
-    const { error } = ConfigurationValidator.getApplicationById().validate(
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.getApplicationById().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -792,16 +810,15 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.getApplicationById().validate(
+    } = ConfigurationPlatformApplicationValidator.getApplicationById().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getApplicationById",
+        message: `Parameter Validation warrnings for platform > Configuration > getApplicationById \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -823,7 +840,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.Application().validate(responseData, {
+    } = ConfigurationPlatformModel.Application().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -831,28 +848,31 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getApplicationById",
+        message: `Response Validation Warnnings for platform > Configuration > getApplicationById \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.platformType - The device platform for which the
-   *   mobile app is built, e.g. android, ios.
+   * @param {ConfigurationPlatformApplicationValidator.GetBuildConfigParam} arg
+   *   - Arg object
+   *
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<MobileAppConfiguration>} - Success response
+   * @returns {Promise<ConfigurationPlatformModel.MobileAppConfiguration>} -
+   *   Success response
+   * @name getBuildConfig
    * @summary: Get configuration of latest mobile build
-   * @description: Fetch latest build configuration, such as app name, landing page image, splash image used in a mobile build.
+   * @description: Fetch latest build configuration, such as app name, landing page image, splash image used in a mobile build. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getBuildConfig/).
    */
   async getBuildConfig(
     { platformType } = {},
     { headers } = { headers: false }
   ) {
-    const { error } = ConfigurationValidator.getBuildConfig().validate(
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.getBuildConfig().validate(
       {
         platformType,
       },
@@ -865,7 +885,7 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.getBuildConfig().validate(
+    } = ConfigurationPlatformApplicationValidator.getBuildConfig().validate(
       {
         platformType,
       },
@@ -874,9 +894,8 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getBuildConfig",
+        message: `Parameter Validation warrnings for platform > Configuration > getBuildConfig \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -898,32 +917,36 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.MobileAppConfiguration().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ConfigurationPlatformModel.MobileAppConfiguration().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getBuildConfig",
+        message: `Response Validation Warnnings for platform > Configuration > getBuildConfig \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {DomainStatusRequest} arg.body
+   * @param {ConfigurationPlatformApplicationValidator.GetDomainStatusParam} arg
+   *   - Arg object
+   *
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<DomainStatusResponse>} - Success response
+   * @returns {Promise<ConfigurationPlatformModel.DomainStatusResponse>} -
+   *   Success response
+   * @name getDomainStatus
    * @summary: Get the status of connected domain
-   * @description: Shows if the A records and TXT records of the domain correctly points to appropriate IP on Fynd Servers.
+   * @description: Shows if the A records and TXT records of the domain correctly points to appropriate IP on Fynd Servers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getDomainStatus/).
    */
   async getDomainStatus({ body } = {}, { headers } = { headers: false }) {
-    const { error } = ConfigurationValidator.getDomainStatus().validate(
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.getDomainStatus().validate(
       {
         body,
       },
@@ -936,7 +959,7 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.getDomainStatus().validate(
+    } = ConfigurationPlatformApplicationValidator.getDomainStatus().validate(
       {
         body,
       },
@@ -945,9 +968,8 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getDomainStatus",
+        message: `Parameter Validation warrnings for platform > Configuration > getDomainStatus \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -969,17 +991,16 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.DomainStatusResponse().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ConfigurationPlatformModel.DomainStatusResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getDomainStatus",
+        message: `Response Validation Warnnings for platform > Configuration > getDomainStatus \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -987,12 +1008,15 @@ class Configuration {
 
   /**
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<DomainsResponse>} - Success response
+   * @returns {Promise<ConfigurationPlatformModel.DomainsResponse>} - Success response
+   * @name getDomains
    * @summary: Fetch all the domains added to an  application (sales channel website), including pre-defined domain (free domain) or custom domain (owned by the brand). Know the verification status of each domain name, and find out which one is the primary domain, short link domain, or both.
-   * @description: Get list of domains
+   * @description: Get list of domains - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getDomains/).
    */
   async getDomains({ headers } = { headers: false }) {
-    const { error } = ConfigurationValidator.getDomains().validate(
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.getDomains().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -1001,16 +1025,17 @@ class Configuration {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ConfigurationValidator.getDomains().validate(
+    const {
+      error: warrning,
+    } = ConfigurationPlatformApplicationValidator.getDomains().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getDomains",
+        message: `Parameter Validation warrnings for platform > Configuration > getDomains \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1032,7 +1057,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.DomainsResponse().validate(responseData, {
+    } = ConfigurationPlatformModel.DomainsResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1040,9 +1065,8 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getDomains",
+        message: `Response Validation Warnnings for platform > Configuration > getDomains \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -1050,12 +1074,16 @@ class Configuration {
 
   /**
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ApplicationInventory>} - Success response
+   * @returns {Promise<ConfigurationPlatformModel.ApplicationInventory>} -
+   *   Success response
+   * @name getInventoryConfig
    * @summary: Get sales channel configuration
-   * @description: Use this API to fetch configuration details of authentication, inventory, article assignment rules, reward points, cart, payment, order, logistics, etc.
+   * @description: Use this API to fetch configuration details of authentication, inventory, article assignment rules, reward points, cart, payment, order, logistics, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getInventoryConfig/).
    */
   async getInventoryConfig({ headers } = { headers: false }) {
-    const { error } = ConfigurationValidator.getInventoryConfig().validate(
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.getInventoryConfig().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -1066,16 +1094,15 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.getInventoryConfig().validate(
+    } = ConfigurationPlatformApplicationValidator.getInventoryConfig().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getInventoryConfig",
+        message: `Parameter Validation warrnings for platform > Configuration > getInventoryConfig \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1097,33 +1124,30 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.ApplicationInventory().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ConfigurationPlatformModel.ApplicationInventory().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getInventoryConfig",
+        message: `Response Validation Warnnings for platform > Configuration > getInventoryConfig \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results. Default value is 1.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each
-   *   page. Default value is 10.
-   * @param {FilterOrderingStoreRequest} arg.body
+   * @param {ConfigurationPlatformApplicationValidator.GetOrderingStoresByFilterParam} arg
+   *   - Arg object
+   *
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderingStores>} - Success response
+   * @returns {Promise<ConfigurationPlatformModel.OrderingStores>} - Success response
+   * @name getOrderingStoresByFilter
    * @summary: Get ordering store by filter
-   * @description: Use this API to use filters and retrieve the details of the deployment stores (the selling locations where the application will be utilised for placing orders).
+   * @description: Use this API to use filters and retrieve the details of the deployment stores (the selling locations where the application will be utilised for placing orders). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getOrderingStoresByFilter/).
    */
   async getOrderingStoresByFilter(
     { body, pageNo, pageSize } = {},
@@ -1131,7 +1155,7 @@ class Configuration {
   ) {
     const {
       error,
-    } = ConfigurationValidator.getOrderingStoresByFilter().validate(
+    } = ConfigurationPlatformApplicationValidator.getOrderingStoresByFilter().validate(
       {
         body,
         pageNo,
@@ -1146,7 +1170,7 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.getOrderingStoresByFilter().validate(
+    } = ConfigurationPlatformApplicationValidator.getOrderingStoresByFilter().validate(
       {
         body,
         pageNo,
@@ -1157,9 +1181,8 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getOrderingStoresByFilter",
+        message: `Parameter Validation warrnings for platform > Configuration > getOrderingStoresByFilter \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1183,7 +1206,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.OrderingStores().validate(responseData, {
+    } = ConfigurationPlatformModel.OrderingStores().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1191,9 +1214,8 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getOrderingStoresByFilter",
+        message: `Response Validation Warnnings for platform > Configuration > getOrderingStoresByFilter \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -1207,7 +1229,8 @@ class Configuration {
    *   application (sales channel website) created within a business account
    * @param {number} [arg.pageSize] - The number of items to retrieve in each
    *   page. Default value is 10.
-   * @param {FilterOrderingStoreRequest} arg.body
+   * @param {ConfigurationPlatformModel.FilterOrderingStoreRequest} arg.body
+   * @returns {Paginator<ConfigurationPlatformModel.OrderingStores>}
    * @summary: Get ordering store by filter
    * @description: Use this API to use filters and retrieve the details of the deployment stores (the selling locations where the application will be utilised for placing orders).
    */
@@ -1240,19 +1263,23 @@ class Configuration {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.platformType - The device platform for which the
-   *   mobile app is built, e.g. android, ios.
+   * @param {ConfigurationPlatformApplicationValidator.GetPreviousVersionsParam} arg
+   *   - Arg object
+   *
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<BuildVersionHistory>} - Success response
+   * @returns {Promise<ConfigurationPlatformModel.BuildVersionHistory>} -
+   *   Success response
+   * @name getPreviousVersions
    * @summary: Get details of previous mobile builds
-   * @description: Fetch version details of the app, this includes the build status, build date, version name, latest version, and a lot more.
+   * @description: Fetch version details of the app, this includes the build status, build date, version name, latest version, and a lot more. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getPreviousVersions/).
    */
   async getPreviousVersions(
     { platformType } = {},
     { headers } = { headers: false }
   ) {
-    const { error } = ConfigurationValidator.getPreviousVersions().validate(
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.getPreviousVersions().validate(
       {
         platformType,
       },
@@ -1265,7 +1292,7 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.getPreviousVersions().validate(
+    } = ConfigurationPlatformApplicationValidator.getPreviousVersions().validate(
       {
         platformType,
       },
@@ -1274,9 +1301,8 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getPreviousVersions",
+        message: `Parameter Validation warrnings for platform > Configuration > getPreviousVersions \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1298,39 +1324,39 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.BuildVersionHistory().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ConfigurationPlatformModel.BuildVersionHistory().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getPreviousVersions",
+        message: `Response Validation Warnnings for platform > Configuration > getPreviousVersions \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results. Default value is 1.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each
-   *   page. Default value is 10.
-   * @param {string} [arg.q] - Store code or name of the ordering store.
+   * @param {ConfigurationPlatformApplicationValidator.GetStaffOrderingStoresParam} arg
+   *   - Arg object
+   *
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderingStoresResponse>} - Success response
+   * @returns {Promise<ConfigurationPlatformModel.OrderingStoresResponse>} -
+   *   Success response
+   * @name getStaffOrderingStores
    * @summary: Get deployment stores
-   * @description: Use this API to retrieve the details of all stores access given to the staff member (the selling locations where the application will be utilized for placing orders).
+   * @description: Use this API to retrieve the details of all stores access given to the staff member (the selling locations where the application will be utilized for placing orders). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getStaffOrderingStores/).
    */
   async getStaffOrderingStores(
     { pageNo, pageSize, q } = {},
     { headers } = { headers: false }
   ) {
-    const { error } = ConfigurationValidator.getStaffOrderingStores().validate(
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.getStaffOrderingStores().validate(
       {
         pageNo,
         pageSize,
@@ -1345,7 +1371,7 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.getStaffOrderingStores().validate(
+    } = ConfigurationPlatformApplicationValidator.getStaffOrderingStores().validate(
       {
         pageNo,
         pageSize,
@@ -1356,9 +1382,8 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getStaffOrderingStores",
+        message: `Parameter Validation warrnings for platform > Configuration > getStaffOrderingStores \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1383,17 +1408,16 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.OrderingStoresResponse().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ConfigurationPlatformModel.OrderingStoresResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getStaffOrderingStores",
+        message: `Response Validation Warnnings for platform > Configuration > getStaffOrderingStores \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -1408,6 +1432,7 @@ class Configuration {
    * @param {number} [arg.pageSize] - The number of items to retrieve in each
    *   page. Default value is 10.
    * @param {string} [arg.q] - Store code or name of the ordering store.
+   * @returns {Paginator<ConfigurationPlatformModel.OrderingStoresResponse>}
    * @summary: Get deployment stores
    * @description: Use this API to retrieve the details of all stores access given to the staff member (the selling locations where the application will be utilized for placing orders).
    */
@@ -1440,15 +1465,19 @@ class Configuration {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {AppFeatureRequest} arg.body
+   * @param {ConfigurationPlatformApplicationValidator.ModifyAppFeaturesParam} arg
+   *   - Arg object
+   *
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<AppFeature>} - Success response
+   * @returns {Promise<ConfigurationPlatformModel.AppFeature>} - Success response
+   * @name modifyAppFeatures
    * @summary: Update features of application
-   * @description: Update features of application
+   * @description: Update features of application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/modifyAppFeatures/).
    */
   async modifyAppFeatures({ body } = {}, { headers } = { headers: false }) {
-    const { error } = ConfigurationValidator.modifyAppFeatures().validate(
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.modifyAppFeatures().validate(
       {
         body,
       },
@@ -1461,7 +1490,7 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.modifyAppFeatures().validate(
+    } = ConfigurationPlatformApplicationValidator.modifyAppFeatures().validate(
       {
         body,
       },
@@ -1470,9 +1499,8 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for modifyAppFeatures",
+        message: `Parameter Validation warrnings for platform > Configuration > modifyAppFeatures \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1494,7 +1522,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.AppFeature().validate(responseData, {
+    } = ConfigurationPlatformModel.AppFeature().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1502,21 +1530,23 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for modifyAppFeatures",
+        message: `Response Validation Warnnings for platform > Configuration > modifyAppFeatures \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {AppInventoryPartialUpdate} arg.body
+   * @param {ConfigurationPlatformApplicationValidator.PartiallyUpdateInventoryConfigParam} arg
+   *   - Arg object
+   *
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ApplicationInventory>} - Success response
+   * @returns {Promise<ConfigurationPlatformModel.ApplicationInventory>} -
+   *   Success response
+   * @name partiallyUpdateInventoryConfig
    * @summary: Partially update sales channel configuration
-   * @description: Partially update the configuration details of authentication, inventory, article assignment rules, reward points, cart, payment, order, logistics, etc.
+   * @description: Partially update the configuration details of authentication, inventory, article assignment rules, reward points, cart, payment, order, logistics, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/partiallyUpdateInventoryConfig/).
    */
   async partiallyUpdateInventoryConfig(
     { body } = {},
@@ -1524,7 +1554,7 @@ class Configuration {
   ) {
     const {
       error,
-    } = ConfigurationValidator.partiallyUpdateInventoryConfig().validate(
+    } = ConfigurationPlatformApplicationValidator.partiallyUpdateInventoryConfig().validate(
       {
         body,
       },
@@ -1537,7 +1567,7 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.partiallyUpdateInventoryConfig().validate(
+    } = ConfigurationPlatformApplicationValidator.partiallyUpdateInventoryConfig().validate(
       {
         body,
       },
@@ -1546,10 +1576,8 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message:
-          "Parameter Validation warrnings for partiallyUpdateInventoryConfig",
+        message: `Parameter Validation warrnings for platform > Configuration > partiallyUpdateInventoryConfig \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1571,34 +1599,36 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.ApplicationInventory().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ConfigurationPlatformModel.ApplicationInventory().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message:
-          "Response Validation Warnnings for partiallyUpdateInventoryConfig",
+        message: `Response Validation Warnnings for platform > Configuration > partiallyUpdateInventoryConfig \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - The unique identifier (24-digit Mongo Object ID)
-   *   of the domain
+   * @param {ConfigurationPlatformApplicationValidator.RemoveDomainByIdParam} arg
+   *   - Arg object
+   *
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<SuccessMessageResponse>} - Success response
+   * @returns {Promise<ConfigurationPlatformModel.SuccessMessageResponse>} -
+   *   Success response
+   * @name removeDomainById
    * @summary: Remove attached domain from current sales channel
-   * @description: Delete a domain (secondary or shortlink domain) added to a sales channel. It will disable user's access to website, shared links, and other features associated with this domain.
+   * @description: Delete a domain (secondary or shortlink domain) added to a sales channel. It will disable user's access to website, shared links, and other features associated with this domain. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/removeDomainById/).
    */
   async removeDomainById({ id } = {}, { headers } = { headers: false }) {
-    const { error } = ConfigurationValidator.removeDomainById().validate(
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.removeDomainById().validate(
       {
         id,
       },
@@ -1611,7 +1641,7 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.removeDomainById().validate(
+    } = ConfigurationPlatformApplicationValidator.removeDomainById().validate(
       {
         id,
       },
@@ -1620,9 +1650,8 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for removeDomainById",
+        message: `Parameter Validation warrnings for platform > Configuration > removeDomainById \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1644,32 +1673,35 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.SuccessMessageResponse().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ConfigurationPlatformModel.SuccessMessageResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for removeDomainById",
+        message: `Response Validation Warnnings for platform > Configuration > removeDomainById \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {TokenResponse} arg.body
+   * @param {ConfigurationPlatformApplicationValidator.UpdateAppApiTokensParam} arg
+   *   - Arg object
+   *
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<TokenResponse>} - Success response
+   * @returns {Promise<ConfigurationPlatformModel.TokenResponse>} - Success response
+   * @name updateAppApiTokens
    * @summary: Add or update social tokens for the sales channel
-   * @description: Use this API to add or edit the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google and Facebook auth.
+   * @description: Use this API to add or edit the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google and Facebook auth. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateAppApiTokens/).
    */
   async updateAppApiTokens({ body } = {}, { headers } = { headers: false }) {
-    const { error } = ConfigurationValidator.updateAppApiTokens().validate(
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.updateAppApiTokens().validate(
       {
         body,
       },
@@ -1682,7 +1714,7 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.updateAppApiTokens().validate(
+    } = ConfigurationPlatformApplicationValidator.updateAppApiTokens().validate(
       {
         body,
       },
@@ -1691,9 +1723,8 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateAppApiTokens",
+        message: `Parameter Validation warrnings for platform > Configuration > updateAppApiTokens \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1715,7 +1746,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.TokenResponse().validate(responseData, {
+    } = ConfigurationPlatformModel.TokenResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1723,24 +1754,27 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateAppApiTokens",
+        message: `Response Validation Warnnings for platform > Configuration > updateAppApiTokens \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {ApplicationDetail} arg.body
+   * @param {ConfigurationPlatformApplicationValidator.UpdateAppBasicDetailsParam} arg
+   *   - Arg object
+   *
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ApplicationDetail>} - Success response
+   * @returns {Promise<ConfigurationPlatformModel.ApplicationDetail>} - Success response
+   * @name updateAppBasicDetails
    * @summary: Update sales channel details
-   * @description: Modify sales channel details like name, description, logo, domain, company ID, and other related information.
+   * @description: Modify sales channel details like name, description, logo, domain, company ID, and other related information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateAppBasicDetails/).
    */
   async updateAppBasicDetails({ body } = {}, { headers } = { headers: false }) {
-    const { error } = ConfigurationValidator.updateAppBasicDetails().validate(
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.updateAppBasicDetails().validate(
       {
         body,
       },
@@ -1753,7 +1787,7 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.updateAppBasicDetails().validate(
+    } = ConfigurationPlatformApplicationValidator.updateAppBasicDetails().validate(
       {
         body,
       },
@@ -1762,9 +1796,8 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateAppBasicDetails",
+        message: `Parameter Validation warrnings for platform > Configuration > updateAppBasicDetails \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1786,7 +1819,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.ApplicationDetail().validate(responseData, {
+    } = ConfigurationPlatformModel.ApplicationDetail().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1794,24 +1827,28 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateAppBasicDetails",
+        message: `Response Validation Warnnings for platform > Configuration > updateAppBasicDetails \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {ApplicationInformation} arg.body
+   * @param {ConfigurationPlatformApplicationValidator.UpdateAppContactInfoParam} arg
+   *   - Arg object
+   *
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ApplicationInformation>} - Success response
+   * @returns {Promise<ConfigurationPlatformModel.ApplicationInformation>} -
+   *   Success response
+   * @name updateAppContactInfo
    * @summary: Save or update current information of the sales channel
-   * @description: Modify the social links, copyright text, business highlights, address and contact information of the company/seller/brand operating the application.
+   * @description: Modify the social links, copyright text, business highlights, address and contact information of the company/seller/brand operating the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateAppContactInfo/).
    */
   async updateAppContactInfo({ body } = {}, { headers } = { headers: false }) {
-    const { error } = ConfigurationValidator.updateAppContactInfo().validate(
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.updateAppContactInfo().validate(
       {
         body,
       },
@@ -1824,7 +1861,7 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.updateAppContactInfo().validate(
+    } = ConfigurationPlatformApplicationValidator.updateAppContactInfo().validate(
       {
         body,
       },
@@ -1833,9 +1870,8 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateAppContactInfo",
+        message: `Parameter Validation warrnings for platform > Configuration > updateAppContactInfo \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1857,35 +1893,39 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.ApplicationInformation().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ConfigurationPlatformModel.ApplicationInformation().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateAppContactInfo",
+        message: `Response Validation Warnnings for platform > Configuration > updateAppContactInfo \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {AppSupportedCurrency} arg.body
+   * @param {ConfigurationPlatformApplicationValidator.UpdateAppCurrencyConfigParam} arg
+   *   - Arg object
+   *
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<AppSupportedCurrency>} - Success response
+   * @returns {Promise<ConfigurationPlatformModel.AppSupportedCurrency>} -
+   *   Success response
+   * @name updateAppCurrencyConfig
    * @summary: Update initial sales channel supported currency
-   * @description: Use this API to add and edit the currencies supported in the application. Initially, INR will be enabled by default.
+   * @description: Use this API to add and edit the currencies supported in the application. Initially, INR will be enabled by default. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateAppCurrencyConfig/).
    */
   async updateAppCurrencyConfig(
     { body } = {},
     { headers } = { headers: false }
   ) {
-    const { error } = ConfigurationValidator.updateAppCurrencyConfig().validate(
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.updateAppCurrencyConfig().validate(
       {
         body,
       },
@@ -1898,7 +1938,7 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.updateAppCurrencyConfig().validate(
+    } = ConfigurationPlatformApplicationValidator.updateAppCurrencyConfig().validate(
       {
         body,
       },
@@ -1907,9 +1947,8 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateAppCurrencyConfig",
+        message: `Parameter Validation warrnings for platform > Configuration > updateAppCurrencyConfig \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1931,32 +1970,35 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.AppSupportedCurrency().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ConfigurationPlatformModel.AppSupportedCurrency().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateAppCurrencyConfig",
+        message: `Response Validation Warnnings for platform > Configuration > updateAppCurrencyConfig \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {AppFeatureRequest} arg.body
+   * @param {ConfigurationPlatformApplicationValidator.UpdateAppFeaturesParam} arg
+   *   - Arg object
+   *
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<AppFeature>} - Success response
+   * @returns {Promise<ConfigurationPlatformModel.AppFeature>} - Success response
+   * @name updateAppFeatures
    * @summary: Update the sales channel configuration and features
-   * @description: Modify the feature configuration of sales channel websites, such as product detail, landing page, options in the login/registration screen, home page, listing page, reward points, communication opt-in, cart options and many more.
+   * @description: Modify the feature configuration of sales channel websites, such as product detail, landing page, options in the login/registration screen, home page, listing page, reward points, communication opt-in, cart options and many more. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateAppFeatures/).
    */
   async updateAppFeatures({ body } = {}, { headers } = { headers: false }) {
-    const { error } = ConfigurationValidator.updateAppFeatures().validate(
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.updateAppFeatures().validate(
       {
         body,
       },
@@ -1969,7 +2011,7 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.updateAppFeatures().validate(
+    } = ConfigurationPlatformApplicationValidator.updateAppFeatures().validate(
       {
         body,
       },
@@ -1978,9 +2020,8 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateAppFeatures",
+        message: `Parameter Validation warrnings for platform > Configuration > updateAppFeatures \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2002,7 +2043,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.AppFeature().validate(responseData, {
+    } = ConfigurationPlatformModel.AppFeature().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2010,29 +2051,31 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateAppFeatures",
+        message: `Response Validation Warnnings for platform > Configuration > updateAppFeatures \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.platformType - The device platform for which the
-   *   mobile app is built, e.g. android, ios.
-   * @param {MobileAppConfigRequest} arg.body
+   * @param {ConfigurationPlatformApplicationValidator.UpdateBuildConfigParam} arg
+   *   - Arg object
+   *
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<MobileAppConfiguration>} - Success response
+   * @returns {Promise<ConfigurationPlatformModel.MobileAppConfiguration>} -
+   *   Success response
+   * @name updateBuildConfig
    * @summary: Update the configuration for next mobile build
-   * @description: Modify the existing build configuration, such as app name, landing page image, splash image used in a mobile build.
+   * @description: Modify the existing build configuration, such as app name, landing page image, splash image used in a mobile build. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateBuildConfig/).
    */
   async updateBuildConfig(
     { platformType, body } = {},
     { headers } = { headers: false }
   ) {
-    const { error } = ConfigurationValidator.updateBuildConfig().validate(
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.updateBuildConfig().validate(
       {
         platformType,
         body,
@@ -2046,7 +2089,7 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.updateBuildConfig().validate(
+    } = ConfigurationPlatformApplicationValidator.updateBuildConfig().validate(
       {
         platformType,
         body,
@@ -2056,9 +2099,8 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateBuildConfig",
+        message: `Parameter Validation warrnings for platform > Configuration > updateBuildConfig \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2080,32 +2122,36 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.MobileAppConfiguration().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ConfigurationPlatformModel.MobileAppConfiguration().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateBuildConfig",
+        message: `Response Validation Warnnings for platform > Configuration > updateBuildConfig \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {ApplicationInventory} arg.body
+   * @param {ConfigurationPlatformApplicationValidator.UpdateInventoryConfigParam} arg
+   *   - Arg object
+   *
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ApplicationInventory>} - Success response
+   * @returns {Promise<ConfigurationPlatformModel.ApplicationInventory>} -
+   *   Success response
+   * @name updateInventoryConfig
    * @summary: Update sales channel configuration
-   * @description: Modify the configuration details of authentication, inventory, article assignment rules, reward points, cart, payment, order, logistics, etc.
+   * @description: Modify the configuration details of authentication, inventory, article assignment rules, reward points, cart, payment, order, logistics, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateInventoryConfig/).
    */
   async updateInventoryConfig({ body } = {}, { headers } = { headers: false }) {
-    const { error } = ConfigurationValidator.updateInventoryConfig().validate(
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.updateInventoryConfig().validate(
       {
         body,
       },
@@ -2118,7 +2164,7 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.updateInventoryConfig().validate(
+    } = ConfigurationPlatformApplicationValidator.updateInventoryConfig().validate(
       {
         body,
       },
@@ -2127,9 +2173,8 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateInventoryConfig",
+        message: `Parameter Validation warrnings for platform > Configuration > updateInventoryConfig \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2151,29 +2196,30 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.ApplicationInventory().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ConfigurationPlatformModel.ApplicationInventory().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateInventoryConfig",
+        message: `Response Validation Warnnings for platform > Configuration > updateInventoryConfig \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {OrderingStoreConfig} arg.body
+   * @param {ConfigurationPlatformApplicationValidator.UpdateOrderingStoreConfigParam} arg
+   *   - Arg object
+   *
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<DeploymentMeta>} - Success response
+   * @returns {Promise<ConfigurationPlatformModel.DeploymentMeta>} - Success response
+   * @name updateOrderingStoreConfig
    * @summary: Add/Update ordering store config
-   * @description: Use this API to edit the details of the deployment stores (the selling locations where the application will be utilised for placing orders)
+   * @description: Use this API to edit the details of the deployment stores (the selling locations where the application will be utilised for placing orders) - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateOrderingStoreConfig/).
    */
   async updateOrderingStoreConfig(
     { body } = {},
@@ -2181,7 +2227,7 @@ class Configuration {
   ) {
     const {
       error,
-    } = ConfigurationValidator.updateOrderingStoreConfig().validate(
+    } = ConfigurationPlatformApplicationValidator.updateOrderingStoreConfig().validate(
       {
         body,
       },
@@ -2194,7 +2240,7 @@ class Configuration {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ConfigurationValidator.updateOrderingStoreConfig().validate(
+    } = ConfigurationPlatformApplicationValidator.updateOrderingStoreConfig().validate(
       {
         body,
       },
@@ -2203,9 +2249,8 @@ class Configuration {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateOrderingStoreConfig",
+        message: `Parameter Validation warrnings for platform > Configuration > updateOrderingStoreConfig \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2227,7 +2272,7 @@ class Configuration {
 
     const {
       error: res_error,
-    } = ConfigurationModel.DeploymentMeta().validate(responseData, {
+    } = ConfigurationPlatformModel.DeploymentMeta().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2235,9 +2280,8 @@ class Configuration {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateOrderingStoreConfig",
+        message: `Response Validation Warnnings for platform > Configuration > updateOrderingStoreConfig \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

@@ -4,160 +4,128 @@ declare class Lead {
     config: any;
     applicationId: any;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.uniqueName - Unique name of Video Room
+     * @param {LeadPlatformApplicationValidator.CloseVideoRoomParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CloseVideoRoomResponse>} - Success response
+     * @returns {Promise<LeadPlatformModel.CloseVideoRoomResponse>} - Success response
+     * @name closeVideoRoom
      * @summary: Close the video room and force all participants to leave.
-     * @description: Close the video room and force all participants to leave.
+     * @description: Close the video room and force all participants to leave. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/closeVideoRoom/).
      */
-    closeVideoRoom({ uniqueName }?: {
-        uniqueName: string;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<CloseVideoRoomResponse>;
+    closeVideoRoom({ uniqueName }?: LeadPlatformApplicationValidator.CloseVideoRoomParam, { headers }?: import("../PlatformAPIClient").Options): Promise<LeadPlatformModel.CloseVideoRoomResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {CreateCustomFormPayload} arg.body
+     * @param {LeadPlatformApplicationValidator.CreateCustomFormParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CustomForm>} - Success response
+     * @returns {Promise<LeadPlatformModel.CustomForm>} - Success response
+     * @name createCustomForm
      * @summary: Creates a new custom form
-     * @description: Creates a new custom form for given application
+     * @description: Creates a new custom form for given application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/createCustomForm/).
      */
-    createCustomForm({ body }?: {
-        body: CreateCustomFormPayload;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<CustomForm>;
+    createCustomForm({ body }?: LeadPlatformApplicationValidator.CreateCustomFormParam, { headers }?: import("../PlatformAPIClient").Options): Promise<LeadPlatformModel.CustomForm>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Ticket ID for which history is created
-     * @param {TicketHistoryPayload} arg.body
+     * @param {LeadPlatformApplicationValidator.CreateNewHistoryParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<TicketHistory>} - Success response
+     * @returns {Promise<LeadPlatformModel.TicketHistory>} - Success response
+     * @name createNewHistory
      * @summary: Create history for specific application level ticket
-     * @description: Create history for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
+     * @description: Create history for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/createNewHistory/).
      */
-    createNewHistory({ id, body }?: {
-        id: string;
-        body: TicketHistoryPayload;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<TicketHistory>;
+    createNewHistory({ id, body }?: LeadPlatformApplicationValidator.CreateNewHistoryParam, { headers }?: import("../PlatformAPIClient").Options): Promise<LeadPlatformModel.TicketHistory>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.slug - Slug of form whose response is getting submitted
-     * @param {EditCustomFormPayload} arg.body
+     * @param {LeadPlatformApplicationValidator.EditCustomFormParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CustomForm>} - Success response
+     * @returns {Promise<LeadPlatformModel.CustomForm>} - Success response
+     * @name editCustomForm
      * @summary: Edit the given custom form
-     * @description: Edit the given custom form field such as adding or deleting input, assignee, title, decription, notification and polling information.
+     * @description: Edit the given custom form field such as adding or deleting input, assignee, title, decription, notification and polling information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/editCustomForm/).
      */
-    editCustomForm({ slug, body }?: {
-        slug: string;
-        body: EditCustomFormPayload;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<CustomForm>;
+    editCustomForm({ slug, body }?: LeadPlatformApplicationValidator.EditCustomFormParam, { headers }?: import("../PlatformAPIClient").Options): Promise<LeadPlatformModel.CustomForm>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Ticket ID of ticket to be edited
-     * @param {EditTicketPayload} arg.body
+     * @param {LeadPlatformApplicationValidator.EditNewTicketParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<Ticket>} - Success response
+     * @returns {Promise<LeadPlatformModel.Ticket>} - Success response
+     * @name editNewTicket
      * @summary: Edits ticket details of a application level ticket
-     * @description: Edits ticket details of a application level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes
+     * @description: Edits ticket details of a application level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/editNewTicket/).
      */
-    editNewTicket({ id, body }?: {
-        id: string;
-        body: EditTicketPayload;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<Ticket>;
+    editNewTicket({ id, body }?: LeadPlatformApplicationValidator.EditNewTicketParam, { headers }?: import("../PlatformAPIClient").Options): Promise<LeadPlatformModel.Ticket>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.slug - Slug of form whose response is getting submitted
+     * @param {LeadPlatformApplicationValidator.GetCustomFormParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CustomForm>} - Success response
+     * @returns {Promise<LeadPlatformModel.CustomForm>} - Success response
+     * @name getCustomForm
      * @summary: Get specific custom form using it's slug
-     * @description: Get specific custom form using it's slug, this is used to view the form.
+     * @description: Get specific custom form using it's slug, this is used to view the form. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getCustomForm/).
      */
-    getCustomForm({ slug }?: {
-        slug: string;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<CustomForm>;
+    getCustomForm({ slug }?: LeadPlatformApplicationValidator.GetCustomFormParam, { headers }?: import("../PlatformAPIClient").Options): Promise<LeadPlatformModel.CustomForm>;
     /**
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CustomFormList>} - Success response
+     * @returns {Promise<LeadPlatformModel.CustomFormList>} - Success response
+     * @name getCustomForms
      * @summary: Get list of custom form
-     * @description: Get list of custom form for given application
+     * @description: Get list of custom form for given application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getCustomForms/).
      */
-    getCustomForms({ headers }?: import("../PlatformAPIClient").Options): Promise<CustomFormList>;
+    getCustomForms({ headers }?: import("../PlatformAPIClient").Options): Promise<LeadPlatformModel.CustomFormList>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Tiket ID of the ticket to be fetched
+     * @param {LeadPlatformApplicationValidator.GetNewTicketParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<Ticket>} - Success response
+     * @returns {Promise<LeadPlatformModel.Ticket>} - Success response
+     * @name getNewTicket
      * @summary: Retreives ticket details of a application level ticket
-     * @description: Retreives ticket details of a application level ticket with ticket ID
+     * @description: Retreives ticket details of a application level ticket with ticket ID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getNewTicket/).
      */
-    getNewTicket({ id }?: {
-        id: string;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<Ticket>;
+    getNewTicket({ id }?: LeadPlatformApplicationValidator.GetNewTicketParam, { headers }?: import("../PlatformAPIClient").Options): Promise<LeadPlatformModel.Ticket>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Ticket ID for which history is to be fetched
+     * @param {LeadPlatformApplicationValidator.GetNewTicketHistoryParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<TicketHistoryList>} - Success response
+     * @returns {Promise<LeadPlatformModel.TicketHistoryList>} - Success response
+     * @name getNewTicketHistory
      * @summary: Gets history list for specific application level ticket
-     * @description: Gets history list for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
+     * @description: Gets history list for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getNewTicketHistory/).
      */
-    getNewTicketHistory({ id }?: {
-        id: string;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<TicketHistoryList>;
+    getNewTicketHistory({ id }?: LeadPlatformApplicationValidator.GetNewTicketHistoryParam, { headers }?: import("../PlatformAPIClient").Options): Promise<LeadPlatformModel.TicketHistoryList>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {boolean} [arg.items] - Decides that the reponse will contain the
-     *   list of tickets
-     * @param {boolean} [arg.filters] - Decides that the reponse will contain
-     *   the ticket filters
-     * @param {string} [arg.q] - Search through ticket titles and description
-     * @param {string} [arg.status] - Filter tickets on status
-     * @param {PriorityEnum} [arg.priority] - Filter tickets on priority
-     * @param {string} [arg.category] - Filter tickets on category
+     * @param {LeadPlatformApplicationValidator.GetNewTicketsParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<TicketList>} - Success response
+     * @returns {Promise<LeadPlatformModel.TicketList>} - Success response
+     * @name getNewTickets
      * @summary: Gets the list of Application level Tickets and/or ticket filters depending on query params
-     * @description: Gets the list of Application level Tickets and/or ticket filters
+     * @description: Gets the list of Application level Tickets and/or ticket filters - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getNewTickets/).
      */
-    getNewTickets({ items, filters, q, status, priority, category }?: {
-        items?: boolean;
-        filters?: boolean;
-        q?: string;
-        status?: string;
-        priority?: PriorityEnum;
-        category?: string;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<TicketList>;
+    getNewTickets({ items, filters, q, status, priority, category }?: LeadPlatformApplicationValidator.GetNewTicketsParam, { headers }?: import("../PlatformAPIClient").Options): Promise<LeadPlatformModel.TicketList>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.uniqueName - Unique name of video room
+     * @param {LeadPlatformApplicationValidator.GetNewTokenForVideoRoomParam} arg
+     *   - Arg object
+     *
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<GetTokenForVideoRoomResponse>} - Success response
+     * @returns {Promise<LeadPlatformModel.GetTokenForVideoRoomResponse>} -
+     *   Success response
+     * @name getNewTokenForVideoRoom
      * @summary: Get Token to join a specific Video Room using it's unqiue name
-     * @description: Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
+     * @description: Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getNewTokenForVideoRoom/).
      */
-    getNewTokenForVideoRoom({ uniqueName }?: {
-        uniqueName: string;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<GetTokenForVideoRoomResponse>;
+    getNewTokenForVideoRoom({ uniqueName }?: LeadPlatformApplicationValidator.GetNewTokenForVideoRoomParam, { headers }?: import("../PlatformAPIClient").Options): Promise<LeadPlatformModel.GetTokenForVideoRoomResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.uniqueName - Unique name of Video Room
+     * @param {LeadPlatformApplicationValidator.GetNewVideoParticipantsParam} arg
+     *   - Arg object
+     *
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<GetParticipantsInsideVideoRoomResponse>} - Success response
+     * @returns {Promise<LeadPlatformModel.GetParticipantsInsideVideoRoomResponse>}
+     *   - Success response
+     *
+     * @name getNewVideoParticipants
      * @summary: Get participants of a specific Video Room using it's unique name
-     * @description: Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
+     * @description: Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getNewVideoParticipants/).
      */
-    getNewVideoParticipants({ uniqueName }?: {
-        uniqueName: string;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<GetParticipantsInsideVideoRoomResponse>;
+    getNewVideoParticipants({ uniqueName }?: LeadPlatformApplicationValidator.GetNewVideoParticipantsParam, { headers }?: import("../PlatformAPIClient").Options): Promise<LeadPlatformModel.GetParticipantsInsideVideoRoomResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {CreateVideoRoomPayload} arg.body
+     * @param {LeadPlatformApplicationValidator.OpenVideoRoomParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CreateVideoRoomResponse>} - Success response
+     * @returns {Promise<LeadPlatformModel.CreateVideoRoomResponse>} - Success response
+     * @name openVideoRoom
      * @summary: Open a video room.
-     * @description: Open a video room.
+     * @description: Open a video room. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/openVideoRoom/).
      */
-    openVideoRoom({ body }?: {
-        body: CreateVideoRoomPayload;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<CreateVideoRoomResponse>;
+    openVideoRoom({ body }?: LeadPlatformApplicationValidator.OpenVideoRoomParam, { headers }?: import("../PlatformAPIClient").Options): Promise<LeadPlatformModel.CreateVideoRoomResponse>;
 }
+import LeadPlatformApplicationValidator = require("./LeadPlatformApplicationValidator");
+import LeadPlatformModel = require("./LeadPlatformModel");

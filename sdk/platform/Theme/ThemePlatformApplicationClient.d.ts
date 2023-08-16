@@ -4,319 +4,259 @@ declare class Theme {
     config: any;
     applicationId: any;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {CompanyThemeSchema} arg.body
+     * @param {ThemePlatformApplicationValidator.AddThemeToApplicationParam} arg
+     *   - Arg object
+     *
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ThemesSchema>} - Success response
+     * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
+     * @name addThemeToApplication
      * @summary: Add a theme to an application
-     * @description: Add a theme to an application by providing the marketplace theme ID.
+     * @description: Add a theme to an application by providing the marketplace theme ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/addThemeToApplication/).
      */
-    addThemeToApplication({ body }?: {
-        body: CompanyThemeSchema;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ThemesSchema>;
+    addThemeToApplication({ body }?: ThemePlatformApplicationValidator.AddThemeToApplicationParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ThemePlatformModel.ThemesSchema>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {AddThemeRequestSchema} arg.body
+     * @param {ThemePlatformApplicationValidator.AddToThemeLibraryParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<DummyResponse>} - Success response
+     * @returns {Promise<ThemePlatformModel.DummyResponse>} - Success response
+     * @name addToThemeLibrary
      * @summary: Add a theme to the theme library
-     * @description: Theme library is a personalized collection of themes that are chosen and added from the available themes. Use this API to choose a theme and add it to the theme library.
+     * @description: Theme library is a personalized collection of themes that are chosen and added from the available themes. Use this API to choose a theme and add it to the theme library. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/addToThemeLibrary/).
      */
-    addToThemeLibrary({ body }?: {
-        body: AddThemeRequestSchema;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<DummyResponse>;
+    addToThemeLibrary({ body }?: ThemePlatformApplicationValidator.AddToThemeLibraryParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ThemePlatformModel.DummyResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.themeId - The ID of the apply
+     * @param {ThemePlatformApplicationValidator.ApplyThemeParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ThemesSchema>} - Success response
+     * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
+     * @name applyTheme
      * @summary: Apply theme to a specific application
-     * @description: Apply theme to a specific application by providing company_id, application_id, and theme_id.
+     * @description: Apply theme to a specific application by providing company_id, application_id, and theme_id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/applyTheme/).
      */
-    applyTheme({ themeId }?: {
-        themeId: string;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ThemesSchema>;
+    applyTheme({ themeId }?: ThemePlatformApplicationValidator.ApplyThemeParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ThemePlatformModel.ThemesSchema>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.themeId - ID allotted to the theme.
+     * @param {ThemePlatformApplicationValidator.ArchiveThemeParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<DummyResponse>} - Success response
+     * @returns {Promise<ThemePlatformModel.DummyResponse>} - Success response
+     * @name archiveTheme
      * @summary: Archive a theme
-     * @description: Use this API to store an existing theme but not delete it so that it can be used in future if required.
+     * @description: Use this API to store an existing theme but not delete it so that it can be used in future if required.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/archiveTheme/).
      */
-    archiveTheme({ themeId }?: {
-        themeId: string;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<DummyResponse>;
+    archiveTheme({ themeId }?: ThemePlatformApplicationValidator.ArchiveThemeParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ThemePlatformModel.DummyResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.themeId - ID of the theme
-     * @param {AvailablePageSchema} arg.body
+     * @param {ThemePlatformApplicationValidator.CreatePageParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<AvailablePageSchema>} - Success response
+     * @returns {Promise<ThemePlatformModel.AvailablePageSchema>} - Success response
+     * @name createPage
      * @summary: Create a page
-     * @description: Use this API to create a page for a theme by its ID.
+     * @description: Use this API to create a page for a theme by its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/createPage/).
      */
-    createPage({ themeId, body }?: {
-        themeId: string;
-        body: AvailablePageSchema;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<AvailablePageSchema>;
+    createPage({ themeId, body }?: ThemePlatformApplicationValidator.CreatePageParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ThemePlatformModel.AvailablePageSchema>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.themeId - ID of the theme
-     * @param {string} arg.pageValue - Value of the page to be updated
+     * @param {ThemePlatformApplicationValidator.DeletePageParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<AvailablePageSchema>} - Success response
+     * @returns {Promise<ThemePlatformModel.AvailablePageSchema>} - Success response
+     * @name deletePage
      * @summary: Deletes a page
-     * @description: Use this API to delete a page for a theme by its ID and page_value.
+     * @description: Use this API to delete a page for a theme by its ID and page_value. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/deletePage/).
      */
-    deletePage({ themeId, pageValue }?: {
-        themeId: string;
-        pageValue: string;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<AvailablePageSchema>;
+    deletePage({ themeId, pageValue }?: ThemePlatformApplicationValidator.DeletePageParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ThemePlatformModel.AvailablePageSchema>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.themeId - The ID of the theme to be deleted.
+     * @param {ThemePlatformApplicationValidator.DeleteThemeParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ThemesSchema>} - Success response
+     * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
+     * @name deleteTheme
      * @summary: Delete a theme
-     * @description: This endpoint is used to delete a theme from the specified company and application.
+     * @description: This endpoint is used to delete a theme from the specified company and application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/deleteTheme/).
      */
-    deleteTheme({ themeId }?: {
-        themeId: string;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ThemesSchema>;
+    deleteTheme({ themeId }?: ThemePlatformApplicationValidator.DeleteThemeParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ThemePlatformModel.ThemesSchema>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.themeId - The ID of the theme to be duplicated
+     * @param {ThemePlatformApplicationValidator.DuplicateThemeParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ThemesSchema>} - Success response
+     * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
+     * @name duplicateTheme
      * @summary: Duplicate a Theme
-     * @description: This endpoint duplicates a Theme in the specified application.
+     * @description: This endpoint duplicates a Theme in the specified application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/duplicateTheme/).
      */
-    duplicateTheme({ themeId }?: {
-        themeId: string;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ThemesSchema>;
+    duplicateTheme({ themeId }?: ThemePlatformApplicationValidator.DuplicateThemeParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ThemePlatformModel.ThemesSchema>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.themeId - ID of the theme to be retrieved
+     * @param {ThemePlatformApplicationValidator.GetAllPagesParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<AllAvailablePageSchema>} - Success response
+     * @returns {Promise<ThemePlatformModel.AllAvailablePageSchema>} - Success response
+     * @name getAllPages
      * @summary: Get all pages of a theme
-     * @description: Use this API to retrieve all the available pages of a theme by its ID.
+     * @description: Use this API to retrieve all the available pages of a theme by its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getAllPages/).
      */
-    getAllPages({ themeId }?: {
-        themeId: string;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<AllAvailablePageSchema>;
+    getAllPages({ themeId }?: ThemePlatformApplicationValidator.GetAllPagesParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ThemePlatformModel.AllAvailablePageSchema>;
     /**
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ThemesSchema[]>} - Success response
+     * @returns {Promise<ThemePlatformModel.ThemesSchema[]>} - Success response
+     * @name getApplicationThemes
      * @summary: Get all the themes for a specific application
-     * @description: Get all the themes for a specific application
+     * @description: Get all the themes for a specific application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getApplicationThemes/).
      */
-    getApplicationThemes({ headers }?: import("../PlatformAPIClient").Options): Promise<ThemesSchema[]>;
+    getApplicationThemes({ headers }?: import("../PlatformAPIClient").Options): Promise<ThemePlatformModel.ThemesSchema[]>;
     /**
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<Object>} - Success response
+     * @name getApplicationThemesCount
      * @summary: Get the count of themes for a specific application
-     * @description: Get the count of themes for a specific application
+     * @description: Get the count of themes for a specific application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getApplicationThemesCount/).
      */
     getApplicationThemesCount({ headers }?: import("../PlatformAPIClient").Options): Promise<any>;
     /**
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ThemesSchema>} - Success response
+     * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
+     * @name getAppliedTheme
      * @summary: Get the Applied theme of an Application
-     * @description: Get Applied Theme of an Application by Application Id
+     * @description: Get Applied Theme of an Application by Application Id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getAppliedTheme/).
      */
-    getAppliedTheme({ headers }?: import("../PlatformAPIClient").Options): Promise<ThemesSchema>;
+    getAppliedTheme({ headers }?: import("../PlatformAPIClient").Options): Promise<ThemePlatformModel.ThemesSchema>;
     /**
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<FontsSchema>} - Success response
+     * @returns {Promise<ThemePlatformModel.FontsSchema>} - Success response
+     * @name getFonts
      * @summary: Get all the supported fonts in a theme
-     * @description: Font is a collection of characters with a similar design. Use this API to retrieve a list of website fonts.
+     * @description: Font is a collection of characters with a similar design. Use this API to retrieve a list of website fonts. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getFonts/).
      */
-    getFonts({ headers }?: import("../PlatformAPIClient").Options): Promise<FontsSchema>;
+    getFonts({ headers }?: import("../PlatformAPIClient").Options): Promise<ThemePlatformModel.FontsSchema>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.themeId - ID of the theme to be retrieved
-     * @param {string} arg.pageValue - Value of the page to be retrieved
+     * @param {ThemePlatformApplicationValidator.GetPageParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<AvailablePageSchema>} - Success response
+     * @returns {Promise<ThemePlatformModel.AvailablePageSchema>} - Success response
+     * @name getPage
      * @summary: Get page of a theme
-     * @description: Use this API to retrieve a page of a theme.
+     * @description: Use this API to retrieve a page of a theme. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getPage/).
      */
-    getPage({ themeId, pageValue }?: {
-        themeId: string;
-        pageValue: string;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<AvailablePageSchema>;
+    getPage({ themeId, pageValue }?: ThemePlatformApplicationValidator.GetPageParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ThemePlatformModel.AvailablePageSchema>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each
-     *   page. Default value is 10.
-     * @param {number} [arg.pageNo] - The page number to navigate through the
-     *   given set of results. Default value is 1.
+     * @param {ThemePlatformApplicationValidator.GetPublicThemesParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<DummyResponse>} - Success response
+     * @returns {Promise<ThemePlatformModel.DummyResponse>} - Success response
+     * @name getPublicThemes
      * @summary: Get all public themes
-     * @description: Use this API to get a list of free themes that you can apply to your website.
+     * @description: Use this API to get a list of free themes that you can apply to your website. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getPublicThemes/).
      */
-    getPublicThemes({ pageSize, pageNo }?: {
-        pageSize?: number;
-        pageNo?: number;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<DummyResponse>;
+    getPublicThemes({ pageSize, pageNo }?: ThemePlatformApplicationValidator.GetPublicThemesParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ThemePlatformModel.DummyResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.themeId - The ID of the theme
+     * @param {ThemePlatformApplicationValidator.GetThemeByIdParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ThemesSchema>} - Success response
+     * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
+     * @name getThemeById
      * @summary: Get Theme By Theme Id
-     * @description: Get Theme By Theme Id
+     * @description: Get Theme By Theme Id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getThemeById/).
      */
-    getThemeById({ themeId }?: {
-        themeId: string;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ThemesSchema>;
+    getThemeById({ themeId }?: ThemePlatformApplicationValidator.GetThemeByIdParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ThemePlatformModel.ThemesSchema>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.themeId - The ID of the theme
+     * @param {ThemePlatformApplicationValidator.GetThemeForPreviewParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ThemesSchema>} - Success response
+     * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
+     * @name getThemeForPreview
      * @summary: Get Theme Preview By Theme Id
-     * @description: Get Theme Preview By Theme Id
+     * @description: Get Theme Preview By Theme Id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getThemeForPreview/).
      */
-    getThemeForPreview({ themeId }?: {
-        themeId: string;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ThemesSchema>;
+    getThemeForPreview({ themeId }?: ThemePlatformApplicationValidator.GetThemeForPreviewParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ThemePlatformModel.ThemesSchema>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.themeId - ID allotted to the theme.
+     * @param {ThemePlatformApplicationValidator.GetThemeLastModifiedParam} arg
+     *   - Arg object
+     *
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<any>} - Success response
+     * @name getThemeLastModified
      * @summary: Fetch last modified timestamp
-     * @description: Use this API to fetch Last-Modified timestamp in header metadata.
+     * @description: Use this API to fetch Last-Modified timestamp in header metadata. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getThemeLastModified/).
      */
-    getThemeLastModified({ themeId }?: {
-        themeId: string;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<any>;
+    getThemeLastModified({ themeId }?: ThemePlatformApplicationValidator.GetThemeLastModifiedParam, { headers }?: import("../PlatformAPIClient").Options): Promise<any>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each
-     *   page. Default value is 10.
-     * @param {number} [arg.pageNo] - The page number to navigate through the
-     *   given set of results. Default value is 1.
+     * @param {ThemePlatformApplicationValidator.GetThemeLibraryParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<DummyResponse>} - Success response
+     * @returns {Promise<ThemePlatformModel.DummyResponse>} - Success response
+     * @name getThemeLibrary
      * @summary: Get a list of themes from the theme library
-     * @description: Theme library is a personalized collection of themes that are chosen and added from the available themes. Use this API to fetch a list of themes from the library along with their configuration details.
+     * @description: Theme library is a personalized collection of themes that are chosen and added from the available themes. Use this API to fetch a list of themes from the library along with their configuration details.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getThemeLibrary/).
      */
-    getThemeLibrary({ pageSize, pageNo }?: {
-        pageSize?: number;
-        pageNo?: number;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<DummyResponse>;
+    getThemeLibrary({ pageSize, pageNo }?: ThemePlatformApplicationValidator.GetThemeLibraryParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ThemePlatformModel.DummyResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.themeId - The ID of the theme
+     * @param {ThemePlatformApplicationValidator.IsUpgradableParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ThemeUpgradableResponse>} - Success response
+     * @returns {Promise<ThemePlatformModel.ThemeUpgradableResponse>} - Success response
+     * @name isUpgradable
      * @summary: Check if the theme is upgradable
-     * @description: This API endpoint checks if the theme is upgradable for a specific company and application.
+     * @description: This API endpoint checks if the theme is upgradable for a specific company and application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/isUpgradable/).
      */
-    isUpgradable({ themeId }?: {
-        themeId: string;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ThemeUpgradableResponse>;
+    isUpgradable({ themeId }?: ThemePlatformApplicationValidator.IsUpgradableParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ThemePlatformModel.ThemeUpgradableResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.themeId - ID allotted to the theme.
+     * @param {ThemePlatformApplicationValidator.PublishThemeParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<DummyResponse>} - Success response
+     * @returns {Promise<ThemePlatformModel.DummyResponse>} - Success response
+     * @name publishTheme
      * @summary: Publish a theme
-     * @description: Use this API to publish a theme that is either newly created or edited.
+     * @description: Use this API to publish a theme that is either newly created or edited. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/publishTheme/).
      */
-    publishTheme({ themeId }?: {
-        themeId: string;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<DummyResponse>;
+    publishTheme({ themeId }?: ThemePlatformApplicationValidator.PublishThemeParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ThemePlatformModel.DummyResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.themeId - ID allotted to the theme.
+     * @param {ThemePlatformApplicationValidator.UnarchiveThemeParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<DummyResponse>} - Success response
+     * @returns {Promise<ThemePlatformModel.DummyResponse>} - Success response
+     * @name unarchiveTheme
      * @summary: Unarchive a theme
-     * @description: Use this API to restore an archived theme and bring it back for editing or publishing.
+     * @description: Use this API to restore an archived theme and bring it back for editing or publishing.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/unarchiveTheme/).
      */
-    unarchiveTheme({ themeId }?: {
-        themeId: string;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<DummyResponse>;
+    unarchiveTheme({ themeId }?: ThemePlatformApplicationValidator.UnarchiveThemeParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ThemePlatformModel.DummyResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.themeId - ID allotted to the theme.
+     * @param {ThemePlatformApplicationValidator.UnpublishThemeParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<DummyResponse>} - Success response
+     * @returns {Promise<ThemePlatformModel.DummyResponse>} - Success response
+     * @name unpublishTheme
      * @summary: Unpublish a theme
-     * @description: Use this API to remove an existing theme from the list of available themes.
+     * @description: Use this API to remove an existing theme from the list of available themes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/unpublishTheme/).
      */
-    unpublishTheme({ themeId }?: {
-        themeId: string;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<DummyResponse>;
+    unpublishTheme({ themeId }?: ThemePlatformApplicationValidator.UnpublishThemeParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ThemePlatformModel.DummyResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.themeId - ID of the theme to be retrieved
-     * @param {AllAvailablePageSchema} arg.body
+     * @param {ThemePlatformApplicationValidator.UpdateMultiplePagesParam} arg
+     *   - Arg object
+     *
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<AllAvailablePageSchema>} - Success response
+     * @returns {Promise<ThemePlatformModel.AllAvailablePageSchema>} - Success response
+     * @name updateMultiplePages
      * @summary: Update multiple pages of a theme
-     * @description: Use this API to update multiple pages of a theme by its ID.
+     * @description: Use this API to update multiple pages of a theme by its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/updateMultiplePages/).
      */
-    updateMultiplePages({ themeId, body }?: {
-        themeId: string;
-        body: AllAvailablePageSchema;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<AllAvailablePageSchema>;
+    updateMultiplePages({ themeId, body }?: ThemePlatformApplicationValidator.UpdateMultiplePagesParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ThemePlatformModel.AllAvailablePageSchema>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.themeId - ID of the theme
-     * @param {string} arg.pageValue - Value of the page to be updated
-     * @param {AvailablePageSchema} arg.body
+     * @param {ThemePlatformApplicationValidator.UpdatePageParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<AvailablePageSchema>} - Success response
+     * @returns {Promise<ThemePlatformModel.AvailablePageSchema>} - Success response
+     * @name updatePage
      * @summary: Updates a page
-     * @description: Use this API to update a page for a theme by its ID.
+     * @description: Use this API to update a page for a theme by its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/updatePage/).
      */
-    updatePage({ themeId, pageValue, body }?: {
-        themeId: string;
-        pageValue: string;
-        body: AvailablePageSchema;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<AvailablePageSchema>;
+    updatePage({ themeId, pageValue, body }?: ThemePlatformApplicationValidator.UpdatePageParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ThemePlatformModel.AvailablePageSchema>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.themeId - The ID of the theme.
-     * @param {UpdateThemeRequestBody} arg.body
+     * @param {ThemePlatformApplicationValidator.UpdateThemeParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ThemesSchema>} - Success response
+     * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
+     * @name updateTheme
      * @summary: Update theme for a specific company and application
-     * @description: Update theme for a specific company and application
+     * @description: Update theme for a specific company and application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/updateTheme/).
      */
-    updateTheme({ themeId, body }?: {
-        themeId: string;
-        body: UpdateThemeRequestBody;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ThemesSchema>;
+    updateTheme({ themeId, body }?: ThemePlatformApplicationValidator.UpdateThemeParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ThemePlatformModel.ThemesSchema>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.themeId - The ID of the theme to be updated.
-     * @param {UpdateThemeNameRequestBody} arg.body
+     * @param {ThemePlatformApplicationValidator.UpdateThemeNameParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ThemesSchema>} - Success response
+     * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
+     * @name updateThemeName
      * @summary: Update Theme Name
-     * @description: Update the name of a theme for a specific company and application.
+     * @description: Update the name of a theme for a specific company and application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/updateThemeName/).
      */
-    updateThemeName({ themeId, body }?: {
-        themeId: string;
-        body: UpdateThemeNameRequestBody;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ThemesSchema>;
+    updateThemeName({ themeId, body }?: ThemePlatformApplicationValidator.UpdateThemeNameParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ThemePlatformModel.ThemesSchema>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.themeId - The ID of the upgrade
+     * @param {ThemePlatformApplicationValidator.UpgradeThemeParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ThemesSchema>} - Success response
+     * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
+     * @name upgradeTheme
      * @summary: Upgrade an application
-     * @description: This endpoint allows you to upgrade an application.
+     * @description: This endpoint allows you to upgrade an application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/upgradeTheme/).
      */
-    upgradeTheme({ themeId }?: {
-        themeId: string;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ThemesSchema>;
+    upgradeTheme({ themeId }?: ThemePlatformApplicationValidator.UpgradeThemeParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ThemePlatformModel.ThemesSchema>;
 }
+import ThemePlatformApplicationValidator = require("./ThemePlatformApplicationValidator");
+import ThemePlatformModel = require("./ThemePlatformModel");

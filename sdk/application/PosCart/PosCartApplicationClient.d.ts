@@ -34,462 +34,263 @@ declare class PosCart {
     _urls: {};
     updateUrls(urls: any): void;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {Address} arg.body
+     * @param {PosCartApplicationValidator.AddAddressParam} arg - Arg object.
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<SaveAddressResponse>} - Success response
+     * @returns {Promise<PosCartApplicationModel.SaveAddressResponse>} - Success response
+     * @name addAddress
      * @summary: Add address to an account
-     * @description: Use this API to add an address to an account.
+     * @description: Use this API to add an address to an account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/addAddress/).
      */
-    addAddress({ body }?: {
-        body: Address;
-    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<SaveAddressResponse>;
+    addAddress({ body }?: PosCartApplicationValidator.AddAddressParam, { headers }?: import("../ApplicationAPIClient").Options): Promise<PosCartApplicationModel.SaveAddressResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {boolean} [arg.i] -
-     * @param {boolean} [arg.b] -
-     * @param {string} [arg.areaCode] -
-     * @param {boolean} [arg.buyNow] -
-     * @param {string} [arg.id] -
-     * @param {AddCartRequest} arg.body
+     * @param {PosCartApplicationValidator.AddItemsParam} arg - Arg object.
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<AddCartDetailResponse>} - Success response
+     * @returns {Promise<PosCartApplicationModel.AddCartDetailResponse>} -
+     *   Success response
+     * @name addItems
      * @summary: Add items to cart
-     * @description: Use this API to add items to the cart.
+     * @description: Use this API to add items to the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/addItems/).
      */
-    addItems({ body, i, b, areaCode, buyNow, id }?: {
-        i?: boolean;
-        b?: boolean;
-        areaCode?: string;
-        buyNow?: boolean;
-        id?: string;
-        body: AddCartRequest;
-    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<AddCartDetailResponse>;
+    addItems({ body, i, b, areaCode, buyNow, id }?: PosCartApplicationValidator.AddItemsParam, { headers }?: import("../ApplicationAPIClient").Options): Promise<PosCartApplicationModel.AddCartDetailResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {boolean} [arg.i] -
-     * @param {boolean} [arg.b] -
-     * @param {boolean} [arg.p] -
-     * @param {string} [arg.id] -
-     * @param {boolean} [arg.buyNow] -
-     * @param {ApplyCouponRequest} arg.body
+     * @param {PosCartApplicationValidator.ApplyCouponParam} arg - Arg object.
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<CartDetailResponse>} - Success response
+     * @returns {Promise<PosCartApplicationModel.CartDetailResponse>} - Success response
+     * @name applyCoupon
      * @summary: Apply Coupon
-     * @description: Use this API to apply coupons on items in the cart.
+     * @description: Use this API to apply coupons on items in the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/applyCoupon/).
      */
-    applyCoupon({ body, i, b, p, id, buyNow }?: {
-        i?: boolean;
-        b?: boolean;
-        p?: boolean;
-        id?: string;
-        buyNow?: boolean;
-        body: ApplyCouponRequest;
-    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<CartDetailResponse>;
+    applyCoupon({ body, i, b, p, id, buyNow }?: PosCartApplicationValidator.ApplyCouponParam, { headers }?: import("../ApplicationAPIClient").Options): Promise<PosCartApplicationModel.CartDetailResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.id] -
-     * @param {boolean} [arg.i] -
-     * @param {boolean} [arg.b] -
-     * @param {boolean} [arg.buyNow] -
-     * @param {RewardPointRequest} arg.body
+     * @param {PosCartApplicationValidator.ApplyRewardPointsParam} arg - Arg object.
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<CartDetailResponse>} - Success response
+     * @returns {Promise<PosCartApplicationModel.CartDetailResponse>} - Success response
+     * @name applyRewardPoints
      * @summary: Apply reward points at cart
-     * @description: Use this API to redeem a fixed no. of reward points by applying it to the cart.
+     * @description: Use this API to redeem a fixed no. of reward points by applying it to the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/applyRewardPoints/).
      */
-    applyRewardPoints({ body, id, i, b, buyNow }?: {
-        id?: string;
-        i?: boolean;
-        b?: boolean;
-        buyNow?: boolean;
-        body: RewardPointRequest;
-    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<CartDetailResponse>;
+    applyRewardPoints({ body, id, i, b, buyNow }?: PosCartApplicationValidator.ApplyRewardPointsParam, { headers }?: import("../ApplicationAPIClient").Options): Promise<PosCartApplicationModel.CartDetailResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.id] -
-     * @param {CartPosCheckoutDetailRequest} arg.body
+     * @param {PosCartApplicationValidator.CheckoutCartParam} arg - Arg object.
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<CartCheckoutResponse>} - Success response
+     * @returns {Promise<PosCartApplicationModel.CartCheckoutResponse>} - Success response
+     * @name checkoutCart
      * @summary: Checkout all items in the cart
-     * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be generated directly, whereas for other checkout modes, user will be redirected to a payment gateway.
+     * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be generated directly, whereas for other checkout modes, user will be redirected to a payment gateway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/checkoutCart/).
      */
-    checkoutCart({ body, id }?: {
-        id?: string;
-        body: CartPosCheckoutDetailRequest;
-    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<CartCheckoutResponse>;
+    checkoutCart({ body, id }?: PosCartApplicationValidator.CheckoutCartParam, { headers }?: import("../ApplicationAPIClient").Options): Promise<PosCartApplicationModel.CartCheckoutResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id -
-     * @param {string} [arg.cartId] -
-     * @param {boolean} [arg.buyNow] -
-     * @param {string} [arg.mobileNo] -
-     * @param {string} [arg.checkoutMode] -
-     * @param {string} [arg.tags] -
-     * @param {boolean} [arg.isDefault] -
+     * @param {PosCartApplicationValidator.GetAddressByIdParam} arg - Arg object.
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<Address>} - Success response
+     * @returns {Promise<PosCartApplicationModel.Address>} - Success response
+     * @name getAddressById
      * @summary: Fetch a single address by its ID
-     * @description: Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `Address`. Attibutes listed below are optional
+     * @description: Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `Address`. Attibutes listed below are optional  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getAddressById/).
      */
-    getAddressById({ id, cartId, buyNow, mobileNo, checkoutMode, tags, isDefault }?: {
-        id: string;
-        cartId?: string;
-        buyNow?: boolean;
-        mobileNo?: string;
-        checkoutMode?: string;
-        tags?: string;
-        isDefault?: boolean;
-    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<Address>;
+    getAddressById({ id, cartId, buyNow, mobileNo, checkoutMode, tags, isDefault }?: PosCartApplicationValidator.GetAddressByIdParam, { headers }?: import("../ApplicationAPIClient").Options): Promise<PosCartApplicationModel.Address>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.cartId] -
-     * @param {boolean} [arg.buyNow] -
-     * @param {string} [arg.mobileNo] -
-     * @param {string} [arg.checkoutMode] -
-     * @param {string} [arg.tags] -
-     * @param {boolean} [arg.isDefault] -
+     * @param {PosCartApplicationValidator.GetAddressesParam} arg - Arg object.
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<GetAddressesResponse>} - Success response
+     * @returns {Promise<PosCartApplicationModel.GetAddressesResponse>} - Success response
+     * @name getAddresses
      * @summary: Fetch address
-     * @description: Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional
+     * @description: Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getAddresses/).
      */
-    getAddresses({ cartId, buyNow, mobileNo, checkoutMode, tags, isDefault }?: {
-        cartId?: string;
-        buyNow?: boolean;
-        mobileNo?: string;
-        checkoutMode?: string;
-        tags?: string;
-        isDefault?: boolean;
-    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<GetAddressesResponse>;
+    getAddresses({ cartId, buyNow, mobileNo, checkoutMode, tags, isDefault }?: PosCartApplicationValidator.GetAddressesParam, { headers }?: import("../ApplicationAPIClient").Options): Promise<PosCartApplicationModel.GetAddressesResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.areaCode -
-     * @param {string} [arg.id] -
+     * @param {PosCartApplicationValidator.GetAvailableDeliveryModesParam} arg
+     *   - Arg object.
+     *
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<CartDeliveryModesResponse>} - Success response
+     * @returns {Promise<PosCartApplicationModel.CartDeliveryModesResponse>} -
+     *   Success response
+     * @name getAvailableDeliveryModes
      * @summary: Get available delivery modes for cart
-     * @description: Use this API to get the delivery modes (home-delivery/store-pickup) along with a list of pickup stores available for a given cart at a given PIN Code. User can then view the address of a pickup store with the help of store-address API.
+     * @description: Use this API to get the delivery modes (home-delivery/store-pickup) along with a list of pickup stores available for a given cart at a given PIN Code. User can then view the address of a pickup store with the help of store-address API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getAvailableDeliveryModes/).
      */
-    getAvailableDeliveryModes({ areaCode, id }?: {
-        areaCode: string;
-        id?: string;
-    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<CartDeliveryModesResponse>;
+    getAvailableDeliveryModes({ areaCode, id }?: PosCartApplicationValidator.GetAvailableDeliveryModesParam, { headers }?: import("../ApplicationAPIClient").Options): Promise<PosCartApplicationModel.CartDeliveryModesResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.itemId] - The Item ID of the product
-     * @param {string} [arg.articleId] - Article Mongo ID
-     * @param {number} [arg.uid] - UID of the product
-     * @param {string} [arg.slug] - A short, human-readable, URL-friendly
-     *   identifier of a product. You can get slug value from the endpoint
-     *   /service/application/catalog/v1.0/products/
+     * @param {PosCartApplicationValidator.GetBulkDiscountOffersParam} arg - Arg object.
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<BulkPriceResponse>} - Success response
+     * @returns {Promise<PosCartApplicationModel.BulkPriceResponse>} - Success response
+     * @name getBulkDiscountOffers
      * @summary: Get discount offers based on quantity
-     * @description: Use this API to get a list of applicable offers along with current, next and best offer for given product. Either one of uid, item_id, slug should be present.
+     * @description: Use this API to get a list of applicable offers along with current, next and best offer for given product. Either one of uid, item_id, slug should be present. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getBulkDiscountOffers/).
      */
-    getBulkDiscountOffers({ itemId, articleId, uid, slug }?: {
-        itemId?: number;
-        articleId?: string;
-        uid?: number;
-        slug?: string;
-    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<BulkPriceResponse>;
+    getBulkDiscountOffers({ itemId, articleId, uid, slug }?: PosCartApplicationValidator.GetBulkDiscountOffersParam, { headers }?: import("../ApplicationAPIClient").Options): Promise<PosCartApplicationModel.BulkPriceResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.id] -
-     * @param {boolean} [arg.i] -
-     * @param {boolean} [arg.b] -
-     * @param {number} [arg.assignCardId] -
-     * @param {string} [arg.areaCode] -
-     * @param {boolean} [arg.buyNow] -
+     * @param {PosCartApplicationValidator.GetCartParam} arg - Arg object.
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<CartDetailResponse>} - Success response
+     * @returns {Promise<PosCartApplicationModel.CartDetailResponse>} - Success response
+     * @name getCart
      * @summary: Fetch all items added to the cart
-     * @description: Use this API to get details of all the items added to a cart.
+     * @description: Use this API to get details of all the items added to a cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getCart/).
      */
-    getCart({ id, i, b, assignCardId, areaCode, buyNow }?: {
-        id?: string;
-        i?: boolean;
-        b?: boolean;
-        assignCardId?: number;
-        areaCode?: string;
-        buyNow?: boolean;
-    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<CartDetailResponse>;
+    getCart({ id, i, b, assignCardId, areaCode, buyNow }?: PosCartApplicationValidator.GetCartParam, { headers }?: import("../ApplicationAPIClient").Options): Promise<PosCartApplicationModel.CartDetailResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.id] -
+     * @param {PosCartApplicationValidator.GetCartLastModifiedParam} arg - Arg object.
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<any>} - Success response
+     * @name getCartLastModified
      * @summary: Fetch last-modified timestamp
-     * @description: Use this API to fetch Last-Modified timestamp in header metadata.
+     * @description: Use this API to fetch Last-Modified timestamp in header metadata. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getCartLastModified/).
      */
-    getCartLastModified({ id }?: {
-        id?: string;
-    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<any>;
+    getCartLastModified({ id }?: PosCartApplicationValidator.GetCartLastModifiedParam, { headers }?: import("../ApplicationAPIClient").Options): Promise<any>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {GetShareCartLinkRequest} arg.body
+     * @param {PosCartApplicationValidator.GetCartShareLinkParam} arg - Arg object.
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<GetShareCartLinkResponse>} - Success response
+     * @returns {Promise<PosCartApplicationModel.GetShareCartLinkResponse>} -
+     *   Success response
+     * @name getCartShareLink
      * @summary: Generate token for sharing the cart
-     * @description: Use this API to generate a shared cart snapshot and return a shortlink token. The link can be shared with other users for getting the same items in their cart.
+     * @description: Use this API to generate a shared cart snapshot and return a shortlink token. The link can be shared with other users for getting the same items in their cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getCartShareLink/).
      */
-    getCartShareLink({ body }?: {
-        body: GetShareCartLinkRequest;
-    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<GetShareCartLinkResponse>;
+    getCartShareLink({ body }?: PosCartApplicationValidator.GetCartShareLinkParam, { headers }?: import("../ApplicationAPIClient").Options): Promise<PosCartApplicationModel.GetShareCartLinkResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.token - Token of the shared short link
+     * @param {PosCartApplicationValidator.GetCartSharedItemsParam} arg - Arg object.
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<SharedCartResponse>} - Success response
+     * @returns {Promise<PosCartApplicationModel.SharedCartResponse>} - Success response
+     * @name getCartSharedItems
      * @summary: Get details of a shared cart
-     * @description: Use this API to get the shared cart details as per the token generated using the share-cart API.
+     * @description: Use this API to get the shared cart details as per the token generated using the share-cart API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getCartSharedItems/).
      */
-    getCartSharedItems({ token }?: {
-        token: string;
-    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<SharedCartResponse>;
+    getCartSharedItems({ token }?: PosCartApplicationValidator.GetCartSharedItemsParam, { headers }?: import("../ApplicationAPIClient").Options): Promise<PosCartApplicationModel.SharedCartResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.id] -
-     * @param {boolean} [arg.buyNow] -
+     * @param {PosCartApplicationValidator.GetCouponsParam} arg - Arg object.
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<GetCouponResponse>} - Success response
+     * @returns {Promise<PosCartApplicationModel.GetCouponResponse>} - Success response
+     * @name getCoupons
      * @summary: Fetch Coupon
-     * @description: Use this API to get a list of available coupons along with their details.
+     * @description: Use this API to get a list of available coupons along with their details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getCoupons/).
      */
-    getCoupons({ id, buyNow }?: {
-        id?: string;
-        buyNow?: boolean;
-    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<GetCouponResponse>;
+    getCoupons({ id, buyNow }?: PosCartApplicationValidator.GetCouponsParam, { headers }?: import("../ApplicationAPIClient").Options): Promise<PosCartApplicationModel.GetCouponResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.id] - The unique identifier of the cart.
-     * @param {boolean} [arg.buyNow] -
+     * @param {PosCartApplicationValidator.GetItemCountParam} arg - Arg object.
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<CartItemCountResponse>} - Success response
+     * @returns {Promise<PosCartApplicationModel.CartItemCountResponse>} -
+     *   Success response
+     * @name getItemCount
      * @summary: Count items in the cart
-     * @description: Use this API to get the total number of items present in cart.
+     * @description: Use this API to get the total number of items present in cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getItemCount/).
      */
-    getItemCount({ id, buyNow }?: {
-        id?: string;
-        buyNow?: boolean;
-    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<CartItemCountResponse>;
+    getItemCount({ id, buyNow }?: PosCartApplicationValidator.GetItemCountParam, { headers }?: import("../ApplicationAPIClient").Options): Promise<PosCartApplicationModel.CartItemCountResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pickAtStoreUid] -
-     * @param {number} [arg.orderingStoreId] -
-     * @param {boolean} [arg.p] - This is a boolean value. Select `true` for
-     *   getting a payment option in response.
-     * @param {string} [arg.id] - The unique identifier of the cart
-     * @param {string} [arg.addressId] - ID allotted to the selected address
-     * @param {string} [arg.areaCode] - The PIN Code of the destination address,
-     *   e.g. 400059
-     * @param {string} [arg.orderType] - The order type of shipment HomeDelivery
-     *   - If the customer wants the order home-delivered PickAtStore - If the
-     *   customer wants the handover of an order at the store itself.
+     * @param {PosCartApplicationValidator.GetShipmentsParam} arg - Arg object.
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<CartShipmentsResponse>} - Success response
+     * @returns {Promise<PosCartApplicationModel.CartShipmentsResponse>} -
+     *   Success response
+     * @name getShipments
      * @summary: Get delivery date and options before checkout
-     * @description: Use this API to get shipment details, expected delivery date, items and price breakup of the shipment.
+     * @description: Use this API to get shipment details, expected delivery date, items and price breakup of the shipment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getShipments/).
      */
-    getShipments({ pickAtStoreUid, orderingStoreId, p, id, addressId, areaCode, orderType, }?: {
-        pickAtStoreUid?: number;
-        orderingStoreId?: number;
-        p?: boolean;
-        id?: string;
-        addressId?: string;
-        areaCode?: string;
-        orderType?: string;
-    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<CartShipmentsResponse>;
+    getShipments({ pickAtStoreUid, orderingStoreId, p, id, addressId, areaCode, orderType, }?: PosCartApplicationValidator.GetShipmentsParam, { headers }?: import("../ApplicationAPIClient").Options): Promise<PosCartApplicationModel.CartShipmentsResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {number} arg.storeUid -
+     * @param {PosCartApplicationValidator.GetStoreAddressByUidParam} arg - Arg object.
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<StoreDetailsResponse>} - Success response
+     * @returns {Promise<PosCartApplicationModel.StoreDetailsResponse>} - Success response
+     * @name getStoreAddressByUid
      * @summary: Get list of stores for give uids
-     * @description: Use this API to get the store details by entering the unique identifier of the pickup stores shown in the response of available-delivery-mode API.
+     * @description: Use this API to get the store details by entering the unique identifier of the pickup stores shown in the response of available-delivery-mode API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getStoreAddressByUid/).
      */
-    getStoreAddressByUid({ storeUid }?: {
-        storeUid: number;
-    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<StoreDetailsResponse>;
+    getStoreAddressByUid({ storeUid }?: PosCartApplicationValidator.GetStoreAddressByUidParam, { headers }?: import("../ApplicationAPIClient").Options): Promise<PosCartApplicationModel.StoreDetailsResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - ID allotted to the selected address
+     * @param {PosCartApplicationValidator.RemoveAddressParam} arg - Arg object.
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<DeleteAddressResponse>} - Success response
+     * @returns {Promise<PosCartApplicationModel.DeleteAddressResponse>} -
+     *   Success response
+     * @name removeAddress
      * @summary: Remove address associated with an account
-     * @description: Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not.
+     * @description: Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/removeAddress/).
      */
-    removeAddress({ id }?: {
-        id: string;
-    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<DeleteAddressResponse>;
+    removeAddress({ id }?: PosCartApplicationValidator.RemoveAddressParam, { headers }?: import("../ApplicationAPIClient").Options): Promise<PosCartApplicationModel.DeleteAddressResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.id] -
-     * @param {boolean} [arg.buyNow] -
+     * @param {PosCartApplicationValidator.RemoveCouponParam} arg - Arg object.
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<CartDetailResponse>} - Success response
+     * @returns {Promise<PosCartApplicationModel.CartDetailResponse>} - Success response
+     * @name removeCoupon
      * @summary: Remove Coupon Applied
-     * @description: Remove Coupon applied on the cart by passing uid in request body.
+     * @description: Remove Coupon applied on the cart by passing uid in request body. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/removeCoupon/).
      */
-    removeCoupon({ id, buyNow }?: {
-        id?: string;
-        buyNow?: boolean;
-    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<CartDetailResponse>;
+    removeCoupon({ id, buyNow }?: PosCartApplicationValidator.RemoveCouponParam, { headers }?: import("../ApplicationAPIClient").Options): Promise<PosCartApplicationModel.CartDetailResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.cartId] -
-     * @param {boolean} [arg.buyNow] -
-     * @param {boolean} [arg.i] -
-     * @param {boolean} [arg.b] -
-     * @param {SelectCartAddressRequest} arg.body
+     * @param {PosCartApplicationValidator.SelectAddressParam} arg - Arg object.
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<CartDetailResponse>} - Success response
+     * @returns {Promise<PosCartApplicationModel.CartDetailResponse>} - Success response
+     * @name selectAddress
      * @summary: Select an address from available addresses
-     * @description: Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object.
+     * @description: Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/selectAddress/).
      */
-    selectAddress({ body, cartId, buyNow, i, b }?: {
-        cartId?: string;
-        buyNow?: boolean;
-        i?: boolean;
-        b?: boolean;
-        body: SelectCartAddressRequest;
-    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<CartDetailResponse>;
+    selectAddress({ body, cartId, buyNow, i, b }?: PosCartApplicationValidator.SelectAddressParam, { headers }?: import("../ApplicationAPIClient").Options): Promise<PosCartApplicationModel.CartDetailResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.id] -
-     * @param {boolean} [arg.buyNow] -
-     * @param {UpdateCartPaymentRequest} arg.body
+     * @param {PosCartApplicationValidator.SelectPaymentModeParam} arg - Arg object.
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<CartDetailResponse>} - Success response
+     * @returns {Promise<PosCartApplicationModel.CartDetailResponse>} - Success response
+     * @name selectPaymentMode
      * @summary: Update cart payment
-     * @description: Use this API to update cart payment.
+     * @description: Use this API to update cart payment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/selectPaymentMode/).
      */
-    selectPaymentMode({ body, id, buyNow }?: {
-        id?: string;
-        buyNow?: boolean;
-        body: UpdateCartPaymentRequest;
-    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<CartDetailResponse>;
+    selectPaymentMode({ body, id, buyNow }?: PosCartApplicationValidator.SelectPaymentModeParam, { headers }?: import("../ApplicationAPIClient").Options): Promise<PosCartApplicationModel.CartDetailResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - ID allotted to the selected address
-     * @param {Address} arg.body
+     * @param {PosCartApplicationValidator.UpdateAddressParam} arg - Arg object.
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<UpdateAddressResponse>} - Success response
+     * @returns {Promise<PosCartApplicationModel.UpdateAddressResponse>} -
+     *   Success response
+     * @name updateAddress
      * @summary: Update address added to an account
-     * @description: Use this API to update an existing address in the account. Request object should contain attributes mentioned in Address  can be updated.
+     * @description: Use this API to update an existing address in the account. Request object should contain attributes mentioned in Address  can be updated. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/updateAddress/).
      */
-    updateAddress({ id, body }?: {
-        id: string;
-        body: Address;
-    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<UpdateAddressResponse>;
+    updateAddress({ id, body }?: PosCartApplicationValidator.UpdateAddressParam, { headers }?: import("../ApplicationAPIClient").Options): Promise<PosCartApplicationModel.UpdateAddressResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.id] -
-     * @param {boolean} [arg.i] -
-     * @param {boolean} [arg.b] -
-     * @param {string} [arg.areaCode] -
-     * @param {boolean} [arg.buyNow] -
-     * @param {UpdateCartRequest} arg.body
+     * @param {PosCartApplicationValidator.UpdateCartParam} arg - Arg object.
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<UpdateCartDetailResponse>} - Success response
+     * @returns {Promise<PosCartApplicationModel.UpdateCartDetailResponse>} -
+     *   Success response
+     * @name updateCart
      * @summary: Update items in the cart
-     * @description: Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size.
+     * @description: Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/updateCart/).
      */
-    updateCart({ body, id, i, b, areaCode, buyNow }?: {
-        id?: string;
-        i?: boolean;
-        b?: boolean;
-        areaCode?: string;
-        buyNow?: boolean;
-        body: UpdateCartRequest;
-    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<UpdateCartDetailResponse>;
+    updateCart({ body, id, i, b, areaCode, buyNow }?: PosCartApplicationValidator.UpdateCartParam, { headers }?: import("../ApplicationAPIClient").Options): Promise<PosCartApplicationModel.UpdateCartDetailResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.id] -
-     * @param {boolean} [arg.buyNow] -
-     * @param {CartMetaRequest} arg.body
+     * @param {PosCartApplicationValidator.UpdateCartMetaParam} arg - Arg object.
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<CartMetaResponse>} - Success response
+     * @returns {Promise<PosCartApplicationModel.CartMetaResponse>} - Success response
+     * @name updateCartMeta
      * @summary: Update the cart meta
-     * @description: Use this API to update cart meta like checkout_mode and gstin.
+     * @description: Use this API to update cart meta like checkout_mode and gstin. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/updateCartMeta/).
      */
-    updateCartMeta({ body, id, buyNow }?: {
-        id?: string;
-        buyNow?: boolean;
-        body: CartMetaRequest;
-    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<CartMetaResponse>;
+    updateCartMeta({ body, id, buyNow }?: PosCartApplicationValidator.UpdateCartMetaParam, { headers }?: import("../ApplicationAPIClient").Options): Promise<PosCartApplicationModel.CartMetaResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.token - Token of the shared short link
-     * @param {string} arg.action - Operation to perform on the existing cart
-     *   merge or replace.
+     * @param {PosCartApplicationValidator.UpdateCartWithSharedItemsParam} arg
+     *   - Arg object.
+     *
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<SharedCartResponse>} - Success response
+     * @returns {Promise<PosCartApplicationModel.SharedCartResponse>} - Success response
+     * @name updateCartWithSharedItems
      * @summary: Merge or replace existing cart
-     * @description: Use this API to merge the shared cart with existing cart, or replace the existing cart with the shared cart. The `action` parameter is used to indicate the operation Merge or Replace.
+     * @description: Use this API to merge the shared cart with existing cart, or replace the existing cart with the shared cart. The `action` parameter is used to indicate the operation Merge or Replace. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/updateCartWithSharedItems/).
      */
-    updateCartWithSharedItems({ token, action }?: {
-        token: string;
-        action: string;
-    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<SharedCartResponse>;
+    updateCartWithSharedItems({ token, action }?: PosCartApplicationValidator.UpdateCartWithSharedItemsParam, { headers }?: import("../ApplicationAPIClient").Options): Promise<PosCartApplicationModel.SharedCartResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {boolean} [arg.i] - This is a boolean value. Select `true` to
-     *   retrieve all the items added in the cart.
-     * @param {boolean} [arg.p] - This is a boolean value. Select `true` for
-     *   getting a payment option in response.
-     * @param {string} [arg.id] - The unique identifier of the cart
-     * @param {string} [arg.addressId] - ID allotted to an address
-     * @param {string} [arg.areaCode] - The PIN Code of the destination address,
-     *   e.g. 400059
-     * @param {string} [arg.orderType] - The order type of shipment HomeDelivery
-     *   - If the customer wants the order home-delivered PickAtStore - If the
-     *   customer wants the handover of an order at the store itself.
-     * @param {UpdateCartShipmentRequest} arg.body
+     * @param {PosCartApplicationValidator.UpdateShipmentsParam} arg - Arg object.
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<CartShipmentsResponse>} - Success response
+     * @returns {Promise<PosCartApplicationModel.CartShipmentsResponse>} -
+     *   Success response
+     * @name updateShipments
      * @summary: Update shipment delivery type and quantity before checkout
-     * @description: Use this API to update the delivery type and quantity as per customer's preference for either store pick-up or home-delivery.
+     * @description: Use this API to update the delivery type and quantity as per customer's preference for either store pick-up or home-delivery. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/updateShipments/).
      */
-    updateShipments({ body, i, p, id, addressId, areaCode, orderType }?: {
-        i?: boolean;
-        p?: boolean;
-        id?: string;
-        addressId?: string;
-        areaCode?: string;
-        orderType?: string;
-        body: UpdateCartShipmentRequest;
-    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<CartShipmentsResponse>;
+    updateShipments({ body, i, p, id, addressId, areaCode, orderType }?: PosCartApplicationValidator.UpdateShipmentsParam, { headers }?: import("../ApplicationAPIClient").Options): Promise<PosCartApplicationModel.CartShipmentsResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.id] -
-     * @param {boolean} [arg.buyNow] -
-     * @param {string} [arg.addressId] -
-     * @param {string} [arg.paymentMode] -
-     * @param {string} [arg.paymentIdentifier] -
-     * @param {string} [arg.aggregatorName] -
-     * @param {string} [arg.merchantCode] -
-     * @param {string} [arg.iin] -
-     * @param {string} [arg.network] -
-     * @param {string} [arg.type] -
-     * @param {string} [arg.cardId] -
+     * @param {PosCartApplicationValidator.ValidateCouponForPaymentParam} arg -
+     *   Arg object.
      * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<PaymentCouponValidate>} - Success response
+     * @returns {Promise<PosCartApplicationModel.PaymentCouponValidate>} -
+     *   Success response
+     * @name validateCouponForPayment
      * @summary: Verify the coupon eligibility against the payment mode
-     * @description: Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc.
+     * @description: Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/validateCouponForPayment/).
      */
-    validateCouponForPayment({ id, buyNow, addressId, paymentMode, paymentIdentifier, aggregatorName, merchantCode, iin, network, type, cardId, }?: {
-        id?: string;
-        buyNow?: boolean;
-        addressId?: string;
-        paymentMode?: string;
-        paymentIdentifier?: string;
-        aggregatorName?: string;
-        merchantCode?: string;
-        iin?: string;
-        network?: string;
-        type?: string;
-        cardId?: string;
-    }, { headers }?: import("../ApplicationAPIClient").Options): Promise<PaymentCouponValidate>;
+    validateCouponForPayment({ id, buyNow, addressId, paymentMode, paymentIdentifier, aggregatorName, merchantCode, iin, network, type, cardId, }?: PosCartApplicationValidator.ValidateCouponForPaymentParam, { headers }?: import("../ApplicationAPIClient").Options): Promise<PosCartApplicationModel.PaymentCouponValidate>;
 }
+import PosCartApplicationValidator = require("./PosCartApplicationValidator");
+import PosCartApplicationModel = require("./PosCartApplicationModel");

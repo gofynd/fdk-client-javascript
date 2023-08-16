@@ -1,8 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
-const PartnerValidator = require("./PartnerPlatformApplicationValidator");
-const PartnerModel = require("./PartnerPlatformModel");
+const PartnerPlatformApplicationValidator = require("./PartnerPlatformApplicationValidator");
+const PartnerPlatformModel = require("./PartnerPlatformModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -13,20 +13,20 @@ class Partner {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.extensionId - Extension id for which proxy URL will
-   *   be generated
-   * @param {AddProxyReq} arg.body
+   * @param {PartnerPlatformApplicationValidator.AddProxyPathParam} arg - Arg object
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<AddProxyResponse>} - Success response
+   * @returns {Promise<PartnerPlatformModel.AddProxyResponse>} - Success response
+   * @name addProxyPath
    * @summary: Create proxy URL for the external URL
-   * @description: Use this API to generate proxy URL for the external URL
+   * @description: Use this API to generate proxy URL for the external URL - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/addProxyPath/).
    */
   async addProxyPath(
     { extensionId, body } = {},
     { headers } = { headers: false }
   ) {
-    const { error } = PartnerValidator.addProxyPath().validate(
+    const {
+      error,
+    } = PartnerPlatformApplicationValidator.addProxyPath().validate(
       {
         extensionId,
         body,
@@ -38,7 +38,9 @@ class Partner {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = PartnerValidator.addProxyPath().validate(
+    const {
+      error: warrning,
+    } = PartnerPlatformApplicationValidator.addProxyPath().validate(
       {
         extensionId,
         body,
@@ -48,9 +50,8 @@ class Partner {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for addProxyPath",
+        message: `Parameter Validation warrnings for platform > Partner > addProxyPath \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -72,7 +73,7 @@ class Partner {
 
     const {
       error: res_error,
-    } = PartnerModel.AddProxyResponse().validate(responseData, {
+    } = PartnerPlatformModel.AddProxyResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -80,29 +81,28 @@ class Partner {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for addProxyPath",
+        message: `Response Validation Warnnings for platform > Partner > addProxyPath \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.extensionId - Extension id for which proxy URL needs
-   *   to be removed
-   * @param {string} arg.attachedPath - Attachaed path slug
+   * @param {PartnerPlatformApplicationValidator.RemoveProxyPathParam} arg - Arg object
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<RemoveProxyResponse>} - Success response
+   * @returns {Promise<PartnerPlatformModel.RemoveProxyResponse>} - Success response
+   * @name removeProxyPath
    * @summary: Remove proxy URL for the external URL
-   * @description: Use this API to remove the proxy URL which is already generated for the external URL
+   * @description: Use this API to remove the proxy URL which is already generated for the external URL - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/removeProxyPath/).
    */
   async removeProxyPath(
     { extensionId, attachedPath } = {},
     { headers } = { headers: false }
   ) {
-    const { error } = PartnerValidator.removeProxyPath().validate(
+    const {
+      error,
+    } = PartnerPlatformApplicationValidator.removeProxyPath().validate(
       {
         extensionId,
         attachedPath,
@@ -114,7 +114,9 @@ class Partner {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = PartnerValidator.removeProxyPath().validate(
+    const {
+      error: warrning,
+    } = PartnerPlatformApplicationValidator.removeProxyPath().validate(
       {
         extensionId,
         attachedPath,
@@ -124,9 +126,8 @@ class Partner {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for removeProxyPath",
+        message: `Parameter Validation warrnings for platform > Partner > removeProxyPath \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -148,7 +149,7 @@ class Partner {
 
     const {
       error: res_error,
-    } = PartnerModel.RemoveProxyResponse().validate(responseData, {
+    } = PartnerPlatformModel.RemoveProxyResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -156,9 +157,8 @@ class Partner {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for removeProxyPath",
+        message: `Response Validation Warnnings for platform > Partner > removeProxyPath \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

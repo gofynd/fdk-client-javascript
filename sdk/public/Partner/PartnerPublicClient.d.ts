@@ -8,14 +8,14 @@ declare class Partner {
     _urls: {};
     updateUrls(urls: any): void;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.slug - Pass the slug of the extension
+     * @param {PartnerPublicValidator.GetPanelExtensionDetailsParam} arg - Arg object.
      * @param {import("../PublicAPIClient").Options} - Options
-     * @returns {Promise<ExtensionUsingSlug>} - Success response
+     * @returns {Promise<PartnerPublicModel.ExtensionUsingSlug>} - Success response
+     * @name getPanelExtensionDetails
      * @summary: Get extension details
-     * @description: Use this API to get extension details
+     * @description: Use this API to get extension details - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/partner/getPanelExtensionDetails/).
      */
-    getPanelExtensionDetails({ slug }?: {
-        slug: string;
-    }, { headers }?: any): Promise<ExtensionUsingSlug>;
+    getPanelExtensionDetails({ slug }?: PartnerPublicValidator.GetPanelExtensionDetailsParam, { headers }?: any): Promise<PartnerPublicModel.ExtensionUsingSlug>;
 }
+import PartnerPublicValidator = require("./PartnerPublicValidator");
+import PartnerPublicModel = require("./PartnerPublicModel");

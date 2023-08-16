@@ -3,148 +3,138 @@ declare class Inventory {
     constructor(config: any);
     config: any;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {JobConfigDTO} arg.body
+     * @param {InventoryPlatformValidator.CreateJobParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ResponseEnvelopeString>} - Success response
-     * @summary: Creates A New Job Config
-     * @description: REST Endpoint that creates a new job config
-     */
-    createJob({ body }?: {
-        body: JobConfigDTO;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ResponseEnvelopeString>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.integrationId - IntegrationId
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ResponseEnvelopeString>} - Success response
-     * @summary: Disable Job Config
-     * @description: REST Endpoint that disables Inventory Job Config
-     */
-    disable({ integrationId }?: {
-        integrationId: string;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ResponseEnvelopeString>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ResponseEnvelopeListSlingshotConfigurationDetail>} -
+     * @returns {Promise<InventoryPlatformModel.ResponseEnvelopeString>} -
      *   Success response
-     * @summary: Get Slingshot Configuration Of  A Company
-     * @description: REST Endpoint that returns all configuration detail of a company
+     * @name createJob
+     * @summary: Creates A New Job Config
+     * @description: REST Endpoint that creates a new job config - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/inventory/createJob/).
      */
-    getConfigByCompany({ headers }?: any): Promise<ResponseEnvelopeListSlingshotConfigurationDetail>;
+    createJob({ body }?: InventoryPlatformValidator.CreateJobParam, { headers }?: import("../PlatformAPIClient").Options): Promise<InventoryPlatformModel.ResponseEnvelopeString>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.code - Job Code
+     * @param {InventoryPlatformValidator.DisableParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ResponseEnvelopeJobConfigDTO>} - Success response
+     * @returns {Promise<InventoryPlatformModel.ResponseEnvelopeString>} -
+     *   Success response
+     * @name disable
+     * @summary: Disable Job Config
+     * @description: REST Endpoint that disables Inventory Job Config - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/inventory/disable/).
+     */
+    disable({ integrationId }?: InventoryPlatformValidator.DisableParam, { headers }?: import("../PlatformAPIClient").Options): Promise<InventoryPlatformModel.ResponseEnvelopeString>;
+    /**
+     * @param {InventoryPlatformValidator.GetConfigByCompanyParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<InventoryPlatformModel.ResponseEnvelopeListSlingshotConfigurationDetail>}
+     *   - Success response
+     *
+     * @name getConfigByCompany
+     * @summary: Get Slingshot Configuration Of  A Company
+     * @description: REST Endpoint that returns all configuration detail of a company - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/inventory/getConfigByCompany/).
+     */
+    getConfigByCompany({ headers }?: any): Promise<InventoryPlatformModel.ResponseEnvelopeListSlingshotConfigurationDetail>;
+    /**
+     * @param {InventoryPlatformValidator.GetJobByCodeParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<InventoryPlatformModel.ResponseEnvelopeJobConfigDTO>}
+     *   - Success response
+     *
+     * @name getJobByCode
      * @summary: Get Job Config By Code
-     * @description: REST Endpoint that returns job config by code
+     * @description: REST Endpoint that returns job config by code - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/inventory/getJobByCode/).
      */
-    getJobByCode({ code }?: {
-        code: string;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ResponseEnvelopeJobConfigDTO>;
+    getJobByCode({ code }?: InventoryPlatformValidator.GetJobByCodeParam, { headers }?: import("../PlatformAPIClient").Options): Promise<InventoryPlatformModel.ResponseEnvelopeJobConfigDTO>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.integrationId - Integration Id
-     * @param {number} [arg.pageNo] - Page Number
-     * @param {number} [arg.pageSize] - Page Size
+     * @param {InventoryPlatformValidator.GetJobByCompanyAndIntegrationParam} arg
+     *   - Arg object
+     *
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ResponseEnvelopeListJobConfigDTO>} - Success response
+     * @returns {Promise<InventoryPlatformModel.ResponseEnvelopeListJobConfigDTO>}
+     *   - Success response
+     *
+     * @name getJobByCompanyAndIntegration
      * @summary: Get Job Configs By Company And Integration
-     * @description: REST Endpoint that returns all job configs by company And integration
+     * @description: REST Endpoint that returns all job configs by company And integration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/inventory/getJobByCompanyAndIntegration/).
      */
-    getJobByCompanyAndIntegration({ integrationId, pageNo, pageSize }?: {
-        integrationId: string;
-        pageNo?: number;
-        pageSize?: number;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ResponseEnvelopeListJobConfigDTO>;
+    getJobByCompanyAndIntegration({ integrationId, pageNo, pageSize }?: InventoryPlatformValidator.GetJobByCompanyAndIntegrationParam, { headers }?: import("../PlatformAPIClient").Options): Promise<InventoryPlatformModel.ResponseEnvelopeListJobConfigDTO>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.code - Code
-     * @param {number} [arg.pageNo] - Page Number
-     * @param {number} [arg.pageSize] - Page Size
-     * @param {string} [arg.status] - Status
-     * @param {string} [arg.date] - From Date
+     * @param {InventoryPlatformValidator.GetJobCodeMetricsParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ResponseEnvelopeJobMetricsDto>} - Success response
+     * @returns {Promise<InventoryPlatformModel.ResponseEnvelopeJobMetricsDto>}
+     *   - Success response
+     *
+     * @name getJobCodeMetrics
      * @summary: Get Job Metrics
-     * @description: REST Endpoint that returns Inventory Run History For A Job Code
+     * @description: REST Endpoint that returns Inventory Run History For A Job Code - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/inventory/getJobCodeMetrics/).
      */
-    getJobCodeMetrics({ code, pageNo, pageSize, status, date }?: {
-        code: string;
-        pageNo?: number;
-        pageSize?: number;
-        status?: string;
-        date?: string;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ResponseEnvelopeJobMetricsDto>;
+    getJobCodeMetrics({ code, pageNo, pageSize, status, date }?: InventoryPlatformValidator.GetJobCodeMetricsParam, { headers }?: import("../PlatformAPIClient").Options): Promise<InventoryPlatformModel.ResponseEnvelopeJobMetricsDto>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.integrationId - Integration Id
-     * @param {number} [arg.pageNo] - Page Number
-     * @param {number} [arg.pageSize] - Page Size
+     * @param {InventoryPlatformValidator.GetJobCodesByCompanyAndIntegrationParam} arg
+     *   - Arg object
+     *
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ResponseEnvelopeListJobConfigListDTO>} - Success response
+     * @returns {Promise<InventoryPlatformModel.ResponseEnvelopeListJobConfigListDTO>}
+     *   - Success response
+     *
+     * @name getJobCodesByCompanyAndIntegration
      * @summary: Get Job Codes By Company And Integration
-     * @description: REST Endpoint that returns all job codes by company And integration
+     * @description: REST Endpoint that returns all job codes by company And integration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/inventory/getJobCodesByCompanyAndIntegration/).
      */
-    getJobCodesByCompanyAndIntegration({ integrationId, pageNo, pageSize }?: {
-        integrationId: string;
-        pageNo?: number;
-        pageSize?: number;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ResponseEnvelopeListJobConfigListDTO>;
+    getJobCodesByCompanyAndIntegration({ integrationId, pageNo, pageSize }?: InventoryPlatformValidator.GetJobCodesByCompanyAndIntegrationParam, { headers }?: import("../PlatformAPIClient").Options): Promise<InventoryPlatformModel.ResponseEnvelopeListJobConfigListDTO>;
     /**
-     * @param {Object} arg - Arg object.
+     * @param {InventoryPlatformValidator.GetJobConfigDefaultsParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ResponseEnvelopeJobConfigDTO>} - Success response
+     * @returns {Promise<InventoryPlatformModel.ResponseEnvelopeJobConfigDTO>}
+     *   - Success response
+     *
+     * @name getJobConfigDefaults
      * @summary: Get Job Configs Defaults
-     * @description: REST Endpoint that returns default fields job configs by company And integration
+     * @description: REST Endpoint that returns default fields job configs by company And integration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/inventory/getJobConfigDefaults/).
      */
-    getJobConfigDefaults({ headers }?: any): Promise<ResponseEnvelopeJobConfigDTO>;
+    getJobConfigDefaults({ headers }?: any): Promise<InventoryPlatformModel.ResponseEnvelopeJobConfigDTO>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {number} arg.jobId - Job Id
+     * @param {InventoryPlatformValidator.GetJobStepsParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ResponseEnvelopeListJobStepsDTO>} - Success response
+     * @returns {Promise<InventoryPlatformModel.ResponseEnvelopeListJobStepsDTO>}
+     *   - Success response
+     *
+     * @name getJobSteps
      * @summary: Get Job Code Steps
-     * @description: REST Endpoint that returns Inventory Job Steps
+     * @description: REST Endpoint that returns Inventory Job Steps - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/inventory/getJobSteps/).
      */
-    getJobSteps({ jobId }?: {
-        jobId: number;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ResponseEnvelopeListJobStepsDTO>;
+    getJobSteps({ jobId }?: InventoryPlatformValidator.GetJobStepsParam, { headers }?: import("../PlatformAPIClient").Options): Promise<InventoryPlatformModel.ResponseEnvelopeListJobStepsDTO>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNo] - Page Number
-     * @param {number} [arg.pageSize] - Page Size
+     * @param {InventoryPlatformValidator.GetJobsByCompanyParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ResponseEnvelopeListJobConfigRawDTO>} - Success response
+     * @returns {Promise<InventoryPlatformModel.ResponseEnvelopeListJobConfigRawDTO>}
+     *   - Success response
+     *
+     * @name getJobsByCompany
      * @summary: Get Job Configs For A Company
-     * @description: REST Endpoint that returns all job configs for a company
+     * @description: REST Endpoint that returns all job configs for a company - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/inventory/getJobsByCompany/).
      */
-    getJobsByCompany({ pageNo, pageSize }?: {
-        pageNo?: number;
-        pageSize?: number;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ResponseEnvelopeListJobConfigRawDTO>;
+    getJobsByCompany({ pageNo, pageSize }?: InventoryPlatformValidator.GetJobsByCompanyParam, { headers }?: import("../PlatformAPIClient").Options): Promise<InventoryPlatformModel.ResponseEnvelopeListJobConfigRawDTO>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {SuppressStorePayload} arg.body
+     * @param {InventoryPlatformValidator.SuppressStoresParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ResponseEnvelopeKafkaResponse>} - Success response
+     * @returns {Promise<InventoryPlatformModel.ResponseEnvelopeKafkaResponse>}
+     *   - Success response
+     *
+     * @name suppressStores
      * @summary: Get Slingshot Configuration Of  A Company
-     * @description: REST Endpoint that returns all configuration detail of a company
+     * @description: REST Endpoint that returns all configuration detail of a company - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/inventory/suppressStores/).
      */
-    suppressStores({ body }?: {
-        body: SuppressStorePayload;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ResponseEnvelopeKafkaResponse>;
+    suppressStores({ body }?: InventoryPlatformValidator.SuppressStoresParam, { headers }?: import("../PlatformAPIClient").Options): Promise<InventoryPlatformModel.ResponseEnvelopeKafkaResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {JobConfigDTO} arg.body
+     * @param {InventoryPlatformValidator.UpdateJobParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ResponseEnvelopeString>} - Success response
+     * @returns {Promise<InventoryPlatformModel.ResponseEnvelopeString>} -
+     *   Success response
+     * @name updateJob
      * @summary: Updates An Existing Job Config
-     * @description: REST Endpoint that updates a job config
+     * @description: REST Endpoint that updates a job config - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/inventory/updateJob/).
      */
-    updateJob({ body }?: {
-        body: JobConfigDTO;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ResponseEnvelopeString>;
+    updateJob({ body }?: InventoryPlatformValidator.UpdateJobParam, { headers }?: import("../PlatformAPIClient").Options): Promise<InventoryPlatformModel.ResponseEnvelopeString>;
 }
+import InventoryPlatformValidator = require("./InventoryPlatformValidator");
+import InventoryPlatformModel = require("./InventoryPlatformModel");

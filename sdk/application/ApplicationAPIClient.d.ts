@@ -10,8 +10,9 @@ declare class APIClient {
      * @param {string} url
      * @param {object} query
      * @param {object} body
+     * @param {object} xHeaders
      */
-    static execute(conf: object, method: string, url: string, query: object, body: object, xHeaders: any, options: any): any;
+    static execute(conf: object, method: string, url: string, query: object, body: object, xHeaders: object, options: any): any;
 }
 declare namespace APIClient {
     export { Options };

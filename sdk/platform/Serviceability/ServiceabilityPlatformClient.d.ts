@@ -3,239 +3,191 @@ declare class Serviceability {
     constructor(config: any);
     config: any;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {ZoneRequest} arg.body
+     * @param {ServiceabilityPlatformValidator.CreateZoneParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ZoneResponse>} - Success response
+     * @returns {Promise<ServiceabilityPlatformModel.ZoneResponse>} - Success response
+     * @name createZone
      * @summary: Creation of a new zone
-     * @description: This API allows you to create a new zone with the specified information. A zone enables serviceability based on given pincodes or regions. By creating a zone and including specific pincodes or regions, you can ensure that the stores associated with the zone are serviceable for those added pincodes or regions. This functionality is particularly useful when you need to ensure serviceability for multiple pincodes or regions by grouping them into a single zone.
+     * @description: This API allows you to create a new zone with the specified information. A zone enables serviceability based on given pincodes or regions. By creating a zone and including specific pincodes or regions, you can ensure that the stores associated with the zone are serviceable for those added pincodes or regions. This functionality is particularly useful when you need to ensure serviceability for multiple pincodes or regions by grouping them into a single zone. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createZone/).
      */
-    createZone({ body }?: {
-        body: ZoneRequest;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ZoneResponse>;
+    createZone({ body }?: ServiceabilityPlatformValidator.CreateZoneParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ServiceabilityPlatformModel.ZoneResponse>;
     /**
-     * @param {Object} arg - Arg object.
+     * @param {ServiceabilityPlatformValidator.GetAllStoresParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<GetStoresViewResponse>} - Success response
+     * @returns {Promise<ServiceabilityPlatformModel.GetStoresViewResponse>} -
+     *   Success response
+     * @name getAllStores
      * @summary: GET stores data
-     * @description: This API returns stores data.
+     * @description: This API returns stores data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getAllStores/).
      */
-    getAllStores({ headers }?: any): Promise<GetStoresViewResponse>;
+    getAllStores({ headers }?: any): Promise<ServiceabilityPlatformModel.GetStoresViewResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNumber] - Index of the item to start returning with
-     * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
+     * @param {ServiceabilityPlatformValidator.GetCompanyStoreViewParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CompanyStoreView_Response>} - Success response
+     * @returns {Promise<ServiceabilityPlatformModel.CompanyStoreView_Response>}
+     *   - Success response
+     *
+     * @name getCompanyStoreView
      * @summary: Company Store View of application.
-     * @description: This API returns Company Store View of the application.
+     * @description: This API returns Company Store View of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCompanyStoreView/).
      */
-    getCompanyStoreView({ pageNumber, pageSize }?: {
-        pageNumber?: number;
-        pageSize?: number;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<CompanyStoreView_Response>;
+    getCompanyStoreView({ pageNumber, pageSize }?: ServiceabilityPlatformValidator.GetCompanyStoreViewParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ServiceabilityPlatformModel.CompanyStoreView_Response>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNumber] - Index of the item to start returning with
-     * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
-     * @param {string} [arg.stage] - Stage of the account. enabled/disabled
-     * @param {string} [arg.paymentMode] - Filters dp accounts based on payment mode
-     * @param {string} [arg.transportType] - Filters dp accounts based on transport_type
+     * @param {ServiceabilityPlatformValidator.GetDpAccountParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CompanyDpAccountListResponse>} - Success response
+     * @returns {Promise<ServiceabilityPlatformModel.CompanyDpAccountListResponse>}
+     *   - Success response
+     *
+     * @name getDpAccount
      * @summary: Getting DpAccount of a company from database.
-     * @description: This API returns response DpAccount of a company from mongo database.
+     * @description: This API returns response DpAccount of a company from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getDpAccount/).
      */
-    getDpAccount({ pageNumber, pageSize, stage, paymentMode, transportType }?: {
-        pageNumber?: number;
-        pageSize?: number;
-        stage?: string;
-        paymentMode?: string;
-        transportType?: string;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<CompanyDpAccountListResponse>;
+    getDpAccount({ pageNumber, pageSize, stage, paymentMode, transportType }?: ServiceabilityPlatformValidator.GetDpAccountParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ServiceabilityPlatformModel.CompanyDpAccountListResponse>;
     /**
-     * @param {Object} arg - Arg object.
+     * @param {ServiceabilityPlatformValidator.GetDpCompanyRulesParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<DPCompanyRuleResponse>} - Success response
+     * @returns {Promise<ServiceabilityPlatformModel.DPCompanyRuleResponse>} -
+     *   Success response
+     * @name getDpCompanyRules
      * @summary: Get All DpCompanyRules applied to company from database.
-     * @description: This API returns response of all DpCompanyRules from mongo database.
+     * @description: This API returns response of all DpCompanyRules from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getDpCompanyRules/).
      */
-    getDpCompanyRules({ headers }?: any): Promise<DPCompanyRuleResponse>;
+    getDpCompanyRules({ headers }?: any): Promise<ServiceabilityPlatformModel.DPCompanyRuleResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNumber] - Index of the item to start returning with
-     * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
+     * @param {ServiceabilityPlatformValidator.GetDpRuleInsertParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<DpMultipleRuleSuccessResponse>} - Success response
+     * @returns {Promise<ServiceabilityPlatformModel.DpMultipleRuleSuccessResponse>}
+     *   - Success response
+     *
+     * @name getDpRuleInsert
      * @summary: Fetching of DpRules from database.
-     * @description: This API returns response of DpRules from mongo database.
+     * @description: This API returns response of DpRules from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getDpRuleInsert/).
      */
-    getDpRuleInsert({ pageNumber, pageSize }?: {
-        pageNumber?: number;
-        pageSize?: number;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<DpMultipleRuleSuccessResponse>;
+    getDpRuleInsert({ pageNumber, pageSize }?: ServiceabilityPlatformValidator.GetDpRuleInsertParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ServiceabilityPlatformModel.DpMultipleRuleSuccessResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.ruleUid - A `rule_uid` is a unique identifier for a
-     *   particular Dp.
+     * @param {ServiceabilityPlatformValidator.GetDpRulesParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<DpRuleSuccessResponse>} - Success response
+     * @returns {Promise<ServiceabilityPlatformModel.DpRuleSuccessResponse>} -
+     *   Success response
+     * @name getDpRules
      * @summary: Fetching of DpRules from database.
-     * @description: This API returns response of DpRules from mongo database.
+     * @description: This API returns response of DpRules from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getDpRules/).
      */
-    getDpRules({ ruleUid }?: {
-        ruleUid: string;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<DpRuleSuccessResponse>;
+    getDpRules({ ruleUid }?: ServiceabilityPlatformValidator.GetDpRulesParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ServiceabilityPlatformModel.DpRuleSuccessResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {EntityRegionView_Request} arg.body
+     * @param {ServiceabilityPlatformValidator.GetEntityRegionViewParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<EntityRegionView_Response>} - Success response
+     * @returns {Promise<ServiceabilityPlatformModel.EntityRegionView_Response>}
+     *   - Success response
+     *
+     * @name getEntityRegionView
      * @summary: Get country and state list
-     * @description: This API returns response for Entity Region View.
+     * @description: This API returns response for Entity Region View. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getEntityRegionView/).
      */
-    getEntityRegionView({ body }?: {
-        body: EntityRegionView_Request;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<EntityRegionView_Response>;
+    getEntityRegionView({ body }?: ServiceabilityPlatformValidator.GetEntityRegionViewParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ServiceabilityPlatformModel.EntityRegionView_Response>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNumber] - Index of the item to start returning with
-     * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
-     * @param {string} [arg.name] - Name of particular zone in the seller account
-     * @param {boolean} [arg.isActive] - Status of zone whether active or inactive
-     * @param {string} [arg.channelIds] - Zones associated with the given channel ids'
-     * @param {string} [arg.q] - Search with name as a free text
+     * @param {ServiceabilityPlatformValidator.GetListViewParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ListViewResponse>} - Success response
+     * @returns {Promise<ServiceabilityPlatformModel.ListViewResponse>} - Success response
+     * @name getListView
      * @summary: Zone List of application.
-     * @description: This API returns Zone List View of the application.
+     * @description: This API returns Zone List View of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getListView/).
      */
-    getListView({ pageNumber, pageSize, name, isActive, channelIds, q }?: {
-        pageNumber?: number;
-        pageSize?: number;
-        name?: string;
-        isActive?: boolean;
-        channelIds?: string;
-        q?: string;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ListViewResponse>;
+    getListView({ pageNumber, pageSize, name, isActive, channelIds, q }?: ServiceabilityPlatformValidator.GetListViewParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ServiceabilityPlatformModel.ListViewResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {ReAssignStoreRequest} arg.body
+     * @param {ServiceabilityPlatformValidator.GetOptimalLocationsParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ReAssignStoreResponse>} - Success response
+     * @returns {Promise<ServiceabilityPlatformModel.ReAssignStoreResponse>} -
+     *   Success response
+     * @name getOptimalLocations
      * @summary: Get serviceable store of the item
-     * @description: This API returns serviceable store of the item.
+     * @description: This API returns serviceable store of the item. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getOptimalLocations/).
      */
-    getOptimalLocations({ body }?: {
-        body: ReAssignStoreRequest;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ReAssignStoreResponse>;
+    getOptimalLocations({ body }?: ServiceabilityPlatformValidator.GetOptimalLocationsParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ServiceabilityPlatformModel.ReAssignStoreResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {number} arg.storeUid - A `store_uid` contains a specific ID of a store.
+     * @param {ServiceabilityPlatformValidator.GetStoreParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<GetStoresViewResponse>} - Success response
+     * @returns {Promise<ServiceabilityPlatformModel.GetStoresViewResponse>} -
+     *   Success response
+     * @name getStore
      * @summary: GET stores data
-     * @description: This API returns stores data.
+     * @description: This API returns stores data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getStore/).
      */
-    getStore({ storeUid }?: {
-        storeUid: number;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<GetStoresViewResponse>;
+    getStore({ storeUid }?: ServiceabilityPlatformValidator.GetStoreParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ServiceabilityPlatformModel.GetStoresViewResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.zoneId - A `zone_id` is a unique identifier for a
-     *   particular zone.
+     * @param {ServiceabilityPlatformValidator.GetZoneDataViewParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<GetSingleZoneDataViewResponse>} - Success response
+     * @returns {Promise<ServiceabilityPlatformModel.GetSingleZoneDataViewResponse>}
+     *   - Success response
+     *
+     * @name getZoneDataView
      * @summary: Zone Data View of application.
-     * @description: This API returns Zone Data View of the application.
+     * @description: This API returns Zone Data View of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getZoneDataView/).
      */
-    getZoneDataView({ zoneId }?: {
-        zoneId: string;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<GetSingleZoneDataViewResponse>;
+    getZoneDataView({ zoneId }?: ServiceabilityPlatformValidator.GetZoneDataViewParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ServiceabilityPlatformModel.GetSingleZoneDataViewResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNumber] - Index of the item to start returning with
-     * @param {number} [arg.pageNo] - Index of the item to start returning with
-     * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
-     * @param {string} [arg.name] - Name of particular zone in the seller account
-     * @param {boolean} [arg.isActive] - Status of zone whether active or inactive
-     * @param {string} [arg.channelIds] - Zones associated with the given channel ids'
-     * @param {string} [arg.q] - Search with name as a free text
-     * @param {string[]} [arg.zoneId] - List of zones to query for
+     * @param {ServiceabilityPlatformValidator.GetZoneListViewParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ListViewResponse>} - Success response
+     * @returns {Promise<ServiceabilityPlatformModel.ListViewResponse>} - Success response
+     * @name getZoneListView
      * @summary: Zone List of application.
-     * @description: This API returns Zone List View of the application.
+     * @description: This API returns Zone List View of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getZoneListView/).
      */
-    getZoneListView({ pageNumber, pageNo, pageSize, name, isActive, channelIds, q, zoneId, }?: {
-        pageNumber?: number;
-        pageNo?: number;
-        pageSize?: number;
-        name?: string;
-        isActive?: boolean;
-        channelIds?: string;
-        q?: string;
-        zoneId?: string[];
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ListViewResponse>;
+    getZoneListView({ pageNumber, pageNo, pageSize, name, isActive, channelIds, q, zoneId, }?: ServiceabilityPlatformValidator.GetZoneListViewParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ServiceabilityPlatformModel.ListViewResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.ruleUid - A `rule_uid` is a unique identifier for a
-     *   particular Dp.
-     * @param {DpRulesUpdateRequest} arg.body
+     * @param {ServiceabilityPlatformValidator.UpdateDpRuleParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<DpRuleUpdateSuccessResponse>} - Success response
+     * @returns {Promise<ServiceabilityPlatformModel.DpRuleUpdateSuccessResponse>}
+     *   - Success response
+     *
+     * @name updateDpRule
      * @summary: Updating of DpRules from database.
-     * @description: This API updates and returns response of DpRules from mongo database.
+     * @description: This API updates and returns response of DpRules from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateDpRule/).
      */
-    updateDpRule({ ruleUid, body }?: {
-        ruleUid: string;
-        body: DpRulesUpdateRequest;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<DpRuleUpdateSuccessResponse>;
+    updateDpRule({ ruleUid, body }?: ServiceabilityPlatformValidator.UpdateDpRuleParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ServiceabilityPlatformModel.DpRuleUpdateSuccessResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.zoneId - A `zone_id` is a unique identifier for a
-     *   particular zone.
-     * @param {ZoneUpdateRequest} arg.body
+     * @param {ServiceabilityPlatformValidator.UpdateZoneControllerViewParam} arg
+     *   - Arg object
+     *
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ZoneSuccessResponse>} - Success response
+     * @returns {Promise<ServiceabilityPlatformModel.ZoneSuccessResponse>} -
+     *   Success response
+     * @name updateZoneControllerView
      * @summary: Updation of zone collections in database.
-     * @description: This API returns response of updation of zone in mongo database.
+     * @description: This API returns response of updation of zone in mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateZoneControllerView/).
      */
-    updateZoneControllerView({ zoneId, body }?: {
-        zoneId: string;
-        body: ZoneUpdateRequest;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<ZoneSuccessResponse>;
+    updateZoneControllerView({ zoneId, body }?: ServiceabilityPlatformValidator.UpdateZoneControllerViewParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ServiceabilityPlatformModel.ZoneSuccessResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {CompanyDpAccountRequest} arg.body
+     * @param {ServiceabilityPlatformValidator.UpsertDpAccountParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CompanyDpAccountResponse>} - Success response
+     * @returns {Promise<ServiceabilityPlatformModel.CompanyDpAccountResponse>}
+     *   - Success response
+     *
+     * @name upsertDpAccount
      * @summary: Upsertion of DpAccount in database.
-     * @description: This API returns response of upsertion of DpAccount in mongo database.
+     * @description: This API returns response of upsertion of DpAccount in mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/upsertDpAccount/).
      */
-    upsertDpAccount({ body }?: {
-        body: CompanyDpAccountRequest;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<CompanyDpAccountResponse>;
+    upsertDpAccount({ body }?: ServiceabilityPlatformValidator.UpsertDpAccountParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ServiceabilityPlatformModel.CompanyDpAccountResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {DPCompanyRuleRequest} arg.body
+     * @param {ServiceabilityPlatformValidator.UpsertDpCompanyRulesParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<DPCompanyRuleResponse>} - Success response
+     * @returns {Promise<ServiceabilityPlatformModel.DPCompanyRuleResponse>} -
+     *   Success response
+     * @name upsertDpCompanyRules
      * @summary: Upsert of DpCompanyRules in database.
-     * @description: This API returns response of upsert of DpCompanyRules in mongo database.
+     * @description: This API returns response of upsert of DpCompanyRules in mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/upsertDpCompanyRules/).
      */
-    upsertDpCompanyRules({ body }?: {
-        body: DPCompanyRuleRequest;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<DPCompanyRuleResponse>;
+    upsertDpCompanyRules({ body }?: ServiceabilityPlatformValidator.UpsertDpCompanyRulesParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ServiceabilityPlatformModel.DPCompanyRuleResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {DpRuleRequest} arg.body
+     * @param {ServiceabilityPlatformValidator.UpsertDpRulesParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<DpRuleSuccessResponse>} - Success response
+     * @returns {Promise<ServiceabilityPlatformModel.DpRuleSuccessResponse>} -
+     *   Success response
+     * @name upsertDpRules
      * @summary: Upsert of DpRules in database.
-     * @description: This API returns response of upsert of DpRules in mongo database.
+     * @description: This API returns response of upsert of DpRules in mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/upsertDpRules/).
      */
-    upsertDpRules({ body }?: {
-        body: DpRuleRequest;
-    }, { headers }?: import("../PlatformAPIClient").Options): Promise<DpRuleSuccessResponse>;
+    upsertDpRules({ body }?: ServiceabilityPlatformValidator.UpsertDpRulesParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ServiceabilityPlatformModel.DpRuleSuccessResponse>;
 }
+import ServiceabilityPlatformValidator = require("./ServiceabilityPlatformValidator");
+import ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");

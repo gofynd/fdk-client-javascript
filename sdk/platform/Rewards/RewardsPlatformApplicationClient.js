@@ -1,8 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
-const RewardsValidator = require("./RewardsPlatformApplicationValidator");
-const RewardsModel = require("./RewardsPlatformModel");
+const RewardsPlatformApplicationValidator = require("./RewardsPlatformApplicationValidator");
+const RewardsPlatformModel = require("./RewardsPlatformModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -13,15 +13,17 @@ class Rewards {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Giveaway ID
+   * @param {RewardsPlatformApplicationValidator.GetGiveawayByIdParam} arg - Arg object
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Giveaway>} - Success response
+   * @returns {Promise<RewardsPlatformModel.Giveaway>} - Success response
+   * @name getGiveawayById
    * @summary: Get giveaway by ID.
-   * @description: Retrieve the specific giveaway by giveaway ID. It will show all the details of the requested giveaway.
+   * @description: Retrieve the specific giveaway by giveaway ID. It will show all the details of the requested giveaway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/getGiveawayById/).
    */
   async getGiveawayById({ id } = {}, { headers } = { headers: false }) {
-    const { error } = RewardsValidator.getGiveawayById().validate(
+    const {
+      error,
+    } = RewardsPlatformApplicationValidator.getGiveawayById().validate(
       {
         id,
       },
@@ -32,7 +34,9 @@ class Rewards {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = RewardsValidator.getGiveawayById().validate(
+    const {
+      error: warrning,
+    } = RewardsPlatformApplicationValidator.getGiveawayById().validate(
       {
         id,
       },
@@ -41,9 +45,8 @@ class Rewards {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getGiveawayById",
+        message: `Parameter Validation warrnings for platform > Rewards > getGiveawayById \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -63,32 +66,35 @@ class Rewards {
       responseData = response[0];
     }
 
-    const { error: res_error } = RewardsModel.Giveaway().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: false }
-    );
+    const {
+      error: res_error,
+    } = RewardsPlatformModel.Giveaway().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getGiveawayById",
+        message: `Response Validation Warnnings for platform > Rewards > getGiveawayById \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.name - The name given to the offer.
+   * @param {RewardsPlatformApplicationValidator.GetOfferByNameParam} arg - Arg object
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Offer>} - Success response
+   * @returns {Promise<RewardsPlatformModel.Offer>} - Success response
+   * @name getOfferByName
    * @summary: Fetch a offer by its name
-   * @description: Fetch the specific offer details and configuration by the name of the offer.
+   * @description: Fetch the specific offer details and configuration by the name of the offer. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/getOfferByName/).
    */
   async getOfferByName({ name } = {}, { headers } = { headers: false }) {
-    const { error } = RewardsValidator.getOfferByName().validate(
+    const {
+      error,
+    } = RewardsPlatformApplicationValidator.getOfferByName().validate(
       { name },
       { abortEarly: false, allowUnknown: true }
     );
@@ -97,16 +103,17 @@ class Rewards {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = RewardsValidator.getOfferByName().validate(
+    const {
+      error: warrning,
+    } = RewardsPlatformApplicationValidator.getOfferByName().validate(
       { name },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getOfferByName",
+        message: `Parameter Validation warrnings for platform > Rewards > getOfferByName \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -126,7 +133,9 @@ class Rewards {
       responseData = response[0];
     }
 
-    const { error: res_error } = RewardsModel.Offer().validate(responseData, {
+    const {
+      error: res_error,
+    } = RewardsPlatformModel.Offer().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -134,9 +143,8 @@ class Rewards {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getOfferByName",
+        message: `Response Validation Warnnings for platform > Rewards > getOfferByName \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -144,12 +152,15 @@ class Rewards {
 
   /**
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ConfigurationRes>} - Success response
+   * @returns {Promise<RewardsPlatformModel.ConfigurationRes>} - Success response
+   * @name getRewardsConfiguration
    * @summary: Get all valid android paths
-   * @description: Use this API to get a list of valid android paths required by the Rewards INIT API to validate a fraudulent device.
+   * @description: Use this API to get a list of valid android paths required by the Rewards INIT API to validate a fraudulent device. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/getRewardsConfiguration/).
    */
   async getRewardsConfiguration({ headers } = { headers: false }) {
-    const { error } = RewardsValidator.getRewardsConfiguration().validate(
+    const {
+      error,
+    } = RewardsPlatformApplicationValidator.getRewardsConfiguration().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -160,16 +171,15 @@ class Rewards {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = RewardsValidator.getRewardsConfiguration().validate(
+    } = RewardsPlatformApplicationValidator.getRewardsConfiguration().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getRewardsConfiguration",
+        message: `Parameter Validation warrnings for platform > Rewards > getRewardsConfiguration \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -191,7 +201,7 @@ class Rewards {
 
     const {
       error: res_error,
-    } = RewardsModel.ConfigurationRes().validate(responseData, {
+    } = RewardsPlatformModel.ConfigurationRes().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -199,24 +209,25 @@ class Rewards {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getRewardsConfiguration",
+        message: `Response Validation Warnnings for platform > Rewards > getRewardsConfiguration \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.userId - User id
+   * @param {RewardsPlatformApplicationValidator.GetUserDetailsParam} arg - Arg object
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<UserRes>} - Success response
+   * @returns {Promise<RewardsPlatformModel.UserRes>} - Success response
+   * @name getUserDetails
    * @summary: Get user reward details
-   * @description: Fetches the user details and the user reward details with their current reward points for the specific user.
+   * @description: Fetches the user details and the user reward details with their current reward points for the specific user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/getUserDetails/).
    */
   async getUserDetails({ userId } = {}, { headers } = { headers: false }) {
-    const { error } = RewardsValidator.getUserDetails().validate(
+    const {
+      error,
+    } = RewardsPlatformApplicationValidator.getUserDetails().validate(
       { userId },
       { abortEarly: false, allowUnknown: true }
     );
@@ -225,16 +236,17 @@ class Rewards {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = RewardsValidator.getUserDetails().validate(
+    const {
+      error: warrning,
+    } = RewardsPlatformApplicationValidator.getUserDetails().validate(
       { userId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getUserDetails",
+        message: `Parameter Validation warrnings for platform > Rewards > getUserDetails \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -254,7 +266,9 @@ class Rewards {
       responseData = response[0];
     }
 
-    const { error: res_error } = RewardsModel.UserRes().validate(responseData, {
+    const {
+      error: res_error,
+    } = RewardsPlatformModel.UserRes().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -262,30 +276,30 @@ class Rewards {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getUserDetails",
+        message: `Response Validation Warnnings for platform > Rewards > getUserDetails \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.userId - User id
-   * @param {string} [arg.pageId] - PageID is the ID of the requested page.
-   *   For first request it should be kept empty.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+   * @param {RewardsPlatformApplicationValidator.GetUserPointsHistoryParam} arg
+   *   - Arg object
+   *
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<HistoryRes>} - Success response
+   * @returns {Promise<RewardsPlatformModel.HistoryRes>} - Success response
+   * @name getUserPointsHistory
    * @summary: Get all transactions of reward points
-   * @description: Fetches a list of points transactions like giveaway points, signup points, referral points, order earn points, redeem points and expired points.
+   * @description: Fetches a list of points transactions like giveaway points, signup points, referral points, order earn points, redeem points and expired points. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/getUserPointsHistory/).
    */
   async getUserPointsHistory(
     { userId, pageId, pageSize } = {},
     { headers } = { headers: false }
   ) {
-    const { error } = RewardsValidator.getUserPointsHistory().validate(
+    const {
+      error,
+    } = RewardsPlatformApplicationValidator.getUserPointsHistory().validate(
       {
         userId,
 
@@ -301,7 +315,7 @@ class Rewards {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = RewardsValidator.getUserPointsHistory().validate(
+    } = RewardsPlatformApplicationValidator.getUserPointsHistory().validate(
       {
         userId,
 
@@ -313,9 +327,8 @@ class Rewards {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getUserPointsHistory",
+        message: `Parameter Validation warrnings for platform > Rewards > getUserPointsHistory \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -339,7 +352,7 @@ class Rewards {
 
     const {
       error: res_error,
-    } = RewardsModel.HistoryRes().validate(responseData, {
+    } = RewardsPlatformModel.HistoryRes().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -347,9 +360,8 @@ class Rewards {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getUserPointsHistory",
+        message: `Response Validation Warnnings for platform > Rewards > getUserPointsHistory \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -361,6 +373,7 @@ class Rewards {
    * @param {string} arg.companyId - Company id
    * @param {string} arg.applicationId - Application id
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+   * @returns {Paginator<RewardsPlatformModel.HistoryRes>}
    * @summary: Get all transactions of reward points
    * @description: Fetches a list of points transactions like giveaway points, signup points, referral points, order earn points, redeem points and expired points.
    */
@@ -393,15 +406,17 @@ class Rewards {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {Giveaway} arg.body
+   * @param {RewardsPlatformApplicationValidator.SaveGiveAwayParam} arg - Arg object
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Giveaway>} - Success response
+   * @returns {Promise<RewardsPlatformModel.Giveaway>} - Success response
+   * @name saveGiveAway
    * @summary: List of giveaways of the current application.
-   * @description: Creates a new giveaway in the current application, specifying the target audience, points allocation, as well as the name and display name of the giveaway.
+   * @description: Creates a new giveaway in the current application, specifying the target audience, points allocation, as well as the name and display name of the giveaway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/saveGiveAway/).
    */
   async saveGiveAway({ body } = {}, { headers } = { headers: false }) {
-    const { error } = RewardsValidator.saveGiveAway().validate(
+    const {
+      error,
+    } = RewardsPlatformApplicationValidator.saveGiveAway().validate(
       {
         body,
       },
@@ -412,7 +427,9 @@ class Rewards {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = RewardsValidator.saveGiveAway().validate(
+    const {
+      error: warrning,
+    } = RewardsPlatformApplicationValidator.saveGiveAway().validate(
       {
         body,
       },
@@ -421,9 +438,8 @@ class Rewards {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for saveGiveAway",
+        message: `Parameter Validation warrnings for platform > Rewards > saveGiveAway \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -443,35 +459,40 @@ class Rewards {
       responseData = response[0];
     }
 
-    const { error: res_error } = RewardsModel.Giveaway().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: false }
-    );
+    const {
+      error: res_error,
+    } = RewardsPlatformModel.Giveaway().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for saveGiveAway",
+        message: `Response Validation Warnnings for platform > Rewards > saveGiveAway \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {ConfigurationRequest} arg.body
+   * @param {RewardsPlatformApplicationValidator.SetRewardsConfigurationParam} arg
+   *   - Arg object
+   *
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<SetConfigurationRes>} - Success response
+   * @returns {Promise<RewardsPlatformModel.SetConfigurationRes>} - Success response
+   * @name setRewardsConfiguration
    * @summary: Updates the collection with given android paths.
-   * @description: Updates the configuration or inserts new records with the given android paths.
+   * @description: Updates the configuration or inserts new records with the given android paths. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/setRewardsConfiguration/).
    */
   async setRewardsConfiguration(
     { body } = {},
     { headers } = { headers: false }
   ) {
-    const { error } = RewardsValidator.setRewardsConfiguration().validate(
+    const {
+      error,
+    } = RewardsPlatformApplicationValidator.setRewardsConfiguration().validate(
       {
         body,
       },
@@ -484,7 +505,7 @@ class Rewards {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = RewardsValidator.setRewardsConfiguration().validate(
+    } = RewardsPlatformApplicationValidator.setRewardsConfiguration().validate(
       {
         body,
       },
@@ -493,9 +514,8 @@ class Rewards {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for setRewardsConfiguration",
+        message: `Parameter Validation warrnings for platform > Rewards > setRewardsConfiguration \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -517,7 +537,7 @@ class Rewards {
 
     const {
       error: res_error,
-    } = RewardsModel.SetConfigurationRes().validate(responseData, {
+    } = RewardsPlatformModel.SetConfigurationRes().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -525,28 +545,28 @@ class Rewards {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for setRewardsConfiguration",
+        message: `Response Validation Warnnings for platform > Rewards > setRewardsConfiguration \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.pageId - Pagination page id
-   * @param {number} arg.pageSize - Pagination page size
+   * @param {RewardsPlatformApplicationValidator.ShowGiveawaysParam} arg - Arg object
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<GiveawayResponse>} - Success response
+   * @returns {Promise<RewardsPlatformModel.GiveawayResponse>} - Success response
+   * @name showGiveaways
    * @summary: List of giveaways of the current application.
-   * @description: Fetch the detailed compilation of live, completed, and scheduled point-based giveaways created.
+   * @description: Fetch the detailed compilation of live, completed, and scheduled point-based giveaways created. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/showGiveaways/).
    */
   async showGiveaways(
     { pageId, pageSize } = {},
     { headers } = { headers: false }
   ) {
-    const { error } = RewardsValidator.showGiveaways().validate(
+    const {
+      error,
+    } = RewardsPlatformApplicationValidator.showGiveaways().validate(
       {
         pageId,
         pageSize,
@@ -558,7 +578,9 @@ class Rewards {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = RewardsValidator.showGiveaways().validate(
+    const {
+      error: warrning,
+    } = RewardsPlatformApplicationValidator.showGiveaways().validate(
       {
         pageId,
         pageSize,
@@ -568,9 +590,8 @@ class Rewards {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for showGiveaways",
+        message: `Parameter Validation warrnings for platform > Rewards > showGiveaways \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -594,7 +615,7 @@ class Rewards {
 
     const {
       error: res_error,
-    } = RewardsModel.GiveawayResponse().validate(responseData, {
+    } = RewardsPlatformModel.GiveawayResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -602,9 +623,8 @@ class Rewards {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for showGiveaways",
+        message: `Response Validation Warnnings for platform > Rewards > showGiveaways \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -612,12 +632,13 @@ class Rewards {
 
   /**
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Offer[]>} - Success response
+   * @returns {Promise<RewardsPlatformModel.Offer[]>} - Success response
+   * @name showOffers
    * @summary: List of offers of the current application.
-   * @description: Retrieve the list of offers within the current application, including order_discount, order, sign_up, and referral, along with their respective details.
+   * @description: Retrieve the list of offers within the current application, including order_discount, order, sign_up, and referral, along with their respective details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/showOffers/).
    */
   async showOffers({ headers } = { headers: false }) {
-    const { error } = RewardsValidator.showOffers().validate(
+    const { error } = RewardsPlatformApplicationValidator.showOffers().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -626,16 +647,17 @@ class Rewards {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = RewardsValidator.showOffers().validate(
+    const {
+      error: warrning,
+    } = RewardsPlatformApplicationValidator.showOffers().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for showOffers",
+        message: `Parameter Validation warrnings for platform > Rewards > showOffers \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -656,31 +678,31 @@ class Rewards {
     }
 
     const { error: res_error } = Joi.array()
-      .items(RewardsModel.Offer())
+      .items(RewardsPlatformModel.Offer())
       .validate(responseData, { abortEarly: false, allowUnknown: false });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for showOffers",
+        message: `Response Validation Warnnings for platform > Rewards > showOffers \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Giveaway ID
-   * @param {Giveaway} arg.body
+   * @param {RewardsPlatformApplicationValidator.UpdateGiveAwayParam} arg - Arg object
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Giveaway>} - Success response
+   * @returns {Promise<RewardsPlatformModel.Giveaway>} - Success response
+   * @name updateGiveAway
    * @summary: Updates the giveaway by it's ID.
-   * @description: Make the necessary updates to the giveaway based on its giveaway ID.
+   * @description: Make the necessary updates to the giveaway based on its giveaway ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/updateGiveAway/).
    */
   async updateGiveAway({ id, body } = {}, { headers } = { headers: false }) {
-    const { error } = RewardsValidator.updateGiveAway().validate(
+    const {
+      error,
+    } = RewardsPlatformApplicationValidator.updateGiveAway().validate(
       {
         id,
         body,
@@ -692,7 +714,9 @@ class Rewards {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = RewardsValidator.updateGiveAway().validate(
+    const {
+      error: warrning,
+    } = RewardsPlatformApplicationValidator.updateGiveAway().validate(
       {
         id,
         body,
@@ -702,9 +726,8 @@ class Rewards {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateGiveAway",
+        message: `Parameter Validation warrnings for platform > Rewards > updateGiveAway \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -724,36 +747,40 @@ class Rewards {
       responseData = response[0];
     }
 
-    const { error: res_error } = RewardsModel.Giveaway().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: false }
-    );
+    const {
+      error: res_error,
+    } = RewardsPlatformModel.Giveaway().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateGiveAway",
+        message: `Response Validation Warnnings for platform > Rewards > updateGiveAway \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.name - The name given to the offer.
-   * @param {Offer} arg.body
+   * @param {RewardsPlatformApplicationValidator.UpdateOfferByNameParam} arg
+   *   - Arg object
+   *
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Offer>} - Success response
+   * @returns {Promise<RewardsPlatformModel.Offer>} - Success response
+   * @name updateOfferByName
    * @summary: Update offer by name
-   * @description: Update the specific offer details and its configuration by offer name.
+   * @description: Update the specific offer details and its configuration by offer name. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/updateOfferByName/).
    */
   async updateOfferByName(
     { name, body } = {},
     { headers } = { headers: false }
   ) {
-    const { error } = RewardsValidator.updateOfferByName().validate(
+    const {
+      error,
+    } = RewardsPlatformApplicationValidator.updateOfferByName().validate(
       {
         name,
 
@@ -766,7 +793,9 @@ class Rewards {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = RewardsValidator.updateOfferByName().validate(
+    const {
+      error: warrning,
+    } = RewardsPlatformApplicationValidator.updateOfferByName().validate(
       {
         name,
 
@@ -777,9 +806,8 @@ class Rewards {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateOfferByName",
+        message: `Parameter Validation warrnings for platform > Rewards > updateOfferByName \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -799,7 +827,9 @@ class Rewards {
       responseData = response[0];
     }
 
-    const { error: res_error } = RewardsModel.Offer().validate(responseData, {
+    const {
+      error: res_error,
+    } = RewardsPlatformModel.Offer().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -807,28 +837,28 @@ class Rewards {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateOfferByName",
+        message: `Response Validation Warnnings for platform > Rewards > updateOfferByName \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.userId - User id
-   * @param {AppUser} arg.body
+   * @param {RewardsPlatformApplicationValidator.UpdateUserStatusParam} arg - Arg object
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<AppUser>} - Success response
+   * @returns {Promise<RewardsPlatformModel.AppUser>} - Success response
+   * @name updateUserStatus
    * @summary: Update user status
-   * @description: Update the user status by marking them as a block or unblock. It can be done by changing the active flag in request body.
+   * @description: Update the user status by marking them as a block or unblock. It can be done by changing the active flag in request body. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/updateUserStatus/).
    */
   async updateUserStatus(
     { userId, body } = {},
     { headers } = { headers: false }
   ) {
-    const { error } = RewardsValidator.updateUserStatus().validate(
+    const {
+      error,
+    } = RewardsPlatformApplicationValidator.updateUserStatus().validate(
       {
         userId,
 
@@ -841,7 +871,9 @@ class Rewards {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = RewardsValidator.updateUserStatus().validate(
+    const {
+      error: warrning,
+    } = RewardsPlatformApplicationValidator.updateUserStatus().validate(
       {
         userId,
 
@@ -852,9 +884,8 @@ class Rewards {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateUserStatus",
+        message: `Parameter Validation warrnings for platform > Rewards > updateUserStatus \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -874,7 +905,9 @@ class Rewards {
       responseData = response[0];
     }
 
-    const { error: res_error } = RewardsModel.AppUser().validate(responseData, {
+    const {
+      error: res_error,
+    } = RewardsPlatformModel.AppUser().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -882,9 +915,8 @@ class Rewards {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateUserStatus",
+        message: `Response Validation Warnnings for platform > Rewards > updateUserStatus \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

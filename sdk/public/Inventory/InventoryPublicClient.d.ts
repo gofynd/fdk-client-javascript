@@ -13,75 +13,69 @@ declare class Inventory {
     _urls: {};
     updateUrls(urls: any): void;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.userName - Integration id
-     * @param {string} arg.password - Company/store token
+     * @param {InventoryPublicValidator.GetApiKeyParam} arg - Arg object.
      * @param {import("../PublicAPIClient").Options} - Options
-     * @returns {Promise<ResponseEnvelopeApikeyModel>} - Success response
+     * @returns {Promise<InventoryPublicModel.ResponseEnvelopeApikeyModel>} -
+     *   Success response
+     * @name getApiKey
      * @summary: Get apikey  for  Company  to call other Slingshot Configuration APIs
-     * @description: REST Endpoint that returns apikey by username by password
+     * @description: REST Endpoint that returns apikey by username by password - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/inventory/getApiKey/).
      */
-    getApiKey({ userName, password }?: {
-        userName: string;
-        password: string;
-    }, { headers }?: any): Promise<ResponseEnvelopeApikeyModel>;
+    getApiKey({ userName, password }?: InventoryPublicValidator.GetApiKeyParam, { headers }?: any): Promise<InventoryPublicModel.ResponseEnvelopeApikeyModel>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.apikey - Api key
+     * @param {InventoryPublicValidator.GetConfigByApiKeyParam} arg - Arg object.
      * @param {import("../PublicAPIClient").Options} - Options
-     * @returns {Promise<ResponseEnvelopeSlingshotConfigurationDetail>} - Success response
+     * @returns {Promise<InventoryPublicModel.ResponseEnvelopeSlingshotConfigurationDetail>}
+     *   - Success response
+     *
+     * @name getConfigByApiKey
      * @summary: Get Slingshot Configuration Of  A Company using API key
-     * @description: REST Endpoint that returns all configuration detail of a company
+     * @description: REST Endpoint that returns all configuration detail of a company - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/inventory/getConfigByApiKey/).
      */
-    getConfigByApiKey({ apikey }?: {
-        apikey: string;
-    }, { headers }?: any): Promise<ResponseEnvelopeSlingshotConfigurationDetail>;
+    getConfigByApiKey({ apikey }?: InventoryPublicValidator.GetConfigByApiKeyParam, { headers }?: any): Promise<InventoryPublicModel.ResponseEnvelopeSlingshotConfigurationDetail>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.code - Job Code
+     * @param {InventoryPublicValidator.GetJobByCodeParam} arg - Arg object.
      * @param {import("../PublicAPIClient").Options} - Options
-     * @returns {Promise<ResponseEnvelopeJobConfigDTO>} - Success response
+     * @returns {Promise<InventoryPublicModel.ResponseEnvelopeJobConfigDTO>} -
+     *   Success response
+     * @name getJobByCode
      * @summary: Get Job Config By Code
-     * @description: REST Endpoint that returns job config by code
+     * @description: REST Endpoint that returns job config by code - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/inventory/getJobByCode/).
      */
-    getJobByCode({ code }?: {
-        code: string;
-    }, { headers }?: any): Promise<ResponseEnvelopeJobConfigDTO>;
+    getJobByCode({ code }?: InventoryPublicValidator.GetJobByCodeParam, { headers }?: any): Promise<InventoryPublicModel.ResponseEnvelopeJobConfigDTO>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {boolean} [arg.dailyJob] - Daily Job Flag
-     * @param {string} [arg.jobCode] - Email Job Code
+     * @param {InventoryPublicValidator.GetJobCodesMetricsParam} arg - Arg object.
      * @param {import("../PublicAPIClient").Options} - Options
-     * @returns {Promise<ResponseEnvelopeObject>} - Success response
+     * @returns {Promise<InventoryPublicModel.ResponseEnvelopeObject>} - Success response
+     * @name getJobCodesMetrics
      * @summary: Find all the JobCodes from Metrics Collection based on the field Values
-     * @description: Endpoint to return all JobCodes present in Metrics Collection
+     * @description: Endpoint to return all JobCodes present in Metrics Collection - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/inventory/getJobCodesMetrics/).
      */
-    getJobCodesMetrics({ dailyJob, jobCode }?: {
-        dailyJob?: boolean;
-        jobCode?: string;
-    }, { headers }?: any): Promise<ResponseEnvelopeObject>;
+    getJobCodesMetrics({ dailyJob, jobCode }?: InventoryPublicValidator.GetJobCodesMetricsParam, { headers }?: any): Promise<InventoryPublicModel.ResponseEnvelopeObject>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.integrationType - Integration Type
-     * @param {boolean} [arg.disable] - JobConfig current state
+     * @param {InventoryPublicValidator.GetJobConfigByIntegrationTypeParam} arg
+     *   - Arg object.
+     *
      * @param {import("../PublicAPIClient").Options} - Options
-     * @returns {Promise<ResponseEnvelopeListJobConfigDTO>} - Success response
+     * @returns {Promise<InventoryPublicModel.ResponseEnvelopeListJobConfigDTO>}
+     *   - Success response
+     *
+     * @name getJobConfigByIntegrationType
      * @summary: Get Job Configs By Integration Type
-     * @description: REST Endpoint that returns all job Configs by Integration Type
+     * @description: REST Endpoint that returns all job Configs by Integration Type - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/inventory/getJobConfigByIntegrationType/).
      */
-    getJobConfigByIntegrationType({ integrationType, disable }?: {
-        integrationType: string;
-        disable?: boolean;
-    }, { headers }?: any): Promise<ResponseEnvelopeListJobConfigDTO>;
+    getJobConfigByIntegrationType({ integrationType, disable }?: InventoryPublicValidator.GetJobConfigByIntegrationTypeParam, { headers }?: any): Promise<InventoryPublicModel.ResponseEnvelopeListJobConfigDTO>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {EmailJobMetrics} arg.body
+     * @param {InventoryPublicValidator.SaveJobCodesMetricsParam} arg - Arg object.
      * @param {import("../PublicAPIClient").Options} - Options
-     * @returns {Promise<ResponseEnvelopeEmailJobMetrics>} - Success response
+     * @returns {Promise<InventoryPublicModel.ResponseEnvelopeEmailJobMetrics>}
+     *   - Success response
+     *
+     * @name saveJobCodesMetrics
      * @summary: Save JobCode Metrics
-     * @description: Endpoint to save JobCode Metrics
+     * @description: Endpoint to save JobCode Metrics - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/inventory/saveJobCodesMetrics/).
      */
-    saveJobCodesMetrics({ body }?: {
-        body: EmailJobMetrics;
-    }, { headers }?: any): Promise<ResponseEnvelopeEmailJobMetrics>;
+    saveJobCodesMetrics({ body }?: InventoryPublicValidator.SaveJobCodesMetricsParam, { headers }?: any): Promise<InventoryPublicModel.ResponseEnvelopeEmailJobMetrics>;
 }
+import InventoryPublicValidator = require("./InventoryPublicValidator");
+import InventoryPublicModel = require("./InventoryPublicModel");
