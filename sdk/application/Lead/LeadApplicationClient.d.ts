@@ -14,77 +14,74 @@ declare class Lead {
     _urls: {};
     updateUrls(urls: any): void;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Ticket ID for which history is created
-     * @param {TicketHistoryPayload} arg.body
-     * @returns {Promise<TicketHistory>} - Success response
+     * @param {LeadApplicationValidator.CreateHistoryParam} arg - Arg object.
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<LeadApplicationModel.TicketHistory>} - Success response
+     * @name createHistory
      * @summary: Create history for specific Ticket
-     * @description: Create history for specific Ticket, this history is seen on ticket detail page, this can be comment, log or rating.
+     * @description: Create history for specific Ticket, this history is seen on ticket detail page, this can be comment, log or rating. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/createHistory/).
      */
-    createHistory({ id, body }?: {
-        id: string;
-        body: TicketHistoryPayload;
-    }): Promise<TicketHistory>;
+    createHistory({ id, body }?: LeadApplicationValidator.CreateHistoryParam, { headers }?: import("../ApplicationAPIClient").Options): Promise<LeadApplicationModel.TicketHistory>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {AddTicketPayload} arg.body
-     * @returns {Promise<Ticket>} - Success response
+     * @param {LeadApplicationValidator.CreateTicketParam} arg - Arg object.
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<LeadApplicationModel.Ticket>} - Success response
+     * @name createTicket
      * @summary: Create Ticket
-     * @description: This is used to Create Ticket.
+     * @description: This is used to Create Ticket. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/createTicket/).
      */
-    createTicket({ body }?: {
-        body: AddTicketPayload;
-    }): Promise<Ticket>;
+    createTicket({ body }?: LeadApplicationValidator.CreateTicketParam, { headers }?: import("../ApplicationAPIClient").Options): Promise<LeadApplicationModel.Ticket>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.slug - Slug of form whose response is getting submitted
-     * @returns {Promise<CustomForm>} - Success response
+     * @param {LeadApplicationValidator.GetCustomFormParam} arg - Arg object.
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<LeadApplicationModel.CustomForm>} - Success response
+     * @name getCustomForm
      * @summary: Get specific Custom Form using it's slug
-     * @description: Get specific Custom Form using it's slug, this is used to view the form.
+     * @description: Get specific Custom Form using it's slug, this is used to view the form. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/getCustomForm/).
      */
-    getCustomForm({ slug }?: {
-        slug: string;
-    }): Promise<CustomForm>;
+    getCustomForm({ slug }?: LeadApplicationValidator.GetCustomFormParam, { headers }?: import("../ApplicationAPIClient").Options): Promise<LeadApplicationModel.CustomForm>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.uniqueName - Unique name of Video Room
-     * @returns {Promise<GetParticipantsInsideVideoRoomResponse>} - Success response
+     * @param {LeadApplicationValidator.GetParticipantsInsideVideoRoomParam} arg
+     *   - Arg object.
+     *
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<LeadApplicationModel.GetParticipantsInsideVideoRoomResponse>}
+     *   - Success response
+     *
+     * @name getParticipantsInsideVideoRoom
      * @summary: Get participants of a specific Video Room using it's unique name
-     * @description: Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
+     * @description: Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/getParticipantsInsideVideoRoom/).
      */
-    getParticipantsInsideVideoRoom({ uniqueName }?: {
-        uniqueName: string;
-    }): Promise<GetParticipantsInsideVideoRoomResponse>;
+    getParticipantsInsideVideoRoom({ uniqueName }?: LeadApplicationValidator.GetParticipantsInsideVideoRoomParam, { headers }?: import("../ApplicationAPIClient").Options): Promise<LeadApplicationModel.GetParticipantsInsideVideoRoomResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - ID of ticket to be retrieved
-     * @returns {Promise<Ticket>} - Success response
+     * @param {LeadApplicationValidator.GetTicketParam} arg - Arg object.
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<LeadApplicationModel.Ticket>} - Success response
+     * @name getTicket
      * @summary: Get Ticket with the specific id
-     * @description: Get Ticket with the specific id, this is used to view the ticket details
+     * @description: Get Ticket with the specific id, this is used to view the ticket details - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/getTicket/).
      */
-    getTicket({ id }?: {
-        id: string;
-    }): Promise<Ticket>;
+    getTicket({ id }?: LeadApplicationValidator.GetTicketParam, { headers }?: import("../ApplicationAPIClient").Options): Promise<LeadApplicationModel.Ticket>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.uniqueName - Unique name of Video Room
-     * @returns {Promise<GetTokenForVideoRoomResponse>} - Success response
+     * @param {LeadApplicationValidator.GetTokenForVideoRoomParam} arg - Arg object.
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<LeadApplicationModel.GetTokenForVideoRoomResponse>} -
+     *   Success response
+     * @name getTokenForVideoRoom
      * @summary: Get Token to join a specific Video Room using it's unqiue name
-     * @description: Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
+     * @description: Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/getTokenForVideoRoom/).
      */
-    getTokenForVideoRoom({ uniqueName }?: {
-        uniqueName: string;
-    }): Promise<GetTokenForVideoRoomResponse>;
+    getTokenForVideoRoom({ uniqueName }?: LeadApplicationValidator.GetTokenForVideoRoomParam, { headers }?: import("../ApplicationAPIClient").Options): Promise<LeadApplicationModel.GetTokenForVideoRoomResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.slug - Slug of form whose response is getting submitted
-     * @param {CustomFormSubmissionPayload} arg.body
-     * @returns {Promise<SubmitCustomFormResponse>} - Success response
+     * @param {LeadApplicationValidator.SubmitCustomFormParam} arg - Arg object.
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<LeadApplicationModel.SubmitCustomFormResponse>} -
+     *   Success response
+     * @name submitCustomForm
      * @summary: Submit Response for a specific Custom Form using it's slug
-     * @description: Submit Response for a specific Custom Form using it's slug, this response is then used to create a ticket on behalf of the user.
+     * @description: Submit Response for a specific Custom Form using it's slug, this response is then used to create a ticket on behalf of the user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/submitCustomForm/).
      */
-    submitCustomForm({ slug, body }?: {
-        slug: string;
-        body: CustomFormSubmissionPayload;
-    }): Promise<SubmitCustomFormResponse>;
+    submitCustomForm({ slug, body }?: LeadApplicationValidator.SubmitCustomFormParam, { headers }?: import("../ApplicationAPIClient").Options): Promise<LeadApplicationModel.SubmitCustomFormResponse>;
 }
+import LeadApplicationValidator = require("./LeadApplicationValidator");
+import LeadApplicationModel = require("./LeadApplicationModel");

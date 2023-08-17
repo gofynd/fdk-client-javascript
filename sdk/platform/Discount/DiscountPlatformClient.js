@@ -1,8 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
-const DiscountValidator = require("./DiscountPlatformValidator");
-const DiscountModel = require("./DiscountPlatformModel");
+const DiscountPlatformValidator = require("./DiscountPlatformValidator");
+const DiscountPlatformModel = require("./DiscountPlatformModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -12,14 +12,15 @@ class Discount {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Id
-   * @returns {Promise<CancelJobResponse>} - Success response
+   * @param {DiscountPlatformValidator.CancelDownloadJobParam} arg - Arg object
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<DiscountPlatformModel.CancelJobResponse>} - Success response
+   * @name cancelDownloadJob
    * @summary: Cancel Download Job.
-   * @description: Cancel Download Job.
+   * @description: Cancel Download Job. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/cancelDownloadJob/).
    */
-  async cancelDownloadJob({ id } = {}) {
-    const { error } = DiscountValidator.cancelDownloadJob().validate(
+  async cancelDownloadJob({ id } = {}, { headers } = { headers: false }) {
+    const { error } = DiscountPlatformValidator.cancelDownloadJob().validate(
       {
         id,
       },
@@ -30,7 +31,9 @@ class Discount {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = DiscountValidator.cancelDownloadJob().validate(
+    const {
+      error: warrning,
+    } = DiscountPlatformValidator.cancelDownloadJob().validate(
       {
         id,
       },
@@ -39,9 +42,8 @@ class Discount {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for cancelDownloadJob",
+        message: `Parameter Validation warrnings for platform > Discount > cancelDownloadJob \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -54,12 +56,18 @@ class Discount {
       `/service/platform/discount/v1.0/company/${this.config.companyId}/file/download/${id}/`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = DiscountModel.CancelJobResponse().validate(response, {
+    } = DiscountPlatformModel.CancelJobResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -67,23 +75,23 @@ class Discount {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for cancelDownloadJob",
+        message: `Response Validation Warnnings for platform > Discount > cancelDownloadJob \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Id
-   * @returns {Promise<CancelJobResponse>} - Success response
+   * @param {DiscountPlatformValidator.CancelValidationJobParam} arg - Arg object
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<DiscountPlatformModel.CancelJobResponse>} - Success response
+   * @name cancelValidationJob
    * @summary: Cancel Validation Job.
-   * @description: Cancel Validation Job.
+   * @description: Cancel Validation Job. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/cancelValidationJob/).
    */
-  async cancelValidationJob({ id } = {}) {
-    const { error } = DiscountValidator.cancelValidationJob().validate(
+  async cancelValidationJob({ id } = {}, { headers } = { headers: false }) {
+    const { error } = DiscountPlatformValidator.cancelValidationJob().validate(
       {
         id,
       },
@@ -96,7 +104,7 @@ class Discount {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = DiscountValidator.cancelValidationJob().validate(
+    } = DiscountPlatformValidator.cancelValidationJob().validate(
       {
         id,
       },
@@ -105,9 +113,8 @@ class Discount {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for cancelValidationJob",
+        message: `Parameter Validation warrnings for platform > Discount > cancelValidationJob \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -120,12 +127,18 @@ class Discount {
       `/service/platform/discount/v1.0/company/${this.config.companyId}/file/validation/${id}/`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = DiscountModel.CancelJobResponse().validate(response, {
+    } = DiscountPlatformModel.CancelJobResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -133,23 +146,23 @@ class Discount {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for cancelValidationJob",
+        message: `Response Validation Warnnings for platform > Discount > cancelValidationJob \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {CreateUpdateDiscount} arg.body
-   * @returns {Promise<DiscountJob>} - Success response
+   * @param {DiscountPlatformValidator.CreateDiscountParam} arg - Arg object
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<DiscountPlatformModel.DiscountJob>} - Success response
+   * @name createDiscount
    * @summary: Create Discount.
-   * @description: Create Discount.
+   * @description: Create Discount. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/createDiscount/).
    */
-  async createDiscount({ body } = {}) {
-    const { error } = DiscountValidator.createDiscount().validate(
+  async createDiscount({ body } = {}, { headers } = { headers: false }) {
+    const { error } = DiscountPlatformValidator.createDiscount().validate(
       {
         body,
       },
@@ -160,7 +173,9 @@ class Discount {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = DiscountValidator.createDiscount().validate(
+    const {
+      error: warrning,
+    } = DiscountPlatformValidator.createDiscount().validate(
       {
         body,
       },
@@ -169,9 +184,8 @@ class Discount {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for createDiscount",
+        message: `Parameter Validation warrnings for platform > Discount > createDiscount \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -184,35 +198,45 @@ class Discount {
       `/service/platform/discount/v1.0/company/${this.config.companyId}/job/`,
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
 
-    const { error: res_error } = DiscountModel.DiscountJob().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = DiscountPlatformModel.DiscountJob().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for createDiscount",
+        message: `Response Validation Warnnings for platform > Discount > createDiscount \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.type - Type
-   * @param {DownloadFileJob} arg.body
-   * @returns {Promise<FileJobResponse>} - Success response
+   * @param {DiscountPlatformValidator.DownloadDiscountFileParam} arg - Arg object
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<DiscountPlatformModel.FileJobResponse>} - Success response
+   * @name downloadDiscountFile
    * @summary: Validate File.
-   * @description: Validate File.
+   * @description: Validate File. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/downloadDiscountFile/).
    */
-  async downloadDiscountFile({ type, body } = {}) {
-    const { error } = DiscountValidator.downloadDiscountFile().validate(
+  async downloadDiscountFile(
+    { type, body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = DiscountPlatformValidator.downloadDiscountFile().validate(
       {
         type,
         body,
@@ -226,7 +250,7 @@ class Discount {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = DiscountValidator.downloadDiscountFile().validate(
+    } = DiscountPlatformValidator.downloadDiscountFile().validate(
       {
         type,
         body,
@@ -236,9 +260,8 @@ class Discount {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for downloadDiscountFile",
+        message: `Parameter Validation warrnings for platform > Discount > downloadDiscountFile \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -251,12 +274,18 @@ class Discount {
       `/service/platform/discount/v1.0/company/${this.config.companyId}/file/${type}/download/`,
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = DiscountModel.FileJobResponse().validate(response, {
+    } = DiscountPlatformModel.FileJobResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -264,23 +293,23 @@ class Discount {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for downloadDiscountFile",
+        message: `Response Validation Warnnings for platform > Discount > downloadDiscountFile \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Unique id.
-   * @returns {Promise<DiscountJob>} - Success response
+   * @param {DiscountPlatformValidator.GetDiscountParam} arg - Arg object
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<DiscountPlatformModel.DiscountJob>} - Success response
+   * @name getDiscount
    * @summary: Fetch discount.
-   * @description: Fetch discount.
+   * @description: Fetch discount. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/getDiscount/).
    */
-  async getDiscount({ id } = {}) {
-    const { error } = DiscountValidator.getDiscount().validate(
+  async getDiscount({ id } = {}, { headers } = { headers: false }) {
+    const { error } = DiscountPlatformValidator.getDiscount().validate(
       {
         id,
       },
@@ -291,7 +320,9 @@ class Discount {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = DiscountValidator.getDiscount().validate(
+    const {
+      error: warrning,
+    } = DiscountPlatformValidator.getDiscount().validate(
       {
         id,
       },
@@ -300,9 +331,8 @@ class Discount {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getDiscount",
+        message: `Parameter Validation warrnings for platform > Discount > getDiscount \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -315,53 +345,45 @@ class Discount {
       `/service/platform/discount/v1.0/company/${this.config.companyId}/job/${id}/`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
 
-    const { error: res_error } = DiscountModel.DiscountJob().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = DiscountPlatformModel.DiscountJob().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getDiscount",
+        message: `Response Validation Warnnings for platform > Discount > getDiscount \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.view] - Listing or calender. Default is listing.
-   * @param {string} [arg.q] - The search query. This can be a partial or
-   *   complete name of a discount.
-   * @param {number} [arg.pageNo] - Page number. Default is 1.
-   * @param {number} [arg.pageSize] - Page size. Default is 12.
-   * @param {boolean} [arg.archived] - Archived. Default is false.
-   * @param {number} [arg.month] - Month. Default is current month.
-   * @param {number} [arg.year] - Year. Default is current year.
-   * @param {string} [arg.type] - Basic or custom.
-   * @param {string[]} [arg.appIds] - Application ids.
-   * @returns {Promise<ListOrCalender>} - Success response
+   * @param {DiscountPlatformValidator.GetDiscountsParam} arg - Arg object
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<DiscountPlatformModel.ListOrCalender>} - Success response
+   * @name getDiscounts
    * @summary: Fetch discount list.
-   * @description: Fetch discount list.
+   * @description: Fetch discount list. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/getDiscounts/).
    */
-  async getDiscounts({
-    view,
-    q,
-    pageNo,
-    pageSize,
-    archived,
-    month,
-    year,
-    type,
-    appIds,
-  } = {}) {
-    const { error } = DiscountValidator.getDiscounts().validate(
+  async getDiscounts(
+    { view, q, pageNo, pageSize, archived, month, year, type, appIds } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = DiscountPlatformValidator.getDiscounts().validate(
       {
         view,
         q,
@@ -380,7 +402,9 @@ class Discount {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = DiscountValidator.getDiscounts().validate(
+    const {
+      error: warrning,
+    } = DiscountPlatformValidator.getDiscounts().validate(
       {
         view,
         q,
@@ -397,9 +421,8 @@ class Discount {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getDiscounts",
+        message: `Parameter Validation warrnings for platform > Discount > getDiscounts \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -421,12 +444,18 @@ class Discount {
       `/service/platform/discount/v1.0/company/${this.config.companyId}/job/`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = DiscountModel.ListOrCalender().validate(response, {
+    } = DiscountPlatformModel.ListOrCalender().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -434,23 +463,23 @@ class Discount {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getDiscounts",
+        message: `Response Validation Warnnings for platform > Discount > getDiscounts \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Id
-   * @returns {Promise<FileJobResponse>} - Success response
+   * @param {DiscountPlatformValidator.GetDownloadJobParam} arg - Arg object
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<DiscountPlatformModel.FileJobResponse>} - Success response
+   * @name getDownloadJob
    * @summary: Download File Job.
-   * @description: Download File Job.
+   * @description: Download File Job. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/getDownloadJob/).
    */
-  async getDownloadJob({ id } = {}) {
-    const { error } = DiscountValidator.getDownloadJob().validate(
+  async getDownloadJob({ id } = {}, { headers } = { headers: false }) {
+    const { error } = DiscountPlatformValidator.getDownloadJob().validate(
       {
         id,
       },
@@ -461,7 +490,9 @@ class Discount {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = DiscountValidator.getDownloadJob().validate(
+    const {
+      error: warrning,
+    } = DiscountPlatformValidator.getDownloadJob().validate(
       {
         id,
       },
@@ -470,9 +501,8 @@ class Discount {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getDownloadJob",
+        message: `Parameter Validation warrnings for platform > Discount > getDownloadJob \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -485,12 +515,18 @@ class Discount {
       `/service/platform/discount/v1.0/company/${this.config.companyId}/file/download/${id}/`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = DiscountModel.FileJobResponse().validate(response, {
+    } = DiscountPlatformModel.FileJobResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -498,23 +534,23 @@ class Discount {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getDownloadJob",
+        message: `Response Validation Warnnings for platform > Discount > getDownloadJob \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Id
-   * @returns {Promise<FileJobResponse>} - Success response
+   * @param {DiscountPlatformValidator.GetValidationJobParam} arg - Arg object
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<DiscountPlatformModel.FileJobResponse>} - Success response
+   * @name getValidationJob
    * @summary: Validate File Job.
-   * @description: Validate File Job.
+   * @description: Validate File Job. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/getValidationJob/).
    */
-  async getValidationJob({ id } = {}) {
-    const { error } = DiscountValidator.getValidationJob().validate(
+  async getValidationJob({ id } = {}, { headers } = { headers: false }) {
+    const { error } = DiscountPlatformValidator.getValidationJob().validate(
       {
         id,
       },
@@ -525,7 +561,9 @@ class Discount {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = DiscountValidator.getValidationJob().validate(
+    const {
+      error: warrning,
+    } = DiscountPlatformValidator.getValidationJob().validate(
       {
         id,
       },
@@ -534,9 +572,8 @@ class Discount {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getValidationJob",
+        message: `Parameter Validation warrnings for platform > Discount > getValidationJob \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -549,12 +586,18 @@ class Discount {
       `/service/platform/discount/v1.0/company/${this.config.companyId}/file/validation/${id}/`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = DiscountModel.FileJobResponse().validate(response, {
+    } = DiscountPlatformModel.FileJobResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -562,24 +605,23 @@ class Discount {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getValidationJob",
+        message: `Response Validation Warnnings for platform > Discount > getValidationJob \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Id
-   * @param {CreateUpdateDiscount} arg.body
-   * @returns {Promise<DiscountJob>} - Success response
+   * @param {DiscountPlatformValidator.UpdateDiscountParam} arg - Arg object
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<DiscountPlatformModel.DiscountJob>} - Success response
+   * @name updateDiscount
    * @summary: Create Discount.
-   * @description: Create Discount.
+   * @description: Create Discount. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/updateDiscount/).
    */
-  async updateDiscount({ id, body } = {}) {
-    const { error } = DiscountValidator.updateDiscount().validate(
+  async updateDiscount({ id, body } = {}, { headers } = { headers: false }) {
+    const { error } = DiscountPlatformValidator.updateDiscount().validate(
       {
         id,
         body,
@@ -591,7 +633,9 @@ class Discount {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = DiscountValidator.updateDiscount().validate(
+    const {
+      error: warrning,
+    } = DiscountPlatformValidator.updateDiscount().validate(
       {
         id,
         body,
@@ -601,9 +645,8 @@ class Discount {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateDiscount",
+        message: `Parameter Validation warrnings for platform > Discount > updateDiscount \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -616,35 +659,45 @@ class Discount {
       `/service/platform/discount/v1.0/company/${this.config.companyId}/job/${id}/`,
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
 
-    const { error: res_error } = DiscountModel.DiscountJob().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = DiscountPlatformModel.DiscountJob().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateDiscount",
+        message: `Response Validation Warnnings for platform > Discount > updateDiscount \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Job ID of the discount.
-   * @param {BulkDiscount} arg.body
+   * @param {DiscountPlatformValidator.UpsertDiscountItemsParam} arg - Arg object
+   * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<Object>} - Success response
+   * @name upsertDiscountItems
    * @summary: Create custom discount from bulk.
-   * @description: Create custom discounts through API.
+   * @description: Create custom discounts through API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/upsertDiscountItems/).
    */
-  async upsertDiscountItems({ id, body } = {}) {
-    const { error } = DiscountValidator.upsertDiscountItems().validate(
+  async upsertDiscountItems(
+    { id, body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = DiscountPlatformValidator.upsertDiscountItems().validate(
       {
         id,
         body,
@@ -658,7 +711,7 @@ class Discount {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = DiscountValidator.upsertDiscountItems().validate(
+    } = DiscountPlatformValidator.upsertDiscountItems().validate(
       {
         id,
         body,
@@ -668,9 +721,8 @@ class Discount {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for upsertDiscountItems",
+        message: `Parameter Validation warrnings for platform > Discount > upsertDiscountItems \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -683,10 +735,16 @@ class Discount {
       `/service/platform/discount/v1.0/company/${this.config.companyId}/job/${id}/items/`,
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
 
-    const { error: res_error } = Joi.any().validate(response, {
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = Joi.any().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -694,24 +752,26 @@ class Discount {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for upsertDiscountItems",
+        message: `Response Validation Warnnings for platform > Discount > upsertDiscountItems \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.discount] - Discount
-   * @param {FileJobRequest} arg.body
-   * @returns {Promise<FileJobResponse>} - Success response
+   * @param {DiscountPlatformValidator.ValidateDiscountFileParam} arg - Arg object
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<DiscountPlatformModel.FileJobResponse>} - Success response
+   * @name validateDiscountFile
    * @summary: Validate File.
-   * @description: Validate File.
+   * @description: Validate File. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/validateDiscountFile/).
    */
-  async validateDiscountFile({ body, discount } = {}) {
-    const { error } = DiscountValidator.validateDiscountFile().validate(
+  async validateDiscountFile(
+    { body, discount } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = DiscountPlatformValidator.validateDiscountFile().validate(
       {
         body,
         discount,
@@ -725,7 +785,7 @@ class Discount {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = DiscountValidator.validateDiscountFile().validate(
+    } = DiscountPlatformValidator.validateDiscountFile().validate(
       {
         body,
         discount,
@@ -735,9 +795,8 @@ class Discount {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for validateDiscountFile",
+        message: `Parameter Validation warrnings for platform > Discount > validateDiscountFile \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -751,12 +810,18 @@ class Discount {
       `/service/platform/discount/v1.0/company/${this.config.companyId}/file/validation/`,
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = DiscountModel.FileJobResponse().validate(response, {
+    } = DiscountPlatformModel.FileJobResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -764,9 +829,8 @@ class Discount {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for validateDiscountFile",
+        message: `Response Validation Warnnings for platform > Discount > validateDiscountFile \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

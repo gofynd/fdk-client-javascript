@@ -1,8 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
-const ServiceabilityValidator = require("./ServiceabilityPlatformValidator");
-const ServiceabilityModel = require("./ServiceabilityPlatformModel");
+const ServiceabilityPlatformValidator = require("./ServiceabilityPlatformValidator");
+const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -12,14 +12,15 @@ class Serviceability {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {ZoneRequest} arg.body
-   * @returns {Promise<ZoneResponse>} - Success response
+   * @param {ServiceabilityPlatformValidator.CreateZoneParam} arg - Arg object
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ServiceabilityPlatformModel.ZoneResponse>} - Success response
+   * @name createZone
    * @summary: Creation of a new zone
-   * @description: This API allows you to create a new zone with the specified information. A zone enables serviceability based on given pincodes or regions. By creating a zone and including specific pincodes or regions, you can ensure that the stores associated with the zone are serviceable for those added pincodes or regions. This functionality is particularly useful when you need to ensure serviceability for multiple pincodes or regions by grouping them into a single zone.
+   * @description: This API allows you to create a new zone with the specified information. A zone enables serviceability based on given pincodes or regions. By creating a zone and including specific pincodes or regions, you can ensure that the stores associated with the zone are serviceable for those added pincodes or regions. This functionality is particularly useful when you need to ensure serviceability for multiple pincodes or regions by grouping them into a single zone. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createZone/).
    */
-  async createZone({ body } = {}) {
-    const { error } = ServiceabilityValidator.createZone().validate(
+  async createZone({ body } = {}, { headers } = { headers: false }) {
+    const { error } = ServiceabilityPlatformValidator.createZone().validate(
       {
         body,
       },
@@ -30,7 +31,9 @@ class Serviceability {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ServiceabilityValidator.createZone().validate(
+    const {
+      error: warrning,
+    } = ServiceabilityPlatformValidator.createZone().validate(
       {
         body,
       },
@@ -39,9 +42,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for createZone",
+        message: `Parameter Validation warrnings for platform > Serviceability > createZone \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -54,12 +56,18 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/zone`,
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ServiceabilityModel.ZoneResponse().validate(response, {
+    } = ServiceabilityPlatformModel.ZoneResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -67,22 +75,24 @@ class Serviceability {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for createZone",
+        message: `Response Validation Warnnings for platform > Serviceability > createZone \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<GetStoresViewResponse>} - Success response
+   * @param {ServiceabilityPlatformValidator.GetAllStoresParam} arg - Arg object
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ServiceabilityPlatformModel.GetStoresViewResponse>} -
+   *   Success response
+   * @name getAllStores
    * @summary: GET stores data
-   * @description: This API returns stores data.
+   * @description: This API returns stores data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getAllStores/).
    */
-  async getAllStores({} = {}) {
-    const { error } = ServiceabilityValidator.getAllStores().validate(
+  async getAllStores({ headers } = { headers: false }) {
+    const { error } = ServiceabilityPlatformValidator.getAllStores().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -91,16 +101,17 @@ class Serviceability {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ServiceabilityValidator.getAllStores().validate(
+    const {
+      error: warrning,
+    } = ServiceabilityPlatformValidator.getAllStores().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getAllStores",
+        message: `Parameter Validation warrnings for platform > Serviceability > getAllStores \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -113,37 +124,49 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/logistics/stores`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ServiceabilityModel.GetStoresViewResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ServiceabilityPlatformModel.GetStoresViewResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getAllStores",
+        message: `Response Validation Warnnings for platform > Serviceability > getAllStores \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNumber] - Index of the item to start returning with
-   * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
-   * @returns {Promise<CompanyStoreView_Response>} - Success response
+   * @param {ServiceabilityPlatformValidator.GetCompanyStoreViewParam} arg - Arg object
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ServiceabilityPlatformModel.CompanyStoreView_Response>}
+   *   - Success response
+   *
+   * @name getCompanyStoreView
    * @summary: Company Store View of application.
-   * @description: This API returns Company Store View of the application.
+   * @description: This API returns Company Store View of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCompanyStoreView/).
    */
-  async getCompanyStoreView({ pageNumber, pageSize } = {}) {
-    const { error } = ServiceabilityValidator.getCompanyStoreView().validate(
+  async getCompanyStoreView(
+    { pageNumber, pageSize } = {},
+    { headers } = { headers: false }
+  ) {
+    const {
+      error,
+    } = ServiceabilityPlatformValidator.getCompanyStoreView().validate(
       {
         pageNumber,
         pageSize,
@@ -157,7 +180,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.getCompanyStoreView().validate(
+    } = ServiceabilityPlatformValidator.getCompanyStoreView().validate(
       {
         pageNumber,
         pageSize,
@@ -167,9 +190,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getCompanyStoreView",
+        message: `Parameter Validation warrnings for platform > Serviceability > getCompanyStoreView \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -184,46 +206,47 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/all-stores`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ServiceabilityModel.CompanyStoreView_Response().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ServiceabilityPlatformModel.CompanyStoreView_Response().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getCompanyStoreView",
+        message: `Response Validation Warnnings for platform > Serviceability > getCompanyStoreView \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNumber] - Index of the item to start returning with
-   * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
-   * @param {string} [arg.stage] - Stage of the account. enabled/disabled
-   * @param {string} [arg.paymentMode] - Filters dp accounts based on payment mode
-   * @param {string} [arg.transportType] - Filters dp accounts based on transport_type
-   * @returns {Promise<CompanyDpAccountListResponse>} - Success response
+   * @param {ServiceabilityPlatformValidator.GetDpAccountParam} arg - Arg object
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ServiceabilityPlatformModel.CompanyDpAccountListResponse>}
+   *   - Success response
+   *
+   * @name getDpAccount
    * @summary: Getting DpAccount of a company from database.
-   * @description: This API returns response DpAccount of a company from mongo database.
+   * @description: This API returns response DpAccount of a company from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getDpAccount/).
    */
-  async getDpAccount({
-    pageNumber,
-    pageSize,
-    stage,
-    paymentMode,
-    transportType,
-  } = {}) {
-    const { error } = ServiceabilityValidator.getDpAccount().validate(
+  async getDpAccount(
+    { pageNumber, pageSize, stage, paymentMode, transportType } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ServiceabilityPlatformValidator.getDpAccount().validate(
       {
         pageNumber,
         pageSize,
@@ -238,7 +261,9 @@ class Serviceability {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ServiceabilityValidator.getDpAccount().validate(
+    const {
+      error: warrning,
+    } = ServiceabilityPlatformValidator.getDpAccount().validate(
       {
         pageNumber,
         pageSize,
@@ -251,9 +276,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getDpAccount",
+        message: `Parameter Validation warrnings for platform > Serviceability > getDpAccount \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -271,35 +295,45 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/courier/account`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ServiceabilityModel.CompanyDpAccountListResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ServiceabilityPlatformModel.CompanyDpAccountListResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getDpAccount",
+        message: `Response Validation Warnnings for platform > Serviceability > getDpAccount \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<DPCompanyRuleResponse>} - Success response
+   * @param {ServiceabilityPlatformValidator.GetDpCompanyRulesParam} arg - Arg object
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ServiceabilityPlatformModel.DPCompanyRuleResponse>} -
+   *   Success response
+   * @name getDpCompanyRules
    * @summary: Get All DpCompanyRules applied to company from database.
-   * @description: This API returns response of all DpCompanyRules from mongo database.
+   * @description: This API returns response of all DpCompanyRules from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getDpCompanyRules/).
    */
-  async getDpCompanyRules({} = {}) {
-    const { error } = ServiceabilityValidator.getDpCompanyRules().validate(
+  async getDpCompanyRules({ headers } = { headers: false }) {
+    const {
+      error,
+    } = ServiceabilityPlatformValidator.getDpCompanyRules().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -310,16 +344,15 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.getDpCompanyRules().validate(
+    } = ServiceabilityPlatformValidator.getDpCompanyRules().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getDpCompanyRules",
+        message: `Parameter Validation warrnings for platform > Serviceability > getDpCompanyRules \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -332,37 +365,49 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/courier/priority`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ServiceabilityModel.DPCompanyRuleResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ServiceabilityPlatformModel.DPCompanyRuleResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getDpCompanyRules",
+        message: `Response Validation Warnnings for platform > Serviceability > getDpCompanyRules \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNumber] - Index of the item to start returning with
-   * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
-   * @returns {Promise<DpMultipleRuleSuccessResponse>} - Success response
+   * @param {ServiceabilityPlatformValidator.GetDpRuleInsertParam} arg - Arg object
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ServiceabilityPlatformModel.DpMultipleRuleSuccessResponse>}
+   *   - Success response
+   *
+   * @name getDpRuleInsert
    * @summary: Fetching of DpRules from database.
-   * @description: This API returns response of DpRules from mongo database.
+   * @description: This API returns response of DpRules from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getDpRuleInsert/).
    */
-  async getDpRuleInsert({ pageNumber, pageSize } = {}) {
-    const { error } = ServiceabilityValidator.getDpRuleInsert().validate(
+  async getDpRuleInsert(
+    { pageNumber, pageSize } = {},
+    { headers } = { headers: false }
+  ) {
+    const {
+      error,
+    } = ServiceabilityPlatformValidator.getDpRuleInsert().validate(
       {
         pageNumber,
         pageSize,
@@ -376,7 +421,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.getDpRuleInsert().validate(
+    } = ServiceabilityPlatformValidator.getDpRuleInsert().validate(
       {
         pageNumber,
         pageSize,
@@ -386,9 +431,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getDpRuleInsert",
+        message: `Parameter Validation warrnings for platform > Serviceability > getDpRuleInsert \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -403,37 +447,43 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/courier/rules`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ServiceabilityModel.DpMultipleRuleSuccessResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ServiceabilityPlatformModel.DpMultipleRuleSuccessResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getDpRuleInsert",
+        message: `Response Validation Warnnings for platform > Serviceability > getDpRuleInsert \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.ruleUid - A `rule_uid` is a unique identifier for a
-   *   particular Dp.
-   * @returns {Promise<DpRuleSuccessResponse>} - Success response
+   * @param {ServiceabilityPlatformValidator.GetDpRulesParam} arg - Arg object
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ServiceabilityPlatformModel.DpRuleSuccessResponse>} -
+   *   Success response
+   * @name getDpRules
    * @summary: Fetching of DpRules from database.
-   * @description: This API returns response of DpRules from mongo database.
+   * @description: This API returns response of DpRules from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getDpRules/).
    */
-  async getDpRules({ ruleUid } = {}) {
-    const { error } = ServiceabilityValidator.getDpRules().validate(
+  async getDpRules({ ruleUid } = {}, { headers } = { headers: false }) {
+    const { error } = ServiceabilityPlatformValidator.getDpRules().validate(
       {
         ruleUid,
       },
@@ -444,7 +494,9 @@ class Serviceability {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ServiceabilityValidator.getDpRules().validate(
+    const {
+      error: warrning,
+    } = ServiceabilityPlatformValidator.getDpRules().validate(
       {
         ruleUid,
       },
@@ -453,9 +505,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getDpRules",
+        message: `Parameter Validation warrnings for platform > Serviceability > getDpRules \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -468,36 +519,46 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/courier/rules/${ruleUid}`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ServiceabilityModel.DpRuleSuccessResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ServiceabilityPlatformModel.DpRuleSuccessResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getDpRules",
+        message: `Response Validation Warnnings for platform > Serviceability > getDpRules \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {EntityRegionView_Request} arg.body
-   * @returns {Promise<EntityRegionView_Response>} - Success response
+   * @param {ServiceabilityPlatformValidator.GetEntityRegionViewParam} arg - Arg object
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ServiceabilityPlatformModel.EntityRegionView_Response>}
+   *   - Success response
+   *
+   * @name getEntityRegionView
    * @summary: Get country and state list
-   * @description: This API returns response for Entity Region View.
+   * @description: This API returns response for Entity Region View. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getEntityRegionView/).
    */
-  async getEntityRegionView({ body } = {}) {
-    const { error } = ServiceabilityValidator.getEntityRegionView().validate(
+  async getEntityRegionView({ body } = {}, { headers } = { headers: false }) {
+    const {
+      error,
+    } = ServiceabilityPlatformValidator.getEntityRegionView().validate(
       {
         body,
       },
@@ -510,7 +571,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.getEntityRegionView().validate(
+    } = ServiceabilityPlatformValidator.getEntityRegionView().validate(
       {
         body,
       },
@@ -519,9 +580,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getEntityRegionView",
+        message: `Parameter Validation warrnings for platform > Serviceability > getEntityRegionView \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -534,48 +594,45 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/regions`,
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ServiceabilityModel.EntityRegionView_Response().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ServiceabilityPlatformModel.EntityRegionView_Response().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getEntityRegionView",
+        message: `Response Validation Warnnings for platform > Serviceability > getEntityRegionView \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNumber] - Index of the item to start returning with
-   * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
-   * @param {string} [arg.name] - Name of particular zone in the seller account
-   * @param {boolean} [arg.isActive] - Status of zone whether active or inactive
-   * @param {string} [arg.channelIds] - Zones associated with the given channel ids'
-   * @param {string} [arg.q] - Search with name as a free text
-   * @returns {Promise<ListViewResponse>} - Success response
+   * @param {ServiceabilityPlatformValidator.GetListViewParam} arg - Arg object
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ServiceabilityPlatformModel.ListViewResponse>} - Success response
+   * @name getListView
    * @summary: Zone List of application.
-   * @description: This API returns Zone List View of the application.
+   * @description: This API returns Zone List View of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getListView/).
    */
-  async getListView({
-    pageNumber,
-    pageSize,
-    name,
-    isActive,
-    channelIds,
-    q,
-  } = {}) {
-    const { error } = ServiceabilityValidator.getListView().validate(
+  async getListView(
+    { pageNumber, pageSize, name, isActive, channelIds, q } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ServiceabilityPlatformValidator.getListView().validate(
       {
         pageNumber,
         pageSize,
@@ -591,7 +648,9 @@ class Serviceability {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ServiceabilityValidator.getListView().validate(
+    const {
+      error: warrning,
+    } = ServiceabilityPlatformValidator.getListView().validate(
       {
         pageNumber,
         pageSize,
@@ -605,9 +664,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getListView",
+        message: `Parameter Validation warrnings for platform > Serviceability > getListView \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -626,12 +684,18 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/zones`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ServiceabilityModel.ListViewResponse().validate(response, {
+    } = ServiceabilityPlatformModel.ListViewResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -639,23 +703,26 @@ class Serviceability {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getListView",
+        message: `Response Validation Warnnings for platform > Serviceability > getListView \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {ReAssignStoreRequest} arg.body
-   * @returns {Promise<ReAssignStoreResponse>} - Success response
+   * @param {ServiceabilityPlatformValidator.GetOptimalLocationsParam} arg - Arg object
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ServiceabilityPlatformModel.ReAssignStoreResponse>} -
+   *   Success response
+   * @name getOptimalLocations
    * @summary: Get serviceable store of the item
-   * @description: This API returns serviceable store of the item.
+   * @description: This API returns serviceable store of the item. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getOptimalLocations/).
    */
-  async getOptimalLocations({ body } = {}) {
-    const { error } = ServiceabilityValidator.getOptimalLocations().validate(
+  async getOptimalLocations({ body } = {}, { headers } = { headers: false }) {
+    const {
+      error,
+    } = ServiceabilityPlatformValidator.getOptimalLocations().validate(
       {
         body,
       },
@@ -668,7 +735,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.getOptimalLocations().validate(
+    } = ServiceabilityPlatformValidator.getOptimalLocations().validate(
       {
         body,
       },
@@ -677,9 +744,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getOptimalLocations",
+        message: `Parameter Validation warrnings for platform > Serviceability > getOptimalLocations \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -692,36 +758,43 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/reassign`,
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ServiceabilityModel.ReAssignStoreResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ServiceabilityPlatformModel.ReAssignStoreResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getOptimalLocations",
+        message: `Response Validation Warnnings for platform > Serviceability > getOptimalLocations \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} arg.storeUid - A `store_uid` contains a specific ID of a store.
-   * @returns {Promise<GetStoresViewResponse>} - Success response
+   * @param {ServiceabilityPlatformValidator.GetStoreParam} arg - Arg object
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ServiceabilityPlatformModel.GetStoresViewResponse>} -
+   *   Success response
+   * @name getStore
    * @summary: GET stores data
-   * @description: This API returns stores data.
+   * @description: This API returns stores data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getStore/).
    */
-  async getStore({ storeUid } = {}) {
-    const { error } = ServiceabilityValidator.getStore().validate(
+  async getStore({ storeUid } = {}, { headers } = { headers: false }) {
+    const { error } = ServiceabilityPlatformValidator.getStore().validate(
       {
         storeUid,
       },
@@ -732,7 +805,9 @@ class Serviceability {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ServiceabilityValidator.getStore().validate(
+    const {
+      error: warrning,
+    } = ServiceabilityPlatformValidator.getStore().validate(
       {
         storeUid,
       },
@@ -741,9 +816,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getStore",
+        message: `Parameter Validation warrnings for platform > Serviceability > getStore \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -756,37 +830,46 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/stores/${storeUid}`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ServiceabilityModel.GetStoresViewResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ServiceabilityPlatformModel.GetStoresViewResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getStore",
+        message: `Response Validation Warnnings for platform > Serviceability > getStore \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.zoneId - A `zone_id` is a unique identifier for a
-   *   particular zone.
-   * @returns {Promise<GetSingleZoneDataViewResponse>} - Success response
+   * @param {ServiceabilityPlatformValidator.GetZoneDataViewParam} arg - Arg object
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ServiceabilityPlatformModel.GetSingleZoneDataViewResponse>}
+   *   - Success response
+   *
+   * @name getZoneDataView
    * @summary: Zone Data View of application.
-   * @description: This API returns Zone Data View of the application.
+   * @description: This API returns Zone Data View of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getZoneDataView/).
    */
-  async getZoneDataView({ zoneId } = {}) {
-    const { error } = ServiceabilityValidator.getZoneDataView().validate(
+  async getZoneDataView({ zoneId } = {}, { headers } = { headers: false }) {
+    const {
+      error,
+    } = ServiceabilityPlatformValidator.getZoneDataView().validate(
       {
         zoneId,
       },
@@ -799,7 +882,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.getZoneDataView().validate(
+    } = ServiceabilityPlatformValidator.getZoneDataView().validate(
       {
         zoneId,
       },
@@ -808,9 +891,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getZoneDataView",
+        message: `Parameter Validation warrnings for platform > Serviceability > getZoneDataView \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -823,52 +905,56 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/zone/${zoneId}`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ServiceabilityModel.GetSingleZoneDataViewResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ServiceabilityPlatformModel.GetSingleZoneDataViewResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getZoneDataView",
+        message: `Response Validation Warnnings for platform > Serviceability > getZoneDataView \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNumber] - Index of the item to start returning with
-   * @param {number} [arg.pageNo] - Index of the item to start returning with
-   * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
-   * @param {string} [arg.name] - Name of particular zone in the seller account
-   * @param {boolean} [arg.isActive] - Status of zone whether active or inactive
-   * @param {string} [arg.channelIds] - Zones associated with the given channel ids'
-   * @param {string} [arg.q] - Search with name as a free text
-   * @param {string[]} [arg.zoneId] - List of zones to query for
-   * @returns {Promise<ListViewResponse>} - Success response
+   * @param {ServiceabilityPlatformValidator.GetZoneListViewParam} arg - Arg object
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ServiceabilityPlatformModel.ListViewResponse>} - Success response
+   * @name getZoneListView
    * @summary: Zone List of application.
-   * @description: This API returns Zone List View of the application.
+   * @description: This API returns Zone List View of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getZoneListView/).
    */
-  async getZoneListView({
-    pageNumber,
-    pageNo,
-    pageSize,
-    name,
-    isActive,
-    channelIds,
-    q,
-    zoneId,
-  } = {}) {
-    const { error } = ServiceabilityValidator.getZoneListView().validate(
+  async getZoneListView(
+    {
+      pageNumber,
+      pageNo,
+      pageSize,
+      name,
+      isActive,
+      channelIds,
+      q,
+      zoneId,
+    } = {},
+    { headers } = { headers: false }
+  ) {
+    const {
+      error,
+    } = ServiceabilityPlatformValidator.getZoneListView().validate(
       {
         pageNumber,
         pageNo,
@@ -888,7 +974,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.getZoneListView().validate(
+    } = ServiceabilityPlatformValidator.getZoneListView().validate(
       {
         pageNumber,
         pageNo,
@@ -904,9 +990,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getZoneListView",
+        message: `Parameter Validation warrnings for platform > Serviceability > getZoneListView \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -927,12 +1012,18 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/zones-list`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ServiceabilityModel.ListViewResponse().validate(response, {
+    } = ServiceabilityPlatformModel.ListViewResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -940,25 +1031,25 @@ class Serviceability {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getZoneListView",
+        message: `Response Validation Warnnings for platform > Serviceability > getZoneListView \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.ruleUid - A `rule_uid` is a unique identifier for a
-   *   particular Dp.
-   * @param {DpRulesUpdateRequest} arg.body
-   * @returns {Promise<DpRuleUpdateSuccessResponse>} - Success response
+   * @param {ServiceabilityPlatformValidator.UpdateDpRuleParam} arg - Arg object
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ServiceabilityPlatformModel.DpRuleUpdateSuccessResponse>}
+   *   - Success response
+   *
+   * @name updateDpRule
    * @summary: Updating of DpRules from database.
-   * @description: This API updates and returns response of DpRules from mongo database.
+   * @description: This API updates and returns response of DpRules from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateDpRule/).
    */
-  async updateDpRule({ ruleUid, body } = {}) {
-    const { error } = ServiceabilityValidator.updateDpRule().validate(
+  async updateDpRule({ ruleUid, body } = {}, { headers } = { headers: false }) {
+    const { error } = ServiceabilityPlatformValidator.updateDpRule().validate(
       {
         ruleUid,
         body,
@@ -970,7 +1061,9 @@ class Serviceability {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ServiceabilityValidator.updateDpRule().validate(
+    const {
+      error: warrning,
+    } = ServiceabilityPlatformValidator.updateDpRule().validate(
       {
         ruleUid,
         body,
@@ -980,9 +1073,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateDpRule",
+        message: `Parameter Validation warrnings for platform > Serviceability > updateDpRule \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -995,44 +1087,50 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/courier/rules/${ruleUid}`,
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ServiceabilityModel.DpRuleUpdateSuccessResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ServiceabilityPlatformModel.DpRuleUpdateSuccessResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateDpRule",
+        message: `Response Validation Warnnings for platform > Serviceability > updateDpRule \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.zoneId - A `zone_id` is a unique identifier for a
-   *   particular zone.
-   * @param {ZoneUpdateRequest} arg.body
-   * @returns {Promise<ZoneSuccessResponse>} - Success response
+   * @param {ServiceabilityPlatformValidator.UpdateZoneControllerViewParam} arg
+   *   - Arg object
+   *
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ServiceabilityPlatformModel.ZoneSuccessResponse>} -
+   *   Success response
+   * @name updateZoneControllerView
    * @summary: Updation of zone collections in database.
-   * @description: This API returns response of updation of zone in mongo database.
+   * @description: This API returns response of updation of zone in mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateZoneControllerView/).
    */
-  async updateZoneControllerView({
-    zoneId,
-
-    body,
-  } = {}) {
+  async updateZoneControllerView(
+    { zoneId, body } = {},
+    { headers } = { headers: false }
+  ) {
     const {
       error,
-    } = ServiceabilityValidator.updateZoneControllerView().validate(
+    } = ServiceabilityPlatformValidator.updateZoneControllerView().validate(
       {
         zoneId,
 
@@ -1047,7 +1145,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.updateZoneControllerView().validate(
+    } = ServiceabilityPlatformValidator.updateZoneControllerView().validate(
       {
         zoneId,
 
@@ -1058,9 +1156,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateZoneControllerView",
+        message: `Parameter Validation warrnings for platform > Serviceability > updateZoneControllerView \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1073,36 +1170,46 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/zone/${zoneId}`,
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ServiceabilityModel.ZoneSuccessResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ServiceabilityPlatformModel.ZoneSuccessResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateZoneControllerView",
+        message: `Response Validation Warnnings for platform > Serviceability > updateZoneControllerView \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {CompanyDpAccountRequest} arg.body
-   * @returns {Promise<CompanyDpAccountResponse>} - Success response
+   * @param {ServiceabilityPlatformValidator.UpsertDpAccountParam} arg - Arg object
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ServiceabilityPlatformModel.CompanyDpAccountResponse>}
+   *   - Success response
+   *
+   * @name upsertDpAccount
    * @summary: Upsertion of DpAccount in database.
-   * @description: This API returns response of upsertion of DpAccount in mongo database.
+   * @description: This API returns response of upsertion of DpAccount in mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/upsertDpAccount/).
    */
-  async upsertDpAccount({ body } = {}) {
-    const { error } = ServiceabilityValidator.upsertDpAccount().validate(
+  async upsertDpAccount({ body } = {}, { headers } = { headers: false }) {
+    const {
+      error,
+    } = ServiceabilityPlatformValidator.upsertDpAccount().validate(
       {
         body,
       },
@@ -1115,7 +1222,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.upsertDpAccount().validate(
+    } = ServiceabilityPlatformValidator.upsertDpAccount().validate(
       {
         body,
       },
@@ -1124,9 +1231,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for upsertDpAccount",
+        message: `Parameter Validation warrnings for platform > Serviceability > upsertDpAccount \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1139,36 +1245,45 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/courier/account`,
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ServiceabilityModel.CompanyDpAccountResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ServiceabilityPlatformModel.CompanyDpAccountResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for upsertDpAccount",
+        message: `Response Validation Warnnings for platform > Serviceability > upsertDpAccount \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {DPCompanyRuleRequest} arg.body
-   * @returns {Promise<DPCompanyRuleResponse>} - Success response
+   * @param {ServiceabilityPlatformValidator.UpsertDpCompanyRulesParam} arg - Arg object
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ServiceabilityPlatformModel.DPCompanyRuleResponse>} -
+   *   Success response
+   * @name upsertDpCompanyRules
    * @summary: Upsert of DpCompanyRules in database.
-   * @description: This API returns response of upsert of DpCompanyRules in mongo database.
+   * @description: This API returns response of upsert of DpCompanyRules in mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/upsertDpCompanyRules/).
    */
-  async upsertDpCompanyRules({ body } = {}) {
-    const { error } = ServiceabilityValidator.upsertDpCompanyRules().validate(
+  async upsertDpCompanyRules({ body } = {}, { headers } = { headers: false }) {
+    const {
+      error,
+    } = ServiceabilityPlatformValidator.upsertDpCompanyRules().validate(
       {
         body,
       },
@@ -1181,7 +1296,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.upsertDpCompanyRules().validate(
+    } = ServiceabilityPlatformValidator.upsertDpCompanyRules().validate(
       {
         body,
       },
@@ -1190,9 +1305,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for upsertDpCompanyRules",
+        message: `Parameter Validation warrnings for platform > Serviceability > upsertDpCompanyRules \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1205,36 +1319,43 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/courier/priority`,
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ServiceabilityModel.DPCompanyRuleResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ServiceabilityPlatformModel.DPCompanyRuleResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for upsertDpCompanyRules",
+        message: `Response Validation Warnnings for platform > Serviceability > upsertDpCompanyRules \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {DpRuleRequest} arg.body
-   * @returns {Promise<DpRuleSuccessResponse>} - Success response
+   * @param {ServiceabilityPlatformValidator.UpsertDpRulesParam} arg - Arg object
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ServiceabilityPlatformModel.DpRuleSuccessResponse>} -
+   *   Success response
+   * @name upsertDpRules
    * @summary: Upsert of DpRules in database.
-   * @description: This API returns response of upsert of DpRules in mongo database.
+   * @description: This API returns response of upsert of DpRules in mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/upsertDpRules/).
    */
-  async upsertDpRules({ body } = {}) {
-    const { error } = ServiceabilityValidator.upsertDpRules().validate(
+  async upsertDpRules({ body } = {}, { headers } = { headers: false }) {
+    const { error } = ServiceabilityPlatformValidator.upsertDpRules().validate(
       {
         body,
       },
@@ -1247,7 +1368,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityValidator.upsertDpRules().validate(
+    } = ServiceabilityPlatformValidator.upsertDpRules().validate(
       {
         body,
       },
@@ -1256,9 +1377,8 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for upsertDpRules",
+        message: `Parameter Validation warrnings for platform > Serviceability > upsertDpRules \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1271,22 +1391,27 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/courier/rules`,
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ServiceabilityModel.DpRuleSuccessResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ServiceabilityPlatformModel.DpRuleSuccessResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for upsertDpRules",
+        message: `Response Validation Warnnings for platform > Serviceability > upsertDpRules \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

@@ -4,131 +4,162 @@ declare class Serviceability {
     config: any;
     applicationId: any;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {ApplicationCompanyDpViewRequest} arg.body
-     * @returns {Promise<ApplicationCompanyDpViewResponse>} - Success response
+     * @param {ServiceabilityPlatformApplicationValidator.AddAppDpParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.ApplicationCompanyDpViewResponse>}
+     *   - Success response
+     *
+     * @name addAppDp
      * @summary: Add application dp data
-     * @description: This API add application dp data.
+     * @description: This API add application dp data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/addAppDp/).
      */
-    addAppDp({ body }?: {
-        body: ApplicationCompanyDpViewRequest;
-    }): Promise<ApplicationCompanyDpViewResponse>;
+    addAppDp({ body }?: ServiceabilityPlatformApplicationValidator.AddAppDpParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ServiceabilityPlatformModel.ApplicationCompanyDpViewResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {number} arg.courierPartnerId - A `courier_partner_id` is a unique
-     *   identifier of a particular delivery partner.
-     * @returns {Promise<ApplicationCompanyDpViewResponse>} - Success response
+     * @param {ServiceabilityPlatformApplicationValidator.DeleteAppDpParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.ApplicationCompanyDpViewResponse>}
+     *   - Success response
+     *
+     * @name deleteAppDp
      * @summary: Delete application dp data
-     * @description: This API remove application dp data.
+     * @description: This API remove application dp data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/deleteAppDp/).
      */
-    deleteAppDp({ courierPartnerId }?: {
-        courierPartnerId: number;
-    }): Promise<ApplicationCompanyDpViewResponse>;
+    deleteAppDp({ courierPartnerId }?: ServiceabilityPlatformApplicationValidator.DeleteAppDpParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ServiceabilityPlatformModel.ApplicationCompanyDpViewResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<ApplicationServiceabilityConfigResponse>} - Success response
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.ApplicationServiceabilityConfigResponse>}
+     *   - Success response
+     *
+     * @name getApplicationServiceability
      * @summary: Zone configuration of application.
-     * @description: This API returns serviceability config of the application.
+     * @description: This API returns serviceability config of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getApplicationServiceability/).
      */
-    getApplicationServiceability({}?: any): Promise<ApplicationServiceabilityConfigResponse>;
+    getApplicationServiceability({ headers }?: import("../PlatformAPIClient").Options): Promise<ServiceabilityPlatformModel.ApplicationServiceabilityConfigResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<ApplicationSelfShipConfigResponse>} - Success response
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>}
+     *   - Success response
+     *
+     * @name getApplicationServiceabilitySelfShipment
      * @summary: Self-ship configuration of application.
-     * @description: This API returns Self-ship configuration of the application.
+     * @description: This API returns Self-ship configuration of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getApplicationServiceabilitySelfShipment/).
      */
-    getApplicationServiceabilitySelfShipment({}?: any): Promise<ApplicationSelfShipConfigResponse>;
+    getApplicationServiceabilitySelfShipment({ headers }?: import("../PlatformAPIClient").Options): Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<DPApplicationRuleResponse>} - Success response
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.DPApplicationRuleResponse>}
+     *   - Success response
+     *
+     * @name getDpApplicationRules
      * @summary: Get All DpApplicationRules rules added at application level from database.
-     * @description: This API returns response of all rules of DpApplicationRules from mongo database.
+     * @description: This API returns response of all rules of DpApplicationRules from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getDpApplicationRules/).
      */
-    getDpApplicationRules({}?: any): Promise<DPApplicationRuleResponse>;
+    getDpApplicationRules({ headers }?: import("../PlatformAPIClient").Options): Promise<ServiceabilityPlatformModel.DPApplicationRuleResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {GetZoneFromPincodeViewRequest} arg.body
-     * @returns {Promise<GetZoneFromPincodeViewResponse>} - Success response
+     * @param {ServiceabilityPlatformApplicationValidator.GetZoneFromPincodeViewParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.GetZoneFromPincodeViewResponse>}
+     *   - Success response
+     *
+     * @name getZoneFromPincodeView
      * @summary: GET zone from the Pincode.
-     * @description: This API returns zone from the Pincode View.
+     * @description: This API returns zone from the Pincode View. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getZoneFromPincodeView/).
      */
-    getZoneFromPincodeView({ body }?: {
-        body: GetZoneFromPincodeViewRequest;
-    }): Promise<GetZoneFromPincodeViewResponse>;
+    getZoneFromPincodeView({ body }?: ServiceabilityPlatformApplicationValidator.GetZoneFromPincodeViewParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ServiceabilityPlatformModel.GetZoneFromPincodeViewResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNo] - Index of the item to start returning with
-     * @param {number} [arg.pageSize] - Determines the items to be displayed in a page
-     * @param {string[]} [arg.zoneId] - List of zones to query for
-     * @param {string} [arg.q] - Search with name as a free text
-     * @returns {Promise<GetZoneFromApplicationIdViewResponse>} - Success response
+     * @param {ServiceabilityPlatformApplicationValidator.GetZonesFromApplicationIdViewParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.GetZoneFromApplicationIdViewResponse>}
+     *   - Success response
+     *
+     * @name getZonesFromApplicationIdView
      * @summary: GET zones from the application_id.
-     * @description: This API returns zones from the application_id View.
+     * @description: This API returns zones from the application_id View. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getZonesFromApplicationIdView/).
      */
-    getZonesFromApplicationIdView({ pageNo, pageSize, zoneId, q }?: {
-        pageNo?: number;
-        pageSize?: number;
-        zoneId?: string[];
-        q?: string;
-    }): Promise<GetZoneFromApplicationIdViewResponse>;
+    getZonesFromApplicationIdView({ pageNo, pageSize, zoneId, q }?: ServiceabilityPlatformApplicationValidator.GetZonesFromApplicationIdViewParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ServiceabilityPlatformModel.GetZoneFromApplicationIdViewResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {SelfShipResponse} arg.body
-     * @returns {Promise<ApplicationSelfShipConfigResponse>} - Success response
+     * @param {ServiceabilityPlatformApplicationValidator.PatchApplicationServiceabilitySelfShipmentParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>}
+     *   - Success response
+     *
+     * @name patchApplicationServiceabilitySelfShipment
      * @summary: Self-ship configuration of application.
-     * @description: This API updates Self-ship configuration of the application.
+     * @description: This API updates Self-ship configuration of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/patchApplicationServiceabilitySelfShipment/).
      */
-    patchApplicationServiceabilitySelfShipment({ body }?: {
-        body: SelfShipResponse;
-    }): Promise<ApplicationSelfShipConfigResponse>;
+    patchApplicationServiceabilitySelfShipment({ body }?: ServiceabilityPlatformApplicationValidator.PatchApplicationServiceabilitySelfShipmentParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {PincodeMopUpdateAuditHistoryRequest} arg.body
-     * @returns {Promise<PincodeMopUpdateAuditHistoryResponseData>} - Success response
+     * @param {ServiceabilityPlatformApplicationValidator.UpdatePincodeAuditHistoryParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryResponseData>}
+     *   - Success response
+     *
+     * @name updatePincodeAuditHistory
      * @summary: Auditlog configuration of application.
-     * @description: This API returns Audit logs of Pincode.
+     * @description: This API returns Audit logs of Pincode. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeAuditHistory/).
      */
-    updatePincodeAuditHistory({ body }?: {
-        body: PincodeMopUpdateAuditHistoryRequest;
-    }): Promise<PincodeMopUpdateAuditHistoryResponseData>;
+    updatePincodeAuditHistory({ body }?: ServiceabilityPlatformApplicationValidator.UpdatePincodeAuditHistoryParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryResponseData>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {PincodeMopBulkData} arg.body
-     * @returns {Promise<PincodeBulkViewResponse>} - Success response
+     * @param {ServiceabilityPlatformApplicationValidator.UpdatePincodeBulkViewParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.PincodeBulkViewResponse>}
+     *   - Success response
+     *
+     * @name updatePincodeBulkView
      * @summary: Bulk Update of pincode in the application.
-     * @description: This API constructs bulk write operations to update the MOP data for each pincode in the payload.
+     * @description: This API constructs bulk write operations to update the MOP data for each pincode in the payload. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeBulkView/).
      */
-    updatePincodeBulkView({ body }?: {
-        body: PincodeMopBulkData;
-    }): Promise<PincodeBulkViewResponse>;
+    updatePincodeBulkView({ body }?: ServiceabilityPlatformApplicationValidator.UpdatePincodeBulkViewParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ServiceabilityPlatformModel.PincodeBulkViewResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {PincodeCodStatusListingRequest} arg.body
-     * @returns {Promise<PincodeCodStatusListingResponse>} - Success response
+     * @param {ServiceabilityPlatformApplicationValidator.UpdatePincodeCoDListingParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.PincodeCodStatusListingResponse>}
+     *   - Success response
+     *
+     * @name updatePincodeCoDListing
      * @summary: Pincode count view of application.
-     * @description: This API returns count of active pincode.
+     * @description: This API returns count of active pincode. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeCoDListing/).
      */
-    updatePincodeCoDListing({ body }?: {
-        body: PincodeCodStatusListingRequest;
-    }): Promise<PincodeCodStatusListingResponse>;
+    updatePincodeCoDListing({ body }?: ServiceabilityPlatformApplicationValidator.UpdatePincodeCoDListingParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ServiceabilityPlatformModel.PincodeCodStatusListingResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {PincodeMopData} arg.body
-     * @returns {Promise<PincodeMOPresponse>} - Success response
+     * @param {ServiceabilityPlatformApplicationValidator.UpdatePincodeMopViewParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.PincodeMOPresponse>} -
+     *   Success response
+     * @name updatePincodeMopView
      * @summary: PincodeView update of MOP.
-     * @description: This API updates Pincode method of payment.
+     * @description: This API updates Pincode method of payment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeMopView/).
      */
-    updatePincodeMopView({ body }?: {
-        body: PincodeMopData;
-    }): Promise<PincodeMOPresponse>;
+    updatePincodeMopView({ body }?: ServiceabilityPlatformApplicationValidator.UpdatePincodeMopViewParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ServiceabilityPlatformModel.PincodeMOPresponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {DPApplicationRuleRequest} arg.body
-     * @returns {Promise<DPApplicationRuleResponse>} - Success response
+     * @param {ServiceabilityPlatformApplicationValidator.UpsertDpApplicationRulesParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.DPApplicationRuleResponse>}
+     *   - Success response
+     *
+     * @name upsertDpApplicationRules
      * @summary: Upsert of DpApplicationRules in database.
-     * @description: This API returns response of upsert of DpApplicationRules in mongo database.
+     * @description: This API returns response of upsert of DpApplicationRules in mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/upsertDpApplicationRules/).
      */
-    upsertDpApplicationRules({ body }?: {
-        body: DPApplicationRuleRequest;
-    }): Promise<DPApplicationRuleResponse>;
+    upsertDpApplicationRules({ body }?: ServiceabilityPlatformApplicationValidator.UpsertDpApplicationRulesParam, { headers }?: import("../PlatformAPIClient").Options): Promise<ServiceabilityPlatformModel.DPApplicationRuleResponse>;
 }
+import ServiceabilityPlatformApplicationValidator = require("./ServiceabilityPlatformApplicationValidator");
+import ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");

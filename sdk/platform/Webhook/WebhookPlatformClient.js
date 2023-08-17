@@ -1,8 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
-const WebhookValidator = require("./WebhookPlatformValidator");
-const WebhookModel = require("./WebhookPlatformModel");
+const WebhookPlatformValidator = require("./WebhookPlatformValidator");
+const WebhookPlatformModel = require("./WebhookPlatformModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -12,13 +12,17 @@ class Webhook {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<EventConfigResponse>} - Success response
+   * @param {WebhookPlatformValidator.FetchAllEventConfigurationsParam} arg - Arg object
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<WebhookPlatformModel.EventConfigResponse>} - Success response
+   * @name fetchAllEventConfigurations
    * @summary:
-   * @description: Get All Webhook Events
+   * @description: Get All Webhook Events - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/fetchAllEventConfigurations/).
    */
-  async fetchAllEventConfigurations({} = {}) {
-    const { error } = WebhookValidator.fetchAllEventConfigurations().validate(
+  async fetchAllEventConfigurations({ headers } = { headers: false }) {
+    const {
+      error,
+    } = WebhookPlatformValidator.fetchAllEventConfigurations().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -29,17 +33,15 @@ class Webhook {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = WebhookValidator.fetchAllEventConfigurations().validate(
+    } = WebhookPlatformValidator.fetchAllEventConfigurations().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message:
-          "Parameter Validation warrnings for fetchAllEventConfigurations",
+        message: `Parameter Validation warrnings for platform > Webhook > fetchAllEventConfigurations \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -52,12 +54,18 @@ class Webhook {
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/events`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = WebhookModel.EventConfigResponse().validate(response, {
+    } = WebhookPlatformModel.EventConfigResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -65,24 +73,26 @@ class Webhook {
     if (res_error) {
       Logger({
         level: "WARN",
-        message:
-          "Response Validation Warnnings for fetchAllEventConfigurations",
+        message: `Response Validation Warnnings for platform > Webhook > fetchAllEventConfigurations \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} arg.subscriberId - Subscriber ID
-   * @returns {Promise<SubscriberResponse>} - Success response
+   * @param {WebhookPlatformValidator.GetSubscriberByIdParam} arg - Arg object
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<WebhookPlatformModel.SubscriberResponse>} - Success response
+   * @name getSubscriberById
    * @summary: Get Subscriber By Subscriber ID
-   * @description: Get Subscriber By Subscriber ID
+   * @description: Get Subscriber By Subscriber ID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getSubscriberById/).
    */
-  async getSubscriberById({ subscriberId } = {}) {
-    const { error } = WebhookValidator.getSubscriberById().validate(
+  async getSubscriberById(
+    { subscriberId } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = WebhookPlatformValidator.getSubscriberById().validate(
       {
         subscriberId,
       },
@@ -93,7 +103,9 @@ class Webhook {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = WebhookValidator.getSubscriberById().validate(
+    const {
+      error: warrning,
+    } = WebhookPlatformValidator.getSubscriberById().validate(
       {
         subscriberId,
       },
@@ -102,9 +114,8 @@ class Webhook {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getSubscriberById",
+        message: `Parameter Validation warrnings for platform > Webhook > getSubscriberById \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -117,12 +128,18 @@ class Webhook {
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/subscriber/${subscriberId}`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = WebhookModel.SubscriberResponse().validate(response, {
+    } = WebhookPlatformModel.SubscriberResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -130,25 +147,28 @@ class Webhook {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getSubscriberById",
+        message: `Response Validation Warnnings for platform > Webhook > getSubscriberById \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Page Number
-   * @param {number} [arg.pageSize] - Page Size
-   * @param {string} [arg.extensionId] - Extension ID
-   * @returns {Promise<SubscriberResponse>} - Success response
+   * @param {WebhookPlatformValidator.GetSubscribersByCompanyParam} arg - Arg object
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<WebhookPlatformModel.SubscriberResponse>} - Success response
+   * @name getSubscribersByCompany
    * @summary: Get Subscribers By Company ID
-   * @description: Get Subscribers By CompanyId
+   * @description: Get Subscribers By CompanyId - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getSubscribersByCompany/).
    */
-  async getSubscribersByCompany({ pageNo, pageSize, extensionId } = {}) {
-    const { error } = WebhookValidator.getSubscribersByCompany().validate(
+  async getSubscribersByCompany(
+    { pageNo, pageSize, extensionId } = {},
+    { headers } = { headers: false }
+  ) {
+    const {
+      error,
+    } = WebhookPlatformValidator.getSubscribersByCompany().validate(
       {
         pageNo,
         pageSize,
@@ -163,7 +183,7 @@ class Webhook {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = WebhookValidator.getSubscribersByCompany().validate(
+    } = WebhookPlatformValidator.getSubscribersByCompany().validate(
       {
         pageNo,
         pageSize,
@@ -174,9 +194,8 @@ class Webhook {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getSubscribersByCompany",
+        message: `Parameter Validation warrnings for platform > Webhook > getSubscribersByCompany \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -192,12 +211,18 @@ class Webhook {
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/subscriber`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = WebhookModel.SubscriberResponse().validate(response, {
+    } = WebhookPlatformModel.SubscriberResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -205,25 +230,28 @@ class Webhook {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getSubscribersByCompany",
+        message: `Response Validation Warnnings for platform > Webhook > getSubscribersByCompany \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Page Number
-   * @param {number} [arg.pageSize] - Page Size
-   * @param {string} arg.extensionId - Extension ID
-   * @returns {Promise<SubscriberConfigList>} - Success response
+   * @param {WebhookPlatformValidator.GetSubscribersByExtensionIdParam} arg - Arg object
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<WebhookPlatformModel.SubscriberConfigList>} - Success response
+   * @name getSubscribersByExtensionId
    * @summary: Get Subscribers By Extension ID
-   * @description: Get Subscribers By ExtensionID
+   * @description: Get Subscribers By ExtensionID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getSubscribersByExtensionId/).
    */
-  async getSubscribersByExtensionId({ extensionId, pageNo, pageSize } = {}) {
-    const { error } = WebhookValidator.getSubscribersByExtensionId().validate(
+  async getSubscribersByExtensionId(
+    { extensionId, pageNo, pageSize } = {},
+    { headers } = { headers: false }
+  ) {
+    const {
+      error,
+    } = WebhookPlatformValidator.getSubscribersByExtensionId().validate(
       {
         extensionId,
         pageNo,
@@ -238,7 +266,7 @@ class Webhook {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = WebhookValidator.getSubscribersByExtensionId().validate(
+    } = WebhookPlatformValidator.getSubscribersByExtensionId().validate(
       {
         extensionId,
         pageNo,
@@ -249,10 +277,8 @@ class Webhook {
     if (warrning) {
       Logger({
         level: "WARN",
-        message:
-          "Parameter Validation warrnings for getSubscribersByExtensionId",
+        message: `Parameter Validation warrnings for platform > Webhook > getSubscribersByExtensionId \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -267,12 +293,18 @@ class Webhook {
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/extension/${extensionId}/subscriber`,
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = WebhookModel.SubscriberConfigList().validate(response, {
+    } = WebhookPlatformModel.SubscriberConfigList().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -280,24 +312,28 @@ class Webhook {
     if (res_error) {
       Logger({
         level: "WARN",
-        message:
-          "Response Validation Warnnings for getSubscribersByExtensionId",
+        message: `Response Validation Warnnings for platform > Webhook > getSubscribersByExtensionId \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {SubscriberConfig} arg.body
-   * @returns {Promise<SubscriberConfig>} - Success response
+   * @param {WebhookPlatformValidator.RegisterSubscriberToEventParam} arg - Arg object
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<WebhookPlatformModel.SubscriberConfig>} - Success response
+   * @name registerSubscriberToEvent
    * @summary: Register Subscriber
-   * @description: Register Subscriber
+   * @description: Register Subscriber - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/registerSubscriberToEvent/).
    */
-  async registerSubscriberToEvent({ body } = {}) {
-    const { error } = WebhookValidator.registerSubscriberToEvent().validate(
+  async registerSubscriberToEvent(
+    { body } = {},
+    { headers } = { headers: false }
+  ) {
+    const {
+      error,
+    } = WebhookPlatformValidator.registerSubscriberToEvent().validate(
       {
         body,
       },
@@ -310,7 +346,7 @@ class Webhook {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = WebhookValidator.registerSubscriberToEvent().validate(
+    } = WebhookPlatformValidator.registerSubscriberToEvent().validate(
       {
         body,
       },
@@ -319,9 +355,8 @@ class Webhook {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for registerSubscriberToEvent",
+        message: `Parameter Validation warrnings for platform > Webhook > registerSubscriberToEvent \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -334,12 +369,18 @@ class Webhook {
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/subscriber`,
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = WebhookModel.SubscriberConfig().validate(response, {
+    } = WebhookPlatformModel.SubscriberConfig().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -347,23 +388,28 @@ class Webhook {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for registerSubscriberToEvent",
+        message: `Response Validation Warnnings for platform > Webhook > registerSubscriberToEvent \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {SubscriberConfig} arg.body
-   * @returns {Promise<SubscriberConfig>} - Success response
+   * @param {WebhookPlatformValidator.UpdateSubscriberConfigParam} arg - Arg object
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<WebhookPlatformModel.SubscriberConfig>} - Success response
+   * @name updateSubscriberConfig
    * @summary: Update Subscriber
-   * @description: Update Subscriber
+   * @description: Update Subscriber - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/updateSubscriberConfig/).
    */
-  async updateSubscriberConfig({ body } = {}) {
-    const { error } = WebhookValidator.updateSubscriberConfig().validate(
+  async updateSubscriberConfig(
+    { body } = {},
+    { headers } = { headers: false }
+  ) {
+    const {
+      error,
+    } = WebhookPlatformValidator.updateSubscriberConfig().validate(
       {
         body,
       },
@@ -376,7 +422,7 @@ class Webhook {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = WebhookValidator.updateSubscriberConfig().validate(
+    } = WebhookPlatformValidator.updateSubscriberConfig().validate(
       {
         body,
       },
@@ -385,9 +431,8 @@ class Webhook {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateSubscriberConfig",
+        message: `Parameter Validation warrnings for platform > Webhook > updateSubscriberConfig \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -400,12 +445,18 @@ class Webhook {
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/subscriber`,
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = WebhookModel.SubscriberConfig().validate(response, {
+    } = WebhookPlatformModel.SubscriberConfig().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -413,9 +464,8 @@ class Webhook {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateSubscriberConfig",
+        message: `Response Validation Warnnings for platform > Webhook > updateSubscriberConfig \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

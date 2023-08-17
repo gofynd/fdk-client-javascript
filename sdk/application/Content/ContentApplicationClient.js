@@ -2,8 +2,8 @@ const ApplicationAPIClient = require("../ApplicationAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
-const ContentValidator = require("./ContentApplicationValidator");
-const ContentModel = require("./ContentApplicationModel");
+const ContentApplicationValidator = require("./ContentApplicationValidator");
+const ContentApplicationModel = require("./ContentApplicationModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -50,13 +50,16 @@ class Content {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<AnnouncementsResponseSchema>} - Success response
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ContentApplicationModel.AnnouncementsResponseSchema>}
+   *   - Success response
+   *
+   * @name getAnnouncements
    * @summary: Get live announcements
-   * @description: Announcements are useful to highlight a message or information on top of a webpage. Use this API to retrieve live announcements. Get announcements on individual pages or for all pages.
+   * @description: Announcements are useful to highlight a message or information on top of a webpage. Use this API to retrieve live announcements. Get announcements on individual pages or for all pages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getAnnouncements/).
    */
-  async getAnnouncements({} = {}) {
-    const { error } = ContentValidator.getAnnouncements().validate(
+  async getAnnouncements({ headers } = { headers: false }) {
+    const { error } = ContentApplicationValidator.getAnnouncements().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -65,16 +68,17 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ContentValidator.getAnnouncements().validate(
+    const {
+      error: warrning,
+    } = ContentApplicationValidator.getAnnouncements().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getAnnouncements",
+        message: `Parameter Validation warrnings for application > Content > getAnnouncements \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -90,39 +94,42 @@ class Content {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentModel.AnnouncementsResponseSchema().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ContentApplicationModel.AnnouncementsResponseSchema().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getAnnouncements",
+        message: `Response Validation Warnnings for application > Content > getAnnouncements \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.slug - A short, human-readable, URL-friendly
-   *   identifier of a blog. You can get slug value from the endpoint
-   *   /service/application/content/v1.0/blogs/.
-   * @param {string} [arg.rootId] - ID given to the HTML element
-   * @returns {Promise<BlogSchema>} - Success response
+   * @param {ContentApplicationValidator.GetBlogParam} arg - Arg object.
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ContentApplicationModel.BlogSchema>} - Success response
+   * @name getBlog
    * @summary: Get a blog
-   * @description: Use this API to get the details of a blog using its slug. Details include the title, reading time, publish status, feature image, tags, author, etc.
+   * @description: Use this API to get the details of a blog using its slug. Details include the title, reading time, publish status, feature image, tags, author, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getBlog/).
    */
-  async getBlog({ slug, rootId } = {}) {
-    const { error } = ContentValidator.getBlog().validate(
+  async getBlog({ slug, rootId } = {}, { headers } = { headers: false }) {
+    const { error } = ContentApplicationValidator.getBlog().validate(
       { slug, rootId },
       { abortEarly: false, allowUnknown: true }
     );
@@ -131,16 +138,15 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ContentValidator.getBlog().validate(
+    const { error: warrning } = ContentApplicationValidator.getBlog().validate(
       { slug, rootId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getBlog",
+        message: `Parameter Validation warrnings for application > Content > getBlog \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -157,10 +163,18 @@ class Content {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
 
-    const { error: res_error } = ContentModel.BlogSchema().validate(response, {
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentApplicationModel.BlogSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -168,25 +182,23 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getBlog",
+        message: `Response Validation Warnnings for application > Content > getBlog \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results. Default value is 1.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-   * @returns {Promise<BlogGetResponse>} - Success response
+   * @param {ContentApplicationValidator.GetBlogsParam} arg - Arg object.
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ContentApplicationModel.BlogGetResponse>} - Success response
+   * @name getBlogs
    * @summary: Get a list of blogs
-   * @description: Use this API to get all the blogs.
+   * @description: Use this API to get all the blogs. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getBlogs/).
    */
-  async getBlogs({ pageNo, pageSize } = {}) {
-    const { error } = ContentValidator.getBlogs().validate(
+  async getBlogs({ pageNo, pageSize } = {}, { headers } = { headers: false }) {
+    const { error } = ContentApplicationValidator.getBlogs().validate(
       { pageNo, pageSize },
       { abortEarly: false, allowUnknown: true }
     );
@@ -195,16 +207,15 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ContentValidator.getBlogs().validate(
+    const { error: warrning } = ContentApplicationValidator.getBlogs().validate(
       { pageNo, pageSize },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getBlogs",
+        message: `Parameter Validation warrnings for application > Content > getBlogs \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -222,12 +233,18 @@ class Content {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentModel.BlogGetResponse().validate(response, {
+    } = ContentApplicationModel.BlogGetResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -235,9 +252,8 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getBlogs",
+        message: `Response Validation Warnnings for application > Content > getBlogs \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -246,6 +262,7 @@ class Content {
   /**
    * @param {Object} arg - Arg object.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+   * @returns {Paginator<ContentApplicationModel.BlogGetResponse>}
    * @summary: Get a list of blogs
    * @description: Use this API to get all the blogs.
    */
@@ -270,13 +287,14 @@ class Content {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<DataLoadersSchema>} - Success response
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ContentApplicationModel.DataLoadersSchema>} - Success response
+   * @name getDataLoaders
    * @summary: Get the data loaders associated with an application
-   * @description: Use this API to get all selected data loaders of the application in the form of tags.
+   * @description: Use this API to get all selected data loaders of the application in the form of tags. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getDataLoaders/).
    */
-  async getDataLoaders({} = {}) {
-    const { error } = ContentValidator.getDataLoaders().validate(
+  async getDataLoaders({ headers } = { headers: false }) {
+    const { error } = ContentApplicationValidator.getDataLoaders().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -285,16 +303,17 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ContentValidator.getDataLoaders().validate(
+    const {
+      error: warrning,
+    } = ContentApplicationValidator.getDataLoaders().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getDataLoaders",
+        message: `Parameter Validation warrnings for application > Content > getDataLoaders \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -310,12 +329,18 @@ class Content {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentModel.DataLoadersSchema().validate(response, {
+    } = ContentApplicationModel.DataLoadersSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -323,25 +348,23 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getDataLoaders",
+        message: `Response Validation Warnnings for application > Content > getDataLoaders \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.slug - A short, human-readable, URL-friendly
-   *   identifier of an FAQ. You can get slug value from the endpoint
-   *   /service/application/content/v1.0/faq.
-   * @returns {Promise<FaqSchema>} - Success response
+   * @param {ContentApplicationValidator.GetFaqBySlugParam} arg - Arg object.
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ContentApplicationModel.FaqSchema>} - Success response
+   * @name getFaqBySlug
    * @summary: Get an FAQ
-   * @description: Use this API to get a particular FAQ by its slug.
+   * @description: Use this API to get a particular FAQ by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getFaqBySlug/).
    */
-  async getFaqBySlug({ slug } = {}) {
-    const { error } = ContentValidator.getFaqBySlug().validate(
+  async getFaqBySlug({ slug } = {}, { headers } = { headers: false }) {
+    const { error } = ContentApplicationValidator.getFaqBySlug().validate(
       { slug },
       { abortEarly: false, allowUnknown: true }
     );
@@ -350,16 +373,17 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ContentValidator.getFaqBySlug().validate(
+    const {
+      error: warrning,
+    } = ContentApplicationValidator.getFaqBySlug().validate(
       { slug },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getFaqBySlug",
+        message: `Parameter Validation warrnings for application > Content > getFaqBySlug \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -375,10 +399,18 @@ class Content {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
 
-    const { error: res_error } = ContentModel.FaqSchema().validate(response, {
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentApplicationModel.FaqSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -386,22 +418,23 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getFaqBySlug",
+        message: `Response Validation Warnnings for application > Content > getFaqBySlug \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<GetFaqCategoriesSchema>} - Success response
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ContentApplicationModel.GetFaqCategoriesSchema>} -
+   *   Success response
+   * @name getFaqCategories
    * @summary: Get a list of FAQ categories
-   * @description: FAQs can be divided into categories. Use this API to get a list of FAQ categories.
+   * @description: FAQs can be divided into categories. Use this API to get a list of FAQ categories. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getFaqCategories/).
    */
-  async getFaqCategories({} = {}) {
-    const { error } = ContentValidator.getFaqCategories().validate(
+  async getFaqCategories({ headers } = { headers: false }) {
+    const { error } = ContentApplicationValidator.getFaqCategories().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -410,16 +443,17 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ContentValidator.getFaqCategories().validate(
+    const {
+      error: warrning,
+    } = ContentApplicationValidator.getFaqCategories().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getFaqCategories",
+        message: `Parameter Validation warrnings for application > Content > getFaqCategories \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -435,38 +469,45 @@ class Content {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentModel.GetFaqCategoriesSchema().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ContentApplicationModel.GetFaqCategoriesSchema().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getFaqCategories",
+        message: `Response Validation Warnnings for application > Content > getFaqCategories \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.slug - A short, human-readable, URL-friendly
-   *   identifier of an FAQ category. You can get slug value from the endpoint
-   *   /service/application/content/v1.0/faq/categories.
-   * @returns {Promise<GetFaqCategoryBySlugSchema>} - Success response
+   * @param {ContentApplicationValidator.GetFaqCategoryBySlugParam} arg - Arg object.
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ContentApplicationModel.GetFaqCategoryBySlugSchema>} -
+   *   Success response
+   * @name getFaqCategoryBySlug
    * @summary: Get the FAQ category
-   * @description: FAQs can be divided into categories. Use this API to get the category to which an FAQ belongs.
+   * @description: FAQs can be divided into categories. Use this API to get the category to which an FAQ belongs. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getFaqCategoryBySlug/).
    */
-  async getFaqCategoryBySlug({ slug } = {}) {
-    const { error } = ContentValidator.getFaqCategoryBySlug().validate(
+  async getFaqCategoryBySlug({ slug } = {}, { headers } = { headers: false }) {
+    const {
+      error,
+    } = ContentApplicationValidator.getFaqCategoryBySlug().validate(
       { slug },
       { abortEarly: false, allowUnknown: true }
     );
@@ -477,16 +518,15 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentValidator.getFaqCategoryBySlug().validate(
+    } = ContentApplicationValidator.getFaqCategoryBySlug().validate(
       { slug },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getFaqCategoryBySlug",
+        message: `Parameter Validation warrnings for application > Content > getFaqCategoryBySlug \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -502,35 +542,41 @@ class Content {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentModel.GetFaqCategoryBySlugSchema().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = ContentApplicationModel.GetFaqCategoryBySlugSchema().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getFaqCategoryBySlug",
+        message: `Response Validation Warnnings for application > Content > getFaqCategoryBySlug \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<FaqResponseSchema>} - Success response
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ContentApplicationModel.FaqResponseSchema>} - Success response
+   * @name getFaqs
    * @summary: Get a list of FAQs
-   * @description: Use this API to get a list of frequently asked questions. Users will benefit from it when facing any issue with the website.
+   * @description: Use this API to get a list of frequently asked questions. Users will benefit from it when facing any issue with the website. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getFaqs/).
    */
-  async getFaqs({} = {}) {
-    const { error } = ContentValidator.getFaqs().validate(
+  async getFaqs({ headers } = { headers: false }) {
+    const { error } = ContentApplicationValidator.getFaqs().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -539,16 +585,15 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ContentValidator.getFaqs().validate(
+    const { error: warrning } = ContentApplicationValidator.getFaqs().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getFaqs",
+        message: `Parameter Validation warrnings for application > Content > getFaqs \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -564,12 +609,18 @@ class Content {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentModel.FaqResponseSchema().validate(response, {
+    } = ContentApplicationModel.FaqResponseSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -577,25 +628,25 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getFaqs",
+        message: `Response Validation Warnnings for application > Content > getFaqs \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.slug - A short, human-readable, URL-friendly
-   *   identifier of an FAQ category. You can get slug value from the endpoint
-   *   /service/application/content/v1.0/faq/categories.
-   * @returns {Promise<GetFaqSchema>} - Success response
+   * @param {ContentApplicationValidator.GetFaqsByCategorySlugParam} arg - Arg object.
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ContentApplicationModel.GetFaqSchema>} - Success response
+   * @name getFaqsByCategorySlug
    * @summary: Get FAQs using the slug of FAQ category
-   * @description: FAQs can be divided into categories. Use this API to get all the FAQs belonging to a category by using the category slug.
+   * @description: FAQs can be divided into categories. Use this API to get all the FAQs belonging to a category by using the category slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getFaqsByCategorySlug/).
    */
-  async getFaqsByCategorySlug({ slug } = {}) {
-    const { error } = ContentValidator.getFaqsByCategorySlug().validate(
+  async getFaqsByCategorySlug({ slug } = {}, { headers } = { headers: false }) {
+    const {
+      error,
+    } = ContentApplicationValidator.getFaqsByCategorySlug().validate(
       { slug },
       { abortEarly: false, allowUnknown: true }
     );
@@ -606,16 +657,15 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentValidator.getFaqsByCategorySlug().validate(
+    } = ContentApplicationValidator.getFaqsByCategorySlug().validate(
       { slug },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getFaqsByCategorySlug",
+        message: `Parameter Validation warrnings for application > Content > getFaqsByCategorySlug \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -631,33 +681,41 @@ class Content {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
 
-    const { error: res_error } = ContentModel.GetFaqSchema().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentApplicationModel.GetFaqSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getFaqsByCategorySlug",
+        message: `Response Validation Warnnings for application > Content > getFaqsByCategorySlug \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<LandingPageSchema>} - Success response
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ContentApplicationModel.LandingPageSchema>} - Success response
+   * @name getLandingPage
    * @summary: Get the landing page
-   * @description: Landing page is the first page that a prospect lands upon while visiting a website. Use this API to fetch the details of a landing page.
+   * @description: Landing page is the first page that a prospect lands upon while visiting a website. Use this API to fetch the details of a landing page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getLandingPage/).
    */
-  async getLandingPage({} = {}) {
-    const { error } = ContentValidator.getLandingPage().validate(
+  async getLandingPage({ headers } = { headers: false }) {
+    const { error } = ContentApplicationValidator.getLandingPage().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -666,16 +724,17 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ContentValidator.getLandingPage().validate(
+    const {
+      error: warrning,
+    } = ContentApplicationValidator.getLandingPage().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getLandingPage",
+        message: `Parameter Validation warrnings for application > Content > getLandingPage \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -691,12 +750,18 @@ class Content {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentModel.LandingPageSchema().validate(response, {
+    } = ContentApplicationModel.LandingPageSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -704,22 +769,24 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getLandingPage",
+        message: `Response Validation Warnnings for application > Content > getLandingPage \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<ApplicationLegal>} - Success response
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ContentApplicationModel.ApplicationLegal>} - Success response
+   * @name getLegalInformation
    * @summary: Get legal information
-   * @description: Use this API to get the legal information of an application, which includes Privacy Policy, Terms and Conditions, Shipping Policy and FAQs regarding the usage of the application.
+   * @description: Use this API to get the legal information of an application, which includes Privacy Policy, Terms and Conditions, Shipping Policy and FAQs regarding the usage of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getLegalInformation/).
    */
-  async getLegalInformation({} = {}) {
-    const { error } = ContentValidator.getLegalInformation().validate(
+  async getLegalInformation({ headers } = { headers: false }) {
+    const {
+      error,
+    } = ContentApplicationValidator.getLegalInformation().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -728,16 +795,17 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ContentValidator.getLegalInformation().validate(
+    const {
+      error: warrning,
+    } = ContentApplicationValidator.getLegalInformation().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getLegalInformation",
+        message: `Parameter Validation warrnings for application > Content > getLegalInformation \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -753,12 +821,18 @@ class Content {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentModel.ApplicationLegal().validate(response, {
+    } = ContentApplicationModel.ApplicationLegal().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -766,25 +840,27 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getLegalInformation",
+        message: `Response Validation Warnnings for application > Content > getLegalInformation \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results. Default value is 1.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-   * @returns {Promise<NavigationGetResponse>} - Success response
+   * @param {ContentApplicationValidator.GetNavigationsParam} arg - Arg object.
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ContentApplicationModel.NavigationGetResponse>} -
+   *   Success response
+   * @name getNavigations
    * @summary: Get the navigation
-   * @description: Use this API to fetch the navigations details which includes the items of the navigation pane. It also shows the links and sub-navigations.
+   * @description: Use this API to fetch the navigations details which includes the items of the navigation pane. It also shows the links and sub-navigations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getNavigations/).
    */
-  async getNavigations({ pageNo, pageSize } = {}) {
-    const { error } = ContentValidator.getNavigations().validate(
+  async getNavigations(
+    { pageNo, pageSize } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ContentApplicationValidator.getNavigations().validate(
       { pageNo, pageSize },
       { abortEarly: false, allowUnknown: true }
     );
@@ -793,16 +869,17 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ContentValidator.getNavigations().validate(
+    const {
+      error: warrning,
+    } = ContentApplicationValidator.getNavigations().validate(
       { pageNo, pageSize },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getNavigations",
+        message: `Parameter Validation warrnings for application > Content > getNavigations \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -820,12 +897,18 @@ class Content {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentModel.NavigationGetResponse().validate(response, {
+    } = ContentApplicationModel.NavigationGetResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -833,9 +916,8 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getNavigations",
+        message: `Response Validation Warnnings for application > Content > getNavigations \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -844,6 +926,7 @@ class Content {
   /**
    * @param {Object} arg - Arg object.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+   * @returns {Paginator<ContentApplicationModel.NavigationGetResponse>}
    * @summary: Get the navigation
    * @description: Use this API to fetch the navigations details which includes the items of the navigation pane. It also shows the links and sub-navigations.
    */
@@ -868,17 +951,15 @@ class Content {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.slug - A short, human-readable, URL-friendly
-   *   identifier of a page. You can get slug value from the endpoint
-   *   /service/application/content/v2.0/pages/.
-   * @param {string} [arg.rootId] - ID given to the HTML element
-   * @returns {Promise<PageSchema>} - Success response
+   * @param {ContentApplicationValidator.GetPageParam} arg - Arg object.
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ContentApplicationModel.PageSchema>} - Success response
+   * @name getPage
    * @summary: Get a page
-   * @description: Use this API to get the details of a page using its slug. Details include the title, seo, publish status, feature image, tags, meta, etc.
+   * @description: Use this API to get the details of a page using its slug. Details include the title, seo, publish status, feature image, tags, meta, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getPage/).
    */
-  async getPage({ slug, rootId } = {}) {
-    const { error } = ContentValidator.getPage().validate(
+  async getPage({ slug, rootId } = {}, { headers } = { headers: false }) {
+    const { error } = ContentApplicationValidator.getPage().validate(
       { slug, rootId },
       { abortEarly: false, allowUnknown: true }
     );
@@ -887,16 +968,15 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ContentValidator.getPage().validate(
+    const { error: warrning } = ContentApplicationValidator.getPage().validate(
       { slug, rootId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getPage",
+        message: `Parameter Validation warrnings for application > Content > getPage \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -913,10 +993,18 @@ class Content {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
 
-    const { error: res_error } = ContentModel.PageSchema().validate(response, {
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentApplicationModel.PageSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -924,25 +1012,23 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getPage",
+        message: `Response Validation Warnnings for application > Content > getPage \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results. Default value is 1.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-   * @returns {Promise<PageGetResponse>} - Success response
+   * @param {ContentApplicationValidator.GetPagesParam} arg - Arg object.
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ContentApplicationModel.PageGetResponse>} - Success response
+   * @name getPages
    * @summary: Get all pages
-   * @description: Use this API to get a list of pages.
+   * @description: Use this API to get a list of pages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getPages/).
    */
-  async getPages({ pageNo, pageSize } = {}) {
-    const { error } = ContentValidator.getPages().validate(
+  async getPages({ pageNo, pageSize } = {}, { headers } = { headers: false }) {
+    const { error } = ContentApplicationValidator.getPages().validate(
       { pageNo, pageSize },
       { abortEarly: false, allowUnknown: true }
     );
@@ -951,16 +1037,15 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ContentValidator.getPages().validate(
+    const { error: warrning } = ContentApplicationValidator.getPages().validate(
       { pageNo, pageSize },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getPages",
+        message: `Parameter Validation warrnings for application > Content > getPages \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -978,12 +1063,18 @@ class Content {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentModel.PageGetResponse().validate(response, {
+    } = ContentApplicationModel.PageGetResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -991,9 +1082,8 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getPages",
+        message: `Response Validation Warnnings for application > Content > getPages \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -1002,6 +1092,7 @@ class Content {
   /**
    * @param {Object} arg - Arg object.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+   * @returns {Paginator<ContentApplicationModel.PageGetResponse>}
    * @summary: Get all pages
    * @description: Use this API to get a list of pages.
    */
@@ -1026,13 +1117,16 @@ class Content {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<SeoComponent>} - Success response
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ContentApplicationModel.SeoComponent>} - Success response
+   * @name getSEOConfiguration
    * @summary: Get the SEO of an application
-   * @description: Use this API to get the SEO details of an application, which includes a robot.txt, meta-tags and sitemap.
+   * @description: Use this API to get the SEO details of an application, which includes a robot.txt, meta-tags and sitemap. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSEOConfiguration/).
    */
-  async getSEOConfiguration({} = {}) {
-    const { error } = ContentValidator.getSEOConfiguration().validate(
+  async getSEOConfiguration({ headers } = { headers: false }) {
+    const {
+      error,
+    } = ContentApplicationValidator.getSEOConfiguration().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -1041,16 +1135,17 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ContentValidator.getSEOConfiguration().validate(
+    const {
+      error: warrning,
+    } = ContentApplicationValidator.getSEOConfiguration().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getSEOConfiguration",
+        message: `Parameter Validation warrnings for application > Content > getSEOConfiguration \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1066,36 +1161,42 @@ class Content {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
 
-    const { error: res_error } = ContentModel.SeoComponent().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentApplicationModel.SeoComponent().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getSEOConfiguration",
+        message: `Response Validation Warnnings for application > Content > getSEOConfiguration \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.slug - A short, human-readable, URL-friendly
-   *   identifier of a slideshow. You can get slug value from the endpoint
-   *   /service/application/content/v1.0/slideshow/.
-   * @returns {Promise<SlideshowSchema>} - Success response
+   * @param {ContentApplicationValidator.GetSlideshowParam} arg - Arg object.
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ContentApplicationModel.SlideshowSchema>} - Success response
+   * @name getSlideshow
    * @summary: Get a slideshow
-   * @description: A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to fetch a slideshow using its `slug`.
+   * @description: A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to fetch a slideshow using its `slug`. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSlideshow/).
    */
-  async getSlideshow({ slug } = {}) {
-    const { error } = ContentValidator.getSlideshow().validate(
+  async getSlideshow({ slug } = {}, { headers } = { headers: false }) {
+    const { error } = ContentApplicationValidator.getSlideshow().validate(
       { slug },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1104,16 +1205,17 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ContentValidator.getSlideshow().validate(
+    const {
+      error: warrning,
+    } = ContentApplicationValidator.getSlideshow().validate(
       { slug },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getSlideshow",
+        message: `Parameter Validation warrnings for application > Content > getSlideshow \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1129,12 +1231,18 @@ class Content {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentModel.SlideshowSchema().validate(response, {
+    } = ContentApplicationModel.SlideshowSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1142,25 +1250,26 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getSlideshow",
+        message: `Response Validation Warnnings for application > Content > getSlideshow \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results. Default value is 1.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-   * @returns {Promise<SlideshowGetResponse>} - Success response
+   * @param {ContentApplicationValidator.GetSlideshowsParam} arg - Arg object.
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ContentApplicationModel.SlideshowGetResponse>} - Success response
+   * @name getSlideshows
    * @summary: Get the slideshows
-   * @description: Use this API to get a list of slideshows along with their details.
+   * @description: Use this API to get a list of slideshows along with their details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSlideshows/).
    */
-  async getSlideshows({ pageNo, pageSize } = {}) {
-    const { error } = ContentValidator.getSlideshows().validate(
+  async getSlideshows(
+    { pageNo, pageSize } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = ContentApplicationValidator.getSlideshows().validate(
       { pageNo, pageSize },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1169,16 +1278,17 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ContentValidator.getSlideshows().validate(
+    const {
+      error: warrning,
+    } = ContentApplicationValidator.getSlideshows().validate(
       { pageNo, pageSize },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getSlideshows",
+        message: `Parameter Validation warrnings for application > Content > getSlideshows \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1196,12 +1306,18 @@ class Content {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = ContentModel.SlideshowGetResponse().validate(response, {
+    } = ContentApplicationModel.SlideshowGetResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1209,9 +1325,8 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getSlideshows",
+        message: `Response Validation Warnnings for application > Content > getSlideshows \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -1220,6 +1335,7 @@ class Content {
   /**
    * @param {Object} arg - Arg object.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+   * @returns {Paginator<ContentApplicationModel.SlideshowGetResponse>}
    * @summary: Get the slideshows
    * @description: Use this API to get a list of slideshows along with their details.
    */
@@ -1244,13 +1360,16 @@ class Content {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<Support>} - Success response
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ContentApplicationModel.Support>} - Success response
+   * @name getSupportInformation
    * @summary: Get the support information
-   * @description: Use this API to get contact details for customer support including emails and phone numbers.
+   * @description: Use this API to get contact details for customer support including emails and phone numbers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSupportInformation/).
    */
-  async getSupportInformation({} = {}) {
-    const { error } = ContentValidator.getSupportInformation().validate(
+  async getSupportInformation({ headers } = { headers: false }) {
+    const {
+      error,
+    } = ContentApplicationValidator.getSupportInformation().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -1261,16 +1380,15 @@ class Content {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ContentValidator.getSupportInformation().validate(
+    } = ContentApplicationValidator.getSupportInformation().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getSupportInformation",
+        message: `Parameter Validation warrnings for application > Content > getSupportInformation \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1286,10 +1404,18 @@ class Content {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
 
-    const { error: res_error } = ContentModel.Support().validate(response, {
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentApplicationModel.Support().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1297,22 +1423,22 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getSupportInformation",
+        message: `Response Validation Warnnings for application > Content > getSupportInformation \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<TagsSchema>} - Success response
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ContentApplicationModel.TagsSchema>} - Success response
+   * @name getTags
    * @summary: Get the tags associated with an application
-   * @description: Use this API to get all the CSS and JS injected in the application in the form of tags.
+   * @description: Use this API to get all the CSS and JS injected in the application in the form of tags. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getTags/).
    */
-  async getTags({} = {}) {
-    const { error } = ContentValidator.getTags().validate(
+  async getTags({ headers } = { headers: false }) {
+    const { error } = ContentApplicationValidator.getTags().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -1321,16 +1447,15 @@ class Content {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = ContentValidator.getTags().validate(
+    const { error: warrning } = ContentApplicationValidator.getTags().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getTags",
+        message: `Parameter Validation warrnings for application > Content > getTags \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1346,10 +1471,18 @@ class Content {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
 
-    const { error: res_error } = ContentModel.TagsSchema().validate(response, {
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentApplicationModel.TagsSchema().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1357,9 +1490,8 @@ class Content {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getTags",
+        message: `Response Validation Warnnings for application > Content > getTags \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

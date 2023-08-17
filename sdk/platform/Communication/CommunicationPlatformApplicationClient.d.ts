@@ -4,465 +4,643 @@ declare class Communication {
     config: any;
     applicationId: any;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {AudienceReq} arg.body
-     * @returns {Promise<Audience>} - Success response
+     * @param {CommunicationPlatformApplicationValidator.CreateAudienceParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.Audience>} - Success response
+     * @name createAudience
      * @summary: Create audience
-     * @description: Create audience
+     * @description: Create audience - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createAudience/).
      */
-    createAudience({ body }?: {
-        body: AudienceReq;
-    }): Promise<Audience>;
+    createAudience({ body }?: CommunicationPlatformApplicationValidator.CreateAudienceParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.Audience>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {CampaignReq} arg.body
-     * @returns {Promise<Campaign>} - Success response
+     * @param {CommunicationPlatformApplicationValidator.CreateCampaignParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.Campaign>} - Success response
+     * @name createCampaign
      * @summary: Create campaign
-     * @description: Create campaign
+     * @description: Create campaign - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createCampaign/).
      */
-    createCampaign({ body }?: {
-        body: CampaignReq;
-    }): Promise<Campaign>;
+    createCampaign({ body }?: CommunicationPlatformApplicationValidator.CreateCampaignParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.Campaign>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {EmailProviderReq} arg.body
-     * @returns {Promise<EmailProvider>} - Success response
+     * @param {CommunicationPlatformApplicationValidator.CreateEmailProviderParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.EmailProvider>} - Success response
+     * @name createEmailProvider
      * @summary: Create email provider
-     * @description: Create email provider
+     * @description: Create email provider - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createEmailProvider/).
      */
-    createEmailProvider({ body }?: {
-        body: EmailProviderReq;
-    }): Promise<EmailProvider>;
+    createEmailProvider({ body }?: CommunicationPlatformApplicationValidator.CreateEmailProviderParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.EmailProvider>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {EmailTemplateReq} arg.body
-     * @returns {Promise<EmailTemplateRes>} - Success response
+     * @param {CommunicationPlatformApplicationValidator.CreateEmailTemplateParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.EmailTemplateRes>} - Success response
+     * @name createEmailTemplate
      * @summary: Create email template
-     * @description: Create email template
+     * @description: Create email template - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createEmailTemplate/).
      */
-    createEmailTemplate({ body }?: {
-        body: EmailTemplateReq;
-    }): Promise<EmailTemplateRes>;
+    createEmailTemplate({ body }?: CommunicationPlatformApplicationValidator.CreateEmailTemplateParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.EmailTemplateRes>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {SmsProviderReq} arg.body
-     * @returns {Promise<SmsProvider>} - Success response
+     * @param {CommunicationPlatformApplicationValidator.CreateSmsProviderParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.SmsProvider>} - Success response
+     * @name createSmsProvider
      * @summary: Create sms provider
-     * @description: Create sms provider
+     * @description: Create sms provider - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createSmsProvider/).
      */
-    createSmsProvider({ body }?: {
-        body: SmsProviderReq;
-    }): Promise<SmsProvider>;
+    createSmsProvider({ body }?: CommunicationPlatformApplicationValidator.CreateSmsProviderParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.SmsProvider>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {SmsTemplateReq} arg.body
-     * @returns {Promise<SmsTemplateRes>} - Success response
+     * @param {CommunicationPlatformApplicationValidator.CreateSmsTemplateParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.SmsTemplateRes>} - Success response
+     * @name createSmsTemplate
      * @summary: Create sms template
-     * @description: Create sms template
+     * @description: Create sms template - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createSmsTemplate/).
      */
-    createSmsTemplate({ body }?: {
-        body: SmsTemplateReq;
-    }): Promise<SmsTemplateRes>;
+    createSmsTemplate({ body }?: CommunicationPlatformApplicationValidator.CreateSmsTemplateParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.SmsTemplateRes>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Email template id
-     * @returns {Promise<EmailTemplateDeleteSuccessRes>} - Success response
+     * @param {CommunicationPlatformApplicationValidator.DeleteEmailTemplateByIdParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.EmailTemplateDeleteSuccessRes>}
+     *   - Success response
+     *
+     * @name deleteEmailTemplateById
      * @summary: Delete email template by id
-     * @description: Delete email template by id
+     * @description: Delete email template by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/deleteEmailTemplateById/).
      */
-    deleteEmailTemplateById({ id }?: {
-        id: string;
-    }): Promise<EmailTemplateDeleteSuccessRes>;
+    deleteEmailTemplateById({ id }?: CommunicationPlatformApplicationValidator.DeleteEmailTemplateByIdParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.EmailTemplateDeleteSuccessRes>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Sms template id
-     * @returns {Promise<SmsTemplateDeleteSuccessRes>} - Success response
+     * @param {CommunicationPlatformApplicationValidator.DeleteSmsTemplateByIdParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.SmsTemplateDeleteSuccessRes>}
+     *   - Success response
+     *
+     * @name deleteSmsTemplateById
      * @summary: Delete sms template by id
-     * @description: Delete sms template by id
+     * @description: Delete sms template by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/deleteSmsTemplateById/).
      */
-    deleteSmsTemplateById({ id }?: {
-        id: string;
-    }): Promise<SmsTemplateDeleteSuccessRes>;
+    deleteSmsTemplateById({ id }?: CommunicationPlatformApplicationValidator.DeleteSmsTemplateByIdParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.SmsTemplateDeleteSuccessRes>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Audience id
-     * @returns {Promise<Audience>} - Success response
+     * @param {CommunicationPlatformApplicationValidator.GetAudienceByIdParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.Audience>} - Success response
+     * @name getAudienceById
      * @summary: Get audience by id
-     * @description: Get audience by id
+     * @description: Get audience by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getAudienceById/).
      */
-    getAudienceById({ id }?: {
-        id: string;
-    }): Promise<Audience>;
+    getAudienceById({ id }?: CommunicationPlatformApplicationValidator.GetAudienceByIdParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.Audience>;
+    /**
+     * @param {CommunicationPlatformApplicationValidator.GetAudiencesParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.Audiences>} - Success response
+     * @name getAudiences
+     * @summary: Get audiences
+     * @description: Get audiences - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getAudiences/).
+     */
+    getAudiences({ pageNo, pageSize, sort }?: CommunicationPlatformApplicationValidator.GetAudiencesParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.Audiences>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNo] - Current page no
+     * @param {string} arg.companyId - Company id
+     * @param {string} arg.applicationId - Application id
      * @param {number} [arg.pageSize] - Current request items count
      * @param {Object} [arg.sort] - To sort based on created_at
-     * @returns {Promise<Audiences>} - Success response
+     * @returns {Paginator<CommunicationPlatformModel.Audiences>}
      * @summary: Get audiences
      * @description: Get audiences
      */
-    getAudiences({ pageNo, pageSize, sort }?: {
-        pageNo?: number;
+    getAudiencesPaginator({ companyId, applicationId, pageSize, sort }?: {
+        companyId: string;
+        applicationId: string;
         pageSize?: number;
         sort?: any;
-    }): Promise<Audiences>;
+    }): Paginator<CommunicationPlatformModel.Audiences>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {BigqueryHeadersReq} arg.body
-     * @returns {Promise<BigqueryHeadersRes>} - Success response
+     * @param {CommunicationPlatformApplicationValidator.GetBigqueryHeadersParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.BigqueryHeadersRes>} -
+     *   Success response
+     * @name getBigqueryHeaders
      * @summary: Get bigquery headers
-     * @description: Get bigquery headers
+     * @description: Get bigquery headers - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getBigqueryHeaders/).
      */
-    getBigqueryHeaders({ body }?: {
-        body: BigqueryHeadersReq;
-    }): Promise<BigqueryHeadersRes>;
+    getBigqueryHeaders({ body }?: CommunicationPlatformApplicationValidator.GetBigqueryHeadersParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.BigqueryHeadersRes>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Campaign id
-     * @returns {Promise<Campaign>} - Success response
+     * @param {CommunicationPlatformApplicationValidator.GetCampaignByIdParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.Campaign>} - Success response
+     * @name getCampaignById
      * @summary: Get campaign by id
-     * @description: Get campaign by id
+     * @description: Get campaign by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getCampaignById/).
      */
-    getCampaignById({ id }?: {
-        id: string;
-    }): Promise<Campaign>;
+    getCampaignById({ id }?: CommunicationPlatformApplicationValidator.GetCampaignByIdParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.Campaign>;
+    /**
+     * @param {CommunicationPlatformApplicationValidator.GetCampaignsParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.Campaigns>} - Success response
+     * @name getCampaigns
+     * @summary: Get campaigns
+     * @description: Get campaigns - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getCampaigns/).
+     */
+    getCampaigns({ pageNo, pageSize, sort }?: CommunicationPlatformApplicationValidator.GetCampaignsParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.Campaigns>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNo] - Current page no
+     * @param {string} arg.companyId - Company id
+     * @param {string} arg.applicationId - Application id
      * @param {number} [arg.pageSize] - Current request items count
      * @param {Object} [arg.sort] - To sort based on created_at
-     * @returns {Promise<Campaigns>} - Success response
+     * @returns {Paginator<CommunicationPlatformModel.Campaigns>}
      * @summary: Get campaigns
      * @description: Get campaigns
      */
-    getCampaigns({ pageNo, pageSize, sort }?: {
-        pageNo?: number;
+    getCampaignsPaginator({ companyId, applicationId, pageSize, sort }?: {
+        companyId: string;
+        applicationId: string;
         pageSize?: number;
         sort?: any;
-    }): Promise<Campaigns>;
+    }): Paginator<CommunicationPlatformModel.Campaigns>;
+    /**
+     * @param {CommunicationPlatformApplicationValidator.GetCommunicationLogsParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.Logs>} - Success response
+     * @name getCommunicationLogs
+     * @summary: Get communication logs
+     * @description: Get communication logs - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getCommunicationLogs/).
+     */
+    getCommunicationLogs({ pageId, pageSize, sort, query }?: CommunicationPlatformApplicationValidator.GetCommunicationLogsParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.Logs>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {string} [arg.pageId] - Current page no
+     * @param {string} arg.companyId - Company id
+     * @param {string} arg.applicationId - Application id
      * @param {number} [arg.pageSize] - Current request items count
      * @param {Object} [arg.sort] - To sort based on _id
      * @param {Object} [arg.query] -
-     * @returns {Promise<Logs>} - Success response
+     * @returns {Paginator<CommunicationPlatformModel.Logs>}
      * @summary: Get communication logs
      * @description: Get communication logs
      */
-    getCommunicationLogs({ pageId, pageSize, sort, query }?: {
-        pageId?: string;
+    getCommunicationLogsPaginator({ companyId, applicationId, pageSize, sort, query, }?: {
+        companyId: string;
+        applicationId: string;
         pageSize?: number;
         sort?: any;
         query?: any;
-    }): Promise<Logs>;
+    }): Paginator<CommunicationPlatformModel.Logs>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Email provider id
-     * @returns {Promise<EmailProvider>} - Success response
+     * @param {CommunicationPlatformApplicationValidator.GetEmailProviderByIdParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.EmailProvider>} - Success response
+     * @name getEmailProviderById
      * @summary: Get email provider by id
-     * @description: Get email provider by id
+     * @description: Get email provider by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getEmailProviderById/).
      */
-    getEmailProviderById({ id }?: {
-        id: string;
-    }): Promise<EmailProvider>;
+    getEmailProviderById({ id }?: CommunicationPlatformApplicationValidator.GetEmailProviderByIdParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.EmailProvider>;
+    /**
+     * @param {CommunicationPlatformApplicationValidator.GetEmailProvidersParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.EmailProviders>} - Success response
+     * @name getEmailProviders
+     * @summary: Get email providers
+     * @description: Get email providers - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getEmailProviders/).
+     */
+    getEmailProviders({ pageNo, pageSize, sort }?: CommunicationPlatformApplicationValidator.GetEmailProvidersParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.EmailProviders>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNo] - Current page no
+     * @param {string} arg.companyId - Company id
+     * @param {string} arg.applicationId - Application id
      * @param {number} [arg.pageSize] - Current request items count
      * @param {Object} [arg.sort] - To sort based on created_at
-     * @returns {Promise<EmailProviders>} - Success response
+     * @returns {Paginator<CommunicationPlatformModel.EmailProviders>}
      * @summary: Get email providers
      * @description: Get email providers
      */
-    getEmailProviders({ pageNo, pageSize, sort }?: {
-        pageNo?: number;
+    getEmailProvidersPaginator({ companyId, applicationId, pageSize, sort, }?: {
+        companyId: string;
+        applicationId: string;
         pageSize?: number;
         sort?: any;
-    }): Promise<EmailProviders>;
+    }): Paginator<CommunicationPlatformModel.EmailProviders>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Email template id
-     * @returns {Promise<EmailTemplate>} - Success response
+     * @param {CommunicationPlatformApplicationValidator.GetEmailTemplateByIdParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.EmailTemplate>} - Success response
+     * @name getEmailTemplateById
      * @summary: Get email template by id
-     * @description: Get email template by id
+     * @description: Get email template by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getEmailTemplateById/).
      */
-    getEmailTemplateById({ id }?: {
-        id: string;
-    }): Promise<EmailTemplate>;
+    getEmailTemplateById({ id }?: CommunicationPlatformApplicationValidator.GetEmailTemplateByIdParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.EmailTemplate>;
+    /**
+     * @param {CommunicationPlatformApplicationValidator.GetEmailTemplatesParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.EmailTemplates>} - Success response
+     * @name getEmailTemplates
+     * @summary: Get email templates
+     * @description: Get email templates - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getEmailTemplates/).
+     */
+    getEmailTemplates({ pageNo, pageSize, sort }?: CommunicationPlatformApplicationValidator.GetEmailTemplatesParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.EmailTemplates>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNo] - Current page no
+     * @param {string} arg.companyId - Company id
+     * @param {string} arg.applicationId - Application id
      * @param {number} [arg.pageSize] - Current request items count
      * @param {Object} [arg.sort] - To sort based on created_at
-     * @returns {Promise<EmailTemplates>} - Success response
+     * @returns {Paginator<CommunicationPlatformModel.EmailTemplates>}
      * @summary: Get email templates
      * @description: Get email templates
      */
-    getEmailTemplates({ pageNo, pageSize, sort }?: {
-        pageNo?: number;
+    getEmailTemplatesPaginator({ companyId, applicationId, pageSize, sort, }?: {
+        companyId: string;
+        applicationId: string;
         pageSize?: number;
         sort?: any;
-    }): Promise<EmailTemplates>;
+    }): Paginator<CommunicationPlatformModel.EmailTemplates>;
+    /**
+     * @param {CommunicationPlatformApplicationValidator.GetEventSubscriptionsParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.EventSubscriptions>} -
+     *   Success response
+     * @name getEventSubscriptions
+     * @summary: Get event subscriptions
+     * @description: Get event subscriptions - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getEventSubscriptions/).
+     */
+    getEventSubscriptions({ pageNo, pageSize, populate }?: CommunicationPlatformApplicationValidator.GetEventSubscriptionsParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.EventSubscriptions>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNo] - Current page no
+     * @param {string} arg.companyId - Company id
+     * @param {string} arg.applicationId - Application id
      * @param {number} [arg.pageSize] - Current request items count
      * @param {string} [arg.populate] - Populate fields
-     * @returns {Promise<EventSubscriptions>} - Success response
+     * @returns {Paginator<CommunicationPlatformModel.EventSubscriptions>}
      * @summary: Get event subscriptions
      * @description: Get event subscriptions
      */
-    getEventSubscriptions({ pageNo, pageSize, populate }?: {
-        pageNo?: number;
+    getEventSubscriptionsPaginator({ companyId, applicationId, pageSize, populate, }?: {
+        companyId: string;
+        applicationId: string;
         pageSize?: number;
         populate?: string;
-    }): Promise<EventSubscriptions>;
+    }): Paginator<CommunicationPlatformModel.EventSubscriptions>;
+    /**
+     * @param {CommunicationPlatformApplicationValidator.GetJobLogsParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.JobLogs>} - Success response
+     * @name getJobLogs
+     * @summary: Get job logs
+     * @description: Get job logs - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getJobLogs/).
+     */
+    getJobLogs({ pageNo, pageSize, sort }?: CommunicationPlatformApplicationValidator.GetJobLogsParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.JobLogs>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNo] - Current page no
+     * @param {string} arg.companyId - Company id
+     * @param {string} arg.applicationId - Application id
      * @param {number} [arg.pageSize] - Current request items count
      * @param {Object} [arg.sort] - To sort based on created_at
-     * @returns {Promise<JobLogs>} - Success response
+     * @returns {Paginator<CommunicationPlatformModel.JobLogs>}
      * @summary: Get job logs
      * @description: Get job logs
      */
-    getJobLogs({ pageNo, pageSize, sort }?: {
-        pageNo?: number;
+    getJobLogsPaginator({ companyId, applicationId, pageSize, sort }?: {
+        companyId: string;
+        applicationId: string;
         pageSize?: number;
         sort?: any;
-    }): Promise<JobLogs>;
+    }): Paginator<CommunicationPlatformModel.JobLogs>;
+    /**
+     * @param {CommunicationPlatformApplicationValidator.GetJobsParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.Jobs>} - Success response
+     * @name getJobs
+     * @summary: Get jobs
+     * @description: Get jobs - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getJobs/).
+     */
+    getJobs({ pageNo, pageSize, sort }?: CommunicationPlatformApplicationValidator.GetJobsParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.Jobs>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNo] - Current page no
+     * @param {string} arg.companyId - Company id
+     * @param {string} arg.applicationId - Application id
      * @param {number} [arg.pageSize] - Current request items count
      * @param {Object} [arg.sort] - To sort based on created_at
-     * @returns {Promise<Jobs>} - Success response
+     * @returns {Paginator<CommunicationPlatformModel.Jobs>}
      * @summary: Get jobs
      * @description: Get jobs
      */
-    getJobs({ pageNo, pageSize, sort }?: {
-        pageNo?: number;
+    getJobsPaginator({ companyId, applicationId, pageSize, sort }?: {
+        companyId: string;
+        applicationId: string;
         pageSize?: number;
         sort?: any;
-    }): Promise<Jobs>;
+    }): Paginator<CommunicationPlatformModel.Jobs>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {GetNRecordsCsvReq} arg.body
-     * @returns {Promise<GetNRecordsCsvRes>} - Success response
+     * @param {CommunicationPlatformApplicationValidator.GetNSampleRecordsFromCsvParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.GetNRecordsCsvRes>} - Success response
+     * @name getNSampleRecordsFromCsv
      * @summary: Get n sample records from csv
-     * @description: Get n sample records from csv
+     * @description: Get n sample records from csv - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getNSampleRecordsFromCsv/).
      */
-    getNSampleRecordsFromCsv({ body }?: {
-        body: GetNRecordsCsvReq;
-    }): Promise<GetNRecordsCsvRes>;
+    getNSampleRecordsFromCsv({ body }?: CommunicationPlatformApplicationValidator.GetNSampleRecordsFromCsvParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.GetNRecordsCsvRes>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Sms provider id
-     * @returns {Promise<SmsProvider>} - Success response
+     * @param {CommunicationPlatformApplicationValidator.GetSmsProviderByIdParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.SmsProvider>} - Success response
+     * @name getSmsProviderById
      * @summary: Get sms provider by id
-     * @description: Get sms provider by id
+     * @description: Get sms provider by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSmsProviderById/).
      */
-    getSmsProviderById({ id }?: {
-        id: string;
-    }): Promise<SmsProvider>;
+    getSmsProviderById({ id }?: CommunicationPlatformApplicationValidator.GetSmsProviderByIdParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.SmsProvider>;
+    /**
+     * @param {CommunicationPlatformApplicationValidator.GetSmsProvidersParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.SmsProviders>} - Success response
+     * @name getSmsProviders
+     * @summary: Get sms providers
+     * @description: Get sms providers - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSmsProviders/).
+     */
+    getSmsProviders({ pageNo, pageSize, sort }?: CommunicationPlatformApplicationValidator.GetSmsProvidersParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.SmsProviders>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNo] - Current page no
+     * @param {string} arg.companyId - Company id
+     * @param {string} arg.applicationId - Application id
      * @param {number} [arg.pageSize] - Current request items count
      * @param {Object} [arg.sort] - To sort based on created_at
-     * @returns {Promise<SmsProviders>} - Success response
+     * @returns {Paginator<CommunicationPlatformModel.SmsProviders>}
      * @summary: Get sms providers
      * @description: Get sms providers
      */
-    getSmsProviders({ pageNo, pageSize, sort }?: {
-        pageNo?: number;
+    getSmsProvidersPaginator({ companyId, applicationId, pageSize, sort }?: {
+        companyId: string;
+        applicationId: string;
         pageSize?: number;
         sort?: any;
-    }): Promise<SmsProviders>;
+    }): Paginator<CommunicationPlatformModel.SmsProviders>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Sms template id
-     * @returns {Promise<SmsTemplate>} - Success response
+     * @param {CommunicationPlatformApplicationValidator.GetSmsTemplateByIdParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.SmsTemplate>} - Success response
+     * @name getSmsTemplateById
      * @summary: Get sms template by id
-     * @description: Get sms template by id
+     * @description: Get sms template by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSmsTemplateById/).
      */
-    getSmsTemplateById({ id }?: {
-        id: string;
-    }): Promise<SmsTemplate>;
+    getSmsTemplateById({ id }?: CommunicationPlatformApplicationValidator.GetSmsTemplateByIdParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.SmsTemplate>;
+    /**
+     * @param {CommunicationPlatformApplicationValidator.GetSmsTemplatesParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.SmsTemplates>} - Success response
+     * @name getSmsTemplates
+     * @summary: Get sms templates
+     * @description: Get sms templates - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSmsTemplates/).
+     */
+    getSmsTemplates({ pageNo, pageSize, sort }?: CommunicationPlatformApplicationValidator.GetSmsTemplatesParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.SmsTemplates>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNo] - Current page no
+     * @param {string} arg.companyId - Company id
+     * @param {string} arg.applicationId - Application id
      * @param {number} [arg.pageSize] - Current request items count
      * @param {Object} [arg.sort] - To sort based on created_at
-     * @returns {Promise<SmsTemplates>} - Success response
+     * @returns {Paginator<CommunicationPlatformModel.SmsTemplates>}
      * @summary: Get sms templates
      * @description: Get sms templates
      */
-    getSmsTemplates({ pageNo, pageSize, sort }?: {
-        pageNo?: number;
+    getSmsTemplatesPaginator({ companyId, applicationId, pageSize, sort }?: {
+        companyId: string;
+        applicationId: string;
         pageSize?: number;
         sort?: any;
-    }): Promise<SmsTemplates>;
+    }): Paginator<CommunicationPlatformModel.SmsTemplates>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Campaign id
-     * @returns {Promise<GetStats>} - Success response
+     * @param {CommunicationPlatformApplicationValidator.GetStatsOfCampaignByIdParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.GetStats>} - Success response
+     * @name getStatsOfCampaignById
      * @summary: Get stats of campaign by id
-     * @description: Get stats of campaign by id
+     * @description: Get stats of campaign by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getStatsOfCampaignById/).
      */
-    getStatsOfCampaignById({ id }?: {
-        id: string;
-    }): Promise<GetStats>;
+    getStatsOfCampaignById({ id }?: CommunicationPlatformApplicationValidator.GetStatsOfCampaignByIdParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.GetStats>;
+    /**
+     * @param {CommunicationPlatformApplicationValidator.GetSystemEmailTemplatesParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.SystemEmailTemplates>} -
+     *   Success response
+     * @name getSystemEmailTemplates
+     * @summary: Get system email templates
+     * @description: Get system email templates - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSystemEmailTemplates/).
+     */
+    getSystemEmailTemplates({ pageNo, pageSize, sort }?: CommunicationPlatformApplicationValidator.GetSystemEmailTemplatesParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.SystemEmailTemplates>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNo] - Current page no
+     * @param {string} arg.companyId - Company id
+     * @param {string} arg.applicationId - Application id
      * @param {number} [arg.pageSize] - Current request items count
      * @param {Object} [arg.sort] - To sort based on created_at
-     * @returns {Promise<SystemEmailTemplates>} - Success response
+     * @returns {Paginator<CommunicationPlatformModel.SystemEmailTemplates>}
      * @summary: Get system email templates
      * @description: Get system email templates
      */
-    getSystemEmailTemplates({ pageNo, pageSize, sort }?: {
-        pageNo?: number;
+    getSystemEmailTemplatesPaginator({ companyId, applicationId, pageSize, sort, }?: {
+        companyId: string;
+        applicationId: string;
         pageSize?: number;
         sort?: any;
-    }): Promise<SystemEmailTemplates>;
+    }): Paginator<CommunicationPlatformModel.SystemEmailTemplates>;
+    /**
+     * @param {CommunicationPlatformApplicationValidator.GetSystemSystemTemplatesParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.SystemSmsTemplates>} -
+     *   Success response
+     * @name getSystemSystemTemplates
+     * @summary: Get system sms templates
+     * @description: Get system sms templates - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSystemSystemTemplates/).
+     */
+    getSystemSystemTemplates({ pageNo, pageSize, sort }?: CommunicationPlatformApplicationValidator.GetSystemSystemTemplatesParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.SystemSmsTemplates>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageNo] - Current page no
+     * @param {string} arg.companyId - Company id
+     * @param {string} arg.applicationId - Application id
      * @param {number} [arg.pageSize] - Current request items count
      * @param {Object} [arg.sort] - To sort based on created_at
-     * @returns {Promise<SystemSmsTemplates>} - Success response
+     * @returns {Paginator<CommunicationPlatformModel.SystemSmsTemplates>}
      * @summary: Get system sms templates
      * @description: Get system sms templates
      */
-    getSystemSystemTemplates({ pageNo, pageSize, sort }?: {
-        pageNo?: number;
+    getSystemSystemTemplatesPaginator({ companyId, applicationId, pageSize, sort, }?: {
+        companyId: string;
+        applicationId: string;
         pageSize?: number;
         sort?: any;
-    }): Promise<SystemSmsTemplates>;
+    }): Paginator<CommunicationPlatformModel.SystemSmsTemplates>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {EngineRequest} arg.body
-     * @returns {Promise<EngineResponse>} - Success response
+     * @param {CommunicationPlatformApplicationValidator.SendCommunicationAsynchronouslyParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.EngineResponse>} - Success response
+     * @name sendCommunicationAsynchronously
      * @summary: Send email or sms asynchronously
-     * @description: Send email or sms asynchronously
+     * @description: Send email or sms asynchronously - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/sendCommunicationAsynchronously/).
      */
-    sendCommunicationAsynchronously({ body }?: {
-        body: EngineRequest;
-    }): Promise<EngineResponse>;
+    sendCommunicationAsynchronously({ body }?: CommunicationPlatformApplicationValidator.SendCommunicationAsynchronouslyParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.EngineResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {EngineRequest} arg.body
-     * @returns {Promise<EngineResponse>} - Success response
+     * @param {CommunicationPlatformApplicationValidator.SendCommunicationSynchronouslyParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.EngineResponse>} - Success response
+     * @name sendCommunicationSynchronously
      * @summary: Send email or sms synchronously
-     * @description: Send email or sms synchronously
+     * @description: Send email or sms synchronously - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/sendCommunicationSynchronously/).
      */
-    sendCommunicationSynchronously({ body }?: {
-        body: EngineRequest;
-    }): Promise<EngineResponse>;
+    sendCommunicationSynchronously({ body }?: CommunicationPlatformApplicationValidator.SendCommunicationSynchronouslyParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.EngineResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {SendOtpCommsReq} arg.body
-     * @returns {Promise<SendOtpCommsRes>} - Success response
+     * @param {CommunicationPlatformApplicationValidator.SendOtpParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.SendOtpCommsRes>} - Success response
+     * @name sendOtp
      * @summary: Send OTP using email and sms
-     * @description: Send OTP Comms via email and sms
+     * @description: Send OTP Comms via email and sms - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/sendOtp/).
      */
-    sendOtp({ body }?: {
-        body: SendOtpCommsReq;
-    }): Promise<SendOtpCommsRes>;
+    sendOtp({ body }?: CommunicationPlatformApplicationValidator.SendOtpParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.SendOtpCommsRes>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {TriggerJobRequest} arg.body
-     * @returns {Promise<TriggerJobResponse>} - Success response
+     * @param {CommunicationPlatformApplicationValidator.TriggerCampaignJobParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.TriggerJobResponse>} -
+     *   Success response
+     * @name triggerCampaignJob
      * @summary: Trigger campaign job
-     * @description: Trigger campaign job
+     * @description: Trigger campaign job - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/triggerCampaignJob/).
      */
-    triggerCampaignJob({ body }?: {
-        body: TriggerJobRequest;
-    }): Promise<TriggerJobResponse>;
+    triggerCampaignJob({ body }?: CommunicationPlatformApplicationValidator.TriggerCampaignJobParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.TriggerJobResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Audience id
-     * @param {AudienceReq} arg.body
-     * @returns {Promise<Audience>} - Success response
+     * @param {CommunicationPlatformApplicationValidator.UpdateAudienceByIdParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.Audience>} - Success response
+     * @name updateAudienceById
      * @summary: Update audience by id
-     * @description: Update audience by id
+     * @description: Update audience by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateAudienceById/).
      */
-    updateAudienceById({ id, body }?: {
-        id: string;
-        body: AudienceReq;
-    }): Promise<Audience>;
+    updateAudienceById({ id, body }?: CommunicationPlatformApplicationValidator.UpdateAudienceByIdParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.Audience>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Campaign id
-     * @param {CampaignReq} arg.body
-     * @returns {Promise<Campaign>} - Success response
+     * @param {CommunicationPlatformApplicationValidator.UpdateCampaignByIdParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.Campaign>} - Success response
+     * @name updateCampaignById
      * @summary: Update campaign by id
-     * @description: Update campaign by id
+     * @description: Update campaign by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateCampaignById/).
      */
-    updateCampaignById({ id, body }?: {
-        id: string;
-        body: CampaignReq;
-    }): Promise<Campaign>;
+    updateCampaignById({ id, body }?: CommunicationPlatformApplicationValidator.UpdateCampaignByIdParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.Campaign>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Email provider id
-     * @param {EmailProviderReq} arg.body
-     * @returns {Promise<EmailProvider>} - Success response
+     * @param {CommunicationPlatformApplicationValidator.UpdateEmailProviderByIdParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.EmailProvider>} - Success response
+     * @name updateEmailProviderById
      * @summary: Update email provider by id
-     * @description: Update email provider by id
+     * @description: Update email provider by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateEmailProviderById/).
      */
-    updateEmailProviderById({ id, body }?: {
-        id: string;
-        body: EmailProviderReq;
-    }): Promise<EmailProvider>;
+    updateEmailProviderById({ id, body }?: CommunicationPlatformApplicationValidator.UpdateEmailProviderByIdParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.EmailProvider>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Email template id
-     * @param {EmailTemplateReq} arg.body
-     * @returns {Promise<EmailTemplateRes>} - Success response
+     * @param {CommunicationPlatformApplicationValidator.UpdateEmailTemplateByIdParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.EmailTemplateRes>} - Success response
+     * @name updateEmailTemplateById
      * @summary: Update email template by id
-     * @description: Update email template by id
+     * @description: Update email template by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateEmailTemplateById/).
      */
-    updateEmailTemplateById({ id, body }?: {
-        id: string;
-        body: EmailTemplateReq;
-    }): Promise<EmailTemplateRes>;
+    updateEmailTemplateById({ id, body }?: CommunicationPlatformApplicationValidator.UpdateEmailTemplateByIdParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.EmailTemplateRes>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Sms provider id
-     * @param {SmsProviderReq} arg.body
-     * @returns {Promise<SmsProvider>} - Success response
+     * @param {CommunicationPlatformApplicationValidator.UpdateSmsProviderByIdParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.SmsProvider>} - Success response
+     * @name updateSmsProviderById
      * @summary: Update sms provider by id
-     * @description: Update sms provider by id
+     * @description: Update sms provider by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateSmsProviderById/).
      */
-    updateSmsProviderById({ id, body }?: {
-        id: string;
-        body: SmsProviderReq;
-    }): Promise<SmsProvider>;
+    updateSmsProviderById({ id, body }?: CommunicationPlatformApplicationValidator.UpdateSmsProviderByIdParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.SmsProvider>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.id - Sms template id
-     * @param {SmsTemplateReq} arg.body
-     * @returns {Promise<SmsTemplateRes>} - Success response
+     * @param {CommunicationPlatformApplicationValidator.UpdateSmsTemplateByIdParam} arg
+     *   - Arg object
+     *
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.SmsTemplateRes>} - Success response
+     * @name updateSmsTemplateById
      * @summary: Update sms template by id
-     * @description: Update sms template by id
+     * @description: Update sms template by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateSmsTemplateById/).
      */
-    updateSmsTemplateById({ id, body }?: {
-        id: string;
-        body: SmsTemplateReq;
-    }): Promise<SmsTemplateRes>;
+    updateSmsTemplateById({ id, body }?: CommunicationPlatformApplicationValidator.UpdateSmsTemplateByIdParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.SmsTemplateRes>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {VerifyOtpCommsReq} arg.body
-     * @returns {Promise<VerifyOtpCommsSuccessRes>} - Success response
+     * @param {CommunicationPlatformApplicationValidator.VerfiyOtpParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CommunicationPlatformModel.VerifyOtpCommsSuccessRes>}
+     *   - Success response
+     *
+     * @name verfiyOtp
      * @summary: Verify OTP sent via email and sms
-     * @description: Verify OTP sent via email and sms
+     * @description: Verify OTP sent via email and sms - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/verfiyOtp/).
      */
-    verfiyOtp({ body }?: {
-        body: VerifyOtpCommsReq;
-    }): Promise<VerifyOtpCommsSuccessRes>;
+    verfiyOtp({ body }?: CommunicationPlatformApplicationValidator.VerfiyOtpParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.VerifyOtpCommsSuccessRes>;
 }
+import CommunicationPlatformApplicationValidator = require("./CommunicationPlatformApplicationValidator");
+import CommunicationPlatformModel = require("./CommunicationPlatformModel");
+import Paginator = require("../../common/Paginator");

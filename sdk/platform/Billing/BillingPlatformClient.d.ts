@@ -3,143 +3,134 @@ declare class Billing {
     constructor(config: any);
     config: any;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {SubscriptionActivateReq} arg.body
-     * @returns {Promise<SubscriptionActivateRes>} - Success response
+     * @param {BillingPlatformValidator.ActivateSubscriptionPlanParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<BillingPlatformModel.SubscriptionActivateRes>} - Success response
+     * @name activateSubscriptionPlan
      * @summary: Activate subscription
-     * @description: It will activate subscription plan for customer
+     * @description: It will activate subscription plan for customer - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/activateSubscriptionPlan/).
      */
-    activateSubscriptionPlan({ body }?: {
-        body: SubscriptionActivateReq;
-    }): Promise<SubscriptionActivateRes>;
+    activateSubscriptionPlan({ body }?: BillingPlatformValidator.ActivateSubscriptionPlanParam, { headers }?: import("../PlatformAPIClient").Options): Promise<BillingPlatformModel.SubscriptionActivateRes>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.extensionId - Extension _id
-     * @param {string} arg.subscriptionId - Subscription charge _id
-     * @returns {Promise<EntitySubscription>} - Success response
+     * @param {BillingPlatformValidator.CancelSubscriptionChargeParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<BillingPlatformModel.EntitySubscription>} - Success response
+     * @name cancelSubscriptionCharge
      * @summary: Cancel subscription charge
-     * @description: Cancel subscription and attached charges.
+     * @description: Cancel subscription and attached charges. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/cancelSubscriptionCharge/).
      */
-    cancelSubscriptionCharge({ extensionId, subscriptionId }?: {
-        extensionId: string;
-        subscriptionId: string;
-    }): Promise<EntitySubscription>;
+    cancelSubscriptionCharge({ extensionId, subscriptionId }?: BillingPlatformValidator.CancelSubscriptionChargeParam, { headers }?: import("../PlatformAPIClient").Options): Promise<BillingPlatformModel.EntitySubscription>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {CancelSubscriptionReq} arg.body
-     * @returns {Promise<CancelSubscriptionRes>} - Success response
+     * @param {BillingPlatformValidator.CancelSubscriptionPlanParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<BillingPlatformModel.CancelSubscriptionRes>} - Success response
+     * @name cancelSubscriptionPlan
      * @summary: Cancel subscription
-     * @description: It will cancel current active subscription.
+     * @description: It will cancel current active subscription. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/cancelSubscriptionPlan/).
      */
-    cancelSubscriptionPlan({ body }?: {
-        body: CancelSubscriptionReq;
-    }): Promise<CancelSubscriptionRes>;
+    cancelSubscriptionPlan({ body }?: BillingPlatformValidator.CancelSubscriptionPlanParam, { headers }?: import("../PlatformAPIClient").Options): Promise<BillingPlatformModel.CancelSubscriptionRes>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.plan - ID of the plan.
-     * @param {string} arg.couponCode - Coupon code.
-     * @returns {Promise<CheckValidityResponse>} - Success response
+     * @param {BillingPlatformValidator.CheckCouponValidityParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<BillingPlatformModel.CheckValidityResponse>} - Success response
+     * @name checkCouponValidity
      * @summary: Check coupon validity
-     * @description: Check coupon validity.
+     * @description: Check coupon validity. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/checkCouponValidity/).
      */
-    checkCouponValidity({ plan, couponCode }?: {
-        plan: string;
-        couponCode: string;
-    }): Promise<CheckValidityResponse>;
+    checkCouponValidity({ plan, couponCode }?: BillingPlatformValidator.CheckCouponValidityParam, { headers }?: import("../PlatformAPIClient").Options): Promise<BillingPlatformModel.CheckValidityResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.extensionId - Extension _id
-     * @param {CreateOneTimeCharge} arg.body
-     * @returns {Promise<CreateOneTimeChargeResponse>} - Success response
+     * @param {BillingPlatformValidator.CreateOneTimeChargeParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<BillingPlatformModel.CreateOneTimeChargeResponse>} -
+     *   Success response
+     * @name createOneTimeCharge
      * @summary: Create one time subscription charge
-     * @description: Register one time subscription charge for a seller of your extension.
+     * @description: Register one time subscription charge for a seller of your extension. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/createOneTimeCharge/).
      */
-    createOneTimeCharge({ extensionId, body }?: {
-        extensionId: string;
-        body: CreateOneTimeCharge;
-    }): Promise<CreateOneTimeChargeResponse>;
+    createOneTimeCharge({ extensionId, body }?: BillingPlatformValidator.CreateOneTimeChargeParam, { headers }?: import("../PlatformAPIClient").Options): Promise<BillingPlatformModel.CreateOneTimeChargeResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.extensionId - Extension _id
-     * @param {CreateSubscriptionCharge} arg.body
-     * @returns {Promise<CreateSubscriptionResponse>} - Success response
+     * @param {BillingPlatformValidator.CreateSubscriptionChargeParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<BillingPlatformModel.CreateSubscriptionResponse>} -
+     *   Success response
+     * @name createSubscriptionCharge
      * @summary: Create subscription charge
-     * @description: Register subscription charge for a seller of your extension.
+     * @description: Register subscription charge for a seller of your extension. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/createSubscriptionCharge/).
      */
-    createSubscriptionCharge({ extensionId, body }?: {
-        extensionId: string;
-        body: CreateSubscriptionCharge;
-    }): Promise<CreateSubscriptionResponse>;
+    createSubscriptionCharge({ extensionId, body }?: BillingPlatformValidator.CreateSubscriptionChargeParam, { headers }?: import("../PlatformAPIClient").Options): Promise<BillingPlatformModel.CreateSubscriptionResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.extensionId - Extension _id
-     * @param {string} arg.chargeId - Standalone charge _id
-     * @returns {Promise<OneTimeChargeEntity>} - Success response
+     * @param {BillingPlatformValidator.GetChargeDetailsParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<BillingPlatformModel.OneTimeChargeEntity>} - Success response
+     * @name getChargeDetails
      * @summary: Get subscription charge details
-     * @description: Get created subscription charge details
+     * @description: Get created subscription charge details - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getChargeDetails/).
      */
-    getChargeDetails({ extensionId, chargeId }?: {
-        extensionId: string;
-        chargeId: string;
-    }): Promise<OneTimeChargeEntity>;
+    getChargeDetails({ extensionId, chargeId }?: BillingPlatformValidator.GetChargeDetailsParam, { headers }?: import("../PlatformAPIClient").Options): Promise<BillingPlatformModel.OneTimeChargeEntity>;
     /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<SubscriptionCustomer>} - Success response
+     * @param {BillingPlatformValidator.GetCustomerDetailParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<BillingPlatformModel.SubscriptionCustomer>} - Success response
+     * @name getCustomerDetail
      * @summary: Get subscription customer detail
-     * @description: Get subscription customer detail.
+     * @description: Get subscription customer detail. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getCustomerDetail/).
      */
-    getCustomerDetail({}?: any): Promise<SubscriptionCustomer>;
+    getCustomerDetail({ headers }?: any): Promise<BillingPlatformModel.SubscriptionCustomer>;
     /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<SubscriptionLimit>} - Success response
+     * @param {BillingPlatformValidator.GetFeatureLimitConfigParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<BillingPlatformModel.SubscriptionLimit>} - Success response
+     * @name getFeatureLimitConfig
      * @summary: Get subscription subscription limits
-     * @description: Get subscription subscription limits.
+     * @description: Get subscription subscription limits. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getFeatureLimitConfig/).
      */
-    getFeatureLimitConfig({}?: any): Promise<SubscriptionLimit>;
+    getFeatureLimitConfig({ headers }?: any): Promise<BillingPlatformModel.SubscriptionLimit>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.invoiceId - Invoice id
-     * @returns {Promise<Invoice>} - Success response
+     * @param {BillingPlatformValidator.GetInvoiceByIdParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<BillingPlatformModel.Invoice>} - Success response
+     * @name getInvoiceById
      * @summary: Get invoice by id
-     * @description: Get invoice by id.
+     * @description: Get invoice by id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getInvoiceById/).
      */
-    getInvoiceById({ invoiceId }?: {
-        invoiceId: string;
-    }): Promise<Invoice>;
+    getInvoiceById({ invoiceId }?: BillingPlatformValidator.GetInvoiceByIdParam, { headers }?: import("../PlatformAPIClient").Options): Promise<BillingPlatformModel.Invoice>;
     /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<Invoices>} - Success response
+     * @param {BillingPlatformValidator.GetInvoicesParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<BillingPlatformModel.Invoices>} - Success response
+     * @name getInvoices
      * @summary: Get invoices
-     * @description: Get invoices.
+     * @description: Get invoices. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getInvoices/).
      */
-    getInvoices({}?: any): Promise<Invoices>;
+    getInvoices({ headers }?: any): Promise<BillingPlatformModel.Invoices>;
     /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<SubscriptionStatus>} - Success response
+     * @param {BillingPlatformValidator.GetSubscriptionParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<BillingPlatformModel.SubscriptionStatus>} - Success response
+     * @name getSubscription
      * @summary: Get current subscription detail
      * @description: If subscription is active then it will return is_enabled true and return subscription object. If subscription is not active then is_enabled false and message.
+     *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getSubscription/).
      */
-    getSubscription({}?: any): Promise<SubscriptionStatus>;
+    getSubscription({ headers }?: any): Promise<BillingPlatformModel.SubscriptionStatus>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.extensionId - Extension _id
-     * @param {string} arg.subscriptionId - Subscription charge _id
-     * @returns {Promise<EntitySubscription>} - Success response
+     * @param {BillingPlatformValidator.GetSubscriptionChargeParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<BillingPlatformModel.EntitySubscription>} - Success response
+     * @name getSubscriptionCharge
      * @summary: Get subscription charge details
-     * @description: Get created subscription charge details
+     * @description: Get created subscription charge details - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getSubscriptionCharge/).
      */
-    getSubscriptionCharge({ extensionId, subscriptionId }?: {
-        extensionId: string;
-        subscriptionId: string;
-    }): Promise<EntitySubscription>;
+    getSubscriptionCharge({ extensionId, subscriptionId }?: BillingPlatformValidator.GetSubscriptionChargeParam, { headers }?: import("../PlatformAPIClient").Options): Promise<BillingPlatformModel.EntitySubscription>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {SubscriptionCustomerCreate} arg.body
-     * @returns {Promise<SubscriptionCustomer>} - Success response
+     * @param {BillingPlatformValidator.UpsertCustomerDetailParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<BillingPlatformModel.SubscriptionCustomer>} - Success response
+     * @name upsertCustomerDetail
      * @summary: Upsert subscription customer detail
-     * @description: Upsert subscription customer detail.
+     * @description: Upsert subscription customer detail. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/upsertCustomerDetail/).
      */
-    upsertCustomerDetail({ body }?: {
-        body: SubscriptionCustomerCreate;
-    }): Promise<SubscriptionCustomer>;
+    upsertCustomerDetail({ body }?: BillingPlatformValidator.UpsertCustomerDetailParam, { headers }?: import("../PlatformAPIClient").Options): Promise<BillingPlatformModel.SubscriptionCustomer>;
 }
+import BillingPlatformValidator = require("./BillingPlatformValidator");
+import BillingPlatformModel = require("./BillingPlatformModel");

@@ -2,8 +2,8 @@ const ApplicationAPIClient = require("../ApplicationAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
-const OrderValidator = require("./OrderApplicationValidator");
-const OrderModel = require("./OrderApplicationModel");
+const OrderApplicationValidator = require("./OrderApplicationValidator");
+const OrderApplicationModel = require("./OrderApplicationModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -51,18 +51,23 @@ class Order {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.orderId - ID of the shipment. An order may contain
-   *   multiple items and may get divided into one or more shipment, each
-   *   having its own ID.
-   * @param {string} arg.shipmentId - A unique number used for identifying and
-   *   tracking your orders.
-   * @returns {Promise<CustomerDetailsResponse>} - Success response
+   * @param {OrderApplicationValidator.GetCustomerDetailsByShipmentIdParam} arg
+   *   - Arg object.
+   *
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<OrderApplicationModel.CustomerDetailsResponse>} -
+   *   Success response
+   * @name getCustomerDetailsByShipmentId
    * @summary: Get Customer Details by Shipment Id
-   * @description: Use this API to retrieve customer details such as mobileno using Shipment ID.
+   * @description: Use this API to retrieve customer details such as mobileno using Shipment ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getCustomerDetailsByShipmentId/).
    */
-  async getCustomerDetailsByShipmentId({ orderId, shipmentId } = {}) {
-    const { error } = OrderValidator.getCustomerDetailsByShipmentId().validate(
+  async getCustomerDetailsByShipmentId(
+    { orderId, shipmentId } = {},
+    { headers } = { headers: false }
+  ) {
+    const {
+      error,
+    } = OrderApplicationValidator.getCustomerDetailsByShipmentId().validate(
       { orderId, shipmentId },
       { abortEarly: false, allowUnknown: true }
     );
@@ -73,17 +78,15 @@ class Order {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = OrderValidator.getCustomerDetailsByShipmentId().validate(
+    } = OrderApplicationValidator.getCustomerDetailsByShipmentId().validate(
       { orderId, shipmentId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message:
-          "Parameter Validation warrnings for getCustomerDetailsByShipmentId",
+        message: `Parameter Validation warrnings for application > Order > getCustomerDetailsByShipmentId \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -99,12 +102,18 @@ class Order {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = OrderModel.CustomerDetailsResponse().validate(response, {
+    } = OrderApplicationModel.CustomerDetailsResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -112,24 +121,29 @@ class Order {
     if (res_error) {
       Logger({
         level: "WARN",
-        message:
-          "Response Validation Warnnings for getCustomerDetailsByShipmentId",
+        message: `Response Validation Warnnings for application > Order > getCustomerDetailsByShipmentId \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.shipmentId - ID of the shipment.
-   * @returns {Promise<ResponseGetInvoiceShipment>} - Success response
+   * @param {OrderApplicationValidator.GetInvoiceByShipmentIdParam} arg - Arg object.
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<OrderApplicationModel.ResponseGetInvoiceShipment>} -
+   *   Success response
+   * @name getInvoiceByShipmentId
    * @summary: Get Invoice of a shipment
-   * @description: Use this API to retrieve shipment invoice.
+   * @description: Use this API to retrieve shipment invoice. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getInvoiceByShipmentId/).
    */
-  async getInvoiceByShipmentId({ shipmentId } = {}) {
-    const { error } = OrderValidator.getInvoiceByShipmentId().validate(
+  async getInvoiceByShipmentId(
+    { shipmentId } = {},
+    { headers } = { headers: false }
+  ) {
+    const {
+      error,
+    } = OrderApplicationValidator.getInvoiceByShipmentId().validate(
       { shipmentId },
       { abortEarly: false, allowUnknown: true }
     );
@@ -140,16 +154,15 @@ class Order {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = OrderValidator.getInvoiceByShipmentId().validate(
+    } = OrderApplicationValidator.getInvoiceByShipmentId().validate(
       { shipmentId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getInvoiceByShipmentId",
+        message: `Parameter Validation warrnings for application > Order > getInvoiceByShipmentId \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -165,37 +178,42 @@ class Order {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = OrderModel.ResponseGetInvoiceShipment().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = OrderApplicationModel.ResponseGetInvoiceShipment().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getInvoiceByShipmentId",
+        message: `Response Validation Warnnings for application > Order > getInvoiceByShipmentId \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.orderId - A unique number used for identifying and
-   *   tracking your orders.
-   * @returns {Promise<OrderById>} - Success response
+   * @param {OrderApplicationValidator.GetOrderByIdParam} arg - Arg object.
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<OrderApplicationModel.OrderById>} - Success response
+   * @name getOrderById
    * @summary: Get details of an order
-   * @description: Use this API to retrieve order details such as tracking details, shipment, store information using Fynd Order ID.
+   * @description: Use this API to retrieve order details such as tracking details, shipment, store information using Fynd Order ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getOrderById/).
    */
-  async getOrderById({ orderId } = {}) {
-    const { error } = OrderValidator.getOrderById().validate(
+  async getOrderById({ orderId } = {}, { headers } = { headers: false }) {
+    const { error } = OrderApplicationValidator.getOrderById().validate(
       { orderId },
       { abortEarly: false, allowUnknown: true }
     );
@@ -204,16 +222,17 @@ class Order {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderValidator.getOrderById().validate(
+    const {
+      error: warrning,
+    } = OrderApplicationValidator.getOrderById().validate(
       { orderId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getOrderById",
+        message: `Parameter Validation warrnings for application > Order > getOrderById \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -229,10 +248,18 @@ class Order {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
 
-    const { error: res_error } = OrderModel.OrderById().validate(response, {
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = OrderApplicationModel.OrderById().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -240,40 +267,26 @@ class Order {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getOrderById",
+        message: `Response Validation Warnnings for application > Order > getOrderById \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.status] - A filter to retrieve orders by their
-   *   current status such as _placed_, _delivered_, etc.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results. Default value is 1.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each
-   *   page. Default value is 10.
-   * @param {string} [arg.fromDate] - The date from which the orders should be
-   *   retrieved.
-   * @param {string} [arg.toDate] - The date till which the orders should be retrieved.
-   * @param {string} [arg.customMeta] - A filter and retrieve data using
-   *   special fields included for special use-cases
-   * @returns {Promise<OrderList>} - Success response
+   * @param {OrderApplicationValidator.GetOrdersParam} arg - Arg object.
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<OrderApplicationModel.OrderList>} - Success response
+   * @name getOrders
    * @summary: Get all orders
-   * @description: Use this API to retrieve all the orders.
+   * @description: Use this API to retrieve all the orders. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getOrders/).
    */
-  async getOrders({
-    status,
-    pageNo,
-    pageSize,
-    fromDate,
-    toDate,
-    customMeta,
-  } = {}) {
-    const { error } = OrderValidator.getOrders().validate(
+  async getOrders(
+    { status, pageNo, pageSize, fromDate, toDate, customMeta } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = OrderApplicationValidator.getOrders().validate(
       { status, pageNo, pageSize, fromDate, toDate, customMeta },
       { abortEarly: false, allowUnknown: true }
     );
@@ -282,16 +295,15 @@ class Order {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderValidator.getOrders().validate(
+    const { error: warrning } = OrderApplicationValidator.getOrders().validate(
       { status, pageNo, pageSize, fromDate, toDate, customMeta },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getOrders",
+        message: `Parameter Validation warrnings for application > Order > getOrders \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -313,10 +325,18 @@ class Order {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
 
-    const { error: res_error } = OrderModel.OrderList().validate(response, {
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = OrderApplicationModel.OrderList().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -324,24 +344,23 @@ class Order {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getOrders",
+        message: `Response Validation Warnnings for application > Order > getOrders \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.orderId - A unique number used for identifying and
-   *   tracking your orders.
-   * @returns {Promise<OrderById>} - Success response
+   * @param {OrderApplicationValidator.GetPosOrderByIdParam} arg - Arg object.
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<OrderApplicationModel.OrderById>} - Success response
+   * @name getPosOrderById
    * @summary: Get POS Order
-   * @description: Use this API to retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID.
+   * @description: Use this API to retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getPosOrderById/).
    */
-  async getPosOrderById({ orderId } = {}) {
-    const { error } = OrderValidator.getPosOrderById().validate(
+  async getPosOrderById({ orderId } = {}, { headers } = { headers: false }) {
+    const { error } = OrderApplicationValidator.getPosOrderById().validate(
       { orderId },
       { abortEarly: false, allowUnknown: true }
     );
@@ -350,16 +369,17 @@ class Order {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderValidator.getPosOrderById().validate(
+    const {
+      error: warrning,
+    } = OrderApplicationValidator.getPosOrderById().validate(
       { orderId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getPosOrderById",
+        message: `Parameter Validation warrnings for application > Order > getPosOrderById \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -375,10 +395,18 @@ class Order {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
 
-    const { error: res_error } = OrderModel.OrderById().validate(response, {
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = OrderApplicationModel.OrderById().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -386,27 +414,28 @@ class Order {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getPosOrderById",
+        message: `Response Validation Warnnings for application > Order > getPosOrderById \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.shipmentId - ID of the bag. An order may contain
-   *   multiple items and may get divided into one or more shipment, each
-   *   having its own ID.
-   * @param {string} arg.bagId - ID of the bag. An order may contain multiple
-   *   items and may get divided into one or more shipment, each having its own ID.
-   * @returns {Promise<ShipmentBagReasons>} - Success response
+   * @param {OrderApplicationValidator.GetShipmentBagReasonsParam} arg - Arg object.
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<OrderApplicationModel.ShipmentBagReasons>} - Success response
+   * @name getShipmentBagReasons
    * @summary: Get reasons behind full or partial cancellation of a shipment
-   * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+   * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getShipmentBagReasons/).
    */
-  async getShipmentBagReasons({ shipmentId, bagId } = {}) {
-    const { error } = OrderValidator.getShipmentBagReasons().validate(
+  async getShipmentBagReasons(
+    { shipmentId, bagId } = {},
+    { headers } = { headers: false }
+  ) {
+    const {
+      error,
+    } = OrderApplicationValidator.getShipmentBagReasons().validate(
       { shipmentId, bagId },
       { abortEarly: false, allowUnknown: true }
     );
@@ -415,16 +444,17 @@ class Order {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderValidator.getShipmentBagReasons().validate(
+    const {
+      error: warrning,
+    } = OrderApplicationValidator.getShipmentBagReasons().validate(
       { shipmentId, bagId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getShipmentBagReasons",
+        message: `Parameter Validation warrnings for application > Order > getShipmentBagReasons \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -440,12 +470,18 @@ class Order {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = OrderModel.ShipmentBagReasons().validate(response, {
+    } = OrderApplicationModel.ShipmentBagReasons().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -453,25 +489,23 @@ class Order {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getShipmentBagReasons",
+        message: `Response Validation Warnnings for application > Order > getShipmentBagReasons \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.shipmentId - ID of the shipment. An order may contain
-   *   multiple items and may get divided into one or more shipment, each
-   *   having its own ID.
-   * @returns {Promise<ShipmentById>} - Success response
+   * @param {OrderApplicationValidator.GetShipmentByIdParam} arg - Arg object.
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<OrderApplicationModel.ShipmentById>} - Success response
+   * @name getShipmentById
    * @summary: Get details of a shipment
-   * @description: Use this API to retrieve shipment details such as price breakup, tracking details, store information, etc. using Shipment ID.
+   * @description: Use this API to retrieve shipment details such as price breakup, tracking details, store information, etc. using Shipment ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getShipmentById/).
    */
-  async getShipmentById({ shipmentId } = {}) {
-    const { error } = OrderValidator.getShipmentById().validate(
+  async getShipmentById({ shipmentId } = {}, { headers } = { headers: false }) {
+    const { error } = OrderApplicationValidator.getShipmentById().validate(
       { shipmentId },
       { abortEarly: false, allowUnknown: true }
     );
@@ -480,16 +514,17 @@ class Order {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderValidator.getShipmentById().validate(
+    const {
+      error: warrning,
+    } = OrderApplicationValidator.getShipmentById().validate(
       { shipmentId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getShipmentById",
+        message: `Parameter Validation warrnings for application > Order > getShipmentById \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -505,10 +540,18 @@ class Order {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
 
-    const { error: res_error } = OrderModel.ShipmentById().validate(response, {
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = OrderApplicationModel.ShipmentById().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -516,25 +559,26 @@ class Order {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getShipmentById",
+        message: `Response Validation Warnnings for application > Order > getShipmentById \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.shipmentId - ID of the shipment. An order may contain
-   *   multiple items and may get divided into one or more shipment, each
-   *   having its own ID.
-   * @returns {Promise<ShipmentReasons>} - Success response
+   * @param {OrderApplicationValidator.GetShipmentReasonsParam} arg - Arg object.
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<OrderApplicationModel.ShipmentReasons>} - Success response
+   * @name getShipmentReasons
    * @summary: Get reasons behind full or partial cancellation of a shipment
-   * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+   * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getShipmentReasons/).
    */
-  async getShipmentReasons({ shipmentId } = {}) {
-    const { error } = OrderValidator.getShipmentReasons().validate(
+  async getShipmentReasons(
+    { shipmentId } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = OrderApplicationValidator.getShipmentReasons().validate(
       { shipmentId },
       { abortEarly: false, allowUnknown: true }
     );
@@ -543,16 +587,17 @@ class Order {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderValidator.getShipmentReasons().validate(
+    const {
+      error: warrning,
+    } = OrderApplicationValidator.getShipmentReasons().validate(
       { shipmentId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getShipmentReasons",
+        message: `Parameter Validation warrnings for application > Order > getShipmentReasons \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -568,38 +613,48 @@ class Order {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
 
-    const { error: res_error } = OrderModel.ShipmentReasons().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = OrderApplicationModel.ShipmentReasons().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getShipmentReasons",
+        message: `Response Validation Warnnings for application > Order > getShipmentReasons \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.orderId - A unique number used for identifying and
-   *   tracking your orders.
-   * @param {string} arg.shipmentId - ID of the shipment. An order may contain
-   *   multiple items and may get divided into one or more shipment, each
-   *   having its own ID.
-   * @returns {Promise<SendOtpToCustomerResponse>} - Success response
+   * @param {OrderApplicationValidator.SendOtpToShipmentCustomerParam} arg - Arg object.
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<OrderApplicationModel.SendOtpToCustomerResponse>} -
+   *   Success response
+   * @name sendOtpToShipmentCustomer
    * @summary: Send and Resend Otp code to Order-Shipment customer
-   * @description: Use this API to send OTP to the customer of the mapped Shipment.
+   * @description: Use this API to send OTP to the customer of the mapped Shipment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/sendOtpToShipmentCustomer/).
    */
-  async sendOtpToShipmentCustomer({ orderId, shipmentId } = {}) {
-    const { error } = OrderValidator.sendOtpToShipmentCustomer().validate(
+  async sendOtpToShipmentCustomer(
+    { orderId, shipmentId } = {},
+    { headers } = { headers: false }
+  ) {
+    const {
+      error,
+    } = OrderApplicationValidator.sendOtpToShipmentCustomer().validate(
       { orderId, shipmentId },
       { abortEarly: false, allowUnknown: true }
     );
@@ -610,16 +665,15 @@ class Order {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = OrderValidator.sendOtpToShipmentCustomer().validate(
+    } = OrderApplicationValidator.sendOtpToShipmentCustomer().validate(
       { orderId, shipmentId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for sendOtpToShipmentCustomer",
+        message: `Parameter Validation warrnings for application > Order > sendOtpToShipmentCustomer \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -635,38 +689,42 @@ class Order {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = OrderModel.SendOtpToCustomerResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = OrderApplicationModel.SendOtpToCustomerResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for sendOtpToShipmentCustomer",
+        message: `Response Validation Warnnings for application > Order > sendOtpToShipmentCustomer \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.shipmentId - ID of the shipment. An order may contain
-   *   multiple items and may get divided into one or more shipment, each
-   *   having its own ID.
-   * @returns {Promise<ShipmentTrack>} - Success response
+   * @param {OrderApplicationValidator.TrackShipmentParam} arg - Arg object.
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<OrderApplicationModel.ShipmentTrack>} - Success response
+   * @name trackShipment
    * @summary: Track shipment
-   * @description: Track Shipment by shipment id, for application based on application Id
+   * @description: Track Shipment by shipment id, for application based on application Id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/trackShipment/).
    */
-  async trackShipment({ shipmentId } = {}) {
-    const { error } = OrderValidator.trackShipment().validate(
+  async trackShipment({ shipmentId } = {}, { headers } = { headers: false }) {
+    const { error } = OrderApplicationValidator.trackShipment().validate(
       { shipmentId },
       { abortEarly: false, allowUnknown: true }
     );
@@ -675,16 +733,17 @@ class Order {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderValidator.trackShipment().validate(
+    const {
+      error: warrning,
+    } = OrderApplicationValidator.trackShipment().validate(
       { shipmentId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for trackShipment",
+        message: `Parameter Validation warrnings for application > Order > trackShipment \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -700,10 +759,18 @@ class Order {
       }),
       query_params,
       undefined,
-      xHeaders
+      xHeaders,
+      { headers }
     );
 
-    const { error: res_error } = OrderModel.ShipmentTrack().validate(response, {
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = OrderApplicationModel.ShipmentTrack().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -711,26 +778,28 @@ class Order {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for trackShipment",
+        message: `Response Validation Warnnings for application > Order > trackShipment \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.shipmentId - ID of the shipment. An order may contain
-   *   multiple items and may get divided into one or more shipment, each
-   *   having its own ID.
-   * @param {UpdateShipmentStatusRequest} arg.body
-   * @returns {Promise<ShipmentApplicationStatusResponse>} - Success response
+   * @param {OrderApplicationValidator.UpdateShipmentStatusParam} arg - Arg object.
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<OrderApplicationModel.ShipmentApplicationStatusResponse>}
+   *   - Success response
+   *
+   * @name updateShipmentStatus
    * @summary: Update the shipment status
-   * @description: Use this API to update the status of a shipment using its shipment ID.
+   * @description: Use this API to update the status of a shipment using its shipment ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/updateShipmentStatus/).
    */
-  async updateShipmentStatus({ shipmentId, body } = {}) {
-    const { error } = OrderValidator.updateShipmentStatus().validate(
+  async updateShipmentStatus(
+    { shipmentId, body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = OrderApplicationValidator.updateShipmentStatus().validate(
       { shipmentId, body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -739,16 +808,17 @@ class Order {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderValidator.updateShipmentStatus().validate(
+    const {
+      error: warrning,
+    } = OrderApplicationValidator.updateShipmentStatus().validate(
       { shipmentId, body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateShipmentStatus",
+        message: `Parameter Validation warrnings for application > Order > updateShipmentStatus \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -764,41 +834,47 @@ class Order {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = OrderModel.ShipmentApplicationStatusResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = OrderApplicationModel.ShipmentApplicationStatusResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateShipmentStatus",
+        message: `Response Validation Warnnings for application > Order > updateShipmentStatus \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.orderId - A unique number used for identifying and
-   *   tracking your orders.
-   * @param {string} arg.shipmentId - ID of the shipment. An order may contain
-   *   multiple items and may get divided into one or more shipment, each
-   *   having its own ID.
-   * @param {VerifyOtp} arg.body
-   * @returns {Promise<VerifyOtpResponse>} - Success response
+   * @param {OrderApplicationValidator.VerifyOtpShipmentCustomerParam} arg - Arg object.
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<OrderApplicationModel.VerifyOtpResponse>} - Success response
+   * @name verifyOtpShipmentCustomer
    * @summary: Verify Otp code
-   * @description: Use this API to verify OTP and create a session token with custom payload.
+   * @description: Use this API to verify OTP and create a session token with custom payload. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/verifyOtpShipmentCustomer/).
    */
-  async verifyOtpShipmentCustomer({ orderId, shipmentId, body } = {}) {
-    const { error } = OrderValidator.verifyOtpShipmentCustomer().validate(
+  async verifyOtpShipmentCustomer(
+    { orderId, shipmentId, body } = {},
+    { headers } = { headers: false }
+  ) {
+    const {
+      error,
+    } = OrderApplicationValidator.verifyOtpShipmentCustomer().validate(
       { orderId, shipmentId, body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -809,16 +885,15 @@ class Order {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = OrderValidator.verifyOtpShipmentCustomer().validate(
+    } = OrderApplicationValidator.verifyOtpShipmentCustomer().validate(
       { orderId, shipmentId, body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for verifyOtpShipmentCustomer",
+        message: `Parameter Validation warrnings for application > Order > verifyOtpShipmentCustomer \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -834,12 +909,18 @@ class Order {
       }),
       query_params,
       body,
-      xHeaders
+      xHeaders,
+      { headers }
     );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = OrderModel.VerifyOtpResponse().validate(response, {
+    } = OrderApplicationModel.VerifyOtpResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -847,9 +928,8 @@ class Order {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for verifyOtpShipmentCustomer",
+        message: `Response Validation Warnnings for application > Order > verifyOtpShipmentCustomer \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

@@ -3,133 +3,127 @@ declare class Finance {
     constructor(config: any);
     config: any;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {CreditlineDataPlatformRequest} arg.body
-     * @returns {Promise<CreditlineDataPlatformResponse>} - Success response
+     * @param {FinancePlatformValidator.CreditlineDataplatformParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<FinancePlatformModel.CreditlineDataPlatformResponse>}
+     *   - Success response
+     *
+     * @name creditlineDataplatform
      * @summary:
-     * @description:
+     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/creditlineDataplatform/).
      */
-    creditlineDataplatform({ body }?: {
-        body: CreditlineDataPlatformRequest;
-    }): Promise<CreditlineDataPlatformResponse>;
+    creditlineDataplatform({ body }?: FinancePlatformValidator.CreditlineDataplatformParam, { headers }?: import("../PlatformAPIClient").Options): Promise<FinancePlatformModel.CreditlineDataPlatformResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {DownloadCreditDebitNoteRequest} arg.body
-     * @returns {Promise<DownloadCreditDebitNoteResponse>} - Success response
+     * @param {FinancePlatformValidator.DownloadCreditDebitNoteParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<FinancePlatformModel.DownloadCreditDebitNoteResponse>}
+     *   - Success response
+     *
+     * @name downloadCreditDebitNote
      * @summary:
-     * @description:
+     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/downloadCreditDebitNote/).
      */
-    downloadCreditDebitNote({ body }?: {
-        body: DownloadCreditDebitNoteRequest;
-    }): Promise<DownloadCreditDebitNoteResponse>;
+    downloadCreditDebitNote({ body }?: FinancePlatformValidator.DownloadCreditDebitNoteParam, { headers }?: import("../PlatformAPIClient").Options): Promise<FinancePlatformModel.DownloadCreditDebitNoteResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {DownloadReport} arg.body
-     * @returns {Promise<DownloadReportList>} - Success response
+     * @param {FinancePlatformValidator.DownloadReportParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<FinancePlatformModel.DownloadReportList>} - Success response
+     * @name downloadReport
      * @summary:
-     * @description:
+     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/downloadReport/).
      */
-    downloadReport({ body }?: {
-        body: DownloadReport;
-    }): Promise<DownloadReportList>;
+    downloadReport({ body }?: FinancePlatformValidator.DownloadReportParam, { headers }?: import("../PlatformAPIClient").Options): Promise<FinancePlatformModel.DownloadReportList>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {GenerateReportRequest} arg.body
-     * @returns {Promise<GenerateReportJson>} - Success response
+     * @param {FinancePlatformValidator.GenerateReportParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<FinancePlatformModel.GenerateReportJson>} - Success response
+     * @name generateReport
      * @summary:
-     * @description:
+     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/generateReport/).
      */
-    generateReport({ body }?: {
-        body: GenerateReportRequest;
-    }): Promise<GenerateReportJson>;
+    generateReport({ body }?: FinancePlatformValidator.GenerateReportParam, { headers }?: import("../PlatformAPIClient").Options): Promise<FinancePlatformModel.GenerateReportJson>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {GetAffiliate} arg.body
-     * @returns {Promise<GetAffiliateResponse>} - Success response
+     * @param {FinancePlatformValidator.GetAffiliateParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<FinancePlatformModel.GetAffiliateResponse>} - Success response
+     * @name getAffiliate
      * @summary:
-     * @description:
+     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/getAffiliate/).
      */
-    getAffiliate({ body }?: {
-        body: GetAffiliate;
-    }): Promise<GetAffiliateResponse>;
+    getAffiliate({ body }?: FinancePlatformValidator.GetAffiliateParam, { headers }?: import("../PlatformAPIClient").Options): Promise<FinancePlatformModel.GetAffiliateResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {GetEngineRequest} arg.body
-     * @returns {Promise<GetEngineResponse>} - Success response
+     * @param {FinancePlatformValidator.GetDataParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<FinancePlatformModel.GetEngineResponse>} - Success response
+     * @name getData
      * @summary:
-     * @description:
+     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/getData/).
      */
-    getData({ body }?: {
-        body: GetEngineRequest;
-    }): Promise<GetEngineResponse>;
+    getData({ body }?: FinancePlatformValidator.GetDataParam, { headers }?: import("../PlatformAPIClient").Options): Promise<FinancePlatformModel.GetEngineResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {GetReasonRequest} arg.body
-     * @returns {Promise<GetReasonResponse>} - Success response
+     * @param {FinancePlatformValidator.GetReasonParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<FinancePlatformModel.GetReasonResponse>} - Success response
+     * @name getReason
      * @summary:
-     * @description:
+     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/getReason/).
      */
-    getReason({ body }?: {
-        body: GetReasonRequest;
-    }): Promise<GetReasonResponse>;
+    getReason({ body }?: FinancePlatformValidator.GetReasonParam, { headers }?: import("../PlatformAPIClient").Options): Promise<FinancePlatformModel.GetReasonResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {GetReportListRequest} arg.body
-     * @returns {Promise<GetEngineResponse>} - Success response
+     * @param {FinancePlatformValidator.GetReportListParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<FinancePlatformModel.GetEngineResponse>} - Success response
+     * @name getReportList
      * @summary:
-     * @description:
+     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/getReportList/).
      */
-    getReportList({ body }?: {
-        body: GetReportListRequest;
-    }): Promise<GetEngineResponse>;
+    getReportList({ body }?: FinancePlatformValidator.GetReportListParam, { headers }?: import("../PlatformAPIClient").Options): Promise<FinancePlatformModel.GetEngineResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {InvoiceListingRequest} arg.body
-     * @returns {Promise<InvoiceListingResponse>} - Success response
+     * @param {FinancePlatformValidator.InvoiceListingParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<FinancePlatformModel.InvoiceListingResponse>} - Success response
+     * @name invoiceListing
      * @summary:
-     * @description:
+     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/invoiceListing/).
      */
-    invoiceListing({ body }?: {
-        body: InvoiceListingRequest;
-    }): Promise<InvoiceListingResponse>;
+    invoiceListing({ body }?: FinancePlatformValidator.InvoiceListingParam, { headers }?: import("../PlatformAPIClient").Options): Promise<FinancePlatformModel.InvoiceListingResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {InvoicePdfRequest} arg.body
-     * @returns {Promise<InvoicePdfResponse>} - Success response
+     * @param {FinancePlatformValidator.InvoicePDFParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<FinancePlatformModel.InvoicePdfResponse>} - Success response
+     * @name invoicePDF
      * @summary:
-     * @description:
+     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/invoicePDF/).
      */
-    invoicePDF({ body }?: {
-        body: InvoicePdfRequest;
-    }): Promise<InvoicePdfResponse>;
+    invoicePDF({ body }?: FinancePlatformValidator.InvoicePDFParam, { headers }?: import("../PlatformAPIClient").Options): Promise<FinancePlatformModel.InvoicePdfResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {InvoiceTypeRequest} arg.body
-     * @returns {Promise<InvoiceTypeResponse>} - Success response
+     * @param {FinancePlatformValidator.InvoiceTypeParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<FinancePlatformModel.InvoiceTypeResponse>} - Success response
+     * @name invoiceType
      * @summary:
-     * @description:
+     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/invoiceType/).
      */
-    invoiceType({ body }?: {
-        body: InvoiceTypeRequest;
-    }): Promise<InvoiceTypeResponse>;
+    invoiceType({ body }?: FinancePlatformValidator.InvoiceTypeParam, { headers }?: import("../PlatformAPIClient").Options): Promise<FinancePlatformModel.InvoiceTypeResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {IsCreditlinePlatformRequest} arg.body
-     * @returns {Promise<IsCreditlinePlatformResponse>} - Success response
+     * @param {FinancePlatformValidator.IsCreditlinePlatformParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<FinancePlatformModel.IsCreditlinePlatformResponse>} -
+     *   Success response
+     * @name isCreditlinePlatform
      * @summary:
-     * @description:
+     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/isCreditlinePlatform/).
      */
-    isCreditlinePlatform({ body }?: {
-        body: IsCreditlinePlatformRequest;
-    }): Promise<IsCreditlinePlatformResponse>;
+    isCreditlinePlatform({ body }?: FinancePlatformValidator.IsCreditlinePlatformParam, { headers }?: import("../PlatformAPIClient").Options): Promise<FinancePlatformModel.IsCreditlinePlatformResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {PaymentProcessRequest} arg.body
-     * @returns {Promise<PaymentProcessResponse>} - Success response
+     * @param {FinancePlatformValidator.PaymentProcessParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<FinancePlatformModel.PaymentProcessResponse>} - Success response
+     * @name paymentProcess
      * @summary:
-     * @description:
+     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/paymentProcess/).
      */
-    paymentProcess({ body }?: {
-        body: PaymentProcessRequest;
-    }): Promise<PaymentProcessResponse>;
+    paymentProcess({ body }?: FinancePlatformValidator.PaymentProcessParam, { headers }?: import("../PlatformAPIClient").Options): Promise<FinancePlatformModel.PaymentProcessResponse>;
 }
+import FinancePlatformValidator = require("./FinancePlatformValidator");
+import FinancePlatformModel = require("./FinancePlatformModel");

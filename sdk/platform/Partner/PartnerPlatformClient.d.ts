@@ -3,143 +3,104 @@ declare class Partner {
     constructor(config: any);
     config: any;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.extensionId - Extension id
-     * @param {string} arg.message - Message while uninstalling extension
-     * @param {string} arg.uninstallReasonType - Reason for uninstalling extension
-     * @returns {Promise<UninstallExtension>} - Success response
+     * @param {PartnerPlatformValidator.DeleteExtensionByIdParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<PartnerPlatformModel.UninstallExtension>} - Success response
+     * @name deleteExtensionById
      * @summary: Uninstall extension
-     * @description: Use this API to remove extension from yout company or channel
+     * @description: Use this API to remove extension from yout company or channel - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/deleteExtensionById/).
      */
-    deleteExtensionById({ extensionId, message, uninstallReasonType, }?: {
-        extensionId: string;
-        message: string;
-        uninstallReasonType: string;
-    }): Promise<UninstallExtension>;
+    deleteExtensionById({ extensionId, message, uninstallReasonType }?: PartnerPlatformValidator.DeleteExtensionByIdParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PartnerPlatformModel.UninstallExtension>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.extensionId - Extension id
-     * @returns {Promise<ExtensionCommon>} - Success response
+     * @param {PartnerPlatformValidator.GetExtensionByIdParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<PartnerPlatformModel.ExtensionCommon>} - Success response
+     * @name getExtensionById
      * @summary: Get extension details
-     * @description: Use this API to get the details of extension
+     * @description: Use this API to get the details of extension - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/getExtensionById/).
      */
-    getExtensionById({ extensionId }?: {
-        extensionId: string;
-    }): Promise<ExtensionCommon>;
+    getExtensionById({ extensionId }?: PartnerPlatformValidator.GetExtensionByIdParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PartnerPlatformModel.ExtensionCommon>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageSize] - Number of records you want to get in single page
-     * @param {string} [arg.tag] - Tag
-     * @param {string} [arg.currentPage] - Tag
-     * @param {number} [arg.pageNo] - Current page number
-     * @param {string} [arg.filterBy] - Filter by
-     * @param {string} [arg.query] - Query
-     * @returns {Promise<ExtensionList>} - Success response
+     * @param {PartnerPlatformValidator.GetExtensionsForCompanyParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<PartnerPlatformModel.ExtensionList>} - Success response
+     * @name getExtensionsForCompany
      * @summary: Get the list of all the extensions
-     * @description: Use this API to get the the extensions for the company
+     * @description: Use this API to get the the extensions for the company - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/getExtensionsForCompany/).
      */
-    getExtensionsForCompany({ pageSize, tag, currentPage, pageNo, filterBy, query, }?: {
-        pageSize?: number;
-        tag?: string;
-        currentPage?: string;
-        pageNo?: number;
-        filterBy?: string;
-        query?: string;
-    }): Promise<ExtensionList>;
+    getExtensionsForCompany({ pageSize, tag, currentPage, pageNo, filterBy, query }?: PartnerPlatformValidator.GetExtensionsForCompanyParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PartnerPlatformModel.ExtensionList>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageSize] - Number of records you want to get in single page
-     * @returns {Promise<ExtensionSuggestionList>} - Success response
+     * @param {PartnerPlatformValidator.GetExtensionsSuggestionsParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<PartnerPlatformModel.ExtensionSuggestionList>} - Success response
+     * @name getExtensionsSuggestions
      * @summary: Get the list of all the extension suggestions
-     * @description: Use this API to get the the extensions suggestions
+     * @description: Use this API to get the the extensions suggestions - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/getExtensionsSuggestions/).
      */
-    getExtensionsSuggestions({ pageSize }?: {
-        pageSize?: number;
-    }): Promise<ExtensionSuggestionList>;
+    getExtensionsSuggestions({ pageSize }?: PartnerPlatformValidator.GetExtensionsSuggestionsParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PartnerPlatformModel.ExtensionSuggestionList>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.requestStatus] - Status of the request
-     * @param {string} [arg.pageSize] - Number of records per page
-     * @param {string} [arg.pageNo] - Number of page the user want to fetch
-     * @returns {Promise<PartnerRequestList>} - Success response
+     * @param {PartnerPlatformValidator.GetPartnerInvitesParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<PartnerPlatformModel.PartnerRequestList>} - Success response
+     * @name getPartnerInvites
      * @summary: Get partner invites
-     * @description: Use this API to get pending, accepted and rejected partner invites in platform
+     * @description: Use this API to get pending, accepted and rejected partner invites in platform - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/getPartnerInvites/).
      */
-    getPartnerInvites({ requestStatus, pageSize, pageNo }?: {
-        requestStatus?: string;
-        pageSize?: string;
-        pageNo?: string;
-    }): Promise<PartnerRequestList>;
+    getPartnerInvites({ requestStatus, pageSize, pageNo }?: PartnerPlatformValidator.GetPartnerInvitesParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PartnerPlatformModel.PartnerRequestList>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.inviteId - Invitation id
-     * @returns {Promise<PartnerInviteDetails>} - Success response
+     * @param {PartnerPlatformValidator.GetPartnerRequestDetailsParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<PartnerPlatformModel.PartnerInviteDetails>} - Success response
+     * @name getPartnerRequestDetails
      * @summary: Get partner request details
-     * @description: Use this API to get details of pending partner request
+     * @description: Use this API to get details of pending partner request - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/getPartnerRequestDetails/).
      */
-    getPartnerRequestDetails({ inviteId }?: {
-        inviteId: string;
-    }): Promise<PartnerInviteDetails>;
+    getPartnerRequestDetails({ inviteId }?: PartnerPlatformValidator.GetPartnerRequestDetailsParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PartnerPlatformModel.PartnerInviteDetails>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.pageSize] - Number of records you want to get in single page
-     * @param {number} [arg.pageNo] - Number of page
-     * @param {string} [arg.query] - Filter query which we want to pass
-     * @returns {Promise<ExtensionResponse>} - Success response
+     * @param {PartnerPlatformValidator.GetPrivateExtensionsParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<PartnerPlatformModel.ExtensionResponse>} - Success response
+     * @name getPrivateExtensions
      * @summary: Get the list of private extensions
-     * @description: Use this API to get the list of private extensions
+     * @description: Use this API to get the list of private extensions - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/getPrivateExtensions/).
      */
-    getPrivateExtensions({ pageSize, pageNo, query }?: {
-        pageSize?: number;
-        pageNo?: number;
-        query?: string;
-    }): Promise<ExtensionResponse>;
+    getPrivateExtensions({ pageSize, pageNo, query }?: PartnerPlatformValidator.GetPrivateExtensionsParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PartnerPlatformModel.ExtensionResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.extensionId - Extension id
-     * @returns {Promise<PublicExtension>} - Success response
+     * @param {PartnerPlatformValidator.GetPublicExtensionParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<PartnerPlatformModel.PublicExtension>} - Success response
+     * @name getPublicExtension
      * @summary: Get details of public extension
-     * @description: Use this API to get the details of public extensions
+     * @description: Use this API to get the details of public extensions - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/getPublicExtension/).
      */
-    getPublicExtension({ extensionId }?: {
-        extensionId: string;
-    }): Promise<PublicExtension>;
+    getPublicExtension({ extensionId }?: PartnerPlatformValidator.GetPublicExtensionParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PartnerPlatformModel.PublicExtension>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.inviteId - Invitation id
-     * @param {ModifyPartnerReq} arg.body
-     * @returns {Promise<PartnerInviteDetails>} - Success response
+     * @param {PartnerPlatformValidator.ModifyPartnerRequestParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<PartnerPlatformModel.PartnerInviteDetails>} - Success response
+     * @name modifyPartnerRequest
      * @summary: Act on the pending partner request
-     * @description: Use this API to approve or reject the pending partner request
+     * @description: Use this API to approve or reject the pending partner request - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/modifyPartnerRequest/).
      */
-    modifyPartnerRequest({ inviteId, body }?: {
-        inviteId: string;
-        body: ModifyPartnerReq;
-    }): Promise<PartnerInviteDetails>;
+    modifyPartnerRequest({ inviteId, body }?: PartnerPlatformValidator.ModifyPartnerRequestParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PartnerPlatformModel.PartnerInviteDetails>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} [arg.requestId] - Extrequest id
-     * @returns {Promise<SetupProductRes>} - Success response
+     * @param {PartnerPlatformValidator.SetupProductsParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<PartnerPlatformModel.SetupProductRes>} - Success response
+     * @name setupProducts
      * @summary:
-     * @description: Use this API for setup
+     * @description: Use this API for setup - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/setupProducts/).
      */
-    setupProducts({ requestId }?: {
-        requestId?: string;
-    }): Promise<SetupProductRes>;
+    setupProducts({ requestId }?: PartnerPlatformValidator.SetupProductsParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PartnerPlatformModel.SetupProductRes>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.entity - Entity
-     * @param {string} arg.extensionId - Extension id
-     * @param {string} arg.entityId - Entity id
-     * @param {SubscriptionRequest} arg.body
-     * @returns {Promise<SubscriptionRes>} - Success response
+     * @param {PartnerPlatformValidator.SubscribeExtensionParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<PartnerPlatformModel.SubscriptionRes>} - Success response
+     * @name subscribeExtension
      * @summary: Subscribe for extension plan
-     * @description: Use this API to select plan for paid extension
+     * @description: Use this API to select plan for paid extension - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/subscribeExtension/).
      */
-    subscribeExtension({ entity, extensionId, entityId, body }?: {
-        entity: string;
-        extensionId: string;
-        entityId: string;
-        body: SubscriptionRequest;
-    }): Promise<SubscriptionRes>;
+    subscribeExtension({ entity, extensionId, entityId, body }?: PartnerPlatformValidator.SubscribeExtensionParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PartnerPlatformModel.SubscriptionRes>;
 }
+import PartnerPlatformValidator = require("./PartnerPlatformValidator");
+import PartnerPlatformModel = require("./PartnerPlatformModel");

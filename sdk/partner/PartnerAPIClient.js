@@ -1,5 +1,10 @@
 const { fdkAxios } = require("../common/AxiosHelper");
 
+/**
+ * @typedef {Object} Options
+ * @property {boolean} headers - Whether headers are returned or not.
+ */
+
 class APIClient {
   /**
    * @param {object} conf
@@ -7,8 +12,9 @@ class APIClient {
    * @param {string} url
    * @param {object} query
    * @param {object} body
+   * @param {Options} options
    */
-  static async execute(conf, method, url, query, body) {
+  static async execute(conf, method, url, query, body, options) {
     const token = await conf.oauthClient.getNewAccessToken();
 
     const extraHeaders = conf.extraHeaders.reduce((acc, curr) => {
@@ -26,6 +32,7 @@ class APIClient {
         Authorization: "Bearer " + token,
         ...extraHeaders,
       },
+      _returnHeaders: options.headers,
     };
 
     return fdkAxios.request(rawRequest);
