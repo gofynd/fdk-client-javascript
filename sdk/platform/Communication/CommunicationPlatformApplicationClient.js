@@ -20,7 +20,7 @@ class Communication {
    * @returns {Promise<CommunicationPlatformModel.Audience>} - Success response
    * @name createAudience
    * @summary: Create audience
-   * @description: Create audience - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createAudience/).
+   * @description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to create audience. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createAudience/).
    */
   async createAudience({ body } = {}, { headers } = { headers: false }) {
     const {
@@ -79,6 +79,198 @@ class Communication {
       Logger({
         level: "WARN",
         message: `Response Validation Warnnings for platform > Communication > createAudience \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<Object>} - Success response
+   * @name createBigQueryHeaders
+   * @summary: Create big query headers
+   * @description: Create big query headers - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createBigQueryHeaders/).
+   */
+  async createBigQueryHeaders({ headers } = { headers: false }) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.createBigQueryHeaders().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.createBigQueryHeaders().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > createBigQueryHeaders \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/bigquery-headers`,
+      query_params,
+      undefined,
+      undefined,
+      { headers }
+    );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = Joi.any().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Communication > createBigQueryHeaders \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<Object>} - Success response
+   * @name createBigQueryNCount
+   * @summary: Create big query n count
+   * @description: Create big query n count - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createBigQueryNCount/).
+   */
+  async createBigQueryNCount({ headers } = { headers: false }) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.createBigQueryNCount().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.createBigQueryNCount().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > createBigQueryNCount \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/bigquery-n-records`,
+      query_params,
+      undefined,
+      undefined,
+      { headers }
+    );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = Joi.any().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Communication > createBigQueryNCount \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<Object>} - Success response
+   * @name createBigQueryRowCount
+   * @summary: Create big query row count
+   * @description: Create big query row count - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createBigQueryRowCount/).
+   */
+  async createBigQueryRowCount({ headers } = { headers: false }) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.createBigQueryRowCount().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.createBigQueryRowCount().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > createBigQueryRowCount \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/bigquery-row-count`,
+      query_params,
+      undefined,
+      undefined,
+      { headers }
+    );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = Joi.any().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Communication > createBigQueryRowCount \n ${res_error}`,
       });
     }
 
@@ -236,10 +428,10 @@ class Communication {
    *   - Arg object
    *
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.EmailTemplateRes>} - Success response
+   * @returns {Promise<CommunicationPlatformModel.EmailTemplate>} - Success response
    * @name createEmailTemplate
    * @summary: Create email template
-   * @description: Create email template - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createEmailTemplate/).
+   * @description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to create an email template. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createEmailTemplate/).
    */
   async createEmailTemplate({ body } = {}, { headers } = { headers: false }) {
     const {
@@ -289,7 +481,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.EmailTemplateRes().validate(responseData, {
+    } = CommunicationPlatformModel.EmailTemplate().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -382,10 +574,10 @@ class Communication {
    *   - Arg object
    *
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.SmsTemplateRes>} - Success response
+   * @returns {Promise<CommunicationPlatformModel.SmsTemplate>} - Success response
    * @name createSmsTemplate
    * @summary: Create sms template
-   * @description: Create sms template - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createSmsTemplate/).
+   * @description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to create an sms template. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/createSmsTemplate/).
    */
   async createSmsTemplate({ body } = {}, { headers } = { headers: false }) {
     const {
@@ -435,7 +627,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.SmsTemplateRes().validate(responseData, {
+    } = CommunicationPlatformModel.SmsTemplate().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -451,16 +643,160 @@ class Communication {
   }
 
   /**
+   * @param {CommunicationPlatformApplicationValidator.DeleteAudienceByIdParam} arg
+   *   - Arg object
+   *
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CommunicationPlatformModel.GenericDelete>} - Success response
+   * @name deleteAudienceById
+   * @summary: Delete audience by id
+   * @description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to delete audience by id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/deleteAudienceById/).
+   */
+  async deleteAudienceById({ id } = {}, { headers } = { headers: false }) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.deleteAudienceById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.deleteAudienceById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > deleteAudienceById \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources/${id}`,
+      query_params,
+      undefined,
+      undefined,
+      { headers }
+    );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.GenericDelete().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Communication > deleteAudienceById \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CommunicationPlatformApplicationValidator.DeleteEmailProviderByIdParam} arg
+   *   - Arg object
+   *
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CommunicationPlatformModel.GenericDelete>} - Success response
+   * @name deleteEmailProviderById
+   * @summary: Delete email provider by id
+   * @description: Delete email provider by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/deleteEmailProviderById/).
+   */
+  async deleteEmailProviderById({ id } = {}, { headers } = { headers: false }) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.deleteEmailProviderById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.deleteEmailProviderById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > deleteEmailProviderById \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/providers/${id}`,
+      query_params,
+      undefined,
+      undefined,
+      { headers }
+    );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.GenericDelete().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Communication > deleteEmailProviderById \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
    * @param {CommunicationPlatformApplicationValidator.DeleteEmailTemplateByIdParam} arg
    *   - Arg object
    *
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.EmailTemplateDeleteSuccessRes>}
-   *   - Success response
-   *
+   * @returns {Promise<CommunicationPlatformModel.GenericDelete>} - Success response
    * @name deleteEmailTemplateById
    * @summary: Delete email template by id
-   * @description: Delete email template by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/deleteEmailTemplateById/).
+   * @description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to delete an email template by id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/deleteEmailTemplateById/).
    */
   async deleteEmailTemplateById({ id } = {}, { headers } = { headers: false }) {
     const {
@@ -510,10 +846,10 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.EmailTemplateDeleteSuccessRes().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = CommunicationPlatformModel.GenericDelete().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
@@ -526,16 +862,87 @@ class Communication {
   }
 
   /**
+   * @param {CommunicationPlatformApplicationValidator.DeleteSmsProviderByIdParam} arg
+   *   - Arg object
+   *
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CommunicationPlatformModel.GenericDelete>} - Success response
+   * @name deleteSmsProviderById
+   * @summary: Delete sms provider by id
+   * @description: Delete sms provider by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/deleteSmsProviderById/).
+   */
+  async deleteSmsProviderById({ id } = {}, { headers } = { headers: false }) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.deleteSmsProviderById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.deleteSmsProviderById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > deleteSmsProviderById \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/providers/${id}`,
+      query_params,
+      undefined,
+      undefined,
+      { headers }
+    );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.GenericDelete().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Communication > deleteSmsProviderById \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
    * @param {CommunicationPlatformApplicationValidator.DeleteSmsTemplateByIdParam} arg
    *   - Arg object
    *
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.SmsTemplateDeleteSuccessRes>}
-   *   - Success response
-   *
+   * @returns {Promise<CommunicationPlatformModel.GenericDelete>} - Success response
    * @name deleteSmsTemplateById
    * @summary: Delete sms template by id
-   * @description: Delete sms template by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/deleteSmsTemplateById/).
+   * @description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to delete an sms template by ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/deleteSmsTemplateById/).
    */
   async deleteSmsTemplateById({ id } = {}, { headers } = { headers: false }) {
     const {
@@ -585,15 +992,81 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.SmsTemplateDeleteSuccessRes().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = CommunicationPlatformModel.GenericDelete().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
         message: `Response Validation Warnnings for platform > Communication > deleteSmsTemplateById \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CommunicationPlatformModel.AppProvider>} - Success response
+   * @name getAppProviders
+   * @summary: Get app providers
+   * @description: Using this API will return a list of application providers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getAppProviders/).
+   */
+  async getAppProviders({ headers } = { headers: false }) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getAppProviders().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.getAppProviders().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > getAppProviders \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/app-provider/get-provider`,
+      query_params,
+      undefined,
+      undefined,
+      { headers }
+    );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.AppProvider().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Communication > getAppProviders \n ${res_error}`,
       });
     }
 
@@ -608,7 +1081,7 @@ class Communication {
    * @returns {Promise<CommunicationPlatformModel.Audience>} - Success response
    * @name getAudienceById
    * @summary: Get audience by id
-   * @description: Get audience by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getAudienceById/).
+   * @description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to get audiences by Id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getAudienceById/).
    */
   async getAudienceById({ id } = {}, { headers } = { headers: false }) {
     const {
@@ -681,7 +1154,7 @@ class Communication {
    * @returns {Promise<CommunicationPlatformModel.Audiences>} - Success response
    * @name getAudiences
    * @summary: Get audiences
-   * @description: Get audiences - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getAudiences/).
+   * @description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to get audiences. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getAudiences/).
    */
   async getAudiences(
     { pageNo, pageSize, sort } = {},
@@ -764,7 +1237,7 @@ class Communication {
    * @param {Object} [arg.sort] - To sort based on created_at
    * @returns {Paginator<CommunicationPlatformModel.Audiences>}
    * @summary: Get audiences
-   * @description: Get audiences
+   * @description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to get audiences.
    */
   getAudiencesPaginator({ companyId, applicationId, pageSize, sort } = {}) {
     const paginator = new Paginator();
@@ -790,22 +1263,21 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.GetBigqueryHeadersParam} arg
+   * @param {CommunicationPlatformApplicationValidator.GetBigQueryHeadersByIdParam} arg
    *   - Arg object
    *
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.BigqueryHeadersRes>} -
-   *   Success response
-   * @name getBigqueryHeaders
-   * @summary: Get bigquery headers
-   * @description: Get bigquery headers - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getBigqueryHeaders/).
+   * @returns {Promise<Object>} - Success response
+   * @name getBigQueryHeadersById
+   * @summary: Get big query headers by id
+   * @description: Get big query headers by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getBigQueryHeadersById/).
    */
-  async getBigqueryHeaders({ body } = {}, { headers } = { headers: false }) {
+  async getBigQueryHeadersById({ id } = {}, { headers } = { headers: false }) {
     const {
       error,
-    } = CommunicationPlatformApplicationValidator.getBigqueryHeaders().validate(
+    } = CommunicationPlatformApplicationValidator.getBigQueryHeadersById().validate(
       {
-        body,
+        id,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -816,16 +1288,16 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.getBigqueryHeaders().validate(
+    } = CommunicationPlatformApplicationValidator.getBigQueryHeadersById().validate(
       {
-        body,
+        id,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > getBigqueryHeaders \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Communication > getBigQueryHeadersById \n ${warrning}`,
       });
     }
 
@@ -833,10 +1305,10 @@ class Communication {
 
     const response = await PlatformAPIClient.execute(
       this.config,
-      "post",
-      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/bigquery-headers`,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/bigquery-headers/${id}`,
       query_params,
-      body,
+      undefined,
       undefined,
       { headers }
     );
@@ -846,9 +1318,7 @@ class Communication {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = CommunicationPlatformModel.BigqueryHeadersRes().validate(responseData, {
+    const { error: res_error } = Joi.any().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -856,7 +1326,78 @@ class Communication {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > getBigqueryHeaders \n ${res_error}`,
+        message: `Response Validation Warnnings for platform > Communication > getBigQueryHeadersById \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CommunicationPlatformApplicationValidator.GetBigQueryRowCountByIdParam} arg
+   *   - Arg object
+   *
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<Object>} - Success response
+   * @name getBigQueryRowCountById
+   * @summary: Get big query row count by id
+   * @description: Get big query row count by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getBigQueryRowCountById/).
+   */
+  async getBigQueryRowCountById({ id } = {}, { headers } = { headers: false }) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getBigQueryRowCountById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.getBigQueryRowCountById().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > getBigQueryRowCountById \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/bigquery-row-count/${id}`,
+      query_params,
+      undefined,
+      undefined,
+      { headers }
+    );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = Joi.any().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Communication > getBigQueryRowCountById \n ${res_error}`,
       });
     }
 
@@ -1180,6 +1721,208 @@ class Communication {
   }
 
   /**
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CommunicationPlatformModel.DefaultSmsProviders[]>} -
+   *   Success response
+   * @name getDefaultSmsProviders
+   * @summary: Get default sms providers
+   * @description: Get default sms providers - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getDefaultSmsProviders/).
+   */
+  async getDefaultSmsProviders({ headers } = { headers: false }) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getDefaultSmsProviders().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.getDefaultSmsProviders().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > getDefaultSmsProviders \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/default-providers`,
+      query_params,
+      undefined,
+      undefined,
+      { headers }
+    );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = Joi.array()
+      .items(CommunicationPlatformModel.DefaultSmsProviders())
+      .validate(responseData, { abortEarly: false, allowUnknown: false });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Communication > getDefaultSmsProviders \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CommunicationPlatformModel.DummyDatasources[]>} -
+   *   Success response
+   * @name getDummyDatasources
+   * @summary: Get dummy data sources
+   * @description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to get dummy data sources. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getDummyDatasources/).
+   */
+  async getDummyDatasources({ headers } = { headers: false }) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getDummyDatasources().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.getDummyDatasources().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > getDummyDatasources \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources/dummy-data-sources`,
+      query_params,
+      undefined,
+      undefined,
+      { headers }
+    );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = Joi.array()
+      .items(CommunicationPlatformModel.DummyDatasources())
+      .validate(responseData, { abortEarly: false, allowUnknown: false });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Communication > getDummyDatasources \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CommunicationPlatformApplicationValidator.GetDummyDatasourcesMetaParam} arg
+   *   - Arg object
+   *
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CommunicationPlatformModel.DummyDatasourcesMeta>} -
+   *   Success response
+   * @name getDummyDatasourcesMeta
+   * @summary: Get dummy data sources meta
+   * @description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to get dummy data sources meta. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getDummyDatasourcesMeta/).
+   */
+  async getDummyDatasourcesMeta({ id } = {}, { headers } = { headers: false }) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getDummyDatasourcesMeta().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.getDummyDatasourcesMeta().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > getDummyDatasourcesMeta \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/datasources/dummy-data-sources-meta/${id}`,
+      query_params,
+      undefined,
+      undefined,
+      { headers }
+    );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.DummyDatasourcesMeta().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Communication > getDummyDatasourcesMeta \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
    * @param {CommunicationPlatformApplicationValidator.GetEmailProviderByIdParam} arg
    *   - Arg object
    *
@@ -1336,6 +2079,44 @@ class Communication {
   }
 
   /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - Company id
+   * @param {string} arg.applicationId - Application id
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {Object} [arg.sort] - To sort based on created_at
+   * @returns {Paginator<CommunicationPlatformModel.EmailProviders>}
+   * @summary: Get email providers
+   * @description: Get email providers
+   */
+  getEmailProvidersPaginator({
+    companyId,
+    applicationId,
+    pageSize,
+    sort,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getEmailProviders({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        sort: sort,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
    * @param {CommunicationPlatformApplicationValidator.GetEmailTemplateByIdParam} arg
    *   - Arg object
    *
@@ -1343,7 +2124,7 @@ class Communication {
    * @returns {Promise<CommunicationPlatformModel.EmailTemplate>} - Success response
    * @name getEmailTemplateById
    * @summary: Get email template by id
-   * @description: Get email template by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getEmailTemplateById/).
+   * @description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to get an email template by id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getEmailTemplateById/).
    */
   async getEmailTemplateById({ id } = {}, { headers } = { headers: false }) {
     const {
@@ -1416,7 +2197,7 @@ class Communication {
    * @returns {Promise<CommunicationPlatformModel.EmailTemplates>} - Success response
    * @name getEmailTemplates
    * @summary: Get email templates
-   * @description: Get email templates - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getEmailTemplates/).
+   * @description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to get all email templates. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getEmailTemplates/).
    */
   async getEmailTemplates(
     { pageNo, pageSize, sort } = {},
@@ -1489,6 +2270,44 @@ class Communication {
     }
 
     return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - Company id
+   * @param {string} arg.applicationId - Application id
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {Object} [arg.sort] - To sort based on created_at
+   * @returns {Paginator<CommunicationPlatformModel.EmailTemplates>}
+   * @summary: Get email templates
+   * @description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to get all email templates.
+   */
+  getEmailTemplatesPaginator({
+    companyId,
+    applicationId,
+    pageSize,
+    sort,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getEmailTemplates({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        sort: sort,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
   }
 
   /**
@@ -1614,6 +2433,140 @@ class Communication {
   }
 
   /**
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CommunicationPlatformModel.GlobalProviders>} - Success response
+   * @name getGlobalProviders
+   * @summary: Get global providers
+   * @description: Using this API, will retrieve a list of global providers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getGlobalProviders/).
+   */
+  async getGlobalProviders({ headers } = { headers: false }) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getGlobalProviders().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.getGlobalProviders().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > getGlobalProviders \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/app-provider/global-providers`,
+      query_params,
+      undefined,
+      undefined,
+      { headers }
+    );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.GlobalProviders().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Communication > getGlobalProviders \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CommunicationPlatformModel.GlobalVariablesGetResponse>}
+   *   - Success response
+   *
+   * @name getGlobalVariables
+   * @summary: get global variables
+   * @description: get global variables - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getGlobalVariables/).
+   */
+  async getGlobalVariables({ headers } = { headers: false }) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getGlobalVariables().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.getGlobalVariables().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > getGlobalVariables \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/global-variables`,
+      query_params,
+      undefined,
+      undefined,
+      { headers }
+    );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.GlobalVariablesGetResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Communication > getGlobalVariables \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
    * @param {CommunicationPlatformApplicationValidator.GetJobLogsParam} arg - Arg object
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.JobLogs>} - Success response
@@ -1692,6 +2645,39 @@ class Communication {
     }
 
     return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - Company id
+   * @param {string} arg.applicationId - Application id
+   * @param {number} [arg.pageSize] - Current request items count
+   * @param {Object} [arg.sort] - To sort based on created_at
+   * @returns {Paginator<CommunicationPlatformModel.JobLogs>}
+   * @summary: Get job logs
+   * @description: Get job logs
+   */
+  getJobLogsPaginator({ companyId, applicationId, pageSize, sort } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getJobLogs({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        sort: sort,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
   }
 
   /**
@@ -1816,7 +2802,7 @@ class Communication {
    * @returns {Promise<CommunicationPlatformModel.GetNRecordsCsvRes>} - Success response
    * @name getNSampleRecordsFromCsv
    * @summary: Get n sample records from csv
-   * @description: Get n sample records from csv - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getNSampleRecordsFromCsv/).
+   * @description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to get n sample records from csv - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getNSampleRecordsFromCsv/).
    */
   async getNSampleRecordsFromCsv(
     { body } = {},
@@ -1878,6 +2864,72 @@ class Communication {
       Logger({
         level: "WARN",
         message: `Response Validation Warnnings for platform > Communication > getNSampleRecordsFromCsv \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CommunicationPlatformModel.GetNRecordsCsvRes>} - Success response
+   * @name getNSampleRecordsFromCsvByGet
+   * @summary: Get n sample records from csv
+   * @description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to get n sample records from csv. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getNSampleRecordsFromCsvByGet/).
+   */
+  async getNSampleRecordsFromCsvByGet({ headers } = { headers: false }) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getNSampleRecordsFromCsvByGet().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.getNSampleRecordsFromCsvByGet().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > getNSampleRecordsFromCsvByGet \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/get-n-records`,
+      query_params,
+      undefined,
+      undefined,
+      { headers }
+    );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.GetNRecordsCsvRes().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Communication > getNSampleRecordsFromCsvByGet \n ${res_error}`,
       });
     }
 
@@ -2081,7 +3133,7 @@ class Communication {
    * @returns {Promise<CommunicationPlatformModel.SmsTemplate>} - Success response
    * @name getSmsTemplateById
    * @summary: Get sms template by id
-   * @description: Get sms template by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSmsTemplateById/).
+   * @description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to get an sms template by ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSmsTemplateById/).
    */
   async getSmsTemplateById({ id } = {}, { headers } = { headers: false }) {
     const {
@@ -2154,7 +3206,7 @@ class Communication {
    * @returns {Promise<CommunicationPlatformModel.SmsTemplates>} - Success response
    * @name getSmsTemplates
    * @summary: Get sms templates
-   * @description: Get sms templates - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSmsTemplates/).
+   * @description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to get all sms templates. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSmsTemplates/).
    */
   async getSmsTemplates(
     { pageNo, pageSize, sort } = {},
@@ -2237,7 +3289,7 @@ class Communication {
    * @param {Object} [arg.sort] - To sort based on created_at
    * @returns {Paginator<CommunicationPlatformModel.SmsTemplates>}
    * @summary: Get sms templates
-   * @description: Get sms templates
+   * @description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to get all sms templates.
    */
   getSmsTemplatesPaginator({ companyId, applicationId, pageSize, sort } = {}) {
     const paginator = new Paginator();
@@ -2336,27 +3388,25 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.GetSystemEmailTemplatesParam} arg
+   * @param {CommunicationPlatformApplicationValidator.GetSubscribedEmailTemplatesParam} arg
    *   - Arg object
    *
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.SystemEmailTemplates>} -
-   *   Success response
-   * @name getSystemEmailTemplates
-   * @summary: Get system email templates
-   * @description: Get system email templates - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSystemEmailTemplates/).
+   * @returns {Promise<CommunicationPlatformModel.EmailTemplates>} - Success response
+   * @name getSubscribedEmailTemplates
+   * @summary: Get subscribed email templates
+   * @description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to get all subscribed email templates. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSubscribedEmailTemplates/).
    */
-  async getSystemEmailTemplates(
-    { pageNo, pageSize, sort } = {},
+  async getSubscribedEmailTemplates(
+    { pageNo, pageSize } = {},
     { headers } = { headers: false }
   ) {
     const {
       error,
-    } = CommunicationPlatformApplicationValidator.getSystemEmailTemplates().validate(
+    } = CommunicationPlatformApplicationValidator.getSubscribedEmailTemplates().validate(
       {
         pageNo,
         pageSize,
-        sort,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2367,12 +3417,294 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.getSystemEmailTemplates().validate(
+    } = CommunicationPlatformApplicationValidator.getSubscribedEmailTemplates().validate(
       {
         pageNo,
         pageSize,
-        sort,
       },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > getSubscribedEmailTemplates \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/email/subscribedTemplates`,
+      query_params,
+      undefined,
+      undefined,
+      { headers }
+    );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.EmailTemplates().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Communication > getSubscribedEmailTemplates \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - Company id
+   * @param {string} arg.applicationId - Application id
+   * @param {number} [arg.pageSize] - Current request items count
+   * @returns {Paginator<CommunicationPlatformModel.EmailTemplates>}
+   * @summary: Get subscribed email templates
+   * @description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to get all subscribed email templates.
+   */
+  getSubscribedEmailTemplatesPaginator({
+    companyId,
+    applicationId,
+    pageSize,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getSubscribedEmailTemplates({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
+   * @param {CommunicationPlatformApplicationValidator.GetSubscribedSmsTemplatesParam} arg
+   *   - Arg object
+   *
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CommunicationPlatformModel.SmsTemplates>} - Success response
+   * @name getSubscribedSmsTemplates
+   * @summary: Get subscribed sms templates
+   * @description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to get all subscribed sms templates. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSubscribedSmsTemplates/).
+   */
+  async getSubscribedSmsTemplates(
+    { pageNo, pageSize } = {},
+    { headers } = { headers: false }
+  ) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getSubscribedSmsTemplates().validate(
+      {
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.getSubscribedSmsTemplates().validate(
+      {
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > getSubscribedSmsTemplates \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sms/subscribedTemplates`,
+      query_params,
+      undefined,
+      undefined,
+      { headers }
+    );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.SmsTemplates().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Communication > getSubscribedSmsTemplates \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} arg.companyId - Company id
+   * @param {string} arg.applicationId - Application id
+   * @param {number} [arg.pageSize] - Current request items count
+   * @returns {Paginator<CommunicationPlatformModel.SmsTemplates>}
+   * @summary: Get subscribed sms templates
+   * @description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to get all subscribed sms templates.
+   */
+  getSubscribedSmsTemplatesPaginator({
+    companyId,
+    applicationId,
+    pageSize,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getSubscribedSmsTemplates({
+        companyId: companyId,
+        applicationId: applicationId,
+        pageNo: pageNo,
+        pageSize: pageSize,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
+  }
+
+  /**
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<Object>} - Success response
+   * @name getSystemAudiences
+   * @summary: Get system audiences
+   * @description: Get system audiences - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSystemAudiences/).
+   */
+  async getSystemAudiences({ headers } = { headers: false }) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getSystemAudiences().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.getSystemAudiences().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > getSystemAudiences \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/sources/system-datasources`,
+      query_params,
+      undefined,
+      undefined,
+      { headers }
+    );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = Joi.any().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Communication > getSystemAudiences \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CommunicationPlatformModel.SystemEmailTemplates>} -
+   *   Success response
+   * @name getSystemEmailTemplates
+   * @summary: Get system email templates
+   * @description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to get all system email templates. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSystemEmailTemplates/).
+   */
+  async getSystemEmailTemplates({ headers } = { headers: false }) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.getSystemEmailTemplates().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.getSystemEmailTemplates().validate(
+      {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -2383,9 +3715,6 @@ class Communication {
     }
 
     const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["sort"] = sort;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -2420,28 +3749,18 @@ class Communication {
   }
 
   /**
-   * @param {CommunicationPlatformApplicationValidator.GetSystemSystemTemplatesParam} arg
-   *   - Arg object
-   *
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.SystemSmsTemplates>} -
+   * @returns {Promise<CommunicationPlatformModel.SystemSmsTemplates[]>} -
    *   Success response
-   * @name getSystemSystemTemplates
+   * @name getSystemSmsTemplates
    * @summary: Get system sms templates
-   * @description: Get system sms templates - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSystemSystemTemplates/).
+   * @description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to get all system sms templates. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSystemSmsTemplates/).
    */
-  async getSystemSystemTemplates(
-    { pageNo, pageSize, sort } = {},
-    { headers } = { headers: false }
-  ) {
+  async getSystemSmsTemplates({ headers } = { headers: false }) {
     const {
       error,
-    } = CommunicationPlatformApplicationValidator.getSystemSystemTemplates().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
+    } = CommunicationPlatformApplicationValidator.getSystemSmsTemplates().validate(
+      {},
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -2451,25 +3770,18 @@ class Communication {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CommunicationPlatformApplicationValidator.getSystemSystemTemplates().validate(
-      {
-        pageNo,
-        pageSize,
-        sort,
-      },
+    } = CommunicationPlatformApplicationValidator.getSystemSmsTemplates().validate(
+      {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Communication > getSystemSystemTemplates \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Communication > getSystemSmsTemplates \n ${warrning}`,
       });
     }
 
     const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["sort"] = sort;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -2486,17 +3798,14 @@ class Communication {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = CommunicationPlatformModel.SystemSmsTemplates().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    const { error: res_error } = Joi.array()
+      .items(CommunicationPlatformModel.SystemSmsTemplates())
+      .validate(responseData, { abortEarly: false, allowUnknown: false });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > getSystemSystemTemplates \n ${res_error}`,
+        message: `Response Validation Warnnings for platform > Communication > getSystemSmsTemplates \n ${res_error}`,
       });
     }
 
@@ -2504,41 +3813,78 @@ class Communication {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.companyId - Company id
-   * @param {string} arg.applicationId - Application id
-   * @param {number} [arg.pageSize] - Current request items count
-   * @param {Object} [arg.sort] - To sort based on created_at
-   * @returns {Paginator<CommunicationPlatformModel.SystemSmsTemplates>}
-   * @summary: Get system sms templates
-   * @description: Get system sms templates
+   * @param {CommunicationPlatformApplicationValidator.PostGlobalVariablesParam} arg
+   *   - Arg object
+   *
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CommunicationPlatformModel.GlobalVariablesPostResponse>}
+   *   - Success response
+   *
+   * @name postGlobalVariables
+   * @summary: post global variables
+   * @description: psot global variables - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/postGlobalVariables/).
    */
-  getSystemSystemTemplatesPaginator({
-    companyId,
-    applicationId,
-    pageSize,
-    sort,
-  } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.getSystemSystemTemplates({
-        companyId: companyId,
-        applicationId: applicationId,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        sort: sort,
+  async postGlobalVariables({ body } = {}, { headers } = { headers: false }) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.postGlobalVariables().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.postGlobalVariables().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > postGlobalVariables \n ${warrning}`,
       });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/global-variables`,
+      query_params,
+      body,
+      undefined,
+      { headers }
+    );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.GlobalVariablesPostResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Communication > postGlobalVariables \n ${res_error}`,
       });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
+    }
+
+    return response;
   }
 
   /**
@@ -2839,6 +4185,79 @@ class Communication {
   }
 
   /**
+   * @param {CommunicationPlatformApplicationValidator.UpdateAppProvidersParam} arg
+   *   - Arg object
+   *
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CommunicationPlatformModel.AppProvider>} - Success response
+   * @name updateAppProviders
+   * @summary: update app providers
+   * @description: Using this API will update the application providers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateAppProviders/).
+   */
+  async updateAppProviders({ body } = {}, { headers } = { headers: false }) {
+    const {
+      error,
+    } = CommunicationPlatformApplicationValidator.updateAppProviders().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CommunicationPlatformApplicationValidator.updateAppProviders().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Communication > updateAppProviders \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/communication/v1.0/company/${this.config.companyId}/application/${this.applicationId}/app-provider/update-provider`,
+      query_params,
+      body,
+      undefined,
+      { headers }
+    );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CommunicationPlatformModel.AppProvider().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Communication > updateAppProviders \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
    * @param {CommunicationPlatformApplicationValidator.UpdateAudienceByIdParam} arg
    *   - Arg object
    *
@@ -2846,7 +4265,7 @@ class Communication {
    * @returns {Promise<CommunicationPlatformModel.Audience>} - Success response
    * @name updateAudienceById
    * @summary: Update audience by id
-   * @description: Update audience by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateAudienceById/).
+   * @description: Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to update audience by id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateAudienceById/).
    */
   async updateAudienceById(
     { id, body } = {},
@@ -3077,10 +4496,10 @@ class Communication {
    *   - Arg object
    *
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.EmailTemplateRes>} - Success response
+   * @returns {Promise<CommunicationPlatformModel.EmailTemplate>} - Success response
    * @name updateEmailTemplateById
    * @summary: Update email template by id
-   * @description: Update email template by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateEmailTemplateById/).
+   * @description: Email templates are predefined formats linked to various events for delivering messages to users. Use this API to update an email template by id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateEmailTemplateById/).
    */
   async updateEmailTemplateById(
     { id, body } = {},
@@ -3135,7 +4554,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.EmailTemplateRes().validate(responseData, {
+    } = CommunicationPlatformModel.EmailTemplate().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3233,10 +4652,10 @@ class Communication {
    *   - Arg object
    *
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CommunicationPlatformModel.SmsTemplateRes>} - Success response
+   * @returns {Promise<CommunicationPlatformModel.SmsTemplate>} - Success response
    * @name updateSmsTemplateById
    * @summary: Update sms template by id
-   * @description: Update sms template by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateSmsTemplateById/).
+   * @description: SMS templates are predefined message formats linked to various events for delivering messages to users. Use this API to update an sms template by ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/updateSmsTemplateById/).
    */
   async updateSmsTemplateById(
     { id, body } = {},
@@ -3291,7 +4710,7 @@ class Communication {
 
     const {
       error: res_error,
-    } = CommunicationPlatformModel.SmsTemplateRes().validate(responseData, {
+    } = CommunicationPlatformModel.SmsTemplate().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });

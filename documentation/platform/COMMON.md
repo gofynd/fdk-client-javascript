@@ -373,7 +373,7 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [LocationCountry](#LocationCountry)? |  yes  |  |
+ | items | [[LocationCountry](#LocationCountry)]? |  yes  | Object Containing Country Locations Details |
  
 
 ---

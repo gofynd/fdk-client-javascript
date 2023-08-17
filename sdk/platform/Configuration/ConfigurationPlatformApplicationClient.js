@@ -1140,6 +1140,73 @@ class Configuration {
   }
 
   /**
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ConfigurationPlatformModel.OrderingStoreConfig>} -
+   *   Success response
+   * @name getOrderingStoreConfig
+   * @summary: Get ordering store config
+   * @description: Fetch the details of the deployment stores (the selling locations where the application will be utilised for placing orders). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getOrderingStoreConfig/).
+   */
+  async getOrderingStoreConfig({ headers } = { headers: false }) {
+    const {
+      error,
+    } = ConfigurationPlatformApplicationValidator.getOrderingStoreConfig().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ConfigurationPlatformApplicationValidator.getOrderingStoreConfig().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Configuration > getOrderingStoreConfig \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ordering-store`,
+      query_params,
+      undefined,
+      undefined,
+      { headers }
+    );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ConfigurationPlatformModel.OrderingStoreConfig().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Configuration > getOrderingStoreConfig \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
    * @param {ConfigurationPlatformApplicationValidator.GetOrderingStoresByFilterParam} arg
    *   - Arg object
    *

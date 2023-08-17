@@ -40,6 +40,7 @@ export = ConfigurationPlatformApplicationValidator;
  */
 /** @typedef GetDomainsParam */
 /** @typedef GetInventoryConfigParam */
+/** @typedef GetOrderingStoreConfigParam */
 /**
  * @typedef GetOrderingStoresByFilterParam
  * @property {number} [pageNo] - The page number to navigate through the given
@@ -138,6 +139,8 @@ declare class ConfigurationPlatformApplicationValidator {
     static getDomains(): any;
     /** @returns {GetInventoryConfigParam} */
     static getInventoryConfig(): any;
+    /** @returns {GetOrderingStoreConfigParam} */
+    static getOrderingStoreConfig(): any;
     /** @returns {GetOrderingStoresByFilterParam} */
     static getOrderingStoresByFilter(): GetOrderingStoresByFilterParam;
     /** @returns {GetPreviousVersionsParam} */
@@ -168,7 +171,7 @@ declare class ConfigurationPlatformApplicationValidator {
     static updateOrderingStoreConfig(): UpdateOrderingStoreConfigParam;
 }
 declare namespace ConfigurationPlatformApplicationValidator {
-    export { AddDomainParam, ChangeDomainTypeParam, GetAppApiTokensParam, GetAppBasicDetailsParam, GetAppCompaniesParam, GetAppContactInfoParam, GetAppCurrencyConfigParam, GetAppFeaturesParam, GetAppStoresParam, GetAppSupportedCurrencyParam, GetApplicationByIdParam, GetBuildConfigParam, GetDomainStatusParam, GetDomainsParam, GetInventoryConfigParam, GetOrderingStoresByFilterParam, GetPreviousVersionsParam, GetStaffOrderingStoresParam, ModifyAppFeaturesParam, PartiallyUpdateInventoryConfigParam, RemoveDomainByIdParam, UpdateAppApiTokensParam, UpdateAppBasicDetailsParam, UpdateAppContactInfoParam, UpdateAppCurrencyConfigParam, UpdateAppFeaturesParam, UpdateBuildConfigParam, UpdateInventoryConfigParam, UpdateOrderingStoreConfigParam };
+    export { AddDomainParam, ChangeDomainTypeParam, GetAppApiTokensParam, GetAppBasicDetailsParam, GetAppCompaniesParam, GetAppContactInfoParam, GetAppCurrencyConfigParam, GetAppFeaturesParam, GetAppStoresParam, GetAppSupportedCurrencyParam, GetApplicationByIdParam, GetBuildConfigParam, GetDomainStatusParam, GetDomainsParam, GetInventoryConfigParam, GetOrderingStoreConfigParam, GetOrderingStoresByFilterParam, GetPreviousVersionsParam, GetStaffOrderingStoresParam, ModifyAppFeaturesParam, PartiallyUpdateInventoryConfigParam, RemoveDomainByIdParam, UpdateAppApiTokensParam, UpdateAppBasicDetailsParam, UpdateAppContactInfoParam, UpdateAppCurrencyConfigParam, UpdateAppFeaturesParam, UpdateBuildConfigParam, UpdateInventoryConfigParam, UpdateOrderingStoreConfigParam };
 }
 type AddDomainParam = {
     body: ConfigurationPlatformModel.DomainAddRequest;
@@ -300,4 +303,5 @@ type GetAppSupportedCurrencyParam = any;
 type GetApplicationByIdParam = any;
 type GetDomainsParam = any;
 type GetInventoryConfigParam = any;
+type GetOrderingStoreConfigParam = any;
 import ConfigurationPlatformModel = require("./ConfigurationPlatformModel");

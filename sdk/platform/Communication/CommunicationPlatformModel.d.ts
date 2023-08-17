@@ -1,5 +1,37 @@
 export = CommunicationPlatformModel;
 /**
+ * @typedef AppProvider
+ * @property {number} [__v]
+ * @property {string} [_id]
+ * @property {string} [application]
+ * @property {string} [created_at]
+ * @property {AppProviderRes} [email]
+ * @property {AppProviderRes} [sms]
+ * @property {string} [updated_at]
+ * @property {AppProviderResVoice} [voice]
+ */
+/**
+ * @typedef AppProviderReq
+ * @property {AppProviderRes} [email]
+ * @property {AppProviderRes} [sms]
+ * @property {AppProviderResVoice} [voice]
+ */
+/**
+ * @typedef AppProviderRes
+ * @property {AppProviderResObj} [otp]
+ * @property {AppProviderResObj} [promotional]
+ * @property {AppProviderResObj} [transaction]
+ */
+/**
+ * @typedef AppProviderResObj
+ * @property {string} [provider]
+ */
+/**
+ * @typedef AppProviderResVoice
+ * @property {AppProviderResObj} [otp]
+ * @property {AppProviderResObj} [transaction]
+ */
+/**
  * @typedef Audience
  * @property {number} [__v]
  * @property {string} [_id]
@@ -18,11 +50,9 @@ export = CommunicationPlatformModel;
  */
 /**
  * @typedef AudienceReq
- * @property {string} [application]
  * @property {string} [description]
  * @property {string} [file_url]
  * @property {string[]} [headers]
- * @property {boolean} [is_active]
  * @property {string} [name]
  * @property {number} [records_count]
  * @property {string[]} [tags]
@@ -37,20 +67,6 @@ export = CommunicationPlatformModel;
  * @typedef BadRequestSchema
  * @property {string} [message] - Failure message.
  * @property {string} [status] - Response status.
- */
-/**
- * @typedef BigqueryHeadersReq
- * @property {string} [query]
- * @property {string} [type]
- */
-/**
- * @typedef BigqueryHeadersRes
- * @property {BigqueryHeadersResHeaders[]} [headers]
- */
-/**
- * @typedef BigqueryHeadersResHeaders
- * @property {string} [name]
- * @property {string} [type]
  */
 /**
  * @typedef Campaign
@@ -103,6 +119,26 @@ export = CommunicationPlatformModel;
  * @property {string} [from_name]
  */
 /**
+ * @typedef DefaultSmsProviders
+ * @property {string} [_id]
+ * @property {boolean} [is_default]
+ * @property {string} [name]
+ */
+/**
+ * @typedef DummyDatasources
+ * @property {number} [id]
+ * @property {string} [name]
+ */
+/**
+ * @typedef DummyDatasourcesMeta
+ * @property {DummyDatasourcesMetaObj} [data]
+ * @property {number} [id]
+ */
+/**
+ * @typedef DummyDatasourcesMetaObj
+ * @property {number} [b]
+ */
+/**
  * @typedef EmailProvider
  * @property {number} [__v]
  * @property {string} [_id]
@@ -141,35 +177,32 @@ export = CommunicationPlatformModel;
  * @typedef EmailTemplate
  * @property {number} [__v]
  * @property {string} [_id]
- * @property {Object[]} [attachments]
+ * @property {string} [application]
+ * @property {number[]} [attachments]
+ * @property {string} [category]
  * @property {string} [created_at]
  * @property {string} [description]
+ * @property {string} [editor_meta]
+ * @property {string} [editor_type]
  * @property {string} [from_name]
- * @property {Object[]} [headers]
+ * @property {EmailTemplateHeaders[]} [headers]
  * @property {TemplateAndType} [html]
  * @property {boolean} [is_internal]
  * @property {boolean} [is_system]
  * @property {string} [name]
  * @property {string} [priority]
  * @property {boolean} [published]
+ * @property {string} [reply_to]
  * @property {string} [slug]
- * @property {Object[]} [static_bcc]
- * @property {Object[]} [static_cc]
- * @property {Object[]} [static_to]
+ * @property {string[]} [static_bcc]
+ * @property {string[]} [static_cc]
+ * @property {string[]} [static_to]
  * @property {TemplateAndType} [subject]
- * @property {Object[]} [tags]
+ * @property {string[]} [tags]
+ * @property {Object} [template_variables]
  * @property {TemplateAndType} [text]
  * @property {string} [updated_at]
- */
-/**
- * @typedef EmailTemplateDeleteFailureRes
- * @property {string} [message]
- * @property {boolean} [success]
- */
-/**
- * @typedef EmailTemplateDeleteSuccessRes
- * @property {string} [message]
- * @property {boolean} [success]
+ * @property {EnabledObj} [url_shorten]
  */
 /**
  * @typedef EmailTemplateHeaders
@@ -184,49 +217,34 @@ export = CommunicationPlatformModel;
  */
 /**
  * @typedef EmailTemplateReq
- * @property {Object[]} [attachments]
+ * @property {number[]} [attachments]
  * @property {string} [description]
+ * @property {string} [editor_meta]
+ * @property {string} [editor_type]
+ * @property {string} [from_name]
  * @property {EmailTemplateHeaders[]} [headers]
  * @property {TemplateAndType} [html]
  * @property {EmailTemplateKeys} [keys]
- * @property {string} [name]
- * @property {string} [priority]
- * @property {string} [reply_to]
- * @property {string[]} [static_bcc]
- * @property {string[]} [static_cc]
- * @property {string[]} [static_to]
- * @property {TemplateAndType} [subject]
- * @property {TemplateAndType} [text]
- */
-/**
- * @typedef EmailTemplateRes
- * @property {number} [__v]
- * @property {string} [_id]
- * @property {Object[]} [attachments]
- * @property {string} [created_at]
- * @property {string} [description]
- * @property {EmailTemplateHeaders[]} [headers]
- * @property {TemplateAndType} [html]
- * @property {boolean} [is_internal]
- * @property {boolean} [is_system]
- * @property {EmailTemplateKeys} [keys]
- * @property {string} [name]
+ * @property {string} name
  * @property {string} [priority]
  * @property {boolean} [published]
  * @property {string} [reply_to]
- * @property {string} [slug]
  * @property {string[]} [static_bcc]
  * @property {string[]} [static_cc]
  * @property {string[]} [static_to]
  * @property {TemplateAndType} [subject]
- * @property {Object[]} [tags]
+ * @property {string[]} [tags]
+ * @property {Object} [template_variables]
  * @property {TemplateAndType} [text]
- * @property {string} [updated_at]
  */
 /**
  * @typedef EmailTemplates
  * @property {EmailTemplate[]} [items]
  * @property {Page} [page]
+ */
+/**
+ * @typedef EnabledObj
+ * @property {boolean} [enabled]
  */
 /**
  * @typedef EngineRequest
@@ -270,6 +288,18 @@ export = CommunicationPlatformModel;
  * @property {string} [template]
  */
 /**
+ * @typedef GenericDelete
+ * @property {boolean} [acknowledged]
+ * @property {number} [affected]
+ * @property {string} [message]
+ * @property {string} [operation]
+ */
+/**
+ * @typedef GenericError
+ * @property {Message} [message]
+ * @property {string} [sentry]
+ */
+/**
  * @typedef GetNRecordsCsvReq
  * @property {number} [count]
  * @property {boolean} [header]
@@ -290,6 +320,34 @@ export = CommunicationPlatformModel;
 /**
  * @typedef GetStats
  * @property {Stats[]} [items]
+ */
+/**
+ * @typedef GlobalProviders
+ * @property {GlobalProvidersResObj[]} [email]
+ * @property {GlobalProvidersResObj[]} [sms]
+ * @property {GlobalProvidersResObj[]} [voice]
+ */
+/**
+ * @typedef GlobalProvidersResObj
+ * @property {string} [_id]
+ * @property {string} [name]
+ */
+/**
+ * @typedef GlobalVariablesGetResponse
+ * @property {Object} [editable]
+ * @property {Object} [read_only]
+ */
+/**
+ * @typedef GlobalVariablesPostResponse
+ * @property {string} [_id]
+ * @property {string} [application]
+ * @property {string} [category]
+ * @property {string} [created_at]
+ * @property {Object} [global_variables]
+ */
+/**
+ * @typedef GlobalVariablesReq
+ * @property {Object} [global_variables]
  */
 /**
  * @typedef Job
@@ -327,7 +385,6 @@ export = CommunicationPlatformModel;
  * @typedef Log
  * @property {string} [_id]
  * @property {string} [application]
- * @property {string} [channel_type]
  * @property {string} [created_at]
  * @property {Object} [data]
  * @property {LogEmail} [email]
@@ -335,7 +392,6 @@ export = CommunicationPlatformModel;
  * @property {LogMeta} [meta]
  * @property {LogPushnotification} [pushnotification]
  * @property {string} [service]
- * @property {string} [source]
  * @property {string} [status]
  * @property {string} [step]
  */
@@ -360,6 +416,19 @@ export = CommunicationPlatformModel;
  * @typedef Logs
  * @property {Log[]} [items]
  * @property {Page} [page]
+ */
+/**
+ * @typedef Message
+ * @property {string} [info]
+ * @property {string} [message]
+ * @property {string} [operation]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef metaObj
+ * @property {boolean} [is_system]
+ * @property {string} [template]
+ * @property {string} [type]
  */
 /**
  * @typedef MetaStructure
@@ -447,7 +516,6 @@ export = CommunicationPlatformModel;
  * @typedef SendOtpCommsReqEmail
  * @property {number} [expiry]
  * @property {number} [otp_length]
- * @property {SendOtpEmailCommsProvider} [provider]
  * @property {SendOtpEmailCommsTemplate} [template]
  */
 /**
@@ -478,11 +546,6 @@ export = CommunicationPlatformModel;
  * @property {string} [request_id]
  * @property {number} [resend_timer]
  * @property {boolean} [success]
- */
-/**
- * @typedef SendOtpEmailCommsProvider
- * @property {string} [_id]
- * @property {string} [slug]
  */
 /**
  * @typedef SendOtpEmailCommsTemplate
@@ -535,28 +598,23 @@ export = CommunicationPlatformModel;
  * @typedef SmsTemplate
  * @property {number} [__v]
  * @property {string} [_id]
+ * @property {string} [application]
+ * @property {string} [category]
  * @property {string} [created_at]
  * @property {string} [description]
  * @property {boolean} [is_internal]
  * @property {boolean} [is_system]
  * @property {SmsTemplateMessage} [message]
+ * @property {metaObj} [meta]
  * @property {string} [name]
  * @property {string} [priority]
  * @property {boolean} [published]
  * @property {string} [slug]
- * @property {Object[]} [tags]
+ * @property {string[]} [tags]
+ * @property {string} [template_id]
  * @property {Object} [template_variables]
  * @property {string} [updated_at]
- */
-/**
- * @typedef SmsTemplateDeleteFailureRes
- * @property {string} [message]
- * @property {boolean} [success]
- */
-/**
- * @typedef SmsTemplateDeleteSuccessRes
- * @property {string} [message]
- * @property {boolean} [success]
+ * @property {EnabledObj} [url_shorten]
  */
 /**
  * @typedef SmsTemplateMessage
@@ -565,29 +623,14 @@ export = CommunicationPlatformModel;
  */
 /**
  * @typedef SmsTemplateReq
- * @property {Object[]} [attachments]
  * @property {string} [description]
  * @property {SmsTemplateMessage} [message]
- * @property {string} [name]
- * @property {string} [priority]
- * @property {Object} [template_variables]
- */
-/**
- * @typedef SmsTemplateRes
- * @property {number} [__v]
- * @property {string} [_id]
- * @property {string} [created_at]
- * @property {string} [description]
- * @property {boolean} [is_internal]
- * @property {boolean} [is_system]
- * @property {SmsTemplateMessage} [message]
- * @property {string} [name]
+ * @property {metaObj} [meta]
+ * @property {string} name
  * @property {string} [priority]
  * @property {boolean} [published]
- * @property {string} [slug]
- * @property {Object[]} [tags]
+ * @property {string} [template_id]
  * @property {Object} [template_variables]
- * @property {string} [updated_at]
  */
 /**
  * @typedef SmsTemplates
@@ -625,11 +668,11 @@ export = CommunicationPlatformModel;
  * @typedef SystemEmailTemplate
  * @property {number} [__v]
  * @property {string} [_id]
- * @property {Object[]} [attachments]
+ * @property {number[]} [attachments]
+ * @property {string} [category]
  * @property {string} [created_at]
  * @property {string} [description]
- * @property {string} [from_name]
- * @property {Object[]} [headers]
+ * @property {EmailTemplateHeaders[]} [headers]
  * @property {TemplateAndType} [html]
  * @property {boolean} [is_internal]
  * @property {boolean} [is_system]
@@ -637,18 +680,19 @@ export = CommunicationPlatformModel;
  * @property {string} [priority]
  * @property {boolean} [published]
  * @property {string} [slug]
- * @property {Object[]} [static_bcc]
- * @property {Object[]} [static_cc]
- * @property {Object[]} [static_to]
+ * @property {string[]} [static_bcc]
+ * @property {string[]} [static_cc]
+ * @property {string[]} [static_to]
  * @property {TemplateAndType} [subject]
- * @property {Object[]} [tags]
+ * @property {string[]} [tags]
+ * @property {Object} [template_variables]
  * @property {TemplateAndType} [text]
  * @property {string} [updated_at]
+ * @property {EnabledObj} [url_shorten]
  */
 /**
  * @typedef SystemEmailTemplates
  * @property {SystemEmailTemplate[]} [items]
- * @property {Page} [page]
  */
 /**
  * @typedef SystemNotification
@@ -671,9 +715,10 @@ export = CommunicationPlatformModel;
  * @property {string} [value]
  */
 /**
- * @typedef SystemSmsTemplate
+ * @typedef SystemSmsTemplates
  * @property {number} [__v]
  * @property {string} [_id]
+ * @property {string} [category]
  * @property {string} [created_at]
  * @property {string} [description]
  * @property {boolean} [is_internal]
@@ -683,14 +728,11 @@ export = CommunicationPlatformModel;
  * @property {string} [priority]
  * @property {boolean} [published]
  * @property {string} [slug]
- * @property {Object[]} [tags]
+ * @property {string[]} [tags]
+ * @property {string} [template_id]
  * @property {Object} [template_variables]
  * @property {string} [updated_at]
- */
-/**
- * @typedef SystemSmsTemplates
- * @property {SystemSmsTemplate[]} [items]
- * @property {Page} [page]
+ * @property {EnabledObj} [url_shorten]
  */
 /**
  * @typedef TemplateAndType
@@ -725,8 +767,45 @@ export = CommunicationPlatformModel;
 declare class CommunicationPlatformModel {
 }
 declare namespace CommunicationPlatformModel {
-    export { Audience, AudienceReq, Audiences, BadRequestSchema, BigqueryHeadersReq, BigqueryHeadersRes, BigqueryHeadersResHeaders, Campaign, CampaignEmail, CampaignEmailTemplate, CampaignReq, Campaigns, CampignEmailProvider, EmailProvider, EmailProviderReq, EmailProviderReqFrom, EmailProviders, EmailTemplate, EmailTemplateDeleteFailureRes, EmailTemplateDeleteSuccessRes, EmailTemplateHeaders, EmailTemplateKeys, EmailTemplateReq, EmailTemplateRes, EmailTemplates, EngineRequest, EngineResponse, EventSubscription, EventSubscriptions, EventSubscriptionTemplate, EventSubscriptionTemplateEmail, EventSubscriptionTemplateSms, GetNRecordsCsvReq, GetNRecordsCsvRes, GetNRecordsCsvResItems, GetStats, Job, JobLog, JobLogs, Jobs, Log, LogEmail, LogMeta, LogPushnotification, Logs, MetaStructure, NotFound, Notification, Page, PayloadEmailProviderStructure, PayloadEmailStructure, PayloadEmailTemplateStructure, PayloadSmsProviderStructure, PayloadSmsStructure, PayloadSmsTemplateStructure, PayloadStructure, RecipientHeaders, SendOtpCommsReq, SendOtpCommsReqData, SendOtpCommsReqEmail, SendOtpCommsReqSms, SendOtpCommsRes, SendOtpCommsResEmail, SendOtpCommsResSms, SendOtpEmailCommsProvider, SendOtpEmailCommsTemplate, SendOtpSmsCommsProvider, SendOtpSmsCommsTemplate, SmsProvider, SmsProviderReq, SmsProviders, SmsTemplate, SmsTemplateDeleteFailureRes, SmsTemplateDeleteSuccessRes, SmsTemplateMessage, SmsTemplateReq, SmsTemplateRes, SmsTemplates, Stats, StatsImported, StatsProcessed, StatsProcessedEmail, StatsProcessedSms, SystemEmailTemplate, SystemEmailTemplates, SystemNotification, SystemNotifications, SystemNotificationUser, SystemSmsTemplate, SystemSmsTemplates, TemplateAndType, TriggerJobRequest, TriggerJobResponse, VerifyOtpCommsErrorRes, VerifyOtpCommsReq, VerifyOtpCommsSuccessRes };
+    export { AppProvider, AppProviderReq, AppProviderRes, AppProviderResObj, AppProviderResVoice, Audience, AudienceReq, Audiences, BadRequestSchema, Campaign, CampaignEmail, CampaignEmailTemplate, CampaignReq, Campaigns, CampignEmailProvider, DefaultSmsProviders, DummyDatasources, DummyDatasourcesMeta, DummyDatasourcesMetaObj, EmailProvider, EmailProviderReq, EmailProviderReqFrom, EmailProviders, EmailTemplate, EmailTemplateHeaders, EmailTemplateKeys, EmailTemplateReq, EmailTemplates, EnabledObj, EngineRequest, EngineResponse, EventSubscription, EventSubscriptions, EventSubscriptionTemplate, EventSubscriptionTemplateEmail, EventSubscriptionTemplateSms, GenericDelete, GenericError, GetNRecordsCsvReq, GetNRecordsCsvRes, GetNRecordsCsvResItems, GetStats, GlobalProviders, GlobalProvidersResObj, GlobalVariablesGetResponse, GlobalVariablesPostResponse, GlobalVariablesReq, Job, JobLog, JobLogs, Jobs, Log, LogEmail, LogMeta, LogPushnotification, Logs, Message, metaObj, MetaStructure, NotFound, Notification, Page, PayloadEmailProviderStructure, PayloadEmailStructure, PayloadEmailTemplateStructure, PayloadSmsProviderStructure, PayloadSmsStructure, PayloadSmsTemplateStructure, PayloadStructure, RecipientHeaders, SendOtpCommsReq, SendOtpCommsReqData, SendOtpCommsReqEmail, SendOtpCommsReqSms, SendOtpCommsRes, SendOtpCommsResEmail, SendOtpCommsResSms, SendOtpEmailCommsTemplate, SendOtpSmsCommsProvider, SendOtpSmsCommsTemplate, SmsProvider, SmsProviderReq, SmsProviders, SmsTemplate, SmsTemplateMessage, SmsTemplateReq, SmsTemplates, Stats, StatsImported, StatsProcessed, StatsProcessedEmail, StatsProcessedSms, SystemEmailTemplate, SystemEmailTemplates, SystemNotification, SystemNotifications, SystemNotificationUser, SystemSmsTemplates, TemplateAndType, TriggerJobRequest, TriggerJobResponse, VerifyOtpCommsErrorRes, VerifyOtpCommsReq, VerifyOtpCommsSuccessRes };
 }
+/** @returns {AppProvider} */
+declare function AppProvider(): AppProvider;
+type AppProvider = {
+    __v?: number;
+    _id?: string;
+    application?: string;
+    created_at?: string;
+    email?: AppProviderRes;
+    sms?: AppProviderRes;
+    updated_at?: string;
+    voice?: AppProviderResVoice;
+};
+/** @returns {AppProviderReq} */
+declare function AppProviderReq(): AppProviderReq;
+type AppProviderReq = {
+    email?: AppProviderRes;
+    sms?: AppProviderRes;
+    voice?: AppProviderResVoice;
+};
+/** @returns {AppProviderRes} */
+declare function AppProviderRes(): AppProviderRes;
+type AppProviderRes = {
+    otp?: AppProviderResObj;
+    promotional?: AppProviderResObj;
+    transaction?: AppProviderResObj;
+};
+/** @returns {AppProviderResObj} */
+declare function AppProviderResObj(): AppProviderResObj;
+type AppProviderResObj = {
+    provider?: string;
+};
+/** @returns {AppProviderResVoice} */
+declare function AppProviderResVoice(): AppProviderResVoice;
+type AppProviderResVoice = {
+    otp?: AppProviderResObj;
+    transaction?: AppProviderResObj;
+};
 /** @returns {Audience} */
 declare function Audience(): Audience;
 type Audience = {
@@ -748,11 +827,9 @@ type Audience = {
 /** @returns {AudienceReq} */
 declare function AudienceReq(): AudienceReq;
 type AudienceReq = {
-    application?: string;
     description?: string;
     file_url?: string;
     headers?: string[];
-    is_active?: boolean;
     name?: string;
     records_count?: number;
     tags?: string[];
@@ -775,23 +852,6 @@ type BadRequestSchema = {
      * - Response status.
      */
     status?: string;
-};
-/** @returns {BigqueryHeadersReq} */
-declare function BigqueryHeadersReq(): BigqueryHeadersReq;
-type BigqueryHeadersReq = {
-    query?: string;
-    type?: string;
-};
-/** @returns {BigqueryHeadersRes} */
-declare function BigqueryHeadersRes(): BigqueryHeadersRes;
-type BigqueryHeadersRes = {
-    headers?: BigqueryHeadersResHeaders[];
-};
-/** @returns {BigqueryHeadersResHeaders} */
-declare function BigqueryHeadersResHeaders(): BigqueryHeadersResHeaders;
-type BigqueryHeadersResHeaders = {
-    name?: string;
-    type?: string;
 };
 /** @returns {Campaign} */
 declare function Campaign(): Campaign;
@@ -849,6 +909,30 @@ type CampignEmailProvider = {
     from_email?: string;
     from_name?: string;
 };
+/** @returns {DefaultSmsProviders} */
+declare function DefaultSmsProviders(): DefaultSmsProviders;
+type DefaultSmsProviders = {
+    _id?: string;
+    is_default?: boolean;
+    name?: string;
+};
+/** @returns {DummyDatasources} */
+declare function DummyDatasources(): DummyDatasources;
+type DummyDatasources = {
+    id?: number;
+    name?: string;
+};
+/** @returns {DummyDatasourcesMeta} */
+declare function DummyDatasourcesMeta(): DummyDatasourcesMeta;
+type DummyDatasourcesMeta = {
+    data?: DummyDatasourcesMetaObj;
+    id?: number;
+};
+/** @returns {DummyDatasourcesMetaObj} */
+declare function DummyDatasourcesMetaObj(): DummyDatasourcesMetaObj;
+type DummyDatasourcesMetaObj = {
+    b?: number;
+};
 /** @returns {EmailProvider} */
 declare function EmailProvider(): EmailProvider;
 type EmailProvider = {
@@ -893,37 +977,32 @@ declare function EmailTemplate(): EmailTemplate;
 type EmailTemplate = {
     __v?: number;
     _id?: string;
-    attachments?: any[];
+    application?: string;
+    attachments?: number[];
+    category?: string;
     created_at?: string;
     description?: string;
+    editor_meta?: string;
+    editor_type?: string;
     from_name?: string;
-    headers?: any[];
+    headers?: EmailTemplateHeaders[];
     html?: TemplateAndType;
     is_internal?: boolean;
     is_system?: boolean;
     name?: string;
     priority?: string;
     published?: boolean;
+    reply_to?: string;
     slug?: string;
-    static_bcc?: any[];
-    static_cc?: any[];
-    static_to?: any[];
+    static_bcc?: string[];
+    static_cc?: string[];
+    static_to?: string[];
     subject?: TemplateAndType;
-    tags?: any[];
+    tags?: string[];
+    template_variables?: any;
     text?: TemplateAndType;
     updated_at?: string;
-};
-/** @returns {EmailTemplateDeleteFailureRes} */
-declare function EmailTemplateDeleteFailureRes(): EmailTemplateDeleteFailureRes;
-type EmailTemplateDeleteFailureRes = {
-    message?: string;
-    success?: boolean;
-};
-/** @returns {EmailTemplateDeleteSuccessRes} */
-declare function EmailTemplateDeleteSuccessRes(): EmailTemplateDeleteSuccessRes;
-type EmailTemplateDeleteSuccessRes = {
-    message?: string;
-    success?: boolean;
+    url_shorten?: EnabledObj;
 };
 /** @returns {EmailTemplateHeaders} */
 declare function EmailTemplateHeaders(): EmailTemplateHeaders;
@@ -941,51 +1020,36 @@ type EmailTemplateKeys = {
 /** @returns {EmailTemplateReq} */
 declare function EmailTemplateReq(): EmailTemplateReq;
 type EmailTemplateReq = {
-    attachments?: any[];
+    attachments?: number[];
     description?: string;
+    editor_meta?: string;
+    editor_type?: string;
+    from_name?: string;
     headers?: EmailTemplateHeaders[];
     html?: TemplateAndType;
     keys?: EmailTemplateKeys;
-    name?: string;
-    priority?: string;
-    reply_to?: string;
-    static_bcc?: string[];
-    static_cc?: string[];
-    static_to?: string[];
-    subject?: TemplateAndType;
-    text?: TemplateAndType;
-};
-/** @returns {EmailTemplateRes} */
-declare function EmailTemplateRes(): EmailTemplateRes;
-type EmailTemplateRes = {
-    __v?: number;
-    _id?: string;
-    attachments?: any[];
-    created_at?: string;
-    description?: string;
-    headers?: EmailTemplateHeaders[];
-    html?: TemplateAndType;
-    is_internal?: boolean;
-    is_system?: boolean;
-    keys?: EmailTemplateKeys;
-    name?: string;
+    name: string;
     priority?: string;
     published?: boolean;
     reply_to?: string;
-    slug?: string;
     static_bcc?: string[];
     static_cc?: string[];
     static_to?: string[];
     subject?: TemplateAndType;
-    tags?: any[];
+    tags?: string[];
+    template_variables?: any;
     text?: TemplateAndType;
-    updated_at?: string;
 };
 /** @returns {EmailTemplates} */
 declare function EmailTemplates(): EmailTemplates;
 type EmailTemplates = {
     items?: EmailTemplate[];
     page?: Page;
+};
+/** @returns {EnabledObj} */
+declare function EnabledObj(): EnabledObj;
+type EnabledObj = {
+    enabled?: boolean;
 };
 /** @returns {EngineRequest} */
 declare function EngineRequest(): EngineRequest;
@@ -1035,6 +1099,20 @@ type EventSubscriptionTemplateSms = {
     subscribed?: boolean;
     template?: string;
 };
+/** @returns {GenericDelete} */
+declare function GenericDelete(): GenericDelete;
+type GenericDelete = {
+    acknowledged?: boolean;
+    affected?: number;
+    message?: string;
+    operation?: string;
+};
+/** @returns {GenericError} */
+declare function GenericError(): GenericError;
+type GenericError = {
+    message?: Message;
+    sentry?: string;
+};
 /** @returns {GetNRecordsCsvReq} */
 declare function GetNRecordsCsvReq(): GetNRecordsCsvReq;
 type GetNRecordsCsvReq = {
@@ -1060,6 +1138,39 @@ type GetNRecordsCsvResItems = {
 declare function GetStats(): GetStats;
 type GetStats = {
     items?: Stats[];
+};
+/** @returns {GlobalProviders} */
+declare function GlobalProviders(): GlobalProviders;
+type GlobalProviders = {
+    email?: GlobalProvidersResObj[];
+    sms?: GlobalProvidersResObj[];
+    voice?: GlobalProvidersResObj[];
+};
+/** @returns {GlobalProvidersResObj} */
+declare function GlobalProvidersResObj(): GlobalProvidersResObj;
+type GlobalProvidersResObj = {
+    _id?: string;
+    name?: string;
+};
+/** @returns {GlobalVariablesGetResponse} */
+declare function GlobalVariablesGetResponse(): GlobalVariablesGetResponse;
+type GlobalVariablesGetResponse = {
+    editable?: any;
+    read_only?: any;
+};
+/** @returns {GlobalVariablesPostResponse} */
+declare function GlobalVariablesPostResponse(): GlobalVariablesPostResponse;
+type GlobalVariablesPostResponse = {
+    _id?: string;
+    application?: string;
+    category?: string;
+    created_at?: string;
+    global_variables?: any;
+};
+/** @returns {GlobalVariablesReq} */
+declare function GlobalVariablesReq(): GlobalVariablesReq;
+type GlobalVariablesReq = {
+    global_variables?: any;
 };
 /** @returns {Job} */
 declare function Job(): Job;
@@ -1102,7 +1213,6 @@ declare function Log(): Log;
 type Log = {
     _id?: string;
     application?: string;
-    channel_type?: string;
     created_at?: string;
     data?: any;
     email?: LogEmail;
@@ -1110,7 +1220,6 @@ type Log = {
     meta?: LogMeta;
     pushnotification?: LogPushnotification;
     service?: string;
-    source?: string;
     status?: string;
     step?: string;
 };
@@ -1139,6 +1248,21 @@ declare function Logs(): Logs;
 type Logs = {
     items?: Log[];
     page?: Page;
+};
+/** @returns {Message} */
+declare function Message(): Message;
+type Message = {
+    info?: string;
+    message?: string;
+    operation?: string;
+    success?: boolean;
+};
+/** @returns {metaObj} */
+declare function metaObj(): metaObj;
+type metaObj = {
+    is_system?: boolean;
+    template?: string;
+    type?: string;
 };
 /** @returns {MetaStructure} */
 declare function MetaStructure(): MetaStructure;
@@ -1244,7 +1368,6 @@ declare function SendOtpCommsReqEmail(): SendOtpCommsReqEmail;
 type SendOtpCommsReqEmail = {
     expiry?: number;
     otp_length?: number;
-    provider?: SendOtpEmailCommsProvider;
     template?: SendOtpEmailCommsTemplate;
 };
 /** @returns {SendOtpCommsReqSms} */
@@ -1279,12 +1402,6 @@ type SendOtpCommsResSms = {
     request_id?: string;
     resend_timer?: number;
     success?: boolean;
-};
-/** @returns {SendOtpEmailCommsProvider} */
-declare function SendOtpEmailCommsProvider(): SendOtpEmailCommsProvider;
-type SendOtpEmailCommsProvider = {
-    _id?: string;
-    slug?: string;
 };
 /** @returns {SendOtpEmailCommsTemplate} */
 declare function SendOtpEmailCommsTemplate(): SendOtpEmailCommsTemplate;
@@ -1344,30 +1461,23 @@ declare function SmsTemplate(): SmsTemplate;
 type SmsTemplate = {
     __v?: number;
     _id?: string;
+    application?: string;
+    category?: string;
     created_at?: string;
     description?: string;
     is_internal?: boolean;
     is_system?: boolean;
     message?: SmsTemplateMessage;
+    meta?: metaObj;
     name?: string;
     priority?: string;
     published?: boolean;
     slug?: string;
-    tags?: any[];
+    tags?: string[];
+    template_id?: string;
     template_variables?: any;
     updated_at?: string;
-};
-/** @returns {SmsTemplateDeleteFailureRes} */
-declare function SmsTemplateDeleteFailureRes(): SmsTemplateDeleteFailureRes;
-type SmsTemplateDeleteFailureRes = {
-    message?: string;
-    success?: boolean;
-};
-/** @returns {SmsTemplateDeleteSuccessRes} */
-declare function SmsTemplateDeleteSuccessRes(): SmsTemplateDeleteSuccessRes;
-type SmsTemplateDeleteSuccessRes = {
-    message?: string;
-    success?: boolean;
+    url_shorten?: EnabledObj;
 };
 /** @returns {SmsTemplateMessage} */
 declare function SmsTemplateMessage(): SmsTemplateMessage;
@@ -1378,30 +1488,14 @@ type SmsTemplateMessage = {
 /** @returns {SmsTemplateReq} */
 declare function SmsTemplateReq(): SmsTemplateReq;
 type SmsTemplateReq = {
-    attachments?: any[];
     description?: string;
     message?: SmsTemplateMessage;
-    name?: string;
-    priority?: string;
-    template_variables?: any;
-};
-/** @returns {SmsTemplateRes} */
-declare function SmsTemplateRes(): SmsTemplateRes;
-type SmsTemplateRes = {
-    __v?: number;
-    _id?: string;
-    created_at?: string;
-    description?: string;
-    is_internal?: boolean;
-    is_system?: boolean;
-    message?: SmsTemplateMessage;
-    name?: string;
+    meta?: metaObj;
+    name: string;
     priority?: string;
     published?: boolean;
-    slug?: string;
-    tags?: any[];
+    template_id?: string;
     template_variables?: any;
-    updated_at?: string;
 };
 /** @returns {SmsTemplates} */
 declare function SmsTemplates(): SmsTemplates;
@@ -1446,11 +1540,11 @@ declare function SystemEmailTemplate(): SystemEmailTemplate;
 type SystemEmailTemplate = {
     __v?: number;
     _id?: string;
-    attachments?: any[];
+    attachments?: number[];
+    category?: string;
     created_at?: string;
     description?: string;
-    from_name?: string;
-    headers?: any[];
+    headers?: EmailTemplateHeaders[];
     html?: TemplateAndType;
     is_internal?: boolean;
     is_system?: boolean;
@@ -1458,19 +1552,20 @@ type SystemEmailTemplate = {
     priority?: string;
     published?: boolean;
     slug?: string;
-    static_bcc?: any[];
-    static_cc?: any[];
-    static_to?: any[];
+    static_bcc?: string[];
+    static_cc?: string[];
+    static_to?: string[];
     subject?: TemplateAndType;
-    tags?: any[];
+    tags?: string[];
+    template_variables?: any;
     text?: TemplateAndType;
     updated_at?: string;
+    url_shorten?: EnabledObj;
 };
 /** @returns {SystemEmailTemplates} */
 declare function SystemEmailTemplates(): SystemEmailTemplates;
 type SystemEmailTemplates = {
     items?: SystemEmailTemplate[];
-    page?: Page;
 };
 /** @returns {SystemNotification} */
 declare function SystemNotification(): SystemNotification;
@@ -1495,11 +1590,12 @@ type SystemNotificationUser = {
     type?: string;
     value?: string;
 };
-/** @returns {SystemSmsTemplate} */
-declare function SystemSmsTemplate(): SystemSmsTemplate;
-type SystemSmsTemplate = {
+/** @returns {SystemSmsTemplates} */
+declare function SystemSmsTemplates(): SystemSmsTemplates;
+type SystemSmsTemplates = {
     __v?: number;
     _id?: string;
+    category?: string;
     created_at?: string;
     description?: string;
     is_internal?: boolean;
@@ -1509,15 +1605,11 @@ type SystemSmsTemplate = {
     priority?: string;
     published?: boolean;
     slug?: string;
-    tags?: any[];
+    tags?: string[];
+    template_id?: string;
     template_variables?: any;
     updated_at?: string;
-};
-/** @returns {SystemSmsTemplates} */
-declare function SystemSmsTemplates(): SystemSmsTemplates;
-type SystemSmsTemplates = {
-    items?: SystemSmsTemplate[];
-    page?: Page;
+    url_shorten?: EnabledObj;
 };
 /** @returns {TemplateAndType} */
 declare function TemplateAndType(): TemplateAndType;

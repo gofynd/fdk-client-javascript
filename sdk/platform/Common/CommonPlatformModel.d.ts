@@ -132,7 +132,7 @@ export = CommonPlatformModel;
  */
 /**
  * @typedef Locations
- * @property {LocationCountry} [items]
+ * @property {LocationCountry[]} [items] - Object Containing Country Locations Details
  */
 /**
  * @typedef NotFound
@@ -401,7 +401,10 @@ type LocationDefaultLanguage = {
 /** @returns {Locations} */
 declare function Locations(): Locations;
 type Locations = {
-    items?: LocationCountry;
+    /**
+     * - Object Containing Country Locations Details
+     */
+    items?: LocationCountry[];
 };
 /** @returns {NotFound} */
 declare function NotFound(): NotFound;

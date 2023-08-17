@@ -13,7 +13,7 @@ const LeadPlatformModel = require("./LeadPlatformModel");
  */
 
 /**
- * @typedef CreateNewHistoryParam
+ * @typedef CreateHistoryParam
  * @property {string} id - Ticket ID for which history is created
  * @property {LeadPlatformModel.TicketHistoryPayload} body
  */
@@ -25,7 +25,7 @@ const LeadPlatformModel = require("./LeadPlatformModel");
  */
 
 /**
- * @typedef EditNewTicketParam
+ * @typedef EditTicketParam
  * @property {string} id - Ticket ID of ticket to be edited
  * @property {LeadPlatformModel.EditTicketPayload} body
  */
@@ -38,17 +38,17 @@ const LeadPlatformModel = require("./LeadPlatformModel");
 /** @typedef GetCustomFormsParam */
 
 /**
- * @typedef GetNewTicketParam
+ * @typedef GetTicketParam
  * @property {string} id - Tiket ID of the ticket to be fetched
  */
 
 /**
- * @typedef GetNewTicketHistoryParam
+ * @typedef GetTicketHistoryParam
  * @property {string} id - Ticket ID for which history is to be fetched
  */
 
 /**
- * @typedef GetNewTicketsParam
+ * @typedef GetTicketsParam
  * @property {boolean} [items] - Decides that the reponse will contain the list of tickets
  * @property {boolean} [filters] - Decides that the reponse will contain the
  *   ticket filters
@@ -59,12 +59,12 @@ const LeadPlatformModel = require("./LeadPlatformModel");
  */
 
 /**
- * @typedef GetNewTokenForVideoRoomParam
+ * @typedef GetTokenForVideoRoomParam
  * @property {string} uniqueName - Unique name of video room
  */
 
 /**
- * @typedef GetNewVideoParticipantsParam
+ * @typedef GetVideoParticipantsParam
  * @property {string} uniqueName - Unique name of Video Room
  */
 
@@ -88,8 +88,8 @@ class LeadPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {CreateNewHistoryParam} */
-  static createNewHistory() {
+  /** @returns {CreateHistoryParam} */
+  static createHistory() {
     return Joi.object({
       id: Joi.string().allow("").required(),
       body: LeadPlatformModel.TicketHistoryPayload().required(),
@@ -104,8 +104,8 @@ class LeadPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {EditNewTicketParam} */
-  static editNewTicket() {
+  /** @returns {EditTicketParam} */
+  static editTicket() {
     return Joi.object({
       id: Joi.string().allow("").required(),
       body: LeadPlatformModel.EditTicketPayload().required(),
@@ -124,22 +124,22 @@ class LeadPlatformApplicationValidator {
     return Joi.object({}).required();
   }
 
-  /** @returns {GetNewTicketParam} */
-  static getNewTicket() {
+  /** @returns {GetTicketParam} */
+  static getTicket() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {GetNewTicketHistoryParam} */
-  static getNewTicketHistory() {
+  /** @returns {GetTicketHistoryParam} */
+  static getTicketHistory() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {GetNewTicketsParam} */
-  static getNewTickets() {
+  /** @returns {GetTicketsParam} */
+  static getTickets() {
     return Joi.object({
       items: Joi.boolean(),
       filters: Joi.boolean(),
@@ -150,15 +150,15 @@ class LeadPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {GetNewTokenForVideoRoomParam} */
-  static getNewTokenForVideoRoom() {
+  /** @returns {GetTokenForVideoRoomParam} */
+  static getTokenForVideoRoom() {
     return Joi.object({
       uniqueName: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {GetNewVideoParticipantsParam} */
-  static getNewVideoParticipants() {
+  /** @returns {GetVideoParticipantsParam} */
+  static getVideoParticipants() {
     return Joi.object({
       uniqueName: Joi.string().allow("").required(),
     }).required();

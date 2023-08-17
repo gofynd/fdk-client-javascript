@@ -145,7 +145,7 @@ const Joi = require("joi");
 
 /**
  * @typedef Locations
- * @property {LocationCountry} [items]
+ * @property {LocationCountry[]} [items] - Object Containing Country Locations Details
  */
 
 /**
@@ -308,7 +308,7 @@ class CommonPlatformModel {
   /** @returns {Locations} */
   static Locations() {
     return Joi.object({
-      items: CommonPlatformModel.LocationCountry(),
+      items: Joi.array().items(CommonPlatformModel.LocationCountry()),
     });
   }
 

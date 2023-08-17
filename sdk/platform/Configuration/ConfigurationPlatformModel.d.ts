@@ -545,7 +545,7 @@ export = ConfigurationPlatformModel;
  */
 /**
  * @typedef DeliveryCharges
- * @property {Charges} [charges]
+ * @property {Charges[]} [charges] - Holds values for delivery charges.
  * @property {boolean} [enabled] - Allow delivery charges
  */
 /**
@@ -2515,7 +2515,10 @@ type DefaultCurrency = {
 /** @returns {DeliveryCharges} */
 declare function DeliveryCharges(): DeliveryCharges;
 type DeliveryCharges = {
-    charges?: Charges;
+    /**
+     * - Holds values for delivery charges.
+     */
+    charges?: Charges[];
     /**
      * - Allow delivery charges
      */

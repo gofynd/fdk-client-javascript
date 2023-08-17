@@ -607,7 +607,7 @@ const Joi = require("joi");
 
 /**
  * @typedef DeliveryCharges
- * @property {Charges} [charges]
+ * @property {Charges[]} [charges] - Holds values for delivery charges.
  * @property {boolean} [enabled] - Allow delivery charges
  */
 
@@ -2251,7 +2251,7 @@ class ConfigurationPlatformModel {
   /** @returns {DeliveryCharges} */
   static DeliveryCharges() {
     return Joi.object({
-      charges: ConfigurationPlatformModel.Charges(),
+      charges: Joi.array().items(ConfigurationPlatformModel.Charges()),
       enabled: Joi.boolean(),
     });
   }

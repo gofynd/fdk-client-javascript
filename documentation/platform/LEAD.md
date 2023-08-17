@@ -11,23 +11,23 @@ Handles communication between Administrator
 * [closeVideoRoom](#closevideoroom)
 * [createCustomForm](#createcustomform)
 * [createHistory](#createhistory)
-* [createNewHistory](#createnewhistory)
+* [createPlatformTicketHistory](#createplatformtickethistory)
 * [createTicket](#createticket)
 * [editCustomForm](#editcustomform)
-* [editNewTicket](#editnewticket)
+* [editPlatformTicket](#editplatformticket)
 * [editTicket](#editticket)
 * [getCustomForm](#getcustomform)
 * [getCustomForms](#getcustomforms)
 * [getFeedbacks](#getfeedbacks)
 * [getGeneralConfig](#getgeneralconfig)
-* [getNewTicket](#getnewticket)
-* [getNewTicketHistory](#getnewtickethistory)
-* [getNewTickets](#getnewtickets)
-* [getNewTokenForVideoRoom](#getnewtokenforvideoroom)
-* [getNewVideoParticipants](#getnewvideoparticipants)
+* [getPlatformTicket](#getplatformticket)
+* [getPlatformTicketHistory](#getplatformtickethistory)
+* [getPlatformTickets](#getplatformtickets)
+* [getPlatformVideoParticipants](#getplatformvideoparticipants)
 * [getTicket](#getticket)
 * [getTicketHistory](#gettickethistory)
 * [getTickets](#gettickets)
+* [getTokenForPlatformVideoRoom](#gettokenforplatformvideoroom)
 * [getTokenForVideoRoom](#gettokenforvideoroom)
 * [getVideoParticipants](#getvideoparticipants)
 * [openVideoRoom](#openvideoroom)
@@ -227,17 +227,17 @@ Success
 
 
 ### createHistory
-Create history for specific company level ticket
+Create history for specific application level ticket
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.lead.createHistory({  id : value,
+const promise = platformClient.application("<APPLICATION_ID>").lead.createHistory({  id : value,
  body : value });
 
 // Async/Await
-const data = await platformClient.lead.createHistory({  id : value,
+const data = await platformClient.application("<APPLICATION_ID>").lead.createHistory({  id : value,
  body : value });
 ```
 
@@ -251,7 +251,7 @@ const data = await platformClient.lead.createHistory({  id : value,
 | body | [TicketHistoryPayload](#TicketHistoryPayload) | yes | Request body |
 
 
-Create history for specific company level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
+Create history for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
 
 *Returned Response:*
 
@@ -276,7 +276,7 @@ Success
 {
   "value": {
     "_id": "601a9d52c26687d086c499ef",
-    "ticket_id": "43",
+    "ticket_id": "41",
     "type": "comment",
     "value": {
       "text": "d",
@@ -328,18 +328,18 @@ Success
 ---
 
 
-### createNewHistory
-Create history for specific application level ticket
+### createPlatformTicketHistory
+Create history for specific company level ticket
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").lead.createNewHistory({  id : value,
+const promise = platformClient.lead.createPlatformTicketHistory({  id : value,
  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").lead.createNewHistory({  id : value,
+const data = await platformClient.lead.createPlatformTicketHistory({  id : value,
  body : value });
 ```
 
@@ -353,7 +353,7 @@ const data = await platformClient.application("<APPLICATION_ID>").lead.createNew
 | body | [TicketHistoryPayload](#TicketHistoryPayload) | yes | Request body |
 
 
-Create history for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
+Create history for specific company level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
 
 *Returned Response:*
 
@@ -378,7 +378,7 @@ Success
 {
   "value": {
     "_id": "601a9d52c26687d086c499ef",
-    "ticket_id": "41",
+    "ticket_id": "43",
     "type": "comment",
     "value": {
       "text": "d",
@@ -806,18 +806,18 @@ Success
 ---
 
 
-### editNewTicket
-Edits ticket details of a application level ticket
+### editPlatformTicket
+Edits ticket details of a company level ticket
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").lead.editNewTicket({  id : value,
+const promise = platformClient.lead.editPlatformTicket({  id : value,
  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").lead.editNewTicket({  id : value,
+const data = await platformClient.lead.editPlatformTicket({  id : value,
  body : value });
 ```
 
@@ -831,7 +831,7 @@ const data = await platformClient.application("<APPLICATION_ID>").lead.editNewTi
 | body | [EditTicketPayload](#EditTicketPayload) | yes | Request body |
 
 
-Edits ticket details of a application level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes
+Edits ticket details of a company level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes
 
 *Returned Response:*
 
@@ -856,8 +856,7 @@ Success
 {
   "value": {
     "context": {
-      "application_id": "000000000000000000000003",
-      "company_id": "884"
+      "company_id": "1"
     },
     "content": {
       "title": "SOme title Response",
@@ -1064,17 +1063,17 @@ Success
 
 
 ### editTicket
-Edits ticket details of a company level ticket
+Edits ticket details of a application level ticket
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.lead.editTicket({  id : value,
+const promise = platformClient.application("<APPLICATION_ID>").lead.editTicket({  id : value,
  body : value });
 
 // Async/Await
-const data = await platformClient.lead.editTicket({  id : value,
+const data = await platformClient.application("<APPLICATION_ID>").lead.editTicket({  id : value,
  body : value });
 ```
 
@@ -1088,7 +1087,7 @@ const data = await platformClient.lead.editTicket({  id : value,
 | body | [EditTicketPayload](#EditTicketPayload) | yes | Request body |
 
 
-Edits ticket details of a company level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes
+Edits ticket details of a application level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes
 
 *Returned Response:*
 
@@ -1113,7 +1112,8 @@ Success
 {
   "value": {
     "context": {
-      "company_id": "1"
+      "application_id": "000000000000000000000003",
+      "company_id": "884"
     },
     "content": {
       "title": "SOme title Response",
@@ -1775,1053 +1775,17 @@ Success
 ---
 
 
-### getNewTicket
-Retreives ticket details of a application level ticket
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").lead.getNewTicket({  id : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").lead.getNewTicket({  id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | Tiket ID of the ticket to be fetched |  
-
-
-
-Retreives ticket details of a application level ticket with ticket ID
-
-*Returned Response:*
-
-
-
-
-[Ticket](#Ticket)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Default</i></summary>
-
-```json
-{
-  "value": {
-    "context": {
-      "application_id": "000000000000000000000003",
-      "company_id": "884"
-    },
-    "content": {
-      "title": "SOme title Response",
-      "description": "Handles communication between Administrator",
-      "attachments": []
-    },
-    "status": {
-      "display": "In Progress",
-      "color": "#ffa951",
-      "key": "in_progress"
-    },
-    "priority": {
-      "display": "Medium",
-      "color": "#f37736",
-      "key": "medium"
-    },
-    "assigned_to": {
-      "agent_id": "5d1363adf599d850df93175e",
-      "gender": "male",
-      "accountType": "user",
-      "active": true,
-      "profilePicUrl": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2136700473091190&height=400&width=400&ext=1554542761&hash=AeS6cuWIdjDdJJ-b",
-      "hasOldPasswordHash": false,
-      "_id": "5d1363adf599d850df93175e",
-      "phoneNumbers": [
-        {
-          "active": true,
-          "primary": true,
-          "verified": true,
-          "countryCode": 91,
-          "phone": "9999999999"
-        }
-      ],
-      "firstName": "Nikhil",
-      "lastName": "Manapure",
-      "emails": [
-        {
-          "active": true,
-          "primary": true,
-          "verified": true,
-          "email": "niktest@xyz.com"
-        }
-      ],
-      "username": "niktest_xyz_com_38425_20500281",
-      "createdAt": "2019-01-01T17:22:38.528Z",
-      "updatedAt": "2021-01-22T10:02:42.258Z",
-      "uid": "20500281",
-      "__v": 56
-    },
-    "tags": [
-      "some-title"
-    ],
-    "_id": "6012f38557751ee8fc162cf7",
-    "created_on": {
-      "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36",
-      "platform": "web",
-      "meta": {
-        "browser": {
-          "name": "Chrome",
-          "version": "88.0.4324.96"
-        },
-        "os": {
-          "name": "macOS",
-          "version": "10.15.7",
-          "versionName": "Catalina"
-        },
-        "platform": {
-          "type": "desktop",
-          "vendor": "Apple"
-        },
-        "engine": {
-          "name": "Blink"
-        }
-      }
-    },
-    "source": "sales_channel",
-    "created_by": {
-      "id": "5d1363adf599d850df93175e",
-      "user": {
-        "gender": "male",
-        "accountType": "user",
-        "active": true,
-        "profilePicUrl": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2136700473091190&height=400&width=400&ext=1554542761&hash=AeS6cuWIdjDdJJ-b",
-        "hasOldPasswordHash": false,
-        "_id": "5d1363adf599d850df93175e",
-        "phoneNumbers": [
-          {
-            "active": true,
-            "primary": true,
-            "verified": true,
-            "countryCode": 91,
-            "phone": "9999999999"
-          }
-        ],
-        "firstName": "Nikhil",
-        "lastName": "Manapure",
-        "emails": [
-          {
-            "active": true,
-            "primary": true,
-            "verified": true,
-            "email": "niktest@xyz.com"
-          }
-        ],
-        "username": "niktest_xyz_com_38425_20500281",
-        "createdAt": "2019-01-01T17:22:38.528Z",
-        "updatedAt": "2021-01-22T10:02:42.258Z",
-        "uid": "20500281",
-        "__v": 56
-      }
-    },
-    "response_id": "6012f38457751e0fb8162cf6",
-    "category": {
-      "form": {
-        "login_required": false,
-        "should_notify": false,
-        "inputs": [
-          {
-            "required": false,
-            "type": "text",
-            "enum": [],
-            "display": "Single lineeee",
-            "key": "single-lineeee",
-            "showRegexInput": false
-          },
-          {
-            "required": false,
-            "type": "email",
-            "enum": [],
-            "display": "Email",
-            "regex": "\\S+@\\S+\\.\\S+",
-            "key": "email",
-            "showRegexInput": true
-          },
-          {
-            "required": false,
-            "type": "text",
-            "enum": [],
-            "display": "dfsdf",
-            "key": "dfsdf",
-            "showRegexInput": false
-          }
-        ],
-        "available_assignees": [
-          "5b9b98150df588546aaea6d2",
-          "5c45d78395d7504f76c2cb37"
-        ],
-        "_id": "5fd72db3dc250f8decfc61b2",
-        "title": "SOme title",
-        "description": "SOme big description",
-        "slug": "some-title",
-        "application_id": "000000000000000000000003",
-        "created_on": {
-          "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36",
-          "platform": "web",
-          "meta": {
-            "browser": {
-              "name": "Chrome",
-              "version": "87.0.4280.88"
-            },
-            "os": {
-              "name": "macOS",
-              "version": "10.15.6",
-              "versionName": "Catalina"
-            },
-            "platform": {
-              "type": "desktop",
-              "vendor": "Apple"
-            },
-            "engine": {
-              "name": "Blink"
-            }
-          }
-        },
-        "created_by": "5d1363adf599d850df93175e",
-        "createdAt": "2020-12-14T09:17:39.953Z",
-        "updatedAt": "2021-01-28T18:48:07.717Z",
-        "__v": 0
-      },
-      "key": "some-title",
-      "display": "SOme title"
-    },
-    "ticket_id": "43",
-    "createdAt": "2021-01-28T17:25:25.013Z",
-    "updatedAt": "2021-01-28T17:25:33.396Z",
-    "__v": 0,
-    "video_room_id": "6012f38557751ee8fc162cf7"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getNewTicketHistory
-Gets history list for specific application level ticket
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").lead.getNewTicketHistory({  id : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").lead.getNewTicketHistory({  id : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| id | string | yes | Ticket ID for which history is to be fetched |  
-
-
-
-Gets history list for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
-
-*Returned Response:*
-
-
-
-
-[TicketHistoryList](#TicketHistoryList)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Default</i></summary>
-
-```json
-{
-  "value": {
-    "docs": [
-      {
-        "_id": "602e5384204225eed5cadae7",
-        "ticket_id": "41",
-        "type": "comment",
-        "value": {
-          "text": "hello service",
-          "media": []
-        },
-        "created_on": {
-          "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36",
-          "platform": "web",
-          "meta": {
-            "browser": {
-              "name": "Chrome",
-              "version": "88.0.4324.150"
-            },
-            "os": {
-              "name": "macOS",
-              "version": "11.2.0"
-            },
-            "platform": {
-              "type": "desktop",
-              "vendor": "Apple"
-            },
-            "engine": {
-              "name": "Blink"
-            }
-          }
-        },
-        "created_by": {
-          "gender": "male",
-          "accountType": "user",
-          "active": true,
-          "profilePicUrl": "https://hdn-1.fynd.com/company/884/applications/000000000000000000000001/theme/pictures/free/original/default-profile_nxhzui.png",
-          "hasOldPasswordHash": false,
-          "_id": "5f8147abbd1a0a870f61f1a6",
-          "phoneNumbers": [
-            {
-              "active": true,
-              "primary": true,
-              "verified": true,
-              "phone": "9999999999",
-              "countryCode": 91
-            }
-          ],
-          "firstName": "Satyen",
-          "lastName": "Maurya",
-          "emails": [
-            {
-              "active": true,
-              "primary": true,
-              "verified": true,
-              "email": "sattest@xyz.com"
-            }
-          ],
-          "username": "sat5_xyz_com_11118",
-          "createdAt": "2020-10-10T05:33:31.119Z",
-          "updatedAt": "2020-10-10T05:33:31.119Z",
-          "uid": "5678",
-          "__v": 0
-        },
-        "createdAt": "2021-02-18T11:46:12.522Z",
-        "updatedAt": "2021-02-18T11:46:12.522Z",
-        "__v": 0,
-        "id": "602e5384204225eed5cadae7"
-      },
-      {
-        "_id": "60372aa78a046d4d79c46e15",
-        "ticket_id": "41",
-        "type": "diff",
-        "value": {
-          "status": [
-            "pending",
-            "in_progress"
-          ]
-        },
-        "created_by": {
-          "gender": "male",
-          "accountType": "user",
-          "active": true,
-          "profilePicUrl": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
-          "hasOldPasswordHash": false,
-          "_id": "5e79e721768c6bf54b783146",
-          "emails": [
-            {
-              "active": true,
-              "primary": true,
-              "verified": true,
-              "email": "niktest@xyz.com"
-            },
-            {
-              "active": true,
-              "primary": false,
-              "verified": true,
-              "email": "xyz@xyz.com"
-            },
-            {
-              "active": true,
-              "primary": false,
-              "verified": true,
-              "email": "xyz@xyz.com"
-            },
-            {
-              "active": true,
-              "primary": false,
-              "verified": true,
-              "email": "xyz@xyz.com"
-            }
-          ],
-          "phoneNumbers": [
-            {
-              "active": true,
-              "primary": true,
-              "verified": true,
-              "countryCode": 91,
-              "phone": "9999999999"
-            }
-          ],
-          "firstName": "Nikhil",
-          "lastName": "Manapure",
-          "username": "xyz_xyz_com",
-          "createdAt": "2020-03-24T10:55:29.298Z",
-          "updatedAt": "2020-05-12T07:46:41.816Z",
-          "uid": "5567",
-          "__v": 2
-        },
-        "createdAt": "2021-02-25T04:42:15.225Z",
-        "updatedAt": "2021-02-25T04:42:15.225Z",
-        "__v": 0,
-        "id": "60372aa78a046d4d79c46e15"
-      }
-    ],
-    "total": 2,
-    "limit": 100,
-    "page": {
-      "type": ""
-    },
-    "pages": 1
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getNewTickets
-Gets the list of Application level Tickets and/or ticket filters depending on query params
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").lead.getNewTickets({  items : value,
- filters : value,
- q : value,
- status : value,
- priority : value,
- category : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").lead.getNewTickets({  items : value,
- filters : value,
- q : value,
- status : value,
- priority : value,
- category : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| items | boolean | no | Decides that the reponse will contain the list of tickets |    
-| filters | boolean | no | Decides that the reponse will contain the ticket filters |    
-| q | string | no | Search through ticket titles and description |    
-| status | string | no | Filter tickets on status |    
-| priority | PriorityEnum | no | Filter tickets on priority |    
-| category | string | no | Filter tickets on category |  
-
-
-
-Gets the list of Application level Tickets and/or ticket filters
-
-*Returned Response:*
-
-
-
-
-[TicketList](#TicketList)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Without items</i></summary>
-
-```json
-{
-  "value": {
-    "filters": {
-      "statuses": [
-        {
-          "display": "Pending",
-          "color": "#eae22b",
-          "key": "pending"
-        },
-        {
-          "display": "In Progress",
-          "color": "#ffa951",
-          "key": "in_progress"
-        },
-        {
-          "display": "Resolved",
-          "color": "#20c3a6",
-          "key": "resolved"
-        },
-        {
-          "display": "Closed",
-          "color": "#41434c",
-          "key": "closed"
-        }
-      ],
-      "priorities": [
-        {
-          "display": "Low",
-          "color": "#fed766",
-          "key": "low"
-        },
-        {
-          "display": "Medium",
-          "color": "#f37736",
-          "key": "medium"
-        },
-        {
-          "display": "High",
-          "color": "#fe4a49",
-          "key": "high"
-        }
-      ],
-      "assignees": [],
-      "categories": [
-        {
-          "form": {
-            "login_required": false,
-            "should_notify": false,
-            "inputs": [
-              {
-                "type": "email",
-                "showRegexInput": false,
-                "enum": [],
-                "regex": "\\S+@\\S+\\.\\S+",
-                "display": "email",
-                "required": true,
-                "key": "email"
-              }
-            ],
-            "available_assignees": [],
-            "_id": "602e900a2042255c03cadaf0",
-            "title": "service-test-satyen",
-            "description": "testing form from service",
-            "slug": "service-test-satyen",
-            "header_image": "https://hdn-1.addsale.com/x0/support-ticket/files/free/original/KZL86aN5l-service-test-satyen.jpeg",
-            "application_id": "000000000000000000000001",
-            "created_on": {
-              "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36",
-              "platform": "web",
-              "meta": {
-                "browser": {
-                  "name": "Chrome",
-                  "version": "88.0.4324.150"
-                },
-                "os": {
-                  "name": "macOS",
-                  "version": "11.2.0"
-                },
-                "platform": {
-                  "type": "desktop",
-                  "vendor": "Apple"
-                },
-                "engine": {
-                  "name": "Blink"
-                }
-              }
-            },
-            "created_by": "5f8147abbd1a0a870f61f1a6",
-            "createdAt": "2021-02-18T16:04:26.495Z",
-            "updatedAt": "2021-02-18T16:04:26.495Z",
-            "__v": 0
-          },
-          "key": "service-test-satyen",
-          "display": "service-test-satyen"
-        }
-      ]
-    }
-  }
-}
-```
-</details>
-
-<details>
-<summary><i>&nbsp; With items</i></summary>
-
-```json
-{
-  "value": {
-    "docs": [
-      {
-        "_id": "602d2652ce284d0b008d5c97",
-        "status": {
-          "display": "Pending",
-          "color": "#eae22b",
-          "key": "pending"
-        },
-        "priority": {
-          "display": "Medium",
-          "color": "#f37736",
-          "key": "medium"
-        },
-        "assigned_to": {
-          "agent_id": "5e79e721768c6bf54b783146",
-          "gender": "male",
-          "accountType": "user",
-          "active": true,
-          "profilePicUrl": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
-          "hasOldPasswordHash": false,
-          "_id": "5e79e721768c6bf54b783146",
-          "emails": [
-            {
-              "active": true,
-              "primary": true,
-              "verified": true,
-              "email": "niktest@xyz.com"
-            },
-            {
-              "active": true,
-              "primary": false,
-              "verified": true,
-              "email": "xyz@xyz.com"
-            },
-            {
-              "active": true,
-              "primary": false,
-              "verified": true,
-              "email": "xyz@xyz.com"
-            },
-            {
-              "active": true,
-              "primary": false,
-              "verified": true,
-              "email": "xyz@xyz.com"
-            }
-          ],
-          "phoneNumbers": [
-            {
-              "active": true,
-              "primary": true,
-              "verified": true,
-              "countryCode": 91,
-              "phone": "9999999999"
-            }
-          ],
-          "firstName": "Nikhil",
-          "lastName": "Manapure",
-          "username": "xyz_xyz_com",
-          "createdAt": "2020-03-24T10:55:29.298Z",
-          "updatedAt": "2020-05-12T07:46:41.816Z",
-          "uid": "5567",
-          "__v": 2
-        },
-        "tags": [
-          "asdf444"
-        ],
-        "context": {
-          "application_id": "000000000000000000000001",
-          "company_id": "1"
-        },
-        "created_on": {
-          "user_agent": "Fynd Platform/0.0.1 (com.fynd.platform; build:3; iOS 14.2.0) Alamofire/5.0.2",
-          "platform": "web",
-          "meta": {
-            "browser": {
-              "name": "Fynd Platform",
-              "version": "0.0.1"
-            }
-          }
-        },
-        "source": "sales_channel",
-        "content": {
-          "title": "asdf444 Response",
-          "description": "",
-          "attachments": []
-        },
-        "response_id": "602d2652ce284dee3c8d5c96",
-        "category": {
-          "form": {
-            "login_required": false,
-            "should_notify": true,
-            "inputs": [
-              {
-                "type": "text",
-                "showRegexInput": false,
-                "enum": [],
-                "display": "asdf",
-                "key": "asdf"
-              },
-              {
-                "type": "mobile",
-                "showRegexInput": false,
-                "enum": [],
-                "display": "mob num",
-                "regex": "[0-9]{10}$",
-                "key": "mob-num"
-              }
-            ],
-            "available_assignees": [
-              "5e79e721768c6bf54b783146"
-            ],
-            "_id": "60124e4a4d2bc363625e1bf4",
-            "title": "asdf444",
-            "description": "adf",
-            "slug": "asdf444",
-            "application_id": "000000000000000000000001",
-            "created_on": {
-              "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36",
-              "platform": "web",
-              "meta": {
-                "browser": {
-                  "name": "Chrome",
-                  "version": "88.0.4324.96"
-                },
-                "os": {
-                  "name": "macOS",
-                  "version": "10.15.7",
-                  "versionName": "Catalina"
-                },
-                "platform": {
-                  "type": "desktop",
-                  "vendor": "Apple"
-                },
-                "engine": {
-                  "name": "Blink"
-                }
-              }
-            },
-            "created_by": "5e79e721768c6bf54b783146",
-            "createdAt": "2021-01-28T05:40:26.271Z",
-            "updatedAt": "2021-02-18T16:02:32.086Z",
-            "__v": 0,
-            "poll_for_assignment": {
-              "duration": 20,
-              "message": "We are looking for executive to connect you",
-              "success_message": "Executive found",
-              "failure_message": "All our executives are busy at the moment, We have accepted your request and someone will connect with you soon!"
-            }
-          },
-          "key": "asdf444",
-          "display": "asdf444"
-        },
-        "ticket_id": "472",
-        "createdAt": "2021-02-17T14:21:06.774Z",
-        "updatedAt": "2021-02-17T14:21:06.774Z",
-        "__v": 0,
-        "id": "602d2652ce284d0b008d5c97"
-      }
-    ],
-    "total": 472,
-    "limit": 10,
-    "page": 1,
-    "pages": 48,
-    "filters": {
-      "statuses": [
-        {
-          "display": "Pending",
-          "color": "#eae22b",
-          "key": "pending"
-        },
-        {
-          "display": "In Progress",
-          "color": "#ffa951",
-          "key": "in_progress"
-        },
-        {
-          "display": "Resolved",
-          "color": "#20c3a6",
-          "key": "resolved"
-        },
-        {
-          "display": "Closed",
-          "color": "#41434c",
-          "key": "closed"
-        }
-      ],
-      "priorities": [
-        {
-          "display": "Low",
-          "color": "#fed766",
-          "key": "low"
-        },
-        {
-          "display": "Medium",
-          "color": "#f37736",
-          "key": "medium"
-        },
-        {
-          "display": "High",
-          "color": "#fe4a49",
-          "key": "high"
-        }
-      ],
-      "assignees": [],
-      "categories": [
-        {
-          "form": {
-            "login_required": false,
-            "should_notify": false,
-            "inputs": [
-              {
-                "type": "email",
-                "showRegexInput": false,
-                "enum": [],
-                "regex": "\\S+@\\S+\\.\\S+",
-                "display": "email",
-                "required": true,
-                "key": "email"
-              }
-            ],
-            "available_assignees": [],
-            "_id": "602e900a2042255c03cadaf0",
-            "title": "service-test-satyen",
-            "description": "testing form from service",
-            "slug": "service-test-satyen",
-            "header_image": "https://hdn-1.addsale.com/x0/support-ticket/files/free/original/KZL86aN5l-service-test-satyen.jpeg",
-            "application_id": "000000000000000000000001",
-            "created_on": {
-              "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36",
-              "platform": "web",
-              "meta": {
-                "browser": {
-                  "name": "Chrome",
-                  "version": "88.0.4324.150"
-                },
-                "os": {
-                  "name": "macOS",
-                  "version": "11.2.0"
-                },
-                "platform": {
-                  "type": "desktop",
-                  "vendor": "Apple"
-                },
-                "engine": {
-                  "name": "Blink"
-                }
-              }
-            },
-            "created_by": "5f8147abbd1a0a870f61f1a6",
-            "createdAt": "2021-02-18T16:04:26.495Z",
-            "updatedAt": "2021-02-18T16:04:26.495Z",
-            "__v": 0
-          },
-          "key": "service-test-satyen",
-          "display": "service-test-satyen"
-        }
-      ]
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getNewTokenForVideoRoom
-Get Token to join a specific Video Room using it's unqiue name
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").lead.getNewTokenForVideoRoom({  uniqueName : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").lead.getNewTokenForVideoRoom({  uniqueName : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| uniqueName | string | yes | Unique name of video room |  
-
-
-
-Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
-
-*Returned Response:*
-
-
-
-
-[GetTokenForVideoRoomResponse](#GetTokenForVideoRoomResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Default</i></summary>
-
-```json
-{
-  "value": {
-    "access_token": "your_token_to_the_room"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getNewVideoParticipants
-Get participants of a specific Video Room using it's unique name
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").lead.getNewVideoParticipants({  uniqueName : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").lead.getNewVideoParticipants({  uniqueName : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| uniqueName | string | yes | Unique name of Video Room |  
-
-
-
-Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
-
-*Returned Response:*
-
-
-
-
-[GetParticipantsInsideVideoRoomResponse](#GetParticipantsInsideVideoRoomResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Default</i></summary>
-
-```json
-{
-  "value": {
-    "participants": []
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getTicket
+### getPlatformTicket
 Retreives ticket details of a company level ticket with ticket ID
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.lead.getTicket({  id : value });
+const promise = platformClient.lead.getPlatformTicket({  id : value });
 
 // Async/Await
-const data = await platformClient.lead.getTicket({  id : value });
+const data = await platformClient.lead.getPlatformTicket({  id : value });
 ```
 
 
@@ -3065,17 +2029,17 @@ Success
 ---
 
 
-### getTicketHistory
+### getPlatformTicketHistory
 Gets history list for specific company level ticket
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.lead.getTicketHistory({  id : value });
+const promise = platformClient.lead.getPlatformTicketHistory({  id : value });
 
 // Async/Await
-const data = await platformClient.lead.getTicketHistory({  id : value });
+const data = await platformClient.lead.getPlatformTicketHistory({  id : value });
 ```
 
 
@@ -3269,14 +2233,14 @@ Success
 ---
 
 
-### getTickets
+### getPlatformTickets
 Gets the list of company level tickets and/or ticket filters depending on query params
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.lead.getTickets({  items : value,
+const promise = platformClient.lead.getPlatformTickets({  items : value,
  filters : value,
  q : value,
  status : value,
@@ -3286,7 +2250,7 @@ const promise = platformClient.lead.getTickets({  items : value,
  pageSize : value });
 
 // Async/Await
-const data = await platformClient.lead.getTickets({  items : value,
+const data = await platformClient.lead.getPlatformTickets({  items : value,
  filters : value,
  q : value,
  status : value,
@@ -3720,6 +2684,1042 @@ Success
 ---
 
 
+### getPlatformVideoParticipants
+Get participants of a specific Video Room using it's unique name
+
+
+
+```javascript
+// Promise
+const promise = platformClient.lead.getPlatformVideoParticipants({  uniqueName : value });
+
+// Async/Await
+const data = await platformClient.lead.getPlatformVideoParticipants({  uniqueName : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| uniqueName | string | yes | Unique name of Video Room |  
+
+
+
+Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names.
+
+*Returned Response:*
+
+
+
+
+[GetParticipantsInsideVideoRoomResponse](#GetParticipantsInsideVideoRoomResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Default</i></summary>
+
+```json
+{
+  "value": {
+    "participants": []
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getTicket
+Retreives ticket details of a application level ticket
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").lead.getTicket({  id : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").lead.getTicket({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Tiket ID of the ticket to be fetched |  
+
+
+
+Retreives ticket details of a application level ticket with ticket ID
+
+*Returned Response:*
+
+
+
+
+[Ticket](#Ticket)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Default</i></summary>
+
+```json
+{
+  "value": {
+    "context": {
+      "application_id": "000000000000000000000003",
+      "company_id": "884"
+    },
+    "content": {
+      "title": "SOme title Response",
+      "description": "Handles communication between Administrator",
+      "attachments": []
+    },
+    "status": {
+      "display": "In Progress",
+      "color": "#ffa951",
+      "key": "in_progress"
+    },
+    "priority": {
+      "display": "Medium",
+      "color": "#f37736",
+      "key": "medium"
+    },
+    "assigned_to": {
+      "agent_id": "5d1363adf599d850df93175e",
+      "gender": "male",
+      "accountType": "user",
+      "active": true,
+      "profilePicUrl": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2136700473091190&height=400&width=400&ext=1554542761&hash=AeS6cuWIdjDdJJ-b",
+      "hasOldPasswordHash": false,
+      "_id": "5d1363adf599d850df93175e",
+      "phoneNumbers": [
+        {
+          "active": true,
+          "primary": true,
+          "verified": true,
+          "countryCode": 91,
+          "phone": "9999999999"
+        }
+      ],
+      "firstName": "Nikhil",
+      "lastName": "Manapure",
+      "emails": [
+        {
+          "active": true,
+          "primary": true,
+          "verified": true,
+          "email": "niktest@xyz.com"
+        }
+      ],
+      "username": "niktest_xyz_com_38425_20500281",
+      "createdAt": "2019-01-01T17:22:38.528Z",
+      "updatedAt": "2021-01-22T10:02:42.258Z",
+      "uid": "20500281",
+      "__v": 56
+    },
+    "tags": [
+      "some-title"
+    ],
+    "_id": "6012f38557751ee8fc162cf7",
+    "created_on": {
+      "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36",
+      "platform": "web",
+      "meta": {
+        "browser": {
+          "name": "Chrome",
+          "version": "88.0.4324.96"
+        },
+        "os": {
+          "name": "macOS",
+          "version": "10.15.7",
+          "versionName": "Catalina"
+        },
+        "platform": {
+          "type": "desktop",
+          "vendor": "Apple"
+        },
+        "engine": {
+          "name": "Blink"
+        }
+      }
+    },
+    "source": "sales_channel",
+    "created_by": {
+      "id": "5d1363adf599d850df93175e",
+      "user": {
+        "gender": "male",
+        "accountType": "user",
+        "active": true,
+        "profilePicUrl": "https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2136700473091190&height=400&width=400&ext=1554542761&hash=AeS6cuWIdjDdJJ-b",
+        "hasOldPasswordHash": false,
+        "_id": "5d1363adf599d850df93175e",
+        "phoneNumbers": [
+          {
+            "active": true,
+            "primary": true,
+            "verified": true,
+            "countryCode": 91,
+            "phone": "9999999999"
+          }
+        ],
+        "firstName": "Nikhil",
+        "lastName": "Manapure",
+        "emails": [
+          {
+            "active": true,
+            "primary": true,
+            "verified": true,
+            "email": "niktest@xyz.com"
+          }
+        ],
+        "username": "niktest_xyz_com_38425_20500281",
+        "createdAt": "2019-01-01T17:22:38.528Z",
+        "updatedAt": "2021-01-22T10:02:42.258Z",
+        "uid": "20500281",
+        "__v": 56
+      }
+    },
+    "response_id": "6012f38457751e0fb8162cf6",
+    "category": {
+      "form": {
+        "login_required": false,
+        "should_notify": false,
+        "inputs": [
+          {
+            "required": false,
+            "type": "text",
+            "enum": [],
+            "display": "Single lineeee",
+            "key": "single-lineeee",
+            "showRegexInput": false
+          },
+          {
+            "required": false,
+            "type": "email",
+            "enum": [],
+            "display": "Email",
+            "regex": "\\S+@\\S+\\.\\S+",
+            "key": "email",
+            "showRegexInput": true
+          },
+          {
+            "required": false,
+            "type": "text",
+            "enum": [],
+            "display": "dfsdf",
+            "key": "dfsdf",
+            "showRegexInput": false
+          }
+        ],
+        "available_assignees": [
+          "5b9b98150df588546aaea6d2",
+          "5c45d78395d7504f76c2cb37"
+        ],
+        "_id": "5fd72db3dc250f8decfc61b2",
+        "title": "SOme title",
+        "description": "SOme big description",
+        "slug": "some-title",
+        "application_id": "000000000000000000000003",
+        "created_on": {
+          "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36",
+          "platform": "web",
+          "meta": {
+            "browser": {
+              "name": "Chrome",
+              "version": "87.0.4280.88"
+            },
+            "os": {
+              "name": "macOS",
+              "version": "10.15.6",
+              "versionName": "Catalina"
+            },
+            "platform": {
+              "type": "desktop",
+              "vendor": "Apple"
+            },
+            "engine": {
+              "name": "Blink"
+            }
+          }
+        },
+        "created_by": "5d1363adf599d850df93175e",
+        "createdAt": "2020-12-14T09:17:39.953Z",
+        "updatedAt": "2021-01-28T18:48:07.717Z",
+        "__v": 0
+      },
+      "key": "some-title",
+      "display": "SOme title"
+    },
+    "ticket_id": "43",
+    "createdAt": "2021-01-28T17:25:25.013Z",
+    "updatedAt": "2021-01-28T17:25:33.396Z",
+    "__v": 0,
+    "video_room_id": "6012f38557751ee8fc162cf7"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getTicketHistory
+Gets history list for specific application level ticket
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").lead.getTicketHistory({  id : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").lead.getTicketHistory({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Ticket ID for which history is to be fetched |  
+
+
+
+Gets history list for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating.
+
+*Returned Response:*
+
+
+
+
+[TicketHistoryList](#TicketHistoryList)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Default</i></summary>
+
+```json
+{
+  "value": {
+    "docs": [
+      {
+        "_id": "602e5384204225eed5cadae7",
+        "ticket_id": "41",
+        "type": "comment",
+        "value": {
+          "text": "hello service",
+          "media": []
+        },
+        "created_on": {
+          "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36",
+          "platform": "web",
+          "meta": {
+            "browser": {
+              "name": "Chrome",
+              "version": "88.0.4324.150"
+            },
+            "os": {
+              "name": "macOS",
+              "version": "11.2.0"
+            },
+            "platform": {
+              "type": "desktop",
+              "vendor": "Apple"
+            },
+            "engine": {
+              "name": "Blink"
+            }
+          }
+        },
+        "created_by": {
+          "gender": "male",
+          "accountType": "user",
+          "active": true,
+          "profilePicUrl": "https://hdn-1.fynd.com/company/884/applications/000000000000000000000001/theme/pictures/free/original/default-profile_nxhzui.png",
+          "hasOldPasswordHash": false,
+          "_id": "5f8147abbd1a0a870f61f1a6",
+          "phoneNumbers": [
+            {
+              "active": true,
+              "primary": true,
+              "verified": true,
+              "phone": "9999999999",
+              "countryCode": 91
+            }
+          ],
+          "firstName": "Satyen",
+          "lastName": "Maurya",
+          "emails": [
+            {
+              "active": true,
+              "primary": true,
+              "verified": true,
+              "email": "sattest@xyz.com"
+            }
+          ],
+          "username": "sat5_xyz_com_11118",
+          "createdAt": "2020-10-10T05:33:31.119Z",
+          "updatedAt": "2020-10-10T05:33:31.119Z",
+          "uid": "5678",
+          "__v": 0
+        },
+        "createdAt": "2021-02-18T11:46:12.522Z",
+        "updatedAt": "2021-02-18T11:46:12.522Z",
+        "__v": 0,
+        "id": "602e5384204225eed5cadae7"
+      },
+      {
+        "_id": "60372aa78a046d4d79c46e15",
+        "ticket_id": "41",
+        "type": "diff",
+        "value": {
+          "status": [
+            "pending",
+            "in_progress"
+          ]
+        },
+        "created_by": {
+          "gender": "male",
+          "accountType": "user",
+          "active": true,
+          "profilePicUrl": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
+          "hasOldPasswordHash": false,
+          "_id": "5e79e721768c6bf54b783146",
+          "emails": [
+            {
+              "active": true,
+              "primary": true,
+              "verified": true,
+              "email": "niktest@xyz.com"
+            },
+            {
+              "active": true,
+              "primary": false,
+              "verified": true,
+              "email": "xyz@xyz.com"
+            },
+            {
+              "active": true,
+              "primary": false,
+              "verified": true,
+              "email": "xyz@xyz.com"
+            },
+            {
+              "active": true,
+              "primary": false,
+              "verified": true,
+              "email": "xyz@xyz.com"
+            }
+          ],
+          "phoneNumbers": [
+            {
+              "active": true,
+              "primary": true,
+              "verified": true,
+              "countryCode": 91,
+              "phone": "9999999999"
+            }
+          ],
+          "firstName": "Nikhil",
+          "lastName": "Manapure",
+          "username": "xyz_xyz_com",
+          "createdAt": "2020-03-24T10:55:29.298Z",
+          "updatedAt": "2020-05-12T07:46:41.816Z",
+          "uid": "5567",
+          "__v": 2
+        },
+        "createdAt": "2021-02-25T04:42:15.225Z",
+        "updatedAt": "2021-02-25T04:42:15.225Z",
+        "__v": 0,
+        "id": "60372aa78a046d4d79c46e15"
+      }
+    ],
+    "total": 2,
+    "limit": 100,
+    "page": {
+      "type": ""
+    },
+    "pages": 1
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getTickets
+Gets the list of Application level Tickets and/or ticket filters depending on query params
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").lead.getTickets({  items : value,
+ filters : value,
+ q : value,
+ status : value,
+ priority : value,
+ category : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").lead.getTickets({  items : value,
+ filters : value,
+ q : value,
+ status : value,
+ priority : value,
+ category : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| items | boolean | no | Decides that the reponse will contain the list of tickets |    
+| filters | boolean | no | Decides that the reponse will contain the ticket filters |    
+| q | string | no | Search through ticket titles and description |    
+| status | string | no | Filter tickets on status |    
+| priority | PriorityEnum | no | Filter tickets on priority |    
+| category | string | no | Filter tickets on category |  
+
+
+
+Gets the list of Application level Tickets and/or ticket filters
+
+*Returned Response:*
+
+
+
+
+[TicketList](#TicketList)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Without items</i></summary>
+
+```json
+{
+  "value": {
+    "filters": {
+      "statuses": [
+        {
+          "display": "Pending",
+          "color": "#eae22b",
+          "key": "pending"
+        },
+        {
+          "display": "In Progress",
+          "color": "#ffa951",
+          "key": "in_progress"
+        },
+        {
+          "display": "Resolved",
+          "color": "#20c3a6",
+          "key": "resolved"
+        },
+        {
+          "display": "Closed",
+          "color": "#41434c",
+          "key": "closed"
+        }
+      ],
+      "priorities": [
+        {
+          "display": "Low",
+          "color": "#fed766",
+          "key": "low"
+        },
+        {
+          "display": "Medium",
+          "color": "#f37736",
+          "key": "medium"
+        },
+        {
+          "display": "High",
+          "color": "#fe4a49",
+          "key": "high"
+        }
+      ],
+      "assignees": [],
+      "categories": [
+        {
+          "form": {
+            "login_required": false,
+            "should_notify": false,
+            "inputs": [
+              {
+                "type": "email",
+                "showRegexInput": false,
+                "enum": [],
+                "regex": "\\S+@\\S+\\.\\S+",
+                "display": "email",
+                "required": true,
+                "key": "email"
+              }
+            ],
+            "available_assignees": [],
+            "_id": "602e900a2042255c03cadaf0",
+            "title": "service-test-satyen",
+            "description": "testing form from service",
+            "slug": "service-test-satyen",
+            "header_image": "https://hdn-1.addsale.com/x0/support-ticket/files/free/original/KZL86aN5l-service-test-satyen.jpeg",
+            "application_id": "000000000000000000000001",
+            "created_on": {
+              "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36",
+              "platform": "web",
+              "meta": {
+                "browser": {
+                  "name": "Chrome",
+                  "version": "88.0.4324.150"
+                },
+                "os": {
+                  "name": "macOS",
+                  "version": "11.2.0"
+                },
+                "platform": {
+                  "type": "desktop",
+                  "vendor": "Apple"
+                },
+                "engine": {
+                  "name": "Blink"
+                }
+              }
+            },
+            "created_by": "5f8147abbd1a0a870f61f1a6",
+            "createdAt": "2021-02-18T16:04:26.495Z",
+            "updatedAt": "2021-02-18T16:04:26.495Z",
+            "__v": 0
+          },
+          "key": "service-test-satyen",
+          "display": "service-test-satyen"
+        }
+      ]
+    }
+  }
+}
+```
+</details>
+
+<details>
+<summary><i>&nbsp; With items</i></summary>
+
+```json
+{
+  "value": {
+    "docs": [
+      {
+        "_id": "602d2652ce284d0b008d5c97",
+        "status": {
+          "display": "Pending",
+          "color": "#eae22b",
+          "key": "pending"
+        },
+        "priority": {
+          "display": "Medium",
+          "color": "#f37736",
+          "key": "medium"
+        },
+        "assigned_to": {
+          "agent_id": "5e79e721768c6bf54b783146",
+          "gender": "male",
+          "accountType": "user",
+          "active": true,
+          "profilePicUrl": "https://d2co8r51m5ca2d.cloudfront.net/inapp_banners/default_profile_img.png",
+          "hasOldPasswordHash": false,
+          "_id": "5e79e721768c6bf54b783146",
+          "emails": [
+            {
+              "active": true,
+              "primary": true,
+              "verified": true,
+              "email": "niktest@xyz.com"
+            },
+            {
+              "active": true,
+              "primary": false,
+              "verified": true,
+              "email": "xyz@xyz.com"
+            },
+            {
+              "active": true,
+              "primary": false,
+              "verified": true,
+              "email": "xyz@xyz.com"
+            },
+            {
+              "active": true,
+              "primary": false,
+              "verified": true,
+              "email": "xyz@xyz.com"
+            }
+          ],
+          "phoneNumbers": [
+            {
+              "active": true,
+              "primary": true,
+              "verified": true,
+              "countryCode": 91,
+              "phone": "9999999999"
+            }
+          ],
+          "firstName": "Nikhil",
+          "lastName": "Manapure",
+          "username": "xyz_xyz_com",
+          "createdAt": "2020-03-24T10:55:29.298Z",
+          "updatedAt": "2020-05-12T07:46:41.816Z",
+          "uid": "5567",
+          "__v": 2
+        },
+        "tags": [
+          "asdf444"
+        ],
+        "context": {
+          "application_id": "000000000000000000000001",
+          "company_id": "1"
+        },
+        "created_on": {
+          "user_agent": "Fynd Platform/0.0.1 (com.fynd.platform; build:3; iOS 14.2.0) Alamofire/5.0.2",
+          "platform": "web",
+          "meta": {
+            "browser": {
+              "name": "Fynd Platform",
+              "version": "0.0.1"
+            }
+          }
+        },
+        "source": "sales_channel",
+        "content": {
+          "title": "asdf444 Response",
+          "description": "",
+          "attachments": []
+        },
+        "response_id": "602d2652ce284dee3c8d5c96",
+        "category": {
+          "form": {
+            "login_required": false,
+            "should_notify": true,
+            "inputs": [
+              {
+                "type": "text",
+                "showRegexInput": false,
+                "enum": [],
+                "display": "asdf",
+                "key": "asdf"
+              },
+              {
+                "type": "mobile",
+                "showRegexInput": false,
+                "enum": [],
+                "display": "mob num",
+                "regex": "[0-9]{10}$",
+                "key": "mob-num"
+              }
+            ],
+            "available_assignees": [
+              "5e79e721768c6bf54b783146"
+            ],
+            "_id": "60124e4a4d2bc363625e1bf4",
+            "title": "asdf444",
+            "description": "adf",
+            "slug": "asdf444",
+            "application_id": "000000000000000000000001",
+            "created_on": {
+              "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.96 Safari/537.36",
+              "platform": "web",
+              "meta": {
+                "browser": {
+                  "name": "Chrome",
+                  "version": "88.0.4324.96"
+                },
+                "os": {
+                  "name": "macOS",
+                  "version": "10.15.7",
+                  "versionName": "Catalina"
+                },
+                "platform": {
+                  "type": "desktop",
+                  "vendor": "Apple"
+                },
+                "engine": {
+                  "name": "Blink"
+                }
+              }
+            },
+            "created_by": "5e79e721768c6bf54b783146",
+            "createdAt": "2021-01-28T05:40:26.271Z",
+            "updatedAt": "2021-02-18T16:02:32.086Z",
+            "__v": 0,
+            "poll_for_assignment": {
+              "duration": 20,
+              "message": "We are looking for executive to connect you",
+              "success_message": "Executive found",
+              "failure_message": "All our executives are busy at the moment, We have accepted your request and someone will connect with you soon!"
+            }
+          },
+          "key": "asdf444",
+          "display": "asdf444"
+        },
+        "ticket_id": "472",
+        "createdAt": "2021-02-17T14:21:06.774Z",
+        "updatedAt": "2021-02-17T14:21:06.774Z",
+        "__v": 0,
+        "id": "602d2652ce284d0b008d5c97"
+      }
+    ],
+    "total": 472,
+    "limit": 10,
+    "page": 1,
+    "pages": 48,
+    "filters": {
+      "statuses": [
+        {
+          "display": "Pending",
+          "color": "#eae22b",
+          "key": "pending"
+        },
+        {
+          "display": "In Progress",
+          "color": "#ffa951",
+          "key": "in_progress"
+        },
+        {
+          "display": "Resolved",
+          "color": "#20c3a6",
+          "key": "resolved"
+        },
+        {
+          "display": "Closed",
+          "color": "#41434c",
+          "key": "closed"
+        }
+      ],
+      "priorities": [
+        {
+          "display": "Low",
+          "color": "#fed766",
+          "key": "low"
+        },
+        {
+          "display": "Medium",
+          "color": "#f37736",
+          "key": "medium"
+        },
+        {
+          "display": "High",
+          "color": "#fe4a49",
+          "key": "high"
+        }
+      ],
+      "assignees": [],
+      "categories": [
+        {
+          "form": {
+            "login_required": false,
+            "should_notify": false,
+            "inputs": [
+              {
+                "type": "email",
+                "showRegexInput": false,
+                "enum": [],
+                "regex": "\\S+@\\S+\\.\\S+",
+                "display": "email",
+                "required": true,
+                "key": "email"
+              }
+            ],
+            "available_assignees": [],
+            "_id": "602e900a2042255c03cadaf0",
+            "title": "service-test-satyen",
+            "description": "testing form from service",
+            "slug": "service-test-satyen",
+            "header_image": "https://hdn-1.addsale.com/x0/support-ticket/files/free/original/KZL86aN5l-service-test-satyen.jpeg",
+            "application_id": "000000000000000000000001",
+            "created_on": {
+              "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36",
+              "platform": "web",
+              "meta": {
+                "browser": {
+                  "name": "Chrome",
+                  "version": "88.0.4324.150"
+                },
+                "os": {
+                  "name": "macOS",
+                  "version": "11.2.0"
+                },
+                "platform": {
+                  "type": "desktop",
+                  "vendor": "Apple"
+                },
+                "engine": {
+                  "name": "Blink"
+                }
+              }
+            },
+            "created_by": "5f8147abbd1a0a870f61f1a6",
+            "createdAt": "2021-02-18T16:04:26.495Z",
+            "updatedAt": "2021-02-18T16:04:26.495Z",
+            "__v": 0
+          },
+          "key": "service-test-satyen",
+          "display": "service-test-satyen"
+        }
+      ]
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getTokenForPlatformVideoRoom
+Get Token to join a specific Video Room using it's unqiue name
+
+
+
+```javascript
+// Promise
+const promise = platformClient.lead.getTokenForPlatformVideoRoom({  uniqueName : value });
+
+// Async/Await
+const data = await platformClient.lead.getTokenForPlatformVideoRoom({  uniqueName : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| uniqueName | string | yes | Unique name of video room |  
+
+
+
+Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there.
+
+*Returned Response:*
+
+
+
+
+[GetTokenForVideoRoomResponse](#GetTokenForVideoRoomResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Default</i></summary>
+
+```json
+{
+  "value": {
+    "access_token": "your_token_to_the_room"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getTokenForVideoRoom
 Get Token to join a specific Video Room using it's unqiue name
 
@@ -3727,10 +3727,10 @@ Get Token to join a specific Video Room using it's unqiue name
 
 ```javascript
 // Promise
-const promise = platformClient.lead.getTokenForVideoRoom({  uniqueName : value });
+const promise = platformClient.application("<APPLICATION_ID>").lead.getTokenForVideoRoom({  uniqueName : value });
 
 // Async/Await
-const data = await platformClient.lead.getTokenForVideoRoom({  uniqueName : value });
+const data = await platformClient.application("<APPLICATION_ID>").lead.getTokenForVideoRoom({  uniqueName : value });
 ```
 
 
@@ -3793,10 +3793,10 @@ Get participants of a specific Video Room using it's unique name
 
 ```javascript
 // Promise
-const promise = platformClient.lead.getVideoParticipants({  uniqueName : value });
+const promise = platformClient.application("<APPLICATION_ID>").lead.getVideoParticipants({  uniqueName : value });
 
 // Async/Await
-const data = await platformClient.lead.getVideoParticipants({  uniqueName : value });
+const data = await platformClient.application("<APPLICATION_ID>").lead.getVideoParticipants({  uniqueName : value });
 ```
 
 

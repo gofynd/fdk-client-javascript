@@ -1,6 +1,6 @@
 export = LeadPlatformValidator;
 /**
- * @typedef CreateHistoryParam
+ * @typedef CreatePlatformTicketHistoryParam
  * @property {string} id - Ticket ID for which history is created
  * @property {LeadPlatformModel.TicketHistoryPayload} body
  */
@@ -9,7 +9,7 @@ export = LeadPlatformValidator;
  * @property {LeadPlatformModel.AddTicketPayload} body
  */
 /**
- * @typedef EditTicketParam
+ * @typedef EditPlatformTicketParam
  * @property {string} id - Ticket ID of ticket to be edited
  * @property {LeadPlatformModel.EditTicketPayload} body
  */
@@ -19,15 +19,15 @@ export = LeadPlatformValidator;
  */
 /** @typedef GetGeneralConfigParam */
 /**
- * @typedef GetTicketParam
+ * @typedef GetPlatformTicketParam
  * @property {string} id - Tiket ID of the ticket to be fetched
  */
 /**
- * @typedef GetTicketHistoryParam
+ * @typedef GetPlatformTicketHistoryParam
  * @property {string} id - Ticket ID for which history is to be fetched
  */
 /**
- * @typedef GetTicketsParam
+ * @typedef GetPlatformTicketsParam
  * @property {boolean} [items] - Decides that the reponse will contain the list of tickets
  * @property {boolean} [filters] - Decides that the reponse will contain the
  *   ticket filters
@@ -41,12 +41,12 @@ export = LeadPlatformValidator;
  *   Default is 12.
  */
 /**
- * @typedef GetTokenForVideoRoomParam
- * @property {string} uniqueName - Unique name of video room
+ * @typedef GetPlatformVideoParticipantsParam
+ * @property {string} uniqueName - Unique name of Video Room
  */
 /**
- * @typedef GetVideoParticipantsParam
- * @property {string} uniqueName - Unique name of Video Room
+ * @typedef GetTokenForPlatformVideoRoomParam
+ * @property {string} uniqueName - Unique name of video room
  */
 /**
  * @typedef SubmitFeedbackParam
@@ -54,33 +54,33 @@ export = LeadPlatformValidator;
  * @property {LeadPlatformModel.TicketFeedbackPayload} body
  */
 declare class LeadPlatformValidator {
-    /** @returns {CreateHistoryParam} */
-    static createHistory(): CreateHistoryParam;
+    /** @returns {CreatePlatformTicketHistoryParam} */
+    static createPlatformTicketHistory(): CreatePlatformTicketHistoryParam;
     /** @returns {CreateTicketParam} */
     static createTicket(): CreateTicketParam;
-    /** @returns {EditTicketParam} */
-    static editTicket(): EditTicketParam;
+    /** @returns {EditPlatformTicketParam} */
+    static editPlatformTicket(): EditPlatformTicketParam;
     /** @returns {GetFeedbacksParam} */
     static getFeedbacks(): GetFeedbacksParam;
     /** @returns {GetGeneralConfigParam} */
     static getGeneralConfig(): any;
-    /** @returns {GetTicketParam} */
-    static getTicket(): GetTicketParam;
-    /** @returns {GetTicketHistoryParam} */
-    static getTicketHistory(): GetTicketHistoryParam;
-    /** @returns {GetTicketsParam} */
-    static getTickets(): GetTicketsParam;
-    /** @returns {GetTokenForVideoRoomParam} */
-    static getTokenForVideoRoom(): GetTokenForVideoRoomParam;
-    /** @returns {GetVideoParticipantsParam} */
-    static getVideoParticipants(): GetVideoParticipantsParam;
+    /** @returns {GetPlatformTicketParam} */
+    static getPlatformTicket(): GetPlatformTicketParam;
+    /** @returns {GetPlatformTicketHistoryParam} */
+    static getPlatformTicketHistory(): GetPlatformTicketHistoryParam;
+    /** @returns {GetPlatformTicketsParam} */
+    static getPlatformTickets(): GetPlatformTicketsParam;
+    /** @returns {GetPlatformVideoParticipantsParam} */
+    static getPlatformVideoParticipants(): GetPlatformVideoParticipantsParam;
+    /** @returns {GetTokenForPlatformVideoRoomParam} */
+    static getTokenForPlatformVideoRoom(): GetTokenForPlatformVideoRoomParam;
     /** @returns {SubmitFeedbackParam} */
     static submitFeedback(): SubmitFeedbackParam;
 }
 declare namespace LeadPlatformValidator {
-    export { CreateHistoryParam, CreateTicketParam, EditTicketParam, GetFeedbacksParam, GetGeneralConfigParam, GetTicketParam, GetTicketHistoryParam, GetTicketsParam, GetTokenForVideoRoomParam, GetVideoParticipantsParam, SubmitFeedbackParam };
+    export { CreatePlatformTicketHistoryParam, CreateTicketParam, EditPlatformTicketParam, GetFeedbacksParam, GetGeneralConfigParam, GetPlatformTicketParam, GetPlatformTicketHistoryParam, GetPlatformTicketsParam, GetPlatformVideoParticipantsParam, GetTokenForPlatformVideoRoomParam, SubmitFeedbackParam };
 }
-type CreateHistoryParam = {
+type CreatePlatformTicketHistoryParam = {
     /**
      * - Ticket ID for which history is created
      */
@@ -90,7 +90,7 @@ type CreateHistoryParam = {
 type CreateTicketParam = {
     body: LeadPlatformModel.AddTicketPayload;
 };
-type EditTicketParam = {
+type EditPlatformTicketParam = {
     /**
      * - Ticket ID of ticket to be edited
      */
@@ -103,19 +103,19 @@ type GetFeedbacksParam = {
      */
     id: string;
 };
-type GetTicketParam = {
+type GetPlatformTicketParam = {
     /**
      * - Tiket ID of the ticket to be fetched
      */
     id: string;
 };
-type GetTicketHistoryParam = {
+type GetPlatformTicketHistoryParam = {
     /**
      * - Ticket ID for which history is to be fetched
      */
     id: string;
 };
-type GetTicketsParam = {
+type GetPlatformTicketsParam = {
     /**
      * - Decides that the reponse will contain the list of tickets
      */
@@ -152,15 +152,15 @@ type GetTicketsParam = {
      */
     pageSize?: number;
 };
-type GetTokenForVideoRoomParam = {
+type GetPlatformVideoParticipantsParam = {
     /**
-     * - Unique name of video room
+     * - Unique name of Video Room
      */
     uniqueName: string;
 };
-type GetVideoParticipantsParam = {
+type GetTokenForPlatformVideoRoomParam = {
     /**
-     * - Unique name of Video Room
+     * - Unique name of video room
      */
     uniqueName: string;
 };
