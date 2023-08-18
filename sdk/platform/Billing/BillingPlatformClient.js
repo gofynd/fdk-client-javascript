@@ -621,7 +621,7 @@ class Billing {
   /**
    * @param {BillingPlatformValidator.GetEnterprisePlansParam} arg - Arg object
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Plan[]>} - Success response
+   * @returns {Promise<BillingPlatformModel.Plan[]>} - Success response
    * @name getEnterprisePlans
    * @summary: Get Enterprise Plans
    * @description: Get Enterprise Plans.

@@ -24,7 +24,7 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
 /**
  * @typedef CopyFilesParam
  * @property {boolean} [sync]
- * @property {FileStoragePlatformModel.BulkRequest} body
+ * @property {FileStoragePlatformModel.CopyFiles} body
  */
 
 /**
@@ -68,7 +68,7 @@ class FileStoragePlatformValidator {
   static copyFiles() {
     return Joi.object({
       sync: Joi.boolean(),
-      body: FileStoragePlatformModel.BulkRequest().required(),
+      body: FileStoragePlatformModel.CopyFiles().required(),
     }).required();
   }
 

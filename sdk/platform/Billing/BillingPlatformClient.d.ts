@@ -79,13 +79,13 @@ declare class Billing {
     /**
      * @param {BillingPlatformValidator.GetEnterprisePlansParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<Plan[]>} - Success response
+     * @returns {Promise<BillingPlatformModel.Plan[]>} - Success response
      * @name getEnterprisePlans
      * @summary: Get Enterprise Plans
      * @description: Get Enterprise Plans.
      *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getEnterprisePlans/).
      */
-    getEnterprisePlans({ headers }?: any): Promise<Plan[]>;
+    getEnterprisePlans({ headers }?: any): Promise<BillingPlatformModel.Plan[]>;
     /**
      * @param {BillingPlatformValidator.GetFeatureLimitConfigParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options

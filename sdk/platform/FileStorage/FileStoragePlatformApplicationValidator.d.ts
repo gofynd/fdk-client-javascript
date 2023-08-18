@@ -10,7 +10,7 @@ export = FileStoragePlatformApplicationValidator;
 /**
  * @typedef AppCopyFilesParam
  * @property {boolean} [sync] - Sync
- * @property {FileStoragePlatformModel.BulkRequest} body
+ * @property {FileStoragePlatformModel.CopyFiles} body
  */
 /**
  * @typedef AppStartUploadParam
@@ -29,6 +29,29 @@ export = FileStoragePlatformApplicationValidator;
  * @property {number} [page] - Page no
  * @property {number} [limit] - Limit
  */
+/**
+ * @typedef GetDefaultHtmlTemplateParam
+ * @property {number} pdfTypeId
+ * @property {string} format
+ */
+/**
+ * @typedef GetDefaultPdfDataParam
+ * @property {number} pdfTypeId
+ */
+/**
+ * @typedef GetDefaultPdfTemplateParam
+ * @property {number} pdfTypeId
+ * @property {string} format
+ */
+/** @typedef GetPdfTypesParam */
+/**
+ * @typedef PreviewTemplateParam
+ * @property {FileStoragePlatformModel.pdfRender} body
+ */
+/**
+ * @typedef SaveHtmlTemplateParam
+ * @property {FileStoragePlatformModel.pdfConfig} body
+ */
 declare class FileStoragePlatformApplicationValidator {
     /** @returns {AppCompleteUploadParam} */
     static appCompleteUpload(): AppCompleteUploadParam;
@@ -38,9 +61,21 @@ declare class FileStoragePlatformApplicationValidator {
     static appStartUpload(): AppStartUploadParam;
     /** @returns {AppbrowseParam} */
     static appbrowse(): AppbrowseParam;
+    /** @returns {GetDefaultHtmlTemplateParam} */
+    static getDefaultHtmlTemplate(): GetDefaultHtmlTemplateParam;
+    /** @returns {GetDefaultPdfDataParam} */
+    static getDefaultPdfData(): GetDefaultPdfDataParam;
+    /** @returns {GetDefaultPdfTemplateParam} */
+    static getDefaultPdfTemplate(): GetDefaultPdfTemplateParam;
+    /** @returns {GetPdfTypesParam} */
+    static getPdfTypes(): any;
+    /** @returns {PreviewTemplateParam} */
+    static previewTemplate(): PreviewTemplateParam;
+    /** @returns {SaveHtmlTemplateParam} */
+    static saveHtmlTemplate(): SaveHtmlTemplateParam;
 }
 declare namespace FileStoragePlatformApplicationValidator {
-    export { AppCompleteUploadParam, AppCopyFilesParam, AppStartUploadParam, AppbrowseParam };
+    export { AppCompleteUploadParam, AppCopyFilesParam, AppStartUploadParam, AppbrowseParam, GetDefaultHtmlTemplateParam, GetDefaultPdfDataParam, GetDefaultPdfTemplateParam, GetPdfTypesParam, PreviewTemplateParam, SaveHtmlTemplateParam };
 }
 type AppCompleteUploadParam = {
     /**
@@ -57,7 +92,7 @@ type AppCopyFilesParam = {
      * - Sync
      */
     sync?: boolean;
-    body: FileStoragePlatformModel.BulkRequest;
+    body: FileStoragePlatformModel.CopyFiles;
 };
 type AppStartUploadParam = {
     /**
@@ -86,4 +121,22 @@ type AppbrowseParam = {
      */
     limit?: number;
 };
+type GetDefaultHtmlTemplateParam = {
+    pdfTypeId: number;
+    format: string;
+};
+type GetDefaultPdfDataParam = {
+    pdfTypeId: number;
+};
+type GetDefaultPdfTemplateParam = {
+    pdfTypeId: number;
+    format: string;
+};
+type PreviewTemplateParam = {
+    body: FileStoragePlatformModel.pdfRender;
+};
+type SaveHtmlTemplateParam = {
+    body: FileStoragePlatformModel.pdfConfig;
+};
+type GetPdfTypesParam = any;
 import FileStoragePlatformModel = require("./FileStoragePlatformModel");

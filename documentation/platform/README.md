@@ -13,7 +13,8 @@
 * [Configuration](CONFIGURATION.md) - Application configuration apis 
 * [Content](CONTENT.md) - Content System 
 * [Discount](DISCOUNT.md) - Discount 
-* [FileStorage](FILESTORAGE.md) - File Storage 
+* [FileStorage](FILESTORAGE.md) - This service provides functionality to manage assets and generate pdf. You can upload the assets, get the cdn link for the assets, proxy the assets and many more things.
+ 
 * [Finance](FINANCE.md) - Handles all finance related activities 
 * [Inventory](INVENTORY.md) - Catalog - Platform Front API's' API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
 * [Lead](LEAD.md) - Handles communication between Administrator 

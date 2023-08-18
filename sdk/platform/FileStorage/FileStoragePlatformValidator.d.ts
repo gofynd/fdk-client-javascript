@@ -19,7 +19,7 @@ export = FileStoragePlatformValidator;
 /**
  * @typedef CopyFilesParam
  * @property {boolean} [sync]
- * @property {FileStoragePlatformModel.BulkRequest} body
+ * @property {FileStoragePlatformModel.CopyFiles} body
  */
 /**
  * @typedef GetSignUrlsParam
@@ -83,7 +83,7 @@ type CompleteUploadParam = {
 };
 type CopyFilesParam = {
     sync?: boolean;
-    body: FileStoragePlatformModel.BulkRequest;
+    body: FileStoragePlatformModel.CopyFiles;
 };
 type GetSignUrlsParam = {
     body: FileStoragePlatformModel.SignUrlRequest;

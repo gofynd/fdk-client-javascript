@@ -115,7 +115,7 @@ class FileStorage {
   /**
    * @param {FileStoragePlatformApplicationValidator.AppCopyFilesParam} arg - Arg object
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<FileStoragePlatformModel.BulkUploadResponse>} - Success response
+   * @returns {Promise<FileStoragePlatformModel.BulkUploadSyncMode>} - Success response
    * @name appCopyFiles
    * @summary: Copy Files
    * @description: Copy Files - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/appCopyFiles/).
@@ -171,7 +171,7 @@ class FileStorage {
 
     const {
       error: res_error,
-    } = FileStoragePlatformModel.BulkUploadResponse().validate(responseData, {
+    } = FileStoragePlatformModel.BulkUploadSyncMode().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -360,6 +360,444 @@ class FileStorage {
       Logger({
         level: "WARN",
         message: `Response Validation Warnnings for platform > FileStorage > appbrowse \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {FileStoragePlatformApplicationValidator.GetDefaultHtmlTemplateParam} arg
+   *   - Arg object
+   *
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<FileStoragePlatformModel.PdfConfigSuccess[]>} - Success response
+   * @name getDefaultHtmlTemplate
+   * @summary: Get html template for sales channel
+   * @description: Get default html template for invoice or label - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getDefaultHtmlTemplate/).
+   */
+  async getDefaultHtmlTemplate(
+    { pdfTypeId, format } = {},
+    { headers } = { headers: false }
+  ) {
+    const {
+      error,
+    } = FileStoragePlatformApplicationValidator.getDefaultHtmlTemplate().validate(
+      {
+        pdfTypeId,
+        format,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = FileStoragePlatformApplicationValidator.getDefaultHtmlTemplate().validate(
+      {
+        pdfTypeId,
+        format,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > FileStorage > getDefaultHtmlTemplate \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["pdf_type_id"] = pdfTypeId;
+    query_params["format"] = format;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pdf/config`,
+      query_params,
+      undefined,
+      undefined,
+      { headers }
+    );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = Joi.array()
+      .items(FileStoragePlatformModel.PdfConfigSuccess())
+      .validate(responseData, { abortEarly: false, allowUnknown: false });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > FileStorage > getDefaultHtmlTemplate \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {FileStoragePlatformApplicationValidator.GetDefaultPdfDataParam} arg
+   *   - Arg object
+   *
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<FileStoragePlatformModel.DummyTemplateDataItems[]>} -
+   *   Success response
+   * @name getDefaultPdfData
+   * @summary: Get Dummy pdf data for invoice or label
+   * @description: Get Dummy pdf data for invoice or label - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getDefaultPdfData/).
+   */
+  async getDefaultPdfData(
+    { pdfTypeId } = {},
+    { headers } = { headers: false }
+  ) {
+    const {
+      error,
+    } = FileStoragePlatformApplicationValidator.getDefaultPdfData().validate(
+      {
+        pdfTypeId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = FileStoragePlatformApplicationValidator.getDefaultPdfData().validate(
+      {
+        pdfTypeId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > FileStorage > getDefaultPdfData \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["pdf_type_id"] = pdfTypeId;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pdf/mapper`,
+      query_params,
+      undefined,
+      undefined,
+      { headers }
+    );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = Joi.array()
+      .items(FileStoragePlatformModel.DummyTemplateDataItems())
+      .validate(responseData, { abortEarly: false, allowUnknown: false });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > FileStorage > getDefaultPdfData \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {FileStoragePlatformApplicationValidator.GetDefaultPdfTemplateParam} arg
+   *   - Arg object
+   *
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<
+   *   FileStoragePlatformModel.PdfDefaultTemplateSuccess[]
+   * >}
+   *   - Success response
+   *
+   * @name getDefaultPdfTemplate
+   * @summary: Default html template
+   * @description: Get default html template data for invoice or label - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getDefaultPdfTemplate/).
+   */
+  async getDefaultPdfTemplate(
+    { pdfTypeId, format } = {},
+    { headers } = { headers: false }
+  ) {
+    const {
+      error,
+    } = FileStoragePlatformApplicationValidator.getDefaultPdfTemplate().validate(
+      {
+        pdfTypeId,
+        format,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = FileStoragePlatformApplicationValidator.getDefaultPdfTemplate().validate(
+      {
+        pdfTypeId,
+        format,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > FileStorage > getDefaultPdfTemplate \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["pdf_type_id"] = pdfTypeId;
+    query_params["format"] = format;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pdf/default-template`,
+      query_params,
+      undefined,
+      undefined,
+      { headers }
+    );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = Joi.array()
+      .items(FileStoragePlatformModel.PdfDefaultTemplateSuccess())
+      .validate(responseData, { abortEarly: false, allowUnknown: false });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > FileStorage > getDefaultPdfTemplate \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<FileStoragePlatformModel.InvoiceTypesResponse[]>} -
+   *   Success response
+   * @name getPdfTypes
+   * @summary: Get all the supported invoice pdf types
+   * @description: Get all the supported invoice pdf types such as Invoice, Label, Deliver challan - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getPdfTypes/).
+   */
+  async getPdfTypes({ headers } = { headers: false }) {
+    const {
+      error,
+    } = FileStoragePlatformApplicationValidator.getPdfTypes().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = FileStoragePlatformApplicationValidator.getPdfTypes().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > FileStorage > getPdfTypes \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pdf/types`,
+      query_params,
+      undefined,
+      undefined,
+      { headers }
+    );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = Joi.array()
+      .items(FileStoragePlatformModel.InvoiceTypesResponse())
+      .validate(responseData, { abortEarly: false, allowUnknown: false });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > FileStorage > getPdfTypes \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {FileStoragePlatformApplicationValidator.PreviewTemplateParam} arg
+   *   - Arg object
+   *
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<string>} - Success response
+   * @name previewTemplate
+   * @summary: Preview HTML template
+   * @description: Rendered HTML template with dummy json data - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/previewTemplate/).
+   */
+  async previewTemplate({ body } = {}, { headers } = { headers: false }) {
+    const {
+      error,
+    } = FileStoragePlatformApplicationValidator.previewTemplate().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = FileStoragePlatformApplicationValidator.previewTemplate().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > FileStorage > previewTemplate \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pdf/render`,
+      query_params,
+      body,
+      undefined,
+      { headers }
+    );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = Joi.string()
+      .allow("")
+      .validate(responseData, { abortEarly: false, allowUnknown: false });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > FileStorage > previewTemplate \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {FileStoragePlatformApplicationValidator.SaveHtmlTemplateParam} arg
+   *   - Arg object
+   *
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<FileStoragePlatformModel.PdfConfigSaveSuccess[]>} -
+   *   Success response
+   * @name saveHtmlTemplate
+   * @summary: Update html template for invoice or label
+   * @description: Update html template for invoice such as Invoice, Label, Deliver challan - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/saveHtmlTemplate/).
+   */
+  async saveHtmlTemplate({ body } = {}, { headers } = { headers: false }) {
+    const {
+      error,
+    } = FileStoragePlatformApplicationValidator.saveHtmlTemplate().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = FileStoragePlatformApplicationValidator.saveHtmlTemplate().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > FileStorage > saveHtmlTemplate \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pdf/config`,
+      query_params,
+      body,
+      undefined,
+      { headers }
+    );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = Joi.array()
+      .items(FileStoragePlatformModel.PdfConfigSaveSuccess())
+      .validate(responseData, { abortEarly: false, allowUnknown: false });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > FileStorage > saveHtmlTemplate \n ${res_error}`,
       });
     }
 

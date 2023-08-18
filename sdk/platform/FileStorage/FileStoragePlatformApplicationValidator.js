@@ -14,7 +14,7 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
 /**
  * @typedef AppCopyFilesParam
  * @property {boolean} [sync] - Sync
- * @property {FileStoragePlatformModel.BulkRequest} body
+ * @property {FileStoragePlatformModel.CopyFiles} body
  */
 
 /**
@@ -36,6 +36,35 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
  * @property {number} [limit] - Limit
  */
 
+/**
+ * @typedef GetDefaultHtmlTemplateParam
+ * @property {number} pdfTypeId
+ * @property {string} format
+ */
+
+/**
+ * @typedef GetDefaultPdfDataParam
+ * @property {number} pdfTypeId
+ */
+
+/**
+ * @typedef GetDefaultPdfTemplateParam
+ * @property {number} pdfTypeId
+ * @property {string} format
+ */
+
+/** @typedef GetPdfTypesParam */
+
+/**
+ * @typedef PreviewTemplateParam
+ * @property {FileStoragePlatformModel.pdfRender} body
+ */
+
+/**
+ * @typedef SaveHtmlTemplateParam
+ * @property {FileStoragePlatformModel.pdfConfig} body
+ */
+
 class FileStoragePlatformApplicationValidator {
   /** @returns {AppCompleteUploadParam} */
   static appCompleteUpload() {
@@ -51,7 +80,7 @@ class FileStoragePlatformApplicationValidator {
     return Joi.object({
       sync: Joi.boolean(),
 
-      body: FileStoragePlatformModel.BulkRequest().required(),
+      body: FileStoragePlatformModel.CopyFiles().required(),
     }).required();
   }
 
@@ -71,6 +100,48 @@ class FileStoragePlatformApplicationValidator {
 
       page: Joi.number(),
       limit: Joi.number(),
+    }).required();
+  }
+
+  /** @returns {GetDefaultHtmlTemplateParam} */
+  static getDefaultHtmlTemplate() {
+    return Joi.object({
+      pdfTypeId: Joi.number().required(),
+      format: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {GetDefaultPdfDataParam} */
+  static getDefaultPdfData() {
+    return Joi.object({
+      pdfTypeId: Joi.number().required(),
+    }).required();
+  }
+
+  /** @returns {GetDefaultPdfTemplateParam} */
+  static getDefaultPdfTemplate() {
+    return Joi.object({
+      pdfTypeId: Joi.number().required(),
+      format: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {GetPdfTypesParam} */
+  static getPdfTypes() {
+    return Joi.object({}).required();
+  }
+
+  /** @returns {PreviewTemplateParam} */
+  static previewTemplate() {
+    return Joi.object({
+      body: FileStoragePlatformModel.pdfRender().required(),
+    }).required();
+  }
+
+  /** @returns {SaveHtmlTemplateParam} */
+  static saveHtmlTemplate() {
+    return Joi.object({
+      body: FileStoragePlatformModel.pdfConfig().required(),
     }).required();
   }
 }

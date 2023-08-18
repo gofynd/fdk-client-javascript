@@ -192,7 +192,7 @@ class FileStorage {
   /**
    * @param {FileStoragePlatformValidator.CopyFilesParam} arg - Arg object
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<FileStoragePlatformModel.BulkUploadResponse>} - Success response
+   * @returns {Promise<FileStoragePlatformModel.BulkUploadSyncMode>} - Success response
    * @name copyFiles
    * @summary: Copy Files
    * @description: Copy Files - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/copyFiles/).
@@ -248,7 +248,7 @@ class FileStorage {
 
     const {
       error: res_error,
-    } = FileStoragePlatformModel.BulkUploadResponse().validate(responseData, {
+    } = FileStoragePlatformModel.BulkUploadSyncMode().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });

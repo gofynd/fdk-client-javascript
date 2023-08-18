@@ -5,26 +5,13 @@ export = FileStoragePlatformModel;
  * @property {Page} page
  */
 /**
- * @typedef BulkRequest
- * @property {Destination} destination
- * @property {string[]} urls
- */
-/**
- * @typedef BulkUploadFailFileResponseItems
- * @property {string} [error]
- * @property {File} [file]
- * @property {string} [stage]
- * @property {boolean} success
- */
-/**
  * @typedef BulkUploadFailResponse
- * @property {BulkUploadFailFileResponseItems[]} files
  * @property {Status} status
  */
 /**
- * @typedef BulkUploadResponse
- * @property {CopyFileTask} task
- * @property {string} tracking_url
+ * @typedef BulkUploadSyncMode
+ * @property {FilesSuccess[]} [files]
+ * @property {Status} status
  */
 /**
  * @typedef CDN
@@ -49,18 +36,9 @@ export = FileStoragePlatformModel;
  * @property {Upload} upload
  */
 /**
- * @typedef CopyFileTask
- * @property {number} attempts_made
- * @property {BulkRequest} data
- * @property {number} delay
- * @property {number} finished_on
- * @property {string} id
- * @property {string} name
- * @property {Opts} opts
- * @property {number} processed_on
- * @property {number} progress
- * @property {string[]} [stacktrace]
- * @property {number} timestamp
+ * @typedef CopyFiles
+ * @property {DestinationNamespace} destination
+ * @property {string[]} urls
  */
 /**
  * @typedef DbRecord
@@ -78,10 +56,15 @@ export = FileStoragePlatformModel;
  * @property {Upload} upload
  */
 /**
- * @typedef Destination
- * @property {string} [basepath]
- * @property {string} namespace
- * @property {string} rewrite
+ * @typedef DestinationNamespace
+ * @property {string} [namespace]
+ */
+/**
+ * @typedef DummyTemplateDataItems
+ * @property {number} [__v]
+ * @property {string} [_id]
+ * @property {Object} payload
+ * @property {number} [pdf_type_id]
  */
 /**
  * @typedef FailedResponse
@@ -98,10 +81,19 @@ export = FileStoragePlatformModel;
  * @property {string} url
  */
 /**
- * @typedef Opts
- * @property {number} [attempts]
- * @property {number} [delay]
- * @property {number} [timestamp]
+ * @typedef FilesSuccess
+ * @property {File} [file]
+ * @property {boolean} success
+ */
+/**
+ * @typedef InvoiceTypesResponse
+ * @property {number} __v
+ * @property {string} _id
+ * @property {string[]} format
+ * @property {string} name
+ * @property {number} pdf_type_id
+ * @property {Object} schema
+ * @property {boolean} visibility
  */
 /**
  * @typedef Page
@@ -112,6 +104,46 @@ export = FileStoragePlatformModel;
  * @property {string} [next_id]
  * @property {number} [size]
  * @property {string} type
+ */
+/**
+ * @typedef pdfConfig
+ * @property {string} [format] - This is invoice document format such as A4, A6, POS
+ * @property {number} [pdf_type_id]
+ * @property {string} [template] - This is html template string
+ */
+/**
+ * @typedef PdfConfigSaveSuccess
+ * @property {number} [__v]
+ * @property {string} [_id]
+ * @property {string} [application_id]
+ * @property {number} [company_id]
+ * @property {string} [format]
+ * @property {number} [pdf_type_id]
+ * @property {string} [template]
+ */
+/**
+ * @typedef PdfConfigSuccess
+ * @property {number} [__v]
+ * @property {string} [_id]
+ * @property {string} [application_id]
+ * @property {number} [company_id]
+ * @property {string} [format]
+ * @property {number} [pdf_type_id]
+ * @property {string} [template]
+ */
+/**
+ * @typedef PdfDefaultTemplateSuccess
+ * @property {number} [__v]
+ * @property {string} [_id]
+ * @property {string} [format]
+ * @property {number} [pdf_type_id]
+ * @property {string} [template]
+ */
+/**
+ * @typedef pdfRender
+ * @property {string} [format]
+ * @property {Object} [payload]
+ * @property {string} [template]
  */
 /**
  * @typedef SignUrlRequest
@@ -164,7 +196,7 @@ export = FileStoragePlatformModel;
 declare class FileStoragePlatformModel {
 }
 declare namespace FileStoragePlatformModel {
-    export { BrowseResponse, BulkRequest, BulkUploadFailFileResponseItems, BulkUploadFailResponse, BulkUploadResponse, CDN, CompleteResponse, CopyFileTask, DbRecord, Destination, FailedResponse, File, FileSrc, Opts, Page, SignUrlRequest, SignUrlResponse, StartRequest, StartResponse, Status, Upload, Urls };
+    export { BrowseResponse, BulkUploadFailResponse, BulkUploadSyncMode, CDN, CompleteResponse, CopyFiles, DbRecord, DestinationNamespace, DummyTemplateDataItems, FailedResponse, File, FileSrc, FilesSuccess, InvoiceTypesResponse, Page, pdfConfig, PdfConfigSaveSuccess, PdfConfigSuccess, PdfDefaultTemplateSuccess, pdfRender, SignUrlRequest, SignUrlResponse, StartRequest, StartResponse, Status, Upload, Urls };
 }
 /** @returns {BrowseResponse} */
 declare function BrowseResponse(): BrowseResponse;
@@ -172,31 +204,16 @@ type BrowseResponse = {
     items: DbRecord[];
     page: Page;
 };
-/** @returns {BulkRequest} */
-declare function BulkRequest(): BulkRequest;
-type BulkRequest = {
-    destination: Destination;
-    urls: string[];
-};
-/** @returns {BulkUploadFailFileResponseItems} */
-declare function BulkUploadFailFileResponseItems(): BulkUploadFailFileResponseItems;
-type BulkUploadFailFileResponseItems = {
-    error?: string;
-    file?: File;
-    stage?: string;
-    success: boolean;
-};
 /** @returns {BulkUploadFailResponse} */
 declare function BulkUploadFailResponse(): BulkUploadFailResponse;
 type BulkUploadFailResponse = {
-    files: BulkUploadFailFileResponseItems[];
     status: Status;
 };
-/** @returns {BulkUploadResponse} */
-declare function BulkUploadResponse(): BulkUploadResponse;
-type BulkUploadResponse = {
-    task: CopyFileTask;
-    tracking_url: string;
+/** @returns {BulkUploadSyncMode} */
+declare function BulkUploadSyncMode(): BulkUploadSyncMode;
+type BulkUploadSyncMode = {
+    files?: FilesSuccess[];
+    status: Status;
 };
 /** @returns {CDN} */
 declare function CDN(): CDN;
@@ -222,20 +239,11 @@ type CompleteResponse = {
     tags?: string[];
     upload: Upload;
 };
-/** @returns {CopyFileTask} */
-declare function CopyFileTask(): CopyFileTask;
-type CopyFileTask = {
-    attempts_made: number;
-    data: BulkRequest;
-    delay: number;
-    finished_on: number;
-    id: string;
-    name: string;
-    opts: Opts;
-    processed_on: number;
-    progress: number;
-    stacktrace?: string[];
-    timestamp: number;
+/** @returns {CopyFiles} */
+declare function CopyFiles(): CopyFiles;
+type CopyFiles = {
+    destination: DestinationNamespace;
+    urls: string[];
 };
 /** @returns {DbRecord} */
 declare function DbRecord(): DbRecord;
@@ -253,12 +261,18 @@ type DbRecord = {
     tags: string[];
     upload: Upload;
 };
-/** @returns {Destination} */
-declare function Destination(): Destination;
-type Destination = {
-    basepath?: string;
-    namespace: string;
-    rewrite: string;
+/** @returns {DestinationNamespace} */
+declare function DestinationNamespace(): DestinationNamespace;
+type DestinationNamespace = {
+    namespace?: string;
+};
+/** @returns {DummyTemplateDataItems} */
+declare function DummyTemplateDataItems(): DummyTemplateDataItems;
+type DummyTemplateDataItems = {
+    __v?: number;
+    _id?: string;
+    payload: any;
+    pdf_type_id?: number;
 };
 /** @returns {FailedResponse} */
 declare function FailedResponse(): FailedResponse;
@@ -277,12 +291,22 @@ type FileSrc = {
     namespace?: string;
     url: string;
 };
-/** @returns {Opts} */
-declare function Opts(): Opts;
-type Opts = {
-    attempts?: number;
-    delay?: number;
-    timestamp?: number;
+/** @returns {FilesSuccess} */
+declare function FilesSuccess(): FilesSuccess;
+type FilesSuccess = {
+    file?: File;
+    success: boolean;
+};
+/** @returns {InvoiceTypesResponse} */
+declare function InvoiceTypesResponse(): InvoiceTypesResponse;
+type InvoiceTypesResponse = {
+    __v: number;
+    _id: string;
+    format: string[];
+    name: string;
+    pdf_type_id: number;
+    schema: any;
+    visibility: boolean;
 };
 /** @returns {Page} */
 declare function Page(): Page;
@@ -294,6 +318,57 @@ type Page = {
     next_id?: string;
     size?: number;
     type: string;
+};
+/** @returns {pdfConfig} */
+declare function pdfConfig(): pdfConfig;
+type pdfConfig = {
+    /**
+     * - This is invoice document format such as A4, A6, POS
+     */
+    format?: string;
+    pdf_type_id?: number;
+    /**
+     * - This is html template string
+     */
+    template?: string;
+};
+/** @returns {PdfConfigSaveSuccess} */
+declare function PdfConfigSaveSuccess(): PdfConfigSaveSuccess;
+type PdfConfigSaveSuccess = {
+    __v?: number;
+    _id?: string;
+    application_id?: string;
+    company_id?: number;
+    format?: string;
+    pdf_type_id?: number;
+    template?: string;
+};
+/** @returns {PdfConfigSuccess} */
+declare function PdfConfigSuccess(): PdfConfigSuccess;
+type PdfConfigSuccess = {
+    __v?: number;
+    _id?: string;
+    application_id?: string;
+    company_id?: number;
+    format?: string;
+    pdf_type_id?: number;
+    template?: string;
+};
+/** @returns {PdfDefaultTemplateSuccess} */
+declare function PdfDefaultTemplateSuccess(): PdfDefaultTemplateSuccess;
+type PdfDefaultTemplateSuccess = {
+    __v?: number;
+    _id?: string;
+    format?: string;
+    pdf_type_id?: number;
+    template?: string;
+};
+/** @returns {pdfRender} */
+declare function pdfRender(): pdfRender;
+type pdfRender = {
+    format?: string;
+    payload?: any;
+    template?: string;
 };
 /** @returns {SignUrlRequest} */
 declare function SignUrlRequest(): SignUrlRequest;

@@ -74,8 +74,8 @@ const UserPlatformModel = require("./UserPlatformModel");
 /**
  * @typedef SearchUsersParam
  * @property {string} [q] - The search query. Mobile number or email ID of a customer.
- * @property {any[]} [query] - The search queries. Mobile numbers or email IDs
- *   of customers.
+ * @property {string[]} [query] - The search queries. Mobile numbers or email
+ *   IDs of customers.
  */
 
 /**

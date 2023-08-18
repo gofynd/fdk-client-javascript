@@ -41,12 +41,12 @@ declare class FileStorage {
     /**
      * @param {FileStoragePlatformValidator.CopyFilesParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<FileStoragePlatformModel.BulkUploadResponse>} - Success response
+     * @returns {Promise<FileStoragePlatformModel.BulkUploadSyncMode>} - Success response
      * @name copyFiles
      * @summary: Copy Files
      * @description: Copy Files - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/copyFiles/).
      */
-    copyFiles({ body, sync }?: FileStoragePlatformValidator.CopyFilesParam, { headers }?: import("../PlatformAPIClient").Options): Promise<FileStoragePlatformModel.BulkUploadResponse>;
+    copyFiles({ body, sync }?: FileStoragePlatformValidator.CopyFilesParam, { headers }?: import("../PlatformAPIClient").Options): Promise<FileStoragePlatformModel.BulkUploadSyncMode>;
     /**
      * @param {FileStoragePlatformValidator.GetSignUrlsParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
