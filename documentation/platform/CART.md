@@ -13207,6 +13207,16 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
+#### [CartCheckoutCustomMeta](#CartCheckoutCustomMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | string |  no  |  |
+ | value | string |  no  |  |
+ 
+
+---
+
 #### [CartCheckoutResponse](#CartCheckoutResponse)
 
  | Properties | Type | Nullable | Description |
@@ -14403,6 +14413,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | billing_address_id | string? |  yes  |  |
  | callback_url | string? |  yes  |  |
  | checkout_mode | string? |  yes  |  |
+ | custom_meta | [[CartCheckoutCustomMeta](#CartCheckoutCustomMeta)]? |  yes  |  |
  | customer_details | [CustomerDetails](#CustomerDetails)? |  yes  | Customer details |
  | delivery_address | string? |  yes  |  |
  | device_id | string? |  yes  |  |

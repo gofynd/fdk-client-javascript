@@ -1,7 +1,7 @@
 export = ThemePlatformApplicationValidator;
 /**
  * @typedef AddThemeToApplicationParam
- * @property {ThemePlatformModel.CompanyThemeSchema} body
+ * @property {ThemePlatformModel.ThemeReq} body
  */
 /**
  * @typedef AddToThemeLibraryParam
@@ -175,7 +175,7 @@ declare namespace ThemePlatformApplicationValidator {
     export { AddThemeToApplicationParam, AddToThemeLibraryParam, ApplyThemeParam, ArchiveThemeParam, CreatePageParam, DeletePageParam, DeleteThemeParam, DuplicateThemeParam, GetAllPagesParam, GetApplicationThemesParam, GetApplicationThemesCountParam, GetAppliedThemeParam, GetFontsParam, GetPageParam, GetPublicThemesParam, GetThemeByIdParam, GetThemeForPreviewParam, GetThemeLastModifiedParam, GetThemeLibraryParam, IsUpgradableParam, PublishThemeParam, UnarchiveThemeParam, UnpublishThemeParam, UpdateMultiplePagesParam, UpdatePageParam, UpdateThemeParam, UpdateThemeNameParam, UpgradeThemeParam };
 }
 type AddThemeToApplicationParam = {
-    body: ThemePlatformModel.CompanyThemeSchema;
+    body: ThemePlatformModel.ThemeReq;
 };
 type AddToThemeLibraryParam = {
     body: ThemePlatformModel.AddThemeRequestSchema;

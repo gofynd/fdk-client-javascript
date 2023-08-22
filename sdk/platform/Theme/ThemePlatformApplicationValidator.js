@@ -4,7 +4,7 @@ const ThemePlatformModel = require("./ThemePlatformModel");
 
 /**
  * @typedef AddThemeToApplicationParam
- * @property {ThemePlatformModel.CompanyThemeSchema} body
+ * @property {ThemePlatformModel.ThemeReq} body
  */
 
 /**
@@ -148,7 +148,7 @@ class ThemePlatformApplicationValidator {
   /** @returns {AddThemeToApplicationParam} */
   static addThemeToApplication() {
     return Joi.object({
-      body: ThemePlatformModel.CompanyThemeSchema().required(),
+      body: ThemePlatformModel.ThemeReq().required(),
     }).required();
   }
 

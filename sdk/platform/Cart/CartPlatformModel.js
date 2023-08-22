@@ -181,6 +181,12 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef CartCheckoutCustomMeta
+ * @property {string} key
+ * @property {string} value
+ */
+
+/**
  * @typedef CartCheckoutResponse
  * @property {string} [app_intercept_url]
  * @property {string} [callback_url]
@@ -1036,6 +1042,7 @@ const Joi = require("joi");
  * @property {string} [billing_address_id]
  * @property {string} [callback_url]
  * @property {string} [checkout_mode]
+ * @property {CartCheckoutCustomMeta[]} [custom_meta]
  * @property {Object} [customer_details] - Customer details
  * @property {Object} [delivery_address]
  * @property {string} [device_id]
@@ -2009,6 +2016,14 @@ class CartPlatformModel {
       display: Joi.array().items(CartPlatformModel.DisplayBreakup()),
       loyalty_points: CartPlatformModel.LoyaltyPoints(),
       raw: CartPlatformModel.RawBreakup(),
+    });
+  }
+
+  /** @returns {CartCheckoutCustomMeta} */
+  static CartCheckoutCustomMeta() {
+    return Joi.object({
+      key: Joi.string().allow("").required(),
+      value: Joi.string().allow("").required(),
     });
   }
 
@@ -3047,6 +3062,9 @@ class CartPlatformModel {
       billing_address_id: Joi.string().allow(""),
       callback_url: Joi.string().allow("").allow(null),
       checkout_mode: Joi.string().allow(""),
+      custom_meta: Joi.array().items(
+        CartPlatformModel.CartCheckoutCustomMeta()
+      ),
       customer_details: Joi.any().allow(null),
       delivery_address: Joi.any(),
       device_id: Joi.string().allow("").allow(null),

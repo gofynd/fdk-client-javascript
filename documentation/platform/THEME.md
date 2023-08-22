@@ -121,7 +121,7 @@ const data = await platformClient.application("<APPLICATION_ID>").theme.addTheme
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
-| body | [CompanyThemeSchema](#CompanyThemeSchema) | yes | Request body |
+| body | [ThemeReq](#ThemeReq) | yes | Request body |
 
 
 Add a theme to an application by providing the marketplace theme ID.
