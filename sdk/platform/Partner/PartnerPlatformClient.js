@@ -1,8 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
-const PartnerValidator = require("./PartnerPlatformValidator");
-const PartnerModel = require("./PartnerPlatformModel");
+const PartnerPlatformValidator = require("./PartnerPlatformValidator");
+const PartnerPlatformModel = require("./PartnerPlatformModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -12,20 +12,21 @@ class Partner {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.extensionId - Extension id
-   * @param {string} arg.message - Message while uninstalling extension
-   * @param {string} arg.uninstallReasonType - Reason for uninstalling extension
-   * @returns {Promise<UninstallExtension>} - Success response
+   * @param {PartnerPlatformValidator.DeleteExtensionByIdParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PartnerPlatformModel.UninstallExtension>} - Success response
+   * @name deleteExtensionById
    * @summary: Uninstall extension
-   * @description: Use this API to remove extension from yout company or channel
+   * @description: Use this API to remove extension from yout company or channel - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/deleteExtensionById/).
    */
-  async deleteExtensionById({
-    extensionId,
-    message,
-    uninstallReasonType,
-  } = {}) {
-    const { error } = PartnerValidator.deleteExtensionById().validate(
+  async deleteExtensionById(
+    { extensionId, message, uninstallReasonType, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = PartnerPlatformValidator.deleteExtensionById().validate(
       {
         extensionId,
         message,
@@ -38,7 +39,9 @@ class Partner {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = PartnerValidator.deleteExtensionById().validate(
+    const {
+      error: warrning,
+    } = PartnerPlatformValidator.deleteExtensionById().validate(
       {
         extensionId,
         message,
@@ -49,9 +52,8 @@ class Partner {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for deleteExtensionById",
+        message: `Parameter Validation warrnings for platform > Partner > deleteExtensionById \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -66,12 +68,18 @@ class Partner {
       `/service/platform/partners/v1.0/company/${this.config.companyId}/extension/${extensionId}`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PartnerModel.UninstallExtension().validate(response, {
+    } = PartnerPlatformModel.UninstallExtension().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -79,23 +87,27 @@ class Partner {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for deleteExtensionById",
+        message: `Response Validation Warnnings for platform > Partner > deleteExtensionById \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.extensionId - Extension id
-   * @returns {Promise<ExtensionCommon>} - Success response
+   * @param {PartnerPlatformValidator.GetExtensionByIdParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PartnerPlatformModel.ExtensionCommon>} - Success response
+   * @name getExtensionById
    * @summary: Get extension details
-   * @description: Use this API to get the details of extension
+   * @description: Use this API to get the details of extension - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/getExtensionById/).
    */
-  async getExtensionById({ extensionId } = {}) {
-    const { error } = PartnerValidator.getExtensionById().validate(
+  async getExtensionById(
+    { extensionId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = PartnerPlatformValidator.getExtensionById().validate(
       {
         extensionId,
       },
@@ -106,7 +118,9 @@ class Partner {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = PartnerValidator.getExtensionById().validate(
+    const {
+      error: warrning,
+    } = PartnerPlatformValidator.getExtensionById().validate(
       {
         extensionId,
       },
@@ -115,9 +129,8 @@ class Partner {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getExtensionById",
+        message: `Parameter Validation warrnings for platform > Partner > getExtensionById \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -130,12 +143,18 @@ class Partner {
       `/service/platform/partners/v1.0/company/${this.config.companyId}/extension/${extensionId}`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PartnerModel.ExtensionCommon().validate(response, {
+    } = PartnerPlatformModel.ExtensionCommon().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -143,35 +162,31 @@ class Partner {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getExtensionById",
+        message: `Response Validation Warnnings for platform > Partner > getExtensionById \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageSize] - Number of records you want to get in single page
-   * @param {string} [arg.tag] - Tag
-   * @param {string} [arg.currentPage] - Tag
-   * @param {number} [arg.pageNo] - Current page number
-   * @param {string} [arg.filterBy] - Filter by
-   * @param {string} [arg.query] - Query
-   * @returns {Promise<ExtensionList>} - Success response
+   * @param {PartnerPlatformValidator.GetExtensionsForCompanyParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PartnerPlatformModel.ExtensionList>} - Success response
+   * @name getExtensionsForCompany
    * @summary: Get the list of all the extensions
-   * @description: Use this API to get the the extensions for the company
+   * @description: Use this API to get the the extensions for the company - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/getExtensionsForCompany/).
    */
-  async getExtensionsForCompany({
-    pageSize,
-    tag,
-    currentPage,
-    pageNo,
-    filterBy,
-    query,
-  } = {}) {
-    const { error } = PartnerValidator.getExtensionsForCompany().validate(
+  async getExtensionsForCompany(
+    { pageSize, tag, currentPage, pageNo, filterBy, query, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = PartnerPlatformValidator.getExtensionsForCompany().validate(
       {
         pageSize,
         tag,
@@ -189,7 +204,7 @@ class Partner {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PartnerValidator.getExtensionsForCompany().validate(
+    } = PartnerPlatformValidator.getExtensionsForCompany().validate(
       {
         pageSize,
         tag,
@@ -203,9 +218,8 @@ class Partner {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getExtensionsForCompany",
+        message: `Parameter Validation warrnings for platform > Partner > getExtensionsForCompany \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -224,34 +238,48 @@ class Partner {
       `/service/platform/partners/v1.0/company/${this.config.companyId}/extensions`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
-    const { error: res_error } = PartnerModel.ExtensionList().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = PartnerPlatformModel.ExtensionList().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getExtensionsForCompany",
+        message: `Response Validation Warnnings for platform > Partner > getExtensionsForCompany \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageSize] - Number of records you want to get in single page
-   * @returns {Promise<ExtensionSuggestionList>} - Success response
+   * @param {PartnerPlatformValidator.GetExtensionsSuggestionsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PartnerPlatformModel.ExtensionSuggestionList>} - Success response
+   * @name getExtensionsSuggestions
    * @summary: Get the list of all the extension suggestions
-   * @description: Use this API to get the the extensions suggestions
+   * @description: Use this API to get the the extensions suggestions - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/getExtensionsSuggestions/).
    */
-  async getExtensionsSuggestions({ pageSize } = {}) {
-    const { error } = PartnerValidator.getExtensionsSuggestions().validate(
+  async getExtensionsSuggestions(
+    { pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = PartnerPlatformValidator.getExtensionsSuggestions().validate(
       {
         pageSize,
       },
@@ -264,7 +292,7 @@ class Partner {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PartnerValidator.getExtensionsSuggestions().validate(
+    } = PartnerPlatformValidator.getExtensionsSuggestions().validate(
       {
         pageSize,
       },
@@ -273,9 +301,8 @@ class Partner {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getExtensionsSuggestions",
+        message: `Parameter Validation warrnings for platform > Partner > getExtensionsSuggestions \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -289,12 +316,18 @@ class Partner {
       `/service/platform/partners/v1.0/company/${this.config.companyId}/extension/suggestions`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PartnerModel.ExtensionSuggestionList().validate(response, {
+    } = PartnerPlatformModel.ExtensionSuggestionList().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -302,25 +335,29 @@ class Partner {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getExtensionsSuggestions",
+        message: `Response Validation Warnnings for platform > Partner > getExtensionsSuggestions \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.requestStatus] - Status of the request
-   * @param {string} [arg.pageSize] - Number of records per page
-   * @param {string} [arg.pageNo] - Number of page the user want to fetch
-   * @returns {Promise<PartnerRequestList>} - Success response
+   * @param {PartnerPlatformValidator.GetPartnerInvitesParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PartnerPlatformModel.PartnerRequestList>} - Success response
+   * @name getPartnerInvites
    * @summary: Get partner invites
-   * @description: Use this API to get pending, accepted and rejected partner invites in platform
+   * @description: Use this API to get pending, accepted and rejected partner invites in platform - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/getPartnerInvites/).
    */
-  async getPartnerInvites({ requestStatus, pageSize, pageNo } = {}) {
-    const { error } = PartnerValidator.getPartnerInvites().validate(
+  async getPartnerInvites(
+    { requestStatus, pageSize, pageNo, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = PartnerPlatformValidator.getPartnerInvites().validate(
       {
         requestStatus,
         pageSize,
@@ -333,7 +370,9 @@ class Partner {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = PartnerValidator.getPartnerInvites().validate(
+    const {
+      error: warrning,
+    } = PartnerPlatformValidator.getPartnerInvites().validate(
       {
         requestStatus,
         pageSize,
@@ -344,9 +383,8 @@ class Partner {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getPartnerInvites",
+        message: `Parameter Validation warrnings for platform > Partner > getPartnerInvites \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -362,12 +400,18 @@ class Partner {
       `/service/platform/partners/v1.0/company/${this.config.companyId}/partner-request`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PartnerModel.PartnerRequestList().validate(response, {
+    } = PartnerPlatformModel.PartnerRequestList().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -375,23 +419,29 @@ class Partner {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getPartnerInvites",
+        message: `Response Validation Warnnings for platform > Partner > getPartnerInvites \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.inviteId - Invitation id
-   * @returns {Promise<PartnerInviteDetails>} - Success response
+   * @param {PartnerPlatformValidator.GetPartnerRequestDetailsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PartnerPlatformModel.PartnerInviteDetails>} - Success response
+   * @name getPartnerRequestDetails
    * @summary: Get partner request details
-   * @description: Use this API to get details of pending partner request
+   * @description: Use this API to get details of pending partner request - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/getPartnerRequestDetails/).
    */
-  async getPartnerRequestDetails({ inviteId } = {}) {
-    const { error } = PartnerValidator.getPartnerRequestDetails().validate(
+  async getPartnerRequestDetails(
+    { inviteId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = PartnerPlatformValidator.getPartnerRequestDetails().validate(
       {
         inviteId,
       },
@@ -404,7 +454,7 @@ class Partner {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PartnerValidator.getPartnerRequestDetails().validate(
+    } = PartnerPlatformValidator.getPartnerRequestDetails().validate(
       {
         inviteId,
       },
@@ -413,9 +463,8 @@ class Partner {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getPartnerRequestDetails",
+        message: `Parameter Validation warrnings for platform > Partner > getPartnerRequestDetails \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -428,12 +477,18 @@ class Partner {
       `/service/platform/partners/v1.0/company/${this.config.companyId}/partner-request/${inviteId}`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PartnerModel.PartnerInviteDetails().validate(response, {
+    } = PartnerPlatformModel.PartnerInviteDetails().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -441,25 +496,27 @@ class Partner {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getPartnerRequestDetails",
+        message: `Response Validation Warnnings for platform > Partner > getPartnerRequestDetails \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageSize] - Number of records you want to get in single page
-   * @param {number} [arg.pageNo] - Number of page
-   * @param {Object} [arg.query] - Filter query which we want to pass
-   * @returns {Promise<ExtensionResponse>} - Success response
+   * @param {PartnerPlatformValidator.GetPrivateExtensionsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PartnerPlatformModel.ExtensionResponse>} - Success response
+   * @name getPrivateExtensions
    * @summary: Get the list of private extensions
-   * @description: Use this API to get the list of private extensions
+   * @description: Use this API to get the list of private extensions - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/getPrivateExtensions/).
    */
-  async getPrivateExtensions({ pageSize, pageNo, query } = {}) {
-    const { error } = PartnerValidator.getPrivateExtensions().validate(
+  async getPrivateExtensions(
+    { pageSize, pageNo, query, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = PartnerPlatformValidator.getPrivateExtensions().validate(
       {
         pageSize,
         pageNo,
@@ -474,7 +531,7 @@ class Partner {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PartnerValidator.getPrivateExtensions().validate(
+    } = PartnerPlatformValidator.getPrivateExtensions().validate(
       {
         pageSize,
         pageNo,
@@ -485,9 +542,8 @@ class Partner {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getPrivateExtensions",
+        message: `Parameter Validation warrnings for platform > Partner > getPrivateExtensions \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -503,12 +559,18 @@ class Partner {
       `/service/platform/partners/v1.0/company/${this.config.companyId}/private-extensions`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PartnerModel.ExtensionResponse().validate(response, {
+    } = PartnerPlatformModel.ExtensionResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -516,23 +578,27 @@ class Partner {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getPrivateExtensions",
+        message: `Response Validation Warnnings for platform > Partner > getPrivateExtensions \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.extensionId - Extension id
-   * @returns {Promise<PublicExtension>} - Success response
+   * @param {PartnerPlatformValidator.GetPublicExtensionParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PartnerPlatformModel.PublicExtension>} - Success response
+   * @name getPublicExtension
    * @summary: Get details of public extension
-   * @description: Use this API to get the details of public extensions
+   * @description: Use this API to get the details of public extensions - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/getPublicExtension/).
    */
-  async getPublicExtension({ extensionId } = {}) {
-    const { error } = PartnerValidator.getPublicExtension().validate(
+  async getPublicExtension(
+    { extensionId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = PartnerPlatformValidator.getPublicExtension().validate(
       {
         extensionId,
       },
@@ -543,7 +609,9 @@ class Partner {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = PartnerValidator.getPublicExtension().validate(
+    const {
+      error: warrning,
+    } = PartnerPlatformValidator.getPublicExtension().validate(
       {
         extensionId,
       },
@@ -552,9 +620,8 @@ class Partner {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getPublicExtension",
+        message: `Parameter Validation warrnings for platform > Partner > getPublicExtension \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -567,12 +634,18 @@ class Partner {
       `/service/platform/partners/v1.0/company/${this.config.companyId}/public-extension/${extensionId}`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PartnerModel.PublicExtension().validate(response, {
+    } = PartnerPlatformModel.PublicExtension().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -580,24 +653,27 @@ class Partner {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getPublicExtension",
+        message: `Response Validation Warnnings for platform > Partner > getPublicExtension \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.inviteId - Invitation id
-   * @param {ModifyPartnerReq} arg.body
-   * @returns {Promise<PartnerInviteDetails>} - Success response
+   * @param {PartnerPlatformValidator.ModifyPartnerRequestParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PartnerPlatformModel.PartnerInviteDetails>} - Success response
+   * @name modifyPartnerRequest
    * @summary: Act on the pending partner request
-   * @description: Use this API to approve or reject the pending partner request
+   * @description: Use this API to approve or reject the pending partner request - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/modifyPartnerRequest/).
    */
-  async modifyPartnerRequest({ inviteId, body } = {}) {
-    const { error } = PartnerValidator.modifyPartnerRequest().validate(
+  async modifyPartnerRequest(
+    { inviteId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = PartnerPlatformValidator.modifyPartnerRequest().validate(
       {
         inviteId,
         body,
@@ -611,7 +687,7 @@ class Partner {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PartnerValidator.modifyPartnerRequest().validate(
+    } = PartnerPlatformValidator.modifyPartnerRequest().validate(
       {
         inviteId,
         body,
@@ -621,9 +697,8 @@ class Partner {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for modifyPartnerRequest",
+        message: `Parameter Validation warrnings for platform > Partner > modifyPartnerRequest \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -636,12 +711,18 @@ class Partner {
       `/service/platform/partners/v1.0/company/${this.config.companyId}/partner-request/${inviteId}`,
       query_params,
       body,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PartnerModel.PartnerInviteDetails().validate(response, {
+    } = PartnerPlatformModel.PartnerInviteDetails().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -649,23 +730,27 @@ class Partner {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for modifyPartnerRequest",
+        message: `Response Validation Warnnings for platform > Partner > modifyPartnerRequest \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.requestId] - Extrequest id
-   * @returns {Promise<SetupProductRes>} - Success response
+   * @param {PartnerPlatformValidator.SetupProductsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PartnerPlatformModel.SetupProductRes>} - Success response
+   * @name setupProducts
    * @summary:
-   * @description: Use this API for setup
+   * @description: Use this API for setup - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/setupProducts/).
    */
-  async setupProducts({ requestId } = {}) {
-    const { error } = PartnerValidator.setupProducts().validate(
+  async setupProducts(
+    { requestId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = PartnerPlatformValidator.setupProducts().validate(
       {
         requestId,
       },
@@ -676,7 +761,9 @@ class Partner {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = PartnerValidator.setupProducts().validate(
+    const {
+      error: warrning,
+    } = PartnerPlatformValidator.setupProducts().validate(
       {
         requestId,
       },
@@ -685,9 +772,8 @@ class Partner {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for setupProducts",
+        message: `Parameter Validation warrnings for platform > Partner > setupProducts \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -701,12 +787,18 @@ class Partner {
       `/service/platform/partners/v1.0/company/${this.config.companyId}/setup`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PartnerModel.SetupProductRes().validate(response, {
+    } = PartnerPlatformModel.SetupProductRes().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -714,26 +806,29 @@ class Partner {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for setupProducts",
+        message: `Response Validation Warnnings for platform > Partner > setupProducts \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.entity - Entity
-   * @param {string} arg.extensionId - Extension id
-   * @param {string} arg.entityId - Entity id
-   * @param {SubscriptionRequest} arg.body
-   * @returns {Promise<SubscriptionRes>} - Success response
+   * @param {PartnerPlatformValidator.SubscribeExtensionParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PartnerPlatformModel.SubscriptionRes>} - Success response
+   * @name subscribeExtension
    * @summary: Subscribe for extension plan
-   * @description: Use this API to select plan for paid extension
+   * @description: Use this API to select plan for paid extension - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/subscribeExtension/).
    */
-  async subscribeExtension({ entity, extensionId, entityId, body } = {}) {
-    const { error } = PartnerValidator.subscribeExtension().validate(
+  async subscribeExtension(
+    { entity, extensionId, entityId, body, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = PartnerPlatformValidator.subscribeExtension().validate(
       {
         entity,
         extensionId,
@@ -747,7 +842,9 @@ class Partner {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = PartnerValidator.subscribeExtension().validate(
+    const {
+      error: warrning,
+    } = PartnerPlatformValidator.subscribeExtension().validate(
       {
         entity,
         extensionId,
@@ -759,9 +856,8 @@ class Partner {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for subscribeExtension",
+        message: `Parameter Validation warrnings for platform > Partner > subscribeExtension \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -774,12 +870,18 @@ class Partner {
       `/service/platform/partners/v1.0/company/${this.config.companyId}/extension/${extensionId}/${entity}/${entityId}/charge_consent`,
       query_params,
       body,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = PartnerModel.SubscriptionRes().validate(response, {
+    } = PartnerPlatformModel.SubscriptionRes().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -787,9 +889,8 @@ class Partner {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for subscribeExtension",
+        message: `Response Validation Warnnings for platform > Partner > subscribeExtension \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

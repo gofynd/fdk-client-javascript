@@ -19,172 +19,132 @@ declare class Order {
     _urls: {};
     updateUrls(urls: any): void;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.orderId - ID of the shipment. An order may contain
-     *   multiple items and may get divided into one or more shipment, each
-     *   having its own ID.
-     * @param {string} arg.shipmentId - A unique number used for identifying and
-     *   tracking your orders.
-     * @returns {Promise<CustomerDetailsResponse>} - Success response
+     * @param {OrderApplicationValidator.GetCustomerDetailsByShipmentIdParam} arg
+     *   - Arg object.
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<OrderApplicationModel.CustomerDetailsResponse>} -
+     *   Success response
+     * @name getCustomerDetailsByShipmentId
      * @summary: Get Customer Details by Shipment Id
-     * @description: Use this API to retrieve customer details such as mobileno using Shipment ID.
+     * @description: Use this API to retrieve customer details such as mobileno using Shipment ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getCustomerDetailsByShipmentId/).
      */
-    getCustomerDetailsByShipmentId({ orderId, shipmentId }?: {
-        orderId: string;
-        shipmentId: string;
-    }): Promise<CustomerDetailsResponse>;
+    getCustomerDetailsByShipmentId({ orderId, shipmentId, requestHeaders }?: OrderApplicationValidator.GetCustomerDetailsByShipmentIdParam, { responseHeaders }?: object): Promise<OrderApplicationModel.CustomerDetailsResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.shipmentId - ID of the shipment.
-     * @returns {Promise<ResponseGetInvoiceShipment>} - Success response
+     * @param {OrderApplicationValidator.GetInvoiceByShipmentIdParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<OrderApplicationModel.ResponseGetInvoiceShipment>} -
+     *   Success response
+     * @name getInvoiceByShipmentId
      * @summary: Get Invoice of a shipment
-     * @description: Use this API to retrieve shipment invoice.
+     * @description: Use this API to retrieve shipment invoice. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getInvoiceByShipmentId/).
      */
-    getInvoiceByShipmentId({ shipmentId }?: {
-        shipmentId: string;
-    }): Promise<ResponseGetInvoiceShipment>;
+    getInvoiceByShipmentId({ shipmentId, requestHeaders }?: OrderApplicationValidator.GetInvoiceByShipmentIdParam, { responseHeaders }?: object): Promise<OrderApplicationModel.ResponseGetInvoiceShipment>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.orderId - A unique number used for identifying and
-     *   tracking your orders.
-     * @returns {Promise<OrderById>} - Success response
+     * @param {OrderApplicationValidator.GetOrderByIdParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<OrderApplicationModel.OrderById>} - Success response
+     * @name getOrderById
      * @summary: Get details of an order
-     * @description: Use this API to retrieve order details such as tracking details, shipment, store information using Fynd Order ID.
+     * @description: Use this API to retrieve order details such as tracking details, shipment, store information using Fynd Order ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getOrderById/).
      */
-    getOrderById({ orderId }?: {
-        orderId: string;
-    }): Promise<OrderById>;
+    getOrderById({ orderId, requestHeaders }?: OrderApplicationValidator.GetOrderByIdParam, { responseHeaders }?: object): Promise<OrderApplicationModel.OrderById>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {number} [arg.status] - A filter to retrieve orders by their
-     *   current status such as _placed_, _delivered_, etc.
-     * @param {number} [arg.pageNo] - The page number to navigate through the
-     *   given set of results. Default value is 1.
-     * @param {number} [arg.pageSize] - The number of items to retrieve in each
-     *   page. Default value is 10.
-     * @param {string} [arg.fromDate] - The date from which the orders should be
-     *   retrieved.
-     * @param {string} [arg.toDate] - The date till which the orders should be retrieved.
-     * @param {string} [arg.customMeta] - A filter and retrieve data using
-     *   special fields included for special use-cases
-     * @returns {Promise<OrderList>} - Success response
+     * @param {OrderApplicationValidator.GetOrdersParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<OrderApplicationModel.OrderList>} - Success response
+     * @name getOrders
      * @summary: Get all orders
-     * @description: Use this API to retrieve all the orders.
+     * @description: Use this API to retrieve all the orders. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getOrders/).
      */
-    getOrders({ status, pageNo, pageSize, fromDate, toDate, customMeta, }?: {
-        status?: number;
-        pageNo?: number;
-        pageSize?: number;
-        fromDate?: string;
-        toDate?: string;
-        customMeta?: string;
-    }): Promise<OrderList>;
+    getOrders({ status, pageNo, pageSize, fromDate, toDate, customMeta, requestHeaders, }?: OrderApplicationValidator.GetOrdersParam, { responseHeaders }?: object): Promise<OrderApplicationModel.OrderList>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.orderId - A unique number used for identifying and
-     *   tracking your orders.
-     * @returns {Promise<OrderById>} - Success response
+     * @param {OrderApplicationValidator.GetPosOrderByIdParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<OrderApplicationModel.OrderById>} - Success response
+     * @name getPosOrderById
      * @summary: Get POS Order
-     * @description: Use this API to retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID.
+     * @description: Use this API to retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getPosOrderById/).
      */
-    getPosOrderById({ orderId }?: {
-        orderId: string;
-    }): Promise<OrderById>;
+    getPosOrderById({ orderId, requestHeaders }?: OrderApplicationValidator.GetPosOrderByIdParam, { responseHeaders }?: object): Promise<OrderApplicationModel.OrderById>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.shipmentId - ID of the bag. An order may contain
-     *   multiple items and may get divided into one or more shipment, each
-     *   having its own ID.
-     * @param {string} arg.bagId - ID of the bag. An order may contain multiple
-     *   items and may get divided into one or more shipment, each having its own ID.
-     * @returns {Promise<ShipmentBagReasons>} - Success response
+     * @param {OrderApplicationValidator.GetShipmentBagReasonsParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<OrderApplicationModel.ShipmentBagReasons>} - Success response
+     * @name getShipmentBagReasons
      * @summary: Get reasons behind full or partial cancellation of a shipment
-     * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+     * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getShipmentBagReasons/).
      */
-    getShipmentBagReasons({ shipmentId, bagId }?: {
-        shipmentId: string;
-        bagId: string;
-    }): Promise<ShipmentBagReasons>;
+    getShipmentBagReasons({ shipmentId, bagId, requestHeaders }?: OrderApplicationValidator.GetShipmentBagReasonsParam, { responseHeaders }?: object): Promise<OrderApplicationModel.ShipmentBagReasons>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.shipmentId - ID of the shipment. An order may contain
-     *   multiple items and may get divided into one or more shipment, each
-     *   having its own ID.
-     * @returns {Promise<ShipmentById>} - Success response
+     * @param {OrderApplicationValidator.GetShipmentByIdParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<OrderApplicationModel.ShipmentById>} - Success response
+     * @name getShipmentById
      * @summary: Get details of a shipment
-     * @description: Use this API to retrieve shipment details such as price breakup, tracking details, store information, etc. using Shipment ID.
+     * @description: Use this API to retrieve shipment details such as price breakup, tracking details, store information, etc. using Shipment ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getShipmentById/).
      */
-    getShipmentById({ shipmentId }?: {
-        shipmentId: string;
-    }): Promise<ShipmentById>;
+    getShipmentById({ shipmentId, requestHeaders }?: OrderApplicationValidator.GetShipmentByIdParam, { responseHeaders }?: object): Promise<OrderApplicationModel.ShipmentById>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.shipmentId - ID of the shipment. An order may contain
-     *   multiple items and may get divided into one or more shipment, each
-     *   having its own ID.
-     * @returns {Promise<ShipmentReasons>} - Success response
+     * @param {OrderApplicationValidator.GetShipmentReasonsParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<OrderApplicationModel.ShipmentReasons>} - Success response
+     * @name getShipmentReasons
      * @summary: Get reasons behind full or partial cancellation of a shipment
-     * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+     * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getShipmentReasons/).
      */
-    getShipmentReasons({ shipmentId }?: {
-        shipmentId: string;
-    }): Promise<ShipmentReasons>;
+    getShipmentReasons({ shipmentId, requestHeaders }?: OrderApplicationValidator.GetShipmentReasonsParam, { responseHeaders }?: object): Promise<OrderApplicationModel.ShipmentReasons>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.orderId - A unique number used for identifying and
-     *   tracking your orders.
-     * @param {string} arg.shipmentId - ID of the shipment. An order may contain
-     *   multiple items and may get divided into one or more shipment, each
-     *   having its own ID.
-     * @returns {Promise<SendOtpToCustomerResponse>} - Success response
+     * @param {OrderApplicationValidator.SendOtpToShipmentCustomerParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<OrderApplicationModel.SendOtpToCustomerResponse>} -
+     *   Success response
+     * @name sendOtpToShipmentCustomer
      * @summary: Send and Resend Otp code to Order-Shipment customer
-     * @description: Use this API to send OTP to the customer of the mapped Shipment.
+     * @description: Use this API to send OTP to the customer of the mapped Shipment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/sendOtpToShipmentCustomer/).
      */
-    sendOtpToShipmentCustomer({ orderId, shipmentId }?: {
-        orderId: string;
-        shipmentId: string;
-    }): Promise<SendOtpToCustomerResponse>;
+    sendOtpToShipmentCustomer({ orderId, shipmentId, requestHeaders }?: OrderApplicationValidator.SendOtpToShipmentCustomerParam, { responseHeaders }?: object): Promise<OrderApplicationModel.SendOtpToCustomerResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.shipmentId - ID of the shipment. An order may contain
-     *   multiple items and may get divided into one or more shipment, each
-     *   having its own ID.
-     * @returns {Promise<ShipmentTrack>} - Success response
+     * @param {OrderApplicationValidator.TrackShipmentParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<OrderApplicationModel.ShipmentTrack>} - Success response
+     * @name trackShipment
      * @summary: Track shipment
-     * @description: Track Shipment by shipment id, for application based on application Id
+     * @description: Track Shipment by shipment id, for application based on application Id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/trackShipment/).
      */
-    trackShipment({ shipmentId }?: {
-        shipmentId: string;
-    }): Promise<ShipmentTrack>;
+    trackShipment({ shipmentId, requestHeaders }?: OrderApplicationValidator.TrackShipmentParam, { responseHeaders }?: object): Promise<OrderApplicationModel.ShipmentTrack>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.shipmentId - ID of the shipment. An order may contain
-     *   multiple items and may get divided into one or more shipment, each
-     *   having its own ID.
-     * @param {UpdateShipmentStatusRequest} arg.body
-     * @returns {Promise<ShipmentApplicationStatusResponse>} - Success response
+     * @param {OrderApplicationValidator.UpdateShipmentStatusParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<OrderApplicationModel.ShipmentApplicationStatusResponse>}
+     *   - Success response
+     *
+     * @name updateShipmentStatus
      * @summary: Update the shipment status
-     * @description: Use this API to update the status of a shipment using its shipment ID.
+     * @description: Use this API to update the status of a shipment using its shipment ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/updateShipmentStatus/).
      */
-    updateShipmentStatus({ shipmentId, body }?: {
-        shipmentId: string;
-        body: UpdateShipmentStatusRequest;
-    }): Promise<ShipmentApplicationStatusResponse>;
+    updateShipmentStatus({ shipmentId, body, requestHeaders }?: OrderApplicationValidator.UpdateShipmentStatusParam, { responseHeaders }?: object): Promise<OrderApplicationModel.ShipmentApplicationStatusResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.orderId - A unique number used for identifying and
-     *   tracking your orders.
-     * @param {string} arg.shipmentId - ID of the shipment. An order may contain
-     *   multiple items and may get divided into one or more shipment, each
-     *   having its own ID.
-     * @param {VerifyOtp} arg.body
-     * @returns {Promise<VerifyOtpResponse>} - Success response
+     * @param {OrderApplicationValidator.VerifyOtpShipmentCustomerParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<OrderApplicationModel.VerifyOtpResponse>} - Success response
+     * @name verifyOtpShipmentCustomer
      * @summary: Verify Otp code
-     * @description: Use this API to verify OTP and create a session token with custom payload.
+     * @description: Use this API to verify OTP and create a session token with custom payload. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/verifyOtpShipmentCustomer/).
      */
-    verifyOtpShipmentCustomer({ orderId, shipmentId, body }?: {
-        orderId: string;
-        shipmentId: string;
-        body: VerifyOtp;
-    }): Promise<VerifyOtpResponse>;
+    verifyOtpShipmentCustomer({ orderId, shipmentId, body, requestHeaders }?: OrderApplicationValidator.VerifyOtpShipmentCustomerParam, { responseHeaders }?: object): Promise<OrderApplicationModel.VerifyOtpResponse>;
 }
+import OrderApplicationValidator = require("./OrderApplicationValidator");
+import OrderApplicationModel = require("./OrderApplicationModel");

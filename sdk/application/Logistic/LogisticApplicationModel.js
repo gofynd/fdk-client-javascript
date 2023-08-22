@@ -1,12 +1,380 @@
 const Joi = require("joi");
 
-class LogisticModel {
+/**
+ * @typedef CountryEntityResponse
+ * @property {string} [display_name]
+ * @property {boolean} [is_active]
+ * @property {LogisticsResponse} [logistics]
+ * @property {CountryMetaResponse} [meta]
+ * @property {string} [name]
+ * @property {string} [parent_id]
+ * @property {string} [sub_type]
+ * @property {string} [type]
+ * @property {string} [uid]
+ */
+
+/**
+ * @typedef CountryHierarchy
+ * @property {string} [name]
+ * @property {string} [slug]
+ */
+
+/**
+ * @typedef CountryListResponse
+ * @property {CountryEntityResponse[]} [results]
+ */
+
+/**
+ * @typedef CountryMetaResponse
+ * @property {string} [country_code]
+ * @property {string} [isd_code]
+ */
+
+/**
+ * @typedef CountryObject
+ * @property {string} [currency]
+ * @property {string} [display_name]
+ * @property {CountryHierarchy[]} [hierarchy]
+ * @property {string} [id]
+ * @property {string} [iso2]
+ * @property {string} [iso3]
+ * @property {string} [name]
+ * @property {string} [phone_code]
+ * @property {string[]} [timezones]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef DP
+ * @property {string} [area_code]
+ * @property {boolean} [assign_dp_from_sb]
+ * @property {string} [external_account_id]
+ * @property {number} fm_priority
+ * @property {string} [internal_account_id]
+ * @property {number} lm_priority
+ * @property {string[]} operations
+ * @property {string} payment_mode
+ * @property {number} rvp_priority
+ * @property {string} [transport_mode]
+ */
+
+/**
+ * @typedef ErrorResponse
+ * @property {string} [message]
+ */
+
+/**
+ * @typedef FieldValidation
+ * @property {FieldValidationRegex} [regex]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef FieldValidationRegex
+ * @property {LengthValidation} [length]
+ * @property {string} [value]
+ */
+
+/**
+ * @typedef GetCountries
+ * @property {CountryObject[]} [items]
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef GetCountry
+ * @property {string} [currency]
+ * @property {string} [display_name]
+ * @property {GetCountryFields} [fields]
+ * @property {CountryHierarchy[]} [hierarchy]
+ * @property {string} [id]
+ * @property {string} [iso2]
+ * @property {string} [iso3]
+ * @property {string} [name]
+ * @property {string} [phone_code]
+ * @property {string[]} [timezones]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef GetCountryFields
+ * @property {GetCountryFieldsAddress[]} address
+ * @property {GetCountryFieldsAddressTemplate} address_template
+ * @property {string[]} serviceability_fields
+ */
+
+/**
+ * @typedef GetCountryFieldsAddress
+ * @property {string} display_name
+ * @property {boolean} [edit]
+ * @property {string} [error_text]
+ * @property {string} input
+ * @property {boolean} required
+ * @property {string} slug
+ * @property {FieldValidation} [validation]
+ * @property {GetCountryFieldsAddressValues} [values]
+ */
+
+/**
+ * @typedef GetCountryFieldsAddressTemplate
+ * @property {string} checkout_form
+ * @property {string} invoice_display
+ */
+
+/**
+ * @typedef GetCountryFieldsAddressValues
+ * @property {GetOneOrAll} [get_all]
+ * @property {GetOneOrAll} [get_one]
+ */
+
+/**
+ * @typedef GetLocalities
+ * @property {Localities[]} [items]
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef GetLocality
+ * @property {string} [display_name]
+ * @property {string} [id]
+ * @property {Localities[]} [localities]
+ * @property {string} [name]
+ * @property {string[]} [parent_ids]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef GetOneOrAll
+ * @property {string} [operation_id]
+ * @property {GetOneOrAllParams} [params]
+ */
+
+/**
+ * @typedef GetOneOrAllParams
+ * @property {GetOneOrAllPath} [path]
+ * @property {GetOneOrAllQuery} [query]
+ */
+
+/**
+ * @typedef GetOneOrAllPath
+ * @property {string} [locality_type]
+ * @property {string} [locality_value]
+ */
+
+/**
+ * @typedef GetOneOrAllQuery
+ * @property {string} [city]
+ * @property {string} [country]
+ * @property {string} [sector]
+ * @property {string} [state]
+ */
+
+/**
+ * @typedef GetZoneFromPincodeViewRequest
+ * @property {string} country
+ * @property {string} pincode
+ */
+
+/**
+ * @typedef GetZoneFromPincodeViewResponse
+ * @property {string} serviceability_type
+ * @property {string[]} zones
+ */
+
+/**
+ * @typedef LengthValidation
+ * @property {number} [max]
+ * @property {number} [min]
+ */
+
+/**
+ * @typedef Localities
+ * @property {string} [display_name]
+ * @property {string} [id]
+ * @property {string} [name]
+ * @property {string[]} [parent_ids]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef LogisticsResponse
+ * @property {Object} [dp]
+ */
+
+/**
+ * @typedef Page
+ * @property {number} [current]
+ * @property {boolean} [has_next]
+ * @property {boolean} [has_previous]
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {number} [size]
+ * @property {string} type
+ */
+
+/**
+ * @typedef PincodeApiResponse
+ * @property {PincodeDataResponse[]} [data]
+ * @property {PincodeErrorSchemaResponse} error
+ * @property {boolean} success
+ */
+
+/**
+ * @typedef PincodeDataResponse
+ * @property {string} [display_name]
+ * @property {PincodeErrorSchemaResponse} error
+ * @property {PincodeLatLongData} [lat_long]
+ * @property {PincodeMetaResponse} [meta]
+ * @property {CountryMetaResponse} [meta_code]
+ * @property {string} [name]
+ * @property {PincodeParentsResponse[]} [parents]
+ * @property {string} [sub_type]
+ * @property {string} [uid]
+ */
+
+/**
+ * @typedef PincodeErrorSchemaResponse
+ * @property {string} [message]
+ * @property {string} [type]
+ * @property {string} [value]
+ */
+
+/**
+ * @typedef PincodeLatLongData
+ * @property {string[]} [coordinates]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef PincodeMetaResponse
+ * @property {number} [internal_zone_id]
+ * @property {string} [zone]
+ */
+
+/**
+ * @typedef PincodeParentsResponse
+ * @property {string} [display_name]
+ * @property {string} [name]
+ * @property {string} [sub_type]
+ * @property {string} [uid]
+ */
+
+/**
+ * @typedef ReAssignStoreRequest
+ * @property {Object[]} articles
+ * @property {Object} configuration
+ * @property {string} identifier
+ * @property {number[]} ignored_locations
+ * @property {string} to_pincode
+ */
+
+/**
+ * @typedef ReAssignStoreResponse
+ * @property {Object[]} [assigned_stores]
+ * @property {Object} error
+ * @property {string} pystormbreaker_uuid
+ * @property {boolean} success
+ * @property {string} to_pincode
+ */
+
+/**
+ * @typedef TATArticlesRequest
+ * @property {TATCategoryRequest} [category]
+ * @property {number} [manufacturing_time]
+ * @property {string} [manufacturing_time_unit]
+ */
+
+/**
+ * @typedef TATArticlesResponse
+ * @property {number} [_manufacturing_time_seconds]
+ * @property {TATCategoryRequest} [category]
+ * @property {TATErrorSchemaResponse} [error]
+ * @property {boolean} [is_cod_available]
+ * @property {number} [manufacturing_time]
+ * @property {string} [manufacturing_time_unit]
+ * @property {TATPromiseResponse} [promise]
+ */
+
+/**
+ * @typedef TATCategoryRequest
+ * @property {number} [id]
+ * @property {string} [level]
+ */
+
+/**
+ * @typedef TATErrorSchemaResponse
+ * @property {string} [message]
+ * @property {string} [type]
+ * @property {string} [value]
+ */
+
+/**
+ * @typedef TATFormattedResponse
+ * @property {string} [max]
+ * @property {string} [min]
+ */
+
+/**
+ * @typedef TATLocationDetailsRequest
+ * @property {TATArticlesRequest[]} [articles]
+ * @property {string} [from_pincode]
+ * @property {number} [fulfillment_id]
+ */
+
+/**
+ * @typedef TATLocationDetailsResponse
+ * @property {TATArticlesResponse[]} [articles]
+ * @property {string} [from_pincode]
+ * @property {number} [fulfillment_id]
+ */
+
+/**
+ * @typedef TATPromiseResponse
+ * @property {TATFormattedResponse} [formatted]
+ * @property {TATTimestampResponse} [timestamp]
+ */
+
+/**
+ * @typedef TATTimestampResponse
+ * @property {number} [max]
+ * @property {number} [min]
+ */
+
+/**
+ * @typedef TATViewRequest
+ * @property {string} [action]
+ * @property {string} [identifier]
+ * @property {string} [journey]
+ * @property {TATLocationDetailsRequest[]} [location_details]
+ * @property {string} [source]
+ * @property {string} [to_pincode]
+ */
+
+/**
+ * @typedef TATViewResponse
+ * @property {string} [action]
+ * @property {TATErrorSchemaResponse} [error]
+ * @property {string} [identifier]
+ * @property {boolean} [is_cod_available]
+ * @property {string} [journey]
+ * @property {TATLocationDetailsResponse[]} [location_details]
+ * @property {string} [payment_mode]
+ * @property {string} [request_uuid]
+ * @property {string} [source]
+ * @property {string} [stormbreaker_uuid]
+ * @property {boolean} [success]
+ * @property {string} [to_city]
+ * @property {string} [to_pincode]
+ */
+
+class LogisticApplicationModel {
+  /** @returns {CountryEntityResponse} */
   static CountryEntityResponse() {
     return Joi.object({
       display_name: Joi.string().allow(""),
       is_active: Joi.boolean(),
-      logistics: LogisticModel.LogisticsResponse(),
-      meta: LogisticModel.CountryMetaResponse(),
+      logistics: LogisticApplicationModel.LogisticsResponse(),
+      meta: LogisticApplicationModel.CountryMetaResponse(),
       name: Joi.string().allow(""),
       parent_id: Joi.string().allow(""),
       sub_type: Joi.string().allow(""),
@@ -14,17 +382,49 @@ class LogisticModel {
       uid: Joi.string().allow(""),
     });
   }
-  static CountryListResponse() {
+
+  /** @returns {CountryHierarchy} */
+  static CountryHierarchy() {
     return Joi.object({
-      results: Joi.array().items(LogisticModel.CountryEntityResponse()),
+      name: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
     });
   }
+
+  /** @returns {CountryListResponse} */
+  static CountryListResponse() {
+    return Joi.object({
+      results: Joi.array().items(
+        LogisticApplicationModel.CountryEntityResponse()
+      ),
+    });
+  }
+
+  /** @returns {CountryMetaResponse} */
   static CountryMetaResponse() {
     return Joi.object({
       country_code: Joi.string().allow(""),
       isd_code: Joi.string().allow(""),
     });
   }
+
+  /** @returns {CountryObject} */
+  static CountryObject() {
+    return Joi.object({
+      currency: Joi.string().allow(""),
+      display_name: Joi.string().allow(""),
+      hierarchy: Joi.array().items(LogisticApplicationModel.CountryHierarchy()),
+      id: Joi.string().allow(""),
+      iso2: Joi.string().allow(""),
+      iso3: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      phone_code: Joi.string().allow(""),
+      timezones: Joi.array().items(Joi.string().allow("")),
+      type: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {DP} */
   static DP() {
     return Joi.object({
       area_code: Joi.string().allow("").allow(null),
@@ -39,77 +439,195 @@ class LogisticModel {
       transport_mode: Joi.string().allow(""),
     });
   }
+
+  /** @returns {ErrorResponse} */
   static ErrorResponse() {
     return Joi.object({
-      error: Joi.string().allow(""),
+      message: Joi.string().allow(""),
     });
   }
+
+  /** @returns {FieldValidation} */
+  static FieldValidation() {
+    return Joi.object({
+      regex: LogisticApplicationModel.FieldValidationRegex(),
+      type: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {FieldValidationRegex} */
+  static FieldValidationRegex() {
+    return Joi.object({
+      length: LogisticApplicationModel.LengthValidation(),
+      value: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {GetCountries} */
   static GetCountries() {
     return Joi.object({
-      items: Joi.array().items(Joi.any()),
-      page: Joi.any(),
+      items: Joi.array().items(LogisticApplicationModel.CountryObject()),
+      page: LogisticApplicationModel.Page(),
     });
   }
+
+  /** @returns {GetCountry} */
   static GetCountry() {
     return Joi.object({
-      actions: Joi.any(),
       currency: Joi.string().allow(""),
-      hierarchy: Joi.any(),
-      ios2: Joi.string().allow(""),
-      ios3: Joi.string().allow(""),
+      display_name: Joi.string().allow(""),
+      fields: LogisticApplicationModel.GetCountryFields(),
+      hierarchy: Joi.array().items(LogisticApplicationModel.CountryHierarchy()),
+      id: Joi.string().allow(""),
+      iso2: Joi.string().allow(""),
+      iso3: Joi.string().allow(""),
       name: Joi.string().allow(""),
       phone_code: Joi.string().allow(""),
-      sub_type: Joi.string().allow(""),
       timezones: Joi.array().items(Joi.string().allow("")),
-      uid: Joi.string().allow(""),
+      type: Joi.string().allow(""),
     });
   }
+
+  /** @returns {GetCountryFields} */
+  static GetCountryFields() {
+    return Joi.object({
+      address: Joi.array()
+        .items(LogisticApplicationModel.GetCountryFieldsAddress())
+        .required(),
+      address_template: LogisticApplicationModel.GetCountryFieldsAddressTemplate().required(),
+      serviceability_fields: Joi.array()
+        .items(Joi.string().allow(""))
+        .required(),
+    });
+  }
+
+  /** @returns {GetCountryFieldsAddress} */
+  static GetCountryFieldsAddress() {
+    return Joi.object({
+      display_name: Joi.string().allow("").required(),
+      edit: Joi.boolean(),
+      error_text: Joi.string().allow("").allow(null),
+      input: Joi.string().allow("").required(),
+      required: Joi.boolean().required(),
+      slug: Joi.string().allow("").required(),
+      validation: LogisticApplicationModel.FieldValidation(),
+      values: LogisticApplicationModel.GetCountryFieldsAddressValues(),
+    });
+  }
+
+  /** @returns {GetCountryFieldsAddressTemplate} */
+  static GetCountryFieldsAddressTemplate() {
+    return Joi.object({
+      checkout_form: Joi.string().allow("").required(),
+      invoice_display: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {GetCountryFieldsAddressValues} */
+  static GetCountryFieldsAddressValues() {
+    return Joi.object({
+      get_all: LogisticApplicationModel.GetOneOrAll(),
+      get_one: LogisticApplicationModel.GetOneOrAll(),
+    });
+  }
+
+  /** @returns {GetLocalities} */
   static GetLocalities() {
     return Joi.object({
-      page: LogisticModel.Page(),
-      regions: Joi.array().items(LogisticModel.Locality()),
+      items: Joi.array().items(LogisticApplicationModel.Localities()),
+      page: LogisticApplicationModel.Page(),
     });
   }
+
+  /** @returns {GetLocality} */
   static GetLocality() {
     return Joi.object({
-      regions: LogisticModel.Locality(),
+      display_name: Joi.string().allow(""),
+      id: Joi.string().allow(""),
+      localities: Joi.array().items(LogisticApplicationModel.Localities()),
+      name: Joi.string().allow(""),
+      parent_ids: Joi.array().items(Joi.string().allow("")),
+      type: Joi.string().allow(""),
     });
   }
+
+  /** @returns {GetOneOrAll} */
+  static GetOneOrAll() {
+    return Joi.object({
+      operation_id: Joi.string().allow(""),
+      params: LogisticApplicationModel.GetOneOrAllParams(),
+    });
+  }
+
+  /** @returns {GetOneOrAllParams} */
+  static GetOneOrAllParams() {
+    return Joi.object({
+      path: LogisticApplicationModel.GetOneOrAllPath(),
+      query: LogisticApplicationModel.GetOneOrAllQuery(),
+    });
+  }
+
+  /** @returns {GetOneOrAllPath} */
+  static GetOneOrAllPath() {
+    return Joi.object({
+      locality_type: Joi.string().allow(""),
+      locality_value: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {GetOneOrAllQuery} */
+  static GetOneOrAllQuery() {
+    return Joi.object({
+      city: Joi.string().allow("").allow(null),
+      country: Joi.string().allow("").allow(null),
+      sector: Joi.string().allow("").allow(null),
+      state: Joi.string().allow("").allow(null),
+    });
+  }
+
+  /** @returns {GetZoneFromPincodeViewRequest} */
   static GetZoneFromPincodeViewRequest() {
     return Joi.object({
       country: Joi.string().allow("").required(),
       pincode: Joi.string().allow("").required(),
     });
   }
+
+  /** @returns {GetZoneFromPincodeViewResponse} */
   static GetZoneFromPincodeViewResponse() {
     return Joi.object({
       serviceability_type: Joi.string().allow("").required(),
       zones: Joi.array().items(Joi.string().allow("")).required(),
     });
   }
-  static Locality() {
+
+  /** @returns {LengthValidation} */
+  static LengthValidation() {
+    return Joi.object({
+      max: Joi.number().allow(null),
+      min: Joi.number().allow(null),
+    });
+  }
+
+  /** @returns {Localities} */
+  static Localities() {
     return Joi.object({
       display_name: Joi.string().allow(""),
-      is_active: Joi.boolean(),
-      logistics: LogisticModel.LogisticsDPSchema(),
-      meta: Joi.any(),
+      id: Joi.string().allow(""),
       name: Joi.string().allow(""),
-      parent_id: Joi.array().items(Joi.string().allow("")),
-      sub_type: Joi.string().allow(""),
+      parent_ids: Joi.array().items(Joi.string().allow("")),
       type: Joi.string().allow(""),
-      uid: Joi.string().allow(""),
     });
   }
-  static LogisticsDPSchema() {
-    return Joi.object({
-      dp: Joi.any(),
-    });
-  }
+
+  /** @returns {LogisticsResponse} */
   static LogisticsResponse() {
     return Joi.object({
-      dp: Joi.object().pattern(/\S/, LogisticModel.DP()),
+      dp: Joi.object().pattern(/\S/, LogisticApplicationModel.DP()),
     });
   }
+
+  /** @returns {Page} */
   static Page() {
     return Joi.object({
       current: Joi.number(),
@@ -121,26 +639,34 @@ class LogisticModel {
       type: Joi.string().allow("").required(),
     });
   }
+
+  /** @returns {PincodeApiResponse} */
   static PincodeApiResponse() {
     return Joi.object({
-      data: Joi.array().items(LogisticModel.PincodeDataResponse()),
-      error: LogisticModel.PincodeErrorSchemaResponse().required(),
+      data: Joi.array().items(LogisticApplicationModel.PincodeDataResponse()),
+      error: LogisticApplicationModel.PincodeErrorSchemaResponse().required(),
       success: Joi.boolean().required(),
     });
   }
+
+  /** @returns {PincodeDataResponse} */
   static PincodeDataResponse() {
     return Joi.object({
       display_name: Joi.string().allow(""),
-      error: LogisticModel.PincodeErrorSchemaResponse().required(),
-      lat_long: LogisticModel.PincodeLatLongData(),
-      meta: LogisticModel.PincodeMetaResponse(),
-      meta_code: LogisticModel.CountryMetaResponse(),
+      error: LogisticApplicationModel.PincodeErrorSchemaResponse().required(),
+      lat_long: LogisticApplicationModel.PincodeLatLongData(),
+      meta: LogisticApplicationModel.PincodeMetaResponse(),
+      meta_code: LogisticApplicationModel.CountryMetaResponse(),
       name: Joi.string().allow(""),
-      parents: Joi.array().items(LogisticModel.PincodeParentsResponse()),
+      parents: Joi.array().items(
+        LogisticApplicationModel.PincodeParentsResponse()
+      ),
       sub_type: Joi.string().allow(""),
       uid: Joi.string().allow(""),
     });
   }
+
+  /** @returns {PincodeErrorSchemaResponse} */
   static PincodeErrorSchemaResponse() {
     return Joi.object({
       message: Joi.string().allow("").allow(null),
@@ -148,18 +674,24 @@ class LogisticModel {
       value: Joi.string().allow("").allow(null),
     });
   }
+
+  /** @returns {PincodeLatLongData} */
   static PincodeLatLongData() {
     return Joi.object({
       coordinates: Joi.array().items(Joi.string().allow("")),
       type: Joi.string().allow(""),
     });
   }
+
+  /** @returns {PincodeMetaResponse} */
   static PincodeMetaResponse() {
     return Joi.object({
       internal_zone_id: Joi.number(),
       zone: Joi.string().allow(""),
     });
   }
+
+  /** @returns {PincodeParentsResponse} */
   static PincodeParentsResponse() {
     return Joi.object({
       display_name: Joi.string().allow(""),
@@ -168,6 +700,8 @@ class LogisticModel {
       uid: Joi.string().allow(""),
     });
   }
+
+  /** @returns {ReAssignStoreRequest} */
   static ReAssignStoreRequest() {
     return Joi.object({
       articles: Joi.array().items(Joi.any()).required(),
@@ -177,6 +711,8 @@ class LogisticModel {
       to_pincode: Joi.string().allow("").required(),
     });
   }
+
+  /** @returns {ReAssignStoreResponse} */
   static ReAssignStoreResponse() {
     return Joi.object({
       assigned_stores: Joi.array().items(Joi.any()),
@@ -186,30 +722,38 @@ class LogisticModel {
       to_pincode: Joi.string().allow("").required(),
     });
   }
+
+  /** @returns {TATArticlesRequest} */
   static TATArticlesRequest() {
     return Joi.object({
-      category: LogisticModel.TATCategoryRequest(),
+      category: LogisticApplicationModel.TATCategoryRequest(),
       manufacturing_time: Joi.number(),
       manufacturing_time_unit: Joi.string().allow(""),
     });
   }
+
+  /** @returns {TATArticlesResponse} */
   static TATArticlesResponse() {
     return Joi.object({
       _manufacturing_time_seconds: Joi.number(),
-      category: LogisticModel.TATCategoryRequest(),
-      error: LogisticModel.TATErrorSchemaResponse(),
+      category: LogisticApplicationModel.TATCategoryRequest(),
+      error: LogisticApplicationModel.TATErrorSchemaResponse(),
       is_cod_available: Joi.boolean(),
       manufacturing_time: Joi.number(),
       manufacturing_time_unit: Joi.string().allow(""),
-      promise: LogisticModel.TATPromiseResponse(),
+      promise: LogisticApplicationModel.TATPromiseResponse(),
     });
   }
+
+  /** @returns {TATCategoryRequest} */
   static TATCategoryRequest() {
     return Joi.object({
       id: Joi.number(),
       level: Joi.string().allow(""),
     });
   }
+
+  /** @returns {TATErrorSchemaResponse} */
   static TATErrorSchemaResponse() {
     return Joi.object({
       message: Joi.string().allow("").allow(null),
@@ -217,59 +761,77 @@ class LogisticModel {
       value: Joi.string().allow("").allow(null),
     });
   }
+
+  /** @returns {TATFormattedResponse} */
   static TATFormattedResponse() {
     return Joi.object({
       max: Joi.string().allow(""),
       min: Joi.string().allow(""),
     });
   }
+
+  /** @returns {TATLocationDetailsRequest} */
   static TATLocationDetailsRequest() {
     return Joi.object({
-      articles: Joi.array().items(LogisticModel.TATArticlesRequest()),
+      articles: Joi.array().items(
+        LogisticApplicationModel.TATArticlesRequest()
+      ),
       from_pincode: Joi.string().allow(""),
       fulfillment_id: Joi.number(),
     });
   }
+
+  /** @returns {TATLocationDetailsResponse} */
   static TATLocationDetailsResponse() {
     return Joi.object({
-      articles: Joi.array().items(LogisticModel.TATArticlesResponse()),
+      articles: Joi.array().items(
+        LogisticApplicationModel.TATArticlesResponse()
+      ),
       from_pincode: Joi.string().allow(""),
       fulfillment_id: Joi.number(),
     });
   }
+
+  /** @returns {TATPromiseResponse} */
   static TATPromiseResponse() {
     return Joi.object({
-      formatted: LogisticModel.TATFormattedResponse(),
-      timestamp: LogisticModel.TATTimestampResponse(),
+      formatted: LogisticApplicationModel.TATFormattedResponse(),
+      timestamp: LogisticApplicationModel.TATTimestampResponse(),
     });
   }
+
+  /** @returns {TATTimestampResponse} */
   static TATTimestampResponse() {
     return Joi.object({
       max: Joi.number(),
       min: Joi.number(),
     });
   }
+
+  /** @returns {TATViewRequest} */
   static TATViewRequest() {
     return Joi.object({
       action: Joi.string().allow(""),
       identifier: Joi.string().allow(""),
       journey: Joi.string().allow(""),
       location_details: Joi.array().items(
-        LogisticModel.TATLocationDetailsRequest()
+        LogisticApplicationModel.TATLocationDetailsRequest()
       ),
       source: Joi.string().allow(""),
       to_pincode: Joi.string().allow(""),
     });
   }
+
+  /** @returns {TATViewResponse} */
   static TATViewResponse() {
     return Joi.object({
       action: Joi.string().allow(""),
-      error: LogisticModel.TATErrorSchemaResponse(),
+      error: LogisticApplicationModel.TATErrorSchemaResponse(),
       identifier: Joi.string().allow(""),
       is_cod_available: Joi.boolean(),
       journey: Joi.string().allow(""),
       location_details: Joi.array().items(
-        LogisticModel.TATLocationDetailsResponse()
+        LogisticApplicationModel.TATLocationDetailsResponse()
       ),
       payment_mode: Joi.string().allow(""),
       request_uuid: Joi.string().allow(""),
@@ -281,4 +843,4 @@ class LogisticModel {
     });
   }
 }
-module.exports = LogisticModel;
+module.exports = LogisticApplicationModel;

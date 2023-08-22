@@ -1,8 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
-const CatalogValidator = require("./CatalogPlatformValidator");
-const CatalogModel = require("./CatalogPlatformModel");
+const CatalogPlatformValidator = require("./CatalogPlatformValidator");
+const CatalogPlatformModel = require("./CatalogPlatformModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -12,16 +12,19 @@ class Catalog {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} arg.itemId - Item code of the product of which size is to be get.
-   * @param {string} arg.size - Size in which inventory is to be added.
-   * @param {InventoryRequest} arg.body
-   * @returns {Promise<SuccessResponse>} - Success response
+   * @param {CatalogPlatformValidator.AddInventoryParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.SuccessResponse>} - Success response
+   * @name addInventory
    * @summary: Add Inventory for particular size and store.
-   * @description: This API allows add Inventory for particular size and store.
+   * @description: This API allows add Inventory for particular size and store. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/addInventory/).
    */
-  async addInventory({ itemId, size, body } = {}) {
-    const { error } = CatalogValidator.addInventory().validate(
+  async addInventory(
+    { itemId, size, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.addInventory().validate(
       {
         itemId,
         size,
@@ -34,7 +37,9 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.addInventory().validate(
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.addInventory().validate(
       {
         itemId,
         size,
@@ -45,9 +50,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for addInventory",
+        message: `Parameter Validation warrnings for platform > Catalog > addInventory \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -60,12 +64,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/${itemId}/sizes/${size}`,
       query_params,
       body,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.SuccessResponse().validate(response, {
+    } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -73,23 +83,27 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for addInventory",
+        message: `Response Validation Warnnings for platform > Catalog > addInventory \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} arg.itemId - Id of the product to be updated.
-   * @returns {Promise<GetAllSizes>} - Success response
+   * @param {CatalogPlatformValidator.AllSizesParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.GetAllSizes>} - Success response
+   * @name allSizes
    * @summary: All Sizes for a given Product
-   * @description: This API allows to get  All Sizes for a given Product.
+   * @description: This API allows to get  All Sizes for a given Product. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/allSizes/).
    */
-  async allSizes({ itemId } = {}) {
-    const { error } = CatalogValidator.allSizes().validate(
+  async allSizes(
+    { itemId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.allSizes().validate(
       {
         itemId,
       },
@@ -100,7 +114,7 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.allSizes().validate(
+    const { error: warrning } = CatalogPlatformValidator.allSizes().validate(
       {
         itemId,
       },
@@ -109,9 +123,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for allSizes",
+        message: `Parameter Validation warrnings for platform > Catalog > allSizes \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -124,10 +137,18 @@ class Catalog {
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/${itemId}/all_sizes`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
-    const { error: res_error } = CatalogModel.GetAllSizes().validate(response, {
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.GetAllSizes().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -135,23 +156,27 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for allSizes",
+        message: `Response Validation Warnnings for platform > Catalog > allSizes \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {BulkHsnUpsert} arg.body
-   * @returns {Promise<BulkHsnResponse>} - Success response
+   * @param {CatalogPlatformValidator.BulkHsnCodeParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.BulkHsnResponse>} - Success response
+   * @name bulkHsnCode
    * @summary: Bulk Create or Update Hsn Code.
-   * @description: Bulk Create or Update Hsn Code.
+   * @description: Bulk Create or Update Hsn Code. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/bulkHsnCode/).
    */
-  async bulkHsnCode({ body } = {}) {
-    const { error } = CatalogValidator.bulkHsnCode().validate(
+  async bulkHsnCode(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.bulkHsnCode().validate(
       {
         body,
       },
@@ -162,7 +187,7 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.bulkHsnCode().validate(
+    const { error: warrning } = CatalogPlatformValidator.bulkHsnCode().validate(
       {
         body,
       },
@@ -171,9 +196,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for bulkHsnCode",
+        message: `Parameter Validation warrnings for platform > Catalog > bulkHsnCode \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -186,12 +210,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/hsn/bulk/`,
       query_params,
       body,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.BulkHsnResponse().validate(response, {
+    } = CatalogPlatformModel.BulkHsnResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -199,24 +229,27 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for bulkHsnCode",
+        message: `Response Validation Warnnings for platform > Catalog > bulkHsnCode \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.batchId - Batch Id of the bulk create job.
-   * @param {InventoryBulkRequest} arg.body
-   * @returns {Promise<SuccessResponse>} - Success response
+   * @param {CatalogPlatformValidator.CreateBulkInventoryParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.SuccessResponse>} - Success response
+   * @name createBulkInventory
    * @summary: Create products in bulk associated with given batch Id.
-   * @description: This API helps to create products in bulk push to kafka for approval/creation.
+   * @description: This API helps to create products in bulk push to kafka for approval/creation. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createBulkInventory/).
    */
-  async createBulkInventory({ batchId, body } = {}) {
-    const { error } = CatalogValidator.createBulkInventory().validate(
+  async createBulkInventory(
+    { batchId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.createBulkInventory().validate(
       {
         batchId,
         body,
@@ -228,7 +261,9 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.createBulkInventory().validate(
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.createBulkInventory().validate(
       {
         batchId,
         body,
@@ -238,9 +273,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for createBulkInventory",
+        message: `Parameter Validation warrnings for platform > Catalog > createBulkInventory \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -253,12 +287,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/inventory/bulk/${batchId}/`,
       query_params,
       body,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.SuccessResponse().validate(response, {
+    } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -266,23 +306,29 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for createBulkInventory",
+        message: `Response Validation Warnnings for platform > Catalog > createBulkInventory \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {BulkJob} arg.body
-   * @returns {Promise<BulkResponse>} - Success response
+   * @param {CatalogPlatformValidator.CreateBulkInventoryJobParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.BulkResponse>} - Success response
+   * @name createBulkInventoryJob
    * @summary: Create a Bulk Inventory upload Job.
-   * @description: This API helps to create a bulk Inventory upload job.
+   * @description: This API helps to create a bulk Inventory upload job. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createBulkInventoryJob/).
    */
-  async createBulkInventoryJob({ body } = {}) {
-    const { error } = CatalogValidator.createBulkInventoryJob().validate(
+  async createBulkInventoryJob(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformValidator.createBulkInventoryJob().validate(
       {
         body,
       },
@@ -295,7 +341,7 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.createBulkInventoryJob().validate(
+    } = CatalogPlatformValidator.createBulkInventoryJob().validate(
       {
         body,
       },
@@ -304,9 +350,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for createBulkInventoryJob",
+        message: `Parameter Validation warrnings for platform > Catalog > createBulkInventoryJob \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -319,34 +364,48 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/inventory/bulk/`,
       query_params,
       body,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
-    const { error: res_error } = CatalogModel.BulkResponse().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.BulkResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for createBulkInventoryJob",
+        message: `Response Validation Warnnings for platform > Catalog > createBulkInventoryJob \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {BulkJob} arg.body
-   * @returns {Promise<BulkResponse>} - Success response
+   * @param {CatalogPlatformValidator.CreateBulkProductUploadJobParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.BulkResponse>} - Success response
+   * @name createBulkProductUploadJob
    * @summary: Create a Bulk product to upload job.
-   * @description: This API helps to create a bulk products upload job.
+   * @description: This API helps to create a bulk products upload job. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createBulkProductUploadJob/).
    */
-  async createBulkProductUploadJob({ body } = {}) {
-    const { error } = CatalogValidator.createBulkProductUploadJob().validate(
+  async createBulkProductUploadJob(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformValidator.createBulkProductUploadJob().validate(
       {
         body,
       },
@@ -359,7 +418,7 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.createBulkProductUploadJob().validate(
+    } = CatalogPlatformValidator.createBulkProductUploadJob().validate(
       {
         body,
       },
@@ -368,10 +427,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message:
-          "Parameter Validation warrnings for createBulkProductUploadJob",
+        message: `Parameter Validation warrnings for platform > Catalog > createBulkProductUploadJob \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -384,34 +441,46 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/bulk`,
       query_params,
       body,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
-    const { error: res_error } = CatalogModel.BulkResponse().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.BulkResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for createBulkProductUploadJob",
+        message: `Response Validation Warnnings for platform > Catalog > createBulkProductUploadJob \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {CategoryRequestBody} arg.body
-   * @returns {Promise<CategoryCreateResponse>} - Success response
+   * @param {CatalogPlatformValidator.CreateCategoriesParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.CategoryCreateResponse>} - Success response
+   * @name createCategories
    * @summary: Create product categories
-   * @description: This API lets user create product categories
+   * @description: This API lets user create product categories - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createCategories/).
    */
-  async createCategories({ body } = {}) {
-    const { error } = CatalogValidator.createCategories().validate(
+  async createCategories(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.createCategories().validate(
       {
         body,
       },
@@ -422,7 +491,9 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.createCategories().validate(
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.createCategories().validate(
       {
         body,
       },
@@ -431,9 +502,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for createCategories",
+        message: `Parameter Validation warrnings for platform > Catalog > createCategories \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -446,12 +516,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/category/`,
       query_params,
       body,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.CategoryCreateResponse().validate(response, {
+    } = CatalogPlatformModel.CategoryCreateResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -459,23 +535,28 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for createCategories",
+        message: `Response Validation Warnnings for platform > Catalog > createCategories \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {DepartmentCreateUpdate} arg.body
-   * @returns {Promise<DepartmentCreateResponse>} - Success response
+   * @param {CatalogPlatformValidator.CreateDepartmentsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.DepartmentCreateResponse>} -
+   *   Success response
+   * @name createDepartments
    * @summary: Create the department.
-   * @description: Create departments using the API.
+   * @description: Create departments using the API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createDepartments/).
    */
-  async createDepartments({ body } = {}) {
-    const { error } = CatalogValidator.createDepartments().validate(
+  async createDepartments(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.createDepartments().validate(
       {
         body,
       },
@@ -486,7 +567,9 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.createDepartments().validate(
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.createDepartments().validate(
       {
         body,
       },
@@ -495,9 +578,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for createDepartments",
+        message: `Parameter Validation warrnings for platform > Catalog > createDepartments \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -510,12 +592,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/departments/`,
       query_params,
       body,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.DepartmentCreateResponse().validate(response, {
+    } = CatalogPlatformModel.DepartmentCreateResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -523,23 +611,27 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for createDepartments",
+        message: `Response Validation Warnnings for platform > Catalog > createDepartments \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {InventoryCreateRequest} arg.body
-   * @returns {Promise<InventoryExportResponse>} - Success response
+   * @param {CatalogPlatformValidator.CreateInventoryExportParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.InventoryExportResponse>} - Success response
+   * @name createInventoryExport
    * @summary: Create an inventory export job.
-   * @description: This API helps to create a Inventory export job.
+   * @description: This API helps to create a Inventory export job. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createInventoryExport/).
    */
-  async createInventoryExport({ body } = {}) {
-    const { error } = CatalogValidator.createInventoryExport().validate(
+  async createInventoryExport(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.createInventoryExport().validate(
       {
         body,
       },
@@ -552,7 +644,7 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.createInventoryExport().validate(
+    } = CatalogPlatformValidator.createInventoryExport().validate(
       {
         body,
       },
@@ -561,9 +653,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for createInventoryExport",
+        message: `Parameter Validation warrnings for platform > Catalog > createInventoryExport \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -576,12 +667,18 @@ class Catalog {
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/inventory/download/`,
       query_params,
       body,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.InventoryExportResponse().validate(response, {
+    } = CatalogPlatformModel.InventoryExportResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -589,23 +686,29 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for createInventoryExport",
+        message: `Response Validation Warnnings for platform > Catalog > createInventoryExport \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {InventoryExportRequest} arg.body
-   * @returns {Promise<InventoryExportResponse>} - Success response
+   * @param {CatalogPlatformValidator.CreateInventoryExportJobParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.InventoryExportResponse>} - Success response
+   * @name createInventoryExportJob
    * @summary: Create a Inventory export Job.
-   * @description: This API helps to create a Inventory export job.
+   * @description: This API helps to create a Inventory export job. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createInventoryExportJob/).
    */
-  async createInventoryExportJob({ body } = {}) {
-    const { error } = CatalogValidator.createInventoryExportJob().validate(
+  async createInventoryExportJob(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformValidator.createInventoryExportJob().validate(
       {
         body,
       },
@@ -618,7 +721,7 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.createInventoryExportJob().validate(
+    } = CatalogPlatformValidator.createInventoryExportJob().validate(
       {
         body,
       },
@@ -627,9 +730,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for createInventoryExportJob",
+        message: `Parameter Validation warrnings for platform > Catalog > createInventoryExportJob \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -642,12 +744,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/inventory/download/`,
       query_params,
       body,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.InventoryExportResponse().validate(response, {
+    } = CatalogPlatformModel.InventoryExportResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -655,25 +763,29 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for createInventoryExportJob",
+        message: `Response Validation Warnnings for platform > Catalog > createInventoryExportJob \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.marketplace - The marketplace for which the detail
-   *   needs to be retrieved.
-   * @param {OptInPostRequest} arg.body
-   * @returns {Promise<UpdatedResponse>} - Success response
+   * @param {CatalogPlatformValidator.CreateMarketplaceOptinParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.UpdatedResponse>} - Success response
+   * @name createMarketplaceOptin
    * @summary: Create/Update opt-in infomation.
-   * @description: Use this API to create/update opt-in information for given platform. If successful, returns data in the response body as specified in `OptInPostResponseSchema`
+   * @description: Use this API to create/update opt-in information for given platform. If successful, returns data in the response body as specified in `OptInPostResponseSchema` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createMarketplaceOptin/).
    */
-  async createMarketplaceOptin({ marketplace, body } = {}) {
-    const { error } = CatalogValidator.createMarketplaceOptin().validate(
+  async createMarketplaceOptin(
+    { marketplace, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformValidator.createMarketplaceOptin().validate(
       {
         marketplace,
         body,
@@ -687,7 +799,7 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.createMarketplaceOptin().validate(
+    } = CatalogPlatformValidator.createMarketplaceOptin().validate(
       {
         marketplace,
         body,
@@ -697,9 +809,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for createMarketplaceOptin",
+        message: `Parameter Validation warrnings for platform > Catalog > createMarketplaceOptin \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -712,12 +823,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/marketplaces/${marketplace}/optin/`,
       query_params,
       body,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.UpdatedResponse().validate(response, {
+    } = CatalogPlatformModel.UpdatedResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -725,23 +842,27 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for createMarketplaceOptin",
+        message: `Response Validation Warnnings for platform > Catalog > createMarketplaceOptin \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {ProductCreateUpdateSchemaV2} arg.body
-   * @returns {Promise<SuccessResponse>} - Success response
+   * @param {CatalogPlatformValidator.CreateProductParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.SuccessResponse>} - Success response
+   * @name createProduct
    * @summary: Create a product.
-   * @description: This API allows to create product.
+   * @description: This API allows to create product. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createProduct/).
    */
-  async createProduct({ body } = {}) {
-    const { error } = CatalogValidator.createProduct().validate(
+  async createProduct(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.createProduct().validate(
       {
         body,
       },
@@ -752,7 +873,9 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.createProduct().validate(
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.createProduct().validate(
       {
         body,
       },
@@ -761,9 +884,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for createProduct",
+        message: `Parameter Validation warrnings for platform > Catalog > createProduct \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -776,12 +898,18 @@ class Catalog {
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/`,
       query_params,
       body,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.SuccessResponse().validate(response, {
+    } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -789,23 +917,29 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for createProduct",
+        message: `Response Validation Warnnings for platform > Catalog > createProduct \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {ProductBulkAssets} arg.body
-   * @returns {Promise<SuccessResponse>} - Success response
+   * @param {CatalogPlatformValidator.CreateProductAssetsInBulkParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.SuccessResponse>} - Success response
+   * @name createProductAssetsInBulk
    * @summary: Create a Bulk asset upload Job.
-   * @description: This API helps to create a bulk asset upload job.
+   * @description: This API helps to create a bulk asset upload job. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createProductAssetsInBulk/).
    */
-  async createProductAssetsInBulk({ body } = {}) {
-    const { error } = CatalogValidator.createProductAssetsInBulk().validate(
+  async createProductAssetsInBulk(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformValidator.createProductAssetsInBulk().validate(
       {
         body,
       },
@@ -818,7 +952,7 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.createProductAssetsInBulk().validate(
+    } = CatalogPlatformValidator.createProductAssetsInBulk().validate(
       {
         body,
       },
@@ -827,9 +961,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for createProductAssetsInBulk",
+        message: `Parameter Validation warrnings for platform > Catalog > createProductAssetsInBulk \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -842,12 +975,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/assets/bulk/`,
       query_params,
       body,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.SuccessResponse().validate(response, {
+    } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -855,23 +994,29 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for createProductAssetsInBulk",
+        message: `Response Validation Warnnings for platform > Catalog > createProductAssetsInBulk \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {ProductBundleRequest} arg.body
-   * @returns {Promise<GetProductBundleCreateResponse>} - Success response
+   * @param {CatalogPlatformValidator.CreateProductBundleParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.GetProductBundleCreateResponse>}
+   *   - Success response
+   *
+   * @name createProductBundle
    * @summary: Create Product Bundle
-   * @description: Create Product Bundle. See `ProductBundleRequest` for the request body parameter need to create a product bundle. On successful request, returns in `ProductBundleRequest` with id
+   * @description: Create Product Bundle. See `ProductBundleRequest` for the request body parameter need to create a product bundle. On successful request, returns in `ProductBundleRequest` with id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createProductBundle/).
    */
-  async createProductBundle({ body } = {}) {
-    const { error } = CatalogValidator.createProductBundle().validate(
+  async createProductBundle(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.createProductBundle().validate(
       {
         body,
       },
@@ -882,7 +1027,9 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.createProductBundle().validate(
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.createProductBundle().validate(
       {
         body,
       },
@@ -891,9 +1038,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for createProductBundle",
+        message: `Parameter Validation warrnings for platform > Catalog > createProductBundle \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -906,36 +1052,49 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/product-bundle/`,
       query_params,
       body,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.GetProductBundleCreateResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = CatalogPlatformModel.GetProductBundleCreateResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for createProductBundle",
+        message: `Response Validation Warnnings for platform > Catalog > createProductBundle \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {ProductTemplateDownloadsExport} arg.body
-   * @returns {Promise<ProductDownloadsResponse>} - Success response
+   * @param {CatalogPlatformValidator.CreateProductExportJobParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.ProductDownloadsResponse>} -
+   *   Success response
+   * @name createProductExportJob
    * @summary: Create a product export job.
-   * @description: This API helps to create a Inventory export job.
+   * @description: This API helps to create a Inventory export job. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createProductExportJob/).
    */
-  async createProductExportJob({ body } = {}) {
-    const { error } = CatalogValidator.createProductExportJob().validate(
+  async createProductExportJob(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformValidator.createProductExportJob().validate(
       {
         body,
       },
@@ -948,7 +1107,7 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.createProductExportJob().validate(
+    } = CatalogPlatformValidator.createProductExportJob().validate(
       {
         body,
       },
@@ -957,9 +1116,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for createProductExportJob",
+        message: `Parameter Validation warrnings for platform > Catalog > createProductExportJob \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -972,12 +1130,18 @@ class Catalog {
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/downloads/`,
       query_params,
       body,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.ProductDownloadsResponse().validate(response, {
+    } = CatalogPlatformModel.ProductDownloadsResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -985,24 +1149,27 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for createProductExportJob",
+        message: `Response Validation Warnnings for platform > Catalog > createProductExportJob \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.batchId - Batch Id in which assets to be uploaded.
-   * @param {BulkProductRequest} arg.body
-   * @returns {Promise<SuccessResponse>} - Success response
+   * @param {CatalogPlatformValidator.CreateProductsInBulkParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.SuccessResponse>} - Success response
+   * @name createProductsInBulk
    * @summary: Create products in bulk associated with given batch Id.
-   * @description: This API helps to create products in bulk push to kafka for approval/creation.
+   * @description: This API helps to create products in bulk push to kafka for approval/creation. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createProductsInBulk/).
    */
-  async createProductsInBulk({ batchId, body } = {}) {
-    const { error } = CatalogValidator.createProductsInBulk().validate(
+  async createProductsInBulk(
+    { batchId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.createProductsInBulk().validate(
       {
         batchId,
         body,
@@ -1016,7 +1183,7 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.createProductsInBulk().validate(
+    } = CatalogPlatformValidator.createProductsInBulk().validate(
       {
         batchId,
         body,
@@ -1026,9 +1193,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for createProductsInBulk",
+        message: `Parameter Validation warrnings for platform > Catalog > createProductsInBulk \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1041,12 +1207,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/bulk/${batchId}`,
       query_params,
       body,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.SuccessResponse().validate(response, {
+    } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1054,23 +1226,27 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for createProductsInBulk",
+        message: `Response Validation Warnnings for platform > Catalog > createProductsInBulk \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {ValidateSizeGuide} arg.body
-   * @returns {Promise<SuccessResponse>} - Success response
+   * @param {CatalogPlatformValidator.CreateSizeGuideParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.SuccessResponse>} - Success response
+   * @name createSizeGuide
    * @summary: Create a size guide.
-   * @description: This API allows to create a size guide associated to a brand.
+   * @description: This API allows to create a size guide associated to a brand. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createSizeGuide/).
    */
-  async createSizeGuide({ body } = {}) {
-    const { error } = CatalogValidator.createSizeGuide().validate(
+  async createSizeGuide(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.createSizeGuide().validate(
       {
         body,
       },
@@ -1081,7 +1257,9 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.createSizeGuide().validate(
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.createSizeGuide().validate(
       {
         body,
       },
@@ -1090,9 +1268,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for createSizeGuide",
+        message: `Parameter Validation warrnings for platform > Catalog > createSizeGuide \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1105,12 +1282,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/sizeguide`,
       query_params,
       body,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.SuccessResponse().validate(response, {
+    } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1118,23 +1301,29 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for createSizeGuide",
+        message: `Response Validation Warnnings for platform > Catalog > createSizeGuide \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.batchId - Batch Id of the bulk delete job.
-   * @returns {Promise<SuccessResponse>} - Success response
+   * @param {CatalogPlatformValidator.DeleteBulkInventoryJobParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.SuccessResponse>} - Success response
+   * @name deleteBulkInventoryJob
    * @summary: Delete Bulk Inventory job.
-   * @description: This API allows to delete bulk Inventory job associated with company.
+   * @description: This API allows to delete bulk Inventory job associated with company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteBulkInventoryJob/).
    */
-  async deleteBulkInventoryJob({ batchId } = {}) {
-    const { error } = CatalogValidator.deleteBulkInventoryJob().validate(
+  async deleteBulkInventoryJob(
+    { batchId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformValidator.deleteBulkInventoryJob().validate(
       {
         batchId,
       },
@@ -1147,7 +1336,7 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.deleteBulkInventoryJob().validate(
+    } = CatalogPlatformValidator.deleteBulkInventoryJob().validate(
       {
         batchId,
       },
@@ -1156,9 +1345,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for deleteBulkInventoryJob",
+        message: `Parameter Validation warrnings for platform > Catalog > deleteBulkInventoryJob \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1171,12 +1359,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/inventory/bulk/${batchId}/`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.SuccessResponse().validate(response, {
+    } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1184,27 +1378,27 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for deleteBulkInventoryJob",
+        message: `Response Validation Warnnings for platform > Catalog > deleteBulkInventoryJob \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.size - Size that is to be deleted.
-   * @param {number} arg.itemId - Id of the product associated with Inventory
-   *   to be deleted.
-   * @param {number} arg.locationId - Location ID of store of which inventory
-   *   is to be deleted.
-   * @returns {Promise<SuccessResponse>} - Success response
+   * @param {CatalogPlatformValidator.DeleteInventoryParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.SuccessResponse>} - Success response
+   * @name deleteInventory
    * @summary: Delete a Inventory.
-   * @description: This API allows to delete inventory of a particular product for particular company.
+   * @description: This API allows to delete inventory of a particular product for particular company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteInventory/).
    */
-  async deleteInventory({ size, itemId, locationId } = {}) {
-    const { error } = CatalogValidator.deleteInventory().validate(
+  async deleteInventory(
+    { size, itemId, locationId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.deleteInventory().validate(
       {
         size,
         itemId,
@@ -1217,7 +1411,9 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.deleteInventory().validate(
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.deleteInventory().validate(
       {
         size,
         itemId,
@@ -1228,9 +1424,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for deleteInventory",
+        message: `Parameter Validation warrnings for platform > Catalog > deleteInventory \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1243,12 +1438,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/${itemId}/sizes/${size}/location/${locationId}/`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.SuccessResponse().validate(response, {
+    } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1256,23 +1457,27 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for deleteInventory",
+        message: `Response Validation Warnnings for platform > Catalog > deleteInventory \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} arg.itemId - Id of the product to be updated.
-   * @returns {Promise<SuccessResponse>} - Success response
+   * @param {CatalogPlatformValidator.DeleteProductParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.SuccessResponse>} - Success response
+   * @name deleteProduct
    * @summary: Delete a product.
-   * @description: This API allows to delete product.
+   * @description: This API allows to delete product. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteProduct/).
    */
-  async deleteProduct({ itemId } = {}) {
-    const { error } = CatalogValidator.deleteProduct().validate(
+  async deleteProduct(
+    { itemId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.deleteProduct().validate(
       {
         itemId,
       },
@@ -1283,7 +1488,9 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.deleteProduct().validate(
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.deleteProduct().validate(
       {
         itemId,
       },
@@ -1292,9 +1499,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for deleteProduct",
+        message: `Parameter Validation warrnings for platform > Catalog > deleteProduct \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1307,12 +1513,18 @@ class Catalog {
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/${itemId}/`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.SuccessResponse().validate(response, {
+    } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1320,23 +1532,27 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for deleteProduct",
+        message: `Response Validation Warnnings for platform > Catalog > deleteProduct \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} arg.batchId - Batch Id of the bulk product job to be deleted.
-   * @returns {Promise<SuccessResponse>} - Success response
+   * @param {CatalogPlatformValidator.DeleteProductBulkJobParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.SuccessResponse>} - Success response
+   * @name deleteProductBulkJob
    * @summary: Delete Bulk product job.
-   * @description: This API allows to delete bulk product job associated with company.
+   * @description: This API allows to delete bulk product job associated with company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteProductBulkJob/).
    */
-  async deleteProductBulkJob({ batchId } = {}) {
-    const { error } = CatalogValidator.deleteProductBulkJob().validate(
+  async deleteProductBulkJob(
+    { batchId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.deleteProductBulkJob().validate(
       {
         batchId,
       },
@@ -1349,7 +1565,7 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.deleteProductBulkJob().validate(
+    } = CatalogPlatformValidator.deleteProductBulkJob().validate(
       {
         batchId,
       },
@@ -1358,9 +1574,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for deleteProductBulkJob",
+        message: `Parameter Validation warrnings for platform > Catalog > deleteProductBulkJob \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1373,12 +1588,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/bulk/${batchId}`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.SuccessResponse().validate(response, {
+    } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1386,26 +1607,29 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for deleteProductBulkJob",
+        message: `Response Validation Warnnings for platform > Catalog > deleteProductBulkJob \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} arg.itemId - Item code of the product of which size is to be get.
-   * @param {string} arg.sellerIdentifier - Size Identifier (Seller Identifier
-   *   or Primary Identifier) of which inventory is to get.
-   * @param {InventoryRequestSchemaV2} arg.body
-   * @returns {Promise<InventoryUpdateResponse>} - Success response
+   * @param {CatalogPlatformValidator.DeleteRealtimeInventoryParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.InventoryUpdateResponse>} - Success response
+   * @name deleteRealtimeInventory
    * @summary: Add Inventory for particular size and store.
-   * @description: This API allows add Inventory for particular size and store.
+   * @description: This API allows add Inventory for particular size and store. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteRealtimeInventory/).
    */
-  async deleteRealtimeInventory({ itemId, sellerIdentifier, body } = {}) {
-    const { error } = CatalogValidator.deleteRealtimeInventory().validate(
+  async deleteRealtimeInventory(
+    { itemId, sellerIdentifier, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformValidator.deleteRealtimeInventory().validate(
       {
         itemId,
         sellerIdentifier,
@@ -1420,7 +1644,7 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.deleteRealtimeInventory().validate(
+    } = CatalogPlatformValidator.deleteRealtimeInventory().validate(
       {
         itemId,
         sellerIdentifier,
@@ -1431,9 +1655,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for deleteRealtimeInventory",
+        message: `Parameter Validation warrnings for platform > Catalog > deleteRealtimeInventory \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1446,12 +1669,18 @@ class Catalog {
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/${itemId}/inventory/${sellerIdentifier}`,
       query_params,
       body,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.InventoryUpdateResponse().validate(response, {
+    } = CatalogPlatformModel.InventoryUpdateResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1459,25 +1688,28 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for deleteRealtimeInventory",
+        message: `Response Validation Warnnings for platform > Catalog > deleteRealtimeInventory \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} arg.itemId - Item Id of the product associated with size
-   *   to be deleted.
-   * @param {string} arg.size - Size to be deleted.
-   * @returns {Promise<ProductSizeDeleteResponse>} - Success response
+   * @param {CatalogPlatformValidator.DeleteSizeParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.ProductSizeDeleteResponse>} -
+   *   Success response
+   * @name deleteSize
    * @summary: Delete a Size associated with product.
-   * @description: This API allows to delete size associated with product.
+   * @description: This API allows to delete size associated with product. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteSize/).
    */
-  async deleteSize({ itemId, size } = {}) {
-    const { error } = CatalogValidator.deleteSize().validate(
+  async deleteSize(
+    { itemId, size, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.deleteSize().validate(
       {
         itemId,
         size,
@@ -1489,7 +1721,7 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.deleteSize().validate(
+    const { error: warrning } = CatalogPlatformValidator.deleteSize().validate(
       {
         itemId,
         size,
@@ -1499,9 +1731,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for deleteSize",
+        message: `Parameter Validation warrnings for platform > Catalog > deleteSize \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1514,36 +1745,50 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/${itemId}/sizes/${size}`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.ProductSizeDeleteResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = CatalogPlatformModel.ProductSizeDeleteResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for deleteSize",
+        message: `Response Validation Warnnings for platform > Catalog > deleteSize \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.itemType - An `item_type` defines the type of item.
+   * @param {CatalogPlatformValidator.DownloadInventoryTemplateViewParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<string>} - Success response
+   * @name downloadInventoryTemplateView
    * @summary: Download Product Template View
-   * @description: Allows you to download product template data
+   * @description: Allows you to download product template data - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/downloadInventoryTemplateView/).
    */
-  async downloadInventoryTemplateView({ itemType } = {}) {
-    const { error } = CatalogValidator.downloadInventoryTemplateView().validate(
+  async downloadInventoryTemplateView(
+    { itemType, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformValidator.downloadInventoryTemplateView().validate(
       {
         itemType,
       },
@@ -1556,7 +1801,7 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.downloadInventoryTemplateView().validate(
+    } = CatalogPlatformValidator.downloadInventoryTemplateView().validate(
       {
         itemType,
       },
@@ -1565,10 +1810,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message:
-          "Parameter Validation warrnings for downloadInventoryTemplateView",
+        message: `Parameter Validation warrnings for platform > Catalog > downloadInventoryTemplateView \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1582,39 +1825,47 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/inventory/templates/download/`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const { error: res_error } = Joi.string()
       .allow("")
-      .validate(response, { abortEarly: false, allowUnknown: false });
+      .validate(responseData, { abortEarly: false, allowUnknown: false });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message:
-          "Response Validation Warnnings for downloadInventoryTemplateView",
+        message: `Response Validation Warnnings for platform > Catalog > downloadInventoryTemplateView \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.slug - A `slug` is a unique identifier for a
-   *   particular template.
-   * @param {string} [arg.itemType] - An `item_type` defines the type of item.
-   *   The default value is standard.
-   * @param {string} [arg.type] - Format type of the sample file. The default
-   *   value is excel.
+   * @param {CatalogPlatformValidator.DownloadProductTemplateViewsParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<string>} - Success response
+   * @name downloadProductTemplateViews
    * @summary: Download Product Template View
-   * @description: Allows you to download product template data
+   * @description: Allows you to download product template data - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/downloadProductTemplateViews/).
    */
-  async downloadProductTemplateViews({ slug, itemType, type } = {}) {
-    const { error } = CatalogValidator.downloadProductTemplateViews().validate(
+  async downloadProductTemplateViews(
+    { slug, itemType, type, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformValidator.downloadProductTemplateViews().validate(
       {
         slug,
         itemType,
@@ -1629,7 +1880,7 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.downloadProductTemplateViews().validate(
+    } = CatalogPlatformValidator.downloadProductTemplateViews().validate(
       {
         slug,
         itemType,
@@ -1640,10 +1891,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message:
-          "Parameter Validation warrnings for downloadProductTemplateViews",
+        message: `Parameter Validation warrnings for platform > Catalog > downloadProductTemplateViews \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1658,35 +1907,43 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/templates/${slug}/download/`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const { error: res_error } = Joi.string()
       .allow("")
-      .validate(response, { abortEarly: false, allowUnknown: false });
+      .validate(responseData, { abortEarly: false, allowUnknown: false });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message:
-          "Response Validation Warnnings for downloadProductTemplateViews",
+        message: `Response Validation Warnnings for platform > Catalog > downloadProductTemplateViews \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} arg.itemId - Id of the product to be updated.
-   * @param {ProductCreateUpdateSchemaV2} arg.body
-   * @returns {Promise<SuccessResponse>} - Success response
+   * @param {CatalogPlatformValidator.EditProductParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.SuccessResponse>} - Success response
+   * @name editProduct
    * @summary: Edit a product.
-   * @description: This API allows to edit product.
+   * @description: This API allows to edit product. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/editProduct/).
    */
-  async editProduct({ itemId, body } = {}) {
-    const { error } = CatalogValidator.editProduct().validate(
+  async editProduct(
+    { itemId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.editProduct().validate(
       {
         itemId,
         body,
@@ -1698,7 +1955,7 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.editProduct().validate(
+    const { error: warrning } = CatalogPlatformValidator.editProduct().validate(
       {
         itemId,
         body,
@@ -1708,9 +1965,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for editProduct",
+        message: `Parameter Validation warrnings for platform > Catalog > editProduct \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1723,12 +1979,18 @@ class Catalog {
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/${itemId}/`,
       query_params,
       body,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.SuccessResponse().validate(response, {
+    } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1736,24 +1998,27 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for editProduct",
+        message: `Response Validation Warnnings for platform > Catalog > editProduct \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.filterType] - Filter type from any one of ['brand',
-   *   'store', 'type']
-   * @returns {Promise<InventoryConfig>} - Success response
+   * @param {CatalogPlatformValidator.ExportInventoryConfigParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.InventoryConfig>} - Success response
+   * @name exportInventoryConfig
    * @summary: Get List of different filters for inventory export
-   * @description: This API allows get List of different filters like brand, store, and type for inventory export.
+   * @description: This API allows get List of different filters like brand, store, and type for inventory export. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/exportInventoryConfig/).
    */
-  async exportInventoryConfig({ filterType } = {}) {
-    const { error } = CatalogValidator.exportInventoryConfig().validate(
+  async exportInventoryConfig(
+    { filterType, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.exportInventoryConfig().validate(
       {
         filterType,
       },
@@ -1766,7 +2031,7 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.exportInventoryConfig().validate(
+    } = CatalogPlatformValidator.exportInventoryConfig().validate(
       {
         filterType,
       },
@@ -1775,9 +2040,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for exportInventoryConfig",
+        message: `Parameter Validation warrnings for platform > Catalog > exportInventoryConfig \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1791,12 +2055,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/inventory/download/configuration/`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.InventoryConfig().validate(response, {
+    } = CatalogPlatformModel.InventoryConfig().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1804,26 +2074,29 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for exportInventoryConfig",
+        message: `Response Validation Warnnings for platform > Catalog > exportInventoryConfig \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Page no
-   * @param {number} [arg.pageSize] - Page size
-   * @param {string} [arg.q] - Search using hsn code, description, reporting_hsn
-   * @param {string} [arg.type] - Search using type
-   * @returns {Promise<HsnCodesListingResponseSchemaV2>} - Success response
+   * @param {CatalogPlatformValidator.GetAllProductHsnCodesParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.HsnCodesListingResponseSchemaV2>}
+   *   - Success response
+   *
+   * @name getAllProductHsnCodes
    * @summary: Hsn Code List.
-   * @description: Hsn Code List.
+   * @description: Hsn Code List. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAllProductHsnCodes/).
    */
-  async getAllProductHsnCodes({ pageNo, pageSize, q, type } = {}) {
-    const { error } = CatalogValidator.getAllProductHsnCodes().validate(
+  async getAllProductHsnCodes(
+    { pageNo, pageSize, q, type, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.getAllProductHsnCodes().validate(
       {
         pageNo,
         pageSize,
@@ -1839,7 +2112,7 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.getAllProductHsnCodes().validate(
+    } = CatalogPlatformValidator.getAllProductHsnCodes().validate(
       {
         pageNo,
         pageSize,
@@ -1851,9 +2124,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getAllProductHsnCodes",
+        message: `Parameter Validation warrnings for platform > Catalog > getAllProductHsnCodes \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1870,36 +2142,46 @@ class Catalog {
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/hsn/`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.HsnCodesListingResponseSchemaV2().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = CatalogPlatformModel.HsnCodesListingResponseSchemaV2().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getAllProductHsnCodes",
+        message: `Response Validation Warnnings for platform > Catalog > getAllProductHsnCodes \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.uid - Category unique id
-   * @returns {Promise<SingleCategoryResponse>} - Success response
+   * @param {CatalogPlatformValidator.GetCategoryDataParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.SingleCategoryResponse>} - Success response
+   * @name getCategoryData
    * @summary: Get product category by uid
-   * @description: This API gets meta associated to product categories.
+   * @description: This API gets meta associated to product categories. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCategoryData/).
    */
-  async getCategoryData({ uid } = {}) {
-    const { error } = CatalogValidator.getCategoryData().validate(
+  async getCategoryData(
+    { uid, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.getCategoryData().validate(
       {
         uid,
       },
@@ -1910,7 +2192,9 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getCategoryData().validate(
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.getCategoryData().validate(
       {
         uid,
       },
@@ -1919,9 +2203,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getCategoryData",
+        message: `Parameter Validation warrnings for platform > Catalog > getCategoryData \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1934,12 +2217,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/category/${uid}/`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.SingleCategoryResponse().validate(response, {
+    } = CatalogPlatformModel.SingleCategoryResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1947,35 +2236,30 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getCategoryData",
+        message: `Response Validation Warnnings for platform > Catalog > getCategoryData \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {boolean} [arg.isActive] - The is_active status for the optin id.
-   * @param {string} [arg.q] - The search value to filter the list.
-   * @param {number} [arg.pageNo] - The number of page for the company id.
-   * @param {number} [arg.pageSize] - Number of records that can be seen on
-   *   the page for the company id.
-   * @param {string} [arg.marketplace] - The marketplace platform associated
-   *   with the company id.
-   * @returns {Promise<OptinCompanyBrandDetailsView>} - Success response
+   * @param {CatalogPlatformValidator.GetCompanyBrandDetailParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.OptinCompanyBrandDetailsView>} -
+   *   Success response
+   * @name getCompanyBrandDetail
    * @summary: Get the Company Brand details of Optin.
-   * @description: Get the details of the Brands associated with the given company_id passed.
+   * @description: Get the details of the Brands associated with the given company_id passed. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCompanyBrandDetail/).
    */
-  async getCompanyBrandDetail({
-    isActive,
-    q,
-    pageNo,
-    pageSize,
-    marketplace,
-  } = {}) {
-    const { error } = CatalogValidator.getCompanyBrandDetail().validate(
+  async getCompanyBrandDetail(
+    { isActive, q, pageNo, pageSize, marketplace, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.getCompanyBrandDetail().validate(
       {
         isActive,
         q,
@@ -1992,7 +2276,7 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.getCompanyBrandDetail().validate(
+    } = CatalogPlatformValidator.getCompanyBrandDetail().validate(
       {
         isActive,
         q,
@@ -2005,9 +2289,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getCompanyBrandDetail",
+        message: `Parameter Validation warrnings for platform > Catalog > getCompanyBrandDetail \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2025,35 +2308,46 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/marketplaces/company-brand-details/`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.OptinCompanyBrandDetailsView().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = CatalogPlatformModel.OptinCompanyBrandDetailsView().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getCompanyBrandDetail",
+        message: `Response Validation Warnnings for platform > Catalog > getCompanyBrandDetail \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<OptinCompanyDetail>} - Success response
+   * @param {CatalogPlatformValidator.GetCompanyDetailParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.OptinCompanyDetail>} - Success response
+   * @name getCompanyDetail
    * @summary: Get the Company details.
-   * @description: Get the details of the company associated with the given company_id passed.
+   * @description: Get the details of the company associated with the given company_id passed. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCompanyDetail/).
    */
-  async getCompanyDetail({} = {}) {
-    const { error } = CatalogValidator.getCompanyDetail().validate(
+  async getCompanyDetail(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.getCompanyDetail().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -2062,16 +2356,17 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getCompanyDetail().validate(
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.getCompanyDetail().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getCompanyDetail",
+        message: `Parameter Validation warrnings for platform > Catalog > getCompanyDetail \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2084,12 +2379,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/marketplaces/company-details/`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.OptinCompanyDetail().validate(response, {
+    } = CatalogPlatformModel.OptinCompanyDetail().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2097,22 +2398,27 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getCompanyDetail",
+        message: `Response Validation Warnnings for platform > Catalog > getCompanyDetail \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<OptinCompanyMetrics>} - Success response
+   * @param {CatalogPlatformValidator.GetCompanyMetricsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.OptinCompanyMetrics>} - Success response
+   * @name getCompanyMetrics
    * @summary: Get the Company metrics
-   * @description: Get the Company metrics associated with the company ID passed.
+   * @description: Get the Company metrics associated with the company ID passed. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getCompanyMetrics/).
    */
-  async getCompanyMetrics({} = {}) {
-    const { error } = CatalogValidator.getCompanyMetrics().validate(
+  async getCompanyMetrics(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.getCompanyMetrics().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -2121,16 +2427,17 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getCompanyMetrics().validate(
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.getCompanyMetrics().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getCompanyMetrics",
+        message: `Parameter Validation warrnings for platform > Catalog > getCompanyMetrics \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2143,12 +2450,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/marketplaces/company-metrics/`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.OptinCompanyMetrics().validate(response, {
+    } = CatalogPlatformModel.OptinCompanyMetrics().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2156,23 +2469,27 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getCompanyMetrics",
+        message: `Response Validation Warnnings for platform > Catalog > getCompanyMetrics \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.uid - A `uid` is a unique identifier of a department.
-   * @returns {Promise<DepartmentsResponse>} - Success response
+   * @param {CatalogPlatformValidator.GetDepartmentDataParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.DepartmentsResponse>} - Success response
+   * @name getDepartmentData
    * @summary: Get specific departments details by passing in unique id of the department.
-   * @description: Allows you to get department data, by uid.
+   * @description: Allows you to get department data, by uid. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getDepartmentData/).
    */
-  async getDepartmentData({ uid } = {}) {
-    const { error } = CatalogValidator.getDepartmentData().validate(
+  async getDepartmentData(
+    { uid, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.getDepartmentData().validate(
       {
         uid,
       },
@@ -2183,7 +2500,9 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getDepartmentData().validate(
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.getDepartmentData().validate(
       {
         uid,
       },
@@ -2192,9 +2511,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getDepartmentData",
+        message: `Parameter Validation warrnings for platform > Catalog > getDepartmentData \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2207,12 +2525,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/departments/${uid}/`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.DepartmentsResponse().validate(response, {
+    } = CatalogPlatformModel.DepartmentsResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2220,24 +2544,27 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getDepartmentData",
+        message: `Response Validation Warnnings for platform > Catalog > getDepartmentData \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.attributeSlug - Slug of the attribute for which you
-   *   want to view the genders
-   * @returns {Promise<GenderDetail>} - Success response
+   * @param {CatalogPlatformValidator.GetGenderAttributeParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.GenderDetail>} - Success response
+   * @name getGenderAttribute
    * @summary: Get gender attribute details
-   * @description: This API allows to view the gender attribute details.
+   * @description: This API allows to view the gender attribute details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getGenderAttribute/).
    */
-  async getGenderAttribute({ attributeSlug } = {}) {
-    const { error } = CatalogValidator.getGenderAttribute().validate(
+  async getGenderAttribute(
+    { attributeSlug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.getGenderAttribute().validate(
       {
         attributeSlug,
       },
@@ -2248,7 +2575,9 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getGenderAttribute().validate(
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.getGenderAttribute().validate(
       {
         attributeSlug,
       },
@@ -2257,9 +2586,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getGenderAttribute",
+        message: `Parameter Validation warrnings for platform > Catalog > getGenderAttribute \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2272,34 +2600,46 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/product-attributes/${attributeSlug}`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
-    const { error: res_error } = CatalogModel.GenderDetail().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.GenderDetail().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getGenderAttribute",
+        message: `Response Validation Warnnings for platform > Catalog > getGenderAttribute \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Unique id
-   * @returns {Promise<HsnCode>} - Success response
+   * @param {CatalogPlatformValidator.GetHsnCodeParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.HsnCode>} - Success response
+   * @name getHsnCode
    * @summary: Fetch Hsn Code.
-   * @description: Fetch Hsn Code.
+   * @description: Fetch Hsn Code. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getHsnCode/).
    */
-  async getHsnCode({ id } = {}) {
-    const { error } = CatalogValidator.getHsnCode().validate(
+  async getHsnCode(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.getHsnCode().validate(
       {
         id,
       },
@@ -2310,7 +2650,7 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getHsnCode().validate(
+    const { error: warrning } = CatalogPlatformValidator.getHsnCode().validate(
       {
         id,
       },
@@ -2319,9 +2659,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getHsnCode",
+        message: `Parameter Validation warrnings for platform > Catalog > getHsnCode \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2334,10 +2673,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/hsn/${id}/`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
-    const { error: res_error } = CatalogModel.HsnCode().validate(response, {
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.HsnCode().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2345,42 +2692,37 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getHsnCode",
+        message: `Response Validation Warnnings for platform > Catalog > getHsnCode \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.itemId] - Item code of the product of which size is to be get.
-   * @param {string} [arg.size] - Size of which inventory is to get.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results
-   * @param {number} [arg.pageSize] - Number of items to retrieve in each
-   *   page. Default is 12.
-   * @param {string} [arg.q] - Search with help of store code.
-   * @param {boolean} [arg.sellable] - Filter on whether product is in stock or not.
-   * @param {number[]} [arg.storeIds] - The Store Id of products to fetch inventory.
-   * @param {string} [arg.sizeIdentifier] - Size Identifier (Seller Identifier
-   *   or Primary Identifier) of which inventory is to get.
-   * @returns {Promise<GetInventoriesResponse>} - Success response
+   * @param {CatalogPlatformValidator.GetInventoriesParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.GetInventoriesResponse>} - Success response
+   * @name getInventories
    * @summary: Get Inventory for company
-   * @description: This API allows get Inventories data for particular company.
+   * @description: This API allows get Inventories data for particular company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getInventories/).
    */
-  async getInventories({
-    itemId,
-    size,
-    pageNo,
-    pageSize,
-    q,
-    sellable,
-    storeIds,
-    sizeIdentifier,
-  } = {}) {
-    const { error } = CatalogValidator.getInventories().validate(
+  async getInventories(
+    {
+      itemId,
+      size,
+      pageNo,
+      pageSize,
+      q,
+      sellable,
+      storeIds,
+      sizeIdentifier,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.getInventories().validate(
       {
         itemId,
         size,
@@ -2398,7 +2740,9 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getInventories().validate(
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.getInventories().validate(
       {
         itemId,
         size,
@@ -2414,9 +2758,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getInventories",
+        message: `Parameter Validation warrnings for platform > Catalog > getInventories \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2437,12 +2780,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/inventories`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.GetInventoriesResponse().validate(response, {
+    } = CatalogPlatformModel.GetInventoriesResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2450,26 +2799,31 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getInventories",
+        message: `Response Validation Warnnings for platform > Catalog > getInventories \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results
-   * @param {number} [arg.pageSize] - Number of items to retrieve in each
-   *   page. Default is 12.
-   * @returns {Promise<BulkInventoryGet>} - Success response
+   * @param {CatalogPlatformValidator.GetInventoryBulkUploadHistoryParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.BulkInventoryGet>} - Success response
+   * @name getInventoryBulkUploadHistory
    * @summary: Get a list of all bulk Inventory upload jobs.
-   * @description: This API helps to get bulk Inventory upload jobs data.
+   * @description: This API helps to get bulk Inventory upload jobs data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getInventoryBulkUploadHistory/).
    */
-  async getInventoryBulkUploadHistory({ pageNo, pageSize } = {}) {
-    const { error } = CatalogValidator.getInventoryBulkUploadHistory().validate(
+  async getInventoryBulkUploadHistory(
+    { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformValidator.getInventoryBulkUploadHistory().validate(
       {
         pageNo,
         pageSize,
@@ -2483,7 +2837,7 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.getInventoryBulkUploadHistory().validate(
+    } = CatalogPlatformValidator.getInventoryBulkUploadHistory().validate(
       {
         pageNo,
         pageSize,
@@ -2493,10 +2847,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message:
-          "Parameter Validation warrnings for getInventoryBulkUploadHistory",
+        message: `Parameter Validation warrnings for platform > Catalog > getInventoryBulkUploadHistory \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2511,12 +2863,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/inventory/bulk/`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.BulkInventoryGet().validate(response, {
+    } = CatalogPlatformModel.BulkInventoryGet().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2524,38 +2882,30 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message:
-          "Response Validation Warnnings for getInventoryBulkUploadHistory",
+        message: `Response Validation Warnnings for platform > Catalog > getInventoryBulkUploadHistory \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} arg.itemId - Item code of the product of which size is to be get.
-   * @param {string} arg.size - Size of which inventory is to get.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results
-   * @param {number} [arg.pageSize] - Number of items to retrieve in each
-   *   page. Default is 12.
-   * @param {string} [arg.q] - Search with help of store code.
-   * @param {boolean} [arg.sellable] - Filter on whether product is in stock or not.
-   * @returns {Promise<InventoryResponsePaginated>} - Success response
+   * @param {CatalogPlatformValidator.GetInventoryBySizeParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.InventoryResponsePaginated>} -
+   *   Success response
+   * @name getInventoryBySize
    * @summary: Get Inventory for company
-   * @description: This API allows get Inventory data for particular company grouped by size and store.
+   * @description: This API allows get Inventory data for particular company grouped by size and store. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getInventoryBySize/).
    */
-  async getInventoryBySize({
-    itemId,
-    size,
-    pageNo,
-    pageSize,
-    q,
-    sellable,
-  } = {}) {
-    const { error } = CatalogValidator.getInventoryBySize().validate(
+  async getInventoryBySize(
+    { itemId, size, pageNo, pageSize, q, sellable, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.getInventoryBySize().validate(
       {
         itemId,
         size,
@@ -2571,7 +2921,9 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getInventoryBySize().validate(
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.getInventoryBySize().validate(
       {
         itemId,
         size,
@@ -2585,9 +2937,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getInventoryBySize",
+        message: `Parameter Validation warrnings for platform > Catalog > getInventoryBySize \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2604,51 +2955,60 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/${itemId}/sizes/${size}`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.InventoryResponsePaginated().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = CatalogPlatformModel.InventoryResponsePaginated().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getInventoryBySize",
+        message: `Response Validation Warnnings for platform > Catalog > getInventoryBySize \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} arg.itemId - Item code of the product of which size is to be get.
-   * @param {string} arg.sizeIdentifier - Size Identifier (Seller Identifier
-   *   or Primary Identifier) of which inventory is to get.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results
-   * @param {number} [arg.pageSize] - Number of items to retrieve in each
-   *   page. Default is 12.
-   * @param {string} [arg.q] - Search with help of store code.
-   * @param {number[]} [arg.locationIds] - Search by store ids.
-   * @returns {Promise<InventorySellerIdentifierResponsePaginated>} - Success response
+   * @param {CatalogPlatformValidator.GetInventoryBySizeIdentifierParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.InventorySellerIdentifierResponsePaginated>}
+   *   - Success response
+   *
+   * @name getInventoryBySizeIdentifier
    * @summary: Get Inventory for company
-   * @description: This API allows get Inventory data for particular company grouped by size and store.
+   * @description: This API allows get Inventory data for particular company grouped by size and store. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getInventoryBySizeIdentifier/).
    */
-  async getInventoryBySizeIdentifier({
-    itemId,
-    sizeIdentifier,
-    pageNo,
-    pageSize,
-    q,
-    locationIds,
-  } = {}) {
-    const { error } = CatalogValidator.getInventoryBySizeIdentifier().validate(
+  async getInventoryBySizeIdentifier(
+    {
+      itemId,
+      sizeIdentifier,
+      pageNo,
+      pageSize,
+      q,
+      locationIds,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformValidator.getInventoryBySizeIdentifier().validate(
       {
         itemId,
         sizeIdentifier,
@@ -2666,7 +3026,7 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.getInventoryBySizeIdentifier().validate(
+    } = CatalogPlatformValidator.getInventoryBySizeIdentifier().validate(
       {
         itemId,
         sizeIdentifier,
@@ -2680,10 +3040,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message:
-          "Parameter Validation warrnings for getInventoryBySizeIdentifier",
+        message: `Parameter Validation warrnings for platform > Catalog > getInventoryBySizeIdentifier \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2700,36 +3058,46 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/${itemId}/inventory/${sizeIdentifier}`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.InventorySellerIdentifierResponsePaginated().validate(
-      response,
+    } = CatalogPlatformModel.InventorySellerIdentifierResponsePaginated().validate(
+      responseData,
       { abortEarly: false, allowUnknown: false }
     );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message:
-          "Response Validation Warnnings for getInventoryBySizeIdentifier",
+        message: `Response Validation Warnnings for platform > Catalog > getInventoryBySizeIdentifier \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<InventoryExportJob>} - Success response
+   * @param {CatalogPlatformValidator.GetInventoryExportParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.InventoryExportJob>} - Success response
+   * @name getInventoryExport
    * @summary: Get Inventory export history.
-   * @description: This API helps to get Inventory export history.
+   * @description: This API helps to get Inventory export history. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getInventoryExport/).
    */
-  async getInventoryExport({} = {}) {
-    const { error } = CatalogValidator.getInventoryExport().validate(
+  async getInventoryExport(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.getInventoryExport().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -2738,16 +3106,17 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getInventoryExport().validate(
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.getInventoryExport().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getInventoryExport",
+        message: `Parameter Validation warrnings for platform > Catalog > getInventoryExport \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2760,12 +3129,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/inventory/download/`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.InventoryExportJob().validate(response, {
+    } = CatalogPlatformModel.InventoryExportJob().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2773,22 +3148,29 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getInventoryExport",
+        message: `Response Validation Warnnings for platform > Catalog > getInventoryExport \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<GetOptInPlatform>} - Success response
+   * @param {CatalogPlatformValidator.GetMarketplaceOptinDetailParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.GetOptInPlatform>} - Success response
+   * @name getMarketplaceOptinDetail
    * @summary: Get opt-in infomation.
-   * @description: Use this API to fetch opt-in information for all the platforms. If successful, returns a logs in the response body as specified in `GetOptInPlatformSchema`
+   * @description: Use this API to fetch opt-in information for all the platforms. If successful, returns a logs in the response body as specified in `GetOptInPlatformSchema` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getMarketplaceOptinDetail/).
    */
-  async getMarketplaceOptinDetail({} = {}) {
-    const { error } = CatalogValidator.getMarketplaceOptinDetail().validate(
+  async getMarketplaceOptinDetail(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformValidator.getMarketplaceOptinDetail().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -2799,16 +3181,15 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.getMarketplaceOptinDetail().validate(
+    } = CatalogPlatformValidator.getMarketplaceOptinDetail().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getMarketplaceOptinDetail",
+        message: `Parameter Validation warrnings for platform > Catalog > getMarketplaceOptinDetail \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2821,12 +3202,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/marketplaces/`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.GetOptInPlatform().validate(response, {
+    } = CatalogPlatformModel.GetOptInPlatform().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2834,23 +3221,27 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getMarketplaceOptinDetail",
+        message: `Response Validation Warnnings for platform > Catalog > getMarketplaceOptinDetail \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {AssignStore} arg.body
-   * @returns {Promise<StoreAssignResponse>} - Success response
+   * @param {CatalogPlatformValidator.GetOptimalLocationsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.StoreAssignResponse>} - Success response
+   * @name getOptimalLocations
    * @summary: Location Reassignment
-   * @description: Location Reassignment
+   * @description: Location Reassignment - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getOptimalLocations/).
    */
-  async getOptimalLocations({ body } = {}) {
-    const { error } = CatalogValidator.getOptimalLocations().validate(
+  async getOptimalLocations(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.getOptimalLocations().validate(
       {
         body,
       },
@@ -2861,7 +3252,9 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getOptimalLocations().validate(
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.getOptimalLocations().validate(
       {
         body,
       },
@@ -2870,9 +3263,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getOptimalLocations",
+        message: `Parameter Validation warrnings for platform > Catalog > getOptimalLocations \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2885,12 +3277,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/location/reassign/`,
       query_params,
       body,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.StoreAssignResponse().validate(response, {
+    } = CatalogPlatformModel.StoreAssignResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2898,25 +3296,27 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getOptimalLocations",
+        message: `Response Validation Warnnings for platform > Catalog > getOptimalLocations \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} arg.itemId - Item Id of the product.
-   * @param {number} [arg.brandUid] - Brand Id of the product.
-   * @param {string} [arg.itemCode] - Item code of the product.
-   * @returns {Promise<SingleProductResponse>} - Success response
+   * @param {CatalogPlatformValidator.GetProductParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.SingleProductResponse>} - Success response
+   * @name getProduct
    * @summary: Get a single product.
-   * @description: This API helps to get data associated to a particular product.
+   * @description: This API helps to get data associated to a particular product. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProduct/).
    */
-  async getProduct({ itemId, brandUid, itemCode } = {}) {
-    const { error } = CatalogValidator.getProduct().validate(
+  async getProduct(
+    { itemId, brandUid, itemCode, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.getProduct().validate(
       {
         itemId,
         brandUid,
@@ -2929,7 +3329,7 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getProduct().validate(
+    const { error: warrning } = CatalogPlatformValidator.getProduct().validate(
       {
         itemId,
         brandUid,
@@ -2940,9 +3340,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getProduct",
+        message: `Parameter Validation warrnings for platform > Catalog > getProduct \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2957,12 +3356,18 @@ class Catalog {
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/${itemId}/`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.SingleProductResponse().validate(response, {
+    } = CatalogPlatformModel.SingleProductResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2970,26 +3375,29 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getProduct",
+        message: `Response Validation Warnnings for platform > Catalog > getProduct \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results
-   * @param {number} [arg.pageSize] - Number of items to retrieve in each
-   *   page. Default is 12.
-   * @returns {Promise<BulkAssetResponse>} - Success response
+   * @param {CatalogPlatformValidator.GetProductAssetsInBulkParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.BulkAssetResponse>} - Success response
+   * @name getProductAssetsInBulk
    * @summary: Get a list of all bulk asset jobs.
-   * @description: This API helps to get bulk asset jobs data associated to a particular company.
+   * @description: This API helps to get bulk asset jobs data associated to a particular company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProductAssetsInBulk/).
    */
-  async getProductAssetsInBulk({ pageNo, pageSize } = {}) {
-    const { error } = CatalogValidator.getProductAssetsInBulk().validate(
+  async getProductAssetsInBulk(
+    { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformValidator.getProductAssetsInBulk().validate(
       {
         pageNo,
         pageSize,
@@ -3003,7 +3411,7 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.getProductAssetsInBulk().validate(
+    } = CatalogPlatformValidator.getProductAssetsInBulk().validate(
       {
         pageNo,
         pageSize,
@@ -3013,9 +3421,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getProductAssetsInBulk",
+        message: `Parameter Validation warrnings for platform > Catalog > getProductAssetsInBulk \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3030,12 +3437,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/assets/bulk/`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.BulkAssetResponse().validate(response, {
+    } = CatalogPlatformModel.BulkAssetResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3043,25 +3456,28 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getProductAssetsInBulk",
+        message: `Response Validation Warnnings for platform > Catalog > getProductAssetsInBulk \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.category - It is the name of the l3 cateogry
-   * @param {boolean} [arg.filter] - If true, returns filtered values, else
-   *   returns all the attributes
-   * @returns {Promise<ProductAttributesResponse>} - Success response
+   * @param {CatalogPlatformValidator.GetProductAttributesParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.ProductAttributesResponse>} -
+   *   Success response
+   * @name getProductAttributes
    * @summary: Get list of all the attributes by their l3_categories
-   * @description: This API allows to list all the attributes by their l3_categories.
+   * @description: This API allows to list all the attributes by their l3_categories. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProductAttributes/).
    */
-  async getProductAttributes({ category, filter } = {}) {
-    const { error } = CatalogValidator.getProductAttributes().validate(
+  async getProductAttributes(
+    { category, filter, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.getProductAttributes().validate(
       {
         category,
         filter,
@@ -3075,7 +3491,7 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.getProductAttributes().validate(
+    } = CatalogPlatformValidator.getProductAttributes().validate(
       {
         category,
         filter,
@@ -3085,9 +3501,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getProductAttributes",
+        message: `Parameter Validation warrnings for platform > Catalog > getProductAttributes \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3102,40 +3517,48 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/product-attributes/`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.ProductAttributesResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = CatalogPlatformModel.ProductAttributesResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getProductAttributes",
+        message: `Response Validation Warnnings for platform > Catalog > getProductAttributes \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.search] - Search string to filter the results by batch id
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results
-   * @param {number} [arg.pageSize] - Number of items to retrieve in each
-   *   page. Default is 12.
-   * @returns {Promise<ProductBulkRequestList>} - Success response
+   * @param {CatalogPlatformValidator.GetProductBulkUploadHistoryParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.ProductBulkRequestList>} - Success response
+   * @name getProductBulkUploadHistory
    * @summary: Get a list of all bulk product upload jobs.
-   * @description: This API helps to get bulk product upload jobs data.
+   * @description: This API helps to get bulk product upload jobs data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProductBulkUploadHistory/).
    */
-  async getProductBulkUploadHistory({ search, pageNo, pageSize } = {}) {
-    const { error } = CatalogValidator.getProductBulkUploadHistory().validate(
+  async getProductBulkUploadHistory(
+    { search, pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformValidator.getProductBulkUploadHistory().validate(
       {
         search,
         pageNo,
@@ -3150,7 +3573,7 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.getProductBulkUploadHistory().validate(
+    } = CatalogPlatformValidator.getProductBulkUploadHistory().validate(
       {
         search,
         pageNo,
@@ -3161,10 +3584,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message:
-          "Parameter Validation warrnings for getProductBulkUploadHistory",
+        message: `Parameter Validation warrnings for platform > Catalog > getProductBulkUploadHistory \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3180,12 +3601,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/bulk`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.ProductBulkRequestList().validate(response, {
+    } = CatalogPlatformModel.ProductBulkRequestList().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3193,26 +3620,29 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message:
-          "Response Validation Warnnings for getProductBulkUploadHistory",
+        message: `Response Validation Warnnings for platform > Catalog > getProductBulkUploadHistory \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.q] - A search string that is searched with product
-   *   bundle name.
-   * @param {string[]} [arg.slug] - Slugs of bundles to be retrieved.
-   * @returns {Promise<GetProductBundleListingResponse>} - Success response
+   * @param {CatalogPlatformValidator.GetProductBundleParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.GetProductBundleListingResponse>}
+   *   - Success response
+   *
+   * @name getProductBundle
    * @summary: List all Product Bundles
-   * @description: Get all product bundles for a particular company
+   * @description: Get all product bundles for a particular company - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProductBundle/).
    */
-  async getProductBundle({ q, slug } = {}) {
-    const { error } = CatalogValidator.getProductBundle().validate(
+  async getProductBundle(
+    { q, slug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.getProductBundle().validate(
       {
         q,
         slug,
@@ -3224,7 +3654,9 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getProductBundle().validate(
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.getProductBundle().validate(
       {
         q,
         slug,
@@ -3234,9 +3666,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getProductBundle",
+        message: `Parameter Validation warrnings for platform > Catalog > getProductBundle \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3251,37 +3682,49 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/product-bundle/`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.GetProductBundleListingResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = CatalogPlatformModel.GetProductBundleListingResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getProductBundle",
+        message: `Response Validation Warnnings for platform > Catalog > getProductBundle \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - A `id` is a unique identifier for a particular
-   *   detail. Pass the `id` of the keywords which you want to retrieve.
-   * @returns {Promise<GetProductBundleResponse>} - Success response
+   * @param {CatalogPlatformValidator.GetProductBundleDetailParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.GetProductBundleResponse>} -
+   *   Success response
+   * @name getProductBundleDetail
    * @summary: Get a particular Product Bundle details
-   * @description: Get a particular Bundle details by its `id`. If successful, returns a Product bundle resource in the response body specified in `GetProductBundleResponse`
+   * @description: Get a particular Bundle details by its `id`. If successful, returns a Product bundle resource in the response body specified in `GetProductBundleResponse` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProductBundleDetail/).
    */
-  async getProductBundleDetail({ id } = {}) {
-    const { error } = CatalogValidator.getProductBundleDetail().validate(
+  async getProductBundleDetail(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformValidator.getProductBundleDetail().validate(
       {
         id,
       },
@@ -3294,7 +3737,7 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.getProductBundleDetail().validate(
+    } = CatalogPlatformValidator.getProductBundleDetail().validate(
       {
         id,
       },
@@ -3303,9 +3746,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getProductBundleDetail",
+        message: `Parameter Validation warrnings for platform > Catalog > getProductBundleDetail \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3318,12 +3760,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/product-bundle/${id}/`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.GetProductBundleResponse().validate(response, {
+    } = CatalogPlatformModel.GetProductBundleResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3331,30 +3779,28 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getProductBundleDetail",
+        message: `Response Validation Warnnings for platform > Catalog > getProductBundleDetail \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.status] - This is a parameter used to find all the
-   *   jobs with the specified status.
-   * @param {string} [arg.fromDate] - This is a parameter used to find the job
-   *   from the date specified to the current date.
-   * @param {string} [arg.toDate] - This is a parameter used to find the job
-   *   from the from_date specified to the to_date.
-   * @param {string} [arg.q] - It is a query parameter to search the export
-   *   job with the task ID.
-   * @returns {Promise<ProductDownloadsResponse>} - Success response
+   * @param {CatalogPlatformValidator.GetProductExportJobsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.ProductDownloadsResponse>} -
+   *   Success response
+   * @name getProductExportJobs
    * @summary: Allows you to list all product templates export list details
-   * @description: Can view details including trigger data, task id , etc.
+   * @description: Can view details including trigger data, task id , etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProductExportJobs/).
    */
-  async getProductExportJobs({ status, fromDate, toDate, q } = {}) {
-    const { error } = CatalogValidator.getProductExportJobs().validate(
+  async getProductExportJobs(
+    { status, fromDate, toDate, q, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.getProductExportJobs().validate(
       {
         status,
         fromDate,
@@ -3370,7 +3816,7 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.getProductExportJobs().validate(
+    } = CatalogPlatformValidator.getProductExportJobs().validate(
       {
         status,
         fromDate,
@@ -3382,9 +3828,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getProductExportJobs",
+        message: `Parameter Validation warrnings for platform > Catalog > getProductExportJobs \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3401,12 +3846,18 @@ class Catalog {
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/downloads/`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.ProductDownloadsResponse().validate(response, {
+    } = CatalogPlatformModel.ProductDownloadsResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3414,26 +3865,29 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getProductExportJobs",
+        message: `Response Validation Warnnings for platform > Catalog > getProductExportJobs \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.itemCode] - Item code of the product size.
-   * @param {number} arg.itemId - Item Id of the product size.
-   * @param {number} [arg.brandUid] - Brand Id of the product size.
-   * @param {number} [arg.uid] - Id of the product size.
-   * @returns {Promise<ProductListingResponse>} - Success response
+   * @param {CatalogPlatformValidator.GetProductSizeParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.ProductListingResponse>} - Success response
+   * @name getProductSize
    * @summary: Get a single product size.
-   * @description: This API helps to get data associated to a particular product size.
+   * @description: This API helps to get data associated to a particular product size. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProductSize/).
    */
-  async getProductSize({ itemId, itemCode, brandUid, uid } = {}) {
-    const { error } = CatalogValidator.getProductSize().validate(
+  async getProductSize(
+    { itemId, itemCode, brandUid, uid, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.getProductSize().validate(
       {
         itemId,
         itemCode,
@@ -3447,7 +3901,9 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getProductSize().validate(
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.getProductSize().validate(
       {
         itemId,
         itemCode,
@@ -3459,9 +3915,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getProductSize",
+        message: `Parameter Validation warrnings for platform > Catalog > getProductSize \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3477,12 +3932,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/${itemId}/sizes/`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.ProductListingResponse().validate(response, {
+    } = CatalogPlatformModel.ProductListingResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3490,22 +3951,27 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getProductSize",
+        message: `Response Validation Warnnings for platform > Catalog > getProductSize \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<ProductTagsViewResponse>} - Success response
+   * @param {CatalogPlatformValidator.GetProductTagsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.ProductTagsViewResponse>} - Success response
+   * @name getProductTags
    * @summary: Get a list of all tags associated with company.
-   * @description: This API helps to get tags data associated to a particular company.
+   * @description: This API helps to get tags data associated to a particular company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProductTags/).
    */
-  async getProductTags({} = {}) {
-    const { error } = CatalogValidator.getProductTags().validate(
+  async getProductTags(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.getProductTags().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -3514,16 +3980,17 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getProductTags().validate(
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.getProductTags().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getProductTags",
+        message: `Parameter Validation warrnings for platform > Catalog > getProductTags \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3536,12 +4003,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/tags`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.ProductTagsViewResponse().validate(response, {
+    } = CatalogPlatformModel.ProductTagsViewResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3549,22 +4022,27 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getProductTags",
+        message: `Response Validation Warnnings for platform > Catalog > getProductTags \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<ValidateProduct>} - Success response
+   * @param {CatalogPlatformValidator.GetProductValidationParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.ValidateProduct>} - Success response
+   * @name getProductValidation
    * @summary: Validate product/size data
-   * @description: This API validates product data.
+   * @description: This API validates product data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProductValidation/).
    */
-  async getProductValidation({} = {}) {
-    const { error } = CatalogValidator.getProductValidation().validate(
+  async getProductValidation(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.getProductValidation().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -3575,16 +4053,15 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.getProductValidation().validate(
+    } = CatalogPlatformValidator.getProductValidation().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getProductValidation",
+        message: `Parameter Validation warrnings for platform > Catalog > getProductValidation \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3597,12 +4074,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/validation/`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.ValidateProduct().validate(response, {
+    } = CatalogPlatformModel.ValidateProduct().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3610,45 +4093,39 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getProductValidation",
+        message: `Response Validation Warnnings for platform > Catalog > getProductValidation \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number[]} [arg.brandIds] - Get multiple products filtered by Brand Ids
-   * @param {number[]} [arg.categoryIds] - Get multiple products filtered by
-   *   Category Ids
-   * @param {number[]} [arg.itemIds] - Get multiple products filtered by Item Ids
-   * @param {number[]} [arg.departmentIds] - Get multiple products filtered by
-   *   Department Ids
-   * @param {string[]} [arg.itemCode] - Get multiple products filtered by Item Code
-   * @param {string} [arg.q] - Get multiple products filtered by q string
-   * @param {string[]} [arg.tags] - Get multiple products filtered by tags
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results
-   * @param {number} [arg.pageSize] - Number of items to retrieve in each
-   *   page. Default is 10.
-   * @returns {Promise<ProductListingResponseV2>} - Success response
+   * @param {CatalogPlatformValidator.GetProductsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.ProductListingResponseV2>} -
+   *   Success response
+   * @name getProducts
    * @summary: Get product list
-   * @description: This API gets meta associated to products.
+   * @description: This API gets meta associated to products. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getProducts/).
    */
-  async getProducts({
-    brandIds,
-    categoryIds,
-    itemIds,
-    departmentIds,
-    itemCode,
-    q,
-    tags,
-    pageNo,
-    pageSize,
-  } = {}) {
-    const { error } = CatalogValidator.getProducts().validate(
+  async getProducts(
+    {
+      brandIds,
+      categoryIds,
+      itemIds,
+      departmentIds,
+      itemCode,
+      q,
+      tags,
+      pageNo,
+      pageSize,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.getProducts().validate(
       {
         brandIds,
         categoryIds,
@@ -3667,7 +4144,7 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getProducts().validate(
+    const { error: warrning } = CatalogPlatformValidator.getProducts().validate(
       {
         brandIds,
         categoryIds,
@@ -3684,9 +4161,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getProducts",
+        message: `Parameter Validation warrnings for platform > Catalog > getProducts \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3708,12 +4184,18 @@ class Catalog {
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.ProductListingResponseV2().validate(response, {
+    } = CatalogPlatformModel.ProductListingResponseV2().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3721,24 +4203,27 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getProducts",
+        message: `Response Validation Warnnings for platform > Catalog > getProducts \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.sellerAppId - Id of the seller application which is
-   *   serving the invetory/catalog of the company
-   * @returns {Promise<CrossSellingResponse>} - Success response
+   * @param {CatalogPlatformValidator.GetSellerInsightsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.CrossSellingResponse>} - Success response
+   * @name getSellerInsights
    * @summary: Analytics data of catalog and inventory that are being cross-selled.
-   * @description: Analytics data of catalog and inventory that are being cross-selled.
+   * @description: Analytics data of catalog and inventory that are being cross-selled. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getSellerInsights/).
    */
-  async getSellerInsights({ sellerAppId } = {}) {
-    const { error } = CatalogValidator.getSellerInsights().validate(
+  async getSellerInsights(
+    { sellerAppId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.getSellerInsights().validate(
       {
         sellerAppId,
       },
@@ -3749,7 +4234,9 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getSellerInsights().validate(
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.getSellerInsights().validate(
       {
         sellerAppId,
       },
@@ -3758,9 +4245,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getSellerInsights",
+        message: `Parameter Validation warrnings for platform > Catalog > getSellerInsights \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3773,12 +4259,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/cross-selling/${sellerAppId}/analytics/insights/`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.CrossSellingResponse().validate(response, {
+    } = CatalogPlatformModel.CrossSellingResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3786,23 +4278,29 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getSellerInsights",
+        message: `Response Validation Warnnings for platform > Catalog > getSellerInsights \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.reportingHsn - Reporting_hsn
-   * @returns {Promise<HSNDataInsertV2>} - Success response
+   * @param {CatalogPlatformValidator.GetSingleProductHSNCodeParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.HSNDataInsertV2>} - Success response
+   * @name getSingleProductHSNCode
    * @summary: Hsn Code List.
-   * @description: Hsn Code List.
+   * @description: Hsn Code List. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getSingleProductHSNCode/).
    */
-  async getSingleProductHSNCode({ reportingHsn } = {}) {
-    const { error } = CatalogValidator.getSingleProductHSNCode().validate(
+  async getSingleProductHSNCode(
+    { reportingHsn, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformValidator.getSingleProductHSNCode().validate(
       { reportingHsn },
       { abortEarly: false, allowUnknown: true }
     );
@@ -3813,16 +4311,15 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.getSingleProductHSNCode().validate(
+    } = CatalogPlatformValidator.getSingleProductHSNCode().validate(
       { reportingHsn },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getSingleProductHSNCode",
+        message: `Parameter Validation warrnings for platform > Catalog > getSingleProductHSNCode \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3835,12 +4332,18 @@ class Catalog {
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/hsn/${reportingHsn}`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.HSNDataInsertV2().validate(response, {
+    } = CatalogPlatformModel.HSNDataInsertV2().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3848,23 +4351,27 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getSingleProductHSNCode",
+        message: `Response Validation Warnnings for platform > Catalog > getSingleProductHSNCode \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Id of the size guide to be viewed.
-   * @returns {Promise<SizeGuideResponse>} - Success response
+   * @param {CatalogPlatformValidator.GetSizeGuideParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.SizeGuideResponse>} - Success response
+   * @name getSizeGuide
    * @summary: Get a single size guide.
-   * @description: This API helps to get data associated to a size guide.
+   * @description: This API helps to get data associated to a size guide. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getSizeGuide/).
    */
-  async getSizeGuide({ id } = {}) {
-    const { error } = CatalogValidator.getSizeGuide().validate(
+  async getSizeGuide(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.getSizeGuide().validate(
       {
         id,
       },
@@ -3875,7 +4382,9 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getSizeGuide().validate(
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.getSizeGuide().validate(
       {
         id,
       },
@@ -3884,9 +4393,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getSizeGuide",
+        message: `Parameter Validation warrnings for platform > Catalog > getSizeGuide \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3899,12 +4407,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/sizeguide/${id}/`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.SizeGuideResponse().validate(response, {
+    } = CatalogPlatformModel.SizeGuideResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -3912,29 +4426,29 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getSizeGuide",
+        message: `Response Validation Warnnings for platform > Catalog > getSizeGuide \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {boolean} [arg.active] - Filter size guide on basis of active, in-active
-   * @param {string} [arg.q] - Query that is to be searched.
-   * @param {string} [arg.tag] - To filter size guide on basis of tag.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results
-   * @param {number} [arg.pageSize] - Number of items to retrieve in each
-   *   page. Default is 10.
-   * @returns {Promise<ListSizeGuide>} - Success response
+   * @param {CatalogPlatformValidator.GetSizeGuidesParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.ListSizeGuide>} - Success response
+   * @name getSizeGuides
    * @summary: Get list of size guides
-   * @description: This API allows to view all the size guides associated to the seller.
+   * @description: This API allows to view all the size guides associated to the seller. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getSizeGuides/).
    */
-  async getSizeGuides({ active, q, tag, pageNo, pageSize } = {}) {
-    const { error } = CatalogValidator.getSizeGuides().validate(
+  async getSizeGuides(
+    { active, q, tag, pageNo, pageSize, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.getSizeGuides().validate(
       {
         active,
         q,
@@ -3949,7 +4463,9 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getSizeGuides().validate(
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.getSizeGuides().validate(
       {
         active,
         q,
@@ -3962,9 +4478,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getSizeGuides",
+        message: `Parameter Validation warrnings for platform > Catalog > getSizeGuides \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -3982,37 +4497,46 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/sizeguide`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
-    const { error: res_error } = CatalogModel.ListSizeGuide().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.ListSizeGuide().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getSizeGuides",
+        message: `Response Validation Warnnings for platform > Catalog > getSizeGuides \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.q] - The search related the store for the company id.
-   * @param {number} [arg.pageNo] - The number of page for the company id.
-   * @param {number} [arg.pageSize] - Number of records that can be seen on
-   *   the page for the company id.
-   * @returns {Promise<OptinStoreDetails>} - Success response
+   * @param {CatalogPlatformValidator.GetStoreDetailParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.OptinStoreDetails>} - Success response
+   * @name getStoreDetail
    * @summary: Get the Store details.
-   * @description: Get the details of the store associated with the company ID passed.
+   * @description: Get the details of the store associated with the company ID passed. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getStoreDetail/).
    */
-  async getStoreDetail({ q, pageNo, pageSize } = {}) {
-    const { error } = CatalogValidator.getStoreDetail().validate(
+  async getStoreDetail(
+    { q, pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.getStoreDetail().validate(
       {
         q,
         pageNo,
@@ -4025,7 +4549,9 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getStoreDetail().validate(
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.getStoreDetail().validate(
       {
         q,
         pageNo,
@@ -4036,9 +4562,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getStoreDetail",
+        message: `Parameter Validation warrnings for platform > Catalog > getStoreDetail \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -4054,12 +4579,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/marketplaces/location-details/`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.OptinStoreDetails().validate(response, {
+    } = CatalogPlatformModel.OptinStoreDetails().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -4067,28 +4598,29 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getStoreDetail",
+        message: `Response Validation Warnnings for platform > Catalog > getStoreDetail \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} arg.itemId - Get list of variants of item Id
-   * @param {string} arg.variantType - Get multiple products filtered by variant type
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results
-   * @param {number} [arg.pageSize] - Number of items to retrieve in each
-   *   page. Default is 10.
-   * @returns {Promise<ProductVariantsResponse>} - Success response
+   * @param {CatalogPlatformValidator.GetVariantsOfProductsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.ProductVariantsResponse>} - Success response
+   * @name getVariantsOfProducts
    * @summary: Get product list
-   * @description: This API gets meta associated to products.
+   * @description: This API gets meta associated to products. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getVariantsOfProducts/).
    */
-  async getVariantsOfProducts({ itemId, variantType, pageNo, pageSize } = {}) {
-    const { error } = CatalogValidator.getVariantsOfProducts().validate(
+  async getVariantsOfProducts(
+    { itemId, variantType, pageNo, pageSize, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.getVariantsOfProducts().validate(
       {
         itemId,
         variantType,
@@ -4104,7 +4636,7 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.getVariantsOfProducts().validate(
+    } = CatalogPlatformValidator.getVariantsOfProducts().validate(
       {
         itemId,
         variantType,
@@ -4116,9 +4648,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getVariantsOfProducts",
+        message: `Parameter Validation warrnings for platform > Catalog > getVariantsOfProducts \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -4133,12 +4664,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/${itemId}/variants/${variantType}`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.ProductVariantsResponse().validate(response, {
+    } = CatalogPlatformModel.ProductVariantsResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -4146,29 +4683,29 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getVariantsOfProducts",
+        message: `Response Validation Warnnings for platform > Catalog > getVariantsOfProducts \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.level] - Get category for multiple levels
-   * @param {string} [arg.departments] - Get category for multiple departments filtered
-   * @param {string} [arg.q] - Get multiple categories filtered by search string
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results
-   * @param {number} [arg.pageSize] - Number of items to retrieve in each
-   *   page. Default is 10.
-   * @returns {Promise<CategoryResponse>} - Success response
+   * @param {CatalogPlatformValidator.ListCategoriesParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.CategoryResponse>} - Success response
+   * @name listCategories
    * @summary: Get product categories list
-   * @description: This API gets meta associated to product categories.
+   * @description: This API gets meta associated to product categories. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/listCategories/).
    */
-  async listCategories({ level, departments, q, pageNo, pageSize } = {}) {
-    const { error } = CatalogValidator.listCategories().validate(
+  async listCategories(
+    { level, departments, q, pageNo, pageSize, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.listCategories().validate(
       {
         level,
         departments,
@@ -4183,7 +4720,9 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.listCategories().validate(
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.listCategories().validate(
       {
         level,
         departments,
@@ -4196,9 +4735,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for listCategories",
+        message: `Parameter Validation warrnings for platform > Catalog > listCategories \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -4216,12 +4754,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/category/`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.CategoryResponse().validate(response, {
+    } = CatalogPlatformModel.CategoryResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -4229,40 +4773,29 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for listCategories",
+        message: `Response Validation Warnnings for platform > Catalog > listCategories \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results
-   * @param {string} [arg.itemType] - A `item_type` is a type of product eg.
-   *   set, standard, digital
-   * @param {number} [arg.pageSize] - Number of items to retrieve in each
-   *   page. Default is 10.
-   * @param {string} [arg.name] - Can search departments by passing name.
-   * @param {string} [arg.search] - Can search departments by passing name of
-   *   the department in search parameter.
-   * @param {boolean} [arg.isActive] - Can query for departments based on
-   *   whether they are active or inactive.
-   * @returns {Promise<DepartmentsResponse>} - Success response
+   * @param {CatalogPlatformValidator.ListDepartmentsDataParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.DepartmentsResponse>} - Success response
+   * @name listDepartmentsData
    * @summary: List all Departments.
-   * @description: Allows you to list all departments, also can search using name and filter active and incative departments, and item type.
+   * @description: Allows you to list all departments, also can search using name and filter active and incative departments, and item type. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/listDepartmentsData/).
    */
-  async listDepartmentsData({
-    pageNo,
-    itemType,
-    pageSize,
-    name,
-    search,
-    isActive,
-  } = {}) {
-    const { error } = CatalogValidator.listDepartmentsData().validate(
+  async listDepartmentsData(
+    { pageNo, itemType, pageSize, name, search, isActive, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.listDepartmentsData().validate(
       {
         pageNo,
         itemType,
@@ -4278,7 +4811,9 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.listDepartmentsData().validate(
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.listDepartmentsData().validate(
       {
         pageNo,
         itemType,
@@ -4292,9 +4827,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for listDepartmentsData",
+        message: `Parameter Validation warrnings for platform > Catalog > listDepartmentsData \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -4313,12 +4847,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/departments/`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.DepartmentsResponse().validate(response, {
+    } = CatalogPlatformModel.DepartmentsResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -4326,22 +4866,27 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for listDepartmentsData",
+        message: `Response Validation Warnnings for platform > Catalog > listDepartmentsData \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<HSNCodesResponse>} - Success response
+   * @param {CatalogPlatformValidator.ListHSNCodesParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.HSNCodesResponse>} - Success response
+   * @name listHSNCodes
    * @summary: List HSN Codes
-   * @description: Allows you to list all hsn Codes
+   * @description: Allows you to list all hsn Codes - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/listHSNCodes/).
    */
-  async listHSNCodes({} = {}) {
-    const { error } = CatalogValidator.listHSNCodes().validate(
+  async listHSNCodes(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.listHSNCodes().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -4350,16 +4895,17 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.listHSNCodes().validate(
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.listHSNCodes().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for listHSNCodes",
+        message: `Parameter Validation warrnings for platform > Catalog > listHSNCodes \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -4372,12 +4918,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/hsn/`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.HSNCodesResponse().validate(response, {
+    } = CatalogPlatformModel.HSNCodesResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -4385,28 +4937,29 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for listHSNCodes",
+        message: `Response Validation Warnnings for platform > Catalog > listHSNCodes \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.status] - Status of the export job.
-   * @param {string} [arg.fromDate] - Inventory export history filtered
-   *   according to from_date.
-   * @param {string} [arg.toDate] - Inventory export history filtered
-   *   according to from_date.
-   * @param {string} [arg.q] - Inventory export history filtered according to task ID.
-   * @returns {Promise<InventoryExportJobListResponse>} - Success response
+   * @param {CatalogPlatformValidator.ListInventoryExportParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.InventoryExportJobListResponse>}
+   *   - Success response
+   *
+   * @name listInventoryExport
    * @summary: Get the history of the inventory export.
-   * @description: This API helps you the get the history of inventory jobs depending on the filtered criteria.
+   * @description: This API helps you the get the history of inventory jobs depending on the filtered criteria. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/listInventoryExport/).
    */
-  async listInventoryExport({ status, fromDate, toDate, q } = {}) {
-    const { error } = CatalogValidator.listInventoryExport().validate(
+  async listInventoryExport(
+    { status, fromDate, toDate, q, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.listInventoryExport().validate(
       {
         status,
         fromDate,
@@ -4420,7 +4973,9 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.listInventoryExport().validate(
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.listInventoryExport().validate(
       {
         status,
         fromDate,
@@ -4432,9 +4987,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for listInventoryExport",
+        message: `Parameter Validation warrnings for platform > Catalog > listInventoryExport \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -4451,37 +5005,46 @@ class Catalog {
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/inventory/download/`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.InventoryExportJobListResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = CatalogPlatformModel.InventoryExportJobListResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for listInventoryExport",
+        message: `Response Validation Warnnings for platform > Catalog > listInventoryExport \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.department - A `department` is the name of a
-   *   particular department.
-   * @returns {Promise<TemplatesResponse>} - Success response
+   * @param {CatalogPlatformValidator.ListProductTemplateParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.TemplatesResponse>} - Success response
+   * @name listProductTemplate
    * @summary: List all Templates
-   * @description: Allows you to list all product templates, also can filter by department
+   * @description: Allows you to list all product templates, also can filter by department - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/listProductTemplate/).
    */
-  async listProductTemplate({ department } = {}) {
-    const { error } = CatalogValidator.listProductTemplate().validate(
+  async listProductTemplate(
+    { department, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.listProductTemplate().validate(
       {
         department,
       },
@@ -4492,7 +5055,9 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.listProductTemplate().validate(
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.listProductTemplate().validate(
       {
         department,
       },
@@ -4501,9 +5066,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for listProductTemplate",
+        message: `Parameter Validation warrnings for platform > Catalog > listProductTemplate \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -4517,12 +5081,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/templates/`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.TemplatesResponse().validate(response, {
+    } = CatalogPlatformModel.TemplatesResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -4530,26 +5100,33 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for listProductTemplate",
+        message: `Response Validation Warnnings for platform > Catalog > listProductTemplate \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.departments - A `department` is name of a departments
-   *   whose category needs to be listed. Can specify multiple departments.
-   * @param {string} arg.itemType - An `item_type` is the type of item, it can
-   *   be `set`, `standard`, `digital`, etc.
-   * @returns {Promise<ProdcutTemplateCategoriesResponse>} - Success response
+   * @param {CatalogPlatformValidator.ListProductTemplateCategoriesParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.ProdcutTemplateCategoriesResponse>}
+   *   - Success response
+   *
+   * @name listProductTemplateCategories
    * @summary: List Department specifiec product categories
-   * @description: Allows you to list all product categories values for the departments specified
+   * @description: Allows you to list all product categories values for the departments specified - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/listProductTemplateCategories/).
    */
-  async listProductTemplateCategories({ departments, itemType } = {}) {
-    const { error } = CatalogValidator.listProductTemplateCategories().validate(
+  async listProductTemplateCategories(
+    { departments, itemType, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformValidator.listProductTemplateCategories().validate(
       {
         departments,
         itemType,
@@ -4563,7 +5140,7 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.listProductTemplateCategories().validate(
+    } = CatalogPlatformValidator.listProductTemplateCategories().validate(
       {
         departments,
         itemType,
@@ -4573,10 +5150,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message:
-          "Parameter Validation warrnings for listProductTemplateCategories",
+        message: `Parameter Validation warrnings for platform > Catalog > listProductTemplateCategories \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -4591,38 +5166,51 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/templates/categories/`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.ProdcutTemplateCategoriesResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = CatalogPlatformModel.ProdcutTemplateCategoriesResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message:
-          "Response Validation Warnnings for listProductTemplateCategories",
+        message: `Response Validation Warnnings for platform > Catalog > listProductTemplateCategories \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<ProductDownloadsResponse>} - Success response
+   * @param {CatalogPlatformValidator.ListProductTemplateExportDetailsParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.ProductDownloadsResponse>} -
+   *   Success response
+   * @name listProductTemplateExportDetails
    * @summary: Allows you to list all product templates export list details
-   * @description: Can view details including trigger data, task id , etc.
+   * @description: Can view details including trigger data, task id , etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/listProductTemplateExportDetails/).
    */
-  async listProductTemplateExportDetails({} = {}) {
+  async listProductTemplateExportDetails(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
-    } = CatalogValidator.listProductTemplateExportDetails().validate(
+    } = CatalogPlatformValidator.listProductTemplateExportDetails().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -4633,17 +5221,15 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.listProductTemplateExportDetails().validate(
+    } = CatalogPlatformValidator.listProductTemplateExportDetails().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message:
-          "Parameter Validation warrnings for listProductTemplateExportDetails",
+        message: `Parameter Validation warrnings for platform > Catalog > listProductTemplateExportDetails \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -4656,12 +5242,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/downloads/`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.ProductDownloadsResponse().validate(response, {
+    } = CatalogPlatformModel.ProductDownloadsResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -4669,29 +5261,30 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message:
-          "Response Validation Warnnings for listProductTemplateExportDetails",
+        message: `Response Validation Warnnings for platform > Catalog > listProductTemplateExportDetails \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.filter - A `filter` is the unique identifier of the
-   *   type of value required.
-   * @param {string} [arg.templateTag] - A `template_tag` is the identifier of
-   *   the type of template required.
-   * @param {string} [arg.itemType] - A `item_type` is the identifier of the
-   *   type of template required.
-   * @returns {Promise<ProductConfigurationDownloads>} - Success response
+   * @param {CatalogPlatformValidator.ListTemplateBrandTypeValuesParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.ProductConfigurationDownloads>} -
+   *   Success response
+   * @name listTemplateBrandTypeValues
    * @summary: Allows you to list all values for Templates, Brands or Type
-   * @description: The filter type query parameter defines what type of data to return. The type of query returns the valid values for the same
+   * @description: The filter type query parameter defines what type of data to return. The type of query returns the valid values for the same - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/listTemplateBrandTypeValues/).
    */
-  async listTemplateBrandTypeValues({ filter, templateTag, itemType } = {}) {
-    const { error } = CatalogValidator.listTemplateBrandTypeValues().validate(
+  async listTemplateBrandTypeValues(
+    { filter, templateTag, itemType, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformValidator.listTemplateBrandTypeValues().validate(
       {
         filter,
         templateTag,
@@ -4706,7 +5299,7 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.listTemplateBrandTypeValues().validate(
+    } = CatalogPlatformValidator.listTemplateBrandTypeValues().validate(
       {
         filter,
         templateTag,
@@ -4717,10 +5310,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message:
-          "Parameter Validation warrnings for listTemplateBrandTypeValues",
+        message: `Parameter Validation warrnings for platform > Catalog > listTemplateBrandTypeValues \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -4736,38 +5327,46 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/downloads/configuration/`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.ProductConfigurationDownloads().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = CatalogPlatformModel.ProductConfigurationDownloads().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message:
-          "Response Validation Warnnings for listTemplateBrandTypeValues",
+        message: `Response Validation Warnnings for platform > Catalog > listTemplateBrandTypeValues \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.uid - Category unique id
-   * @param {CategoryRequestBody} arg.body
-   * @returns {Promise<CategoryUpdateResponse>} - Success response
+   * @param {CatalogPlatformValidator.UpdateCategoryParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.CategoryUpdateResponse>} - Success response
+   * @name updateCategory
    * @summary: Update product categories
-   * @description: Update a product category using this api
+   * @description: Update a product category using this api - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateCategory/).
    */
-  async updateCategory({ uid, body } = {}) {
-    const { error } = CatalogValidator.updateCategory().validate(
+  async updateCategory(
+    { uid, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.updateCategory().validate(
       {
         uid,
         body,
@@ -4779,7 +5378,9 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.updateCategory().validate(
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.updateCategory().validate(
       {
         uid,
         body,
@@ -4789,9 +5390,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateCategory",
+        message: `Parameter Validation warrnings for platform > Catalog > updateCategory \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -4804,12 +5404,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/category/${uid}/`,
       query_params,
       body,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.CategoryUpdateResponse().validate(response, {
+    } = CatalogPlatformModel.CategoryUpdateResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -4817,24 +5423,27 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateCategory",
+        message: `Response Validation Warnnings for platform > Catalog > updateCategory \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.uid - A `uid` is a unique identifier of a department.
-   * @param {DepartmentCreateUpdate} arg.body
-   * @returns {Promise<DepartmentModel>} - Success response
+   * @param {CatalogPlatformValidator.UpdateDepartmentParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.DepartmentModel>} - Success response
+   * @name updateDepartment
    * @summary: Update the department by their uid.
-   * @description: Update the department by their uid using this API.
+   * @description: Update the department by their uid using this API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateDepartment/).
    */
-  async updateDepartment({ uid, body } = {}) {
-    const { error } = CatalogValidator.updateDepartment().validate(
+  async updateDepartment(
+    { uid, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.updateDepartment().validate(
       {
         uid,
         body,
@@ -4846,7 +5455,9 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.updateDepartment().validate(
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.updateDepartment().validate(
       {
         uid,
         body,
@@ -4856,9 +5467,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateDepartment",
+        message: `Parameter Validation warrnings for platform > Catalog > updateDepartment \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -4871,12 +5481,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/departments/${uid}/`,
       query_params,
       body,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.DepartmentModel().validate(response, {
+    } = CatalogPlatformModel.DepartmentModel().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -4884,24 +5500,27 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateDepartment",
+        message: `Response Validation Warnnings for platform > Catalog > updateDepartment \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Unique id
-   * @param {HsnUpsert} arg.body
-   * @returns {Promise<HsnCode>} - Success response
+   * @param {CatalogPlatformValidator.UpdateHsnCodeParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.HsnCode>} - Success response
+   * @name updateHsnCode
    * @summary: Update Hsn Code.
-   * @description: Update Hsn Code.
+   * @description: Update Hsn Code. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateHsnCode/).
    */
-  async updateHsnCode({ id, body } = {}) {
-    const { error } = CatalogValidator.updateHsnCode().validate(
+  async updateHsnCode(
+    { id, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.updateHsnCode().validate(
       {
         id,
         body,
@@ -4913,7 +5532,9 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.updateHsnCode().validate(
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.updateHsnCode().validate(
       {
         id,
         body,
@@ -4923,9 +5544,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateHsnCode",
+        message: `Parameter Validation warrnings for platform > Catalog > updateHsnCode \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -4938,10 +5558,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/hsn/${id}/`,
       query_params,
       body,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
-    const { error: res_error } = CatalogModel.HsnCode().validate(response, {
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.HsnCode().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -4949,23 +5577,27 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateHsnCode",
+        message: `Response Validation Warnnings for platform > Catalog > updateHsnCode \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {InventoryRequestSchemaV2} arg.body
-   * @returns {Promise<InventoryUpdateResponse>} - Success response
+   * @param {CatalogPlatformValidator.UpdateInventoriesParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.InventoryUpdateResponse>} - Success response
+   * @name updateInventories
    * @summary: Add Inventory for particular size and store.
-   * @description: This API allows add Inventory for particular size and store.
+   * @description: This API allows add Inventory for particular size and store. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateInventories/).
    */
-  async updateInventories({ body } = {}) {
-    const { error } = CatalogValidator.updateInventories().validate(
+  async updateInventories(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.updateInventories().validate(
       {
         body,
       },
@@ -4976,7 +5608,9 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.updateInventories().validate(
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.updateInventories().validate(
       {
         body,
       },
@@ -4985,9 +5619,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateInventories",
+        message: `Parameter Validation warrnings for platform > Catalog > updateInventories \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -5000,12 +5633,18 @@ class Catalog {
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/inventory/`,
       query_params,
       body,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.InventoryUpdateResponse().validate(response, {
+    } = CatalogPlatformModel.InventoryUpdateResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -5013,25 +5652,29 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateInventories",
+        message: `Response Validation Warnnings for platform > Catalog > updateInventories \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - A `id` is a unique identifier for a particular
-   *   detail. Pass the `id` of the keywords which you want to delete.
-   * @param {ProductBundleUpdateRequest} arg.body
-   * @returns {Promise<GetProductBundleCreateResponse>} - Success response
+   * @param {CatalogPlatformValidator.UpdateProductBundleParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.GetProductBundleCreateResponse>}
+   *   - Success response
+   *
+   * @name updateProductBundle
    * @summary: Update a Product Bundle
-   * @description: Update a Product Bundle by its id. On successful request, returns the updated product bundle
+   * @description: Update a Product Bundle by its id. On successful request, returns the updated product bundle - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateProductBundle/).
    */
-  async updateProductBundle({ id, body } = {}) {
-    const { error } = CatalogValidator.updateProductBundle().validate(
+  async updateProductBundle(
+    { id, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.updateProductBundle().validate(
       {
         id,
         body,
@@ -5043,7 +5686,9 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.updateProductBundle().validate(
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.updateProductBundle().validate(
       {
         id,
         body,
@@ -5053,9 +5698,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateProductBundle",
+        message: `Parameter Validation warrnings for platform > Catalog > updateProductBundle \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -5068,39 +5712,48 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/product-bundle/${id}/`,
       query_params,
       body,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.GetProductBundleCreateResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = CatalogPlatformModel.GetProductBundleCreateResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateProductBundle",
+        message: `Response Validation Warnnings for platform > Catalog > updateProductBundle \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} arg.itemId - Item code of the product of which size is to be get.
-   * @param {string} arg.sellerIdentifier - Size Identifier (Seller Identifier
-   *   or Primary Identifier) of which inventory is to get.
-   * @param {InventoryRequestSchemaV2} arg.body
-   * @returns {Promise<InventoryUpdateResponse>} - Success response
+   * @param {CatalogPlatformValidator.UpdateRealtimeInventoryParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.InventoryUpdateResponse>} - Success response
+   * @name updateRealtimeInventory
    * @summary: Add Inventory for particular size and store.
-   * @description: This API allows add Inventory for particular size and store.
+   * @description: This API allows add Inventory for particular size and store. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateRealtimeInventory/).
    */
-  async updateRealtimeInventory({ itemId, sellerIdentifier, body } = {}) {
-    const { error } = CatalogValidator.updateRealtimeInventory().validate(
+  async updateRealtimeInventory(
+    { itemId, sellerIdentifier, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformValidator.updateRealtimeInventory().validate(
       {
         itemId,
         sellerIdentifier,
@@ -5115,7 +5768,7 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.updateRealtimeInventory().validate(
+    } = CatalogPlatformValidator.updateRealtimeInventory().validate(
       {
         itemId,
         sellerIdentifier,
@@ -5126,9 +5779,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateRealtimeInventory",
+        message: `Parameter Validation warrnings for platform > Catalog > updateRealtimeInventory \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -5141,12 +5793,18 @@ class Catalog {
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/${itemId}/inventory/${sellerIdentifier}`,
       query_params,
       body,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.InventoryUpdateResponse().validate(response, {
+    } = CatalogPlatformModel.InventoryUpdateResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -5154,24 +5812,27 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateRealtimeInventory",
+        message: `Response Validation Warnnings for platform > Catalog > updateRealtimeInventory \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.id - Mongo id of the size guide to be edited
-   * @param {ValidateSizeGuide} arg.body
-   * @returns {Promise<SuccessResponse>} - Success response
+   * @param {CatalogPlatformValidator.UpdateSizeGuideParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.SuccessResponse>} - Success response
+   * @name updateSizeGuide
    * @summary: Edit a size guide.
-   * @description: This API allows to edit a size guide.
+   * @description: This API allows to edit a size guide. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateSizeGuide/).
    */
-  async updateSizeGuide({ id, body } = {}) {
-    const { error } = CatalogValidator.updateSizeGuide().validate(
+  async updateSizeGuide(
+    { id, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.updateSizeGuide().validate(
       {
         id,
         body,
@@ -5183,7 +5844,9 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.updateSizeGuide().validate(
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.updateSizeGuide().validate(
       {
         id,
         body,
@@ -5193,9 +5856,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateSizeGuide",
+        message: `Parameter Validation warrnings for platform > Catalog > updateSizeGuide \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -5208,12 +5870,18 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/sizeguide/${id}/`,
       query_params,
       body,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.SuccessResponse().validate(response, {
+    } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -5221,26 +5889,27 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateSizeGuide",
+        message: `Response Validation Warnnings for platform > Catalog > updateSizeGuide \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.department - Department of the product to be uploaded.
-   * @param {string} arg.productType - Product type of the product to be
-   *   uploaded i.e. set, standard , digital.
-   * @param {BulkJob} arg.body
-   * @returns {Promise<BulkResponse>} - Success response
+   * @param {CatalogPlatformValidator.UploadBulkProductsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.BulkResponse>} - Success response
+   * @name uploadBulkProducts
    * @summary: Create a Bulk product to upload job.
-   * @description: This API helps to create a bulk products upload job.
+   * @description: This API helps to create a bulk products upload job. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/uploadBulkProducts/).
    */
-  async uploadBulkProducts({ department, productType, body } = {}) {
-    const { error } = CatalogValidator.uploadBulkProducts().validate(
+  async uploadBulkProducts(
+    { department, productType, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.uploadBulkProducts().validate(
       {
         department,
         productType,
@@ -5253,7 +5922,9 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.uploadBulkProducts().validate(
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.uploadBulkProducts().validate(
       {
         department,
         productType,
@@ -5264,9 +5935,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for uploadBulkProducts",
+        message: `Parameter Validation warrnings for platform > Catalog > uploadBulkProducts \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -5281,41 +5951,49 @@ class Catalog {
       `/service/platform/catalog/v2.0/company/${this.config.companyId}/products/bulk`,
       query_params,
       body,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
-    const { error: res_error } = CatalogModel.BulkResponse().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.BulkResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for uploadBulkProducts",
+        message: `Response Validation Warnnings for platform > Catalog > uploadBulkProducts \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.slug - A `slug` is a unique identifier for a
-   *   particular template.
-   * @param {string} [arg.itemType] - An `item_type` defines the type of item.
-   *   The default value is standard.
-   * @param {boolean} [arg.bulk] - This specification determines the schema
-   *   type to be retrieved. When set to true, it will return the schema for
-   *   bulk data; when set to false, it will provide the schema for a single
-   *   product. The default value is false.
-   * @returns {Promise<TemplatesValidationResponse>} - Success response
+   * @param {CatalogPlatformValidator.ValidateProductTemplateParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.TemplatesValidationResponse>} -
+   *   Success response
+   * @name validateProductTemplate
    * @summary: Validate Product Template Schema
-   * @description: Allows you to list all product templates validation values for all the fields present in the database
+   * @description: Allows you to list all product templates validation values for all the fields present in the database - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/validateProductTemplate/).
    */
-  async validateProductTemplate({ slug, itemType, bulk } = {}) {
-    const { error } = CatalogValidator.validateProductTemplate().validate(
+  async validateProductTemplate(
+    { slug, itemType, bulk, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformValidator.validateProductTemplate().validate(
       {
         slug,
         itemType,
@@ -5330,7 +6008,7 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.validateProductTemplate().validate(
+    } = CatalogPlatformValidator.validateProductTemplate().validate(
       {
         slug,
         itemType,
@@ -5341,9 +6019,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for validateProductTemplate",
+        message: `Parameter Validation warrnings for platform > Catalog > validateProductTemplate \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -5358,37 +6035,51 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/templates/${slug}/validation/schema/`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.TemplatesValidationResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = CatalogPlatformModel.TemplatesValidationResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for validateProductTemplate",
+        message: `Response Validation Warnnings for platform > Catalog > validateProductTemplate \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.itemType - An `item_type` defines the type of item.
-   *   The default value is standard.
-   * @returns {Promise<InventoryValidationResponse>} - Success response
+   * @param {CatalogPlatformValidator.ValidateProductTemplateSchemaParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.InventoryValidationResponse>} -
+   *   Success response
+   * @name validateProductTemplateSchema
    * @summary: Validate Product Template Schema
-   * @description: Allows you to list all product templates validation values for all the fields present in the database
+   * @description: Allows you to list all product templates validation values for all the fields present in the database - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/validateProductTemplateSchema/).
    */
-  async validateProductTemplateSchema({ itemType } = {}) {
-    const { error } = CatalogValidator.validateProductTemplateSchema().validate(
+  async validateProductTemplateSchema(
+    { itemType, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformValidator.validateProductTemplateSchema().validate(
       {
         itemType,
       },
@@ -5401,7 +6092,7 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.validateProductTemplateSchema().validate(
+    } = CatalogPlatformValidator.validateProductTemplateSchema().validate(
       {
         itemType,
       },
@@ -5410,10 +6101,8 @@ class Catalog {
     if (warrning) {
       Logger({
         level: "WARN",
-        message:
-          "Parameter Validation warrnings for validateProductTemplateSchema",
+        message: `Parameter Validation warrnings for platform > Catalog > validateProductTemplateSchema \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -5427,23 +6116,27 @@ class Catalog {
       `/service/platform/catalog/v1.0/company/${this.config.companyId}/inventory/templates/validation/schema/`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.InventoryValidationResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = CatalogPlatformModel.InventoryValidationResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message:
-          "Response Validation Warnnings for validateProductTemplateSchema",
+        message: `Response Validation Warnnings for platform > Catalog > validateProductTemplateSchema \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

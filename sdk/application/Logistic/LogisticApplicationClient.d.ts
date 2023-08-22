@@ -16,114 +16,98 @@ declare class Logistic {
     _urls: {};
     updateUrls(urls: any): void;
     /**
-     * @param {Object} arg - Arg object.
-     * @returns {Promise<CountryListResponse>} - Success response
+     * @param {LogisticApplicationValidator.GetAllCountriesParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<LogisticApplicationModel.CountryListResponse>} - Success response
+     * @name getAllCountries
      * @summary: Get Country List
-     * @description: Get all countries
+     * @description: Get all countries - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getAllCountries/).
      */
-    getAllCountries({}?: any): Promise<CountryListResponse>;
+    getAllCountries({ requestHeaders }?: any, { responseHeaders }?: object): Promise<LogisticApplicationModel.CountryListResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {boolean} [arg.onboarding] - Only fetch countries which allowed
-     *   for onboard on Platform.
-     * @returns {Promise<GetCountries>} - Success response
+     * @param {LogisticApplicationValidator.GetCountriesParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<LogisticApplicationModel.GetCountries>} - Success response
+     * @name getCountries
      * @summary: Get all countries and associated data.
-     * @description: Retrieve of all countries.
+     * @description: Retrieve of all countries. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getCountries/).
      */
-    getCountries({ onboarding }?: {
-        onboarding?: boolean;
-    }): Promise<GetCountries>;
+    getCountries({ onboarding, pageNo, pageSize, q, requestHeaders }?: LogisticApplicationValidator.GetCountriesParam, { responseHeaders }?: object): Promise<LogisticApplicationModel.GetCountries>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.countryIsoCode - The `country_iso_code` is ISO-2
-     *   (alpha-2) code for the country.
-     * @returns {Promise<GetCountry>} - Success response
+     * @param {LogisticApplicationValidator.GetCountryParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<LogisticApplicationModel.GetCountry>} - Success response
+     * @name getCountry
      * @summary: Get single country and associated data.
-     * @description: Retrieve data for a single country and address format.
+     * @description: Retrieve data for a single country and address format. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getCountry/).
      */
-    getCountry({ countryIsoCode }?: {
-        countryIsoCode: string;
-    }): Promise<GetCountry>;
+    getCountry({ countryIsoCode, requestHeaders }?: LogisticApplicationValidator.GetCountryParam, { responseHeaders }?: object): Promise<LogisticApplicationModel.GetCountry>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.localityType - A `locality_type` contains unique
-     *   geographical division.
-     * @param {string} [arg.country] - A `country` contains a specific value of
-     *   the country iso2 code.
-     * @param {string} [arg.state] - A `state` contains a specific value of the
-     *   state, province.
-     * @param {string} [arg.city] - A `city` contains a specific value of the city.
-     * @returns {Promise<GetLocalities>} - Success response
+     * @param {LogisticApplicationValidator.GetLocalitiesParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<LogisticApplicationModel.GetLocalities>} - Success response
+     * @name getLocalities
      * @summary: Get Localities.
-     * @description: Get Localities data.
+     * @description: Get Localities data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getLocalities/).
      */
-    getLocalities({ localityType, country, state, city }?: {
-        localityType: string;
-        country?: string;
-        state?: string;
-        city?: string;
-    }): Promise<GetLocalities>;
+    getLocalities({ localityType, country, state, city, pageNo, pageSize, q, requestHeaders, }?: LogisticApplicationValidator.GetLocalitiesParam, { responseHeaders }?: object): Promise<LogisticApplicationModel.GetLocalities>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.localityType - A `locality_type` contains value
-     *   geographical division.
-     * @param {string} arg.localityValue - A `locality_value` contains a
-     *   specific value of the locality.
-     * @param {string} [arg.country] - A `country` contains a specific value of
-     *   the country iso2 code.
-     * @param {string} [arg.state] - A `state` contains a specific value of the
-     *   state, province.
-     * @param {string} [arg.city] - A `city` contains a specific value of the city.
-     * @returns {Promise<GetLocality>} - Success response
+     * @param {LogisticApplicationValidator.GetLocalityParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<LogisticApplicationModel.GetLocality>} - Success response
+     * @name getLocality
      * @summary: Get Locality API
-     * @description: Get Locality data
+     * @description: Get Locality data - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getLocality/).
      */
-    getLocality({ localityType, localityValue, country, state, city, }?: {
-        localityType: string;
-        localityValue: string;
-        country?: string;
-        state?: string;
-        city?: string;
-    }): Promise<GetLocality>;
+    getLocality({ localityType, localityValue, country, state, city, requestHeaders }?: LogisticApplicationValidator.GetLocalityParam, { responseHeaders }?: object): Promise<LogisticApplicationModel.GetLocality>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {ReAssignStoreRequest} arg.body
-     * @returns {Promise<ReAssignStoreResponse>} - Success response
+     * @param {LogisticApplicationValidator.GetOptimalLocationsParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<LogisticApplicationModel.ReAssignStoreResponse>} -
+     *   Success response
+     * @name getOptimalLocations
      * @summary: GET zone from the Pincode.
-     * @description: This API returns zone from the Pincode View.
+     * @description: This API returns zone from the Pincode View. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getOptimalLocations/).
      */
-    getOptimalLocations({ body }?: {
-        body: ReAssignStoreRequest;
-    }): Promise<ReAssignStoreResponse>;
+    getOptimalLocations({ body, requestHeaders }?: LogisticApplicationValidator.GetOptimalLocationsParam, { responseHeaders }?: object): Promise<LogisticApplicationModel.ReAssignStoreResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.pincode - A `pincode` contains a specific address of
-     *   a location.
-     * @returns {Promise<PincodeApiResponse>} - Success response
+     * @param {LogisticApplicationValidator.GetPincodeCityParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<LogisticApplicationModel.PincodeApiResponse>} - Success response
+     * @name getPincodeCity
      * @summary: Get Pincode API
-     * @description: Get pincode data
+     * @description: Get pincode data - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getPincodeCity/).
      */
-    getPincodeCity({ pincode }?: {
-        pincode: string;
-    }): Promise<PincodeApiResponse>;
+    getPincodeCity({ pincode, requestHeaders }?: LogisticApplicationValidator.GetPincodeCityParam, { responseHeaders }?: object): Promise<LogisticApplicationModel.PincodeApiResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {GetZoneFromPincodeViewRequest} arg.body
-     * @returns {Promise<GetZoneFromPincodeViewResponse>} - Success response
+     * @param {LogisticApplicationValidator.GetPincodeZonesParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<LogisticApplicationModel.GetZoneFromPincodeViewResponse>}
+     *   - Success response
+     *
+     * @name getPincodeZones
      * @summary: GET zone from the Pincode.
-     * @description: This API returns zone from the Pincode View.
+     * @description: This API returns zone from the Pincode View. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getPincodeZones/).
      */
-    getPincodeZones({ body }?: {
-        body: GetZoneFromPincodeViewRequest;
-    }): Promise<GetZoneFromPincodeViewResponse>;
+    getPincodeZones({ body, requestHeaders }?: LogisticApplicationValidator.GetPincodeZonesParam, { responseHeaders }?: object): Promise<LogisticApplicationModel.GetZoneFromPincodeViewResponse>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {TATViewRequest} arg.body
-     * @returns {Promise<TATViewResponse>} - Success response
+     * @param {LogisticApplicationValidator.GetTatProductParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<LogisticApplicationModel.TATViewResponse>} - Success response
+     * @name getTatProduct
      * @summary: Get TAT API
-     * @description: Get TAT data
+     * @description: Get TAT data - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getTatProduct/).
      */
-    getTatProduct({ body }?: {
-        body: TATViewRequest;
-    }): Promise<TATViewResponse>;
+    getTatProduct({ body, requestHeaders }?: LogisticApplicationValidator.GetTatProductParam, { responseHeaders }?: object): Promise<LogisticApplicationModel.TATViewResponse>;
 }
+import LogisticApplicationModel = require("./LogisticApplicationModel");
+import LogisticApplicationValidator = require("./LogisticApplicationValidator");

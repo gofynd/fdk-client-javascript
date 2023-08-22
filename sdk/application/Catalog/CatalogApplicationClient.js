@@ -2,8 +2,8 @@ const ApplicationAPIClient = require("../ApplicationAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
-const CatalogValidator = require("./CatalogApplicationValidator");
-const CatalogModel = require("./CatalogApplicationModel");
+const CatalogApplicationValidator = require("./CatalogApplicationValidator");
+const CatalogApplicationModel = require("./CatalogApplicationModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -79,16 +79,19 @@ class Catalog {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.collectionType - Type of collection followed, i.e.
-   *   products, brands, or collections.
-   * @param {string} arg.collectionId - The ID of the collection type.
-   * @returns {Promise<FollowPostResponse>} - Success response
+   * @param {CatalogApplicationValidator.FollowByIdParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CatalogApplicationModel.FollowPostResponse>} - Success response
+   * @name followById
    * @summary: Follow an entity (product/brand/collection)
-   * @description: Follow a particular entity such as product, brand, collection specified by its ID.
+   * @description: Follow a particular entity such as product, brand, collection specified by its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/followById/).
    */
-  async followById({ collectionType, collectionId } = {}) {
-    const { error } = CatalogValidator.followById().validate(
+  async followById(
+    { collectionType, collectionId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogApplicationValidator.followById().validate(
       { collectionType, collectionId },
       { abortEarly: false, allowUnknown: true }
     );
@@ -97,16 +100,17 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.followById().validate(
+    const {
+      error: warrning,
+    } = CatalogApplicationValidator.followById().validate(
       { collectionType, collectionId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for followById",
+        message: `Parameter Validation warrnings for application > Catalog > followById \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -122,12 +126,18 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.FollowPostResponse().validate(response, {
+    } = CatalogApplicationModel.FollowPostResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -135,25 +145,29 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for followById",
+        message: `Response Validation Warnnings for application > Catalog > followById \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.slug - A short, human-readable, URL-friendly
-   *   identifier of a brand. You can get slug value from the endpoint
-   *   /service/application/catalog/v1.0/brands/.
-   * @returns {Promise<BrandDetailResponse>} - Success response
+   * @param {CatalogApplicationValidator.GetBrandDetailBySlugParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CatalogApplicationModel.BrandDetailResponse>} - Success response
+   * @name getBrandDetailBySlug
    * @summary: Get metadata of a brand
-   * @description: Fetch metadata of a brand such as name, information, logo, banner, etc.
+   * @description: Fetch metadata of a brand such as name, information, logo, banner, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getBrandDetailBySlug/).
    */
-  async getBrandDetailBySlug({ slug } = {}) {
-    const { error } = CatalogValidator.getBrandDetailBySlug().validate(
+  async getBrandDetailBySlug(
+    { slug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogApplicationValidator.getBrandDetailBySlug().validate(
       { slug },
       { abortEarly: false, allowUnknown: true }
     );
@@ -164,16 +178,15 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.getBrandDetailBySlug().validate(
+    } = CatalogApplicationValidator.getBrandDetailBySlug().validate(
       { slug },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getBrandDetailBySlug",
+        message: `Parameter Validation warrnings for application > Catalog > getBrandDetailBySlug \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -189,12 +202,18 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.BrandDetailResponse().validate(response, {
+    } = CatalogApplicationModel.BrandDetailResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -202,29 +221,27 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getBrandDetailBySlug",
+        message: `Response Validation Warnnings for application > Catalog > getBrandDetailBySlug \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.department] - The name of the department. Use this
-   *   parameter to filter products by a particular department. See the list
-   *   of available departments below. Also, you can get available departments
-   *   from the endpoint /service/application/catalog/v1.0/departments/
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-   * @returns {Promise<BrandListingResponse>} - Success response
+   * @param {CatalogApplicationValidator.GetBrandsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CatalogApplicationModel.BrandListingResponse>} - Success response
+   * @name getBrands
    * @summary: Get all the brands
-   * @description: A brand is the name under which a product is sold. Use this API to list all the brands. You can also filter the brands by department.
+   * @description: A brand is the name under which a product is sold. Use this API to list all the brands. You can also filter the brands by department. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getBrands/).
    */
-  async getBrands({ department, pageNo, pageSize } = {}) {
-    const { error } = CatalogValidator.getBrands().validate(
+  async getBrands(
+    { department, pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogApplicationValidator.getBrands().validate(
       { department, pageNo, pageSize },
       { abortEarly: false, allowUnknown: true }
     );
@@ -233,16 +250,17 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getBrands().validate(
+    const {
+      error: warrning,
+    } = CatalogApplicationValidator.getBrands().validate(
       { department, pageNo, pageSize },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getBrands",
+        message: `Parameter Validation warrnings for application > Catalog > getBrands \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -261,12 +279,18 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.BrandListingResponse().validate(response, {
+    } = CatalogApplicationModel.BrandListingResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -274,9 +298,8 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getBrands",
+        message: `Response Validation Warnnings for application > Catalog > getBrands \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -289,6 +312,7 @@ class Catalog {
    *   of available departments below. Also, you can get available departments
    *   from the endpoint /service/application/catalog/v1.0/departments/
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+   * @returns {Paginator<CatalogApplicationModel.BrandListingResponse>}
    * @summary: Get all the brands
    * @description: A brand is the name under which a product is sold. Use this API to list all the brands. You can also filter the brands by department.
    */
@@ -314,17 +338,20 @@ class Catalog {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.department] - The name of the department. Use this
-   *   parameter to filter products by a particular department. See the list
-   *   of available departments below. Also, you can get available departments
-   *   from the endpoint /service/application/catalog/v1.0/departments/
-   * @returns {Promise<CategoryListingResponse>} - Success response
+   * @param {CatalogApplicationValidator.GetCategoriesParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CatalogApplicationModel.CategoryListingResponse>} -
+   *   Success response
+   * @name getCategories
    * @summary: List all the categories
-   * @description: Use this API to list all the categories. You can also filter the categories by department.
+   * @description: Use this API to list all the categories. You can also filter the categories by department. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getCategories/).
    */
-  async getCategories({ department } = {}) {
-    const { error } = CatalogValidator.getCategories().validate(
+  async getCategories(
+    { department, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogApplicationValidator.getCategories().validate(
       { department },
       { abortEarly: false, allowUnknown: true }
     );
@@ -333,16 +360,17 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getCategories().validate(
+    const {
+      error: warrning,
+    } = CatalogApplicationValidator.getCategories().validate(
       { department },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getCategories",
+        message: `Parameter Validation warrnings for application > Catalog > getCategories \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -359,38 +387,48 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.CategoryListingResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = CatalogApplicationModel.CategoryListingResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getCategories",
+        message: `Response Validation Warnnings for application > Catalog > getCategories \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.slug - A short, human-readable, URL-friendly
-   *   identifier of a brand. You can get slug value from the endpoint
-   *   /service/application/catalog/v1.0/brands/.
-   * @returns {Promise<CategoryMetaResponse>} - Success response
+   * @param {CatalogApplicationValidator.GetCategoryDetailBySlugParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CatalogApplicationModel.CategoryMetaResponse>} - Success response
+   * @name getCategoryDetailBySlug
    * @summary: Get metadata of a category
-   * @description: Fetch metadata of a category such as name, information, logo, banner, etc.
+   * @description: Fetch metadata of a category such as name, information, logo, banner, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getCategoryDetailBySlug/).
    */
-  async getCategoryDetailBySlug({ slug } = {}) {
-    const { error } = CatalogValidator.getCategoryDetailBySlug().validate(
+  async getCategoryDetailBySlug(
+    { slug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogApplicationValidator.getCategoryDetailBySlug().validate(
       { slug },
       { abortEarly: false, allowUnknown: true }
     );
@@ -401,16 +439,15 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.getCategoryDetailBySlug().validate(
+    } = CatalogApplicationValidator.getCategoryDetailBySlug().validate(
       { slug },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getCategoryDetailBySlug",
+        message: `Parameter Validation warrnings for application > Catalog > getCategoryDetailBySlug \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -426,12 +463,18 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.CategoryMetaResponse().validate(response, {
+    } = CatalogApplicationModel.CategoryMetaResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -439,25 +482,32 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getCategoryDetailBySlug",
+        message: `Response Validation Warnnings for application > Catalog > getCategoryDetailBySlug \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.slug - A short, human-readable, URL-friendly
-   *   identifier of a collection. You can get slug value from the endpoint
-   *   /service/application/catalog/v1.0/collections/.
-   * @returns {Promise<CollectionDetailResponse>} - Success response
+   * @param {CatalogApplicationValidator.GetCollectionDetailBySlugParam} arg
+   *   - Arg object.
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CatalogApplicationModel.CollectionDetailResponse>} -
+   *   Success response
+   * @name getCollectionDetailBySlug
    * @summary: Get a particular collection
-   * @description: Get the details of a collection by its `slug`.
+   * @description: Get the details of a collection by its `slug`. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getCollectionDetailBySlug/).
    */
-  async getCollectionDetailBySlug({ slug } = {}) {
-    const { error } = CatalogValidator.getCollectionDetailBySlug().validate(
+  async getCollectionDetailBySlug(
+    { slug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogApplicationValidator.getCollectionDetailBySlug().validate(
       { slug },
       { abortEarly: false, allowUnknown: true }
     );
@@ -468,16 +518,15 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.getCollectionDetailBySlug().validate(
+    } = CatalogApplicationValidator.getCollectionDetailBySlug().validate(
       { slug },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getCollectionDetailBySlug",
+        message: `Parameter Validation warrnings for application > Catalog > getCollectionDetailBySlug \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -493,64 +542,61 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.CollectionDetailResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = CatalogApplicationModel.CollectionDetailResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getCollectionDetailBySlug",
+        message: `Response Validation Warnnings for application > Catalog > getCollectionDetailBySlug \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.slug - A short, human-readable, URL-friendly
-   *   identifier of a collection. You can get slug value from the endpoint
-   *   /service/application/catalog/v1.0/collections/.
-   * @param {string} [arg.f] - The search filter parameters. Filter parameters
-   *   will be passed in f parameter as shown in the example below. Double
-   *   Pipe (||) denotes the OR condition, whereas Triple-colon (:::)
-   *   indicates a new filter paramater applied as an AND condition.
-   * @param {string} [arg.q] - The search query for entering partial or full
-   *   name of product, brand, category, or collection.
-   * @param {boolean} [arg.filters] - This is a boolean value, True for
-   *   fetching all filter parameters and False for disabling the filter parameters.
-   * @param {string} [arg.sortOn] - The order in which the list of products
-   *   should be sorted, e.g. popularity, price, latest and discount, in
-   *   either ascending or descending order. See the supported values below.
-   * @param {string} [arg.pageId] - Page ID to retrieve next set of results.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-   * @param {number} [arg.pageNo] - Page Number to retrieve next set of results.
-   * @param {string} [arg.pageType] - Page Type to retrieve set of results can
-   *   be cursor or number.
-   * @returns {Promise<ProductListingResponse>} - Success response
+   * @param {CatalogApplicationValidator.GetCollectionItemsBySlugParam} arg -
+   *   Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CatalogApplicationModel.ProductListingResponse>} -
+   *   Success response
+   * @name getCollectionItemsBySlug
    * @summary: Get the items in a collection
-   * @description: Get items in a collection specified by its `slug`.
+   * @description: Get items in a collection specified by its `slug`. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getCollectionItemsBySlug/).
    */
-  async getCollectionItemsBySlug({
-    slug,
-    f,
-    q,
-    filters,
-    sortOn,
-    pageId,
-    pageSize,
-    pageNo,
-    pageType,
-  } = {}) {
-    const { error } = CatalogValidator.getCollectionItemsBySlug().validate(
+  async getCollectionItemsBySlug(
+    {
+      slug,
+      f,
+      q,
+      filters,
+      sortOn,
+      pageId,
+      pageSize,
+      pageNo,
+      pageType,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogApplicationValidator.getCollectionItemsBySlug().validate(
       { slug, f, q, filters, sortOn, pageId, pageSize, pageNo, pageType },
       { abortEarly: false, allowUnknown: true }
     );
@@ -561,16 +607,15 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.getCollectionItemsBySlug().validate(
+    } = CatalogApplicationValidator.getCollectionItemsBySlug().validate(
       { slug, f, q, filters, sortOn, pageId, pageSize, pageNo, pageType },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getCollectionItemsBySlug",
+        message: `Parameter Validation warrnings for application > Catalog > getCollectionItemsBySlug \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -594,22 +639,27 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.ProductListingResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = CatalogApplicationModel.ProductListingResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getCollectionItemsBySlug",
+        message: `Response Validation Warnnings for application > Catalog > getCollectionItemsBySlug \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -632,6 +682,7 @@ class Catalog {
    *   should be sorted, e.g. popularity, price, latest and discount, in
    *   either ascending or descending order. See the supported values below.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+   * @returns {Paginator<CatalogApplicationModel.ProductListingResponse>}
    * @summary: Get the items in a collection
    * @description: Get items in a collection specified by its `slug`.
    */
@@ -670,18 +721,21 @@ class Catalog {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-   * @param {string[]} [arg.tag] - List of tags to filter collections
-   * @param {string} [arg.q] - Name of the collection to filter collection
-   * @returns {Promise<GetCollectionListingResponse>} - Success response
+   * @param {CatalogApplicationValidator.GetCollectionsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CatalogApplicationModel.GetCollectionListingResponse>}
+   *   - Success response
+   *
+   * @name getCollections
    * @summary: List all the collections
-   * @description: Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
+   * @description: Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getCollections/).
    */
-  async getCollections({ pageNo, pageSize, tag, q } = {}) {
-    const { error } = CatalogValidator.getCollections().validate(
+  async getCollections(
+    { pageNo, pageSize, tag, q, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogApplicationValidator.getCollections().validate(
       { pageNo, pageSize, tag, q },
       { abortEarly: false, allowUnknown: true }
     );
@@ -690,16 +744,17 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getCollections().validate(
+    const {
+      error: warrning,
+    } = CatalogApplicationValidator.getCollections().validate(
       { pageNo, pageSize, tag, q },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getCollections",
+        message: `Parameter Validation warrnings for application > Catalog > getCollections \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -719,22 +774,27 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.GetCollectionListingResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = CatalogApplicationModel.GetCollectionListingResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getCollections",
+        message: `Response Validation Warnnings for application > Catalog > getCollections \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -745,6 +805,7 @@ class Catalog {
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
    * @param {string[]} [arg.tag] - List of tags to filter collections
    * @param {string} [arg.q] - Name of the collection to filter collection
+   * @returns {Paginator<CatalogApplicationModel.GetCollectionListingResponse>}
    * @summary: List all the collections
    * @description: Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently.
    */
@@ -771,18 +832,25 @@ class Catalog {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.slug - A short, human-readable, URL-friendly
-   *   identifier of a product. You can get slug value from the endpoint
-   *   /service/application/catalog/v1.0/products/
-   * @returns {Promise<ProductFrequentlyComparedSimilarResponse>} - Success response
+   * @param {CatalogApplicationValidator.GetComparedFrequentlyProductBySlugParam} arg
+   *   - Arg object.
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CatalogApplicationModel.ProductFrequentlyComparedSimilarResponse>}
+   *   - Success response
+   *
+   * @name getComparedFrequentlyProductBySlug
    * @summary: Get comparison between frequently compared products with the given product
-   * @description: Use this API to compare a given product automatically with products that are frequently compared with it. Only one slug is needed.
+   * @description: Use this API to compare a given product automatically with products that are frequently compared with it. Only one slug is needed. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getComparedFrequentlyProductBySlug/).
    */
-  async getComparedFrequentlyProductBySlug({ slug } = {}) {
+  async getComparedFrequentlyProductBySlug(
+    { slug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
-    } = CatalogValidator.getComparedFrequentlyProductBySlug().validate(
+    } = CatalogApplicationValidator.getComparedFrequentlyProductBySlug().validate(
       { slug },
       { abortEarly: false, allowUnknown: true }
     );
@@ -793,17 +861,15 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.getComparedFrequentlyProductBySlug().validate(
+    } = CatalogApplicationValidator.getComparedFrequentlyProductBySlug().validate(
       { slug },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message:
-          "Parameter Validation warrnings for getComparedFrequentlyProductBySlug",
+        message: `Parameter Validation warrnings for application > Catalog > getComparedFrequentlyProductBySlug \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -819,36 +885,46 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.ProductFrequentlyComparedSimilarResponse().validate(
-      response,
+    } = CatalogApplicationModel.ProductFrequentlyComparedSimilarResponse().validate(
+      responseData,
       { abortEarly: false, allowUnknown: false }
     );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message:
-          "Response Validation Warnnings for getComparedFrequentlyProductBySlug",
+        message: `Response Validation Warnnings for application > Catalog > getComparedFrequentlyProductBySlug \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<DepartmentResponse>} - Success response
+   * @param {CatalogApplicationValidator.GetDepartmentsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CatalogApplicationModel.DepartmentResponse>} - Success response
+   * @name getDepartments
    * @summary: List all the departments
-   * @description: Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the departments. If successful, returns the list of departments specified in `DepartmentResponse`
+   * @description: Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the departments. If successful, returns the list of departments specified in `DepartmentResponse` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getDepartments/).
    */
-  async getDepartments({} = {}) {
-    const { error } = CatalogValidator.getDepartments().validate(
+  async getDepartments(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogApplicationValidator.getDepartments().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -857,16 +933,17 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getDepartments().validate(
+    const {
+      error: warrning,
+    } = CatalogApplicationValidator.getDepartments().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getDepartments",
+        message: `Parameter Validation warrnings for application > Catalog > getDepartments \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -882,12 +959,18 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.DepartmentResponse().validate(response, {
+    } = CatalogApplicationModel.DepartmentResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -895,24 +978,27 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getDepartments",
+        message: `Response Validation Warnnings for application > Catalog > getDepartments \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.collectionType] - Type of collection, i.e. products,
-   *   brands, collections.
-   * @returns {Promise<FollowIdsResponse>} - Success response
+   * @param {CatalogApplicationValidator.GetFollowIdsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CatalogApplicationModel.FollowIdsResponse>} - Success response
+   * @name getFollowIds
    * @summary: Get the IDs of followed products, brands and collections.
-   * @description: You can get the IDs of all the followed Products, Brands and Collections. Pass collection_type as query parameter to fetch specific Ids
+   * @description: You can get the IDs of all the followed Products, Brands and Collections. Pass collection_type as query parameter to fetch specific Ids - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getFollowIds/).
    */
-  async getFollowIds({ collectionType } = {}) {
-    const { error } = CatalogValidator.getFollowIds().validate(
+  async getFollowIds(
+    { collectionType, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogApplicationValidator.getFollowIds().validate(
       { collectionType },
       { abortEarly: false, allowUnknown: true }
     );
@@ -921,16 +1007,17 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getFollowIds().validate(
+    const {
+      error: warrning,
+    } = CatalogApplicationValidator.getFollowIds().validate(
       { collectionType },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getFollowIds",
+        message: `Parameter Validation warrnings for application > Catalog > getFollowIds \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -947,12 +1034,18 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.FollowIdsResponse().validate(response, {
+    } = CatalogApplicationModel.FollowIdsResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -960,26 +1053,30 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getFollowIds",
+        message: `Response Validation Warnnings for application > Catalog > getFollowIds \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.collectionType - Type of collection followed, i.e.
-   *   products, brands, or collections.
-   * @param {string} [arg.pageId] - Page ID to retrieve next set of results.
-   * @param {number} [arg.pageSize] - Page ID to retrieve next set of results.
-   * @returns {Promise<GetFollowListingResponse>} - Success response
+   * @param {CatalogApplicationValidator.GetFollowedListingParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CatalogApplicationModel.GetFollowListingResponse>} -
+   *   Success response
+   * @name getFollowedListing
    * @summary: Get a list of followed Products, Brands, Collections
-   * @description: Users can follow a product they like. This API retrieves the products the user have followed.
+   * @description: Users can follow a product they like. This API retrieves the products the user have followed. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getFollowedListing/).
    */
-  async getFollowedListing({ collectionType, pageId, pageSize } = {}) {
-    const { error } = CatalogValidator.getFollowedListing().validate(
+  async getFollowedListing(
+    { collectionType, pageId, pageSize, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogApplicationValidator.getFollowedListing().validate(
       { collectionType, pageId, pageSize },
       { abortEarly: false, allowUnknown: true }
     );
@@ -988,16 +1085,17 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getFollowedListing().validate(
+    const {
+      error: warrning,
+    } = CatalogApplicationValidator.getFollowedListing().validate(
       { collectionType, pageId, pageSize },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getFollowedListing",
+        message: `Parameter Validation warrnings for application > Catalog > getFollowedListing \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1015,22 +1113,27 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.GetFollowListingResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = CatalogApplicationModel.GetFollowListingResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getFollowedListing",
+        message: `Response Validation Warnnings for application > Catalog > getFollowedListing \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -1041,6 +1144,7 @@ class Catalog {
    * @param {string} arg.collectionType - Type of collection followed, i.e.
    *   products, brands, or collections.
    * @param {number} [arg.pageSize] - Page ID to retrieve next set of results.
+   * @returns {Paginator<CatalogApplicationModel.GetFollowListingResponse>}
    * @summary: Get a list of followed Products, Brands, Collections
    * @description: Users can follow a product they like. This API retrieves the products the user have followed.
    */
@@ -1066,16 +1170,22 @@ class Catalog {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.collectionType - Type of collection, i.e. products,
-   *   brands, or collections.
-   * @param {string} arg.collectionId - The ID of the collection type.
-   * @returns {Promise<FollowerCountResponse>} - Success response
+   * @param {CatalogApplicationValidator.GetFollowerCountByIdParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CatalogApplicationModel.FollowerCountResponse>} -
+   *   Success response
+   * @name getFollowerCountById
    * @summary: Get Follow Count
-   * @description: Get the total count of followers for a given collection type and collection ID.
+   * @description: Get the total count of followers for a given collection type and collection ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getFollowerCountById/).
    */
-  async getFollowerCountById({ collectionType, collectionId } = {}) {
-    const { error } = CatalogValidator.getFollowerCountById().validate(
+  async getFollowerCountById(
+    { collectionType, collectionId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogApplicationValidator.getFollowerCountById().validate(
       { collectionType, collectionId },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1086,16 +1196,15 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.getFollowerCountById().validate(
+    } = CatalogApplicationValidator.getFollowerCountById().validate(
       { collectionType, collectionId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getFollowerCountById",
+        message: `Parameter Validation warrnings for application > Catalog > getFollowerCountById \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1111,12 +1220,18 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.FollowerCountResponse().validate(response, {
+    } = CatalogApplicationModel.FollowerCountResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1124,27 +1239,27 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getFollowerCountById",
+        message: `Response Validation Warnnings for application > Catalog > getFollowerCountById \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.sortOn] - The order in which the list of products
-   *   should be sorted, e.g. popularity, price, latest and discount, in
-   *   either ascending or descending order.
-   * @param {string} [arg.pageId] - Page ID to retrieve next set of results.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-   * @returns {Promise<HomeListingResponse>} - Success response
+   * @param {CatalogApplicationValidator.GetHomeProductsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CatalogApplicationModel.HomeListingResponse>} - Success response
+   * @name getHomeProducts
    * @summary: List the products
-   * @description: List all the products associated with a brand, collection or category in a random order.
+   * @description: List all the products associated with a brand, collection or category in a random order. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getHomeProducts/).
    */
-  async getHomeProducts({ sortOn, pageId, pageSize } = {}) {
-    const { error } = CatalogValidator.getHomeProducts().validate(
+  async getHomeProducts(
+    { sortOn, pageId, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogApplicationValidator.getHomeProducts().validate(
       { sortOn, pageId, pageSize },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1153,16 +1268,17 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getHomeProducts().validate(
+    const {
+      error: warrning,
+    } = CatalogApplicationValidator.getHomeProducts().validate(
       { sortOn, pageId, pageSize },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getHomeProducts",
+        message: `Parameter Validation warrnings for application > Catalog > getHomeProducts \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1181,12 +1297,18 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.HomeListingResponse().validate(response, {
+    } = CatalogApplicationModel.HomeListingResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1194,9 +1316,8 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getHomeProducts",
+        message: `Response Validation Warnnings for application > Catalog > getHomeProducts \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -1208,6 +1329,7 @@ class Catalog {
    *   should be sorted, e.g. popularity, price, latest and discount, in
    *   either ascending or descending order.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+   * @returns {Paginator<CatalogApplicationModel.HomeListingResponse>}
    * @summary: List the products
    * @description: List all the products associated with a brand, collection or category in a random order.
    */
@@ -1233,32 +1355,31 @@ class Catalog {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results.
-   * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
-   * @param {string} [arg.q] - Search a store by its name or store_code.
-   * @param {string} [arg.city] - Search stores by the city in which they are situated.
-   * @param {number} [arg.range] - Use this to retrieve stores within a
-   *   particular range in meters, e.g. 10000, to indicate a 10km range
-   * @param {number} [arg.latitude] - Latitude of the location from where one
-   *   wants to retreive the nearest stores, e.g. 72.8691788
-   * @param {number} [arg.longitude] - Longitude of the location from where
-   *   one wants to retreive the nearest stores, e.g. 19.1174114
-   * @returns {Promise<ApplicationStoreListing>} - Success response
+   * @param {CatalogApplicationValidator.GetInStockLocationsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CatalogApplicationModel.ApplicationStoreListing>} -
+   *   Success response
+   * @name getInStockLocations
    * @summary: Get store meta information.
-   * @description: Use this API to get a list of stores in a specific application.
+   * @description: Use this API to get a list of stores in a specific application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getInStockLocations/).
    */
-  async getInStockLocations({
-    pageNo,
-    pageSize,
-    q,
-    city,
-    range,
-    latitude,
-    longitude,
-  } = {}) {
-    const { error } = CatalogValidator.getInStockLocations().validate(
+  async getInStockLocations(
+    {
+      pageNo,
+      pageSize,
+      q,
+      city,
+      range,
+      latitude,
+      longitude,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogApplicationValidator.getInStockLocations().validate(
       { pageNo, pageSize, q, city, range, latitude, longitude },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1267,16 +1388,17 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getInStockLocations().validate(
+    const {
+      error: warrning,
+    } = CatalogApplicationValidator.getInStockLocations().validate(
       { pageNo, pageSize, q, city, range, latitude, longitude },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getInStockLocations",
+        message: `Parameter Validation warrnings for application > Catalog > getInStockLocations \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1299,22 +1421,27 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.ApplicationStoreListing().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = CatalogApplicationModel.ApplicationStoreListing().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getInStockLocations",
+        message: `Response Validation Warnnings for application > Catalog > getInStockLocations \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -1331,6 +1458,7 @@ class Catalog {
    *   wants to retreive the nearest stores, e.g. 72.8691788
    * @param {number} [arg.longitude] - Longitude of the location from where
    *   one wants to retreive the nearest stores, e.g. 19.1174114
+   * @returns {Paginator<CatalogApplicationModel.ApplicationStoreListing>}
    * @summary: Get store meta information.
    * @description: Use this API to get a list of stores in a specific application.
    */
@@ -1367,14 +1495,21 @@ class Catalog {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} arg.locationId - Unique Location ID.
-   * @returns {Promise<StoreDetails>} - Success response
+   * @param {CatalogApplicationValidator.GetLocationDetailsByIdParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CatalogApplicationModel.StoreDetails>} - Success response
+   * @name getLocationDetailsById
    * @summary: Get store meta information.
-   * @description: Use this API to get meta details for a store.
+   * @description: Use this API to get meta details for a store. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getLocationDetailsById/).
    */
-  async getLocationDetailsById({ locationId } = {}) {
-    const { error } = CatalogValidator.getLocationDetailsById().validate(
+  async getLocationDetailsById(
+    { locationId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogApplicationValidator.getLocationDetailsById().validate(
       { locationId },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1385,16 +1520,15 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.getLocationDetailsById().validate(
+    } = CatalogApplicationValidator.getLocationDetailsById().validate(
       { locationId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getLocationDetailsById",
+        message: `Parameter Validation warrnings for application > Catalog > getLocationDetailsById \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1410,35 +1544,48 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
-    const { error: res_error } = CatalogModel.StoreDetails().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogApplicationModel.StoreDetails().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getLocationDetailsById",
+        message: `Response Validation Warnnings for application > Catalog > getLocationDetailsById \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.slug] - Product slug for which bundles need to be fetched.
-   * @param {string} [arg.id] - Product uid
-   * @returns {Promise<ProductBundle>} - Success response
+   * @param {CatalogApplicationValidator.GetProductBundlesBySlugParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CatalogApplicationModel.ProductBundle>} - Success response
+   * @name getProductBundlesBySlug
    * @summary: Get product bundles
-   * @description: Use this API to retrieve products bundles to the one specified by its slug.
+   * @description: Use this API to retrieve products bundles to the one specified by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductBundlesBySlug/).
    */
-  async getProductBundlesBySlug({ slug, id } = {}) {
-    const { error } = CatalogValidator.getProductBundlesBySlug().validate(
+  async getProductBundlesBySlug(
+    { slug, id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogApplicationValidator.getProductBundlesBySlug().validate(
       { slug, id },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1449,16 +1596,15 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.getProductBundlesBySlug().validate(
+    } = CatalogApplicationValidator.getProductBundlesBySlug().validate(
       { slug, id },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getProductBundlesBySlug",
+        message: `Parameter Validation warrnings for application > Catalog > getProductBundlesBySlug \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1476,36 +1622,51 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
-    const { error: res_error } = CatalogModel.ProductBundle().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogApplicationModel.ProductBundle().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getProductBundlesBySlug",
+        message: `Response Validation Warnnings for application > Catalog > getProductBundlesBySlug \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string[]} arg.slug - A short, human-readable, URL-friendly
-   *   identifier of a product. You can get slug value from the endpoint
-   *   /service/application/catalog/v1.0/products/.
-   * @returns {Promise<ProductsComparisonResponse>} - Success response
+   * @param {CatalogApplicationValidator.GetProductComparisonBySlugsParam} arg
+   *   - Arg object.
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CatalogApplicationModel.ProductsComparisonResponse>} -
+   *   Success response
+   * @name getProductComparisonBySlugs
    * @summary: Compare products
-   * @description: Use this API to compare the features of products belonging to the same category. Note that at least one slug is mandatory in the request query.
+   * @description: Use this API to compare the features of products belonging to the same category. Note that at least one slug is mandatory in the request query. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductComparisonBySlugs/).
    */
-  async getProductComparisonBySlugs({ slug } = {}) {
-    const { error } = CatalogValidator.getProductComparisonBySlugs().validate(
+  async getProductComparisonBySlugs(
+    { slug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogApplicationValidator.getProductComparisonBySlugs().validate(
       { slug },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1516,17 +1677,15 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.getProductComparisonBySlugs().validate(
+    } = CatalogApplicationValidator.getProductComparisonBySlugs().validate(
       { slug },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message:
-          "Parameter Validation warrnings for getProductComparisonBySlugs",
+        message: `Parameter Validation warrnings for application > Catalog > getProductComparisonBySlugs \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1543,39 +1702,48 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.ProductsComparisonResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = CatalogApplicationModel.ProductsComparisonResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message:
-          "Response Validation Warnnings for getProductComparisonBySlugs",
+        message: `Response Validation Warnnings for application > Catalog > getProductComparisonBySlugs \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.slug - A short, human-readable, URL-friendly
-   *   identifier of a product. You can get slug value from the endpoint
-   *   /service/application/catalog/v1.0/products/
-   * @returns {Promise<ProductDetail>} - Success response
+   * @param {CatalogApplicationValidator.GetProductDetailBySlugParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CatalogApplicationModel.ProductDetail>} - Success response
+   * @name getProductDetailBySlug
    * @summary: Get a product
-   * @description: Use this API to retrieve a product by its slug value.
+   * @description: Use this API to retrieve a product by its slug value. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductDetailBySlug/).
    */
-  async getProductDetailBySlug({ slug } = {}) {
-    const { error } = CatalogValidator.getProductDetailBySlug().validate(
+  async getProductDetailBySlug(
+    { slug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogApplicationValidator.getProductDetailBySlug().validate(
       { slug },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1586,16 +1754,15 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.getProductDetailBySlug().validate(
+    } = CatalogApplicationValidator.getProductDetailBySlug().validate(
       { slug },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getProductDetailBySlug",
+        message: `Parameter Validation warrnings for application > Catalog > getProductDetailBySlug \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1611,45 +1778,51 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
-    const { error: res_error } = CatalogModel.ProductDetail().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogApplicationModel.ProductDetail().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getProductDetailBySlug",
+        message: `Response Validation Warnnings for application > Catalog > getProductDetailBySlug \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.slug - A short, human-readable, URL-friendly
-   *   identifier of a product. You can get slug value from the endpoint
-   *   /service/application/catalog/v1.0/products/
-   * @param {string} arg.size - A string indicating the size of the product,
-   *   e.g. S, M, XL. You can get slug value from the endpoint
-   *   /service/application/catalog/v1.0/products/sizes
-   * @param {number} [arg.storeId] - The ID of the store that is selling the
-   *   product, e.g. 1,2,3.
-   * @param {string} [arg.pincode] - The PIN Code of the area near which the
-   *   selling locations should be searched, e.g. 400059.
-   * @param {number} [arg.moq] - An Integer indication the Minimum Order
-   *   Quantity of a product, e.g. 100.
-   * @returns {Promise<ProductSizePriceResponseV3>} - Success response
+   * @param {CatalogApplicationValidator.GetProductPriceBySlugParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CatalogApplicationModel.ProductSizePriceResponseV3>} -
+   *   Success response
+   * @name getProductPriceBySlug
    * @summary: Get the price of a product size at a PIN Code
-   * @description: Prices may vary for different sizes of a product. Use this API to retrieve the price of a product size at all the selling locations near to a PIN Code.
+   * @description: Prices may vary for different sizes of a product. Use this API to retrieve the price of a product size at all the selling locations near to a PIN Code. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductPriceBySlug/).
    */
-  async getProductPriceBySlug({ slug, size, storeId, pincode, moq } = {}) {
-    const { error } = CatalogValidator.getProductPriceBySlug().validate(
+  async getProductPriceBySlug(
+    { slug, size, storeId, pincode, moq, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogApplicationValidator.getProductPriceBySlug().validate(
       { slug, size, storeId, pincode, moq },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1660,16 +1833,15 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.getProductPriceBySlug().validate(
+    } = CatalogApplicationValidator.getProductPriceBySlug().validate(
       { slug, size, storeId, pincode, moq },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getProductPriceBySlug",
+        message: `Parameter Validation warrnings for application > Catalog > getProductPriceBySlug \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1688,55 +1860,52 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.ProductSizePriceResponseV3().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = CatalogApplicationModel.ProductSizePriceResponseV3().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getProductPriceBySlug",
+        message: `Response Validation Warnnings for application > Catalog > getProductPriceBySlug \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.slug - A short, human-readable, URL-friendly
-   *   identifier of a product. You can get slug value from the endpoint
-   *   /service/application/catalog/v1.0/products/
-   * @param {string} arg.size - A string indicating the size of the product,
-   *   e.g. S, M, XL. You can get slug value from the endpoint
-   *   /service/application/catalog/v1.0/products/sizes
-   * @param {string} [arg.pincode] - The 6-digit PIN Code of the area near
-   *   which the selling locations should be searched, e.g. 400059
-   * @param {string} [arg.strategy] - Sort stores on the basis of strategy.
-   *   eg, fast-delivery, low-price, optimal.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-   * @returns {Promise<ProductSizeSellersResponseV3>} - Success response
+   * @param {CatalogApplicationValidator.GetProductSellersBySlugParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CatalogApplicationModel.ProductSizeSellersResponseV3>}
+   *   - Success response
+   *
+   * @name getProductSellersBySlug
    * @summary: Get the sellers of a product size at a PIN Code
-   * @description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
+   * @description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductSellersBySlug/).
    */
-  async getProductSellersBySlug({
-    slug,
-    size,
-    pincode,
-    strategy,
-    pageNo,
-    pageSize,
-  } = {}) {
-    const { error } = CatalogValidator.getProductSellersBySlug().validate(
+  async getProductSellersBySlug(
+    { slug, size, pincode, strategy, pageNo, pageSize, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogApplicationValidator.getProductSellersBySlug().validate(
       { slug, size, pincode, strategy, pageNo, pageSize },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1747,16 +1916,15 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.getProductSellersBySlug().validate(
+    } = CatalogApplicationValidator.getProductSellersBySlug().validate(
       { slug, size, pincode, strategy, pageNo, pageSize },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getProductSellersBySlug",
+        message: `Parameter Validation warrnings for application > Catalog > getProductSellersBySlug \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1776,22 +1944,27 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.ProductSizeSellersResponseV3().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = CatalogApplicationModel.ProductSizeSellersResponseV3().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getProductSellersBySlug",
+        message: `Response Validation Warnnings for application > Catalog > getProductSellersBySlug \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -1810,6 +1983,7 @@ class Catalog {
    * @param {string} [arg.strategy] - Sort stores on the basis of strategy.
    *   eg, fast-delivery, low-price, optimal.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+   * @returns {Paginator<CatalogApplicationModel.ProductSizeSellersResponseV3>}
    * @summary: Get the sellers of a product size at a PIN Code
    * @description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
    */
@@ -1844,18 +2018,21 @@ class Catalog {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.slug - A short, human-readable, URL-friendly
-   *   identifier of a product. You can get slug value from the endpoint
-   *   /service/application/catalog/v1.0/products/
-   * @param {number} [arg.storeId] - The ID of the store that is selling the
-   *   product, e.g. 1,2,3.
-   * @returns {Promise<ProductSizes>} - Success response
+   * @param {CatalogApplicationValidator.GetProductSizesBySlugParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CatalogApplicationModel.ProductSizes>} - Success response
+   * @name getProductSizesBySlug
    * @summary: Get the sizes of a product
-   * @description: A product can have multiple sizes. Use this API to fetch all the available sizes of a product.
+   * @description: A product can have multiple sizes. Use this API to fetch all the available sizes of a product. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductSizesBySlug/).
    */
-  async getProductSizesBySlug({ slug, storeId } = {}) {
-    const { error } = CatalogValidator.getProductSizesBySlug().validate(
+  async getProductSizesBySlug(
+    { slug, storeId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogApplicationValidator.getProductSizesBySlug().validate(
       { slug, storeId },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1866,16 +2043,15 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.getProductSizesBySlug().validate(
+    } = CatalogApplicationValidator.getProductSizesBySlug().validate(
       { slug, storeId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getProductSizesBySlug",
+        message: `Parameter Validation warrnings for application > Catalog > getProductSizesBySlug \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1892,42 +2068,49 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
-    const { error: res_error } = CatalogModel.ProductSizes().validate(
-      response,
-      { abortEarly: false, allowUnknown: false }
-    );
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogApplicationModel.ProductSizes().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getProductSizesBySlug",
+        message: `Response Validation Warnnings for application > Catalog > getProductSizesBySlug \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.itemId] - The Item ID of the product (Max. 50 allowed)
-   * @param {string} [arg.alu] - ALU of the product (limited upto 50 ALU
-   *   identifier in a single request)
-   * @param {string} [arg.skuCode] - Stock-keeping Unit of the product
-   *   (limited upto 50 SKU Code in a single request)
-   * @param {string} [arg.ean] - European Article Number of the product
-   *   (limited upto 50 EAN identifier in a single request)
-   * @param {string} [arg.upc] - Universal Product Code of the product
-   *   (limited upto 50 UPC identifier in a single request)
-   * @returns {Promise<ProductStockStatusResponse>} - Success response
+   * @param {CatalogApplicationValidator.GetProductStockByIdsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CatalogApplicationModel.ProductStockStatusResponse>} -
+   *   Success response
+   * @name getProductStockByIds
    * @summary: Get the stock of a product
-   * @description: Retrieve the available stock of the products. Use this API to retrieve stock of multiple products (up to 50) at a time.
+   * @description: Retrieve the available stock of the products. Use this API to retrieve stock of multiple products (up to 50) at a time. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductStockByIds/).
    */
-  async getProductStockByIds({ itemId, alu, skuCode, ean, upc } = {}) {
-    const { error } = CatalogValidator.getProductStockByIds().validate(
+  async getProductStockByIds(
+    { itemId, alu, skuCode, ean, upc, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogApplicationValidator.getProductStockByIds().validate(
       { itemId, alu, skuCode, ean, upc },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1938,16 +2121,15 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.getProductStockByIds().validate(
+    } = CatalogApplicationValidator.getProductStockByIds().validate(
       { itemId, alu, skuCode, ean, upc },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getProductStockByIds",
+        message: `Parameter Validation warrnings for application > Catalog > getProductStockByIds \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -1968,38 +2150,50 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.ProductStockStatusResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = CatalogApplicationModel.ProductStockStatusResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getProductStockByIds",
+        message: `Response Validation Warnnings for application > Catalog > getProductStockByIds \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.timestamp - Timestamp in UTC format (2020-07-23T10:27:50Z)
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-   * @param {string} [arg.pageId] - Page ID to retrieve next set of results.
-   * @returns {Promise<ProductStockPolling>} - Success response
+   * @param {CatalogApplicationValidator.GetProductStockForTimeByIdsParam} arg
+   *   - Arg object.
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CatalogApplicationModel.ProductStockPolling>} - Success response
+   * @name getProductStockForTimeByIds
    * @summary: Get the stock of a product
-   * @description: Retrieve the available stock of the products. Use this API to get the stock status of products whose inventory is updated at the specified time
+   * @description: Retrieve the available stock of the products. Use this API to get the stock status of products whose inventory is updated at the specified time - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductStockForTimeByIds/).
    */
-  async getProductStockForTimeByIds({ timestamp, pageSize, pageId } = {}) {
-    const { error } = CatalogValidator.getProductStockForTimeByIds().validate(
+  async getProductStockForTimeByIds(
+    { timestamp, pageSize, pageId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogApplicationValidator.getProductStockForTimeByIds().validate(
       { timestamp, pageSize, pageId },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2010,17 +2204,15 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.getProductStockForTimeByIds().validate(
+    } = CatalogApplicationValidator.getProductStockForTimeByIds().validate(
       { timestamp, pageSize, pageId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message:
-          "Parameter Validation warrnings for getProductStockForTimeByIds",
+        message: `Parameter Validation warrnings for application > Catalog > getProductStockForTimeByIds \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2039,12 +2231,18 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.ProductStockPolling().validate(response, {
+    } = CatalogApplicationModel.ProductStockPolling().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2052,10 +2250,8 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message:
-          "Response Validation Warnnings for getProductStockForTimeByIds",
+        message: `Response Validation Warnnings for application > Catalog > getProductStockForTimeByIds \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -2065,6 +2261,7 @@ class Catalog {
    * @param {Object} arg - Arg object.
    * @param {string} arg.timestamp - Timestamp in UTC format (2020-07-23T10:27:50Z)
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+   * @returns {Paginator<CatalogApplicationModel.ProductStockPolling>}
    * @summary: Get the stock of a product
    * @description: Retrieve the available stock of the products. Use this API to get the stock status of products whose inventory is updated at the specified time
    */
@@ -2090,16 +2287,23 @@ class Catalog {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.slug - A short, human-readable, URL-friendly
-   *   identifier of a product. You can get slug value from the endpoint
-   *   /service/application/catalog/v1.0/products/
-   * @returns {Promise<ProductVariantsResponse>} - Success response
+   * @param {CatalogApplicationValidator.GetProductVariantsBySlugParam} arg -
+   *   Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CatalogApplicationModel.ProductVariantsResponse>} -
+   *   Success response
+   * @name getProductVariantsBySlug
    * @summary: Get variant of a particular product
-   * @description: A product can have a different type of variants such as colour, shade, memory. Use this API to fetch all the available variants of a product using its slug.
+   * @description: A product can have a different type of variants such as colour, shade, memory. Use this API to fetch all the available variants of a product using its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductVariantsBySlug/).
    */
-  async getProductVariantsBySlug({ slug } = {}) {
-    const { error } = CatalogValidator.getProductVariantsBySlug().validate(
+  async getProductVariantsBySlug(
+    { slug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogApplicationValidator.getProductVariantsBySlug().validate(
       { slug },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2110,16 +2314,15 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.getProductVariantsBySlug().validate(
+    } = CatalogApplicationValidator.getProductVariantsBySlug().validate(
       { slug },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getProductVariantsBySlug",
+        message: `Parameter Validation warrnings for application > Catalog > getProductVariantsBySlug \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2135,60 +2338,57 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.ProductVariantsResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = CatalogApplicationModel.ProductVariantsResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getProductVariantsBySlug",
+        message: `Response Validation Warnnings for application > Catalog > getProductVariantsBySlug \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} [arg.q] - The search query for entering partial or full
-   *   name of product, brand, category, or collection.
-   * @param {string} [arg.f] - The search filter parameters. Filter parameters
-   *   will be passed in f parameter as shown in the example below. Double
-   *   Pipe (||) denotes the OR condition, whereas Triple-colon (:::)
-   *   indicates a new filter paramater applied as an AND condition.
-   * @param {boolean} [arg.filters] - This is a boolean value, True for
-   *   fetching all filter parameters and False for disabling the filter parameters.
-   * @param {string} [arg.sortOn] - The order in which the list of products
-   *   should be sorted, e.g. popularity, price, latest and discount, in
-   *   either ascending or descending order. See the supported values below.
-   * @param {string} [arg.pageId] - Page ID to retrieve next set of results.
-   * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results.
-   * @param {string} [arg.pageType] - Available pagination types are cursor or number.
-   * @returns {Promise<ProductListingResponse>} - Success response
+   * @param {CatalogApplicationValidator.GetProductsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CatalogApplicationModel.ProductListingResponse>} -
+   *   Success response
+   * @name getProducts
    * @summary: Get all the products
-   * @description: Use this API to list all the products. You may choose a sort order or make arbitrary search queries by entering the product name, brand, category or collection.
+   * @description: Use this API to list all the products. You may choose a sort order or make arbitrary search queries by entering the product name, brand, category or collection. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProducts/).
    */
-  async getProducts({
-    q,
-    f,
-    filters,
-    sortOn,
-    pageId,
-    pageSize,
-    pageNo,
-    pageType,
-  } = {}) {
-    const { error } = CatalogValidator.getProducts().validate(
+  async getProducts(
+    {
+      q,
+      f,
+      filters,
+      sortOn,
+      pageId,
+      pageSize,
+      pageNo,
+      pageType,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogApplicationValidator.getProducts().validate(
       { q, f, filters, sortOn, pageId, pageSize, pageNo, pageType },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2197,16 +2397,17 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getProducts().validate(
+    const {
+      error: warrning,
+    } = CatalogApplicationValidator.getProducts().validate(
       { q, f, filters, sortOn, pageId, pageSize, pageNo, pageType },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getProducts",
+        message: `Parameter Validation warrnings for application > Catalog > getProducts \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2230,22 +2431,27 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.ProductListingResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = CatalogApplicationModel.ProductListingResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getProducts",
+        message: `Response Validation Warnnings for application > Catalog > getProducts \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -2265,6 +2471,7 @@ class Catalog {
    *   should be sorted, e.g. popularity, price, latest and discount, in
    *   either ascending or descending order. See the supported values below.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
+   * @returns {Paginator<CatalogApplicationModel.ProductListingResponse>}
    * @summary: Get all the products
    * @description: Use this API to list all the products. You may choose a sort order or make arbitrary search queries by entering the product name, brand, category or collection.
    */
@@ -2295,17 +2502,19 @@ class Catalog {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.q - The search query for entering partial or full
-   *   name of a product, brand or category. For example, if the given search
-   *   query `q` is _ski_, the relevant search suggestions could be _skirt_,
-   *   _ski shoes_, __skin cream_ etc.
-   * @returns {Promise<AutoCompleteResponse>} - Success response
+   * @param {CatalogApplicationValidator.GetSearchResultsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CatalogApplicationModel.AutoCompleteResponse>} - Success response
+   * @name getSearchResults
    * @summary: Get relevant suggestions for a search query
-   * @description: Retrieves a list of suggestions for a given search query. Each suggestion is a valid search term that's generated on the basis of query. This is particularly useful to enhance the user experience while using the search tool.
+   * @description: Retrieves a list of suggestions for a given search query. Each suggestion is a valid search term that's generated on the basis of query. This is particularly useful to enhance the user experience while using the search tool. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getSearchResults/).
    */
-  async getSearchResults({ q } = {}) {
-    const { error } = CatalogValidator.getSearchResults().validate(
+  async getSearchResults(
+    { q, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogApplicationValidator.getSearchResults().validate(
       { q },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2314,16 +2523,17 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getSearchResults().validate(
+    const {
+      error: warrning,
+    } = CatalogApplicationValidator.getSearchResults().validate(
       { q },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getSearchResults",
+        message: `Parameter Validation warrnings for application > Catalog > getSearchResults \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2340,12 +2550,18 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.AutoCompleteResponse().validate(response, {
+    } = CatalogApplicationModel.AutoCompleteResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2353,27 +2569,32 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getSearchResults",
+        message: `Response Validation Warnnings for application > Catalog > getSearchResults \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.slug - A short, human-readable, URL-friendly
-   *   identifier of a product. You can get slug value from the endpoint
-   *   /service/application/catalog/v1.0/products/
-   * @returns {Promise<ProductCompareResponse>} - Success response
+   * @param {CatalogApplicationValidator.GetSimilarComparisonProductBySlugParam} arg
+   *   - Arg object.
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CatalogApplicationModel.ProductCompareResponse>} -
+   *   Success response
+   * @name getSimilarComparisonProductBySlug
    * @summary: Get comparison between similar products
-   * @description: Use this API to compare a given product automatically with similar products. Only one slug is needed.
+   * @description: Use this API to compare a given product automatically with similar products. Only one slug is needed. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getSimilarComparisonProductBySlug/).
    */
-  async getSimilarComparisonProductBySlug({ slug } = {}) {
+  async getSimilarComparisonProductBySlug(
+    { slug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
-    } = CatalogValidator.getSimilarComparisonProductBySlug().validate(
+    } = CatalogApplicationValidator.getSimilarComparisonProductBySlug().validate(
       { slug },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2384,17 +2605,15 @@ class Catalog {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = CatalogValidator.getSimilarComparisonProductBySlug().validate(
+    } = CatalogApplicationValidator.getSimilarComparisonProductBySlug().validate(
       { slug },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message:
-          "Parameter Validation warrnings for getSimilarComparisonProductBySlug",
+        message: `Parameter Validation warrnings for application > Catalog > getSimilarComparisonProductBySlug \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2410,55 +2629,55 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.ProductCompareResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = CatalogApplicationModel.ProductCompareResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message:
-          "Response Validation Warnnings for getSimilarComparisonProductBySlug",
+        message: `Response Validation Warnnings for application > Catalog > getSimilarComparisonProductBySlug \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - The page number to navigate through the
-   *   given set of results.
-   * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
-   * @param {string} [arg.q] - Search a store by its name or store_code.
-   * @param {string} [arg.city] - Search stores by the city in which they are situated.
-   * @param {number} [arg.range] - Use this to retrieve stores within a
-   *   particular range in meters, e.g. 10000, to indicate a 10km range
-   * @param {number} [arg.latitude] - Latitude of the location from where one
-   *   wants to retreive the nearest stores, e.g. 72.8691788
-   * @param {number} [arg.longitude] - Longitude of the location from where
-   *   one wants to retreive the nearest stores, e.g. 19.1174114
-   * @returns {Promise<StoreListingResponse>} - Success response
+   * @param {CatalogApplicationValidator.GetStoresParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CatalogApplicationModel.StoreListingResponse>} - Success response
+   * @name getStores
    * @summary: Get store meta information.
-   * @description: Use this API to get a list of stores in a specific application.
+   * @description: Use this API to get a list of stores in a specific application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getStores/).
    */
-  async getStores({
-    pageNo,
-    pageSize,
-    q,
-    city,
-    range,
-    latitude,
-    longitude,
-  } = {}) {
-    const { error } = CatalogValidator.getStores().validate(
+  async getStores(
+    {
+      pageNo,
+      pageSize,
+      q,
+      city,
+      range,
+      latitude,
+      longitude,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogApplicationValidator.getStores().validate(
       { pageNo, pageSize, q, city, range, latitude, longitude },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2467,16 +2686,17 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.getStores().validate(
+    const {
+      error: warrning,
+    } = CatalogApplicationValidator.getStores().validate(
       { pageNo, pageSize, q, city, range, latitude, longitude },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getStores",
+        message: `Parameter Validation warrnings for application > Catalog > getStores \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2499,12 +2719,18 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.StoreListingResponse().validate(response, {
+    } = CatalogApplicationModel.StoreListingResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2512,9 +2738,8 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getStores",
+        message: `Response Validation Warnnings for application > Catalog > getStores \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
@@ -2531,6 +2756,7 @@ class Catalog {
    *   wants to retreive the nearest stores, e.g. 72.8691788
    * @param {number} [arg.longitude] - Longitude of the location from where
    *   one wants to retreive the nearest stores, e.g. 19.1174114
+   * @returns {Paginator<CatalogApplicationModel.StoreListingResponse>}
    * @summary: Get store meta information.
    * @description: Use this API to get a list of stores in a specific application.
    */
@@ -2560,16 +2786,19 @@ class Catalog {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.collectionType - Type of collection followed, i.e.
-   *   products, brands, or collections.
-   * @param {string} arg.collectionId - The ID of the collection type.
-   * @returns {Promise<FollowPostResponse>} - Success response
+   * @param {CatalogApplicationValidator.UnfollowByIdParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<CatalogApplicationModel.FollowPostResponse>} - Success response
+   * @name unfollowById
    * @summary: Unfollow an entity (product/brand/collection)
-   * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_.
+   * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/unfollowById/).
    */
-  async unfollowById({ collectionType, collectionId } = {}) {
-    const { error } = CatalogValidator.unfollowById().validate(
+  async unfollowById(
+    { collectionType, collectionId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogApplicationValidator.unfollowById().validate(
       { collectionType, collectionId },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2578,16 +2807,17 @@ class Catalog {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = CatalogValidator.unfollowById().validate(
+    const {
+      error: warrning,
+    } = CatalogApplicationValidator.unfollowById().validate(
       { collectionType, collectionId },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for unfollowById",
+        message: `Parameter Validation warrnings for application > Catalog > unfollowById \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -2603,12 +2833,18 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = CatalogModel.FollowPostResponse().validate(response, {
+    } = CatalogApplicationModel.FollowPostResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -2616,9 +2852,8 @@ class Catalog {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for unfollowById",
+        message: `Response Validation Warnnings for application > Catalog > unfollowById \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

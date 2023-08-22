@@ -6,6 +6,7 @@ const { sign } = require("./RequestSigner");
 const { FDKServerResponseError } = require("./FDKError");
 const { log, Logger, getLoggerLevel } = require("./Logger");
 const createCurl = require("./curlHelper");
+const packageJson = require("../../package.json");
 axios.defaults.withCredentials = true;
 
 function getTransformer(config) {
@@ -38,7 +39,7 @@ function requestInterceptorFn() {
     }
     const { host, pathname, search } = new URL(url);
     const { data, headers, method, params } = config;
-    headers["x-fp-sdk-version"] = "1.1.2";
+    headers["x-fp-sdk-version"] = packageJson.version;
     let querySearchObj = querystring.parse(search);
     querySearchObj = { ...querySearchObj, ...params };
     let queryParam = "";
@@ -122,7 +123,11 @@ fdkAxios.interceptors.response.use(
       message: response.data,
       url: response.config.url,
     });
-    return response.data; // IF 2XX then return response.data only
+
+    if (response.config.responseHeaders) {
+      return [response.data, response.headers];
+    }
+    return response.data;
   },
   function (error) {
     if (error.response) {

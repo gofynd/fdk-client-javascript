@@ -1,19 +1,323 @@
 const Joi = require("joi");
 
-const OrderModel = require("./OrderPlatformModel");
-class OrderValidator {
+const OrderPlatformModel = require("./OrderPlatformModel");
+
+/**
+ * @typedef AttachOrderUserParam
+ * @property {OrderPlatformModel.AttachOrderUser} body
+ */
+
+/**
+ * @typedef CheckOrderStatusParam
+ * @property {OrderPlatformModel.OrderStatus} body
+ */
+
+/**
+ * @typedef Click2CallParam
+ * @property {string} caller - Call Number
+ * @property {string} receiver - Receiver Number
+ * @property {string} bagId - Bag Id for the query
+ * @property {string} [callerId] - Caller Id
+ * @property {string} [method] - Provider Method to Call
+ */
+
+/**
+ * @typedef CreateChannelConfigParam
+ * @property {OrderPlatformModel.CreateChannelConfigData} body
+ */
+
+/**
+ * @typedef CreateOrderParam
+ * @property {OrderPlatformModel.CreateOrderAPI} body
+ */
+
+/**
+ * @typedef DispatchManifestParam
+ * @property {OrderPlatformModel.DispatchManifest} body
+ */
+
+/**
+ * @typedef DownloadBulkActionTemplateParam
+ * @property {string} [templateSlug] - Slug name of template to be downloaded
+ */
+
+/**
+ * @typedef DownloadLanesReportParam
+ * @property {OrderPlatformModel.BulkReportsDownloadRequest} body
+ */
+
+/**
+ * @typedef FetchCreditBalanceDetailParam
+ * @property {OrderPlatformModel.FetchCreditBalanceRequestPayload} body
+ */
+
+/**
+ * @typedef FetchRefundModeConfigParam
+ * @property {OrderPlatformModel.RefundModeConfigRequestPayload} body
+ */
+
+/**
+ * @typedef GeneratePOSReceiptByOrderIdParam
+ * @property {string} orderId
+ * @property {string} [shipmentId]
+ * @property {string} [documentType]
+ */
+
+/**
+ * @typedef GetAllowedStateTransitionParam
+ * @property {string} orderingChannel - Ordering channel
+ * @property {string} status - Current status of a shipment
+ */
+
+/**
+ * @typedef GetAnnouncementsParam
+ * @property {string} [date] - Date On which the announcement is Active (Date
+ *   should in ISO Datetime format IST Time)
+ */
+
+/**
+ * @typedef GetBagByIdParam
+ * @property {string} [bagId] - Id of bag
+ * @property {string} [channelBagId] - Id of application bag
+ * @property {string} [channelId] - Id of application
+ */
+
+/**
+ * @typedef GetBagsParam
+ * @property {string} [bagIds] - Comma separated values of bag ids
+ * @property {string} [shipmentIds] - Comma separated values of shipment ids
+ * @property {string} [orderIds] - Comma separated values of order ids
+ * @property {string} [channelBagIds] - Comma separated values of app bag ids
+ * @property {string} [channelShipmentIds] - Comma separated values of app shipment ids
+ * @property {string} [channelOrderIds] - Comma separated values of app order ids
+ * @property {string} [channelId] - Comma separated values of app ids
+ * @property {number} [pageNo] - Page number for paginated data
+ * @property {number} [pageSize] - Page size of data received per page
+ */
+
+/** @typedef GetBulkActionTemplateParam */
+
+/**
+ * @typedef GetBulkShipmentExcelFileParam
+ * @property {string} [salesChannels] - Comma separated values of sales channel ids
+ * @property {string} [dpIds] - Comma separated values of delivery partner ids
+ * @property {string} [fromDate] - Start Date in DD-MM-YYYY format
+ * @property {string} [toDate] - End Date in DD-MM-YYYY format
+ * @property {string} [stores] - Comma separated values of store ids
+ * @property {string} [tags] - Comma separated values of tags
+ * @property {string} [bagStatus] - Comma separated values of bag statuses
+ * @property {string} [paymentMethods] - Comma separated values of payment methods
+ * @property {string} [fileType] - File type to be downloaded
+ * @property {number} [timeToDispatch] - Sla breached or not breached
+ * @property {number} [pageNo]
+ * @property {number} [pageSize]
+ */
+
+/** @typedef GetChannelConfigParam */
+
+/**
+ * @typedef GetLaneConfigParam
+ * @property {string} [superLane] - Name of lane for which data is to be fetched
+ * @property {string} [groupEntity] - Name of group entity
+ * @property {string} [fromDate] - Start Date in DD-MM-YYYY format
+ * @property {string} [toDate] - End Date in DD-MM-YYYY format
+ * @property {string} [dpIds] - Comma separated values of delivery partner ids
+ * @property {string} [stores] - Comma separated values of store ids
+ * @property {string} [salesChannels]
+ * @property {string} [paymentMode] - Comma separated values of payment modes
+ * @property {string} [bagStatus] - Comma separated values of bag statuses
+ * @property {string} [searchType]
+ * @property {string} [searchValue]
+ * @property {string} [tags]
+ * @property {string} [timeToDispatch]
+ * @property {string} [paymentMethods]
+ * @property {boolean} [myOrders]
+ */
+
+/**
+ * @typedef GetOrderByIdParam
+ * @property {string} orderId
+ */
+
+/**
+ * @typedef GetOrdersParam
+ * @property {string} [lane] - Lane refers to a section where orders are
+ *   assigned, indicating its grouping
+ * @property {string} [searchType] - Search_type refers to the field that will
+ *   be used as the target for the search operation
+ * @property {string} [bagStatus] - Bag_status refers to status of the entity.
+ *   Filters orders based on the status.
+ * @property {string} [timeToDispatch] - Time_to_dispatch refers to estimated SLA time.
+ * @property {string} [paymentMethods]
+ * @property {string} [tags] - Tags refers to additional descriptive labels
+ *   associated with the order
+ * @property {string} [searchValue] - Search_value is matched against the field
+ *   specified by the search_type
+ * @property {string} [fromDate]
+ * @property {string} [toDate]
+ * @property {string} [dpIds] - Delivery Partner IDs to which shipments are assigned.
+ * @property {string} [stores]
+ * @property {string} [salesChannels]
+ * @property {number} [pageNo]
+ * @property {number} [pageSize]
+ * @property {boolean} [isPrioritySort]
+ * @property {string} [customMeta]
+ * @property {boolean} [myOrders]
+ */
+
+/** @typedef GetRoleBasedActionsParam */
+
+/**
+ * @typedef GetShipmentByIdParam
+ * @property {string} [channelShipmentId] - App Shipment Id
+ * @property {string} [shipmentId] - Shipment Id
+ */
+
+/**
+ * @typedef GetShipmentHistoryParam
+ * @property {string} [shipmentId] - Shipment Id
+ * @property {number} [bagId] - Bag/Product Id
+ */
+
+/**
+ * @typedef GetShipmentReasonsParam
+ * @property {string} shipmentId - ID of the shipment. An order may contain
+ *   multiple items and may get divided into one or more shipment, each having
+ *   its own ID.
+ * @property {string} bagId - ID of the bag. An order may contain multiple items
+ *   and may get divided into one or more shipment, each having its own ID.
+ * @property {string} state - State for which reasons are required.
+ */
+
+/**
+ * @typedef GetShipmentsParam
+ * @property {string} [lane] - Name of lane for which data is to be fetched
+ * @property {string} [bagStatus] - Comma separated values of bag statuses
+ * @property {boolean} [statusOverrideLane] - Use this flag to fetch by
+ *   bag_status and override lane
+ * @property {number} [timeToDispatch]
+ * @property {string} [searchType] - Search type key
+ * @property {string} [searchValue] - Search type value
+ * @property {string} [fromDate] - Start Date in DD-MM-YYYY format
+ * @property {string} [toDate] - End Date in DD-MM-YYYY format
+ * @property {string} [dpIds] - Comma separated values of delivery partner ids
+ * @property {string} [stores] - Comma separated values of store ids
+ * @property {string} [salesChannels] - Comma separated values of sales channel ids
+ * @property {number} [pageNo] - Page number for paginated data
+ * @property {number} [pageSize] - Page size of data received per page
+ * @property {boolean} [fetchActiveShipment] - Flag to fetch active shipments
+ * @property {boolean} [excludeLockedShipments] - Flag to fetch locked shipments
+ * @property {string} [paymentMethods] - Comma separated values of payment methods
+ * @property {string} [channelShipmentId] - App Shipment Id
+ * @property {string} [channelOrderId] - App Order Id
+ * @property {string} [customMeta]
+ * @property {string} [orderingChannel]
+ * @property {string} [companyAffiliateTag]
+ * @property {boolean} [myOrders]
+ * @property {string} [platformUserId]
+ * @property {string} [tags] - Comma separated values of tags
+ */
+
+/** @typedef GetStateTransitionMapParam */
+
+/**
+ * @typedef GetfiltersParam
+ * @property {string} view - Name of view
+ * @property {string} [groupEntity] - Name of group entity
+ */
+
+/**
+ * @typedef InvalidateShipmentCacheParam
+ * @property {OrderPlatformModel.InvalidateShipmentCachePayload} body
+ */
+
+/**
+ * @typedef OrderUpdateParam
+ * @property {OrderPlatformModel.PlatformOrderUpdate} body
+ */
+
+/**
+ * @typedef PostShipmentHistoryParam
+ * @property {OrderPlatformModel.PostShipmentHistory} body
+ */
+
+/**
+ * @typedef ProcessManifestParam
+ * @property {OrderPlatformModel.CreateOrderPayload} body
+ */
+
+/**
+ * @typedef ReassignLocationParam
+ * @property {OrderPlatformModel.StoreReassign} body
+ */
+
+/**
+ * @typedef SendSmsNinjaParam
+ * @property {OrderPlatformModel.SendSmsPayload} body
+ */
+
+/**
+ * @typedef SendUserMobileOTPParam
+ * @property {OrderPlatformModel.SendUserMobileOTP} body
+ */
+
+/**
+ * @typedef UpdateAddressParam
+ * @property {string} shipmentId
+ * @property {string} [name]
+ * @property {string} [address]
+ * @property {string} [addressType]
+ * @property {string} [pincode]
+ * @property {string} [phone]
+ * @property {string} [email]
+ * @property {string} [landmark]
+ * @property {string} addressCategory
+ * @property {string} [city]
+ * @property {string} [state]
+ * @property {string} [country]
+ */
+
+/**
+ * @typedef UpdatePackagingDimensionsParam
+ * @property {OrderPlatformModel.UpdatePackagingDimensionsPayload} body
+ */
+
+/**
+ * @typedef UpdateShipmentLockParam
+ * @property {OrderPlatformModel.UpdateShipmentLockPayload} body
+ */
+
+/**
+ * @typedef UpdateShipmentStatusParam
+ * @property {OrderPlatformModel.UpdateShipmentStatusRequest} body
+ */
+
+/**
+ * @typedef UploadConsentParam
+ * @property {OrderPlatformModel.UploadConsent} body
+ */
+
+/**
+ * @typedef VerifyMobileOTPParam
+ * @property {OrderPlatformModel.VerifyMobileOTP} body
+ */
+
+class OrderPlatformValidator {
+  /** @returns {AttachOrderUserParam} */
   static attachOrderUser() {
     return Joi.object({
-      body: OrderModel.AttachOrderUser().required(),
+      body: OrderPlatformModel.AttachOrderUser().required(),
     }).required();
   }
 
+  /** @returns {CheckOrderStatusParam} */
   static checkOrderStatus() {
     return Joi.object({
-      body: OrderModel.OrderStatus().required(),
+      body: OrderPlatformModel.OrderStatus().required(),
     }).required();
   }
 
+  /** @returns {Click2CallParam} */
   static click2Call() {
     return Joi.object({
       caller: Joi.string().allow("").required(),
@@ -24,48 +328,56 @@ class OrderValidator {
     }).required();
   }
 
+  /** @returns {CreateChannelConfigParam} */
   static createChannelConfig() {
     return Joi.object({
-      body: OrderModel.CreateChannelConfigData().required(),
+      body: OrderPlatformModel.CreateChannelConfigData().required(),
     }).required();
   }
 
+  /** @returns {CreateOrderParam} */
   static createOrder() {
     return Joi.object({
-      body: OrderModel.CreateOrderAPI().required(),
+      body: OrderPlatformModel.CreateOrderAPI().required(),
     }).required();
   }
 
+  /** @returns {DispatchManifestParam} */
   static dispatchManifest() {
     return Joi.object({
-      body: OrderModel.DispatchManifest().required(),
+      body: OrderPlatformModel.DispatchManifest().required(),
     }).required();
   }
 
+  /** @returns {DownloadBulkActionTemplateParam} */
   static downloadBulkActionTemplate() {
     return Joi.object({
       templateSlug: Joi.string().allow(""),
     }).required();
   }
 
+  /** @returns {DownloadLanesReportParam} */
   static downloadLanesReport() {
     return Joi.object({
-      body: OrderModel.BulkReportsDownloadRequest().required(),
+      body: OrderPlatformModel.BulkReportsDownloadRequest().required(),
     }).required();
   }
 
+  /** @returns {FetchCreditBalanceDetailParam} */
   static fetchCreditBalanceDetail() {
     return Joi.object({
-      body: OrderModel.FetchCreditBalanceRequestPayload().required(),
+      body: OrderPlatformModel.FetchCreditBalanceRequestPayload().required(),
     }).required();
   }
 
+  /** @returns {FetchRefundModeConfigParam} */
   static fetchRefundModeConfig() {
     return Joi.object({
-      body: OrderModel.RefundModeConfigRequestPayload().required(),
+      body: OrderPlatformModel.RefundModeConfigRequestPayload().required(),
     }).required();
   }
 
+  /** @returns {GeneratePOSReceiptByOrderIdParam} */
   static generatePOSReceiptByOrderId() {
     return Joi.object({
       orderId: Joi.string().allow("").required(),
@@ -74,6 +386,7 @@ class OrderValidator {
     }).required();
   }
 
+  /** @returns {GetAllowedStateTransitionParam} */
   static getAllowedStateTransition() {
     return Joi.object({
       orderingChannel: Joi.string().allow("").required(),
@@ -81,12 +394,14 @@ class OrderValidator {
     }).required();
   }
 
+  /** @returns {GetAnnouncementsParam} */
   static getAnnouncements() {
     return Joi.object({
       date: Joi.string().allow(""),
     }).required();
   }
 
+  /** @returns {GetBagByIdParam} */
   static getBagById() {
     return Joi.object({
       bagId: Joi.string().allow(""),
@@ -95,6 +410,7 @@ class OrderValidator {
     }).required();
   }
 
+  /** @returns {GetBagsParam} */
   static getBags() {
     return Joi.object({
       bagIds: Joi.string().allow(""),
@@ -109,10 +425,12 @@ class OrderValidator {
     }).required();
   }
 
+  /** @returns {GetBulkActionTemplateParam} */
   static getBulkActionTemplate() {
     return Joi.object({}).required();
   }
 
+  /** @returns {GetBulkShipmentExcelFileParam} */
   static getBulkShipmentExcelFile() {
     return Joi.object({
       salesChannels: Joi.string().allow(""),
@@ -130,10 +448,12 @@ class OrderValidator {
     }).required();
   }
 
+  /** @returns {GetChannelConfigParam} */
   static getChannelConfig() {
     return Joi.object({}).required();
   }
 
+  /** @returns {GetLaneConfigParam} */
   static getLaneConfig() {
     return Joi.object({
       superLane: Joi.string().allow(""),
@@ -154,12 +474,14 @@ class OrderValidator {
     }).required();
   }
 
+  /** @returns {GetOrderByIdParam} */
   static getOrderById() {
     return Joi.object({
       orderId: Joi.string().allow("").required(),
     }).required();
   }
 
+  /** @returns {GetOrdersParam} */
   static getOrders() {
     return Joi.object({
       lane: Joi.string().allow(""),
@@ -182,10 +504,12 @@ class OrderValidator {
     }).required();
   }
 
+  /** @returns {GetRoleBasedActionsParam} */
   static getRoleBasedActions() {
     return Joi.object({}).required();
   }
 
+  /** @returns {GetShipmentByIdParam} */
   static getShipmentById() {
     return Joi.object({
       channelShipmentId: Joi.string().allow(""),
@@ -193,6 +517,7 @@ class OrderValidator {
     }).required();
   }
 
+  /** @returns {GetShipmentHistoryParam} */
   static getShipmentHistory() {
     return Joi.object({
       shipmentId: Joi.string().allow(""),
@@ -200,6 +525,7 @@ class OrderValidator {
     }).required();
   }
 
+  /** @returns {GetShipmentReasonsParam} */
   static getShipmentReasons() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
@@ -208,6 +534,7 @@ class OrderValidator {
     }).required();
   }
 
+  /** @returns {GetShipmentsParam} */
   static getShipments() {
     return Joi.object({
       lane: Joi.string().allow(""),
@@ -237,10 +564,12 @@ class OrderValidator {
     }).required();
   }
 
+  /** @returns {GetStateTransitionMapParam} */
   static getStateTransitionMap() {
     return Joi.object({}).required();
   }
 
+  /** @returns {GetfiltersParam} */
   static getfilters() {
     return Joi.object({
       view: Joi.string().allow("").required(),
@@ -248,48 +577,56 @@ class OrderValidator {
     }).required();
   }
 
+  /** @returns {InvalidateShipmentCacheParam} */
   static invalidateShipmentCache() {
     return Joi.object({
-      body: OrderModel.InvalidateShipmentCachePayload().required(),
+      body: OrderPlatformModel.InvalidateShipmentCachePayload().required(),
     }).required();
   }
 
+  /** @returns {OrderUpdateParam} */
   static orderUpdate() {
     return Joi.object({
-      body: OrderModel.PlatformOrderUpdate().required(),
+      body: OrderPlatformModel.PlatformOrderUpdate().required(),
     }).required();
   }
 
+  /** @returns {PostShipmentHistoryParam} */
   static postShipmentHistory() {
     return Joi.object({
-      body: OrderModel.PostShipmentHistory().required(),
+      body: OrderPlatformModel.PostShipmentHistory().required(),
     }).required();
   }
 
+  /** @returns {ProcessManifestParam} */
   static processManifest() {
     return Joi.object({
-      body: OrderModel.CreateOrderPayload().required(),
+      body: OrderPlatformModel.CreateOrderPayload().required(),
     }).required();
   }
 
+  /** @returns {ReassignLocationParam} */
   static reassignLocation() {
     return Joi.object({
-      body: OrderModel.StoreReassign().required(),
+      body: OrderPlatformModel.StoreReassign().required(),
     }).required();
   }
 
+  /** @returns {SendSmsNinjaParam} */
   static sendSmsNinja() {
     return Joi.object({
-      body: OrderModel.SendSmsPayload().required(),
+      body: OrderPlatformModel.SendSmsPayload().required(),
     }).required();
   }
 
+  /** @returns {SendUserMobileOTPParam} */
   static sendUserMobileOTP() {
     return Joi.object({
-      body: OrderModel.SendUserMobileOTP().required(),
+      body: OrderPlatformModel.SendUserMobileOTP().required(),
     }).required();
   }
 
+  /** @returns {UpdateAddressParam} */
   static updateAddress() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
@@ -307,35 +644,40 @@ class OrderValidator {
     }).required();
   }
 
+  /** @returns {UpdatePackagingDimensionsParam} */
   static updatePackagingDimensions() {
     return Joi.object({
-      body: OrderModel.UpdatePackagingDimensionsPayload().required(),
+      body: OrderPlatformModel.UpdatePackagingDimensionsPayload().required(),
     }).required();
   }
 
+  /** @returns {UpdateShipmentLockParam} */
   static updateShipmentLock() {
     return Joi.object({
-      body: OrderModel.UpdateShipmentLockPayload().required(),
+      body: OrderPlatformModel.UpdateShipmentLockPayload().required(),
     }).required();
   }
 
+  /** @returns {UpdateShipmentStatusParam} */
   static updateShipmentStatus() {
     return Joi.object({
-      body: OrderModel.UpdateShipmentStatusRequest().required(),
+      body: OrderPlatformModel.UpdateShipmentStatusRequest().required(),
     }).required();
   }
 
+  /** @returns {UploadConsentParam} */
   static uploadConsent() {
     return Joi.object({
-      body: OrderModel.UploadConsent().required(),
+      body: OrderPlatformModel.UploadConsent().required(),
     }).required();
   }
 
+  /** @returns {VerifyMobileOTPParam} */
   static verifyMobileOTP() {
     return Joi.object({
-      body: OrderModel.VerifyMobileOTP().required(),
+      body: OrderPlatformModel.VerifyMobileOTP().required(),
     }).required();
   }
 }
 
-module.exports = OrderValidator;
+module.exports = OrderPlatformValidator;

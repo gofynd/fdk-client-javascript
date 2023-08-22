@@ -1,7 +1,13 @@
 export = ApplicationClient;
+/**
+ * Represents the client for the application.
+ *
+ * @class
+ */
 declare class ApplicationClient {
-    constructor(config: any);
-    config: any;
+    /** @param {import("./ApplicationConfig")} config - The application configuration. */
+    constructor(config: import("./ApplicationConfig"));
+    config: import("./ApplicationConfig");
     cart: Cart;
     catalog: Catalog;
     common: Common;
@@ -18,10 +24,34 @@ declare class ApplicationClient {
     share: Share;
     theme: Theme;
     user: User;
-    setCookie(cookie: any): void;
-    setLocationDetails(locationDetails: any): void;
-    setCurrencyCode(currencyCode: any): void;
-    setExtraHeaders(header: any): void;
+    /**
+     * Sets the cookie for the application.
+     *
+     * @param {string} cookie - The cookie to set, This cookie will be included
+     *   in the headers of every subsequent request.
+     */
+    setCookie(cookie: string): void;
+    /**
+     * Sets the location details for the application.
+     *
+     * @param {import("./ApplicationConfig").LocationObject} locationDetails -
+     *   The location details to set.
+     */
+    setLocationDetails(locationDetails: import("./ApplicationConfig").LocationObject): void;
+    /**
+     * Sets the currency code in ApplicationConfig.
+     *
+     * @param {string} currencyCode - The currency code to set.
+     * @throws {FDKClientValidationError} When the provided currency code is not a string.
+     */
+    setCurrencyCode(currencyCode: string): void;
+    /**
+     * Sets the extra headers for the application.
+     *
+     * @param {object} header - The header object to set.
+     * @throws {FDKClientValidationError} When the provided header is not an object.
+     */
+    setExtraHeaders(header: object): void;
 }
 import Cart = require("./Cart/CartApplicationClient");
 import Catalog = require("./Catalog/CatalogApplicationClient");

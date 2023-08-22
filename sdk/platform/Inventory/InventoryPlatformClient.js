@@ -1,8 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
-const InventoryValidator = require("./InventoryPlatformValidator");
-const InventoryModel = require("./InventoryPlatformModel");
+const InventoryPlatformValidator = require("./InventoryPlatformValidator");
+const InventoryPlatformModel = require("./InventoryPlatformModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -12,14 +12,20 @@ class Inventory {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {JobConfigDTO} arg.body
-   * @returns {Promise<ResponseEnvelopeString>} - Success response
+   * @param {InventoryPlatformValidator.CreateJobParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<InventoryPlatformModel.ResponseEnvelopeString>} -
+   *   Success response
+   * @name createJob
    * @summary: Creates A New Job Config
-   * @description: REST Endpoint that creates a new job config
+   * @description: REST Endpoint that creates a new job config - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/inventory/createJob/).
    */
-  async createJob({ body } = {}) {
-    const { error } = InventoryValidator.createJob().validate(
+  async createJob(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = InventoryPlatformValidator.createJob().validate(
       {
         body,
       },
@@ -30,7 +36,7 @@ class Inventory {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = InventoryValidator.createJob().validate(
+    const { error: warrning } = InventoryPlatformValidator.createJob().validate(
       {
         body,
       },
@@ -39,9 +45,8 @@ class Inventory {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for createJob",
+        message: `Parameter Validation warrnings for platform > Inventory > createJob \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -54,12 +59,18 @@ class Inventory {
       `/service/platform/inventory/v1.0/company/${this.config.companyId}/jobs`,
       query_params,
       body,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = InventoryModel.ResponseEnvelopeString().validate(response, {
+    } = InventoryPlatformModel.ResponseEnvelopeString().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -67,23 +78,28 @@ class Inventory {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for createJob",
+        message: `Response Validation Warnnings for platform > Inventory > createJob \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.integrationId - IntegrationId
-   * @returns {Promise<ResponseEnvelopeString>} - Success response
+   * @param {InventoryPlatformValidator.DisableParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<InventoryPlatformModel.ResponseEnvelopeString>} -
+   *   Success response
+   * @name disable
    * @summary: Disable Job Config
-   * @description: REST Endpoint that disables Inventory Job Config
+   * @description: REST Endpoint that disables Inventory Job Config - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/inventory/disable/).
    */
-  async disable({ integrationId } = {}) {
-    const { error } = InventoryValidator.disable().validate(
+  async disable(
+    { integrationId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = InventoryPlatformValidator.disable().validate(
       {
         integrationId,
       },
@@ -94,7 +110,7 @@ class Inventory {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = InventoryValidator.disable().validate(
+    const { error: warrning } = InventoryPlatformValidator.disable().validate(
       {
         integrationId,
       },
@@ -103,9 +119,8 @@ class Inventory {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for disable",
+        message: `Parameter Validation warrnings for platform > Inventory > disable \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -118,12 +133,18 @@ class Inventory {
       `/service/platform/inventory/v1.0/company/${this.config.companyId}/jobs/disable/integration/${integrationId}`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = InventoryModel.ResponseEnvelopeString().validate(response, {
+    } = InventoryPlatformModel.ResponseEnvelopeString().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -131,23 +152,29 @@ class Inventory {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for disable",
+        message: `Response Validation Warnnings for platform > Inventory > disable \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<ResponseEnvelopeListSlingshotConfigurationDetail>} -
-   *   Success response
+   * @param {InventoryPlatformValidator.GetConfigByCompanyParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<InventoryPlatformModel.ResponseEnvelopeListSlingshotConfigurationDetail>}
+   *   - Success response
+   *
+   * @name getConfigByCompany
    * @summary: Get Slingshot Configuration Of  A Company
-   * @description: REST Endpoint that returns all configuration detail of a company
+   * @description: REST Endpoint that returns all configuration detail of a company - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/inventory/getConfigByCompany/).
    */
-  async getConfigByCompany({} = {}) {
-    const { error } = InventoryValidator.getConfigByCompany().validate(
+  async getConfigByCompany(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = InventoryPlatformValidator.getConfigByCompany().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -158,16 +185,15 @@ class Inventory {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = InventoryValidator.getConfigByCompany().validate(
+    } = InventoryPlatformValidator.getConfigByCompany().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getConfigByCompany",
+        message: `Parameter Validation warrnings for platform > Inventory > getConfigByCompany \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -180,36 +206,48 @@ class Inventory {
       `/service/platform/inventory/v1.0/company/${this.config.companyId}/slingshot`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = InventoryModel.ResponseEnvelopeListSlingshotConfigurationDetail().validate(
-      response,
+    } = InventoryPlatformModel.ResponseEnvelopeListSlingshotConfigurationDetail().validate(
+      responseData,
       { abortEarly: false, allowUnknown: false }
     );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getConfigByCompany",
+        message: `Response Validation Warnnings for platform > Inventory > getConfigByCompany \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.code - Job Code
-   * @returns {Promise<ResponseEnvelopeJobConfigDTO>} - Success response
+   * @param {InventoryPlatformValidator.GetJobByCodeParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<InventoryPlatformModel.ResponseEnvelopeJobConfigDTO>}
+   *   - Success response
+   *
+   * @name getJobByCode
    * @summary: Get Job Config By Code
-   * @description: REST Endpoint that returns job config by code
+   * @description: REST Endpoint that returns job config by code - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/inventory/getJobByCode/).
    */
-  async getJobByCode({ code } = {}) {
-    const { error } = InventoryValidator.getJobByCode().validate(
+  async getJobByCode(
+    { code, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = InventoryPlatformValidator.getJobByCode().validate(
       {
         code,
       },
@@ -220,7 +258,9 @@ class Inventory {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = InventoryValidator.getJobByCode().validate(
+    const {
+      error: warrning,
+    } = InventoryPlatformValidator.getJobByCode().validate(
       {
         code,
       },
@@ -229,9 +269,8 @@ class Inventory {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getJobByCode",
+        message: `Parameter Validation warrnings for platform > Inventory > getJobByCode \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -244,44 +283,54 @@ class Inventory {
       `/service/platform/inventory/v1.0/company/${this.config.companyId}/jobs/code/${code}`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = InventoryModel.ResponseEnvelopeJobConfigDTO().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = InventoryPlatformModel.ResponseEnvelopeJobConfigDTO().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getJobByCode",
+        message: `Response Validation Warnnings for platform > Inventory > getJobByCode \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.integrationId - Integration Id
-   * @param {number} [arg.pageNo] - Page Number
-   * @param {number} [arg.pageSize] - Page Size
-   * @returns {Promise<ResponseEnvelopeListJobConfigDTO>} - Success response
+   * @param {InventoryPlatformValidator.GetJobByCompanyAndIntegrationParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<InventoryPlatformModel.ResponseEnvelopeListJobConfigDTO>}
+   *   - Success response
+   *
+   * @name getJobByCompanyAndIntegration
    * @summary: Get Job Configs By Company And Integration
-   * @description: REST Endpoint that returns all job configs by company And integration
+   * @description: REST Endpoint that returns all job configs by company And integration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/inventory/getJobByCompanyAndIntegration/).
    */
-  async getJobByCompanyAndIntegration({
-    integrationId,
-    pageNo,
-    pageSize,
-  } = {}) {
+  async getJobByCompanyAndIntegration(
+    { integrationId, pageNo, pageSize, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
-    } = InventoryValidator.getJobByCompanyAndIntegration().validate(
+    } = InventoryPlatformValidator.getJobByCompanyAndIntegration().validate(
       {
         integrationId,
         pageNo,
@@ -296,7 +345,7 @@ class Inventory {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = InventoryValidator.getJobByCompanyAndIntegration().validate(
+    } = InventoryPlatformValidator.getJobByCompanyAndIntegration().validate(
       {
         integrationId,
         pageNo,
@@ -307,10 +356,8 @@ class Inventory {
     if (warrning) {
       Logger({
         level: "WARN",
-        message:
-          "Parameter Validation warrnings for getJobByCompanyAndIntegration",
+        message: `Parameter Validation warrnings for platform > Inventory > getJobByCompanyAndIntegration \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -325,41 +372,50 @@ class Inventory {
       `/service/platform/inventory/v1.0/company/${this.config.companyId}/jobs/integration/${integrationId}`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = InventoryModel.ResponseEnvelopeListJobConfigDTO().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = InventoryPlatformModel.ResponseEnvelopeListJobConfigDTO().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message:
-          "Response Validation Warnnings for getJobByCompanyAndIntegration",
+        message: `Response Validation Warnnings for platform > Inventory > getJobByCompanyAndIntegration \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.code - Code
-   * @param {number} [arg.pageNo] - Page Number
-   * @param {number} [arg.pageSize] - Page Size
-   * @param {string} [arg.status] - Status
-   * @param {string} [arg.date] - From Date
-   * @returns {Promise<ResponseEnvelopeJobMetricsDto>} - Success response
+   * @param {InventoryPlatformValidator.GetJobCodeMetricsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<InventoryPlatformModel.ResponseEnvelopeJobMetricsDto>}
+   *   - Success response
+   *
+   * @name getJobCodeMetrics
    * @summary: Get Job Metrics
-   * @description: REST Endpoint that returns Inventory Run History For A Job Code
+   * @description: REST Endpoint that returns Inventory Run History For A Job Code - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/inventory/getJobCodeMetrics/).
    */
-  async getJobCodeMetrics({ code, pageNo, pageSize, status, date } = {}) {
-    const { error } = InventoryValidator.getJobCodeMetrics().validate(
+  async getJobCodeMetrics(
+    { code, pageNo, pageSize, status, date, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = InventoryPlatformValidator.getJobCodeMetrics().validate(
       {
         code,
         pageNo,
@@ -374,7 +430,9 @@ class Inventory {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = InventoryValidator.getJobCodeMetrics().validate(
+    const {
+      error: warrning,
+    } = InventoryPlatformValidator.getJobCodeMetrics().validate(
       {
         code,
         pageNo,
@@ -387,9 +445,8 @@ class Inventory {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getJobCodeMetrics",
+        message: `Parameter Validation warrnings for platform > Inventory > getJobCodeMetrics \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -406,44 +463,54 @@ class Inventory {
       `/service/platform/inventory/v1.0/company/${this.config.companyId}/jobs/code/${code}/metrics`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = InventoryModel.ResponseEnvelopeJobMetricsDto().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = InventoryPlatformModel.ResponseEnvelopeJobMetricsDto().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getJobCodeMetrics",
+        message: `Response Validation Warnnings for platform > Inventory > getJobCodeMetrics \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.integrationId - Integration Id
-   * @param {number} [arg.pageNo] - Page Number
-   * @param {number} [arg.pageSize] - Page Size
-   * @returns {Promise<ResponseEnvelopeListJobConfigListDTO>} - Success response
+   * @param {InventoryPlatformValidator.GetJobCodesByCompanyAndIntegrationParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<InventoryPlatformModel.ResponseEnvelopeListJobConfigListDTO>}
+   *   - Success response
+   *
+   * @name getJobCodesByCompanyAndIntegration
    * @summary: Get Job Codes By Company And Integration
-   * @description: REST Endpoint that returns all job codes by company And integration
+   * @description: REST Endpoint that returns all job codes by company And integration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/inventory/getJobCodesByCompanyAndIntegration/).
    */
-  async getJobCodesByCompanyAndIntegration({
-    integrationId,
-    pageNo,
-    pageSize,
-  } = {}) {
+  async getJobCodesByCompanyAndIntegration(
+    { integrationId, pageNo, pageSize, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
-    } = InventoryValidator.getJobCodesByCompanyAndIntegration().validate(
+    } = InventoryPlatformValidator.getJobCodesByCompanyAndIntegration().validate(
       {
         integrationId,
         pageNo,
@@ -458,7 +525,7 @@ class Inventory {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = InventoryValidator.getJobCodesByCompanyAndIntegration().validate(
+    } = InventoryPlatformValidator.getJobCodesByCompanyAndIntegration().validate(
       {
         integrationId,
         pageNo,
@@ -469,10 +536,8 @@ class Inventory {
     if (warrning) {
       Logger({
         level: "WARN",
-        message:
-          "Parameter Validation warrnings for getJobCodesByCompanyAndIntegration",
+        message: `Parameter Validation warrnings for platform > Inventory > getJobCodesByCompanyAndIntegration \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -487,36 +552,50 @@ class Inventory {
       `/service/platform/inventory/v1.0/company/${this.config.companyId}/jobs/code/integration/${integrationId}`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = InventoryModel.ResponseEnvelopeListJobConfigListDTO().validate(
-      response,
+    } = InventoryPlatformModel.ResponseEnvelopeListJobConfigListDTO().validate(
+      responseData,
       { abortEarly: false, allowUnknown: false }
     );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message:
-          "Response Validation Warnnings for getJobCodesByCompanyAndIntegration",
+        message: `Response Validation Warnnings for platform > Inventory > getJobCodesByCompanyAndIntegration \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<ResponseEnvelopeJobConfigDTO>} - Success response
+   * @param {InventoryPlatformValidator.GetJobConfigDefaultsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<InventoryPlatformModel.ResponseEnvelopeJobConfigDTO>}
+   *   - Success response
+   *
+   * @name getJobConfigDefaults
    * @summary: Get Job Configs Defaults
-   * @description: REST Endpoint that returns default fields job configs by company And integration
+   * @description: REST Endpoint that returns default fields job configs by company And integration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/inventory/getJobConfigDefaults/).
    */
-  async getJobConfigDefaults({} = {}) {
-    const { error } = InventoryValidator.getJobConfigDefaults().validate(
+  async getJobConfigDefaults(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = InventoryPlatformValidator.getJobConfigDefaults().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -527,16 +606,15 @@ class Inventory {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = InventoryValidator.getJobConfigDefaults().validate(
+    } = InventoryPlatformValidator.getJobConfigDefaults().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getJobConfigDefaults",
+        message: `Parameter Validation warrnings for platform > Inventory > getJobConfigDefaults \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -549,36 +627,48 @@ class Inventory {
       `/service/platform/inventory/v1.0/company/${this.config.companyId}/jobs/defaults`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = InventoryModel.ResponseEnvelopeJobConfigDTO().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = InventoryPlatformModel.ResponseEnvelopeJobConfigDTO().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getJobConfigDefaults",
+        message: `Response Validation Warnnings for platform > Inventory > getJobConfigDefaults \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} arg.jobId - Job Id
-   * @returns {Promise<ResponseEnvelopeListJobStepsDTO>} - Success response
+   * @param {InventoryPlatformValidator.GetJobStepsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<InventoryPlatformModel.ResponseEnvelopeListJobStepsDTO>}
+   *   - Success response
+   *
+   * @name getJobSteps
    * @summary: Get Job Code Steps
-   * @description: REST Endpoint that returns Inventory Job Steps
+   * @description: REST Endpoint that returns Inventory Job Steps - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/inventory/getJobSteps/).
    */
-  async getJobSteps({ jobId } = {}) {
-    const { error } = InventoryValidator.getJobSteps().validate(
+  async getJobSteps(
+    { jobId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = InventoryPlatformValidator.getJobSteps().validate(
       {
         jobId,
       },
@@ -589,7 +679,9 @@ class Inventory {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = InventoryValidator.getJobSteps().validate(
+    const {
+      error: warrning,
+    } = InventoryPlatformValidator.getJobSteps().validate(
       {
         jobId,
       },
@@ -598,9 +690,8 @@ class Inventory {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getJobSteps",
+        message: `Parameter Validation warrnings for platform > Inventory > getJobSteps \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -613,37 +704,48 @@ class Inventory {
       `/service/platform/inventory/v1.0/company/${this.config.companyId}/jobs/steps/${jobId}`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = InventoryModel.ResponseEnvelopeListJobStepsDTO().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = InventoryPlatformModel.ResponseEnvelopeListJobStepsDTO().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getJobSteps",
+        message: `Response Validation Warnnings for platform > Inventory > getJobSteps \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {number} [arg.pageNo] - Page Number
-   * @param {number} [arg.pageSize] - Page Size
-   * @returns {Promise<ResponseEnvelopeListJobConfigRawDTO>} - Success response
+   * @param {InventoryPlatformValidator.GetJobsByCompanyParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<InventoryPlatformModel.ResponseEnvelopeListJobConfigRawDTO>}
+   *   - Success response
+   *
+   * @name getJobsByCompany
    * @summary: Get Job Configs For A Company
-   * @description: REST Endpoint that returns all job configs for a company
+   * @description: REST Endpoint that returns all job configs for a company - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/inventory/getJobsByCompany/).
    */
-  async getJobsByCompany({ pageNo, pageSize } = {}) {
-    const { error } = InventoryValidator.getJobsByCompany().validate(
+  async getJobsByCompany(
+    { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = InventoryPlatformValidator.getJobsByCompany().validate(
       {
         pageNo,
         pageSize,
@@ -655,7 +757,9 @@ class Inventory {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = InventoryValidator.getJobsByCompany().validate(
+    const {
+      error: warrning,
+    } = InventoryPlatformValidator.getJobsByCompany().validate(
       {
         pageNo,
         pageSize,
@@ -665,9 +769,8 @@ class Inventory {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for getJobsByCompany",
+        message: `Parameter Validation warrnings for platform > Inventory > getJobsByCompany \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -682,36 +785,48 @@ class Inventory {
       `/service/platform/inventory/v1.0/company/${this.config.companyId}/jobs`,
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = InventoryModel.ResponseEnvelopeListJobConfigRawDTO().validate(
-      response,
+    } = InventoryPlatformModel.ResponseEnvelopeListJobConfigRawDTO().validate(
+      responseData,
       { abortEarly: false, allowUnknown: false }
     );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for getJobsByCompany",
+        message: `Response Validation Warnnings for platform > Inventory > getJobsByCompany \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {SuppressStorePayload} arg.body
-   * @returns {Promise<ResponseEnvelopeKafkaResponse>} - Success response
+   * @param {InventoryPlatformValidator.SuppressStoresParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<InventoryPlatformModel.ResponseEnvelopeKafkaResponse>}
+   *   - Success response
+   *
+   * @name suppressStores
    * @summary: Get Slingshot Configuration Of  A Company
-   * @description: REST Endpoint that returns all configuration detail of a company
+   * @description: REST Endpoint that returns all configuration detail of a company - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/inventory/suppressStores/).
    */
-  async suppressStores({ body } = {}) {
-    const { error } = InventoryValidator.suppressStores().validate(
+  async suppressStores(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = InventoryPlatformValidator.suppressStores().validate(
       {
         body,
       },
@@ -722,7 +837,9 @@ class Inventory {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = InventoryValidator.suppressStores().validate(
+    const {
+      error: warrning,
+    } = InventoryPlatformValidator.suppressStores().validate(
       {
         body,
       },
@@ -731,9 +848,8 @@ class Inventory {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for suppressStores",
+        message: `Parameter Validation warrnings for platform > Inventory > suppressStores \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -746,36 +862,47 @@ class Inventory {
       `/service/platform/inventory/v1.0/company/${this.config.companyId}/kafka/suppressStore`,
       query_params,
       body,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = InventoryModel.ResponseEnvelopeKafkaResponse().validate(response, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = InventoryPlatformModel.ResponseEnvelopeKafkaResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for suppressStores",
+        message: `Response Validation Warnnings for platform > Inventory > suppressStores \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {JobConfigDTO} arg.body
-   * @returns {Promise<ResponseEnvelopeString>} - Success response
+   * @param {InventoryPlatformValidator.UpdateJobParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<InventoryPlatformModel.ResponseEnvelopeString>} -
+   *   Success response
+   * @name updateJob
    * @summary: Updates An Existing Job Config
-   * @description: REST Endpoint that updates a job config
+   * @description: REST Endpoint that updates a job config - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/inventory/updateJob/).
    */
-  async updateJob({ body } = {}) {
-    const { error } = InventoryValidator.updateJob().validate(
+  async updateJob(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = InventoryPlatformValidator.updateJob().validate(
       {
         body,
       },
@@ -786,7 +913,7 @@ class Inventory {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = InventoryValidator.updateJob().validate(
+    const { error: warrning } = InventoryPlatformValidator.updateJob().validate(
       {
         body,
       },
@@ -795,9 +922,8 @@ class Inventory {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for updateJob",
+        message: `Parameter Validation warrnings for platform > Inventory > updateJob \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -810,12 +936,18 @@ class Inventory {
       `/service/platform/inventory/v1.0/company/${this.config.companyId}/jobs`,
       query_params,
       body,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = InventoryModel.ResponseEnvelopeString().validate(response, {
+    } = InventoryPlatformModel.ResponseEnvelopeString().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -823,9 +955,8 @@ class Inventory {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for updateJob",
+        message: `Response Validation Warnnings for platform > Inventory > updateJob \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

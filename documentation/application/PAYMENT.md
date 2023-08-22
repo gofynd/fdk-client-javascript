@@ -791,7 +791,8 @@ Success. Returns the status of payment. Check the example shown below or refer `
       "formatted_value": "₹ 12,576.00",
       "currency": "INR"
     },
-    "repayment_url": "https://example_url.com/example/"
+    "repayment_url": "https://example_url.com/example/",
+    "soa_url": "https://example_url.com/example/"
   }
 }
 ```
@@ -4461,10 +4462,12 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
  | buyer_status | string? |  yes  | Status from Credit aggregator's end |
  | credit_line_id | string? |  yes  | ID at Credit aggregator's end |
  | due_amount | [BalanceDetails](#BalanceDetails)? |  yes  | Amount that is due for repayment |
+ | due_date | string? |  yes  | Due date for repayment |
  | is_eligible_for_txn | boolean? |  yes  | Eligiblity flag to complete transaction |
  | limit | [BalanceDetails](#BalanceDetails)? |  yes  | User's credit limit |
  | merchant_customer_ref_id | string? |  yes  | Unique aggregator customer id |
  | repayment_url | string? |  yes  | Url for repayment |
+ | soa_url | string? |  yes  | Statement of accounts. Show payment history. |
  | status | string? |  yes  | Customer Credit status |
  | status_message | string? |  yes  | message to customer |
  | total_due_amount | [BalanceDetails](#BalanceDetails)? |  yes  | Total due amount |
@@ -4491,7 +4494,7 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
  | device | [DeviceDetails](#DeviceDetails)? |  yes  | Device Details. |
  | marketplace_info | [MarketplaceInfo](#MarketplaceInfo)? |  yes  | Market Place info. |
  | mcc | string? |  yes  | Mcc |
- | personal_info | [UserPersonalInfoInDetails](#UserPersonalInfoInDetails) |  no  | Credit summary of user. |
+ | personal_info | [UserPersonalInfoInDetails](#UserPersonalInfoInDetails)? |  yes  | Credit summary of user. |
  | source | string |  no  | callbackURL |
  
 
@@ -4736,8 +4739,8 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
  | activation_url | string? |  yes  | Url for activation |
  | is_eligible_for_txn | boolean? |  yes  | Whether is eligible for transaction |
  | merchant_customer_ref_id | string? |  yes  | Rupifi customer ID |
- | redirect_url | string |  no  | URL to which the user may redirect. |
- | session | string |  no  | User Session |
+ | redirect_url | string? |  yes  | URL to which the user may redirect. |
+ | session | string? |  yes  | User Session |
  | status | boolean |  no  | Transaction status |
  | status_remark | string? |  yes  | Decription of status |
  

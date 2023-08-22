@@ -15,7 +15,7 @@ Get started with the Javascript Development SDK for Fynd Platform
 
 #### Node
 
-```
+```bash
 npm install @gofynd/fdk-client-javascript
 ```
 
@@ -29,20 +29,22 @@ const {
 ```
 
 #### Browser
+
 you can load fdk-client-javascript's application browser bundle from CDN; `ApplicationConfig`, `ApplicationClient` and `ApplicationModels` will be attached to browser's `window` object.
 
 ```html
 <script src="https://cdn.jsdelivr.net/gh/gofynd/fdk-client-javascript@<version>/dist/application.js"></script>
 ```
+
 Install Specific version
+
 ```html
-<script src="https://cdn.jsdelivr.net/gh/gofynd/fdk-client-javascript@1.0.1/dist/application.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/gofynd/fdk-client-javascript@1.1.0/dist/application.js"></script>
 ```
 
 ```js
 const { ApplicationConfig, ApplicationClient } = window;
 ```
-
 
 ### Logging
 
@@ -53,6 +55,7 @@ Available logging levels: TRACE, DEBUG, INFO, WARN, ERROR.
 
 Default log level: ERROR
 ```
+
 ### Sample Usage - ApplicationClient
 
 ```javascript
@@ -121,7 +124,9 @@ async function getData() {
 
 getData();
 ```
+
 ---
+
 ### Cookie
 
 Following code snippet will read and write cookies on behalf of you <br />
@@ -142,15 +147,53 @@ module.exports = cookieJar
 ```
 
 get the stored cookie from the CookieJar instance
+
 ```javascript
 const cookieJar = require('path/to/cookieJar') // replace with actual path
 
 let cookies = await cookieJar.getCookies("https://api.fynd.com");
 ```
+
+---
+
+### Headers
+
+#### Adding Request Headers
+
+To include request headers when calling a method, add `requestHeaders` object in the first argument.
+
+```javascript
+const requestHeaders = {
+  "x-api-version": "1.0"
+}
+
+const options = {
+  responseHeaders: true
+}
+
+const [response, headers] = await platformClient.application("<APPLICATION_ID>").theme.getAllPages({theme_id: "<THEME_ID>", requestHeaders: requestHeaders}, options);
+```
+
+#### get Response Headers
+
+To retrieve the response headers, simply set the `responseHeaders` option to `true` when calling the desired method. Below is an example demonstrating how to achieve this:
+
+```javascript
+const options = {
+  responseHeaders: true
+}
+const [response, headers] = await platformClient.application("<APPLICATION_ID>").theme.getAllPages({theme_id: "<THEME_ID>"}, options);
+
+console.log("[API RESPONSE]: ", response);
+console.log("[RESPONSE HEADERS]: ", headers);
+```
+
 ---
 
 ### Log Curl
+
 To print the curl command in the console for all network calls made using `applicationClient` or `platformClient`, set the logger level to debug.
+
 ```javascript
 const {
   ApplicationClient, ApplicationConfig,
@@ -167,12 +210,16 @@ let applicationClient = new ApplicationClient(applicationConfig);
 let response = await applicationClient.theme.getAppliedTheme(); 
 console.log("Active Theme: ", response.information.name);
 ```
+
 The above code will log the curl command in the console
+
 ```bash
 curl --request GET "https://api.fynd.com/service/application/theme/v1.0/applied-theme" --header 'authorization: Bearer <authorization-token>' --header 'x-fp-sdk-version: 0.1.36' --header 'x-fp-date: 20230222T115108Z' --header 'x-fp-signature: v1.1:1e3ab3b02b5bc626e3c32a37ee844266ade02bbcbaafc28fc7a0e46a76a7a1a8'
 Active Theme: Emerge
 ```
+
 ---
+
 ### TypeScript
 
 fdk-client-javascript includes Typescript definitions.
@@ -180,7 +227,9 @@ fdk-client-javascript includes Typescript definitions.
 ```typescript
 import { ApplicationConfig, ApplicationClient } from "fdk-client-javascript";
 ```
+
 ---
+
 ### Documentation
 
 - [Application Front](documentation/application/README.md)

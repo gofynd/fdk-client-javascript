@@ -2,8 +2,8 @@ const PublicAPIClient = require("../PublicAPIClient");
 const { FDKClientValidationError } = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
-const WebhookValidator = require("./WebhookPublicValidator");
-const WebhookModel = require("./WebhookPublicModel");
+const WebhookPublicValidator = require("./WebhookPublicValidator");
+const WebhookPublicModel = require("./WebhookPublicModel");
 const { Logger } = require("./../../common/Logger");
 const Joi = require("joi");
 
@@ -32,13 +32,19 @@ class Webhook {
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @returns {Promise<EventConfigResponse>} - Success response
+   * @param {WebhookPublicValidator.FetchAllWebhookEventsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PublicAPIClient").Options} - Options
+   * @returns {Promise<WebhookPublicModel.EventConfigResponse>} - Success response
+   * @name fetchAllWebhookEvents
    * @summary: Get All Webhook Events
-   * @description: Get All Webhook Events
+   * @description: Get All Webhook Events - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/webhook/fetchAllWebhookEvents/).
    */
-  async fetchAllWebhookEvents({} = {}) {
-    const { error } = WebhookValidator.fetchAllWebhookEvents().validate(
+  async fetchAllWebhookEvents(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = WebhookPublicValidator.fetchAllWebhookEvents().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -49,16 +55,15 @@ class Webhook {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = WebhookValidator.fetchAllWebhookEvents().validate(
+    } = WebhookPublicValidator.fetchAllWebhookEvents().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for fetchAllWebhookEvents",
+        message: `Parameter Validation warrnings for public > Webhook > fetchAllWebhookEvents \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -74,12 +79,18 @@ class Webhook {
       }),
       query_params,
       undefined,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = WebhookModel.EventConfigResponse().validate(response, {
+    } = WebhookPublicModel.EventConfigResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -87,23 +98,29 @@ class Webhook {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for fetchAllWebhookEvents",
+        message: `Response Validation Warnnings for public > Webhook > fetchAllWebhookEvents \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;
   }
 
   /**
-   * @param {Object} arg - Arg object.
-   * @param {EventConfigBase[]} arg.body
-   * @returns {Promise<EventConfigResponse>} - Success response
+   * @param {WebhookPublicValidator.QueryWebhookEventDetailsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PublicAPIClient").Options} - Options
+   * @returns {Promise<WebhookPublicModel.EventConfigResponse>} - Success response
+   * @name queryWebhookEventDetails
    * @summary: Send webhook event name, type, version, category in request body to get complete details of event from server
-   * @description: Get Webhook Event Details for provided events
+   * @description: Get Webhook Event Details for provided events - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/webhook/queryWebhookEventDetails/).
    */
-  async queryWebhookEventDetails({ body } = {}) {
-    const { error } = WebhookValidator.queryWebhookEventDetails().validate(
+  async queryWebhookEventDetails(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = WebhookPublicValidator.queryWebhookEventDetails().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -114,16 +131,15 @@ class Webhook {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = WebhookValidator.queryWebhookEventDetails().validate(
+    } = WebhookPublicValidator.queryWebhookEventDetails().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: "Parameter Validation warrnings for queryWebhookEventDetails",
+        message: `Parameter Validation warrnings for public > Webhook > queryWebhookEventDetails \n ${warrning}`,
       });
-      Logger({ level: "WARN", message: warrning });
     }
 
     const query_params = {};
@@ -139,12 +155,18 @@ class Webhook {
       }),
       query_params,
       body,
-      xHeaders
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
 
     const {
       error: res_error,
-    } = WebhookModel.EventConfigResponse().validate(response, {
+    } = WebhookPublicModel.EventConfigResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -152,9 +174,8 @@ class Webhook {
     if (res_error) {
       Logger({
         level: "WARN",
-        message: "Response Validation Warnnings for queryWebhookEventDetails",
+        message: `Response Validation Warnnings for public > Webhook > queryWebhookEventDetails \n ${res_error}`,
       });
-      Logger({ level: "WARN", message: res_error });
     }
 
     return response;

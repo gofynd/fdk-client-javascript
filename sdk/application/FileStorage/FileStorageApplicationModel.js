@@ -1,6 +1,83 @@
 const Joi = require("joi");
 
-class FileStorageModel {
+/**
+ * @typedef CDN
+ * @property {string} absolute_url
+ * @property {string} relative_url
+ * @property {string} url
+ */
+
+/**
+ * @typedef CompleteResponse
+ * @property {string} _id
+ * @property {CDN} cdn
+ * @property {string} content_type
+ * @property {string} created_on
+ * @property {string} file_name
+ * @property {string} file_path
+ * @property {string} modified_on
+ * @property {string} namespace
+ * @property {string} operation
+ * @property {number} size
+ * @property {boolean} success
+ * @property {string[]} [tags]
+ * @property {Upload} upload
+ */
+
+/**
+ * @typedef FailedResponse
+ * @property {string} message
+ */
+
+/**
+ * @typedef SignUrlRequest
+ * @property {number} expiry
+ * @property {string[]} urls
+ */
+
+/**
+ * @typedef SignUrlResponse
+ * @property {Urls[]} urls
+ */
+
+/**
+ * @typedef StartRequest
+ * @property {string} content_type
+ * @property {string} file_name
+ * @property {Object} [params]
+ * @property {number} size
+ * @property {string[]} [tags]
+ */
+
+/**
+ * @typedef StartResponse
+ * @property {CDN} cdn
+ * @property {string} content_type
+ * @property {string} file_name
+ * @property {string} file_path
+ * @property {string} [method]
+ * @property {string} namespace
+ * @property {string} operation
+ * @property {number} size
+ * @property {string[]} [tags]
+ * @property {Upload} upload
+ */
+
+/**
+ * @typedef Upload
+ * @property {number} expiry
+ * @property {string} url
+ */
+
+/**
+ * @typedef Urls
+ * @property {number} expiry
+ * @property {string} signed_url
+ * @property {string} url
+ */
+
+class FileStorageApplicationModel {
+  /** @returns {CDN} */
   static CDN() {
     return Joi.object({
       absolute_url: Joi.string().allow("").required(),
@@ -8,10 +85,12 @@ class FileStorageModel {
       url: Joi.string().allow("").required(),
     });
   }
+
+  /** @returns {CompleteResponse} */
   static CompleteResponse() {
     return Joi.object({
       _id: Joi.string().allow("").required(),
-      cdn: FileStorageModel.CDN().required(),
+      cdn: FileStorageApplicationModel.CDN().required(),
       content_type: Joi.string().allow("").required(),
       created_on: Joi.string().allow("").required(),
       file_name: Joi.string().allow("").required(),
@@ -22,25 +101,33 @@ class FileStorageModel {
       size: Joi.number().required(),
       success: Joi.boolean().required(),
       tags: Joi.array().items(Joi.string().allow("")),
-      upload: FileStorageModel.Upload().required(),
+      upload: FileStorageApplicationModel.Upload().required(),
     });
   }
+
+  /** @returns {FailedResponse} */
   static FailedResponse() {
     return Joi.object({
       message: Joi.string().allow("").required(),
     });
   }
+
+  /** @returns {SignUrlRequest} */
   static SignUrlRequest() {
     return Joi.object({
       expiry: Joi.number().required(),
       urls: Joi.array().items(Joi.string().allow("")).required(),
     });
   }
+
+  /** @returns {SignUrlResponse} */
   static SignUrlResponse() {
     return Joi.object({
-      urls: Joi.array().items(FileStorageModel.Urls()).required(),
+      urls: Joi.array().items(FileStorageApplicationModel.Urls()).required(),
     });
   }
+
+  /** @returns {StartRequest} */
   static StartRequest() {
     return Joi.object({
       content_type: Joi.string().allow("").required(),
@@ -50,9 +137,11 @@ class FileStorageModel {
       tags: Joi.array().items(Joi.string().allow("")),
     });
   }
+
+  /** @returns {StartResponse} */
   static StartResponse() {
     return Joi.object({
-      cdn: FileStorageModel.CDN().required(),
+      cdn: FileStorageApplicationModel.CDN().required(),
       content_type: Joi.string().allow("").required(),
       file_name: Joi.string().allow("").required(),
       file_path: Joi.string().allow("").required(),
@@ -61,15 +150,19 @@ class FileStorageModel {
       operation: Joi.string().allow("").required(),
       size: Joi.number().required(),
       tags: Joi.array().items(Joi.string().allow("")),
-      upload: FileStorageModel.Upload().required(),
+      upload: FileStorageApplicationModel.Upload().required(),
     });
   }
+
+  /** @returns {Upload} */
   static Upload() {
     return Joi.object({
       expiry: Joi.number().required(),
       url: Joi.string().allow("").required(),
     });
   }
+
+  /** @returns {Urls} */
   static Urls() {
     return Joi.object({
       expiry: Joi.number().required(),
@@ -78,4 +171,4 @@ class FileStorageModel {
     });
   }
 }
-module.exports = FileStorageModel;
+module.exports = FileStorageApplicationModel;
