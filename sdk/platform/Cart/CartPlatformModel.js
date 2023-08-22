@@ -3065,7 +3065,7 @@ class CartPlatformModel {
       pick_at_store_uid: Joi.number().allow(null),
       pos: Joi.boolean(),
       staff: CartPlatformModel.StaffCheckout(),
-      user_id: Joi.string().allow("").required(),
+      user_id: Joi.string().allow("").allow(null).required(),
     });
   }
 
@@ -3100,7 +3100,7 @@ class CartPlatformModel {
       pick_at_store_uid: Joi.number().allow(null),
       pos: Joi.boolean(),
       staff: CartPlatformModel.StaffCheckout(),
-      user_id: Joi.string().allow("").required(),
+      user_id: Joi.string().allow("").allow(null).required(),
     });
   }
 
