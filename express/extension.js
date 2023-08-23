@@ -2,10 +2,10 @@
 const validator = require('validator');
 const { FdkInvalidExtensionConfig } = require("./error_code");
 const urljoin = require('url-join');
-const { PlatformConfig, PlatformClient } = require("fdk-client-javascript");
+const { PlatformConfig, PlatformClient } = require("@gofynd/fdk-client-javascript");
 const { WebhookRegistry } = require('./webhook');
 const logger = require('./logger');
-const { fdkAxios } = require('fdk-client-javascript/sdk/common/AxiosHelper');
+const { fdkAxios } = require('@gofynd/fdk-client-javascript/sdk/common/AxiosHelper');
 const { version } = require('./../package.json');
 const { TIMEOUT_STATUS, SERVICE_UNAVAILABLE, BAD_GATEWAY } = require('./constants');
 

@@ -1,7 +1,7 @@
 'use strict';
 
 const MockAdapter = require('axios-mock-adapter');
-const { FdkAxios } = require('fdk-client-javascript');
+const { FdkAxios } = require('@gofynd/fdk-client-javascript');
 const webhook_event_configs = require('../fixtures/webhook_event_configs');
 const webhook_subscriber = require('../fixtures/webhook_subscriber');
 

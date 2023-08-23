@@ -1,7 +1,7 @@
 'use strict';
 
 const hmacSHA256 = require("crypto-js/hmac-sha256");
-const { fdkAxios } = require("fdk-client-javascript/sdk/common/AxiosHelper");
+const { fdkAxios } = require("@gofynd/fdk-client-javascript/sdk/common/AxiosHelper");
 const { TEST_WEBHOOK_EVENT_NAME, ASSOCIATION_CRITERIA } = require("./constants");
 const { FdkWebhookProcessError, FdkWebhookHandlerNotFound, FdkWebhookRegistrationError, FdkInvalidHMacError, FdkInvalidWebhookConfig } = require("./error_code");
 const logger = require("./logger");
