@@ -182,7 +182,7 @@ declare class Order {
      * @summary:
      * @description: Get lane config for the order - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getLaneConfig/).
      */
-    getLaneConfig({ superLane, groupEntity, fromDate, toDate, dpIds, stores, salesChannels, paymentMode, bagStatus, searchType, searchValue, tags, timeToDispatch, paymentMethods, myOrders, }?: OrderPlatformValidator.GetLaneConfigParam, { headers }?: import("../PlatformAPIClient").Options): Promise<OrderPlatformModel.LaneConfigResponse>;
+    getLaneConfig({ superLane, groupEntity, fromDate, toDate, dpIds, stores, salesChannels, paymentMode, bagStatus, searchType, searchValue, tags, timeToDispatch, paymentMethods, myOrders, showCrossCompanyData, }?: OrderPlatformValidator.GetLaneConfigParam, { headers }?: import("../PlatformAPIClient").Options): Promise<OrderPlatformModel.LaneConfigResponse>;
     /**
      * @param {OrderPlatformValidator.GetOrderByIdParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -200,7 +200,7 @@ declare class Order {
      * @summary:
      * @description: Get Orders Listing - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getOrders/).
      */
-    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, myOrders, customerId, }?: OrderPlatformValidator.GetOrdersParam, { headers }?: import("../PlatformAPIClient").Options): Promise<OrderPlatformModel.OrderListingResponse>;
+    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, myOrders, showCrossCompanyData, customerId, }?: OrderPlatformValidator.GetOrdersParam, { headers }?: import("../PlatformAPIClient").Options): Promise<OrderPlatformModel.OrderListingResponse>;
     /**
      * @param {OrderPlatformValidator.GetRoleBasedActionsParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -248,7 +248,7 @@ declare class Order {
      * @summary:
      * @description: Get Shipments Listing for the company id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getShipments/).
      */
-    getShipments({ lane, bagStatus, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, myOrders, platformUserId, tags, customerId, }?: OrderPlatformValidator.GetShipmentsParam, { headers }?: import("../PlatformAPIClient").Options): Promise<OrderPlatformModel.ShipmentInternalPlatformViewResponse>;
+    getShipments({ lane, bagStatus, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, myOrders, platformUserId, sortType, showCrossCompanyData, tags, customerId, }?: OrderPlatformValidator.GetShipmentsParam, { headers }?: import("../PlatformAPIClient").Options): Promise<OrderPlatformModel.ShipmentInternalPlatformViewResponse>;
     /**
      * @param {OrderPlatformValidator.GetStateTransitionMapParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -332,6 +332,16 @@ declare class Order {
      */
     sendUserMobileOTP({ body }?: OrderPlatformValidator.SendUserMobileOTPParam, { headers }?: import("../PlatformAPIClient").Options): Promise<OrderPlatformModel.SendUserMobileOtpResponse>;
     /**
+     * @param {OrderPlatformValidator.TrackShipmentParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.CourierPartnerTrackingResponse>} -
+     *   Success response
+     * @name trackShipment
+     * @summary: Get courier partner tracking details
+     * @description: This endpoint allows users to get courier partner tracking details for a given shipment id or awb no. The service will fetch courier partner statuses that are pushed to oms. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/trackShipment/).
+     */
+    trackShipment({ shipmentId, awb, pageNo, pageSize }?: OrderPlatformValidator.TrackShipmentParam, { headers }?: import("../PlatformAPIClient").Options): Promise<OrderPlatformModel.CourierPartnerTrackingResponse>;
+    /**
      * @param {OrderPlatformValidator.UpdateAddressParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<OrderPlatformModel.BaseResponse>} - Success response
@@ -372,6 +382,16 @@ declare class Order {
      * @description: This API is for Shipment State transition or Shipment data update or both below example is for partial state transition with data update - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/updateShipmentStatus/).
      */
     updateShipmentStatus({ body }?: OrderPlatformValidator.UpdateShipmentStatusParam, { headers }?: import("../PlatformAPIClient").Options): Promise<OrderPlatformModel.UpdateShipmentStatusResponseBody>;
+    /**
+     * @param {OrderPlatformValidator.UpdateShipmentTrackingParam} arg - Arg object
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.CourierPartnerTrackingDetails>} -
+     *   Success response
+     * @name updateShipmentTracking
+     * @summary: Post courier partner tracking details
+     * @description: This endpoint allows users to post courier partner tracking details for a given shipment id or awb no. The service will add entry for courier partner statuses and will be saved to oms. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/updateShipmentTracking/).
+     */
+    updateShipmentTracking({ body }?: OrderPlatformValidator.UpdateShipmentTrackingParam, { headers }?: import("../PlatformAPIClient").Options): Promise<OrderPlatformModel.CourierPartnerTrackingDetails>;
     /**
      * @param {OrderPlatformValidator.UploadConsentParam} arg - Arg object
      * @param {import("../PlatformAPIClient").Options} - Options

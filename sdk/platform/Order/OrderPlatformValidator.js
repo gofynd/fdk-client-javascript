@@ -132,6 +132,8 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @property {string} [timeToDispatch]
  * @property {string} [paymentMethods]
  * @property {boolean} [myOrders]
+ * @property {boolean} [showCrossCompanyData] - Flag to view cross & non-cross
+ *   company order
  */
 
 /**
@@ -163,6 +165,8 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @property {boolean} [isPrioritySort]
  * @property {string} [customMeta]
  * @property {boolean} [myOrders]
+ * @property {boolean} [showCrossCompanyData] - Flag to view cross & non-cross
+ *   company order
  * @property {string} [customerId]
  */
 
@@ -216,6 +220,9 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @property {string} [companyAffiliateTag]
  * @property {boolean} [myOrders]
  * @property {string} [platformUserId]
+ * @property {string} [sortType] - Sort the result data on basis of input
+ * @property {boolean} [showCrossCompanyData] - Flag to view cross & non-cross
+ *   company order
  * @property {string} [tags] - Comma separated values of tags
  * @property {string} [customerId]
  */
@@ -264,6 +271,14 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
+ * @typedef TrackShipmentParam
+ * @property {string} [shipmentId] - Shipment ID
+ * @property {string} [awb] - AWB number
+ * @property {number} [pageNo] - Page number
+ * @property {number} [pageSize] - Page size
+ */
+
+/**
  * @typedef UpdateAddressParam
  * @property {string} shipmentId
  * @property {string} [name]
@@ -292,6 +307,11 @@ const OrderPlatformModel = require("./OrderPlatformModel");
 /**
  * @typedef UpdateShipmentStatusParam
  * @property {OrderPlatformModel.UpdateShipmentStatusRequest} body
+ */
+
+/**
+ * @typedef UpdateShipmentTrackingParam
+ * @property {OrderPlatformModel.CourierPartnerTrackingDetails} body
  */
 
 /**
@@ -473,6 +493,7 @@ class OrderPlatformValidator {
       timeToDispatch: Joi.string().allow(""),
       paymentMethods: Joi.string().allow(""),
       myOrders: Joi.boolean(),
+      showCrossCompanyData: Joi.boolean(),
     }).required();
   }
 
@@ -503,6 +524,7 @@ class OrderPlatformValidator {
       isPrioritySort: Joi.boolean(),
       customMeta: Joi.string().allow(""),
       myOrders: Joi.boolean(),
+      showCrossCompanyData: Joi.boolean(),
       customerId: Joi.string().allow(""),
     }).required();
   }
@@ -563,6 +585,8 @@ class OrderPlatformValidator {
       companyAffiliateTag: Joi.string().allow(""),
       myOrders: Joi.boolean(),
       platformUserId: Joi.string().allow(""),
+      sortType: Joi.string().allow(""),
+      showCrossCompanyData: Joi.boolean(),
       tags: Joi.string().allow(""),
       customerId: Joi.string().allow(""),
     }).required();
@@ -630,6 +654,16 @@ class OrderPlatformValidator {
     }).required();
   }
 
+  /** @returns {TrackShipmentParam} */
+  static trackShipment() {
+    return Joi.object({
+      shipmentId: Joi.string().allow(""),
+      awb: Joi.string().allow(""),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+    }).required();
+  }
+
   /** @returns {UpdateAddressParam} */
   static updateAddress() {
     return Joi.object({
@@ -666,6 +700,13 @@ class OrderPlatformValidator {
   static updateShipmentStatus() {
     return Joi.object({
       body: OrderPlatformModel.UpdateShipmentStatusRequest().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateShipmentTrackingParam} */
+  static updateShipmentTracking() {
+    return Joi.object({
+      body: OrderPlatformModel.CourierPartnerTrackingDetails().required(),
     }).required();
   }
 

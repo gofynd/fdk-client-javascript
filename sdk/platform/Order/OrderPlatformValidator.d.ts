@@ -111,6 +111,8 @@ export = OrderPlatformValidator;
  * @property {string} [timeToDispatch]
  * @property {string} [paymentMethods]
  * @property {boolean} [myOrders]
+ * @property {boolean} [showCrossCompanyData] - Flag to view cross & non-cross
+ *   company order
  */
 /**
  * @typedef GetOrderByIdParam
@@ -140,6 +142,8 @@ export = OrderPlatformValidator;
  * @property {boolean} [isPrioritySort]
  * @property {string} [customMeta]
  * @property {boolean} [myOrders]
+ * @property {boolean} [showCrossCompanyData] - Flag to view cross & non-cross
+ *   company order
  * @property {string} [customerId]
  */
 /** @typedef GetRoleBasedActionsParam */
@@ -188,6 +192,9 @@ export = OrderPlatformValidator;
  * @property {string} [companyAffiliateTag]
  * @property {boolean} [myOrders]
  * @property {string} [platformUserId]
+ * @property {string} [sortType] - Sort the result data on basis of input
+ * @property {boolean} [showCrossCompanyData] - Flag to view cross & non-cross
+ *   company order
  * @property {string} [tags] - Comma separated values of tags
  * @property {string} [customerId]
  */
@@ -226,6 +233,13 @@ export = OrderPlatformValidator;
  * @property {OrderPlatformModel.SendUserMobileOTP} body
  */
 /**
+ * @typedef TrackShipmentParam
+ * @property {string} [shipmentId] - Shipment ID
+ * @property {string} [awb] - AWB number
+ * @property {number} [pageNo] - Page number
+ * @property {number} [pageSize] - Page size
+ */
+/**
  * @typedef UpdateAddressParam
  * @property {string} shipmentId
  * @property {string} [name]
@@ -251,6 +265,10 @@ export = OrderPlatformValidator;
 /**
  * @typedef UpdateShipmentStatusParam
  * @property {OrderPlatformModel.UpdateShipmentStatusRequest} body
+ */
+/**
+ * @typedef UpdateShipmentTrackingParam
+ * @property {OrderPlatformModel.CourierPartnerTrackingDetails} body
  */
 /**
  * @typedef UploadConsentParam
@@ -331,6 +349,8 @@ declare class OrderPlatformValidator {
     static sendSmsNinja(): SendSmsNinjaParam;
     /** @returns {SendUserMobileOTPParam} */
     static sendUserMobileOTP(): SendUserMobileOTPParam;
+    /** @returns {TrackShipmentParam} */
+    static trackShipment(): TrackShipmentParam;
     /** @returns {UpdateAddressParam} */
     static updateAddress(): UpdateAddressParam;
     /** @returns {UpdatePackagingDimensionsParam} */
@@ -339,13 +359,15 @@ declare class OrderPlatformValidator {
     static updateShipmentLock(): UpdateShipmentLockParam;
     /** @returns {UpdateShipmentStatusParam} */
     static updateShipmentStatus(): UpdateShipmentStatusParam;
+    /** @returns {UpdateShipmentTrackingParam} */
+    static updateShipmentTracking(): UpdateShipmentTrackingParam;
     /** @returns {UploadConsentParam} */
     static uploadConsent(): UploadConsentParam;
     /** @returns {VerifyMobileOTPParam} */
     static verifyMobileOTP(): VerifyMobileOTPParam;
 }
 declare namespace OrderPlatformValidator {
-    export { AttachOrderUserParam, CheckOrderStatusParam, Click2CallParam, CreateChannelConfigParam, CreateOrderParam, DispatchManifestParam, DownloadBulkActionTemplateParam, DownloadLanesReportParam, FetchCreditBalanceDetailParam, FetchRefundModeConfigParam, GeneratePOSReceiptByOrderIdParam, GetAllowedStateTransitionParam, GetAnnouncementsParam, GetBagByIdParam, GetBagsParam, GetBulkActionTemplateParam, GetBulkShipmentExcelFileParam, GetChannelConfigParam, GetLaneConfigParam, GetOrderByIdParam, GetOrdersParam, GetRoleBasedActionsParam, GetShipmentByIdParam, GetShipmentHistoryParam, GetShipmentReasonsParam, GetShipmentsParam, GetStateTransitionMapParam, GetfiltersParam, InvalidateShipmentCacheParam, OrderUpdateParam, PostShipmentHistoryParam, ProcessManifestParam, ReassignLocationParam, SendSmsNinjaParam, SendUserMobileOTPParam, UpdateAddressParam, UpdatePackagingDimensionsParam, UpdateShipmentLockParam, UpdateShipmentStatusParam, UploadConsentParam, VerifyMobileOTPParam };
+    export { AttachOrderUserParam, CheckOrderStatusParam, Click2CallParam, CreateChannelConfigParam, CreateOrderParam, DispatchManifestParam, DownloadBulkActionTemplateParam, DownloadLanesReportParam, FetchCreditBalanceDetailParam, FetchRefundModeConfigParam, GeneratePOSReceiptByOrderIdParam, GetAllowedStateTransitionParam, GetAnnouncementsParam, GetBagByIdParam, GetBagsParam, GetBulkActionTemplateParam, GetBulkShipmentExcelFileParam, GetChannelConfigParam, GetLaneConfigParam, GetOrderByIdParam, GetOrdersParam, GetRoleBasedActionsParam, GetShipmentByIdParam, GetShipmentHistoryParam, GetShipmentReasonsParam, GetShipmentsParam, GetStateTransitionMapParam, GetfiltersParam, InvalidateShipmentCacheParam, OrderUpdateParam, PostShipmentHistoryParam, ProcessManifestParam, ReassignLocationParam, SendSmsNinjaParam, SendUserMobileOTPParam, TrackShipmentParam, UpdateAddressParam, UpdatePackagingDimensionsParam, UpdateShipmentLockParam, UpdateShipmentStatusParam, UpdateShipmentTrackingParam, UploadConsentParam, VerifyMobileOTPParam };
 }
 type AttachOrderUserParam = {
     body: OrderPlatformModel.AttachOrderUser;
@@ -557,6 +579,11 @@ type GetLaneConfigParam = {
     timeToDispatch?: string;
     paymentMethods?: string;
     myOrders?: boolean;
+    /**
+     * - Flag to view cross & non-cross
+     * company order
+     */
+    showCrossCompanyData?: boolean;
 };
 type GetOrderByIdParam = {
     orderId: string;
@@ -605,6 +632,11 @@ type GetOrdersParam = {
     isPrioritySort?: boolean;
     customMeta?: string;
     myOrders?: boolean;
+    /**
+     * - Flag to view cross & non-cross
+     * company order
+     */
+    showCrossCompanyData?: boolean;
     customerId?: string;
 };
 type GetShipmentByIdParam = {
@@ -721,6 +753,15 @@ type GetShipmentsParam = {
     myOrders?: boolean;
     platformUserId?: string;
     /**
+     * - Sort the result data on basis of input
+     */
+    sortType?: string;
+    /**
+     * - Flag to view cross & non-cross
+     * company order
+     */
+    showCrossCompanyData?: boolean;
+    /**
      * - Comma separated values of tags
      */
     tags?: string;
@@ -757,6 +798,24 @@ type SendSmsNinjaParam = {
 type SendUserMobileOTPParam = {
     body: OrderPlatformModel.SendUserMobileOTP;
 };
+type TrackShipmentParam = {
+    /**
+     * - Shipment ID
+     */
+    shipmentId?: string;
+    /**
+     * - AWB number
+     */
+    awb?: string;
+    /**
+     * - Page number
+     */
+    pageNo?: number;
+    /**
+     * - Page size
+     */
+    pageSize?: number;
+};
 type UpdateAddressParam = {
     shipmentId: string;
     name?: string;
@@ -779,6 +838,9 @@ type UpdateShipmentLockParam = {
 };
 type UpdateShipmentStatusParam = {
     body: OrderPlatformModel.UpdateShipmentStatusRequest;
+};
+type UpdateShipmentTrackingParam = {
+    body: OrderPlatformModel.CourierPartnerTrackingDetails;
 };
 type UploadConsentParam = {
     body: OrderPlatformModel.UploadConsent;

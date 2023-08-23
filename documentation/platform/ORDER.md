@@ -44,11 +44,13 @@ Handles all platform order and shipment api(s)
 * [reassignLocation](#reassignlocation)
 * [sendSmsNinja](#sendsmsninja)
 * [sendUserMobileOTP](#sendusermobileotp)
+* [trackShipment](#trackshipment)
 * [trackShipmentPlatform](#trackshipmentplatform)
 * [updateAddress](#updateaddress)
 * [updatePackagingDimensions](#updatepackagingdimensions)
 * [updateShipmentLock](#updateshipmentlock)
 * [updateShipmentStatus](#updateshipmentstatus)
+* [updateShipmentTracking](#updateshipmenttracking)
 * [uploadConsent](#uploadconsent)
 * [verifyMobileOTP](#verifymobileotp)
 
@@ -1253,7 +1255,8 @@ const promise = platformClient.order.getLaneConfig({  superLane : value,
  tags : value,
  timeToDispatch : value,
  paymentMethods : value,
- myOrders : value });
+ myOrders : value,
+ showCrossCompanyData : value });
 
 // Async/Await
 const data = await platformClient.order.getLaneConfig({  superLane : value,
@@ -1270,7 +1273,8 @@ const data = await platformClient.order.getLaneConfig({  superLane : value,
  tags : value,
  timeToDispatch : value,
  paymentMethods : value,
- myOrders : value });
+ myOrders : value,
+ showCrossCompanyData : value });
 ```
 
 
@@ -1293,7 +1297,8 @@ const data = await platformClient.order.getLaneConfig({  superLane : value,
 | tags | string | no |  |    
 | timeToDispatch | string | no |  |    
 | paymentMethods | string | no |  |    
-| myOrders | boolean | no |  |  
+| myOrders | boolean | no |  |    
+| showCrossCompanyData | boolean | no | Flag to view cross & non-cross company order |  
 
 
 
@@ -2207,6 +2212,7 @@ const promise = platformClient.order.getOrders({  lane : value,
  isPrioritySort : value,
  customMeta : value,
  myOrders : value,
+ showCrossCompanyData : value,
  customerId : value });
 
 // Async/Await
@@ -2227,6 +2233,7 @@ const data = await platformClient.order.getOrders({  lane : value,
  isPrioritySort : value,
  customMeta : value,
  myOrders : value,
+ showCrossCompanyData : value,
  customerId : value });
 ```
 
@@ -2253,6 +2260,7 @@ const data = await platformClient.order.getOrders({  lane : value,
 | isPrioritySort | boolean | no |  |    
 | customMeta | string | no |  |    
 | myOrders | boolean | no |  |    
+| showCrossCompanyData | boolean | no | Flag to view cross & non-cross company order |    
 | customerId | string | no |  |  
 
 
@@ -3027,6 +3035,8 @@ const promise = platformClient.order.getShipments({  lane : value,
  companyAffiliateTag : value,
  myOrders : value,
  platformUserId : value,
+ sortType : value,
+ showCrossCompanyData : value,
  tags : value,
  customerId : value });
 
@@ -3054,6 +3064,8 @@ const data = await platformClient.order.getShipments({  lane : value,
  companyAffiliateTag : value,
  myOrders : value,
  platformUserId : value,
+ sortType : value,
+ showCrossCompanyData : value,
  tags : value,
  customerId : value });
 ```
@@ -3087,6 +3099,8 @@ const data = await platformClient.order.getShipments({  lane : value,
 | companyAffiliateTag | string | no |  |    
 | myOrders | boolean | no |  |    
 | platformUserId | string | no |  |    
+| sortType | string | no | Sort the result data on basis of input |    
+| showCrossCompanyData | boolean | no | Flag to view cross & non-cross company order |    
 | tags | string | no | Comma separated values of tags |    
 | customerId | string | no |  |  
 
@@ -4222,6 +4236,103 @@ Send OTP to user mobile
 ---
 
 
+### trackShipment
+Get courier partner tracking details
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.trackShipment({  shipmentId : value,
+ awb : value,
+ pageNo : value,
+ pageSize : value });
+
+// Async/Await
+const data = await platformClient.order.trackShipment({  shipmentId : value,
+ awb : value,
+ pageNo : value,
+ pageSize : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| shipmentId | string | no | Shipment ID |    
+| awb | string | no | AWB number |    
+| pageNo | number | no | Page number |    
+| pageSize | number | no | Page size |  
+
+
+
+This endpoint allows users to get courier partner tracking details for a given shipment id or awb no. The service will fetch courier partner statuses that are pushed to oms.
+
+*Returned Response:*
+
+
+
+
+[CourierPartnerTrackingResponse](#CourierPartnerTrackingResponse)
+
+Shipment Tracking fetched successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "awb": "713191641",
+        "dp_location": "Mumbai",
+        "dp_name": "Ecom b2b",
+        "dp_status": "dp_assigned",
+        "dp_status_updated_at": "2023-07-12T20:17:46.384Z",
+        "estimated_delivery_date": "2023-07-12T20:17:46.384Z",
+        "id": 370,
+        "journey": "forward",
+        "operational_status": "dp_assigned",
+        "promised_delivery_date": "2023-07-12T20:17:46.384Z",
+        "remark": "UD -Manifested",
+        "shipment_id": "16908065964581066182"
+      }
+    ],
+    "page": {
+      "type": "number",
+      "size": 200,
+      "current": 1,
+      "has_next": true,
+      "item_total": 3
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### trackShipmentPlatform
 Track shipment
 
@@ -4588,6 +4699,82 @@ NOTE success response can contains success and failed result as well
   ]
 }
 ```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateShipmentTracking
+Post courier partner tracking details
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.updateShipmentTracking({  body : value });
+
+// Async/Await
+const data = await platformClient.order.updateShipmentTracking({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CourierPartnerTrackingDetails](#CourierPartnerTrackingDetails) | yes | Request body |
+
+
+This endpoint allows users to post courier partner tracking details for a given shipment id or awb no. The service will add entry for courier partner statuses and will be saved to oms.
+
+*Returned Response:*
+
+
+
+
+[CourierPartnerTrackingDetails](#CourierPartnerTrackingDetails)
+
+Shipment Tracking updated successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "awb": "713191641",
+    "dp_location": "Mumbai",
+    "dp_name": "Ecom b2b",
+    "dp_status": "dp_assigned",
+    "dp_status_updated_at": "2023-07-12T20:17:46.384Z",
+    "estimated_delivery_date": "2023-07-12T20:17:46.384Z",
+    "id": 370,
+    "journey": "forward",
+    "operational_status": "dp_assigned",
+    "promised_delivery_date": "2023-07-12T20:17:46.384Z",
+    "remark": "UD -Manifested",
+    "shipment_id": "16908065964581066182"
+  }
+}
+```
+</details>
+
 </details>
 
 
@@ -5595,6 +5782,37 @@ Verify OTP
  | ---------- | ---- | -------- | ----------- |
  | emails | [string]? |  yes  |  |
  | phone | [[PhoneDetails](#PhoneDetails)]? |  yes  |  |
+ 
+
+---
+
+#### [CourierPartnerTrackingDetails](#CourierPartnerTrackingDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | awb | string |  no  | AWB Number |
+ | dp_location | string? |  yes  | Current location of Courier partner |
+ | dp_name | string |  no  | Courier Partner name |
+ | dp_status | string |  no  | Status at Courier partner end |
+ | dp_status_updated_at | string |  no  | Date Time at which status was updated at Courier partner |
+ | estimated_delivery_date | string? |  yes  | Estimated delivery date received from Courier partner |
+ | id | number? |  yes  | Id of Tracking history |
+ | journey | string |  no  | Journey type of the shipment |
+ | meta | string? |  yes  | Meta field to store Courier partner's meta data |
+ | operational_status | string |  no  | Operational status of OMS |
+ | promised_delivery_date | string? |  yes  | Promised delivery date received from Courier partner |
+ | remark | string? |  yes  | Remark from courier partner |
+ | shipment_id | string |  no  | Shipment ID |
+ 
+
+---
+
+#### [CourierPartnerTrackingResponse](#CourierPartnerTrackingResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[CourierPartnerTrackingDetails](#CourierPartnerTrackingDetails)]? |  yes  |  |
+ | page | [PageDetails](#PageDetails)? |  yes  |  |
  
 
 ---
@@ -6693,6 +6911,19 @@ Verify OTP
  | size | number? |  yes  |  |
  | total | number? |  yes  |  |
  | type | string? |  yes  |  |
+ 
+
+---
+
+#### [PageDetails](#PageDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | current | number? |  yes  | Current page number |
+ | has_next | boolean? |  yes  | if next page contains any result |
+ | item_total | number |  no  | Total count of the results present in the requested filter |
+ | size | number? |  yes  | Page size |
+ | type | string? |  yes  | Type of the page |
  
 
 ---

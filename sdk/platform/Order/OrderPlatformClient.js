@@ -1458,6 +1458,7 @@ class Order {
       timeToDispatch,
       paymentMethods,
       myOrders,
+      showCrossCompanyData,
     } = {},
     { headers } = { headers: false }
   ) {
@@ -1478,6 +1479,7 @@ class Order {
         timeToDispatch,
         paymentMethods,
         myOrders,
+        showCrossCompanyData,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1503,6 +1505,7 @@ class Order {
         timeToDispatch,
         paymentMethods,
         myOrders,
+        showCrossCompanyData,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1529,6 +1532,7 @@ class Order {
     query_params["time_to_dispatch"] = timeToDispatch;
     query_params["payment_methods"] = paymentMethods;
     query_params["my_orders"] = myOrders;
+    query_params["show_cross_company_data"] = showCrossCompanyData;
 
     const xHeaders = {};
 
@@ -1661,6 +1665,7 @@ class Order {
       isPrioritySort,
       customMeta,
       myOrders,
+      showCrossCompanyData,
       customerId,
     } = {},
     { headers } = { headers: false }
@@ -1684,6 +1689,7 @@ class Order {
         isPrioritySort,
         customMeta,
         myOrders,
+        showCrossCompanyData,
         customerId,
       },
       { abortEarly: false, allowUnknown: true }
@@ -1712,6 +1718,7 @@ class Order {
         isPrioritySort,
         customMeta,
         myOrders,
+        showCrossCompanyData,
         customerId,
       },
       { abortEarly: false, allowUnknown: false }
@@ -1741,6 +1748,7 @@ class Order {
     query_params["is_priority_sort"] = isPrioritySort;
     query_params["custom_meta"] = customMeta;
     query_params["my_orders"] = myOrders;
+    query_params["show_cross_company_data"] = showCrossCompanyData;
     query_params["customer_id"] = customerId;
 
     const xHeaders = {};
@@ -2114,6 +2122,8 @@ class Order {
       companyAffiliateTag,
       myOrders,
       platformUserId,
+      sortType,
+      showCrossCompanyData,
       tags,
       customerId,
     } = {},
@@ -2144,6 +2154,8 @@ class Order {
         companyAffiliateTag,
         myOrders,
         platformUserId,
+        sortType,
+        showCrossCompanyData,
         tags,
         customerId,
       },
@@ -2179,6 +2191,8 @@ class Order {
         companyAffiliateTag,
         myOrders,
         platformUserId,
+        sortType,
+        showCrossCompanyData,
         tags,
         customerId,
       },
@@ -2215,6 +2229,8 @@ class Order {
     query_params["company_affiliate_tag"] = companyAffiliateTag;
     query_params["my_orders"] = myOrders;
     query_params["platform_user_id"] = platformUserId;
+    query_params["sort_type"] = sortType;
+    query_params["show_cross_company_data"] = showCrossCompanyData;
     query_params["tags"] = tags;
     query_params["customer_id"] = customerId;
 
@@ -2893,6 +2909,89 @@ class Order {
   }
 
   /**
+   * @param {OrderPlatformValidator.TrackShipmentParam} arg - Arg object
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<OrderPlatformModel.CourierPartnerTrackingResponse>} -
+   *   Success response
+   * @name trackShipment
+   * @summary: Get courier partner tracking details
+   * @description: This endpoint allows users to get courier partner tracking details for a given shipment id or awb no. The service will fetch courier partner statuses that are pushed to oms. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/trackShipment/).
+   */
+  async trackShipment(
+    { shipmentId, awb, pageNo, pageSize } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = OrderPlatformValidator.trackShipment().validate(
+      {
+        shipmentId,
+        awb,
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = OrderPlatformValidator.trackShipment().validate(
+      {
+        shipmentId,
+        awb,
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Order > trackShipment \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["shipment_id"] = shipmentId;
+    query_params["awb"] = awb;
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/tracking`,
+      query_params,
+      undefined,
+      xHeaders,
+      { headers }
+    );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = OrderPlatformModel.CourierPartnerTrackingResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Order > trackShipment \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
    * @param {OrderPlatformValidator.UpdateAddressParam} arg - Arg object
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.BaseResponse>} - Success response
@@ -3230,6 +3329,81 @@ class Order {
       Logger({
         level: "WARN",
         message: `Response Validation Warnnings for platform > Order > updateShipmentStatus \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {OrderPlatformValidator.UpdateShipmentTrackingParam} arg - Arg object
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<OrderPlatformModel.CourierPartnerTrackingDetails>} -
+   *   Success response
+   * @name updateShipmentTracking
+   * @summary: Post courier partner tracking details
+   * @description: This endpoint allows users to post courier partner tracking details for a given shipment id or awb no. The service will add entry for courier partner statuses and will be saved to oms. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/updateShipmentTracking/).
+   */
+  async updateShipmentTracking(
+    { body } = {},
+    { headers } = { headers: false }
+  ) {
+    const { error } = OrderPlatformValidator.updateShipmentTracking().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = OrderPlatformValidator.updateShipmentTracking().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Order > updateShipmentTracking \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/tracking`,
+      query_params,
+      body,
+      xHeaders,
+      { headers }
+    );
+
+    let responseData = response;
+    if (headers) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = OrderPlatformModel.CourierPartnerTrackingDetails().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Order > updateShipmentTracking \n ${res_error}`,
       });
     }
 

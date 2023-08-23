@@ -653,6 +653,32 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef CourierPartnerTrackingDetails
+ * @property {string} awb - AWB Number
+ * @property {string} [dp_location] - Current location of Courier partner
+ * @property {string} dp_name - Courier Partner name
+ * @property {string} dp_status - Status at Courier partner end
+ * @property {string} dp_status_updated_at - Date Time at which status was
+ *   updated at Courier partner
+ * @property {string} [estimated_delivery_date] - Estimated delivery date
+ *   received from Courier partner
+ * @property {number} [id] - Id of Tracking history
+ * @property {string} journey - Journey type of the shipment
+ * @property {Object} [meta] - Meta field to store Courier partner's meta data
+ * @property {string} operational_status - Operational status of OMS
+ * @property {string} [promised_delivery_date] - Promised delivery date received
+ *   from Courier partner
+ * @property {string} [remark] - Remark from courier partner
+ * @property {string} shipment_id - Shipment ID
+ */
+
+/**
+ * @typedef CourierPartnerTrackingResponse
+ * @property {CourierPartnerTrackingDetails[]} [items]
+ * @property {PageDetails} [page]
+ */
+
+/**
  * @typedef CreateChannelConfig
  * @property {DpConfiguration} [dp_configuration]
  * @property {boolean} [location_reassignment]
@@ -1433,6 +1459,16 @@ const Joi = require("joi");
  * @property {string} [next_id]
  * @property {number} [size]
  * @property {string} type
+ */
+
+/**
+ * @typedef PageDetails
+ * @property {number} [current] - Current page number
+ * @property {boolean} [has_next] - If next page contains any result
+ * @property {number} item_total - Total count of the results present in the
+ *   requested filter
+ * @property {number} [size] - Page size
+ * @property {string} [type] - Type of the page
  */
 
 /**
@@ -3303,6 +3339,35 @@ class OrderPlatformModel {
     });
   }
 
+  /** @returns {CourierPartnerTrackingDetails} */
+  static CourierPartnerTrackingDetails() {
+    return Joi.object({
+      awb: Joi.string().allow("").required(),
+      dp_location: Joi.string().allow("").allow(null),
+      dp_name: Joi.string().allow("").required(),
+      dp_status: Joi.string().allow("").required(),
+      dp_status_updated_at: Joi.string().allow("").required(),
+      estimated_delivery_date: Joi.string().allow("").allow(null),
+      id: Joi.number(),
+      journey: Joi.string().allow("").required(),
+      meta: Joi.any(),
+      operational_status: Joi.string().allow("").required(),
+      promised_delivery_date: Joi.string().allow("").allow(null),
+      remark: Joi.string().allow("").allow(null),
+      shipment_id: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {CourierPartnerTrackingResponse} */
+  static CourierPartnerTrackingResponse() {
+    return Joi.object({
+      items: Joi.array().items(
+        OrderPlatformModel.CourierPartnerTrackingDetails()
+      ),
+      page: OrderPlatformModel.PageDetails(),
+    });
+  }
+
   /** @returns {CreateChannelConfig} */
   static CreateChannelConfig() {
     return Joi.object({
@@ -4249,6 +4314,17 @@ class OrderPlatformModel {
       next_id: Joi.string().allow(""),
       size: Joi.number(),
       type: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {PageDetails} */
+  static PageDetails() {
+    return Joi.object({
+      current: Joi.number(),
+      has_next: Joi.boolean(),
+      item_total: Joi.number().required(),
+      size: Joi.number(),
+      type: Joi.string().allow(""),
     });
   }
 
