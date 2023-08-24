@@ -43913,8 +43913,7 @@ Successful upgrade
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | auth | [AuthConfig](#AuthConfig)? |  yes  |  |
- | palette | [PaletteConfig](#PaletteConfig)? |  yes  |  |
+ | custom | [CustomConfig](#CustomConfig)? |  yes  |  |
  | statics | [StaticConfig](#StaticConfig)? |  yes  |  |
  
 
@@ -44162,6 +44161,7 @@ Successful upgrade
  | ---------- | ---- | -------- | ----------- |
  | auth | [AuthConfig](#AuthConfig)? |  yes  |  |
  | colors | [Colors](#Colors)? |  yes  |  |
+ | palette | [PaletteConfig](#PaletteConfig)? |  yes  |  |
  
 
 ---
@@ -44193,7 +44193,7 @@ Successful upgrade
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | custom | [CustomConfig](#CustomConfig)? |  yes  |  |
- | global_config | [GlobalConfig](#GlobalConfig)? |  yes  |  |
+ | global_config | string? |  yes  |  |
  | name | string? |  yes  | The name of the configuration |
  | page | [string]? |  yes  | An array of pages |
  

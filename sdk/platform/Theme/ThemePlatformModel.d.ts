@@ -253,8 +253,7 @@ export = ThemePlatformModel;
  */
 /**
  * @typedef GlobalConfig
- * @property {AuthConfig} [auth]
- * @property {PaletteConfig} [palette]
+ * @property {CustomConfig} [custom]
  * @property {StaticConfig} [statics]
  */
 /**
@@ -392,6 +391,7 @@ export = ThemePlatformModel;
  * @typedef StaticProps
  * @property {AuthConfig} [auth]
  * @property {Colors} [colors]
+ * @property {PaletteConfig} [palette]
  */
 /**
  * @typedef TextProp
@@ -408,7 +408,7 @@ export = ThemePlatformModel;
 /**
  * @typedef ThemeConfiguration
  * @property {CustomConfig} [custom]
- * @property {GlobalConfig} [global_config]
+ * @property {Object} [global_config]
  * @property {string} [name] - The name of the configuration
  * @property {string[]} [page] - An array of pages
  */
@@ -986,8 +986,7 @@ type GeneralSetting = {
 /** @returns {GlobalConfig} */
 declare function GlobalConfig(): GlobalConfig;
 type GlobalConfig = {
-    auth?: AuthConfig;
-    palette?: PaletteConfig;
+    custom?: CustomConfig;
     statics?: StaticConfig;
 };
 /** @returns {GlobalSchema} */
@@ -1259,6 +1258,7 @@ declare function StaticProps(): StaticProps;
 type StaticProps = {
     auth?: AuthConfig;
     colors?: Colors;
+    palette?: PaletteConfig;
 };
 /** @returns {TextProp} */
 declare function TextProp(): TextProp;
@@ -1296,7 +1296,7 @@ type TextSetting = {
 declare function ThemeConfiguration(): ThemeConfiguration;
 type ThemeConfiguration = {
     custom?: CustomConfig;
-    global_config?: GlobalConfig;
+    global_config?: any;
     /**
      * - The name of the configuration
      */

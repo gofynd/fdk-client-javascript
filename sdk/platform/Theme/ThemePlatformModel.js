@@ -290,8 +290,7 @@ const Joi = require("joi");
 
 /**
  * @typedef GlobalConfig
- * @property {AuthConfig} [auth]
- * @property {PaletteConfig} [palette]
+ * @property {CustomConfig} [custom]
  * @property {StaticConfig} [statics]
  */
 
@@ -452,6 +451,7 @@ const Joi = require("joi");
  * @typedef StaticProps
  * @property {AuthConfig} [auth]
  * @property {Colors} [colors]
+ * @property {PaletteConfig} [palette]
  */
 
 /**
@@ -471,7 +471,7 @@ const Joi = require("joi");
 /**
  * @typedef ThemeConfiguration
  * @property {CustomConfig} [custom]
- * @property {GlobalConfig} [global_config]
+ * @property {Object} [global_config]
  * @property {string} [name] - The name of the configuration
  * @property {string[]} [page] - An array of pages
  */
@@ -947,8 +947,7 @@ class ThemePlatformModel {
   /** @returns {GlobalConfig} */
   static GlobalConfig() {
     return Joi.object({
-      auth: ThemePlatformModel.AuthConfig(),
-      palette: ThemePlatformModel.PaletteConfig(),
+      custom: ThemePlatformModel.CustomConfig(),
       statics: ThemePlatformModel.StaticConfig(),
     });
   }
@@ -1155,6 +1154,7 @@ class ThemePlatformModel {
     return Joi.object({
       auth: ThemePlatformModel.AuthConfig(),
       colors: ThemePlatformModel.Colors(),
+      palette: ThemePlatformModel.PaletteConfig(),
     });
   }
 
@@ -1180,7 +1180,7 @@ class ThemePlatformModel {
   static ThemeConfiguration() {
     return Joi.object({
       custom: ThemePlatformModel.CustomConfig(),
-      global_config: ThemePlatformModel.GlobalConfig(),
+      global_config: Joi.any(),
       name: Joi.string().allow(""),
       page: Joi.array().items(Joi.string().allow("")),
     });
