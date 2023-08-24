@@ -28,13 +28,11 @@ let extensionHandler = {
   },
 };
 
-let baseUrl = "https://test.extension.com";
-
 let fdkClient = setupFdk({
   api_key: "<API_KEY>",
   api_secret: "<API_SECRET>",
-  base_url: baseUrl,
-  scopes: ["company/products"],
+  base_url: baseUrl, // this is optional
+  scopes: ["company/products"], // this is optional
   callbacks: extensionHandler,
   storage: new RedisStorage(redis),
   access_mode: "offline",
@@ -94,8 +92,8 @@ Webhook events can be helpful to handle tasks when certan events occur on platfo
 let fdkClient = setupFdk({
   api_key: "<API_KEY>",
   api_secret: "<API_SECRET>",
-  base_url: baseUrl,
-  scopes: ["company/products"],
+  base_url: baseUrl, // this is optional
+  scopes: ["company/products"], // this is optional
   callbacks: extensionHandler,
   storage: new RedisStorage(redis),
   access_mode: "offline",
@@ -104,15 +102,18 @@ let fdkClient = setupFdk({
     api_path: "/api/v1/webhooks", // required
     notification_email: "test@abc.com", // required
     subscribe_on_install: false, //optional. Default true
-    subscribed_saleschannel 'specific', //optional. Default all
+    subscribed_saleschannel: 'specific', //optional. Default all
     event_map: { // required
-      'extension/install': {
-        handler: handleExtInstall
+      'company/brand/create': {
+        version: '1',
+        handler: handleBrandCreate
       },
-      'extension/uninstall': {
-        handler: handleExtUninstall
+      'company/location/update': {
+        version: '1',
+        handler: handleLocationUpdate
       },
-      'coupon/create': {
+      'application/coupon/create': {
+        version: '1',
         handler: handleCouponCreate
       }
     }
@@ -129,7 +130,7 @@ There should be view on given api path to receive webhook call. It should be `PO
 
 ```javascript
 
-app.post('/api/v1/webhooks', async (req, res, next) {
+app.post('/api/v1/webhooks', async (req, res, next) => {
   try {
     await fdkClient.webhookRegistry.processWebhook(req);
     return res.status(200).json({"success": true});
@@ -144,3 +145,10 @@ app.post('/api/v1/webhooks', async (req, res, next) {
 
 > Setting `subscribed_saleschannel` as "specific" means, you will have to manually subscribe saleschannel level event for individual saleschannel. Default value here is "all" and event will be subscribed for all sales channels. For enabling events manually use function `enableSalesChannelWebhook`. To disable receiving events for a saleschannel use function `disableSalesChannelWebhook`. 
 
+
+##### How webhook registery subscribes to webhooks on Fynd Platform?
+After webhook config is passed to setupFdk whenever extension is launched to any of companies where extension is installed or to be installed, webhook config data is used to create webhook subscriber on Fynd Platform for that company. 
+
+> Any update to webhook config will not automatically update subscriber data on Fynd Platform for a company until extension is opened atleast once after the update. 
+
+Other way to update webhook config manually for a company is to call `syncEvents` function of webhookRegistery.   

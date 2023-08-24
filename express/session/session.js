@@ -41,6 +41,14 @@ class Session {
         };
     }
 
+    updateToken(rawToken) {
+        this.access_mode = rawToken.access_mode,
+        this.access_token = rawToken.access_token,
+        this.current_user = rawToken.current_user,
+        this.refresh_token = rawToken.refresh_token,
+        this.expires_in = rawToken.expires_in,
+        this.access_token_validity = rawToken.access_token_validity
+    }
 
     static generateSessionId(isOnline, options) {
         if(isOnline) {
