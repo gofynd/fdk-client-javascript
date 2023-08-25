@@ -80,6 +80,7 @@ class Catalog {
 
   /**
    * @param {CatalogApplicationValidator.FollowByIdParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CatalogApplicationModel.FollowPostResponse>} - Success response
    * @name followById
@@ -87,8 +88,8 @@ class Catalog {
    * @description: Follow a particular entity such as product, brand, collection specified by its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/followById/).
    */
   async followById(
-    { collectionType, collectionId } = {},
-    { headers } = { headers: false }
+    { collectionType, collectionId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CatalogApplicationValidator.followById().validate(
       { collectionType, collectionId },
@@ -125,12 +126,12 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -153,13 +154,17 @@ class Catalog {
 
   /**
    * @param {CatalogApplicationValidator.GetBrandDetailBySlugParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CatalogApplicationModel.BrandDetailResponse>} - Success response
    * @name getBrandDetailBySlug
    * @summary: Get metadata of a brand
    * @description: Fetch metadata of a brand such as name, information, logo, banner, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getBrandDetailBySlug/).
    */
-  async getBrandDetailBySlug({ slug } = {}, { headers } = { headers: false }) {
+  async getBrandDetailBySlug(
+    { slug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = CatalogApplicationValidator.getBrandDetailBySlug().validate(
@@ -197,12 +202,12 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -225,6 +230,7 @@ class Catalog {
 
   /**
    * @param {CatalogApplicationValidator.GetBrandsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CatalogApplicationModel.BrandListingResponse>} - Success response
    * @name getBrands
@@ -232,8 +238,8 @@ class Catalog {
    * @description: A brand is the name under which a product is sold. Use this API to list all the brands. You can also filter the brands by department. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getBrands/).
    */
   async getBrands(
-    { department, pageNo, pageSize } = {},
-    { headers } = { headers: false }
+    { department, pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CatalogApplicationValidator.getBrands().validate(
       { department, pageNo, pageSize },
@@ -273,12 +279,12 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -333,6 +339,7 @@ class Catalog {
 
   /**
    * @param {CatalogApplicationValidator.GetCategoriesParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CatalogApplicationModel.CategoryListingResponse>} -
    *   Success response
@@ -340,7 +347,10 @@ class Catalog {
    * @summary: List all the categories
    * @description: Use this API to list all the categories. You can also filter the categories by department. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getCategories/).
    */
-  async getCategories({ department } = {}, { headers } = { headers: false }) {
+  async getCategories(
+    { department, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = CatalogApplicationValidator.getCategories().validate(
       { department },
       { abortEarly: false, allowUnknown: true }
@@ -377,12 +387,12 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -405,6 +415,7 @@ class Catalog {
 
   /**
    * @param {CatalogApplicationValidator.GetCategoryDetailBySlugParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CatalogApplicationModel.CategoryMetaResponse>} - Success response
    * @name getCategoryDetailBySlug
@@ -412,8 +423,8 @@ class Catalog {
    * @description: Fetch metadata of a category such as name, information, logo, banner, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getCategoryDetailBySlug/).
    */
   async getCategoryDetailBySlug(
-    { slug } = {},
-    { headers } = { headers: false }
+    { slug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -452,12 +463,12 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -482,6 +493,7 @@ class Catalog {
    * @param {CatalogApplicationValidator.GetCollectionDetailBySlugParam} arg
    *   - Arg object.
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CatalogApplicationModel.CollectionDetailResponse>} -
    *   Success response
@@ -490,8 +502,8 @@ class Catalog {
    * @description: Get the details of a collection by its `slug`. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getCollectionDetailBySlug/).
    */
   async getCollectionDetailBySlug(
-    { slug } = {},
-    { headers } = { headers: false }
+    { slug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -530,12 +542,12 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -559,6 +571,7 @@ class Catalog {
   /**
    * @param {CatalogApplicationValidator.GetCollectionItemsBySlugParam} arg -
    *   Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CatalogApplicationModel.ProductListingResponse>} -
    *   Success response
@@ -567,8 +580,19 @@ class Catalog {
    * @description: Get items in a collection specified by its `slug`. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getCollectionItemsBySlug/).
    */
   async getCollectionItemsBySlug(
-    { slug, f, q, filters, sortOn, pageId, pageSize, pageNo, pageType } = {},
-    { headers } = { headers: false }
+    {
+      slug,
+      f,
+      q,
+      filters,
+      sortOn,
+      pageId,
+      pageSize,
+      pageNo,
+      pageType,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -615,12 +639,12 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -698,6 +722,7 @@ class Catalog {
 
   /**
    * @param {CatalogApplicationValidator.GetCollectionsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CatalogApplicationModel.GetCollectionListingResponse>}
    *   - Success response
@@ -707,8 +732,8 @@ class Catalog {
    * @description: Collections are a great way to organize your products and can improve the ability for customers to find items quickly and efficiently. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getCollections/).
    */
   async getCollections(
-    { pageNo, pageSize, tag, q } = {},
-    { headers } = { headers: false }
+    { pageNo, pageSize, tag, q, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CatalogApplicationValidator.getCollections().validate(
       { pageNo, pageSize, tag, q },
@@ -749,12 +774,12 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -810,6 +835,7 @@ class Catalog {
    * @param {CatalogApplicationValidator.GetComparedFrequentlyProductBySlugParam} arg
    *   - Arg object.
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CatalogApplicationModel.ProductFrequentlyComparedSimilarResponse>}
    *   - Success response
@@ -819,8 +845,8 @@ class Catalog {
    * @description: Use this API to compare a given product automatically with products that are frequently compared with it. Only one slug is needed. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getComparedFrequentlyProductBySlug/).
    */
   async getComparedFrequentlyProductBySlug(
-    { slug } = {},
-    { headers } = { headers: false }
+    { slug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -859,12 +885,12 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -886,13 +912,18 @@ class Catalog {
   }
 
   /**
+   * @param {CatalogApplicationValidator.GetDepartmentsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CatalogApplicationModel.DepartmentResponse>} - Success response
    * @name getDepartments
    * @summary: List all the departments
    * @description: Departments are a way to categorise similar products. A product can lie in multiple departments. For example, a skirt can below to the 'Women's Fashion' Department while a handbag can lie in 'Women's Accessories' Department. Use this API to list all the departments. If successful, returns the list of departments specified in `DepartmentResponse` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getDepartments/).
    */
-  async getDepartments({ headers } = { headers: false }) {
+  async getDepartments(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = CatalogApplicationValidator.getDepartments().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -928,12 +959,12 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -956,6 +987,7 @@ class Catalog {
 
   /**
    * @param {CatalogApplicationValidator.GetFollowIdsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CatalogApplicationModel.FollowIdsResponse>} - Success response
    * @name getFollowIds
@@ -963,8 +995,8 @@ class Catalog {
    * @description: You can get the IDs of all the followed Products, Brands and Collections. Pass collection_type as query parameter to fetch specific Ids - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getFollowIds/).
    */
   async getFollowIds(
-    { collectionType } = {},
-    { headers } = { headers: false }
+    { collectionType, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CatalogApplicationValidator.getFollowIds().validate(
       { collectionType },
@@ -1002,12 +1034,12 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1030,6 +1062,7 @@ class Catalog {
 
   /**
    * @param {CatalogApplicationValidator.GetFollowedListingParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CatalogApplicationModel.GetFollowListingResponse>} -
    *   Success response
@@ -1038,8 +1071,10 @@ class Catalog {
    * @description: Users can follow a product they like. This API retrieves the products the user have followed. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getFollowedListing/).
    */
   async getFollowedListing(
-    { collectionType, pageId, pageSize } = {},
-    { headers } = { headers: false }
+    { collectionType, pageId, pageSize, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CatalogApplicationValidator.getFollowedListing().validate(
       { collectionType, pageId, pageSize },
@@ -1078,12 +1113,12 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1136,6 +1171,7 @@ class Catalog {
 
   /**
    * @param {CatalogApplicationValidator.GetFollowerCountByIdParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CatalogApplicationModel.FollowerCountResponse>} -
    *   Success response
@@ -1144,8 +1180,8 @@ class Catalog {
    * @description: Get the total count of followers for a given collection type and collection ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getFollowerCountById/).
    */
   async getFollowerCountById(
-    { collectionType, collectionId } = {},
-    { headers } = { headers: false }
+    { collectionType, collectionId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1184,12 +1220,12 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1212,6 +1248,7 @@ class Catalog {
 
   /**
    * @param {CatalogApplicationValidator.GetHomeProductsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CatalogApplicationModel.HomeListingResponse>} - Success response
    * @name getHomeProducts
@@ -1219,8 +1256,8 @@ class Catalog {
    * @description: List all the products associated with a brand, collection or category in a random order. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getHomeProducts/).
    */
   async getHomeProducts(
-    { sortOn, pageId, pageSize } = {},
-    { headers } = { headers: false }
+    { sortOn, pageId, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CatalogApplicationValidator.getHomeProducts().validate(
       { sortOn, pageId, pageSize },
@@ -1260,12 +1297,12 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1319,6 +1356,7 @@ class Catalog {
 
   /**
    * @param {CatalogApplicationValidator.GetInStockLocationsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CatalogApplicationModel.ApplicationStoreListing>} -
    *   Success response
@@ -1327,8 +1365,17 @@ class Catalog {
    * @description: Use this API to get a list of stores in a specific application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getInStockLocations/).
    */
   async getInStockLocations(
-    { pageNo, pageSize, q, city, range, latitude, longitude } = {},
-    { headers } = { headers: false }
+    {
+      pageNo,
+      pageSize,
+      q,
+      city,
+      range,
+      latitude,
+      longitude,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1374,12 +1421,12 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1449,6 +1496,7 @@ class Catalog {
 
   /**
    * @param {CatalogApplicationValidator.GetLocationDetailsByIdParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CatalogApplicationModel.StoreDetails>} - Success response
    * @name getLocationDetailsById
@@ -1456,8 +1504,8 @@ class Catalog {
    * @description: Use this API to get meta details for a store. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getLocationDetailsById/).
    */
   async getLocationDetailsById(
-    { locationId } = {},
-    { headers } = { headers: false }
+    { locationId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1496,12 +1544,12 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1524,6 +1572,7 @@ class Catalog {
 
   /**
    * @param {CatalogApplicationValidator.GetProductBundlesBySlugParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CatalogApplicationModel.ProductBundle>} - Success response
    * @name getProductBundlesBySlug
@@ -1531,8 +1580,8 @@ class Catalog {
    * @description: Use this API to retrieve products bundles to the one specified by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductBundlesBySlug/).
    */
   async getProductBundlesBySlug(
-    { slug, id } = {},
-    { headers } = { headers: false }
+    { slug, id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1573,12 +1622,12 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1603,6 +1652,7 @@ class Catalog {
    * @param {CatalogApplicationValidator.GetProductComparisonBySlugsParam} arg
    *   - Arg object.
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CatalogApplicationModel.ProductsComparisonResponse>} -
    *   Success response
@@ -1611,8 +1661,8 @@ class Catalog {
    * @description: Use this API to compare the features of products belonging to the same category. Note that at least one slug is mandatory in the request query. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductComparisonBySlugs/).
    */
   async getProductComparisonBySlugs(
-    { slug } = {},
-    { headers } = { headers: false }
+    { slug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1652,12 +1702,12 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1680,6 +1730,7 @@ class Catalog {
 
   /**
    * @param {CatalogApplicationValidator.GetProductDetailBySlugParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CatalogApplicationModel.ProductDetail>} - Success response
    * @name getProductDetailBySlug
@@ -1687,8 +1738,8 @@ class Catalog {
    * @description: Use this API to retrieve a product by its slug value. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductDetailBySlug/).
    */
   async getProductDetailBySlug(
-    { slug } = {},
-    { headers } = { headers: false }
+    { slug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1727,12 +1778,12 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1755,6 +1806,7 @@ class Catalog {
 
   /**
    * @param {CatalogApplicationValidator.GetProductPriceBySlugParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CatalogApplicationModel.ProductSizePriceResponseV3>} -
    *   Success response
@@ -1763,8 +1815,10 @@ class Catalog {
    * @description: Prices may vary for different sizes of a product. Use this API to retrieve the price of a product size at all the selling locations near to a PIN Code. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductPriceBySlug/).
    */
   async getProductPriceBySlug(
-    { slug, size, storeId, pincode, moq } = {},
-    { headers } = { headers: false }
+    { slug, size, storeId, pincode, moq, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1806,12 +1860,12 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1834,6 +1888,7 @@ class Catalog {
 
   /**
    * @param {CatalogApplicationValidator.GetProductSellersBySlugParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CatalogApplicationModel.ProductSizeSellersResponseV3>}
    *   - Success response
@@ -1843,8 +1898,10 @@ class Catalog {
    * @description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductSellersBySlug/).
    */
   async getProductSellersBySlug(
-    { slug, size, pincode, strategy, pageNo, pageSize } = {},
-    { headers } = { headers: false }
+    { slug, size, pincode, strategy, pageNo, pageSize, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1887,12 +1944,12 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1962,6 +2019,7 @@ class Catalog {
 
   /**
    * @param {CatalogApplicationValidator.GetProductSizesBySlugParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CatalogApplicationModel.ProductSizes>} - Success response
    * @name getProductSizesBySlug
@@ -1969,8 +2027,8 @@ class Catalog {
    * @description: A product can have multiple sizes. Use this API to fetch all the available sizes of a product. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductSizesBySlug/).
    */
   async getProductSizesBySlug(
-    { slug, storeId } = {},
-    { headers } = { headers: false }
+    { slug, storeId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -2010,12 +2068,12 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2038,6 +2096,7 @@ class Catalog {
 
   /**
    * @param {CatalogApplicationValidator.GetProductStockByIdsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CatalogApplicationModel.ProductStockStatusResponse>} -
    *   Success response
@@ -2046,8 +2105,8 @@ class Catalog {
    * @description: Retrieve the available stock of the products. Use this API to retrieve stock of multiple products (up to 50) at a time. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductStockByIds/).
    */
   async getProductStockByIds(
-    { itemId, alu, skuCode, ean, upc } = {},
-    { headers } = { headers: false }
+    { itemId, alu, skuCode, ean, upc, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -2091,12 +2150,12 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2121,6 +2180,7 @@ class Catalog {
    * @param {CatalogApplicationValidator.GetProductStockForTimeByIdsParam} arg
    *   - Arg object.
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CatalogApplicationModel.ProductStockPolling>} - Success response
    * @name getProductStockForTimeByIds
@@ -2128,8 +2188,8 @@ class Catalog {
    * @description: Retrieve the available stock of the products. Use this API to get the stock status of products whose inventory is updated at the specified time - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductStockForTimeByIds/).
    */
   async getProductStockForTimeByIds(
-    { timestamp, pageSize, pageId } = {},
-    { headers } = { headers: false }
+    { timestamp, pageSize, pageId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -2171,12 +2231,12 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2229,6 +2289,7 @@ class Catalog {
   /**
    * @param {CatalogApplicationValidator.GetProductVariantsBySlugParam} arg -
    *   Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CatalogApplicationModel.ProductVariantsResponse>} -
    *   Success response
@@ -2237,8 +2298,8 @@ class Catalog {
    * @description: A product can have a different type of variants such as colour, shade, memory. Use this API to fetch all the available variants of a product using its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductVariantsBySlug/).
    */
   async getProductVariantsBySlug(
-    { slug } = {},
-    { headers } = { headers: false }
+    { slug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -2277,12 +2338,12 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2305,6 +2366,7 @@ class Catalog {
 
   /**
    * @param {CatalogApplicationValidator.GetProductsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CatalogApplicationModel.ProductListingResponse>} -
    *   Success response
@@ -2313,8 +2375,18 @@ class Catalog {
    * @description: Use this API to list all the products. You may choose a sort order or make arbitrary search queries by entering the product name, brand, category or collection. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProducts/).
    */
   async getProducts(
-    { q, f, filters, sortOn, pageId, pageSize, pageNo, pageType } = {},
-    { headers } = { headers: false }
+    {
+      q,
+      f,
+      filters,
+      sortOn,
+      pageId,
+      pageSize,
+      pageNo,
+      pageType,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CatalogApplicationValidator.getProducts().validate(
       { q, f, filters, sortOn, pageId, pageSize, pageNo, pageType },
@@ -2359,12 +2431,12 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2431,13 +2503,17 @@ class Catalog {
 
   /**
    * @param {CatalogApplicationValidator.GetSearchResultsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CatalogApplicationModel.AutoCompleteResponse>} - Success response
    * @name getSearchResults
    * @summary: Get relevant suggestions for a search query
    * @description: Retrieves a list of suggestions for a given search query. Each suggestion is a valid search term that's generated on the basis of query. This is particularly useful to enhance the user experience while using the search tool. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getSearchResults/).
    */
-  async getSearchResults({ q } = {}, { headers } = { headers: false }) {
+  async getSearchResults(
+    { q, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = CatalogApplicationValidator.getSearchResults().validate(
       { q },
       { abortEarly: false, allowUnknown: true }
@@ -2474,12 +2550,12 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2504,6 +2580,7 @@ class Catalog {
    * @param {CatalogApplicationValidator.GetSimilarComparisonProductBySlugParam} arg
    *   - Arg object.
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CatalogApplicationModel.ProductCompareResponse>} -
    *   Success response
@@ -2512,8 +2589,8 @@ class Catalog {
    * @description: Use this API to compare a given product automatically with similar products. Only one slug is needed. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getSimilarComparisonProductBySlug/).
    */
   async getSimilarComparisonProductBySlug(
-    { slug } = {},
-    { headers } = { headers: false }
+    { slug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -2552,12 +2629,12 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2580,6 +2657,7 @@ class Catalog {
 
   /**
    * @param {CatalogApplicationValidator.GetStoresParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CatalogApplicationModel.StoreListingResponse>} - Success response
    * @name getStores
@@ -2587,8 +2665,17 @@ class Catalog {
    * @description: Use this API to get a list of stores in a specific application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getStores/).
    */
   async getStores(
-    { pageNo, pageSize, q, city, range, latitude, longitude } = {},
-    { headers } = { headers: false }
+    {
+      pageNo,
+      pageSize,
+      q,
+      city,
+      range,
+      latitude,
+      longitude,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CatalogApplicationValidator.getStores().validate(
       { pageNo, pageSize, q, city, range, latitude, longitude },
@@ -2632,12 +2719,12 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2700,6 +2787,7 @@ class Catalog {
 
   /**
    * @param {CatalogApplicationValidator.UnfollowByIdParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CatalogApplicationModel.FollowPostResponse>} - Success response
    * @name unfollowById
@@ -2707,8 +2795,8 @@ class Catalog {
    * @description: You can undo a followed product, brand or collection by its ID. This action is referred as _unfollow_. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/unfollowById/).
    */
   async unfollowById(
-    { collectionType, collectionId } = {},
-    { headers } = { headers: false }
+    { collectionType, collectionId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CatalogApplicationValidator.unfollowById().validate(
       { collectionType, collectionId },
@@ -2745,12 +2833,12 @@ class Catalog {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

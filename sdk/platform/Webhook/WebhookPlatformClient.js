@@ -13,13 +13,17 @@ class Webhook {
 
   /**
    * @param {WebhookPlatformValidator.FetchAllEventConfigurationsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<WebhookPlatformModel.EventConfigResponse>} - Success response
    * @name fetchAllEventConfigurations
    * @summary:
    * @description: Get All Webhook Events - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/fetchAllEventConfigurations/).
    */
-  async fetchAllEventConfigurations({ headers } = { headers: false }) {
+  async fetchAllEventConfigurations(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = WebhookPlatformValidator.fetchAllEventConfigurations().validate(
@@ -54,12 +58,12 @@ class Webhook {
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/events`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -82,6 +86,7 @@ class Webhook {
 
   /**
    * @param {WebhookPlatformValidator.GetSubscriberByIdParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<WebhookPlatformModel.SubscriberResponse>} - Success response
    * @name getSubscriberById
@@ -89,8 +94,8 @@ class Webhook {
    * @description: Get Subscriber By Subscriber ID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getSubscriberById/).
    */
   async getSubscriberById(
-    { subscriberId } = {},
-    { headers } = { headers: false }
+    { subscriberId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = WebhookPlatformValidator.getSubscriberById().validate(
       {
@@ -128,12 +133,12 @@ class Webhook {
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/subscriber/${subscriberId}`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -156,6 +161,7 @@ class Webhook {
 
   /**
    * @param {WebhookPlatformValidator.GetSubscribersByCompanyParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<WebhookPlatformModel.SubscriberResponse>} - Success response
    * @name getSubscribersByCompany
@@ -163,8 +169,8 @@ class Webhook {
    * @description: Get Subscribers By CompanyId - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getSubscribersByCompany/).
    */
   async getSubscribersByCompany(
-    { pageNo, pageSize, extensionId } = {},
-    { headers } = { headers: false }
+    { pageNo, pageSize, extensionId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -211,12 +217,12 @@ class Webhook {
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/subscriber`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -239,6 +245,7 @@ class Webhook {
 
   /**
    * @param {WebhookPlatformValidator.GetSubscribersByExtensionIdParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<WebhookPlatformModel.SubscriberConfigList>} - Success response
    * @name getSubscribersByExtensionId
@@ -246,8 +253,8 @@ class Webhook {
    * @description: Get Subscribers By ExtensionID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getSubscribersByExtensionId/).
    */
   async getSubscribersByExtensionId(
-    { extensionId, pageNo, pageSize } = {},
-    { headers } = { headers: false }
+    { extensionId, pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -293,12 +300,12 @@ class Webhook {
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/extension/${extensionId}/subscriber`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -321,6 +328,7 @@ class Webhook {
 
   /**
    * @param {WebhookPlatformValidator.RegisterSubscriberToEventParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<WebhookPlatformModel.SubscriberConfig>} - Success response
    * @name registerSubscriberToEvent
@@ -328,8 +336,8 @@ class Webhook {
    * @description: Register Subscriber - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/registerSubscriberToEvent/).
    */
   async registerSubscriberToEvent(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -369,12 +377,12 @@ class Webhook {
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/subscriber`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -397,6 +405,7 @@ class Webhook {
 
   /**
    * @param {WebhookPlatformValidator.UpdateSubscriberConfigParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<WebhookPlatformModel.SubscriberConfig>} - Success response
    * @name updateSubscriberConfig
@@ -404,8 +413,8 @@ class Webhook {
    * @description: Update Subscriber - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/updateSubscriberConfig/).
    */
   async updateSubscriberConfig(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -445,12 +454,12 @@ class Webhook {
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/subscriber`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

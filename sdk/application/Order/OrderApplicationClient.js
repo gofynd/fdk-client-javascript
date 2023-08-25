@@ -54,6 +54,7 @@ class Order {
    * @param {OrderApplicationValidator.GetCustomerDetailsByShipmentIdParam} arg
    *   - Arg object.
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<OrderApplicationModel.CustomerDetailsResponse>} -
    *   Success response
@@ -62,8 +63,8 @@ class Order {
    * @description: Use this API to retrieve customer details such as mobileno using Shipment ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getCustomerDetailsByShipmentId/).
    */
   async getCustomerDetailsByShipmentId(
-    { orderId, shipmentId } = {},
-    { headers } = { headers: false }
+    { orderId, shipmentId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -102,12 +103,12 @@ class Order {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -130,6 +131,7 @@ class Order {
 
   /**
    * @param {OrderApplicationValidator.GetInvoiceByShipmentIdParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<OrderApplicationModel.ResponseGetInvoiceShipment>} -
    *   Success response
@@ -138,8 +140,8 @@ class Order {
    * @description: Use this API to retrieve shipment invoice. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getInvoiceByShipmentId/).
    */
   async getInvoiceByShipmentId(
-    { shipmentId } = {},
-    { headers } = { headers: false }
+    { shipmentId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -178,12 +180,12 @@ class Order {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -206,13 +208,17 @@ class Order {
 
   /**
    * @param {OrderApplicationValidator.GetOrderByIdParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<OrderApplicationModel.OrderById>} - Success response
    * @name getOrderById
    * @summary: Get details of an order
    * @description: Use this API to retrieve order details such as tracking details, shipment, store information using Fynd Order ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getOrderById/).
    */
-  async getOrderById({ orderId } = {}, { headers } = { headers: false }) {
+  async getOrderById(
+    { orderId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = OrderApplicationValidator.getOrderById().validate(
       { orderId },
       { abortEarly: false, allowUnknown: true }
@@ -248,12 +254,12 @@ class Order {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -276,6 +282,7 @@ class Order {
 
   /**
    * @param {OrderApplicationValidator.GetOrdersParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<OrderApplicationModel.OrderList>} - Success response
    * @name getOrders
@@ -283,8 +290,16 @@ class Order {
    * @description: Use this API to retrieve all the orders. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getOrders/).
    */
   async getOrders(
-    { status, pageNo, pageSize, fromDate, toDate, customMeta } = {},
-    { headers } = { headers: false }
+    {
+      status,
+      pageNo,
+      pageSize,
+      fromDate,
+      toDate,
+      customMeta,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = OrderApplicationValidator.getOrders().validate(
       { status, pageNo, pageSize, fromDate, toDate, customMeta },
@@ -325,12 +340,12 @@ class Order {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -353,13 +368,17 @@ class Order {
 
   /**
    * @param {OrderApplicationValidator.GetPosOrderByIdParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<OrderApplicationModel.OrderById>} - Success response
    * @name getPosOrderById
    * @summary: Get POS Order
    * @description: Use this API to retrieve a POS order and all its details such as tracking details, shipment, store information using Fynd Order ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getPosOrderById/).
    */
-  async getPosOrderById({ orderId } = {}, { headers } = { headers: false }) {
+  async getPosOrderById(
+    { orderId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = OrderApplicationValidator.getPosOrderById().validate(
       { orderId },
       { abortEarly: false, allowUnknown: true }
@@ -395,12 +414,12 @@ class Order {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -423,6 +442,7 @@ class Order {
 
   /**
    * @param {OrderApplicationValidator.GetShipmentBagReasonsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<OrderApplicationModel.ShipmentBagReasons>} - Success response
    * @name getShipmentBagReasons
@@ -430,8 +450,8 @@ class Order {
    * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getShipmentBagReasons/).
    */
   async getShipmentBagReasons(
-    { shipmentId, bagId } = {},
-    { headers } = { headers: false }
+    { shipmentId, bagId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -470,12 +490,12 @@ class Order {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -498,13 +518,17 @@ class Order {
 
   /**
    * @param {OrderApplicationValidator.GetShipmentByIdParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<OrderApplicationModel.ShipmentById>} - Success response
    * @name getShipmentById
    * @summary: Get details of a shipment
    * @description: Use this API to retrieve shipment details such as price breakup, tracking details, store information, etc. using Shipment ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getShipmentById/).
    */
-  async getShipmentById({ shipmentId } = {}, { headers } = { headers: false }) {
+  async getShipmentById(
+    { shipmentId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = OrderApplicationValidator.getShipmentById().validate(
       { shipmentId },
       { abortEarly: false, allowUnknown: true }
@@ -540,12 +564,12 @@ class Order {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -568,6 +592,7 @@ class Order {
 
   /**
    * @param {OrderApplicationValidator.GetShipmentReasonsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<OrderApplicationModel.ShipmentReasons>} - Success response
    * @name getShipmentReasons
@@ -575,8 +600,8 @@ class Order {
    * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getShipmentReasons/).
    */
   async getShipmentReasons(
-    { shipmentId } = {},
-    { headers } = { headers: false }
+    { shipmentId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = OrderApplicationValidator.getShipmentReasons().validate(
       { shipmentId },
@@ -613,12 +638,12 @@ class Order {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -641,6 +666,7 @@ class Order {
 
   /**
    * @param {OrderApplicationValidator.SendOtpToShipmentCustomerParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<OrderApplicationModel.SendOtpToCustomerResponse>} -
    *   Success response
@@ -649,8 +675,8 @@ class Order {
    * @description: Use this API to send OTP to the customer of the mapped Shipment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/sendOtpToShipmentCustomer/).
    */
   async sendOtpToShipmentCustomer(
-    { orderId, shipmentId } = {},
-    { headers } = { headers: false }
+    { orderId, shipmentId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -689,12 +715,12 @@ class Order {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -717,13 +743,17 @@ class Order {
 
   /**
    * @param {OrderApplicationValidator.TrackShipmentParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<OrderApplicationModel.ShipmentTrack>} - Success response
    * @name trackShipment
    * @summary: Track shipment
    * @description: Track Shipment by shipment id, for application based on application Id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/trackShipment/).
    */
-  async trackShipment({ shipmentId } = {}, { headers } = { headers: false }) {
+  async trackShipment(
+    { shipmentId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = OrderApplicationValidator.trackShipment().validate(
       { shipmentId },
       { abortEarly: false, allowUnknown: true }
@@ -759,12 +789,12 @@ class Order {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -787,6 +817,7 @@ class Order {
 
   /**
    * @param {OrderApplicationValidator.UpdateShipmentStatusParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<OrderApplicationModel.ShipmentApplicationStatusResponse>}
    *   - Success response
@@ -796,8 +827,8 @@ class Order {
    * @description: Use this API to update the status of a shipment using its shipment ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/updateShipmentStatus/).
    */
   async updateShipmentStatus(
-    { shipmentId, body } = {},
-    { headers } = { headers: false }
+    { shipmentId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = OrderApplicationValidator.updateShipmentStatus().validate(
       { shipmentId, body },
@@ -834,12 +865,12 @@ class Order {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -862,6 +893,7 @@ class Order {
 
   /**
    * @param {OrderApplicationValidator.VerifyOtpShipmentCustomerParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<OrderApplicationModel.VerifyOtpResponse>} - Success response
    * @name verifyOtpShipmentCustomer
@@ -869,8 +901,8 @@ class Order {
    * @description: Use this API to verify OTP and create a session token with custom payload. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/verifyOtpShipmentCustomer/).
    */
   async verifyOtpShipmentCustomer(
-    { orderId, shipmentId, body } = {},
-    { headers } = { headers: false }
+    { orderId, shipmentId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -909,12 +941,12 @@ class Order {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

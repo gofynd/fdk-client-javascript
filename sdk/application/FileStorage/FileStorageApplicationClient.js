@@ -36,6 +36,7 @@ class FileStorage {
 
   /**
    * @param {FileStorageApplicationValidator.CompleteUploadParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<FileStorageApplicationModel.CompleteResponse>} - Success response
    * @name completeUpload
@@ -61,8 +62,8 @@ class FileStorage {
    *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/completeUpload/).
    */
   async completeUpload(
-    { namespace, body } = {},
-    { headers } = { headers: false }
+    { namespace, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = FileStorageApplicationValidator.completeUpload().validate(
       { namespace, body },
@@ -99,12 +100,12 @@ class FileStorage {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -127,13 +128,17 @@ class FileStorage {
 
   /**
    * @param {FileStorageApplicationValidator.SignUrlsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<FileStorageApplicationModel.SignUrlResponse>} - Success response
    * @name signUrls
    * @summary: Explain here
    * @description: Describe here - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/signUrls/).
    */
-  async signUrls({ body } = {}, { headers } = { headers: false }) {
+  async signUrls(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = FileStorageApplicationValidator.signUrls().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -169,12 +174,12 @@ class FileStorage {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -197,6 +202,7 @@ class FileStorage {
 
   /**
    * @param {FileStorageApplicationValidator.StartUploadParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<FileStorageApplicationModel.StartResponse>} - Success response
    * @name startUpload
@@ -222,8 +228,8 @@ class FileStorage {
    *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/filestorage/startUpload/).
    */
   async startUpload(
-    { namespace, body } = {},
-    { headers } = { headers: false }
+    { namespace, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = FileStorageApplicationValidator.startUpload().validate(
       { namespace, body },
@@ -260,12 +266,12 @@ class FileStorage {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

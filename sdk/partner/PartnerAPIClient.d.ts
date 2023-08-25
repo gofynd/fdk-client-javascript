@@ -1,7 +1,7 @@
 export = APIClient;
 /**
  * @typedef {Object} Options
- * @property {boolean} headers - Whether headers are returned or not.
+ * @property {boolean} responseHeaders - Whether response headers are returned or not.
  */
 declare class APIClient {
     /**
@@ -10,9 +10,10 @@ declare class APIClient {
      * @param {string} url
      * @param {object} query
      * @param {object} body
+     * @param {object} xHeaders
      * @param {Options} options
      */
-    static execute(conf: object, method: string, url: string, query: object, body: object, options: Options): Promise<any>;
+    static execute(conf: object, method: string, url: string, query: object, body: object, xHeaders: object, options: Options): Promise<any>;
     get(url: any, config: any): Promise<any>;
 }
 declare namespace APIClient {
@@ -20,7 +21,7 @@ declare namespace APIClient {
 }
 type Options = {
     /**
-     * - Whether headers are returned or not.
+     * - Whether response headers are returned or not.
      */
-    headers: boolean;
+    responseHeaders: boolean;
 };

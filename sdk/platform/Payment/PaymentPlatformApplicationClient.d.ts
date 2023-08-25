@@ -5,28 +5,31 @@ declare class Payment {
     applicationId: any;
     /**
      * @param {PaymentPlatformApplicationValidator.AddEdcDeviceParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<PaymentPlatformModel.EdcDeviceUpdateResponse>} - Success response
      * @name addEdcDevice
      * @summary: Update store id and device tag of edc device
      * @description: Use this API to Update store id and device tag of edc device - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/addEdcDevice/).
      */
-    addEdcDevice({ terminalUniqueIdentifier, body }?: PaymentPlatformApplicationValidator.AddEdcDeviceParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PaymentPlatformModel.EdcDeviceUpdateResponse>;
+    addEdcDevice({ terminalUniqueIdentifier, body, requestHeaders }?: PaymentPlatformApplicationValidator.AddEdcDeviceParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.EdcDeviceUpdateResponse>;
     /**
      * @param {PaymentPlatformApplicationValidator.AddRefundBankAccountUsingOTPParam} arg
      *   - Arg object
      *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<PaymentPlatformModel.RefundAccountResponse>} - Success response
      * @name addRefundBankAccountUsingOTP
      * @summary: Save bank details for cancelled/returned order
      * @description: Use this API to save bank details for returned/cancelled order to refund amount in his account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/addRefundBankAccountUsingOTP/).
      */
-    addRefundBankAccountUsingOTP({ body }?: PaymentPlatformApplicationValidator.AddRefundBankAccountUsingOTPParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PaymentPlatformModel.RefundAccountResponse>;
+    addRefundBankAccountUsingOTP({ body, requestHeaders }?: PaymentPlatformApplicationValidator.AddRefundBankAccountUsingOTPParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.RefundAccountResponse>;
     /**
      * @param {PaymentPlatformApplicationValidator.CancelPaymentLinkParam} arg
      *   - Arg object
      *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<PaymentPlatformModel.CancelPaymentLinkResponse>} -
      *   Success response
@@ -34,11 +37,12 @@ declare class Payment {
      * @summary: Cancel payment link
      * @description: Use this API to cancel a payment link for the customer - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/cancelPaymentLink/).
      */
-    cancelPaymentLink({ body }?: PaymentPlatformApplicationValidator.CancelPaymentLinkParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PaymentPlatformModel.CancelPaymentLinkResponse>;
+    cancelPaymentLink({ body, requestHeaders }?: PaymentPlatformApplicationValidator.CancelPaymentLinkParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.CancelPaymentLinkResponse>;
     /**
      * @param {PaymentPlatformApplicationValidator.CheckAndUpdatePaymentStatusParam} arg
      *   - Arg object
      *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<PaymentPlatformModel.PaymentStatusUpdateResponse>} -
      *   Success response
@@ -46,9 +50,10 @@ declare class Payment {
      * @summary: Performs continuous polling to check status of payment on the server
      * @description: Use this API to perform continuous polling at intervals to check the status of payment until timeout. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/checkAndUpdatePaymentStatus/).
      */
-    checkAndUpdatePaymentStatus({ body }?: PaymentPlatformApplicationValidator.CheckAndUpdatePaymentStatusParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PaymentPlatformModel.PaymentStatusUpdateResponse>;
+    checkAndUpdatePaymentStatus({ body, requestHeaders }?: PaymentPlatformApplicationValidator.CheckAndUpdatePaymentStatusParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.PaymentStatusUpdateResponse>;
     /**
      * @param {PaymentPlatformApplicationValidator.ConfirmPaymentParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<PaymentPlatformModel.PaymentConfirmationResponse>} -
      *   Success response
@@ -56,11 +61,12 @@ declare class Payment {
      * @summary: Confirm payment after successful payment from payment gateway
      * @description: Use this API to confirm payment after payment gateway accepted payment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/confirmPayment/).
      */
-    confirmPayment({ body }?: PaymentPlatformApplicationValidator.ConfirmPaymentParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PaymentPlatformModel.PaymentConfirmationResponse>;
+    confirmPayment({ body, requestHeaders }?: PaymentPlatformApplicationValidator.ConfirmPaymentParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.PaymentConfirmationResponse>;
     /**
      * @param {PaymentPlatformApplicationValidator.CreatePaymentLinkParam} arg
      *   - Arg object
      *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<PaymentPlatformModel.CreatePaymentLinkResponse>} -
      *   Success response
@@ -68,8 +74,12 @@ declare class Payment {
      * @summary: Create payment link
      * @description: Use this API to create a payment link for the customer - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/createPaymentLink/).
      */
-    createPaymentLink({ body }?: PaymentPlatformApplicationValidator.CreatePaymentLinkParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PaymentPlatformModel.CreatePaymentLinkResponse>;
+    createPaymentLink({ body, requestHeaders }?: PaymentPlatformApplicationValidator.CreatePaymentLinkParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.CreatePaymentLinkResponse>;
     /**
+     * @param {PaymentPlatformApplicationValidator.EdcAggregatorsAndModelListParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<PaymentPlatformModel.EdcAggregatorAndModelListResponse>}
      *   - Success response
@@ -78,36 +88,44 @@ declare class Payment {
      * @summary: get some information about the store and edc device
      * @description: Use this API to get info of devices linked to a particular app. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/edcAggregatorsAndModelList/).
      */
-    edcAggregatorsAndModelList({ headers }?: import("../PlatformAPIClient").Options): Promise<PaymentPlatformModel.EdcAggregatorAndModelListResponse>;
+    edcAggregatorsAndModelList({ requestHeaders }?: any, { responseHeaders }?: object): Promise<PaymentPlatformModel.EdcAggregatorAndModelListResponse>;
     /**
      * @param {PaymentPlatformApplicationValidator.EdcDeviceListParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<PaymentPlatformModel.EdcDeviceListResponse>} - Success response
      * @name edcDeviceList
      * @summary: get all the device list of an app
      * @description: Use this API to get all devices linked to a particular app. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/edcDeviceList/).
      */
-    edcDeviceList({ pageNo, pageSize, isActive, storeId, deviceTag }?: PaymentPlatformApplicationValidator.EdcDeviceListParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PaymentPlatformModel.EdcDeviceListResponse>;
+    edcDeviceList({ pageNo, pageSize, isActive, storeId, deviceTag, requestHeaders }?: PaymentPlatformApplicationValidator.EdcDeviceListParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.EdcDeviceListResponse>;
     /**
+     * @param {PaymentPlatformApplicationValidator.EdcDeviceStatsParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<PaymentPlatformModel.EdcDeviceStatsResponse>} - Success response
      * @name edcDeviceStats
      * @summary: get some information about the store and edc device
      * @description: Use this API to get info of devices linked to a particular app. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/edcDeviceStats/).
      */
-    edcDeviceStats({ headers }?: import("../PlatformAPIClient").Options): Promise<PaymentPlatformModel.EdcDeviceStatsResponse>;
+    edcDeviceStats({ requestHeaders }?: any, { responseHeaders }?: object): Promise<PaymentPlatformModel.EdcDeviceStatsResponse>;
     /**
      * @param {PaymentPlatformApplicationValidator.GetBankAccountDetailsOpenAPIParam} arg
      *   - Arg object
      *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<PaymentPlatformModel.RefundAccountResponse>} - Success response
      * @name getBankAccountDetailsOpenAPI
      * @summary: Get bank details
      * @description: Use this API to get saved bank details for returned/cancelled order using order id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getBankAccountDetailsOpenAPI/).
      */
-    getBankAccountDetailsOpenAPI({ orderId, requestHash }?: PaymentPlatformApplicationValidator.GetBankAccountDetailsOpenAPIParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PaymentPlatformModel.RefundAccountResponse>;
+    getBankAccountDetailsOpenAPI({ orderId, requestHash, requestHeaders }?: PaymentPlatformApplicationValidator.GetBankAccountDetailsOpenAPIParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.RefundAccountResponse>;
     /**
+     * @param {PaymentPlatformApplicationValidator.GetBrandPaymentGatewayConfigParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<PaymentPlatformModel.PaymentGatewayConfigResponse>} -
      *   Success response
@@ -115,9 +133,10 @@ declare class Payment {
      * @summary: Get All Brand Payment Gateway Config Secret
      * @description: Get All Brand Payment Gateway Config Secret - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getBrandPaymentGatewayConfig/).
      */
-    getBrandPaymentGatewayConfig({ headers }?: import("../PlatformAPIClient").Options): Promise<PaymentPlatformModel.PaymentGatewayConfigResponse>;
+    getBrandPaymentGatewayConfig({ requestHeaders }?: any, { responseHeaders }?: object): Promise<PaymentPlatformModel.PaymentGatewayConfigResponse>;
     /**
      * @param {PaymentPlatformApplicationValidator.GetEdcDeviceParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<PaymentPlatformModel.EdcDeviceDetailsResponse>} -
      *   Success response
@@ -125,50 +144,58 @@ declare class Payment {
      * @summary: get details of a single edc device
      * @description: Use this API to get details of a single edc device - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getEdcDevice/).
      */
-    getEdcDevice({ terminalUniqueIdentifier }?: PaymentPlatformApplicationValidator.GetEdcDeviceParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PaymentPlatformModel.EdcDeviceDetailsResponse>;
+    getEdcDevice({ terminalUniqueIdentifier, requestHeaders }?: PaymentPlatformApplicationValidator.GetEdcDeviceParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.EdcDeviceDetailsResponse>;
     /**
+     * @param {PaymentPlatformApplicationValidator.GetPaymentCodeOptionParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<PaymentPlatformModel.GetPaymentCodeResponse>} - Success response
      * @name getPaymentCodeOption
      * @summary: List Payment Options Method Codes
      * @description: Get all active List Payment Options Method Codes - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getPaymentCodeOption/).
      */
-    getPaymentCodeOption({ headers }?: import("../PlatformAPIClient").Options): Promise<PaymentPlatformModel.GetPaymentCodeResponse>;
+    getPaymentCodeOption({ requestHeaders }?: any, { responseHeaders }?: object): Promise<PaymentPlatformModel.GetPaymentCodeResponse>;
     /**
      * @param {PaymentPlatformApplicationValidator.GetPaymentLinkParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<PaymentPlatformModel.GetPaymentLinkResponse>} - Success response
      * @name getPaymentLink
      * @summary: Get payment link
      * @description: Use this API to get a payment link - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getPaymentLink/).
      */
-    getPaymentLink({ paymentLinkId }?: PaymentPlatformApplicationValidator.GetPaymentLinkParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PaymentPlatformModel.GetPaymentLinkResponse>;
+    getPaymentLink({ paymentLinkId, requestHeaders }?: PaymentPlatformApplicationValidator.GetPaymentLinkParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.GetPaymentLinkResponse>;
     /**
      * @param {PaymentPlatformApplicationValidator.GetPaymentModeRoutesParam} arg
      *   - Arg object
      *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<PaymentPlatformModel.PaymentOptionsResponse>} - Success response
      * @name getPaymentModeRoutes
      * @summary: Get All Valid Payment Options
      * @description: Use this API to get Get All Valid Payment Options for making payment - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getPaymentModeRoutes/).
      */
-    getPaymentModeRoutes({ refresh, requestType }?: PaymentPlatformApplicationValidator.GetPaymentModeRoutesParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PaymentPlatformModel.PaymentOptionsResponse>;
+    getPaymentModeRoutes({ refresh, requestType, requestHeaders }?: PaymentPlatformApplicationValidator.GetPaymentModeRoutesParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.PaymentOptionsResponse>;
     /**
      * @param {PaymentPlatformApplicationValidator.GetPosPaymentModeRoutesParam} arg
      *   - Arg object
      *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<PaymentPlatformModel.PaymentOptionsResponse>} - Success response
      * @name getPosPaymentModeRoutes
      * @summary: Get All Valid Payment Options
      * @description: Use this API to get Get All Valid Payment Options for making payment - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getPosPaymentModeRoutes/).
      */
-    getPosPaymentModeRoutes({ amount, cartId, pincode, checkoutMode, orderType, refresh, cardReference, userDetails, }?: PaymentPlatformApplicationValidator.GetPosPaymentModeRoutesParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PaymentPlatformModel.PaymentOptionsResponse>;
+    getPosPaymentModeRoutes({ amount, cartId, pincode, checkoutMode, orderType, refresh, cardReference, userDetails, requestHeaders, }?: PaymentPlatformApplicationValidator.GetPosPaymentModeRoutesParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.PaymentOptionsResponse>;
     /**
      * @param {PaymentPlatformApplicationValidator.GetUserBeneficiariesParam} arg
      *   - Arg object
      *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<PaymentPlatformModel.OrderBeneficiaryResponse>} -
      *   Success response
@@ -176,22 +203,24 @@ declare class Payment {
      * @summary: List User Beneficiary
      * @description: Get all active  beneficiary details added by the user for refund - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getUserBeneficiaries/).
      */
-    getUserBeneficiaries({ orderId }?: PaymentPlatformApplicationValidator.GetUserBeneficiariesParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PaymentPlatformModel.OrderBeneficiaryResponse>;
+    getUserBeneficiaries({ orderId, requestHeaders }?: PaymentPlatformApplicationValidator.GetUserBeneficiariesParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.OrderBeneficiaryResponse>;
     /**
      * @param {PaymentPlatformApplicationValidator.GetUserCODlimitRoutesParam} arg
      *   - Arg object
      *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<PaymentPlatformModel.GetUserCODLimitResponse>} - Success response
      * @name getUserCODlimitRoutes
      * @summary: Get COD limit for user
      * @description: Use this API to get user cod limit and reamining limit for the payment - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getUserCODlimitRoutes/).
      */
-    getUserCODlimitRoutes({ merchantUserId, mobileNo }?: PaymentPlatformApplicationValidator.GetUserCODlimitRoutesParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PaymentPlatformModel.GetUserCODLimitResponse>;
+    getUserCODlimitRoutes({ merchantUserId, mobileNo, requestHeaders }?: PaymentPlatformApplicationValidator.GetUserCODlimitRoutesParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.GetUserCODLimitResponse>;
     /**
      * @param {PaymentPlatformApplicationValidator.GetUserOrderBeneficiariesParam} arg
      *   - Arg object
      *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<PaymentPlatformModel.OrderBeneficiaryResponse>} -
      *   Success response
@@ -199,11 +228,12 @@ declare class Payment {
      * @summary: List Order Beneficiary
      * @description: Get all active  beneficiary details added by the user for refund - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getUserOrderBeneficiaries/).
      */
-    getUserOrderBeneficiaries({ orderId }?: PaymentPlatformApplicationValidator.GetUserOrderBeneficiariesParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PaymentPlatformModel.OrderBeneficiaryResponse>;
+    getUserOrderBeneficiaries({ orderId, requestHeaders }?: PaymentPlatformApplicationValidator.GetUserOrderBeneficiariesParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.OrderBeneficiaryResponse>;
     /**
      * @param {PaymentPlatformApplicationValidator.InitialisePaymentParam} arg
      *   - Arg object
      *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<PaymentPlatformModel.PaymentInitializationResponse>} -
      *   Success response
@@ -211,11 +241,12 @@ declare class Payment {
      * @summary: Initialize a payment (server-to-server) for UPI and BharatQR
      * @description: PUse this API to inititate payment using UPI, BharatQR, wherein the UPI requests are send to the app and QR code is displayed on the screen. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/initialisePayment/).
      */
-    initialisePayment({ body }?: PaymentPlatformApplicationValidator.InitialisePaymentParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PaymentPlatformModel.PaymentInitializationResponse>;
+    initialisePayment({ body, requestHeaders }?: PaymentPlatformApplicationValidator.InitialisePaymentParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.PaymentInitializationResponse>;
     /**
      * @param {PaymentPlatformApplicationValidator.MerchantOnBoardingParam} arg
      *   - Arg object
      *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<PaymentPlatformModel.MerchantOnBoardingResponse>} -
      *   Success response
@@ -223,20 +254,22 @@ declare class Payment {
      * @summary: API to push Ajiodhan merchant data to Gringotts system
      * @description: Use this API to push Ajiodhan merchant data to Gringotts system - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/merchantOnBoarding/).
      */
-    merchantOnBoarding({ body }?: PaymentPlatformApplicationValidator.MerchantOnBoardingParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PaymentPlatformModel.MerchantOnBoardingResponse>;
+    merchantOnBoarding({ body, requestHeaders }?: PaymentPlatformApplicationValidator.MerchantOnBoardingParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.MerchantOnBoardingResponse>;
     /**
      * @param {PaymentPlatformApplicationValidator.OauthGetUrlParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<PaymentPlatformModel.GetOauthUrlResponse>} - Success response
      * @name oauthGetUrl
      * @summary: API to Get the url to call for oauth
      * @description: Use this API to Get the url to call for oauth. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/oauthGetUrl/).
      */
-    oauthGetUrl({ aggregator, successRedirectUrl, failureRedirectUrl }?: PaymentPlatformApplicationValidator.OauthGetUrlParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PaymentPlatformModel.GetOauthUrlResponse>;
+    oauthGetUrl({ aggregator, successRedirectUrl, failureRedirectUrl, requestHeaders }?: PaymentPlatformApplicationValidator.OauthGetUrlParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.GetOauthUrlResponse>;
     /**
      * @param {PaymentPlatformApplicationValidator.PaymentStatusBulkParam} arg
      *   - Arg object
      *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<PaymentPlatformModel.PaymentStatusBulkHandlerResponse>}
      *   - Success response
@@ -245,11 +278,12 @@ declare class Payment {
      * @summary: Get Payment status and information for a list of order_ids
      * @description: Use this API to get Payment status and information for a list of order_ids - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/paymentStatusBulk/).
      */
-    paymentStatusBulk({ body }?: PaymentPlatformApplicationValidator.PaymentStatusBulkParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PaymentPlatformModel.PaymentStatusBulkHandlerResponse>;
+    paymentStatusBulk({ body, requestHeaders }?: PaymentPlatformApplicationValidator.PaymentStatusBulkParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.PaymentStatusBulkHandlerResponse>;
     /**
      * @param {PaymentPlatformApplicationValidator.PollingPaymentLinkParam} arg
      *   - Arg object
      *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<PaymentPlatformModel.PollingPaymentLinkResponse>} -
      *   Success response
@@ -257,20 +291,22 @@ declare class Payment {
      * @summary: Used for polling if payment successful or not
      * @description: Use this API to poll if payment through payment was successful or not - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/pollingPaymentLink/).
      */
-    pollingPaymentLink({ paymentLinkId }?: PaymentPlatformApplicationValidator.PollingPaymentLinkParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PaymentPlatformModel.PollingPaymentLinkResponse>;
+    pollingPaymentLink({ paymentLinkId, requestHeaders }?: PaymentPlatformApplicationValidator.PollingPaymentLinkParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.PollingPaymentLinkResponse>;
     /**
      * @param {PaymentPlatformApplicationValidator.RepaymentDetailsParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<PaymentPlatformModel.RepaymentResponse>} - Success response
      * @name repaymentDetails
      * @summary: API to register repayment details
      * @description: Use this API to register any repayment record in the db and notify the aggrgator - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/repaymentDetails/).
      */
-    repaymentDetails({ body }?: PaymentPlatformApplicationValidator.RepaymentDetailsParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PaymentPlatformModel.RepaymentResponse>;
+    repaymentDetails({ body, requestHeaders }?: PaymentPlatformApplicationValidator.RepaymentDetailsParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.RepaymentResponse>;
     /**
      * @param {PaymentPlatformApplicationValidator.ResendOrCancelPaymentParam} arg
      *   - Arg object
      *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<PaymentPlatformModel.ResendOrCancelPaymentResponse>} -
      *   Success response
@@ -278,11 +314,12 @@ declare class Payment {
      * @summary: API to resend and cancel a payment link which was already generated.
      * @description: Use this API to perform resend or cancel a payment link based on request payload. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/resendOrCancelPayment/).
      */
-    resendOrCancelPayment({ body }?: PaymentPlatformApplicationValidator.ResendOrCancelPaymentParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PaymentPlatformModel.ResendOrCancelPaymentResponse>;
+    resendOrCancelPayment({ body, requestHeaders }?: PaymentPlatformApplicationValidator.ResendOrCancelPaymentParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.ResendOrCancelPaymentResponse>;
     /**
      * @param {PaymentPlatformApplicationValidator.ResendPaymentLinkParam} arg
      *   - Arg object
      *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<PaymentPlatformModel.ResendPaymentLinkResponse>} -
      *   Success response
@@ -290,20 +327,22 @@ declare class Payment {
      * @summary: Resend payment link
      * @description: Use this API to resend a payment link for the customer - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/resendPaymentLink/).
      */
-    resendPaymentLink({ body }?: PaymentPlatformApplicationValidator.ResendPaymentLinkParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PaymentPlatformModel.ResendPaymentLinkResponse>;
+    resendPaymentLink({ body, requestHeaders }?: PaymentPlatformApplicationValidator.ResendPaymentLinkParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.ResendPaymentLinkResponse>;
     /**
      * @param {PaymentPlatformApplicationValidator.RevokeOauthTokenParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<PaymentPlatformModel.RevokeOAuthToken>} - Success response
      * @name revokeOauthToken
      * @summary: API to Revoke oauth for razorpay partnership
      * @description: Use this API to Revoke oauth for razorpay partnership - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/revokeOauthToken/).
      */
-    revokeOauthToken({ aggregator }?: PaymentPlatformApplicationValidator.RevokeOauthTokenParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PaymentPlatformModel.RevokeOAuthToken>;
+    revokeOauthToken({ aggregator, requestHeaders }?: PaymentPlatformApplicationValidator.RevokeOauthTokenParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.RevokeOAuthToken>;
     /**
      * @param {PaymentPlatformApplicationValidator.SaveBrandPaymentGatewayConfigParam} arg
      *   - Arg object
      *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<PaymentPlatformModel.PaymentGatewayToBeReviewed>} -
      *   Success response
@@ -311,31 +350,34 @@ declare class Payment {
      * @summary: Save Config Secret For Brand Payment Gateway
      * @description: Save Config Secret For Brand Payment Gateway - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/saveBrandPaymentGatewayConfig/).
      */
-    saveBrandPaymentGatewayConfig({ body }?: PaymentPlatformApplicationValidator.SaveBrandPaymentGatewayConfigParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PaymentPlatformModel.PaymentGatewayToBeReviewed>;
+    saveBrandPaymentGatewayConfig({ body, requestHeaders }?: PaymentPlatformApplicationValidator.SaveBrandPaymentGatewayConfigParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.PaymentGatewayToBeReviewed>;
     /**
      * @param {PaymentPlatformApplicationValidator.SetUserCODlimitRoutesParam} arg
      *   - Arg object
      *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<PaymentPlatformModel.SetCODOptionResponse>} - Success response
      * @name setUserCODlimitRoutes
      * @summary: Set COD option for user for payment
      * @description: Use this API to set cod option as true or false for the payment - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/setUserCODlimitRoutes/).
      */
-    setUserCODlimitRoutes({ body }?: PaymentPlatformApplicationValidator.SetUserCODlimitRoutesParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PaymentPlatformModel.SetCODOptionResponse>;
+    setUserCODlimitRoutes({ body, requestHeaders }?: PaymentPlatformApplicationValidator.SetUserCODlimitRoutesParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.SetCODOptionResponse>;
     /**
      * @param {PaymentPlatformApplicationValidator.UpdateEdcDeviceParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<PaymentPlatformModel.EdcDeviceAddResponse>} - Success response
      * @name updateEdcDevice
      * @summary: map new edc device to the terminal
      * @description: Use this API to map new edc device to the terminal - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/updateEdcDevice/).
      */
-    updateEdcDevice({ body }?: PaymentPlatformApplicationValidator.UpdateEdcDeviceParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PaymentPlatformModel.EdcDeviceAddResponse>;
+    updateEdcDevice({ body, requestHeaders }?: PaymentPlatformApplicationValidator.UpdateEdcDeviceParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.EdcDeviceAddResponse>;
     /**
      * @param {PaymentPlatformApplicationValidator.VerifyCustomerForPaymentParam} arg
      *   - Arg object
      *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<PaymentPlatformModel.ValidateCustomerResponse>} -
      *   Success response
@@ -343,7 +385,7 @@ declare class Payment {
      * @summary: Validate customer for payment
      * @description: Use this API to check if the customer is eligible to use credit-line facilities such as Simpl Pay Later and Rupifi. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/verifyCustomerForPayment/).
      */
-    verifyCustomerForPayment({ body }?: PaymentPlatformApplicationValidator.VerifyCustomerForPaymentParam, { headers }?: import("../PlatformAPIClient").Options): Promise<PaymentPlatformModel.ValidateCustomerResponse>;
+    verifyCustomerForPayment({ body, requestHeaders }?: PaymentPlatformApplicationValidator.VerifyCustomerForPaymentParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.ValidateCustomerResponse>;
 }
 import PaymentPlatformApplicationValidator = require("./PaymentPlatformApplicationValidator");
 import PaymentPlatformModel = require("./PaymentPlatformModel");

@@ -39,13 +39,17 @@ class Lead {
 
   /**
    * @param {LeadApplicationValidator.CreateHistoryParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<LeadApplicationModel.TicketHistory>} - Success response
    * @name createHistory
    * @summary: Create history for specific Ticket
    * @description: Create history for specific Ticket, this history is seen on ticket detail page, this can be comment, log or rating. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/createHistory/).
    */
-  async createHistory({ id, body } = {}, { headers } = { headers: false }) {
+  async createHistory(
+    { id, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = LeadApplicationValidator.createHistory().validate(
       { id, body },
       { abortEarly: false, allowUnknown: true }
@@ -81,12 +85,12 @@ class Lead {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -109,13 +113,17 @@ class Lead {
 
   /**
    * @param {LeadApplicationValidator.CreateTicketParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<LeadApplicationModel.Ticket>} - Success response
    * @name createTicket
    * @summary: Create Ticket
    * @description: This is used to Create Ticket. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/createTicket/).
    */
-  async createTicket({ body } = {}, { headers } = { headers: false }) {
+  async createTicket(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = LeadApplicationValidator.createTicket().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -151,12 +159,12 @@ class Lead {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -179,13 +187,17 @@ class Lead {
 
   /**
    * @param {LeadApplicationValidator.GetCustomFormParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<LeadApplicationModel.CustomForm>} - Success response
    * @name getCustomForm
    * @summary: Get specific Custom Form using it's slug
    * @description: Get specific Custom Form using it's slug, this is used to view the form. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/getCustomForm/).
    */
-  async getCustomForm({ slug } = {}, { headers } = { headers: false }) {
+  async getCustomForm(
+    { slug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = LeadApplicationValidator.getCustomForm().validate(
       { slug },
       { abortEarly: false, allowUnknown: true }
@@ -221,12 +233,12 @@ class Lead {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -251,6 +263,7 @@ class Lead {
    * @param {LeadApplicationValidator.GetParticipantsInsideVideoRoomParam} arg
    *   - Arg object.
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<LeadApplicationModel.GetParticipantsInsideVideoRoomResponse>}
    *   - Success response
@@ -260,8 +273,8 @@ class Lead {
    * @description: Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/getParticipantsInsideVideoRoom/).
    */
   async getParticipantsInsideVideoRoom(
-    { uniqueName } = {},
-    { headers } = { headers: false }
+    { uniqueName, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -300,12 +313,12 @@ class Lead {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -328,13 +341,17 @@ class Lead {
 
   /**
    * @param {LeadApplicationValidator.GetTicketParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<LeadApplicationModel.Ticket>} - Success response
    * @name getTicket
    * @summary: Get Ticket with the specific id
    * @description: Get Ticket with the specific id, this is used to view the ticket details - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/getTicket/).
    */
-  async getTicket({ id } = {}, { headers } = { headers: false }) {
+  async getTicket(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = LeadApplicationValidator.getTicket().validate(
       { id },
       { abortEarly: false, allowUnknown: true }
@@ -368,12 +385,12 @@ class Lead {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -396,6 +413,7 @@ class Lead {
 
   /**
    * @param {LeadApplicationValidator.GetTokenForVideoRoomParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<LeadApplicationModel.GetTokenForVideoRoomResponse>} -
    *   Success response
@@ -404,8 +422,8 @@ class Lead {
    * @description: Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/getTokenForVideoRoom/).
    */
   async getTokenForVideoRoom(
-    { uniqueName } = {},
-    { headers } = { headers: false }
+    { uniqueName, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = LeadApplicationValidator.getTokenForVideoRoom().validate(
       { uniqueName },
@@ -442,12 +460,12 @@ class Lead {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -470,6 +488,7 @@ class Lead {
 
   /**
    * @param {LeadApplicationValidator.SubmitCustomFormParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<LeadApplicationModel.SubmitCustomFormResponse>} -
    *   Success response
@@ -478,8 +497,8 @@ class Lead {
    * @description: Submit Response for a specific Custom Form using it's slug, this response is then used to create a ticket on behalf of the user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/lead/submitCustomForm/).
    */
   async submitCustomForm(
-    { slug, body } = {},
-    { headers } = { headers: false }
+    { slug, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = LeadApplicationValidator.submitCustomForm().validate(
       { slug, body },
@@ -516,12 +535,12 @@ class Lead {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

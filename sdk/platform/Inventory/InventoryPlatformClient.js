@@ -13,6 +13,7 @@ class Inventory {
 
   /**
    * @param {InventoryPlatformValidator.CreateJobParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<InventoryPlatformModel.ResponseEnvelopeString>} -
    *   Success response
@@ -20,7 +21,10 @@ class Inventory {
    * @summary: Creates A New Job Config
    * @description: REST Endpoint that creates a new job config - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/inventory/createJob/).
    */
-  async createJob({ body } = {}, { headers } = { headers: false }) {
+  async createJob(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = InventoryPlatformValidator.createJob().validate(
       {
         body,
@@ -55,12 +59,12 @@ class Inventory {
       `/service/platform/inventory/v1.0/company/${this.config.companyId}/jobs`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -83,6 +87,7 @@ class Inventory {
 
   /**
    * @param {InventoryPlatformValidator.DisableParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<InventoryPlatformModel.ResponseEnvelopeString>} -
    *   Success response
@@ -90,7 +95,10 @@ class Inventory {
    * @summary: Disable Job Config
    * @description: REST Endpoint that disables Inventory Job Config - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/inventory/disable/).
    */
-  async disable({ integrationId } = {}, { headers } = { headers: false }) {
+  async disable(
+    { integrationId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = InventoryPlatformValidator.disable().validate(
       {
         integrationId,
@@ -125,12 +133,12 @@ class Inventory {
       `/service/platform/inventory/v1.0/company/${this.config.companyId}/jobs/disable/integration/${integrationId}`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -153,6 +161,7 @@ class Inventory {
 
   /**
    * @param {InventoryPlatformValidator.GetConfigByCompanyParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<InventoryPlatformModel.ResponseEnvelopeListSlingshotConfigurationDetail>}
    *   - Success response
@@ -161,7 +170,10 @@ class Inventory {
    * @summary: Get Slingshot Configuration Of  A Company
    * @description: REST Endpoint that returns all configuration detail of a company - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/inventory/getConfigByCompany/).
    */
-  async getConfigByCompany({ headers } = { headers: false }) {
+  async getConfigByCompany(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = InventoryPlatformValidator.getConfigByCompany().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -194,12 +206,12 @@ class Inventory {
       `/service/platform/inventory/v1.0/company/${this.config.companyId}/slingshot`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -222,6 +234,7 @@ class Inventory {
 
   /**
    * @param {InventoryPlatformValidator.GetJobByCodeParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<InventoryPlatformModel.ResponseEnvelopeJobConfigDTO>}
    *   - Success response
@@ -230,7 +243,10 @@ class Inventory {
    * @summary: Get Job Config By Code
    * @description: REST Endpoint that returns job config by code - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/inventory/getJobByCode/).
    */
-  async getJobByCode({ code } = {}, { headers } = { headers: false }) {
+  async getJobByCode(
+    { code, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = InventoryPlatformValidator.getJobByCode().validate(
       {
         code,
@@ -267,12 +283,12 @@ class Inventory {
       `/service/platform/inventory/v1.0/company/${this.config.companyId}/jobs/code/${code}`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -297,6 +313,7 @@ class Inventory {
    * @param {InventoryPlatformValidator.GetJobByCompanyAndIntegrationParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<InventoryPlatformModel.ResponseEnvelopeListJobConfigDTO>}
    *   - Success response
@@ -306,8 +323,10 @@ class Inventory {
    * @description: REST Endpoint that returns all job configs by company And integration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/inventory/getJobByCompanyAndIntegration/).
    */
   async getJobByCompanyAndIntegration(
-    { integrationId, pageNo, pageSize } = {},
-    { headers } = { headers: false }
+    { integrationId, pageNo, pageSize, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -353,12 +372,12 @@ class Inventory {
       `/service/platform/inventory/v1.0/company/${this.config.companyId}/jobs/integration/${integrationId}`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -381,6 +400,7 @@ class Inventory {
 
   /**
    * @param {InventoryPlatformValidator.GetJobCodeMetricsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<InventoryPlatformModel.ResponseEnvelopeJobMetricsDto>}
    *   - Success response
@@ -390,8 +410,10 @@ class Inventory {
    * @description: REST Endpoint that returns Inventory Run History For A Job Code - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/inventory/getJobCodeMetrics/).
    */
   async getJobCodeMetrics(
-    { code, pageNo, pageSize, status, date } = {},
-    { headers } = { headers: false }
+    { code, pageNo, pageSize, status, date, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = InventoryPlatformValidator.getJobCodeMetrics().validate(
       {
@@ -441,12 +463,12 @@ class Inventory {
       `/service/platform/inventory/v1.0/company/${this.config.companyId}/jobs/code/${code}/metrics`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -471,6 +493,7 @@ class Inventory {
    * @param {InventoryPlatformValidator.GetJobCodesByCompanyAndIntegrationParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<InventoryPlatformModel.ResponseEnvelopeListJobConfigListDTO>}
    *   - Success response
@@ -480,8 +503,10 @@ class Inventory {
    * @description: REST Endpoint that returns all job codes by company And integration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/inventory/getJobCodesByCompanyAndIntegration/).
    */
   async getJobCodesByCompanyAndIntegration(
-    { integrationId, pageNo, pageSize } = {},
-    { headers } = { headers: false }
+    { integrationId, pageNo, pageSize, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -527,12 +552,12 @@ class Inventory {
       `/service/platform/inventory/v1.0/company/${this.config.companyId}/jobs/code/integration/${integrationId}`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -555,6 +580,7 @@ class Inventory {
 
   /**
    * @param {InventoryPlatformValidator.GetJobConfigDefaultsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<InventoryPlatformModel.ResponseEnvelopeJobConfigDTO>}
    *   - Success response
@@ -563,7 +589,10 @@ class Inventory {
    * @summary: Get Job Configs Defaults
    * @description: REST Endpoint that returns default fields job configs by company And integration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/inventory/getJobConfigDefaults/).
    */
-  async getJobConfigDefaults({ headers } = { headers: false }) {
+  async getJobConfigDefaults(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = InventoryPlatformValidator.getJobConfigDefaults().validate(
@@ -598,12 +627,12 @@ class Inventory {
       `/service/platform/inventory/v1.0/company/${this.config.companyId}/jobs/defaults`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -626,6 +655,7 @@ class Inventory {
 
   /**
    * @param {InventoryPlatformValidator.GetJobStepsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<InventoryPlatformModel.ResponseEnvelopeListJobStepsDTO>}
    *   - Success response
@@ -634,7 +664,10 @@ class Inventory {
    * @summary: Get Job Code Steps
    * @description: REST Endpoint that returns Inventory Job Steps - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/inventory/getJobSteps/).
    */
-  async getJobSteps({ jobId } = {}, { headers } = { headers: false }) {
+  async getJobSteps(
+    { jobId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = InventoryPlatformValidator.getJobSteps().validate(
       {
         jobId,
@@ -671,12 +704,12 @@ class Inventory {
       `/service/platform/inventory/v1.0/company/${this.config.companyId}/jobs/steps/${jobId}`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -699,6 +732,7 @@ class Inventory {
 
   /**
    * @param {InventoryPlatformValidator.GetJobsByCompanyParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<InventoryPlatformModel.ResponseEnvelopeListJobConfigRawDTO>}
    *   - Success response
@@ -708,8 +742,8 @@ class Inventory {
    * @description: REST Endpoint that returns all job configs for a company - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/inventory/getJobsByCompany/).
    */
   async getJobsByCompany(
-    { pageNo, pageSize } = {},
-    { headers } = { headers: false }
+    { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = InventoryPlatformValidator.getJobsByCompany().validate(
       {
@@ -751,12 +785,12 @@ class Inventory {
       `/service/platform/inventory/v1.0/company/${this.config.companyId}/jobs`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -779,6 +813,7 @@ class Inventory {
 
   /**
    * @param {InventoryPlatformValidator.SuppressStoresParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<InventoryPlatformModel.ResponseEnvelopeKafkaResponse>}
    *   - Success response
@@ -787,7 +822,10 @@ class Inventory {
    * @summary: Get Slingshot Configuration Of  A Company
    * @description: REST Endpoint that returns all configuration detail of a company - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/inventory/suppressStores/).
    */
-  async suppressStores({ body } = {}, { headers } = { headers: false }) {
+  async suppressStores(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = InventoryPlatformValidator.suppressStores().validate(
       {
         body,
@@ -824,12 +862,12 @@ class Inventory {
       `/service/platform/inventory/v1.0/company/${this.config.companyId}/kafka/suppressStore`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -852,6 +890,7 @@ class Inventory {
 
   /**
    * @param {InventoryPlatformValidator.UpdateJobParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<InventoryPlatformModel.ResponseEnvelopeString>} -
    *   Success response
@@ -859,7 +898,10 @@ class Inventory {
    * @summary: Updates An Existing Job Config
    * @description: REST Endpoint that updates a job config - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/inventory/updateJob/).
    */
-  async updateJob({ body } = {}, { headers } = { headers: false }) {
+  async updateJob(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = InventoryPlatformValidator.updateJob().validate(
       {
         body,
@@ -894,12 +936,12 @@ class Inventory {
       `/service/platform/inventory/v1.0/company/${this.config.companyId}/jobs`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

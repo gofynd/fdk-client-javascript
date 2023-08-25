@@ -14,13 +14,17 @@ class Configuration {
 
   /**
    * @param {ConfigurationPlatformApplicationValidator.AddDomainParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.Domain>} - Success response
    * @name addDomain
    * @summary: Add new domain to current sales channel
    * @description: Add a new domain to current sales channel, including pre-defined domain (free domain) or custom domain (owned by the brand) - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/addDomain/).
    */
-  async addDomain({ body } = {}, { headers } = { headers: false }) {
+  async addDomain(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ConfigurationPlatformApplicationValidator.addDomain().validate(
@@ -57,12 +61,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/domain`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -87,13 +91,17 @@ class Configuration {
    * @param {ConfigurationPlatformApplicationValidator.ChangeDomainTypeParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.DomainsResponse>} - Success response
    * @name changeDomainType
    * @summary: Change the type of domain in the current sales channel
    * @description: Primary domain is used as the URL of your website. Short link domain is comparatively smaller and used while generating short links. Use this API to change a domain to either Primary or a Shortlink domain. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/changeDomainType/).
    */
-  async changeDomainType({ body } = {}, { headers } = { headers: false }) {
+  async changeDomainType(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ConfigurationPlatformApplicationValidator.changeDomainType().validate(
@@ -130,12 +138,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/domain/set-domain`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -157,13 +165,20 @@ class Configuration {
   }
 
   /**
+   * @param {ConfigurationPlatformApplicationValidator.GetAppApiTokensParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.TokenResponse>} - Success response
    * @name getAppApiTokens
    * @summary: Get social tokens for the sales channel
    * @description: Use this API to retrieve the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google, and Facebook auth. **Note** - Token values are encrypted with AES encryption using a secret key. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppApiTokens/).
    */
-  async getAppApiTokens({ headers } = { headers: false }) {
+  async getAppApiTokens(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ConfigurationPlatformApplicationValidator.getAppApiTokens().validate(
@@ -196,12 +211,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/token`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -223,13 +238,20 @@ class Configuration {
   }
 
   /**
+   * @param {ConfigurationPlatformApplicationValidator.GetAppBasicDetailsParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.ApplicationDetail>} - Success response
    * @name getAppBasicDetails
    * @summary: Get sales channel details
    * @description: Shows basic sales channel details like name, description, logo, domain, company ID, and other related information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppBasicDetails/).
    */
-  async getAppBasicDetails({ headers } = { headers: false }) {
+  async getAppBasicDetails(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ConfigurationPlatformApplicationValidator.getAppBasicDetails().validate(
@@ -262,12 +284,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/detail`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -292,6 +314,7 @@ class Configuration {
    * @param {ConfigurationPlatformApplicationValidator.GetAppCompaniesParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.CompaniesResponse>} - Success response
    * @name getAppCompanies
@@ -299,8 +322,8 @@ class Configuration {
    * @description: Fetch info of all the companies (e.g. name, uid, and company type) whose inventory is fetched into the current sales channel application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppCompanies/).
    */
   async getAppCompanies(
-    { uid, pageNo, pageSize } = {},
-    { headers } = { headers: false }
+    { uid, pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -345,12 +368,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/companies`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -408,6 +431,10 @@ class Configuration {
   }
 
   /**
+   * @param {ConfigurationPlatformApplicationValidator.GetAppContactInfoParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.ApplicationInformation>} -
    *   Success response
@@ -415,7 +442,10 @@ class Configuration {
    * @summary: Get current information of the sales channel
    * @description: Fetch data such as social links, copyright text, business highlights, address and contact information of the company/seller/brand operating the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppContactInfo/).
    */
-  async getAppContactInfo({ headers } = { headers: false }) {
+  async getAppContactInfo(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ConfigurationPlatformApplicationValidator.getAppContactInfo().validate(
@@ -448,12 +478,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/information`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -475,6 +505,10 @@ class Configuration {
   }
 
   /**
+   * @param {ConfigurationPlatformApplicationValidator.GetAppCurrencyConfigParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.AppSupportedCurrency>} -
    *   Success response
@@ -482,7 +516,10 @@ class Configuration {
    * @summary: Get currencies supported in the application
    * @description: Get a list of currencies supported in the current sales channel. Moreover, get the cuurency that is set as the default one in the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppCurrencyConfig/).
    */
-  async getAppCurrencyConfig({ headers } = { headers: false }) {
+  async getAppCurrencyConfig(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ConfigurationPlatformApplicationValidator.getAppCurrencyConfig().validate(
@@ -515,12 +552,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/currency`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -542,6 +579,10 @@ class Configuration {
   }
 
   /**
+   * @param {ConfigurationPlatformApplicationValidator.GetAppFeaturesParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.AppFeatureResponse>} -
    *   Success response
@@ -549,7 +590,10 @@ class Configuration {
    * @summary: Get the sales channel configuration and features
    * @description: Shows feature configuration of sales channel websites, such as product detail, landing page, options in the login/registration screen, home page, listing page, reward points, communication opt-in, cart options and many more. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppFeatures/).
    */
-  async getAppFeatures({ headers } = { headers: false }) {
+  async getAppFeatures(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ConfigurationPlatformApplicationValidator.getAppFeatures().validate(
@@ -582,12 +626,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/feature`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -612,6 +656,7 @@ class Configuration {
    * @param {ConfigurationPlatformApplicationValidator.GetAppStoresParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.StoresResponse>} - Success response
    * @name getAppStores
@@ -619,8 +664,8 @@ class Configuration {
    * @description: Fetch info of all the companies (e.g. uid, name, display name, store type, store code and company id) whose inventory is fetched into the current sales channel application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppStores/).
    */
   async getAppStores(
-    { pageNo, pageSize } = {},
-    { headers } = { headers: false }
+    { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -662,12 +707,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/stores`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -723,6 +768,10 @@ class Configuration {
   }
 
   /**
+   * @param {ConfigurationPlatformApplicationValidator.GetAppSupportedCurrencyParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.AppCurrencyResponse>} -
    *   Success response
@@ -730,7 +779,10 @@ class Configuration {
    * @summary: Get currencies enabled in the application
    * @description: Use this API to get a list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAppSupportedCurrency/).
    */
-  async getAppSupportedCurrency({ headers } = { headers: false }) {
+  async getAppSupportedCurrency(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ConfigurationPlatformApplicationValidator.getAppSupportedCurrency().validate(
@@ -763,12 +815,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/currency/supported`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -790,13 +842,20 @@ class Configuration {
   }
 
   /**
+   * @param {ConfigurationPlatformApplicationValidator.GetApplicationByIdParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.Application>} - Success response
    * @name getApplicationById
    * @summary: Get sales channel data by ID
    * @description: Use application ID to get the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, token, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getApplicationById/).
    */
-  async getApplicationById({ headers } = { headers: false }) {
+  async getApplicationById(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ConfigurationPlatformApplicationValidator.getApplicationById().validate(
@@ -829,12 +888,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -859,6 +918,7 @@ class Configuration {
    * @param {ConfigurationPlatformApplicationValidator.GetBuildConfigParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.MobileAppConfiguration>} -
    *   Success response
@@ -867,8 +927,8 @@ class Configuration {
    * @description: Fetch latest build configuration, such as app name, landing page image, splash image used in a mobile build. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getBuildConfig/).
    */
   async getBuildConfig(
-    { platformType } = {},
-    { headers } = { headers: false }
+    { platformType, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -906,12 +966,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/build/${platformType}/configuration`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -936,6 +996,7 @@ class Configuration {
    * @param {ConfigurationPlatformApplicationValidator.GetDomainStatusParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.DomainStatusResponse>} -
    *   Success response
@@ -943,7 +1004,10 @@ class Configuration {
    * @summary: Get the status of connected domain
    * @description: Shows if the A records and TXT records of the domain correctly points to appropriate IP on Fynd Servers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getDomainStatus/).
    */
-  async getDomainStatus({ body } = {}, { headers } = { headers: false }) {
+  async getDomainStatus(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ConfigurationPlatformApplicationValidator.getDomainStatus().validate(
@@ -980,12 +1044,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/domain/domain-status`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1007,13 +1071,18 @@ class Configuration {
   }
 
   /**
+   * @param {ConfigurationPlatformApplicationValidator.GetDomainsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.DomainsResponse>} - Success response
    * @name getDomains
    * @summary: Fetch all the domains added to an  application (sales channel website), including pre-defined domain (free domain) or custom domain (owned by the brand). Know the verification status of each domain name, and find out which one is the primary domain, short link domain, or both.
    * @description: Get list of domains - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getDomains/).
    */
-  async getDomains({ headers } = { headers: false }) {
+  async getDomains(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ConfigurationPlatformApplicationValidator.getDomains().validate(
@@ -1046,12 +1115,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/domain`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1073,6 +1142,10 @@ class Configuration {
   }
 
   /**
+   * @param {ConfigurationPlatformApplicationValidator.GetInventoryConfigParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.ApplicationInventory>} -
    *   Success response
@@ -1080,7 +1153,10 @@ class Configuration {
    * @summary: Get sales channel configuration
    * @description: Use this API to fetch configuration details of authentication, inventory, article assignment rules, reward points, cart, payment, order, logistics, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getInventoryConfig/).
    */
-  async getInventoryConfig({ headers } = { headers: false }) {
+  async getInventoryConfig(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ConfigurationPlatformApplicationValidator.getInventoryConfig().validate(
@@ -1113,12 +1189,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/configuration`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1143,6 +1219,7 @@ class Configuration {
    * @param {ConfigurationPlatformApplicationValidator.GetOrderingStoresByFilterParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.OrderingStores>} - Success response
    * @name getOrderingStoresByFilter
@@ -1150,8 +1227,8 @@ class Configuration {
    * @description: Use this API to use filters and retrieve the details of the deployment stores (the selling locations where the application will be utilised for placing orders). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getOrderingStoresByFilter/).
    */
   async getOrderingStoresByFilter(
-    { body, pageNo, pageSize } = {},
-    { headers } = { headers: false }
+    { body, pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1195,12 +1272,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ordering-store/stores/filter`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1266,6 +1343,7 @@ class Configuration {
    * @param {ConfigurationPlatformApplicationValidator.GetPreviousVersionsParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.BuildVersionHistory>} -
    *   Success response
@@ -1274,8 +1352,8 @@ class Configuration {
    * @description: Fetch version details of the app, this includes the build status, build date, version name, latest version, and a lot more. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getPreviousVersions/).
    */
   async getPreviousVersions(
-    { platformType } = {},
-    { headers } = { headers: false }
+    { platformType, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1313,12 +1391,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/build/${platformType}/versions`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1343,6 +1421,7 @@ class Configuration {
    * @param {ConfigurationPlatformApplicationValidator.GetStaffOrderingStoresParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.OrderingStoresResponse>} -
    *   Success response
@@ -1351,8 +1430,8 @@ class Configuration {
    * @description: Use this API to retrieve the details of all stores access given to the staff member (the selling locations where the application will be utilized for placing orders). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getStaffOrderingStores/).
    */
   async getStaffOrderingStores(
-    { pageNo, pageSize, q } = {},
-    { headers } = { headers: false }
+    { pageNo, pageSize, q, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1397,12 +1476,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ordering-store/staff-stores`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1468,13 +1547,17 @@ class Configuration {
    * @param {ConfigurationPlatformApplicationValidator.ModifyAppFeaturesParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.AppFeature>} - Success response
    * @name modifyAppFeatures
    * @summary: Update features of application
    * @description: Update features of application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/modifyAppFeatures/).
    */
-  async modifyAppFeatures({ body } = {}, { headers } = { headers: false }) {
+  async modifyAppFeatures(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ConfigurationPlatformApplicationValidator.modifyAppFeatures().validate(
@@ -1511,12 +1594,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/feature`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1541,6 +1624,7 @@ class Configuration {
    * @param {ConfigurationPlatformApplicationValidator.PartiallyUpdateInventoryConfigParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.ApplicationInventory>} -
    *   Success response
@@ -1549,8 +1633,8 @@ class Configuration {
    * @description: Partially update the configuration details of authentication, inventory, article assignment rules, reward points, cart, payment, order, logistics, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/partiallyUpdateInventoryConfig/).
    */
   async partiallyUpdateInventoryConfig(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1588,12 +1672,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/configuration`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1618,6 +1702,7 @@ class Configuration {
    * @param {ConfigurationPlatformApplicationValidator.RemoveDomainByIdParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.SuccessMessageResponse>} -
    *   Success response
@@ -1625,7 +1710,10 @@ class Configuration {
    * @summary: Remove attached domain from current sales channel
    * @description: Delete a domain (secondary or shortlink domain) added to a sales channel. It will disable user's access to website, shared links, and other features associated with this domain. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/removeDomainById/).
    */
-  async removeDomainById({ id } = {}, { headers } = { headers: false }) {
+  async removeDomainById(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ConfigurationPlatformApplicationValidator.removeDomainById().validate(
@@ -1662,12 +1750,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/domain/${id}`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1692,13 +1780,17 @@ class Configuration {
    * @param {ConfigurationPlatformApplicationValidator.UpdateAppApiTokensParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.TokenResponse>} - Success response
    * @name updateAppApiTokens
    * @summary: Add or update social tokens for the sales channel
    * @description: Use this API to add or edit the tokens used for integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map, Google and Facebook auth. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateAppApiTokens/).
    */
-  async updateAppApiTokens({ body } = {}, { headers } = { headers: false }) {
+  async updateAppApiTokens(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ConfigurationPlatformApplicationValidator.updateAppApiTokens().validate(
@@ -1735,12 +1827,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/token`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1765,13 +1857,17 @@ class Configuration {
    * @param {ConfigurationPlatformApplicationValidator.UpdateAppBasicDetailsParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.ApplicationDetail>} - Success response
    * @name updateAppBasicDetails
    * @summary: Update sales channel details
    * @description: Modify sales channel details like name, description, logo, domain, company ID, and other related information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateAppBasicDetails/).
    */
-  async updateAppBasicDetails({ body } = {}, { headers } = { headers: false }) {
+  async updateAppBasicDetails(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ConfigurationPlatformApplicationValidator.updateAppBasicDetails().validate(
@@ -1808,12 +1904,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/detail`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1838,6 +1934,7 @@ class Configuration {
    * @param {ConfigurationPlatformApplicationValidator.UpdateAppContactInfoParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.ApplicationInformation>} -
    *   Success response
@@ -1845,7 +1942,10 @@ class Configuration {
    * @summary: Save or update current information of the sales channel
    * @description: Modify the social links, copyright text, business highlights, address and contact information of the company/seller/brand operating the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateAppContactInfo/).
    */
-  async updateAppContactInfo({ body } = {}, { headers } = { headers: false }) {
+  async updateAppContactInfo(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ConfigurationPlatformApplicationValidator.updateAppContactInfo().validate(
@@ -1882,12 +1982,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/information`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1912,6 +2012,7 @@ class Configuration {
    * @param {ConfigurationPlatformApplicationValidator.UpdateAppCurrencyConfigParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.AppSupportedCurrency>} -
    *   Success response
@@ -1920,8 +2021,8 @@ class Configuration {
    * @description: Use this API to add and edit the currencies supported in the application. Initially, INR will be enabled by default. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateAppCurrencyConfig/).
    */
   async updateAppCurrencyConfig(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1959,12 +2060,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/currency`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1989,13 +2090,17 @@ class Configuration {
    * @param {ConfigurationPlatformApplicationValidator.UpdateAppFeaturesParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.AppFeature>} - Success response
    * @name updateAppFeatures
    * @summary: Update the sales channel configuration and features
    * @description: Modify the feature configuration of sales channel websites, such as product detail, landing page, options in the login/registration screen, home page, listing page, reward points, communication opt-in, cart options and many more. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateAppFeatures/).
    */
-  async updateAppFeatures({ body } = {}, { headers } = { headers: false }) {
+  async updateAppFeatures(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ConfigurationPlatformApplicationValidator.updateAppFeatures().validate(
@@ -2032,12 +2137,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/feature`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2062,6 +2167,7 @@ class Configuration {
    * @param {ConfigurationPlatformApplicationValidator.UpdateBuildConfigParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.MobileAppConfiguration>} -
    *   Success response
@@ -2070,8 +2176,8 @@ class Configuration {
    * @description: Modify the existing build configuration, such as app name, landing page image, splash image used in a mobile build. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateBuildConfig/).
    */
   async updateBuildConfig(
-    { platformType, body } = {},
-    { headers } = { headers: false }
+    { platformType, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -2111,12 +2217,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/build/${platformType}/configuration`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2141,6 +2247,7 @@ class Configuration {
    * @param {ConfigurationPlatformApplicationValidator.UpdateInventoryConfigParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.ApplicationInventory>} -
    *   Success response
@@ -2148,7 +2255,10 @@ class Configuration {
    * @summary: Update sales channel configuration
    * @description: Modify the configuration details of authentication, inventory, article assignment rules, reward points, cart, payment, order, logistics, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateInventoryConfig/).
    */
-  async updateInventoryConfig({ body } = {}, { headers } = { headers: false }) {
+  async updateInventoryConfig(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ConfigurationPlatformApplicationValidator.updateInventoryConfig().validate(
@@ -2185,12 +2295,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/configuration`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2215,6 +2325,7 @@ class Configuration {
    * @param {ConfigurationPlatformApplicationValidator.UpdateOrderingStoreConfigParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.DeploymentMeta>} - Success response
    * @name updateOrderingStoreConfig
@@ -2222,8 +2333,8 @@ class Configuration {
    * @description: Use this API to edit the details of the deployment stores (the selling locations where the application will be utilised for placing orders) - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateOrderingStoreConfig/).
    */
   async updateOrderingStoreConfig(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -2261,12 +2372,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/application/${this.applicationId}/ordering-store`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

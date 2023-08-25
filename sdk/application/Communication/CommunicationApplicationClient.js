@@ -34,6 +34,10 @@ class Communication {
   }
 
   /**
+   * @param {CommunicationApplicationValidator.GetCommunicationConsentParam} arg
+   *   - Arg object.
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CommunicationApplicationModel.CommunicationConsent>} -
    *   Success response
@@ -41,7 +45,10 @@ class Communication {
    * @summary: Get communication consent
    * @description: Use this API to retrieve the consent provided by the user for receiving communication messages over Email/SMS/WhatsApp. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/communication/getCommunicationConsent/).
    */
-  async getCommunicationConsent({ headers } = { headers: false }) {
+  async getCommunicationConsent(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = CommunicationApplicationValidator.getCommunicationConsent().validate(
@@ -79,12 +86,12 @@ class Communication {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -108,13 +115,17 @@ class Communication {
   /**
    * @param {CommunicationApplicationValidator.UpsertAppPushtokenParam} arg -
    *   Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CommunicationApplicationModel.PushtokenRes>} - Success response
    * @name upsertAppPushtoken
    * @summary: Upsert push token of a user
    * @description: Use this API to update and insert the push token of the user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/communication/upsertAppPushtoken/).
    */
-  async upsertAppPushtoken({ body } = {}, { headers } = { headers: false }) {
+  async upsertAppPushtoken(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = CommunicationApplicationValidator.upsertAppPushtoken().validate(
@@ -152,12 +163,12 @@ class Communication {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -182,6 +193,7 @@ class Communication {
    * @param {CommunicationApplicationValidator.UpsertCommunicationConsentParam} arg
    *   - Arg object.
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CommunicationApplicationModel.CommunicationConsentRes>}
    *   - Success response
@@ -191,8 +203,8 @@ class Communication {
    * @description: Use this API to update and insert the consent provided by the user for receiving communication messages over Email/SMS/WhatsApp. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/communication/upsertCommunicationConsent/).
    */
   async upsertCommunicationConsent(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -231,12 +243,12 @@ class Communication {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

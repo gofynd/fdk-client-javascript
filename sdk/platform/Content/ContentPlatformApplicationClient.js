@@ -14,6 +14,7 @@ class Content {
 
   /**
    * @param {ContentPlatformApplicationValidator.AddDataLoaderParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.DataLoaderResponseSchema>} -
    *   Success response
@@ -21,7 +22,10 @@ class Content {
    * @summary: Adds a data loader
    * @description: Use this API to add data loader. This includes the data loader name, operationId, service name and its type (url/function) with corresponding value. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/addDataLoader/).
    */
-  async addDataLoader({ body } = {}, { headers } = { headers: false }) {
+  async addDataLoader(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.addDataLoader().validate(
@@ -58,12 +62,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/data-loader`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -86,13 +90,17 @@ class Content {
 
   /**
    * @param {ContentPlatformApplicationValidator.AddFaqParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.CreateFaqResponseSchema>} - Success response
    * @name addFaq
    * @summary: Create an FAQ
    * @description: FAQs help users to solve an issue or know more about a process. Use this API to create an FAQ for a given FAQ category. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/addFaq/).
    */
-  async addFaq({ categoryId, body } = {}, { headers } = { headers: false }) {
+  async addFaq(
+    { categoryId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ContentPlatformApplicationValidator.addFaq().validate(
       {
         categoryId,
@@ -129,12 +137,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${categoryId}/faq`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -157,13 +165,17 @@ class Content {
 
   /**
    * @param {ContentPlatformApplicationValidator.AddInjectableTagParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
    * @name addInjectableTag
    * @summary: Add a tag
    * @description: CSS and JS can be injected in the application (website) with the help of tags. Use this API to create such tags by entering the tag name, tag type (css/js), url and position of the tag. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/addInjectableTag/).
    */
-  async addInjectableTag({ body } = {}, { headers } = { headers: false }) {
+  async addInjectableTag(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.addInjectableTag().validate(
@@ -200,12 +212,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags/add`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -230,6 +242,7 @@ class Content {
    * @param {ContentPlatformApplicationValidator.AddPathRedirectionRulesParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.PathMappingSchema>} - Success response
    * @name addPathRedirectionRules
@@ -237,8 +250,8 @@ class Content {
    * @description: Use this API to add redirection rules - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/addPathRedirectionRules/).
    */
   async addPathRedirectionRules(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -276,12 +289,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/path-mappings`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -306,6 +319,7 @@ class Content {
    * @param {ContentPlatformApplicationValidator.CreateAnnouncementParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.CreateAnnouncementSchema>} -
    *   Success response
@@ -313,7 +327,10 @@ class Content {
    * @summary: Create an announcement
    * @description: Announcements are useful to highlight a message or information on top of a webpage. Use this API to create an announcement. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createAnnouncement/).
    */
-  async createAnnouncement({ body } = {}, { headers } = { headers: false }) {
+  async createAnnouncement(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.createAnnouncement().validate(
@@ -350,12 +367,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -378,13 +395,17 @@ class Content {
 
   /**
    * @param {ContentPlatformApplicationValidator.CreateBlogParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.BlogSchema>} - Success response
    * @name createBlog
    * @summary: Create a blog
    * @description: Use this API to create a blog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createBlog/).
    */
-  async createBlog({ body } = {}, { headers } = { headers: false }) {
+  async createBlog(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ContentPlatformApplicationValidator.createBlog().validate(
       {
         body,
@@ -419,12 +440,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -449,13 +470,17 @@ class Content {
    * @param {ContentPlatformApplicationValidator.CreateFaqCategoryParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.CreateFaqCategorySchema>} - Success response
    * @name createFaqCategory
    * @summary: Create an FAQ category
    * @description: FAQs help users to solve an issue or know more about a process. FAQs can be categorized separately, for e.g. some questions can be related to payment, some could be related to purchase, shipping, navigating, etc. Use this API to create an FAQ category. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createFaqCategory/).
    */
-  async createFaqCategory({ body } = {}, { headers } = { headers: false }) {
+  async createFaqCategory(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.createFaqCategory().validate(
@@ -492,12 +517,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -522,13 +547,17 @@ class Content {
    * @param {ContentPlatformApplicationValidator.CreateLandingPageParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.LandingPageSchema>} - Success response
    * @name createLandingPage
    * @summary: Create a landing page
    * @description: Landing page is the first page that a prospect lands upon while visiting a website. Use this API to create a landing page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createLandingPage/).
    */
-  async createLandingPage({ body } = {}, { headers } = { headers: false }) {
+  async createLandingPage(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.createLandingPage().validate(
@@ -565,12 +594,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page/`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -593,13 +622,17 @@ class Content {
 
   /**
    * @param {ContentPlatformApplicationValidator.CreateNavigationParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.NavigationSchema>} - Success response
    * @name createNavigation
    * @summary: Create a navigation
    * @description: Navigation is the arrangement of navigational items to ease the accessibility of resources for users on a website. Use this API to create a navigation. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createNavigation/).
    */
-  async createNavigation({ body } = {}, { headers } = { headers: false }) {
+  async createNavigation(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.createNavigation().validate(
@@ -636,12 +669,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -664,13 +697,17 @@ class Content {
 
   /**
    * @param {ContentPlatformApplicationValidator.CreatePageParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.PageSchema>} - Success response
    * @name createPage
    * @summary: Create a page
    * @description: Use this API to create a custom page using a title, seo, publish status, feature image, tags, meta, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createPage/).
    */
-  async createPage({ body } = {}, { headers } = { headers: false }) {
+  async createPage(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ContentPlatformApplicationValidator.createPage().validate(
       {
         body,
@@ -705,12 +742,12 @@ class Content {
       `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/pages/`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -735,13 +772,17 @@ class Content {
    * @param {ContentPlatformApplicationValidator.CreatePagePreviewParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.PageSchema>} - Success response
    * @name createPagePreview
    * @summary: Create a page preview
    * @description: Use this API to create a page preview to check the appearance of a custom page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createPagePreview/).
    */
-  async createPagePreview({ body } = {}, { headers } = { headers: false }) {
+  async createPagePreview(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.createPagePreview().validate(
@@ -778,12 +819,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/preview/`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -806,13 +847,17 @@ class Content {
 
   /**
    * @param {ContentPlatformApplicationValidator.CreateSlideshowParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.SlideshowSchema>} - Success response
    * @name createSlideshow
    * @summary: Create a slideshow
    * @description: A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to create a slideshow. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/createSlideshow/).
    */
-  async createSlideshow({ body } = {}, { headers } = { headers: false }) {
+  async createSlideshow(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.createSlideshow().validate(
@@ -849,12 +894,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -876,13 +921,20 @@ class Content {
   }
 
   /**
+   * @param {ContentPlatformApplicationValidator.DeleteAllInjectableTagsParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
    * @name deleteAllInjectableTags
    * @summary: Delete tags in application
    * @description: Use this API to delete all the existing tags at once. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteAllInjectableTags/).
    */
-  async deleteAllInjectableTags({ headers } = { headers: false }) {
+  async deleteAllInjectableTags(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.deleteAllInjectableTags().validate(
@@ -915,12 +967,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -945,6 +997,7 @@ class Content {
    * @param {ContentPlatformApplicationValidator.DeleteAnnouncementParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.CreateAnnouncementSchema>} -
    *   Success response
@@ -953,8 +1006,8 @@ class Content {
    * @description: Use this API to delete an existing announcement. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteAnnouncement/).
    */
   async deleteAnnouncement(
-    { announcementId } = {},
-    { headers } = { headers: false }
+    { announcementId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -992,12 +1045,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements/${announcementId}`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1020,13 +1073,17 @@ class Content {
 
   /**
    * @param {ContentPlatformApplicationValidator.DeleteBlogParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.BlogSchema>} - Success response
    * @name deleteBlog
    * @summary: Delete blogs
    * @description: Use this API to delete a blog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteBlog/).
    */
-  async deleteBlog({ id } = {}, { headers } = { headers: false }) {
+  async deleteBlog(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ContentPlatformApplicationValidator.deleteBlog().validate(
       {
         id,
@@ -1061,12 +1118,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/${id}`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1089,6 +1146,7 @@ class Content {
 
   /**
    * @param {ContentPlatformApplicationValidator.DeleteDataLoaderParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.DataLoaderResponseSchema>} -
    *   Success response
@@ -1097,8 +1155,8 @@ class Content {
    * @description: Use this API to delete data loader. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteDataLoader/).
    */
   async deleteDataLoader(
-    { dataLoaderId } = {},
-    { headers } = { headers: false }
+    { dataLoaderId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1136,12 +1194,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/data-loader/${dataLoaderId}`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1164,6 +1222,7 @@ class Content {
 
   /**
    * @param {ContentPlatformApplicationValidator.DeleteFaqParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.CreateFaqResponseSchema>} - Success response
    * @name deleteFaq
@@ -1171,8 +1230,8 @@ class Content {
    * @description: Use this API to delete an existing FAQ. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteFaq/).
    */
   async deleteFaq(
-    { categoryId, faqId } = {},
-    { headers } = { headers: false }
+    { categoryId, faqId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = ContentPlatformApplicationValidator.deleteFaq().validate(
       {
@@ -1210,12 +1269,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${categoryId}/faq/${faqId}`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1240,13 +1299,17 @@ class Content {
    * @param {ContentPlatformApplicationValidator.DeleteFaqCategoryParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.FaqSchema>} - Success response
    * @name deleteFaqCategory
    * @summary: Delete an FAQ category
    * @description: Use this API to delete an FAQ category. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteFaqCategory/).
    */
-  async deleteFaqCategory({ id } = {}, { headers } = { headers: false }) {
+  async deleteFaqCategory(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.deleteFaqCategory().validate(
@@ -1283,12 +1346,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${id}`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1313,13 +1376,17 @@ class Content {
    * @param {ContentPlatformApplicationValidator.DeleteLandingPageParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.LandingPageSchema>} - Success response
    * @name deleteLandingPage
    * @summary: Delete a landing page
    * @description: Use this API to delete an existing landing page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteLandingPage/).
    */
-  async deleteLandingPage({ id } = {}, { headers } = { headers: false }) {
+  async deleteLandingPage(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.deleteLandingPage().validate(
@@ -1356,12 +1423,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page/${id}`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1384,13 +1451,17 @@ class Content {
 
   /**
    * @param {ContentPlatformApplicationValidator.DeleteNavigationParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.NavigationSchema>} - Success response
    * @name deleteNavigation
    * @summary: Delete a navigation
    * @description: Use this API to delete an existing navigation. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteNavigation/).
    */
-  async deleteNavigation({ id } = {}, { headers } = { headers: false }) {
+  async deleteNavigation(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.deleteNavigation().validate(
@@ -1427,12 +1498,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/${id}`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1455,13 +1526,17 @@ class Content {
 
   /**
    * @param {ContentPlatformApplicationValidator.DeletePageParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.PageSchema>} - Success response
    * @name deletePage
    * @summary: Delete a page
    * @description: Use this API to delete an existing page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deletePage/).
    */
-  async deletePage({ id } = {}, { headers } = { headers: false }) {
+  async deletePage(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ContentPlatformApplicationValidator.deletePage().validate(
       {
         id,
@@ -1496,12 +1571,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/${id}`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1526,6 +1601,7 @@ class Content {
    * @param {ContentPlatformApplicationValidator.DeletePathRedirectionRulesParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<Object>} - Success response
    * @name deletePathRedirectionRules
@@ -1533,8 +1609,8 @@ class Content {
    * @description: Use this API to delete redirection rules - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deletePathRedirectionRules/).
    */
   async deletePathRedirectionRules(
-    { pathId } = {},
-    { headers } = { headers: false }
+    { pathId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1572,12 +1648,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/path-mappings/${pathId}`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1598,13 +1674,17 @@ class Content {
 
   /**
    * @param {ContentPlatformApplicationValidator.DeleteSlideshowParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.SlideshowSchema>} - Success response
    * @name deleteSlideshow
    * @summary: Delete a slideshow
    * @description: Use this API to delete an existing slideshow. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteSlideshow/).
    */
-  async deleteSlideshow({ id } = {}, { headers } = { headers: false }) {
+  async deleteSlideshow(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.deleteSlideshow().validate(
@@ -1641,12 +1721,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/${id}`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1669,6 +1749,7 @@ class Content {
 
   /**
    * @param {ContentPlatformApplicationValidator.EditDataLoaderParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.DataLoaderResponseSchema>} -
    *   Success response
@@ -1677,8 +1758,8 @@ class Content {
    * @description: Use this API to edit the details of an existing data loader by its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/editDataLoader/).
    */
   async editDataLoader(
-    { dataLoaderId, body } = {},
-    { headers } = { headers: false }
+    { dataLoaderId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1718,12 +1799,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/data-loader/${dataLoaderId}`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1748,6 +1829,7 @@ class Content {
    * @param {ContentPlatformApplicationValidator.EditInjectableTagParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
    * @name editInjectableTag
@@ -1755,8 +1837,8 @@ class Content {
    * @description: Use this API to edit the details of an existing tag by its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/editInjectableTag/).
    */
   async editInjectableTag(
-    { tagId, body } = {},
-    { headers } = { headers: false }
+    { tagId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1796,12 +1878,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags/edit/handpicked/${tagId}`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1824,6 +1906,7 @@ class Content {
 
   /**
    * @param {ContentPlatformApplicationValidator.GenerateSEOTitleParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.GeneratedSEOContent>} - Success response
    * @name generateSEOTitle
@@ -1831,8 +1914,8 @@ class Content {
    * @description: Use this API to get GPT3 generated SEO meta tag title for content - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/generateSEOTitle/).
    */
   async generateSEOTitle(
-    { type, body } = {},
-    { headers } = { headers: false }
+    { type, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1872,12 +1955,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/generate-seo/${type}`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1902,6 +1985,7 @@ class Content {
    * @param {ContentPlatformApplicationValidator.GetAnnouncementByIdParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.AdminAnnouncementSchema>} - Success response
    * @name getAnnouncementById
@@ -1909,8 +1993,8 @@ class Content {
    * @description: Use this API to retrieve an announcement and its details such as the target platform and pages on which it's applicable - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAnnouncementById/).
    */
   async getAnnouncementById(
-    { announcementId } = {},
-    { headers } = { headers: false }
+    { announcementId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1948,12 +2032,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements/${announcementId}`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1978,6 +2062,7 @@ class Content {
    * @param {ContentPlatformApplicationValidator.GetAnnouncementsListParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.GetAnnouncementListSchema>} -
    *   Success response
@@ -1986,8 +2071,8 @@ class Content {
    * @description: Announcements are useful to highlight a message or information on top of a webpage. Use this API to retrieve a list of announcements.	 - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAnnouncementsList/).
    */
   async getAnnouncementsList(
-    { pageNo, pageSize } = {},
-    { headers } = { headers: false }
+    { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -2029,12 +2114,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2091,13 +2176,17 @@ class Content {
 
   /**
    * @param {ContentPlatformApplicationValidator.GetBlogBySlugParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.BlogSchema>} - Success response
    * @name getBlogBySlug
    * @summary: Get blog by slug
    * @description: Use this API to retrieve the components of a blog, such as title, slug, feature image, content, schedule, publish status, author, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getBlogBySlug/).
    */
-  async getBlogBySlug({ slug } = {}, { headers } = { headers: false }) {
+  async getBlogBySlug(
+    { slug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.getBlogBySlug().validate(
@@ -2134,12 +2223,12 @@ class Content {
       `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/${slug}`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2162,13 +2251,17 @@ class Content {
 
   /**
    * @param {ContentPlatformApplicationValidator.GetBlogsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.BlogGetResponse>} - Success response
    * @name getBlogs
    * @summary: Get blogs
    * @description: Use this API to get a list of blogs along with their details, such as the title, reading time, publish status, feature image, tags, author, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getBlogs/).
    */
-  async getBlogs({ pageNo, pageSize } = {}, { headers } = { headers: false }) {
+  async getBlogs(
+    { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ContentPlatformApplicationValidator.getBlogs().validate(
       {
         pageNo,
@@ -2207,12 +2300,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2269,13 +2362,17 @@ class Content {
 
   /**
    * @param {ContentPlatformApplicationValidator.GetComponentByIdParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.BlogSchema>} - Success response
    * @name getComponentById
    * @summary: Get components of a blog
    * @description: Use this API to retrieve the components of a blog, such as title, slug, feature image, content, schedule, publish status, author, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getComponentById/).
    */
-  async getComponentById({ slug } = {}, { headers } = { headers: false }) {
+  async getComponentById(
+    { slug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.getComponentById().validate(
@@ -2312,12 +2409,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/${slug}`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2339,13 +2436,18 @@ class Content {
   }
 
   /**
+   * @param {ContentPlatformApplicationValidator.GetDataLoadersParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.DataLoadersSchema>} - Success response
    * @name getDataLoaders
    * @summary: Get all the data loaders in an application
    * @description: Use this to get all data loaders of an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getDataLoaders/).
    */
-  async getDataLoaders({ headers } = { headers: false }) {
+  async getDataLoaders(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.getDataLoaders().validate(
@@ -2378,12 +2480,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/data-loader`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2405,6 +2507,10 @@ class Content {
   }
 
   /**
+   * @param {ContentPlatformApplicationValidator.GetDefaultNavigationsParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.DefaultNavigationResponse>} -
    *   Success response
@@ -2412,7 +2518,10 @@ class Content {
    * @summary: Get default navigations
    * @description: On any website (application), there are navigations that are present by default. Use this API to retrieve those default navigations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getDefaultNavigations/).
    */
-  async getDefaultNavigations({ headers } = { headers: false }) {
+  async getDefaultNavigations(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.getDefaultNavigations().validate(
@@ -2445,12 +2554,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/default`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2473,13 +2582,17 @@ class Content {
 
   /**
    * @param {ContentPlatformApplicationValidator.GetFaqByIdOrSlugParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.CreateFaqResponseSchema>} - Success response
    * @name getFaqByIdOrSlug
    * @summary: Get an FAQ
    * @description: Use this API to retrieve a specific FAQ. You will get the question and answer of that FAQ. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getFaqByIdOrSlug/).
    */
-  async getFaqByIdOrSlug({ idOrSlug } = {}, { headers } = { headers: false }) {
+  async getFaqByIdOrSlug(
+    { idOrSlug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.getFaqByIdOrSlug().validate(
@@ -2516,12 +2629,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/${idOrSlug}`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2543,13 +2656,18 @@ class Content {
   }
 
   /**
+   * @param {ContentPlatformApplicationValidator.GetFaqCategoriesParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.GetFaqCategoriesSchema>} - Success response
    * @name getFaqCategories
    * @summary: Get a list of FAQ categories
    * @description: FAQs can be divided into categories. Use this API to get a list of FAQ categories. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getFaqCategories/).
    */
-  async getFaqCategories({ headers } = { headers: false }) {
+  async getFaqCategories(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.getFaqCategories().validate(
@@ -2582,12 +2700,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/categories`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2612,6 +2730,7 @@ class Content {
    * @param {ContentPlatformApplicationValidator.GetFaqCategoryBySlugOrIdParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.GetFaqCategoryBySlugSchema>} -
    *   Success response
@@ -2620,8 +2739,8 @@ class Content {
    * @description: FAQs can be divided into categories. Use this API to get an FAQ categories using its slug or ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getFaqCategoryBySlugOrId/).
    */
   async getFaqCategoryBySlugOrId(
-    { idOrSlug } = {},
-    { headers } = { headers: false }
+    { idOrSlug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -2659,12 +2778,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${idOrSlug}`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2689,6 +2808,7 @@ class Content {
    * @param {ContentPlatformApplicationValidator.GetFaqsByCategoryIdOrSlugParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.GetFaqSchema>} - Success response
    * @name getFaqsByCategoryIdOrSlug
@@ -2696,8 +2816,8 @@ class Content {
    * @description: Use this API to retrieve all the commonly asked question and answers belonging to an FAQ category. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getFaqsByCategoryIdOrSlug/).
    */
   async getFaqsByCategoryIdOrSlug(
-    { idOrSlug } = {},
-    { headers } = { headers: false }
+    { idOrSlug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -2735,12 +2855,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${idOrSlug}/faqs`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2762,13 +2882,20 @@ class Content {
   }
 
   /**
+   * @param {ContentPlatformApplicationValidator.GetInjectableTagsParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
    * @name getInjectableTags
    * @summary: Get all the tags in an application
    * @description: Use this API to get all the CSS and JS injected in the application in the form of tags. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getInjectableTags/).
    */
-  async getInjectableTags({ headers } = { headers: false }) {
+  async getInjectableTags(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.getInjectableTags().validate(
@@ -2801,12 +2928,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2829,6 +2956,7 @@ class Content {
 
   /**
    * @param {ContentPlatformApplicationValidator.GetLandingPagesParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.LandingPageGetResponse>} - Success response
    * @name getLandingPages
@@ -2836,8 +2964,8 @@ class Content {
    * @description: Landing page is the first page that a prospect lands upon while visiting a website. Use this API to fetch a list of landing pages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getLandingPages/).
    */
   async getLandingPages(
-    { pageNo, pageSize } = {},
-    { headers } = { headers: false }
+    { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -2879,12 +3007,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page/`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2940,13 +3068,20 @@ class Content {
   }
 
   /**
+   * @param {ContentPlatformApplicationValidator.GetLegalInformationParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.ApplicationLegal>} - Success response
    * @name getLegalInformation
    * @summary: Get legal information
    * @description: Use this API to get the legal information of an application, which includes Policy, Terms and Conditions, Shipping Policy and FAQ regarding the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getLegalInformation/).
    */
-  async getLegalInformation({ headers } = { headers: false }) {
+  async getLegalInformation(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.getLegalInformation().validate(
@@ -2979,12 +3114,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/legal`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -3009,6 +3144,7 @@ class Content {
    * @param {ContentPlatformApplicationValidator.GetNavigationBySlugParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.NavigationSchema>} - Success response
    * @name getNavigationBySlug
@@ -3016,8 +3152,8 @@ class Content {
    * @description: Use this API to retrieve a navigation by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getNavigationBySlug/).
    */
   async getNavigationBySlug(
-    { slug, devicePlatform } = {},
-    { headers } = { headers: false }
+    { slug, devicePlatform, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -3058,12 +3194,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/${slug}`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -3086,6 +3222,7 @@ class Content {
 
   /**
    * @param {ContentPlatformApplicationValidator.GetNavigationsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.NavigationGetResponse>} - Success response
    * @name getNavigations
@@ -3093,8 +3230,10 @@ class Content {
    * @description: Use this API to fetch the navigations details which includes the items of the navigation pane. It also shows the orientation, links, sub-navigations, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getNavigations/).
    */
   async getNavigations(
-    { devicePlatform, pageNo, pageSize } = {},
-    { headers } = { headers: false }
+    { devicePlatform, pageNo, pageSize, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -3139,12 +3278,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -3209,13 +3348,17 @@ class Content {
 
   /**
    * @param {ContentPlatformApplicationValidator.GetPageBySlugParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.PageSchema>} - Success response
    * @name getPageBySlug
    * @summary: Get page by slug
    * @description: Use this API to retrieve the components of a page, such as its title, seo, publish status, feature image, tags, schedule, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPageBySlug/).
    */
-  async getPageBySlug({ slug } = {}, { headers } = { headers: false }) {
+  async getPageBySlug(
+    { slug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.getPageBySlug().validate(
@@ -3252,12 +3395,12 @@ class Content {
       `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/pages/${slug}`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -3279,13 +3422,18 @@ class Content {
   }
 
   /**
+   * @param {ContentPlatformApplicationValidator.GetPageMetaParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.PageMetaSchema>} - Success response
    * @name getPageMeta
    * @summary: Get page meta
    * @description: Use this API to get the meta of custom pages (blog, page) and default system pages (e.g. home/brand/category/collection). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPageMeta/).
    */
-  async getPageMeta({ headers } = { headers: false }) {
+  async getPageMeta(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.getPageMeta().validate(
@@ -3318,12 +3466,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/meta`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -3345,13 +3493,18 @@ class Content {
   }
 
   /**
+   * @param {ContentPlatformApplicationValidator.GetPageSpecParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.PageSpec>} - Success response
    * @name getPageSpec
    * @summary: Get page spec
    * @description: Use this API to get the specifications of a page, such as page type, display name, params and query. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPageSpec/).
    */
-  async getPageSpec({ headers } = { headers: false }) {
+  async getPageSpec(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.getPageSpec().validate(
@@ -3384,12 +3537,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/spec`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -3412,13 +3565,17 @@ class Content {
 
   /**
    * @param {ContentPlatformApplicationValidator.GetPagesParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.PageGetResponse>} - Success response
    * @name getPages
    * @summary: Get a list of pages
    * @description: Use this API to retrieve a list of pages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPages/).
    */
-  async getPages({ pageNo, pageSize } = {}, { headers } = { headers: false }) {
+  async getPages(
+    { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ContentPlatformApplicationValidator.getPages().validate(
       {
         pageNo,
@@ -3457,12 +3614,12 @@ class Content {
       `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/pages/`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -3521,6 +3678,7 @@ class Content {
    * @param {ContentPlatformApplicationValidator.GetPathRedirectionRuleParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.PathMappingSchema>} - Success response
    * @name getPathRedirectionRule
@@ -3528,8 +3686,8 @@ class Content {
    * @description: Use this API to get path based redirection rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPathRedirectionRule/).
    */
   async getPathRedirectionRule(
-    { pathId } = {},
-    { headers } = { headers: false }
+    { pathId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -3567,12 +3725,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/path-mappings/${pathId}`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -3597,6 +3755,7 @@ class Content {
    * @param {ContentPlatformApplicationValidator.GetPathRedirectionRulesParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.PathMappingSchema>} - Success response
    * @name getPathRedirectionRules
@@ -3604,8 +3763,8 @@ class Content {
    * @description: Use this API to get path based redirection rules. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getPathRedirectionRules/).
    */
   async getPathRedirectionRules(
-    { pageSize, pageNo } = {},
-    { headers } = { headers: false }
+    { pageSize, pageNo, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -3647,12 +3806,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/path-mappings`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -3674,13 +3833,20 @@ class Content {
   }
 
   /**
+   * @param {ContentPlatformApplicationValidator.GetSEOConfigurationParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.SeoComponent>} - Success response
    * @name getSEOConfiguration
    * @summary: Get SEO configuration of an application
    * @description: Use this API to know how the SEO is configured in the application. This includes the sitemap, robot.txt, custom meta tags, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getSEOConfiguration/).
    */
-  async getSEOConfiguration({ headers } = { headers: false }) {
+  async getSEOConfiguration(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.getSEOConfiguration().validate(
@@ -3713,12 +3879,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/seo`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -3743,6 +3909,7 @@ class Content {
    * @param {ContentPlatformApplicationValidator.GetSlideshowBySlugParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.SlideshowSchema>} - Success response
    * @name getSlideshowBySlug
@@ -3750,8 +3917,8 @@ class Content {
    * @description: Use this API to retrieve the details of a slideshow by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getSlideshowBySlug/).
    */
   async getSlideshowBySlug(
-    { slug, devicePlatform } = {},
-    { headers } = { headers: false }
+    { slug, devicePlatform, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -3792,12 +3959,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/${slug}`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -3820,6 +3987,7 @@ class Content {
 
   /**
    * @param {ContentPlatformApplicationValidator.GetSlideshowsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.SlideshowGetResponse>} - Success response
    * @name getSlideshows
@@ -3827,8 +3995,10 @@ class Content {
    * @description: A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to fetch a list of slideshows. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getSlideshows/).
    */
   async getSlideshows(
-    { devicePlatform, pageNo, pageSize } = {},
-    { headers } = { headers: false }
+    { devicePlatform, pageNo, pageSize, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -3873,12 +4043,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -3942,13 +4112,20 @@ class Content {
   }
 
   /**
+   * @param {ContentPlatformApplicationValidator.GetSupportInformationParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.Support>} - Success response
    * @name getSupportInformation
    * @summary: Get support information
    * @description: Use this API to get the contact details for customer support, including emails and phone numbers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getSupportInformation/).
    */
-  async getSupportInformation({ headers } = { headers: false }) {
+  async getSupportInformation(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.getSupportInformation().validate(
@@ -3981,12 +4158,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/support`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -4011,6 +4188,7 @@ class Content {
    * @param {ContentPlatformApplicationValidator.RemoveInjectableTagParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.TagDeleteSuccessResponse>} -
    *   Success response
@@ -4018,7 +4196,10 @@ class Content {
    * @summary: Remove a tag
    * @description: Use this API to delete an existing tag. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/removeInjectableTag/).
    */
-  async removeInjectableTag({ body } = {}, { headers } = { headers: false }) {
+  async removeInjectableTag(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.removeInjectableTag().validate(
@@ -4055,12 +4236,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags/remove/handpicked`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -4083,6 +4264,7 @@ class Content {
 
   /**
    * @param {ContentPlatformApplicationValidator.ResetDataLoaderParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.DataLoaderResetResponseSchema>} -
    *   Success response
@@ -4091,8 +4273,8 @@ class Content {
    * @description: Use this API to reselect a data loader. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/resetDataLoader/).
    */
   async resetDataLoader(
-    { service, operationId } = {},
-    { headers } = { headers: false }
+    { service, operationId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -4132,12 +4314,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/data-loader/${service}/${operationId}/reset`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -4160,6 +4342,7 @@ class Content {
 
   /**
    * @param {ContentPlatformApplicationValidator.SelectDataLoaderParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.DataLoaderResponseSchema>} -
    *   Success response
@@ -4168,8 +4351,8 @@ class Content {
    * @description: Use this API to select a data loader to be used in applications. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/selectDataLoader/).
    */
   async selectDataLoader(
-    { dataLoaderId } = {},
-    { headers } = { headers: false }
+    { dataLoaderId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -4207,12 +4390,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/data-loader/${dataLoaderId}/select`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -4237,6 +4420,7 @@ class Content {
    * @param {ContentPlatformApplicationValidator.UpdateAnnouncementParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.CreateAnnouncementSchema>} -
    *   Success response
@@ -4245,8 +4429,8 @@ class Content {
    * @description: Use this API to edit an existing announcement and its details such as the target platform and pages on which it's applicable - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateAnnouncement/).
    */
   async updateAnnouncement(
-    { announcementId, body } = {},
-    { headers } = { headers: false }
+    { announcementId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -4286,12 +4470,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements/${announcementId}`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -4316,6 +4500,7 @@ class Content {
    * @param {ContentPlatformApplicationValidator.UpdateAnnouncementScheduleParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.CreateAnnouncementSchema>} -
    *   Success response
@@ -4324,8 +4509,8 @@ class Content {
    * @description: Use this API to edit the duration, i.e. start date-time and end date-time of an announcement. Moreover, you can enable/disable an announcement using this API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateAnnouncementSchedule/).
    */
   async updateAnnouncementSchedule(
-    { announcementId, body } = {},
-    { headers } = { headers: false }
+    { announcementId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -4365,12 +4550,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/announcements/${announcementId}`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -4393,13 +4578,17 @@ class Content {
 
   /**
    * @param {ContentPlatformApplicationValidator.UpdateBlogParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.BlogSchema>} - Success response
    * @name updateBlog
    * @summary: Update a blog
    * @description: Use this API to update the details of an existing blog which includes title, feature image, content, SEO details, expiry, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateBlog/).
    */
-  async updateBlog({ id, body } = {}, { headers } = { headers: false }) {
+  async updateBlog(
+    { id, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ContentPlatformApplicationValidator.updateBlog().validate(
       {
         id,
@@ -4436,12 +4625,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/blogs/${id}`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -4464,6 +4653,7 @@ class Content {
 
   /**
    * @param {ContentPlatformApplicationValidator.UpdateFaqParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.CreateFaqResponseSchema>} - Success response
    * @name updateFaq
@@ -4471,8 +4661,8 @@ class Content {
    * @description: Use this API to edit an existing FAQ. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateFaq/).
    */
   async updateFaq(
-    { categoryId, faqId, body } = {},
-    { headers } = { headers: false }
+    { categoryId, faqId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = ContentPlatformApplicationValidator.updateFaq().validate(
       {
@@ -4512,12 +4702,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${categoryId}/faq/${faqId}`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -4542,13 +4732,17 @@ class Content {
    * @param {ContentPlatformApplicationValidator.UpdateFaqCategoryParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.CreateFaqCategorySchema>} - Success response
    * @name updateFaqCategory
    * @summary: Update an FAQ category
    * @description: Use this API to edit an existing FAQ category. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateFaqCategory/).
    */
-  async updateFaqCategory({ id, body } = {}, { headers } = { headers: false }) {
+  async updateFaqCategory(
+    { id, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.updateFaqCategory().validate(
@@ -4587,12 +4781,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/faq/category/${id}`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -4617,13 +4811,17 @@ class Content {
    * @param {ContentPlatformApplicationValidator.UpdateInjectableTagParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
    * @name updateInjectableTag
    * @summary: Update a tag
    * @description: Use this API to edit the details of an existing tag. This includes the tag name, tag type (css/js), url and position of the tag. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateInjectableTag/).
    */
-  async updateInjectableTag({ body } = {}, { headers } = { headers: false }) {
+  async updateInjectableTag(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.updateInjectableTag().validate(
@@ -4660,12 +4858,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -4690,13 +4888,17 @@ class Content {
    * @param {ContentPlatformApplicationValidator.UpdateLandingPageParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.LandingPageSchema>} - Success response
    * @name updateLandingPage
    * @summary: Update a landing page
    * @description: Use this API to edit the details of an existing landing page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateLandingPage/).
    */
-  async updateLandingPage({ id, body } = {}, { headers } = { headers: false }) {
+  async updateLandingPage(
+    { id, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.updateLandingPage().validate(
@@ -4735,12 +4937,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/landing-page/${id}`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -4765,6 +4967,7 @@ class Content {
    * @param {ContentPlatformApplicationValidator.UpdateLegalInformationParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.ApplicationLegal>} - Success response
    * @name updateLegalInformation
@@ -4772,8 +4975,8 @@ class Content {
    * @description: Use this API to edit, update and save the legal information of an application, which includes Policy, Terms and Conditions, Shipping Policy and FAQ regarding the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateLegalInformation/).
    */
   async updateLegalInformation(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -4811,12 +5014,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/legal`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -4839,13 +5042,17 @@ class Content {
 
   /**
    * @param {ContentPlatformApplicationValidator.UpdateNavigationParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.NavigationSchema>} - Success response
    * @name updateNavigation
    * @summary: Update a navigation
    * @description: Use this API to edit the details of an existing navigation. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateNavigation/).
    */
-  async updateNavigation({ id, body } = {}, { headers } = { headers: false }) {
+  async updateNavigation(
+    { id, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.updateNavigation().validate(
@@ -4884,12 +5091,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/navigations/${id}`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -4912,13 +5119,17 @@ class Content {
 
   /**
    * @param {ContentPlatformApplicationValidator.UpdatePageParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.PageSchema>} - Success response
    * @name updatePage
    * @summary: Update a page
    * @description: Use this API to edit the details of an existing page, such as its title, seo, publish status, feature image, tags, schedule, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updatePage/).
    */
-  async updatePage({ id, body } = {}, { headers } = { headers: false }) {
+  async updatePage(
+    { id, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ContentPlatformApplicationValidator.updatePage().validate(
       {
         id,
@@ -4955,12 +5166,12 @@ class Content {
       `/service/platform/content/v2.0/company/${this.config.companyId}/application/${this.applicationId}/pages/${id}`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -4985,6 +5196,7 @@ class Content {
    * @param {ContentPlatformApplicationValidator.UpdatePagePreviewParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.PageSchema>} - Success response
    * @name updatePagePreview
@@ -4992,8 +5204,8 @@ class Content {
    * @description: Use this API to change the publish status of an existing page. Allows you to publish and unpublish the page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updatePagePreview/).
    */
   async updatePagePreview(
-    { slug, body } = {},
-    { headers } = { headers: false }
+    { slug, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -5033,12 +5245,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pages/publish/${slug}`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -5063,6 +5275,7 @@ class Content {
    * @param {ContentPlatformApplicationValidator.UpdatePathRedirectionRulesParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.PathMappingSchema>} - Success response
    * @name updatePathRedirectionRules
@@ -5070,8 +5283,8 @@ class Content {
    * @description: Use this API to update redirection rules - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updatePathRedirectionRules/).
    */
   async updatePathRedirectionRules(
-    { pathId, body } = {},
-    { headers } = { headers: false }
+    { pathId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -5111,12 +5324,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/path-mappings/${pathId}`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -5141,6 +5354,7 @@ class Content {
    * @param {ContentPlatformApplicationValidator.UpdateSEOConfigurationParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.SeoSchema>} - Success response
    * @name updateSEOConfiguration
@@ -5148,8 +5362,8 @@ class Content {
    * @description: Use this API to edit the SEO details of an application. This includes the sitemap, robot.txt, custom meta tags, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateSEOConfiguration/).
    */
   async updateSEOConfiguration(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -5187,12 +5401,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/seo`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -5215,13 +5429,17 @@ class Content {
 
   /**
    * @param {ContentPlatformApplicationValidator.UpdateSlideshowParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.SlideshowSchema>} - Success response
    * @name updateSlideshow
    * @summary: Update a slideshow
    * @description: Use this API to edit the details of an existing slideshow. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateSlideshow/).
    */
-  async updateSlideshow({ id, body } = {}, { headers } = { headers: false }) {
+  async updateSlideshow(
+    { id, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.updateSlideshow().validate(
@@ -5260,12 +5478,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/slideshows/${id}`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -5290,6 +5508,7 @@ class Content {
    * @param {ContentPlatformApplicationValidator.UpdateSupportInformationParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.Support>} - Success response
    * @name updateSupportInformation
@@ -5297,8 +5516,8 @@ class Content {
    * @description: Use this API to edit the existing contact details for customer support, including emails and phone numbers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateSupportInformation/).
    */
   async updateSupportInformation(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -5336,12 +5555,12 @@ class Content {
       `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/support`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

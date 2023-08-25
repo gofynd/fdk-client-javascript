@@ -13,13 +13,17 @@ class Serviceability {
 
   /**
    * @param {ServiceabilityPlatformValidator.CreateZoneParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.ZoneResponse>} - Success response
    * @name createZone
    * @summary: Creation of a new zone
    * @description: This API allows you to create a new zone with the specified information. A zone enables serviceability based on given pincodes or regions. By creating a zone and including specific pincodes or regions, you can ensure that the stores associated with the zone are serviceable for those added pincodes or regions. This functionality is particularly useful when you need to ensure serviceability for multiple pincodes or regions by grouping them into a single zone. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createZone/).
    */
-  async createZone({ body } = {}, { headers } = { headers: false }) {
+  async createZone(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ServiceabilityPlatformValidator.createZone().validate(
       {
         body,
@@ -56,12 +60,12 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/zone`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -84,6 +88,7 @@ class Serviceability {
 
   /**
    * @param {ServiceabilityPlatformValidator.GetAllStoresParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.GetStoresViewResponse>} -
    *   Success response
@@ -91,7 +96,10 @@ class Serviceability {
    * @summary: GET stores data
    * @description: This API returns stores data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getAllStores/).
    */
-  async getAllStores({ headers } = { headers: false }) {
+  async getAllStores(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ServiceabilityPlatformValidator.getAllStores().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -124,12 +132,12 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/logistics/stores`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -152,6 +160,7 @@ class Serviceability {
 
   /**
    * @param {ServiceabilityPlatformValidator.GetCompanyStoreViewParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.CompanyStoreView_Response>}
    *   - Success response
@@ -161,8 +170,8 @@ class Serviceability {
    * @description: This API returns Company Store View of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCompanyStoreView/).
    */
   async getCompanyStoreView(
-    { pageNumber, pageSize } = {},
-    { headers } = { headers: false }
+    { pageNumber, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -206,12 +215,12 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/all-stores`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -234,6 +243,7 @@ class Serviceability {
 
   /**
    * @param {ServiceabilityPlatformValidator.GetDpAccountParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.CompanyDpAccountListResponse>}
    *   - Success response
@@ -243,8 +253,15 @@ class Serviceability {
    * @description: This API returns response DpAccount of a company from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getDpAccount/).
    */
   async getDpAccount(
-    { pageNumber, pageSize, stage, paymentMode, transportType } = {},
-    { headers } = { headers: false }
+    {
+      pageNumber,
+      pageSize,
+      stage,
+      paymentMode,
+      transportType,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = ServiceabilityPlatformValidator.getDpAccount().validate(
       {
@@ -295,12 +312,12 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/courier/account`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -323,6 +340,7 @@ class Serviceability {
 
   /**
    * @param {ServiceabilityPlatformValidator.GetDpCompanyRulesParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.DPCompanyRuleResponse>} -
    *   Success response
@@ -330,7 +348,10 @@ class Serviceability {
    * @summary: Get All DpCompanyRules applied to company from database.
    * @description: This API returns response of all DpCompanyRules from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getDpCompanyRules/).
    */
-  async getDpCompanyRules({ headers } = { headers: false }) {
+  async getDpCompanyRules(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ServiceabilityPlatformValidator.getDpCompanyRules().validate(
@@ -365,12 +386,12 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/courier/priority`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -393,6 +414,7 @@ class Serviceability {
 
   /**
    * @param {ServiceabilityPlatformValidator.GetDpRuleInsertParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.DpMultipleRuleSuccessResponse>}
    *   - Success response
@@ -402,8 +424,8 @@ class Serviceability {
    * @description: This API returns response of DpRules from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getDpRuleInsert/).
    */
   async getDpRuleInsert(
-    { pageNumber, pageSize } = {},
-    { headers } = { headers: false }
+    { pageNumber, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -447,12 +469,12 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/courier/rules`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -475,6 +497,7 @@ class Serviceability {
 
   /**
    * @param {ServiceabilityPlatformValidator.GetDpRulesParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.DpRuleSuccessResponse>} -
    *   Success response
@@ -482,7 +505,10 @@ class Serviceability {
    * @summary: Fetching of DpRules from database.
    * @description: This API returns response of DpRules from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getDpRules/).
    */
-  async getDpRules({ ruleUid } = {}, { headers } = { headers: false }) {
+  async getDpRules(
+    { ruleUid, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ServiceabilityPlatformValidator.getDpRules().validate(
       {
         ruleUid,
@@ -519,12 +545,12 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/courier/rules/${ruleUid}`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -547,6 +573,7 @@ class Serviceability {
 
   /**
    * @param {ServiceabilityPlatformValidator.GetEntityRegionViewParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.EntityRegionView_Response>}
    *   - Success response
@@ -555,7 +582,10 @@ class Serviceability {
    * @summary: Get country and state list
    * @description: This API returns response for Entity Region View. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getEntityRegionView/).
    */
-  async getEntityRegionView({ body } = {}, { headers } = { headers: false }) {
+  async getEntityRegionView(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ServiceabilityPlatformValidator.getEntityRegionView().validate(
@@ -594,12 +624,12 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/regions`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -622,6 +652,7 @@ class Serviceability {
 
   /**
    * @param {ServiceabilityPlatformValidator.GetListViewParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.ListViewResponse>} - Success response
    * @name getListView
@@ -629,8 +660,10 @@ class Serviceability {
    * @description: This API returns Zone List View of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getListView/).
    */
   async getListView(
-    { pageNumber, pageSize, name, isActive, channelIds, q } = {},
-    { headers } = { headers: false }
+    { pageNumber, pageSize, name, isActive, channelIds, q, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = ServiceabilityPlatformValidator.getListView().validate(
       {
@@ -684,12 +717,12 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/zones`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -712,6 +745,7 @@ class Serviceability {
 
   /**
    * @param {ServiceabilityPlatformValidator.GetOptimalLocationsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.ReAssignStoreResponse>} -
    *   Success response
@@ -719,7 +753,10 @@ class Serviceability {
    * @summary: Get serviceable store of the item
    * @description: This API returns serviceable store of the item. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getOptimalLocations/).
    */
-  async getOptimalLocations({ body } = {}, { headers } = { headers: false }) {
+  async getOptimalLocations(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ServiceabilityPlatformValidator.getOptimalLocations().validate(
@@ -758,12 +795,12 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/reassign`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -786,6 +823,7 @@ class Serviceability {
 
   /**
    * @param {ServiceabilityPlatformValidator.GetStoreParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.GetStoresViewResponse>} -
    *   Success response
@@ -793,7 +831,10 @@ class Serviceability {
    * @summary: GET stores data
    * @description: This API returns stores data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getStore/).
    */
-  async getStore({ storeUid } = {}, { headers } = { headers: false }) {
+  async getStore(
+    { storeUid, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ServiceabilityPlatformValidator.getStore().validate(
       {
         storeUid,
@@ -830,12 +871,12 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/stores/${storeUid}`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -858,6 +899,7 @@ class Serviceability {
 
   /**
    * @param {ServiceabilityPlatformValidator.GetZoneDataViewParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.GetSingleZoneDataViewResponse>}
    *   - Success response
@@ -866,7 +908,10 @@ class Serviceability {
    * @summary: Zone Data View of application.
    * @description: This API returns Zone Data View of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getZoneDataView/).
    */
-  async getZoneDataView({ zoneId } = {}, { headers } = { headers: false }) {
+  async getZoneDataView(
+    { zoneId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ServiceabilityPlatformValidator.getZoneDataView().validate(
@@ -905,12 +950,12 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/zone/${zoneId}`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -933,6 +978,7 @@ class Serviceability {
 
   /**
    * @param {ServiceabilityPlatformValidator.GetZoneListViewParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.ListViewResponse>} - Success response
    * @name getZoneListView
@@ -949,8 +995,9 @@ class Serviceability {
       channelIds,
       q,
       zoneId,
-    } = {},
-    { headers } = { headers: false }
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1012,12 +1059,12 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/zones-list`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1040,6 +1087,7 @@ class Serviceability {
 
   /**
    * @param {ServiceabilityPlatformValidator.UpdateDpRuleParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.DpRuleUpdateSuccessResponse>}
    *   - Success response
@@ -1048,7 +1096,10 @@ class Serviceability {
    * @summary: Updating of DpRules from database.
    * @description: This API updates and returns response of DpRules from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateDpRule/).
    */
-  async updateDpRule({ ruleUid, body } = {}, { headers } = { headers: false }) {
+  async updateDpRule(
+    { ruleUid, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ServiceabilityPlatformValidator.updateDpRule().validate(
       {
         ruleUid,
@@ -1087,12 +1138,12 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/courier/rules/${ruleUid}`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1117,6 +1168,7 @@ class Serviceability {
    * @param {ServiceabilityPlatformValidator.UpdateZoneControllerViewParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.ZoneSuccessResponse>} -
    *   Success response
@@ -1125,8 +1177,8 @@ class Serviceability {
    * @description: This API returns response of updation of zone in mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateZoneControllerView/).
    */
   async updateZoneControllerView(
-    { zoneId, body } = {},
-    { headers } = { headers: false }
+    { zoneId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1170,12 +1222,12 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/zone/${zoneId}`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1198,6 +1250,7 @@ class Serviceability {
 
   /**
    * @param {ServiceabilityPlatformValidator.UpsertDpAccountParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.CompanyDpAccountResponse>}
    *   - Success response
@@ -1206,7 +1259,10 @@ class Serviceability {
    * @summary: Upsertion of DpAccount in database.
    * @description: This API returns response of upsertion of DpAccount in mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/upsertDpAccount/).
    */
-  async upsertDpAccount({ body } = {}, { headers } = { headers: false }) {
+  async upsertDpAccount(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ServiceabilityPlatformValidator.upsertDpAccount().validate(
@@ -1245,12 +1301,12 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/courier/account`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1273,6 +1329,7 @@ class Serviceability {
 
   /**
    * @param {ServiceabilityPlatformValidator.UpsertDpCompanyRulesParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.DPCompanyRuleResponse>} -
    *   Success response
@@ -1280,7 +1337,10 @@ class Serviceability {
    * @summary: Upsert of DpCompanyRules in database.
    * @description: This API returns response of upsert of DpCompanyRules in mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/upsertDpCompanyRules/).
    */
-  async upsertDpCompanyRules({ body } = {}, { headers } = { headers: false }) {
+  async upsertDpCompanyRules(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ServiceabilityPlatformValidator.upsertDpCompanyRules().validate(
@@ -1319,12 +1379,12 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/courier/priority`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1347,6 +1407,7 @@ class Serviceability {
 
   /**
    * @param {ServiceabilityPlatformValidator.UpsertDpRulesParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.DpRuleSuccessResponse>} -
    *   Success response
@@ -1354,7 +1415,10 @@ class Serviceability {
    * @summary: Upsert of DpRules in database.
    * @description: This API returns response of upsert of DpRules in mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/upsertDpRules/).
    */
-  async upsertDpRules({ body } = {}, { headers } = { headers: false }) {
+  async upsertDpRules(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ServiceabilityPlatformValidator.upsertDpRules().validate(
       {
         body,
@@ -1391,12 +1455,12 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/courier/rules`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

@@ -14,6 +14,7 @@ class Serviceability {
 
   /**
    * @param {ServiceabilityPlatformApplicationValidator.AddAppDpParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.ApplicationCompanyDpViewResponse>}
    *   - Success response
@@ -22,7 +23,10 @@ class Serviceability {
    * @summary: Add application dp data
    * @description: This API add application dp data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/addAppDp/).
    */
-  async addAppDp({ body } = {}, { headers } = { headers: false }) {
+  async addAppDp(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ServiceabilityPlatformApplicationValidator.addAppDp().validate(
@@ -59,12 +63,12 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -89,6 +93,7 @@ class Serviceability {
    * @param {ServiceabilityPlatformApplicationValidator.DeleteAppDpParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.ApplicationCompanyDpViewResponse>}
    *   - Success response
@@ -98,8 +103,8 @@ class Serviceability {
    * @description: This API remove application dp data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/deleteAppDp/).
    */
   async deleteAppDp(
-    { courierPartnerId } = {},
-    { headers } = { headers: false }
+    { courierPartnerId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -137,12 +142,12 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/courier-partner/${courierPartnerId}`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -164,6 +169,10 @@ class Serviceability {
   }
 
   /**
+   * @param {ServiceabilityPlatformApplicationValidator.GetApplicationServiceabilityParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.ApplicationServiceabilityConfigResponse>}
    *   - Success response
@@ -172,7 +181,10 @@ class Serviceability {
    * @summary: Zone configuration of application.
    * @description: This API returns serviceability config of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getApplicationServiceability/).
    */
-  async getApplicationServiceability({ headers } = { headers: false }) {
+  async getApplicationServiceability(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ServiceabilityPlatformApplicationValidator.getApplicationServiceability().validate(
@@ -205,12 +217,12 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/serviceability`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -232,6 +244,10 @@ class Serviceability {
   }
 
   /**
+   * @param {ServiceabilityPlatformApplicationValidator.GetApplicationServiceabilitySelfShipmentParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>}
    *   - Success response
@@ -241,7 +257,8 @@ class Serviceability {
    * @description: This API returns Self-ship configuration of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getApplicationServiceabilitySelfShipment/).
    */
   async getApplicationServiceabilitySelfShipment(
-    { headers } = { headers: false }
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -275,12 +292,12 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/selfship`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -302,6 +319,10 @@ class Serviceability {
   }
 
   /**
+   * @param {ServiceabilityPlatformApplicationValidator.GetDpApplicationRulesParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.DPApplicationRuleResponse>}
    *   - Success response
@@ -310,7 +331,10 @@ class Serviceability {
    * @summary: Get All DpApplicationRules rules added at application level from database.
    * @description: This API returns response of all rules of DpApplicationRules from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getDpApplicationRules/).
    */
-  async getDpApplicationRules({ headers } = { headers: false }) {
+  async getDpApplicationRules(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ServiceabilityPlatformApplicationValidator.getDpApplicationRules().validate(
@@ -343,12 +367,12 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/courier/priority`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -373,6 +397,7 @@ class Serviceability {
    * @param {ServiceabilityPlatformApplicationValidator.GetZoneFromPincodeViewParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.GetZoneFromPincodeViewResponse>}
    *   - Success response
@@ -382,8 +407,8 @@ class Serviceability {
    * @description: This API returns zone from the Pincode View. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getZoneFromPincodeView/).
    */
   async getZoneFromPincodeView(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -421,12 +446,12 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/zones`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -451,6 +476,7 @@ class Serviceability {
    * @param {ServiceabilityPlatformApplicationValidator.GetZonesFromApplicationIdViewParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.GetZoneFromApplicationIdViewResponse>}
    *   - Success response
@@ -460,8 +486,8 @@ class Serviceability {
    * @description: This API returns zones from the application_id View. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getZonesFromApplicationIdView/).
    */
   async getZonesFromApplicationIdView(
-    { pageNo, pageSize, zoneId, q } = {},
-    { headers } = { headers: false }
+    { pageNo, pageSize, zoneId, q, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -509,12 +535,12 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/zones`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -539,6 +565,7 @@ class Serviceability {
    * @param {ServiceabilityPlatformApplicationValidator.PatchApplicationServiceabilitySelfShipmentParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>}
    *   - Success response
@@ -548,8 +575,8 @@ class Serviceability {
    * @description: This API updates Self-ship configuration of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/patchApplicationServiceabilitySelfShipment/).
    */
   async patchApplicationServiceabilitySelfShipment(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -587,12 +614,12 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/selfship`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -617,6 +644,7 @@ class Serviceability {
    * @param {ServiceabilityPlatformApplicationValidator.UpdatePincodeAuditHistoryParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryResponseData>}
    *   - Success response
@@ -626,8 +654,8 @@ class Serviceability {
    * @description: This API returns Audit logs of Pincode. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeAuditHistory/).
    */
   async updatePincodeAuditHistory(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -665,12 +693,12 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/history`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -695,6 +723,7 @@ class Serviceability {
    * @param {ServiceabilityPlatformApplicationValidator.UpdatePincodeBulkViewParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.PincodeBulkViewResponse>}
    *   - Success response
@@ -703,7 +732,10 @@ class Serviceability {
    * @summary: Bulk Update of pincode in the application.
    * @description: This API constructs bulk write operations to update the MOP data for each pincode in the payload. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeBulkView/).
    */
-  async updatePincodeBulkView({ body } = {}, { headers } = { headers: false }) {
+  async updatePincodeBulkView(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ServiceabilityPlatformApplicationValidator.updatePincodeBulkView().validate(
@@ -740,12 +772,12 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pincode-mop-bulk-update`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -770,6 +802,7 @@ class Serviceability {
    * @param {ServiceabilityPlatformApplicationValidator.UpdatePincodeCoDListingParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.PincodeCodStatusListingResponse>}
    *   - Success response
@@ -779,8 +812,8 @@ class Serviceability {
    * @description: This API returns count of active pincode. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeCoDListing/).
    */
   async updatePincodeCoDListing(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -818,12 +851,12 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pincode-mop-data`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -848,6 +881,7 @@ class Serviceability {
    * @param {ServiceabilityPlatformApplicationValidator.UpdatePincodeMopViewParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.PincodeMOPresponse>} -
    *   Success response
@@ -855,7 +889,10 @@ class Serviceability {
    * @summary: PincodeView update of MOP.
    * @description: This API updates Pincode method of payment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeMopView/).
    */
-  async updatePincodeMopView({ body } = {}, { headers } = { headers: false }) {
+  async updatePincodeMopView(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ServiceabilityPlatformApplicationValidator.updatePincodeMopView().validate(
@@ -892,12 +929,12 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pincode-mop-update`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -922,6 +959,7 @@ class Serviceability {
    * @param {ServiceabilityPlatformApplicationValidator.UpsertDpApplicationRulesParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ServiceabilityPlatformModel.DPApplicationRuleResponse>}
    *   - Success response
@@ -931,8 +969,8 @@ class Serviceability {
    * @description: This API returns response of upsert of DpApplicationRules in mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/upsertDpApplicationRules/).
    */
   async upsertDpApplicationRules(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -970,12 +1008,12 @@ class Serviceability {
       `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/courier/priority`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

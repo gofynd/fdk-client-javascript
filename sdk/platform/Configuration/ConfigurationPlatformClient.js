@@ -13,13 +13,17 @@ class Configuration {
 
   /**
    * @param {ConfigurationPlatformValidator.CreateApplicationParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.CreateAppResponse>} - Success response
    * @name createApplication
    * @summary: Create a new sales channel
    * @description: Applications are sales channel websites which can be configured, personalized and customized. Use this API to create a new application in the current company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/createApplication/).
    */
-  async createApplication({ body } = {}, { headers } = { headers: false }) {
+  async createApplication(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ConfigurationPlatformValidator.createApplication().validate(
@@ -58,12 +62,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/application`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -86,6 +90,7 @@ class Configuration {
 
   /**
    * @param {ConfigurationPlatformValidator.GetApplicationsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.ApplicationsResponse>} -
    *   Success response
@@ -94,8 +99,8 @@ class Configuration {
    * @description: Applications are sales channel websites which can be configured, personalized and customised. Use this API to fetch a list of applications created within a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getApplications/).
    */
   async getApplications(
-    { pageNo, pageSize, q } = {},
-    { headers } = { headers: false }
+    { pageNo, pageSize, q, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = ConfigurationPlatformValidator.getApplications().validate(
       {
@@ -140,12 +145,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/application`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -197,6 +202,7 @@ class Configuration {
 
   /**
    * @param {ConfigurationPlatformValidator.GetAvailableOptInsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.GetIntegrationsOptInsResponse>}
    *   - Success response
@@ -206,8 +212,8 @@ class Configuration {
    * @description: Use this API to get a list of all available integrations in a company - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getAvailableOptIns/).
    */
   async getAvailableOptIns(
-    { pageNo, pageSize } = {},
-    { headers } = { headers: false }
+    { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -251,12 +257,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/integration-opt-in/available`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -307,6 +313,7 @@ class Configuration {
 
   /**
    * @param {ConfigurationPlatformValidator.GetBrandsByCompanyParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.BrandsByCompanyResponse>} -
    *   Success response
@@ -314,7 +321,10 @@ class Configuration {
    * @summary: Get brands by company.
    * @description: Use this API to get all the brands added in a company. Get all the brand names, along with URLs of their logo, banner, and portrait image. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getBrandsByCompany/).
    */
-  async getBrandsByCompany({ q } = {}, { headers } = { headers: false }) {
+  async getBrandsByCompany(
+    { q, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ConfigurationPlatformValidator.getBrandsByCompany().validate(
@@ -354,12 +364,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/inventory/brands-by-companies`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -382,6 +392,7 @@ class Configuration {
 
   /**
    * @param {ConfigurationPlatformValidator.GetCompanyByBrandsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.CompanyByBrandsResponse>} -
    *   Success response
@@ -390,8 +401,8 @@ class Configuration {
    * @description: Use this API to get a list of companies by the brands they deal - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getCompanyByBrands/).
    */
   async getCompanyByBrands(
-    { body, pageNo, pageSize } = {},
-    { headers } = { headers: false }
+    { body, pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -437,12 +448,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/inventory/companies-by-brands`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -495,6 +506,7 @@ class Configuration {
 
   /**
    * @param {ConfigurationPlatformValidator.GetCurrenciesParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.CurrenciesResponse>} -
    *   Success response
@@ -502,7 +514,10 @@ class Configuration {
    * @summary: Get all currencies
    * @description: Use this API to get a list of currencies allowed in the company. Moreover, get the name, code, symbol, and the decimal digits of the currencies. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getCurrencies/).
    */
-  async getCurrencies({ headers } = { headers: false }) {
+  async getCurrencies(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ConfigurationPlatformValidator.getCurrencies().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -535,12 +550,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/currencies`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -563,6 +578,7 @@ class Configuration {
 
   /**
    * @param {ConfigurationPlatformValidator.GetDomainAvailibilityParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.DomainSuggestionsResponse>}
    *   - Success response
@@ -571,7 +587,10 @@ class Configuration {
    * @summary: Check domain availability before linking to application
    * @description: Use this API to check the domain availability before linking it to application. Also sends domain suggestions that are similar to the queried domain. Note - Custom domain search is currently powered by GoDaddy provider. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getDomainAvailibility/).
    */
-  async getDomainAvailibility({ body } = {}, { headers } = { headers: false }) {
+  async getDomainAvailibility(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ConfigurationPlatformValidator.getDomainAvailibility().validate(
@@ -610,12 +629,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/domain/suggestions`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -638,13 +657,17 @@ class Configuration {
 
   /**
    * @param {ConfigurationPlatformValidator.GetIntegrationByIdParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.Integration>} - Success response
    * @name getIntegrationById
    * @summary: Get integration data by its ID
    * @description: Use this API to fetch the details of an integration (such as Ginesys, SAP, etc.) using its ID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getIntegrationById/).
    */
-  async getIntegrationById({ id } = {}, { headers } = { headers: false }) {
+  async getIntegrationById(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ConfigurationPlatformValidator.getIntegrationById().validate(
@@ -683,12 +706,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/integration/${id}`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -713,6 +736,7 @@ class Configuration {
    * @param {ConfigurationPlatformValidator.GetIntegrationByLevelIdParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.IntegrationLevel>} - Success response
    * @name getIntegrationByLevelId
@@ -720,8 +744,8 @@ class Configuration {
    * @description: Use this API to get the configuration details of an integration such as token, permissions, level, opted value, uid, meta, location ID, etc. at a particular level (store/company). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getIntegrationByLevelId/).
    */
   async getIntegrationByLevelId(
-    { id, level, uid } = {},
-    { headers } = { headers: false }
+    { id, level, uid, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -765,12 +789,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/integration-opt-in/configuration/${id}/${level}/${uid}`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -795,6 +819,7 @@ class Configuration {
    * @param {ConfigurationPlatformValidator.GetIntegrationLevelConfigParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.IntegrationConfigResponse>}
    *   - Success response
@@ -804,8 +829,10 @@ class Configuration {
    * @description: Use this API to get the configuration details of an integration such as token, permissions, level, opted value, uid, meta, location ID, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getIntegrationLevelConfig/).
    */
   async getIntegrationLevelConfig(
-    { id, level, opted, checkPermission } = {},
-    { headers } = { headers: false }
+    { id, level, opted, checkPermission, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -853,12 +880,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/integration-opt-in/configuration/${id}/${level}`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -883,6 +910,7 @@ class Configuration {
    * @param {ConfigurationPlatformValidator.GetLevelActiveIntegrationsParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.OptedStoreIntegration>} -
    *   Success response
@@ -891,8 +919,8 @@ class Configuration {
    * @description: Use this API to check if a store is already opted-in for any integration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getLevelActiveIntegrations/).
    */
   async getLevelActiveIntegrations(
-    { id, level, uid } = {},
-    { headers } = { headers: false }
+    { id, level, uid, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -936,12 +964,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/integration-opt-in/check/configuration/${id}/${level}/${uid}`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -966,6 +994,7 @@ class Configuration {
    * @param {ConfigurationPlatformValidator.GetOtherSellerApplicationByIdParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.OptedApplicationResponse>}
    *   - Success response
@@ -975,8 +1004,8 @@ class Configuration {
    * @description: Use application ID to fetch details of a seller application that was not created within the current company. but has opted for the current company's inventory - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getOtherSellerApplicationById/).
    */
   async getOtherSellerApplicationById(
-    { id } = {},
-    { headers } = { headers: false }
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1016,12 +1045,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/other-seller-applications/${id}`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1046,6 +1075,7 @@ class Configuration {
    * @param {ConfigurationPlatformValidator.GetOtherSellerApplicationsParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.OtherSellerApplications>} -
    *   Success response
@@ -1054,8 +1084,8 @@ class Configuration {
    * @description: Use this API to fetch all other seller applications that were not created within the current company. but have opted for the current company's inventory - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getOtherSellerApplications/).
    */
   async getOtherSellerApplications(
-    { pageNo, pageSize } = {},
-    { headers } = { headers: false }
+    { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1099,12 +1129,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/other-seller-applications/`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1155,6 +1185,7 @@ class Configuration {
 
   /**
    * @param {ConfigurationPlatformValidator.GetSelectedOptInsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.GetIntegrationsOptInsResponse>}
    *   - Success response
@@ -1164,8 +1195,8 @@ class Configuration {
    * @description: Use this API to get the store-level/company-level integrations configured in a company - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getSelectedOptIns/).
    */
   async getSelectedOptIns(
-    { level, uid, pageNo, pageSize } = {},
-    { headers } = { headers: false }
+    { level, uid, pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1213,12 +1244,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/integration-opt-in/selected/${level}/${uid}`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1273,6 +1304,7 @@ class Configuration {
 
   /**
    * @param {ConfigurationPlatformValidator.GetStoreByBrandsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.StoreByBrandsResponse>} -
    *   Success response
@@ -1281,8 +1313,8 @@ class Configuration {
    * @description: Use this API to get a list of selling locations (stores) by the brands they deal. Store has information about store name, store type, store code, store address, and company detail. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getStoreByBrands/).
    */
   async getStoreByBrands(
-    { body, pageNo, pageSize } = {},
-    { headers } = { headers: false }
+    { body, pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1328,12 +1360,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/inventory/stores-by-brands`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1386,6 +1418,7 @@ class Configuration {
 
   /**
    * @param {ConfigurationPlatformValidator.OptOutFromApplicationParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.SuccessMessageResponse>} -
    *   Success response
@@ -1394,8 +1427,8 @@ class Configuration {
    * @description: Use this API to opt-out your company or store from other seller application. The specific seller application will no longer fetch inventory from your company or store. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/optOutFromApplication/).
    */
   async optOutFromApplication(
-    { id, body } = {},
-    { headers } = { headers: false }
+    { id, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1437,12 +1470,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/other-seller-applications/${id}/opt_out`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1467,6 +1500,7 @@ class Configuration {
    * @param {ConfigurationPlatformValidator.UpdateLevelIntegrationParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.IntegrationLevel>} - Success response
    * @name updateLevelIntegration
@@ -1474,8 +1508,8 @@ class Configuration {
    * @description: Use this API to update the configuration details of an integration such as token, permissions, level, opted value, uid, meta, location ID, etc. at a particular level (store/company). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateLevelIntegration/).
    */
   async updateLevelIntegration(
-    { id, level, body } = {},
-    { headers } = { headers: false }
+    { id, level, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1519,12 +1553,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/integration-opt-in/configuration/${id}/${level}`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1549,6 +1583,7 @@ class Configuration {
    * @param {ConfigurationPlatformValidator.UpdateLevelUidIntegrationParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPlatformModel.IntegrationLevel>} - Success response
    * @name updateLevelUidIntegration
@@ -1556,8 +1591,8 @@ class Configuration {
    * @description: Update the level of integration by store UID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/updateLevelUidIntegration/).
    */
   async updateLevelUidIntegration(
-    { id, level, uid, body } = {},
-    { headers } = { headers: false }
+    { id, level, uid, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1603,12 +1638,12 @@ class Configuration {
       `/service/platform/configuration/v1.0/company/${this.config.companyId}/integration-opt-in/configuration/${id}/${level}/${uid}`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

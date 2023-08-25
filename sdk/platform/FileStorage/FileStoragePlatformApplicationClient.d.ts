@@ -7,6 +7,7 @@ declare class FileStorage {
      * @param {FileStoragePlatformApplicationValidator.AppCompleteUploadParam} arg
      *   - Arg object
      *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<FileStoragePlatformModel.CompleteResponse>} - Success response
      * @name appCompleteUpload
@@ -31,20 +32,22 @@ declare class FileStorage {
      * This operation will return the url for the uploaded file.
      *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/appCompleteUpload/).
      */
-    appCompleteUpload({ namespace, body }?: FileStoragePlatformApplicationValidator.AppCompleteUploadParam, { headers }?: import("../PlatformAPIClient").Options): Promise<FileStoragePlatformModel.CompleteResponse>;
+    appCompleteUpload({ namespace, body, requestHeaders }?: FileStoragePlatformApplicationValidator.AppCompleteUploadParam, { responseHeaders }?: object): Promise<FileStoragePlatformModel.CompleteResponse>;
     /**
      * @param {FileStoragePlatformApplicationValidator.AppCopyFilesParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<FileStoragePlatformModel.BulkUploadResponse>} - Success response
      * @name appCopyFiles
      * @summary: Copy Files
      * @description: Copy Files - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/appCopyFiles/).
      */
-    appCopyFiles({ body, sync }?: FileStoragePlatformApplicationValidator.AppCopyFilesParam, { headers }?: import("../PlatformAPIClient").Options): Promise<FileStoragePlatformModel.BulkUploadResponse>;
+    appCopyFiles({ body, sync, requestHeaders }?: FileStoragePlatformApplicationValidator.AppCopyFilesParam, { responseHeaders }?: object): Promise<FileStoragePlatformModel.BulkUploadResponse>;
     /**
      * @param {FileStoragePlatformApplicationValidator.AppStartUploadParam} arg
      *   - Arg object
      *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<FileStoragePlatformModel.StartResponse>} - Success response
      * @name appStartUpload
@@ -69,16 +72,17 @@ declare class FileStorage {
      * This operation will return the url for the uploaded file.
      *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/appStartUpload/).
      */
-    appStartUpload({ namespace, body }?: FileStoragePlatformApplicationValidator.AppStartUploadParam, { headers }?: import("../PlatformAPIClient").Options): Promise<FileStoragePlatformModel.StartResponse>;
+    appStartUpload({ namespace, body, requestHeaders }?: FileStoragePlatformApplicationValidator.AppStartUploadParam, { responseHeaders }?: object): Promise<FileStoragePlatformModel.StartResponse>;
     /**
      * @param {FileStoragePlatformApplicationValidator.AppbrowseParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<FileStoragePlatformModel.BrowseResponse>} - Success response
      * @name appbrowse
      * @summary: Browse Files
      * @description: Browse Files - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/appbrowse/).
      */
-    appbrowse({ namespace, pageNo }?: FileStoragePlatformApplicationValidator.AppbrowseParam, { headers }?: import("../PlatformAPIClient").Options): Promise<FileStoragePlatformModel.BrowseResponse>;
+    appbrowse({ namespace, pageNo, requestHeaders }?: FileStoragePlatformApplicationValidator.AppbrowseParam, { responseHeaders }?: object): Promise<FileStoragePlatformModel.BrowseResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.namespace - Bucket name

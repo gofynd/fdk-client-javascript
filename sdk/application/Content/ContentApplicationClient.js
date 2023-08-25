@@ -50,6 +50,8 @@ class Content {
   }
 
   /**
+   * @param {ContentApplicationValidator.GetAnnouncementsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ContentApplicationModel.AnnouncementsResponseSchema>}
    *   - Success response
@@ -58,7 +60,10 @@ class Content {
    * @summary: Get live announcements
    * @description: Announcements are useful to highlight a message or information on top of a webpage. Use this API to retrieve live announcements. Get announcements on individual pages or for all pages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getAnnouncements/).
    */
-  async getAnnouncements({ headers } = { headers: false }) {
+  async getAnnouncements(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ContentApplicationValidator.getAnnouncements().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -94,12 +99,12 @@ class Content {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -122,13 +127,17 @@ class Content {
 
   /**
    * @param {ContentApplicationValidator.GetBlogParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ContentApplicationModel.BlogSchema>} - Success response
    * @name getBlog
    * @summary: Get a blog
    * @description: Use this API to get the details of a blog using its slug. Details include the title, reading time, publish status, feature image, tags, author, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getBlog/).
    */
-  async getBlog({ slug, rootId } = {}, { headers } = { headers: false }) {
+  async getBlog(
+    { slug, rootId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ContentApplicationValidator.getBlog().validate(
       { slug, rootId },
       { abortEarly: false, allowUnknown: true }
@@ -163,12 +172,12 @@ class Content {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -191,13 +200,17 @@ class Content {
 
   /**
    * @param {ContentApplicationValidator.GetBlogsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ContentApplicationModel.BlogGetResponse>} - Success response
    * @name getBlogs
    * @summary: Get a list of blogs
    * @description: Use this API to get all the blogs. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getBlogs/).
    */
-  async getBlogs({ pageNo, pageSize } = {}, { headers } = { headers: false }) {
+  async getBlogs(
+    { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ContentApplicationValidator.getBlogs().validate(
       { pageNo, pageSize },
       { abortEarly: false, allowUnknown: true }
@@ -233,12 +246,12 @@ class Content {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -287,13 +300,18 @@ class Content {
   }
 
   /**
+   * @param {ContentApplicationValidator.GetDataLoadersParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ContentApplicationModel.DataLoadersSchema>} - Success response
    * @name getDataLoaders
    * @summary: Get the data loaders associated with an application
    * @description: Use this API to get all selected data loaders of the application in the form of tags. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getDataLoaders/).
    */
-  async getDataLoaders({ headers } = { headers: false }) {
+  async getDataLoaders(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ContentApplicationValidator.getDataLoaders().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -329,12 +347,12 @@ class Content {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -357,13 +375,17 @@ class Content {
 
   /**
    * @param {ContentApplicationValidator.GetFaqBySlugParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ContentApplicationModel.FaqSchema>} - Success response
    * @name getFaqBySlug
    * @summary: Get an FAQ
    * @description: Use this API to get a particular FAQ by its slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getFaqBySlug/).
    */
-  async getFaqBySlug({ slug } = {}, { headers } = { headers: false }) {
+  async getFaqBySlug(
+    { slug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ContentApplicationValidator.getFaqBySlug().validate(
       { slug },
       { abortEarly: false, allowUnknown: true }
@@ -399,12 +421,12 @@ class Content {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -426,6 +448,8 @@ class Content {
   }
 
   /**
+   * @param {ContentApplicationValidator.GetFaqCategoriesParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ContentApplicationModel.GetFaqCategoriesSchema>} -
    *   Success response
@@ -433,7 +457,10 @@ class Content {
    * @summary: Get a list of FAQ categories
    * @description: FAQs can be divided into categories. Use this API to get a list of FAQ categories. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getFaqCategories/).
    */
-  async getFaqCategories({ headers } = { headers: false }) {
+  async getFaqCategories(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ContentApplicationValidator.getFaqCategories().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -469,12 +496,12 @@ class Content {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -497,6 +524,7 @@ class Content {
 
   /**
    * @param {ContentApplicationValidator.GetFaqCategoryBySlugParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ContentApplicationModel.GetFaqCategoryBySlugSchema>} -
    *   Success response
@@ -504,7 +532,10 @@ class Content {
    * @summary: Get the FAQ category
    * @description: FAQs can be divided into categories. Use this API to get the category to which an FAQ belongs. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getFaqCategoryBySlug/).
    */
-  async getFaqCategoryBySlug({ slug } = {}, { headers } = { headers: false }) {
+  async getFaqCategoryBySlug(
+    { slug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ContentApplicationValidator.getFaqCategoryBySlug().validate(
@@ -542,12 +573,12 @@ class Content {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -569,13 +600,18 @@ class Content {
   }
 
   /**
+   * @param {ContentApplicationValidator.GetFaqsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ContentApplicationModel.FaqResponseSchema>} - Success response
    * @name getFaqs
    * @summary: Get a list of FAQs
    * @description: Use this API to get a list of frequently asked questions. Users will benefit from it when facing any issue with the website. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getFaqs/).
    */
-  async getFaqs({ headers } = { headers: false }) {
+  async getFaqs(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ContentApplicationValidator.getFaqs().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -609,12 +645,12 @@ class Content {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -637,13 +673,17 @@ class Content {
 
   /**
    * @param {ContentApplicationValidator.GetFaqsByCategorySlugParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ContentApplicationModel.GetFaqSchema>} - Success response
    * @name getFaqsByCategorySlug
    * @summary: Get FAQs using the slug of FAQ category
    * @description: FAQs can be divided into categories. Use this API to get all the FAQs belonging to a category by using the category slug. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getFaqsByCategorySlug/).
    */
-  async getFaqsByCategorySlug({ slug } = {}, { headers } = { headers: false }) {
+  async getFaqsByCategorySlug(
+    { slug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ContentApplicationValidator.getFaqsByCategorySlug().validate(
@@ -681,12 +721,12 @@ class Content {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -708,13 +748,18 @@ class Content {
   }
 
   /**
+   * @param {ContentApplicationValidator.GetLandingPageParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ContentApplicationModel.LandingPageSchema>} - Success response
    * @name getLandingPage
    * @summary: Get the landing page
    * @description: Landing page is the first page that a prospect lands upon while visiting a website. Use this API to fetch the details of a landing page. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getLandingPage/).
    */
-  async getLandingPage({ headers } = { headers: false }) {
+  async getLandingPage(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ContentApplicationValidator.getLandingPage().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -750,12 +795,12 @@ class Content {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -777,13 +822,18 @@ class Content {
   }
 
   /**
+   * @param {ContentApplicationValidator.GetLegalInformationParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ContentApplicationModel.ApplicationLegal>} - Success response
    * @name getLegalInformation
    * @summary: Get legal information
    * @description: Use this API to get the legal information of an application, which includes Privacy Policy, Terms and Conditions, Shipping Policy and FAQs regarding the usage of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getLegalInformation/).
    */
-  async getLegalInformation({ headers } = { headers: false }) {
+  async getLegalInformation(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ContentApplicationValidator.getLegalInformation().validate(
@@ -821,12 +871,12 @@ class Content {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -849,6 +899,7 @@ class Content {
 
   /**
    * @param {ContentApplicationValidator.GetNavigationsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ContentApplicationModel.NavigationGetResponse>} -
    *   Success response
@@ -857,8 +908,8 @@ class Content {
    * @description: Use this API to fetch the navigations details which includes the items of the navigation pane. It also shows the links and sub-navigations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getNavigations/).
    */
   async getNavigations(
-    { pageNo, pageSize } = {},
-    { headers } = { headers: false }
+    { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = ContentApplicationValidator.getNavigations().validate(
       { pageNo, pageSize },
@@ -897,12 +948,12 @@ class Content {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -952,13 +1003,17 @@ class Content {
 
   /**
    * @param {ContentApplicationValidator.GetPageParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ContentApplicationModel.PageSchema>} - Success response
    * @name getPage
    * @summary: Get a page
    * @description: Use this API to get the details of a page using its slug. Details include the title, seo, publish status, feature image, tags, meta, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getPage/).
    */
-  async getPage({ slug, rootId } = {}, { headers } = { headers: false }) {
+  async getPage(
+    { slug, rootId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ContentApplicationValidator.getPage().validate(
       { slug, rootId },
       { abortEarly: false, allowUnknown: true }
@@ -993,12 +1048,12 @@ class Content {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1021,13 +1076,17 @@ class Content {
 
   /**
    * @param {ContentApplicationValidator.GetPagesParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ContentApplicationModel.PageGetResponse>} - Success response
    * @name getPages
    * @summary: Get all pages
    * @description: Use this API to get a list of pages. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getPages/).
    */
-  async getPages({ pageNo, pageSize } = {}, { headers } = { headers: false }) {
+  async getPages(
+    { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ContentApplicationValidator.getPages().validate(
       { pageNo, pageSize },
       { abortEarly: false, allowUnknown: true }
@@ -1063,12 +1122,12 @@ class Content {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1117,13 +1176,18 @@ class Content {
   }
 
   /**
+   * @param {ContentApplicationValidator.GetSEOConfigurationParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ContentApplicationModel.SeoComponent>} - Success response
    * @name getSEOConfiguration
    * @summary: Get the SEO of an application
    * @description: Use this API to get the SEO details of an application, which includes a robot.txt, meta-tags and sitemap. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSEOConfiguration/).
    */
-  async getSEOConfiguration({ headers } = { headers: false }) {
+  async getSEOConfiguration(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ContentApplicationValidator.getSEOConfiguration().validate(
@@ -1161,12 +1225,12 @@ class Content {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1189,13 +1253,17 @@ class Content {
 
   /**
    * @param {ContentApplicationValidator.GetSlideshowParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ContentApplicationModel.SlideshowSchema>} - Success response
    * @name getSlideshow
    * @summary: Get a slideshow
    * @description: A slideshow is a group of images, videos or a combination of both that are shown on the website in the form of slides. Use this API to fetch a slideshow using its `slug`. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSlideshow/).
    */
-  async getSlideshow({ slug } = {}, { headers } = { headers: false }) {
+  async getSlideshow(
+    { slug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ContentApplicationValidator.getSlideshow().validate(
       { slug },
       { abortEarly: false, allowUnknown: true }
@@ -1231,12 +1299,12 @@ class Content {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1259,6 +1327,7 @@ class Content {
 
   /**
    * @param {ContentApplicationValidator.GetSlideshowsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ContentApplicationModel.SlideshowGetResponse>} - Success response
    * @name getSlideshows
@@ -1266,8 +1335,8 @@ class Content {
    * @description: Use this API to get a list of slideshows along with their details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSlideshows/).
    */
   async getSlideshows(
-    { pageNo, pageSize } = {},
-    { headers } = { headers: false }
+    { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = ContentApplicationValidator.getSlideshows().validate(
       { pageNo, pageSize },
@@ -1306,12 +1375,12 @@ class Content {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1360,13 +1429,18 @@ class Content {
   }
 
   /**
+   * @param {ContentApplicationValidator.GetSupportInformationParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ContentApplicationModel.Support>} - Success response
    * @name getSupportInformation
    * @summary: Get the support information
    * @description: Use this API to get contact details for customer support including emails and phone numbers. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSupportInformation/).
    */
-  async getSupportInformation({ headers } = { headers: false }) {
+  async getSupportInformation(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ContentApplicationValidator.getSupportInformation().validate(
@@ -1404,12 +1478,12 @@ class Content {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1431,13 +1505,18 @@ class Content {
   }
 
   /**
+   * @param {ContentApplicationValidator.GetTagsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ContentApplicationModel.TagsSchema>} - Success response
    * @name getTags
    * @summary: Get the tags associated with an application
    * @description: Use this API to get all the CSS and JS injected in the application in the form of tags. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getTags/).
    */
-  async getTags({ headers } = { headers: false }) {
+  async getTags(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ContentApplicationValidator.getTags().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -1471,12 +1550,12 @@ class Content {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

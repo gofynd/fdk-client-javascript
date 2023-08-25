@@ -13,6 +13,7 @@ class Partner {
 
   /**
    * @param {PartnerPlatformValidator.DeleteExtensionByIdParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PartnerPlatformModel.UninstallExtension>} - Success response
    * @name deleteExtensionById
@@ -20,8 +21,10 @@ class Partner {
    * @description: Use this API to remove extension from yout company or channel - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/deleteExtensionById/).
    */
   async deleteExtensionById(
-    { extensionId, message, uninstallReasonType } = {},
-    { headers } = { headers: false }
+    { extensionId, message, uninstallReasonType, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = PartnerPlatformValidator.deleteExtensionById().validate(
       {
@@ -65,12 +68,12 @@ class Partner {
       `/service/platform/partners/v1.0/company/${this.config.companyId}/extension/${extensionId}`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -93,6 +96,7 @@ class Partner {
 
   /**
    * @param {PartnerPlatformValidator.GetExtensionByIdParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PartnerPlatformModel.ExtensionCommon>} - Success response
    * @name getExtensionById
@@ -100,8 +104,8 @@ class Partner {
    * @description: Use this API to get the details of extension - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/getExtensionById/).
    */
   async getExtensionById(
-    { extensionId } = {},
-    { headers } = { headers: false }
+    { extensionId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = PartnerPlatformValidator.getExtensionById().validate(
       {
@@ -139,12 +143,12 @@ class Partner {
       `/service/platform/partners/v1.0/company/${this.config.companyId}/extension/${extensionId}`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -167,6 +171,7 @@ class Partner {
 
   /**
    * @param {PartnerPlatformValidator.GetExtensionsForCompanyParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PartnerPlatformModel.ExtensionList>} - Success response
    * @name getExtensionsForCompany
@@ -174,8 +179,10 @@ class Partner {
    * @description: Use this API to get the the extensions for the company - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/getExtensionsForCompany/).
    */
   async getExtensionsForCompany(
-    { pageSize, tag, currentPage, pageNo, filterBy, query } = {},
-    { headers } = { headers: false }
+    { pageSize, tag, currentPage, pageNo, filterBy, query, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -231,12 +238,12 @@ class Partner {
       `/service/platform/partners/v1.0/company/${this.config.companyId}/extensions`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -259,6 +266,7 @@ class Partner {
 
   /**
    * @param {PartnerPlatformValidator.GetExtensionsSuggestionsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PartnerPlatformModel.ExtensionSuggestionList>} - Success response
    * @name getExtensionsSuggestions
@@ -266,8 +274,8 @@ class Partner {
    * @description: Use this API to get the the extensions suggestions - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/getExtensionsSuggestions/).
    */
   async getExtensionsSuggestions(
-    { pageSize } = {},
-    { headers } = { headers: false }
+    { pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -308,12 +316,12 @@ class Partner {
       `/service/platform/partners/v1.0/company/${this.config.companyId}/extension/suggestions`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -336,6 +344,7 @@ class Partner {
 
   /**
    * @param {PartnerPlatformValidator.GetPartnerInvitesParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PartnerPlatformModel.PartnerRequestList>} - Success response
    * @name getPartnerInvites
@@ -343,8 +352,10 @@ class Partner {
    * @description: Use this API to get pending, accepted and rejected partner invites in platform - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/getPartnerInvites/).
    */
   async getPartnerInvites(
-    { requestStatus, pageSize, pageNo } = {},
-    { headers } = { headers: false }
+    { requestStatus, pageSize, pageNo, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = PartnerPlatformValidator.getPartnerInvites().validate(
       {
@@ -389,12 +400,12 @@ class Partner {
       `/service/platform/partners/v1.0/company/${this.config.companyId}/partner-request`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -417,6 +428,7 @@ class Partner {
 
   /**
    * @param {PartnerPlatformValidator.GetPartnerRequestDetailsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PartnerPlatformModel.PartnerInviteDetails>} - Success response
    * @name getPartnerRequestDetails
@@ -424,8 +436,8 @@ class Partner {
    * @description: Use this API to get details of pending partner request - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/getPartnerRequestDetails/).
    */
   async getPartnerRequestDetails(
-    { inviteId } = {},
-    { headers } = { headers: false }
+    { inviteId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -465,12 +477,12 @@ class Partner {
       `/service/platform/partners/v1.0/company/${this.config.companyId}/partner-request/${inviteId}`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -493,6 +505,7 @@ class Partner {
 
   /**
    * @param {PartnerPlatformValidator.GetPrivateExtensionsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PartnerPlatformModel.ExtensionResponse>} - Success response
    * @name getPrivateExtensions
@@ -500,8 +513,8 @@ class Partner {
    * @description: Use this API to get the list of private extensions - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/getPrivateExtensions/).
    */
   async getPrivateExtensions(
-    { pageSize, pageNo, query } = {},
-    { headers } = { headers: false }
+    { pageSize, pageNo, query, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = PartnerPlatformValidator.getPrivateExtensions().validate(
       {
@@ -546,12 +559,12 @@ class Partner {
       `/service/platform/partners/v1.0/company/${this.config.companyId}/private-extensions`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -574,6 +587,7 @@ class Partner {
 
   /**
    * @param {PartnerPlatformValidator.GetPublicExtensionParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PartnerPlatformModel.PublicExtension>} - Success response
    * @name getPublicExtension
@@ -581,8 +595,8 @@ class Partner {
    * @description: Use this API to get the details of public extensions - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/getPublicExtension/).
    */
   async getPublicExtension(
-    { extensionId } = {},
-    { headers } = { headers: false }
+    { extensionId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = PartnerPlatformValidator.getPublicExtension().validate(
       {
@@ -620,12 +634,12 @@ class Partner {
       `/service/platform/partners/v1.0/company/${this.config.companyId}/public-extension/${extensionId}`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -648,6 +662,7 @@ class Partner {
 
   /**
    * @param {PartnerPlatformValidator.ModifyPartnerRequestParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PartnerPlatformModel.PartnerInviteDetails>} - Success response
    * @name modifyPartnerRequest
@@ -655,8 +670,8 @@ class Partner {
    * @description: Use this API to approve or reject the pending partner request - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/modifyPartnerRequest/).
    */
   async modifyPartnerRequest(
-    { inviteId, body } = {},
-    { headers } = { headers: false }
+    { inviteId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = PartnerPlatformValidator.modifyPartnerRequest().validate(
       {
@@ -696,12 +711,12 @@ class Partner {
       `/service/platform/partners/v1.0/company/${this.config.companyId}/partner-request/${inviteId}`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -724,13 +739,17 @@ class Partner {
 
   /**
    * @param {PartnerPlatformValidator.SetupProductsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PartnerPlatformModel.SetupProductRes>} - Success response
    * @name setupProducts
    * @summary:
    * @description: Use this API for setup - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/setupProducts/).
    */
-  async setupProducts({ requestId } = {}, { headers } = { headers: false }) {
+  async setupProducts(
+    { requestId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = PartnerPlatformValidator.setupProducts().validate(
       {
         requestId,
@@ -768,12 +787,12 @@ class Partner {
       `/service/platform/partners/v1.0/company/${this.config.companyId}/setup`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -796,6 +815,7 @@ class Partner {
 
   /**
    * @param {PartnerPlatformValidator.SubscribeExtensionParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PartnerPlatformModel.SubscriptionRes>} - Success response
    * @name subscribeExtension
@@ -803,8 +823,10 @@ class Partner {
    * @description: Use this API to select plan for paid extension - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/subscribeExtension/).
    */
   async subscribeExtension(
-    { entity, extensionId, entityId, body } = {},
-    { headers } = { headers: false }
+    { entity, extensionId, entityId, body, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = PartnerPlatformValidator.subscribeExtension().validate(
       {
@@ -848,12 +870,12 @@ class Partner {
       `/service/platform/partners/v1.0/company/${this.config.companyId}/extension/${extensionId}/${entity}/${entityId}/charge_consent`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

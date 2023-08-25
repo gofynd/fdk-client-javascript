@@ -13,13 +13,17 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.AttachOrderUserParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.AttachOrderUserResponse>} - Success response
    * @name attachOrderUser
    * @summary:
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/attachOrderUser/).
    */
-  async attachOrderUser({ body } = {}, { headers } = { headers: false }) {
+  async attachOrderUser(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = OrderPlatformValidator.attachOrderUser().validate(
       {
         body,
@@ -56,12 +60,12 @@ class Order {
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/user/attach`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -84,13 +88,17 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.CheckOrderStatusParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.OrderStatusResult>} - Success response
    * @name checkOrderStatus
    * @summary:
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/checkOrderStatus/).
    */
-  async checkOrderStatus({ body } = {}, { headers } = { headers: false }) {
+  async checkOrderStatus(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = OrderPlatformValidator.checkOrderStatus().validate(
       {
         body,
@@ -127,12 +135,12 @@ class Order {
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/debug/order_status`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -155,6 +163,7 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.Click2CallParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.Click2CallResponse>} - Success response
    * @name click2Call
@@ -162,8 +171,10 @@ class Order {
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/click2Call/).
    */
   async click2Call(
-    { caller, receiver, bagId, callerId, method } = {},
-    { headers } = { headers: false }
+    { caller, receiver, bagId, callerId, method, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = OrderPlatformValidator.click2Call().validate(
       {
@@ -214,12 +225,12 @@ class Order {
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/ninja/click2call`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -242,6 +253,7 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.CreateChannelConfigParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.CreateChannelConfigResponse>} -
    *   Success response
@@ -249,7 +261,10 @@ class Order {
    * @summary:
    * @description: createChannelConfig - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/createChannelConfig/).
    */
-  async createChannelConfig({ body } = {}, { headers } = { headers: false }) {
+  async createChannelConfig(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = OrderPlatformValidator.createChannelConfig().validate(
       {
         body,
@@ -286,12 +301,12 @@ class Order {
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/order-config`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -314,13 +329,17 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.CreateOrderParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.CreateOrderResponse>} - Success response
    * @name createOrder
    * @summary:
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/createOrder/).
    */
-  async createOrder({ body } = {}, { headers } = { headers: false }) {
+  async createOrder(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = OrderPlatformValidator.createOrder().validate(
       {
         body,
@@ -355,12 +374,12 @@ class Order {
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/create-order`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -383,13 +402,17 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.DispatchManifestParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.SuccessResponse>} - Success response
    * @name dispatchManifest
    * @summary:
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/dispatchManifest/).
    */
-  async dispatchManifest({ body } = {}, { headers } = { headers: false }) {
+  async dispatchManifest(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = OrderPlatformValidator.dispatchManifest().validate(
       {
         body,
@@ -426,12 +449,12 @@ class Order {
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/manifest/dispatch`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -454,6 +477,7 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.DownloadBulkActionTemplateParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.FileResponse>} - Success response
    * @name downloadBulkActionTemplate
@@ -461,8 +485,8 @@ class Order {
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/downloadBulkActionTemplate/).
    */
   async downloadBulkActionTemplate(
-    { templateSlug } = {},
-    { headers } = { headers: false }
+    { templateSlug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -503,12 +527,12 @@ class Order {
       `/service/platform/order/v1.0/company/${this.config.companyId}/bulk-action/download-seller-templates`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -531,6 +555,7 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.FetchCreditBalanceDetailParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.FetchCreditBalanceResponsePayload>}
    *   - Success response
@@ -540,8 +565,8 @@ class Order {
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/fetchCreditBalanceDetail/).
    */
   async fetchCreditBalanceDetail(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -581,12 +606,12 @@ class Order {
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/customer-credit-balance`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -609,6 +634,7 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.FetchRefundModeConfigParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.RefundModeConfigResponsePayload>} -
    *   Success response
@@ -616,7 +642,10 @@ class Order {
    * @summary:
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/fetchRefundModeConfig/).
    */
-  async fetchRefundModeConfig({ body } = {}, { headers } = { headers: false }) {
+  async fetchRefundModeConfig(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = OrderPlatformValidator.fetchRefundModeConfig().validate(
       {
         body,
@@ -653,12 +682,12 @@ class Order {
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/refund-mode-config`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -681,6 +710,7 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.GeneratePOSReceiptByOrderIdParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.GeneratePosOrderReceiptResponse>} -
    *   Success response
@@ -689,8 +719,10 @@ class Order {
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/generatePOSReceiptByOrderId/).
    */
   async generatePOSReceiptByOrderId(
-    { orderId, shipmentId, documentType } = {},
-    { headers } = { headers: false }
+    { orderId, shipmentId, documentType, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -736,12 +768,12 @@ class Order {
       `/service/platform/order/v1.0/company/${this.config.companyId}/orders/${orderId}/generate/pos-receipt`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -764,13 +796,17 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.GetAnnouncementsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.AnnouncementsResponse>} - Success response
    * @name getAnnouncements
    * @summary:
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getAnnouncements/).
    */
-  async getAnnouncements({ date } = {}, { headers } = { headers: false }) {
+  async getAnnouncements(
+    { date, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = OrderPlatformValidator.getAnnouncements().validate(
       {
         date,
@@ -808,12 +844,12 @@ class Order {
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/announcements`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -836,6 +872,7 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.GetBagByIdParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.BagDetailsPlatformResponse>} -
    *   Success response
@@ -844,8 +881,8 @@ class Order {
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getBagById/).
    */
   async getBagById(
-    { bagId, channelBagId, channelId } = {},
-    { headers } = { headers: false }
+    { bagId, channelBagId, channelId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = OrderPlatformValidator.getBagById().validate(
       {
@@ -888,12 +925,12 @@ class Order {
       `/service/platform/order/v1.0/company/${this.config.companyId}/bag-details/`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -916,6 +953,7 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.GetBagsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.GetBagsPlatformResponse>} - Success response
    * @name getBags
@@ -933,8 +971,9 @@ class Order {
       channelId,
       pageNo,
       pageSize,
-    } = {},
-    { headers } = { headers: false }
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = OrderPlatformValidator.getBags().validate(
       {
@@ -995,12 +1034,12 @@ class Order {
       `/service/platform/order/v1.0/company/${this.config.companyId}/bags`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1023,6 +1062,7 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.GetBulkActionTemplateParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.BulkActionTemplateResponse>} -
    *   Success response
@@ -1030,7 +1070,10 @@ class Order {
    * @summary:
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getBulkActionTemplate/).
    */
-  async getBulkActionTemplate({ headers } = { headers: false }) {
+  async getBulkActionTemplate(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = OrderPlatformValidator.getBulkActionTemplate().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -1063,12 +1106,12 @@ class Order {
       `/service/platform/order/v1.0/company/${this.config.companyId}/bulk-action/get-seller-templates`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1091,6 +1134,7 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.GetBulkShipmentExcelFileParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.FileResponse>} - Success response
    * @name getBulkShipmentExcelFile
@@ -1111,8 +1155,9 @@ class Order {
       timeToDispatch,
       pageNo,
       pageSize,
-    } = {},
-    { headers } = { headers: false }
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1186,12 +1231,12 @@ class Order {
       `/service/platform/order/v1.0/company/${this.config.companyId}/generate/file`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1214,13 +1259,17 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.GetChannelConfigParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.CreateChannelConfigData>} - Success response
    * @name getChannelConfig
    * @summary:
    * @description: getChannelConfig - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getChannelConfig/).
    */
-  async getChannelConfig({ headers } = { headers: false }) {
+  async getChannelConfig(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = OrderPlatformValidator.getChannelConfig().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -1253,12 +1302,12 @@ class Order {
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/order-config`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1281,6 +1330,7 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.GetLaneConfigParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.LaneConfigResponse>} - Success response
    * @name getLaneConfig
@@ -1304,8 +1354,9 @@ class Order {
       timeToDispatch,
       paymentMethods,
       myOrders,
-    } = {},
-    { headers } = { headers: false }
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = OrderPlatformValidator.getLaneConfig().validate(
       {
@@ -1384,12 +1435,12 @@ class Order {
       `/service/platform/order/v1.0/company/${this.config.companyId}/lane-config/`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1412,13 +1463,17 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.GetOrderByIdParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.OrderDetailsResponse>} - Success response
    * @name getOrderById
    * @summary:
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getOrderById/).
    */
-  async getOrderById({ orderId } = {}, { headers } = { headers: false }) {
+  async getOrderById(
+    { orderId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = OrderPlatformValidator.getOrderById().validate(
       {
         orderId,
@@ -1454,12 +1509,12 @@ class Order {
       `/service/platform/order/v1.0/company/${this.config.companyId}/order-details`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1482,6 +1537,7 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.GetOrdersParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.OrderListingResponse>} - Success response
    * @name getOrders
@@ -1507,8 +1563,9 @@ class Order {
       isPrioritySort,
       customMeta,
       myOrders,
-    } = {},
-    { headers } = { headers: false }
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = OrderPlatformValidator.getOrders().validate(
       {
@@ -1593,12 +1650,12 @@ class Order {
       `/service/platform/order/v1.0/company/${this.config.companyId}/orders-listing`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1621,13 +1678,17 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.GetRoleBasedActionsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.GetActionsResponse>} - Success response
    * @name getRoleBasedActions
    * @summary:
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getRoleBasedActions/).
    */
-  async getRoleBasedActions({ headers } = { headers: false }) {
+  async getRoleBasedActions(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = OrderPlatformValidator.getRoleBasedActions().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -1660,12 +1721,12 @@ class Order {
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/roles`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1688,6 +1749,7 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.GetShipmentByIdParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.ShipmentInfoResponse>} - Success response
    * @name getShipmentById
@@ -1695,8 +1757,8 @@ class Order {
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getShipmentById/).
    */
   async getShipmentById(
-    { channelShipmentId, shipmentId } = {},
-    { headers } = { headers: false }
+    { channelShipmentId, shipmentId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = OrderPlatformValidator.getShipmentById().validate(
       {
@@ -1738,12 +1800,12 @@ class Order {
       `/service/platform/order/v1.0/company/${this.config.companyId}/shipment-details`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1766,6 +1828,7 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.GetShipmentHistoryParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.ShipmentHistoryResponse>} - Success response
    * @name getShipmentHistory
@@ -1773,8 +1836,8 @@ class Order {
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getShipmentHistory/).
    */
   async getShipmentHistory(
-    { shipmentId, bagId } = {},
-    { headers } = { headers: false }
+    { shipmentId, bagId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = OrderPlatformValidator.getShipmentHistory().validate(
       {
@@ -1816,12 +1879,12 @@ class Order {
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/shipment/history`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1844,6 +1907,7 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.GetShipmentReasonsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.PlatformShipmentReasonsResponse>} -
    *   Success response
@@ -1852,8 +1916,8 @@ class Order {
    * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getShipmentReasons/).
    */
   async getShipmentReasons(
-    { shipmentId, bagId, state } = {},
-    { headers } = { headers: false }
+    { shipmentId, bagId, state, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = OrderPlatformValidator.getShipmentReasons().validate(
       {
@@ -1895,12 +1959,12 @@ class Order {
       `/service/platform/order/v1.0/company/${this.config.companyId}/shipments/${shipmentId}/bags/${bagId}/state/${state}/reasons`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1923,6 +1987,7 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.GetShipmentsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.ShipmentInternalPlatformViewResponse>}
    *   - Success response
@@ -1957,8 +2022,9 @@ class Order {
       myOrders,
       platformUserId,
       tags,
-    } = {},
-    { headers } = { headers: false }
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = OrderPlatformValidator.getShipments().validate(
       {
@@ -2064,12 +2130,12 @@ class Order {
       `/service/platform/order/v1.0/company/${this.config.companyId}/shipments-listing`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2092,13 +2158,17 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.GetStateTransitionMapParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.BagStateTransitionMap>} - Success response
    * @name getStateTransitionMap
    * @summary:
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getStateTransitionMap/).
    */
-  async getStateTransitionMap({ headers } = { headers: false }) {
+  async getStateTransitionMap(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = OrderPlatformValidator.getStateTransitionMap().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -2131,12 +2201,12 @@ class Order {
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/bag/state/transition`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2159,6 +2229,7 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.GetfiltersParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.FiltersResponse>} - Success response
    * @name getfilters
@@ -2166,8 +2237,8 @@ class Order {
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getfilters/).
    */
   async getfilters(
-    { view, groupEntity } = {},
-    { headers } = { headers: false }
+    { view, groupEntity, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = OrderPlatformValidator.getfilters().validate(
       {
@@ -2207,12 +2278,12 @@ class Order {
       `/service/platform/order/v1.0/company/${this.config.companyId}/filter-listing`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2235,6 +2306,7 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.InvalidateShipmentCacheParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.InvalidateShipmentCacheResponse>} -
    *   Success response
@@ -2243,8 +2315,8 @@ class Order {
    * @description: Invalidate shipment Cache - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/invalidateShipmentCache/).
    */
   async invalidateShipmentCache(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = OrderPlatformValidator.invalidateShipmentCache().validate(
       {
@@ -2282,12 +2354,12 @@ class Order {
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/update-cache`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2310,13 +2382,17 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.OrderUpdateParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.ResponseDetail>} - Success response
    * @name orderUpdate
    * @summary:
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/orderUpdate/).
    */
-  async orderUpdate({ body } = {}, { headers } = { headers: false }) {
+  async orderUpdate(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = OrderPlatformValidator.orderUpdate().validate(
       {
         body,
@@ -2351,12 +2427,12 @@ class Order {
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/order/validation`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2379,13 +2455,17 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.PostShipmentHistoryParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.ShipmentHistoryResponse>} - Success response
    * @name postShipmentHistory
    * @summary:
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/postShipmentHistory/).
    */
-  async postShipmentHistory({ body } = {}, { headers } = { headers: false }) {
+  async postShipmentHistory(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = OrderPlatformValidator.postShipmentHistory().validate(
       {
         body,
@@ -2422,12 +2502,12 @@ class Order {
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/shipment/history`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2450,13 +2530,17 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.ProcessManifestParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.CreateOrderResponse>} - Success response
    * @name processManifest
    * @summary:
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/processManifest/).
    */
-  async processManifest({ body } = {}, { headers } = { headers: false }) {
+  async processManifest(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = OrderPlatformValidator.processManifest().validate(
       {
         body,
@@ -2493,12 +2577,12 @@ class Order {
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/process-manifest`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2521,13 +2605,17 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.ReassignLocationParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.StoreReassignResponse>} - Success response
    * @name reassignLocation
    * @summary:
    * @description: Reassign Location - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/reassignLocation/).
    */
-  async reassignLocation({ body } = {}, { headers } = { headers: false }) {
+  async reassignLocation(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = OrderPlatformValidator.reassignLocation().validate(
       {
         body,
@@ -2564,12 +2652,12 @@ class Order {
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/store/reassign-internal`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2592,13 +2680,17 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.SendSmsNinjaParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.OrderStatusResult>} - Success response
    * @name sendSmsNinja
    * @summary:
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/sendSmsNinja/).
    */
-  async sendSmsNinja({ body } = {}, { headers } = { headers: false }) {
+  async sendSmsNinja(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = OrderPlatformValidator.sendSmsNinja().validate(
       {
         body,
@@ -2633,12 +2725,12 @@ class Order {
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/ninja/send-sms`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2661,13 +2753,17 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.SendUserMobileOTPParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.SendUserMobileOtpResponse>} - Success response
    * @name sendUserMobileOTP
    * @summary:
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/sendUserMobileOTP/).
    */
-  async sendUserMobileOTP({ body } = {}, { headers } = { headers: false }) {
+  async sendUserMobileOTP(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = OrderPlatformValidator.sendUserMobileOTP().validate(
       {
         body,
@@ -2704,12 +2800,12 @@ class Order {
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/user/send/otp/mobile`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2732,6 +2828,7 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.UpdateAddressParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.BaseResponse>} - Success response
    * @name updateAddress
@@ -2752,8 +2849,9 @@ class Order {
       city,
       state,
       country,
-    } = {},
-    { headers } = { headers: false }
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = OrderPlatformValidator.updateAddress().validate(
       {
@@ -2825,12 +2923,12 @@ class Order {
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/delight/update-address`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2853,6 +2951,7 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.UpdatePackagingDimensionsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.UpdatePackagingDimensionsResponse>}
    *   - Success response
@@ -2862,8 +2961,8 @@ class Order {
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/updatePackagingDimensions/).
    */
   async updatePackagingDimensions(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -2903,12 +3002,12 @@ class Order {
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/update-packaging-dimension`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2931,6 +3030,7 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.UpdateShipmentLockParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.UpdateShipmentLockResponse>} -
    *   Success response
@@ -2938,7 +3038,10 @@ class Order {
    * @summary:
    * @description: update shipment/bag lock and check status - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/updateShipmentLock/).
    */
-  async updateShipmentLock({ body } = {}, { headers } = { headers: false }) {
+  async updateShipmentLock(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = OrderPlatformValidator.updateShipmentLock().validate(
       {
         body,
@@ -2975,12 +3078,12 @@ class Order {
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/entity/lock-manager`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -3003,6 +3106,7 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.UpdateShipmentStatusParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.UpdateShipmentStatusResponseBody>}
    *   - Success response
@@ -3011,7 +3115,10 @@ class Order {
    * @summary:
    * @description: This API is for Shipment State transition or Shipment data update or both below example is for partial state transition with data update - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/updateShipmentStatus/).
    */
-  async updateShipmentStatus({ body } = {}, { headers } = { headers: false }) {
+  async updateShipmentStatus(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = OrderPlatformValidator.updateShipmentStatus().validate(
       {
         body,
@@ -3048,12 +3155,12 @@ class Order {
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/shipment/status-internal`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -3076,13 +3183,17 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.UploadConsentParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.SuccessResponse>} - Success response
    * @name uploadConsent
    * @summary:
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/uploadConsent/).
    */
-  async uploadConsent({ body } = {}, { headers } = { headers: false }) {
+  async uploadConsent(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = OrderPlatformValidator.uploadConsent().validate(
       {
         body,
@@ -3117,12 +3228,12 @@ class Order {
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/manifest/uploadConsent`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -3145,13 +3256,17 @@ class Order {
 
   /**
    * @param {OrderPlatformValidator.VerifyMobileOTPParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.VerifyOtpResponse>} - Success response
    * @name verifyMobileOTP
    * @summary:
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/verifyMobileOTP/).
    */
-  async verifyMobileOTP({ body } = {}, { headers } = { headers: false }) {
+  async verifyMobileOTP(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = OrderPlatformValidator.verifyMobileOTP().validate(
       {
         body,
@@ -3188,12 +3303,12 @@ class Order {
       `/service/platform/order-manage/v1.0/company/${this.config.companyId}/user/verify/otp`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

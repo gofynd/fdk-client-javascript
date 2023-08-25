@@ -49,6 +49,8 @@ class Configuration {
   }
 
   /**
+   * @param {ConfigurationApplicationValidator.GetAppCurrenciesParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ConfigurationApplicationModel.AppCurrencyResponse>} -
    *   Success response
@@ -56,7 +58,10 @@ class Configuration {
    * @summary: Get currencies enabled in the application
    * @description: Use this API to get a list of currencies allowed in the current application. Moreover, get the name, code, symbol, and the decimal digits of the currencies. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getAppCurrencies/).
    */
-  async getAppCurrencies({ headers } = { headers: false }) {
+  async getAppCurrencies(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ConfigurationApplicationValidator.getAppCurrencies().validate(
@@ -94,12 +99,12 @@ class Configuration {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -122,6 +127,7 @@ class Configuration {
 
   /**
    * @param {ConfigurationApplicationValidator.GetAppStaffListParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ConfigurationApplicationModel.AppStaffListResponse>} -
    *   Success response
@@ -130,8 +136,16 @@ class Configuration {
    * @description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getAppStaffList/).
    */
   async getAppStaffList(
-    { pageNo, pageSize, orderIncent, orderingStore, user, userName } = {},
-    { headers } = { headers: false }
+    {
+      pageNo,
+      pageSize,
+      orderIncent,
+      orderingStore,
+      user,
+      userName,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -176,12 +190,12 @@ class Configuration {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -248,6 +262,7 @@ class Configuration {
 
   /**
    * @param {ConfigurationApplicationValidator.GetAppStaffsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ConfigurationApplicationModel.AppStaffResponse>} -
    *   Success response
@@ -256,8 +271,10 @@ class Configuration {
    * @description: Use this API to get a list of staff including the names, employee code, incentive status, assigned ordering stores, and title of each staff added to the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getAppStaffs/).
    */
   async getAppStaffs(
-    { orderIncent, orderingStore, user } = {},
-    { headers } = { headers: false }
+    { orderIncent, orderingStore, user, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = ConfigurationApplicationValidator.getAppStaffs().validate(
       { orderIncent, orderingStore, user },
@@ -297,12 +314,12 @@ class Configuration {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -324,13 +341,18 @@ class Configuration {
   }
 
   /**
+   * @param {ConfigurationApplicationValidator.GetApplicationParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ConfigurationApplicationModel.Application>} - Success response
    * @name getApplication
    * @summary: Get current sales channel details
    * @description: Use this API to get the current sales channel details which includes configurations that indicate the status of the website, domain, ID, tokens, images, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getApplication/).
    */
-  async getApplication({ headers } = { headers: false }) {
+  async getApplication(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ConfigurationApplicationValidator.getApplication().validate(
@@ -368,12 +390,12 @@ class Configuration {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -395,6 +417,8 @@ class Configuration {
   }
 
   /**
+   * @param {ConfigurationApplicationValidator.GetBasicDetailsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ConfigurationApplicationModel.ApplicationDetail>} -
    *   Success response
@@ -402,7 +426,10 @@ class Configuration {
    * @summary: Get basic details of the application
    * @description: Use this API to retrieve only the basic details of the application which includes channel name, description, banner, logo, favicon, domain details, etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getBasicDetails/).
    */
-  async getBasicDetails({ headers } = { headers: false }) {
+  async getBasicDetails(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ConfigurationApplicationValidator.getBasicDetails().validate(
@@ -440,12 +467,12 @@ class Configuration {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -467,6 +494,8 @@ class Configuration {
   }
 
   /**
+   * @param {ConfigurationApplicationValidator.GetContactInfoParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ConfigurationApplicationModel.ApplicationInformation>}
    *   - Success response
@@ -475,7 +504,10 @@ class Configuration {
    * @summary: Get application information
    * @description: Use this API to retrieve information about the social links, address and contact information of the company/seller/brand operating the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getContactInfo/).
    */
-  async getContactInfo({ headers } = { headers: false }) {
+  async getContactInfo(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ConfigurationApplicationValidator.getContactInfo().validate(
@@ -513,12 +545,12 @@ class Configuration {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -540,6 +572,8 @@ class Configuration {
   }
 
   /**
+   * @param {ConfigurationApplicationValidator.GetCurrenciesParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ConfigurationApplicationModel.CurrenciesResponse>} -
    *   Success response
@@ -547,7 +581,10 @@ class Configuration {
    * @summary: Get all currencies list
    * @description: Use this API to get a list of currencies available. Moreover, get the name, code, symbol, and the decimal digits of the currencies. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getCurrencies/).
    */
-  async getCurrencies({ headers } = { headers: false }) {
+  async getCurrencies(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ConfigurationApplicationValidator.getCurrencies().validate(
@@ -585,12 +622,12 @@ class Configuration {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -613,13 +650,17 @@ class Configuration {
 
   /**
    * @param {ConfigurationApplicationValidator.GetCurrencyByIdParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ConfigurationApplicationModel.Currency>} - Success response
    * @name getCurrencyById
    * @summary: Get currency by its ID
    * @description: Use this API to retrieve a currency using its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getCurrencyById/).
    */
-  async getCurrencyById({ id } = {}, { headers } = { headers: false }) {
+  async getCurrencyById(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ConfigurationApplicationValidator.getCurrencyById().validate(
@@ -657,12 +698,12 @@ class Configuration {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -684,6 +725,8 @@ class Configuration {
   }
 
   /**
+   * @param {ConfigurationApplicationValidator.GetFeaturesParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ConfigurationApplicationModel.AppFeatureResponse>} -
    *   Success response
@@ -691,7 +734,10 @@ class Configuration {
    * @summary: Get features of application
    * @description: Use this API to retrieve the configuration of features such as product detail, landing page, options in the login/registration screen, communication opt-in, cart options and many more. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getFeatures/).
    */
-  async getFeatures({ headers } = { headers: false }) {
+  async getFeatures(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ConfigurationApplicationValidator.getFeatures().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -727,12 +773,12 @@ class Configuration {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -754,6 +800,10 @@ class Configuration {
   }
 
   /**
+   * @param {ConfigurationApplicationValidator.GetIntegrationTokensParam} arg
+   *   - Arg object.
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ConfigurationApplicationModel.AppTokenResponse>} -
    *   Success response
@@ -761,7 +811,10 @@ class Configuration {
    * @summary: Get integration tokens
    * @description: Use this API to retrieve the tokens used while integrating Firebase, MoEngage, Segment, GTM, Freshchat, Safetynet, Google Map and Facebook. **Note** - Token values are encrypted with AES encryption using a secret key. Kindly reach out to the developers for obtaining the secret key. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getIntegrationTokens/).
    */
-  async getIntegrationTokens({ headers } = { headers: false }) {
+  async getIntegrationTokens(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ConfigurationApplicationValidator.getIntegrationTokens().validate(
@@ -799,12 +852,12 @@ class Configuration {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -826,6 +879,8 @@ class Configuration {
   }
 
   /**
+   * @param {ConfigurationApplicationValidator.GetLanguagesParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ConfigurationApplicationModel.LanguageResponse>} -
    *   Success response
@@ -833,7 +888,10 @@ class Configuration {
    * @summary: Get list of languages
    * @description: Use this API to get a list of languages supported in the application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getLanguages/).
    */
-  async getLanguages({ headers } = { headers: false }) {
+  async getLanguages(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ConfigurationApplicationValidator.getLanguages().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -869,12 +927,12 @@ class Configuration {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -899,6 +957,7 @@ class Configuration {
    * @param {ConfigurationApplicationValidator.GetOrderingStoreCookieParam} arg
    *   - Arg object.
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ConfigurationApplicationModel.SuccessMessageResponse>}
    *   - Success response
@@ -908,8 +967,8 @@ class Configuration {
    * @description: Use this API to get an Ordering Store signed cookie upon selecting an ordering store. This will be used by the cart service to verify a coupon against the selected ordering store in cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getOrderingStoreCookie/).
    */
   async getOrderingStoreCookie(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -948,12 +1007,12 @@ class Configuration {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -976,6 +1035,7 @@ class Configuration {
 
   /**
    * @param {ConfigurationApplicationValidator.GetOrderingStoresParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ConfigurationApplicationModel.OrderingStores>} - Success response
    * @name getOrderingStores
@@ -983,8 +1043,8 @@ class Configuration {
    * @description: Use this API to retrieve the details of all the deployment stores (the selling locations where the application will be utilized for placing orders). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getOrderingStores/).
    */
   async getOrderingStores(
-    { pageNo, pageSize, q } = {},
-    { headers } = { headers: false }
+    { pageNo, pageSize, q, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1026,12 +1086,12 @@ class Configuration {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1083,6 +1143,8 @@ class Configuration {
   }
 
   /**
+   * @param {ConfigurationApplicationValidator.GetOwnerInfoParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ConfigurationApplicationModel.ApplicationAboutResponse>}
    *   - Success response
@@ -1091,7 +1153,10 @@ class Configuration {
    * @summary: Get sales channel, owner and seller information
    * @description: Use this API to get the current sales channel details which includes channel name, description, banner, logo, favicon, domain details, etc. This API also retrieves the seller and owner information such as address, email address, and phone number. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getOwnerInfo/).
    */
-  async getOwnerInfo({ headers } = { headers: false }) {
+  async getOwnerInfo(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ConfigurationApplicationValidator.getOwnerInfo().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -1127,12 +1192,12 @@ class Configuration {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1156,13 +1221,17 @@ class Configuration {
   /**
    * @param {ConfigurationApplicationValidator.GetStoreDetailByIdParam} arg -
    *   Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ConfigurationApplicationModel.OrderingStore>} - Success response
    * @name getStoreDetailById
    * @summary: Get ordering store details
    * @description: Use this API to retrieve the details of given stores uid (the selling locations where the application will be utilized for placing orders). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/getStoreDetailById/).
    */
-  async getStoreDetailById({ storeId } = {}, { headers } = { headers: false }) {
+  async getStoreDetailById(
+    { storeId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ConfigurationApplicationValidator.getStoreDetailById().validate(
@@ -1200,12 +1269,12 @@ class Configuration {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1227,6 +1296,10 @@ class Configuration {
   }
 
   /**
+   * @param {ConfigurationApplicationValidator.RemoveOrderingStoreCookieParam} arg
+   *   - Arg object.
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ConfigurationApplicationModel.SuccessMessageResponse>}
    *   - Success response
@@ -1235,7 +1308,10 @@ class Configuration {
    * @summary: Unset the Ordering Store signed cookie.
    * @description: Use this API to unset the Ordering Store cookie upon changing the sales channel, by its domain URL, in the Universal Fynd Store app. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/configuration/removeOrderingStoreCookie/).
    */
-  async removeOrderingStoreCookie({ headers } = { headers: false }) {
+  async removeOrderingStoreCookie(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = ConfigurationApplicationValidator.removeOrderingStoreCookie().validate(
@@ -1273,12 +1349,12 @@ class Configuration {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

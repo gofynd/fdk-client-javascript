@@ -16,6 +16,7 @@ class Order {
    * @param {OrderPlatformApplicationValidator.GetPlatformShipmentReasonsParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.ShipmentReasonsResponse>} - Success response
    * @name getPlatformShipmentReasons
@@ -23,8 +24,8 @@ class Order {
    * @description: Using action, get reasons behind full or partial cancellation of a shipment - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getPlatformShipmentReasons/).
    */
   async getPlatformShipmentReasons(
-    { action } = {},
-    { headers } = { headers: false }
+    { action, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -62,12 +63,12 @@ class Order {
       `/service/platform/order/v1.0/company/${this.config.companyId}/application/${this.applicationId}/orders/shipments/reasons/${action}`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -92,6 +93,7 @@ class Order {
    * @param {OrderPlatformApplicationValidator.TrackShipmentPlatformParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.PlatformShipmentTrack>} - Success response
    * @name trackShipmentPlatform
@@ -99,8 +101,8 @@ class Order {
    * @description: Track Shipment by shipment id, for application based on application Id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/trackShipmentPlatform/).
    */
   async trackShipmentPlatform(
-    { shipmentId } = {},
-    { headers } = { headers: false }
+    { shipmentId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -138,12 +140,12 @@ class Order {
       `/service/platform/order/v1.0/company/${this.config.companyId}/application/${this.applicationId}/orders/shipments/${shipmentId}/track`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

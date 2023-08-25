@@ -34,11 +34,10 @@ declare class ApplicationClient {
     /**
      * Sets the location details for the application.
      *
-     * @param {import("./ApplicationModels").LocationObject} locationDetails -
+     * @param {import("./ApplicationConfig").LocationObject} locationDetails -
      *   The location details to set.
-     * @throws {FDKClientValidationError} When the location details validation fails.
      */
-    setLocationDetails(locationDetails: import("./ApplicationModels").LocationObject): void;
+    setLocationDetails(locationDetails: import("./ApplicationConfig").LocationObject): void;
     /**
      * Sets the currency code in ApplicationConfig.
      *

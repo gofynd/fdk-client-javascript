@@ -42,6 +42,7 @@ class Rewards {
 
   /**
    * @param {RewardsApplicationValidator.CatalogueOrderParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<RewardsApplicationModel.CatalogueOrderResponse>} -
    *   Success response
@@ -49,7 +50,10 @@ class Rewards {
    * @summary: Get all transactions of reward points
    * @description: Use this API to evaluate the amount of reward points that could be earned on any catalogue product. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/rewards/catalogueOrder/).
    */
-  async catalogueOrder({ body } = {}, { headers } = { headers: false }) {
+  async catalogueOrder(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = RewardsApplicationValidator.catalogueOrder().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -85,12 +89,12 @@ class Rewards {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -113,13 +117,17 @@ class Rewards {
 
   /**
    * @param {RewardsApplicationValidator.GetOfferByNameParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<RewardsApplicationModel.Offer>} - Success response
    * @name getOfferByName
    * @summary: Get offer by name
    * @description: Use this API to get fetch the specific offer details and configuration by the name of the offer. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/rewards/getOfferByName/).
    */
-  async getOfferByName({ name } = {}, { headers } = { headers: false }) {
+  async getOfferByName(
+    { name, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = RewardsApplicationValidator.getOfferByName().validate(
       { name },
       { abortEarly: false, allowUnknown: true }
@@ -155,12 +163,12 @@ class Rewards {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -183,6 +191,7 @@ class Rewards {
 
   /**
    * @param {RewardsApplicationValidator.GetOrderDiscountParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<RewardsApplicationModel.OrderDiscountResponse>} -
    *   Success response
@@ -190,7 +199,10 @@ class Rewards {
    * @summary: Calculates the discount on order-amount
    * @description: Use this API to calculate the discount on the order amount, based on all the amount range configured in Order Discount offer. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/rewards/getOrderDiscount/).
    */
-  async getOrderDiscount({ body } = {}, { headers } = { headers: false }) {
+  async getOrderDiscount(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = RewardsApplicationValidator.getOrderDiscount().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -226,12 +238,12 @@ class Rewards {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -253,13 +265,18 @@ class Rewards {
   }
 
   /**
+   * @param {RewardsApplicationValidator.GetUserPointsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<RewardsApplicationModel.PointsResponse>} - Success response
    * @name getUserPoints
    * @summary: Get total available points of a user
    * @description: Use this API to retrieve total available points of a user for current application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/rewards/getUserPoints/).
    */
-  async getUserPoints({ headers } = { headers: false }) {
+  async getUserPoints(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = RewardsApplicationValidator.getUserPoints().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -295,12 +312,12 @@ class Rewards {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -323,6 +340,7 @@ class Rewards {
 
   /**
    * @param {RewardsApplicationValidator.GetUserPointsHistoryParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<RewardsApplicationModel.PointsHistoryResponse>} -
    *   Success response
@@ -331,8 +349,8 @@ class Rewards {
    * @description: Use this API to fetch a list of points transactions like giveaway points, signup points, referral points, order earn points, redeem points and expired points. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/rewards/getUserPointsHistory/).
    */
   async getUserPointsHistory(
-    { pageId, pageSize } = {},
-    { headers } = { headers: false }
+    { pageId, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -373,12 +391,12 @@ class Rewards {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -427,6 +445,8 @@ class Rewards {
   }
 
   /**
+   * @param {RewardsApplicationValidator.GetUserReferralDetailsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<RewardsApplicationModel.ReferralDetailsResponse>} -
    *   Success response
@@ -434,7 +454,10 @@ class Rewards {
    * @summary: Get referral details of a user
    * @description: Use this API to retrieve the referral details like referral code of a user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/rewards/getUserReferralDetails/).
    */
-  async getUserReferralDetails({ headers } = { headers: false }) {
+  async getUserReferralDetails(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = RewardsApplicationValidator.getUserReferralDetails().validate(
@@ -472,12 +495,12 @@ class Rewards {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -500,6 +523,7 @@ class Rewards {
 
   /**
    * @param {RewardsApplicationValidator.RedeemReferralCodeParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<RewardsApplicationModel.RedeemReferralCodeResponse>} -
    *   Success response
@@ -507,7 +531,10 @@ class Rewards {
    * @summary: Redeems a referral code and credits reward points to referee and the referrer as per the configuration
    * @description: Use this API to enter a referral code following which, the configured points would be credited to a user's reward points account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/rewards/redeemReferralCode/).
    */
-  async redeemReferralCode({ body } = {}, { headers } = { headers: false }) {
+  async redeemReferralCode(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = RewardsApplicationValidator.redeemReferralCode().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -543,12 +570,12 @@ class Rewards {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

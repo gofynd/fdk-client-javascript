@@ -1,9 +1,18 @@
-const {
-  FDKInvalidCredentialError,
-  FDKClientValidationError,
-} = require("../common/FDKError");
+const { FDKInvalidCredentialError } = require("../common/FDKError");
 const { Logger, setLoggerLevel } = require("../common/Logger");
-const { LocationValidator } = require("./ApplicationModels");
+
+/**
+ * Represents the location object for validation.
+ *
+ * @typedef {Object} LocationObject
+ * @property {string} pincode - The pincode of the location.
+ * @property {string} country - The country of the location.
+ * @property {string} country_iso_code - The ISO code of the country.
+ * @property {string} city - The city of the location.
+ * @property {Object} location - The geographical coordinates of the location.
+ * @property {string} location.longitude - The longitude of the location.
+ * @property {string} location.latitude - The latitude of the location.
+ */
 
 /**
  * Represents the configuration for an application.
@@ -21,9 +30,7 @@ class ApplicationConfig {
    *   API. \n Write full domain. Default is `'https://api.fynd.com'`
    * @param {logLevelEnum} [_conf.logLevel='ERROR'] - The log level. Available
    *   options: TRACE, DEBUG, INFO, WARN, ERROR. Default is `'ERROR'`
-   * @param {import("./ApplicationModels").LocationObject} [_conf.locationDetails]
-   *   - The location details.
-   *
+   * @param {LocationObject} [_conf.locationDetails] - The location details.
    * @param {string} [_conf.currencyCode='INR'] - The currency code. Default is `'INR'`
    * @param {object} [_opts] - Additional options.
    */
@@ -63,17 +70,9 @@ class ApplicationConfig {
   /**
    * Validates the application configuration.
    *
-   * @throws {FDKClientValidationError} When the locationDetails validation fails.
    * @throws {FDKInvalidCredentialError} When the credentials are invalid or missing.
    */
   validate() {
-    const { error } = LocationValidator.validateLocationObj().validate(
-      this.locationDetails,
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      throw new FDKClientValidationError(error);
-    }
     if (!this.applicationID) {
       Logger({ level: "ERROR", message: "No Application ID Present" });
       throw new FDKInvalidCredentialError("No Application ID Present");

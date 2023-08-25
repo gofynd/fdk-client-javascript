@@ -13,13 +13,17 @@ class Discount {
 
   /**
    * @param {DiscountPlatformValidator.CancelDownloadJobParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<DiscountPlatformModel.CancelJobResponse>} - Success response
    * @name cancelDownloadJob
    * @summary: Cancel Download Job.
    * @description: Cancel Download Job. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/cancelDownloadJob/).
    */
-  async cancelDownloadJob({ id } = {}, { headers } = { headers: false }) {
+  async cancelDownloadJob(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = DiscountPlatformValidator.cancelDownloadJob().validate(
       {
         id,
@@ -56,12 +60,12 @@ class Discount {
       `/service/platform/discount/v1.0/company/${this.config.companyId}/file/download/${id}/`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -84,13 +88,17 @@ class Discount {
 
   /**
    * @param {DiscountPlatformValidator.CancelValidationJobParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<DiscountPlatformModel.CancelJobResponse>} - Success response
    * @name cancelValidationJob
    * @summary: Cancel Validation Job.
    * @description: Cancel Validation Job. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/cancelValidationJob/).
    */
-  async cancelValidationJob({ id } = {}, { headers } = { headers: false }) {
+  async cancelValidationJob(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = DiscountPlatformValidator.cancelValidationJob().validate(
       {
         id,
@@ -127,12 +135,12 @@ class Discount {
       `/service/platform/discount/v1.0/company/${this.config.companyId}/file/validation/${id}/`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -155,13 +163,17 @@ class Discount {
 
   /**
    * @param {DiscountPlatformValidator.CreateDiscountParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<DiscountPlatformModel.DiscountJob>} - Success response
    * @name createDiscount
    * @summary: Create Discount.
    * @description: Create Discount. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/createDiscount/).
    */
-  async createDiscount({ body } = {}, { headers } = { headers: false }) {
+  async createDiscount(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = DiscountPlatformValidator.createDiscount().validate(
       {
         body,
@@ -198,12 +210,12 @@ class Discount {
       `/service/platform/discount/v1.0/company/${this.config.companyId}/job/`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -226,6 +238,7 @@ class Discount {
 
   /**
    * @param {DiscountPlatformValidator.DownloadDiscountFileParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<DiscountPlatformModel.FileJobResponse>} - Success response
    * @name downloadDiscountFile
@@ -233,8 +246,8 @@ class Discount {
    * @description: Validate File. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/downloadDiscountFile/).
    */
   async downloadDiscountFile(
-    { type, body } = {},
-    { headers } = { headers: false }
+    { type, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = DiscountPlatformValidator.downloadDiscountFile().validate(
       {
@@ -274,12 +287,12 @@ class Discount {
       `/service/platform/discount/v1.0/company/${this.config.companyId}/file/${type}/download/`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -302,13 +315,17 @@ class Discount {
 
   /**
    * @param {DiscountPlatformValidator.GetDiscountParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<DiscountPlatformModel.DiscountJob>} - Success response
    * @name getDiscount
    * @summary: Fetch discount.
    * @description: Fetch discount. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/getDiscount/).
    */
-  async getDiscount({ id } = {}, { headers } = { headers: false }) {
+  async getDiscount(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = DiscountPlatformValidator.getDiscount().validate(
       {
         id,
@@ -345,12 +362,12 @@ class Discount {
       `/service/platform/discount/v1.0/company/${this.config.companyId}/job/${id}/`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -373,6 +390,7 @@ class Discount {
 
   /**
    * @param {DiscountPlatformValidator.GetDiscountsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<DiscountPlatformModel.ListOrCalender>} - Success response
    * @name getDiscounts
@@ -380,8 +398,19 @@ class Discount {
    * @description: Fetch discount list. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/getDiscounts/).
    */
   async getDiscounts(
-    { view, q, pageNo, pageSize, archived, month, year, type, appIds } = {},
-    { headers } = { headers: false }
+    {
+      view,
+      q,
+      pageNo,
+      pageSize,
+      archived,
+      month,
+      year,
+      type,
+      appIds,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = DiscountPlatformValidator.getDiscounts().validate(
       {
@@ -444,12 +473,12 @@ class Discount {
       `/service/platform/discount/v1.0/company/${this.config.companyId}/job/`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -472,13 +501,17 @@ class Discount {
 
   /**
    * @param {DiscountPlatformValidator.GetDownloadJobParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<DiscountPlatformModel.FileJobResponse>} - Success response
    * @name getDownloadJob
    * @summary: Download File Job.
    * @description: Download File Job. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/getDownloadJob/).
    */
-  async getDownloadJob({ id } = {}, { headers } = { headers: false }) {
+  async getDownloadJob(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = DiscountPlatformValidator.getDownloadJob().validate(
       {
         id,
@@ -515,12 +548,12 @@ class Discount {
       `/service/platform/discount/v1.0/company/${this.config.companyId}/file/download/${id}/`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -543,13 +576,17 @@ class Discount {
 
   /**
    * @param {DiscountPlatformValidator.GetValidationJobParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<DiscountPlatformModel.FileJobResponse>} - Success response
    * @name getValidationJob
    * @summary: Validate File Job.
    * @description: Validate File Job. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/getValidationJob/).
    */
-  async getValidationJob({ id } = {}, { headers } = { headers: false }) {
+  async getValidationJob(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = DiscountPlatformValidator.getValidationJob().validate(
       {
         id,
@@ -586,12 +623,12 @@ class Discount {
       `/service/platform/discount/v1.0/company/${this.config.companyId}/file/validation/${id}/`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -614,13 +651,17 @@ class Discount {
 
   /**
    * @param {DiscountPlatformValidator.UpdateDiscountParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<DiscountPlatformModel.DiscountJob>} - Success response
    * @name updateDiscount
    * @summary: Create Discount.
    * @description: Create Discount. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/updateDiscount/).
    */
-  async updateDiscount({ id, body } = {}, { headers } = { headers: false }) {
+  async updateDiscount(
+    { id, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = DiscountPlatformValidator.updateDiscount().validate(
       {
         id,
@@ -659,12 +700,12 @@ class Discount {
       `/service/platform/discount/v1.0/company/${this.config.companyId}/job/${id}/`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -687,6 +728,7 @@ class Discount {
 
   /**
    * @param {DiscountPlatformValidator.UpsertDiscountItemsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<Object>} - Success response
    * @name upsertDiscountItems
@@ -694,8 +736,8 @@ class Discount {
    * @description: Create custom discounts through API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/upsertDiscountItems/).
    */
   async upsertDiscountItems(
-    { id, body } = {},
-    { headers } = { headers: false }
+    { id, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = DiscountPlatformValidator.upsertDiscountItems().validate(
       {
@@ -735,12 +777,12 @@ class Discount {
       `/service/platform/discount/v1.0/company/${this.config.companyId}/job/${id}/items/`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -761,6 +803,7 @@ class Discount {
 
   /**
    * @param {DiscountPlatformValidator.ValidateDiscountFileParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<DiscountPlatformModel.FileJobResponse>} - Success response
    * @name validateDiscountFile
@@ -768,8 +811,8 @@ class Discount {
    * @description: Validate File. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/validateDiscountFile/).
    */
   async validateDiscountFile(
-    { body, discount } = {},
-    { headers } = { headers: false }
+    { body, discount, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = DiscountPlatformValidator.validateDiscountFile().validate(
       {
@@ -810,12 +853,12 @@ class Discount {
       `/service/platform/discount/v1.0/company/${this.config.companyId}/file/validation/`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

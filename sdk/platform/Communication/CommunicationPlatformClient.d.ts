@@ -6,6 +6,7 @@ declare class Communication {
      * @param {CommunicationPlatformValidator.GetSystemNotificationsParam} arg
      *   - Arg object
      *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CommunicationPlatformModel.SystemNotifications>} -
      *   Success response
@@ -13,7 +14,7 @@ declare class Communication {
      * @summary: Get system notifications
      * @description: Get system notifications - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSystemNotifications/).
      */
-    getSystemNotifications({ pageNo, pageSize }?: CommunicationPlatformValidator.GetSystemNotificationsParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CommunicationPlatformModel.SystemNotifications>;
+    getSystemNotifications({ pageNo, pageSize, requestHeaders }?: CommunicationPlatformValidator.GetSystemNotificationsParam, { responseHeaders }?: object): Promise<CommunicationPlatformModel.SystemNotifications>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] -

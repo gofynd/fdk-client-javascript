@@ -14,6 +14,7 @@ class Partner {
 
   /**
    * @param {PartnerPlatformApplicationValidator.AddProxyPathParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PartnerPlatformModel.AddProxyResponse>} - Success response
    * @name addProxyPath
@@ -21,8 +22,8 @@ class Partner {
    * @description: Use this API to generate proxy URL for the external URL - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/addProxyPath/).
    */
   async addProxyPath(
-    { extensionId, body } = {},
-    { headers } = { headers: false }
+    { extensionId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -62,12 +63,12 @@ class Partner {
       `/service/platform/partners/v1.0/company/${this.config.companyId}/application/${this.applicationId}/proxy/${extensionId}`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -90,13 +91,17 @@ class Partner {
 
   /**
    * @param {PartnerPlatformApplicationValidator.GetProxyPathParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PartnerPlatformModel.getProxyPathRes>} - Success response
    * @name getProxyPath
    * @summary: Proxy
    * @description: Use this API to get proxy url - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/getProxyPath/).
    */
-  async getProxyPath({ extensionId } = {}, { headers } = { headers: false }) {
+  async getProxyPath(
+    { extensionId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = PartnerPlatformApplicationValidator.getProxyPath().validate(
@@ -133,12 +138,12 @@ class Partner {
       `/service/platform/partners/v1.0/company/${this.config.companyId}/application/${this.applicationId}/proxy/${extensionId}`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -163,6 +168,7 @@ class Partner {
    * @param {PartnerPlatformApplicationValidator.GetProxyPathAttachedPathParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PartnerPlatformModel.AddProxyResponse>} - Success response
    * @name getProxyPathAttachedPath
@@ -170,8 +176,8 @@ class Partner {
    * @description: Use this API to get proxy url - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/getProxyPathAttachedPath/).
    */
   async getProxyPathAttachedPath(
-    { extensionId, attachedPath } = {},
-    { headers } = { headers: false }
+    { extensionId, attachedPath, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -211,12 +217,12 @@ class Partner {
       `/service/platform/partners/v1.0/company/${this.config.companyId}/application/${this.applicationId}/proxy/${extensionId}/${attachedPath}`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -239,6 +245,7 @@ class Partner {
 
   /**
    * @param {PartnerPlatformApplicationValidator.RemoveProxyPathParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PartnerPlatformModel.RemoveProxyResponse>} - Success response
    * @name removeProxyPath
@@ -246,8 +253,8 @@ class Partner {
    * @description: Use this API to remove the proxy URL which is already generated for the external URL - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/partner/removeProxyPath/).
    */
   async removeProxyPath(
-    { extensionId, attachedPath } = {},
-    { headers } = { headers: false }
+    { extensionId, attachedPath, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -287,12 +294,12 @@ class Partner {
       `/service/platform/partners/v1.0/company/${this.config.companyId}/application/${this.applicationId}/proxy/${extensionId}/${attachedPath}`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

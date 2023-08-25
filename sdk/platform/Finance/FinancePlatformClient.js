@@ -13,6 +13,7 @@ class Finance {
 
   /**
    * @param {FinancePlatformValidator.CreditlineDataplatformParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FinancePlatformModel.CreditlineDataPlatformResponse>}
    *   - Success response
@@ -22,8 +23,8 @@ class Finance {
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/creditlineDataplatform/).
    */
   async creditlineDataplatform(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -63,12 +64,12 @@ class Finance {
       `/service/platform/finance/v1.0/company/${this.config.companyId}/credit-line-data`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -91,6 +92,7 @@ class Finance {
 
   /**
    * @param {FinancePlatformValidator.DownloadCreditDebitNoteParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FinancePlatformModel.DownloadCreditDebitNoteResponse>}
    *   - Success response
@@ -100,8 +102,8 @@ class Finance {
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/downloadCreditDebitNote/).
    */
   async downloadCreditDebitNote(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -141,12 +143,12 @@ class Finance {
       `/service/platform/finance/v1.0/company/${this.config.companyId}/download-credit-debit-note`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -169,13 +171,17 @@ class Finance {
 
   /**
    * @param {FinancePlatformValidator.DownloadReportParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FinancePlatformModel.DownloadReportList>} - Success response
    * @name downloadReport
    * @summary:
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/downloadReport/).
    */
-  async downloadReport({ body } = {}, { headers } = { headers: false }) {
+  async downloadReport(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = FinancePlatformValidator.downloadReport().validate(
       {
         body,
@@ -212,12 +218,12 @@ class Finance {
       `/service/platform/finance/v1.0/company/${this.config.companyId}/download-report`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -240,13 +246,17 @@ class Finance {
 
   /**
    * @param {FinancePlatformValidator.GenerateReportParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FinancePlatformModel.GenerateReportJson>} - Success response
    * @name generateReport
    * @summary:
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/generateReport/).
    */
-  async generateReport({ body } = {}, { headers } = { headers: false }) {
+  async generateReport(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = FinancePlatformValidator.generateReport().validate(
       {
         body,
@@ -283,12 +293,12 @@ class Finance {
       `/service/platform/finance/v1.0/company/${this.config.companyId}/generate-report`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -311,13 +321,17 @@ class Finance {
 
   /**
    * @param {FinancePlatformValidator.GetAffiliateParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FinancePlatformModel.GetAffiliateResponse>} - Success response
    * @name getAffiliate
    * @summary:
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/getAffiliate/).
    */
-  async getAffiliate({ body } = {}, { headers } = { headers: false }) {
+  async getAffiliate(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = FinancePlatformValidator.getAffiliate().validate(
       {
         body,
@@ -354,12 +368,12 @@ class Finance {
       `/service/platform/finance/v1.0/company/${this.config.companyId}/get-affiliate-list`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -382,13 +396,17 @@ class Finance {
 
   /**
    * @param {FinancePlatformValidator.GetDataParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FinancePlatformModel.GetEngineResponse>} - Success response
    * @name getData
    * @summary:
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/getData/).
    */
-  async getData({ body } = {}, { headers } = { headers: false }) {
+  async getData(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = FinancePlatformValidator.getData().validate(
       {
         body,
@@ -423,12 +441,12 @@ class Finance {
       `/service/platform/finance/v1.0/company/${this.config.companyId}/get-data`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -451,13 +469,17 @@ class Finance {
 
   /**
    * @param {FinancePlatformValidator.GetReasonParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FinancePlatformModel.GetReasonResponse>} - Success response
    * @name getReason
    * @summary:
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/getReason/).
    */
-  async getReason({ body } = {}, { headers } = { headers: false }) {
+  async getReason(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = FinancePlatformValidator.getReason().validate(
       {
         body,
@@ -492,12 +514,12 @@ class Finance {
       `/service/platform/finance/v1.0/company/${this.config.companyId}/get-reason`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -520,13 +542,17 @@ class Finance {
 
   /**
    * @param {FinancePlatformValidator.GetReportListParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FinancePlatformModel.GetEngineResponse>} - Success response
    * @name getReportList
    * @summary:
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/getReportList/).
    */
-  async getReportList({ body } = {}, { headers } = { headers: false }) {
+  async getReportList(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = FinancePlatformValidator.getReportList().validate(
       {
         body,
@@ -563,12 +589,12 @@ class Finance {
       `/service/platform/finance/v1.0/company/${this.config.companyId}/get-report-list`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -591,13 +617,17 @@ class Finance {
 
   /**
    * @param {FinancePlatformValidator.InvoiceListingParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FinancePlatformModel.InvoiceListingResponse>} - Success response
    * @name invoiceListing
    * @summary:
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/invoiceListing/).
    */
-  async invoiceListing({ body } = {}, { headers } = { headers: false }) {
+  async invoiceListing(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = FinancePlatformValidator.invoiceListing().validate(
       {
         body,
@@ -634,12 +664,12 @@ class Finance {
       `/service/platform/finance/v1.0/company/${this.config.companyId}/invoice/listing`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -662,13 +692,17 @@ class Finance {
 
   /**
    * @param {FinancePlatformValidator.InvoicePDFParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FinancePlatformModel.InvoicePdfResponse>} - Success response
    * @name invoicePDF
    * @summary:
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/invoicePDF/).
    */
-  async invoicePDF({ body } = {}, { headers } = { headers: false }) {
+  async invoicePDF(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = FinancePlatformValidator.invoicePDF().validate(
       {
         body,
@@ -703,12 +737,12 @@ class Finance {
       `/service/platform/finance/v1.0/company/${this.config.companyId}/invoice/pdf-view`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -731,13 +765,17 @@ class Finance {
 
   /**
    * @param {FinancePlatformValidator.InvoiceTypeParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FinancePlatformModel.InvoiceTypeResponse>} - Success response
    * @name invoiceType
    * @summary:
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/invoiceType/).
    */
-  async invoiceType({ body } = {}, { headers } = { headers: false }) {
+  async invoiceType(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = FinancePlatformValidator.invoiceType().validate(
       {
         body,
@@ -772,12 +810,12 @@ class Finance {
       `/service/platform/finance/v1.0/company/${this.config.companyId}/invoice-type`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -800,6 +838,7 @@ class Finance {
 
   /**
    * @param {FinancePlatformValidator.IsCreditlinePlatformParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FinancePlatformModel.IsCreditlinePlatformResponse>} -
    *   Success response
@@ -807,7 +846,10 @@ class Finance {
    * @summary:
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/isCreditlinePlatform/).
    */
-  async isCreditlinePlatform({ body } = {}, { headers } = { headers: false }) {
+  async isCreditlinePlatform(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = FinancePlatformValidator.isCreditlinePlatform().validate(
       {
         body,
@@ -844,12 +886,12 @@ class Finance {
       `/service/platform/finance/v1.0/company/${this.config.companyId}/creditline-opted`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -872,13 +914,17 @@ class Finance {
 
   /**
    * @param {FinancePlatformValidator.PaymentProcessParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FinancePlatformModel.PaymentProcessResponse>} - Success response
    * @name paymentProcess
    * @summary:
    * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/paymentProcess/).
    */
-  async paymentProcess({ body } = {}, { headers } = { headers: false }) {
+  async paymentProcess(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = FinancePlatformValidator.paymentProcess().validate(
       {
         body,
@@ -915,12 +961,12 @@ class Finance {
       `/service/platform/finance/v1.0/company/${this.config.companyId}/payment-process`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

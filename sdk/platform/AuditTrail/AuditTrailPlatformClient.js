@@ -13,13 +13,17 @@ class AuditTrail {
 
   /**
    * @param {AuditTrailPlatformValidator.CreateAuditLogParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<AuditTrailPlatformModel.CreateLogResponse>} - Success response
    * @name createAuditLog
    * @summary: Create logs for auditing later on
    * @description: Create a log instance that stores all the relevant info to be logged - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/audittrail/createAuditLog/).
    */
-  async createAuditLog({ body } = {}, { headers } = { headers: false }) {
+  async createAuditLog(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = AuditTrailPlatformValidator.createAuditLog().validate(
       {
         body,
@@ -56,12 +60,12 @@ class AuditTrail {
       `/service/platform/audit-trail/v1.0/company/${this.config.companyId}/logs/`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -84,13 +88,17 @@ class AuditTrail {
 
   /**
    * @param {AuditTrailPlatformValidator.GetAuditLogParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<AuditTrailPlatformModel.LogSchemaResponse>} - Success response
    * @name getAuditLog
    * @summary: Get audit log
    * @description: Get detailed log information by their id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/audittrail/getAuditLog/).
    */
-  async getAuditLog({ id } = {}, { headers } = { headers: false }) {
+  async getAuditLog(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = AuditTrailPlatformValidator.getAuditLog().validate(
       {
         id,
@@ -127,12 +135,12 @@ class AuditTrail {
       `/service/platform/audit-trail/v1.0/company/${this.config.companyId}/logs/${id}`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -155,13 +163,17 @@ class AuditTrail {
 
   /**
    * @param {AuditTrailPlatformValidator.GetAuditLogsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<AuditTrailPlatformModel.LogSchemaResponse>} - Success response
    * @name getAuditLogs
    * @summary: Get paginated audit logs
    * @description: Get a paginated set of logs that can be filtered using the available set of parameters and get the relevant group of logs - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/audittrail/getAuditLogs/).
    */
-  async getAuditLogs({ qs } = {}, { headers } = { headers: false }) {
+  async getAuditLogs(
+    { qs, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = AuditTrailPlatformValidator.getAuditLogs().validate(
       {
         qs,
@@ -199,12 +211,12 @@ class AuditTrail {
       `/service/platform/audit-trail/v1.0/company/${this.config.companyId}/logs/`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -227,13 +239,17 @@ class AuditTrail {
 
   /**
    * @param {AuditTrailPlatformValidator.GetEntityTypesParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<AuditTrailPlatformModel.EntityTypesResponse>} - Success response
    * @name getEntityTypes
    * @summary: Get entity types
    * @description: Get a consolidated list of entity types from all the logs stored on the db, which further helps to filter the logs better - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/audittrail/getEntityTypes/).
    */
-  async getEntityTypes({ headers } = { headers: false }) {
+  async getEntityTypes(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = AuditTrailPlatformValidator.getEntityTypes().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -266,12 +282,12 @@ class AuditTrail {
       `/service/platform/audit-trail/v1.0/company/${this.config.companyId}/entity-types`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

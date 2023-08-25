@@ -3,7 +3,7 @@ const { btoa } = require("isomorphic-base64");
 
 /**
  * @typedef {Object} Options
- * @property {boolean} headers - Whether headers are returned or not.
+ * @property {boolean} responseHeaders - Whether response headers are returned or not.
  */
 
 class APIClient {
@@ -43,7 +43,7 @@ class APIClient {
       params: query,
       data: body,
       headers: { ...headers, ...extraHeaders, ...xHeaders },
-      _returnHeaders: options.headers,
+      responseHeaders: options.responseHeaders,
     };
     rawRequest = JSON.parse(JSON.stringify(rawRequest));
 

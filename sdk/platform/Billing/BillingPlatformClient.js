@@ -13,6 +13,7 @@ class Billing {
 
   /**
    * @param {BillingPlatformValidator.ActivateSubscriptionPlanParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.SubscriptionActivateRes>} - Success response
    * @name activateSubscriptionPlan
@@ -20,8 +21,8 @@ class Billing {
    * @description: It will activate subscription plan for customer - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/activateSubscriptionPlan/).
    */
   async activateSubscriptionPlan(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -61,12 +62,12 @@ class Billing {
       `/service/platform/billing/v1.0/company/${this.config.companyId}/subscription/activate`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -89,6 +90,7 @@ class Billing {
 
   /**
    * @param {BillingPlatformValidator.CancelSubscriptionChargeParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.EntitySubscription>} - Success response
    * @name cancelSubscriptionCharge
@@ -96,8 +98,8 @@ class Billing {
    * @description: Cancel subscription and attached charges. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/cancelSubscriptionCharge/).
    */
   async cancelSubscriptionCharge(
-    { extensionId, subscriptionId } = {},
-    { headers } = { headers: false }
+    { extensionId, subscriptionId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -139,12 +141,12 @@ class Billing {
       `/service/platform/billing/v1.0/company/${this.config.companyId}/extension/${extensionId}/subscription/${subscriptionId}/cancel`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -167,6 +169,7 @@ class Billing {
 
   /**
    * @param {BillingPlatformValidator.CancelSubscriptionPlanParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.CancelSubscriptionRes>} - Success response
    * @name cancelSubscriptionPlan
@@ -174,8 +177,8 @@ class Billing {
    * @description: It will cancel current active subscription. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/cancelSubscriptionPlan/).
    */
   async cancelSubscriptionPlan(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -215,12 +218,12 @@ class Billing {
       `/service/platform/billing/v1.0/company/${this.config.companyId}/subscription/cancel`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -243,6 +246,7 @@ class Billing {
 
   /**
    * @param {BillingPlatformValidator.CheckCouponValidityParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.CheckValidityResponse>} - Success response
    * @name checkCouponValidity
@@ -250,8 +254,8 @@ class Billing {
    * @description: Check coupon validity. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/checkCouponValidity/).
    */
   async checkCouponValidity(
-    { plan, couponCode } = {},
-    { headers } = { headers: false }
+    { plan, couponCode, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = BillingPlatformValidator.checkCouponValidity().validate(
       {
@@ -293,12 +297,12 @@ class Billing {
       `/service/platform/billing/v1.0/company/${this.config.companyId}/coupon/check-validity`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -321,6 +325,7 @@ class Billing {
 
   /**
    * @param {BillingPlatformValidator.CreateOneTimeChargeParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.CreateOneTimeChargeResponse>} -
    *   Success response
@@ -329,8 +334,8 @@ class Billing {
    * @description: Register one time subscription charge for a seller of your extension. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/createOneTimeCharge/).
    */
   async createOneTimeCharge(
-    { extensionId, body } = {},
-    { headers } = { headers: false }
+    { extensionId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = BillingPlatformValidator.createOneTimeCharge().validate(
       {
@@ -370,12 +375,12 @@ class Billing {
       `/service/platform/billing/v1.0/company/${this.config.companyId}/extension/${extensionId}/one_time_charge`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -398,6 +403,7 @@ class Billing {
 
   /**
    * @param {BillingPlatformValidator.CreateSubscriptionChargeParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.CreateSubscriptionResponse>} -
    *   Success response
@@ -406,8 +412,8 @@ class Billing {
    * @description: Register subscription charge for a seller of your extension. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/createSubscriptionCharge/).
    */
   async createSubscriptionCharge(
-    { extensionId, body } = {},
-    { headers } = { headers: false }
+    { extensionId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -449,12 +455,12 @@ class Billing {
       `/service/platform/billing/v1.0/company/${this.config.companyId}/extension/${extensionId}/subscription`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -477,6 +483,7 @@ class Billing {
 
   /**
    * @param {BillingPlatformValidator.GetChargeDetailsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.OneTimeChargeEntity>} - Success response
    * @name getChargeDetails
@@ -484,8 +491,8 @@ class Billing {
    * @description: Get created subscription charge details - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getChargeDetails/).
    */
   async getChargeDetails(
-    { extensionId, chargeId } = {},
-    { headers } = { headers: false }
+    { extensionId, chargeId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = BillingPlatformValidator.getChargeDetails().validate(
       {
@@ -525,12 +532,12 @@ class Billing {
       `/service/platform/billing/v1.0/company/${this.config.companyId}/extension/${extensionId}/charge/${chargeId}`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -553,13 +560,17 @@ class Billing {
 
   /**
    * @param {BillingPlatformValidator.GetCustomerDetailParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.SubscriptionCustomer>} - Success response
    * @name getCustomerDetail
    * @summary: Get subscription customer detail
    * @description: Get subscription customer detail. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getCustomerDetail/).
    */
-  async getCustomerDetail({ headers } = { headers: false }) {
+  async getCustomerDetail(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = BillingPlatformValidator.getCustomerDetail().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -592,12 +603,12 @@ class Billing {
       `/service/platform/billing/v1.0/company/${this.config.companyId}/subscription/customer-detail`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -620,13 +631,17 @@ class Billing {
 
   /**
    * @param {BillingPlatformValidator.GetFeatureLimitConfigParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.SubscriptionLimit>} - Success response
    * @name getFeatureLimitConfig
    * @summary: Get subscription subscription limits
    * @description: Get subscription subscription limits. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getFeatureLimitConfig/).
    */
-  async getFeatureLimitConfig({ headers } = { headers: false }) {
+  async getFeatureLimitConfig(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = BillingPlatformValidator.getFeatureLimitConfig().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -659,12 +674,12 @@ class Billing {
       `/service/platform/billing/v1.0/company/${this.config.companyId}/subscription/current-limit`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -687,13 +702,17 @@ class Billing {
 
   /**
    * @param {BillingPlatformValidator.GetInvoiceByIdParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.Invoice>} - Success response
    * @name getInvoiceById
    * @summary: Get invoice by id
    * @description: Get invoice by id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getInvoiceById/).
    */
-  async getInvoiceById({ invoiceId } = {}, { headers } = { headers: false }) {
+  async getInvoiceById(
+    { invoiceId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = BillingPlatformValidator.getInvoiceById().validate(
       {
         invoiceId,
@@ -730,12 +749,12 @@ class Billing {
       `/service/platform/billing/v1.0/company/${this.config.companyId}/invoice/${invoiceId}`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -758,13 +777,17 @@ class Billing {
 
   /**
    * @param {BillingPlatformValidator.GetInvoicesParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.Invoices>} - Success response
    * @name getInvoices
    * @summary: Get invoices
    * @description: Get invoices. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getInvoices/).
    */
-  async getInvoices({ headers } = { headers: false }) {
+  async getInvoices(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = BillingPlatformValidator.getInvoices().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -795,12 +818,12 @@ class Billing {
       `/service/platform/billing/v1.0/company/${this.config.companyId}/invoice/list`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -823,6 +846,7 @@ class Billing {
 
   /**
    * @param {BillingPlatformValidator.GetSubscriptionParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.SubscriptionStatus>} - Success response
    * @name getSubscription
@@ -830,7 +854,10 @@ class Billing {
    * @description: If subscription is active then it will return is_enabled true and return subscription object. If subscription is not active then is_enabled false and message.
    *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getSubscription/).
    */
-  async getSubscription({ headers } = { headers: false }) {
+  async getSubscription(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = BillingPlatformValidator.getSubscription().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -863,12 +890,12 @@ class Billing {
       `/service/platform/billing/v1.0/company/${this.config.companyId}/subscription/current`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -891,6 +918,7 @@ class Billing {
 
   /**
    * @param {BillingPlatformValidator.GetSubscriptionChargeParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.EntitySubscription>} - Success response
    * @name getSubscriptionCharge
@@ -898,8 +926,8 @@ class Billing {
    * @description: Get created subscription charge details - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getSubscriptionCharge/).
    */
   async getSubscriptionCharge(
-    { extensionId, subscriptionId } = {},
-    { headers } = { headers: false }
+    { extensionId, subscriptionId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = BillingPlatformValidator.getSubscriptionCharge().validate(
       {
@@ -939,12 +967,12 @@ class Billing {
       `/service/platform/billing/v1.0/company/${this.config.companyId}/extension/${extensionId}/subscription/${subscriptionId}`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -967,13 +995,17 @@ class Billing {
 
   /**
    * @param {BillingPlatformValidator.UpsertCustomerDetailParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<BillingPlatformModel.SubscriptionCustomer>} - Success response
    * @name upsertCustomerDetail
    * @summary: Upsert subscription customer detail
    * @description: Upsert subscription customer detail. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/upsertCustomerDetail/).
    */
-  async upsertCustomerDetail({ body } = {}, { headers } = { headers: false }) {
+  async upsertCustomerDetail(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = BillingPlatformValidator.upsertCustomerDetail().validate(
       {
         body,
@@ -1010,12 +1042,12 @@ class Billing {
       `/service/platform/billing/v1.0/company/${this.config.companyId}/subscription/customer-detail`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

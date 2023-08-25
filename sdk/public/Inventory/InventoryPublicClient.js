@@ -39,6 +39,7 @@ class Inventory {
 
   /**
    * @param {InventoryPublicValidator.GetApiKeyParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PublicAPIClient").Options} - Options
    * @returns {Promise<InventoryPublicModel.ResponseEnvelopeApikeyModel>} -
    *   Success response
@@ -47,8 +48,8 @@ class Inventory {
    * @description: REST Endpoint that returns apikey by username by password - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/inventory/getApiKey/).
    */
   async getApiKey(
-    { userName, password } = {},
-    { headers } = { headers: false }
+    { userName, password, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = InventoryPublicValidator.getApiKey().validate(
       { userName, password },
@@ -85,12 +86,12 @@ class Inventory {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -113,6 +114,7 @@ class Inventory {
 
   /**
    * @param {InventoryPublicValidator.GetConfigByApiKeyParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PublicAPIClient").Options} - Options
    * @returns {Promise<InventoryPublicModel.ResponseEnvelopeSlingshotConfigurationDetail>}
    *   - Success response
@@ -121,7 +123,10 @@ class Inventory {
    * @summary: Get Slingshot Configuration Of  A Company using API key
    * @description: REST Endpoint that returns all configuration detail of a company - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/inventory/getConfigByApiKey/).
    */
-  async getConfigByApiKey({ apikey } = {}, { headers } = { headers: false }) {
+  async getConfigByApiKey(
+    { apikey, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = InventoryPublicValidator.getConfigByApiKey().validate(
       { apikey },
       { abortEarly: false, allowUnknown: true }
@@ -158,12 +163,12 @@ class Inventory {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -186,6 +191,7 @@ class Inventory {
 
   /**
    * @param {InventoryPublicValidator.GetJobByCodeParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PublicAPIClient").Options} - Options
    * @returns {Promise<InventoryPublicModel.ResponseEnvelopeJobConfigDTO>} -
    *   Success response
@@ -193,7 +199,10 @@ class Inventory {
    * @summary: Get Job Config By Code
    * @description: REST Endpoint that returns job config by code - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/inventory/getJobByCode/).
    */
-  async getJobByCode({ code } = {}, { headers } = { headers: false }) {
+  async getJobByCode(
+    { code, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = InventoryPublicValidator.getJobByCode().validate(
       { code },
       { abortEarly: false, allowUnknown: true }
@@ -229,12 +238,12 @@ class Inventory {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -257,6 +266,7 @@ class Inventory {
 
   /**
    * @param {InventoryPublicValidator.GetJobCodesMetricsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PublicAPIClient").Options} - Options
    * @returns {Promise<InventoryPublicModel.ResponseEnvelopeObject>} - Success response
    * @name getJobCodesMetrics
@@ -264,8 +274,8 @@ class Inventory {
    * @description: Endpoint to return all JobCodes present in Metrics Collection - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/inventory/getJobCodesMetrics/).
    */
   async getJobCodesMetrics(
-    { dailyJob, jobCode } = {},
-    { headers } = { headers: false }
+    { dailyJob, jobCode, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = InventoryPublicValidator.getJobCodesMetrics().validate(
       { dailyJob, jobCode },
@@ -304,12 +314,12 @@ class Inventory {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -334,6 +344,7 @@ class Inventory {
    * @param {InventoryPublicValidator.GetJobConfigByIntegrationTypeParam} arg
    *   - Arg object.
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PublicAPIClient").Options} - Options
    * @returns {Promise<InventoryPublicModel.ResponseEnvelopeListJobConfigDTO>}
    *   - Success response
@@ -343,8 +354,8 @@ class Inventory {
    * @description: REST Endpoint that returns all job Configs by Integration Type - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/inventory/getJobConfigByIntegrationType/).
    */
   async getJobConfigByIntegrationType(
-    { integrationType, disable } = {},
-    { headers } = { headers: false }
+    { integrationType, disable, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -385,12 +396,12 @@ class Inventory {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -413,6 +424,7 @@ class Inventory {
 
   /**
    * @param {InventoryPublicValidator.SaveJobCodesMetricsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PublicAPIClient").Options} - Options
    * @returns {Promise<InventoryPublicModel.ResponseEnvelopeEmailJobMetrics>}
    *   - Success response
@@ -421,7 +433,10 @@ class Inventory {
    * @summary: Save JobCode Metrics
    * @description: Endpoint to save JobCode Metrics - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/inventory/saveJobCodesMetrics/).
    */
-  async saveJobCodesMetrics({ body } = {}, { headers } = { headers: false }) {
+  async saveJobCodesMetrics(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = InventoryPublicValidator.saveJobCodesMetrics().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -457,12 +472,12 @@ class Inventory {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

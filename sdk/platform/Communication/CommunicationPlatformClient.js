@@ -15,6 +15,7 @@ class Communication {
    * @param {CommunicationPlatformValidator.GetSystemNotificationsParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommunicationPlatformModel.SystemNotifications>} -
    *   Success response
@@ -23,8 +24,8 @@ class Communication {
    * @description: Get system notifications - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/communication/getSystemNotifications/).
    */
   async getSystemNotifications(
-    { pageNo, pageSize } = {},
-    { headers } = { headers: false }
+    { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -68,12 +69,12 @@ class Communication {
       `/service/platform/communication/v1.0/company/${this.config.companyId}/notification/system-notifications/`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

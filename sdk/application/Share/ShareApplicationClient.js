@@ -41,13 +41,17 @@ class Share {
 
   /**
    * @param {ShareApplicationValidator.CreateShortLinkParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ShareApplicationModel.ShortLinkRes>} - Success response
    * @name createShortLink
    * @summary: Create a short link
    * @description: Use this API to create a short link that is easy to write/share/read as compared to long URLs. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/createShortLink/).
    */
-  async createShortLink({ body } = {}, { headers } = { headers: false }) {
+  async createShortLink(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ShareApplicationValidator.createShortLink().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -83,12 +87,12 @@ class Share {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -110,13 +114,18 @@ class Share {
   }
 
   /**
+   * @param {ShareApplicationValidator.GetApplicationQRCodeParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ShareApplicationModel.QRCodeResp>} - Success response
    * @name getApplicationQRCode
    * @summary: Create QR Code of an app
    * @description: Use this API to create a QR code of an app for sharing it with users who want to use the app. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/getApplicationQRCode/).
    */
-  async getApplicationQRCode({ headers } = { headers: false }) {
+  async getApplicationQRCode(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ShareApplicationValidator.getApplicationQRCode().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -152,12 +161,12 @@ class Share {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -180,6 +189,7 @@ class Share {
 
   /**
    * @param {ShareApplicationValidator.GetCollectionQRCodeBySlugParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ShareApplicationModel.QRCodeResp>} - Success response
    * @name getCollectionQRCodeBySlug
@@ -187,8 +197,8 @@ class Share {
    * @description: Use this API to create a QR code of a collection of products for sharing it with users who want to view/purchase the collection. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/getCollectionQRCodeBySlug/).
    */
   async getCollectionQRCodeBySlug(
-    { slug } = {},
-    { headers } = { headers: false }
+    { slug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -227,12 +237,12 @@ class Share {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -256,6 +266,7 @@ class Share {
   /**
    * @param {ShareApplicationValidator.GetOriginalShortLinkByHashParam} arg -
    *   Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ShareApplicationModel.ShortLinkRes>} - Success response
    * @name getOriginalShortLinkByHash
@@ -263,8 +274,8 @@ class Share {
    * @description: Use this API to retrieve the original link from a short-link by using a hash value. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/getOriginalShortLinkByHash/).
    */
   async getOriginalShortLinkByHash(
-    { hash } = {},
-    { headers } = { headers: false }
+    { hash, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -303,12 +314,12 @@ class Share {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -331,6 +342,7 @@ class Share {
 
   /**
    * @param {ShareApplicationValidator.GetProductQRCodeBySlugParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ShareApplicationModel.QRCodeResp>} - Success response
    * @name getProductQRCodeBySlug
@@ -338,8 +350,8 @@ class Share {
    * @description: Use this API to create a QR code of a product for sharing it with users who want to view/purchase the product. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/getProductQRCodeBySlug/).
    */
   async getProductQRCodeBySlug(
-    { slug } = {},
-    { headers } = { headers: false }
+    { slug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -378,12 +390,12 @@ class Share {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -406,13 +418,17 @@ class Share {
 
   /**
    * @param {ShareApplicationValidator.GetShortLinkByHashParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ShareApplicationModel.ShortLinkRes>} - Success response
    * @name getShortLinkByHash
    * @summary: Get short link by hash
    * @description: Use this API to get a short link by using a hash value. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/getShortLinkByHash/).
    */
-  async getShortLinkByHash({ hash } = {}, { headers } = { headers: false }) {
+  async getShortLinkByHash(
+    { hash, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ShareApplicationValidator.getShortLinkByHash().validate(
       { hash },
       { abortEarly: false, allowUnknown: true }
@@ -448,12 +464,12 @@ class Share {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -476,13 +492,17 @@ class Share {
 
   /**
    * @param {ShareApplicationValidator.GetUrlQRCodeParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ShareApplicationModel.QRCodeResp>} - Success response
    * @name getUrlQRCode
    * @summary: Create QR Code of a URL
    * @description: Use this API to create a QR code of a URL for sharing it with users who want to visit the link. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/share/getUrlQRCode/).
    */
-  async getUrlQRCode({ url } = {}, { headers } = { headers: false }) {
+  async getUrlQRCode(
+    { url, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ShareApplicationValidator.getUrlQRCode().validate(
       { url },
       { abortEarly: false, allowUnknown: true }
@@ -519,12 +539,12 @@ class Share {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

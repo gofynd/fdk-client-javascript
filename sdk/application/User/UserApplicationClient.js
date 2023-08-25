@@ -86,13 +86,17 @@ class User {
 
   /**
    * @param {UserApplicationValidator.AddEmailParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.VerifyEmailOTPSuccess>} - Success response
    * @name addEmail
    * @summary: Add email to profile
    * @description: Use this API to add a new email address to a profile - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/addEmail/).
    */
-  async addEmail({ body, platform } = {}, { headers } = { headers: false }) {
+  async addEmail(
+    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = UserApplicationValidator.addEmail().validate(
       { body, platform },
       { abortEarly: false, allowUnknown: true }
@@ -127,12 +131,12 @@ class User {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -155,6 +159,7 @@ class User {
 
   /**
    * @param {UserApplicationValidator.AddMobileNumberParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.VerifyMobileOTPSuccess>} - Success response
    * @name addMobileNumber
@@ -162,8 +167,8 @@ class User {
    * @description: Use this API to add a new mobile number to a profile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/addMobileNumber/).
    */
   async addMobileNumber(
-    { body, platform } = {},
-    { headers } = { headers: false }
+    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = UserApplicationValidator.addMobileNumber().validate(
       { body, platform },
@@ -201,12 +206,12 @@ class User {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -229,6 +234,7 @@ class User {
 
   /**
    * @param {UserApplicationValidator.DeleteEmailParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
    * @name deleteEmail
@@ -236,8 +242,10 @@ class User {
    * @description: Use this API to delete an email address from a profile - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/deleteEmail/).
    */
   async deleteEmail(
-    { active, primary, verified, email, platform } = {},
-    { headers } = { headers: false }
+    { active, primary, verified, email, platform, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = UserApplicationValidator.deleteEmail().validate(
       { active, primary, verified, email, platform },
@@ -277,12 +285,12 @@ class User {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -305,6 +313,7 @@ class User {
 
   /**
    * @param {UserApplicationValidator.DeleteMobileNumberParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
    * @name deleteMobileNumber
@@ -312,8 +321,16 @@ class User {
    * @description: Use this API to delete a mobile number from a profile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/deleteMobileNumber/).
    */
   async deleteMobileNumber(
-    { active, primary, verified, countryCode, phone, platform } = {},
-    { headers } = { headers: false }
+    {
+      active,
+      primary,
+      verified,
+      countryCode,
+      phone,
+      platform,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = UserApplicationValidator.deleteMobileNumber().validate(
       { active, primary, verified, countryCode, phone, platform },
@@ -356,12 +373,12 @@ class User {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -384,13 +401,17 @@ class User {
 
   /**
    * @param {UserApplicationValidator.DeleteUserParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.DeleteUserSuccess>} - Success response
    * @name deleteUser
    * @summary: verify otp and delete user
    * @description: verify otp and delete user - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/deleteUser/).
    */
-  async deleteUser({ body } = {}, { headers } = { headers: false }) {
+  async deleteUser(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = UserApplicationValidator.deleteUser().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -424,12 +445,12 @@ class User {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -452,13 +473,17 @@ class User {
 
   /**
    * @param {UserApplicationValidator.ForgotPasswordParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
    * @name forgotPassword
    * @summary: Forgot Password
    * @description: Use this API to reset a password using the code sent on email or SMS. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/forgotPassword/).
    */
-  async forgotPassword({ body } = {}, { headers } = { headers: false }) {
+  async forgotPassword(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = UserApplicationValidator.forgotPassword().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -494,12 +519,12 @@ class User {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -521,13 +546,18 @@ class User {
   }
 
   /**
+   * @param {UserApplicationValidator.GetListOfActiveSessionsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.SessionListSuccess>} - Success response
    * @name getListOfActiveSessions
    * @summary: Get list of sessions
    * @description: Use this API to retrieve all active sessions of a user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/getListOfActiveSessions/).
    */
-  async getListOfActiveSessions({ headers } = { headers: false }) {
+  async getListOfActiveSessions(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = UserApplicationValidator.getListOfActiveSessions().validate(
@@ -565,12 +595,12 @@ class User {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -592,13 +622,18 @@ class User {
   }
 
   /**
+   * @param {UserApplicationValidator.GetLoggedInUserParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.UserObjectSchema>} - Success response
    * @name getLoggedInUser
    * @summary: Get logged in user
    * @description: Use this API  to get the details of a logged in user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/getLoggedInUser/).
    */
-  async getLoggedInUser({ headers } = { headers: false }) {
+  async getLoggedInUser(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = UserApplicationValidator.getLoggedInUser().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -634,12 +669,12 @@ class User {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -662,13 +697,17 @@ class User {
 
   /**
    * @param {UserApplicationValidator.GetPlatformConfigParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.PlatformSchema>} - Success response
    * @name getPlatformConfig
    * @summary: Get platform configurations
    * @description: Use this API to get all the platform configurations such as mobile image, desktop image, social logins, and all other text. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/getPlatformConfig/).
    */
-  async getPlatformConfig({ name } = {}, { headers } = { headers: false }) {
+  async getPlatformConfig(
+    { name, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = UserApplicationValidator.getPlatformConfig().validate(
       { name },
       { abortEarly: false, allowUnknown: true }
@@ -705,12 +744,12 @@ class User {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -732,13 +771,18 @@ class User {
   }
 
   /**
+   * @param {UserApplicationValidator.HasPasswordParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.HasPasswordSuccess>} - Success response
    * @name hasPassword
    * @summary: Check password
    * @description: Use this API to check if user has created a password for login. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/hasPassword/).
    */
-  async hasPassword({ headers } = { headers: false }) {
+  async hasPassword(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = UserApplicationValidator.hasPassword().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -772,12 +816,12 @@ class User {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -800,6 +844,7 @@ class User {
 
   /**
    * @param {UserApplicationValidator.LoginWithAppleIOSParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.AuthSuccess>} - Success response
    * @name loginWithAppleIOS
@@ -807,8 +852,8 @@ class User {
    * @description: Use this API to login or register in iOS app using Apple Account credentials. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithAppleIOS/).
    */
   async loginWithAppleIOS(
-    { body, platform } = {},
-    { headers } = { headers: false }
+    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = UserApplicationValidator.loginWithAppleIOS().validate(
       { body, platform },
@@ -846,12 +891,12 @@ class User {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -874,6 +919,7 @@ class User {
 
   /**
    * @param {UserApplicationValidator.LoginWithEmailAndPasswordParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
    * @name loginWithEmailAndPassword
@@ -881,8 +927,8 @@ class User {
    * @description: Use this API to login or register using an email address and password. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithEmailAndPassword/).
    */
   async loginWithEmailAndPassword(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -921,12 +967,12 @@ class User {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -949,6 +995,7 @@ class User {
 
   /**
    * @param {UserApplicationValidator.LoginWithFacebookParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.AuthSuccess>} - Success response
    * @name loginWithFacebook
@@ -956,8 +1003,8 @@ class User {
    * @description: Use this API to login or register using Facebook credentials. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithFacebook/).
    */
   async loginWithFacebook(
-    { body, platform } = {},
-    { headers } = { headers: false }
+    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = UserApplicationValidator.loginWithFacebook().validate(
       { body, platform },
@@ -995,12 +1042,12 @@ class User {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1023,6 +1070,7 @@ class User {
 
   /**
    * @param {UserApplicationValidator.LoginWithGoogleParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.AuthSuccess>} - Success response
    * @name loginWithGoogle
@@ -1030,8 +1078,8 @@ class User {
    * @description: Use this API to login or register using Google Account credentials. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithGoogle/).
    */
   async loginWithGoogle(
-    { body, platform } = {},
-    { headers } = { headers: false }
+    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = UserApplicationValidator.loginWithGoogle().validate(
       { body, platform },
@@ -1069,12 +1117,12 @@ class User {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1097,6 +1145,7 @@ class User {
 
   /**
    * @param {UserApplicationValidator.LoginWithGoogleAndroidParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.AuthSuccess>} - Success response
    * @name loginWithGoogleAndroid
@@ -1104,8 +1153,8 @@ class User {
    * @description: Use this API to login or register in Android app using Google Account credentials. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithGoogleAndroid/).
    */
   async loginWithGoogleAndroid(
-    { body, platform } = {},
-    { headers } = { headers: false }
+    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1145,12 +1194,12 @@ class User {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1173,6 +1222,7 @@ class User {
 
   /**
    * @param {UserApplicationValidator.LoginWithGoogleIOSParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.AuthSuccess>} - Success response
    * @name loginWithGoogleIOS
@@ -1180,8 +1230,8 @@ class User {
    * @description: Use this API to login or register in iOS app using Google Account credentials. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithGoogleIOS/).
    */
   async loginWithGoogleIOS(
-    { body, platform } = {},
-    { headers } = { headers: false }
+    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = UserApplicationValidator.loginWithGoogleIOS().validate(
       { body, platform },
@@ -1219,12 +1269,12 @@ class User {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1247,6 +1297,7 @@ class User {
 
   /**
    * @param {UserApplicationValidator.LoginWithOTPParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.SendOtpResponse>} - Success response
    * @name loginWithOTP
@@ -1254,8 +1305,8 @@ class User {
    * @description: Use this API to login or register with a One-time Password (OTP) sent via Email or SMS. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithOTP/).
    */
   async loginWithOTP(
-    { body, platform } = {},
-    { headers } = { headers: false }
+    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = UserApplicationValidator.loginWithOTP().validate(
       { body, platform },
@@ -1293,12 +1344,12 @@ class User {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1321,13 +1372,17 @@ class User {
 
   /**
    * @param {UserApplicationValidator.LoginWithTokenParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
    * @name loginWithToken
    * @summary: Login or Register with token
    * @description: Use this API to login or register using a token for authentication. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/loginWithToken/).
    */
-  async loginWithToken({ body } = {}, { headers } = { headers: false }) {
+  async loginWithToken(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = UserApplicationValidator.loginWithToken().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -1363,12 +1418,12 @@ class User {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1390,13 +1445,18 @@ class User {
   }
 
   /**
+   * @param {UserApplicationValidator.LogoutParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.LogoutSuccess>} - Success response
    * @name logout
    * @summary: Logs out currently logged in user
    * @description: Use this API to check to logout a user from the app. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/logout/).
    */
-  async logout({ headers } = { headers: false }) {
+  async logout(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = UserApplicationValidator.logout().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -1430,12 +1490,12 @@ class User {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1458,6 +1518,7 @@ class User {
 
   /**
    * @param {UserApplicationValidator.RegisterWithFormParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.RegisterFormSuccess>} - Success response
    * @name registerWithForm
@@ -1465,8 +1526,8 @@ class User {
    * @description: Use this API to perform user registration by sending form data in the request body. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/registerWithForm/).
    */
   async registerWithForm(
-    { body, platform } = {},
-    { headers } = { headers: false }
+    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = UserApplicationValidator.registerWithForm().validate(
       { body, platform },
@@ -1504,12 +1565,12 @@ class User {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1532,6 +1593,7 @@ class User {
 
   /**
    * @param {UserApplicationValidator.SendOTPOnEmailParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.EmailOtpSuccess>} - Success response
    * @name sendOTPOnEmail
@@ -1539,8 +1601,8 @@ class User {
    * @description: Use this API to send an OTP to an email ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendOTPOnEmail/).
    */
   async sendOTPOnEmail(
-    { body, platform } = {},
-    { headers } = { headers: false }
+    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = UserApplicationValidator.sendOTPOnEmail().validate(
       { body, platform },
@@ -1578,12 +1640,12 @@ class User {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1606,6 +1668,7 @@ class User {
 
   /**
    * @param {UserApplicationValidator.SendOTPOnMobileParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.OtpSuccess>} - Success response
    * @name sendOTPOnMobile
@@ -1613,8 +1676,8 @@ class User {
    * @description: Use this API to send an OTP to a mobile number. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendOTPOnMobile/).
    */
   async sendOTPOnMobile(
-    { body, platform } = {},
-    { headers } = { headers: false }
+    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = UserApplicationValidator.sendOTPOnMobile().validate(
       { body, platform },
@@ -1652,12 +1715,12 @@ class User {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1680,6 +1743,7 @@ class User {
 
   /**
    * @param {UserApplicationValidator.SendResetPasswordEmailParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.ResetPasswordSuccess>} - Success response
    * @name sendResetPasswordEmail
@@ -1687,8 +1751,8 @@ class User {
    * @description: Use this API to reset a password using the link sent on email. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendResetPasswordEmail/).
    */
   async sendResetPasswordEmail(
-    { body, platform } = {},
-    { headers } = { headers: false }
+    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1728,12 +1792,12 @@ class User {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1756,6 +1820,7 @@ class User {
 
   /**
    * @param {UserApplicationValidator.SendResetPasswordMobileParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.ResetPasswordSuccess>} - Success response
    * @name sendResetPasswordMobile
@@ -1763,8 +1828,8 @@ class User {
    * @description: Use this API to reset a password using the link sent on mobile. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendResetPasswordMobile/).
    */
   async sendResetPasswordMobile(
-    { body, platform } = {},
-    { headers } = { headers: false }
+    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1804,12 +1869,12 @@ class User {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1832,13 +1897,17 @@ class User {
 
   /**
    * @param {UserApplicationValidator.SendResetTokenParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.ResetPasswordSuccess>} - Success response
    * @name sendResetToken
    * @summary: Reset Password using token
    * @description: Use this API to send code to reset password. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendResetToken/).
    */
-  async sendResetToken({ body } = {}, { headers } = { headers: false }) {
+  async sendResetToken(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = UserApplicationValidator.sendResetToken().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -1874,12 +1943,12 @@ class User {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1903,6 +1972,7 @@ class User {
   /**
    * @param {UserApplicationValidator.SendVerificationLinkToEmailParam} arg -
    *   Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.SendEmailVerifyLinkSuccess>} -
    *   Success response
@@ -1911,8 +1981,8 @@ class User {
    * @description: Use this API to send verification link to an email address. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendVerificationLinkToEmail/).
    */
   async sendVerificationLinkToEmail(
-    { body, platform } = {},
-    { headers } = { headers: false }
+    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1952,12 +2022,12 @@ class User {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1982,6 +2052,7 @@ class User {
    * @param {UserApplicationValidator.SendVerificationLinkToMobileParam} arg
    *   - Arg object.
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.SendMobileVerifyLinkSuccess>} -
    *   Success response
@@ -1990,8 +2061,8 @@ class User {
    * @description: Use this API to send a verification link to a mobile number - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendVerificationLinkToMobile/).
    */
   async sendVerificationLinkToMobile(
-    { body, platform } = {},
-    { headers } = { headers: false }
+    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -2031,12 +2102,12 @@ class User {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2059,13 +2130,17 @@ class User {
 
   /**
    * @param {UserApplicationValidator.SetEmailAsPrimaryParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
    * @name setEmailAsPrimary
    * @summary: Set email as primary
    * @description: Use this API to set an email address as primary. Primary email ID is a email address used for all future communications. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/setEmailAsPrimary/).
    */
-  async setEmailAsPrimary({ body } = {}, { headers } = { headers: false }) {
+  async setEmailAsPrimary(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = UserApplicationValidator.setEmailAsPrimary().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -2101,12 +2176,12 @@ class User {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2129,6 +2204,7 @@ class User {
 
   /**
    * @param {UserApplicationValidator.SetMobileNumberAsPrimaryParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.LoginSuccess>} - Success response
    * @name setMobileNumberAsPrimary
@@ -2136,8 +2212,8 @@ class User {
    * @description: Use this API to set a mobile number as primary. Primary number is a verified number used for all future communications. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/setMobileNumberAsPrimary/).
    */
   async setMobileNumberAsPrimary(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -2176,12 +2252,12 @@ class User {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2204,13 +2280,17 @@ class User {
 
   /**
    * @param {UserApplicationValidator.UpdatePasswordParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.VerifyEmailSuccess>} - Success response
    * @name updatePassword
    * @summary: Update user password
    * @description: Use this API to update the password. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/updatePassword/).
    */
-  async updatePassword({ body } = {}, { headers } = { headers: false }) {
+  async updatePassword(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = UserApplicationValidator.updatePassword().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -2246,12 +2326,12 @@ class User {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2274,6 +2354,7 @@ class User {
 
   /**
    * @param {UserApplicationValidator.UpdateProfileParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.ProfileEditSuccess>} - Success response
    * @name updateProfile
@@ -2281,8 +2362,8 @@ class User {
    * @description: Use this API to update details in the user profile. Details can be first name, last name, gender, email, phone number, or profile picture. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/updateProfile/).
    */
   async updateProfile(
-    { body, platform } = {},
-    { headers } = { headers: false }
+    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = UserApplicationValidator.updateProfile().validate(
       { body, platform },
@@ -2320,12 +2401,12 @@ class User {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2348,13 +2429,17 @@ class User {
 
   /**
    * @param {UserApplicationValidator.VerifyEmailParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.VerifyEmailSuccess>} - Success response
    * @name verifyEmail
    * @summary: Verify email
    * @description: Use this API to send a verification code to verify an email. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyEmail/).
    */
-  async verifyEmail({ body } = {}, { headers } = { headers: false }) {
+  async verifyEmail(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = UserApplicationValidator.verifyEmail().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -2388,12 +2473,12 @@ class User {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2416,6 +2501,7 @@ class User {
 
   /**
    * @param {UserApplicationValidator.VerifyEmailOTPParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.VerifyOtpSuccess>} - Success response
    * @name verifyEmailOTP
@@ -2423,8 +2509,8 @@ class User {
    * @description: Use this API to verify the OTP received on an email ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyEmailOTP/).
    */
   async verifyEmailOTP(
-    { body, platform } = {},
-    { headers } = { headers: false }
+    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = UserApplicationValidator.verifyEmailOTP().validate(
       { body, platform },
@@ -2462,12 +2548,12 @@ class User {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2490,13 +2576,17 @@ class User {
 
   /**
    * @param {UserApplicationValidator.VerifyMobileParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.VerifyEmailSuccess>} - Success response
    * @name verifyMobile
    * @summary: Verify mobile
    * @description: Use this API to send a verification code to verify a mobile number. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyMobile/).
    */
-  async verifyMobile({ body } = {}, { headers } = { headers: false }) {
+  async verifyMobile(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = UserApplicationValidator.verifyMobile().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -2532,12 +2622,12 @@ class User {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2560,6 +2650,7 @@ class User {
 
   /**
    * @param {UserApplicationValidator.VerifyMobileOTPParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<UserApplicationModel.VerifyOtpSuccess>} - Success response
    * @name verifyMobileOTP
@@ -2567,8 +2658,8 @@ class User {
    * @description: Use this API to verify the OTP received on a mobile number. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyMobileOTP/).
    */
   async verifyMobileOTP(
-    { body, platform } = {},
-    { headers } = { headers: false }
+    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = UserApplicationValidator.verifyMobileOTP().validate(
       { body, platform },
@@ -2606,12 +2697,12 @@ class User {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
