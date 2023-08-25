@@ -240,12 +240,15 @@ export = CompanyProfilePlatformModel;
  * @property {Object} [_custom_json]
  * @property {GetAddressSerializer} address
  * @property {boolean} [auto_invoice]
+ * @property {AverageOrderProcessingTime} [avg_order_processing_time]
+ * @property {boolean} [bulk_shipment]
  * @property {string} code
  * @property {GetCompanySerializer} [company]
  * @property {SellerPhoneNumber[]} [contact_numbers]
  * @property {UserSerializer} [created_by]
  * @property {string} [created_on]
  * @property {boolean} [credit_note]
+ * @property {boolean} [default_order_acceptance_timing]
  * @property {string} display_name
  * @property {Document[]} [documents]
  * @property {InvoiceDetailsSerializer} [gst_credentials]
@@ -255,10 +258,12 @@ export = CompanyProfilePlatformModel;
  * @property {string} [modified_on]
  * @property {string} name
  * @property {string[]} [notification_emails]
+ * @property {LocationDayWiseSerializer[]} [order_acceptance_timing]
  * @property {string} [phone_number]
  * @property {ProductReturnConfigSerializer} [product_return_config]
  * @property {string} [stage]
  * @property {string} [store_type]
+ * @property {string[]} [tags]
  * @property {LocationDayWiseSerializer[]} [timing]
  * @property {number} [uid]
  * @property {UserSerializer} [verified_by]
@@ -316,7 +321,8 @@ export = CompanyProfilePlatformModel;
  * @property {number} company
  * @property {SellerPhoneNumber[]} [contact_numbers]
  * @property {boolean} [credit_note]
- * @property {boolean} [default_order_acceptance_timing]
+ * @property {boolean} [default_order_acceptance_timing] - Flag to set
+ *   order_acceptance_timing as default timing
  * @property {string} display_name
  * @property {Document[]} [documents]
  * @property {InvoiceDetailsSerializer} [gst_credentials]
@@ -324,7 +330,8 @@ export = CompanyProfilePlatformModel;
  * @property {LocationManagerSerializer} [manager]
  * @property {string} name
  * @property {string[]} [notification_emails]
- * @property {LocationDayWiseSerializer[]} [order_acceptance_timing]
+ * @property {LocationDayWiseSerializer[]} [order_acceptance_timing] - Order
+ *   acceptance timing of the store
  * @property {ProductReturnConfigSerializer} [product_return_config]
  * @property {string} [stage]
  * @property {string} [store_type]
@@ -677,12 +684,15 @@ type GetLocationSerializer = {
     _custom_json?: any;
     address: GetAddressSerializer;
     auto_invoice?: boolean;
+    avg_order_processing_time?: AverageOrderProcessingTime;
+    bulk_shipment?: boolean;
     code: string;
     company?: GetCompanySerializer;
     contact_numbers?: SellerPhoneNumber[];
     created_by?: UserSerializer;
     created_on?: string;
     credit_note?: boolean;
+    default_order_acceptance_timing?: boolean;
     display_name: string;
     documents?: Document[];
     gst_credentials?: InvoiceDetailsSerializer;
@@ -692,10 +702,12 @@ type GetLocationSerializer = {
     modified_on?: string;
     name: string;
     notification_emails?: string[];
+    order_acceptance_timing?: LocationDayWiseSerializer[];
     phone_number?: string;
     product_return_config?: ProductReturnConfigSerializer;
     stage?: string;
     store_type?: string;
+    tags?: string[];
     timing?: LocationDayWiseSerializer[];
     uid?: number;
     verified_by?: UserSerializer;
@@ -761,6 +773,10 @@ type LocationSerializer = {
     company: number;
     contact_numbers?: SellerPhoneNumber[];
     credit_note?: boolean;
+    /**
+     * - Flag to set
+     * order_acceptance_timing as default timing
+     */
     default_order_acceptance_timing?: boolean;
     display_name: string;
     documents?: Document[];
@@ -769,6 +785,10 @@ type LocationSerializer = {
     manager?: LocationManagerSerializer;
     name: string;
     notification_emails?: string[];
+    /**
+     * - Order
+     * acceptance timing of the store
+     */
     order_acceptance_timing?: LocationDayWiseSerializer[];
     product_return_config?: ProductReturnConfigSerializer;
     stage?: string;

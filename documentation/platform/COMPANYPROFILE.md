@@ -1798,12 +1798,15 @@ Returns a success response
  | _custom_json | string? |  yes  |  |
  | address | [GetAddressSerializer](#GetAddressSerializer) |  no  |  |
  | auto_invoice | boolean? |  yes  |  |
+ | avg_order_processing_time | [AverageOrderProcessingTime](#AverageOrderProcessingTime)? |  yes  |  |
+ | bulk_shipment | boolean? |  yes  |  |
  | code | string |  no  |  |
  | company | [GetCompanySerializer](#GetCompanySerializer)? |  yes  |  |
  | contact_numbers | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
  | created_by | [UserSerializer](#UserSerializer)? |  yes  |  |
  | created_on | string? |  yes  |  |
  | credit_note | boolean? |  yes  |  |
+ | default_order_acceptance_timing | boolean? |  yes  |  |
  | display_name | string |  no  |  |
  | documents | [[Document](#Document)]? |  yes  |  |
  | gst_credentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)? |  yes  |  |
@@ -1813,10 +1816,12 @@ Returns a success response
  | modified_on | string? |  yes  |  |
  | name | string |  no  |  |
  | notification_emails | [string]? |  yes  |  |
+ | order_acceptance_timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)]? |  yes  |  |
  | phone_number | string? |  yes  |  |
  | product_return_config | [ProductReturnConfigSerializer](#ProductReturnConfigSerializer)? |  yes  |  |
  | stage | string? |  yes  |  |
  | store_type | string? |  yes  |  |
+ | tags | [string]? |  yes  |  |
  | timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)]? |  yes  |  |
  | uid | number? |  yes  |  |
  | verified_by | [UserSerializer](#UserSerializer)? |  yes  |  |
@@ -1914,7 +1919,7 @@ Returns a success response
  | company | number |  no  |  |
  | contact_numbers | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
  | credit_note | boolean? |  yes  |  |
- | default_order_acceptance_timing | boolean? |  yes  |  |
+ | default_order_acceptance_timing | boolean? |  yes  | Flag to set order_acceptance_timing as default timing |
  | display_name | string |  no  |  |
  | documents | [[Document](#Document)]? |  yes  |  |
  | gst_credentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)? |  yes  |  |
@@ -1922,7 +1927,7 @@ Returns a success response
  | manager | [LocationManagerSerializer](#LocationManagerSerializer)? |  yes  |  |
  | name | string |  no  |  |
  | notification_emails | [string]? |  yes  |  |
- | order_acceptance_timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)]? |  yes  |  |
+ | order_acceptance_timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)]? |  yes  | Order acceptance timing of the store |
  | product_return_config | [ProductReturnConfigSerializer](#ProductReturnConfigSerializer)? |  yes  |  |
  | stage | string? |  yes  |  |
  | store_type | string? |  yes  |  |
