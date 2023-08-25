@@ -2,7 +2,7 @@ const { fdkAxios } = require("../common/AxiosHelper");
 
 /**
  * @typedef {Object} Options
- * @property {boolean} headers - Whether headers are returned or not.
+ * @property {boolean} responseHeaders - Whether response headers are returned or not.
  */
 
 class APIClient {
@@ -34,7 +34,7 @@ class APIClient {
         ...extraHeaders,
         ...xHeaders,
       },
-      _returnHeaders: options.headers,
+      responseHeaders: options.responseHeaders,
     };
     rawRequest = JSON.parse(JSON.stringify(rawRequest));
 

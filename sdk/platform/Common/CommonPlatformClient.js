@@ -13,6 +13,7 @@ class Common {
 
   /**
    * @param {CommonPlatformValidator.GetLocationsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommonPlatformModel.Locations>} - Success response
    * @name getLocations
@@ -20,8 +21,8 @@ class Common {
    * @description: Retrieve a list of countries, states, or cities based on the provided location_type and id parameters. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/common/getLocations/).
    */
   async getLocations(
-    { locationType, id } = {},
-    { headers } = { headers: false }
+    { locationType, id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CommonPlatformValidator.getLocations().validate(
       { locationType, id },
@@ -55,12 +56,12 @@ class Common {
       `/service/common/configuration/v1.0/location`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -83,6 +84,7 @@ class Common {
 
   /**
    * @param {CommonPlatformValidator.SearchApplicationParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CommonPlatformModel.ApplicationResponse>} - Success response
    * @name searchApplication
@@ -90,8 +92,8 @@ class Common {
    * @description: Provide application name or domain url - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/common/searchApplication/).
    */
   async searchApplication(
-    { authorization, query } = {},
-    { headers } = { headers: false }
+    { authorization, query, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CommonPlatformValidator.searchApplication().validate(
       { authorization, query },
@@ -127,12 +129,12 @@ class Common {
       `/service/common/configuration/v1.0/application/search-application`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

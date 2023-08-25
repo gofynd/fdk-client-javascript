@@ -34,13 +34,17 @@ class Theme {
 
   /**
    * @param {ThemeApplicationValidator.GetAllPagesParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ThemeApplicationModel.AllAvailablePageSchema>} - Success response
    * @name getAllPages
    * @summary: Get all pages of a theme
    * @description: Use this API to retrieve all the available pages of a theme by its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getAllPages/).
    */
-  async getAllPages({ themeId } = {}, { headers } = { headers: false }) {
+  async getAllPages(
+    { themeId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ThemeApplicationValidator.getAllPages().validate(
       { themeId },
       { abortEarly: false, allowUnknown: true }
@@ -76,12 +80,12 @@ class Theme {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -103,13 +107,18 @@ class Theme {
   }
 
   /**
+   * @param {ThemeApplicationValidator.GetAppliedThemeParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ThemeApplicationModel.ThemesSchema>} - Success response
    * @name getAppliedTheme
    * @summary: Get the theme currently applied to an application
    * @description: An application has multiple themes, but only one theme can be applied at a time. Use this API to retrieve the theme currently applied to the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getAppliedTheme/).
    */
-  async getAppliedTheme({ headers } = { headers: false }) {
+  async getAppliedTheme(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ThemeApplicationValidator.getAppliedTheme().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -145,12 +154,12 @@ class Theme {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -173,13 +182,17 @@ class Theme {
 
   /**
    * @param {ThemeApplicationValidator.GetPageParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ThemeApplicationModel.AvailablePageSchema>} - Success response
    * @name getPage
    * @summary: Get page of a theme
    * @description: Use this API to retrieve a page of a theme. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getPage/).
    */
-  async getPage({ themeId, pageValue } = {}, { headers } = { headers: false }) {
+  async getPage(
+    { themeId, pageValue, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ThemeApplicationValidator.getPage().validate(
       { themeId, pageValue },
       { abortEarly: false, allowUnknown: true }
@@ -213,12 +226,12 @@ class Theme {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -241,13 +254,17 @@ class Theme {
 
   /**
    * @param {ThemeApplicationValidator.GetThemeForPreviewParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<ThemeApplicationModel.ThemesSchema>} - Success response
    * @name getThemeForPreview
    * @summary: Get a theme for a preview
    * @description: A theme can be previewed before applying it. Use this API to retrieve the preview of a theme by its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getThemeForPreview/).
    */
-  async getThemeForPreview({ themeId } = {}, { headers } = { headers: false }) {
+  async getThemeForPreview(
+    { themeId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ThemeApplicationValidator.getThemeForPreview().validate(
       { themeId },
       { abortEarly: false, allowUnknown: true }
@@ -283,12 +300,12 @@ class Theme {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

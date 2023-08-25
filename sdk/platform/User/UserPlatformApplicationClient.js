@@ -14,13 +14,17 @@ class User {
 
   /**
    * @param {UserPlatformApplicationValidator.ArchiveUserParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<UserPlatformModel.ArchiveUserSuccess>} - Success response
    * @name archiveUser
    * @summary: archive user
    * @description: archive user - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/archiveUser/).
    */
-  async archiveUser({ body } = {}, { headers } = { headers: false }) {
+  async archiveUser(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = UserPlatformApplicationValidator.archiveUser().validate(
       {
         body,
@@ -55,12 +59,12 @@ class User {
       `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/archive`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -83,13 +87,17 @@ class User {
 
   /**
    * @param {UserPlatformApplicationValidator.BlockOrUnblockUsersParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<UserPlatformModel.BlockUserSuccess>} - Success response
    * @name blockOrUnblockUsers
    * @summary: Block/Unblock user
    * @description: Block/Unblock user - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/blockOrUnblockUsers/).
    */
-  async blockOrUnblockUsers({ body } = {}, { headers } = { headers: false }) {
+  async blockOrUnblockUsers(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = UserPlatformApplicationValidator.blockOrUnblockUsers().validate(
@@ -126,12 +134,12 @@ class User {
       `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/activation`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -154,13 +162,17 @@ class User {
 
   /**
    * @param {UserPlatformApplicationValidator.CreateUserParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<UserPlatformModel.CreateUserResponseSchema>} - Success response
    * @name createUser
    * @summary: Create user
    * @description: Create user - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/createUser/).
    */
-  async createUser({ body } = {}, { headers } = { headers: false }) {
+  async createUser(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = UserPlatformApplicationValidator.createUser().validate(
       {
         body,
@@ -195,12 +207,12 @@ class User {
       `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -223,13 +235,17 @@ class User {
 
   /**
    * @param {UserPlatformApplicationValidator.CreateUserGroupParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<UserPlatformModel.UserGroupResponseSchema>} - Success response
    * @name createUserGroup
    * @summary: Create an User Group
    * @description: Use this API to create new user Group - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/createUserGroup/).
    */
-  async createUserGroup({ body } = {}, { headers } = { headers: false }) {
+  async createUserGroup(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = UserPlatformApplicationValidator.createUserGroup().validate(
@@ -266,12 +282,12 @@ class User {
       `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/user_group`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -294,6 +310,7 @@ class User {
 
   /**
    * @param {UserPlatformApplicationValidator.CreateUserSessionParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<UserPlatformModel.CreateUserSessionResponseSchema>} -
    *   Success response
@@ -301,7 +318,10 @@ class User {
    * @summary: Create user session
    * @description: Create user session - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/createUserSession/).
    */
-  async createUserSession({ body } = {}, { headers } = { headers: false }) {
+  async createUserSession(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = UserPlatformApplicationValidator.createUserSession().validate(
@@ -338,12 +358,12 @@ class User {
       `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/session`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -368,6 +388,7 @@ class User {
    * @param {UserPlatformApplicationValidator.DeleteActiveSessionsParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<UserPlatformModel.SessionDeleteResponseSchema>} -
    *   Success response
@@ -376,8 +397,8 @@ class User {
    * @description: Use this API to Delete a list of session of customers who have registered in the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/deleteActiveSessions/).
    */
   async deleteActiveSessions(
-    { id, reason } = {},
-    { headers } = { headers: false }
+    { id, reason, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -419,12 +440,12 @@ class User {
       `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/sessions`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -447,6 +468,7 @@ class User {
 
   /**
    * @param {UserPlatformApplicationValidator.DeleteSessionParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<UserPlatformModel.SessionDeleteResponseSchema>} -
    *   Success response
@@ -455,8 +477,8 @@ class User {
    * @description: Use this API to Delete a session of customers who have registered in the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/deleteSession/).
    */
   async deleteSession(
-    { id, sessionId, reason } = {},
-    { headers } = { headers: false }
+    { id, sessionId, reason, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = UserPlatformApplicationValidator.deleteSession().validate(
       {
@@ -499,12 +521,12 @@ class User {
       `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/session`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -527,13 +549,17 @@ class User {
 
   /**
    * @param {UserPlatformApplicationValidator.GetActiveSessionsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<UserPlatformModel.SessionListResponseSchema>} - Success response
    * @name getActiveSessions
    * @summary: Get a list of all session with info for a user
    * @description: Use this API to retrieve a list of session with info of customers who have registered in the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getActiveSessions/).
    */
-  async getActiveSessions({ id } = {}, { headers } = { headers: false }) {
+  async getActiveSessions(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = UserPlatformApplicationValidator.getActiveSessions().validate(
@@ -571,12 +597,12 @@ class User {
       `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/sessions`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -599,6 +625,7 @@ class User {
 
   /**
    * @param {UserPlatformApplicationValidator.GetCustomersParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<UserPlatformModel.CustomerListResponseSchema>} - Success response
    * @name getCustomers
@@ -606,8 +633,8 @@ class User {
    * @description: Use this API to retrieve a list of customers who have registered in the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getCustomers/).
    */
   async getCustomers(
-    { q, pageSize, pageNo } = {},
-    { headers } = { headers: false }
+    { q, pageSize, pageNo, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = UserPlatformApplicationValidator.getCustomers().validate(
       {
@@ -650,12 +677,12 @@ class User {
       `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/list`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -677,13 +704,18 @@ class User {
   }
 
   /**
+   * @param {UserPlatformApplicationValidator.GetPlatformConfigParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<UserPlatformModel.PlatformSchema>} - Success response
    * @name getPlatformConfig
    * @summary: Get platform configurations
    * @description: Use this API to get all the platform configurations such as mobile image, desktop image, social logins, and all other text. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getPlatformConfig/).
    */
-  async getPlatformConfig({ headers } = { headers: false }) {
+  async getPlatformConfig(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = UserPlatformApplicationValidator.getPlatformConfig().validate(
@@ -716,12 +748,12 @@ class User {
       `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/platform/config`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -744,13 +776,17 @@ class User {
 
   /**
    * @param {UserPlatformApplicationValidator.GetUserGroupByIdParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<UserPlatformModel.UserGroupResponseSchema>} - Success response
    * @name getUserGroupById
    * @summary: Get an User Group by Id
    * @description: Use this API to get details of an existing user Group - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUserGroupById/).
    */
-  async getUserGroupById({ groupId } = {}, { headers } = { headers: false }) {
+  async getUserGroupById(
+    { groupId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = UserPlatformApplicationValidator.getUserGroupById().validate(
@@ -787,12 +823,12 @@ class User {
       `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/user_group/${groupId}`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -815,6 +851,7 @@ class User {
 
   /**
    * @param {UserPlatformApplicationValidator.GetUserGroupsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<UserPlatformModel.UserGroupListResponseSchema>} -
    *   Success response
@@ -823,8 +860,10 @@ class User {
    * @description: Use this API to get User Groups mathing criteria passed in query - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUserGroups/).
    */
   async getUserGroups(
-    { pageNo, pageSize, name, status, groupUid } = {},
-    { headers } = { headers: false }
+    { pageNo, pageSize, name, status, groupUid, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = UserPlatformApplicationValidator.getUserGroups().validate(
       {
@@ -873,12 +912,12 @@ class User {
       `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/user_group`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -901,13 +940,17 @@ class User {
 
   /**
    * @param {UserPlatformApplicationValidator.SearchUsersParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<UserPlatformModel.UserSearchResponseSchema>} - Success response
    * @name searchUsers
    * @summary: Search an existing user.
    * @description: Use this API to retrieve an existing user from a list. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/searchUsers/).
    */
-  async searchUsers({ q, query } = {}, { headers } = { headers: false }) {
+  async searchUsers(
+    { q, query, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = UserPlatformApplicationValidator.searchUsers().validate(
       {
         q,
@@ -946,12 +989,12 @@ class User {
       `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/search`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -974,13 +1017,17 @@ class User {
 
   /**
    * @param {UserPlatformApplicationValidator.UnDeleteUserParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<UserPlatformModel.UnDeleteUserSuccess>} - Success response
    * @name unDeleteUser
    * @summary: undelete user who deleted from application and have not elapsed the platform configured delete days
    * @description: undelete user who deleted from application and have not elapsed the platform configured delete days - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/unDeleteUser/).
    */
-  async unDeleteUser({ body } = {}, { headers } = { headers: false }) {
+  async unDeleteUser(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = UserPlatformApplicationValidator.unDeleteUser().validate(
       {
         body,
@@ -1015,12 +1062,12 @@ class User {
       `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/undelete`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1045,13 +1092,17 @@ class User {
    * @param {UserPlatformApplicationValidator.UpdatePlatformConfigParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<UserPlatformModel.PlatformSchema>} - Success response
    * @name updatePlatformConfig
    * @summary: Update platform configurations
    * @description: Use this API to edit the existing platform configurations such as mobile image, desktop image, social logins, and all other text. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/updatePlatformConfig/).
    */
-  async updatePlatformConfig({ body } = {}, { headers } = { headers: false }) {
+  async updatePlatformConfig(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = UserPlatformApplicationValidator.updatePlatformConfig().validate(
@@ -1088,12 +1139,12 @@ class User {
       `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/platform/config`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1116,13 +1167,17 @@ class User {
 
   /**
    * @param {UserPlatformApplicationValidator.UpdateUserParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<UserPlatformModel.CreateUserResponseSchema>} - Success response
    * @name updateUser
    * @summary: Update user
    * @description: Use this API to update user details, Note: Existing emails and phone numbers of user will be replaced directly if phone_numbers or emails field sent in request data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/updateUser/).
    */
-  async updateUser({ userId, body } = {}, { headers } = { headers: false }) {
+  async updateUser(
+    { userId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = UserPlatformApplicationValidator.updateUser().validate(
       {
         userId,
@@ -1159,12 +1214,12 @@ class User {
       `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/customers/${userId}`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1187,6 +1242,7 @@ class User {
 
   /**
    * @param {UserPlatformApplicationValidator.UpdateUserGroupParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<UserPlatformModel.UserGroupResponseSchema>} - Success response
    * @name updateUserGroup
@@ -1194,8 +1250,8 @@ class User {
    * @description: Use this API to update an existing user Group - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/updateUserGroup/).
    */
   async updateUserGroup(
-    { groupId, body } = {},
-    { headers } = { headers: false }
+    { groupId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1235,12 +1291,12 @@ class User {
       `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/user_group/${groupId}`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

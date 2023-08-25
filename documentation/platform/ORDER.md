@@ -16,6 +16,7 @@ Handles all platform order and shipment api(s)
 * [dispatchManifest](#dispatchmanifest)
 * [downloadBulkActionTemplate](#downloadbulkactiontemplate)
 * [downloadLanesReport](#downloadlanesreport)
+* [eInvoiceRetry](#einvoiceretry)
 * [fetchCreditBalanceDetail](#fetchcreditbalancedetail)
 * [fetchRefundModeConfig](#fetchrefundmodeconfig)
 * [generatePOSReceiptByOrderId](#generateposreceiptbyorderid)
@@ -533,6 +534,80 @@ Bulk Report creation initiated.
   "value": {
     "success": true,
     "batch_id": "0000-1111-2222-3333"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### eInvoiceRetry
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.eInvoiceRetry({  body : value });
+
+// Async/Await
+const data = await platformClient.order.eInvoiceRetry({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [EInvoiceRetry](#EInvoiceRetry) | yes | Request body |
+
+
+Retry e-invoice after failure
+
+*Returned Response:*
+
+
+
+
+[EInvoiceRetryResponse](#EInvoiceRetryResponse)
+
+E-invoice Retry Successfully!!
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; sample1</i></summary>
+
+```json
+{
+  "value": {
+    "response_data": [
+      {
+        "shipment_id": "16342342342343423",
+        "success": true,
+        "message": "IRN already generated, for e-invoice type: invoice"
+      }
+    ],
+    "success_count": 1,
+    "message": "Success Count: 1 out of 1",
+    "success": true
   }
 }
 ```
@@ -6088,6 +6163,52 @@ Verify OTP
  | password | string? |  yes  |  |
  | user | string? |  yes  |  |
  | username | string? |  yes  |  |
+ 
+
+---
+
+#### [EInvoiceResponseData](#EInvoiceResponseData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | ack_dt | string? |  yes  |  |
+ | ack_no | string? |  yes  |  |
+ | irn | string? |  yes  |  |
+ | message | string |  no  |  |
+ | shipment_id | string |  no  |  |
+ | success | boolean |  no  |  |
+ | timeout | number? |  yes  |  |
+ | timeout_unit | string? |  yes  |  |
+ 
+
+---
+
+#### [EInvoiceRetry](#EInvoiceRetry)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shipments_data | [[EInvoiceRetryShipmentData](#EInvoiceRetryShipmentData)]? |  yes  |  |
+ 
+
+---
+
+#### [EInvoiceRetryResponse](#EInvoiceRetryResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
+ | response_data | [[EInvoiceResponseData](#EInvoiceResponseData)] |  no  |  |
+ | success | boolean? |  yes  |  |
+ | success_count | number |  no  |  |
+ 
+
+---
+
+#### [EInvoiceRetryShipmentData](#EInvoiceRetryShipmentData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shipment_id | string |  no  |  |
  
 
 ---

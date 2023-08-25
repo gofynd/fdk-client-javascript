@@ -47,6 +47,11 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
+ * @typedef EInvoiceRetryParam
+ * @property {OrderPlatformModel.EInvoiceRetry} body
+ */
+
+/**
  * @typedef FetchCreditBalanceDetailParam
  * @property {OrderPlatformModel.FetchCreditBalanceRequestPayload} body
  */
@@ -382,6 +387,13 @@ class OrderPlatformValidator {
   static downloadLanesReport() {
     return Joi.object({
       body: OrderPlatformModel.BulkReportsDownloadRequest().required(),
+    }).required();
+  }
+
+  /** @returns {EInvoiceRetryParam} */
+  static eInvoiceRetry() {
+    return Joi.object({
+      body: OrderPlatformModel.EInvoiceRetry().required(),
     }).required();
   }
 

@@ -18,6 +18,7 @@ class FileStorage {
    * @param {FileStoragePlatformApplicationValidator.AppCompleteUploadParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FileStoragePlatformModel.CompleteResponse>} - Success response
    * @name appCompleteUpload
@@ -43,8 +44,8 @@ class FileStorage {
    *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/appCompleteUpload/).
    */
   async appCompleteUpload(
-    { namespace, body } = {},
-    { headers } = { headers: false }
+    { namespace, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -86,12 +87,12 @@ class FileStorage {
       `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/namespaces/${namespace}/upload/complete`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -114,13 +115,17 @@ class FileStorage {
 
   /**
    * @param {FileStoragePlatformApplicationValidator.AppCopyFilesParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FileStoragePlatformModel.BulkUploadSyncMode>} - Success response
    * @name appCopyFiles
    * @summary: Copy Files
    * @description: Copy Files - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/appCopyFiles/).
    */
-  async appCopyFiles({ body, sync } = {}, { headers } = { headers: false }) {
+  async appCopyFiles(
+    { body, sync, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = FileStoragePlatformApplicationValidator.appCopyFiles().validate(
@@ -160,12 +165,12 @@ class FileStorage {
       `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/uploads/copy`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -190,6 +195,7 @@ class FileStorage {
    * @param {FileStoragePlatformApplicationValidator.AppStartUploadParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FileStoragePlatformModel.StartResponse>} - Success response
    * @name appStartUpload
@@ -215,8 +221,8 @@ class FileStorage {
    *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/appStartUpload/).
    */
   async appStartUpload(
-    { namespace, body } = {},
-    { headers } = { headers: false }
+    { namespace, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -258,12 +264,12 @@ class FileStorage {
       `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/namespaces/${namespace}/upload/start`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -286,6 +292,7 @@ class FileStorage {
 
   /**
    * @param {FileStoragePlatformApplicationValidator.AppbrowseParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FileStoragePlatformModel.BrowseResponse>} - Success response
    * @name appbrowse
@@ -293,8 +300,8 @@ class FileStorage {
    * @description: Browse Files - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/appbrowse/).
    */
   async appbrowse(
-    { namespace, page, limit } = {},
-    { headers } = { headers: false }
+    { namespace, page, limit, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -340,12 +347,12 @@ class FileStorage {
       `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/namespaces/${namespace}/browse`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -370,6 +377,7 @@ class FileStorage {
    * @param {FileStoragePlatformApplicationValidator.GetDefaultHtmlTemplateParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FileStoragePlatformModel.PdfConfigSuccess[]>} - Success response
    * @name getDefaultHtmlTemplate
@@ -377,8 +385,8 @@ class FileStorage {
    * @description: Get default html template for invoice or label - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getDefaultHtmlTemplate/).
    */
   async getDefaultHtmlTemplate(
-    { pdfTypeId, format } = {},
-    { headers } = { headers: false }
+    { pdfTypeId, format, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -420,12 +428,12 @@ class FileStorage {
       `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pdf/config`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -447,6 +455,7 @@ class FileStorage {
    * @param {FileStoragePlatformApplicationValidator.GetDefaultPdfDataParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FileStoragePlatformModel.DummyTemplateDataItems[]>} -
    *   Success response
@@ -455,8 +464,8 @@ class FileStorage {
    * @description: Get Dummy pdf data for invoice or label - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getDefaultPdfData/).
    */
   async getDefaultPdfData(
-    { pdfTypeId } = {},
-    { headers } = { headers: false }
+    { pdfTypeId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -495,12 +504,12 @@ class FileStorage {
       `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pdf/mapper`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -522,6 +531,7 @@ class FileStorage {
    * @param {FileStoragePlatformApplicationValidator.GetDefaultPdfTemplateParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<
    *   FileStoragePlatformModel.PdfDefaultTemplateSuccess[]
@@ -533,8 +543,8 @@ class FileStorage {
    * @description: Get default html template data for invoice or label - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getDefaultPdfTemplate/).
    */
   async getDefaultPdfTemplate(
-    { pdfTypeId, format } = {},
-    { headers } = { headers: false }
+    { pdfTypeId, format, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -576,12 +586,12 @@ class FileStorage {
       `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pdf/default-template`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -600,6 +610,8 @@ class FileStorage {
   }
 
   /**
+   * @param {FileStoragePlatformApplicationValidator.GetPdfTypesParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FileStoragePlatformModel.InvoiceTypesResponse[]>} -
    *   Success response
@@ -607,7 +619,10 @@ class FileStorage {
    * @summary: Get all the supported invoice pdf types
    * @description: Get all the supported invoice pdf types such as Invoice, Label, Deliver challan - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getPdfTypes/).
    */
-  async getPdfTypes({ headers } = { headers: false }) {
+  async getPdfTypes(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = FileStoragePlatformApplicationValidator.getPdfTypes().validate(
@@ -640,12 +655,12 @@ class FileStorage {
       `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pdf/types`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -667,13 +682,17 @@ class FileStorage {
    * @param {FileStoragePlatformApplicationValidator.PreviewTemplateParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<string>} - Success response
    * @name previewTemplate
    * @summary: Preview HTML template
    * @description: Rendered HTML template with dummy json data - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/previewTemplate/).
    */
-  async previewTemplate({ body } = {}, { headers } = { headers: false }) {
+  async previewTemplate(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = FileStoragePlatformApplicationValidator.previewTemplate().validate(
@@ -710,12 +729,12 @@ class FileStorage {
       `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pdf/render`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -737,6 +756,7 @@ class FileStorage {
    * @param {FileStoragePlatformApplicationValidator.SaveHtmlTemplateParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FileStoragePlatformModel.PdfConfigSaveSuccess[]>} -
    *   Success response
@@ -744,7 +764,10 @@ class FileStorage {
    * @summary: Update html template for invoice or label
    * @description: Update html template for invoice such as Invoice, Label, Deliver challan - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/saveHtmlTemplate/).
    */
-  async saveHtmlTemplate({ body } = {}, { headers } = { headers: false }) {
+  async saveHtmlTemplate(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = FileStoragePlatformApplicationValidator.saveHtmlTemplate().validate(
@@ -781,12 +804,12 @@ class FileStorage {
       `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pdf/config`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

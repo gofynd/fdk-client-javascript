@@ -1,5 +1,10 @@
 const { fdkAxios } = require("../common/AxiosHelper");
 
+/**
+ * @typedef {Object} Options
+ * @property {boolean} responseHeaders - Whether response headers are returned or not.
+ */
+
 class PublicAPIClient {
   /**
    * @param {object} conf
@@ -9,7 +14,7 @@ class PublicAPIClient {
    * @param {object} body
    */
 
-  static execute(conf, method, url, query, body, xHeaders) {
+  static execute(conf, method, url, query, body, xHeaders, options) {
     let headers = {};
     headers["User-Agent"] = conf.userAgent ? conf.userAgent : "";
     headers["Accept-Language"] = conf.language ? conf.language : "en-IN";
@@ -30,6 +35,7 @@ class PublicAPIClient {
         ...extraHeaders,
         ...xHeaders,
       },
+      responseHeaders: options.responseHeaders,
     };
     return fdkAxios.request(rawRequest);
   }

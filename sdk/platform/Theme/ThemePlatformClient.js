@@ -13,6 +13,7 @@ class Theme {
 
   /**
    * @param {ThemePlatformValidator.AddMarketplaceThemeToCompanyParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ThemePlatformModel.CompanyThemeSchema>} - Success response
    * @name addMarketplaceThemeToCompany
@@ -20,8 +21,8 @@ class Theme {
    * @description: Add a marketplace theme to a company by providing the theme ID and company ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/addMarketplaceThemeToCompany/).
    */
   async addMarketplaceThemeToCompany(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -61,12 +62,12 @@ class Theme {
       `/service/platform/theme/v2.0/company/${this.config.companyId}`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -89,13 +90,17 @@ class Theme {
 
   /**
    * @param {ThemePlatformValidator.DeleteCompanyThemeParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ThemePlatformModel.CompanyThemeSchema>} - Success response
    * @name deleteCompanyTheme
    * @summary: Delete a theme
    * @description: Delete a specific theme for a company by providing the company ID and theme ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/deleteCompanyTheme/).
    */
-  async deleteCompanyTheme({ themeId } = {}, { headers } = { headers: false }) {
+  async deleteCompanyTheme(
+    { themeId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ThemePlatformValidator.deleteCompanyTheme().validate(
       {
         themeId,
@@ -132,12 +137,12 @@ class Theme {
       `/service/platform/theme/v2.0/company/${this.config.companyId}/${themeId}`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -160,13 +165,17 @@ class Theme {
 
   /**
    * @param {ThemePlatformValidator.GetCompanyLevelThemesParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ThemePlatformModel.CompanyThemeSchema[]>} - Success response
    * @name getCompanyLevelThemes
    * @summary: Get themes for a company
    * @description: Retrieve a list of themes available for a specific company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getCompanyLevelThemes/).
    */
-  async getCompanyLevelThemes({ headers } = { headers: false }) {
+  async getCompanyLevelThemes(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = ThemePlatformValidator.getCompanyLevelThemes().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -199,12 +208,12 @@ class Theme {
       `/service/platform/theme/v2.0/company/${this.config.companyId}/themes`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

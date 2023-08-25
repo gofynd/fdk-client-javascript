@@ -14,13 +14,17 @@ class Cart {
 
   /**
    * @param {CartPlatformApplicationValidator.AddAddressParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.SaveAddressResponse>} - Success response
    * @name addAddress
    * @summary: Add address to an account
    * @description: Use this API to add an address to an account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/addAddress/).
    */
-  async addAddress({ body } = {}, { headers } = { headers: false }) {
+  async addAddress(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = CartPlatformApplicationValidator.addAddress().validate(
       {
         body,
@@ -55,12 +59,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/address`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -83,13 +87,17 @@ class Cart {
 
   /**
    * @param {CartPlatformApplicationValidator.AddItemsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.AddCartDetailResponse>} - Success response
    * @name addItems
    * @summary: Add items to abandoned cart
    * @description: Use this API to add items to the abandoned cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/addItems/).
    */
-  async addItems({ cartId, body, b } = {}, { headers } = { headers: false }) {
+  async addItems(
+    { cartId, body, b, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = CartPlatformApplicationValidator.addItems().validate(
       {
         cartId,
@@ -129,12 +137,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/abandoned/carts/${cartId}`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -157,13 +165,17 @@ class Cart {
 
   /**
    * @param {CartPlatformApplicationValidator.AddPriceAdjustmentParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.PriceAdjustmentResponse>} - Success response
    * @name addPriceAdjustment
    * @summary: Create new price adjustment
    * @description: Create new price adjustment - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/addPriceAdjustment/).
    */
-  async addPriceAdjustment({ body } = {}, { headers } = { headers: false }) {
+  async addPriceAdjustment(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = CartPlatformApplicationValidator.addPriceAdjustment().validate(
@@ -200,12 +212,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/price-adjustment`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -228,6 +240,7 @@ class Cart {
 
   /**
    * @param {CartPlatformApplicationValidator.ApplyCouponParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.CartDetailResponse>} - Success response
    * @name applyCoupon
@@ -235,8 +248,8 @@ class Cart {
    * @description: Use this API to apply coupons on items in the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/applyCoupon/).
    */
   async applyCoupon(
-    { body, i, b, p, id, buyNow } = {},
-    { headers } = { headers: false }
+    { body, i, b, p, id, buyNow, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartPlatformApplicationValidator.applyCoupon().validate(
       {
@@ -287,12 +300,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/platform-pos-coupon`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -317,6 +330,7 @@ class Cart {
    * @param {CartPlatformApplicationValidator.CheckCartServiceabilityParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.OpenApiCartServiceabilityResponse>}
    *   - Success response
@@ -326,8 +340,8 @@ class Cart {
    * @description: Check Pincode serviceability for cart items provided in `cart_items` and address pincode in `shipping_address` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/checkCartServiceability/).
    */
   async checkCartServiceability(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -365,12 +379,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart/serviceability`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -393,13 +407,17 @@ class Cart {
 
   /**
    * @param {CartPlatformApplicationValidator.CheckoutCartParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.OpenApiCheckoutResponse>} - Success response
    * @name checkoutCart
    * @summary: Create Fynd order with cart details
    * @description: Generate Fynd order for cart details send with provided `cart_items` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/checkoutCart/).
    */
-  async checkoutCart({ body } = {}, { headers } = { headers: false }) {
+  async checkoutCart(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = CartPlatformApplicationValidator.checkoutCart().validate(
       {
         body,
@@ -434,12 +452,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart/checkout`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -464,13 +482,17 @@ class Cart {
    * @param {CartPlatformApplicationValidator.CreateCartMetaConfigParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.CartMetaConfigAdd>} - Success response
    * @name createCartMetaConfig
    * @summary: Create new cart meta configuration
    * @description: Create new cart meta configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/createCartMetaConfig/).
    */
-  async createCartMetaConfig({ body } = {}, { headers } = { headers: false }) {
+  async createCartMetaConfig(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = CartPlatformApplicationValidator.createCartMetaConfig().validate(
@@ -507,12 +529,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart_configuration`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -535,13 +557,17 @@ class Cart {
 
   /**
    * @param {CartPlatformApplicationValidator.CreateCouponParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.SuccessMessage>} - Success response
    * @name createCoupon
    * @summary: Create new coupon
    * @description: Create new coupon - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/createCoupon/).
    */
-  async createCoupon({ body } = {}, { headers } = { headers: false }) {
+  async createCoupon(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = CartPlatformApplicationValidator.createCoupon().validate(
       {
         body,
@@ -576,12 +602,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/coupon`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -604,13 +630,17 @@ class Cart {
 
   /**
    * @param {CartPlatformApplicationValidator.CreatePromotionParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.PromotionAdd>} - Success response
    * @name createPromotion
    * @summary: Create new promotion
    * @description: Create new promotion - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/createPromotion/).
    */
-  async createPromotion({ body } = {}, { headers } = { headers: false }) {
+  async createPromotion(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = CartPlatformApplicationValidator.createPromotion().validate(
@@ -647,12 +677,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/promotion`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -675,13 +705,17 @@ class Cart {
 
   /**
    * @param {CartPlatformApplicationValidator.DeleteCartParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.DeleteCartDetailResponse>} - Success response
    * @name deleteCart
    * @summary: Delete cart once user made successful checkout
    * @description: Use this API to delete the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/deleteCart/).
    */
-  async deleteCart({ body, id } = {}, { headers } = { headers: false }) {
+  async deleteCart(
+    { body, id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = CartPlatformApplicationValidator.deleteCart().validate(
       {
         body,
@@ -719,12 +753,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart_archive`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -749,6 +783,7 @@ class Cart {
    * @param {CartPlatformApplicationValidator.FetchAndvalidateCartItemsParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.OpenapiCartDetailsResponse>} - Success response
    * @name fetchAndvalidateCartItems
@@ -756,8 +791,8 @@ class Cart {
    * @description: Get all the details of cart for a list of provided `cart_items` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/fetchAndvalidateCartItems/).
    */
   async fetchAndvalidateCartItems(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -795,12 +830,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart/validate`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -822,13 +857,18 @@ class Cart {
   }
 
   /**
+   * @param {CartPlatformApplicationValidator.FetchCartMetaConfigParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.CartMetaConfigAdd>} - Success response
    * @name fetchCartMetaConfig
    * @summary: Fetch cart meta configuration
    * @description: Fetch cart meta configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/fetchCartMetaConfig/).
    */
-  async fetchCartMetaConfig({ headers } = { headers: false }) {
+  async fetchCartMetaConfig(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = CartPlatformApplicationValidator.fetchCartMetaConfig().validate(
@@ -861,12 +901,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart_configuration`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -889,6 +929,7 @@ class Cart {
 
   /**
    * @param {CartPlatformApplicationValidator.GetAbandonedCartParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.AbandonedCartResponse>} - Success response
    * @name getAbandonedCart
@@ -896,8 +937,17 @@ class Cart {
    * @description: Get abandoned cart list with pagination - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getAbandonedCart/).
    */
   async getAbandonedCart(
-    { pageNo, pageSize, fromDate, toDate, anonymousCart, lastId, sortOn } = {},
-    { headers } = { headers: false }
+    {
+      pageNo,
+      pageSize,
+      fromDate,
+      toDate,
+      anonymousCart,
+      lastId,
+      sortOn,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -954,12 +1004,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/abandoned/carts`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1034,6 +1084,7 @@ class Cart {
    * @param {CartPlatformApplicationValidator.GetAbandonedCartDetailsParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.CartDetailResponse>} - Success response
    * @name getAbandonedCartDetails
@@ -1041,8 +1092,8 @@ class Cart {
    * @description: Use this API to get details of all the items added to a cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getAbandonedCartDetails/).
    */
   async getAbandonedCartDetails(
-    { id, i, b } = {},
-    { headers } = { headers: false }
+    { id, i, b, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1087,12 +1138,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/abandoned/cart/detail`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1115,6 +1166,7 @@ class Cart {
 
   /**
    * @param {CartPlatformApplicationValidator.GetAddressByIdParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.PlatformAddress>} - Success response
    * @name getAddressById
@@ -1131,8 +1183,9 @@ class Cart {
       tags,
       isDefault,
       userId,
-    } = {},
-    { headers } = { headers: false }
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1191,12 +1244,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/address/${id}`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1219,6 +1272,7 @@ class Cart {
 
   /**
    * @param {CartPlatformApplicationValidator.GetAddressesParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.PlatformGetAddressesResponse>} -
    *   Success response
@@ -1227,8 +1281,17 @@ class Cart {
    * @description: Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional uid address_id  mobile_no checkout_mode tags default - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getAddresses/).
    */
   async getAddresses(
-    { cartId, buyNow, mobileNo, checkoutMode, tags, isDefault, userId } = {},
-    { headers } = { headers: false }
+    {
+      cartId,
+      buyNow,
+      mobileNo,
+      checkoutMode,
+      tags,
+      isDefault,
+      userId,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartPlatformApplicationValidator.getAddresses().validate(
       {
@@ -1283,12 +1346,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/address`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1311,13 +1374,17 @@ class Cart {
 
   /**
    * @param {CartPlatformApplicationValidator.GetAppCouponsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.GetCouponResponse>} - Success response
    * @name getAppCoupons
    * @summary: Fetch Coupon
    * @description: Use this API to get a list of available coupons along with their details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getAppCoupons/).
    */
-  async getAppCoupons({ id, buyNow } = {}, { headers } = { headers: false }) {
+  async getAppCoupons(
+    { id, buyNow, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = CartPlatformApplicationValidator.getAppCoupons().validate(
       {
         id,
@@ -1356,12 +1423,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/platform-pos-coupon`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1386,6 +1453,7 @@ class Cart {
    * @param {CartPlatformApplicationValidator.GetAvailableDeliveryModesParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.CartDeliveryModesResponse>} - Success response
    * @name getAvailableDeliveryModes
@@ -1393,8 +1461,8 @@ class Cart {
    * @description: Use this API to get the delivery modes (home-delivery/store-pickup) along with a list of pickup stores available for a given cart at a given PIN Code. User can then view the address of a pickup store with the help of store-address API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getAvailableDeliveryModes/).
    */
   async getAvailableDeliveryModes(
-    { areaCode, id } = {},
-    { headers } = { headers: false }
+    { areaCode, id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1436,12 +1504,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/available-delivery-mode`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1464,6 +1532,7 @@ class Cart {
 
   /**
    * @param {CartPlatformApplicationValidator.GetCartParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.CartDetailResponse>} - Success response
    * @name getCart
@@ -1471,8 +1540,10 @@ class Cart {
    * @description: Use this API to get details of all the items added to a cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCart/).
    */
   async getCart(
-    { id, userId, i, b, assignCardId, buyNow } = {},
-    { headers } = { headers: false }
+    { id, userId, i, b, assignCardId, buyNow, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartPlatformApplicationValidator.getCart().validate(
       {
@@ -1524,12 +1595,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/detail`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1552,6 +1623,7 @@ class Cart {
 
   /**
    * @param {CartPlatformApplicationValidator.GetCartListParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.MultiCartResponse>} - Success response
    * @name getCartList
@@ -1559,8 +1631,8 @@ class Cart {
    * @description: Get all carts for the store os user which is created for customer - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCartList/).
    */
   async getCartList(
-    { fromDate, toDate, filterOn } = {},
-    { headers } = { headers: false }
+    { fromDate, toDate, filterOn, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartPlatformApplicationValidator.getCartList().validate(
       {
@@ -1603,12 +1675,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart-list`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1631,13 +1703,17 @@ class Cart {
 
   /**
    * @param {CartPlatformApplicationValidator.GetCartShareLinkParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.GetShareCartLinkResponse>} - Success response
    * @name getCartShareLink
    * @summary: Generate token for sharing the cart
    * @description: Use this API to generate a shared cart snapshot and return a shortlink token. The link can be shared with other users for getting the same items in their cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCartShareLink/).
    */
-  async getCartShareLink({ body } = {}, { headers } = { headers: false }) {
+  async getCartShareLink(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = CartPlatformApplicationValidator.getCartShareLink().validate(
@@ -1674,12 +1750,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/share-cart`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1702,13 +1778,17 @@ class Cart {
 
   /**
    * @param {CartPlatformApplicationValidator.GetCartSharedItemsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.SharedCartResponse>} - Success response
    * @name getCartSharedItems
    * @summary: Get details of a shared cart
    * @description: Use this API to get the shared cart details as per the token generated using the share-cart API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCartSharedItems/).
    */
-  async getCartSharedItems({ token } = {}, { headers } = { headers: false }) {
+  async getCartSharedItems(
+    { token, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = CartPlatformApplicationValidator.getCartSharedItems().validate(
@@ -1745,12 +1825,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/share-cart/${token}`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1773,13 +1853,17 @@ class Cart {
 
   /**
    * @param {CartPlatformApplicationValidator.GetCouponByIdParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.CouponUpdate>} - Success response
    * @name getCouponById
    * @summary: Get with single coupon details or coupon list
    * @description: Get single coupon details with `id` in path param - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCouponById/).
    */
-  async getCouponById({ id } = {}, { headers } = { headers: false }) {
+  async getCouponById(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = CartPlatformApplicationValidator.getCouponById().validate(
       {
         id,
@@ -1814,12 +1898,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/coupon/${id}`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1842,13 +1926,17 @@ class Cart {
 
   /**
    * @param {CartPlatformApplicationValidator.GetCouponCodeExistsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<Object>} - Success response
    * @name getCouponCodeExists
    * @summary: Check if coupon is already created with coupon code
    * @description: Check if sent coupon code is already existing coupon code. As coupon code is to be unique. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCouponCodeExists/).
    */
-  async getCouponCodeExists({ code } = {}, { headers } = { headers: false }) {
+  async getCouponCodeExists(
+    { code, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = CartPlatformApplicationValidator.getCouponCodeExists().validate(
@@ -1886,12 +1974,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/coupon_code_exists`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1911,13 +1999,20 @@ class Cart {
   }
 
   /**
+   * @param {CartPlatformApplicationValidator.GetCouponOptionValuesParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<Object>} - Success response
    * @name getCouponOptionValues
    * @summary: Get coupon options enums with display values
    * @description: Get coupon enum values for fields in valid coupon object. Used for front end to create, update and filter coupon lists via fields - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getCouponOptionValues/).
    */
-  async getCouponOptionValues({ headers } = { headers: false }) {
+  async getCouponOptionValues(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = CartPlatformApplicationValidator.getCouponOptionValues().validate(
@@ -1950,12 +2045,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/coupon_options`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1976,6 +2071,7 @@ class Cart {
 
   /**
    * @param {CartPlatformApplicationValidator.GetCouponsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.CouponsResponse>} - Success response
    * @name getCoupons
@@ -1992,8 +2088,9 @@ class Cart {
       isDisplay,
       typeSlug,
       code,
-    } = {},
-    { headers } = { headers: false }
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartPlatformApplicationValidator.getCoupons().validate(
       {
@@ -2051,12 +2148,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/coupon`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2132,13 +2229,17 @@ class Cart {
 
   /**
    * @param {CartPlatformApplicationValidator.GetItemCountParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.CartItemCountResponse>} - Success response
    * @name getItemCount
    * @summary: Count items in the customer's cart
    * @description: Use this API to get the total number of items present in cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getItemCount/).
    */
-  async getItemCount({ id, buyNow } = {}, { headers } = { headers: false }) {
+  async getItemCount(
+    { id, buyNow, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = CartPlatformApplicationValidator.getItemCount().validate(
       {
         id,
@@ -2177,12 +2278,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/basic`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2207,6 +2308,7 @@ class Cart {
    * @param {CartPlatformApplicationValidator.GetPromosCouponConfigParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.ActivePromosResponse>} - Success response
    * @name getPromosCouponConfig
@@ -2214,8 +2316,8 @@ class Cart {
    * @description: Use this API to get list of all the active promos/coupons. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getPromosCouponConfig/).
    */
   async getPromosCouponConfig(
-    { entityType, isHidden } = {},
-    { headers } = { headers: false }
+    { entityType, isHidden, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -2257,12 +2359,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/promo-coupons`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2285,13 +2387,17 @@ class Cart {
 
   /**
    * @param {CartPlatformApplicationValidator.GetPromotionByIdParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.PromotionUpdate>} - Success response
    * @name getPromotionById
    * @summary: Get with single promotion details or promotion list
    * @description: Get single promotion details with `id` in path param - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getPromotionById/).
    */
-  async getPromotionById({ id } = {}, { headers } = { headers: false }) {
+  async getPromotionById(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = CartPlatformApplicationValidator.getPromotionById().validate(
@@ -2328,12 +2434,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/promotion/${id}`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2358,6 +2464,7 @@ class Cart {
    * @param {CartPlatformApplicationValidator.GetPromotionCodeExistsParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<Object>} - Success response
    * @name getPromotionCodeExists
@@ -2365,8 +2472,8 @@ class Cart {
    * @description: Check if sent promotion code is already existing promotion code. As promotion code is to be unique. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getPromotionCodeExists/).
    */
   async getPromotionCodeExists(
-    { code } = {},
-    { headers } = { headers: false }
+    { code, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -2405,12 +2512,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/promotion_code_exists`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2431,6 +2538,7 @@ class Cart {
 
   /**
    * @param {CartPlatformApplicationValidator.GetPromotionsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.PromotionsResponse>} - Success response
    * @name getPromotions
@@ -2447,8 +2555,9 @@ class Cart {
       promotionType,
       fpPanel,
       promotionId,
-    } = {},
-    { headers } = { headers: false }
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartPlatformApplicationValidator.getPromotions().validate(
       {
@@ -2506,12 +2615,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/promotion`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2587,6 +2696,7 @@ class Cart {
 
   /**
    * @param {CartPlatformApplicationValidator.GetShipmentsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.PlatformCartShipmentsResponse>} -
    *   Success response
@@ -2604,8 +2714,9 @@ class Cart {
       addressId,
       areaCode,
       orderType,
-    } = {},
-    { headers } = { headers: false }
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartPlatformApplicationValidator.getShipments().validate(
       {
@@ -2663,12 +2774,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/shipment`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2693,6 +2804,7 @@ class Cart {
    * @param {CartPlatformApplicationValidator.GetStoreAddressByUidParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.StoreDetailsResponse>} - Success response
    * @name getStoreAddressByUid
@@ -2700,8 +2812,8 @@ class Cart {
    * @description: Use this API to get the store details by entering the unique identifier of the pickup stores shown in the response of available-delivery-mode API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getStoreAddressByUid/).
    */
   async getStoreAddressByUid(
-    { storeUid } = {},
-    { headers } = { headers: false }
+    { storeUid, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -2740,12 +2852,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/store-address`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2768,13 +2880,17 @@ class Cart {
 
   /**
    * @param {CartPlatformApplicationValidator.OverrideCartParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.OverrideCheckoutResponse>} - Success response
    * @name overrideCart
    * @summary: Create Fynd order with overriding cart details
    * @description: Generate Fynd order while overriding cart details sent with provided `cart_items` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/overrideCart/).
    */
-  async overrideCart({ body } = {}, { headers } = { headers: false }) {
+  async overrideCart(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = CartPlatformApplicationValidator.overrideCart().validate(
       {
         body,
@@ -2809,12 +2925,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/checkout/over-ride`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2837,6 +2953,7 @@ class Cart {
 
   /**
    * @param {CartPlatformApplicationValidator.PlatformAddItemsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.AddCartDetailResponse>} - Success response
    * @name platformAddItems
@@ -2844,8 +2961,8 @@ class Cart {
    * @description: Use this API to add items to the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/platformAddItems/).
    */
   async platformAddItems(
-    { body, i, b, buyNow, id } = {},
-    { headers } = { headers: false }
+    { body, i, b, buyNow, id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -2895,12 +3012,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/detail`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2925,6 +3042,7 @@ class Cart {
    * @param {CartPlatformApplicationValidator.PlatformCheckoutCartParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.CartCheckoutResponse>} - Success response
    * @name platformCheckoutCart
@@ -2932,8 +3050,8 @@ class Cart {
    * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be generated directly, whereas for other checkout modes, user will be redirected to a payment gateway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/platformCheckoutCart/).
    */
   async platformCheckoutCart(
-    { body, id } = {},
-    { headers } = { headers: false }
+    { body, id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -2974,12 +3092,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/checkout`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -3004,6 +3122,7 @@ class Cart {
    * @param {CartPlatformApplicationValidator.PlatformCheckoutCartV2Param} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.CartCheckoutResponse>} - Success response
    * @name platformCheckoutCartV2
@@ -3011,8 +3130,8 @@ class Cart {
    * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/platformCheckoutCartV2/).
    */
   async platformCheckoutCartV2(
-    { body, id } = {},
-    { headers } = { headers: false }
+    { body, id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -3053,12 +3172,12 @@ class Cart {
       `/service/platform/cart/v2.0/company/${this.config.companyId}/application/${this.applicationId}/checkout`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -3081,6 +3200,7 @@ class Cart {
 
   /**
    * @param {CartPlatformApplicationValidator.PlatformUpdateCartParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.UpdateCartDetailResponse>} - Success response
    * @name platformUpdateCart
@@ -3088,8 +3208,8 @@ class Cart {
    * @description: Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs operation Operation for current api call. update_item for update items. remove_item for removing items.item_id "/platform/content/v1/products/" item_size "/platform/content/v1/products/:slug/sizes/" quantity  item quantity (must be greater than or equal to 1) article_id "/content​/v1​/products​/:identifier​/sizes​/price​/" item_index item position in the cart (must be greater than or equal to 0) - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/platformUpdateCart/).
    */
   async platformUpdateCart(
-    { body, id, i, b, buyNow } = {},
-    { headers } = { headers: false }
+    { body, id, i, b, buyNow, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -3139,12 +3259,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/detail`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -3167,13 +3287,17 @@ class Cart {
 
   /**
    * @param {CartPlatformApplicationValidator.RemoveAddressParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.DeleteAddressResponse>} - Success response
    * @name removeAddress
    * @summary: Remove address associated with an account
    * @description: Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/removeAddress/).
    */
-  async removeAddress({ id, userId } = {}, { headers } = { headers: false }) {
+  async removeAddress(
+    { id, userId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = CartPlatformApplicationValidator.removeAddress().validate(
       {
         id,
@@ -3211,12 +3335,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/address/${id}`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -3239,13 +3363,17 @@ class Cart {
 
   /**
    * @param {CartPlatformApplicationValidator.RemoveCouponParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.CartDetailResponse>} - Success response
    * @name removeCoupon
    * @summary: Remove Applied Coupon for platform pos user
    * @description: Remove Coupon applied on the cart by passing uid in request body. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/removeCoupon/).
    */
-  async removeCoupon({ uid, buyNow } = {}, { headers } = { headers: false }) {
+  async removeCoupon(
+    { uid, buyNow, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = CartPlatformApplicationValidator.removeCoupon().validate(
       {
         uid,
@@ -3284,12 +3412,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/platform-pos-coupon`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -3314,13 +3442,17 @@ class Cart {
    * @param {CartPlatformApplicationValidator.RemovePriceAdjustmentParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.SuccessMessage>} - Success response
    * @name removePriceAdjustment
    * @summary: Remove price adjustment
    * @description: Remove price adjustment - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/removePriceAdjustment/).
    */
-  async removePriceAdjustment({ id } = {}, { headers } = { headers: false }) {
+  async removePriceAdjustment(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = CartPlatformApplicationValidator.removePriceAdjustment().validate(
@@ -3357,12 +3489,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/price-adjustment/${id}`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -3385,6 +3517,7 @@ class Cart {
 
   /**
    * @param {CartPlatformApplicationValidator.SelectAddressParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.CartDetailResponse>} - Success response
    * @name selectAddress
@@ -3392,8 +3525,8 @@ class Cart {
    * @description: Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `PlatformSelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. address_id billing_address_id uid - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/selectAddress/).
    */
   async selectAddress(
-    { body, cartId, buyNow, i, b } = {},
-    { headers } = { headers: false }
+    { body, cartId, buyNow, i, b, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartPlatformApplicationValidator.selectAddress().validate(
       {
@@ -3441,12 +3574,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/select-address`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -3469,6 +3602,7 @@ class Cart {
 
   /**
    * @param {CartPlatformApplicationValidator.SelectPaymentModeParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.CartDetailResponse>} - Success response
    * @name selectPaymentMode
@@ -3476,8 +3610,8 @@ class Cart {
    * @description: Use this API to update cart payment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/selectPaymentMode/).
    */
   async selectPaymentMode(
-    { body, id, buyNow, orderType } = {},
-    { headers } = { headers: false }
+    { body, id, buyNow, orderType, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -3524,12 +3658,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -3552,6 +3686,7 @@ class Cart {
 
   /**
    * @param {CartPlatformApplicationValidator.SelectPaymentModeV2Param} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.CartDetailResponse>} - Success response
    * @name selectPaymentModeV2
@@ -3559,8 +3694,8 @@ class Cart {
    * @description: Use this API to update cart payment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/selectPaymentModeV2/).
    */
   async selectPaymentModeV2(
-    { body, id, buyNow, orderType } = {},
-    { headers } = { headers: false }
+    { body, id, buyNow, orderType, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -3607,12 +3742,12 @@ class Cart {
       `/service/platform/cart/v2.0/company/${this.config.companyId}/application/${this.applicationId}/payment`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -3635,13 +3770,17 @@ class Cart {
 
   /**
    * @param {CartPlatformApplicationValidator.UpdateAddressParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.UpdateAddressResponse>} - Success response
    * @name updateAddress
    * @summary: Update address added to an account
    * @description: Use this API to update an existing address in the account. Request object should contain attributes mentioned in Address can be updated. These attributes are:is_default_address landmark area pincode email address_type name address_id address - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateAddress/).
    */
-  async updateAddress({ id, body } = {}, { headers } = { headers: false }) {
+  async updateAddress(
+    { id, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = CartPlatformApplicationValidator.updateAddress().validate(
       {
         id,
@@ -3678,12 +3817,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/address/${id}`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -3706,13 +3845,17 @@ class Cart {
 
   /**
    * @param {CartPlatformApplicationValidator.UpdateCartParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.UpdateCartDetailResponse>} - Success response
    * @name updateCart
    * @summary: Update items in the abandoned cart
    * @description: Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs operation Operation for current api call.update_item for update items. remove_item for removing items. item_id "/platform/content/v1/products/" "/platform/content/v1/products/:slug/sizes/" quantity item quantity (must be greater than or equal to 1) article_id "/content​/v1​/products​/:identifier​/sizes​/price​/"  item position in the cart (must be greater than or equal to 0) - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateCart/).
    */
-  async updateCart({ cartId, body, b } = {}, { headers } = { headers: false }) {
+  async updateCart(
+    { cartId, body, b, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = CartPlatformApplicationValidator.updateCart().validate(
       {
         cartId,
@@ -3752,12 +3895,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/abandoned/carts/${cartId}`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -3780,6 +3923,7 @@ class Cart {
 
   /**
    * @param {CartPlatformApplicationValidator.UpdateCartMetaParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.CartMetaResponse>} - Success response
    * @name updateCartMeta
@@ -3787,8 +3931,8 @@ class Cart {
    * @description: Use this API to update cart meta like checkout_mode and gstin. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateCartMeta/).
    */
   async updateCartMeta(
-    { body, id, buyNow } = {},
-    { headers } = { headers: false }
+    { body, id, buyNow, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -3832,12 +3976,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/meta`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -3862,6 +4006,7 @@ class Cart {
    * @param {CartPlatformApplicationValidator.UpdateCartMetaConfigParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.CartMetaConfigUpdate>} - Success response
    * @name updateCartMetaConfig
@@ -3869,8 +4014,8 @@ class Cart {
    * @description: Update cart meta configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateCartMetaConfig/).
    */
   async updateCartMetaConfig(
-    { cartMetaId, body } = {},
-    { headers } = { headers: false }
+    { cartMetaId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -3910,12 +4055,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cart_configuration/${cartMetaId}`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -3938,13 +4083,17 @@ class Cart {
 
   /**
    * @param {CartPlatformApplicationValidator.UpdateCartUserParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.UserCartMappingResponse>} - Success response
    * @name updateCartUser
    * @summary: Update user id for store os customer
    * @description: Update user id for store os customer after creating customer - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateCartUser/).
    */
-  async updateCartUser({ body, id } = {}, { headers } = { headers: false }) {
+  async updateCartUser(
+    { body, id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = CartPlatformApplicationValidator.updateCartUser().validate(
@@ -3984,12 +4133,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/update-user`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -4014,6 +4163,7 @@ class Cart {
    * @param {CartPlatformApplicationValidator.UpdateCartWithSharedItemsParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.SharedCartResponse>} - Success response
    * @name updateCartWithSharedItems
@@ -4021,8 +4171,8 @@ class Cart {
    * @description: Use this API to merge the shared cart with existing cart, or replace the existing cart with the shared cart. The `action` parameter is used to indicate the operation Merge or Replace. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateCartWithSharedItems/).
    */
   async updateCartWithSharedItems(
-    { token, action, cartId } = {},
-    { headers } = { headers: false }
+    { token, action, cartId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -4065,12 +4215,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/share-cart/${token}/${action}`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -4093,13 +4243,17 @@ class Cart {
 
   /**
    * @param {CartPlatformApplicationValidator.UpdateCouponParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.SuccessMessage>} - Success response
    * @name updateCoupon
    * @summary: Update existing coupon configuration
    * @description: Update coupon with id sent in `id` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateCoupon/).
    */
-  async updateCoupon({ id, body } = {}, { headers } = { headers: false }) {
+  async updateCoupon(
+    { id, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = CartPlatformApplicationValidator.updateCoupon().validate(
       {
         id,
@@ -4136,12 +4290,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/coupon/${id}`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -4166,6 +4320,7 @@ class Cart {
    * @param {CartPlatformApplicationValidator.UpdateCouponPartiallyParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.SuccessMessage>} - Success response
    * @name updateCouponPartially
@@ -4173,8 +4328,8 @@ class Cart {
    * @description: Update archive/unarchive and change schedule for coupon - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateCouponPartially/).
    */
   async updateCouponPartially(
-    { id, body } = {},
-    { headers } = { headers: false }
+    { id, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -4214,12 +4369,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/coupon/${id}`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -4244,6 +4399,7 @@ class Cart {
    * @param {CartPlatformApplicationValidator.UpdatePriceAdjustmentParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.PriceAdjustmentResponse>} - Success response
    * @name updatePriceAdjustment
@@ -4251,8 +4407,8 @@ class Cart {
    * @description: Update price adjustment configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updatePriceAdjustment/).
    */
   async updatePriceAdjustment(
-    { id, body } = {},
-    { headers } = { headers: false }
+    { id, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -4292,12 +4448,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/price-adjustment/${id}`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -4320,13 +4476,17 @@ class Cart {
 
   /**
    * @param {CartPlatformApplicationValidator.UpdatePromotionParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.PromotionUpdate>} - Success response
    * @name updatePromotion
    * @summary: Update existing promotion configuration
    * @description: Update promotion with id sent in `id` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updatePromotion/).
    */
-  async updatePromotion({ id, body } = {}, { headers } = { headers: false }) {
+  async updatePromotion(
+    { id, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = CartPlatformApplicationValidator.updatePromotion().validate(
@@ -4365,12 +4525,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/promotion/${id}`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -4395,6 +4555,7 @@ class Cart {
    * @param {CartPlatformApplicationValidator.UpdatePromotionPartiallyParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.SuccessMessage>} - Success response
    * @name updatePromotionPartially
@@ -4402,8 +4563,8 @@ class Cart {
    * @description: Update publish/unpublish and change schedule for promotion - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updatePromotionPartially/).
    */
   async updatePromotionPartially(
-    { id, body } = {},
-    { headers } = { headers: false }
+    { id, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -4443,12 +4604,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/promotion/${id}`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -4471,6 +4632,7 @@ class Cart {
 
   /**
    * @param {CartPlatformApplicationValidator.UpdateShipmentsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.PlatformCartShipmentsResponse>} -
    *   Success response
@@ -4479,8 +4641,10 @@ class Cart {
    * @description: Use this API to update the delivery type and quantity as per customer's preference for either store pick-up or home-delivery. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/updateShipments/).
    */
   async updateShipments(
-    { body, i, p, id, addressId, areaCode, orderType } = {},
-    { headers } = { headers: false }
+    { body, i, p, id, addressId, areaCode, orderType, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -4536,12 +4700,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/shipment`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -4566,6 +4730,7 @@ class Cart {
    * @param {CartPlatformApplicationValidator.ValidateCouponForPaymentParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<CartPlatformModel.PaymentCouponValidate>} - Success response
    * @name validateCouponForPayment
@@ -4581,8 +4746,9 @@ class Cart {
       paymentIdentifier,
       aggregatorName,
       merchantCode,
-    } = {},
-    { headers } = { headers: false }
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -4639,12 +4805,12 @@ class Cart {
       `/service/platform/cart/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/validate/`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

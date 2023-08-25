@@ -61,13 +61,17 @@ class PosCart {
 
   /**
    * @param {PosCartApplicationValidator.AddAddressParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.SaveAddressResponse>} - Success response
    * @name addAddress
    * @summary: Add address to an account
    * @description: Use this API to add an address to an account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/addAddress/).
    */
-  async addAddress({ body } = {}, { headers } = { headers: false }) {
+  async addAddress(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = PosCartApplicationValidator.addAddress().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -103,12 +107,12 @@ class PosCart {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -131,6 +135,7 @@ class PosCart {
 
   /**
    * @param {PosCartApplicationValidator.AddItemsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.AddCartDetailResponse>} -
    *   Success response
@@ -139,8 +144,10 @@ class PosCart {
    * @description: Use this API to add items to the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/addItems/).
    */
   async addItems(
-    { body, i, b, areaCode, buyNow, id } = {},
-    { headers } = { headers: false }
+    { body, i, b, areaCode, buyNow, id, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = PosCartApplicationValidator.addItems().validate(
       { body, i, b, areaCode, buyNow, id },
@@ -180,12 +187,12 @@ class PosCart {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -208,6 +215,7 @@ class PosCart {
 
   /**
    * @param {PosCartApplicationValidator.ApplyCouponParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.CartDetailResponse>} - Success response
    * @name applyCoupon
@@ -215,8 +223,8 @@ class PosCart {
    * @description: Use this API to apply coupons on items in the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/applyCoupon/).
    */
   async applyCoupon(
-    { body, i, b, p, id, buyNow } = {},
-    { headers } = { headers: false }
+    { body, i, b, p, id, buyNow, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = PosCartApplicationValidator.applyCoupon().validate(
       { body, i, b, p, id, buyNow },
@@ -258,12 +266,12 @@ class PosCart {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -286,6 +294,7 @@ class PosCart {
 
   /**
    * @param {PosCartApplicationValidator.ApplyRewardPointsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.CartDetailResponse>} - Success response
    * @name applyRewardPoints
@@ -293,8 +302,8 @@ class PosCart {
    * @description: Use this API to redeem a fixed no. of reward points by applying it to the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/applyRewardPoints/).
    */
   async applyRewardPoints(
-    { body, id, i, b, buyNow } = {},
-    { headers } = { headers: false }
+    { body, id, i, b, buyNow, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = PosCartApplicationValidator.applyRewardPoints().validate(
       { body, id, i, b, buyNow },
@@ -335,12 +344,12 @@ class PosCart {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -363,13 +372,17 @@ class PosCart {
 
   /**
    * @param {PosCartApplicationValidator.CheckoutCartParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.CartCheckoutResponse>} - Success response
    * @name checkoutCart
    * @summary: Checkout all items in the cart
    * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be generated directly, whereas for other checkout modes, user will be redirected to a payment gateway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/checkoutCart/).
    */
-  async checkoutCart({ body, id } = {}, { headers } = { headers: false }) {
+  async checkoutCart(
+    { body, id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = PosCartApplicationValidator.checkoutCart().validate(
       { body, id },
       { abortEarly: false, allowUnknown: true }
@@ -406,12 +419,12 @@ class PosCart {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -434,6 +447,7 @@ class PosCart {
 
   /**
    * @param {PosCartApplicationValidator.GetAddressByIdParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.Address>} - Success response
    * @name getAddressById
@@ -441,8 +455,17 @@ class PosCart {
    * @description: Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `Address`. Attibutes listed below are optional  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getAddressById/).
    */
   async getAddressById(
-    { id, cartId, buyNow, mobileNo, checkoutMode, tags, isDefault } = {},
-    { headers } = { headers: false }
+    {
+      id,
+      cartId,
+      buyNow,
+      mobileNo,
+      checkoutMode,
+      tags,
+      isDefault,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = PosCartApplicationValidator.getAddressById().validate(
       { id, cartId, buyNow, mobileNo, checkoutMode, tags, isDefault },
@@ -485,12 +508,12 @@ class PosCart {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -513,6 +536,7 @@ class PosCart {
 
   /**
    * @param {PosCartApplicationValidator.GetAddressesParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.GetAddressesResponse>} - Success response
    * @name getAddresses
@@ -520,8 +544,16 @@ class PosCart {
    * @description: Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getAddresses/).
    */
   async getAddresses(
-    { cartId, buyNow, mobileNo, checkoutMode, tags, isDefault } = {},
-    { headers } = { headers: false }
+    {
+      cartId,
+      buyNow,
+      mobileNo,
+      checkoutMode,
+      tags,
+      isDefault,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = PosCartApplicationValidator.getAddresses().validate(
       { cartId, buyNow, mobileNo, checkoutMode, tags, isDefault },
@@ -564,12 +596,12 @@ class PosCart {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -594,6 +626,7 @@ class PosCart {
    * @param {PosCartApplicationValidator.GetAvailableDeliveryModesParam} arg
    *   - Arg object.
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.CartDeliveryModesResponse>} -
    *   Success response
@@ -602,8 +635,8 @@ class PosCart {
    * @description: Use this API to get the delivery modes (home-delivery/store-pickup) along with a list of pickup stores available for a given cart at a given PIN Code. User can then view the address of a pickup store with the help of store-address API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getAvailableDeliveryModes/).
    */
   async getAvailableDeliveryModes(
-    { areaCode, id } = {},
-    { headers } = { headers: false }
+    { areaCode, id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -644,12 +677,12 @@ class PosCart {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -672,6 +705,7 @@ class PosCart {
 
   /**
    * @param {PosCartApplicationValidator.GetBulkDiscountOffersParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.BulkPriceResponse>} - Success response
    * @name getBulkDiscountOffers
@@ -679,8 +713,8 @@ class PosCart {
    * @description: Use this API to get a list of applicable offers along with current, next and best offer for given product. Either one of uid, item_id, slug should be present. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getBulkDiscountOffers/).
    */
   async getBulkDiscountOffers(
-    { itemId, articleId, uid, slug } = {},
-    { headers } = { headers: false }
+    { itemId, articleId, uid, slug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -723,12 +757,12 @@ class PosCart {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -751,6 +785,7 @@ class PosCart {
 
   /**
    * @param {PosCartApplicationValidator.GetCartParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.CartDetailResponse>} - Success response
    * @name getCart
@@ -758,8 +793,10 @@ class PosCart {
    * @description: Use this API to get details of all the items added to a cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getCart/).
    */
   async getCart(
-    { id, i, b, assignCardId, areaCode, buyNow } = {},
-    { headers } = { headers: false }
+    { id, i, b, assignCardId, areaCode, buyNow, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = PosCartApplicationValidator.getCart().validate(
       { id, i, b, assignCardId, areaCode, buyNow },
@@ -800,12 +837,12 @@ class PosCart {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -828,13 +865,17 @@ class PosCart {
 
   /**
    * @param {PosCartApplicationValidator.GetCartLastModifiedParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<any>} - Success response
    * @name getCartLastModified
    * @summary: Fetch last-modified timestamp
    * @description: Use this API to fetch Last-Modified timestamp in header metadata. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getCartLastModified/).
    */
-  async getCartLastModified({ id } = {}, { headers } = { headers: false }) {
+  async getCartLastModified(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = PosCartApplicationValidator.getCartLastModified().validate(
@@ -873,12 +914,12 @@ class PosCart {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -898,6 +939,7 @@ class PosCart {
 
   /**
    * @param {PosCartApplicationValidator.GetCartShareLinkParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.GetShareCartLinkResponse>} -
    *   Success response
@@ -905,7 +947,10 @@ class PosCart {
    * @summary: Generate token for sharing the cart
    * @description: Use this API to generate a shared cart snapshot and return a shortlink token. The link can be shared with other users for getting the same items in their cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getCartShareLink/).
    */
-  async getCartShareLink({ body } = {}, { headers } = { headers: false }) {
+  async getCartShareLink(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = PosCartApplicationValidator.getCartShareLink().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -941,12 +986,12 @@ class PosCart {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -969,13 +1014,17 @@ class PosCart {
 
   /**
    * @param {PosCartApplicationValidator.GetCartSharedItemsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.SharedCartResponse>} - Success response
    * @name getCartSharedItems
    * @summary: Get details of a shared cart
    * @description: Use this API to get the shared cart details as per the token generated using the share-cart API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getCartSharedItems/).
    */
-  async getCartSharedItems({ token } = {}, { headers } = { headers: false }) {
+  async getCartSharedItems(
+    { token, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = PosCartApplicationValidator.getCartSharedItems().validate(
       { token },
       { abortEarly: false, allowUnknown: true }
@@ -1011,12 +1060,12 @@ class PosCart {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1039,13 +1088,17 @@ class PosCart {
 
   /**
    * @param {PosCartApplicationValidator.GetCouponsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.GetCouponResponse>} - Success response
    * @name getCoupons
    * @summary: Fetch Coupon
    * @description: Use this API to get a list of available coupons along with their details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getCoupons/).
    */
-  async getCoupons({ id, buyNow } = {}, { headers } = { headers: false }) {
+  async getCoupons(
+    { id, buyNow, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = PosCartApplicationValidator.getCoupons().validate(
       { id, buyNow },
       { abortEarly: false, allowUnknown: true }
@@ -1083,12 +1136,12 @@ class PosCart {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1111,6 +1164,7 @@ class PosCart {
 
   /**
    * @param {PosCartApplicationValidator.GetItemCountParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.CartItemCountResponse>} -
    *   Success response
@@ -1118,7 +1172,10 @@ class PosCart {
    * @summary: Count items in the cart
    * @description: Use this API to get the total number of items present in cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getItemCount/).
    */
-  async getItemCount({ id, buyNow } = {}, { headers } = { headers: false }) {
+  async getItemCount(
+    { id, buyNow, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = PosCartApplicationValidator.getItemCount().validate(
       { id, buyNow },
       { abortEarly: false, allowUnknown: true }
@@ -1156,12 +1213,12 @@ class PosCart {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1184,6 +1241,7 @@ class PosCart {
 
   /**
    * @param {PosCartApplicationValidator.GetShipmentsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.CartShipmentsResponse>} -
    *   Success response
@@ -1200,8 +1258,9 @@ class PosCart {
       addressId,
       areaCode,
       orderType,
-    } = {},
-    { headers } = { headers: false }
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = PosCartApplicationValidator.getShipments().validate(
       {
@@ -1261,12 +1320,12 @@ class PosCart {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1289,6 +1348,7 @@ class PosCart {
 
   /**
    * @param {PosCartApplicationValidator.GetStoreAddressByUidParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.StoreDetailsResponse>} - Success response
    * @name getStoreAddressByUid
@@ -1296,8 +1356,8 @@ class PosCart {
    * @description: Use this API to get the store details by entering the unique identifier of the pickup stores shown in the response of available-delivery-mode API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getStoreAddressByUid/).
    */
   async getStoreAddressByUid(
-    { storeUid } = {},
-    { headers } = { headers: false }
+    { storeUid, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1337,12 +1397,12 @@ class PosCart {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1365,6 +1425,7 @@ class PosCart {
 
   /**
    * @param {PosCartApplicationValidator.RemoveAddressParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.DeleteAddressResponse>} -
    *   Success response
@@ -1372,7 +1433,10 @@ class PosCart {
    * @summary: Remove address associated with an account
    * @description: Use this API to delete an address by its ID. This will returns an object that will indicate whether the address was deleted successfully or not. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/removeAddress/).
    */
-  async removeAddress({ id } = {}, { headers } = { headers: false }) {
+  async removeAddress(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = PosCartApplicationValidator.removeAddress().validate(
       { id },
       { abortEarly: false, allowUnknown: true }
@@ -1408,12 +1472,12 @@ class PosCart {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1436,13 +1500,17 @@ class PosCart {
 
   /**
    * @param {PosCartApplicationValidator.RemoveCouponParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.CartDetailResponse>} - Success response
    * @name removeCoupon
    * @summary: Remove Coupon Applied
    * @description: Remove Coupon applied on the cart by passing uid in request body. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/removeCoupon/).
    */
-  async removeCoupon({ id, buyNow } = {}, { headers } = { headers: false }) {
+  async removeCoupon(
+    { id, buyNow, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = PosCartApplicationValidator.removeCoupon().validate(
       { id, buyNow },
       { abortEarly: false, allowUnknown: true }
@@ -1480,12 +1548,12 @@ class PosCart {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1508,6 +1576,7 @@ class PosCart {
 
   /**
    * @param {PosCartApplicationValidator.SelectAddressParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.CartDetailResponse>} - Success response
    * @name selectAddress
@@ -1515,8 +1584,8 @@ class PosCart {
    * @description: Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/selectAddress/).
    */
   async selectAddress(
-    { body, cartId, buyNow, i, b } = {},
-    { headers } = { headers: false }
+    { body, cartId, buyNow, i, b, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = PosCartApplicationValidator.selectAddress().validate(
       { body, cartId, buyNow, i, b },
@@ -1557,12 +1626,12 @@ class PosCart {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1585,6 +1654,7 @@ class PosCart {
 
   /**
    * @param {PosCartApplicationValidator.SelectPaymentModeParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.CartDetailResponse>} - Success response
    * @name selectPaymentMode
@@ -1592,8 +1662,8 @@ class PosCart {
    * @description: Use this API to update cart payment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/selectPaymentMode/).
    */
   async selectPaymentMode(
-    { body, id, buyNow } = {},
-    { headers } = { headers: false }
+    { body, id, buyNow, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = PosCartApplicationValidator.selectPaymentMode().validate(
       { body, id, buyNow },
@@ -1632,12 +1702,12 @@ class PosCart {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1660,6 +1730,7 @@ class PosCart {
 
   /**
    * @param {PosCartApplicationValidator.UpdateAddressParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.UpdateAddressResponse>} -
    *   Success response
@@ -1667,7 +1738,10 @@ class PosCart {
    * @summary: Update address added to an account
    * @description: Use this API to update an existing address in the account. Request object should contain attributes mentioned in Address  can be updated. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/updateAddress/).
    */
-  async updateAddress({ id, body } = {}, { headers } = { headers: false }) {
+  async updateAddress(
+    { id, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = PosCartApplicationValidator.updateAddress().validate(
       { id, body },
       { abortEarly: false, allowUnknown: true }
@@ -1703,12 +1777,12 @@ class PosCart {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1731,6 +1805,7 @@ class PosCart {
 
   /**
    * @param {PosCartApplicationValidator.UpdateCartParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.UpdateCartDetailResponse>} -
    *   Success response
@@ -1739,8 +1814,10 @@ class PosCart {
    * @description: Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/updateCart/).
    */
   async updateCart(
-    { body, id, i, b, areaCode, buyNow } = {},
-    { headers } = { headers: false }
+    { body, id, i, b, areaCode, buyNow, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = PosCartApplicationValidator.updateCart().validate(
       { body, id, i, b, areaCode, buyNow },
@@ -1782,12 +1859,12 @@ class PosCart {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1810,6 +1887,7 @@ class PosCart {
 
   /**
    * @param {PosCartApplicationValidator.UpdateCartMetaParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.CartMetaResponse>} - Success response
    * @name updateCartMeta
@@ -1817,8 +1895,8 @@ class PosCart {
    * @description: Use this API to update cart meta like checkout_mode and gstin. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/updateCartMeta/).
    */
   async updateCartMeta(
-    { body, id, buyNow } = {},
-    { headers } = { headers: false }
+    { body, id, buyNow, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = PosCartApplicationValidator.updateCartMeta().validate(
       { body, id, buyNow },
@@ -1857,12 +1935,12 @@ class PosCart {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1887,6 +1965,7 @@ class PosCart {
    * @param {PosCartApplicationValidator.UpdateCartWithSharedItemsParam} arg
    *   - Arg object.
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.SharedCartResponse>} - Success response
    * @name updateCartWithSharedItems
@@ -1894,8 +1973,8 @@ class PosCart {
    * @description: Use this API to merge the shared cart with existing cart, or replace the existing cart with the shared cart. The `action` parameter is used to indicate the operation Merge or Replace. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/updateCartWithSharedItems/).
    */
   async updateCartWithSharedItems(
-    { token, action } = {},
-    { headers } = { headers: false }
+    { token, action, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1934,12 +2013,12 @@ class PosCart {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1962,6 +2041,7 @@ class PosCart {
 
   /**
    * @param {PosCartApplicationValidator.UpdateShipmentsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.CartShipmentsResponse>} -
    *   Success response
@@ -1970,8 +2050,10 @@ class PosCart {
    * @description: Use this API to update the delivery type and quantity as per customer's preference for either store pick-up or home-delivery. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/updateShipments/).
    */
   async updateShipments(
-    { body, i, p, id, addressId, areaCode, orderType } = {},
-    { headers } = { headers: false }
+    { body, i, p, id, addressId, areaCode, orderType, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = PosCartApplicationValidator.updateShipments().validate(
       { body, i, p, id, addressId, areaCode, orderType },
@@ -2014,12 +2096,12 @@ class PosCart {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2043,6 +2125,7 @@ class PosCart {
   /**
    * @param {PosCartApplicationValidator.ValidateCouponForPaymentParam} arg -
    *   Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PosCartApplicationModel.PaymentCouponValidate>} -
    *   Success response
@@ -2063,8 +2146,9 @@ class PosCart {
       network,
       type,
       cardId,
-    } = {},
-    { headers } = { headers: false }
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -2138,12 +2222,12 @@ class PosCart {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

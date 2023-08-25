@@ -15,6 +15,7 @@ class FileStorage {
 
   /**
    * @param {FileStoragePlatformValidator.BrowseParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FileStoragePlatformModel.BrowseResponse>} - Success response
    * @name browse
@@ -22,8 +23,8 @@ class FileStorage {
    * @description: Browse Files - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/browse/).
    */
   async browse(
-    { namespace, page, limit } = {},
-    { headers } = { headers: false }
+    { namespace, page, limit, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = FileStoragePlatformValidator.browse().validate(
       {
@@ -67,12 +68,12 @@ class FileStorage {
       `/service/platform/assets/v1.0/company/${this.config.companyId}/namespaces/${namespace}/browse`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -95,6 +96,7 @@ class FileStorage {
 
   /**
    * @param {FileStoragePlatformValidator.CompleteUploadParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FileStoragePlatformModel.CompleteResponse>} - Success response
    * @name completeUpload
@@ -120,8 +122,8 @@ class FileStorage {
    *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/completeUpload/).
    */
   async completeUpload(
-    { namespace, body } = {},
-    { headers } = { headers: false }
+    { namespace, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = FileStoragePlatformValidator.completeUpload().validate(
       {
@@ -163,12 +165,12 @@ class FileStorage {
       `/service/platform/assets/v1.0/company/${this.config.companyId}/namespaces/${namespace}/upload/complete`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -191,13 +193,17 @@ class FileStorage {
 
   /**
    * @param {FileStoragePlatformValidator.CopyFilesParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FileStoragePlatformModel.BulkUploadSyncMode>} - Success response
    * @name copyFiles
    * @summary: Copy Files
    * @description: Copy Files - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/copyFiles/).
    */
-  async copyFiles({ body, sync } = {}, { headers } = { headers: false }) {
+  async copyFiles(
+    { body, sync, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = FileStoragePlatformValidator.copyFiles().validate(
       {
         body,
@@ -237,12 +243,12 @@ class FileStorage {
       `/service/platform/assets/v1.0/company/${this.config.companyId}/uploads/copy`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -265,13 +271,17 @@ class FileStorage {
 
   /**
    * @param {FileStoragePlatformValidator.GetSignUrlsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FileStoragePlatformModel.SignUrlResponse>} - Success response
    * @name getSignUrls
    * @summary: Gives signed urls to access private files
    * @description: Describe here - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getSignUrls/).
    */
-  async getSignUrls({ body } = {}, { headers } = { headers: false }) {
+  async getSignUrls(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = FileStoragePlatformValidator.getSignUrls().validate(
       {
         body,
@@ -308,12 +318,12 @@ class FileStorage {
       `/service/platform/assets/v1.0/company/${this.config.companyId}/sign-urls`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -336,13 +346,17 @@ class FileStorage {
 
   /**
    * @param {FileStoragePlatformValidator.ProxyParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<string>} - Success response
    * @name proxy
    * @summary: Proxy
    * @description: Proxy - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/proxy/).
    */
-  async proxy({ url } = {}, { headers } = { headers: false }) {
+  async proxy(
+    { url, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = FileStoragePlatformValidator.proxy().validate(
       {
         url,
@@ -378,12 +392,12 @@ class FileStorage {
       `/service/platform/assets/v1.0/company/${this.config.companyId}/proxy`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -403,6 +417,7 @@ class FileStorage {
 
   /**
    * @param {FileStoragePlatformValidator.StartUploadParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<FileStoragePlatformModel.StartResponse>} - Success response
    * @name startUpload
@@ -428,8 +443,8 @@ class FileStorage {
    *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/startUpload/).
    */
   async startUpload(
-    { namespace, body } = {},
-    { headers } = { headers: false }
+    { namespace, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = FileStoragePlatformValidator.startUpload().validate(
       {
@@ -471,12 +486,12 @@ class FileStorage {
       `/service/platform/assets/v1.0/company/${this.config.companyId}/namespaces/${namespace}/upload/start`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

@@ -862,6 +862,36 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef EInvoiceResponseData
+ * @property {string} [ack_dt]
+ * @property {string} [ack_no]
+ * @property {string} [irn]
+ * @property {string} message
+ * @property {string} shipment_id
+ * @property {boolean} success
+ * @property {number} [timeout]
+ * @property {string} [timeout_unit]
+ */
+
+/**
+ * @typedef EInvoiceRetry
+ * @property {EInvoiceRetryShipmentData[]} [shipments_data]
+ */
+
+/**
+ * @typedef EInvoiceRetryResponse
+ * @property {string} [message]
+ * @property {EInvoiceResponseData[]} response_data
+ * @property {boolean} [success]
+ * @property {number} success_count
+ */
+
+/**
+ * @typedef EInvoiceRetryShipmentData
+ * @property {string} shipment_id
+ */
+
+/**
  * @typedef Entities
  * @property {string} [affiliate_bag_id] - Application/Affiliate Bag ID,
  *   Required if the ID is missing
@@ -3596,6 +3626,48 @@ class OrderPlatformModel {
       password: Joi.string().allow(""),
       user: Joi.string().allow(""),
       username: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {EInvoiceResponseData} */
+  static EInvoiceResponseData() {
+    return Joi.object({
+      ack_dt: Joi.string().allow(""),
+      ack_no: Joi.string().allow(""),
+      irn: Joi.string().allow(""),
+      message: Joi.string().allow("").required(),
+      shipment_id: Joi.string().allow("").required(),
+      success: Joi.boolean().required(),
+      timeout: Joi.number(),
+      timeout_unit: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {EInvoiceRetry} */
+  static EInvoiceRetry() {
+    return Joi.object({
+      shipments_data: Joi.array().items(
+        OrderPlatformModel.EInvoiceRetryShipmentData()
+      ),
+    });
+  }
+
+  /** @returns {EInvoiceRetryResponse} */
+  static EInvoiceRetryResponse() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      response_data: Joi.array()
+        .items(OrderPlatformModel.EInvoiceResponseData())
+        .required(),
+      success: Joi.boolean(),
+      success_count: Joi.number().required(),
+    });
+  }
+
+  /** @returns {EInvoiceRetryShipmentData} */
+  static EInvoiceRetryShipmentData() {
+    return Joi.object({
+      shipment_id: Joi.string().allow("").required(),
     });
   }
 

@@ -33,6 +33,7 @@ class Common {
 
   /**
    * @param {CommonApplicationValidator.GetLocationsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CommonApplicationModel.Locations>} - Success response
    * @name getLocations
@@ -40,8 +41,8 @@ class Common {
    * @description: Get countries, states, cities - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/common/getLocations/).
    */
   async getLocations(
-    { locationType, id } = {},
-    { headers } = { headers: false }
+    { locationType, id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CommonApplicationValidator.getLocations().validate(
       { locationType, id },
@@ -80,12 +81,12 @@ class Common {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -108,6 +109,7 @@ class Common {
 
   /**
    * @param {CommonApplicationValidator.SearchApplicationParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<CommonApplicationModel.ApplicationResponse>} - Success response
    * @name searchApplication
@@ -115,8 +117,8 @@ class Common {
    * @description: Provide application name or domain url - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/common/searchApplication/).
    */
   async searchApplication(
-    { authorization, query } = {},
-    { headers } = { headers: false }
+    { authorization, query, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CommonApplicationValidator.searchApplication().validate(
       { authorization, query },
@@ -155,12 +157,12 @@ class Common {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

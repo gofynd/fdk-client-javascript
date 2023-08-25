@@ -13,13 +13,17 @@ class Webhook {
 
   /**
    * @param {WebhookPlatformValidator.CancelJobByNameParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<WebhookPlatformModel.CancelResponse>} - Success response
    * @name cancelJobByName
    * @summary: Cancel a report export
    * @description: Cancel the export of a specific report for a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/cancelJobByName/).
    */
-  async cancelJobByName({ filename } = {}, { headers } = { headers: false }) {
+  async cancelJobByName(
+    { filename, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = WebhookPlatformValidator.cancelJobByName().validate(
       {
         filename,
@@ -56,12 +60,12 @@ class Webhook {
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/reports/cancel/file/${filename}`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -84,6 +88,7 @@ class Webhook {
 
   /**
    * @param {WebhookPlatformValidator.DownloadDeliveryReportParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<Object>} - Success response
    * @name downloadDeliveryReport
@@ -91,8 +96,8 @@ class Webhook {
    * @description: Download reports for a specific company based on the provided filters. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/downloadDeliveryReport/).
    */
   async downloadDeliveryReport(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -132,12 +137,12 @@ class Webhook {
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/reports/download`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -158,13 +163,17 @@ class Webhook {
 
   /**
    * @param {WebhookPlatformValidator.FetchAllEventConfigurationsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<WebhookPlatformModel.EventConfigResponse>} - Success response
    * @name fetchAllEventConfigurations
    * @summary:
    * @description: Get All Webhook Events - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/fetchAllEventConfigurations/).
    */
-  async fetchAllEventConfigurations({ headers } = { headers: false }) {
+  async fetchAllEventConfigurations(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = WebhookPlatformValidator.fetchAllEventConfigurations().validate(
@@ -199,12 +208,12 @@ class Webhook {
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/events`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -227,13 +236,17 @@ class Webhook {
 
   /**
    * @param {WebhookPlatformValidator.GetDeliveryReportsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<WebhookPlatformModel.EventProcessReports>} - Success response
    * @name getDeliveryReports
    * @summary: Get processed events report for a company
    * @description: Retrieve a list of processed events for a specific company based on the provided filters. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getDeliveryReports/).
    */
-  async getDeliveryReports({ body } = {}, { headers } = { headers: false }) {
+  async getDeliveryReports(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = WebhookPlatformValidator.getDeliveryReports().validate(
       {
         body,
@@ -270,12 +283,12 @@ class Webhook {
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/reports/event_processed`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -298,6 +311,7 @@ class Webhook {
 
   /**
    * @param {WebhookPlatformValidator.GetEventCountsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<WebhookPlatformModel.FailedEventsCountSuccessResponse>}
    *   - Success response
@@ -307,7 +321,10 @@ class Webhook {
    * @description: Retrieves the count of failed events for a specific company within the specified date range. The user can filter the count based on specific event types if provided.
    *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getEventCounts/).
    */
-  async getEventCounts({ body } = {}, { headers } = { headers: false }) {
+  async getEventCounts(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = WebhookPlatformValidator.getEventCounts().validate(
       {
         body,
@@ -344,12 +361,12 @@ class Webhook {
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/retry/events/counts`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -372,13 +389,17 @@ class Webhook {
 
   /**
    * @param {WebhookPlatformValidator.GetHistoricalReportsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<WebhookPlatformModel.HistoryResponse>} - Success response
    * @name getHistoricalReports
    * @summary: Get report download history
    * @description: Retrieve history reports for a specific company based on the provided filters. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getHistoricalReports/).
    */
-  async getHistoricalReports({ body } = {}, { headers } = { headers: false }) {
+  async getHistoricalReports(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = WebhookPlatformValidator.getHistoricalReports().validate(
       {
         body,
@@ -415,12 +436,12 @@ class Webhook {
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/reports/history`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -443,6 +464,7 @@ class Webhook {
 
   /**
    * @param {WebhookPlatformValidator.GetManualRetryStatusParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<WebhookPlatformModel.RetryStatusResponse>} - Success response
    * @name getManualRetryStatus
@@ -450,7 +472,10 @@ class Webhook {
    * @description: Retrieves the status of retry for a specific company's failed events. This endpoint returns the total number of events, the count of successfully retried events, the count of failed retry attempts, and the overall status of the retry process.
    *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getManualRetryStatus/).
    */
-  async getManualRetryStatus({ headers } = { headers: false }) {
+  async getManualRetryStatus(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = WebhookPlatformValidator.getManualRetryStatus().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -483,12 +508,12 @@ class Webhook {
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/retry/status`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -511,13 +536,17 @@ class Webhook {
 
   /**
    * @param {WebhookPlatformValidator.GetReportFiltersParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<WebhookPlatformModel.ReportFilterResponse>} - Success response
    * @name getReportFilters
    * @summary: Get filters for a company
    * @description: Retrieve filters for a specific company based on the provided subscriber IDs. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getReportFilters/).
    */
-  async getReportFilters({ body } = {}, { headers } = { headers: false }) {
+  async getReportFilters(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = WebhookPlatformValidator.getReportFilters().validate(
       {
         body,
@@ -554,12 +583,12 @@ class Webhook {
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/filters`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -582,6 +611,7 @@ class Webhook {
 
   /**
    * @param {WebhookPlatformValidator.GetSubscriberByIdParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<WebhookPlatformModel.SubscriberResponse>} - Success response
    * @name getSubscriberById
@@ -589,8 +619,8 @@ class Webhook {
    * @description: Get Subscriber By Subscriber ID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getSubscriberById/).
    */
   async getSubscriberById(
-    { subscriberId } = {},
-    { headers } = { headers: false }
+    { subscriberId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = WebhookPlatformValidator.getSubscriberById().validate(
       {
@@ -628,12 +658,12 @@ class Webhook {
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/subscriber/${subscriberId}`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -656,6 +686,7 @@ class Webhook {
 
   /**
    * @param {WebhookPlatformValidator.GetSubscribersByCompanyParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<WebhookPlatformModel.SubscriberResponse>} - Success response
    * @name getSubscribersByCompany
@@ -663,8 +694,8 @@ class Webhook {
    * @description: Get Subscribers By CompanyId - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getSubscribersByCompany/).
    */
   async getSubscribersByCompany(
-    { pageNo, pageSize, extensionId } = {},
-    { headers } = { headers: false }
+    { pageNo, pageSize, extensionId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -711,12 +742,12 @@ class Webhook {
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/subscriber`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -739,6 +770,7 @@ class Webhook {
 
   /**
    * @param {WebhookPlatformValidator.GetSubscribersByExtensionIdParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<WebhookPlatformModel.SubscriberConfigList>} - Success response
    * @name getSubscribersByExtensionId
@@ -746,8 +778,8 @@ class Webhook {
    * @description: Get Subscribers By ExtensionID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/getSubscribersByExtensionId/).
    */
   async getSubscribersByExtensionId(
-    { extensionId, pageNo, pageSize } = {},
-    { headers } = { headers: false }
+    { extensionId, pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -793,12 +825,12 @@ class Webhook {
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/extension/${extensionId}/subscriber`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -821,6 +853,7 @@ class Webhook {
 
   /**
    * @param {WebhookPlatformValidator.ManualRetryCancelParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<WebhookPlatformModel.EventSuccessResponse>} - Success response
    * @name manualRetryCancel
@@ -828,7 +861,10 @@ class Webhook {
    * @description: Cancels the active manual retry for a specific company's failed events. If a manual retry is currently in progress, it will be cancelled.
    *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/manualRetryCancel/).
    */
-  async manualRetryCancel({ headers } = { headers: false }) {
+  async manualRetryCancel(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = WebhookPlatformValidator.manualRetryCancel().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -861,12 +897,12 @@ class Webhook {
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/retry/cancel`,
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -889,6 +925,7 @@ class Webhook {
 
   /**
    * @param {WebhookPlatformValidator.ManualRetryOfFailedEventParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<WebhookPlatformModel.EventProcessedSuccessResponse>} -
    *   Success response
@@ -898,8 +935,8 @@ class Webhook {
    *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/manualRetryOfFailedEvent/).
    */
   async manualRetryOfFailedEvent(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -939,12 +976,12 @@ class Webhook {
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/retry`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -967,13 +1004,17 @@ class Webhook {
 
   /**
    * @param {WebhookPlatformValidator.PingWebhookParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<WebhookPlatformModel.PingWebhookResponse>} - Success response
    * @name pingWebhook
    * @summary: Ping and validate webhook url
    * @description: Ping and validate webhook url - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/pingWebhook/).
    */
-  async pingWebhook({ body } = {}, { headers } = { headers: false }) {
+  async pingWebhook(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = WebhookPlatformValidator.pingWebhook().validate(
       {
         body,
@@ -1008,12 +1049,12 @@ class Webhook {
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/subscriber/ping`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1036,6 +1077,7 @@ class Webhook {
 
   /**
    * @param {WebhookPlatformValidator.RegisterSubscriberToEventParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<WebhookPlatformModel.SubscriberConfig>} - Success response
    * @name registerSubscriberToEvent
@@ -1043,8 +1085,8 @@ class Webhook {
    * @description: Register Subscriber - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/registerSubscriberToEvent/).
    */
   async registerSubscriberToEvent(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1084,12 +1126,12 @@ class Webhook {
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/subscriber`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1112,6 +1154,7 @@ class Webhook {
 
   /**
    * @param {WebhookPlatformValidator.UpdateSubscriberConfigParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<WebhookPlatformModel.SubscriberConfig>} - Success response
    * @name updateSubscriberConfig
@@ -1119,8 +1162,8 @@ class Webhook {
    * @description: Update Subscriber - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/webhook/updateSubscriberConfig/).
    */
   async updateSubscriberConfig(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1160,12 +1203,12 @@ class Webhook {
       `/service/platform/webhook/v1.0/company/${this.config.companyId}/subscriber`,
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

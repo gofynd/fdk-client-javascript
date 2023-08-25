@@ -35,13 +35,18 @@ class Logistic {
   }
 
   /**
+   * @param {LogisticApplicationValidator.GetAllCountriesParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<LogisticApplicationModel.CountryListResponse>} - Success response
    * @name getAllCountries
    * @summary: Get Country List
    * @description: Get all countries - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getAllCountries/).
    */
-  async getAllCountries({ headers } = { headers: false }) {
+  async getAllCountries(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = LogisticApplicationValidator.getAllCountries().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -77,12 +82,12 @@ class Logistic {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -105,6 +110,7 @@ class Logistic {
 
   /**
    * @param {LogisticApplicationValidator.GetOptimalLocationsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<LogisticApplicationModel.ReAssignStoreResponse>} -
    *   Success response
@@ -112,7 +118,10 @@ class Logistic {
    * @summary: GET zone from the Pincode.
    * @description: This API returns zone from the Pincode View. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getOptimalLocations/).
    */
-  async getOptimalLocations({ body } = {}, { headers } = { headers: false }) {
+  async getOptimalLocations(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = LogisticApplicationValidator.getOptimalLocations().validate(
@@ -150,12 +159,12 @@ class Logistic {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -178,13 +187,17 @@ class Logistic {
 
   /**
    * @param {LogisticApplicationValidator.GetPincodeCityParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<LogisticApplicationModel.PincodeApiResponse>} - Success response
    * @name getPincodeCity
    * @summary: Get Pincode API
    * @description: Get pincode data - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getPincodeCity/).
    */
-  async getPincodeCity({ pincode } = {}, { headers } = { headers: false }) {
+  async getPincodeCity(
+    { pincode, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = LogisticApplicationValidator.getPincodeCity().validate(
       { pincode },
       { abortEarly: false, allowUnknown: true }
@@ -220,12 +233,12 @@ class Logistic {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -248,6 +261,7 @@ class Logistic {
 
   /**
    * @param {LogisticApplicationValidator.GetPincodeZonesParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<LogisticApplicationModel.GetZoneFromPincodeViewResponse>}
    *   - Success response
@@ -256,7 +270,10 @@ class Logistic {
    * @summary: GET zone from the Pincode.
    * @description: This API returns zone from the Pincode View. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getPincodeZones/).
    */
-  async getPincodeZones({ body } = {}, { headers } = { headers: false }) {
+  async getPincodeZones(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = LogisticApplicationValidator.getPincodeZones().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -292,12 +309,12 @@ class Logistic {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -320,13 +337,17 @@ class Logistic {
 
   /**
    * @param {LogisticApplicationValidator.GetTatProductParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<LogisticApplicationModel.TATViewResponse>} - Success response
    * @name getTatProduct
    * @summary: Get TAT API
    * @description: Get TAT data - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/logistic/getTatProduct/).
    */
-  async getTatProduct({ body } = {}, { headers } = { headers: false }) {
+  async getTatProduct(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = LogisticApplicationValidator.getTatProduct().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
@@ -362,12 +383,12 @@ class Logistic {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

@@ -4,6 +4,7 @@ declare class CompanyProfile {
     config: any;
     /**
      * @param {CompanyProfilePlatformValidator.CbsOnboardGetParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CompanyProfilePlatformModel.GetCompanyProfileSerializerResponse>}
      *   - Success response
@@ -12,9 +13,10 @@ declare class CompanyProfile {
      * @summary: Get company profile
      * @description: This API allows to view the company profile of the seller account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/cbsOnboardGet/).
      */
-    cbsOnboardGet({ headers }?: any): Promise<CompanyProfilePlatformModel.GetCompanyProfileSerializerResponse>;
+    cbsOnboardGet({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CompanyProfilePlatformModel.GetCompanyProfileSerializerResponse>;
     /**
      * @param {CompanyProfilePlatformValidator.CreateBrandParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
      *   Success response
@@ -22,11 +24,12 @@ declare class CompanyProfile {
      * @summary: Create a Brand.
      * @description: This API allows to create a brand associated to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/createBrand/).
      */
-    createBrand({ body }?: CompanyProfilePlatformValidator.CreateBrandParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>;
+    createBrand({ body, requestHeaders }?: CompanyProfilePlatformValidator.CreateBrandParam, { responseHeaders }?: object): Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>;
     /**
      * @param {CompanyProfilePlatformValidator.CreateCompanyBrandMappingParam} arg
      *   - Arg object
      *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
      *   Success response
@@ -34,9 +37,10 @@ declare class CompanyProfile {
      * @summary: Create a company brand mapping.
      * @description: This API allows to create a company brand mapping, for a already existing brand in the system. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/createCompanyBrandMapping/).
      */
-    createCompanyBrandMapping({ body }?: CompanyProfilePlatformValidator.CreateCompanyBrandMappingParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>;
+    createCompanyBrandMapping({ body, requestHeaders }?: CompanyProfilePlatformValidator.CreateCompanyBrandMappingParam, { responseHeaders }?: object): Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>;
     /**
      * @param {CompanyProfilePlatformValidator.CreateLocationParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
      *   Success response
@@ -44,9 +48,10 @@ declare class CompanyProfile {
      * @summary: Create a location associated to a company.
      * @description: This API allows to edit a location associated to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/createLocation/).
      */
-    createLocation({ body }?: CompanyProfilePlatformValidator.CreateLocationParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>;
+    createLocation({ body, requestHeaders }?: CompanyProfilePlatformValidator.CreateLocationParam, { responseHeaders }?: object): Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>;
     /**
      * @param {CompanyProfilePlatformValidator.CreateLocationBulkParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
      *   Success response
@@ -54,9 +59,10 @@ declare class CompanyProfile {
      * @summary: Create a location asscoiated to a company in bulk.
      * @description: This API allows to create a location associated to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/createLocationBulk/).
      */
-    createLocationBulk({ body }?: CompanyProfilePlatformValidator.CreateLocationBulkParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>;
+    createLocationBulk({ body, requestHeaders }?: CompanyProfilePlatformValidator.CreateLocationBulkParam, { responseHeaders }?: object): Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>;
     /**
      * @param {CompanyProfilePlatformValidator.EditBrandParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
      *   Success response
@@ -64,9 +70,10 @@ declare class CompanyProfile {
      * @summary: Edit a brand.
      * @description: This API allows to edit meta of a brand. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/editBrand/).
      */
-    editBrand({ brandId, body }?: CompanyProfilePlatformValidator.EditBrandParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>;
+    editBrand({ brandId, body, requestHeaders }?: CompanyProfilePlatformValidator.EditBrandParam, { responseHeaders }?: object): Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>;
     /**
      * @param {CompanyProfilePlatformValidator.GetBrandParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CompanyProfilePlatformModel.GetBrandResponseSerializer>}
      *   - Success response
@@ -75,9 +82,10 @@ declare class CompanyProfile {
      * @summary: Get a single company brand.
      * @description: This API helps to get data associated to a particular company brand. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getBrand/).
      */
-    getBrand({ brandId }?: CompanyProfilePlatformValidator.GetBrandParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CompanyProfilePlatformModel.GetBrandResponseSerializer>;
+    getBrand({ brandId, requestHeaders }?: CompanyProfilePlatformValidator.GetBrandParam, { responseHeaders }?: object): Promise<CompanyProfilePlatformModel.GetBrandResponseSerializer>;
     /**
      * @param {CompanyProfilePlatformValidator.GetBrandsParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CompanyProfilePlatformModel.CompanyBrandListSerializer>}
      *   - Success response
@@ -86,7 +94,7 @@ declare class CompanyProfile {
      * @summary: Get brands associated to a company
      * @description: This API helps to get view brands associated to a particular company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getBrands/).
      */
-    getBrands({ pageNo, pageSize, q }?: CompanyProfilePlatformValidator.GetBrandsParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CompanyProfilePlatformModel.CompanyBrandListSerializer>;
+    getBrands({ pageNo, pageSize, q, requestHeaders }?: CompanyProfilePlatformValidator.GetBrandsParam, { responseHeaders }?: object): Promise<CompanyProfilePlatformModel.CompanyBrandListSerializer>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
@@ -102,6 +110,7 @@ declare class CompanyProfile {
     }): Paginator<CompanyProfilePlatformModel.CompanyBrandListSerializer>;
     /**
      * @param {CompanyProfilePlatformValidator.GetCompanyMetricsParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CompanyProfilePlatformModel.MetricsSerializer>} -
      *   Success response
@@ -109,9 +118,10 @@ declare class CompanyProfile {
      * @summary: Get company metrics
      * @description: This API allows to view the company metrics, i.e. the status of its brand and stores. Also its allows to view the number of products, company documents & store documents which are verified and unverified. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getCompanyMetrics/).
      */
-    getCompanyMetrics({ headers }?: any): Promise<CompanyProfilePlatformModel.MetricsSerializer>;
+    getCompanyMetrics({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CompanyProfilePlatformModel.MetricsSerializer>;
     /**
      * @param {CompanyProfilePlatformValidator.GetLocationDetailParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CompanyProfilePlatformModel.GetLocationSerializer>} -
      *   Success response
@@ -119,9 +129,10 @@ declare class CompanyProfile {
      * @summary: Get details of a specific location.
      * @description: This API helps to get data associated to a specific location. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getLocationDetail/).
      */
-    getLocationDetail({ locationId }?: CompanyProfilePlatformValidator.GetLocationDetailParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CompanyProfilePlatformModel.GetLocationSerializer>;
+    getLocationDetail({ locationId, requestHeaders }?: CompanyProfilePlatformValidator.GetLocationDetailParam, { responseHeaders }?: object): Promise<CompanyProfilePlatformModel.GetLocationSerializer>;
     /**
      * @param {CompanyProfilePlatformValidator.GetLocationTagsParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CompanyProfilePlatformModel.StoreTagsResponseSchema>}
      *   - Success response
@@ -130,9 +141,10 @@ declare class CompanyProfile {
      * @summary: Get tags associated with locations for a company.
      * @description: This API fetches all the tags associated to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getLocationTags/).
      */
-    getLocationTags({ headers }?: any): Promise<CompanyProfilePlatformModel.StoreTagsResponseSchema>;
+    getLocationTags({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CompanyProfilePlatformModel.StoreTagsResponseSchema>;
     /**
      * @param {CompanyProfilePlatformValidator.GetLocationsParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CompanyProfilePlatformModel.LocationListSerializer>} -
      *   Success response
@@ -140,7 +152,7 @@ declare class CompanyProfile {
      * @summary: Get list of locations
      * @description: This API allows to view all the locations associated to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getLocations/).
      */
-    getLocations({ storeType, q, stage, pageNo, pageSize, locationIds }?: CompanyProfilePlatformValidator.GetLocationsParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CompanyProfilePlatformModel.LocationListSerializer>;
+    getLocations({ storeType, q, stage, pageNo, pageSize, locationIds, requestHeaders }?: CompanyProfilePlatformValidator.GetLocationsParam, { responseHeaders }?: object): Promise<CompanyProfilePlatformModel.LocationListSerializer>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.storeType] - Helps to sort the location list on the
@@ -164,6 +176,7 @@ declare class CompanyProfile {
     }): Paginator<CompanyProfilePlatformModel.LocationListSerializer>;
     /**
      * @param {CompanyProfilePlatformValidator.UpdateCompanyParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
      *   Success response
@@ -171,9 +184,10 @@ declare class CompanyProfile {
      * @summary: Edit company profile
      * @description: This API allows to edit the company profile of the seller account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/updateCompany/).
      */
-    updateCompany({ body }?: CompanyProfilePlatformValidator.UpdateCompanyParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>;
+    updateCompany({ body, requestHeaders }?: CompanyProfilePlatformValidator.UpdateCompanyParam, { responseHeaders }?: object): Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>;
     /**
      * @param {CompanyProfilePlatformValidator.UpdateLocationParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>} -
      *   Success response
@@ -181,7 +195,7 @@ declare class CompanyProfile {
      * @summary: Edit a location asscoiated to a company.
      * @description: This API allows to edit a location associated to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/updateLocation/).
      */
-    updateLocation({ locationId, body }?: CompanyProfilePlatformValidator.UpdateLocationParam, { headers }?: import("../PlatformAPIClient").Options): Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>;
+    updateLocation({ locationId, body, requestHeaders }?: CompanyProfilePlatformValidator.UpdateLocationParam, { responseHeaders }?: object): Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>;
 }
 import CompanyProfilePlatformModel = require("./CompanyProfilePlatformModel");
 import CompanyProfilePlatformValidator = require("./CompanyProfilePlatformValidator");

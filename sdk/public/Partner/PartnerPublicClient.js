@@ -32,6 +32,7 @@ class Partner {
 
   /**
    * @param {PartnerPublicValidator.GetPanelExtensionDetailsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PublicAPIClient").Options} - Options
    * @returns {Promise<PartnerPublicModel.ExtensionUsingSlug>} - Success response
    * @name getPanelExtensionDetails
@@ -39,8 +40,8 @@ class Partner {
    * @description: Use this API to get extension details - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/partner/getPanelExtensionDetails/).
    */
   async getPanelExtensionDetails(
-    { slug } = {},
-    { headers } = { headers: false }
+    { slug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -79,12 +80,12 @@ class Partner {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

@@ -581,13 +581,25 @@ export = CommunicationPlatformModel;
  */
 /**
  * @typedef SmsProviderReq
+ * @property {string} [api_key] - The api_key for the test.
+ * @property {string} [apikey] - The apikey for the test.
  * @property {string} [authkey]
  * @property {string} [description]
+ * @property {string} [entity_id] - The entity ID for the test.
+ * @property {string} [entityid] - The entity ID for the test.
+ * @property {string} [feedid] - The feed ID for the test.
+ * @property {string} [host] - The host for the test.
  * @property {string} [name]
+ * @property {boolean} [override_dnd] - Whether to override Do Not Disturb.
+ * @property {string} [password] - The password for the test.
+ * @property {number} [port] - The port for the test.
  * @property {string} [provider]
  * @property {string} [sender]
+ * @property {string} [sender_id] - The sender ID for the test.
+ * @property {string} [senderid] - The sender ID for the test.
  * @property {string} [type]
  * @property {string} [username]
+ * @property {number} [version_id] - The version ID for the test.
  */
 /**
  * @typedef SmsProviders
@@ -1442,13 +1454,61 @@ type SmsProvider = {
 /** @returns {SmsProviderReq} */
 declare function SmsProviderReq(): SmsProviderReq;
 type SmsProviderReq = {
+    /**
+     * - The api_key for the test.
+     */
+    api_key?: string;
+    /**
+     * - The apikey for the test.
+     */
+    apikey?: string;
     authkey?: string;
     description?: string;
+    /**
+     * - The entity ID for the test.
+     */
+    entity_id?: string;
+    /**
+     * - The entity ID for the test.
+     */
+    entityid?: string;
+    /**
+     * - The feed ID for the test.
+     */
+    feedid?: string;
+    /**
+     * - The host for the test.
+     */
+    host?: string;
     name?: string;
+    /**
+     * - Whether to override Do Not Disturb.
+     */
+    override_dnd?: boolean;
+    /**
+     * - The password for the test.
+     */
+    password?: string;
+    /**
+     * - The port for the test.
+     */
+    port?: number;
     provider?: string;
     sender?: string;
+    /**
+     * - The sender ID for the test.
+     */
+    sender_id?: string;
+    /**
+     * - The sender ID for the test.
+     */
+    senderid?: string;
     type?: string;
     username?: string;
+    /**
+     * - The version ID for the test.
+     */
+    version_id?: number;
 };
 /** @returns {SmsProviders} */
 declare function SmsProviders(): SmsProviders;

@@ -649,7 +649,7 @@ Create sms provider
 
 
 
-[SmsProvider](#SmsProvider)
+[Object](#Object)
 
 Success
 
@@ -3675,7 +3675,7 @@ Get sms provider by id
 
 
 
-[SmsProvider](#SmsProvider)
+[Object](#Object)
 
 Success
 
@@ -3760,7 +3760,7 @@ Get sms providers
 
 
 
-[SmsProviders](#SmsProviders)
+[Object](#Object)
 
 Success
 
@@ -5583,7 +5583,7 @@ Update sms provider by id
 
 
 
-[SmsProvider](#SmsProvider)
+[Object](#Object)
 
 Success
 
@@ -6793,13 +6793,25 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | api_key | string? |  yes  | The api_key for the test. |
+ | apikey | string? |  yes  | The apikey for the test. |
  | authkey | string? |  yes  |  |
  | description | string? |  yes  |  |
+ | entity_id | string? |  yes  | The entity ID for the test. |
+ | entityid | string? |  yes  | The entity ID for the test. |
+ | feedid | string? |  yes  | The feed ID for the test. |
+ | host | string? |  yes  | The host for the test. |
  | name | string? |  yes  |  |
+ | override_dnd | boolean? |  yes  | Whether to override Do Not Disturb. |
+ | password | string? |  yes  | The password for the test. |
+ | port | number? |  yes  | The port for the test. |
  | provider | string? |  yes  |  |
  | sender | string? |  yes  |  |
+ | sender_id | string? |  yes  | The sender ID for the test. |
+ | senderid | string? |  yes  | The sender ID for the test. |
  | type | string? |  yes  |  |
  | username | string? |  yes  |  |
+ | version_id | number? |  yes  | The version ID for the test. |
  
 
 ---

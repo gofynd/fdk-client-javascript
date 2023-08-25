@@ -115,7 +115,6 @@ fdkAxios.interceptors.request.use(requestInterceptorFn());
 fdkAxios.interceptors.response.use(
   function (response) {
     if (response.config.method == "head") {
-      // TODO: what to do for `head` method
       return response.headers;
     }
     Logger({
@@ -125,7 +124,7 @@ fdkAxios.interceptors.response.use(
       url: response.config.url,
     });
 
-    if (response.config._returnHeaders) {
+    if (response.config.responseHeaders) {
       return [response.data, response.headers];
     }
     return response.data;

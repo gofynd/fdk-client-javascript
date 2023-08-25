@@ -663,13 +663,25 @@ const Joi = require("joi");
 
 /**
  * @typedef SmsProviderReq
+ * @property {string} [api_key] - The api_key for the test.
+ * @property {string} [apikey] - The apikey for the test.
  * @property {string} [authkey]
  * @property {string} [description]
+ * @property {string} [entity_id] - The entity ID for the test.
+ * @property {string} [entityid] - The entity ID for the test.
+ * @property {string} [feedid] - The feed ID for the test.
+ * @property {string} [host] - The host for the test.
  * @property {string} [name]
+ * @property {boolean} [override_dnd] - Whether to override Do Not Disturb.
+ * @property {string} [password] - The password for the test.
+ * @property {number} [port] - The port for the test.
  * @property {string} [provider]
  * @property {string} [sender]
+ * @property {string} [sender_id] - The sender ID for the test.
+ * @property {string} [senderid] - The sender ID for the test.
  * @property {string} [type]
  * @property {string} [username]
+ * @property {number} [version_id] - The version ID for the test.
  */
 
 /**
@@ -1712,13 +1724,25 @@ class CommunicationPlatformModel {
   /** @returns {SmsProviderReq} */
   static SmsProviderReq() {
     return Joi.object({
+      api_key: Joi.string().allow(""),
+      apikey: Joi.string().allow(""),
       authkey: Joi.string().allow(""),
       description: Joi.string().allow(""),
+      entity_id: Joi.string().allow(""),
+      entityid: Joi.string().allow(""),
+      feedid: Joi.string().allow(""),
+      host: Joi.string().allow(""),
       name: Joi.string().allow(""),
+      override_dnd: Joi.boolean(),
+      password: Joi.string().allow(""),
+      port: Joi.number(),
       provider: Joi.string().allow(""),
       sender: Joi.string().allow(""),
+      sender_id: Joi.string().allow(""),
+      senderid: Joi.string().allow(""),
       type: Joi.string().allow(""),
       username: Joi.string().allow(""),
+      version_id: Joi.number(),
     });
   }
 

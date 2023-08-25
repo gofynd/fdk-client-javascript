@@ -1,7 +1,7 @@
 export = APIClient;
 /**
  * @typedef {Object} Options
- * @property {boolean} headers - Whether headers are returned or not.
+ * @property {boolean} responseHeaders - Whether response headers are returned or not.
  */
 declare class APIClient {
     /**
@@ -19,7 +19,7 @@ declare namespace APIClient {
 }
 type Options = {
     /**
-     * - Whether headers are returned or not.
+     * - Whether response headers are returned or not.
      */
-    headers: boolean;
+    responseHeaders: boolean;
 };

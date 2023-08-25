@@ -33,6 +33,7 @@ class Configuration {
 
   /**
    * @param {ConfigurationPublicValidator.GetLocationsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PublicAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPublicModel.Locations>} - Success response
    * @name getLocations
@@ -40,8 +41,8 @@ class Configuration {
    * @description: Get Location configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/configuration/getLocations/).
    */
   async getLocations(
-    { locationType, id } = {},
-    { headers } = { headers: false }
+    { locationType, id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = ConfigurationPublicValidator.getLocations().validate(
       { locationType, id },
@@ -80,12 +81,12 @@ class Configuration {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -108,6 +109,7 @@ class Configuration {
 
   /**
    * @param {ConfigurationPublicValidator.SearchApplicationParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PublicAPIClient").Options} - Options
    * @returns {Promise<ConfigurationPublicModel.ApplicationResponse>} - Success response
    * @name searchApplication
@@ -115,8 +117,8 @@ class Configuration {
    * @description: Provide application name or domain url - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/configuration/searchApplication/).
    */
   async searchApplication(
-    { authorization, query } = {},
-    { headers } = { headers: false }
+    { authorization, query, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = ConfigurationPublicValidator.searchApplication().validate(
       { authorization, query },
@@ -155,12 +157,12 @@ class Configuration {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

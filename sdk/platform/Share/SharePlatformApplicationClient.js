@@ -14,13 +14,17 @@ class Share {
 
   /**
    * @param {SharePlatformApplicationValidator.CreateShortLinkParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<SharePlatformModel.ShortLinkRes>} - Success response
    * @name createShortLink
    * @summary: Create short link
    * @description: Create short link - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/share/createShortLink/).
    */
-  async createShortLink({ body } = {}, { headers } = { headers: false }) {
+  async createShortLink(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = SharePlatformApplicationValidator.createShortLink().validate(
@@ -57,12 +61,12 @@ class Share {
       `/service/platform/share/v1.0/company/${this.config.companyId}/application/${this.applicationId}/links/short-link/`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -85,13 +89,17 @@ class Share {
 
   /**
    * @param {SharePlatformApplicationValidator.GetShortLinkByHashParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<SharePlatformModel.ShortLinkRes>} - Success response
    * @name getShortLinkByHash
    * @summary: Get short link by hash
    * @description: Get short link by hash - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/share/getShortLinkByHash/).
    */
-  async getShortLinkByHash({ hash } = {}, { headers } = { headers: false }) {
+  async getShortLinkByHash(
+    { hash, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = SharePlatformApplicationValidator.getShortLinkByHash().validate(
@@ -128,12 +136,12 @@ class Share {
       `/service/platform/share/v1.0/company/${this.config.companyId}/application/${this.applicationId}/links/short-link/${hash}/`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -158,6 +166,7 @@ class Share {
    * @param {SharePlatformApplicationValidator.GetShortLinkClickStatsParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<SharePlatformModel.ClickStatsResponse>} - Success response
    * @name getShortLinkClickStats
@@ -165,8 +174,8 @@ class Share {
    * @description: Retrieve click statistics for a given short link ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/share/getShortLinkClickStats/).
    */
   async getShortLinkClickStats(
-    { surlId } = {},
-    { headers } = { headers: false }
+    { surlId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -201,12 +210,12 @@ class Share {
       `/service/platform/share/v1.0/company/${this.config.companyId}/application/${this.applicationId}/links/short-link/click-stats`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -229,6 +238,7 @@ class Share {
 
   /**
    * @param {SharePlatformApplicationValidator.GetShortLinksParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<SharePlatformModel.ShortLinkList>} - Success response
    * @name getShortLinks
@@ -236,8 +246,10 @@ class Share {
    * @description: Get short links - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/share/getShortLinks/).
    */
   async getShortLinks(
-    { pageNo, pageSize, createdBy, active, q } = {},
-    { headers } = { headers: false }
+    { pageNo, pageSize, createdBy, active, q, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -288,12 +300,12 @@ class Share {
       `/service/platform/share/v1.0/company/${this.config.companyId}/application/${this.applicationId}/links/short-link/`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -318,6 +330,7 @@ class Share {
    * @param {SharePlatformApplicationValidator.UpdateShortLinkByIdParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<SharePlatformModel.ShortLinkRes>} - Success response
    * @name updateShortLinkById
@@ -325,8 +338,8 @@ class Share {
    * @description: Update short link by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/share/updateShortLinkById/).
    */
   async updateShortLinkById(
-    { id, body } = {},
-    { headers } = { headers: false }
+    { id, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -366,12 +379,12 @@ class Share {
       `/service/platform/share/v1.0/company/${this.config.companyId}/application/${this.applicationId}/links/short-link/${id}/`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

@@ -14,13 +14,17 @@ class Rewards {
 
   /**
    * @param {RewardsPlatformApplicationValidator.GetGiveawayByIdParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<RewardsPlatformModel.Giveaway>} - Success response
    * @name getGiveawayById
    * @summary: Get giveaway by ID.
    * @description: Retrieve the specific giveaway by giveaway ID. It will show all the details of the requested giveaway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/getGiveawayById/).
    */
-  async getGiveawayById({ id } = {}, { headers } = { headers: false }) {
+  async getGiveawayById(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = RewardsPlatformApplicationValidator.getGiveawayById().validate(
@@ -57,12 +61,12 @@ class Rewards {
       `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/giveaways/${id}`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -85,13 +89,17 @@ class Rewards {
 
   /**
    * @param {RewardsPlatformApplicationValidator.GetOfferByNameParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<RewardsPlatformModel.Offer>} - Success response
    * @name getOfferByName
    * @summary: Fetch a offer by its name
    * @description: Fetch the specific offer details and configuration by the name of the offer. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/getOfferByName/).
    */
-  async getOfferByName({ name } = {}, { headers } = { headers: false }) {
+  async getOfferByName(
+    { name, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = RewardsPlatformApplicationValidator.getOfferByName().validate(
@@ -124,12 +132,12 @@ class Rewards {
       `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/offers/${name}/`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -151,13 +159,20 @@ class Rewards {
   }
 
   /**
+   * @param {RewardsPlatformApplicationValidator.GetRewardsConfigurationParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<RewardsPlatformModel.ConfigurationRes>} - Success response
    * @name getRewardsConfiguration
    * @summary: Get all valid android paths
    * @description: Use this API to get a list of valid android paths required by the Rewards INIT API to validate a fraudulent device. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/getRewardsConfiguration/).
    */
-  async getRewardsConfiguration({ headers } = { headers: false }) {
+  async getRewardsConfiguration(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = RewardsPlatformApplicationValidator.getRewardsConfiguration().validate(
@@ -190,12 +205,12 @@ class Rewards {
       `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/configuration/`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -218,13 +233,17 @@ class Rewards {
 
   /**
    * @param {RewardsPlatformApplicationValidator.GetUserDetailsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<RewardsPlatformModel.UserRes>} - Success response
    * @name getUserDetails
    * @summary: Get user reward details
    * @description: Fetches the user details and the user reward details with their current reward points for the specific user. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/getUserDetails/).
    */
-  async getUserDetails({ userId } = {}, { headers } = { headers: false }) {
+  async getUserDetails(
+    { userId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = RewardsPlatformApplicationValidator.getUserDetails().validate(
@@ -257,12 +276,12 @@ class Rewards {
       `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/users/${userId}/`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -287,6 +306,7 @@ class Rewards {
    * @param {RewardsPlatformApplicationValidator.GetUserPointsHistoryParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<RewardsPlatformModel.HistoryRes>} - Success response
    * @name getUserPointsHistory
@@ -294,8 +314,8 @@ class Rewards {
    * @description: Fetches a list of points transactions like giveaway points, signup points, referral points, order earn points, redeem points and expired points. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/getUserPointsHistory/).
    */
   async getUserPointsHistory(
-    { userId, pageId, pageSize } = {},
-    { headers } = { headers: false }
+    { userId, pageId, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -341,12 +361,12 @@ class Rewards {
       `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/users/${userId}/points/history/`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -407,13 +427,17 @@ class Rewards {
 
   /**
    * @param {RewardsPlatformApplicationValidator.SaveGiveAwayParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<RewardsPlatformModel.Giveaway>} - Success response
    * @name saveGiveAway
    * @summary: List of giveaways of the current application.
    * @description: Creates a new giveaway in the current application, specifying the target audience, points allocation, as well as the name and display name of the giveaway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/saveGiveAway/).
    */
-  async saveGiveAway({ body } = {}, { headers } = { headers: false }) {
+  async saveGiveAway(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = RewardsPlatformApplicationValidator.saveGiveAway().validate(
@@ -450,12 +474,12 @@ class Rewards {
       `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/giveaways`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -480,6 +504,7 @@ class Rewards {
    * @param {RewardsPlatformApplicationValidator.SetRewardsConfigurationParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<RewardsPlatformModel.SetConfigurationRes>} - Success response
    * @name setRewardsConfiguration
@@ -487,8 +512,8 @@ class Rewards {
    * @description: Updates the configuration or inserts new records with the given android paths. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/setRewardsConfiguration/).
    */
   async setRewardsConfiguration(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -526,12 +551,12 @@ class Rewards {
       `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/configuration/`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -554,6 +579,7 @@ class Rewards {
 
   /**
    * @param {RewardsPlatformApplicationValidator.ShowGiveawaysParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<RewardsPlatformModel.GiveawayResponse>} - Success response
    * @name showGiveaways
@@ -561,8 +587,8 @@ class Rewards {
    * @description: Fetch the detailed compilation of live, completed, and scheduled point-based giveaways created. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/showGiveaways/).
    */
   async showGiveaways(
-    { pageId, pageSize } = {},
-    { headers } = { headers: false }
+    { pageId, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -604,12 +630,12 @@ class Rewards {
       `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/giveaways`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -631,13 +657,18 @@ class Rewards {
   }
 
   /**
+   * @param {RewardsPlatformApplicationValidator.ShowOffersParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<RewardsPlatformModel.Offer[]>} - Success response
    * @name showOffers
    * @summary: List of offers of the current application.
    * @description: Retrieve the list of offers within the current application, including order_discount, order, sign_up, and referral, along with their respective details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/showOffers/).
    */
-  async showOffers({ headers } = { headers: false }) {
+  async showOffers(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = RewardsPlatformApplicationValidator.showOffers().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -668,12 +699,12 @@ class Rewards {
       `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/offers/`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -693,13 +724,17 @@ class Rewards {
 
   /**
    * @param {RewardsPlatformApplicationValidator.UpdateGiveAwayParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<RewardsPlatformModel.Giveaway>} - Success response
    * @name updateGiveAway
    * @summary: Updates the giveaway by it's ID.
    * @description: Make the necessary updates to the giveaway based on its giveaway ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/updateGiveAway/).
    */
-  async updateGiveAway({ id, body } = {}, { headers } = { headers: false }) {
+  async updateGiveAway(
+    { id, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = RewardsPlatformApplicationValidator.updateGiveAway().validate(
@@ -738,12 +773,12 @@ class Rewards {
       `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/giveaways/${id}`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -768,6 +803,7 @@ class Rewards {
    * @param {RewardsPlatformApplicationValidator.UpdateOfferByNameParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<RewardsPlatformModel.Offer>} - Success response
    * @name updateOfferByName
@@ -775,8 +811,8 @@ class Rewards {
    * @description: Update the specific offer details and its configuration by offer name. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/updateOfferByName/).
    */
   async updateOfferByName(
-    { name, body } = {},
-    { headers } = { headers: false }
+    { name, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -818,12 +854,12 @@ class Rewards {
       `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/offers/${name}/`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -846,6 +882,7 @@ class Rewards {
 
   /**
    * @param {RewardsPlatformApplicationValidator.UpdateUserStatusParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<RewardsPlatformModel.AppUser>} - Success response
    * @name updateUserStatus
@@ -853,8 +890,8 @@ class Rewards {
    * @description: Update the user status by marking them as a block or unblock. It can be done by changing the active flag in request body. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/rewards/updateUserStatus/).
    */
   async updateUserStatus(
-    { userId, body } = {},
-    { headers } = { headers: false }
+    { userId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -896,12 +933,12 @@ class Rewards {
       `/service/platform/rewards/v1.0/company/${this.config.companyId}/application/${this.applicationId}/users/${userId}/`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

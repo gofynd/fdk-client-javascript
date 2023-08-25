@@ -36,6 +36,10 @@ export = OrderPlatformValidator;
  * @property {OrderPlatformModel.BulkReportsDownloadRequest} body
  */
 /**
+ * @typedef EInvoiceRetryParam
+ * @property {OrderPlatformModel.EInvoiceRetry} body
+ */
+/**
  * @typedef FetchCreditBalanceDetailParam
  * @property {OrderPlatformModel.FetchCreditBalanceRequestPayload} body
  */
@@ -295,6 +299,8 @@ declare class OrderPlatformValidator {
     static downloadBulkActionTemplate(): DownloadBulkActionTemplateParam;
     /** @returns {DownloadLanesReportParam} */
     static downloadLanesReport(): DownloadLanesReportParam;
+    /** @returns {EInvoiceRetryParam} */
+    static eInvoiceRetry(): EInvoiceRetryParam;
     /** @returns {FetchCreditBalanceDetailParam} */
     static fetchCreditBalanceDetail(): FetchCreditBalanceDetailParam;
     /** @returns {FetchRefundModeConfigParam} */
@@ -367,7 +373,7 @@ declare class OrderPlatformValidator {
     static verifyMobileOTP(): VerifyMobileOTPParam;
 }
 declare namespace OrderPlatformValidator {
-    export { AttachOrderUserParam, CheckOrderStatusParam, Click2CallParam, CreateChannelConfigParam, CreateOrderParam, DispatchManifestParam, DownloadBulkActionTemplateParam, DownloadLanesReportParam, FetchCreditBalanceDetailParam, FetchRefundModeConfigParam, GeneratePOSReceiptByOrderIdParam, GetAllowedStateTransitionParam, GetAnnouncementsParam, GetBagByIdParam, GetBagsParam, GetBulkActionTemplateParam, GetBulkShipmentExcelFileParam, GetChannelConfigParam, GetLaneConfigParam, GetOrderByIdParam, GetOrdersParam, GetRoleBasedActionsParam, GetShipmentByIdParam, GetShipmentHistoryParam, GetShipmentReasonsParam, GetShipmentsParam, GetStateTransitionMapParam, GetfiltersParam, InvalidateShipmentCacheParam, OrderUpdateParam, PostShipmentHistoryParam, ProcessManifestParam, ReassignLocationParam, SendSmsNinjaParam, SendUserMobileOTPParam, TrackShipmentParam, UpdateAddressParam, UpdatePackagingDimensionsParam, UpdateShipmentLockParam, UpdateShipmentStatusParam, UpdateShipmentTrackingParam, UploadConsentParam, VerifyMobileOTPParam };
+    export { AttachOrderUserParam, CheckOrderStatusParam, Click2CallParam, CreateChannelConfigParam, CreateOrderParam, DispatchManifestParam, DownloadBulkActionTemplateParam, DownloadLanesReportParam, EInvoiceRetryParam, FetchCreditBalanceDetailParam, FetchRefundModeConfigParam, GeneratePOSReceiptByOrderIdParam, GetAllowedStateTransitionParam, GetAnnouncementsParam, GetBagByIdParam, GetBagsParam, GetBulkActionTemplateParam, GetBulkShipmentExcelFileParam, GetChannelConfigParam, GetLaneConfigParam, GetOrderByIdParam, GetOrdersParam, GetRoleBasedActionsParam, GetShipmentByIdParam, GetShipmentHistoryParam, GetShipmentReasonsParam, GetShipmentsParam, GetStateTransitionMapParam, GetfiltersParam, InvalidateShipmentCacheParam, OrderUpdateParam, PostShipmentHistoryParam, ProcessManifestParam, ReassignLocationParam, SendSmsNinjaParam, SendUserMobileOTPParam, TrackShipmentParam, UpdateAddressParam, UpdatePackagingDimensionsParam, UpdateShipmentLockParam, UpdateShipmentStatusParam, UpdateShipmentTrackingParam, UploadConsentParam, VerifyMobileOTPParam };
 }
 type AttachOrderUserParam = {
     body: OrderPlatformModel.AttachOrderUser;
@@ -414,6 +420,9 @@ type DownloadBulkActionTemplateParam = {
 };
 type DownloadLanesReportParam = {
     body: OrderPlatformModel.BulkReportsDownloadRequest;
+};
+type EInvoiceRetryParam = {
+    body: OrderPlatformModel.EInvoiceRetry;
 };
 type FetchCreditBalanceDetailParam = {
     body: OrderPlatformModel.FetchCreditBalanceRequestPayload;

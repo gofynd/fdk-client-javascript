@@ -14,6 +14,7 @@ class Payment {
 
   /**
    * @param {PaymentPlatformApplicationValidator.AddEdcDeviceParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.EdcDeviceUpdateResponse>} - Success response
    * @name addEdcDevice
@@ -21,8 +22,8 @@ class Payment {
    * @description: Use this API to Update store id and device tag of edc device - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/addEdcDevice/).
    */
   async addEdcDevice(
-    { terminalUniqueIdentifier, body } = {},
-    { headers } = { headers: false }
+    { terminalUniqueIdentifier, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -62,12 +63,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/edc-device/${terminalUniqueIdentifier}`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -92,6 +93,7 @@ class Payment {
    * @param {PaymentPlatformApplicationValidator.AddRefundBankAccountUsingOTPParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.RefundAccountResponse>} - Success response
    * @name addRefundBankAccountUsingOTP
@@ -99,8 +101,8 @@ class Payment {
    * @description: Use this API to save bank details for returned/cancelled order to refund amount in his account. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/addRefundBankAccountUsingOTP/).
    */
   async addRefundBankAccountUsingOTP(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -138,12 +140,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/refund/account`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -168,6 +170,7 @@ class Payment {
    * @param {PaymentPlatformApplicationValidator.CancelPaymentLinkParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.CancelPaymentLinkResponse>} -
    *   Success response
@@ -175,7 +178,10 @@ class Payment {
    * @summary: Cancel payment link
    * @description: Use this API to cancel a payment link for the customer - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/cancelPaymentLink/).
    */
-  async cancelPaymentLink({ body } = {}, { headers } = { headers: false }) {
+  async cancelPaymentLink(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = PaymentPlatformApplicationValidator.cancelPaymentLink().validate(
@@ -212,12 +218,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/cancel-payment-link/`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -242,6 +248,7 @@ class Payment {
    * @param {PaymentPlatformApplicationValidator.CheckAndUpdatePaymentStatusParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.PaymentStatusUpdateResponse>} -
    *   Success response
@@ -250,8 +257,8 @@ class Payment {
    * @description: Use this API to perform continuous polling at intervals to check the status of payment until timeout. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/checkAndUpdatePaymentStatus/).
    */
   async checkAndUpdatePaymentStatus(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -289,12 +296,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/confirm/polling`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -317,6 +324,7 @@ class Payment {
 
   /**
    * @param {PaymentPlatformApplicationValidator.ConfirmPaymentParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.PaymentConfirmationResponse>} -
    *   Success response
@@ -324,7 +332,10 @@ class Payment {
    * @summary: Confirm payment after successful payment from payment gateway
    * @description: Use this API to confirm payment after payment gateway accepted payment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/confirmPayment/).
    */
-  async confirmPayment({ body } = {}, { headers } = { headers: false }) {
+  async confirmPayment(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = PaymentPlatformApplicationValidator.confirmPayment().validate(
@@ -361,12 +372,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/confirm`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -391,6 +402,7 @@ class Payment {
    * @param {PaymentPlatformApplicationValidator.CreatePaymentLinkParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.CreatePaymentLinkResponse>} -
    *   Success response
@@ -398,7 +410,10 @@ class Payment {
    * @summary: Create payment link
    * @description: Use this API to create a payment link for the customer - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/createPaymentLink/).
    */
-  async createPaymentLink({ body } = {}, { headers } = { headers: false }) {
+  async createPaymentLink(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = PaymentPlatformApplicationValidator.createPaymentLink().validate(
@@ -435,12 +450,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/create-payment-link/`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -462,6 +477,10 @@ class Payment {
   }
 
   /**
+   * @param {PaymentPlatformApplicationValidator.EdcAggregatorsAndModelListParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.EdcAggregatorAndModelListResponse>}
    *   - Success response
@@ -470,7 +489,10 @@ class Payment {
    * @summary: get some information about the store and edc device
    * @description: Use this API to get info of devices linked to a particular app. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/edcAggregatorsAndModelList/).
    */
-  async edcAggregatorsAndModelList({ headers } = { headers: false }) {
+  async edcAggregatorsAndModelList(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = PaymentPlatformApplicationValidator.edcAggregatorsAndModelList().validate(
@@ -503,12 +525,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/edc-aggregator-list`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -531,6 +553,7 @@ class Payment {
 
   /**
    * @param {PaymentPlatformApplicationValidator.EdcDeviceListParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.EdcDeviceListResponse>} - Success response
    * @name edcDeviceList
@@ -538,8 +561,10 @@ class Payment {
    * @description: Use this API to get all devices linked to a particular app. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/edcDeviceList/).
    */
   async edcDeviceList(
-    { pageNo, pageSize, isActive, storeId, deviceTag } = {},
-    { headers } = { headers: false }
+    { pageNo, pageSize, isActive, storeId, deviceTag, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -590,12 +615,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/edc-device-list`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -617,13 +642,18 @@ class Payment {
   }
 
   /**
+   * @param {PaymentPlatformApplicationValidator.EdcDeviceStatsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.EdcDeviceStatsResponse>} - Success response
    * @name edcDeviceStats
    * @summary: get some information about the store and edc device
    * @description: Use this API to get info of devices linked to a particular app. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/edcDeviceStats/).
    */
-  async edcDeviceStats({ headers } = { headers: false }) {
+  async edcDeviceStats(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = PaymentPlatformApplicationValidator.edcDeviceStats().validate(
@@ -656,12 +686,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/edc-device-stats`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -686,6 +716,7 @@ class Payment {
    * @param {PaymentPlatformApplicationValidator.GetBankAccountDetailsOpenAPIParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.RefundAccountResponse>} - Success response
    * @name getBankAccountDetailsOpenAPI
@@ -693,8 +724,8 @@ class Payment {
    * @description: Use this API to get saved bank details for returned/cancelled order using order id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getBankAccountDetailsOpenAPI/).
    */
   async getBankAccountDetailsOpenAPI(
-    { orderId, requestHash } = {},
-    { headers } = { headers: false }
+    { orderId, requestHash, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -738,12 +769,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/refund/account`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -765,6 +796,10 @@ class Payment {
   }
 
   /**
+   * @param {PaymentPlatformApplicationValidator.GetBrandPaymentGatewayConfigParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.PaymentGatewayConfigResponse>} -
    *   Success response
@@ -772,7 +807,10 @@ class Payment {
    * @summary: Get All Brand Payment Gateway Config Secret
    * @description: Get All Brand Payment Gateway Config Secret - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getBrandPaymentGatewayConfig/).
    */
-  async getBrandPaymentGatewayConfig({ headers } = { headers: false }) {
+  async getBrandPaymentGatewayConfig(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = PaymentPlatformApplicationValidator.getBrandPaymentGatewayConfig().validate(
@@ -805,12 +843,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/aggregator/request`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -833,6 +871,7 @@ class Payment {
 
   /**
    * @param {PaymentPlatformApplicationValidator.GetEdcDeviceParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.EdcDeviceDetailsResponse>} -
    *   Success response
@@ -841,8 +880,8 @@ class Payment {
    * @description: Use this API to get details of a single edc device - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getEdcDevice/).
    */
   async getEdcDevice(
-    { terminalUniqueIdentifier } = {},
-    { headers } = { headers: false }
+    { terminalUniqueIdentifier, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -880,12 +919,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/edc-device/${terminalUniqueIdentifier}`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -910,6 +949,7 @@ class Payment {
    * @param {PaymentPlatformApplicationValidator.GetMerchantAggregatorPaymentModeDetailsParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.MerchnatPaymentModeResponse>} -
    *   Success response
@@ -918,8 +958,10 @@ class Payment {
    * @description: Get Aggregator, payment mode and sub payment mode details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getMerchantAggregatorPaymentModeDetails/).
    */
   async getMerchantAggregatorPaymentModeDetails(
-    { aggregatorId, businessUnit, device } = {},
-    { headers } = { headers: false }
+    { aggregatorId, businessUnit, device, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -963,12 +1005,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/options/aggregators/${aggregatorId}`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -990,6 +1032,10 @@ class Payment {
   }
 
   /**
+   * @param {PaymentPlatformApplicationValidator.GetMerchantPaymentOptionParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.MerchnatPaymentModeResponse>} -
    *   Success response
@@ -997,7 +1043,10 @@ class Payment {
    * @summary: Get Payment modes and COD details.
    * @description: This api fetches all the available PGs for merchant and its offline payment mode details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getMerchantPaymentOption/).
    */
-  async getMerchantPaymentOption({ headers } = { headers: false }) {
+  async getMerchantPaymentOption(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = PaymentPlatformApplicationValidator.getMerchantPaymentOption().validate(
@@ -1030,12 +1079,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/options/configuration`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1057,6 +1106,10 @@ class Payment {
   }
 
   /**
+   * @param {PaymentPlatformApplicationValidator.GetPGConfigAggregatorsParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.MerchnatPaymentModeResponse>} -
    *   Success response
@@ -1064,7 +1117,10 @@ class Payment {
    * @summary: Get Aggregators available to be added as PG.
    * @description: Get Aggregators available to be added as PG. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getPGConfigAggregators/).
    */
-  async getPGConfigAggregators({ headers } = { headers: false }) {
+  async getPGConfigAggregators(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = PaymentPlatformApplicationValidator.getPGConfigAggregators().validate(
@@ -1097,12 +1153,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/options/configuration/aggregator`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1124,13 +1180,20 @@ class Payment {
   }
 
   /**
+   * @param {PaymentPlatformApplicationValidator.GetPaymentCodeOptionParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.GetPaymentCodeResponse>} - Success response
    * @name getPaymentCodeOption
    * @summary: List Payment Options Method Codes
    * @description: Get all active List Payment Options Method Codes - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getPaymentCodeOption/).
    */
-  async getPaymentCodeOption({ headers } = { headers: false }) {
+  async getPaymentCodeOption(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = PaymentPlatformApplicationValidator.getPaymentCodeOption().validate(
@@ -1163,12 +1226,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/codes`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1191,6 +1254,7 @@ class Payment {
 
   /**
    * @param {PaymentPlatformApplicationValidator.GetPaymentLinkParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.GetPaymentLinkResponse>} - Success response
    * @name getPaymentLink
@@ -1198,8 +1262,8 @@ class Payment {
    * @description: Use this API to get a payment link - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getPaymentLink/).
    */
   async getPaymentLink(
-    { paymentLinkId } = {},
-    { headers } = { headers: false }
+    { paymentLinkId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1238,12 +1302,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/create-payment-link/`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1268,6 +1332,7 @@ class Payment {
    * @param {PaymentPlatformApplicationValidator.GetPaymentModeRoutesParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.PaymentOptionsResponse>} - Success response
    * @name getPaymentModeRoutes
@@ -1275,8 +1340,8 @@ class Payment {
    * @description: Use this API to get Get All Valid Payment Options for making payment - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getPaymentModeRoutes/).
    */
   async getPaymentModeRoutes(
-    { refresh, requestType } = {},
-    { headers } = { headers: false }
+    { refresh, requestType, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1318,12 +1383,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/options`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1348,6 +1413,7 @@ class Payment {
    * @param {PaymentPlatformApplicationValidator.GetPosPaymentModeRoutesParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.PaymentOptionsResponse>} - Success response
    * @name getPosPaymentModeRoutes
@@ -1364,8 +1430,9 @@ class Payment {
       refresh,
       cardReference,
       userDetails,
-    } = {},
-    { headers } = { headers: false }
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1425,12 +1492,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/options/pos`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1455,6 +1522,7 @@ class Payment {
    * @param {PaymentPlatformApplicationValidator.GetUserBeneficiariesParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.OrderBeneficiaryResponse>} -
    *   Success response
@@ -1463,8 +1531,8 @@ class Payment {
    * @description: Get all active  beneficiary details added by the user for refund - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getUserBeneficiaries/).
    */
   async getUserBeneficiaries(
-    { orderId } = {},
-    { headers } = { headers: false }
+    { orderId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1499,12 +1567,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/refund/accounts/user`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1529,6 +1597,7 @@ class Payment {
    * @param {PaymentPlatformApplicationValidator.GetUserCODlimitRoutesParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.GetUserCODLimitResponse>} - Success response
    * @name getUserCODlimitRoutes
@@ -1536,8 +1605,8 @@ class Payment {
    * @description: Use this API to get user cod limit and reamining limit for the payment - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getUserCODlimitRoutes/).
    */
   async getUserCODlimitRoutes(
-    { merchantUserId, mobileNo } = {},
-    { headers } = { headers: false }
+    { merchantUserId, mobileNo, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1579,12 +1648,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/user-cod`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1609,6 +1678,7 @@ class Payment {
    * @param {PaymentPlatformApplicationValidator.GetUserOrderBeneficiariesParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.OrderBeneficiaryResponse>} -
    *   Success response
@@ -1617,8 +1687,8 @@ class Payment {
    * @description: Get all active  beneficiary details added by the user for refund - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getUserOrderBeneficiaries/).
    */
   async getUserOrderBeneficiaries(
-    { orderId } = {},
-    { headers } = { headers: false }
+    { orderId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1653,12 +1723,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/refund/accounts/order`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1683,6 +1753,7 @@ class Payment {
    * @param {PaymentPlatformApplicationValidator.InitialisePaymentParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.PaymentInitializationResponse>} -
    *   Success response
@@ -1690,7 +1761,10 @@ class Payment {
    * @summary: Initialize a payment (server-to-server) for UPI and BharatQR
    * @description: PUse this API to inititate payment using UPI, BharatQR, wherein the UPI requests are send to the app and QR code is displayed on the screen. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/initialisePayment/).
    */
-  async initialisePayment({ body } = {}, { headers } = { headers: false }) {
+  async initialisePayment(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = PaymentPlatformApplicationValidator.initialisePayment().validate(
@@ -1727,12 +1801,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/request`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1757,6 +1831,7 @@ class Payment {
    * @param {PaymentPlatformApplicationValidator.MerchantOnBoardingParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.MerchantOnBoardingResponse>} -
    *   Success response
@@ -1764,7 +1839,10 @@ class Payment {
    * @summary: API to push Ajiodhan merchant data to Gringotts system
    * @description: Use this API to push Ajiodhan merchant data to Gringotts system - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/merchantOnBoarding/).
    */
-  async merchantOnBoarding({ body } = {}, { headers } = { headers: false }) {
+  async merchantOnBoarding(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = PaymentPlatformApplicationValidator.merchantOnBoarding().validate(
@@ -1801,12 +1879,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/merchant-onboarding`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1829,6 +1907,7 @@ class Payment {
 
   /**
    * @param {PaymentPlatformApplicationValidator.OauthGetUrlParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.GetOauthUrlResponse>} - Success response
    * @name oauthGetUrl
@@ -1836,8 +1915,10 @@ class Payment {
    * @description: Use this API to Get the url to call for oauth. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/oauthGetUrl/).
    */
   async oauthGetUrl(
-    { aggregator, successRedirectUrl, failureRedirectUrl } = {},
-    { headers } = { headers: false }
+    { aggregator, successRedirectUrl, failureRedirectUrl, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1881,12 +1962,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/onboard/${aggregator}/`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1911,6 +1992,7 @@ class Payment {
    * @param {PaymentPlatformApplicationValidator.PatchMerchantAggregatorPaymentModeDetailsParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.MerchnatPaymentModeResponse>} -
    *   Success response
@@ -1919,8 +2001,8 @@ class Payment {
    * @description: Update Aggregator, payment mode and sub payment mode details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/patchMerchantAggregatorPaymentModeDetails/).
    */
   async patchMerchantAggregatorPaymentModeDetails(
-    { aggregatorId, body } = {},
-    { headers } = { headers: false }
+    { aggregatorId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -1960,12 +2042,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/options/aggregators/${aggregatorId}`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -1990,6 +2072,7 @@ class Payment {
    * @param {PaymentPlatformApplicationValidator.PatchMerchantPaymentOptionParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.MerchnatPaymentModeResponse>} -
    *   Success response
@@ -1998,8 +2081,8 @@ class Payment {
    * @description: To updated online payment as active/inactive or offline payment configuration like cod charges, anonymous cod allowed flags. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/patchMerchantPaymentOption/).
    */
   async patchMerchantPaymentOption(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -2037,12 +2120,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/options/configuration`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2067,6 +2150,7 @@ class Payment {
    * @param {PaymentPlatformApplicationValidator.PaymentStatusBulkParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.PaymentStatusBulkHandlerResponse>}
    *   - Success response
@@ -2075,7 +2159,10 @@ class Payment {
    * @summary: Get Payment status and information for a list of order_ids
    * @description: Use this API to get Payment status and information for a list of order_ids - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/paymentStatusBulk/).
    */
-  async paymentStatusBulk({ body } = {}, { headers } = { headers: false }) {
+  async paymentStatusBulk(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = PaymentPlatformApplicationValidator.paymentStatusBulk().validate(
@@ -2112,12 +2199,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/payment-status-bulk/`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2142,6 +2229,7 @@ class Payment {
    * @param {PaymentPlatformApplicationValidator.PollingPaymentLinkParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.PollingPaymentLinkResponse>} -
    *   Success response
@@ -2150,8 +2238,8 @@ class Payment {
    * @description: Use this API to poll if payment through payment was successful or not - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/pollingPaymentLink/).
    */
   async pollingPaymentLink(
-    { paymentLinkId } = {},
-    { headers } = { headers: false }
+    { paymentLinkId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -2190,12 +2278,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/polling-payment-link/`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2218,13 +2306,17 @@ class Payment {
 
   /**
    * @param {PaymentPlatformApplicationValidator.RepaymentDetailsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.RepaymentResponse>} - Success response
    * @name repaymentDetails
    * @summary: API to register repayment details
    * @description: Use this API to register any repayment record in the db and notify the aggrgator - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/repaymentDetails/).
    */
-  async repaymentDetails({ body } = {}, { headers } = { headers: false }) {
+  async repaymentDetails(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = PaymentPlatformApplicationValidator.repaymentDetails().validate(
@@ -2261,12 +2353,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/repayment-details`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2291,6 +2383,7 @@ class Payment {
    * @param {PaymentPlatformApplicationValidator.ResendOrCancelPaymentParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.ResendOrCancelPaymentResponse>} -
    *   Success response
@@ -2298,7 +2391,10 @@ class Payment {
    * @summary: API to resend and cancel a payment link which was already generated.
    * @description: Use this API to perform resend or cancel a payment link based on request payload. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/resendOrCancelPayment/).
    */
-  async resendOrCancelPayment({ body } = {}, { headers } = { headers: false }) {
+  async resendOrCancelPayment(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = PaymentPlatformApplicationValidator.resendOrCancelPayment().validate(
@@ -2335,12 +2431,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/cancel`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2365,6 +2461,7 @@ class Payment {
    * @param {PaymentPlatformApplicationValidator.ResendPaymentLinkParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.ResendPaymentLinkResponse>} -
    *   Success response
@@ -2372,7 +2469,10 @@ class Payment {
    * @summary: Resend payment link
    * @description: Use this API to resend a payment link for the customer - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/resendPaymentLink/).
    */
-  async resendPaymentLink({ body } = {}, { headers } = { headers: false }) {
+  async resendPaymentLink(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = PaymentPlatformApplicationValidator.resendPaymentLink().validate(
@@ -2409,12 +2509,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/resend-payment-link/`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2437,6 +2537,7 @@ class Payment {
 
   /**
    * @param {PaymentPlatformApplicationValidator.RevokeOauthTokenParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.RevokeOAuthToken>} - Success response
    * @name revokeOauthToken
@@ -2444,8 +2545,8 @@ class Payment {
    * @description: Use this API to Revoke oauth for razorpay partnership - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/revokeOauthToken/).
    */
   async revokeOauthToken(
-    { aggregator } = {},
-    { headers } = { headers: false }
+    { aggregator, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -2483,12 +2584,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/revoke/${aggregator}/`,
       query_params,
       undefined,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2513,6 +2614,7 @@ class Payment {
    * @param {PaymentPlatformApplicationValidator.SaveBrandPaymentGatewayConfigParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.PaymentGatewayToBeReviewed>} -
    *   Success response
@@ -2521,8 +2623,8 @@ class Payment {
    * @description: Save Config Secret For Brand Payment Gateway - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/saveBrandPaymentGatewayConfig/).
    */
   async saveBrandPaymentGatewayConfig(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -2560,12 +2662,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/aggregator/request`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2590,13 +2692,17 @@ class Payment {
    * @param {PaymentPlatformApplicationValidator.SetUserCODlimitRoutesParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.SetCODOptionResponse>} - Success response
    * @name setUserCODlimitRoutes
    * @summary: Set COD option for user for payment
    * @description: Use this API to set cod option as true or false for the payment - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/setUserCODlimitRoutes/).
    */
-  async setUserCODlimitRoutes({ body } = {}, { headers } = { headers: false }) {
+  async setUserCODlimitRoutes(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = PaymentPlatformApplicationValidator.setUserCODlimitRoutes().validate(
@@ -2633,12 +2739,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/user-cod`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2661,13 +2767,17 @@ class Payment {
 
   /**
    * @param {PaymentPlatformApplicationValidator.UpdateEdcDeviceParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.EdcDeviceAddResponse>} - Success response
    * @name updateEdcDevice
    * @summary: map new edc device to the terminal
    * @description: Use this API to map new edc device to the terminal - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/updateEdcDevice/).
    */
-  async updateEdcDevice({ body } = {}, { headers } = { headers: false }) {
+  async updateEdcDevice(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const {
       error,
     } = PaymentPlatformApplicationValidator.updateEdcDevice().validate(
@@ -2704,12 +2814,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/edc-device`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2734,6 +2844,7 @@ class Payment {
    * @param {PaymentPlatformApplicationValidator.UpdatePaymentSessionParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.PaymentSessionResponseSerializer>}
    *   - Success response
@@ -2743,8 +2854,8 @@ class Payment {
    * @description: A payment_session is initiated against a global identifier (gid) which is identifies the entity payment is initiated against. e.g. order_id, cart_id. This endpoint is to update the status of the said payment_session. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/updatePaymentSession/).
    */
   async updatePaymentSession(
-    { gid, body } = {},
-    { headers } = { headers: false }
+    { gid, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -2784,12 +2895,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/session/${gid}`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2814,6 +2925,7 @@ class Payment {
    * @param {PaymentPlatformApplicationValidator.UpdateRefundSessionParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.RefundSessionResponseSerializer>}
    *   - Success response
@@ -2823,8 +2935,8 @@ class Payment {
    * @description: A refund_session is initiated against a refund request, and this endpoint is to update the status against the refund request_id. A gid is unique indentifier of the entity against which payment was received e.g. an order. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/updateRefundSession/).
    */
   async updateRefundSession(
-    { gid, requestId, body } = {},
-    { headers } = { headers: false }
+    { gid, requestId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -2866,12 +2978,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/${gid}/refund/session/${requestId}`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -2896,6 +3008,7 @@ class Payment {
    * @param {PaymentPlatformApplicationValidator.VerifyCustomerForPaymentParam} arg
    *   - Arg object
    *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<PaymentPlatformModel.ValidateCustomerResponse>} -
    *   Success response
@@ -2904,8 +3017,8 @@ class Payment {
    * @description: Use this API to check if the customer is eligible to use credit-line facilities such as Simpl Pay Later and Rupifi. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/verifyCustomerForPayment/).
    */
   async verifyCustomerForPayment(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -2943,12 +3056,12 @@ class Payment {
       `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/customer/validation`,
       query_params,
       body,
-      undefined,
-      { headers }
+      requestHeaders,
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 

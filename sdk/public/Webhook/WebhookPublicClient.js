@@ -32,13 +32,18 @@ class Webhook {
   }
 
   /**
+   * @param {WebhookPublicValidator.FetchAllWebhookEventsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PublicAPIClient").Options} - Options
    * @returns {Promise<WebhookPublicModel.EventConfigResponse>} - Success response
    * @name fetchAllWebhookEvents
    * @summary: Get All Webhook Events
    * @description: Get All Webhook Events - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/webhook/fetchAllWebhookEvents/).
    */
-  async fetchAllWebhookEvents({ headers } = { headers: false }) {
+  async fetchAllWebhookEvents(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
     const { error } = WebhookPublicValidator.fetchAllWebhookEvents().validate(
       {},
       { abortEarly: false, allowUnknown: true }
@@ -74,12 +79,12 @@ class Webhook {
       }),
       query_params,
       undefined,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
@@ -102,6 +107,7 @@ class Webhook {
 
   /**
    * @param {WebhookPublicValidator.QueryWebhookEventDetailsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PublicAPIClient").Options} - Options
    * @returns {Promise<WebhookPublicModel.EventConfigResponse>} - Success response
    * @name queryWebhookEventDetails
@@ -109,8 +115,8 @@ class Webhook {
    * @description: Get Webhook Event Details for provided events - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/webhook/queryWebhookEventDetails/).
    */
   async queryWebhookEventDetails(
-    { body } = {},
-    { headers } = { headers: false }
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
@@ -149,12 +155,12 @@ class Webhook {
       }),
       query_params,
       body,
-      xHeaders,
-      { headers }
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
     );
 
     let responseData = response;
-    if (headers) {
+    if (responseHeaders) {
       responseData = response[0];
     }
 
