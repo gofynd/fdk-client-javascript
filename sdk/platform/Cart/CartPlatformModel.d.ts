@@ -107,6 +107,7 @@ export = CartPlatformModel;
  * @property {number} [article_quantity] - Quantity of article on which
  *   promotion is applicable
  * @property {BuyRules[]} [buy_rules] - Buy rules for promotions
+ * @property {CartCurrency} [currency]
  * @property {DiscountRulesApp[]} [discount_rules] - Discount rules for promotions
  * @property {boolean} [mrp_promotion] - If applied promotion is applied on
  *   product MRP or ESP
@@ -225,6 +226,7 @@ export = CartPlatformModel;
  * @property {string} [cart_id]
  * @property {number} [cart_value]
  * @property {string} [created_on]
+ * @property {string} [currency_code]
  * @property {number} [item_counts]
  * @property {Object} [pick_up_customer_details]
  * @property {string} [user_id]
@@ -1804,6 +1806,7 @@ type AppliedPromotion = {
      * - Buy rules for promotions
      */
     buy_rules?: BuyRules[];
+    currency?: CartCurrency;
     /**
      * - Discount rules for promotions
      */
@@ -1983,6 +1986,7 @@ type CartList = {
     cart_id?: string;
     cart_value?: number;
     created_on?: string;
+    currency_code?: string;
     item_counts?: number;
     pick_up_customer_details?: any;
     user_id?: string;
