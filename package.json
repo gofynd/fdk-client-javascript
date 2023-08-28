@@ -15,7 +15,6 @@
     "axios": "^0.27.2",
     "camelcase": "^6.3.0",
     "crypto-js": "^4.1.1",
-    "isomorphic-base64": "^1.0.2",
     "joi": "^17.7.0",
     "loglevel": "^1.8.1",
     "query-string": "^7.1.3"
