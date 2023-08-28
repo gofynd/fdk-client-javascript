@@ -51,6 +51,10 @@ export = BillingPlatformValidator;
  * @property {BillingPlatformModel.PlanStatusUpdateReq} body
  */
 /**
+ * @typedef SubscripePlanParam
+ * @property {BillingPlatformModel.SunscribePlan} body
+ */
+/**
  * @typedef UpsertCustomerDetailParam
  * @property {BillingPlatformModel.SubscriptionCustomerCreate} body
  */
@@ -85,11 +89,13 @@ declare class BillingPlatformValidator {
     static getSubscriptionCharge(): GetSubscriptionChargeParam;
     /** @returns {PlanStatusUpdateParam} */
     static planStatusUpdate(): PlanStatusUpdateParam;
+    /** @returns {SubscripePlanParam} */
+    static subscripePlan(): SubscripePlanParam;
     /** @returns {UpsertCustomerDetailParam} */
     static upsertCustomerDetail(): UpsertCustomerDetailParam;
 }
 declare namespace BillingPlatformValidator {
-    export { ActivateSubscriptionPlanParam, CancelSubscriptionChargeParam, CancelSubscriptionPlanParam, CheckCouponValidityParam, CreateOneTimeChargeParam, CreateSubscriptionChargeParam, GetChargeDetailsParam, GetCustomerDetailParam, GetEnterprisePlansParam, GetFeatureLimitConfigParam, GetInvoiceByIdParam, GetInvoicesParam, GetSubscriptionParam, GetSubscriptionChargeParam, PlanStatusUpdateParam, UpsertCustomerDetailParam };
+    export { ActivateSubscriptionPlanParam, CancelSubscriptionChargeParam, CancelSubscriptionPlanParam, CheckCouponValidityParam, CreateOneTimeChargeParam, CreateSubscriptionChargeParam, GetChargeDetailsParam, GetCustomerDetailParam, GetEnterprisePlansParam, GetFeatureLimitConfigParam, GetInvoiceByIdParam, GetInvoicesParam, GetSubscriptionParam, GetSubscriptionChargeParam, PlanStatusUpdateParam, SubscripePlanParam, UpsertCustomerDetailParam };
 }
 type ActivateSubscriptionPlanParam = {
     body: BillingPlatformModel.SubscriptionActivateReq;
@@ -159,6 +165,9 @@ type GetSubscriptionChargeParam = {
 };
 type PlanStatusUpdateParam = {
     body: BillingPlatformModel.PlanStatusUpdateReq;
+};
+type SubscripePlanParam = {
+    body: BillingPlatformModel.SunscribePlan;
 };
 type UpsertCustomerDetailParam = {
     body: BillingPlatformModel.SubscriptionCustomerCreate;

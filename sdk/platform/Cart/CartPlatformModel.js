@@ -134,11 +134,13 @@ const Joi = require("joi");
 
 /**
  * @typedef Article
- * @property {string} article_id
- * @property {string} [code]
- * @property {Object} [meta]
- * @property {string} [type]
- * @property {number} [value]
+ * @property {string} article_id - Id of article
+ * @property {string} [code] - Code to identify price adjustment on article
+ * @property {Object} [meta] - Meta related to article
+ * @property {number} [quantity] - Total quantity of the article to be
+ *   considered (currently used only in discount type)
+ * @property {string} [type] - Type of price adjusment
+ * @property {number} [value] - Value of price adjustment for article
  */
 
 /**
@@ -1183,35 +1185,39 @@ const Joi = require("joi");
 
 /**
  * @typedef PriceAdjustment
- * @property {boolean} [allowed_refund]
- * @property {string} [apply_expiry]
- * @property {Article[]} article_ids
- * @property {boolean} article_level_distribution
- * @property {string} cart_id
- * @property {number} [cart_value]
+ * @property {boolean} [allowed_refund] - Flag indicating whether refunds are
+ *   allowed (default: False)
+ * @property {string} [apply_expiry] - The date and time when the expiry should be applied
+ * @property {Article[]} article_ids - The list of article object in the price adjustment
+ * @property {boolean} article_level_distribution - Flag indicating whether the
+ *   distribution should is done at the article level
+ * @property {string} cart_id - The ID of the cart
  * @property {Collection} collection
  * @property {string} [id]
- * @property {boolean} is_authenticated
- * @property {string} message
+ * @property {boolean} is_authenticated - Flag indicating whether the user is
+ *   authenticated
+ * @property {string} message - The message associated with the price adjustment
  * @property {Object} [meta]
- * @property {string} type
+ * @property {string} type - Type of price adjusment
  * @property {number} value
  */
 
 /**
  * @typedef PriceAdjustmentAdd
- * @property {boolean} [allowed_refund]
- * @property {string} [apply_expiry]
- * @property {Article[]} article_ids
- * @property {boolean} article_level_distribution
- * @property {string} cart_id
- * @property {number} [cart_value]
+ * @property {boolean} [allowed_refund] - Flag indicating whether refunds are
+ *   allowed (default: False)
+ * @property {string} [apply_expiry] - The date and time when the expiry should be applied
+ * @property {Article[]} article_ids - The list of article object in the price adjustment
+ * @property {boolean} article_level_distribution - Flag indicating whether the
+ *   distribution should is done at the article level
+ * @property {string} cart_id - The ID of the cart
  * @property {Collection} collection
- * @property {string} [created_by]
- * @property {boolean} is_authenticated
- * @property {string} message
+ * @property {string} [created_by] - The entity that created the field
+ * @property {boolean} is_authenticated - Flag indicating whether the user is
+ *   authenticated
+ * @property {string} message - The message associated with the price adjustment
  * @property {Object} [meta]
- * @property {string} type
+ * @property {string} type - Type of price adjusment
  * @property {number} value
  */
 
@@ -1222,18 +1228,20 @@ const Joi = require("joi");
 
 /**
  * @typedef PriceAdjustmentUpdate
- * @property {boolean} [allowed_refund]
- * @property {string} [apply_expiry]
- * @property {Article[]} article_ids
- * @property {boolean} article_level_distribution
- * @property {string} cart_id
- * @property {number} [cart_value]
+ * @property {boolean} [allowed_refund] - Flag indicating whether refunds are
+ *   allowed (default: False)
+ * @property {string} [apply_expiry] - The date and time when the expiry should be applied
+ * @property {Article[]} article_ids - The list of article object in the price adjustment
+ * @property {boolean} article_level_distribution - Flag indicating whether the
+ *   distribution should is done at the article level
+ * @property {string} cart_id - The ID of the cart
  * @property {Collection} collection
- * @property {boolean} is_authenticated
- * @property {string} message
+ * @property {boolean} is_authenticated - Flag indicating whether the user is
+ *   authenticated
+ * @property {string} message - The message associated with the price adjustment
  * @property {Object} [meta]
- * @property {string} [modified_by]
- * @property {string} type
+ * @property {string} [modified_by] - The entity that modified the field
+ * @property {string} type - Type of price adjusment
  * @property {number} value
  */
 
@@ -1963,6 +1971,7 @@ class CartPlatformModel {
       article_id: Joi.string().allow("").required(),
       code: Joi.string().allow(""),
       meta: Joi.any(),
+      quantity: Joi.number(),
       type: Joi.string().allow(""),
       value: Joi.number(),
     });
@@ -3235,7 +3244,6 @@ class CartPlatformModel {
       article_ids: Joi.array().items(CartPlatformModel.Article()).required(),
       article_level_distribution: Joi.boolean().required(),
       cart_id: Joi.string().allow("").required(),
-      cart_value: Joi.number(),
       collection: CartPlatformModel.Collection().required(),
       id: Joi.string().allow(""),
       is_authenticated: Joi.boolean().required(),
@@ -3254,7 +3262,6 @@ class CartPlatformModel {
       article_ids: Joi.array().items(CartPlatformModel.Article()).required(),
       article_level_distribution: Joi.boolean().required(),
       cart_id: Joi.string().allow("").required(),
-      cart_value: Joi.number(),
       collection: CartPlatformModel.Collection().required(),
       created_by: Joi.string().allow(""),
       is_authenticated: Joi.boolean().required(),
@@ -3280,7 +3287,6 @@ class CartPlatformModel {
       article_ids: Joi.array().items(CartPlatformModel.Article()).required(),
       article_level_distribution: Joi.boolean().required(),
       cart_id: Joi.string().allow("").required(),
-      cart_value: Joi.number(),
       collection: CartPlatformModel.Collection().required(),
       is_authenticated: Joi.boolean().required(),
       message: Joi.string().allow("").required(),

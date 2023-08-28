@@ -275,6 +275,13 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef Meta
+ * @property {boolean} [is_custom_plan]
+ * @property {boolean} [is_plan_upgrade]
+ * @property {boolean} [subscribe]
+ */
+
+/**
  * @typedef OneTimeChargeEntity
  * @property {string} [_id]
  * @property {string} [activated_on]
@@ -348,6 +355,14 @@ const Joi = require("joi");
 /**
  * @typedef ResourceNotFound
  * @property {string} [message] - Resource not found with {id}
+ */
+
+/**
+ * @typedef SubscribePlanRes
+ * @property {string} [current_status]
+ * @property {Meta} [meta]
+ * @property {string} [redirect_url]
+ * @property {string} [transaction_id]
  */
 
 /**
@@ -528,6 +543,15 @@ const Joi = require("joi");
  * @typedef SubscriptionTrialPeriod
  * @property {string} [end_date]
  * @property {string} [start_date]
+ */
+
+/**
+ * @typedef SunscribePlan
+ * @property {string} [callback_url]
+ * @property {string} [collection_type]
+ * @property {string} [entity_type]
+ * @property {Meta} [meta]
+ * @property {string} [plan_id]
  */
 
 class BillingPlatformModel {
@@ -869,6 +893,15 @@ class BillingPlatformModel {
     });
   }
 
+  /** @returns {Meta} */
+  static Meta() {
+    return Joi.object({
+      is_custom_plan: Joi.boolean(),
+      is_plan_upgrade: Joi.boolean(),
+      subscribe: Joi.boolean(),
+    });
+  }
+
   /** @returns {OneTimeChargeEntity} */
   static OneTimeChargeEntity() {
     return Joi.object({
@@ -956,6 +989,16 @@ class BillingPlatformModel {
   static ResourceNotFound() {
     return Joi.object({
       message: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SubscribePlanRes} */
+  static SubscribePlanRes() {
+    return Joi.object({
+      current_status: Joi.string().allow(""),
+      meta: BillingPlatformModel.Meta(),
+      redirect_url: Joi.string().allow(""),
+      transaction_id: Joi.string().allow(""),
     });
   }
 
@@ -1180,6 +1223,17 @@ class BillingPlatformModel {
     return Joi.object({
       end_date: Joi.string().allow(""),
       start_date: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SunscribePlan} */
+  static SunscribePlan() {
+    return Joi.object({
+      callback_url: Joi.string().allow(""),
+      collection_type: Joi.string().allow(""),
+      entity_type: Joi.string().allow(""),
+      meta: BillingPlatformModel.Meta(),
+      plan_id: Joi.string().allow(""),
     });
   }
 }

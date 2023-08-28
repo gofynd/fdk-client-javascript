@@ -123,11 +123,13 @@ export = CartPlatformModel;
  */
 /**
  * @typedef Article
- * @property {string} article_id
- * @property {string} [code]
- * @property {Object} [meta]
- * @property {string} [type]
- * @property {number} [value]
+ * @property {string} article_id - Id of article
+ * @property {string} [code] - Code to identify price adjustment on article
+ * @property {Object} [meta] - Meta related to article
+ * @property {number} [quantity] - Total quantity of the article to be
+ *   considered (currently used only in discount type)
+ * @property {string} [type] - Type of price adjusment
+ * @property {number} [value] - Value of price adjustment for article
  */
 /**
  * @typedef ArticlePriceInfo
@@ -1069,34 +1071,38 @@ export = CartPlatformModel;
  */
 /**
  * @typedef PriceAdjustment
- * @property {boolean} [allowed_refund]
- * @property {string} [apply_expiry]
- * @property {Article[]} article_ids
- * @property {boolean} article_level_distribution
- * @property {string} cart_id
- * @property {number} [cart_value]
+ * @property {boolean} [allowed_refund] - Flag indicating whether refunds are
+ *   allowed (default: False)
+ * @property {string} [apply_expiry] - The date and time when the expiry should be applied
+ * @property {Article[]} article_ids - The list of article object in the price adjustment
+ * @property {boolean} article_level_distribution - Flag indicating whether the
+ *   distribution should is done at the article level
+ * @property {string} cart_id - The ID of the cart
  * @property {Collection} collection
  * @property {string} [id]
- * @property {boolean} is_authenticated
- * @property {string} message
+ * @property {boolean} is_authenticated - Flag indicating whether the user is
+ *   authenticated
+ * @property {string} message - The message associated with the price adjustment
  * @property {Object} [meta]
- * @property {string} type
+ * @property {string} type - Type of price adjusment
  * @property {number} value
  */
 /**
  * @typedef PriceAdjustmentAdd
- * @property {boolean} [allowed_refund]
- * @property {string} [apply_expiry]
- * @property {Article[]} article_ids
- * @property {boolean} article_level_distribution
- * @property {string} cart_id
- * @property {number} [cart_value]
+ * @property {boolean} [allowed_refund] - Flag indicating whether refunds are
+ *   allowed (default: False)
+ * @property {string} [apply_expiry] - The date and time when the expiry should be applied
+ * @property {Article[]} article_ids - The list of article object in the price adjustment
+ * @property {boolean} article_level_distribution - Flag indicating whether the
+ *   distribution should is done at the article level
+ * @property {string} cart_id - The ID of the cart
  * @property {Collection} collection
- * @property {string} [created_by]
- * @property {boolean} is_authenticated
- * @property {string} message
+ * @property {string} [created_by] - The entity that created the field
+ * @property {boolean} is_authenticated - Flag indicating whether the user is
+ *   authenticated
+ * @property {string} message - The message associated with the price adjustment
  * @property {Object} [meta]
- * @property {string} type
+ * @property {string} type - Type of price adjusment
  * @property {number} value
  */
 /**
@@ -1105,18 +1111,20 @@ export = CartPlatformModel;
  */
 /**
  * @typedef PriceAdjustmentUpdate
- * @property {boolean} [allowed_refund]
- * @property {string} [apply_expiry]
- * @property {Article[]} article_ids
- * @property {boolean} article_level_distribution
- * @property {string} cart_id
- * @property {number} [cart_value]
+ * @property {boolean} [allowed_refund] - Flag indicating whether refunds are
+ *   allowed (default: False)
+ * @property {string} [apply_expiry] - The date and time when the expiry should be applied
+ * @property {Article[]} article_ids - The list of article object in the price adjustment
+ * @property {boolean} article_level_distribution - Flag indicating whether the
+ *   distribution should is done at the article level
+ * @property {string} cart_id - The ID of the cart
  * @property {Collection} collection
- * @property {boolean} is_authenticated
- * @property {string} message
+ * @property {boolean} is_authenticated - Flag indicating whether the user is
+ *   authenticated
+ * @property {string} message - The message associated with the price adjustment
  * @property {Object} [meta]
- * @property {string} [modified_by]
- * @property {string} type
+ * @property {string} [modified_by] - The entity that modified the field
+ * @property {string} type - Type of price adjusment
  * @property {number} value
  */
 /**
@@ -1863,10 +1871,30 @@ type ApplyCouponRequest = {
 /** @returns {Article} */
 declare function Article(): Article;
 type Article = {
+    /**
+     * - Id of article
+     */
     article_id: string;
+    /**
+     * - Code to identify price adjustment on article
+     */
     code?: string;
+    /**
+     * - Meta related to article
+     */
     meta?: any;
+    /**
+     * - Total quantity of the article to be
+     * considered (currently used only in discount type)
+     */
+    quantity?: number;
+    /**
+     * - Type of price adjusment
+     */
     type?: string;
+    /**
+     * - Value of price adjustment for article
+     */
     value?: number;
 };
 /** @returns {ArticlePriceInfo} */
@@ -3026,34 +3054,89 @@ type PostOrder1 = {
 /** @returns {PriceAdjustment} */
 declare function PriceAdjustment(): PriceAdjustment;
 type PriceAdjustment = {
+    /**
+     * - Flag indicating whether refunds are
+     * allowed (default: False)
+     */
     allowed_refund?: boolean;
+    /**
+     * - The date and time when the expiry should be applied
+     */
     apply_expiry?: string;
+    /**
+     * - The list of article object in the price adjustment
+     */
     article_ids: Article[];
+    /**
+     * - Flag indicating whether the
+     * distribution should is done at the article level
+     */
     article_level_distribution: boolean;
+    /**
+     * - The ID of the cart
+     */
     cart_id: string;
-    cart_value?: number;
     collection: Collection;
     id?: string;
+    /**
+     * - Flag indicating whether the user is
+     * authenticated
+     */
     is_authenticated: boolean;
+    /**
+     * - The message associated with the price adjustment
+     */
     message: string;
     meta?: any;
+    /**
+     * - Type of price adjusment
+     */
     type: string;
     value: number;
 };
 /** @returns {PriceAdjustmentAdd} */
 declare function PriceAdjustmentAdd(): PriceAdjustmentAdd;
 type PriceAdjustmentAdd = {
+    /**
+     * - Flag indicating whether refunds are
+     * allowed (default: False)
+     */
     allowed_refund?: boolean;
+    /**
+     * - The date and time when the expiry should be applied
+     */
     apply_expiry?: string;
+    /**
+     * - The list of article object in the price adjustment
+     */
     article_ids: Article[];
+    /**
+     * - Flag indicating whether the
+     * distribution should is done at the article level
+     */
     article_level_distribution: boolean;
+    /**
+     * - The ID of the cart
+     */
     cart_id: string;
-    cart_value?: number;
     collection: Collection;
+    /**
+     * - The entity that created the field
+     */
     created_by?: string;
+    /**
+     * - Flag indicating whether the user is
+     * authenticated
+     */
     is_authenticated: boolean;
+    /**
+     * - The message associated with the price adjustment
+     */
     message: string;
     meta?: any;
+    /**
+     * - Type of price adjusment
+     */
     type: string;
     value: number;
 };
@@ -3065,17 +3148,46 @@ type PriceAdjustmentResponse = {
 /** @returns {PriceAdjustmentUpdate} */
 declare function PriceAdjustmentUpdate(): PriceAdjustmentUpdate;
 type PriceAdjustmentUpdate = {
+    /**
+     * - Flag indicating whether refunds are
+     * allowed (default: False)
+     */
     allowed_refund?: boolean;
+    /**
+     * - The date and time when the expiry should be applied
+     */
     apply_expiry?: string;
+    /**
+     * - The list of article object in the price adjustment
+     */
     article_ids: Article[];
+    /**
+     * - Flag indicating whether the
+     * distribution should is done at the article level
+     */
     article_level_distribution: boolean;
+    /**
+     * - The ID of the cart
+     */
     cart_id: string;
-    cart_value?: number;
     collection: Collection;
+    /**
+     * - Flag indicating whether the user is
+     * authenticated
+     */
     is_authenticated: boolean;
+    /**
+     * - The message associated with the price adjustment
+     */
     message: string;
     meta?: any;
+    /**
+     * - The entity that modified the field
+     */
     modified_by?: string;
+    /**
+     * - Type of price adjusment
+     */
     type: string;
     value: number;
 };

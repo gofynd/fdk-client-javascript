@@ -897,7 +897,6 @@ Price Adjustment Created successfully
   "success": true,
   "data": {
     "id": "cc8154592ccb42c88b481ce4c21ab602",
-    "cart_value": 250,
     "cart_id": "fa45f5cbd3764a6297bfa79d6bedf71c",
     "is_authenticated": true,
     "article_ids": [
@@ -905,7 +904,8 @@ Price Adjustment Created successfully
         "article_id": "f322167ce70f4dca8f8ac0efdc496abe",
         "value": 100,
         "code": "abs120",
-        "meta": {}
+        "meta": {},
+        "quantity": 2
       }
     ],
     "type": "discount",
@@ -11869,7 +11869,6 @@ Price Adjustment Updated successfully
   "success": true,
   "data": {
     "id": "cc8154592ccb42c88b481ce4c21ab602",
-    "cart_value": 250,
     "cart_id": "fa45f5cbd3764a6297bfa79d6bedf71c",
     "is_authenticated": true,
     "article_ids": [
@@ -11877,7 +11876,8 @@ Price Adjustment Updated successfully
         "article_id": "f322167ce70f4dca8f8ac0efdc496abe",
         "value": 100,
         "code": "abs120",
-        "meta": {}
+        "meta": {},
+        "quantity": 2
       }
     ],
     "type": "discount",
@@ -13135,11 +13135,12 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | article_id | string |  no  |  |
- | code | string? |  yes  |  |
- | meta | string? |  yes  |  |
- | type | string? |  yes  |  |
- | value | number? |  yes  |  |
+ | article_id | string |  no  | id of article |
+ | code | string? |  yes  | code to identify price adjustment on article |
+ | meta | string? |  yes  | meta related to article |
+ | quantity | number? |  yes  | total quantity of the article to be considered (currently used only in discount type) |
+ | type | string? |  yes  | type of price adjusment |
+ | value | number? |  yes  | value of price adjustment for article |
  
 
 ---
@@ -14593,18 +14594,17 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | allowed_refund | boolean? |  yes  |  |
- | apply_expiry | string? |  yes  |  |
- | article_ids | [[Article](#Article)] |  no  |  |
- | article_level_distribution | boolean |  no  |  |
- | cart_id | string |  no  |  |
- | cart_value | number? |  yes  |  |
+ | allowed_refund | boolean? |  yes  | Flag indicating whether refunds are allowed (default: False) |
+ | apply_expiry | string? |  yes  | The date and time when the expiry should be applied |
+ | article_ids | [[Article](#Article)] |  no  | The list of article object in the price adjustment |
+ | article_level_distribution | boolean |  no  | Flag indicating whether the distribution should is done at the article level |
+ | cart_id | string |  no  | The ID of the cart |
  | collection | [Collection](#Collection) |  no  |  |
  | id | string? |  yes  |  |
- | is_authenticated | boolean |  no  |  |
- | message | string |  no  |  |
+ | is_authenticated | boolean |  no  | Flag indicating whether the user is authenticated |
+ | message | string |  no  | The message associated with the price adjustment |
  | meta | string? |  yes  |  |
- | type | string |  no  |  |
+ | type | string |  no  | type of price adjusment |
  | value | number |  no  |  |
  
 
@@ -14614,18 +14614,17 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | allowed_refund | boolean? |  yes  |  |
- | apply_expiry | string? |  yes  |  |
- | article_ids | [[Article](#Article)] |  no  |  |
- | article_level_distribution | boolean |  no  |  |
- | cart_id | string |  no  |  |
- | cart_value | number? |  yes  |  |
+ | allowed_refund | boolean? |  yes  | Flag indicating whether refunds are allowed (default: False) |
+ | apply_expiry | string? |  yes  | The date and time when the expiry should be applied |
+ | article_ids | [[Article](#Article)] |  no  | The list of article object in the price adjustment |
+ | article_level_distribution | boolean |  no  | Flag indicating whether the distribution should is done at the article level |
+ | cart_id | string |  no  | The ID of the cart |
  | collection | [Collection](#Collection) |  no  |  |
- | created_by | string? |  yes  |  |
- | is_authenticated | boolean |  no  |  |
- | message | string |  no  |  |
+ | created_by | string? |  yes  | The entity that created the field |
+ | is_authenticated | boolean |  no  | Flag indicating whether the user is authenticated |
+ | message | string |  no  | The message associated with the price adjustment |
  | meta | string? |  yes  |  |
- | type | string |  no  |  |
+ | type | string |  no  | type of price adjusment |
  | value | number |  no  |  |
  
 
@@ -14644,18 +14643,17 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | allowed_refund | boolean? |  yes  |  |
- | apply_expiry | string? |  yes  |  |
- | article_ids | [[Article](#Article)] |  no  |  |
- | article_level_distribution | boolean |  no  |  |
- | cart_id | string |  no  |  |
- | cart_value | number? |  yes  |  |
+ | allowed_refund | boolean? |  yes  | Flag indicating whether refunds are allowed (default: False) |
+ | apply_expiry | string? |  yes  | The date and time when the expiry should be applied |
+ | article_ids | [[Article](#Article)] |  no  | The list of article object in the price adjustment |
+ | article_level_distribution | boolean |  no  | Flag indicating whether the distribution should is done at the article level |
+ | cart_id | string |  no  | The ID of the cart |
  | collection | [Collection](#Collection) |  no  |  |
- | is_authenticated | boolean |  no  |  |
- | message | string |  no  |  |
+ | is_authenticated | boolean |  no  | Flag indicating whether the user is authenticated |
+ | message | string |  no  | The message associated with the price adjustment |
  | meta | string? |  yes  |  |
- | modified_by | string? |  yes  |  |
- | type | string |  no  |  |
+ | modified_by | string? |  yes  | The entity that modified the field |
+ | type | string |  no  | type of price adjusment |
  | value | number |  no  |  |
  
 

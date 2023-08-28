@@ -23,6 +23,7 @@ Handle platform subscription
 * [getSubscription](#getsubscription)
 * [getSubscriptionCharge](#getsubscriptioncharge)
 * [planStatusUpdate](#planstatusupdate)
+* [subscripePlan](#subscripeplan)
 * [upsertCustomerDetail](#upsertcustomerdetail)
 
 
@@ -2351,6 +2352,78 @@ Success
 ---
 
 
+### subscripePlan
+Subscribe plan.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.billing.subscripePlan({  body : value });
+
+// Async/Await
+const data = await platformClient.billing.subscripePlan({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [SunscribePlan](#SunscribePlan) | yes | Request body |
+
+
+It will subscribe a plan.
+
+*Returned Response:*
+
+
+
+
+[SubscribePlanRes](#SubscribePlanRes)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "redirect_url": "https://platform.fyndx1.de/company/8029/subscription/renew-plan?plan_id=64e8c18e548ddf67f0c4cb1f&transaction_id=64ec54e3202d2b0bd9fcd120&renew=true&callback_url=https://platform.fyndx1.de/company/8029/billing/bills&meta={\"subscribe\":true,\"is_custom_plan\":true,\"is_plan_upgrade\":false}",
+    "transaction_id": "64ec54e3202d2b0bd9fcd120",
+    "current_status": "initiated",
+    "meta": {
+      "subscribe": true,
+      "is_custom_plan": true,
+      "is_plan_upgrade": false
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### upsertCustomerDetail
 Upsert subscription customer detail
 
@@ -2832,6 +2905,17 @@ Success
 
 ---
 
+#### [Meta](#Meta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_custom_plan | boolean? |  yes  |  |
+ | is_plan_upgrade | boolean? |  yes  |  |
+ | subscribe | boolean? |  yes  |  |
+ 
+
+---
+
 #### [OneTimeChargeEntity](#OneTimeChargeEntity)
 
  | Properties | Type | Nullable | Description |
@@ -2932,6 +3016,18 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | message | string? |  yes  | Resource not found with {id} |
+ 
+
+---
+
+#### [SubscribePlanRes](#SubscribePlanRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | current_status | string? |  yes  |  |
+ | meta | [Meta](#Meta)? |  yes  |  |
+ | redirect_url | string? |  yes  |  |
+ | transaction_id | string? |  yes  |  |
  
 
 ---
@@ -3196,6 +3292,19 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | end_date | string? |  yes  |  |
  | start_date | string? |  yes  |  |
+ 
+
+---
+
+#### [SunscribePlan](#SunscribePlan)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | callback_url | string? |  yes  |  |
+ | collection_type | string? |  yes  |  |
+ | entity_type | string? |  yes  |  |
+ | meta | [Meta](#Meta)? |  yes  |  |
+ | plan_id | string? |  yes  |  |
  
 
 ---

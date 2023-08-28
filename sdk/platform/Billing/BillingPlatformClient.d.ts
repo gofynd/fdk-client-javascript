@@ -157,6 +157,16 @@ declare class Billing {
      */
     planStatusUpdate({ body, requestHeaders }?: BillingPlatformValidator.PlanStatusUpdateParam, { responseHeaders }?: object): Promise<BillingPlatformModel.Plan>;
     /**
+     * @param {BillingPlatformValidator.SubscripePlanParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<BillingPlatformModel.SubscribePlanRes>} - Success response
+     * @name subscripePlan
+     * @summary: Subscribe plan.
+     * @description: It will subscribe a plan. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/subscripePlan/).
+     */
+    subscripePlan({ body, requestHeaders }?: BillingPlatformValidator.SubscripePlanParam, { responseHeaders }?: object): Promise<BillingPlatformModel.SubscribePlanRes>;
+    /**
      * @param {BillingPlatformValidator.UpsertCustomerDetailParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options

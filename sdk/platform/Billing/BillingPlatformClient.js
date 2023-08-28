@@ -1138,6 +1138,81 @@ class Billing {
   }
 
   /**
+   * @param {BillingPlatformValidator.SubscripePlanParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<BillingPlatformModel.SubscribePlanRes>} - Success response
+   * @name subscripePlan
+   * @summary: Subscribe plan.
+   * @description: It will subscribe a plan. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/subscripePlan/).
+   */
+  async subscripePlan(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = BillingPlatformValidator.subscripePlan().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = BillingPlatformValidator.subscripePlan().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Billing > subscripePlan \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/billing/v1.0/company/${this.config.companyId}/payment/initiate`,
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = BillingPlatformModel.SubscribePlanRes().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Billing > subscripePlan \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
    * @param {BillingPlatformValidator.UpsertCustomerDetailParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options

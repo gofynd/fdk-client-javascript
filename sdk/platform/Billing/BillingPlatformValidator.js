@@ -69,6 +69,11 @@ const BillingPlatformModel = require("./BillingPlatformModel");
  */
 
 /**
+ * @typedef SubscripePlanParam
+ * @property {BillingPlatformModel.SunscribePlan} body
+ */
+
+/**
  * @typedef UpsertCustomerDetailParam
  * @property {BillingPlatformModel.SubscriptionCustomerCreate} body
  */
@@ -172,6 +177,13 @@ class BillingPlatformValidator {
   static planStatusUpdate() {
     return Joi.object({
       body: BillingPlatformModel.PlanStatusUpdateReq().required(),
+    }).required();
+  }
+
+  /** @returns {SubscripePlanParam} */
+  static subscripePlan() {
+    return Joi.object({
+      body: BillingPlatformModel.SunscribePlan().required(),
     }).required();
   }
 

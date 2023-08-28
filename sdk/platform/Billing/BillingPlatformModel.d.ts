@@ -245,6 +245,12 @@ export = BillingPlatformModel;
  * @property {string} [start]
  */
 /**
+ * @typedef Meta
+ * @property {boolean} [is_custom_plan]
+ * @property {boolean} [is_plan_upgrade]
+ * @property {boolean} [subscribe]
+ */
+/**
  * @typedef OneTimeChargeEntity
  * @property {string} [_id]
  * @property {string} [activated_on]
@@ -312,6 +318,13 @@ export = BillingPlatformModel;
 /**
  * @typedef ResourceNotFound
  * @property {string} [message] - Resource not found with {id}
+ */
+/**
+ * @typedef SubscribePlanRes
+ * @property {string} [current_status]
+ * @property {Meta} [meta]
+ * @property {string} [redirect_url]
+ * @property {string} [transaction_id]
  */
 /**
  * @typedef Subscription
@@ -472,10 +485,18 @@ export = BillingPlatformModel;
  * @property {string} [end_date]
  * @property {string} [start_date]
  */
+/**
+ * @typedef SunscribePlan
+ * @property {string} [callback_url]
+ * @property {string} [collection_type]
+ * @property {string} [entity_type]
+ * @property {Meta} [meta]
+ * @property {string} [plan_id]
+ */
 declare class BillingPlatformModel {
 }
 declare namespace BillingPlatformModel {
-    export { BadRequest, CancelSubscriptionReq, CancelSubscriptionRes, ChargeLineItem, CheckValidityResponse, CreateOneTimeCharge, CreateOneTimeChargeResponse, CreateSubscriptionCharge, CreateSubscriptionResponse, CurrentPeriod, EntityChargePrice, EntityChargeRecurring, EntitySubscription, InternalServerError, Invoice, InvoiceDetails, InvoiceDetailsClient, InvoiceDetailsPeriod, InvoiceDetailsStatusTrail, InvoiceItems, InvoiceItemsPeriod, InvoiceItemsPlan, InvoiceItemsPlanRecurring, InvoicePaymentMethod, Invoices, InvoicesData, InvoicesDataClient, InvoicesDataPaymentMethod, InvoicesDataPeriod, OneTimeChargeEntity, OneTimeChargeItem, Phone, Plan, PlanRecurring, PlanStatusUpdateReq, ResourceNotFound, Subscription, SubscriptionActivateReq, SubscriptionActivateRes, SubscriptionBillingAddress, SubscriptionCharge, SubscriptionCurrentPeriod, SubscriptionCustomer, SubscriptionCustomerCreate, SubscriptionInvoiceSettings, SubscriptionLimit, SubscriptionLimitApplication, SubscriptionLimitExtensions, SubscriptionLimitIntegrations, SubscriptionLimitMarketplace, SubscriptionLimitOtherPlatform, SubscriptionLimitProducts, SubscriptionLimitTeam, SubscriptionPauseCollection, SubscriptionStatus, SubscriptionTrial, SubscriptionTrialPeriod };
+    export { BadRequest, CancelSubscriptionReq, CancelSubscriptionRes, ChargeLineItem, CheckValidityResponse, CreateOneTimeCharge, CreateOneTimeChargeResponse, CreateSubscriptionCharge, CreateSubscriptionResponse, CurrentPeriod, EntityChargePrice, EntityChargeRecurring, EntitySubscription, InternalServerError, Invoice, InvoiceDetails, InvoiceDetailsClient, InvoiceDetailsPeriod, InvoiceDetailsStatusTrail, InvoiceItems, InvoiceItemsPeriod, InvoiceItemsPlan, InvoiceItemsPlanRecurring, InvoicePaymentMethod, Invoices, InvoicesData, InvoicesDataClient, InvoicesDataPaymentMethod, InvoicesDataPeriod, Meta, OneTimeChargeEntity, OneTimeChargeItem, Phone, Plan, PlanRecurring, PlanStatusUpdateReq, ResourceNotFound, SubscribePlanRes, Subscription, SubscriptionActivateReq, SubscriptionActivateRes, SubscriptionBillingAddress, SubscriptionCharge, SubscriptionCurrentPeriod, SubscriptionCustomer, SubscriptionCustomerCreate, SubscriptionInvoiceSettings, SubscriptionLimit, SubscriptionLimitApplication, SubscriptionLimitExtensions, SubscriptionLimitIntegrations, SubscriptionLimitMarketplace, SubscriptionLimitOtherPlatform, SubscriptionLimitProducts, SubscriptionLimitTeam, SubscriptionPauseCollection, SubscriptionStatus, SubscriptionTrial, SubscriptionTrialPeriod, SunscribePlan };
 }
 /** @returns {BadRequest} */
 declare function BadRequest(): BadRequest;
@@ -763,6 +784,13 @@ type InvoicesDataPeriod = {
     end?: string;
     start?: string;
 };
+/** @returns {Meta} */
+declare function Meta(): Meta;
+type Meta = {
+    is_custom_plan?: boolean;
+    is_plan_upgrade?: boolean;
+    subscribe?: boolean;
+};
 /** @returns {OneTimeChargeEntity} */
 declare function OneTimeChargeEntity(): OneTimeChargeEntity;
 type OneTimeChargeEntity = {
@@ -841,6 +869,14 @@ type ResourceNotFound = {
      * - Resource not found with {id}
      */
     message?: string;
+};
+/** @returns {SubscribePlanRes} */
+declare function SubscribePlanRes(): SubscribePlanRes;
+type SubscribePlanRes = {
+    current_status?: string;
+    meta?: Meta;
+    redirect_url?: string;
+    transaction_id?: string;
 };
 /** @returns {Subscription} */
 declare function Subscription(): Subscription;
@@ -1024,4 +1060,13 @@ declare function SubscriptionTrialPeriod(): SubscriptionTrialPeriod;
 type SubscriptionTrialPeriod = {
     end_date?: string;
     start_date?: string;
+};
+/** @returns {SunscribePlan} */
+declare function SunscribePlan(): SunscribePlan;
+type SunscribePlan = {
+    callback_url?: string;
+    collection_type?: string;
+    entity_type?: string;
+    meta?: Meta;
+    plan_id?: string;
 };
