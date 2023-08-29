@@ -46,26 +46,6 @@ declare class Share {
      */
     getShortLinks({ pageNo, pageSize, createdBy, active, q, requestHeaders }?: SharePlatformApplicationValidator.GetShortLinksParam, { responseHeaders }?: object): Promise<SharePlatformModel.ShortLinkList>;
     /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.companyId - Company Id
-     * @param {string} arg.applicationId - Application Id
-     * @param {number} [arg.pageSize] - Current page size
-     * @param {string} [arg.createdBy] - Short link creator
-     * @param {string} [arg.active] - Short link active status
-     * @param {string} [arg.q] - Search text for original and short url
-     * @returns {Paginator<SharePlatformModel.ShortLinkList>}
-     * @summary: Get short links
-     * @description: Get short links
-     */
-    getShortLinksPaginator({ companyId, applicationId, pageSize, createdBy, active, q, }?: {
-        companyId: string;
-        applicationId: string;
-        pageSize?: number;
-        createdBy?: string;
-        active?: string;
-        q?: string;
-    }): Paginator<SharePlatformModel.ShortLinkList>;
-    /**
      * @param {SharePlatformApplicationValidator.UpdateShortLinkByIdParam} arg
      *   - Arg object
      *
@@ -80,4 +60,3 @@ declare class Share {
 }
 import SharePlatformApplicationValidator = require("./SharePlatformApplicationValidator");
 import SharePlatformModel = require("./SharePlatformModel");
-import Paginator = require("../../common/Paginator");

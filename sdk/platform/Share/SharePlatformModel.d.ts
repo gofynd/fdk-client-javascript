@@ -10,8 +10,8 @@ export = SharePlatformModel;
  */
 /**
  * @typedef ClickStatsItem
- * @property {string} [display] - The display name of the click statistic.
- * @property {number} [total] - The total number of clicks for the statistic.
+ * @property {string} display - The display name of the click statistic.
+ * @property {number} total - The total number of clicks for the statistic.
  */
 /**
  * @typedef ClickStatsResponse
@@ -126,11 +126,11 @@ type ClickStatsItem = {
     /**
      * - The display name of the click statistic.
      */
-    display?: string;
+    display: string;
     /**
      * - The total number of clicks for the statistic.
      */
-    total?: number;
+    total: number;
 };
 /** @returns {ClickStatsResponse} */
 declare function ClickStatsResponse(): ClickStatsResponse;

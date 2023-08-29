@@ -1,8 +1,12 @@
 export = FileStoragePlatformValidator;
 /**
  * @typedef BrowseParam
- * @property {string} namespace - Bucket name
- * @property {number} [pageNo] - Page no
+ * @property {string} namespace - Segregation of different types of
+ *   files(products, orders, logistics etc), Required for validating the data of
+ *   the file being uploaded, decides where exactly the file will be stored
+ *   inside the storage bucket.
+ * @property {number} [page] - Page no
+ * @property {number} [limit] - Limit
  */
 /**
  * @typedef CompleteUploadParam
@@ -14,8 +18,8 @@ export = FileStoragePlatformValidator;
  */
 /**
  * @typedef CopyFilesParam
- * @property {boolean} [sync] - Sync
- * @property {FileStoragePlatformModel.BulkRequest} body
+ * @property {boolean} [sync]
+ * @property {FileStoragePlatformModel.CopyFiles} body
  */
 /**
  * @typedef GetSignUrlsParam
@@ -52,13 +56,20 @@ declare namespace FileStoragePlatformValidator {
 }
 type BrowseParam = {
     /**
-     * - Bucket name
+     * - Segregation of different types of
+     * files(products, orders, logistics etc), Required for validating the data of
+     * the file being uploaded, decides where exactly the file will be stored
+     * inside the storage bucket.
      */
     namespace: string;
     /**
      * - Page no
      */
-    pageNo?: number;
+    page?: number;
+    /**
+     * - Limit
+     */
+    limit?: number;
 };
 type CompleteUploadParam = {
     /**
@@ -71,11 +82,8 @@ type CompleteUploadParam = {
     body: FileStoragePlatformModel.StartResponse;
 };
 type CopyFilesParam = {
-    /**
-     * - Sync
-     */
     sync?: boolean;
-    body: FileStoragePlatformModel.BulkRequest;
+    body: FileStoragePlatformModel.CopyFiles;
 };
 type GetSignUrlsParam = {
     body: FileStoragePlatformModel.SignUrlRequest;

@@ -3,9 +3,9 @@ export = LeadPlatformModel;
  * @typedef AddTicketPayload
  * @property {Object} [_custom_json] - Optional custom data that needs to be sent
  * @property {string} category - Category of the ticket
- * @property {TicketContent} content - Content for the ticket
+ * @property {TicketContent} content
  * @property {Object} [created_by] - Creator of the ticket
- * @property {PriorityEnum} [priority] - Priority of the ticket
+ * @property {PriorityEnum} [priority]
  * @property {string} [status] - Status of the ticket
  */
 /**
@@ -13,30 +13,16 @@ export = LeadPlatformModel;
  * @property {string} agent_id - Agent's unique ID
  */
 /**
- * @typedef CategoryData
- * @property {TicketCategory} [list]
- */
-/**
  * @typedef CloseVideoRoomResponse
  * @property {boolean} success - Denotes if operation was successfully
- */
-/**
- * @typedef CommunicationDetails
- * @property {string} [description] - Short description for the communication method
- * @property {boolean} [enabled] - Denotes if this communication method has to be shown
- * @property {string} [title] - Title for the communication method
- * @property {string} [type] - Enum type for the communication method
- * @property {string} [value] - Value for the communication method
  */
 /**
  * @typedef CreateCustomFormPayload
  * @property {string} [description] - Description of the form
  * @property {string} [header_image] - Header image that is to be shown for the form
  * @property {Object[]} inputs - List of all the form components
- * @property {PollForAssignment} [poll_for_assignment] - Describes how polling
- *   will be done for the tickets createds
- * @property {PriorityEnum} priority - Describes the priority of the tickets
- *   created by the form
+ * @property {PollForAssignment} [poll_for_assignment]
+ * @property {PriorityEnum} priority
  * @property {boolean} [should_notify] - Indicates if staff should be notified
  *   when a response is received
  * @property {string} slug - Slug for the form
@@ -60,19 +46,18 @@ export = LeadPlatformModel;
  * @typedef CustomForm
  * @property {string} _id - Unique identifier for the form
  * @property {string} application_id - Application ID for form
- * @property {CreatedOn} [created_on] - Gives details of when the form was created
+ * @property {CreatedOn} [created_on]
  * @property {string} [description] - Form description that will be shown to the user
  * @property {string} [header_image] - Form header image that will be shown to the user
  * @property {Object[]} inputs - List of all the form fields
  * @property {boolean} login_required - Denotes if login is required to make a
  *   form response submission
- * @property {PollForAssignment} [poll_for_assignment] - Details of how polling
- *   should be done for support
- * @property {Priority} priority - Sets priority of tickets created by form response
+ * @property {PollForAssignment} [poll_for_assignment]
+ * @property {Priority} priority
  * @property {boolean} should_notify - Denotes if new response submission for
  *   the form should be notified to the assignees
  * @property {string} slug - Slug for the form, which is to be used for accessing the form
- * @property {SubmitButton} [submit_button] - Details for submit button
+ * @property {SubmitButton} [submit_button]
  * @property {string} [success_message] - Message that is to be shown on
  *   succesfull form response submission
  * @property {string} title - Form title that will be shown to the user
@@ -80,12 +65,7 @@ export = LeadPlatformModel;
 /**
  * @typedef CustomFormList
  * @property {CustomForm[]} [items] - List of forms
- * @property {Page} [page] - Describes the pagination state
- */
-/**
- * @typedef CustomFormSubmissionPayload
- * @property {TicketAsset[]} [attachments] - List of all attachments related to the form
- * @property {Object[]} response - Form response
+ * @property {Page} [page]
  */
 /**
  * @typedef Debug
@@ -99,10 +79,8 @@ export = LeadPlatformModel;
  * @property {Object[]} inputs - List of all the form components
  * @property {boolean} [login_required] - Denotes if login is required to make a
  *   form response submission
- * @property {PollForAssignment} [poll_for_assignment] - Describes how polling
- *   will be done for the tickets createds
- * @property {PriorityEnum} priority - Describes the priority of the tickets
- *   created by the form
+ * @property {PollForAssignment} [poll_for_assignment]
+ * @property {PriorityEnum} priority
  * @property {boolean} [should_notify] - Indicates if staff should be notified
  *   when a response is received
  * @property {string} [success_message] - Success message that will be shown on submission
@@ -110,11 +88,10 @@ export = LeadPlatformModel;
  */
 /**
  * @typedef EditTicketPayload
- * @property {AgentChangePayload} [assigned_to] - Details of support staff to
- *   whom ticket is assigned
+ * @property {AgentChangePayload} [assigned_to]
  * @property {string} [category] - Category assigned to the ticket
- * @property {TicketContent} [content] - Ticket conetent details
- * @property {PriorityEnum} [priority] - Denotes the priority of ticket
+ * @property {TicketContent} [content]
+ * @property {PriorityEnum} [priority]
  * @property {string} [source] - Denotes if the ticket was created at company or
  *   application level
  * @property {string} [status] - Denotes in what state is the ticket
@@ -156,25 +133,6 @@ export = LeadPlatformModel;
  * @property {string} access_token - Access token to be used for video room
  */
 /**
- * @typedef IntegrationConfig
- * @property {string} [_id] - Unique id
- * @property {boolean} allow_ticket_creation - Denotes ticket creation enable or
- *   disable on platform
- * @property {string} [base_url] - Integration base url for validate and create ticket
- * @property {CategoryData} [category_data] - Support category array list details
- * @property {string} [category_sync_apikey] - Integration apikey to sync
- *   category of selected type
- * @property {boolean} [config_completed] - Denotes the current intergration is
- *   completed or partially done
- * @property {string} [create_ticket_apikey] - Integration apikey to validate
- *   and create ticket
- * @property {string} integration_type - Enum string values for integration
- * @property {boolean} show_listing - Denotes ticket listing enable or disable on platform
- * @property {string} [update_ticket_apikey] - Integration apikey to update ticket
- * @property {string} [webhook_apikey] - Integration webhook apikey to got
- *   callbacks from integration type dashboard like freshdesk, etc
- */
-/**
  * @typedef NotifyUser
  * @property {string} country_code - Country code
  * @property {string} phone_number - Phone number
@@ -193,7 +151,7 @@ export = LeadPlatformModel;
  * @typedef Participant
  * @property {string} [identity] - Unique identifier of participant
  * @property {string} [status] - Status of participant
- * @property {UserSchema} [user] - Details of participant
+ * @property {UserSchema} [user]
  */
 /**
  * @typedef PhoneNumber
@@ -214,7 +172,7 @@ export = LeadPlatformModel;
  * @typedef Priority
  * @property {string} color - Color for priority
  * @property {string} display - Display text for priority
- * @property {PriorityEnum} key - Key for priority
+ * @property {PriorityEnum} key
  */
 /**
  * @typedef Status
@@ -229,46 +187,24 @@ export = LeadPlatformModel;
  * @property {string} title_color - Title color submit button
  */
 /**
- * @typedef SubmitCustomFormResponse
- * @property {string} message - Success message for form submission
- * @property {Ticket} [ticket] - Ticket created on form submission
- */
-/**
- * @typedef SupportGeneralConfig
- * @property {string} [_id] - Unique id
- * @property {Object} [integration] - Contains integrations basic information
- * @property {boolean} [show_communication_info] - Denotes if support
- *   communication info should be shown
- * @property {boolean} [show_support_dris] - Denotes if support DRIS info should be shown
- * @property {CommunicationDetails} [support_communication] - Support
- *   communication array list details
- * @property {CommunicationDetails} [support_email] - Support e-mail details
- * @property {CommunicationDetails} [support_faq] - Support FAQ details
- * @property {CommunicationDetails} [support_phone] - Support Phone number details
- * @property {string} [type] - The enity/platform for which the config is stored
- */
-/**
  * @typedef Ticket
  * @property {Object} [_custom_json] - Custom json relevant to the ticket
  * @property {string} _id - Unique identifier for the ticket
  * @property {Object} [assigned_to] - Details of support staff to whom ticket is assigned
- * @property {TicketCategory} category - Category assigned to the ticket
- * @property {TicketContent} [content] - Ticket conetent details
- * @property {TicketContext} [context] - Details of company and application
- *   realated to the ticket
+ * @property {TicketCategory} category
+ * @property {TicketContent} [content]
+ * @property {TicketContext} [context]
  * @property {string} [created_at] - Time when the ticket was created
  * @property {Object} [created_by] - User details of ticket creator
- * @property {CreatedOn} [created_on] - Details of company and application
- *   realated to the ticket
+ * @property {CreatedOn} [created_on]
  * @property {Object} [integration] - Integration type and its details of the ticket
  * @property {boolean} [is_feedback_pending] - Denotes if feedback submission is
  *   pending for the ticket
- * @property {Priority} priority - Denotes the priority of ticket
+ * @property {Priority} priority
  * @property {string} [response_id] - Details of company and application
  *   realated to the ticket
- * @property {TicketSourceEnum} source - Denotes if the ticket was created at
- *   company or application level
- * @property {Status} status - Denotes in what state is the ticket
+ * @property {TicketSourceEnum} source
+ * @property {Status} status
  * @property {string} [sub_category] - Sub-category assigned to the ticket
  * @property {string[]} [tags] - Tags relevant to ticket
  * @property {string} [updated_at] - Time when the ticket was last updated
@@ -276,16 +212,16 @@ export = LeadPlatformModel;
 /**
  * @typedef TicketAsset
  * @property {string} [display] - Display text for asset
- * @property {TicketAssetTypeEnum} type - Type of asset
+ * @property {TicketAssetTypeEnum} type
  * @property {string} value - To be used for details
  */
 /**
  * @typedef TicketCategory
  * @property {string} display - Category display value identifier
- * @property {FeedbackForm} [feedback_form] - Support category array list details
+ * @property {FeedbackForm} [feedback_form]
  * @property {number} [group_id] - Group id of category releted data
  * @property {string} key - Category key value identifier
- * @property {TicketCategory} [sub_categories] - Support category array list details
+ * @property {TicketCategory} [sub_categories]
  */
 /**
  * @typedef TicketContent
@@ -310,11 +246,6 @@ export = LeadPlatformModel;
  * @property {Object} [user] - User who submitted the feedback
  */
 /**
- * @typedef TicketFeedbackForm
- * @property {Object[]} [display] - List of all the form fields
- * @property {string} title - Feedback form title that will be shown to the user
- */
-/**
  * @typedef TicketFeedbackList
  * @property {TicketFeedback[]} [items] - List of all ticket feedback for the ticket
  */
@@ -328,7 +259,7 @@ export = LeadPlatformModel;
  * @property {string} _id - Unique identifier of the history event
  * @property {string} [created_at] - Time of creation of the history event
  * @property {Object} [created_by] - User who created the history event
- * @property {CreatedOn} [created_on] - Time of creation of the history event
+ * @property {CreatedOn} [created_on]
  * @property {string} ticket_id - Readable ticket number
  * @property {string} type - Type of the history event
  * @property {string} [updated_at] - Time of last update of the history event
@@ -337,24 +268,18 @@ export = LeadPlatformModel;
 /**
  * @typedef TicketHistoryList
  * @property {TicketHistory[]} [items] - List of ticket history
- * @property {Page} [page] - Describes the pagination state
+ * @property {Page} [page]
  */
 /**
  * @typedef TicketHistoryPayload
- * @property {HistoryTypeEnum} type - Type of history event
+ * @property {HistoryTypeEnum} type
  * @property {Object} value - Details of history event
  */
 /**
  * @typedef TicketList
- * @property {Filter} [filters] - All the filters available for tickets
+ * @property {Filter} [filters]
  * @property {Ticket[]} [items] - List of tickets
- * @property {Page} [page] - Describes the pagination state
- */
-/**
- * @typedef TicketSubCategory
- * @property {string} display - Display text for sub-category
- * @property {string} key - Key for sub-category
- * @property {TicketSubCategory} [sub_categories]
+ * @property {Page} [page]
  */
 /**
  * @typedef UserSchema
@@ -388,12 +313,11 @@ export = LeadPlatformModel;
  *   | "shipment"
  *   | "order"} TicketAssetTypeEnum
  */
-/** @typedef {"default" | "freshdesk" | "kapture"} TicketIntegrationDetails */
 /** @typedef {"platform_panel" | "sales_channel"} TicketSourceEnum */
 declare class LeadPlatformModel {
 }
 declare namespace LeadPlatformModel {
-    export { AddTicketPayload, AgentChangePayload, CategoryData, CloseVideoRoomResponse, CommunicationDetails, CreateCustomFormPayload, CreatedOn, CreateVideoRoomPayload, CreateVideoRoomResponse, CustomForm, CustomFormList, CustomFormSubmissionPayload, Debug, EditCustomFormPayload, EditTicketPayload, Email, FeedbackForm, FeedbackResponseItem, Filter, GetParticipantsInsideVideoRoomResponse, GetTokenForVideoRoomResponse, IntegrationConfig, NotifyUser, Page, Participant, PhoneNumber, PollForAssignment, Priority, Status, SubmitButton, SubmitCustomFormResponse, SupportGeneralConfig, Ticket, TicketAsset, TicketCategory, TicketContent, TicketContext, TicketFeedback, TicketFeedbackForm, TicketFeedbackList, TicketFeedbackPayload, TicketHistory, TicketHistoryList, TicketHistoryPayload, TicketList, TicketSubCategory, UserSchema, HistoryTypeEnum, PriorityEnum, TicketAssetTypeEnum, TicketIntegrationDetails, TicketSourceEnum };
+    export { AddTicketPayload, AgentChangePayload, CloseVideoRoomResponse, CreateCustomFormPayload, CreatedOn, CreateVideoRoomPayload, CreateVideoRoomResponse, CustomForm, CustomFormList, Debug, EditCustomFormPayload, EditTicketPayload, Email, FeedbackForm, FeedbackResponseItem, Filter, GetParticipantsInsideVideoRoomResponse, GetTokenForVideoRoomResponse, NotifyUser, Page, Participant, PhoneNumber, PollForAssignment, Priority, Status, SubmitButton, Ticket, TicketAsset, TicketCategory, TicketContent, TicketContext, TicketFeedback, TicketFeedbackList, TicketFeedbackPayload, TicketHistory, TicketHistoryList, TicketHistoryPayload, TicketList, UserSchema, HistoryTypeEnum, PriorityEnum, TicketAssetTypeEnum, TicketSourceEnum };
 }
 /** @returns {AddTicketPayload} */
 declare function AddTicketPayload(): AddTicketPayload;
@@ -406,17 +330,11 @@ type AddTicketPayload = {
      * - Category of the ticket
      */
     category: string;
-    /**
-     * - Content for the ticket
-     */
     content: TicketContent;
     /**
      * - Creator of the ticket
      */
     created_by?: any;
-    /**
-     * - Priority of the ticket
-     */
     priority?: PriorityEnum;
     /**
      * - Status of the ticket
@@ -431,11 +349,6 @@ type AgentChangePayload = {
      */
     agent_id: string;
 };
-/** @returns {CategoryData} */
-declare function CategoryData(): CategoryData;
-type CategoryData = {
-    list?: TicketCategory;
-};
 /** @returns {CloseVideoRoomResponse} */
 declare function CloseVideoRoomResponse(): CloseVideoRoomResponse;
 type CloseVideoRoomResponse = {
@@ -443,30 +356,6 @@ type CloseVideoRoomResponse = {
      * - Denotes if operation was successfully
      */
     success: boolean;
-};
-/** @returns {CommunicationDetails} */
-declare function CommunicationDetails(): CommunicationDetails;
-type CommunicationDetails = {
-    /**
-     * - Short description for the communication method
-     */
-    description?: string;
-    /**
-     * - Denotes if this communication method has to be shown
-     */
-    enabled?: boolean;
-    /**
-     * - Title for the communication method
-     */
-    title?: string;
-    /**
-     * - Enum type for the communication method
-     */
-    type?: string;
-    /**
-     * - Value for the communication method
-     */
-    value?: string;
 };
 /** @returns {CreateCustomFormPayload} */
 declare function CreateCustomFormPayload(): CreateCustomFormPayload;
@@ -483,15 +372,7 @@ type CreateCustomFormPayload = {
      * - List of all the form components
      */
     inputs: any[];
-    /**
-     * - Describes how polling
-     * will be done for the tickets createds
-     */
     poll_for_assignment?: PollForAssignment;
-    /**
-     * - Describes the priority of the tickets
-     * created by the form
-     */
     priority: PriorityEnum;
     /**
      * - Indicates if staff should be notified
@@ -550,9 +431,6 @@ type CustomForm = {
      * - Application ID for form
      */
     application_id: string;
-    /**
-     * - Gives details of when the form was created
-     */
     created_on?: CreatedOn;
     /**
      * - Form description that will be shown to the user
@@ -571,14 +449,7 @@ type CustomForm = {
      * form response submission
      */
     login_required: boolean;
-    /**
-     * - Details of how polling
-     * should be done for support
-     */
     poll_for_assignment?: PollForAssignment;
-    /**
-     * - Sets priority of tickets created by form response
-     */
     priority: Priority;
     /**
      * - Denotes if new response submission for
@@ -589,9 +460,6 @@ type CustomForm = {
      * - Slug for the form, which is to be used for accessing the form
      */
     slug: string;
-    /**
-     * - Details for submit button
-     */
     submit_button?: SubmitButton;
     /**
      * - Message that is to be shown on
@@ -610,22 +478,7 @@ type CustomFormList = {
      * - List of forms
      */
     items?: CustomForm[];
-    /**
-     * - Describes the pagination state
-     */
     page?: Page;
-};
-/** @returns {CustomFormSubmissionPayload} */
-declare function CustomFormSubmissionPayload(): CustomFormSubmissionPayload;
-type CustomFormSubmissionPayload = {
-    /**
-     * - List of all attachments related to the form
-     */
-    attachments?: TicketAsset[];
-    /**
-     * - Form response
-     */
-    response: any[];
 };
 /** @returns {Debug} */
 declare function Debug(): Debug;
@@ -659,15 +512,7 @@ type EditCustomFormPayload = {
      * form response submission
      */
     login_required?: boolean;
-    /**
-     * - Describes how polling
-     * will be done for the tickets createds
-     */
     poll_for_assignment?: PollForAssignment;
-    /**
-     * - Describes the priority of the tickets
-     * created by the form
-     */
     priority: PriorityEnum;
     /**
      * - Indicates if staff should be notified
@@ -686,22 +531,12 @@ type EditCustomFormPayload = {
 /** @returns {EditTicketPayload} */
 declare function EditTicketPayload(): EditTicketPayload;
 type EditTicketPayload = {
-    /**
-     * - Details of support staff to
-     * whom ticket is assigned
-     */
     assigned_to?: AgentChangePayload;
     /**
      * - Category assigned to the ticket
      */
     category?: string;
-    /**
-     * - Ticket conetent details
-     */
     content?: TicketContent;
-    /**
-     * - Denotes the priority of ticket
-     */
     priority?: PriorityEnum;
     /**
      * - Denotes if the ticket was created at company or
@@ -809,59 +644,6 @@ type GetTokenForVideoRoomResponse = {
      */
     access_token: string;
 };
-/** @returns {IntegrationConfig} */
-declare function IntegrationConfig(): IntegrationConfig;
-type IntegrationConfig = {
-    /**
-     * - Unique id
-     */
-    _id?: string;
-    /**
-     * - Denotes ticket creation enable or
-     * disable on platform
-     */
-    allow_ticket_creation: boolean;
-    /**
-     * - Integration base url for validate and create ticket
-     */
-    base_url?: string;
-    /**
-     * - Support category array list details
-     */
-    category_data?: CategoryData;
-    /**
-     * - Integration apikey to sync
-     * category of selected type
-     */
-    category_sync_apikey?: string;
-    /**
-     * - Denotes the current intergration is
-     * completed or partially done
-     */
-    config_completed?: boolean;
-    /**
-     * - Integration apikey to validate
-     * and create ticket
-     */
-    create_ticket_apikey?: string;
-    /**
-     * - Enum string values for integration
-     */
-    integration_type: string;
-    /**
-     * - Denotes ticket listing enable or disable on platform
-     */
-    show_listing: boolean;
-    /**
-     * - Integration apikey to update ticket
-     */
-    update_ticket_apikey?: string;
-    /**
-     * - Integration webhook apikey to got
-     * callbacks from integration type dashboard like freshdesk, etc
-     */
-    webhook_apikey?: string;
-};
 /** @returns {NotifyUser} */
 declare function NotifyUser(): NotifyUser;
 type NotifyUser = {
@@ -896,9 +678,6 @@ type Participant = {
      * - Status of participant
      */
     status?: string;
-    /**
-     * - Details of participant
-     */
     user?: UserSchema;
 };
 /** @returns {PhoneNumber} */
@@ -956,9 +735,6 @@ type Priority = {
      * - Display text for priority
      */
     display: string;
-    /**
-     * - Key for priority
-     */
     key: PriorityEnum;
 };
 /** @returns {Status} */
@@ -993,60 +769,6 @@ type SubmitButton = {
      */
     title_color: string;
 };
-/** @returns {SubmitCustomFormResponse} */
-declare function SubmitCustomFormResponse(): SubmitCustomFormResponse;
-type SubmitCustomFormResponse = {
-    /**
-     * - Success message for form submission
-     */
-    message: string;
-    /**
-     * - Ticket created on form submission
-     */
-    ticket?: Ticket;
-};
-/** @returns {SupportGeneralConfig} */
-declare function SupportGeneralConfig(): SupportGeneralConfig;
-type SupportGeneralConfig = {
-    /**
-     * - Unique id
-     */
-    _id?: string;
-    /**
-     * - Contains integrations basic information
-     */
-    integration?: any;
-    /**
-     * - Denotes if support
-     * communication info should be shown
-     */
-    show_communication_info?: boolean;
-    /**
-     * - Denotes if support DRIS info should be shown
-     */
-    show_support_dris?: boolean;
-    /**
-     * - Support
-     * communication array list details
-     */
-    support_communication?: CommunicationDetails;
-    /**
-     * - Support e-mail details
-     */
-    support_email?: CommunicationDetails;
-    /**
-     * - Support FAQ details
-     */
-    support_faq?: CommunicationDetails;
-    /**
-     * - Support Phone number details
-     */
-    support_phone?: CommunicationDetails;
-    /**
-     * - The enity/platform for which the config is stored
-     */
-    type?: string;
-};
 /** @returns {Ticket} */
 declare function Ticket(): Ticket;
 type Ticket = {
@@ -1062,18 +784,8 @@ type Ticket = {
      * - Details of support staff to whom ticket is assigned
      */
     assigned_to?: any;
-    /**
-     * - Category assigned to the ticket
-     */
     category: TicketCategory;
-    /**
-     * - Ticket conetent details
-     */
     content?: TicketContent;
-    /**
-     * - Details of company and application
-     * realated to the ticket
-     */
     context?: TicketContext;
     /**
      * - Time when the ticket was created
@@ -1083,10 +795,6 @@ type Ticket = {
      * - User details of ticket creator
      */
     created_by?: any;
-    /**
-     * - Details of company and application
-     * realated to the ticket
-     */
     created_on?: CreatedOn;
     /**
      * - Integration type and its details of the ticket
@@ -1097,23 +805,13 @@ type Ticket = {
      * pending for the ticket
      */
     is_feedback_pending?: boolean;
-    /**
-     * - Denotes the priority of ticket
-     */
     priority: Priority;
     /**
      * - Details of company and application
      * realated to the ticket
      */
     response_id?: string;
-    /**
-     * - Denotes if the ticket was created at
-     * company or application level
-     */
     source: TicketSourceEnum;
-    /**
-     * - Denotes in what state is the ticket
-     */
     status: Status;
     /**
      * - Sub-category assigned to the ticket
@@ -1135,9 +833,6 @@ type TicketAsset = {
      * - Display text for asset
      */
     display?: string;
-    /**
-     * - Type of asset
-     */
     type: TicketAssetTypeEnum;
     /**
      * - To be used for details
@@ -1151,9 +846,6 @@ type TicketCategory = {
      * - Category display value identifier
      */
     display: string;
-    /**
-     * - Support category array list details
-     */
     feedback_form?: FeedbackForm;
     /**
      * - Group id of category releted data
@@ -1163,9 +855,6 @@ type TicketCategory = {
      * - Category key value identifier
      */
     key: string;
-    /**
-     * - Support category array list details
-     */
     sub_categories?: TicketCategory;
 };
 /** @returns {TicketContent} */
@@ -1229,18 +918,6 @@ type TicketFeedback = {
      */
     user?: any;
 };
-/** @returns {TicketFeedbackForm} */
-declare function TicketFeedbackForm(): TicketFeedbackForm;
-type TicketFeedbackForm = {
-    /**
-     * - List of all the form fields
-     */
-    display?: any[];
-    /**
-     * - Feedback form title that will be shown to the user
-     */
-    title: string;
-};
 /** @returns {TicketFeedbackList} */
 declare function TicketFeedbackList(): TicketFeedbackList;
 type TicketFeedbackList = {
@@ -1273,9 +950,6 @@ type TicketHistory = {
      * - User who created the history event
      */
     created_by?: any;
-    /**
-     * - Time of creation of the history event
-     */
     created_on?: CreatedOn;
     /**
      * - Readable ticket number
@@ -1301,17 +975,11 @@ type TicketHistoryList = {
      * - List of ticket history
      */
     items?: TicketHistory[];
-    /**
-     * - Describes the pagination state
-     */
     page?: Page;
 };
 /** @returns {TicketHistoryPayload} */
 declare function TicketHistoryPayload(): TicketHistoryPayload;
 type TicketHistoryPayload = {
-    /**
-     * - Type of history event
-     */
     type: HistoryTypeEnum;
     /**
      * - Details of history event
@@ -1321,31 +989,12 @@ type TicketHistoryPayload = {
 /** @returns {TicketList} */
 declare function TicketList(): TicketList;
 type TicketList = {
-    /**
-     * - All the filters available for tickets
-     */
     filters?: Filter;
     /**
      * - List of tickets
      */
     items?: Ticket[];
-    /**
-     * - Describes the pagination state
-     */
     page?: Page;
-};
-/** @returns {TicketSubCategory} */
-declare function TicketSubCategory(): TicketSubCategory;
-type TicketSubCategory = {
-    /**
-     * - Display text for sub-category
-     */
-    display: string;
-    /**
-     * - Key for sub-category
-     */
-    key: string;
-    sub_categories?: TicketSubCategory;
 };
 /** @returns {UserSchema} */
 declare function UserSchema(): UserSchema;
@@ -1388,13 +1037,6 @@ type PriorityEnum = "low" | "medium" | "high" | "urgent";
  */
 declare function TicketAssetTypeEnum(): TicketAssetTypeEnum;
 type TicketAssetTypeEnum = "image" | "video" | "file" | "youtube" | "product" | "collection" | "brand" | "shipment" | "order";
-/**
- * Enum: TicketIntegrationDetails Used By: Lead
- *
- * @returns {TicketIntegrationDetails}
- */
-declare function TicketIntegrationDetails(): TicketIntegrationDetails;
-type TicketIntegrationDetails = "default" | "freshdesk" | "kapture";
 /**
  * Enum: TicketSourceEnum Used By: Lead
  *

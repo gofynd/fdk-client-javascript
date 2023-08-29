@@ -18,6 +18,7 @@ export = DiscountPlatformModel;
  * @property {number[]} [brand_ids]
  * @property {number} company_id
  * @property {string} discount_level
+ * @property {DiscountMeta} [discount_meta]
  * @property {string} discount_type
  * @property {string[]} extension_ids
  * @property {string} [file_path]
@@ -31,6 +32,7 @@ export = DiscountPlatformModel;
 /**
  * @typedef DiscountItems
  * @property {number} [brand_uid]
+ * @property {DiscountMeta} [discount_meta]
  * @property {string} discount_type
  * @property {string} [item_code]
  * @property {string} [seller_identifier]
@@ -45,6 +47,7 @@ export = DiscountPlatformModel;
  * @property {UserDetails} created_by
  * @property {string} created_on
  * @property {string} [discount_level]
+ * @property {DiscountMeta} [discount_meta]
  * @property {string} [discount_type]
  * @property {string} [file_path]
  * @property {boolean} is_active
@@ -56,6 +59,15 @@ export = DiscountPlatformModel;
  * @property {number[]} [store_ids]
  * @property {ValidityObject} validity
  * @property {number} [value]
+ */
+/**
+ * @typedef DiscountMeta
+ * @property {number} [hours] - The time in hours before the discount ends when
+ *   the countdown timer should start.
+ * @property {number} [minutes] - The time in minutes before the discount ends
+ *   when the countdown timer should start.
+ * @property {boolean} timer - Determines whether the discount countdown is
+ *   visible or not.
  */
 /**
  * @typedef DownloadFileJob
@@ -78,6 +90,7 @@ export = DiscountPlatformModel;
  */
 /**
  * @typedef FileJobResponse
+ * @property {string} _id - A unique identifier to distinguish and identify a job.
  * @property {Object} [body]
  * @property {number} company_id
  * @property {number} failed
@@ -114,7 +127,7 @@ export = DiscountPlatformModel;
 declare class DiscountPlatformModel {
 }
 declare namespace DiscountPlatformModel {
-    export { BadRequestObject, BulkDiscount, CancelJobResponse, CreateUpdateDiscount, DiscountItems, DiscountJob, DownloadFileJob, FileJobRequest, FileJobResponse, ListOrCalender, Page, UserDetails, ValidityObject };
+    export { BadRequestObject, BulkDiscount, CancelJobResponse, CreateUpdateDiscount, DiscountItems, DiscountJob, DiscountMeta, DownloadFileJob, FileJobRequest, FileJobResponse, ListOrCalender, Page, UserDetails, ValidityObject };
 }
 /** @returns {BadRequestObject} */
 declare function BadRequestObject(): BadRequestObject;
@@ -139,6 +152,7 @@ type CreateUpdateDiscount = {
     brand_ids?: number[];
     company_id: number;
     discount_level: string;
+    discount_meta?: DiscountMeta;
     discount_type: string;
     extension_ids: string[];
     file_path?: string;
@@ -153,6 +167,7 @@ type CreateUpdateDiscount = {
 declare function DiscountItems(): DiscountItems;
 type DiscountItems = {
     brand_uid?: number;
+    discount_meta?: DiscountMeta;
     discount_type: string;
     item_code?: string;
     seller_identifier?: string;
@@ -168,6 +183,7 @@ type DiscountJob = {
     created_by: UserDetails;
     created_on: string;
     discount_level?: string;
+    discount_meta?: DiscountMeta;
     discount_type?: string;
     file_path?: string;
     is_active: boolean;
@@ -179,6 +195,25 @@ type DiscountJob = {
     store_ids?: number[];
     validity: ValidityObject;
     value?: number;
+};
+/** @returns {DiscountMeta} */
+declare function DiscountMeta(): DiscountMeta;
+type DiscountMeta = {
+    /**
+     * - The time in hours before the discount ends when
+     * the countdown timer should start.
+     */
+    hours?: number;
+    /**
+     * - The time in minutes before the discount ends
+     * when the countdown timer should start.
+     */
+    minutes?: number;
+    /**
+     * - Determines whether the discount countdown is
+     * visible or not.
+     */
+    timer: boolean;
 };
 /** @returns {DownloadFileJob} */
 declare function DownloadFileJob(): DownloadFileJob;
@@ -204,6 +239,10 @@ type FileJobRequest = {
 /** @returns {FileJobResponse} */
 declare function FileJobResponse(): FileJobResponse;
 type FileJobResponse = {
+    /**
+     * - A unique identifier to distinguish and identify a job.
+     */
+    _id: string;
     body?: any;
     company_id: number;
     failed: number;

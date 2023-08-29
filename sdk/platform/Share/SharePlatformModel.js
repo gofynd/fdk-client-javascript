@@ -13,8 +13,8 @@ const Joi = require("joi");
 
 /**
  * @typedef ClickStatsItem
- * @property {string} [display] - The display name of the click statistic.
- * @property {number} [total] - The total number of clicks for the statistic.
+ * @property {string} display - The display name of the click statistic.
+ * @property {number} total - The total number of clicks for the statistic.
  */
 
 /**
@@ -138,8 +138,8 @@ class SharePlatformModel {
   /** @returns {ClickStatsItem} */
   static ClickStatsItem() {
     return Joi.object({
-      display: Joi.string().allow(""),
-      total: Joi.number(),
+      display: Joi.string().allow("").required(),
+      total: Joi.number().required(),
     });
   }
 

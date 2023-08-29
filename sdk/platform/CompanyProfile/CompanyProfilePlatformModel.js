@@ -16,6 +16,12 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef AverageOrderProcessingTime
+ * @property {number} [duration]
+ * @property {string} [duration_type]
+ */
+
+/**
  * @typedef BrandBannerSerializer
  * @property {string} landscape
  * @property {string} portrait
@@ -259,12 +265,15 @@ const Joi = require("joi");
  * @property {Object} [_custom_json]
  * @property {GetAddressSerializer} address
  * @property {boolean} [auto_invoice]
+ * @property {AverageOrderProcessingTime} [avg_order_processing_time]
+ * @property {boolean} [bulk_shipment]
  * @property {string} code
  * @property {GetCompanySerializer} [company]
  * @property {SellerPhoneNumber[]} [contact_numbers]
  * @property {UserSerializer} [created_by]
  * @property {string} [created_on]
  * @property {boolean} [credit_note]
+ * @property {boolean} [default_order_acceptance_timing]
  * @property {string} display_name
  * @property {Document[]} [documents]
  * @property {InvoiceDetailsSerializer} [gst_credentials]
@@ -274,10 +283,12 @@ const Joi = require("joi");
  * @property {string} [modified_on]
  * @property {string} name
  * @property {string[]} [notification_emails]
+ * @property {LocationDayWiseSerializer[]} [order_acceptance_timing]
  * @property {string} [phone_number]
  * @property {ProductReturnConfigSerializer} [product_return_config]
  * @property {string} [stage]
  * @property {string} [store_type]
+ * @property {string[]} [tags]
  * @property {LocationDayWiseSerializer[]} [timing]
  * @property {number} [uid]
  * @property {UserSerializer} [verified_by]
@@ -337,10 +348,14 @@ const Joi = require("joi");
  * @property {Object} [_custom_json]
  * @property {AddressSerializer} address
  * @property {boolean} [auto_invoice]
+ * @property {AverageOrderProcessingTime} [avg_order_processing_time]
+ * @property {boolean} [bulk_shipment]
  * @property {string} code
  * @property {number} company
  * @property {SellerPhoneNumber[]} [contact_numbers]
  * @property {boolean} [credit_note]
+ * @property {boolean} [default_order_acceptance_timing] - Flag to set
+ *   order_acceptance_timing as default timing
  * @property {string} display_name
  * @property {Document[]} [documents]
  * @property {InvoiceDetailsSerializer} [gst_credentials]
@@ -348,9 +363,12 @@ const Joi = require("joi");
  * @property {LocationManagerSerializer} [manager]
  * @property {string} name
  * @property {string[]} [notification_emails]
+ * @property {LocationDayWiseSerializer[]} [order_acceptance_timing] - Order
+ *   acceptance timing of the store
  * @property {ProductReturnConfigSerializer} [product_return_config]
  * @property {string} [stage]
  * @property {string} [store_type]
+ * @property {string[]} [tags]
  * @property {LocationDayWiseSerializer[]} [timing]
  * @property {number} [uid]
  * @property {Object} [warnings]
@@ -404,6 +422,12 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef StoreTagsResponseSchema
+ * @property {boolean} [success]
+ * @property {string[]} [tags]
+ */
+
+/**
  * @typedef UpdateCompany
  * @property {Object} [_custom_json]
  * @property {CreateUpdateAddressSerializer[]} [addresses]
@@ -448,6 +472,14 @@ class CompanyProfilePlatformModel {
       longitude: Joi.number().required(),
       pincode: Joi.number(),
       state: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {AverageOrderProcessingTime} */
+  static AverageOrderProcessingTime() {
+    return Joi.object({
+      duration: Joi.number(),
+      duration_type: Joi.string().allow(""),
     });
   }
 
@@ -752,6 +784,8 @@ class CompanyProfilePlatformModel {
       _custom_json: Joi.any(),
       address: CompanyProfilePlatformModel.GetAddressSerializer().required(),
       auto_invoice: Joi.boolean(),
+      avg_order_processing_time: CompanyProfilePlatformModel.AverageOrderProcessingTime(),
+      bulk_shipment: Joi.boolean(),
       code: Joi.string().allow("").required(),
       company: CompanyProfilePlatformModel.GetCompanySerializer(),
       contact_numbers: Joi.array().items(
@@ -760,6 +794,7 @@ class CompanyProfilePlatformModel {
       created_by: CompanyProfilePlatformModel.UserSerializer(),
       created_on: Joi.string().allow(""),
       credit_note: Joi.boolean(),
+      default_order_acceptance_timing: Joi.boolean(),
       display_name: Joi.string().allow("").required(),
       documents: Joi.array().items(CompanyProfilePlatformModel.Document()),
       gst_credentials: CompanyProfilePlatformModel.InvoiceDetailsSerializer(),
@@ -771,10 +806,14 @@ class CompanyProfilePlatformModel {
       modified_on: Joi.string().allow(""),
       name: Joi.string().allow("").required(),
       notification_emails: Joi.array().items(Joi.string().allow("")),
+      order_acceptance_timing: Joi.array().items(
+        CompanyProfilePlatformModel.LocationDayWiseSerializer()
+      ),
       phone_number: Joi.string().allow(""),
       product_return_config: CompanyProfilePlatformModel.ProductReturnConfigSerializer(),
       stage: Joi.string().allow(""),
       store_type: Joi.string().allow(""),
+      tags: Joi.array().items(Joi.string().allow("")),
       timing: Joi.array().items(
         CompanyProfilePlatformModel.LocationDayWiseSerializer()
       ),
@@ -854,12 +893,15 @@ class CompanyProfilePlatformModel {
       _custom_json: Joi.any(),
       address: CompanyProfilePlatformModel.AddressSerializer().required(),
       auto_invoice: Joi.boolean(),
+      avg_order_processing_time: CompanyProfilePlatformModel.AverageOrderProcessingTime(),
+      bulk_shipment: Joi.boolean(),
       code: Joi.string().allow("").required(),
       company: Joi.number().required(),
       contact_numbers: Joi.array().items(
         CompanyProfilePlatformModel.SellerPhoneNumber()
       ),
       credit_note: Joi.boolean(),
+      default_order_acceptance_timing: Joi.boolean(),
       display_name: Joi.string().allow("").required(),
       documents: Joi.array().items(CompanyProfilePlatformModel.Document()),
       gst_credentials: CompanyProfilePlatformModel.InvoiceDetailsSerializer(),
@@ -869,9 +911,13 @@ class CompanyProfilePlatformModel {
       manager: CompanyProfilePlatformModel.LocationManagerSerializer(),
       name: Joi.string().allow("").required(),
       notification_emails: Joi.array().items(Joi.string().allow("")),
+      order_acceptance_timing: Joi.array().items(
+        CompanyProfilePlatformModel.LocationDayWiseSerializer()
+      ),
       product_return_config: CompanyProfilePlatformModel.ProductReturnConfigSerializer(),
       stage: Joi.string().allow(""),
       store_type: Joi.string().allow(""),
+      tags: Joi.array().items(Joi.string().allow("")),
       timing: Joi.array().items(
         CompanyProfilePlatformModel.LocationDayWiseSerializer()
       ),
@@ -936,6 +982,14 @@ class CompanyProfilePlatformModel {
     return Joi.object({
       country_code: Joi.number().required(),
       number: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {StoreTagsResponseSchema} */
+  static StoreTagsResponseSchema() {
+    return Joi.object({
+      success: Joi.boolean(),
+      tags: Joi.array().items(Joi.string().allow("")),
     });
   }
 

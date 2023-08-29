@@ -67,25 +67,9 @@ const Joi = require("joi");
 
 /**
  * @typedef ApplicationResponse
- * @property {Application} [application]
- */
-
-/**
- * @typedef ApplicationWebsite
- * @property {string} [basepath] - Base path for the current sales channel website
- * @property {boolean} [enabled] - Shows whether sales channel website URL is
- *   enabled or not
- */
-
-/**
- * @typedef BadRequest
- * @property {string} [message] - Failure message (in a string format)
- */
-
-/**
- * @typedef Currency
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   of the current sales channel supported currency
+ * @property {Application} [application]
  * @property {string} [code] - 3-character currency code, e.g. INR, USD, EUR.
  * @property {string} [created_at] - ISO 8601 timestamp of sales channel support
  *   currency creation
@@ -98,6 +82,18 @@ const Joi = require("joi");
  * @property {string} [symbol] - Unique symbol for identifying the currency, e.g. ₹
  * @property {string} [updated_at] - ISO 8601 timestamp of sales channel support
  *   currency updation
+ */
+
+/**
+ * @typedef ApplicationWebsite
+ * @property {string} [basepath] - Base path for the current sales channel website
+ * @property {boolean} [enabled] - Shows whether sales channel website URL is
+ *   enabled or not
+ */
+
+/**
+ * @typedef BadRequest
+ * @property {string} [message] - Failure message (in a string format)
  */
 
 /**
@@ -149,23 +145,12 @@ const Joi = require("joi");
 
 /**
  * @typedef Locations
- * @property {Object[]} [items]
+ * @property {LocationCountry[]} [items] - Object Containing Country Locations Details
  */
 
 /**
  * @typedef NotFound
  * @property {string} [message] - Response message for not found
- */
-
-/**
- * @typedef Page
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {boolean} [has_previous]
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {number} [size]
- * @property {string} type
  */
 
 /**
@@ -241,7 +226,15 @@ class CommonPlatformModel {
   /** @returns {ApplicationResponse} */
   static ApplicationResponse() {
     return Joi.object({
+      _id: Joi.string().allow(""),
       application: CommonPlatformModel.Application(),
+      code: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
+      decimal_digits: Joi.number(),
+      is_active: Joi.boolean(),
+      name: Joi.string().allow(""),
+      symbol: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
     });
   }
 
@@ -257,20 +250,6 @@ class CommonPlatformModel {
   static BadRequest() {
     return Joi.object({
       message: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {Currency} */
-  static Currency() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-      code: Joi.string().allow(""),
-      created_at: Joi.string().allow(""),
-      decimal_digits: Joi.number(),
-      is_active: Joi.boolean(),
-      name: Joi.string().allow(""),
-      symbol: Joi.string().allow(""),
-      updated_at: Joi.string().allow(""),
     });
   }
 
@@ -329,7 +308,7 @@ class CommonPlatformModel {
   /** @returns {Locations} */
   static Locations() {
     return Joi.object({
-      items: Joi.array().items(Joi.any()),
+      items: Joi.array().items(CommonPlatformModel.LocationCountry()),
     });
   }
 
@@ -337,19 +316,6 @@ class CommonPlatformModel {
   static NotFound() {
     return Joi.object({
       message: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {Page} */
-  static Page() {
-    return Joi.object({
-      current: Joi.number(),
-      has_next: Joi.boolean(),
-      has_previous: Joi.boolean(),
-      item_total: Joi.number(),
-      next_id: Joi.string().allow(""),
-      size: Joi.number(),
-      type: Joi.string().allow("").required(),
     });
   }
 

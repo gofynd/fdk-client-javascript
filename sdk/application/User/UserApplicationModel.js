@@ -6,16 +6,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ArchiveUserRequestSchema
- * @property {string} [user_id]
- */
-
-/**
- * @typedef ArchiveUserSuccess
- * @property {boolean} [success]
- */
-
-/**
  * @typedef AuthenticationApiErrorSchema
  * @property {string} [message]
  */
@@ -33,87 +23,8 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef AuthSuccessUser
- * @property {boolean} [active]
- * @property {AuthSuccessUserDebug} [debug]
- * @property {AuthSuccessUserEmails} [emails]
- * @property {string} [first_name]
- * @property {string} [last_name]
- */
-
-/**
- * @typedef AuthSuccessUserDebug
- * @property {string} [platform]
- */
-
-/**
- * @typedef AuthSuccessUserEmails
- * @property {boolean} [active]
- * @property {string} [email]
- * @property {boolean} [primary]
- * @property {boolean} [verified]
- */
-
-/**
- * @typedef BlockUserRequestSchema
- * @property {string} [reason]
- * @property {boolean} [status]
- * @property {string[]} [user_id]
- */
-
-/**
- * @typedef BlockUserSuccess
- * @property {boolean} [success]
- */
-
-/**
  * @typedef CodeRequestBodySchema
  * @property {string} [code]
- */
-
-/**
- * @typedef CreateUserGroupSchema
- * @property {string} description
- * @property {string} file_url
- * @property {string} name
- */
-
-/**
- * @typedef CreateUserRequestSchema
- * @property {string} [email]
- * @property {string} [first_name]
- * @property {string} [gender]
- * @property {string} [last_name]
- * @property {Object} [meta]
- * @property {string} phone_number
- * @property {string} username
- */
-
-/**
- * @typedef CreateUserResponseSchema
- * @property {UserSchema} [user]
- */
-
-/**
- * @typedef CreateUserSessionRequestSchema
- * @property {string} [domain]
- * @property {number} [max_age]
- * @property {string} [user_id]
- */
-
-/**
- * @typedef CreateUserSessionResponseSchema
- * @property {Object} [cookie]
- * @property {string} [domain]
- * @property {boolean} [http_only]
- * @property {number} [max_age]
- * @property {boolean} [secure]
- */
-
-/**
- * @typedef CustomerListResponseSchema
- * @property {UserSchema[]} [items]
- * @property {PaginationSchema} [page]
  */
 
 /**
@@ -262,11 +173,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef NotFoundSchema
- * @property {string} [message]
- */
-
-/**
  * @typedef OAuthRequestAppleSchema
  * @property {OAuthRequestAppleSchemaOauth} [oauth]
  * @property {OAuthRequestAppleSchemaProfile} [profile]
@@ -319,15 +225,6 @@ const Joi = require("joi");
  * @property {number} [resend_timer]
  * @property {string} [resend_token]
  * @property {boolean} [success]
- */
-
-/**
- * @typedef PaginationSchema
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {number} [item_total]
- * @property {number} [size]
- * @property {string} [type]
  */
 
 /**
@@ -407,17 +304,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ProfileEditSuccessSchema
- * @property {string} [email]
- * @property {string} [register_token]
- * @property {string} [user]
- * @property {boolean} [user_exists]
- * @property {boolean} [verify_email_link]
- * @property {boolean} [verify_email_otp]
- * @property {boolean} [verify_mobile_otp]
- */
-
-/**
  * @typedef RegisterFormSuccess
  * @property {string} [country_code]
  * @property {string} [email]
@@ -466,6 +352,7 @@ const Joi = require("joi");
 /**
  * @typedef SendEmailOtpRequestSchema
  * @property {string} [action]
+ * @property {string} [captcha_code]
  * @property {string} [email]
  * @property {string} [register_token]
  * @property {string} [token]
@@ -540,29 +427,10 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef SessionDeleteResponseSchema
- * @property {string[]} [items]
- */
-
-/**
  * @typedef SessionExpiry
  * @property {number} [duration]
  * @property {boolean} [is_rolling]
  * @property {string} [type]
- */
-
-/**
- * @typedef SessionListResponseInfo
- * @property {string} [domain]
- * @property {string} [expire_in]
- * @property {string} [ip]
- * @property {string} [session_id]
- * @property {string} [user_agent]
- */
-
-/**
- * @typedef SessionListResponseSchema
- * @property {SessionListResponseInfo[]} [items]
  */
 
 /**
@@ -591,91 +459,14 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef UnauthenticatedSchema
- * @property {boolean} [authenticated]
- */
-
-/**
- * @typedef UnauthorizedSchema
- * @property {string} [message]
- */
-
-/**
- * @typedef UnDeleteUserRequestSchema
- * @property {string} [reason]
- * @property {string} [reason_id]
- * @property {string} [user_id]
- */
-
-/**
- * @typedef UnDeleteUserSuccess
- * @property {boolean} [success]
- */
-
-/**
  * @typedef UpdatePasswordRequestSchema
  * @property {string} [new_password]
  * @property {string} [old_password]
  */
 
 /**
- * @typedef UpdateUserGroupSchema
- * @property {string} [description]
- * @property {string} [file_url]
- * @property {string} [name]
- */
-
-/**
- * @typedef UpdateUserRequestSchema
- * @property {UserEmails[]} [emails]
- * @property {string} [external_id]
- * @property {string} [first_name]
- * @property {string} [gender]
- * @property {string} [last_name]
- * @property {Object} [meta]
- * @property {UserPhoneNumbers[]} [phone_numbers]
- */
-
-/**
- * @typedef UserEmails
- * @property {boolean} [active]
- * @property {string} [email]
- * @property {boolean} [primary]
- * @property {boolean} [verified]
- */
-
-/**
- * @typedef UserGroupListResponseSchema
- * @property {UserGroupResponseSchema[]} [items]
- * @property {PaginationSchema} [page]
- */
-
-/**
- * @typedef UserGroupResponseSchema
- * @property {number} [__v]
- * @property {string} [_id]
- * @property {string} [application_id]
- * @property {string} [created_at]
- * @property {string} [description]
- * @property {string} [file_url]
- * @property {string} [modified_at]
- * @property {string} [name]
- * @property {string} [status]
- * @property {number} [uid]
- */
-
-/**
  * @typedef UserObjectSchema
  * @property {UserSchema} [user]
- */
-
-/**
- * @typedef UserPhoneNumbers
- * @property {boolean} [active]
- * @property {string} [country_code]
- * @property {string} [phone]
- * @property {boolean} [primary]
- * @property {boolean} [verified]
  */
 
 /**
@@ -696,11 +487,6 @@ const Joi = require("joi");
  * @property {string} [updated_at]
  * @property {string} [user_id]
  * @property {string} [username]
- */
-
-/**
- * @typedef UserSearchResponseSchema
- * @property {UserSchema[]} [users]
  */
 
 /**
@@ -750,20 +536,6 @@ class UserApplicationModel {
     });
   }
 
-  /** @returns {ArchiveUserRequestSchema} */
-  static ArchiveUserRequestSchema() {
-    return Joi.object({
-      user_id: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {ArchiveUserSuccess} */
-  static ArchiveUserSuccess() {
-    return Joi.object({
-      success: Joi.boolean(),
-    });
-  }
-
   /** @returns {AuthenticationApiErrorSchema} */
   static AuthenticationApiErrorSchema() {
     return Joi.object({
@@ -787,111 +559,10 @@ class UserApplicationModel {
     });
   }
 
-  /** @returns {AuthSuccessUser} */
-  static AuthSuccessUser() {
-    return Joi.object({
-      active: Joi.boolean(),
-      debug: UserApplicationModel.AuthSuccessUserDebug(),
-      emails: UserApplicationModel.AuthSuccessUserEmails(),
-      first_name: Joi.string().allow(""),
-      last_name: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {AuthSuccessUserDebug} */
-  static AuthSuccessUserDebug() {
-    return Joi.object({
-      platform: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {AuthSuccessUserEmails} */
-  static AuthSuccessUserEmails() {
-    return Joi.object({
-      active: Joi.boolean(),
-      email: Joi.string().allow(""),
-      primary: Joi.boolean(),
-      verified: Joi.boolean(),
-    });
-  }
-
-  /** @returns {BlockUserRequestSchema} */
-  static BlockUserRequestSchema() {
-    return Joi.object({
-      reason: Joi.string().allow(""),
-      status: Joi.boolean(),
-      user_id: Joi.array().items(Joi.string().allow("")),
-    });
-  }
-
-  /** @returns {BlockUserSuccess} */
-  static BlockUserSuccess() {
-    return Joi.object({
-      success: Joi.boolean(),
-    });
-  }
-
   /** @returns {CodeRequestBodySchema} */
   static CodeRequestBodySchema() {
     return Joi.object({
       code: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {CreateUserGroupSchema} */
-  static CreateUserGroupSchema() {
-    return Joi.object({
-      description: Joi.string().allow("").required(),
-      file_url: Joi.string().allow("").required(),
-      name: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {CreateUserRequestSchema} */
-  static CreateUserRequestSchema() {
-    return Joi.object({
-      email: Joi.string().allow(""),
-      first_name: Joi.string().allow(""),
-      gender: Joi.string().allow(""),
-      last_name: Joi.string().allow(""),
-      meta: Joi.any(),
-      phone_number: Joi.string().allow("").required(),
-      username: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {CreateUserResponseSchema} */
-  static CreateUserResponseSchema() {
-    return Joi.object({
-      user: UserApplicationModel.UserSchema(),
-    });
-  }
-
-  /** @returns {CreateUserSessionRequestSchema} */
-  static CreateUserSessionRequestSchema() {
-    return Joi.object({
-      domain: Joi.string().allow(""),
-      max_age: Joi.number(),
-      user_id: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {CreateUserSessionResponseSchema} */
-  static CreateUserSessionResponseSchema() {
-    return Joi.object({
-      cookie: Joi.any(),
-      domain: Joi.string().allow(""),
-      http_only: Joi.boolean(),
-      max_age: Joi.number(),
-      secure: Joi.boolean(),
-    });
-  }
-
-  /** @returns {CustomerListResponseSchema} */
-  static CustomerListResponseSchema() {
-    return Joi.object({
-      items: Joi.array().items(UserApplicationModel.UserSchema()),
-      page: UserApplicationModel.PaginationSchema(),
     });
   }
 
@@ -1084,13 +755,6 @@ class UserApplicationModel {
     });
   }
 
-  /** @returns {NotFoundSchema} */
-  static NotFoundSchema() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {OAuthRequestAppleSchema} */
   static OAuthRequestAppleSchema() {
     return Joi.object({
@@ -1157,17 +821,6 @@ class UserApplicationModel {
       resend_timer: Joi.number(),
       resend_token: Joi.string().allow(""),
       success: Joi.boolean(),
-    });
-  }
-
-  /** @returns {PaginationSchema} */
-  static PaginationSchema() {
-    return Joi.object({
-      current: Joi.number(),
-      has_next: Joi.boolean(),
-      item_total: Joi.number(),
-      size: Joi.number(),
-      type: Joi.string().allow(""),
     });
   }
 
@@ -1261,19 +914,6 @@ class UserApplicationModel {
     });
   }
 
-  /** @returns {ProfileEditSuccessSchema} */
-  static ProfileEditSuccessSchema() {
-    return Joi.object({
-      email: Joi.string().allow(""),
-      register_token: Joi.string().allow(""),
-      user: Joi.string().allow(""),
-      user_exists: Joi.boolean(),
-      verify_email_link: Joi.boolean(),
-      verify_email_otp: Joi.boolean(),
-      verify_mobile_otp: Joi.boolean(),
-    });
-  }
-
   /** @returns {RegisterFormSuccess} */
   static RegisterFormSuccess() {
     return Joi.object({
@@ -1336,6 +976,7 @@ class UserApplicationModel {
   static SendEmailOtpRequestSchema() {
     return Joi.object({
       action: Joi.string().allow(""),
+      captcha_code: Joi.string().allow(""),
       email: Joi.string().allow(""),
       register_token: Joi.string().allow(""),
       token: Joi.string().allow(""),
@@ -1426,37 +1067,12 @@ class UserApplicationModel {
     });
   }
 
-  /** @returns {SessionDeleteResponseSchema} */
-  static SessionDeleteResponseSchema() {
-    return Joi.object({
-      items: Joi.array().items(Joi.string().allow("")),
-    });
-  }
-
   /** @returns {SessionExpiry} */
   static SessionExpiry() {
     return Joi.object({
       duration: Joi.number(),
       is_rolling: Joi.boolean(),
       type: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {SessionListResponseInfo} */
-  static SessionListResponseInfo() {
-    return Joi.object({
-      domain: Joi.string().allow(""),
-      expire_in: Joi.string().allow(""),
-      ip: Joi.string().allow(""),
-      session_id: Joi.string().allow(""),
-      user_agent: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {SessionListResponseSchema} */
-  static SessionListResponseSchema() {
-    return Joi.object({
-      items: Joi.array().items(UserApplicationModel.SessionListResponseInfo()),
     });
   }
 
@@ -1493,36 +1109,6 @@ class UserApplicationModel {
     });
   }
 
-  /** @returns {UnauthenticatedSchema} */
-  static UnauthenticatedSchema() {
-    return Joi.object({
-      authenticated: Joi.boolean(),
-    });
-  }
-
-  /** @returns {UnauthorizedSchema} */
-  static UnauthorizedSchema() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {UnDeleteUserRequestSchema} */
-  static UnDeleteUserRequestSchema() {
-    return Joi.object({
-      reason: Joi.string().allow(""),
-      reason_id: Joi.string().allow(""),
-      user_id: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {UnDeleteUserSuccess} */
-  static UnDeleteUserSuccess() {
-    return Joi.object({
-      success: Joi.boolean(),
-    });
-  }
-
   /** @returns {UpdatePasswordRequestSchema} */
   static UpdatePasswordRequestSchema() {
     return Joi.object({
@@ -1531,77 +1117,10 @@ class UserApplicationModel {
     });
   }
 
-  /** @returns {UpdateUserGroupSchema} */
-  static UpdateUserGroupSchema() {
-    return Joi.object({
-      description: Joi.string().allow(""),
-      file_url: Joi.string().allow(""),
-      name: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {UpdateUserRequestSchema} */
-  static UpdateUserRequestSchema() {
-    return Joi.object({
-      emails: Joi.array().items(UserApplicationModel.UserEmails()),
-      external_id: Joi.string().allow(""),
-      first_name: Joi.string().allow(""),
-      gender: Joi.string().allow(""),
-      last_name: Joi.string().allow(""),
-      meta: Joi.any(),
-      phone_numbers: Joi.array().items(UserApplicationModel.UserPhoneNumbers()),
-    });
-  }
-
-  /** @returns {UserEmails} */
-  static UserEmails() {
-    return Joi.object({
-      active: Joi.boolean(),
-      email: Joi.string().allow(""),
-      primary: Joi.boolean(),
-      verified: Joi.boolean(),
-    });
-  }
-
-  /** @returns {UserGroupListResponseSchema} */
-  static UserGroupListResponseSchema() {
-    return Joi.object({
-      items: Joi.array().items(UserApplicationModel.UserGroupResponseSchema()),
-      page: UserApplicationModel.PaginationSchema(),
-    });
-  }
-
-  /** @returns {UserGroupResponseSchema} */
-  static UserGroupResponseSchema() {
-    return Joi.object({
-      __v: Joi.number(),
-      _id: Joi.string().allow(""),
-      application_id: Joi.string().allow(""),
-      created_at: Joi.string().allow(""),
-      description: Joi.string().allow(""),
-      file_url: Joi.string().allow(""),
-      modified_at: Joi.string().allow(""),
-      name: Joi.string().allow(""),
-      status: Joi.string().allow(""),
-      uid: Joi.number(),
-    });
-  }
-
   /** @returns {UserObjectSchema} */
   static UserObjectSchema() {
     return Joi.object({
       user: UserApplicationModel.UserSchema(),
-    });
-  }
-
-  /** @returns {UserPhoneNumbers} */
-  static UserPhoneNumbers() {
-    return Joi.object({
-      active: Joi.boolean(),
-      country_code: Joi.string().allow(""),
-      phone: Joi.string().allow(""),
-      primary: Joi.boolean(),
-      verified: Joi.boolean(),
     });
   }
 
@@ -1624,13 +1143,6 @@ class UserApplicationModel {
       updated_at: Joi.string().allow(""),
       user_id: Joi.string().allow(""),
       username: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {UserSearchResponseSchema} */
-  static UserSearchResponseSchema() {
-    return Joi.object({
-      users: Joi.array().items(UserApplicationModel.UserSchema()),
     });
   }
 

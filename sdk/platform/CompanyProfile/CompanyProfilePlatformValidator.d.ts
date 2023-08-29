@@ -38,6 +38,7 @@ export = CompanyProfilePlatformValidator;
  * @typedef GetLocationDetailParam
  * @property {string} locationId - Id of the location which you want to view.
  */
+/** @typedef GetLocationTagsParam */
 /**
  * @typedef GetLocationsParam
  * @property {string} [storeType] - Helps to sort the location list on the basis
@@ -81,6 +82,8 @@ declare class CompanyProfilePlatformValidator {
     static getCompanyMetrics(): any;
     /** @returns {GetLocationDetailParam} */
     static getLocationDetail(): GetLocationDetailParam;
+    /** @returns {GetLocationTagsParam} */
+    static getLocationTags(): any;
     /** @returns {GetLocationsParam} */
     static getLocations(): GetLocationsParam;
     /** @returns {UpdateCompanyParam} */
@@ -89,7 +92,7 @@ declare class CompanyProfilePlatformValidator {
     static updateLocation(): UpdateLocationParam;
 }
 declare namespace CompanyProfilePlatformValidator {
-    export { CbsOnboardGetParam, CreateBrandParam, CreateCompanyBrandMappingParam, CreateLocationParam, CreateLocationBulkParam, EditBrandParam, GetBrandParam, GetBrandsParam, GetCompanyMetricsParam, GetLocationDetailParam, GetLocationsParam, UpdateCompanyParam, UpdateLocationParam };
+    export { CbsOnboardGetParam, CreateBrandParam, CreateCompanyBrandMappingParam, CreateLocationParam, CreateLocationBulkParam, EditBrandParam, GetBrandParam, GetBrandsParam, GetCompanyMetricsParam, GetLocationDetailParam, GetLocationTagsParam, GetLocationsParam, UpdateCompanyParam, UpdateLocationParam };
 }
 type CreateBrandParam = {
     body: CompanyProfilePlatformModel.CreateUpdateBrandRequestSerializer;
@@ -180,4 +183,5 @@ type UpdateLocationParam = {
 };
 type CbsOnboardGetParam = any;
 type GetCompanyMetricsParam = any;
+type GetLocationTagsParam = any;
 import CompanyProfilePlatformModel = require("./CompanyProfilePlatformModel");

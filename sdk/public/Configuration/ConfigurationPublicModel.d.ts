@@ -75,23 +75,6 @@ export = ConfigurationPublicModel;
  * @property {string} [message] - Failure message (in a string format)
  */
 /**
- * @typedef Currency
- * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
- *   of the current sales channel supported currency
- * @property {string} [code] - 3-character currency code, e.g. INR, USD, EUR.
- * @property {string} [created_at] - ISO 8601 timestamp of sales channel support
- *   currency creation
- * @property {number} [decimal_digits] - Acceptable decimal limits for a given
- *   currency, e.g. 1.05$ means upto 2 decimal digits can be accepted as a valid
- *   value of a currency.
- * @property {boolean} [is_active] - Shows currency is enabled or not in current
- *   sales channel
- * @property {string} [name] - Name of the currency, e.g. Indian Rupee
- * @property {string} [symbol] - Unique symbol for identifying the currency, e.g. ₹
- * @property {string} [updated_at] - ISO 8601 timestamp of sales channel support
- *   currency updation
- */
-/**
  * @typedef Domain
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   of the domain
@@ -136,22 +119,11 @@ export = ConfigurationPublicModel;
  */
 /**
  * @typedef Locations
- * @property {Object[]} [items]
+ * @property {LocationCountry[]} [items]
  */
 /**
  * @typedef NotFound
  * @property {string} [message] - Response message for not found
- */
-/**
- * @typedef Page
- * @property {number} [current] - Current page number
- * @property {boolean} [has_next] - Next page is present or not
- * @property {boolean} [has_previous] - Previous page is present or not
- * @property {number} [item_total] - Total number of items to retrieve
- * @property {string} [next_id] - Next page ID
- * @property {number} [size] - The number of items to retrieve in each page.
- *   Default value is 10.
- * @property {string} type - Page type
  */
 /**
  * @typedef SecureUrl
@@ -160,7 +132,7 @@ export = ConfigurationPublicModel;
 declare class ConfigurationPublicModel {
 }
 declare namespace ConfigurationPublicModel {
-    export { Application, ApplicationAuth, ApplicationCors, ApplicationMeta, ApplicationRedirections, ApplicationResponse, ApplicationWebsite, BadRequest, Currency, Domain, LocationCountry, LocationDefaultCurrency, LocationDefaultLanguage, Locations, NotFound, Page, SecureUrl };
+    export { Application, ApplicationAuth, ApplicationCors, ApplicationMeta, ApplicationRedirections, ApplicationResponse, ApplicationWebsite, BadRequest, Domain, LocationCountry, LocationDefaultCurrency, LocationDefaultLanguage, Locations, NotFound, SecureUrl };
 }
 /** @returns {Application} */
 declare function Application(): Application;
@@ -314,48 +286,6 @@ type BadRequest = {
      */
     message?: string;
 };
-/** @returns {Currency} */
-declare function Currency(): Currency;
-type Currency = {
-    /**
-     * - The unique identifier (24-digit Mongo Object ID)
-     * of the current sales channel supported currency
-     */
-    _id?: string;
-    /**
-     * - 3-character currency code, e.g. INR, USD, EUR.
-     */
-    code?: string;
-    /**
-     * - ISO 8601 timestamp of sales channel support
-     * currency creation
-     */
-    created_at?: string;
-    /**
-     * - Acceptable decimal limits for a given
-     * currency, e.g. 1.05$ means upto 2 decimal digits can be accepted as a valid
-     * value of a currency.
-     */
-    decimal_digits?: number;
-    /**
-     * - Shows currency is enabled or not in current
-     * sales channel
-     */
-    is_active?: boolean;
-    /**
-     * - Name of the currency, e.g. Indian Rupee
-     */
-    name?: string;
-    /**
-     * - Unique symbol for identifying the currency, e.g. ₹
-     */
-    symbol?: string;
-    /**
-     * - ISO 8601 timestamp of sales channel support
-     * currency updation
-     */
-    updated_at?: string;
-};
 /** @returns {Domain} */
 declare function Domain(): Domain;
 type Domain = {
@@ -421,7 +351,7 @@ type LocationDefaultLanguage = {
 /** @returns {Locations} */
 declare function Locations(): Locations;
 type Locations = {
-    items?: any[];
+    items?: LocationCountry[];
 };
 /** @returns {NotFound} */
 declare function NotFound(): NotFound;
@@ -430,39 +360,6 @@ type NotFound = {
      * - Response message for not found
      */
     message?: string;
-};
-/** @returns {Page} */
-declare function Page(): Page;
-type Page = {
-    /**
-     * - Current page number
-     */
-    current?: number;
-    /**
-     * - Next page is present or not
-     */
-    has_next?: boolean;
-    /**
-     * - Previous page is present or not
-     */
-    has_previous?: boolean;
-    /**
-     * - Total number of items to retrieve
-     */
-    item_total?: number;
-    /**
-     * - Next page ID
-     */
-    next_id?: string;
-    /**
-     * - The number of items to retrieve in each page.
-     * Default value is 10.
-     */
-    size?: number;
-    /**
-     * - Page type
-     */
-    type: string;
 };
 /** @returns {SecureUrl} */
 declare function SecureUrl(): SecureUrl;

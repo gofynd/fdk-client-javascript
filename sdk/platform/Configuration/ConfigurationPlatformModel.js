@@ -492,18 +492,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CompanyAboutAddress
- * @property {string} [address_type] - Indicates different office types like
- *   office, registered, and home.
- * @property {string} [address1] - Primary address line of the company
- * @property {string} [address2] - Secondary address line of the company
- * @property {string} [city] - City name, e.g. Mumbai
- * @property {string} [country] - Country name, e.g. India
- * @property {number} [pincode] - 6-digit PIN code of the city, e.g. 400001
- * @property {string} [state] - State name, e.g. Maharashtra
- */
-
-/**
  * @typedef CompanyBrandInfo
  * @property {string} [brand_banner_portrait_url] - Hosted URL of the brand's
  *   portrait banner
@@ -594,22 +582,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CurrencyConfig
- * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
- *   of all the currency configuration
- * @property {string} [code] - 3-character currency code, e.g. INR, USD, EUR.
- * @property {string} [created_at] - ISO 8601 timestamp of a given currency creation
- * @property {number} [decimal_digits] - Acceptable decimal limits for a given
- *   currency, e.g. 1.05$ means upto 2 decimal digits can be accepted as a valid
- *   value of a currency.
- * @property {boolean} [is_active] - Currency is enabled or not for the current
- *   sales channel
- * @property {string} [name] - Name of the currency, e.g Indian Rupee
- * @property {string} [symbol] - Unique symbol for identifying the currency, e.g. ₹
- * @property {string} [updated_at] - ISO 8601 timestamp of a given currency updation
- */
-
-/**
  * @typedef CurrencyFeature
  * @property {string} [default_currency] - 3-letter code of the default currency
  *   used in the application. Default vaule is 'INR'.
@@ -635,7 +607,7 @@ const Joi = require("joi");
 
 /**
  * @typedef DeliveryCharges
- * @property {Charges} [charges]
+ * @property {Charges[]} [charges] - Holds values for delivery charges.
  * @property {boolean} [enabled] - Allow delivery charges
  */
 
@@ -1009,7 +981,8 @@ const Joi = require("joi");
  * @typedef InventoryStore
  * @property {string} [criteria] - All stores or specific (explicit) stores to
  *   be shown on the website
- * @property {AppStoreRules} [rules]
+ * @property {AppStoreRules[]} [rules] - Rules to show which brands or companies
+ *   products should be listed on sales channel.
  * @property {Object[]} [stores] - List of stores
  */
 
@@ -1586,11 +1559,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef UnhandledError
- * @property {string} [message]
- */
-
-/**
  * @typedef UpdateDomain
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   of the domain
@@ -1613,27 +1581,6 @@ const Joi = require("joi");
 /**
  * @typedef UpdateIntegrationLevelRequest
  * @property {IntegrationLevel[]} [items]
- */
-
-/**
- * @typedef UserEmail
- * @property {boolean} [active] - Current email is active or not active
- * @property {string} [email] - Email address of the user
- * @property {boolean} [primary] - Indicates current email is primay email or
- *   not primary email of user
- * @property {boolean} [verified] - Indicates current email is verified email or
- *   not verified email
- */
-
-/**
- * @typedef UserPhoneNumber
- * @property {boolean} [active] - Current phone number is active or not active
- * @property {number} [country_code] - Country code, e.g. +91
- * @property {string} [phone] - Phone number of the user
- * @property {boolean} [primary] - Indicates current phone number is primay or
- *   not primary of user
- * @property {boolean} [verified] - Indicates current phone number is verified
- *   or not verified
  */
 
 /**
@@ -2176,19 +2123,6 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {CompanyAboutAddress} */
-  static CompanyAboutAddress() {
-    return Joi.object({
-      address_type: Joi.string().allow(""),
-      address1: Joi.string().allow(""),
-      address2: Joi.string().allow(""),
-      city: Joi.string().allow(""),
-      country: Joi.string().allow(""),
-      pincode: Joi.number(),
-      state: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {CompanyBrandInfo} */
   static CompanyBrandInfo() {
     return Joi.object({
@@ -2288,20 +2222,6 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {CurrencyConfig} */
-  static CurrencyConfig() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-      code: Joi.string().allow(""),
-      created_at: Joi.string().allow(""),
-      decimal_digits: Joi.number(),
-      is_active: Joi.boolean(),
-      name: Joi.string().allow(""),
-      symbol: Joi.string().allow(""),
-      updated_at: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {CurrencyFeature} */
   static CurrencyFeature() {
     return Joi.object({
@@ -2331,7 +2251,7 @@ class ConfigurationPlatformModel {
   /** @returns {DeliveryCharges} */
   static DeliveryCharges() {
     return Joi.object({
-      charges: ConfigurationPlatformModel.Charges(),
+      charges: Joi.array().items(ConfigurationPlatformModel.Charges()),
       enabled: Joi.boolean(),
     });
   }
@@ -2746,7 +2666,7 @@ class ConfigurationPlatformModel {
   static InventoryStore() {
     return Joi.object({
       criteria: Joi.string().allow(""),
-      rules: ConfigurationPlatformModel.AppStoreRules(),
+      rules: Joi.array().items(ConfigurationPlatformModel.AppStoreRules()),
       stores: Joi.array().items(Joi.any()),
     });
   }
@@ -3391,13 +3311,6 @@ class ConfigurationPlatformModel {
     });
   }
 
-  /** @returns {UnhandledError} */
-  static UnhandledError() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {UpdateDomain} */
   static UpdateDomain() {
     return Joi.object({
@@ -3421,27 +3334,6 @@ class ConfigurationPlatformModel {
   static UpdateIntegrationLevelRequest() {
     return Joi.object({
       items: Joi.array().items(ConfigurationPlatformModel.IntegrationLevel()),
-    });
-  }
-
-  /** @returns {UserEmail} */
-  static UserEmail() {
-    return Joi.object({
-      active: Joi.boolean(),
-      email: Joi.string().allow(""),
-      primary: Joi.boolean(),
-      verified: Joi.boolean(),
-    });
-  }
-
-  /** @returns {UserPhoneNumber} */
-  static UserPhoneNumber() {
-    return Joi.object({
-      active: Joi.boolean(),
-      country_code: Joi.number(),
-      phone: Joi.string().allow(""),
-      primary: Joi.boolean(),
-      verified: Joi.boolean(),
     });
   }
 

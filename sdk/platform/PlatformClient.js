@@ -24,11 +24,11 @@ const Lead = require("./Lead/LeadPlatformClient");
 
 const Order = require("./Order/OrderPlatformClient");
 
-const Partner = require("./Partner/PartnerPlatformClient");
-
 const Payment = require("./Payment/PaymentPlatformClient");
 
 const Serviceability = require("./Serviceability/ServiceabilityPlatformClient");
+
+const Theme = require("./Theme/ThemePlatformClient");
 
 const Webhook = require("./Webhook/WebhookPlatformClient");
 
@@ -75,11 +75,11 @@ class PlatformClient {
 
     this.order = new Order(config);
 
-    this.partner = new Partner(config);
-
     this.payment = new Payment(config);
 
     this.serviceability = new Serviceability(config);
+
+    this.theme = new Theme(config);
 
     this.webhook = new Webhook(config);
   }

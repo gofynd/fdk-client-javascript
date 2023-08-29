@@ -51,6 +51,8 @@ const CompanyProfilePlatformModel = require("./CompanyProfilePlatformModel");
  * @property {string} locationId - Id of the location which you want to view.
  */
 
+/** @typedef GetLocationTagsParam */
+
 /**
  * @typedef GetLocationsParam
  * @property {string} [storeType] - Helps to sort the location list on the basis
@@ -144,6 +146,11 @@ class CompanyProfilePlatformValidator {
     return Joi.object({
       locationId: Joi.string().allow("").required(),
     }).required();
+  }
+
+  /** @returns {GetLocationTagsParam} */
+  static getLocationTags() {
+    return Joi.object({}).required();
   }
 
   /** @returns {GetLocationsParam} */

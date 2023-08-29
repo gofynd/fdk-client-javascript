@@ -58,6 +58,8 @@ const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
 
 /** @typedef GetInventoryConfigParam */
 
+/** @typedef GetOrderingStoreConfigParam */
+
 /**
  * @typedef GetOrderingStoresByFilterParam
  * @property {number} [pageNo] - The page number to navigate through the given
@@ -227,6 +229,11 @@ class ConfigurationPlatformApplicationValidator {
 
   /** @returns {GetInventoryConfigParam} */
   static getInventoryConfig() {
+    return Joi.object({}).required();
+  }
+
+  /** @returns {GetOrderingStoreConfigParam} */
+  static getOrderingStoreConfig() {
     return Joi.object({}).required();
   }
 

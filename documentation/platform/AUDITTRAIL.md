@@ -227,10 +227,14 @@ Get paginated audit logs
 
 ```javascript
 // Promise
-const promise = platformClient.auditTrail.getAuditLogs({  qs : value });
+const promise = platformClient.auditTrail.getAuditLogs({  qs : value,
+ limit : value,
+ sort : value });
 
 // Async/Await
-const data = await platformClient.auditTrail.getAuditLogs({  qs : value });
+const data = await platformClient.auditTrail.getAuditLogs({  qs : value,
+ limit : value,
+ sort : value });
 ```
 
 
@@ -239,7 +243,9 @@ const data = await platformClient.auditTrail.getAuditLogs({  qs : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| qs | string | yes | Logs Query |  
+| qs | string | yes | Logs Query |    
+| limit | number | no | Current request items count |    
+| sort | Object | no | To sort based on _id |  
 
 
 
@@ -285,7 +291,7 @@ Success
           }
         },
         "_id": "634eef735e84e7e1b09aa07c",
-        "application": null,
+        "application": "",
         "date": "2022-10-18T18:24:51.329Z",
         "created_at": "2022-10-18T18:24:51.400Z",
         "modified_at": "2022-10-18T18:24:51.400Z"
@@ -530,15 +536,6 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | log_meta | [LogMetaObj](#LogMetaObj) |  no  |  |
  | log_payload | string |  no  |  |
- 
-
----
-
-#### [ResourceNotFound](#ResourceNotFound)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  | Resource not found with {id} |
  
 
 ---

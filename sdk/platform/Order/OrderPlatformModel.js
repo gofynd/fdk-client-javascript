@@ -564,6 +564,33 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef BulkReportsDownloadFailedResponse
+ * @property {string} [error]
+ * @property {boolean} [status]
+ */
+
+/**
+ * @typedef BulkReportsDownloadRequest
+ * @property {Object} [custom_filters_for_lane]
+ * @property {string} [custom_headers] - Download report with specific headers
+ * @property {string[]} [entities] - Download for specific enitites, entities
+ *   can be bag, shipment or order_id, etc.
+ * @property {string} [filter_type]
+ * @property {string} [from_date]
+ * @property {boolean} [is_cross_company_enabled] - Download lanes for cross company.
+ * @property {string} [lane_type]
+ * @property {string} [report_type] - Type of report
+ * @property {string[]} [store_ids] - Download for specific store ids.
+ * @property {string} [to_date]
+ */
+
+/**
+ * @typedef BulkReportsDownloadResponse
+ * @property {string} [batch_id]
+ * @property {boolean} [success]
+ */
+
+/**
  * @typedef BuyerDetails
  * @property {string} address
  * @property {string} [ajio_site_id]
@@ -623,6 +650,32 @@ const Joi = require("joi");
  * @typedef ContactDetails
  * @property {string[]} [emails]
  * @property {PhoneDetails[]} [phone]
+ */
+
+/**
+ * @typedef CourierPartnerTrackingDetails
+ * @property {string} awb - AWB Number
+ * @property {string} [dp_location] - Current location of Courier partner
+ * @property {string} dp_name - Courier Partner name
+ * @property {string} dp_status - Status at Courier partner end
+ * @property {string} dp_status_updated_at - Date Time at which status was
+ *   updated at Courier partner
+ * @property {string} [estimated_delivery_date] - Estimated delivery date
+ *   received from Courier partner
+ * @property {number} [id] - Id of Tracking history
+ * @property {string} journey - Journey type of the shipment
+ * @property {Object} [meta] - Meta field to store Courier partner's meta data
+ * @property {string} operational_status - Operational status of OMS
+ * @property {string} [promised_delivery_date] - Promised delivery date received
+ *   from Courier partner
+ * @property {string} [remark] - Remark from courier partner
+ * @property {string} shipment_id - Shipment ID
+ */
+
+/**
+ * @typedef CourierPartnerTrackingResponse
+ * @property {CourierPartnerTrackingDetails[]} [items]
+ * @property {PageDetails} [page]
  */
 
 /**
@@ -806,6 +859,36 @@ const Joi = require("joi");
  * @property {string} [password]
  * @property {string} [user]
  * @property {string} [username]
+ */
+
+/**
+ * @typedef EInvoiceResponseData
+ * @property {string} [ack_dt]
+ * @property {string} [ack_no]
+ * @property {string} [irn]
+ * @property {string} message
+ * @property {string} shipment_id
+ * @property {boolean} success
+ * @property {number} [timeout]
+ * @property {string} [timeout_unit]
+ */
+
+/**
+ * @typedef EInvoiceRetry
+ * @property {EInvoiceRetryShipmentData[]} [shipments_data]
+ */
+
+/**
+ * @typedef EInvoiceRetryResponse
+ * @property {string} [message]
+ * @property {EInvoiceResponseData[]} response_data
+ * @property {boolean} [success]
+ * @property {number} success_count
+ */
+
+/**
+ * @typedef EInvoiceRetryShipmentData
+ * @property {string} shipment_id
  */
 
 /**
@@ -1151,7 +1234,7 @@ const Joi = require("joi");
 /**
  * @typedef LineItem
  * @property {Charge[]} [charges]
- * @property {string} [custom_messasge]
+ * @property {string} [custom_message]
  * @property {string} [external_line_id]
  * @property {Object} [meta]
  * @property {number} [quantity]
@@ -1406,6 +1489,16 @@ const Joi = require("joi");
  * @property {string} [next_id]
  * @property {number} [size]
  * @property {string} type
+ */
+
+/**
+ * @typedef PageDetails
+ * @property {number} [current] - Current page number
+ * @property {boolean} [has_next] - If next page contains any result
+ * @property {number} item_total - Total count of the results present in the
+ *   requested filter
+ * @property {number} [size] - Page size
+ * @property {string} [type] - Type of the page
  */
 
 /**
@@ -1817,6 +1910,12 @@ const Joi = require("joi");
  * @property {boolean} [returnable]
  * @property {number} [time]
  * @property {string} [unit]
+ */
+
+/**
+ * @typedef RoleBaseStateTransitionMapping
+ * @property {string[]} [next_statuses]
+ * @property {boolean} [success]
  */
 
 /**
@@ -2346,6 +2445,7 @@ const Joi = require("joi");
  * @typedef TaxInfo
  * @property {string} [b2b_gstin_number]
  * @property {string} [gstin]
+ * @property {string} [pan_no]
  */
 
 /**
@@ -3162,6 +3262,38 @@ class OrderPlatformModel {
     });
   }
 
+  /** @returns {BulkReportsDownloadFailedResponse} */
+  static BulkReportsDownloadFailedResponse() {
+    return Joi.object({
+      error: Joi.string().allow(""),
+      status: Joi.boolean(),
+    });
+  }
+
+  /** @returns {BulkReportsDownloadRequest} */
+  static BulkReportsDownloadRequest() {
+    return Joi.object({
+      custom_filters_for_lane: Joi.any(),
+      custom_headers: Joi.string().allow(""),
+      entities: Joi.array().items(Joi.string().allow("")),
+      filter_type: Joi.string().allow(""),
+      from_date: Joi.string().allow(""),
+      is_cross_company_enabled: Joi.boolean(),
+      lane_type: Joi.string().allow(""),
+      report_type: Joi.string().allow(""),
+      store_ids: Joi.array().items(Joi.string().allow("")),
+      to_date: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {BulkReportsDownloadResponse} */
+  static BulkReportsDownloadResponse() {
+    return Joi.object({
+      batch_id: Joi.string().allow(""),
+      success: Joi.boolean(),
+    });
+  }
+
   /** @returns {BuyerDetails} */
   static BuyerDetails() {
     return Joi.object({
@@ -3234,6 +3366,35 @@ class OrderPlatformModel {
     return Joi.object({
       emails: Joi.array().items(Joi.string().allow("")),
       phone: Joi.array().items(OrderPlatformModel.PhoneDetails()),
+    });
+  }
+
+  /** @returns {CourierPartnerTrackingDetails} */
+  static CourierPartnerTrackingDetails() {
+    return Joi.object({
+      awb: Joi.string().allow("").required(),
+      dp_location: Joi.string().allow("").allow(null),
+      dp_name: Joi.string().allow("").required(),
+      dp_status: Joi.string().allow("").required(),
+      dp_status_updated_at: Joi.string().allow("").required(),
+      estimated_delivery_date: Joi.string().allow("").allow(null),
+      id: Joi.number(),
+      journey: Joi.string().allow("").required(),
+      meta: Joi.any(),
+      operational_status: Joi.string().allow("").required(),
+      promised_delivery_date: Joi.string().allow("").allow(null),
+      remark: Joi.string().allow("").allow(null),
+      shipment_id: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {CourierPartnerTrackingResponse} */
+  static CourierPartnerTrackingResponse() {
+    return Joi.object({
+      items: Joi.array().items(
+        OrderPlatformModel.CourierPartnerTrackingDetails()
+      ),
+      page: OrderPlatformModel.PageDetails(),
     });
   }
 
@@ -3465,6 +3626,48 @@ class OrderPlatformModel {
       password: Joi.string().allow(""),
       user: Joi.string().allow(""),
       username: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {EInvoiceResponseData} */
+  static EInvoiceResponseData() {
+    return Joi.object({
+      ack_dt: Joi.string().allow(""),
+      ack_no: Joi.string().allow(""),
+      irn: Joi.string().allow(""),
+      message: Joi.string().allow("").required(),
+      shipment_id: Joi.string().allow("").required(),
+      success: Joi.boolean().required(),
+      timeout: Joi.number(),
+      timeout_unit: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {EInvoiceRetry} */
+  static EInvoiceRetry() {
+    return Joi.object({
+      shipments_data: Joi.array().items(
+        OrderPlatformModel.EInvoiceRetryShipmentData()
+      ),
+    });
+  }
+
+  /** @returns {EInvoiceRetryResponse} */
+  static EInvoiceRetryResponse() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      response_data: Joi.array()
+        .items(OrderPlatformModel.EInvoiceResponseData())
+        .required(),
+      success: Joi.boolean(),
+      success_count: Joi.number().required(),
+    });
+  }
+
+  /** @returns {EInvoiceRetryShipmentData} */
+  static EInvoiceRetryShipmentData() {
+    return Joi.object({
+      shipment_id: Joi.string().allow("").required(),
     });
   }
 
@@ -3874,7 +4077,7 @@ class OrderPlatformModel {
   static LineItem() {
     return Joi.object({
       charges: Joi.array().items(OrderPlatformModel.Charge()),
-      custom_messasge: Joi.string().allow(""),
+      custom_message: Joi.string().allow(""),
       external_line_id: Joi.string().allow(""),
       meta: Joi.any(),
       quantity: Joi.number(),
@@ -4183,6 +4386,17 @@ class OrderPlatformModel {
       next_id: Joi.string().allow(""),
       size: Joi.number(),
       type: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {PageDetails} */
+  static PageDetails() {
+    return Joi.object({
+      current: Joi.number(),
+      has_next: Joi.boolean(),
+      item_total: Joi.number().required(),
+      size: Joi.number(),
+      type: Joi.string().allow(""),
     });
   }
 
@@ -4683,6 +4897,14 @@ class OrderPlatformModel {
       returnable: Joi.boolean(),
       time: Joi.number(),
       unit: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {RoleBaseStateTransitionMapping} */
+  static RoleBaseStateTransitionMapping() {
+    return Joi.object({
+      next_statuses: Joi.array().items(Joi.string().allow("")),
+      success: Joi.boolean(),
     });
   }
 
@@ -5308,6 +5530,7 @@ class OrderPlatformModel {
     return Joi.object({
       b2b_gstin_number: Joi.string().allow(""),
       gstin: Joi.string().allow(""),
+      pan_no: Joi.string().allow(""),
     });
   }
 

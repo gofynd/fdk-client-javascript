@@ -1,6 +1,108 @@
 const Joi = require("joi");
 
 /**
+ * @typedef ChannelDisplayName
+ * @property {string} [platform_pos]
+ */
+
+/**
+ * @typedef ChannelDisplayNameResponse
+ * @property {ChannelDisplayName} [data]
+ * @property {boolean} [success]
+ */
+
+/**
+ * @typedef CnDetails
+ * @property {string} [channel_of_issuance]
+ * @property {string} [date_issued]
+ * @property {string} [expiry_date]
+ * @property {string} [invoice_number]
+ * @property {string} [order_id]
+ * @property {string} [ordering_channel]
+ * @property {string} [shipment_id]
+ * @property {string} [staff_id]
+ * @property {string} [store_id]
+ */
+
+/**
+ * @typedef CnDownloadReport
+ * @property {string} [affiliate_id]
+ * @property {string} [end_date]
+ * @property {number} [page]
+ * @property {number} [pagesize]
+ * @property {string} [search]
+ * @property {string} [search_type]
+ * @property {string} [start_date]
+ * @property {string[]} [status]
+ */
+
+/**
+ * @typedef CnGenerateReport
+ * @property {string} [affiliate_id]
+ * @property {string} [end_date]
+ * @property {CnGenerateReportFilters} [filters]
+ * @property {GenerateReportFilters} [meta]
+ * @property {number} [page]
+ * @property {number} [pagesize]
+ * @property {string} [report_id]
+ * @property {string} [search]
+ * @property {string} [search_type]
+ * @property {string} [start_date]
+ */
+
+/**
+ * @typedef CnGenerateReportFilters
+ * @property {string[]} [channel_of_issuance]
+ * @property {string[]} [ordering_channel]
+ * @property {string[]} [staff_id]
+ * @property {number[]} [store_id]
+ * @property {string[]} [types_of_transaction]
+ * @property {string[]} [utilisation]
+ */
+
+/**
+ * @typedef CnGenerateReportItems
+ * @property {string} [credit_note_number]
+ * @property {string} [date_issued]
+ * @property {string} [expiry_date]
+ * @property {string} [invoice_number]
+ * @property {string} [order_id]
+ * @property {string} [shipment_id]
+ * @property {string} [status]
+ * @property {number} [total_amount]
+ */
+
+/**
+ * @typedef CnReferenceNumber
+ * @property {string} [cn_reference_number]
+ */
+
+/**
+ * @typedef CreateSellerCreditNoteConfig
+ * @property {string} [affiliate_id]
+ * @property {string} [currency_type]
+ * @property {boolean} [is_cn_as_refund_method]
+ * @property {CreditNoteConfigNotificationEvents} [notification_events]
+ * @property {string[]} [ordering_channel]
+ * @property {string} [sales_channel_name]
+ * @property {number} [seller_id]
+ * @property {string[]} [slug_values]
+ * @property {string[]} [source_channel]
+ * @property {number} [validity]
+ */
+
+/**
+ * @typedef CreateSellerCreditNoteConfigRequest
+ * @property {CreateSellerCreditNoteConfig} [data]
+ */
+
+/**
+ * @typedef CreateSellerCreditNoteConfigResponse
+ * @property {string} [message]
+ * @property {boolean} [success]
+ */
+
+/**
  * @typedef CreditlineDataPlatformPayload
  * @property {string} [end_end]
  * @property {number} [page]
@@ -23,6 +125,52 @@ const Joi = require("joi");
  * @property {string} [message]
  * @property {Object} [page]
  * @property {boolean} [show_mr]
+ */
+
+/**
+ * @typedef CreditNoteConfigNotificationEvents
+ * @property {number} [expiration_reminder_to_customer]
+ */
+
+/**
+ * @typedef CreditNoteDetails
+ * @property {number} [available_cn_balance]
+ * @property {number} [cn_amount]
+ * @property {Object} [cn_details]
+ * @property {string} [cn_reference_number]
+ * @property {string} [cn_status]
+ * @property {string} [customer_mobile_number]
+ * @property {RedemptionDetails[]} [redemption_details]
+ * @property {number} [remaining_cn_amount]
+ */
+
+/**
+ * @typedef CreditNoteDetailsRequest
+ * @property {CnReferenceNumber} [data]
+ */
+
+/**
+ * @typedef CreditNoteDetailsResponse
+ * @property {CreditNoteDetails} [data]
+ * @property {boolean} [success]
+ */
+
+/**
+ * @typedef DeleteConfig
+ * @property {string} [affiliate_id]
+ * @property {number} [seller_id]
+ * @property {string[]} [slug_values]
+ */
+
+/**
+ * @typedef DeleteConfigRequest
+ * @property {DeleteConfig} [data]
+ */
+
+/**
+ * @typedef DeleteConfigResponse
+ * @property {string} [message]
+ * @property {boolean} [success]
  */
 
 /**
@@ -56,6 +204,16 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef DownloadReportCustomerCnRequest
+ * @property {CnDownloadReport} [data]
+ */
+
+/**
+ * @typedef DownloadReportCustomerCnResponse
+ * @property {DownloadReportResponseData[]} [data]
+ */
+
+/**
  * @typedef DownloadReportItems
  * @property {string} [end_date]
  * @property {GenerateReportFilters} [filters]
@@ -73,9 +231,50 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef DownloadReportResponseData
+ * @property {string} [created_at]
+ * @property {string} [display_name]
+ * @property {string} [download_link]
+ * @property {string} [end_date]
+ * @property {Object} [filters]
+ * @property {string} [full_name]
+ * @property {Object} [meta]
+ * @property {string} [msg]
+ * @property {string} [report_config_id]
+ * @property {string} [report_name]
+ * @property {Object} [request_dict]
+ * @property {string} [requested_by]
+ * @property {string} [start_date]
+ * @property {string} [status]
+ */
+
+/**
  * @typedef Error
  * @property {string} [reason]
  * @property {boolean} [success]
+ */
+
+/**
+ * @typedef GenerateReportCustomerCnRequest
+ * @property {CnGenerateReport} [data]
+ */
+
+/**
+ * @typedef GenerateReportCustomerCnResponse
+ * @property {GenerateReportCustomerCnResponseData} [data]
+ */
+
+/**
+ * @typedef GenerateReportCustomerCnResponseData
+ * @property {string[]} [allowed_filters]
+ * @property {string} [end_date]
+ * @property {string[]} [headers]
+ * @property {number} [item_count]
+ * @property {CnGenerateReportItems[]} [items]
+ * @property {Page} [page]
+ * @property {string[]} [primary_headers]
+ * @property {Object} [row_header_display_order]
+ * @property {string} [start_date]
  */
 
 /**
@@ -128,21 +327,63 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef GetDocs
- * @property {Object[]} [docs]
- * @property {Object[]} [items]
+ * @typedef GetCnConfigRequest
+ * @property {DeleteConfig} [data]
+ */
+
+/**
+ * @typedef GetCnConfigResponse
+ * @property {GetCnConfigResponseData} [data]
+ * @property {boolean} [success]
+ */
+
+/**
+ * @typedef GetCnConfigResponseData
+ * @property {string} [affiliate_id]
+ * @property {string} [currency_type]
+ * @property {boolean} [is_cn_as_refund_method]
+ * @property {GetCnConfigResponseMeta} [meta]
+ * @property {CreditNoteConfigNotificationEvents} [notification_events]
+ * @property {string[]} [redemption_ordering_channel]
+ * @property {number} [seller_id]
+ * @property {number} [validity]
+ */
+
+/**
+ * @typedef GetCnConfigResponseMeta
+ * @property {string} [reason]
+ * @property {string[]} [source_channel]
+ */
+
+/**
+ * @typedef GetCustomerCreditBalance
+ * @property {string} [affiliate_id]
+ * @property {string} [customer_mobile_number]
+ * @property {number} [seller_id]
+ */
+
+/**
+ * @typedef GetCustomerCreditBalanceRequest
+ * @property {GetCustomerCreditBalance} [data]
+ */
+
+/**
+ * @typedef GetCustomerCreditBalanceResponse
+ * @property {GetCustomerCreditBalanceResponseData} [data]
+ * @property {boolean} [success]
+ */
+
+/**
+ * @typedef GetCustomerCreditBalanceResponseData
+ * @property {string} [customer_mobile_number]
+ * @property {number} [total_credited_balance]
  */
 
 /**
  * @typedef GetEngineData
- * @property {GetEngineFilters} [filters]
+ * @property {Object} [filters]
  * @property {string[]} [project]
  * @property {string} [table_name]
- */
-
-/**
- * @typedef GetEngineFilters
- * @property {string} [config_field]
  */
 
 /**
@@ -159,6 +400,23 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef GetPdfUrlViewRequest
+ * @property {CnReferenceNumber} [data]
+ */
+
+/**
+ * @typedef GetPdfUrlViewResponse
+ * @property {GetPdfUrlViewResponseData} [data]
+ * @property {boolean} [success]
+ */
+
+/**
+ * @typedef GetPdfUrlViewResponseData
+ * @property {string} [cn_reference_number]
+ * @property {string} [s3_pdf_link]
+ */
+
+/**
  * @typedef GetReason
  * @property {string} [reason_type]
  */
@@ -170,8 +428,35 @@ const Joi = require("joi");
 
 /**
  * @typedef GetReasonResponse
- * @property {GetDocs} [data]
+ * @property {number} [item_count]
+ * @property {ReasonItem[]} [item_list]
+ * @property {Page} [page]
  * @property {boolean} [success]
+ */
+
+/**
+ * @typedef GetReportingFilters
+ * @property {Object[]} [options]
+ * @property {string} [text]
+ * @property {string} [type]
+ * @property {string} [value]
+ */
+
+/**
+ * @typedef GetReportingFiltersResponse
+ * @property {GetReportingNestedFilters[]} [filters]
+ * @property {GetReportingFilters} [search]
+ * @property {GetReportingFilters} [status]
+ */
+
+/**
+ * @typedef GetReportingNestedFilters
+ * @property {Object[]} [options]
+ * @property {string} [placeholder_text]
+ * @property {boolean} [required]
+ * @property {string} [text]
+ * @property {string} [type]
+ * @property {string} [value]
  */
 
 /**
@@ -183,6 +468,14 @@ const Joi = require("joi");
 /**
  * @typedef GetReportListRequest
  * @property {GetReportListData} [data]
+ */
+
+/**
+ * @typedef GetReportListResponse
+ * @property {ReportItem[]} [items]
+ * @property {Page} [page]
+ * @property {boolean} [success]
+ * @property {number} [total_count]
  */
 
 /**
@@ -270,6 +563,29 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef IsCnRefundMethodData
+ * @property {string} [affiliate_id]
+ * @property {number} [seller_id]
+ * @property {boolean} [toggle_edit_required]
+ */
+
+/**
+ * @typedef IsCnRefundMethodRequest
+ * @property {IsCnRefundMethodData} [data]
+ */
+
+/**
+ * @typedef IsCnRefundMethodResponse
+ * @property {IsCnRefundMethodResponseData} [data]
+ * @property {boolean} [success]
+ */
+
+/**
+ * @typedef IsCnRefundMethodResponseData
+ * @property {boolean} [is_first_time_user]
+ */
+
+/**
  * @typedef IsCreditlinePayload
  * @property {string} [seller_id]
  */
@@ -325,6 +641,36 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef ReasonItem
+ * @property {string} [display_name]
+ * @property {string} [id]
+ * @property {string} [name]
+ */
+
+/**
+ * @typedef RedemptionDetails
+ * @property {number} [amount_debited]
+ * @property {string} [created_at]
+ * @property {string} [invoice_number]
+ * @property {string} [order_id]
+ * @property {string} [ordering_channel]
+ * @property {string} [shipment_id]
+ * @property {string} [staff_id]
+ * @property {string} [store_id]
+ */
+
+/**
+ * @typedef ReportItem
+ * @property {string[]} [allowed_filters]
+ * @property {Object} [config_meta]
+ * @property {string} [description]
+ * @property {string} [display_date]
+ * @property {string} [id]
+ * @property {string} [name]
+ * @property {string} [report_type]
+ */
+
+/**
  * @typedef UnpaidInvoiceDataItems
  * @property {string} [currency]
  * @property {number} [total_unpaid_amount]
@@ -332,6 +678,130 @@ const Joi = require("joi");
  */
 
 class FinancePlatformModel {
+  /** @returns {ChannelDisplayName} */
+  static ChannelDisplayName() {
+    return Joi.object({
+      platform_pos: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ChannelDisplayNameResponse} */
+  static ChannelDisplayNameResponse() {
+    return Joi.object({
+      data: FinancePlatformModel.ChannelDisplayName(),
+      success: Joi.boolean(),
+    });
+  }
+
+  /** @returns {CnDetails} */
+  static CnDetails() {
+    return Joi.object({
+      channel_of_issuance: Joi.string().allow(""),
+      date_issued: Joi.string().allow(""),
+      expiry_date: Joi.string().allow(""),
+      invoice_number: Joi.string().allow(""),
+      order_id: Joi.string().allow(""),
+      ordering_channel: Joi.string().allow(""),
+      shipment_id: Joi.string().allow(""),
+      staff_id: Joi.string().allow(""),
+      store_id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CnDownloadReport} */
+  static CnDownloadReport() {
+    return Joi.object({
+      affiliate_id: Joi.string().allow(""),
+      end_date: Joi.string().allow(""),
+      page: Joi.number(),
+      pagesize: Joi.number(),
+      search: Joi.string().allow(""),
+      search_type: Joi.string().allow(""),
+      start_date: Joi.string().allow(""),
+      status: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {CnGenerateReport} */
+  static CnGenerateReport() {
+    return Joi.object({
+      affiliate_id: Joi.string().allow(""),
+      end_date: Joi.string().allow(""),
+      filters: FinancePlatformModel.CnGenerateReportFilters(),
+      meta: FinancePlatformModel.GenerateReportFilters(),
+      page: Joi.number(),
+      pagesize: Joi.number(),
+      report_id: Joi.string().allow(""),
+      search: Joi.string().allow(""),
+      search_type: Joi.string().allow(""),
+      start_date: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CnGenerateReportFilters} */
+  static CnGenerateReportFilters() {
+    return Joi.object({
+      channel_of_issuance: Joi.array().items(Joi.string().allow("")),
+      ordering_channel: Joi.array().items(Joi.string().allow("")),
+      staff_id: Joi.array().items(Joi.string().allow("")),
+      store_id: Joi.array().items(Joi.number()),
+      types_of_transaction: Joi.array().items(Joi.string().allow("")),
+      utilisation: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {CnGenerateReportItems} */
+  static CnGenerateReportItems() {
+    return Joi.object({
+      credit_note_number: Joi.string().allow(""),
+      date_issued: Joi.string().allow(""),
+      expiry_date: Joi.string().allow(""),
+      invoice_number: Joi.string().allow(""),
+      order_id: Joi.string().allow(""),
+      shipment_id: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+      total_amount: Joi.number(),
+    });
+  }
+
+  /** @returns {CnReferenceNumber} */
+  static CnReferenceNumber() {
+    return Joi.object({
+      cn_reference_number: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CreateSellerCreditNoteConfig} */
+  static CreateSellerCreditNoteConfig() {
+    return Joi.object({
+      affiliate_id: Joi.string().allow(""),
+      currency_type: Joi.string().allow(""),
+      is_cn_as_refund_method: Joi.boolean(),
+      notification_events: FinancePlatformModel.CreditNoteConfigNotificationEvents(),
+      ordering_channel: Joi.array().items(Joi.string().allow("")),
+      sales_channel_name: Joi.string().allow(""),
+      seller_id: Joi.number(),
+      slug_values: Joi.array().items(Joi.string().allow("")),
+      source_channel: Joi.array().items(Joi.string().allow("")),
+      validity: Joi.number(),
+    });
+  }
+
+  /** @returns {CreateSellerCreditNoteConfigRequest} */
+  static CreateSellerCreditNoteConfigRequest() {
+    return Joi.object({
+      data: FinancePlatformModel.CreateSellerCreditNoteConfig(),
+    });
+  }
+
+  /** @returns {CreateSellerCreditNoteConfigResponse} */
+  static CreateSellerCreditNoteConfigResponse() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      success: Joi.boolean(),
+    });
+  }
+
   /** @returns {CreditlineDataPlatformPayload} */
   static CreditlineDataPlatformPayload() {
     return Joi.object({
@@ -360,6 +830,68 @@ class FinancePlatformModel {
       message: Joi.string().allow(""),
       page: Joi.any(),
       show_mr: Joi.boolean(),
+    });
+  }
+
+  /** @returns {CreditNoteConfigNotificationEvents} */
+  static CreditNoteConfigNotificationEvents() {
+    return Joi.object({
+      expiration_reminder_to_customer: Joi.number(),
+    });
+  }
+
+  /** @returns {CreditNoteDetails} */
+  static CreditNoteDetails() {
+    return Joi.object({
+      available_cn_balance: Joi.number(),
+      cn_amount: Joi.number(),
+      cn_details: Joi.any(),
+      cn_reference_number: Joi.string().allow(""),
+      cn_status: Joi.string().allow(""),
+      customer_mobile_number: Joi.string().allow(""),
+      redemption_details: Joi.array().items(
+        FinancePlatformModel.RedemptionDetails()
+      ),
+      remaining_cn_amount: Joi.number(),
+    });
+  }
+
+  /** @returns {CreditNoteDetailsRequest} */
+  static CreditNoteDetailsRequest() {
+    return Joi.object({
+      data: FinancePlatformModel.CnReferenceNumber(),
+    });
+  }
+
+  /** @returns {CreditNoteDetailsResponse} */
+  static CreditNoteDetailsResponse() {
+    return Joi.object({
+      data: FinancePlatformModel.CreditNoteDetails(),
+      success: Joi.boolean(),
+    });
+  }
+
+  /** @returns {DeleteConfig} */
+  static DeleteConfig() {
+    return Joi.object({
+      affiliate_id: Joi.string().allow(""),
+      seller_id: Joi.number(),
+      slug_values: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {DeleteConfigRequest} */
+  static DeleteConfigRequest() {
+    return Joi.object({
+      data: FinancePlatformModel.DeleteConfig(),
+    });
+  }
+
+  /** @returns {DeleteConfigResponse} */
+  static DeleteConfigResponse() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      success: Joi.boolean(),
     });
   }
 
@@ -405,6 +937,22 @@ class FinancePlatformModel {
     });
   }
 
+  /** @returns {DownloadReportCustomerCnRequest} */
+  static DownloadReportCustomerCnRequest() {
+    return Joi.object({
+      data: FinancePlatformModel.CnDownloadReport(),
+    });
+  }
+
+  /** @returns {DownloadReportCustomerCnResponse} */
+  static DownloadReportCustomerCnResponse() {
+    return Joi.object({
+      data: Joi.array().items(
+        FinancePlatformModel.DownloadReportResponseData()
+      ),
+    });
+  }
+
   /** @returns {DownloadReportItems} */
   static DownloadReportItems() {
     return Joi.object({
@@ -426,11 +974,60 @@ class FinancePlatformModel {
     });
   }
 
+  /** @returns {DownloadReportResponseData} */
+  static DownloadReportResponseData() {
+    return Joi.object({
+      created_at: Joi.string().allow(""),
+      display_name: Joi.string().allow(""),
+      download_link: Joi.string().allow(""),
+      end_date: Joi.string().allow(""),
+      filters: Joi.any(),
+      full_name: Joi.string().allow(""),
+      meta: Joi.any(),
+      msg: Joi.string().allow(""),
+      report_config_id: Joi.string().allow(""),
+      report_name: Joi.string().allow(""),
+      request_dict: Joi.any(),
+      requested_by: Joi.string().allow(""),
+      start_date: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {Error} */
   static Error() {
     return Joi.object({
       reason: Joi.string().allow(""),
       success: Joi.boolean(),
+    });
+  }
+
+  /** @returns {GenerateReportCustomerCnRequest} */
+  static GenerateReportCustomerCnRequest() {
+    return Joi.object({
+      data: FinancePlatformModel.CnGenerateReport(),
+    });
+  }
+
+  /** @returns {GenerateReportCustomerCnResponse} */
+  static GenerateReportCustomerCnResponse() {
+    return Joi.object({
+      data: FinancePlatformModel.GenerateReportCustomerCnResponseData(),
+    });
+  }
+
+  /** @returns {GenerateReportCustomerCnResponseData} */
+  static GenerateReportCustomerCnResponseData() {
+    return Joi.object({
+      allowed_filters: Joi.array().items(Joi.string().allow("")),
+      end_date: Joi.string().allow(""),
+      headers: Joi.array().items(Joi.string().allow("")),
+      item_count: Joi.number(),
+      items: Joi.array().items(FinancePlatformModel.CnGenerateReportItems()),
+      page: FinancePlatformModel.Page(),
+      primary_headers: Joi.array().items(Joi.string().allow("")),
+      row_header_display_order: Joi.any(),
+      start_date: Joi.string().allow(""),
     });
   }
 
@@ -497,27 +1094,81 @@ class FinancePlatformModel {
     });
   }
 
-  /** @returns {GetDocs} */
-  static GetDocs() {
+  /** @returns {GetCnConfigRequest} */
+  static GetCnConfigRequest() {
     return Joi.object({
-      docs: Joi.array().items(Joi.any()),
-      items: Joi.array().items(Joi.any()),
+      data: FinancePlatformModel.DeleteConfig(),
+    });
+  }
+
+  /** @returns {GetCnConfigResponse} */
+  static GetCnConfigResponse() {
+    return Joi.object({
+      data: FinancePlatformModel.GetCnConfigResponseData(),
+      success: Joi.boolean(),
+    });
+  }
+
+  /** @returns {GetCnConfigResponseData} */
+  static GetCnConfigResponseData() {
+    return Joi.object({
+      affiliate_id: Joi.string().allow(""),
+      currency_type: Joi.string().allow(""),
+      is_cn_as_refund_method: Joi.boolean(),
+      meta: FinancePlatformModel.GetCnConfigResponseMeta(),
+      notification_events: FinancePlatformModel.CreditNoteConfigNotificationEvents(),
+      redemption_ordering_channel: Joi.array().items(Joi.string().allow("")),
+      seller_id: Joi.number(),
+      validity: Joi.number(),
+    });
+  }
+
+  /** @returns {GetCnConfigResponseMeta} */
+  static GetCnConfigResponseMeta() {
+    return Joi.object({
+      reason: Joi.string().allow(""),
+      source_channel: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {GetCustomerCreditBalance} */
+  static GetCustomerCreditBalance() {
+    return Joi.object({
+      affiliate_id: Joi.string().allow(""),
+      customer_mobile_number: Joi.string().allow(""),
+      seller_id: Joi.number(),
+    });
+  }
+
+  /** @returns {GetCustomerCreditBalanceRequest} */
+  static GetCustomerCreditBalanceRequest() {
+    return Joi.object({
+      data: FinancePlatformModel.GetCustomerCreditBalance(),
+    });
+  }
+
+  /** @returns {GetCustomerCreditBalanceResponse} */
+  static GetCustomerCreditBalanceResponse() {
+    return Joi.object({
+      data: FinancePlatformModel.GetCustomerCreditBalanceResponseData(),
+      success: Joi.boolean(),
+    });
+  }
+
+  /** @returns {GetCustomerCreditBalanceResponseData} */
+  static GetCustomerCreditBalanceResponseData() {
+    return Joi.object({
+      customer_mobile_number: Joi.string().allow(""),
+      total_credited_balance: Joi.number(),
     });
   }
 
   /** @returns {GetEngineData} */
   static GetEngineData() {
     return Joi.object({
-      filters: FinancePlatformModel.GetEngineFilters(),
+      filters: Joi.any(),
       project: Joi.array().items(Joi.string().allow("")),
       table_name: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {GetEngineFilters} */
-  static GetEngineFilters() {
-    return Joi.object({
-      config_field: Joi.string().allow(""),
     });
   }
 
@@ -538,6 +1189,29 @@ class FinancePlatformModel {
     });
   }
 
+  /** @returns {GetPdfUrlViewRequest} */
+  static GetPdfUrlViewRequest() {
+    return Joi.object({
+      data: FinancePlatformModel.CnReferenceNumber(),
+    });
+  }
+
+  /** @returns {GetPdfUrlViewResponse} */
+  static GetPdfUrlViewResponse() {
+    return Joi.object({
+      data: FinancePlatformModel.GetPdfUrlViewResponseData(),
+      success: Joi.boolean(),
+    });
+  }
+
+  /** @returns {GetPdfUrlViewResponseData} */
+  static GetPdfUrlViewResponseData() {
+    return Joi.object({
+      cn_reference_number: Joi.string().allow(""),
+      s3_pdf_link: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {GetReason} */
   static GetReason() {
     return Joi.object({
@@ -555,8 +1229,43 @@ class FinancePlatformModel {
   /** @returns {GetReasonResponse} */
   static GetReasonResponse() {
     return Joi.object({
-      data: FinancePlatformModel.GetDocs(),
+      item_count: Joi.number(),
+      item_list: Joi.array().items(FinancePlatformModel.ReasonItem()),
+      page: FinancePlatformModel.Page(),
       success: Joi.boolean(),
+    });
+  }
+
+  /** @returns {GetReportingFilters} */
+  static GetReportingFilters() {
+    return Joi.object({
+      options: Joi.array().items(Joi.any()),
+      text: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      value: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {GetReportingFiltersResponse} */
+  static GetReportingFiltersResponse() {
+    return Joi.object({
+      filters: Joi.array().items(
+        FinancePlatformModel.GetReportingNestedFilters()
+      ),
+      search: FinancePlatformModel.GetReportingFilters(),
+      status: FinancePlatformModel.GetReportingFilters(),
+    });
+  }
+
+  /** @returns {GetReportingNestedFilters} */
+  static GetReportingNestedFilters() {
+    return Joi.object({
+      options: Joi.array().items(Joi.any()),
+      placeholder_text: Joi.string().allow(""),
+      required: Joi.boolean(),
+      text: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      value: Joi.string().allow(""),
     });
   }
 
@@ -572,6 +1281,16 @@ class FinancePlatformModel {
   static GetReportListRequest() {
     return Joi.object({
       data: FinancePlatformModel.GetReportListData(),
+    });
+  }
+
+  /** @returns {GetReportListResponse} */
+  static GetReportListResponse() {
+    return Joi.object({
+      items: Joi.array().items(FinancePlatformModel.ReportItem()),
+      page: FinancePlatformModel.Page(),
+      success: Joi.boolean(),
+      total_count: Joi.number(),
     });
   }
 
@@ -689,6 +1408,37 @@ class FinancePlatformModel {
     });
   }
 
+  /** @returns {IsCnRefundMethodData} */
+  static IsCnRefundMethodData() {
+    return Joi.object({
+      affiliate_id: Joi.string().allow(""),
+      seller_id: Joi.number(),
+      toggle_edit_required: Joi.boolean(),
+    });
+  }
+
+  /** @returns {IsCnRefundMethodRequest} */
+  static IsCnRefundMethodRequest() {
+    return Joi.object({
+      data: FinancePlatformModel.IsCnRefundMethodData(),
+    });
+  }
+
+  /** @returns {IsCnRefundMethodResponse} */
+  static IsCnRefundMethodResponse() {
+    return Joi.object({
+      data: FinancePlatformModel.IsCnRefundMethodResponseData(),
+      success: Joi.boolean(),
+    });
+  }
+
+  /** @returns {IsCnRefundMethodResponseData} */
+  static IsCnRefundMethodResponseData() {
+    return Joi.object({
+      is_first_time_user: Joi.boolean(),
+    });
+  }
+
   /** @returns {IsCreditlinePayload} */
   static IsCreditlinePayload() {
     return Joi.object({
@@ -755,6 +1505,42 @@ class FinancePlatformModel {
       meta: Joi.any(),
       redirect_url: Joi.string().allow(""),
       transaction_id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ReasonItem} */
+  static ReasonItem() {
+    return Joi.object({
+      display_name: Joi.string().allow(""),
+      id: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {RedemptionDetails} */
+  static RedemptionDetails() {
+    return Joi.object({
+      amount_debited: Joi.number(),
+      created_at: Joi.string().allow(""),
+      invoice_number: Joi.string().allow(""),
+      order_id: Joi.string().allow(""),
+      ordering_channel: Joi.string().allow(""),
+      shipment_id: Joi.string().allow(""),
+      staff_id: Joi.string().allow(""),
+      store_id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ReportItem} */
+  static ReportItem() {
+    return Joi.object({
+      allowed_filters: Joi.array().items(Joi.string().allow("")),
+      config_meta: Joi.any(),
+      description: Joi.string().allow(""),
+      display_date: Joi.string().allow("").allow(null),
+      id: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      report_type: Joi.string().allow(""),
     });
   }
 

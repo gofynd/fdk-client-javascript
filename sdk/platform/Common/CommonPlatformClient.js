@@ -18,7 +18,7 @@ class Common {
    * @returns {Promise<CommonPlatformModel.Locations>} - Success response
    * @name getLocations
    * @summary: Get countries, states, cities
-   * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/common/getLocations/).
+   * @description: Retrieve a list of countries, states, or cities based on the provided location_type and id parameters. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/common/getLocations/).
    */
   async getLocations(
     { locationType, id, requestHeaders } = { requestHeaders: {} },

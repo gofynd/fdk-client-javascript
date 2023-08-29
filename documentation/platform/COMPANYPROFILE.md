@@ -6,7 +6,7 @@
 ##### [Back to Platform docs](./README.md)
 
 ## CompanyProfile Methods
-
+Catalog CBS - platform Front API's
 
 * [cbsOnboardGet](#cbsonboardget)
 * [createBrand](#createbrand)
@@ -18,6 +18,7 @@
 * [getBrands](#getbrands)
 * [getCompanyMetrics](#getcompanymetrics)
 * [getLocationDetail](#getlocationdetail)
+* [getLocationTags](#getlocationtags)
 * [getLocations](#getlocations)
 * [updateCompany](#updatecompany)
 * [updateLocation](#updatelocation)
@@ -645,6 +646,7 @@ Brand object. See example below or refer `CompanyBrandListSerializer` for detail
     }
   ],
   "page": {
+    "type": "",
     "current": 1,
     "size": 1,
     "has_previous": false,
@@ -977,6 +979,84 @@ Brand object. See example below or refer `GetLocationSerializer` for details
 ---
 
 
+### getLocationTags
+Get tags associated with locations for a company.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.companyProfile.getLocationTags();
+
+// Async/Await
+const data = await platformClient.companyProfile.getLocationTags();
+```
+
+
+
+
+
+
+This API fetches all the tags associated to a company.
+
+*Returned Response:*
+
+
+
+
+[StoreTagsResponseSchema](#StoreTagsResponseSchema)
+
+Tags list. See example below or refer `StoreTagsResponseSchema` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; TagsFound</i></summary>
+
+```json
+{
+  "value": {
+    "tags": [
+      "hyperlocale",
+      "instant"
+    ],
+    "success": true
+  }
+}
+```
+</details>
+
+<details>
+<summary><i>&nbsp; NoTagsFound</i></summary>
+
+```json
+{
+  "value": {
+    "tags": [],
+    "success": true
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getLocations
 Get list of locations
 
@@ -1210,6 +1290,7 @@ Company profile object. See example below or refer `LocationListSerializer` for 
     }
   ],
   "page": {
+    "type": "",
     "current": 1,
     "size": 1,
     "has_previous": false,
@@ -1369,6 +1450,16 @@ Returns a success response
  | longitude | number |  no  |  |
  | pincode | number? |  yes  |  |
  | state | string? |  yes  |  |
+ 
+
+---
+
+#### [AverageOrderProcessingTime](#AverageOrderProcessingTime)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | duration | number? |  yes  |  |
+ | duration_type | string? |  yes  |  |
  
 
 ---
@@ -1707,12 +1798,15 @@ Returns a success response
  | _custom_json | string? |  yes  |  |
  | address | [GetAddressSerializer](#GetAddressSerializer) |  no  |  |
  | auto_invoice | boolean? |  yes  |  |
+ | avg_order_processing_time | [AverageOrderProcessingTime](#AverageOrderProcessingTime)? |  yes  |  |
+ | bulk_shipment | boolean? |  yes  |  |
  | code | string |  no  |  |
  | company | [GetCompanySerializer](#GetCompanySerializer)? |  yes  |  |
  | contact_numbers | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
  | created_by | [UserSerializer](#UserSerializer)? |  yes  |  |
  | created_on | string? |  yes  |  |
  | credit_note | boolean? |  yes  |  |
+ | default_order_acceptance_timing | boolean? |  yes  |  |
  | display_name | string |  no  |  |
  | documents | [[Document](#Document)]? |  yes  |  |
  | gst_credentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)? |  yes  |  |
@@ -1722,10 +1816,12 @@ Returns a success response
  | modified_on | string? |  yes  |  |
  | name | string |  no  |  |
  | notification_emails | [string]? |  yes  |  |
+ | order_acceptance_timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)]? |  yes  |  |
  | phone_number | string? |  yes  |  |
  | product_return_config | [ProductReturnConfigSerializer](#ProductReturnConfigSerializer)? |  yes  |  |
  | stage | string? |  yes  |  |
  | store_type | string? |  yes  |  |
+ | tags | [string]? |  yes  |  |
  | timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)]? |  yes  |  |
  | uid | number? |  yes  |  |
  | verified_by | [UserSerializer](#UserSerializer)? |  yes  |  |
@@ -1817,10 +1913,13 @@ Returns a success response
  | _custom_json | string? |  yes  |  |
  | address | [AddressSerializer](#AddressSerializer) |  no  |  |
  | auto_invoice | boolean? |  yes  |  |
+ | avg_order_processing_time | [AverageOrderProcessingTime](#AverageOrderProcessingTime)? |  yes  |  |
+ | bulk_shipment | boolean? |  yes  |  |
  | code | string |  no  |  |
  | company | number |  no  |  |
  | contact_numbers | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
  | credit_note | boolean? |  yes  |  |
+ | default_order_acceptance_timing | boolean? |  yes  | Flag to set order_acceptance_timing as default timing |
  | display_name | string |  no  |  |
  | documents | [[Document](#Document)]? |  yes  |  |
  | gst_credentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)? |  yes  |  |
@@ -1828,9 +1927,11 @@ Returns a success response
  | manager | [LocationManagerSerializer](#LocationManagerSerializer)? |  yes  |  |
  | name | string |  no  |  |
  | notification_emails | [string]? |  yes  |  |
+ | order_acceptance_timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)]? |  yes  | Order acceptance timing of the store |
  | product_return_config | [ProductReturnConfigSerializer](#ProductReturnConfigSerializer)? |  yes  |  |
  | stage | string? |  yes  |  |
  | store_type | string? |  yes  |  |
+ | tags | [string]? |  yes  |  |
  | timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)]? |  yes  |  |
  | uid | number? |  yes  |  |
  | warnings | string? |  yes  |  |
@@ -1905,6 +2006,16 @@ Returns a success response
  | ---------- | ---- | -------- | ----------- |
  | country_code | number |  no  |  |
  | number | string |  no  |  |
+ 
+
+---
+
+#### [StoreTagsResponseSchema](#StoreTagsResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean? |  yes  |  |
+ | tags | [string]? |  yes  |  |
  
 
 ---

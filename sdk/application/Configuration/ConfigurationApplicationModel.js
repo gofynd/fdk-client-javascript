@@ -37,11 +37,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef AppFeatureRequest
- * @property {AppFeature} [feature]
- */
-
-/**
  * @typedef AppFeatureResponse
  * @property {AppFeature} [feature]
  */
@@ -175,15 +170,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ApplicationVersionRequest
- * @property {string} [id]
- * @property {string} name
- * @property {string} [namespace]
- * @property {string} [token]
- * @property {string} version
- */
-
-/**
  * @typedef ApplicationWebsite
  * @property {string} [basepath] - Base path for the current sales channel website
  * @property {boolean} [enabled] - Shows whether sales channel website URL is
@@ -229,19 +215,6 @@ const Joi = require("joi");
  * @property {string} [created_at] - ISO 8601 timestamp of token creation
  * @property {Tokens} [tokens]
  * @property {string} [updated_at] - ISO 8601 timestamp of token updation
- */
-
-/**
- * @typedef AppVersionRequest
- * @property {ApplicationVersionRequest} application
- * @property {Device} device
- * @property {string} [locale]
- * @property {string} [timezone]
- */
-
-/**
- * @typedef ArticleAssignmentRule
- * @property {StorePriorityRule} [store_priority]
  */
 
 /**
@@ -398,13 +371,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef Device
- * @property {number} [build]
- * @property {string} [model]
- * @property {OS} os
- */
-
-/**
  * @typedef Domain
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   of the sales channel domain
@@ -527,41 +493,6 @@ const Joi = require("joi");
  * @property {string} [icon] - Hosted URL of social icon image shown on the website
  * @property {string} [link] - Web URL of brand's Instagram page
  * @property {string} [title] - Name of the social media platform, e.g. Instagram
- */
-
-/**
- * @typedef InvalidPayloadRequest
- * @property {string} [message] - Error message when request body payload is improper
- */
-
-/**
- * @typedef InventoryArticleAssignment
- * @property {boolean} [post_order_reassignment] - Allow post order reassigment of article
- * @property {ArticleAssignmentRule} [rules]
- */
-
-/**
- * @typedef InventoryBrandRule
- * @property {number[]} [brands]
- * @property {string} [criteria] - Whether all brands are enabled, or explicitly
- *   few brands in the inventory
- */
-
-/**
- * @typedef InventoryPaymentConfig
- * @property {string} [mode_of_payment] - Mode of payment for the inventory of
- *   sales channel. It is required and default value is null.
- * @property {string} [source] - Source of the payment mode for the inventory
- *   payment of sales channel. Default value is FYND.
- */
-
-/**
- * @typedef InventoryStoreRule
- * @property {string} [criteria] - Whether all stores are enabled, or explicitly
- *   few stores in the inventory, or use brands and company filter.
- * @property {StoreCriteriaRule[]} [rules] - List of rules with company and
- *   brands uids. Used when critera is `filter`.
- * @property {number[]} [stores] - List of store uids. Used when critera is `explicit`.
  */
 
 /**
@@ -696,18 +627,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef OrderingStoresResponse
- * @property {OrderingStore[]} [items]
- * @property {Page} [page]
- */
-
-/**
- * @typedef OS
- * @property {string} name
- * @property {string} [version]
- */
-
-/**
  * @typedef OwnerInfo
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   of owner info
@@ -827,22 +746,9 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef StoreCriteriaRule
- * @property {number[]} [brands] - List of brand UID
- * @property {number[]} [companies] - List of company UID
- */
-
-/**
  * @typedef StoreLatLong
  * @property {number[]} [coordinates]
  * @property {string} [type] - Coordinates type of the opted store
- */
-
-/**
- * @typedef StorePriorityRule
- * @property {boolean} [enabled] - Shows store priority is enabled or not
- *   enabled for the article assignment.
- * @property {string[]} [storetype_order]
  */
 
 /**
@@ -878,12 +784,6 @@ const Joi = require("joi");
 /**
  * @typedef UnhandledError
  * @property {string} [message]
- */
-
-/**
- * @typedef UpdateDialog
- * @property {number} [interval]
- * @property {string} [type]
  */
 
 /**
@@ -958,13 +858,6 @@ class ConfigurationApplicationModel {
       qr: ConfigurationApplicationModel.QrFeature(),
       registration_page: ConfigurationApplicationModel.RegistrationPageFeature(),
       updated_at: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {AppFeatureRequest} */
-  static AppFeatureRequest() {
-    return Joi.object({
-      feature: ConfigurationApplicationModel.AppFeature(),
     });
   }
 
@@ -1099,17 +992,6 @@ class ConfigurationApplicationModel {
     });
   }
 
-  /** @returns {ApplicationVersionRequest} */
-  static ApplicationVersionRequest() {
-    return Joi.object({
-      id: Joi.string().allow(""),
-      name: Joi.string().allow("").required(),
-      namespace: Joi.string().allow(""),
-      token: Joi.string().allow(""),
-      version: Joi.string().allow("").required(),
-    });
-  }
-
   /** @returns {ApplicationWebsite} */
   static ApplicationWebsite() {
     return Joi.object({
@@ -1158,23 +1040,6 @@ class ConfigurationApplicationModel {
       created_at: Joi.string().allow(""),
       tokens: ConfigurationApplicationModel.Tokens(),
       updated_at: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {AppVersionRequest} */
-  static AppVersionRequest() {
-    return Joi.object({
-      application: ConfigurationApplicationModel.ApplicationVersionRequest().required(),
-      device: ConfigurationApplicationModel.Device().required(),
-      locale: Joi.string().allow(""),
-      timezone: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {ArticleAssignmentRule} */
-  static ArticleAssignmentRule() {
-    return Joi.object({
-      store_priority: ConfigurationApplicationModel.StorePriorityRule(),
     });
   }
 
@@ -1338,15 +1203,6 @@ class ConfigurationApplicationModel {
     });
   }
 
-  /** @returns {Device} */
-  static Device() {
-    return Joi.object({
-      build: Joi.number(),
-      model: Joi.string().allow(""),
-      os: ConfigurationApplicationModel.OS().required(),
-    });
-  }
-
   /** @returns {Domain} */
   static Domain() {
     return Joi.object({
@@ -1494,48 +1350,6 @@ class ConfigurationApplicationModel {
       icon: Joi.string().allow(""),
       link: Joi.string().allow(""),
       title: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {InvalidPayloadRequest} */
-  static InvalidPayloadRequest() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {InventoryArticleAssignment} */
-  static InventoryArticleAssignment() {
-    return Joi.object({
-      post_order_reassignment: Joi.boolean(),
-      rules: ConfigurationApplicationModel.ArticleAssignmentRule(),
-    });
-  }
-
-  /** @returns {InventoryBrandRule} */
-  static InventoryBrandRule() {
-    return Joi.object({
-      brands: Joi.array().items(Joi.number()),
-      criteria: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {InventoryPaymentConfig} */
-  static InventoryPaymentConfig() {
-    return Joi.object({
-      mode_of_payment: Joi.string().allow(""),
-      source: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {InventoryStoreRule} */
-  static InventoryStoreRule() {
-    return Joi.object({
-      criteria: Joi.string().allow(""),
-      rules: Joi.array().items(
-        ConfigurationApplicationModel.StoreCriteriaRule()
-      ),
-      stores: Joi.array().items(Joi.number()),
     });
   }
 
@@ -1687,22 +1501,6 @@ class ConfigurationApplicationModel {
     });
   }
 
-  /** @returns {OrderingStoresResponse} */
-  static OrderingStoresResponse() {
-    return Joi.object({
-      items: Joi.array().items(ConfigurationApplicationModel.OrderingStore()),
-      page: ConfigurationApplicationModel.Page(),
-    });
-  }
-
-  /** @returns {OS} */
-  static OS() {
-    return Joi.object({
-      name: Joi.string().allow("").required(),
-      version: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {OwnerInfo} */
   static OwnerInfo() {
     return Joi.object({
@@ -1839,27 +1637,11 @@ class ConfigurationApplicationModel {
     });
   }
 
-  /** @returns {StoreCriteriaRule} */
-  static StoreCriteriaRule() {
-    return Joi.object({
-      brands: Joi.array().items(Joi.number()),
-      companies: Joi.array().items(Joi.number()),
-    });
-  }
-
   /** @returns {StoreLatLong} */
   static StoreLatLong() {
     return Joi.object({
       coordinates: Joi.array().items(Joi.number()),
       type: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {StorePriorityRule} */
-  static StorePriorityRule() {
-    return Joi.object({
-      enabled: Joi.boolean(),
-      storetype_order: Joi.array().items(Joi.string().allow("")),
     });
   }
 
@@ -1905,14 +1687,6 @@ class ConfigurationApplicationModel {
   static UnhandledError() {
     return Joi.object({
       message: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {UpdateDialog} */
-  static UpdateDialog() {
-    return Joi.object({
-      interval: Joi.number(),
-      type: Joi.string().allow(""),
     });
   }
 

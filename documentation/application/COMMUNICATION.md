@@ -384,30 +384,6 @@ Success. Updates the channels for which user has consented. Check the example sh
 
 ---
 
-#### [NotFound](#NotFound)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  | Failure message. |
- 
-
----
-
-#### [Page](#Page)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | current | number? |  yes  |  |
- | has_next | boolean? |  yes  |  |
- | has_previous | boolean? |  yes  |  |
- | item_total | number? |  yes  |  |
- | next_id | string? |  yes  |  |
- | size | number? |  yes  |  |
- | type | string |  no  |  |
- 
-
----
-
 #### [PushtokenReq](#PushtokenReq)
 
  | Properties | Type | Nullable | Description |

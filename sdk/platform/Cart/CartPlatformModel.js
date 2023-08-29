@@ -134,11 +134,13 @@ const Joi = require("joi");
 
 /**
  * @typedef Article
- * @property {string} article_id
- * @property {string} [code]
- * @property {Object} [meta]
- * @property {string} [type]
- * @property {number} [value]
+ * @property {string} article_id - Id of article
+ * @property {string} [code] - Code to identify price adjustment on article
+ * @property {Object} [meta] - Meta related to article
+ * @property {number} [quantity] - Total quantity of the article to be
+ *   considered (currently used only in discount type)
+ * @property {string} [type] - Type of price adjusment
+ * @property {number} [value] - Value of price adjustment for article
  */
 
 /**
@@ -178,6 +180,12 @@ const Joi = require("joi");
  * @property {DisplayBreakup[]} [display]
  * @property {LoyaltyPoints} [loyalty_points]
  * @property {RawBreakup} [raw]
+ */
+
+/**
+ * @typedef CartCheckoutCustomMeta
+ * @property {string} key
+ * @property {string} value
  */
 
 /**
@@ -523,6 +531,13 @@ const Joi = require("joi");
  * @property {boolean} [next_validation_required]
  * @property {string} [title]
  * @property {boolean} [valid]
+ */
+
+/**
+ * @typedef CustomerDetails
+ * @property {string} [email]
+ * @property {string} mobile
+ * @property {string} [name]
  */
 
 /**
@@ -1029,6 +1044,8 @@ const Joi = require("joi");
  * @property {string} [billing_address_id]
  * @property {string} [callback_url]
  * @property {string} [checkout_mode]
+ * @property {CartCheckoutCustomMeta[]} [custom_meta]
+ * @property {Object} [customer_details] - Customer details
  * @property {Object} [delivery_address]
  * @property {string} [device_id]
  * @property {string} [employee_code]
@@ -1058,6 +1075,7 @@ const Joi = require("joi");
  * @property {string} [callback_url]
  * @property {string} [checkout_mode]
  * @property {Object} [custom_meta]
+ * @property {Object} [customer_details] - Customer details
  * @property {Object} [delivery_address]
  * @property {string} [device_id]
  * @property {string} [employee_code]
@@ -1167,35 +1185,39 @@ const Joi = require("joi");
 
 /**
  * @typedef PriceAdjustment
- * @property {boolean} [allowed_refund]
- * @property {string} [apply_expiry]
- * @property {Article[]} article_ids
- * @property {boolean} article_level_distribution
- * @property {string} cart_id
- * @property {number} [cart_value]
+ * @property {boolean} [allowed_refund] - Flag indicating whether refunds are
+ *   allowed (default: False)
+ * @property {string} [apply_expiry] - The date and time when the expiry should be applied
+ * @property {Article[]} article_ids - The list of article object in the price adjustment
+ * @property {boolean} article_level_distribution - Flag indicating whether the
+ *   distribution should is done at the article level
+ * @property {string} cart_id - The ID of the cart
  * @property {Collection} collection
  * @property {string} [id]
- * @property {boolean} is_authenticated
- * @property {string} message
+ * @property {boolean} is_authenticated - Flag indicating whether the user is
+ *   authenticated
+ * @property {string} message - The message associated with the price adjustment
  * @property {Object} [meta]
- * @property {string} type
+ * @property {string} type - Type of price adjusment
  * @property {number} value
  */
 
 /**
  * @typedef PriceAdjustmentAdd
- * @property {boolean} [allowed_refund]
- * @property {string} [apply_expiry]
- * @property {Article[]} article_ids
- * @property {boolean} article_level_distribution
- * @property {string} cart_id
- * @property {number} [cart_value]
+ * @property {boolean} [allowed_refund] - Flag indicating whether refunds are
+ *   allowed (default: False)
+ * @property {string} [apply_expiry] - The date and time when the expiry should be applied
+ * @property {Article[]} article_ids - The list of article object in the price adjustment
+ * @property {boolean} article_level_distribution - Flag indicating whether the
+ *   distribution should is done at the article level
+ * @property {string} cart_id - The ID of the cart
  * @property {Collection} collection
- * @property {string} [created_by]
- * @property {boolean} is_authenticated
- * @property {string} message
+ * @property {string} [created_by] - The entity that created the field
+ * @property {boolean} is_authenticated - Flag indicating whether the user is
+ *   authenticated
+ * @property {string} message - The message associated with the price adjustment
  * @property {Object} [meta]
- * @property {string} type
+ * @property {string} type - Type of price adjusment
  * @property {number} value
  */
 
@@ -1206,18 +1228,20 @@ const Joi = require("joi");
 
 /**
  * @typedef PriceAdjustmentUpdate
- * @property {boolean} [allowed_refund]
- * @property {string} [apply_expiry]
- * @property {Article[]} article_ids
- * @property {boolean} article_level_distribution
- * @property {string} cart_id
- * @property {number} [cart_value]
+ * @property {boolean} [allowed_refund] - Flag indicating whether refunds are
+ *   allowed (default: False)
+ * @property {string} [apply_expiry] - The date and time when the expiry should be applied
+ * @property {Article[]} article_ids - The list of article object in the price adjustment
+ * @property {boolean} article_level_distribution - Flag indicating whether the
+ *   distribution should is done at the article level
+ * @property {string} cart_id - The ID of the cart
  * @property {Collection} collection
- * @property {boolean} is_authenticated
- * @property {string} message
+ * @property {boolean} is_authenticated - Flag indicating whether the user is
+ *   authenticated
+ * @property {string} message - The message associated with the price adjustment
  * @property {Object} [meta]
- * @property {string} [modified_by]
- * @property {string} type
+ * @property {string} [modified_by] - The entity that modified the field
+ * @property {string} type - Type of price adjusment
  * @property {number} value
  */
 
@@ -1360,28 +1384,33 @@ const Joi = require("joi");
 
 /**
  * @typedef PromotionListItem
- * @property {Object} [_custom_json]
+ * @property {Object} [_custom_json] - Custom data stored in promotion
+ * @property {string} [_id] - Promotion id
  * @property {PromotionSchedule} [_schedule]
- * @property {string} application_id
- * @property {boolean} [apply_all_discount]
- * @property {string} [apply_exclusive]
- * @property {number} [apply_priority]
+ * @property {string} application_id - App id in which promotion will be used
+ * @property {boolean} [apply_all_discount] - Prevents more than one promotion discounts
+ * @property {string} [apply_exclusive] - Doesn't allow other promotion after
+ *   current promotion applied on cart or article
+ * @property {number} [apply_priority] - Priority based on which promotion are
+ *   applied on articles
  * @property {PromotionAuthor} [author]
- * @property {Object} buy_rules
+ * @property {Object} buy_rules - Buy rules for the promotion
  * @property {string} [calculate_on] - Only available for Contract pricing and
  *   Ladder pricing promotion type
- * @property {string} [code]
- * @property {string} [currency]
+ * @property {string} [code] - Promotion code
+ * @property {string} [currency] - Currency used for promotion
  * @property {PromotionDateMeta} [date_meta]
- * @property {DiscountRule[]} discount_rules
+ * @property {DiscountRule[]} discount_rules - Discount rules based on which
+ *   promotion will be applied
  * @property {DisplayMeta1} display_meta
- * @property {string} mode
+ * @property {string} mode - Promotion mode
  * @property {Ownership1} ownership
  * @property {PromotionAction} [post_order_action]
- * @property {string} promo_group
- * @property {string} promotion_type
+ * @property {string} promo_group - Group into which promotion fall
+ * @property {string} promotion_type - Type of the promotion
  * @property {Restrictions1} [restrictions]
- * @property {boolean} [stackable]
+ * @property {boolean} [stackable] - Allows more than one promotion to get
+ *   combined benefits
  * @property {Visibility} [visiblility]
  */
 
@@ -1482,7 +1511,7 @@ const Joi = require("joi");
  * @property {PostOrder1} [post_order]
  * @property {number[]} [user_groups]
  * @property {string[]} [user_id]
- * @property {UserRegistered} [user_registered]
+ * @property {Object} [user_registered]
  * @property {UsesRestriction1} uses
  */
 
@@ -1942,6 +1971,7 @@ class CartPlatformModel {
       article_id: Joi.string().allow("").required(),
       code: Joi.string().allow(""),
       meta: Joi.any(),
+      quantity: Joi.number(),
       type: Joi.string().allow(""),
       value: Joi.number(),
     });
@@ -1995,6 +2025,14 @@ class CartPlatformModel {
       display: Joi.array().items(CartPlatformModel.DisplayBreakup()),
       loyalty_points: CartPlatformModel.LoyaltyPoints(),
       raw: CartPlatformModel.RawBreakup(),
+    });
+  }
+
+  /** @returns {CartCheckoutCustomMeta} */
+  static CartCheckoutCustomMeta() {
+    return Joi.object({
+      key: Joi.string().allow("").required(),
+      value: Joi.string().allow("").required(),
     });
   }
 
@@ -2407,6 +2445,15 @@ class CartPlatformModel {
       next_validation_required: Joi.boolean().allow(null),
       title: Joi.string().allow(""),
       valid: Joi.boolean(),
+    });
+  }
+
+  /** @returns {CustomerDetails} */
+  static CustomerDetails() {
+    return Joi.object({
+      email: Joi.string().allow("").allow(null),
+      mobile: Joi.string().allow("").required(),
+      name: Joi.string().allow(""),
     });
   }
 
@@ -3024,6 +3071,10 @@ class CartPlatformModel {
       billing_address_id: Joi.string().allow(""),
       callback_url: Joi.string().allow("").allow(null),
       checkout_mode: Joi.string().allow(""),
+      custom_meta: Joi.array().items(
+        CartPlatformModel.CartCheckoutCustomMeta()
+      ),
+      customer_details: Joi.any().allow(null),
       delivery_address: Joi.any(),
       device_id: Joi.string().allow("").allow(null),
       employee_code: Joi.string().allow("").allow(null),
@@ -3041,7 +3092,7 @@ class CartPlatformModel {
       pick_at_store_uid: Joi.number().allow(null),
       pos: Joi.boolean(),
       staff: CartPlatformModel.StaffCheckout(),
-      user_id: Joi.string().allow("").required(),
+      user_id: Joi.string().allow("").allow(null).required(),
     });
   }
 
@@ -3055,6 +3106,7 @@ class CartPlatformModel {
       callback_url: Joi.string().allow("").allow(null),
       checkout_mode: Joi.string().allow(""),
       custom_meta: Joi.any(),
+      customer_details: Joi.any().allow(null),
       delivery_address: Joi.any(),
       device_id: Joi.string().allow("").allow(null),
       employee_code: Joi.string().allow("").allow(null),
@@ -3075,7 +3127,7 @@ class CartPlatformModel {
       pick_at_store_uid: Joi.number().allow(null),
       pos: Joi.boolean(),
       staff: CartPlatformModel.StaffCheckout(),
-      user_id: Joi.string().allow("").required(),
+      user_id: Joi.string().allow("").allow(null).required(),
     });
   }
 
@@ -3192,7 +3244,6 @@ class CartPlatformModel {
       article_ids: Joi.array().items(CartPlatformModel.Article()).required(),
       article_level_distribution: Joi.boolean().required(),
       cart_id: Joi.string().allow("").required(),
-      cart_value: Joi.number(),
       collection: CartPlatformModel.Collection().required(),
       id: Joi.string().allow(""),
       is_authenticated: Joi.boolean().required(),
@@ -3211,7 +3262,6 @@ class CartPlatformModel {
       article_ids: Joi.array().items(CartPlatformModel.Article()).required(),
       article_level_distribution: Joi.boolean().required(),
       cart_id: Joi.string().allow("").required(),
-      cart_value: Joi.number(),
       collection: CartPlatformModel.Collection().required(),
       created_by: Joi.string().allow(""),
       is_authenticated: Joi.boolean().required(),
@@ -3237,7 +3287,6 @@ class CartPlatformModel {
       article_ids: Joi.array().items(CartPlatformModel.Article()).required(),
       article_level_distribution: Joi.boolean().required(),
       cart_id: Joi.string().allow("").required(),
-      cart_value: Joi.number(),
       collection: CartPlatformModel.Collection().required(),
       is_authenticated: Joi.boolean().required(),
       message: Joi.string().allow("").required(),
@@ -3424,6 +3473,7 @@ class CartPlatformModel {
   static PromotionListItem() {
     return Joi.object({
       _custom_json: Joi.any(),
+      _id: Joi.string().allow(""),
       _schedule: CartPlatformModel.PromotionSchedule(),
       application_id: Joi.string().allow("").required(),
       apply_all_discount: Joi.boolean(),
@@ -3567,7 +3617,7 @@ class CartPlatformModel {
       post_order: CartPlatformModel.PostOrder1(),
       user_groups: Joi.array().items(Joi.number()),
       user_id: Joi.array().items(Joi.string().allow("")),
-      user_registered: CartPlatformModel.UserRegistered(),
+      user_registered: Joi.any().allow(null),
       uses: CartPlatformModel.UsesRestriction1().required(),
     });
   }

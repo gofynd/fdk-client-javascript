@@ -123,11 +123,13 @@ export = CartPlatformModel;
  */
 /**
  * @typedef Article
- * @property {string} article_id
- * @property {string} [code]
- * @property {Object} [meta]
- * @property {string} [type]
- * @property {number} [value]
+ * @property {string} article_id - Id of article
+ * @property {string} [code] - Code to identify price adjustment on article
+ * @property {Object} [meta] - Meta related to article
+ * @property {number} [quantity] - Total quantity of the article to be
+ *   considered (currently used only in discount type)
+ * @property {string} [type] - Type of price adjusment
+ * @property {number} [value] - Value of price adjustment for article
  */
 /**
  * @typedef ArticlePriceInfo
@@ -161,6 +163,11 @@ export = CartPlatformModel;
  * @property {DisplayBreakup[]} [display]
  * @property {LoyaltyPoints} [loyalty_points]
  * @property {RawBreakup} [raw]
+ */
+/**
+ * @typedef CartCheckoutCustomMeta
+ * @property {string} key
+ * @property {string} value
  */
 /**
  * @typedef CartCheckoutResponse
@@ -474,6 +481,12 @@ export = CartPlatformModel;
  * @property {boolean} [next_validation_required]
  * @property {string} [title]
  * @property {boolean} [valid]
+ */
+/**
+ * @typedef CustomerDetails
+ * @property {string} [email]
+ * @property {string} mobile
+ * @property {string} [name]
  */
 /**
  * @typedef DeleteAddressResponse
@@ -927,6 +940,8 @@ export = CartPlatformModel;
  * @property {string} [billing_address_id]
  * @property {string} [callback_url]
  * @property {string} [checkout_mode]
+ * @property {CartCheckoutCustomMeta[]} [custom_meta]
+ * @property {Object} [customer_details] - Customer details
  * @property {Object} [delivery_address]
  * @property {string} [device_id]
  * @property {string} [employee_code]
@@ -955,6 +970,7 @@ export = CartPlatformModel;
  * @property {string} [callback_url]
  * @property {string} [checkout_mode]
  * @property {Object} [custom_meta]
+ * @property {Object} [customer_details] - Customer details
  * @property {Object} [delivery_address]
  * @property {string} [device_id]
  * @property {string} [employee_code]
@@ -1055,34 +1071,38 @@ export = CartPlatformModel;
  */
 /**
  * @typedef PriceAdjustment
- * @property {boolean} [allowed_refund]
- * @property {string} [apply_expiry]
- * @property {Article[]} article_ids
- * @property {boolean} article_level_distribution
- * @property {string} cart_id
- * @property {number} [cart_value]
+ * @property {boolean} [allowed_refund] - Flag indicating whether refunds are
+ *   allowed (default: False)
+ * @property {string} [apply_expiry] - The date and time when the expiry should be applied
+ * @property {Article[]} article_ids - The list of article object in the price adjustment
+ * @property {boolean} article_level_distribution - Flag indicating whether the
+ *   distribution should is done at the article level
+ * @property {string} cart_id - The ID of the cart
  * @property {Collection} collection
  * @property {string} [id]
- * @property {boolean} is_authenticated
- * @property {string} message
+ * @property {boolean} is_authenticated - Flag indicating whether the user is
+ *   authenticated
+ * @property {string} message - The message associated with the price adjustment
  * @property {Object} [meta]
- * @property {string} type
+ * @property {string} type - Type of price adjusment
  * @property {number} value
  */
 /**
  * @typedef PriceAdjustmentAdd
- * @property {boolean} [allowed_refund]
- * @property {string} [apply_expiry]
- * @property {Article[]} article_ids
- * @property {boolean} article_level_distribution
- * @property {string} cart_id
- * @property {number} [cart_value]
+ * @property {boolean} [allowed_refund] - Flag indicating whether refunds are
+ *   allowed (default: False)
+ * @property {string} [apply_expiry] - The date and time when the expiry should be applied
+ * @property {Article[]} article_ids - The list of article object in the price adjustment
+ * @property {boolean} article_level_distribution - Flag indicating whether the
+ *   distribution should is done at the article level
+ * @property {string} cart_id - The ID of the cart
  * @property {Collection} collection
- * @property {string} [created_by]
- * @property {boolean} is_authenticated
- * @property {string} message
+ * @property {string} [created_by] - The entity that created the field
+ * @property {boolean} is_authenticated - Flag indicating whether the user is
+ *   authenticated
+ * @property {string} message - The message associated with the price adjustment
  * @property {Object} [meta]
- * @property {string} type
+ * @property {string} type - Type of price adjusment
  * @property {number} value
  */
 /**
@@ -1091,18 +1111,20 @@ export = CartPlatformModel;
  */
 /**
  * @typedef PriceAdjustmentUpdate
- * @property {boolean} [allowed_refund]
- * @property {string} [apply_expiry]
- * @property {Article[]} article_ids
- * @property {boolean} article_level_distribution
- * @property {string} cart_id
- * @property {number} [cart_value]
+ * @property {boolean} [allowed_refund] - Flag indicating whether refunds are
+ *   allowed (default: False)
+ * @property {string} [apply_expiry] - The date and time when the expiry should be applied
+ * @property {Article[]} article_ids - The list of article object in the price adjustment
+ * @property {boolean} article_level_distribution - Flag indicating whether the
+ *   distribution should is done at the article level
+ * @property {string} cart_id - The ID of the cart
  * @property {Collection} collection
- * @property {boolean} is_authenticated
- * @property {string} message
+ * @property {boolean} is_authenticated - Flag indicating whether the user is
+ *   authenticated
+ * @property {string} message - The message associated with the price adjustment
  * @property {Object} [meta]
- * @property {string} [modified_by]
- * @property {string} type
+ * @property {string} [modified_by] - The entity that modified the field
+ * @property {string} type - Type of price adjusment
  * @property {number} value
  */
 /**
@@ -1229,28 +1251,33 @@ export = CartPlatformModel;
  */
 /**
  * @typedef PromotionListItem
- * @property {Object} [_custom_json]
+ * @property {Object} [_custom_json] - Custom data stored in promotion
+ * @property {string} [_id] - Promotion id
  * @property {PromotionSchedule} [_schedule]
- * @property {string} application_id
- * @property {boolean} [apply_all_discount]
- * @property {string} [apply_exclusive]
- * @property {number} [apply_priority]
+ * @property {string} application_id - App id in which promotion will be used
+ * @property {boolean} [apply_all_discount] - Prevents more than one promotion discounts
+ * @property {string} [apply_exclusive] - Doesn't allow other promotion after
+ *   current promotion applied on cart or article
+ * @property {number} [apply_priority] - Priority based on which promotion are
+ *   applied on articles
  * @property {PromotionAuthor} [author]
- * @property {Object} buy_rules
+ * @property {Object} buy_rules - Buy rules for the promotion
  * @property {string} [calculate_on] - Only available for Contract pricing and
  *   Ladder pricing promotion type
- * @property {string} [code]
- * @property {string} [currency]
+ * @property {string} [code] - Promotion code
+ * @property {string} [currency] - Currency used for promotion
  * @property {PromotionDateMeta} [date_meta]
- * @property {DiscountRule[]} discount_rules
+ * @property {DiscountRule[]} discount_rules - Discount rules based on which
+ *   promotion will be applied
  * @property {DisplayMeta1} display_meta
- * @property {string} mode
+ * @property {string} mode - Promotion mode
  * @property {Ownership1} ownership
  * @property {PromotionAction} [post_order_action]
- * @property {string} promo_group
- * @property {string} promotion_type
+ * @property {string} promo_group - Group into which promotion fall
+ * @property {string} promotion_type - Type of the promotion
  * @property {Restrictions1} [restrictions]
- * @property {boolean} [stackable]
+ * @property {boolean} [stackable] - Allows more than one promotion to get
+ *   combined benefits
  * @property {Visibility} [visiblility]
  */
 /**
@@ -1343,7 +1370,7 @@ export = CartPlatformModel;
  * @property {PostOrder1} [post_order]
  * @property {number[]} [user_groups]
  * @property {string[]} [user_id]
- * @property {UserRegistered} [user_registered]
+ * @property {Object} [user_registered]
  * @property {UsesRestriction1} uses
  */
 /**
@@ -1614,7 +1641,7 @@ export = CartPlatformModel;
 declare class CartPlatformModel {
 }
 declare namespace CartPlatformModel {
-    export { AbandonedCart, AbandonedCartResponse, ActionQuery, ActivePromosResponse, AddCartDetailResponse, AddCartRequest, AddProductCart, AppliedFreeArticles, AppliedPromotion, ApplyCouponRequest, Article, ArticlePriceInfo, BaseInfo, BasePrice, BulkBundleRestriction, BuyRules, CartBreakup, CartCheckoutResponse, CartCurrency, CartDeliveryModesResponse, CartDetailResponse, CartItem, CartItemCountResponse, CartItemMeta, CartList, CartMetaConfigAdd, CartMetaConfigUpdate, CartMetaMissingResponse, CartMetaResponse, CartProduct, CartProductIdentifer, CartProductInfo, CategoryInfo, Charges, CheckCart, Collection, CompareObject, Coupon, CouponAction, CouponAdd, CouponAuthor, CouponBreakup, CouponDateMeta, CouponDetails, CouponPartialUpdate, CouponSchedule, CouponsResponse, CouponUpdate, CouponValidity, DeleteAddressResponse, DeleteCartDetailResponse, DeleteCartRequest, DeliveryCharges, DiscountOffer, DiscountRule, DiscountRulesApp, DisplayBreakup, DisplayMeta, DisplayMeta1, DisplayMetaDict, Files, FreeGiftItem, GeoLocation, GetCouponResponse, GetShareCartLinkRequest, GetShareCartLinkResponse, Identifier, ItemCriteria, LoyaltyPoints, MultiCartResponse, MultiTenderPaymentMeta, MultiTenderPaymentMethod, OpenapiCartDetailsRequest, OpenapiCartDetailsResponse, OpenApiCartServiceabilityRequest, OpenApiCartServiceabilityResponse, OpenApiCheckoutResponse, OpenApiErrorResponse, OpenApiFiles, OpenApiOrderItem, OpenApiPlatformCheckoutReq, OperationErrorResponse, OverrideCartItem, OverrideCartItemPromo, OverrideCheckoutReq, OverrideCheckoutResponse, Ownership, Ownership1, Ownership2, Page, PageCoupon, PaymentAllowValue, PaymentAllowValue1, PaymentCouponValidate, PaymentMeta, PaymentMethod, PaymentModes, PaymentSelectionLock, PickupStoreDetail, PlatformAddCartRequest, PlatformAddress, PlatformCartCheckoutDetailRequest, PlatformCartCheckoutDetailV2Request, PlatformCartMetaRequest, PlatformCartShipmentsResponse, PlatformGetAddressesResponse, PlatformSelectCartAddressRequest, PlatformShipmentResponse, PlatformUpdateCartRequest, PostOrder, PostOrder1, PriceAdjustment, PriceAdjustmentAdd, PriceAdjustmentResponse, PriceAdjustmentUpdate, PriceRange, ProductAction, ProductArticle, ProductAvailability, ProductAvailabilitySize, ProductImage, ProductPrice, ProductPriceInfo, PromiseFormatted, PromiseTimestamp, PromoMeta, PromotionAction, PromotionAdd, PromotionAuthor, PromotionDateMeta, PromotionListItem, PromotionPartialUpdate, PromotionPaymentModes, PromotionSchedule, PromotionsResponse, PromotionUpdate, RawBreakup, Restrictions, Restrictions1, Rule, RuleDefinition, SaveAddressResponse, SharedCart, SharedCartDetails, SharedCartResponse, ShipmentArticle, ShipmentPromise, ShippingAddress, StaffCheckout, State, StoreDetailsResponse, StoreInfo, SuccessMessage, Tags, UpdateAddressResponse, UpdateCartDetailResponse, UpdateCartPaymentRequest, UpdateCartPaymentRequestV2, UpdateCartRequest, UpdateCartShipmentItem, UpdateCartShipmentRequest, UpdateProductCart, UpdateUserCartMapping, UserCartMappingResponse, UserInfo, UserRegistered, UsesRemaining, UsesRemaining1, UsesRestriction, UsesRestriction1, Validation, Validity, Visibility };
+    export { AbandonedCart, AbandonedCartResponse, ActionQuery, ActivePromosResponse, AddCartDetailResponse, AddCartRequest, AddProductCart, AppliedFreeArticles, AppliedPromotion, ApplyCouponRequest, Article, ArticlePriceInfo, BaseInfo, BasePrice, BulkBundleRestriction, BuyRules, CartBreakup, CartCheckoutCustomMeta, CartCheckoutResponse, CartCurrency, CartDeliveryModesResponse, CartDetailResponse, CartItem, CartItemCountResponse, CartItemMeta, CartList, CartMetaConfigAdd, CartMetaConfigUpdate, CartMetaMissingResponse, CartMetaResponse, CartProduct, CartProductIdentifer, CartProductInfo, CategoryInfo, Charges, CheckCart, Collection, CompareObject, Coupon, CouponAction, CouponAdd, CouponAuthor, CouponBreakup, CouponDateMeta, CouponDetails, CouponPartialUpdate, CouponSchedule, CouponsResponse, CouponUpdate, CouponValidity, CustomerDetails, DeleteAddressResponse, DeleteCartDetailResponse, DeleteCartRequest, DeliveryCharges, DiscountOffer, DiscountRule, DiscountRulesApp, DisplayBreakup, DisplayMeta, DisplayMeta1, DisplayMetaDict, Files, FreeGiftItem, GeoLocation, GetCouponResponse, GetShareCartLinkRequest, GetShareCartLinkResponse, Identifier, ItemCriteria, LoyaltyPoints, MultiCartResponse, MultiTenderPaymentMeta, MultiTenderPaymentMethod, OpenapiCartDetailsRequest, OpenapiCartDetailsResponse, OpenApiCartServiceabilityRequest, OpenApiCartServiceabilityResponse, OpenApiCheckoutResponse, OpenApiErrorResponse, OpenApiFiles, OpenApiOrderItem, OpenApiPlatformCheckoutReq, OperationErrorResponse, OverrideCartItem, OverrideCartItemPromo, OverrideCheckoutReq, OverrideCheckoutResponse, Ownership, Ownership1, Ownership2, Page, PageCoupon, PaymentAllowValue, PaymentAllowValue1, PaymentCouponValidate, PaymentMeta, PaymentMethod, PaymentModes, PaymentSelectionLock, PickupStoreDetail, PlatformAddCartRequest, PlatformAddress, PlatformCartCheckoutDetailRequest, PlatformCartCheckoutDetailV2Request, PlatformCartMetaRequest, PlatformCartShipmentsResponse, PlatformGetAddressesResponse, PlatformSelectCartAddressRequest, PlatformShipmentResponse, PlatformUpdateCartRequest, PostOrder, PostOrder1, PriceAdjustment, PriceAdjustmentAdd, PriceAdjustmentResponse, PriceAdjustmentUpdate, PriceRange, ProductAction, ProductArticle, ProductAvailability, ProductAvailabilitySize, ProductImage, ProductPrice, ProductPriceInfo, PromiseFormatted, PromiseTimestamp, PromoMeta, PromotionAction, PromotionAdd, PromotionAuthor, PromotionDateMeta, PromotionListItem, PromotionPartialUpdate, PromotionPaymentModes, PromotionSchedule, PromotionsResponse, PromotionUpdate, RawBreakup, Restrictions, Restrictions1, Rule, RuleDefinition, SaveAddressResponse, SharedCart, SharedCartDetails, SharedCartResponse, ShipmentArticle, ShipmentPromise, ShippingAddress, StaffCheckout, State, StoreDetailsResponse, StoreInfo, SuccessMessage, Tags, UpdateAddressResponse, UpdateCartDetailResponse, UpdateCartPaymentRequest, UpdateCartPaymentRequestV2, UpdateCartRequest, UpdateCartShipmentItem, UpdateCartShipmentRequest, UpdateProductCart, UpdateUserCartMapping, UserCartMappingResponse, UserInfo, UserRegistered, UsesRemaining, UsesRemaining1, UsesRestriction, UsesRestriction1, Validation, Validity, Visibility };
 }
 /** @returns {AbandonedCart} */
 declare function AbandonedCart(): AbandonedCart;
@@ -1844,10 +1871,30 @@ type ApplyCouponRequest = {
 /** @returns {Article} */
 declare function Article(): Article;
 type Article = {
+    /**
+     * - Id of article
+     */
     article_id: string;
+    /**
+     * - Code to identify price adjustment on article
+     */
     code?: string;
+    /**
+     * - Meta related to article
+     */
     meta?: any;
+    /**
+     * - Total quantity of the article to be
+     * considered (currently used only in discount type)
+     */
+    quantity?: number;
+    /**
+     * - Type of price adjusment
+     */
     type?: string;
+    /**
+     * - Value of price adjustment for article
+     */
     value?: number;
 };
 /** @returns {ArticlePriceInfo} */
@@ -1894,6 +1941,12 @@ type CartBreakup = {
     display?: DisplayBreakup[];
     loyalty_points?: LoyaltyPoints;
     raw?: RawBreakup;
+};
+/** @returns {CartCheckoutCustomMeta} */
+declare function CartCheckoutCustomMeta(): CartCheckoutCustomMeta;
+type CartCheckoutCustomMeta = {
+    key: string;
+    value: string;
 };
 /** @returns {CartCheckoutResponse} */
 declare function CartCheckoutResponse(): CartCheckoutResponse;
@@ -2263,6 +2316,13 @@ type CouponValidity = {
     next_validation_required?: boolean;
     title?: string;
     valid?: boolean;
+};
+/** @returns {CustomerDetails} */
+declare function CustomerDetails(): CustomerDetails;
+type CustomerDetails = {
+    email?: string;
+    mobile: string;
+    name?: string;
 };
 /** @returns {DeleteAddressResponse} */
 declare function DeleteAddressResponse(): DeleteAddressResponse;
@@ -2835,6 +2895,11 @@ type PlatformCartCheckoutDetailRequest = {
     billing_address_id?: string;
     callback_url?: string;
     checkout_mode?: string;
+    custom_meta?: CartCheckoutCustomMeta[];
+    /**
+     * - Customer details
+     */
+    customer_details?: any;
     delivery_address?: any;
     device_id?: string;
     employee_code?: string;
@@ -2867,6 +2932,10 @@ type PlatformCartCheckoutDetailV2Request = {
     callback_url?: string;
     checkout_mode?: string;
     custom_meta?: any;
+    /**
+     * - Customer details
+     */
+    customer_details?: any;
     delivery_address?: any;
     device_id?: string;
     employee_code?: string;
@@ -2985,34 +3054,89 @@ type PostOrder1 = {
 /** @returns {PriceAdjustment} */
 declare function PriceAdjustment(): PriceAdjustment;
 type PriceAdjustment = {
+    /**
+     * - Flag indicating whether refunds are
+     * allowed (default: False)
+     */
     allowed_refund?: boolean;
+    /**
+     * - The date and time when the expiry should be applied
+     */
     apply_expiry?: string;
+    /**
+     * - The list of article object in the price adjustment
+     */
     article_ids: Article[];
+    /**
+     * - Flag indicating whether the
+     * distribution should is done at the article level
+     */
     article_level_distribution: boolean;
+    /**
+     * - The ID of the cart
+     */
     cart_id: string;
-    cart_value?: number;
     collection: Collection;
     id?: string;
+    /**
+     * - Flag indicating whether the user is
+     * authenticated
+     */
     is_authenticated: boolean;
+    /**
+     * - The message associated with the price adjustment
+     */
     message: string;
     meta?: any;
+    /**
+     * - Type of price adjusment
+     */
     type: string;
     value: number;
 };
 /** @returns {PriceAdjustmentAdd} */
 declare function PriceAdjustmentAdd(): PriceAdjustmentAdd;
 type PriceAdjustmentAdd = {
+    /**
+     * - Flag indicating whether refunds are
+     * allowed (default: False)
+     */
     allowed_refund?: boolean;
+    /**
+     * - The date and time when the expiry should be applied
+     */
     apply_expiry?: string;
+    /**
+     * - The list of article object in the price adjustment
+     */
     article_ids: Article[];
+    /**
+     * - Flag indicating whether the
+     * distribution should is done at the article level
+     */
     article_level_distribution: boolean;
+    /**
+     * - The ID of the cart
+     */
     cart_id: string;
-    cart_value?: number;
     collection: Collection;
+    /**
+     * - The entity that created the field
+     */
     created_by?: string;
+    /**
+     * - Flag indicating whether the user is
+     * authenticated
+     */
     is_authenticated: boolean;
+    /**
+     * - The message associated with the price adjustment
+     */
     message: string;
     meta?: any;
+    /**
+     * - Type of price adjusment
+     */
     type: string;
     value: number;
 };
@@ -3024,17 +3148,46 @@ type PriceAdjustmentResponse = {
 /** @returns {PriceAdjustmentUpdate} */
 declare function PriceAdjustmentUpdate(): PriceAdjustmentUpdate;
 type PriceAdjustmentUpdate = {
+    /**
+     * - Flag indicating whether refunds are
+     * allowed (default: False)
+     */
     allowed_refund?: boolean;
+    /**
+     * - The date and time when the expiry should be applied
+     */
     apply_expiry?: string;
+    /**
+     * - The list of article object in the price adjustment
+     */
     article_ids: Article[];
+    /**
+     * - Flag indicating whether the
+     * distribution should is done at the article level
+     */
     article_level_distribution: boolean;
+    /**
+     * - The ID of the cart
+     */
     cart_id: string;
-    cart_value?: number;
     collection: Collection;
+    /**
+     * - Flag indicating whether the user is
+     * authenticated
+     */
     is_authenticated: boolean;
+    /**
+     * - The message associated with the price adjustment
+     */
     message: string;
     meta?: any;
+    /**
+     * - The entity that modified the field
+     */
     modified_by?: string;
+    /**
+     * - Type of price adjusment
+     */
     type: string;
     value: number;
 };
@@ -3181,30 +3334,77 @@ type PromotionDateMeta = {
 /** @returns {PromotionListItem} */
 declare function PromotionListItem(): PromotionListItem;
 type PromotionListItem = {
+    /**
+     * - Custom data stored in promotion
+     */
     _custom_json?: any;
+    /**
+     * - Promotion id
+     */
+    _id?: string;
     _schedule?: PromotionSchedule;
+    /**
+     * - App id in which promotion will be used
+     */
     application_id: string;
+    /**
+     * - Prevents more than one promotion discounts
+     */
     apply_all_discount?: boolean;
+    /**
+     * - Doesn't allow other promotion after
+     * current promotion applied on cart or article
+     */
     apply_exclusive?: string;
+    /**
+     * - Priority based on which promotion are
+     * applied on articles
+     */
     apply_priority?: number;
     author?: PromotionAuthor;
+    /**
+     * - Buy rules for the promotion
+     */
     buy_rules: any;
     /**
      * - Only available for Contract pricing and
      * Ladder pricing promotion type
      */
     calculate_on?: string;
+    /**
+     * - Promotion code
+     */
     code?: string;
+    /**
+     * - Currency used for promotion
+     */
     currency?: string;
     date_meta?: PromotionDateMeta;
+    /**
+     * - Discount rules based on which
+     * promotion will be applied
+     */
     discount_rules: DiscountRule[];
     display_meta: DisplayMeta1;
+    /**
+     * - Promotion mode
+     */
     mode: string;
     ownership: Ownership1;
     post_order_action?: PromotionAction;
+    /**
+     * - Group into which promotion fall
+     */
     promo_group: string;
+    /**
+     * - Type of the promotion
+     */
     promotion_type: string;
     restrictions?: Restrictions1;
+    /**
+     * - Allows more than one promotion to get
+     * combined benefits
+     */
     stackable?: boolean;
     visiblility?: Visibility;
 };
@@ -3312,7 +3512,7 @@ type Restrictions1 = {
     post_order?: PostOrder1;
     user_groups?: number[];
     user_id?: string[];
-    user_registered?: UserRegistered;
+    user_registered?: any;
     uses: UsesRestriction1;
 };
 /** @returns {Rule} */

@@ -46,20 +46,6 @@ export = CommunicationApplicationModel;
  * @property {string} [user_id]
  */
 /**
- * @typedef NotFound
- * @property {string} [message] - Failure message.
- */
-/**
- * @typedef Page
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {boolean} [has_previous]
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {number} [size]
- * @property {string} type
- */
-/**
  * @typedef PushtokenReq
  * @property {string} [action]
  * @property {string} [bundle_identifier]
@@ -84,7 +70,7 @@ export = CommunicationApplicationModel;
 declare class CommunicationApplicationModel {
 }
 declare namespace CommunicationApplicationModel {
-    export { BadRequestSchema, CommunicationConsent, CommunicationConsentChannels, CommunicationConsentChannelsEmail, CommunicationConsentChannelsSms, CommunicationConsentChannelsWhatsapp, CommunicationConsentReq, CommunicationConsentRes, NotFound, Page, PushtokenReq, PushtokenRes };
+    export { BadRequestSchema, CommunicationConsent, CommunicationConsentChannels, CommunicationConsentChannelsEmail, CommunicationConsentChannelsSms, CommunicationConsentChannelsWhatsapp, CommunicationConsentReq, CommunicationConsentRes, PushtokenReq, PushtokenRes };
 }
 /** @returns {BadRequestSchema} */
 declare function BadRequestSchema(): BadRequestSchema;
@@ -145,25 +131,6 @@ type CommunicationConsentRes = {
     app_id?: string;
     channels?: CommunicationConsentChannels;
     user_id?: string;
-};
-/** @returns {NotFound} */
-declare function NotFound(): NotFound;
-type NotFound = {
-    /**
-     * - Failure message.
-     */
-    message?: string;
-};
-/** @returns {Page} */
-declare function Page(): Page;
-type Page = {
-    current?: number;
-    has_next?: boolean;
-    has_previous?: boolean;
-    item_total?: number;
-    next_id?: string;
-    size?: number;
-    type: string;
 };
 /** @returns {PushtokenReq} */
 declare function PushtokenReq(): PushtokenReq;

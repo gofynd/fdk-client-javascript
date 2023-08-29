@@ -6,6 +6,8 @@ module.exports = {
 
     InventoryPublicModel: require("./Inventory/InventoryPublicModel"),
 
+    PartnerPublicModel: require("./Partner/PartnerPublicModel"),
+
     WebhookPublicModel: require("./Webhook/WebhookPublicModel"),
   },
 };

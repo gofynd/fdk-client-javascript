@@ -9,8 +9,8 @@ export = ServiceabilityPlatformApplicationValidator;
  *   identifier of a particular delivery partner.
  */
 /** @typedef GetApplicationServiceabilityParam */
-/** @typedef GetApplicationServiceabilitySelfShipmentParam */
 /** @typedef GetDpApplicationRulesParam */
+/** @typedef GetSelfShipParam */
 /**
  * @typedef GetZoneFromPincodeViewParam
  * @property {ServiceabilityPlatformModel.GetZoneFromPincodeViewRequest} body
@@ -23,8 +23,8 @@ export = ServiceabilityPlatformApplicationValidator;
  * @property {string} [q] - Search with name as a free text
  */
 /**
- * @typedef PatchApplicationServiceabilitySelfShipmentParam
- * @property {ServiceabilityPlatformModel.SelfShipResponse} body
+ * @typedef UpdateApplicationServiceabilityParam
+ * @property {ServiceabilityPlatformModel.ServiceabilityPayloadSchema} body
  */
 /**
  * @typedef UpdatePincodeAuditHistoryParam
@@ -43,6 +43,10 @@ export = ServiceabilityPlatformApplicationValidator;
  * @property {ServiceabilityPlatformModel.PincodeMopData} body
  */
 /**
+ * @typedef UpdateSelfShipParam
+ * @property {ServiceabilityPlatformModel.SelfShipResponse} body
+ */
+/**
  * @typedef UpsertDpApplicationRulesParam
  * @property {ServiceabilityPlatformModel.DPApplicationRuleRequest} body
  */
@@ -53,16 +57,16 @@ declare class ServiceabilityPlatformApplicationValidator {
     static deleteAppDp(): DeleteAppDpParam;
     /** @returns {GetApplicationServiceabilityParam} */
     static getApplicationServiceability(): any;
-    /** @returns {GetApplicationServiceabilitySelfShipmentParam} */
-    static getApplicationServiceabilitySelfShipment(): any;
     /** @returns {GetDpApplicationRulesParam} */
     static getDpApplicationRules(): any;
+    /** @returns {GetSelfShipParam} */
+    static getSelfShip(): any;
     /** @returns {GetZoneFromPincodeViewParam} */
     static getZoneFromPincodeView(): GetZoneFromPincodeViewParam;
     /** @returns {GetZonesFromApplicationIdViewParam} */
     static getZonesFromApplicationIdView(): GetZonesFromApplicationIdViewParam;
-    /** @returns {PatchApplicationServiceabilitySelfShipmentParam} */
-    static patchApplicationServiceabilitySelfShipment(): PatchApplicationServiceabilitySelfShipmentParam;
+    /** @returns {UpdateApplicationServiceabilityParam} */
+    static updateApplicationServiceability(): UpdateApplicationServiceabilityParam;
     /** @returns {UpdatePincodeAuditHistoryParam} */
     static updatePincodeAuditHistory(): UpdatePincodeAuditHistoryParam;
     /** @returns {UpdatePincodeBulkViewParam} */
@@ -71,11 +75,13 @@ declare class ServiceabilityPlatformApplicationValidator {
     static updatePincodeCoDListing(): UpdatePincodeCoDListingParam;
     /** @returns {UpdatePincodeMopViewParam} */
     static updatePincodeMopView(): UpdatePincodeMopViewParam;
+    /** @returns {UpdateSelfShipParam} */
+    static updateSelfShip(): UpdateSelfShipParam;
     /** @returns {UpsertDpApplicationRulesParam} */
     static upsertDpApplicationRules(): UpsertDpApplicationRulesParam;
 }
 declare namespace ServiceabilityPlatformApplicationValidator {
-    export { AddAppDpParam, DeleteAppDpParam, GetApplicationServiceabilityParam, GetApplicationServiceabilitySelfShipmentParam, GetDpApplicationRulesParam, GetZoneFromPincodeViewParam, GetZonesFromApplicationIdViewParam, PatchApplicationServiceabilitySelfShipmentParam, UpdatePincodeAuditHistoryParam, UpdatePincodeBulkViewParam, UpdatePincodeCoDListingParam, UpdatePincodeMopViewParam, UpsertDpApplicationRulesParam };
+    export { AddAppDpParam, DeleteAppDpParam, GetApplicationServiceabilityParam, GetDpApplicationRulesParam, GetSelfShipParam, GetZoneFromPincodeViewParam, GetZonesFromApplicationIdViewParam, UpdateApplicationServiceabilityParam, UpdatePincodeAuditHistoryParam, UpdatePincodeBulkViewParam, UpdatePincodeCoDListingParam, UpdatePincodeMopViewParam, UpdateSelfShipParam, UpsertDpApplicationRulesParam };
 }
 type AddAppDpParam = {
     body: ServiceabilityPlatformModel.ApplicationCompanyDpViewRequest;
@@ -108,8 +114,8 @@ type GetZonesFromApplicationIdViewParam = {
      */
     q?: string;
 };
-type PatchApplicationServiceabilitySelfShipmentParam = {
-    body: ServiceabilityPlatformModel.SelfShipResponse;
+type UpdateApplicationServiceabilityParam = {
+    body: ServiceabilityPlatformModel.ServiceabilityPayloadSchema;
 };
 type UpdatePincodeAuditHistoryParam = {
     body: ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryRequest;
@@ -123,10 +129,13 @@ type UpdatePincodeCoDListingParam = {
 type UpdatePincodeMopViewParam = {
     body: ServiceabilityPlatformModel.PincodeMopData;
 };
+type UpdateSelfShipParam = {
+    body: ServiceabilityPlatformModel.SelfShipResponse;
+};
 type UpsertDpApplicationRulesParam = {
     body: ServiceabilityPlatformModel.DPApplicationRuleRequest;
 };
 type GetApplicationServiceabilityParam = any;
-type GetApplicationServiceabilitySelfShipmentParam = any;
 type GetDpApplicationRulesParam = any;
+type GetSelfShipParam = any;
 import ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");

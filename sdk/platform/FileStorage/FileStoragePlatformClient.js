@@ -23,14 +23,15 @@ class FileStorage {
    * @description: Browse Files - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/browse/).
    */
   async browse(
-    { namespace, pageNo, requestHeaders } = { requestHeaders: {} },
+    { namespace, page, limit, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = FileStoragePlatformValidator.browse().validate(
       {
         namespace,
 
-        pageNo,
+        page,
+        limit,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -43,7 +44,8 @@ class FileStorage {
       {
         namespace,
 
-        pageNo,
+        page,
+        limit,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -55,14 +57,15 @@ class FileStorage {
     }
 
     const query_params = {};
-    query_params["page_no"] = pageNo;
+    query_params["page"] = page;
+    query_params["limit"] = limit;
 
     const xHeaders = {};
 
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/namespaces/${namespace}/browse/`,
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/namespaces/${namespace}/browse`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },
@@ -89,34 +92,6 @@ class FileStorage {
     }
 
     return response;
-  }
-
-  /**
-   * @param {Object} arg - Arg object.
-   * @param {string} arg.namespace - Bucket name
-   * @returns {Paginator<FileStoragePlatformModel.BrowseResponse>}
-   * @summary: Browse Files
-   * @description: Browse Files
-   */
-  browsePaginator({ namespace } = {}) {
-    const paginator = new Paginator();
-    const callback = async () => {
-      const pageId = paginator.nextId;
-      const pageNo = paginator.pageNo;
-      const pageType = "number";
-      const data = await this.browse({
-        namespace: namespace,
-
-        pageNo: pageNo,
-      });
-      paginator.setPaginator({
-        hasNext: data.page.has_next ? true : false,
-        nextId: data.page.next_id,
-      });
-      return data;
-    };
-    paginator.setCallback(callback.bind(this));
-    return paginator;
   }
 
   /**
@@ -187,7 +162,7 @@ class FileStorage {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/namespaces/${namespace}/upload/complete/`,
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/namespaces/${namespace}/upload/complete`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -220,7 +195,7 @@ class FileStorage {
    * @param {FileStoragePlatformValidator.CopyFilesParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<FileStoragePlatformModel.BulkUploadResponse>} - Success response
+   * @returns {Promise<FileStoragePlatformModel.BulkUploadSyncMode>} - Success response
    * @name copyFiles
    * @summary: Copy Files
    * @description: Copy Files - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/copyFiles/).
@@ -265,7 +240,7 @@ class FileStorage {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/uploads/copy/`,
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/uploads/copy`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -279,7 +254,7 @@ class FileStorage {
 
     const {
       error: res_error,
-    } = FileStoragePlatformModel.BulkUploadResponse().validate(responseData, {
+    } = FileStoragePlatformModel.BulkUploadSyncMode().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -340,7 +315,7 @@ class FileStorage {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/sign-urls/`,
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/sign-urls`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -414,7 +389,7 @@ class FileStorage {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/proxy/`,
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/proxy`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },
@@ -508,7 +483,7 @@ class FileStorage {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/namespaces/${namespace}/upload/start/`,
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/namespaces/${namespace}/upload/start`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },

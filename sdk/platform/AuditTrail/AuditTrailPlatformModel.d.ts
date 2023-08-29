@@ -80,14 +80,10 @@ export = AuditTrailPlatformModel;
  * @property {LogMetaObj} log_meta
  * @property {Object} log_payload
  */
-/**
- * @typedef ResourceNotFound
- * @property {string} [message] - Resource not found with {id}
- */
 declare class AuditTrailPlatformModel {
 }
 declare namespace AuditTrailPlatformModel {
-    export { BadRequest, CreateLogResponse, DeviceInfo, EntityObj, EntityObject, EntityTypeObj, EntityTypesResponse, InternalServerError, Location, LogDocs, LogMetaObj, LogSchemaResponse, Modifier, RequestBodyAuditLog, ResourceNotFound };
+    export { BadRequest, CreateLogResponse, DeviceInfo, EntityObj, EntityObject, EntityTypeObj, EntityTypesResponse, InternalServerError, Location, LogDocs, LogMetaObj, LogSchemaResponse, Modifier, RequestBodyAuditLog };
 }
 /** @returns {BadRequest} */
 declare function BadRequest(): BadRequest;
@@ -192,12 +188,4 @@ declare function RequestBodyAuditLog(): RequestBodyAuditLog;
 type RequestBodyAuditLog = {
     log_meta: LogMetaObj;
     log_payload: any;
-};
-/** @returns {ResourceNotFound} */
-declare function ResourceNotFound(): ResourceNotFound;
-type ResourceNotFound = {
-    /**
-     * - Resource not found with {id}
-     */
-    message?: string;
 };

@@ -1,3 +1,5 @@
+const Theme = require("./Theme/ThemePartnerClient");
+
 const { FDKClientValidationError } = require("../common/FDKError");
 
 /**
@@ -14,6 +16,7 @@ class PartnerClient {
    */
   constructor(config) {
     this.config = config;
+    this.theme = new Theme(config);
   }
 
   /**

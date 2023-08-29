@@ -11,17 +11,7 @@ declare class FileStorage {
      * @summary: Browse Files
      * @description: Browse Files - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/browse/).
      */
-    browse({ namespace, pageNo, requestHeaders }?: FileStoragePlatformValidator.BrowseParam, { responseHeaders }?: object): Promise<FileStoragePlatformModel.BrowseResponse>;
-    /**
-     * @param {Object} arg - Arg object.
-     * @param {string} arg.namespace - Bucket name
-     * @returns {Paginator<FileStoragePlatformModel.BrowseResponse>}
-     * @summary: Browse Files
-     * @description: Browse Files
-     */
-    browsePaginator({ namespace }?: {
-        namespace: string;
-    }): Paginator<FileStoragePlatformModel.BrowseResponse>;
+    browse({ namespace, page, limit, requestHeaders }?: FileStoragePlatformValidator.BrowseParam, { responseHeaders }?: object): Promise<FileStoragePlatformModel.BrowseResponse>;
     /**
      * @param {FileStoragePlatformValidator.CompleteUploadParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -54,12 +44,12 @@ declare class FileStorage {
      * @param {FileStoragePlatformValidator.CopyFilesParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<FileStoragePlatformModel.BulkUploadResponse>} - Success response
+     * @returns {Promise<FileStoragePlatformModel.BulkUploadSyncMode>} - Success response
      * @name copyFiles
      * @summary: Copy Files
      * @description: Copy Files - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/copyFiles/).
      */
-    copyFiles({ body, sync, requestHeaders }?: FileStoragePlatformValidator.CopyFilesParam, { responseHeaders }?: object): Promise<FileStoragePlatformModel.BulkUploadResponse>;
+    copyFiles({ body, sync, requestHeaders }?: FileStoragePlatformValidator.CopyFilesParam, { responseHeaders }?: object): Promise<FileStoragePlatformModel.BulkUploadSyncMode>;
     /**
      * @param {FileStoragePlatformValidator.GetSignUrlsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -127,4 +117,3 @@ declare class FileStorage {
 }
 import FileStoragePlatformValidator = require("./FileStoragePlatformValidator");
 import FileStoragePlatformModel = require("./FileStoragePlatformModel");
-import Paginator = require("../../common/Paginator");

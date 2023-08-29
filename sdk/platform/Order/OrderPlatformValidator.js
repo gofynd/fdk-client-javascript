@@ -42,6 +42,16 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
+ * @typedef DownloadLanesReportParam
+ * @property {OrderPlatformModel.BulkReportsDownloadRequest} body
+ */
+
+/**
+ * @typedef EInvoiceRetryParam
+ * @property {OrderPlatformModel.EInvoiceRetry} body
+ */
+
+/**
  * @typedef FetchCreditBalanceDetailParam
  * @property {OrderPlatformModel.FetchCreditBalanceRequestPayload} body
  */
@@ -56,6 +66,12 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @property {string} orderId
  * @property {string} [shipmentId]
  * @property {string} [documentType]
+ */
+
+/**
+ * @typedef GetAllowedStateTransitionParam
+ * @property {string} orderingChannel - Ordering channel
+ * @property {string} status - Current status of a shipment
  */
 
 /**
@@ -121,6 +137,8 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @property {string} [timeToDispatch]
  * @property {string} [paymentMethods]
  * @property {boolean} [myOrders]
+ * @property {boolean} [showCrossCompanyData] - Flag to view cross & non-cross
+ *   company order
  */
 
 /**
@@ -152,6 +170,9 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @property {boolean} [isPrioritySort]
  * @property {string} [customMeta]
  * @property {boolean} [myOrders]
+ * @property {boolean} [showCrossCompanyData] - Flag to view cross & non-cross
+ *   company order
+ * @property {string} [customerId]
  */
 
 /** @typedef GetRoleBasedActionsParam */
@@ -184,7 +205,7 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @property {string} [bagStatus] - Comma separated values of bag statuses
  * @property {boolean} [statusOverrideLane] - Use this flag to fetch by
  *   bag_status and override lane
- * @property {string} [timeToDispatch]
+ * @property {number} [timeToDispatch]
  * @property {string} [searchType] - Search type key
  * @property {string} [searchValue] - Search type value
  * @property {string} [fromDate] - Start Date in DD-MM-YYYY format
@@ -204,7 +225,11 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @property {string} [companyAffiliateTag]
  * @property {boolean} [myOrders]
  * @property {string} [platformUserId]
+ * @property {string} [sortType] - Sort the result data on basis of input
+ * @property {boolean} [showCrossCompanyData] - Flag to view cross & non-cross
+ *   company order
  * @property {string} [tags] - Comma separated values of tags
+ * @property {string} [customerId]
  */
 
 /** @typedef GetStateTransitionMapParam */
@@ -251,6 +276,14 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
+ * @typedef TrackShipmentParam
+ * @property {string} [shipmentId] - Shipment ID
+ * @property {string} [awb] - AWB number
+ * @property {number} [pageNo] - Page number
+ * @property {number} [pageSize] - Page size
+ */
+
+/**
  * @typedef UpdateAddressParam
  * @property {string} shipmentId
  * @property {string} [name]
@@ -279,6 +312,11 @@ const OrderPlatformModel = require("./OrderPlatformModel");
 /**
  * @typedef UpdateShipmentStatusParam
  * @property {OrderPlatformModel.UpdateShipmentStatusRequest} body
+ */
+
+/**
+ * @typedef UpdateShipmentTrackingParam
+ * @property {OrderPlatformModel.CourierPartnerTrackingDetails} body
  */
 
 /**
@@ -345,6 +383,20 @@ class OrderPlatformValidator {
     }).required();
   }
 
+  /** @returns {DownloadLanesReportParam} */
+  static downloadLanesReport() {
+    return Joi.object({
+      body: OrderPlatformModel.BulkReportsDownloadRequest().required(),
+    }).required();
+  }
+
+  /** @returns {EInvoiceRetryParam} */
+  static eInvoiceRetry() {
+    return Joi.object({
+      body: OrderPlatformModel.EInvoiceRetry().required(),
+    }).required();
+  }
+
   /** @returns {FetchCreditBalanceDetailParam} */
   static fetchCreditBalanceDetail() {
     return Joi.object({
@@ -365,6 +417,14 @@ class OrderPlatformValidator {
       orderId: Joi.string().allow("").required(),
       shipmentId: Joi.string().allow(""),
       documentType: Joi.string().allow(""),
+    }).required();
+  }
+
+  /** @returns {GetAllowedStateTransitionParam} */
+  static getAllowedStateTransition() {
+    return Joi.object({
+      orderingChannel: Joi.string().allow("").required(),
+      status: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -445,6 +505,7 @@ class OrderPlatformValidator {
       timeToDispatch: Joi.string().allow(""),
       paymentMethods: Joi.string().allow(""),
       myOrders: Joi.boolean(),
+      showCrossCompanyData: Joi.boolean(),
     }).required();
   }
 
@@ -475,6 +536,8 @@ class OrderPlatformValidator {
       isPrioritySort: Joi.boolean(),
       customMeta: Joi.string().allow(""),
       myOrders: Joi.boolean(),
+      showCrossCompanyData: Joi.boolean(),
+      customerId: Joi.string().allow(""),
     }).required();
   }
 
@@ -514,7 +577,7 @@ class OrderPlatformValidator {
       lane: Joi.string().allow(""),
       bagStatus: Joi.string().allow(""),
       statusOverrideLane: Joi.boolean(),
-      timeToDispatch: Joi.string().allow(""),
+      timeToDispatch: Joi.number(),
       searchType: Joi.string().allow(""),
       searchValue: Joi.string().allow(""),
       fromDate: Joi.string().allow(""),
@@ -534,7 +597,10 @@ class OrderPlatformValidator {
       companyAffiliateTag: Joi.string().allow(""),
       myOrders: Joi.boolean(),
       platformUserId: Joi.string().allow(""),
+      sortType: Joi.string().allow(""),
+      showCrossCompanyData: Joi.boolean(),
       tags: Joi.string().allow(""),
+      customerId: Joi.string().allow(""),
     }).required();
   }
 
@@ -600,6 +666,16 @@ class OrderPlatformValidator {
     }).required();
   }
 
+  /** @returns {TrackShipmentParam} */
+  static trackShipment() {
+    return Joi.object({
+      shipmentId: Joi.string().allow(""),
+      awb: Joi.string().allow(""),
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+    }).required();
+  }
+
   /** @returns {UpdateAddressParam} */
   static updateAddress() {
     return Joi.object({
@@ -636,6 +712,13 @@ class OrderPlatformValidator {
   static updateShipmentStatus() {
     return Joi.object({
       body: OrderPlatformModel.UpdateShipmentStatusRequest().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateShipmentTrackingParam} */
+  static updateShipmentTracking() {
+    return Joi.object({
+      body: OrderPlatformModel.CourierPartnerTrackingDetails().required(),
     }).required();
   }
 

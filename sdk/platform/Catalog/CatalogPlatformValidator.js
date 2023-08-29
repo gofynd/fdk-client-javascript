@@ -138,6 +138,9 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 /**
  * @typedef DownloadProductTemplateViewsParam
  * @property {string} slug - A `slug` is a unique identifier for a particular template.
+ * @property {string} [itemType] - An `item_type` defines the type of item. The
+ *   default value is standard.
+ * @property {string} [type] - Format type of the sample file. The default value is excel.
  */
 
 /**
@@ -497,6 +500,12 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 /**
  * @typedef ValidateProductTemplateParam
  * @property {string} slug - A `slug` is a unique identifier for a particular template.
+ * @property {string} [itemType] - An `item_type` defines the type of item. The
+ *   default value is standard.
+ * @property {boolean} [bulk] - This specification determines the schema type to
+ *   be retrieved. When set to true, it will return the schema for bulk data;
+ *   when set to false, it will provide the schema for a single product. The
+ *   default value is false.
  */
 
 /**
@@ -688,6 +697,8 @@ class CatalogPlatformValidator {
   static downloadProductTemplateViews() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
+      itemType: Joi.string().allow(""),
+      type: Joi.string().allow(""),
     }).required();
   }
 
@@ -1109,6 +1120,8 @@ class CatalogPlatformValidator {
   static validateProductTemplate() {
     return Joi.object({
       slug: Joi.string().allow("").required(),
+      itemType: Joi.string().allow(""),
+      bulk: Joi.boolean(),
     }).required();
   }
 

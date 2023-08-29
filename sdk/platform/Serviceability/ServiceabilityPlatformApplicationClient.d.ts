@@ -44,20 +44,6 @@ declare class Serviceability {
      */
     getApplicationServiceability({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ApplicationServiceabilityConfigResponse>;
     /**
-     * @param {ServiceabilityPlatformApplicationValidator.GetApplicationServiceabilitySelfShipmentParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>}
-     *   - Success response
-     *
-     * @name getApplicationServiceabilitySelfShipment
-     * @summary: Self-ship configuration of application.
-     * @description: This API returns Self-ship configuration of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getApplicationServiceabilitySelfShipment/).
-     */
-    getApplicationServiceabilitySelfShipment({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>;
-    /**
      * @param {ServiceabilityPlatformApplicationValidator.GetDpApplicationRulesParam} arg
      *   - Arg object
      *
@@ -71,6 +57,20 @@ declare class Serviceability {
      * @description: This API returns response of all rules of DpApplicationRules from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getDpApplicationRules/).
      */
     getDpApplicationRules({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.DPApplicationRuleResponse>;
+    /**
+     * @param {ServiceabilityPlatformApplicationValidator.GetSelfShipParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>}
+     *   - Success response
+     *
+     * @name getSelfShip
+     * @summary: Self-ship configuration of application.
+     * @description: This API returns Self-ship configuration of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getSelfShip/).
+     */
+    getSelfShip({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>;
     /**
      * @param {ServiceabilityPlatformApplicationValidator.GetZoneFromPincodeViewParam} arg
      *   - Arg object
@@ -100,19 +100,19 @@ declare class Serviceability {
      */
     getZonesFromApplicationIdView({ pageNo, pageSize, zoneId, q, requestHeaders }?: ServiceabilityPlatformApplicationValidator.GetZonesFromApplicationIdViewParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.GetZoneFromApplicationIdViewResponse>;
     /**
-     * @param {ServiceabilityPlatformApplicationValidator.PatchApplicationServiceabilitySelfShipmentParam} arg
+     * @param {ServiceabilityPlatformApplicationValidator.UpdateApplicationServiceabilityParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>}
+     * @returns {Promise<ServiceabilityPlatformModel.ApplicationServiceabilityConfigResponse>}
      *   - Success response
      *
-     * @name patchApplicationServiceabilitySelfShipment
-     * @summary: Self-ship configuration of application.
-     * @description: This API updates Self-ship configuration of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/patchApplicationServiceabilitySelfShipment/).
+     * @name updateApplicationServiceability
+     * @summary: Zone configuration of application.
+     * @description: This API updates serviceability config of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateApplicationServiceability/).
      */
-    patchApplicationServiceabilitySelfShipment({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.PatchApplicationServiceabilitySelfShipmentParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>;
+    updateApplicationServiceability({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdateApplicationServiceabilityParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ApplicationServiceabilityConfigResponse>;
     /**
      * @param {ServiceabilityPlatformApplicationValidator.UpdatePincodeAuditHistoryParam} arg
      *   - Arg object
@@ -168,6 +168,20 @@ declare class Serviceability {
      * @description: This API updates Pincode method of payment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updatePincodeMopView/).
      */
     updatePincodeMopView({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdatePincodeMopViewParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.PincodeMOPresponse>;
+    /**
+     * @param {ServiceabilityPlatformApplicationValidator.UpdateSelfShipParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>}
+     *   - Success response
+     *
+     * @name updateSelfShip
+     * @summary: Self-ship configuration of application.
+     * @description: This API updates Self-ship configuration of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateSelfShip/).
+     */
+    updateSelfShip({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdateSelfShipParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>;
     /**
      * @param {ServiceabilityPlatformApplicationValidator.UpsertDpApplicationRulesParam} arg
      *   - Arg object

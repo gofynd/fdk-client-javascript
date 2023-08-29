@@ -22,6 +22,7 @@ const Joi = require("joi");
  * @property {number[]} [brand_ids]
  * @property {number} company_id
  * @property {string} discount_level
+ * @property {DiscountMeta} [discount_meta]
  * @property {string} discount_type
  * @property {string[]} extension_ids
  * @property {string} [file_path]
@@ -36,6 +37,7 @@ const Joi = require("joi");
 /**
  * @typedef DiscountItems
  * @property {number} [brand_uid]
+ * @property {DiscountMeta} [discount_meta]
  * @property {string} discount_type
  * @property {string} [item_code]
  * @property {string} [seller_identifier]
@@ -51,6 +53,7 @@ const Joi = require("joi");
  * @property {UserDetails} created_by
  * @property {string} created_on
  * @property {string} [discount_level]
+ * @property {DiscountMeta} [discount_meta]
  * @property {string} [discount_type]
  * @property {string} [file_path]
  * @property {boolean} is_active
@@ -62,6 +65,16 @@ const Joi = require("joi");
  * @property {number[]} [store_ids]
  * @property {ValidityObject} validity
  * @property {number} [value]
+ */
+
+/**
+ * @typedef DiscountMeta
+ * @property {number} [hours] - The time in hours before the discount ends when
+ *   the countdown timer should start.
+ * @property {number} [minutes] - The time in minutes before the discount ends
+ *   when the countdown timer should start.
+ * @property {boolean} timer - Determines whether the discount countdown is
+ *   visible or not.
  */
 
 /**
@@ -87,6 +100,7 @@ const Joi = require("joi");
 
 /**
  * @typedef FileJobResponse
+ * @property {string} _id - A unique identifier to distinguish and identify a job.
  * @property {Object} [body]
  * @property {number} company_id
  * @property {number} failed
@@ -157,6 +171,7 @@ class DiscountPlatformModel {
       brand_ids: Joi.array().items(Joi.number()),
       company_id: Joi.number().required(),
       discount_level: Joi.string().allow("").required(),
+      discount_meta: DiscountPlatformModel.DiscountMeta(),
       discount_type: Joi.string().allow("").required(),
       extension_ids: Joi.array().items(Joi.string().allow("")).required(),
       file_path: Joi.string().allow(""),
@@ -173,6 +188,7 @@ class DiscountPlatformModel {
   static DiscountItems() {
     return Joi.object({
       brand_uid: Joi.number(),
+      discount_meta: DiscountPlatformModel.DiscountMeta(),
       discount_type: Joi.string().allow("").required(),
       item_code: Joi.string().allow(""),
       seller_identifier: Joi.string().allow(""),
@@ -190,6 +206,7 @@ class DiscountPlatformModel {
       created_by: DiscountPlatformModel.UserDetails().required(),
       created_on: Joi.string().allow("").required(),
       discount_level: Joi.string().allow(""),
+      discount_meta: DiscountPlatformModel.DiscountMeta(),
       discount_type: Joi.string().allow(""),
       file_path: Joi.string().allow(""),
       is_active: Joi.boolean().required(),
@@ -201,6 +218,15 @@ class DiscountPlatformModel {
       store_ids: Joi.array().items(Joi.number()),
       validity: DiscountPlatformModel.ValidityObject().required(),
       value: Joi.number(),
+    });
+  }
+
+  /** @returns {DiscountMeta} */
+  static DiscountMeta() {
+    return Joi.object({
+      hours: Joi.number(),
+      minutes: Joi.number(),
+      timer: Joi.boolean().required(),
     });
   }
 
@@ -232,6 +258,7 @@ class DiscountPlatformModel {
   /** @returns {FileJobResponse} */
   static FileJobResponse() {
     return Joi.object({
+      _id: Joi.string().allow("").required(),
       body: Joi.any(),
       company_id: Joi.number().required(),
       failed: Joi.number().required(),

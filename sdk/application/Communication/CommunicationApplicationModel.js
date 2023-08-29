@@ -55,22 +55,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef NotFound
- * @property {string} [message] - Failure message.
- */
-
-/**
- * @typedef Page
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {boolean} [has_previous]
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {number} [size]
- * @property {string} type
- */
-
-/**
  * @typedef PushtokenReq
  * @property {string} [action]
  * @property {string} [bundle_identifier]
@@ -162,26 +146,6 @@ class CommunicationApplicationModel {
       app_id: Joi.string().allow(""),
       channels: CommunicationApplicationModel.CommunicationConsentChannels(),
       user_id: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {NotFound} */
-  static NotFound() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {Page} */
-  static Page() {
-    return Joi.object({
-      current: Joi.number(),
-      has_next: Joi.boolean(),
-      has_previous: Joi.boolean(),
-      item_total: Joi.number(),
-      next_id: Joi.string().allow(""),
-      size: Joi.number(),
-      type: Joi.string().allow("").required(),
     });
   }
 

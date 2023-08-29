@@ -59,6 +59,8 @@ export = UserPlatformApplicationValidator;
 /**
  * @typedef SearchUsersParam
  * @property {string} [q] - The search query. Mobile number or email ID of a customer.
+ * @property {string[]} [query] - The search queries. Mobile numbers or email
+ *   IDs of customers.
  */
 /**
  * @typedef UnDeleteUserParam
@@ -212,6 +214,11 @@ type SearchUsersParam = {
      * - The search query. Mobile number or email ID of a customer.
      */
     q?: string;
+    /**
+     * - The search queries. Mobile numbers or email
+     * IDs of customers.
+     */
+    query?: string[];
 };
 type UnDeleteUserParam = {
     body: UserPlatformModel.UnDeleteUserRequestSchema;

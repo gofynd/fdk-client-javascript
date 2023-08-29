@@ -3,13 +3,18 @@ const Joi = require("joi");
 const ThemePlatformModel = require("./ThemePlatformModel");
 
 /**
+ * @typedef AddThemeToApplicationParam
+ * @property {ThemePlatformModel.ThemeReq} body
+ */
+
+/**
  * @typedef AddToThemeLibraryParam
  * @property {ThemePlatformModel.AddThemeRequestSchema} body
  */
 
 /**
  * @typedef ApplyThemeParam
- * @property {ThemePlatformModel.AddThemeRequestSchema} body
+ * @property {string} themeId - The ID of the apply
  */
 
 /**
@@ -24,11 +29,6 @@ const ThemePlatformModel = require("./ThemePlatformModel");
  */
 
 /**
- * @typedef CreateThemeParam
- * @property {ThemePlatformModel.ThemesSchema} body
- */
-
-/**
  * @typedef DeletePageParam
  * @property {string} themeId - ID of the theme
  * @property {string} pageValue - Value of the page to be updated
@@ -36,13 +36,22 @@ const ThemePlatformModel = require("./ThemePlatformModel");
 
 /**
  * @typedef DeleteThemeParam
- * @property {string} themeId - ID allotted to the theme.
+ * @property {string} themeId - The ID of the theme to be deleted.
+ */
+
+/**
+ * @typedef DuplicateThemeParam
+ * @property {string} themeId - The ID of the theme to be duplicated
  */
 
 /**
  * @typedef GetAllPagesParam
  * @property {string} themeId - ID of the theme to be retrieved
  */
+
+/** @typedef GetApplicationThemesParam */
+
+/** @typedef GetApplicationThemesCountParam */
 
 /** @typedef GetAppliedThemeParam */
 
@@ -64,12 +73,12 @@ const ThemePlatformModel = require("./ThemePlatformModel");
 
 /**
  * @typedef GetThemeByIdParam
- * @property {string} themeId - ID allotted to the theme.
+ * @property {string} themeId - The ID of the theme
  */
 
 /**
  * @typedef GetThemeForPreviewParam
- * @property {string} themeId - ID allotted to the theme.
+ * @property {string} themeId - The ID of the theme
  */
 
 /**
@@ -87,7 +96,7 @@ const ThemePlatformModel = require("./ThemePlatformModel");
 
 /**
  * @typedef IsUpgradableParam
- * @property {string} themeId - Theme ID
+ * @property {string} themeId - The ID of the theme
  */
 
 /**
@@ -120,16 +129,29 @@ const ThemePlatformModel = require("./ThemePlatformModel");
 
 /**
  * @typedef UpdateThemeParam
- * @property {string} themeId - ID allotted to the theme.
- * @property {ThemePlatformModel.ThemesSchema} body
+ * @property {string} themeId - The ID of the theme.
+ * @property {ThemePlatformModel.UpdateThemeRequestBody} body
+ */
+
+/**
+ * @typedef UpdateThemeNameParam
+ * @property {string} themeId - The ID of the theme to be updated.
+ * @property {ThemePlatformModel.UpdateThemeNameRequestBody} body
  */
 
 /**
  * @typedef UpgradeThemeParam
- * @property {string} themeId - ID allotted to the theme.
+ * @property {string} themeId - The ID of the upgrade
  */
 
 class ThemePlatformApplicationValidator {
+  /** @returns {AddThemeToApplicationParam} */
+  static addThemeToApplication() {
+    return Joi.object({
+      body: ThemePlatformModel.ThemeReq().required(),
+    }).required();
+  }
+
   /** @returns {AddToThemeLibraryParam} */
   static addToThemeLibrary() {
     return Joi.object({
@@ -140,7 +162,7 @@ class ThemePlatformApplicationValidator {
   /** @returns {ApplyThemeParam} */
   static applyTheme() {
     return Joi.object({
-      body: ThemePlatformModel.AddThemeRequestSchema().required(),
+      themeId: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -159,13 +181,6 @@ class ThemePlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {CreateThemeParam} */
-  static createTheme() {
-    return Joi.object({
-      body: ThemePlatformModel.ThemesSchema().required(),
-    }).required();
-  }
-
   /** @returns {DeletePageParam} */
   static deletePage() {
     return Joi.object({
@@ -181,11 +196,28 @@ class ThemePlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {DuplicateThemeParam} */
+  static duplicateTheme() {
+    return Joi.object({
+      themeId: Joi.string().allow("").required(),
+    }).required();
+  }
+
   /** @returns {GetAllPagesParam} */
   static getAllPages() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
     }).required();
+  }
+
+  /** @returns {GetApplicationThemesParam} */
+  static getApplicationThemes() {
+    return Joi.object({}).required();
+  }
+
+  /** @returns {GetApplicationThemesCountParam} */
+  static getApplicationThemesCount() {
+    return Joi.object({}).required();
   }
 
   /** @returns {GetAppliedThemeParam} */
@@ -292,7 +324,15 @@ class ThemePlatformApplicationValidator {
   static updateTheme() {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
-      body: ThemePlatformModel.ThemesSchema().required(),
+      body: ThemePlatformModel.UpdateThemeRequestBody().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateThemeNameParam} */
+  static updateThemeName() {
+    return Joi.object({
+      themeId: Joi.string().allow("").required(),
+      body: ThemePlatformModel.UpdateThemeNameRequestBody().required(),
     }).required();
   }
 

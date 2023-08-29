@@ -1,3 +1,5 @@
+const { FDKException } = require("./FDKError");
+
 const SLUG_DELIMETER = ":::";
 const transformRequestOptions = (params) => {
   let options = "";
@@ -153,6 +155,30 @@ const NAV_TYPE = {
   POPUP: "popup",
 };
 
+const isBrowser = () => {
+  return (
+    typeof window !== "undefined" && typeof window.document !== "undefined"
+  );
+};
+
+const isNode = () => {
+  return (
+    typeof process !== "undefined" &&
+    process.versions != null &&
+    process.versions.node != null
+  );
+};
+
+const convertStringToBase64 = (string) => {
+  if (isNode()) {
+    return Buffer.from(string, "utf-8").toString("base64");
+  } else if (isBrowser()) {
+    return window.btoa(string);
+  } else {
+    throw FDKException("Base64 conversion error: Unsupported environment");
+  }
+};
+
 module.exports = {
   transformRequestOptions,
   getParamsFromItem,
@@ -161,5 +187,8 @@ module.exports = {
   generateUrlWithParams,
   findBestMatchingLink,
   validURL,
+  convertStringToBase64,
+  isBrowser,
+  isNode,
   NAV_TYPE,
 };

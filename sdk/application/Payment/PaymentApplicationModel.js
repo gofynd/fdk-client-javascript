@@ -403,7 +403,7 @@ const Joi = require("joi");
 
 /**
  * @typedef ErrorResponse
- * @property {ErrorDescription} [error]
+ * @property {Object} [error]
  * @property {string} message - Message
  * @property {number} status_code - HTTP status code
  * @property {boolean} success - Successful or failure
@@ -424,7 +424,7 @@ const Joi = require("joi");
 
 /**
  * @typedef HttpErrorCodeAndResponse
- * @property {ErrorCodeAndDescription} error
+ * @property {ErrorCodeAndDescription} [error]
  * @property {boolean} success - Response is successful or not
  */
 
@@ -439,7 +439,7 @@ const Joi = require("joi");
  * @typedef IntentApp
  * @property {string} [code] - Code
  * @property {string} [display_name] - Display_name
- * @property {PaymentModeLogo} [logos] - Logos
+ * @property {Object} [logos] - Logos
  * @property {string} [package_name] - Package_name
  */
 
@@ -541,20 +541,20 @@ const Joi = require("joi");
 
 /**
  * @typedef PaymentFlow
- * @property {AggregatorRoute} [ajiodhan] - Ajiodhan
- * @property {AggregatorRoute} [bqr_razorpay] - BQR_Razorpay
- * @property {AggregatorRoute} [ccavenue] - Ccavenue
- * @property {AggregatorRoute} [epaylater] - Epaylater
- * @property {AggregatorRoute} [fynd] - Fynd
- * @property {AggregatorRoute} [jiopay] - Jiopay
- * @property {AggregatorRoute} [juspay] - Juspay
- * @property {AggregatorRoute} [mswipe] - Mswipe
- * @property {AggregatorRoute} [payubiz] - Payubiz
- * @property {AggregatorRoute} [razorpay] - Razorpay
- * @property {AggregatorRoute} [rupifi] - Rupifi
- * @property {AggregatorRoute} [simpl] - Simpl
- * @property {AggregatorRoute} [stripe] - Stripe
- * @property {AggregatorRoute} [upi_razorpay] - UPI_Razorpay
+ * @property {Object} [ajiodhan] - Ajiodhan
+ * @property {Object} [bqr_razorpay] - BQR_Razorpay
+ * @property {Object} [ccavenue] - Ccavenue
+ * @property {Object} [epaylater] - Epaylater
+ * @property {Object} [fynd] - Fynd
+ * @property {Object} [jiopay] - Jiopay
+ * @property {Object} [juspay] - Juspay
+ * @property {Object} [mswipe] - Mswipe
+ * @property {Object} [payubiz] - Payubiz
+ * @property {Object} [razorpay] - Razorpay
+ * @property {Object} [rupifi] - Rupifi
+ * @property {Object} [simpl] - Simpl
+ * @property {Object} [stripe] - Stripe
+ * @property {Object} [upi_razorpay] - UPI_Razorpay
  */
 
 /**
@@ -632,7 +632,7 @@ const Joi = require("joi");
  *   Intent_app_error_dict_list
  * @property {string[]} [intent_app_error_list] - Intent_app_error_list
  * @property {boolean} [intent_flow] - Intent_flow
- * @property {PaymentModeLogo} [logo_url] - Logo
+ * @property {Object} [logo_url] - Logo
  * @property {string} [merchant_code] - Merchant code
  * @property {string} [name] - Name
  * @property {string} [nickname] - Nickname
@@ -1387,7 +1387,7 @@ class PaymentApplicationModel {
   /** @returns {ErrorResponse} */
   static ErrorResponse() {
     return Joi.object({
-      error: PaymentApplicationModel.ErrorDescription(),
+      error: Joi.any().allow(null),
       message: Joi.string().allow("").required(),
       status_code: Joi.number().required(),
       success: Joi.boolean().required(),
@@ -1412,7 +1412,7 @@ class PaymentApplicationModel {
   /** @returns {HttpErrorCodeAndResponse} */
   static HttpErrorCodeAndResponse() {
     return Joi.object({
-      error: PaymentApplicationModel.ErrorCodeAndDescription().required(),
+      error: PaymentApplicationModel.ErrorCodeAndDescription(),
       success: Joi.boolean().required(),
     });
   }
@@ -1431,7 +1431,7 @@ class PaymentApplicationModel {
     return Joi.object({
       code: Joi.string().allow("").allow(null),
       display_name: Joi.string().allow("").allow(null),
-      logos: PaymentApplicationModel.PaymentModeLogo(),
+      logos: Joi.any().allow(null),
       package_name: Joi.string().allow("").allow(null),
     });
   }
@@ -1559,20 +1559,20 @@ class PaymentApplicationModel {
   /** @returns {PaymentFlow} */
   static PaymentFlow() {
     return Joi.object({
-      ajiodhan: PaymentApplicationModel.AggregatorRoute(),
-      bqr_razorpay: PaymentApplicationModel.AggregatorRoute(),
-      ccavenue: PaymentApplicationModel.AggregatorRoute(),
-      epaylater: PaymentApplicationModel.AggregatorRoute(),
-      fynd: PaymentApplicationModel.AggregatorRoute(),
-      jiopay: PaymentApplicationModel.AggregatorRoute(),
-      juspay: PaymentApplicationModel.AggregatorRoute(),
-      mswipe: PaymentApplicationModel.AggregatorRoute(),
-      payubiz: PaymentApplicationModel.AggregatorRoute(),
-      razorpay: PaymentApplicationModel.AggregatorRoute(),
-      rupifi: PaymentApplicationModel.AggregatorRoute(),
-      simpl: PaymentApplicationModel.AggregatorRoute(),
-      stripe: PaymentApplicationModel.AggregatorRoute(),
-      upi_razorpay: PaymentApplicationModel.AggregatorRoute(),
+      ajiodhan: Joi.any().allow(null),
+      bqr_razorpay: Joi.any().allow(null),
+      ccavenue: Joi.any().allow(null),
+      epaylater: Joi.any().allow(null),
+      fynd: Joi.any().allow(null),
+      jiopay: Joi.any().allow(null),
+      juspay: Joi.any().allow(null),
+      mswipe: Joi.any().allow(null),
+      payubiz: Joi.any().allow(null),
+      razorpay: Joi.any().allow(null),
+      rupifi: Joi.any().allow(null),
+      simpl: Joi.any().allow(null),
+      stripe: Joi.any().allow(null),
+      upi_razorpay: Joi.any().allow(null),
     });
   }
 
@@ -1658,7 +1658,7 @@ class PaymentApplicationModel {
       ),
       intent_app_error_list: Joi.array().items(Joi.string().allow("")),
       intent_flow: Joi.boolean().allow(null),
-      logo_url: PaymentApplicationModel.PaymentModeLogo(),
+      logo_url: Joi.any().allow(null),
       merchant_code: Joi.string().allow("").allow(null),
       name: Joi.string().allow("").allow(null),
       nickname: Joi.string().allow("").allow(null),

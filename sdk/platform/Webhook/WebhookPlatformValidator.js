@@ -2,25 +2,71 @@ const Joi = require("joi");
 
 const WebhookPlatformModel = require("./WebhookPlatformModel");
 
+/**
+ * @typedef CancelJobByNameParam
+ * @property {string} filename - Filename of the specific report export to cancel.
+ */
+
+/**
+ * @typedef DownloadDeliveryReportParam
+ * @property {WebhookPlatformModel.EventProcessRequest} body
+ */
+
 /** @typedef FetchAllEventConfigurationsParam */
 
 /**
+ * @typedef GetDeliveryReportsParam
+ * @property {WebhookPlatformModel.EventProcessRequest} body
+ */
+
+/**
+ * @typedef GetEventCountsParam
+ * @property {WebhookPlatformModel.EventProcessRequest} body
+ */
+
+/**
+ * @typedef GetHistoricalReportsParam
+ * @property {WebhookPlatformModel.HistoryPayload} body
+ */
+
+/** @typedef GetManualRetryStatusParam */
+
+/**
+ * @typedef GetReportFiltersParam
+ * @property {WebhookPlatformModel.ReportFiltersPayload} body
+ */
+
+/**
  * @typedef GetSubscriberByIdParam
- * @property {number} subscriberId - Subscriber ID
+ * @property {number} subscriberId - The ID of the company for which manual
+ *   retry is to be initiated.
  */
 
 /**
  * @typedef GetSubscribersByCompanyParam
  * @property {number} [pageNo] - Page Number
  * @property {number} [pageSize] - Page Size
- * @property {string} [extensionId] - Extension ID
+ * @property {number} [extensionId] - Extension_id
  */
 
 /**
  * @typedef GetSubscribersByExtensionIdParam
  * @property {number} [pageNo] - Page Number
  * @property {number} [pageSize] - Page Size
- * @property {string} extensionId - Extension ID
+ * @property {number} extensionId - The ID of the company for which manual retry
+ *   is to be initiated.
+ */
+
+/** @typedef ManualRetryCancelParam */
+
+/**
+ * @typedef ManualRetryOfFailedEventParam
+ * @property {WebhookPlatformModel.EventProcessRequest} body
+ */
+
+/**
+ * @typedef PingWebhookParam
+ * @property {WebhookPlatformModel.PingWebhook} body
  */
 
 /**
@@ -34,9 +80,56 @@ const WebhookPlatformModel = require("./WebhookPlatformModel");
  */
 
 class WebhookPlatformValidator {
+  /** @returns {CancelJobByNameParam} */
+  static cancelJobByName() {
+    return Joi.object({
+      filename: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {DownloadDeliveryReportParam} */
+  static downloadDeliveryReport() {
+    return Joi.object({
+      body: WebhookPlatformModel.EventProcessRequest().required(),
+    }).required();
+  }
+
   /** @returns {FetchAllEventConfigurationsParam} */
   static fetchAllEventConfigurations() {
     return Joi.object({}).required();
+  }
+
+  /** @returns {GetDeliveryReportsParam} */
+  static getDeliveryReports() {
+    return Joi.object({
+      body: WebhookPlatformModel.EventProcessRequest().required(),
+    }).required();
+  }
+
+  /** @returns {GetEventCountsParam} */
+  static getEventCounts() {
+    return Joi.object({
+      body: WebhookPlatformModel.EventProcessRequest().required(),
+    }).required();
+  }
+
+  /** @returns {GetHistoricalReportsParam} */
+  static getHistoricalReports() {
+    return Joi.object({
+      body: WebhookPlatformModel.HistoryPayload().required(),
+    }).required();
+  }
+
+  /** @returns {GetManualRetryStatusParam} */
+  static getManualRetryStatus() {
+    return Joi.object({}).required();
+  }
+
+  /** @returns {GetReportFiltersParam} */
+  static getReportFilters() {
+    return Joi.object({
+      body: WebhookPlatformModel.ReportFiltersPayload().required(),
+    }).required();
   }
 
   /** @returns {GetSubscriberByIdParam} */
@@ -51,7 +144,7 @@ class WebhookPlatformValidator {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      extensionId: Joi.string().allow(""),
+      extensionId: Joi.number(),
     }).required();
   }
 
@@ -60,7 +153,26 @@ class WebhookPlatformValidator {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      extensionId: Joi.string().allow("").required(),
+      extensionId: Joi.number().required(),
+    }).required();
+  }
+
+  /** @returns {ManualRetryCancelParam} */
+  static manualRetryCancel() {
+    return Joi.object({}).required();
+  }
+
+  /** @returns {ManualRetryOfFailedEventParam} */
+  static manualRetryOfFailedEvent() {
+    return Joi.object({
+      body: WebhookPlatformModel.EventProcessRequest().required(),
+    }).required();
+  }
+
+  /** @returns {PingWebhookParam} */
+  static pingWebhook() {
+    return Joi.object({
+      body: WebhookPlatformModel.PingWebhook().required(),
     }).required();
   }
 

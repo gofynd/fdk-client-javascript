@@ -61,22 +61,9 @@ export = CommonPlatformModel;
  */
 /**
  * @typedef ApplicationResponse
- * @property {Application} [application]
- */
-/**
- * @typedef ApplicationWebsite
- * @property {string} [basepath] - Base path for the current sales channel website
- * @property {boolean} [enabled] - Shows whether sales channel website URL is
- *   enabled or not
- */
-/**
- * @typedef BadRequest
- * @property {string} [message] - Failure message (in a string format)
- */
-/**
- * @typedef Currency
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   of the current sales channel supported currency
+ * @property {Application} [application]
  * @property {string} [code] - 3-character currency code, e.g. INR, USD, EUR.
  * @property {string} [created_at] - ISO 8601 timestamp of sales channel support
  *   currency creation
@@ -89,6 +76,16 @@ export = CommonPlatformModel;
  * @property {string} [symbol] - Unique symbol for identifying the currency, e.g. ₹
  * @property {string} [updated_at] - ISO 8601 timestamp of sales channel support
  *   currency updation
+ */
+/**
+ * @typedef ApplicationWebsite
+ * @property {string} [basepath] - Base path for the current sales channel website
+ * @property {boolean} [enabled] - Shows whether sales channel website URL is
+ *   enabled or not
+ */
+/**
+ * @typedef BadRequest
+ * @property {string} [message] - Failure message (in a string format)
  */
 /**
  * @typedef Domain
@@ -135,21 +132,11 @@ export = CommonPlatformModel;
  */
 /**
  * @typedef Locations
- * @property {Object[]} [items]
+ * @property {LocationCountry[]} [items] - Object Containing Country Locations Details
  */
 /**
  * @typedef NotFound
  * @property {string} [message] - Response message for not found
- */
-/**
- * @typedef Page
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {boolean} [has_previous]
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {number} [size]
- * @property {string} type
  */
 /**
  * @typedef SecureUrl
@@ -158,7 +145,7 @@ export = CommonPlatformModel;
 declare class CommonPlatformModel {
 }
 declare namespace CommonPlatformModel {
-    export { Application, ApplicationAuth, ApplicationCors, ApplicationMeta, ApplicationRedirections, ApplicationResponse, ApplicationWebsite, BadRequest, Currency, Domain, LocationCountry, LocationDefaultCurrency, LocationDefaultLanguage, Locations, NotFound, Page, SecureUrl };
+    export { Application, ApplicationAuth, ApplicationCors, ApplicationMeta, ApplicationRedirections, ApplicationResponse, ApplicationWebsite, BadRequest, Domain, LocationCountry, LocationDefaultCurrency, LocationDefaultLanguage, Locations, NotFound, SecureUrl };
 }
 /** @returns {Application} */
 declare function Application(): Application;
@@ -288,37 +275,12 @@ type ApplicationRedirections = {
 /** @returns {ApplicationResponse} */
 declare function ApplicationResponse(): ApplicationResponse;
 type ApplicationResponse = {
-    application?: Application;
-};
-/** @returns {ApplicationWebsite} */
-declare function ApplicationWebsite(): ApplicationWebsite;
-type ApplicationWebsite = {
-    /**
-     * - Base path for the current sales channel website
-     */
-    basepath?: string;
-    /**
-     * - Shows whether sales channel website URL is
-     * enabled or not
-     */
-    enabled?: boolean;
-};
-/** @returns {BadRequest} */
-declare function BadRequest(): BadRequest;
-type BadRequest = {
-    /**
-     * - Failure message (in a string format)
-     */
-    message?: string;
-};
-/** @returns {Currency} */
-declare function Currency(): Currency;
-type Currency = {
     /**
      * - The unique identifier (24-digit Mongo Object ID)
      * of the current sales channel supported currency
      */
     _id?: string;
+    application?: Application;
     /**
      * - 3-character currency code, e.g. INR, USD, EUR.
      */
@@ -352,6 +314,27 @@ type Currency = {
      * currency updation
      */
     updated_at?: string;
+};
+/** @returns {ApplicationWebsite} */
+declare function ApplicationWebsite(): ApplicationWebsite;
+type ApplicationWebsite = {
+    /**
+     * - Base path for the current sales channel website
+     */
+    basepath?: string;
+    /**
+     * - Shows whether sales channel website URL is
+     * enabled or not
+     */
+    enabled?: boolean;
+};
+/** @returns {BadRequest} */
+declare function BadRequest(): BadRequest;
+type BadRequest = {
+    /**
+     * - Failure message (in a string format)
+     */
+    message?: string;
 };
 /** @returns {Domain} */
 declare function Domain(): Domain;
@@ -418,7 +401,10 @@ type LocationDefaultLanguage = {
 /** @returns {Locations} */
 declare function Locations(): Locations;
 type Locations = {
-    items?: any[];
+    /**
+     * - Object Containing Country Locations Details
+     */
+    items?: LocationCountry[];
 };
 /** @returns {NotFound} */
 declare function NotFound(): NotFound;
@@ -427,17 +413,6 @@ type NotFound = {
      * - Response message for not found
      */
     message?: string;
-};
-/** @returns {Page} */
-declare function Page(): Page;
-type Page = {
-    current?: number;
-    has_next?: boolean;
-    has_previous?: boolean;
-    item_total?: number;
-    next_id?: string;
-    size?: number;
-    type: string;
 };
 /** @returns {SecureUrl} */
 declare function SecureUrl(): SecureUrl;

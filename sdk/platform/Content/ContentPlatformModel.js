@@ -43,21 +43,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef AnnouncementSchema
- * @property {string} [announcement]
- * @property {ScheduleStartSchema} [schedule]
- */
-
-/**
- * @typedef AnnouncementsResponseSchema
- * @property {Object} [announcements]
- * @property {string[]} [refresh_pages] - List of page slugs on which
- *   announcement should be fetched as soon as they are loaded
- * @property {number} [refresh_rate] - Number of seconds after which api should
- *   hit again to fetch new announcements
- */
-
-/**
  * @typedef ApplicationLegal
  * @property {string} [_id]
  * @property {string} [application]
@@ -191,12 +176,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ContentSchema
- * @property {string} [type]
- * @property {Object} [value]
- */
-
-/**
  * @typedef CreateAnnouncementSchema
  * @property {AdminAnnouncementSchema} [data]
  * @property {string} [message]
@@ -261,31 +240,8 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CustomPage
- * @property {CustomPageSchema} [data]
- */
-
-/**
- * @typedef CustomPageSchema
- * @property {string} [_id]
- * @property {ScheduleSchema} [_schedule]
- * @property {string} [application]
- * @property {Object[]} [content]
- * @property {CreatedBySchema} [created_by]
- * @property {DateMeta} [date_meta]
- * @property {string} [description]
- * @property {string} [orientation]
- * @property {string} [platform]
- * @property {boolean} [published]
- * @property {string} [slug]
- * @property {string[]} [tags]
- * @property {string} [title]
- * @property {string} [type]
- */
-
-/**
  * @typedef DataLoaderResetResponseSchema
- * @property {string} [reset]
+ * @property {boolean} [reset]
  */
 
 /**
@@ -384,11 +340,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef FaqResponseSchema
- * @property {FaqSchema[]} [faqs]
- */
-
-/**
  * @typedef FaqSchema
  * @property {string} [_id]
  * @property {string} [answer]
@@ -396,11 +347,6 @@ const Joi = require("joi");
  * @property {string} [question]
  * @property {string} [slug]
  * @property {string[]} [tags]
- */
-
-/**
- * @typedef FeatureImage
- * @property {string} [secure_url]
  */
 
 /**
@@ -450,12 +396,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef LandingPage
- * @property {LandingPageSchema} [data]
- * @property {boolean} [success]
- */
-
-/**
  * @typedef LandingPageGetResponse
  * @property {LandingPageSchema[]} [items]
  * @property {Page} [page]
@@ -484,20 +424,6 @@ const Joi = require("joi");
  * @property {Language} [ar]
  * @property {Language} [en_us]
  * @property {Language} [hi]
- */
-
-/**
- * @typedef Navigation
- * @property {string} [_id]
- * @property {string} [application]
- * @property {CreatedBySchema} [created_by]
- * @property {DateMeta} [date_meta]
- * @property {string} [name]
- * @property {NavigationReference} [navigation]
- * @property {string} [orientation]
- * @property {string} [platform]
- * @property {string} [position]
- * @property {string} [slug]
  */
 
 /**
@@ -568,21 +494,9 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef PageContent
- * @property {string} [type]
- * @property {Object} [value]
- */
-
-/**
  * @typedef PageGetResponse
  * @property {PageSchema[]} [items]
  * @property {Page} [page]
- */
-
-/**
- * @typedef PageMeta
- * @property {string} [key]
- * @property {Object} [value]
  */
 
 /**
@@ -643,7 +557,7 @@ const Joi = require("joi");
 
 /**
  * @typedef PageSpec
- * @property {Object[]} [specifications]
+ * @property {PageSpecItem[]} [specifications]
  */
 
 /**
@@ -706,13 +620,7 @@ const Joi = require("joi");
  * @property {string} [cron]
  * @property {number} [duration]
  * @property {string} [end]
- * @property {Object[]} [next_schedule]
- * @property {string} [start]
- */
-
-/**
- * @typedef ScheduleStartSchema
- * @property {string} [end]
+ * @property {NextSchedule[]} [next_schedule]
  * @property {string} [start]
  */
 
@@ -739,17 +647,11 @@ const Joi = require("joi");
  * @property {string} [app]
  * @property {boolean} [cannonical_enabled]
  * @property {string} [created_at]
- * @property {Object[]} [custom_meta_tags]
+ * @property {CustomMetaTag[]} [custom_meta_tags]
  * @property {Detail} [details]
  * @property {string} [robots_txt]
  * @property {boolean} [sitemap_enabled]
  * @property {string} [updated_at]
- */
-
-/**
- * @typedef Slideshow
- * @property {SlideshowSchema} [data]
- * @property {boolean} [success]
  */
 
 /**
@@ -954,26 +856,6 @@ class ContentPlatformModel {
     });
   }
 
-  /** @returns {AnnouncementSchema} */
-  static AnnouncementSchema() {
-    return Joi.object({
-      announcement: Joi.string().allow(""),
-      schedule: ContentPlatformModel.ScheduleStartSchema(),
-    });
-  }
-
-  /** @returns {AnnouncementsResponseSchema} */
-  static AnnouncementsResponseSchema() {
-    return Joi.object({
-      announcements: Joi.object().pattern(
-        /\S/,
-        Joi.array().items(ContentPlatformModel.AnnouncementSchema())
-      ),
-      refresh_pages: Joi.array().items(Joi.string().allow("")),
-      refresh_rate: Joi.number(),
-    });
-  }
-
   /** @returns {ApplicationLegal} */
   static ApplicationLegal() {
     return Joi.object({
@@ -1135,14 +1017,6 @@ class ContentPlatformModel {
     });
   }
 
-  /** @returns {ContentSchema} */
-  static ContentSchema() {
-    return Joi.object({
-      type: Joi.string().allow(""),
-      value: Joi.any(),
-    });
-  }
-
   /** @returns {CreateAnnouncementSchema} */
   static CreateAnnouncementSchema() {
     return Joi.object({
@@ -1227,37 +1101,10 @@ class ContentPlatformModel {
     });
   }
 
-  /** @returns {CustomPage} */
-  static CustomPage() {
-    return Joi.object({
-      data: ContentPlatformModel.CustomPageSchema(),
-    });
-  }
-
-  /** @returns {CustomPageSchema} */
-  static CustomPageSchema() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-      _schedule: ContentPlatformModel.ScheduleSchema(),
-      application: Joi.string().allow(""),
-      content: Joi.array().items(Joi.any()),
-      created_by: ContentPlatformModel.CreatedBySchema(),
-      date_meta: ContentPlatformModel.DateMeta(),
-      description: Joi.string().allow(""),
-      orientation: Joi.string().allow(""),
-      platform: Joi.string().allow(""),
-      published: Joi.boolean(),
-      slug: Joi.string().allow(""),
-      tags: Joi.array().items(Joi.string().allow("")),
-      title: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {DataLoaderResetResponseSchema} */
   static DataLoaderResetResponseSchema() {
     return Joi.object({
-      reset: Joi.string().allow(""),
+      reset: Joi.boolean(),
     });
   }
 
@@ -1380,13 +1227,6 @@ class ContentPlatformModel {
     });
   }
 
-  /** @returns {FaqResponseSchema} */
-  static FaqResponseSchema() {
-    return Joi.object({
-      faqs: Joi.array().items(ContentPlatformModel.FaqSchema()),
-    });
-  }
-
   /** @returns {FaqSchema} */
   static FaqSchema() {
     return Joi.object({
@@ -1396,13 +1236,6 @@ class ContentPlatformModel {
       question: Joi.string().allow(""),
       slug: Joi.string().allow(""),
       tags: Joi.array().items(Joi.string().allow("")),
-    });
-  }
-
-  /** @returns {FeatureImage} */
-  static FeatureImage() {
-    return Joi.object({
-      secure_url: Joi.string().allow(""),
     });
   }
 
@@ -1466,14 +1299,6 @@ class ContentPlatformModel {
     });
   }
 
-  /** @returns {LandingPage} */
-  static LandingPage() {
-    return Joi.object({
-      data: ContentPlatformModel.LandingPageSchema(),
-      success: Joi.boolean(),
-    });
-  }
-
   /** @returns {LandingPageGetResponse} */
   static LandingPageGetResponse() {
     return Joi.object({
@@ -1510,22 +1335,6 @@ class ContentPlatformModel {
       ar: ContentPlatformModel.Language(),
       en_us: ContentPlatformModel.Language(),
       hi: ContentPlatformModel.Language(),
-    });
-  }
-
-  /** @returns {Navigation} */
-  static Navigation() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-      application: Joi.string().allow(""),
-      created_by: ContentPlatformModel.CreatedBySchema(),
-      date_meta: ContentPlatformModel.DateMeta(),
-      name: Joi.string().allow(""),
-      navigation: ContentPlatformModel.NavigationReference(),
-      orientation: Joi.string().allow(""),
-      platform: Joi.string().allow(""),
-      position: Joi.string().allow(""),
-      slug: Joi.string().allow(""),
     });
   }
 
@@ -1610,27 +1419,11 @@ class ContentPlatformModel {
     });
   }
 
-  /** @returns {PageContent} */
-  static PageContent() {
-    return Joi.object({
-      type: Joi.string().allow(""),
-      value: Joi.any(),
-    });
-  }
-
   /** @returns {PageGetResponse} */
   static PageGetResponse() {
     return Joi.object({
       items: Joi.array().items(ContentPlatformModel.PageSchema()),
       page: ContentPlatformModel.Page(),
-    });
-  }
-
-  /** @returns {PageMeta} */
-  static PageMeta() {
-    return Joi.object({
-      key: Joi.string().allow(""),
-      value: Joi.any(),
     });
   }
 
@@ -1700,7 +1493,7 @@ class ContentPlatformModel {
   /** @returns {PageSpec} */
   static PageSpec() {
     return Joi.object({
-      specifications: Joi.array().items(Joi.any()),
+      specifications: Joi.array().items(ContentPlatformModel.PageSpecItem()),
     });
   }
 
@@ -1781,15 +1574,7 @@ class ContentPlatformModel {
       cron: Joi.string().allow(""),
       duration: Joi.number(),
       end: Joi.string().allow(""),
-      next_schedule: Joi.array().items(Joi.any()),
-      start: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {ScheduleStartSchema} */
-  static ScheduleStartSchema() {
-    return Joi.object({
-      end: Joi.string().allow(""),
+      next_schedule: Joi.array().items(ContentPlatformModel.NextSchedule()),
       start: Joi.string().allow(""),
     });
   }
@@ -1824,19 +1609,11 @@ class ContentPlatformModel {
       app: Joi.string().allow(""),
       cannonical_enabled: Joi.boolean(),
       created_at: Joi.string().allow(""),
-      custom_meta_tags: Joi.array().items(Joi.any()),
+      custom_meta_tags: Joi.array().items(ContentPlatformModel.CustomMetaTag()),
       details: ContentPlatformModel.Detail(),
       robots_txt: Joi.string().allow(""),
       sitemap_enabled: Joi.boolean(),
       updated_at: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {Slideshow} */
-  static Slideshow() {
-    return Joi.object({
-      data: ContentPlatformModel.SlideshowSchema(),
-      success: Joi.boolean(),
     });
   }
 

@@ -4,8 +4,12 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
 
 /**
  * @typedef BrowseParam
- * @property {string} namespace - Bucket name
- * @property {number} [pageNo] - Page no
+ * @property {string} namespace - Segregation of different types of
+ *   files(products, orders, logistics etc), Required for validating the data of
+ *   the file being uploaded, decides where exactly the file will be stored
+ *   inside the storage bucket.
+ * @property {number} [page] - Page no
+ * @property {number} [limit] - Limit
  */
 
 /**
@@ -19,8 +23,8 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
 
 /**
  * @typedef CopyFilesParam
- * @property {boolean} [sync] - Sync
- * @property {FileStoragePlatformModel.BulkRequest} body
+ * @property {boolean} [sync]
+ * @property {FileStoragePlatformModel.CopyFiles} body
  */
 
 /**
@@ -47,7 +51,8 @@ class FileStoragePlatformValidator {
   static browse() {
     return Joi.object({
       namespace: Joi.string().allow("").required(),
-      pageNo: Joi.number(),
+      page: Joi.number(),
+      limit: Joi.number(),
     }).required();
   }
 
@@ -63,7 +68,7 @@ class FileStoragePlatformValidator {
   static copyFiles() {
     return Joi.object({
       sync: Joi.boolean(),
-      body: FileStoragePlatformModel.BulkRequest().required(),
+      body: FileStoragePlatformModel.CopyFiles().required(),
     }).required();
   }
 

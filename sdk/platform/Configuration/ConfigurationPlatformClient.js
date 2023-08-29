@@ -1126,7 +1126,7 @@ class Configuration {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/configuration/v1.0/company/${this.config.companyId}/other-seller-applications/`,
+      `/service/platform/configuration/v1.0/company/${this.config.companyId}/other-seller-applications`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },

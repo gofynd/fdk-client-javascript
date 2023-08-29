@@ -15,9 +15,12 @@ Handles all platform order and shipment api(s)
 * [createOrder](#createorder)
 * [dispatchManifest](#dispatchmanifest)
 * [downloadBulkActionTemplate](#downloadbulkactiontemplate)
+* [downloadLanesReport](#downloadlanesreport)
+* [eInvoiceRetry](#einvoiceretry)
 * [fetchCreditBalanceDetail](#fetchcreditbalancedetail)
 * [fetchRefundModeConfig](#fetchrefundmodeconfig)
 * [generatePOSReceiptByOrderId](#generateposreceiptbyorderid)
+* [getAllowedStateTransition](#getallowedstatetransition)
 * [getAnnouncements](#getannouncements)
 * [getBagById](#getbagbyid)
 * [getBags](#getbags)
@@ -42,11 +45,13 @@ Handles all platform order and shipment api(s)
 * [reassignLocation](#reassignlocation)
 * [sendSmsNinja](#sendsmsninja)
 * [sendUserMobileOTP](#sendusermobileotp)
+* [trackShipment](#trackshipment)
 * [trackShipmentPlatform](#trackshipmentplatform)
 * [updateAddress](#updateaddress)
 * [updatePackagingDimensions](#updatepackagingdimensions)
 * [updateShipmentLock](#updateshipmentlock)
 * [updateShipmentStatus](#updateshipmentstatus)
+* [updateShipmentTracking](#updateshipmenttracking)
 * [uploadConsent](#uploadconsent)
 * [verifyMobileOTP](#verifymobileotp)
 
@@ -79,7 +84,7 @@ const data = await platformClient.order.attachOrderUser({  body : value });
 | body | [AttachOrderUser](#AttachOrderUser) | yes | Request body |
 
 
-
+Attach Order User
 
 *Returned Response:*
 
@@ -134,7 +139,7 @@ const data = await platformClient.order.checkOrderStatus({  body : value });
 | body | [OrderStatus](#OrderStatus) | yes | Request body |
 
 
-
+Check order status
 
 *Returned Response:*
 
@@ -202,7 +207,7 @@ const data = await platformClient.order.click2Call({  caller : value,
 
 
 
-
+Click to Call
 
 *Returned Response:*
 
@@ -321,7 +326,7 @@ const data = await platformClient.order.createOrder({  body : value });
 | body | [CreateOrderAPI](#CreateOrderAPI) | yes | Request body |
 
 
-
+Create Order
 
 *Returned Response:*
 
@@ -376,7 +381,7 @@ const data = await platformClient.order.dispatchManifest({  body : value });
 | body | [DispatchManifest](#DispatchManifest) | yes | Request body |
 
 
-
+Dispatch Manifest
 
 *Returned Response:*
 
@@ -432,7 +437,7 @@ const data = await platformClient.order.downloadBulkActionTemplate({  templateSl
 
 
 
-
+Download bulk actions seller templates.
 
 *Returned Response:*
 
@@ -481,6 +486,146 @@ We are processing the file!
 ---
 
 
+### downloadLanesReport
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.downloadLanesReport({  body : value });
+
+// Async/Await
+const data = await platformClient.order.downloadLanesReport({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [BulkReportsDownloadRequest](#BulkReportsDownloadRequest) | yes | Request body |
+
+
+downloads lanes shipment/orders.
+
+*Returned Response:*
+
+
+
+
+[BulkReportsDownloadResponse](#BulkReportsDownloadResponse)
+
+Bulk Report creation initiated.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; BulkReportsSucessfulEventSample</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "batch_id": "0000-1111-2222-3333"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### eInvoiceRetry
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.eInvoiceRetry({  body : value });
+
+// Async/Await
+const data = await platformClient.order.eInvoiceRetry({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [EInvoiceRetry](#EInvoiceRetry) | yes | Request body |
+
+
+Retry e-invoice after failure
+
+*Returned Response:*
+
+
+
+
+[EInvoiceRetryResponse](#EInvoiceRetryResponse)
+
+E-invoice Retry Successfully!!
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; sample1</i></summary>
+
+```json
+{
+  "value": {
+    "response_data": [
+      {
+        "shipment_id": "16342342342343423",
+        "success": true,
+        "message": "IRN already generated, for e-invoice type: invoice"
+      }
+    ],
+    "success_count": 1,
+    "message": "Success Count: 1 out of 1",
+    "success": true
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### fetchCreditBalanceDetail
 
 
@@ -503,7 +648,7 @@ const data = await platformClient.order.fetchCreditBalanceDetail({  body : value
 | body | [FetchCreditBalanceRequestPayload](#FetchCreditBalanceRequestPayload) | yes | Request body |
 
 
-
+Fetch Credit Balance Detail
 
 *Returned Response:*
 
@@ -558,7 +703,7 @@ const data = await platformClient.order.fetchRefundModeConfig({  body : value })
 | body | [RefundModeConfigRequestPayload](#RefundModeConfigRequestPayload) | yes | Request body |
 
 
-
+Fetch Refund Mode Config
 
 *Returned Response:*
 
@@ -620,7 +765,7 @@ const data = await platformClient.order.generatePOSReceiptByOrderId({  orderId :
 
 
 
-
+Generate POS recipt by order id.
 
 *Returned Response:*
 
@@ -640,6 +785,82 @@ We are processing the request!
 ```json
 
 ```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getAllowedStateTransition
+To fetch next state transitions.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.getAllowedStateTransition({  orderingChannel : value,
+ status : value });
+
+// Async/Await
+const data = await platformClient.order.getAllowedStateTransition({  orderingChannel : value,
+ status : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| orderingChannel | string | yes | Ordering channel |   
+| status | string | yes | current status of a shipment |  
+
+
+
+This endpoint will fetch next possible states based on logged in user
+
+
+*Returned Response:*
+
+
+
+
+[RoleBaseStateTransitionMapping](#RoleBaseStateTransitionMapping)
+
+Role wise state transition mapping, for next possible state
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; send state transition success</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "next_statuses": [
+      "bag_picked",
+      "delivery_done",
+      "rto_bag_delivered",
+      "rto_in_transit"
+    ]
+  }
+}
+```
+</details>
+
 </details>
 
 
@@ -676,7 +897,7 @@ const data = await platformClient.order.getAnnouncements({  date : value });
 
 
 
-
+Get Announcements
 
 *Returned Response:*
 
@@ -738,7 +959,7 @@ const data = await platformClient.order.getBagById({  bagId : value,
 
 
 
-
+Get Order Bag Details.
 
 *Returned Response:*
 
@@ -818,7 +1039,7 @@ const data = await platformClient.order.getBags({  bagIds : value,
 
 
 
-
+Get Bags for the order
 
 *Returned Response:*
 
@@ -869,7 +1090,7 @@ const data = await platformClient.order.getBulkActionTemplate();
 
 
 
-
+Get Bulk Action seller templates.
 
 *Returned Response:*
 
@@ -965,7 +1186,7 @@ const data = await platformClient.order.getBulkShipmentExcelFile({  salesChannel
 
 
 
-
+Generate Bulk Shipment Excel Report.
 
 *Returned Response:*
 
@@ -1109,7 +1330,8 @@ const promise = platformClient.order.getLaneConfig({  superLane : value,
  tags : value,
  timeToDispatch : value,
  paymentMethods : value,
- myOrders : value });
+ myOrders : value,
+ showCrossCompanyData : value });
 
 // Async/Await
 const data = await platformClient.order.getLaneConfig({  superLane : value,
@@ -1126,7 +1348,8 @@ const data = await platformClient.order.getLaneConfig({  superLane : value,
  tags : value,
  timeToDispatch : value,
  paymentMethods : value,
- myOrders : value });
+ myOrders : value,
+ showCrossCompanyData : value });
 ```
 
 
@@ -1149,11 +1372,12 @@ const data = await platformClient.order.getLaneConfig({  superLane : value,
 | tags | string | no |  |    
 | timeToDispatch | string | no |  |    
 | paymentMethods | string | no |  |    
-| myOrders | boolean | no |  |  
+| myOrders | boolean | no |  |    
+| showCrossCompanyData | boolean | no | Flag to view cross & non-cross company order |  
 
 
 
-
+Get lane config for the order
 
 *Returned Response:*
 
@@ -1282,7 +1506,7 @@ const data = await platformClient.order.getOrderById({  orderId : value });
 
 
 
-
+Get Order Details by ID
 
 *Returned Response:*
 
@@ -1316,7 +1540,7 @@ We are processing the report!
       "payment_type": "self",
       "mongo_cart_id": 1835,
       "order_platform": "platform-site",
-      "ordering_store": null,
+      "ordering_store": 1,
       "order_child_entities": [
         "bag",
         "shipment"
@@ -1606,45 +1830,46 @@ We are processing the report!
             "can_be_cancelled": true,
             "enable_tracking": true,
             "is_customer_return_allowed": false,
-            "is_active": true
+            "is_active": true,
+            "allow_force_return": true
           },
-          "financial_breakup": [
-            {
-              "price_effective": 524.25,
-              "discount": 174.75,
-              "amount_paid": 474.25,
-              "coupon_effective_discount": 0,
-              "delivery_charge": 0,
-              "fynd_credits": 0,
-              "cod_charges": 0,
-              "refund_credit": 0,
-              "cashback": 0,
-              "refund_amount": 474.25,
-              "added_to_fynd_cash": false,
-              "cashback_applied": 0,
-              "gst_tax_percentage": 18,
-              "value_of_good": 401.91,
-              "price_marked": 699,
-              "transfer_price": 0,
-              "brand_calculated_amount": 474.25,
-              "tax_collected_at_source": 0,
-              "tcs_percentage": 0,
-              "promotion_effective_discount": 50,
-              "coupon_value": 0,
-              "amount_paid_roundoff": 474,
-              "size": "OS",
-              "total_units": 1,
-              "hsn_code": "20472574",
-              "identifiers": {
-                "ean": "6902395784364",
-                "sku_code": "1020820"
-              },
-              "item_name": "L'Oreal Paris Rouge Signature Matte Liquid Lipstick, 146 I Enlight",
-              "gst_fee": 72.34,
-              "gst_tag": "SGST"
-            }
-          ],
-          "current_status": "bag_confirmed",
+          "financial_breakup": {
+            "price_effective": 524,
+            "discount": 174,
+            "amount_paid": 474.25,
+            "coupon_effective_discount": 0,
+            "delivery_charge": 0,
+            "fynd_credits": 0,
+            "cod_charges": 0,
+            "refund_credit": 0,
+            "cashback": 0,
+            "refund_amount": 474.25,
+            "added_to_fynd_cash": false,
+            "cashback_applied": 0,
+            "gst_tax_percentage": 18,
+            "value_of_good": 401.91,
+            "price_marked": 699,
+            "transfer_price": 0,
+            "brand_calculated_amount": 474.25,
+            "tax_collected_at_source": 0,
+            "tcs_percentage": 0,
+            "promotion_effective_discount": 50,
+            "coupon_value": 0,
+            "amount_paid_roundoff": 474,
+            "size": "OS",
+            "total_units": 1,
+            "hsn_code": "20472574",
+            "identifiers": {
+              "ean": "6902395784364",
+              "sku_code": "1020820"
+            },
+            "item_name": "L'Oreal Paris Rouge Signature Matte Liquid Lipstick, 146 I Enlight",
+            "gst_fee": 72.34,
+            "gst_tag": "SGST"
+          },
+          "current_status": {
+            "id": 1
+          },
           "item": {
             "name": "L'Oreal Paris Rouge Signature Matte Liquid Lipstick, 146 I Enlight",
             "brand": "L'Oreal Paris",
@@ -1714,7 +1939,7 @@ We are processing the report!
             "coupon_code": null
           },
           "quantity": 1,
-          "identifier": null,
+          "identifier": "",
           "applied_promos": [
             {
               "amount": 50,
@@ -1862,7 +2087,7 @@ We are processing the report!
         "external_invoice_id": ""
       },
       "can_process": true,
-      "estimated_sla_time": null,
+      "estimated_sla_time": "null",
       "tracking_url": "",
       "meta": {
         "dp_id": "9",
@@ -2020,7 +2245,7 @@ We are processing the report!
         },
         "fulfilment_type": null
       },
-      "custom_meta": {}
+      "custom_meta": []
     }
   ]
 }
@@ -2061,7 +2286,9 @@ const promise = platformClient.order.getOrders({  lane : value,
  pageSize : value,
  isPrioritySort : value,
  customMeta : value,
- myOrders : value });
+ myOrders : value,
+ showCrossCompanyData : value,
+ customerId : value });
 
 // Async/Await
 const data = await platformClient.order.getOrders({  lane : value,
@@ -2080,7 +2307,9 @@ const data = await platformClient.order.getOrders({  lane : value,
  pageSize : value,
  isPrioritySort : value,
  customMeta : value,
- myOrders : value });
+ myOrders : value,
+ showCrossCompanyData : value,
+ customerId : value });
 ```
 
 
@@ -2105,11 +2334,13 @@ const data = await platformClient.order.getOrders({  lane : value,
 | pageSize | number | no |  |    
 | isPrioritySort | boolean | no |  |    
 | customMeta | string | no |  |    
-| myOrders | boolean | no |  |  
+| myOrders | boolean | no |  |    
+| showCrossCompanyData | boolean | no | Flag to view cross & non-cross company order |    
+| customerId | string | no |  |  
 
 
 
-
+Get Orders Listing
 
 *Returned Response:*
 
@@ -2216,7 +2447,7 @@ const data = await platformClient.order.getRoleBasedActions();
 
 
 
-
+Get Role Based Actions
 
 *Returned Response:*
 
@@ -2290,7 +2521,7 @@ const data = await platformClient.order.getShipmentById({  channelShipmentId : v
 
 
 
-
+Get shipment details for the given shipment.
 
 *Returned Response:*
 
@@ -2320,6 +2551,7 @@ We are processing the report!
       "shipment_id": "16557829457641286433",
       "payment_mode": "COD",
       "fulfilling_store": {
+        "meta": {},
         "id": 1,
         "code": "HS-468a5",
         "fulfillment_channel": "pulse",
@@ -2330,7 +2562,7 @@ We are processing the report!
         "city": "MUMBAI",
         "state": "MAHARASHTRA",
         "country": "INDIA",
-        "pincode": 400093
+        "pincode": "400093"
       },
       "delivery_details": {
         "name": "Manish Prakash",
@@ -2367,7 +2599,7 @@ We are processing the report!
         "fynd_order_id": "FY62B13E2101810C19E4",
         "affiliate_id": "000000000000000000000001",
         "ordering_channel": "FYND",
-        "source": null,
+        "source": "null",
         "tax_details": {
           "gstin": null
         },
@@ -2452,42 +2684,42 @@ We are processing the report!
             "allow_force_return": false,
             "is_active": false
           },
-          "financial_breakup": [
-            {
-              "price_effective": 499,
-              "discount": 0,
-              "amount_paid": 549,
-              "coupon_effective_discount": 0,
-              "delivery_charge": 50,
-              "fynd_credits": 0,
-              "cod_charges": 0,
-              "refund_credit": 0,
-              "cashback": 0,
-              "refund_amount": 549,
-              "added_to_fynd_cash": false,
-              "cashback_applied": 0,
-              "gst_tax_percentage": 5,
-              "value_of_good": 475.24,
-              "price_marked": 499,
-              "transfer_price": 0,
-              "brand_calculated_amount": 499,
-              "promotion_effective_discount": 0,
-              "coupon_value": 0,
-              "pm_price_split": {
-                "COD": 549
-              },
-              "size": "5",
-              "total_units": 1,
-              "hsn_code": "62050000",
-              "identifiers": {
-                "sku_code": "CL-001L-L-PRPL-PINK-5"
-              },
-              "item_name": "Purple Flip Flops",
-              "gst_fee": "23.76",
-              "gst_tag": "IGST"
-            }
-          ],
-          "current_status": "delivery_done",
+          "financial_breakup": {
+            "price_effective": 499,
+            "discount": 0,
+            "amount_paid": 549,
+            "coupon_effective_discount": 0,
+            "delivery_charge": 50,
+            "fynd_credits": 0,
+            "cod_charges": 0,
+            "refund_credit": 0,
+            "cashback": 0,
+            "refund_amount": 549,
+            "added_to_fynd_cash": false,
+            "cashback_applied": 0,
+            "gst_tax_percentage": 5,
+            "value_of_good": 475.24,
+            "price_marked": 499,
+            "transfer_price": 0,
+            "brand_calculated_amount": 499,
+            "promotion_effective_discount": 0,
+            "coupon_value": 0,
+            "pm_price_split": {
+              "COD": 549
+            },
+            "size": "5",
+            "total_units": 1,
+            "hsn_code": "62050000",
+            "identifiers": {
+              "sku_code": "CL-001L-L-PRPL-PINK-5"
+            },
+            "item_name": "Purple Flip Flops",
+            "gst_fee": 23.76,
+            "gst_tag": "IGST"
+          },
+          "current_status": {
+            "id": 1
+          },
           "item": {
             "name": "Purple Flip Flops",
             "brand": "Nike",
@@ -2496,26 +2728,26 @@ We are processing the report!
               "https://hdn-1.fynd.com/products/pictures/item/free/270x0/CL-001L-L-PRPL-PINK-6/Rvk5WbGg9Hx-1.jpg"
             ],
             "size": "5",
-            "l1_category": "",
-            "l3_category": "27"
+            "l1_category": [],
+            "l3_category": 27
           },
           "brand": {
-            "modified_on": 1655707988,
+            "modified_on": "1655707988",
             "logo": "https://hdn-1.jiomarketx0.de/x0/brands/pictures/square-logo/original/DbhIvd_tB-Logo.jpeg",
             "brand_name": "Nike",
             "company": null,
-            "created_on": 1647793418,
+            "created_on": "1647793418",
             "id": 4
           },
           "gst_details": {
-            "gstin_code": null,
+            "gstin_code": "null",
             "gst_tag": "IGST",
             "hsn_code": "62050000",
             "value_of_good": 475.24,
             "gst_tax_percentage": 5,
             "is_default_hsn_code": true,
             "brand_calculated_amount": 499,
-            "gst_fee": "23.76"
+            "gst_fee": 23.76
           },
           "article": {
             "uid": "6237fdfec0903e7ae543c201",
@@ -2539,20 +2771,18 @@ We are processing the report!
         "type": "order_window"
       },
       "total_items": 1,
-      "payment_methods": [
-        {
-          "slug": "COD",
-          "payment_id": "COD",
-          "payment_amt": 549,
-          "payment_cart": null,
-          "payment_desc": "COD",
-          "bdcustomer_id": null,
-          "order_inv_num": null,
-          "mode_of_payment": "COD",
-          "payment_gateway_logo": null,
-          "transaction_ref_number": ""
-        }
-      ],
+      "payment_methods": {
+        "slug": "COD",
+        "payment_id": "COD",
+        "payment_amt": 549,
+        "payment_cart": null,
+        "payment_desc": "COD",
+        "bdcustomer_id": null,
+        "order_inv_num": null,
+        "mode_of_payment": "COD",
+        "payment_gateway_logo": null,
+        "transaction_ref_number": ""
+      },
       "vertical": "GROCERIES",
       "payments": {
         "mode": "COD",
@@ -2561,7 +2791,7 @@ We are processing the report!
       },
       "priority_text": null,
       "status": {
-        "created_at": 1655804437,
+        "created_at": "1655804437",
         "shipment_id": "16557829457641286433",
         "status": "delivery_done",
         "bag_list": [
@@ -2582,9 +2812,8 @@ We are processing the report!
         "price_effective": 499,
         "refund_credit": 0,
         "value_of_good": 475.24,
-        "pm_price_split": {
-          "COD": 549
-        },
+        "pm_price_split": 500,
+        "COD": 549,
         "brand_calculated_amount": 499,
         "coupon_effective_discount": 0,
         "tax_collected_at_source": 0,
@@ -2596,49 +2825,57 @@ We are processing the report!
           "status": "Order Placed",
           "time": "2022-06-21T09:12:32+00:00",
           "is_passed": true,
-          "is_current": false
+          "is_current": false,
+          "text": ""
         },
         {
           "status": "Order Confirmed",
           "time": "2022-06-21T09:39:13+00:00",
           "is_passed": true,
-          "is_current": false
+          "is_current": false,
+          "text": ""
         },
         {
           "status": "Invoiced",
           "time": "2022-06-21T09:40:12+00:00",
           "is_passed": true,
-          "is_current": false
+          "is_current": false,
+          "text": ""
         },
         {
           "status": "Delivery Partner Assigned",
           "time": "2022-06-21T09:40:12+00:00",
           "is_passed": true,
-          "is_current": false
+          "is_current": false,
+          "text": ""
         },
         {
           "status": "Packed",
           "time": "2022-06-21T09:40:12+00:00",
           "is_passed": true,
-          "is_current": false
+          "is_current": false,
+          "text": ""
         },
         {
           "status": "In Transit",
           "time": "2022-06-21T09:40:12+00:00",
           "is_passed": true,
-          "is_current": false
+          "is_current": false,
+          "text": ""
         },
         {
           "status": "Out For Delivery",
           "time": "2022-06-21T09:40:29+00:00",
           "is_passed": true,
-          "is_current": false
+          "is_current": false,
+          "text": ""
         },
         {
           "status": "Delivered",
           "time": "2022-06-21T09:40:37+00:00",
           "is_passed": true,
-          "is_current": true
+          "is_current": true,
+          "text": ""
         }
       ],
       "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36",
@@ -2687,7 +2924,7 @@ const data = await platformClient.order.getShipmentHistory({  shipmentId : value
 
 
 
-
+Get Shipment History
 
 *Returned Response:*
 
@@ -2708,40 +2945,34 @@ It shows the journey of the shipment!
 {
   "activity_history": [
     {
-      "message": {
-        "message": "Bag status changed to pending",
-        "store_id": 10,
-        "store_code": "SF94",
-        "store_name": "shub",
-        "reason": {},
-        "type": "activity_status"
-      },
+      "message": "Bag status changed to pending",
+      "store_id": 10,
+      "store_code": "SF94",
+      "store_name": "shub",
+      "reason": {},
       "createdat": "01 Apr 2022, 17:57:PM",
       "user": "system",
       "type": "activity_status",
-      "l1_detail": null,
-      "l2_detail": null,
-      "l3_detail": null,
-      "ticket_id": null,
-      "ticket_url": null
+      "l1_detail": "",
+      "l2_detail": "",
+      "l3_detail": "",
+      "ticket_id": "",
+      "ticket_url": ""
     },
     {
-      "message": {
-        "message": "Bag status changed to placed",
-        "store_id": 10,
-        "store_code": "SF94",
-        "store_name": "shub",
-        "reason": {},
-        "type": "activity_status"
-      },
+      "message": "Bag status changed to placed",
+      "store_id": 10,
+      "store_code": "SF94",
+      "store_name": "shub",
+      "reason": {},
       "createdat": "01 Apr 2022, 17:57:PM",
       "user": "system",
       "type": "activity_status",
-      "l1_detail": null,
-      "l2_detail": null,
-      "l3_detail": null,
-      "ticket_id": null,
-      "ticket_url": null
+      "l1_detail": "",
+      "l2_detail": "",
+      "l3_detail": "",
+      "ticket_id": "",
+      "ticket_url": ""
     }
   ]
 }
@@ -2879,7 +3110,10 @@ const promise = platformClient.order.getShipments({  lane : value,
  companyAffiliateTag : value,
  myOrders : value,
  platformUserId : value,
- tags : value });
+ sortType : value,
+ showCrossCompanyData : value,
+ tags : value,
+ customerId : value });
 
 // Async/Await
 const data = await platformClient.order.getShipments({  lane : value,
@@ -2905,7 +3139,10 @@ const data = await platformClient.order.getShipments({  lane : value,
  companyAffiliateTag : value,
  myOrders : value,
  platformUserId : value,
- tags : value });
+ sortType : value,
+ showCrossCompanyData : value,
+ tags : value,
+ customerId : value });
 ```
 
 
@@ -2917,7 +3154,7 @@ const data = await platformClient.order.getShipments({  lane : value,
 | lane | string | no | Name of lane for which data is to be fetched |    
 | bagStatus | string | no | Comma separated values of bag statuses |    
 | statusOverrideLane | boolean | no | Use this flag to fetch by bag_status and override lane |    
-| timeToDispatch | string | no |  |    
+| timeToDispatch | number | no |  |    
 | searchType | string | no | Search type key |    
 | searchValue | string | no | Search type value |    
 | fromDate | string | no | Start Date in DD-MM-YYYY format |    
@@ -2937,11 +3174,14 @@ const data = await platformClient.order.getShipments({  lane : value,
 | companyAffiliateTag | string | no |  |    
 | myOrders | boolean | no |  |    
 | platformUserId | string | no |  |    
-| tags | string | no | Comma separated values of tags |  
+| sortType | string | no | Sort the result data on basis of input |    
+| showCrossCompanyData | boolean | no | Flag to view cross & non-cross company order |    
+| tags | string | no | Comma separated values of tags |    
+| customerId | string | no |  |  
 
 
 
-
+Get Shipments Listing for the company id
 
 *Returned Response:*
 
@@ -2992,7 +3232,7 @@ const data = await platformClient.order.getStateTransitionMap();
 
 
 
-
+Get State Transition Map
 
 *Returned Response:*
 
@@ -3238,7 +3478,7 @@ const data = await platformClient.order.getfilters({  view : value,
 
 
 
-
+Get Listing Filters
 
 *Returned Response:*
 
@@ -3717,7 +3957,7 @@ const data = await platformClient.order.orderUpdate({  body : value });
 | body | [PlatformOrderUpdate](#PlatformOrderUpdate) | yes | Request body |
 
 
-
+Update Order
 
 *Returned Response:*
 
@@ -3772,7 +4012,7 @@ const data = await platformClient.order.postShipmentHistory({  body : value });
 | body | [PostShipmentHistory](#PostShipmentHistory) | yes | Request body |
 
 
-
+Post shipment history
 
 *Returned Response:*
 
@@ -3793,40 +4033,34 @@ It shows the journey of the shipment!
 {
   "activity_history": [
     {
-      "message": {
-        "message": "Bag status changed to pending",
-        "store_id": 10,
-        "store_code": "SF94",
-        "store_name": "shub",
-        "reason": {},
-        "type": "activity_status"
-      },
+      "message": "Bag status changed to pending",
+      "store_id": 10,
+      "store_code": "SF94",
+      "store_name": "shub",
+      "reason": {},
       "createdat": "01 Apr 2022, 17:57:PM",
       "user": "system",
       "type": "activity_status",
-      "l1_detail": null,
-      "l2_detail": null,
-      "l3_detail": null,
-      "ticket_id": null,
-      "ticket_url": null
+      "l1_detail": "",
+      "l2_detail": "",
+      "l3_detail": "",
+      "ticket_id": "",
+      "ticket_url": ""
     },
     {
-      "message": {
-        "message": "Bag status changed to placed",
-        "store_id": 10,
-        "store_code": "SF94",
-        "store_name": "shub",
-        "reason": {},
-        "type": "activity_status"
-      },
+      "message": "Bag status changed to placed",
+      "store_id": 10,
+      "store_code": "SF94",
+      "store_name": "shub",
+      "reason": {},
+      "type": "activity_status",
       "createdat": "01 Apr 2022, 17:57:PM",
       "user": "system",
-      "type": "activity_status",
-      "l1_detail": null,
-      "l2_detail": null,
-      "l3_detail": null,
-      "ticket_id": null,
-      "ticket_url": null
+      "l1_detail": "",
+      "l2_detail": "",
+      "l3_detail": "",
+      "ticket_id": "",
+      "ticket_url": ""
     }
   ],
   "success": true
@@ -3867,7 +4101,7 @@ const data = await platformClient.order.processManifest({  body : value });
 | body | [CreateOrderPayload](#CreateOrderPayload) | yes | Request body |
 
 
-
+Process Manifest
 
 *Returned Response:*
 
@@ -3977,7 +4211,7 @@ const data = await platformClient.order.sendSmsNinja({  body : value });
 | body | [SendSmsPayload](#SendSmsPayload) | yes | Request body |
 
 
-
+Send SMS Ninja Panel
 
 *Returned Response:*
 
@@ -3996,7 +4230,7 @@ Sms Sent successfully
 
 ```json
 {
-  "success": true,
+  "success": "true",
   "message": "Successfully emitted aldaviz-delayed-shipment-event"
 }
 ```
@@ -4035,7 +4269,7 @@ const data = await platformClient.order.sendUserMobileOTP({  body : value });
 | body | [SendUserMobileOTP](#SendUserMobileOTP) | yes | Request body |
 
 
-
+Send User Mobile OTP
 
 *Returned Response:*
 
@@ -4058,12 +4292,109 @@ Send OTP to user mobile
   "data": {
     "request_id": "112312312",
     "message": "Text",
-    "resend_timer": "600",
+    "resend_timer": 600,
     "mobile": 99990000
   },
   "message": "Text"
 }
 ```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### trackShipment
+Get courier partner tracking details
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.trackShipment({  shipmentId : value,
+ awb : value,
+ pageNo : value,
+ pageSize : value });
+
+// Async/Await
+const data = await platformClient.order.trackShipment({  shipmentId : value,
+ awb : value,
+ pageNo : value,
+ pageSize : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| shipmentId | string | no | Shipment ID |    
+| awb | string | no | AWB number |    
+| pageNo | number | no | Page number |    
+| pageSize | number | no | Page size |  
+
+
+
+This endpoint allows users to get courier partner tracking details for a given shipment id or awb no. The service will fetch courier partner statuses that are pushed to oms.
+
+*Returned Response:*
+
+
+
+
+[CourierPartnerTrackingResponse](#CourierPartnerTrackingResponse)
+
+Shipment Tracking fetched successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "awb": "713191641",
+        "dp_location": "Mumbai",
+        "dp_name": "Ecom b2b",
+        "dp_status": "dp_assigned",
+        "dp_status_updated_at": "2023-07-12T20:17:46.384Z",
+        "estimated_delivery_date": "2023-07-12T20:17:46.384Z",
+        "id": 370,
+        "journey": "forward",
+        "operational_status": "dp_assigned",
+        "promised_delivery_date": "2023-07-12T20:17:46.384Z",
+        "remark": "UD -Manifested",
+        "shipment_id": "16908065964581066182"
+      }
+    ],
+    "page": {
+      "type": "number",
+      "size": 200,
+      "current": 1,
+      "has_next": true,
+      "item_total": 3
+    }
+  }
+}
+```
+</details>
+
 </details>
 
 
@@ -4131,7 +4462,7 @@ Success. Check the example shown below or refer `PlatformShipmentTrack` for more
       "account_name": "fyndr",
       "awb": "2125658183710",
       "raw_status": "dp_assigned",
-      "meta": null
+      "meta": {}
     }
   ]
 }
@@ -4205,7 +4536,7 @@ const data = await platformClient.order.updateAddress({  shipmentId : value,
 
 
 
-
+Update Address for the order
 
 *Returned Response:*
 
@@ -4260,7 +4591,7 @@ const data = await platformClient.order.updatePackagingDimensions({  body : valu
 | body | [UpdatePackagingDimensionsPayload](#UpdatePackagingDimensionsPayload) | yes | Request body |
 
 
-
+Update Packaging Dimensions
 
 *Returned Response:*
 
@@ -4432,10 +4763,10 @@ NOTE success response can contains success and failed result as well
         {
           "status": 400,
           "message": "Invalid State Transition bag_confirmed detected for given entity",
-          "code": null,
+          "code": "",
           "exception": "ValidationError",
-          "stack_trace": null,
-          "meta": null,
+          "stack_trace": "",
+          "meta": {},
           "identifier": "16836279770211860494"
         }
       ]
@@ -4443,6 +4774,82 @@ NOTE success response can contains success and failed result as well
   ]
 }
 ```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateShipmentTracking
+Post courier partner tracking details
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.updateShipmentTracking({  body : value });
+
+// Async/Await
+const data = await platformClient.order.updateShipmentTracking({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CourierPartnerTrackingDetails](#CourierPartnerTrackingDetails) | yes | Request body |
+
+
+This endpoint allows users to post courier partner tracking details for a given shipment id or awb no. The service will add entry for courier partner statuses and will be saved to oms.
+
+*Returned Response:*
+
+
+
+
+[CourierPartnerTrackingDetails](#CourierPartnerTrackingDetails)
+
+Shipment Tracking updated successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "awb": "713191641",
+    "dp_location": "Mumbai",
+    "dp_name": "Ecom b2b",
+    "dp_status": "dp_assigned",
+    "dp_status_updated_at": "2023-07-12T20:17:46.384Z",
+    "estimated_delivery_date": "2023-07-12T20:17:46.384Z",
+    "id": 370,
+    "journey": "forward",
+    "operational_status": "dp_assigned",
+    "promised_delivery_date": "2023-07-12T20:17:46.384Z",
+    "remark": "UD -Manifested",
+    "shipment_id": "16908065964581066182"
+  }
+}
+```
+</details>
+
 </details>
 
 
@@ -4478,7 +4885,7 @@ const data = await platformClient.order.uploadConsent({  body : value });
 | body | [UploadConsent](#UploadConsent) | yes | Request body |
 
 
-
+Upload Consent
 
 *Returned Response:*
 
@@ -4533,7 +4940,7 @@ const data = await platformClient.order.verifyMobileOTP({  body : value });
 | body | [VerifyMobileOTP](#VerifyMobileOTP) | yes | Request body |
 
 
-
+Verify Mobile OTP
 
 *Returned Response:*
 
@@ -5327,6 +5734,44 @@ Verify OTP
 
 ---
 
+#### [BulkReportsDownloadFailedResponse](#BulkReportsDownloadFailedResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | error | string? |  yes  |  |
+ | status | boolean? |  yes  |  |
+ 
+
+---
+
+#### [BulkReportsDownloadRequest](#BulkReportsDownloadRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | custom_filters_for_lane | string? |  yes  |  |
+ | custom_headers | string? |  yes  | Download report with specific headers |
+ | entities | [string]? |  yes  | Download for specific enitites, entities can be bag, shipment or order_id, etc. |
+ | filter_type | string? |  yes  |  |
+ | from_date | string? |  yes  |  |
+ | is_cross_company_enabled | boolean? |  yes  | Download lanes for cross company. |
+ | lane_type | string? |  yes  |  |
+ | report_type | string? |  yes  | Type of report |
+ | store_ids | [string]? |  yes  | Download for specific store ids. |
+ | to_date | string? |  yes  |  |
+ 
+
+---
+
+#### [BulkReportsDownloadResponse](#BulkReportsDownloadResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | batch_id | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
 #### [BuyerDetails](#BuyerDetails)
 
  | Properties | Type | Nullable | Description |
@@ -5412,6 +5857,37 @@ Verify OTP
  | ---------- | ---- | -------- | ----------- |
  | emails | [string]? |  yes  |  |
  | phone | [[PhoneDetails](#PhoneDetails)]? |  yes  |  |
+ 
+
+---
+
+#### [CourierPartnerTrackingDetails](#CourierPartnerTrackingDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | awb | string |  no  | AWB Number |
+ | dp_location | string? |  yes  | Current location of Courier partner |
+ | dp_name | string |  no  | Courier Partner name |
+ | dp_status | string |  no  | Status at Courier partner end |
+ | dp_status_updated_at | string |  no  | Date Time at which status was updated at Courier partner |
+ | estimated_delivery_date | string? |  yes  | Estimated delivery date received from Courier partner |
+ | id | number? |  yes  | Id of Tracking history |
+ | journey | string |  no  | Journey type of the shipment |
+ | meta | string? |  yes  | Meta field to store Courier partner's meta data |
+ | operational_status | string |  no  | Operational status of OMS |
+ | promised_delivery_date | string? |  yes  | Promised delivery date received from Courier partner |
+ | remark | string? |  yes  | Remark from courier partner |
+ | shipment_id | string |  no  | Shipment ID |
+ 
+
+---
+
+#### [CourierPartnerTrackingResponse](#CourierPartnerTrackingResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[CourierPartnerTrackingDetails](#CourierPartnerTrackingDetails)]? |  yes  |  |
+ | page | [PageDetails](#PageDetails)? |  yes  |  |
  
 
 ---
@@ -5687,6 +6163,52 @@ Verify OTP
  | password | string? |  yes  |  |
  | user | string? |  yes  |  |
  | username | string? |  yes  |  |
+ 
+
+---
+
+#### [EInvoiceResponseData](#EInvoiceResponseData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | ack_dt | string? |  yes  |  |
+ | ack_no | string? |  yes  |  |
+ | irn | string? |  yes  |  |
+ | message | string |  no  |  |
+ | shipment_id | string |  no  |  |
+ | success | boolean |  no  |  |
+ | timeout | number? |  yes  |  |
+ | timeout_unit | string? |  yes  |  |
+ 
+
+---
+
+#### [EInvoiceRetry](#EInvoiceRetry)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shipments_data | [[EInvoiceRetryShipmentData](#EInvoiceRetryShipmentData)]? |  yes  |  |
+ 
+
+---
+
+#### [EInvoiceRetryResponse](#EInvoiceRetryResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
+ | response_data | [[EInvoiceResponseData](#EInvoiceResponseData)] |  no  |  |
+ | success | boolean? |  yes  |  |
+ | success_count | number |  no  |  |
+ 
+
+---
+
+#### [EInvoiceRetryShipmentData](#EInvoiceRetryShipmentData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shipment_id | string |  no  |  |
  
 
 ---
@@ -6160,7 +6682,7 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | charges | [[Charge](#Charge)]? |  yes  |  |
- | custom_messasge | string? |  yes  |  |
+ | custom_message | string? |  yes  |  |
  | external_line_id | string? |  yes  |  |
  | meta | string? |  yes  |  |
  | quantity | number? |  yes  |  |
@@ -6510,6 +7032,19 @@ Verify OTP
  | size | number? |  yes  |  |
  | total | number? |  yes  |  |
  | type | string? |  yes  |  |
+ 
+
+---
+
+#### [PageDetails](#PageDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | current | number? |  yes  | Current page number |
+ | has_next | boolean? |  yes  | if next page contains any result |
+ | item_total | number |  no  | Total count of the results present in the requested filter |
+ | size | number? |  yes  | Page size |
+ | type | string? |  yes  | Type of the page |
  
 
 ---
@@ -7086,6 +7621,16 @@ Verify OTP
  | returnable | boolean? |  yes  |  |
  | time | number? |  yes  |  |
  | unit | string? |  yes  |  |
+ 
+
+---
+
+#### [RoleBaseStateTransitionMapping](#RoleBaseStateTransitionMapping)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | next_statuses | [string]? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -7793,6 +8338,7 @@ Verify OTP
  | ---------- | ---- | -------- | ----------- |
  | b2b_gstin_number | string? |  yes  |  |
  | gstin | string? |  yes  |  |
+ | pan_no | string? |  yes  |  |
  
 
 ---

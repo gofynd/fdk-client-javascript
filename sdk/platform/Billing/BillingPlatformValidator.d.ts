@@ -33,6 +33,7 @@ export = BillingPlatformValidator;
  * @property {string} chargeId - Standalone charge _id
  */
 /** @typedef GetCustomerDetailParam */
+/** @typedef GetEnterprisePlansParam */
 /** @typedef GetFeatureLimitConfigParam */
 /**
  * @typedef GetInvoiceByIdParam
@@ -44,6 +45,14 @@ export = BillingPlatformValidator;
  * @typedef GetSubscriptionChargeParam
  * @property {string} extensionId - Extension _id
  * @property {string} subscriptionId - Subscription charge _id
+ */
+/**
+ * @typedef PlanStatusUpdateParam
+ * @property {BillingPlatformModel.PlanStatusUpdateReq} body
+ */
+/**
+ * @typedef SubscripePlanParam
+ * @property {BillingPlatformModel.SunscribePlan} body
  */
 /**
  * @typedef UpsertCustomerDetailParam
@@ -66,6 +75,8 @@ declare class BillingPlatformValidator {
     static getChargeDetails(): GetChargeDetailsParam;
     /** @returns {GetCustomerDetailParam} */
     static getCustomerDetail(): any;
+    /** @returns {GetEnterprisePlansParam} */
+    static getEnterprisePlans(): any;
     /** @returns {GetFeatureLimitConfigParam} */
     static getFeatureLimitConfig(): any;
     /** @returns {GetInvoiceByIdParam} */
@@ -76,11 +87,15 @@ declare class BillingPlatformValidator {
     static getSubscription(): any;
     /** @returns {GetSubscriptionChargeParam} */
     static getSubscriptionCharge(): GetSubscriptionChargeParam;
+    /** @returns {PlanStatusUpdateParam} */
+    static planStatusUpdate(): PlanStatusUpdateParam;
+    /** @returns {SubscripePlanParam} */
+    static subscripePlan(): SubscripePlanParam;
     /** @returns {UpsertCustomerDetailParam} */
     static upsertCustomerDetail(): UpsertCustomerDetailParam;
 }
 declare namespace BillingPlatformValidator {
-    export { ActivateSubscriptionPlanParam, CancelSubscriptionChargeParam, CancelSubscriptionPlanParam, CheckCouponValidityParam, CreateOneTimeChargeParam, CreateSubscriptionChargeParam, GetChargeDetailsParam, GetCustomerDetailParam, GetFeatureLimitConfigParam, GetInvoiceByIdParam, GetInvoicesParam, GetSubscriptionParam, GetSubscriptionChargeParam, UpsertCustomerDetailParam };
+    export { ActivateSubscriptionPlanParam, CancelSubscriptionChargeParam, CancelSubscriptionPlanParam, CheckCouponValidityParam, CreateOneTimeChargeParam, CreateSubscriptionChargeParam, GetChargeDetailsParam, GetCustomerDetailParam, GetEnterprisePlansParam, GetFeatureLimitConfigParam, GetInvoiceByIdParam, GetInvoicesParam, GetSubscriptionParam, GetSubscriptionChargeParam, PlanStatusUpdateParam, SubscripePlanParam, UpsertCustomerDetailParam };
 }
 type ActivateSubscriptionPlanParam = {
     body: BillingPlatformModel.SubscriptionActivateReq;
@@ -148,10 +163,17 @@ type GetSubscriptionChargeParam = {
      */
     subscriptionId: string;
 };
+type PlanStatusUpdateParam = {
+    body: BillingPlatformModel.PlanStatusUpdateReq;
+};
+type SubscripePlanParam = {
+    body: BillingPlatformModel.SunscribePlan;
+};
 type UpsertCustomerDetailParam = {
     body: BillingPlatformModel.SubscriptionCustomerCreate;
 };
 type GetCustomerDetailParam = any;
+type GetEnterprisePlansParam = any;
 type GetFeatureLimitConfigParam = any;
 type GetInvoicesParam = any;
 type GetSubscriptionParam = any;

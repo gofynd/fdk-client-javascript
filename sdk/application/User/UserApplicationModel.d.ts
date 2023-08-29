@@ -4,14 +4,6 @@ export = UserApplicationModel;
  * @property {string} [app_id]
  */
 /**
- * @typedef ArchiveUserRequestSchema
- * @property {string} [user_id]
- */
-/**
- * @typedef ArchiveUserSuccess
- * @property {boolean} [success]
- */
-/**
  * @typedef AuthenticationApiErrorSchema
  * @property {string} [message]
  */
@@ -26,76 +18,8 @@ export = UserApplicationModel;
  * @property {boolean} [user_exists]
  */
 /**
- * @typedef AuthSuccessUser
- * @property {boolean} [active]
- * @property {AuthSuccessUserDebug} [debug]
- * @property {AuthSuccessUserEmails} [emails]
- * @property {string} [first_name]
- * @property {string} [last_name]
- */
-/**
- * @typedef AuthSuccessUserDebug
- * @property {string} [platform]
- */
-/**
- * @typedef AuthSuccessUserEmails
- * @property {boolean} [active]
- * @property {string} [email]
- * @property {boolean} [primary]
- * @property {boolean} [verified]
- */
-/**
- * @typedef BlockUserRequestSchema
- * @property {string} [reason]
- * @property {boolean} [status]
- * @property {string[]} [user_id]
- */
-/**
- * @typedef BlockUserSuccess
- * @property {boolean} [success]
- */
-/**
  * @typedef CodeRequestBodySchema
  * @property {string} [code]
- */
-/**
- * @typedef CreateUserGroupSchema
- * @property {string} description
- * @property {string} file_url
- * @property {string} name
- */
-/**
- * @typedef CreateUserRequestSchema
- * @property {string} [email]
- * @property {string} [first_name]
- * @property {string} [gender]
- * @property {string} [last_name]
- * @property {Object} [meta]
- * @property {string} phone_number
- * @property {string} username
- */
-/**
- * @typedef CreateUserResponseSchema
- * @property {UserSchema} [user]
- */
-/**
- * @typedef CreateUserSessionRequestSchema
- * @property {string} [domain]
- * @property {number} [max_age]
- * @property {string} [user_id]
- */
-/**
- * @typedef CreateUserSessionResponseSchema
- * @property {Object} [cookie]
- * @property {string} [domain]
- * @property {boolean} [http_only]
- * @property {number} [max_age]
- * @property {boolean} [secure]
- */
-/**
- * @typedef CustomerListResponseSchema
- * @property {UserSchema[]} [items]
- * @property {PaginationSchema} [page]
  */
 /**
  * @typedef DeleteAccountConsent
@@ -221,10 +145,6 @@ export = UserApplicationModel;
  * @property {boolean} [fynd_default]
  */
 /**
- * @typedef NotFoundSchema
- * @property {string} [message]
- */
-/**
  * @typedef OAuthRequestAppleSchema
  * @property {OAuthRequestAppleSchemaOauth} [oauth]
  * @property {OAuthRequestAppleSchemaProfile} [profile]
@@ -271,14 +191,6 @@ export = UserApplicationModel;
  * @property {number} [resend_timer]
  * @property {string} [resend_token]
  * @property {boolean} [success]
- */
-/**
- * @typedef PaginationSchema
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {number} [item_total]
- * @property {number} [size]
- * @property {string} [type]
  */
 /**
  * @typedef PasswordLoginRequestSchema
@@ -351,16 +263,6 @@ export = UserApplicationModel;
  * @property {boolean} [verify_mobile_otp]
  */
 /**
- * @typedef ProfileEditSuccessSchema
- * @property {string} [email]
- * @property {string} [register_token]
- * @property {string} [user]
- * @property {boolean} [user_exists]
- * @property {boolean} [verify_email_link]
- * @property {boolean} [verify_email_otp]
- * @property {boolean} [verify_mobile_otp]
- */
-/**
  * @typedef RegisterFormSuccess
  * @property {string} [country_code]
  * @property {string} [email]
@@ -403,6 +305,7 @@ export = UserApplicationModel;
 /**
  * @typedef SendEmailOtpRequestSchema
  * @property {string} [action]
+ * @property {string} [captcha_code]
  * @property {string} [email]
  * @property {string} [register_token]
  * @property {string} [token]
@@ -468,26 +371,10 @@ export = UserApplicationModel;
  * @property {boolean} [verified]
  */
 /**
- * @typedef SessionDeleteResponseSchema
- * @property {string[]} [items]
- */
-/**
  * @typedef SessionExpiry
  * @property {number} [duration]
  * @property {boolean} [is_rolling]
  * @property {string} [type]
- */
-/**
- * @typedef SessionListResponseInfo
- * @property {string} [domain]
- * @property {string} [expire_in]
- * @property {string} [ip]
- * @property {string} [session_id]
- * @property {string} [user_agent]
- */
-/**
- * @typedef SessionListResponseSchema
- * @property {SessionListResponseInfo[]} [items]
  */
 /**
  * @typedef SessionListSuccess
@@ -511,80 +398,13 @@ export = UserApplicationModel;
  * @property {string} [token]
  */
 /**
- * @typedef UnauthenticatedSchema
- * @property {boolean} [authenticated]
- */
-/**
- * @typedef UnauthorizedSchema
- * @property {string} [message]
- */
-/**
- * @typedef UnDeleteUserRequestSchema
- * @property {string} [reason]
- * @property {string} [reason_id]
- * @property {string} [user_id]
- */
-/**
- * @typedef UnDeleteUserSuccess
- * @property {boolean} [success]
- */
-/**
  * @typedef UpdatePasswordRequestSchema
  * @property {string} [new_password]
  * @property {string} [old_password]
  */
 /**
- * @typedef UpdateUserGroupSchema
- * @property {string} [description]
- * @property {string} [file_url]
- * @property {string} [name]
- */
-/**
- * @typedef UpdateUserRequestSchema
- * @property {UserEmails[]} [emails]
- * @property {string} [external_id]
- * @property {string} [first_name]
- * @property {string} [gender]
- * @property {string} [last_name]
- * @property {Object} [meta]
- * @property {UserPhoneNumbers[]} [phone_numbers]
- */
-/**
- * @typedef UserEmails
- * @property {boolean} [active]
- * @property {string} [email]
- * @property {boolean} [primary]
- * @property {boolean} [verified]
- */
-/**
- * @typedef UserGroupListResponseSchema
- * @property {UserGroupResponseSchema[]} [items]
- * @property {PaginationSchema} [page]
- */
-/**
- * @typedef UserGroupResponseSchema
- * @property {number} [__v]
- * @property {string} [_id]
- * @property {string} [application_id]
- * @property {string} [created_at]
- * @property {string} [description]
- * @property {string} [file_url]
- * @property {string} [modified_at]
- * @property {string} [name]
- * @property {string} [status]
- * @property {number} [uid]
- */
-/**
  * @typedef UserObjectSchema
  * @property {UserSchema} [user]
- */
-/**
- * @typedef UserPhoneNumbers
- * @property {boolean} [active]
- * @property {string} [country_code]
- * @property {string} [phone]
- * @property {boolean} [primary]
- * @property {boolean} [verified]
  */
 /**
  * @typedef UserSchema
@@ -604,10 +424,6 @@ export = UserApplicationModel;
  * @property {string} [updated_at]
  * @property {string} [user_id]
  * @property {string} [username]
- */
-/**
- * @typedef UserSearchResponseSchema
- * @property {UserSchema[]} [users]
  */
 /**
  * @typedef VerifyEmailOtpRequestSchema
@@ -645,22 +461,12 @@ export = UserApplicationModel;
 declare class UserApplicationModel {
 }
 declare namespace UserApplicationModel {
-    export { Accountkit, ArchiveUserRequestSchema, ArchiveUserSuccess, AuthenticationApiErrorSchema, AuthenticationInternalServerErrorSchema, AuthSuccess, AuthSuccessUser, AuthSuccessUserDebug, AuthSuccessUserEmails, BlockUserRequestSchema, BlockUserSuccess, CodeRequestBodySchema, CreateUserGroupSchema, CreateUserRequestSchema, CreateUserResponseSchema, CreateUserSessionRequestSchema, CreateUserSessionResponseSchema, CustomerListResponseSchema, DeleteAccountConsent, DeleteAccountReasons, DeleteApplicationUserRequestSchema, DeleteUserSuccess, EditEmailRequestSchema, EditMobileRequestSchema, EditProfileMobileSchema, EditProfileRequestSchema, Email, EmailOtpSuccess, Facebook, FlashCard, ForgotPasswordRequestSchema, FormRegisterRequestSchema, FormRegisterRequestSchemaPhone, Google, HasPasswordSuccess, Login, LoginSuccess, LogoutSuccess, LookAndFeel, MetaSchema, NotFoundSchema, OAuthRequestAppleSchema, OAuthRequestAppleSchemaOauth, OAuthRequestAppleSchemaProfile, OAuthRequestSchema, OAuthRequestSchemaOauth2, OAuthRequestSchemaProfile, OtpSuccess, PaginationSchema, PasswordLoginRequestSchema, PhoneNumber, PlatformEmail, PlatformMobile, PlatformSchema, ProfileEditSuccess, ProfileEditSuccessSchema, RegisterFormSuccess, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, RequiredFields, ResetPasswordSuccess, SendEmailOtpRequestSchema, SendEmailVerifyLinkSuccess, SendMobileOtpRequestSchema, SendMobileVerifyLinkSuccess, SendOtpRequestSchema, SendOtpResponse, SendResetPasswordEmailRequestSchema, SendResetPasswordMobileRequestSchema, SendVerificationLinkMobileRequestSchema, SessionDeleteResponseSchema, SessionExpiry, SessionListResponseInfo, SessionListResponseSchema, SessionListSuccess, Social, SocialTokens, TokenRequestBodySchema, UnauthenticatedSchema, UnauthorizedSchema, UnDeleteUserRequestSchema, UnDeleteUserSuccess, UpdatePasswordRequestSchema, UpdateUserGroupSchema, UpdateUserRequestSchema, UserEmails, UserGroupListResponseSchema, UserGroupResponseSchema, UserObjectSchema, UserPhoneNumbers, UserSchema, UserSearchResponseSchema, VerifyEmailOtpRequestSchema, VerifyEmailOTPSuccess, VerifyEmailSuccess, VerifyMobileOTPSuccess, VerifyOtpRequestSchema, VerifyOtpSuccess };
+    export { Accountkit, AuthenticationApiErrorSchema, AuthenticationInternalServerErrorSchema, AuthSuccess, CodeRequestBodySchema, DeleteAccountConsent, DeleteAccountReasons, DeleteApplicationUserRequestSchema, DeleteUserSuccess, EditEmailRequestSchema, EditMobileRequestSchema, EditProfileMobileSchema, EditProfileRequestSchema, Email, EmailOtpSuccess, Facebook, FlashCard, ForgotPasswordRequestSchema, FormRegisterRequestSchema, FormRegisterRequestSchemaPhone, Google, HasPasswordSuccess, Login, LoginSuccess, LogoutSuccess, LookAndFeel, MetaSchema, OAuthRequestAppleSchema, OAuthRequestAppleSchemaOauth, OAuthRequestAppleSchemaProfile, OAuthRequestSchema, OAuthRequestSchemaOauth2, OAuthRequestSchemaProfile, OtpSuccess, PasswordLoginRequestSchema, PhoneNumber, PlatformEmail, PlatformMobile, PlatformSchema, ProfileEditSuccess, RegisterFormSuccess, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, RequiredFields, ResetPasswordSuccess, SendEmailOtpRequestSchema, SendEmailVerifyLinkSuccess, SendMobileOtpRequestSchema, SendMobileVerifyLinkSuccess, SendOtpRequestSchema, SendOtpResponse, SendResetPasswordEmailRequestSchema, SendResetPasswordMobileRequestSchema, SendVerificationLinkMobileRequestSchema, SessionExpiry, SessionListSuccess, Social, SocialTokens, TokenRequestBodySchema, UpdatePasswordRequestSchema, UserObjectSchema, UserSchema, VerifyEmailOtpRequestSchema, VerifyEmailOTPSuccess, VerifyEmailSuccess, VerifyMobileOTPSuccess, VerifyOtpRequestSchema, VerifyOtpSuccess };
 }
 /** @returns {Accountkit} */
 declare function Accountkit(): Accountkit;
 type Accountkit = {
     app_id?: string;
-};
-/** @returns {ArchiveUserRequestSchema} */
-declare function ArchiveUserRequestSchema(): ArchiveUserRequestSchema;
-type ArchiveUserRequestSchema = {
-    user_id?: string;
-};
-/** @returns {ArchiveUserSuccess} */
-declare function ArchiveUserSuccess(): ArchiveUserSuccess;
-type ArchiveUserSuccess = {
-    success?: boolean;
 };
 /** @returns {AuthenticationApiErrorSchema} */
 declare function AuthenticationApiErrorSchema(): AuthenticationApiErrorSchema;
@@ -679,89 +485,10 @@ type AuthSuccess = {
     user?: UserSchema;
     user_exists?: boolean;
 };
-/** @returns {AuthSuccessUser} */
-declare function AuthSuccessUser(): AuthSuccessUser;
-type AuthSuccessUser = {
-    active?: boolean;
-    debug?: AuthSuccessUserDebug;
-    emails?: AuthSuccessUserEmails;
-    first_name?: string;
-    last_name?: string;
-};
-/** @returns {AuthSuccessUserDebug} */
-declare function AuthSuccessUserDebug(): AuthSuccessUserDebug;
-type AuthSuccessUserDebug = {
-    platform?: string;
-};
-/** @returns {AuthSuccessUserEmails} */
-declare function AuthSuccessUserEmails(): AuthSuccessUserEmails;
-type AuthSuccessUserEmails = {
-    active?: boolean;
-    email?: string;
-    primary?: boolean;
-    verified?: boolean;
-};
-/** @returns {BlockUserRequestSchema} */
-declare function BlockUserRequestSchema(): BlockUserRequestSchema;
-type BlockUserRequestSchema = {
-    reason?: string;
-    status?: boolean;
-    user_id?: string[];
-};
-/** @returns {BlockUserSuccess} */
-declare function BlockUserSuccess(): BlockUserSuccess;
-type BlockUserSuccess = {
-    success?: boolean;
-};
 /** @returns {CodeRequestBodySchema} */
 declare function CodeRequestBodySchema(): CodeRequestBodySchema;
 type CodeRequestBodySchema = {
     code?: string;
-};
-/** @returns {CreateUserGroupSchema} */
-declare function CreateUserGroupSchema(): CreateUserGroupSchema;
-type CreateUserGroupSchema = {
-    description: string;
-    file_url: string;
-    name: string;
-};
-/** @returns {CreateUserRequestSchema} */
-declare function CreateUserRequestSchema(): CreateUserRequestSchema;
-type CreateUserRequestSchema = {
-    email?: string;
-    first_name?: string;
-    gender?: string;
-    last_name?: string;
-    meta?: any;
-    phone_number: string;
-    username: string;
-};
-/** @returns {CreateUserResponseSchema} */
-declare function CreateUserResponseSchema(): CreateUserResponseSchema;
-type CreateUserResponseSchema = {
-    user?: UserSchema;
-};
-/** @returns {CreateUserSessionRequestSchema} */
-declare function CreateUserSessionRequestSchema(): CreateUserSessionRequestSchema;
-type CreateUserSessionRequestSchema = {
-    domain?: string;
-    max_age?: number;
-    user_id?: string;
-};
-/** @returns {CreateUserSessionResponseSchema} */
-declare function CreateUserSessionResponseSchema(): CreateUserSessionResponseSchema;
-type CreateUserSessionResponseSchema = {
-    cookie?: any;
-    domain?: string;
-    http_only?: boolean;
-    max_age?: number;
-    secure?: boolean;
-};
-/** @returns {CustomerListResponseSchema} */
-declare function CustomerListResponseSchema(): CustomerListResponseSchema;
-type CustomerListResponseSchema = {
-    items?: UserSchema[];
-    page?: PaginationSchema;
 };
 /** @returns {DeleteAccountConsent} */
 declare function DeleteAccountConsent(): DeleteAccountConsent;
@@ -908,11 +635,6 @@ declare function MetaSchema(): MetaSchema;
 type MetaSchema = {
     fynd_default?: boolean;
 };
-/** @returns {NotFoundSchema} */
-declare function NotFoundSchema(): NotFoundSchema;
-type NotFoundSchema = {
-    message?: string;
-};
 /** @returns {OAuthRequestAppleSchema} */
 declare function OAuthRequestAppleSchema(): OAuthRequestAppleSchema;
 type OAuthRequestAppleSchema = {
@@ -967,15 +689,6 @@ type OtpSuccess = {
     resend_timer?: number;
     resend_token?: string;
     success?: boolean;
-};
-/** @returns {PaginationSchema} */
-declare function PaginationSchema(): PaginationSchema;
-type PaginationSchema = {
-    current?: number;
-    has_next?: boolean;
-    item_total?: number;
-    size?: number;
-    type?: string;
 };
 /** @returns {PasswordLoginRequestSchema} */
 declare function PasswordLoginRequestSchema(): PasswordLoginRequestSchema;
@@ -1053,17 +766,6 @@ type ProfileEditSuccess = {
     verify_email_otp?: boolean;
     verify_mobile_otp?: boolean;
 };
-/** @returns {ProfileEditSuccessSchema} */
-declare function ProfileEditSuccessSchema(): ProfileEditSuccessSchema;
-type ProfileEditSuccessSchema = {
-    email?: string;
-    register_token?: string;
-    user?: string;
-    user_exists?: boolean;
-    verify_email_link?: boolean;
-    verify_email_otp?: boolean;
-    verify_mobile_otp?: boolean;
-};
 /** @returns {RegisterFormSuccess} */
 declare function RegisterFormSuccess(): RegisterFormSuccess;
 type RegisterFormSuccess = {
@@ -1114,6 +816,7 @@ type ResetPasswordSuccess = {
 declare function SendEmailOtpRequestSchema(): SendEmailOtpRequestSchema;
 type SendEmailOtpRequestSchema = {
     action?: string;
+    captcha_code?: string;
     email?: string;
     register_token?: string;
     token?: string;
@@ -1186,31 +889,12 @@ type SendVerificationLinkMobileRequestSchema = {
     primary?: boolean;
     verified?: boolean;
 };
-/** @returns {SessionDeleteResponseSchema} */
-declare function SessionDeleteResponseSchema(): SessionDeleteResponseSchema;
-type SessionDeleteResponseSchema = {
-    items?: string[];
-};
 /** @returns {SessionExpiry} */
 declare function SessionExpiry(): SessionExpiry;
 type SessionExpiry = {
     duration?: number;
     is_rolling?: boolean;
     type?: string;
-};
-/** @returns {SessionListResponseInfo} */
-declare function SessionListResponseInfo(): SessionListResponseInfo;
-type SessionListResponseInfo = {
-    domain?: string;
-    expire_in?: string;
-    ip?: string;
-    session_id?: string;
-    user_agent?: string;
-};
-/** @returns {SessionListResponseSchema} */
-declare function SessionListResponseSchema(): SessionListResponseSchema;
-type SessionListResponseSchema = {
-    items?: SessionListResponseInfo[];
 };
 /** @returns {SessionListSuccess} */
 declare function SessionListSuccess(): SessionListSuccess;
@@ -1237,93 +921,16 @@ declare function TokenRequestBodySchema(): TokenRequestBodySchema;
 type TokenRequestBodySchema = {
     token?: string;
 };
-/** @returns {UnauthenticatedSchema} */
-declare function UnauthenticatedSchema(): UnauthenticatedSchema;
-type UnauthenticatedSchema = {
-    authenticated?: boolean;
-};
-/** @returns {UnauthorizedSchema} */
-declare function UnauthorizedSchema(): UnauthorizedSchema;
-type UnauthorizedSchema = {
-    message?: string;
-};
-/** @returns {UnDeleteUserRequestSchema} */
-declare function UnDeleteUserRequestSchema(): UnDeleteUserRequestSchema;
-type UnDeleteUserRequestSchema = {
-    reason?: string;
-    reason_id?: string;
-    user_id?: string;
-};
-/** @returns {UnDeleteUserSuccess} */
-declare function UnDeleteUserSuccess(): UnDeleteUserSuccess;
-type UnDeleteUserSuccess = {
-    success?: boolean;
-};
 /** @returns {UpdatePasswordRequestSchema} */
 declare function UpdatePasswordRequestSchema(): UpdatePasswordRequestSchema;
 type UpdatePasswordRequestSchema = {
     new_password?: string;
     old_password?: string;
 };
-/** @returns {UpdateUserGroupSchema} */
-declare function UpdateUserGroupSchema(): UpdateUserGroupSchema;
-type UpdateUserGroupSchema = {
-    description?: string;
-    file_url?: string;
-    name?: string;
-};
-/** @returns {UpdateUserRequestSchema} */
-declare function UpdateUserRequestSchema(): UpdateUserRequestSchema;
-type UpdateUserRequestSchema = {
-    emails?: UserEmails[];
-    external_id?: string;
-    first_name?: string;
-    gender?: string;
-    last_name?: string;
-    meta?: any;
-    phone_numbers?: UserPhoneNumbers[];
-};
-/** @returns {UserEmails} */
-declare function UserEmails(): UserEmails;
-type UserEmails = {
-    active?: boolean;
-    email?: string;
-    primary?: boolean;
-    verified?: boolean;
-};
-/** @returns {UserGroupListResponseSchema} */
-declare function UserGroupListResponseSchema(): UserGroupListResponseSchema;
-type UserGroupListResponseSchema = {
-    items?: UserGroupResponseSchema[];
-    page?: PaginationSchema;
-};
-/** @returns {UserGroupResponseSchema} */
-declare function UserGroupResponseSchema(): UserGroupResponseSchema;
-type UserGroupResponseSchema = {
-    __v?: number;
-    _id?: string;
-    application_id?: string;
-    created_at?: string;
-    description?: string;
-    file_url?: string;
-    modified_at?: string;
-    name?: string;
-    status?: string;
-    uid?: number;
-};
 /** @returns {UserObjectSchema} */
 declare function UserObjectSchema(): UserObjectSchema;
 type UserObjectSchema = {
     user?: UserSchema;
-};
-/** @returns {UserPhoneNumbers} */
-declare function UserPhoneNumbers(): UserPhoneNumbers;
-type UserPhoneNumbers = {
-    active?: boolean;
-    country_code?: string;
-    phone?: string;
-    primary?: boolean;
-    verified?: boolean;
 };
 /** @returns {UserSchema} */
 declare function UserSchema(): UserSchema;
@@ -1344,11 +951,6 @@ type UserSchema = {
     updated_at?: string;
     user_id?: string;
     username?: string;
-};
-/** @returns {UserSearchResponseSchema} */
-declare function UserSearchResponseSchema(): UserSearchResponseSchema;
-type UserSearchResponseSchema = {
-    users?: UserSchema[];
 };
 /** @returns {VerifyEmailOtpRequestSchema} */
 declare function VerifyEmailOtpRequestSchema(): VerifyEmailOtpRequestSchema;

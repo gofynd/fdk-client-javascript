@@ -91,7 +91,7 @@ declare class PosCart {
      * @returns {Promise<PosCartApplicationModel.Address>} - Success response
      * @name getAddressById
      * @summary: Fetch a single address by its ID
-     * @description: Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `Address`. Attibutes listed below are optional <ul> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul> - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getAddressById/).
+     * @description: Use this API to get an addresses using its ID. If successful, returns a Address resource in the response body specified in `Address`. Attibutes listed below are optional  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getAddressById/).
      */
     getAddressById({ id, cartId, buyNow, mobileNo, checkoutMode, tags, isDefault, requestHeaders, }?: PosCartApplicationValidator.GetAddressByIdParam, { responseHeaders }?: object): Promise<PosCartApplicationModel.Address>;
     /**
@@ -101,7 +101,7 @@ declare class PosCart {
      * @returns {Promise<PosCartApplicationModel.GetAddressesResponse>} - Success response
      * @name getAddresses
      * @summary: Fetch address
-     * @description: Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional <ul> <li> <font color="monochrome">uid</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">mobile_no</font></li> <li> <font color="monochrome">checkout_mode</font></li> <li> <font color="monochrome">tags</font></li> <li> <font color="monochrome">default</font></li> </ul> - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getAddresses/).
+     * @description: Use this API to get all the addresses associated with an account. If successful, returns a Address resource in the response body specified in GetAddressesResponse.attibutes listed below are optional  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getAddresses/).
      */
     getAddresses({ cartId, buyNow, mobileNo, checkoutMode, tags, isDefault, requestHeaders, }?: PosCartApplicationValidator.GetAddressesParam, { responseHeaders }?: object): Promise<PosCartApplicationModel.GetAddressesResponse>;
     /**
@@ -238,7 +238,7 @@ declare class PosCart {
      * @returns {Promise<PosCartApplicationModel.CartDetailResponse>} - Success response
      * @name selectAddress
      * @summary: Select an address from available addresses
-     * @description: <p>Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object. Below address attributes are required. <ul> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">billing_address_id</font></li> <li> <font color="monochrome">uid</font></li> </ul></p> - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/selectAddress/).
+     * @description: Select Address from all addresses associated with the account in order to ship the cart items to that address, otherwise default address will be selected implicitly. See `SelectCartAddressRequest` in schema of request body for the list of attributes needed to select Address from account. On successful request, this API returns a Cart object.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/selectAddress/).
      */
     selectAddress({ body, cartId, buyNow, i, b, requestHeaders }?: PosCartApplicationValidator.SelectAddressParam, { responseHeaders }?: object): Promise<PosCartApplicationModel.CartDetailResponse>;
     /**
@@ -259,7 +259,7 @@ declare class PosCart {
      *   Success response
      * @name updateAddress
      * @summary: Update address added to an account
-     * @description: <p>Use this API to update an existing address in the account. Request object should contain attributes mentioned in  <font color="blue">Address </font> can be updated. These attributes are:</p> <ul> <li> <font color="monochrome">is_default_address</font></li> <li> <font color="monochrome">landmark</font></li> <li> <font color="monochrome">area</font></li> <li> <font color="monochrome">pincode</font></li> <li> <font color="monochrome">email</font></li> <li> <font color="monochrome">address_type</font></li> <li> <font color="monochrome">name</font></li> <li> <font color="monochrome">address_id</font></li> <li> <font color="monochrome">address</font></li> </ul> - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/updateAddress/).
+     * @description: Use this API to update an existing address in the account. Request object should contain attributes mentioned in Address  can be updated. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/updateAddress/).
      */
     updateAddress({ id, body, requestHeaders }?: PosCartApplicationValidator.UpdateAddressParam, { responseHeaders }?: object): Promise<PosCartApplicationModel.UpdateAddressResponse>;
     /**
@@ -270,7 +270,7 @@ declare class PosCart {
      *   Success response
      * @name updateCart
      * @summary: Update items in the cart
-     * @description: <p>Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs</p> <ul> <li><font color="monochrome">operation</font> Operation for current api call. <b>update_item</b> for update items. <b>remove_item</b> for removing items.</li> <li> <font color="monochrome">item_id</font>  "/platform/content/v1/products/"</li> <li> <font color="monochrome">item_size</font>   "/platform/content/v1/products/:slug/sizes/"</li> <li> <font color="monochrome">quantity</font>  item quantity (must be greater than or equal to 1)</li> <li> <font color="monochrome">article_id</font>   "/content​/v1​/products​/:identifier​/sizes​/price​/"</li> <li> <font color="monochrome">item_index</font>  item position in the cart (must be greater than or equal to 0)</li> </ul> - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/updateCart/).
+     * @description: Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/updateCart/).
      */
     updateCart({ body, id, i, b, areaCode, buyNow, requestHeaders }?: PosCartApplicationValidator.UpdateCartParam, { responseHeaders }?: object): Promise<PosCartApplicationModel.UpdateCartDetailResponse>;
     /**

@@ -146,6 +146,45 @@ declare class Payment {
      */
     getEdcDevice({ terminalUniqueIdentifier, requestHeaders }?: PaymentPlatformApplicationValidator.GetEdcDeviceParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.EdcDeviceDetailsResponse>;
     /**
+     * @param {PaymentPlatformApplicationValidator.GetMerchantAggregatorPaymentModeDetailsParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<PaymentPlatformModel.MerchnatPaymentModeResponse>} -
+     *   Success response
+     * @name getMerchantAggregatorPaymentModeDetails
+     * @summary: Get Aggregator, payment mode and sub payment mode.
+     * @description: Get Aggregator, payment mode and sub payment mode details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getMerchantAggregatorPaymentModeDetails/).
+     */
+    getMerchantAggregatorPaymentModeDetails({ aggregatorId, businessUnit, device, requestHeaders }?: PaymentPlatformApplicationValidator.GetMerchantAggregatorPaymentModeDetailsParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.MerchnatPaymentModeResponse>;
+    /**
+     * @param {PaymentPlatformApplicationValidator.GetMerchantPaymentOptionParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<PaymentPlatformModel.MerchnatPaymentModeResponse>} -
+     *   Success response
+     * @name getMerchantPaymentOption
+     * @summary: Get Payment modes and COD details.
+     * @description: This api fetches all the available PGs for merchant and its offline payment mode details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getMerchantPaymentOption/).
+     */
+    getMerchantPaymentOption({ requestHeaders }?: any, { responseHeaders }?: object): Promise<PaymentPlatformModel.MerchnatPaymentModeResponse>;
+    /**
+     * @param {PaymentPlatformApplicationValidator.GetPGConfigAggregatorsParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<PaymentPlatformModel.MerchnatPaymentModeResponse>} -
+     *   Success response
+     * @name getPGConfigAggregators
+     * @summary: Get Aggregators available to be added as PG.
+     * @description: Get Aggregators available to be added as PG. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getPGConfigAggregators/).
+     */
+    getPGConfigAggregators({ requestHeaders }?: any, { responseHeaders }?: object): Promise<PaymentPlatformModel.MerchnatPaymentModeResponse>;
+    /**
      * @param {PaymentPlatformApplicationValidator.GetPaymentCodeOptionParam} arg
      *   - Arg object
      *
@@ -266,6 +305,32 @@ declare class Payment {
      */
     oauthGetUrl({ aggregator, successRedirectUrl, failureRedirectUrl, requestHeaders }?: PaymentPlatformApplicationValidator.OauthGetUrlParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.GetOauthUrlResponse>;
     /**
+     * @param {PaymentPlatformApplicationValidator.PatchMerchantAggregatorPaymentModeDetailsParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<PaymentPlatformModel.MerchnatPaymentModeResponse>} -
+     *   Success response
+     * @name patchMerchantAggregatorPaymentModeDetails
+     * @summary: Update Aggregator, payment mode and sub payment mode.
+     * @description: Update Aggregator, payment mode and sub payment mode details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/patchMerchantAggregatorPaymentModeDetails/).
+     */
+    patchMerchantAggregatorPaymentModeDetails({ aggregatorId, body, requestHeaders }?: PaymentPlatformApplicationValidator.PatchMerchantAggregatorPaymentModeDetailsParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.MerchnatPaymentModeResponse>;
+    /**
+     * @param {PaymentPlatformApplicationValidator.PatchMerchantPaymentOptionParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<PaymentPlatformModel.MerchnatPaymentModeResponse>} -
+     *   Success response
+     * @name patchMerchantPaymentOption
+     * @summary: Update Payment modes and COD details.
+     * @description: To updated online payment as active/inactive or offline payment configuration like cod charges, anonymous cod allowed flags. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/patchMerchantPaymentOption/).
+     */
+    patchMerchantPaymentOption({ body, requestHeaders }?: PaymentPlatformApplicationValidator.PatchMerchantPaymentOptionParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.MerchnatPaymentModeResponse>;
+    /**
      * @param {PaymentPlatformApplicationValidator.PaymentStatusBulkParam} arg
      *   - Arg object
      *
@@ -373,6 +438,34 @@ declare class Payment {
      * @description: Use this API to map new edc device to the terminal - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/updateEdcDevice/).
      */
     updateEdcDevice({ body, requestHeaders }?: PaymentPlatformApplicationValidator.UpdateEdcDeviceParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.EdcDeviceAddResponse>;
+    /**
+     * @param {PaymentPlatformApplicationValidator.UpdatePaymentSessionParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<PaymentPlatformModel.PaymentSessionResponseSerializer>}
+     *   - Success response
+     *
+     * @name updatePaymentSession
+     * @summary: API to update status of a payment.
+     * @description: A payment_session is initiated against a global identifier (gid) which is identifies the entity payment is initiated against. e.g. order_id, cart_id. This endpoint is to update the status of the said payment_session. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/updatePaymentSession/).
+     */
+    updatePaymentSession({ gid, body, requestHeaders }?: PaymentPlatformApplicationValidator.UpdatePaymentSessionParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.PaymentSessionResponseSerializer>;
+    /**
+     * @param {PaymentPlatformApplicationValidator.UpdateRefundSessionParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<PaymentPlatformModel.RefundSessionResponseSerializer>}
+     *   - Success response
+     *
+     * @name updateRefundSession
+     * @summary: API to update the status of a refund
+     * @description: A refund_session is initiated against a refund request, and this endpoint is to update the status against the refund request_id. A gid is unique indentifier of the entity against which payment was received e.g. an order. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/updateRefundSession/).
+     */
+    updateRefundSession({ gid, requestId, body, requestHeaders }?: PaymentPlatformApplicationValidator.UpdateRefundSessionParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.RefundSessionResponseSerializer>;
     /**
      * @param {PaymentPlatformApplicationValidator.VerifyCustomerForPaymentParam} arg
      *   - Arg object

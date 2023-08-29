@@ -84,24 +84,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef Currency
- * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
- *   of the current sales channel supported currency
- * @property {string} [code] - 3-character currency code, e.g. INR, USD, EUR.
- * @property {string} [created_at] - ISO 8601 timestamp of sales channel support
- *   currency creation
- * @property {number} [decimal_digits] - Acceptable decimal limits for a given
- *   currency, e.g. 1.05$ means upto 2 decimal digits can be accepted as a valid
- *   value of a currency.
- * @property {boolean} [is_active] - Shows currency is enabled or not in current
- *   sales channel
- * @property {string} [name] - Name of the currency, e.g. Indian Rupee
- * @property {string} [symbol] - Unique symbol for identifying the currency, e.g. ₹
- * @property {string} [updated_at] - ISO 8601 timestamp of sales channel support
- *   currency updation
- */
-
-/**
  * @typedef Domain
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   of the domain
@@ -150,24 +132,12 @@ const Joi = require("joi");
 
 /**
  * @typedef Locations
- * @property {Object[]} [items]
+ * @property {LocationCountry[]} [items]
  */
 
 /**
  * @typedef NotFound
  * @property {string} [message] - Response message for not found
- */
-
-/**
- * @typedef Page
- * @property {number} [current] - Current page number
- * @property {boolean} [has_next] - Next page is present or not
- * @property {boolean} [has_previous] - Previous page is present or not
- * @property {number} [item_total] - Total number of items to retrieve
- * @property {string} [next_id] - Next page ID
- * @property {number} [size] - The number of items to retrieve in each page.
- *   Default value is 10.
- * @property {string} type - Page type
  */
 
 /**
@@ -263,20 +233,6 @@ class ConfigurationPublicModel {
     });
   }
 
-  /** @returns {Currency} */
-  static Currency() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-      code: Joi.string().allow(""),
-      created_at: Joi.string().allow(""),
-      decimal_digits: Joi.number(),
-      is_active: Joi.boolean(),
-      name: Joi.string().allow(""),
-      symbol: Joi.string().allow(""),
-      updated_at: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {Domain} */
   static Domain() {
     return Joi.object({
@@ -332,7 +288,7 @@ class ConfigurationPublicModel {
   /** @returns {Locations} */
   static Locations() {
     return Joi.object({
-      items: Joi.array().items(Joi.any()),
+      items: Joi.array().items(ConfigurationPublicModel.LocationCountry()),
     });
   }
 
@@ -340,19 +296,6 @@ class ConfigurationPublicModel {
   static NotFound() {
     return Joi.object({
       message: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {Page} */
-  static Page() {
-    return Joi.object({
-      current: Joi.number(),
-      has_next: Joi.boolean(),
-      has_previous: Joi.boolean(),
-      item_total: Joi.number(),
-      next_id: Joi.string().allow(""),
-      size: Joi.number(),
-      type: Joi.string().allow("").required(),
     });
   }
 

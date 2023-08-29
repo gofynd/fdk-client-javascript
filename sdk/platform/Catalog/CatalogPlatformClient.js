@@ -1860,7 +1860,7 @@ class Catalog {
    * @description: Allows you to download product template data - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/downloadProductTemplateViews/).
    */
   async downloadProductTemplateViews(
-    { slug, requestHeaders } = { requestHeaders: {} },
+    { slug, itemType, type, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -1868,6 +1868,8 @@ class Catalog {
     } = CatalogPlatformValidator.downloadProductTemplateViews().validate(
       {
         slug,
+        itemType,
+        type,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1881,6 +1883,8 @@ class Catalog {
     } = CatalogPlatformValidator.downloadProductTemplateViews().validate(
       {
         slug,
+        itemType,
+        type,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1892,6 +1896,8 @@ class Catalog {
     }
 
     const query_params = {};
+    query_params["item_type"] = itemType;
+    query_params["type"] = type;
 
     const xHeaders = {};
 
@@ -3229,7 +3235,7 @@ class Catalog {
    * @returns {Promise<CatalogPlatformModel.StoreAssignResponse>} - Success response
    * @name getOptimalLocations
    * @summary: Location Reassignment
-   * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getOptimalLocations/).
+   * @description: Location Reassignment - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getOptimalLocations/).
    */
   async getOptimalLocations(
     { body, requestHeaders } = { requestHeaders: {} },
@@ -5982,7 +5988,7 @@ class Catalog {
    * @description: Allows you to list all product templates validation values for all the fields present in the database - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/validateProductTemplate/).
    */
   async validateProductTemplate(
-    { slug, requestHeaders } = { requestHeaders: {} },
+    { slug, itemType, bulk, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -5990,6 +5996,8 @@ class Catalog {
     } = CatalogPlatformValidator.validateProductTemplate().validate(
       {
         slug,
+        itemType,
+        bulk,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -6003,6 +6011,8 @@ class Catalog {
     } = CatalogPlatformValidator.validateProductTemplate().validate(
       {
         slug,
+        itemType,
+        bulk,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -6014,6 +6024,8 @@ class Catalog {
     }
 
     const query_params = {};
+    query_params["item_type"] = itemType;
+    query_params["bulk"] = bulk;
 
     const xHeaders = {};
 

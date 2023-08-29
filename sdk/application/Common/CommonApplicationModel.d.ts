@@ -74,23 +74,6 @@ export = CommonApplicationModel;
  * @property {string} [message] - Failure message (in a string format)
  */
 /**
- * @typedef Currency
- * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
- *   of the current sales channel supported currency
- * @property {string} [code] - 3-character currency code, e.g. INR, USD, EUR.
- * @property {string} [created_at] - ISO 8601 timestamp of sales channel support
- *   currency creation
- * @property {number} [decimal_digits] - Acceptable decimal limits for a given
- *   currency, e.g. 1.05$ means upto 2 decimal digits can be accepted as a valid
- *   value of a currency.
- * @property {boolean} [is_active] - Shows currency is enabled or not in current
- *   sales channel
- * @property {string} [name] - Name of the currency, e.g. Indian Rupee
- * @property {string} [symbol] - Unique symbol for identifying the currency, e.g. ₹
- * @property {string} [updated_at] - ISO 8601 timestamp of sales channel support
- *   currency updation
- */
-/**
  * @typedef Domain
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   of the domain
@@ -135,21 +118,11 @@ export = CommonApplicationModel;
  */
 /**
  * @typedef Locations
- * @property {Object[]} [items]
+ * @property {LocationCountry[]} [items]
  */
 /**
  * @typedef NotFound
  * @property {string} [message] - Response message for not found
- */
-/**
- * @typedef Page
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {boolean} [has_previous]
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {number} [size]
- * @property {string} type
  */
 /**
  * @typedef SecureUrl
@@ -158,7 +131,7 @@ export = CommonApplicationModel;
 declare class CommonApplicationModel {
 }
 declare namespace CommonApplicationModel {
-    export { Application, ApplicationAuth, ApplicationCors, ApplicationMeta, ApplicationRedirections, ApplicationResponse, ApplicationWebsite, BadRequest, Currency, Domain, LocationCountry, LocationDefaultCurrency, LocationDefaultLanguage, Locations, NotFound, Page, SecureUrl };
+    export { Application, ApplicationAuth, ApplicationCors, ApplicationMeta, ApplicationRedirections, ApplicationResponse, ApplicationWebsite, BadRequest, Domain, LocationCountry, LocationDefaultCurrency, LocationDefaultLanguage, Locations, NotFound, SecureUrl };
 }
 /** @returns {Application} */
 declare function Application(): Application;
@@ -311,48 +284,6 @@ type BadRequest = {
      */
     message?: string;
 };
-/** @returns {Currency} */
-declare function Currency(): Currency;
-type Currency = {
-    /**
-     * - The unique identifier (24-digit Mongo Object ID)
-     * of the current sales channel supported currency
-     */
-    _id?: string;
-    /**
-     * - 3-character currency code, e.g. INR, USD, EUR.
-     */
-    code?: string;
-    /**
-     * - ISO 8601 timestamp of sales channel support
-     * currency creation
-     */
-    created_at?: string;
-    /**
-     * - Acceptable decimal limits for a given
-     * currency, e.g. 1.05$ means upto 2 decimal digits can be accepted as a valid
-     * value of a currency.
-     */
-    decimal_digits?: number;
-    /**
-     * - Shows currency is enabled or not in current
-     * sales channel
-     */
-    is_active?: boolean;
-    /**
-     * - Name of the currency, e.g. Indian Rupee
-     */
-    name?: string;
-    /**
-     * - Unique symbol for identifying the currency, e.g. ₹
-     */
-    symbol?: string;
-    /**
-     * - ISO 8601 timestamp of sales channel support
-     * currency updation
-     */
-    updated_at?: string;
-};
 /** @returns {Domain} */
 declare function Domain(): Domain;
 type Domain = {
@@ -418,7 +349,7 @@ type LocationDefaultLanguage = {
 /** @returns {Locations} */
 declare function Locations(): Locations;
 type Locations = {
-    items?: any[];
+    items?: LocationCountry[];
 };
 /** @returns {NotFound} */
 declare function NotFound(): NotFound;
@@ -427,17 +358,6 @@ type NotFound = {
      * - Response message for not found
      */
     message?: string;
-};
-/** @returns {Page} */
-declare function Page(): Page;
-type Page = {
-    current?: number;
-    has_next?: boolean;
-    has_previous?: boolean;
-    item_total?: number;
-    next_id?: string;
-    size?: number;
-    type: string;
 };
 /** @returns {SecureUrl} */
 declare function SecureUrl(): SecureUrl;

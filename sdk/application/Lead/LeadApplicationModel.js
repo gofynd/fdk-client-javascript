@@ -4,51 +4,11 @@ const Joi = require("joi");
  * @typedef AddTicketPayload
  * @property {Object} [_custom_json] - Optional custom data that needs to be sent
  * @property {string} category - Category of the ticket
- * @property {TicketContent} content - Content for the ticket
+ * @property {TicketContent} content
  * @property {Object} [created_by] - Creator of the ticket
- * @property {PriorityEnum} [priority] - Priority of the ticket
+ * @property {PriorityEnum} [priority]
  * @property {string} [status] - Status of the ticket
  * @property {string[]} [subscribers]
- */
-
-/**
- * @typedef AgentChangePayload
- * @property {string} agent_id - Agent's unique ID
- */
-
-/**
- * @typedef CategoryData
- * @property {TicketCategory} [list]
- */
-
-/**
- * @typedef CloseVideoRoomResponse
- * @property {boolean} success - Denotes if operation was successfully
- */
-
-/**
- * @typedef CommunicationDetails
- * @property {string} [description] - Short description for the communication method
- * @property {boolean} [enabled] - Denotes if this communication method has to be shown
- * @property {string} [title] - Title for the communication method
- * @property {string} [type] - Enum type for the communication method
- * @property {string} [value] - Value for the communication method
- */
-
-/**
- * @typedef CreateCustomFormPayload
- * @property {string} [description] - Description of the form
- * @property {string} [header_image] - Header image that is to be shown for the form
- * @property {Object[]} inputs - List of all the form components
- * @property {PollForAssignment} [poll_for_assignment] - Describes how polling
- *   will be done for the tickets createds
- * @property {PriorityEnum} priority - Describes the priority of the tickets
- *   created by the form
- * @property {boolean} [should_notify] - Indicates if staff should be notified
- *   when a response is received
- * @property {string} slug - Slug for the form
- * @property {string} [success_message] - Success message that will be shown on submission
- * @property {string} title - Title for the form
  */
 
 /**
@@ -57,42 +17,24 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CreateVideoRoomPayload
- * @property {NotifyUser[]} [notify] - List of people to be notified
- * @property {string} unique_name - Ticket id
- */
-
-/**
- * @typedef CreateVideoRoomResponse
- * @property {string} unique_name - Video Room's unique name
- */
-
-/**
  * @typedef CustomForm
  * @property {string} _id - Unique identifier for the form
  * @property {string} application_id - Application ID for form
- * @property {CreatedOn} [created_on] - Gives details of when the form was created
+ * @property {CreatedOn} [created_on]
  * @property {string} [description] - Form description that will be shown to the user
  * @property {string} [header_image] - Form header image that will be shown to the user
  * @property {Object[]} inputs - List of all the form fields
  * @property {boolean} login_required - Denotes if login is required to make a
  *   form response submission
- * @property {PollForAssignment} [poll_for_assignment] - Details of how polling
- *   should be done for support
- * @property {Priority} priority - Sets priority of tickets created by form response
+ * @property {PollForAssignment} [poll_for_assignment]
+ * @property {Priority} priority
  * @property {boolean} should_notify - Denotes if new response submission for
  *   the form should be notified to the assignees
  * @property {string} slug - Slug for the form, which is to be used for accessing the form
- * @property {SubmitButton} [submit_button] - Details for submit button
+ * @property {SubmitButton} [submit_button]
  * @property {string} [success_message] - Message that is to be shown on
  *   succesfull form response submission
  * @property {string} title - Form title that will be shown to the user
- */
-
-/**
- * @typedef CustomFormList
- * @property {CustomForm[]} [items] - List of forms
- * @property {Page} [page] - Describes the pagination state
  */
 
 /**
@@ -105,37 +47,6 @@ const Joi = require("joi");
  * @typedef Debug
  * @property {string} [platform] - Platform of user
  * @property {string} [source] - Source of user
- */
-
-/**
- * @typedef EditCustomFormPayload
- * @property {string} [description] - Description of the form
- * @property {string} [header_image] - Header image that is to be shown for the form
- * @property {Object[]} inputs - List of all the form components
- * @property {boolean} [login_required] - Denotes if login is required to make a
- *   form response submission
- * @property {PollForAssignment} [poll_for_assignment] - Describes how polling
- *   will be done for the tickets createds
- * @property {PriorityEnum} priority - Describes the priority of the tickets
- *   created by the form
- * @property {boolean} [should_notify] - Indicates if staff should be notified
- *   when a response is received
- * @property {string} [success_message] - Success message that will be shown on submission
- * @property {string} title - Title for the form
- */
-
-/**
- * @typedef EditTicketPayload
- * @property {AgentChangePayload} [assigned_to] - Details of support staff to
- *   whom ticket is assigned
- * @property {string} [category] - Category assigned to the ticket
- * @property {TicketContent} [content] - Ticket conetent details
- * @property {PriorityEnum} [priority] - Denotes the priority of ticket
- * @property {string} [source] - Denotes if the ticket was created at company or
- *   application level
- * @property {string} [status] - Denotes in what state is the ticket
- * @property {string} [sub_category] - Sub-category assigned to the ticket
- * @property {string[]} [tags] - Tags relevant to ticket
  */
 
 /**
@@ -154,21 +65,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef FeedbackResponseItem
- * @property {string} display - Question/Title of the form field
- * @property {string} key - Key of the form field
- * @property {string} value - User response value for the form field
- */
-
-/**
- * @typedef Filter
- * @property {Object[]} assignees - List of support staff availble for tickets assignment
- * @property {TicketCategory[]} [categories] - List of possible categories for tickets
- * @property {Priority[]} priorities - List of possible priorities for tickets
- * @property {Status[]} statuses - List of possible statuses for tickets
- */
-
-/**
  * @typedef GetParticipantsInsideVideoRoomResponse
  * @property {Participant[]} participants - List of participants of the video room
  */
@@ -179,47 +75,10 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef IntegrationConfig
- * @property {string} [_id] - Unique id
- * @property {boolean} allow_ticket_creation - Denotes ticket creation enable or
- *   disable on platform
- * @property {string} [base_url] - Integration base url for validate and create ticket
- * @property {CategoryData} [category_data] - Support category array list details
- * @property {string} [category_sync_apikey] - Integration apikey to sync
- *   category of selected type
- * @property {boolean} [config_completed] - Denotes the current intergration is
- *   completed or partially done
- * @property {string} [create_ticket_apikey] - Integration apikey to validate
- *   and create ticket
- * @property {string} integration_type - Enum string values for integration
- * @property {boolean} show_listing - Denotes ticket listing enable or disable on platform
- * @property {string} [update_ticket_apikey] - Integration apikey to update ticket
- * @property {string} [webhook_apikey] - Integration webhook apikey to got
- *   callbacks from integration type dashboard like freshdesk, etc
- */
-
-/**
- * @typedef NotifyUser
- * @property {string} country_code - Country code
- * @property {string} phone_number - Phone number
- */
-
-/**
- * @typedef Page
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {boolean} [has_previous]
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {number} [size]
- * @property {string} type
- */
-
-/**
  * @typedef Participant
  * @property {string} [identity] - Unique identifier of participant
  * @property {string} [status] - Status of participant
- * @property {UserSchema} [user] - Details of participant
+ * @property {UserSchema} [user]
  */
 
 /**
@@ -243,7 +102,7 @@ const Joi = require("joi");
  * @typedef Priority
  * @property {string} color - Color for priority
  * @property {string} display - Display text for priority
- * @property {PriorityEnum} key - Key for priority
+ * @property {PriorityEnum} key
  */
 
 /**
@@ -263,22 +122,7 @@ const Joi = require("joi");
 /**
  * @typedef SubmitCustomFormResponse
  * @property {string} message - Success message for form submission
- * @property {Ticket} [ticket] - Ticket created on form submission
- */
-
-/**
- * @typedef SupportGeneralConfig
- * @property {string} [_id] - Unique id
- * @property {Object} [integration] - Contains integrations basic information
- * @property {boolean} [show_communication_info] - Denotes if support
- *   communication info should be shown
- * @property {boolean} [show_support_dris] - Denotes if support DRIS info should be shown
- * @property {CommunicationDetails} [support_communication] - Support
- *   communication array list details
- * @property {CommunicationDetails} [support_email] - Support e-mail details
- * @property {CommunicationDetails} [support_faq] - Support FAQ details
- * @property {CommunicationDetails} [support_phone] - Support Phone number details
- * @property {string} [type] - The enity/platform for which the config is stored
+ * @property {Ticket} [ticket]
  */
 
 /**
@@ -286,23 +130,20 @@ const Joi = require("joi");
  * @property {Object} [_custom_json] - Custom json relevant to the ticket
  * @property {string} _id - Unique identifier for the ticket
  * @property {Object} [assigned_to] - Details of support staff to whom ticket is assigned
- * @property {TicketCategory} category - Category assigned to the ticket
- * @property {TicketContent} [content] - Ticket conetent details
- * @property {TicketContext} [context] - Details of company and application
- *   realated to the ticket
+ * @property {TicketCategory} category
+ * @property {TicketContent} [content]
+ * @property {TicketContext} [context]
  * @property {string} [created_at] - Time when the ticket was created
  * @property {Object} [created_by] - User details of ticket creator
- * @property {CreatedOn} [created_on] - Details of company and application
- *   realated to the ticket
+ * @property {CreatedOn} [created_on]
  * @property {Object} [integration] - Integration type and its details of the ticket
  * @property {boolean} [is_feedback_pending] - Denotes if feedback submission is
  *   pending for the ticket
- * @property {Priority} priority - Denotes the priority of ticket
+ * @property {Priority} priority
  * @property {string} [response_id] - Details of company and application
  *   realated to the ticket
- * @property {TicketSourceEnum} source - Denotes if the ticket was created at
- *   company or application level
- * @property {Status} status - Denotes in what state is the ticket
+ * @property {TicketSourceEnum} source
+ * @property {Status} status
  * @property {string} [sub_category] - Sub-category assigned to the ticket
  * @property {string[]} [tags] - Tags relevant to ticket
  * @property {string} [updated_at] - Time when the ticket was last updated
@@ -311,17 +152,17 @@ const Joi = require("joi");
 /**
  * @typedef TicketAsset
  * @property {string} [display] - Display text for asset
- * @property {TicketAssetTypeEnum} type - Type of asset
+ * @property {TicketAssetTypeEnum} type
  * @property {string} value - To be used for details
  */
 
 /**
  * @typedef TicketCategory
  * @property {string} display - Category display value identifier
- * @property {FeedbackForm} [feedback_form] - Support category array list details
+ * @property {FeedbackForm} [feedback_form]
  * @property {number} [group_id] - Group id of category releted data
  * @property {string} key - Category key value identifier
- * @property {TicketCategory} [sub_categories] - Support category array list details
+ * @property {TicketCategory} [sub_categories]
  */
 
 /**
@@ -338,40 +179,11 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef TicketFeedback
- * @property {string} _id - Unique identifier for the feedback
- * @property {string} [category] - Category of the ticket
- * @property {string} company_id - Company id for which ticket was raised
- * @property {string} [created_at] - Time when the feedback was created
- * @property {FeedbackResponseItem[]} response
- * @property {string} ticket_id - Readable ticket number
- * @property {string} [updated_at] - Time when the feedback was last updated
- * @property {Object} [user] - User who submitted the feedback
- */
-
-/**
- * @typedef TicketFeedbackForm
- * @property {Object[]} [display] - List of all the form fields
- * @property {string} title - Feedback form title that will be shown to the user
- */
-
-/**
- * @typedef TicketFeedbackList
- * @property {TicketFeedback[]} [items] - List of all ticket feedback for the ticket
- */
-
-/**
- * @typedef TicketFeedbackPayload
- * @property {Object} [form_response] - Key-value pairs of all the form fields
- *   and their response
- */
-
-/**
  * @typedef TicketHistory
  * @property {string} _id - Unique identifier of the history event
  * @property {string} [created_at] - Time of creation of the history event
  * @property {Object} [created_by] - User who created the history event
- * @property {CreatedOn} [created_on] - Time of creation of the history event
+ * @property {CreatedOn} [created_on]
  * @property {string} ticket_id - Readable ticket number
  * @property {string} type - Type of the history event
  * @property {string} [updated_at] - Time of last update of the history event
@@ -379,29 +191,9 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef TicketHistoryList
- * @property {TicketHistory[]} [items] - List of ticket history
- * @property {Page} [page] - Describes the pagination state
- */
-
-/**
  * @typedef TicketHistoryPayload
- * @property {HistoryTypeEnum} type - Type of history event
+ * @property {HistoryTypeEnum} type
  * @property {Object} value - Details of history event
- */
-
-/**
- * @typedef TicketList
- * @property {Filter} [filters] - All the filters available for tickets
- * @property {Ticket[]} [items] - List of tickets
- * @property {Page} [page] - Describes the pagination state
- */
-
-/**
- * @typedef TicketSubCategory
- * @property {string} display - Display text for sub-category
- * @property {string} key - Key for sub-category
- * @property {TicketSubCategory} [sub_categories]
  */
 
 /**
@@ -440,8 +232,6 @@ const Joi = require("joi");
  *   | "order"} TicketAssetTypeEnum
  */
 
-/** @typedef {"default" | "freshdesk" | "kapture"} TicketIntegrationDetails */
-
 /** @typedef {"platform_panel" | "sales_channel"} TicketSourceEnum */
 
 class LeadApplicationModel {
@@ -458,72 +248,10 @@ class LeadApplicationModel {
     });
   }
 
-  /** @returns {AgentChangePayload} */
-  static AgentChangePayload() {
-    return Joi.object({
-      agent_id: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {CategoryData} */
-  static CategoryData() {
-    return Joi.object({
-      list: LeadApplicationModel.TicketCategory(),
-    });
-  }
-
-  /** @returns {CloseVideoRoomResponse} */
-  static CloseVideoRoomResponse() {
-    return Joi.object({
-      success: Joi.boolean().required(),
-    });
-  }
-
-  /** @returns {CommunicationDetails} */
-  static CommunicationDetails() {
-    return Joi.object({
-      description: Joi.string().allow(""),
-      enabled: Joi.boolean(),
-      title: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-      value: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {CreateCustomFormPayload} */
-  static CreateCustomFormPayload() {
-    return Joi.object({
-      description: Joi.string().allow(""),
-      header_image: Joi.string().allow(""),
-      inputs: Joi.array().items(Joi.any()).required(),
-      poll_for_assignment: LeadApplicationModel.PollForAssignment(),
-      priority: LeadApplicationModel.PriorityEnum().required(),
-      should_notify: Joi.boolean(),
-      slug: Joi.string().allow("").required(),
-      success_message: Joi.string().allow(""),
-      title: Joi.string().allow("").required(),
-    });
-  }
-
   /** @returns {CreatedOn} */
   static CreatedOn() {
     return Joi.object({
       user_agent: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {CreateVideoRoomPayload} */
-  static CreateVideoRoomPayload() {
-    return Joi.object({
-      notify: Joi.array().items(LeadApplicationModel.NotifyUser()),
-      unique_name: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {CreateVideoRoomResponse} */
-  static CreateVideoRoomResponse() {
-    return Joi.object({
-      unique_name: Joi.string().allow("").required(),
     });
   }
 
@@ -547,14 +275,6 @@ class LeadApplicationModel {
     });
   }
 
-  /** @returns {CustomFormList} */
-  static CustomFormList() {
-    return Joi.object({
-      items: Joi.array().items(LeadApplicationModel.CustomForm()),
-      page: LeadApplicationModel.Page(),
-    });
-  }
-
   /** @returns {CustomFormSubmissionPayload} */
   static CustomFormSubmissionPayload() {
     return Joi.object({
@@ -568,35 +288,6 @@ class LeadApplicationModel {
     return Joi.object({
       platform: Joi.string().allow(""),
       source: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {EditCustomFormPayload} */
-  static EditCustomFormPayload() {
-    return Joi.object({
-      description: Joi.string().allow(""),
-      header_image: Joi.string().allow(""),
-      inputs: Joi.array().items(Joi.any()).required(),
-      login_required: Joi.boolean(),
-      poll_for_assignment: LeadApplicationModel.PollForAssignment(),
-      priority: LeadApplicationModel.PriorityEnum().required(),
-      should_notify: Joi.boolean(),
-      success_message: Joi.string().allow(""),
-      title: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {EditTicketPayload} */
-  static EditTicketPayload() {
-    return Joi.object({
-      assigned_to: LeadApplicationModel.AgentChangePayload(),
-      category: Joi.string().allow(""),
-      content: LeadApplicationModel.TicketContent(),
-      priority: LeadApplicationModel.PriorityEnum(),
-      source: Joi.string().allow(""),
-      status: Joi.string().allow(""),
-      sub_category: Joi.string().allow(""),
-      tags: Joi.array().items(Joi.string().allow("")),
     });
   }
 
@@ -619,25 +310,6 @@ class LeadApplicationModel {
     });
   }
 
-  /** @returns {FeedbackResponseItem} */
-  static FeedbackResponseItem() {
-    return Joi.object({
-      display: Joi.string().allow("").required(),
-      key: Joi.string().allow("").required(),
-      value: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {Filter} */
-  static Filter() {
-    return Joi.object({
-      assignees: Joi.array().items(Joi.any()).required(),
-      categories: Joi.array().items(LeadApplicationModel.TicketCategory()),
-      priorities: Joi.array().items(LeadApplicationModel.Priority()).required(),
-      statuses: Joi.array().items(LeadApplicationModel.Status()).required(),
-    });
-  }
-
   /** @returns {GetParticipantsInsideVideoRoomResponse} */
   static GetParticipantsInsideVideoRoomResponse() {
     return Joi.object({
@@ -651,44 +323,6 @@ class LeadApplicationModel {
   static GetTokenForVideoRoomResponse() {
     return Joi.object({
       access_token: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {IntegrationConfig} */
-  static IntegrationConfig() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-      allow_ticket_creation: Joi.boolean().required(),
-      base_url: Joi.string().allow(""),
-      category_data: LeadApplicationModel.CategoryData(),
-      category_sync_apikey: Joi.string().allow(""),
-      config_completed: Joi.boolean(),
-      create_ticket_apikey: Joi.string().allow(""),
-      integration_type: Joi.string().allow("").required(),
-      show_listing: Joi.boolean().required(),
-      update_ticket_apikey: Joi.string().allow(""),
-      webhook_apikey: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {NotifyUser} */
-  static NotifyUser() {
-    return Joi.object({
-      country_code: Joi.string().allow("").required(),
-      phone_number: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {Page} */
-  static Page() {
-    return Joi.object({
-      current: Joi.number(),
-      has_next: Joi.boolean(),
-      has_previous: Joi.boolean(),
-      item_total: Joi.number(),
-      next_id: Joi.string().allow(""),
-      size: Joi.number(),
-      type: Joi.string().allow("").required(),
     });
   }
 
@@ -757,21 +391,6 @@ class LeadApplicationModel {
     });
   }
 
-  /** @returns {SupportGeneralConfig} */
-  static SupportGeneralConfig() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-      integration: Joi.any(),
-      show_communication_info: Joi.boolean(),
-      show_support_dris: Joi.boolean(),
-      support_communication: LeadApplicationModel.CommunicationDetails(),
-      support_email: LeadApplicationModel.CommunicationDetails(),
-      support_faq: LeadApplicationModel.CommunicationDetails(),
-      support_phone: LeadApplicationModel.CommunicationDetails(),
-      type: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {Ticket} */
   static Ticket() {
     return Joi.object({
@@ -833,44 +452,6 @@ class LeadApplicationModel {
     });
   }
 
-  /** @returns {TicketFeedback} */
-  static TicketFeedback() {
-    return Joi.object({
-      _id: Joi.string().allow("").required(),
-      category: Joi.string().allow(""),
-      company_id: Joi.string().allow("").required(),
-      created_at: Joi.string().allow(""),
-      response: Joi.array()
-        .items(LeadApplicationModel.FeedbackResponseItem())
-        .required(),
-      ticket_id: Joi.string().allow("").required(),
-      updated_at: Joi.string().allow(""),
-      user: Joi.any(),
-    });
-  }
-
-  /** @returns {TicketFeedbackForm} */
-  static TicketFeedbackForm() {
-    return Joi.object({
-      display: Joi.array().items(Joi.any()),
-      title: Joi.string().allow("").required(),
-    });
-  }
-
-  /** @returns {TicketFeedbackList} */
-  static TicketFeedbackList() {
-    return Joi.object({
-      items: Joi.array().items(LeadApplicationModel.TicketFeedback()),
-    });
-  }
-
-  /** @returns {TicketFeedbackPayload} */
-  static TicketFeedbackPayload() {
-    return Joi.object({
-      form_response: Joi.any(),
-    });
-  }
-
   /** @returns {TicketHistory} */
   static TicketHistory() {
     return Joi.object({
@@ -885,38 +466,12 @@ class LeadApplicationModel {
     });
   }
 
-  /** @returns {TicketHistoryList} */
-  static TicketHistoryList() {
-    return Joi.object({
-      items: Joi.array().items(LeadApplicationModel.TicketHistory()),
-      page: LeadApplicationModel.Page(),
-    });
-  }
-
   /** @returns {TicketHistoryPayload} */
   static TicketHistoryPayload() {
     return Joi.object({
       type: LeadApplicationModel.HistoryTypeEnum().required(),
       value: Joi.any().required(),
     });
-  }
-
-  /** @returns {TicketList} */
-  static TicketList() {
-    return Joi.object({
-      filters: LeadApplicationModel.Filter(),
-      items: Joi.array().items(LeadApplicationModel.Ticket()),
-      page: LeadApplicationModel.Page(),
-    });
-  }
-
-  /** @returns {TicketSubCategory} */
-  static TicketSubCategory() {
-    return Joi.object({
-      display: Joi.string().allow("").required(),
-      key: Joi.string().allow("").required(),
-      sub_categories: Joi.link("#TicketSubCategory"),
-    }).id("TicketSubCategory");
   }
 
   /** @returns {UserSchema} */
@@ -999,21 +554,6 @@ class LeadApplicationModel {
       "shipment",
 
       "order"
-    );
-  }
-
-  /**
-   * Enum: TicketIntegrationDetails Used By: Lead
-   *
-   * @returns {TicketIntegrationDetails}
-   */
-  static TicketIntegrationDetails() {
-    return Joi.string().valid(
-      "default",
-
-      "freshdesk",
-
-      "kapture"
     );
   }
 

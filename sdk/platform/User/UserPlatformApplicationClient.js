@@ -948,12 +948,13 @@ class User {
    * @description: Use this API to retrieve an existing user from a list. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/searchUsers/).
    */
   async searchUsers(
-    { q, requestHeaders } = { requestHeaders: {} },
+    { q, query, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = UserPlatformApplicationValidator.searchUsers().validate(
       {
         q,
+        query,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -967,6 +968,7 @@ class User {
     } = UserPlatformApplicationValidator.searchUsers().validate(
       {
         q,
+        query,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -979,6 +981,7 @@ class User {
 
     const query_params = {};
     query_params["q"] = q;
+    query_params["query"] = query;
 
     const response = await PlatformAPIClient.execute(
       this.config,

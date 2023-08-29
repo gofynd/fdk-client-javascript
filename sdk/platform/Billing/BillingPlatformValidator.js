@@ -44,6 +44,8 @@ const BillingPlatformModel = require("./BillingPlatformModel");
 
 /** @typedef GetCustomerDetailParam */
 
+/** @typedef GetEnterprisePlansParam */
+
 /** @typedef GetFeatureLimitConfigParam */
 
 /**
@@ -59,6 +61,16 @@ const BillingPlatformModel = require("./BillingPlatformModel");
  * @typedef GetSubscriptionChargeParam
  * @property {string} extensionId - Extension _id
  * @property {string} subscriptionId - Subscription charge _id
+ */
+
+/**
+ * @typedef PlanStatusUpdateParam
+ * @property {BillingPlatformModel.PlanStatusUpdateReq} body
+ */
+
+/**
+ * @typedef SubscripePlanParam
+ * @property {BillingPlatformModel.SunscribePlan} body
  */
 
 /**
@@ -126,6 +138,11 @@ class BillingPlatformValidator {
     return Joi.object({}).required();
   }
 
+  /** @returns {GetEnterprisePlansParam} */
+  static getEnterprisePlans() {
+    return Joi.object({}).required();
+  }
+
   /** @returns {GetFeatureLimitConfigParam} */
   static getFeatureLimitConfig() {
     return Joi.object({}).required();
@@ -153,6 +170,20 @@ class BillingPlatformValidator {
     return Joi.object({
       extensionId: Joi.string().allow("").required(),
       subscriptionId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {PlanStatusUpdateParam} */
+  static planStatusUpdate() {
+    return Joi.object({
+      body: BillingPlatformModel.PlanStatusUpdateReq().required(),
+    }).required();
+  }
+
+  /** @returns {SubscripePlanParam} */
+  static subscripePlan() {
+    return Joi.object({
+      body: BillingPlatformModel.SunscribePlan().required(),
     }).required();
   }
 

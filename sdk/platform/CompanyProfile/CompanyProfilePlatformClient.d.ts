@@ -131,6 +131,18 @@ declare class CompanyProfile {
      */
     getLocationDetail({ locationId, requestHeaders }?: CompanyProfilePlatformValidator.GetLocationDetailParam, { responseHeaders }?: object): Promise<CompanyProfilePlatformModel.GetLocationSerializer>;
     /**
+     * @param {CompanyProfilePlatformValidator.GetLocationTagsParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CompanyProfilePlatformModel.StoreTagsResponseSchema>}
+     *   - Success response
+     *
+     * @name getLocationTags
+     * @summary: Get tags associated with locations for a company.
+     * @description: This API fetches all the tags associated to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getLocationTags/).
+     */
+    getLocationTags({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CompanyProfilePlatformModel.StoreTagsResponseSchema>;
+    /**
      * @param {CompanyProfilePlatformValidator.GetLocationsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options

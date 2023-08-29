@@ -15,9 +15,9 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 
 /** @typedef GetApplicationServiceabilityParam */
 
-/** @typedef GetApplicationServiceabilitySelfShipmentParam */
-
 /** @typedef GetDpApplicationRulesParam */
+
+/** @typedef GetSelfShipParam */
 
 /**
  * @typedef GetZoneFromPincodeViewParam
@@ -33,8 +33,8 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /**
- * @typedef PatchApplicationServiceabilitySelfShipmentParam
- * @property {ServiceabilityPlatformModel.SelfShipResponse} body
+ * @typedef UpdateApplicationServiceabilityParam
+ * @property {ServiceabilityPlatformModel.ServiceabilityPayloadSchema} body
  */
 
 /**
@@ -55,6 +55,11 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 /**
  * @typedef UpdatePincodeMopViewParam
  * @property {ServiceabilityPlatformModel.PincodeMopData} body
+ */
+
+/**
+ * @typedef UpdateSelfShipParam
+ * @property {ServiceabilityPlatformModel.SelfShipResponse} body
  */
 
 /**
@@ -82,13 +87,13 @@ class ServiceabilityPlatformApplicationValidator {
     return Joi.object({}).required();
   }
 
-  /** @returns {GetApplicationServiceabilitySelfShipmentParam} */
-  static getApplicationServiceabilitySelfShipment() {
+  /** @returns {GetDpApplicationRulesParam} */
+  static getDpApplicationRules() {
     return Joi.object({}).required();
   }
 
-  /** @returns {GetDpApplicationRulesParam} */
-  static getDpApplicationRules() {
+  /** @returns {GetSelfShipParam} */
+  static getSelfShip() {
     return Joi.object({}).required();
   }
 
@@ -109,10 +114,10 @@ class ServiceabilityPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {PatchApplicationServiceabilitySelfShipmentParam} */
-  static patchApplicationServiceabilitySelfShipment() {
+  /** @returns {UpdateApplicationServiceabilityParam} */
+  static updateApplicationServiceability() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.SelfShipResponse().required(),
+      body: ServiceabilityPlatformModel.ServiceabilityPayloadSchema().required(),
     }).required();
   }
 
@@ -141,6 +146,13 @@ class ServiceabilityPlatformApplicationValidator {
   static updatePincodeMopView() {
     return Joi.object({
       body: ServiceabilityPlatformModel.PincodeMopData().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateSelfShipParam} */
+  static updateSelfShip() {
+    return Joi.object({
+      body: ServiceabilityPlatformModel.SelfShipResponse().required(),
     }).required();
   }
 

@@ -258,7 +258,6 @@ const Joi = require("joi");
  * @property {string} [description]
  * @property {AttributeMasterDetails} details
  * @property {boolean} [enabled_for_end_consumer]
- * @property {string} [example]
  * @property {AttributeMasterFilter} filters
  * @property {boolean} [is_nested]
  * @property {string} [logo]
@@ -431,7 +430,7 @@ const Joi = require("joi");
  * @property {UserInfo1} [created_by] - The user who created the item.
  * @property {string} created_on - The date and time when the item was created.
  * @property {boolean} [is_active] - Whether the item is active or not.
- * @property {UserInfo1} [modified_by] - The user who last modified the item.
+ * @property {string} [modified_by] - The user who last modified the item.
  * @property {string} [modified_on] - The date and time when the item was last modified.
  */
 
@@ -1736,7 +1735,7 @@ const Joi = require("joi");
  * @property {BrandMeta} brand - The metadata of the brand.
  * @property {CompanyMeta} company - The metadata of the company.
  * @property {string} country_of_origin - The country of origin of the article.
- * @property {UserSerializer} [created_by] - The user who created the article.
+ * @property {string} [created_by] - The user who created the article.
  * @property {DimensionResponse} dimension - The dimensions of the article.
  * @property {string} [expiration_date] - The expiration date of the article.
  * @property {boolean} fragile - Indicates if the article is fragile.
@@ -1749,7 +1748,7 @@ const Joi = require("joi");
  * @property {number} item_id - The ID of the item.
  * @property {ManufacturerResponse} manufacturer - The manufacturer of the article.
  * @property {Object} [meta] - Additional metadata for the article.
- * @property {UserSerializer} [modified_by] - The user who modified the article.
+ * @property {string} [modified_by] - The user who modified the article.
  * @property {PriceMeta} price - The price metadata of the article.
  * @property {Quantities} [quantities]
  * @property {Object} [raw_meta] - The raw metadata of the article.
@@ -2317,7 +2316,7 @@ const Joi = require("joi");
  * @property {number} brand_uid
  * @property {string} [bulk_job_id]
  * @property {string} category_slug
- * @property {Object} [change_request_id]
+ * @property {string} [change_request_id]
  * @property {number} company_id
  * @property {string} country_of_origin
  * @property {string} currency
@@ -3005,7 +3004,7 @@ const Joi = require("joi");
  * @property {boolean} [is_visible]
  * @property {CollectionImage} [logo]
  * @property {Object} [meta]
- * @property {UserInfo} [modified_by]
+ * @property {string} [modified_by]
  * @property {string} [name]
  * @property {number} [priority]
  * @property {boolean} [published]
@@ -3511,7 +3510,6 @@ class CatalogPlatformModel {
       description: Joi.string().allow(""),
       details: CatalogPlatformModel.AttributeMasterDetails().required(),
       enabled_for_end_consumer: Joi.boolean(),
-      example: Joi.string().allow(""),
       filters: CatalogPlatformModel.AttributeMasterFilter().required(),
       is_nested: Joi.boolean(),
       logo: Joi.string().allow(""),
@@ -3721,7 +3719,7 @@ class CatalogPlatformModel {
       created_by: CatalogPlatformModel.UserInfo1(),
       created_on: Joi.string().allow("").required(),
       is_active: Joi.boolean(),
-      modified_by: CatalogPlatformModel.UserInfo1(),
+      modified_by: Joi.string().allow("").allow(null),
       modified_on: Joi.string().allow(""),
     });
   }
@@ -5280,7 +5278,7 @@ class CatalogPlatformModel {
       brand: CatalogPlatformModel.BrandMeta().required(),
       company: CatalogPlatformModel.CompanyMeta().required(),
       country_of_origin: Joi.string().allow("").required(),
-      created_by: CatalogPlatformModel.UserSerializer(),
+      created_by: Joi.string().allow("").allow(null),
       dimension: CatalogPlatformModel.DimensionResponse().required(),
       expiration_date: Joi.string().allow(""),
       fragile: Joi.boolean().required(),
@@ -5293,7 +5291,7 @@ class CatalogPlatformModel {
       item_id: Joi.number().required(),
       manufacturer: CatalogPlatformModel.ManufacturerResponse().required(),
       meta: Joi.any().allow(null),
-      modified_by: CatalogPlatformModel.UserSerializer(),
+      modified_by: Joi.string().allow("").allow(null),
       price: CatalogPlatformModel.PriceMeta().required(),
       quantities: CatalogPlatformModel.Quantities(),
       raw_meta: Joi.any(),
@@ -5979,7 +5977,7 @@ class CatalogPlatformModel {
       brand_uid: Joi.number().required(),
       bulk_job_id: Joi.string().allow(""),
       category_slug: Joi.string().allow("").required(),
-      change_request_id: Joi.any(),
+      change_request_id: Joi.string().allow("").allow(null),
       company_id: Joi.number().required(),
       country_of_origin: Joi.string().allow("").required(),
       currency: Joi.string().allow("").required(),
@@ -6800,7 +6798,7 @@ class CatalogPlatformModel {
       is_visible: Joi.boolean(),
       logo: CatalogPlatformModel.CollectionImage(),
       meta: Joi.any(),
-      modified_by: CatalogPlatformModel.UserInfo(),
+      modified_by: Joi.string().allow("").allow(null),
       name: Joi.string().allow(""),
       priority: Joi.number(),
       published: Joi.boolean(),

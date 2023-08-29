@@ -227,7 +227,6 @@ export = CatalogPlatformModel;
  * @property {string} [description]
  * @property {AttributeMasterDetails} details
  * @property {boolean} [enabled_for_end_consumer]
- * @property {string} [example]
  * @property {AttributeMasterFilter} filters
  * @property {boolean} [is_nested]
  * @property {string} [logo]
@@ -381,7 +380,7 @@ export = CatalogPlatformModel;
  * @property {UserInfo1} [created_by] - The user who created the item.
  * @property {string} created_on - The date and time when the item was created.
  * @property {boolean} [is_active] - Whether the item is active or not.
- * @property {UserInfo1} [modified_by] - The user who last modified the item.
+ * @property {string} [modified_by] - The user who last modified the item.
  * @property {string} [modified_on] - The date and time when the item was last modified.
  */
 /**
@@ -1551,7 +1550,7 @@ export = CatalogPlatformModel;
  * @property {BrandMeta} brand - The metadata of the brand.
  * @property {CompanyMeta} company - The metadata of the company.
  * @property {string} country_of_origin - The country of origin of the article.
- * @property {UserSerializer} [created_by] - The user who created the article.
+ * @property {string} [created_by] - The user who created the article.
  * @property {DimensionResponse} dimension - The dimensions of the article.
  * @property {string} [expiration_date] - The expiration date of the article.
  * @property {boolean} fragile - Indicates if the article is fragile.
@@ -1564,7 +1563,7 @@ export = CatalogPlatformModel;
  * @property {number} item_id - The ID of the item.
  * @property {ManufacturerResponse} manufacturer - The manufacturer of the article.
  * @property {Object} [meta] - Additional metadata for the article.
- * @property {UserSerializer} [modified_by] - The user who modified the article.
+ * @property {string} [modified_by] - The user who modified the article.
  * @property {PriceMeta} price - The price metadata of the article.
  * @property {Quantities} [quantities]
  * @property {Object} [raw_meta] - The raw metadata of the article.
@@ -2074,7 +2073,7 @@ export = CatalogPlatformModel;
  * @property {number} brand_uid
  * @property {string} [bulk_job_id]
  * @property {string} category_slug
- * @property {Object} [change_request_id]
+ * @property {string} [change_request_id]
  * @property {number} company_id
  * @property {string} country_of_origin
  * @property {string} currency
@@ -2697,7 +2696,7 @@ export = CatalogPlatformModel;
  * @property {boolean} [is_visible]
  * @property {CollectionImage} [logo]
  * @property {Object} [meta]
- * @property {UserInfo} [modified_by]
+ * @property {string} [modified_by]
  * @property {string} [name]
  * @property {number} [priority]
  * @property {boolean} [published]
@@ -3159,7 +3158,6 @@ type AttributeMasterSerializer = {
     description?: string;
     details: AttributeMasterDetails;
     enabled_for_end_consumer?: boolean;
-    example?: string;
     filters: AttributeMasterFilter;
     is_nested?: boolean;
     logo?: string;
@@ -3362,7 +3360,7 @@ type BulkResponse = {
     /**
      * - The user who last modified the item.
      */
-    modified_by?: UserInfo1;
+    modified_by?: string;
     /**
      * - The date and time when the item was last modified.
      */
@@ -5198,7 +5196,7 @@ type InventorySellerResponse = {
     /**
      * - The user who created the article.
      */
-    created_by?: UserSerializer;
+    created_by?: string;
     /**
      * - The dimensions of the article.
      */
@@ -5247,7 +5245,7 @@ type InventorySellerResponse = {
     /**
      * - The user who modified the article.
      */
-    modified_by?: UserSerializer;
+    modified_by?: string;
     /**
      * - The price metadata of the article.
      */
@@ -5947,7 +5945,7 @@ type ProductCreateUpdateSchemaV2 = {
     brand_uid: number;
     bulk_job_id?: string;
     category_slug: string;
-    change_request_id?: any;
+    change_request_id?: string;
     company_id: number;
     country_of_origin: string;
     currency: string;
@@ -6701,7 +6699,7 @@ type UpdateCollection = {
     is_visible?: boolean;
     logo?: CollectionImage;
     meta?: any;
-    modified_by?: UserInfo;
+    modified_by?: string;
     name?: string;
     priority?: number;
     published?: boolean;

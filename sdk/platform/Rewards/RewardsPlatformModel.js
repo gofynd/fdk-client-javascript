@@ -59,12 +59,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef GiveawayAudience
- * @property {string} [audience_id]
- * @property {number} [current_count]
- */
-
-/**
  * @typedef GiveawayResponse
  * @property {Giveaway[]} [items]
  * @property {Page} [page]
@@ -255,14 +249,6 @@ class RewardsPlatformModel {
       rule: RewardsPlatformModel.RewardsRule(),
       title: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {GiveawayAudience} */
-  static GiveawayAudience() {
-    return Joi.object({
-      audience_id: Joi.string().allow(""),
-      current_count: Joi.number(),
     });
   }
 

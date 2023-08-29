@@ -28,7 +28,7 @@ const Joi = require("joi");
 
 /**
  * @typedef ApplicationSelfShipConfig
- * @property {SelfShipResponse} [self_ship]
+ * @property {Object} [self_ship]
  */
 
 /**
@@ -658,6 +658,11 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef ServiceabilityPayloadSchema
+ * @property {string} serviceability_type
+ */
+
+/**
  * @typedef TimmingResponse
  * @property {OpeningClosing} [closing]
  * @property {boolean} [open]
@@ -780,7 +785,7 @@ class ServiceabilityPlatformModel {
   /** @returns {ApplicationSelfShipConfig} */
   static ApplicationSelfShipConfig() {
     return Joi.object({
-      self_ship: ServiceabilityPlatformModel.SelfShipResponse(),
+      self_ship: Joi.any().allow(null),
     });
   }
 
@@ -1609,6 +1614,13 @@ class ServiceabilityPlatformModel {
       item_total: Joi.number(),
       size: Joi.number(),
       type: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ServiceabilityPayloadSchema} */
+  static ServiceabilityPayloadSchema() {
+    return Joi.object({
+      serviceability_type: Joi.string().allow("").required(),
     });
   }
 

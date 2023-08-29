@@ -7,16 +7,14 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef BulkRequest
- * @property {ReqConfiguration} [configuration]
- * @property {Destination} destination
- * @property {string[]} urls
+ * @typedef BulkUploadFailResponse
+ * @property {Status} status
  */
 
 /**
- * @typedef BulkUploadResponse
- * @property {CopyFileTask} task
- * @property {string} tracking_url
+ * @typedef BulkUploadSyncMode
+ * @property {FilesSuccess[]} [files]
+ * @property {Status} status
  */
 
 /**
@@ -44,18 +42,9 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CopyFileTask
- * @property {number} attempts_made
- * @property {BulkRequest} data
- * @property {number} delay
- * @property {number} finished_on
- * @property {string} id
- * @property {string} name
- * @property {Opts} opts
- * @property {number} processed_on
- * @property {number} progress
- * @property {string[]} [stacktrace]
- * @property {number} timestamp
+ * @typedef CopyFiles
+ * @property {DestinationNamespace} destination
+ * @property {string[]} urls
  */
 
 /**
@@ -75,10 +64,16 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef Destination
- * @property {string} [basepath]
- * @property {string} namespace
- * @property {string} rewrite
+ * @typedef DestinationNamespace
+ * @property {string} [namespace]
+ */
+
+/**
+ * @typedef DummyTemplateDataItems
+ * @property {number} [__v]
+ * @property {string} [_id]
+ * @property {Object} payload
+ * @property {number} [pdf_type_id]
  */
 
 /**
@@ -87,10 +82,32 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef Opts
- * @property {number} [attempts]
- * @property {number} [delay]
- * @property {number} [timestamp]
+ * @typedef File
+ * @property {FileSrc} src
+ */
+
+/**
+ * @typedef FileSrc
+ * @property {string} [method]
+ * @property {string} [namespace]
+ * @property {string} url
+ */
+
+/**
+ * @typedef FilesSuccess
+ * @property {File} [file]
+ * @property {boolean} success
+ */
+
+/**
+ * @typedef InvoiceTypesResponse
+ * @property {number} __v
+ * @property {string} _id
+ * @property {string[]} format
+ * @property {string} name
+ * @property {number} pdf_type_id
+ * @property {Object} schema
+ * @property {boolean} visibility
  */
 
 /**
@@ -105,8 +122,48 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ReqConfiguration
- * @property {number} [concurrency]
+ * @typedef pdfConfig
+ * @property {string} [format] - This is invoice document format such as A4, A6, POS
+ * @property {number} [pdf_type_id]
+ * @property {string} [template] - This is html template string
+ */
+
+/**
+ * @typedef PdfConfigSaveSuccess
+ * @property {number} [__v]
+ * @property {string} [_id]
+ * @property {string} [application_id]
+ * @property {number} [company_id]
+ * @property {string} [format]
+ * @property {number} [pdf_type_id]
+ * @property {string} [template]
+ */
+
+/**
+ * @typedef PdfConfigSuccess
+ * @property {number} [__v]
+ * @property {string} [_id]
+ * @property {string} [application_id]
+ * @property {number} [company_id]
+ * @property {string} [format]
+ * @property {number} [pdf_type_id]
+ * @property {string} [template]
+ */
+
+/**
+ * @typedef PdfDefaultTemplateSuccess
+ * @property {number} [__v]
+ * @property {string} [_id]
+ * @property {string} [format]
+ * @property {number} [pdf_type_id]
+ * @property {string} [template]
+ */
+
+/**
+ * @typedef pdfRender
+ * @property {string} [format]
+ * @property {Object} [payload]
+ * @property {string} [template]
  */
 
 /**
@@ -144,6 +201,14 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef Status
+ * @property {number} failed
+ * @property {string} [result]
+ * @property {number} succeeded
+ * @property {number} total
+ */
+
+/**
  * @typedef Upload
  * @property {number} expiry
  * @property {string} url
@@ -165,20 +230,18 @@ class FileStoragePlatformModel {
     });
   }
 
-  /** @returns {BulkRequest} */
-  static BulkRequest() {
+  /** @returns {BulkUploadFailResponse} */
+  static BulkUploadFailResponse() {
     return Joi.object({
-      configuration: FileStoragePlatformModel.ReqConfiguration(),
-      destination: FileStoragePlatformModel.Destination().required(),
-      urls: Joi.array().items(Joi.string().allow("")).required(),
+      status: FileStoragePlatformModel.Status().required(),
     });
   }
 
-  /** @returns {BulkUploadResponse} */
-  static BulkUploadResponse() {
+  /** @returns {BulkUploadSyncMode} */
+  static BulkUploadSyncMode() {
     return Joi.object({
-      task: FileStoragePlatformModel.CopyFileTask().required(),
-      tracking_url: Joi.string().allow("").required(),
+      files: Joi.array().items(FileStoragePlatformModel.FilesSuccess()),
+      status: FileStoragePlatformModel.Status().required(),
     });
   }
 
@@ -210,20 +273,11 @@ class FileStoragePlatformModel {
     });
   }
 
-  /** @returns {CopyFileTask} */
-  static CopyFileTask() {
+  /** @returns {CopyFiles} */
+  static CopyFiles() {
     return Joi.object({
-      attempts_made: Joi.number().required(),
-      data: FileStoragePlatformModel.BulkRequest().required(),
-      delay: Joi.number().required(),
-      finished_on: Joi.number().required(),
-      id: Joi.string().allow("").required(),
-      name: Joi.string().allow("").required(),
-      opts: FileStoragePlatformModel.Opts().required(),
-      processed_on: Joi.number().required(),
-      progress: Joi.number().required(),
-      stacktrace: Joi.array().items(Joi.string().allow("")),
-      timestamp: Joi.number().required(),
+      destination: FileStoragePlatformModel.DestinationNamespace().required(),
+      urls: Joi.array().items(Joi.string().allow("")).required(),
     });
   }
 
@@ -245,12 +299,20 @@ class FileStoragePlatformModel {
     });
   }
 
-  /** @returns {Destination} */
-  static Destination() {
+  /** @returns {DestinationNamespace} */
+  static DestinationNamespace() {
     return Joi.object({
-      basepath: Joi.string().allow(""),
-      namespace: Joi.string().allow("").required(),
-      rewrite: Joi.string().allow("").required(),
+      namespace: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {DummyTemplateDataItems} */
+  static DummyTemplateDataItems() {
+    return Joi.object({
+      __v: Joi.number(),
+      _id: Joi.string().allow(""),
+      payload: Joi.any().required(),
+      pdf_type_id: Joi.number(),
     });
   }
 
@@ -261,12 +323,40 @@ class FileStoragePlatformModel {
     });
   }
 
-  /** @returns {Opts} */
-  static Opts() {
+  /** @returns {File} */
+  static File() {
     return Joi.object({
-      attempts: Joi.number(),
-      delay: Joi.number(),
-      timestamp: Joi.number(),
+      src: FileStoragePlatformModel.FileSrc().required(),
+    });
+  }
+
+  /** @returns {FileSrc} */
+  static FileSrc() {
+    return Joi.object({
+      method: Joi.string().allow(""),
+      namespace: Joi.string().allow(""),
+      url: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {FilesSuccess} */
+  static FilesSuccess() {
+    return Joi.object({
+      file: FileStoragePlatformModel.File(),
+      success: Joi.boolean().required(),
+    });
+  }
+
+  /** @returns {InvoiceTypesResponse} */
+  static InvoiceTypesResponse() {
+    return Joi.object({
+      __v: Joi.number().required(),
+      _id: Joi.string().allow("").required(),
+      format: Joi.array().items(Joi.string().allow("")).required(),
+      name: Joi.string().allow("").required(),
+      pdf_type_id: Joi.number().required(),
+      schema: Joi.any().required(),
+      visibility: Joi.boolean().required(),
     });
   }
 
@@ -283,10 +373,58 @@ class FileStoragePlatformModel {
     });
   }
 
-  /** @returns {ReqConfiguration} */
-  static ReqConfiguration() {
+  /** @returns {pdfConfig} */
+  static pdfConfig() {
     return Joi.object({
-      concurrency: Joi.number(),
+      format: Joi.string().allow(""),
+      pdf_type_id: Joi.number(),
+      template: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {PdfConfigSaveSuccess} */
+  static PdfConfigSaveSuccess() {
+    return Joi.object({
+      __v: Joi.number(),
+      _id: Joi.string().allow(""),
+      application_id: Joi.string().allow(""),
+      company_id: Joi.number(),
+      format: Joi.string().allow(""),
+      pdf_type_id: Joi.number(),
+      template: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {PdfConfigSuccess} */
+  static PdfConfigSuccess() {
+    return Joi.object({
+      __v: Joi.number(),
+      _id: Joi.string().allow(""),
+      application_id: Joi.string().allow(""),
+      company_id: Joi.number(),
+      format: Joi.string().allow(""),
+      pdf_type_id: Joi.number(),
+      template: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {PdfDefaultTemplateSuccess} */
+  static PdfDefaultTemplateSuccess() {
+    return Joi.object({
+      __v: Joi.number(),
+      _id: Joi.string().allow(""),
+      format: Joi.string().allow(""),
+      pdf_type_id: Joi.number(),
+      template: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {pdfRender} */
+  static pdfRender() {
+    return Joi.object({
+      format: Joi.string().allow(""),
+      payload: Joi.any(),
+      template: Joi.string().allow(""),
     });
   }
 
@@ -329,6 +467,16 @@ class FileStoragePlatformModel {
       size: Joi.number().required(),
       tags: Joi.array().items(Joi.string().allow("")),
       upload: FileStoragePlatformModel.Upload().required(),
+    });
+  }
+
+  /** @returns {Status} */
+  static Status() {
+    return Joi.object({
+      failed: Joi.number().required(),
+      result: Joi.string().allow(""),
+      succeeded: Joi.number().required(),
+      total: Joi.number().required(),
     });
   }
 

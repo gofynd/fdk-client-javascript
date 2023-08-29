@@ -38,7 +38,7 @@ class Common {
    * @returns {Promise<CommonApplicationModel.Locations>} - Success response
    * @name getLocations
    * @summary: Get countries, states, cities
-   * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/common/getLocations/).
+   * @description: Get countries, states, cities - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/common/getLocations/).
    */
   async getLocations(
     { locationType, id, requestHeaders } = { requestHeaders: {} },

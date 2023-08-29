@@ -9,7 +9,7 @@ declare class Order {
      * @returns {Promise<OrderPlatformModel.AttachOrderUserResponse>} - Success response
      * @name attachOrderUser
      * @summary:
-     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/attachOrderUser/).
+     * @description: Attach Order User - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/attachOrderUser/).
      */
     attachOrderUser({ body, requestHeaders }?: OrderPlatformValidator.AttachOrderUserParam, { responseHeaders }?: object): Promise<OrderPlatformModel.AttachOrderUserResponse>;
     /**
@@ -19,7 +19,7 @@ declare class Order {
      * @returns {Promise<OrderPlatformModel.OrderStatusResult>} - Success response
      * @name checkOrderStatus
      * @summary:
-     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/checkOrderStatus/).
+     * @description: Check order status - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/checkOrderStatus/).
      */
     checkOrderStatus({ body, requestHeaders }?: OrderPlatformValidator.CheckOrderStatusParam, { responseHeaders }?: object): Promise<OrderPlatformModel.OrderStatusResult>;
     /**
@@ -29,7 +29,7 @@ declare class Order {
      * @returns {Promise<OrderPlatformModel.Click2CallResponse>} - Success response
      * @name click2Call
      * @summary:
-     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/click2Call/).
+     * @description: Click to Call - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/click2Call/).
      */
     click2Call({ caller, receiver, bagId, callerId, method, requestHeaders }?: OrderPlatformValidator.Click2CallParam, { responseHeaders }?: object): Promise<OrderPlatformModel.Click2CallResponse>;
     /**
@@ -50,7 +50,7 @@ declare class Order {
      * @returns {Promise<OrderPlatformModel.CreateOrderResponse>} - Success response
      * @name createOrder
      * @summary:
-     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/createOrder/).
+     * @description: Create Order - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/createOrder/).
      */
     createOrder({ body, requestHeaders }?: OrderPlatformValidator.CreateOrderParam, { responseHeaders }?: object): Promise<OrderPlatformModel.CreateOrderResponse>;
     /**
@@ -60,7 +60,7 @@ declare class Order {
      * @returns {Promise<OrderPlatformModel.SuccessResponse>} - Success response
      * @name dispatchManifest
      * @summary:
-     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/dispatchManifest/).
+     * @description: Dispatch Manifest - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/dispatchManifest/).
      */
     dispatchManifest({ body, requestHeaders }?: OrderPlatformValidator.DispatchManifestParam, { responseHeaders }?: object): Promise<OrderPlatformModel.SuccessResponse>;
     /**
@@ -70,9 +70,30 @@ declare class Order {
      * @returns {Promise<OrderPlatformModel.FileResponse>} - Success response
      * @name downloadBulkActionTemplate
      * @summary:
-     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/downloadBulkActionTemplate/).
+     * @description: Download bulk actions seller templates. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/downloadBulkActionTemplate/).
      */
     downloadBulkActionTemplate({ templateSlug, requestHeaders }?: OrderPlatformValidator.DownloadBulkActionTemplateParam, { responseHeaders }?: object): Promise<OrderPlatformModel.FileResponse>;
+    /**
+     * @param {OrderPlatformValidator.DownloadLanesReportParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.BulkReportsDownloadResponse>} -
+     *   Success response
+     * @name downloadLanesReport
+     * @summary:
+     * @description: downloads lanes shipment/orders. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/downloadLanesReport/).
+     */
+    downloadLanesReport({ body, requestHeaders }?: OrderPlatformValidator.DownloadLanesReportParam, { responseHeaders }?: object): Promise<OrderPlatformModel.BulkReportsDownloadResponse>;
+    /**
+     * @param {OrderPlatformValidator.EInvoiceRetryParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.EInvoiceRetryResponse>} - Success response
+     * @name eInvoiceRetry
+     * @summary:
+     * @description: Retry e-invoice after failure - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/eInvoiceRetry/).
+     */
+    eInvoiceRetry({ body, requestHeaders }?: OrderPlatformValidator.EInvoiceRetryParam, { responseHeaders }?: object): Promise<OrderPlatformModel.EInvoiceRetryResponse>;
     /**
      * @param {OrderPlatformValidator.FetchCreditBalanceDetailParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -82,7 +103,7 @@ declare class Order {
      *
      * @name fetchCreditBalanceDetail
      * @summary:
-     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/fetchCreditBalanceDetail/).
+     * @description: Fetch Credit Balance Detail - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/fetchCreditBalanceDetail/).
      */
     fetchCreditBalanceDetail({ body, requestHeaders }?: OrderPlatformValidator.FetchCreditBalanceDetailParam, { responseHeaders }?: object): Promise<OrderPlatformModel.FetchCreditBalanceResponsePayload>;
     /**
@@ -93,7 +114,7 @@ declare class Order {
      *   Success response
      * @name fetchRefundModeConfig
      * @summary:
-     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/fetchRefundModeConfig/).
+     * @description: Fetch Refund Mode Config - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/fetchRefundModeConfig/).
      */
     fetchRefundModeConfig({ body, requestHeaders }?: OrderPlatformValidator.FetchRefundModeConfigParam, { responseHeaders }?: object): Promise<OrderPlatformModel.RefundModeConfigResponsePayload>;
     /**
@@ -104,9 +125,21 @@ declare class Order {
      *   Success response
      * @name generatePOSReceiptByOrderId
      * @summary:
-     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/generatePOSReceiptByOrderId/).
+     * @description: Generate POS recipt by order id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/generatePOSReceiptByOrderId/).
      */
     generatePOSReceiptByOrderId({ orderId, shipmentId, documentType, requestHeaders }?: OrderPlatformValidator.GeneratePOSReceiptByOrderIdParam, { responseHeaders }?: object): Promise<OrderPlatformModel.GeneratePosOrderReceiptResponse>;
+    /**
+     * @param {OrderPlatformValidator.GetAllowedStateTransitionParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.RoleBaseStateTransitionMapping>} -
+     *   Success response
+     * @name getAllowedStateTransition
+     * @summary: To fetch next state transitions.
+     * @description: This endpoint will fetch next possible states based on logged in user
+     *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getAllowedStateTransition/).
+     */
+    getAllowedStateTransition({ orderingChannel, status, requestHeaders }?: OrderPlatformValidator.GetAllowedStateTransitionParam, { responseHeaders }?: object): Promise<OrderPlatformModel.RoleBaseStateTransitionMapping>;
     /**
      * @param {OrderPlatformValidator.GetAnnouncementsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -114,7 +147,7 @@ declare class Order {
      * @returns {Promise<OrderPlatformModel.AnnouncementsResponse>} - Success response
      * @name getAnnouncements
      * @summary:
-     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getAnnouncements/).
+     * @description: Get Announcements - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getAnnouncements/).
      */
     getAnnouncements({ date, requestHeaders }?: OrderPlatformValidator.GetAnnouncementsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.AnnouncementsResponse>;
     /**
@@ -125,7 +158,7 @@ declare class Order {
      *   Success response
      * @name getBagById
      * @summary:
-     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getBagById/).
+     * @description: Get Order Bag Details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getBagById/).
      */
     getBagById({ bagId, channelBagId, channelId, requestHeaders }?: OrderPlatformValidator.GetBagByIdParam, { responseHeaders }?: object): Promise<OrderPlatformModel.BagDetailsPlatformResponse>;
     /**
@@ -135,7 +168,7 @@ declare class Order {
      * @returns {Promise<OrderPlatformModel.GetBagsPlatformResponse>} - Success response
      * @name getBags
      * @summary:
-     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getBags/).
+     * @description: Get Bags for the order - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getBags/).
      */
     getBags({ bagIds, shipmentIds, orderIds, channelBagIds, channelShipmentIds, channelOrderIds, channelId, pageNo, pageSize, requestHeaders, }?: OrderPlatformValidator.GetBagsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.GetBagsPlatformResponse>;
     /**
@@ -146,7 +179,7 @@ declare class Order {
      *   Success response
      * @name getBulkActionTemplate
      * @summary:
-     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getBulkActionTemplate/).
+     * @description: Get Bulk Action seller templates. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getBulkActionTemplate/).
      */
     getBulkActionTemplate({ requestHeaders }?: any, { responseHeaders }?: object): Promise<OrderPlatformModel.BulkActionTemplateResponse>;
     /**
@@ -156,7 +189,7 @@ declare class Order {
      * @returns {Promise<OrderPlatformModel.FileResponse>} - Success response
      * @name getBulkShipmentExcelFile
      * @summary:
-     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getBulkShipmentExcelFile/).
+     * @description: Generate Bulk Shipment Excel Report. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getBulkShipmentExcelFile/).
      */
     getBulkShipmentExcelFile({ salesChannels, dpIds, fromDate, toDate, stores, tags, bagStatus, paymentMethods, fileType, timeToDispatch, pageNo, pageSize, requestHeaders, }?: OrderPlatformValidator.GetBulkShipmentExcelFileParam, { responseHeaders }?: object): Promise<OrderPlatformModel.FileResponse>;
     /**
@@ -176,9 +209,9 @@ declare class Order {
      * @returns {Promise<OrderPlatformModel.LaneConfigResponse>} - Success response
      * @name getLaneConfig
      * @summary:
-     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getLaneConfig/).
+     * @description: Get lane config for the order - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getLaneConfig/).
      */
-    getLaneConfig({ superLane, groupEntity, fromDate, toDate, dpIds, stores, salesChannels, paymentMode, bagStatus, searchType, searchValue, tags, timeToDispatch, paymentMethods, myOrders, requestHeaders, }?: OrderPlatformValidator.GetLaneConfigParam, { responseHeaders }?: object): Promise<OrderPlatformModel.LaneConfigResponse>;
+    getLaneConfig({ superLane, groupEntity, fromDate, toDate, dpIds, stores, salesChannels, paymentMode, bagStatus, searchType, searchValue, tags, timeToDispatch, paymentMethods, myOrders, showCrossCompanyData, requestHeaders, }?: OrderPlatformValidator.GetLaneConfigParam, { responseHeaders }?: object): Promise<OrderPlatformModel.LaneConfigResponse>;
     /**
      * @param {OrderPlatformValidator.GetOrderByIdParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -186,7 +219,7 @@ declare class Order {
      * @returns {Promise<OrderPlatformModel.OrderDetailsResponse>} - Success response
      * @name getOrderById
      * @summary:
-     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getOrderById/).
+     * @description: Get Order Details by ID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getOrderById/).
      */
     getOrderById({ orderId, requestHeaders }?: OrderPlatformValidator.GetOrderByIdParam, { responseHeaders }?: object): Promise<OrderPlatformModel.OrderDetailsResponse>;
     /**
@@ -196,9 +229,9 @@ declare class Order {
      * @returns {Promise<OrderPlatformModel.OrderListingResponse>} - Success response
      * @name getOrders
      * @summary:
-     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getOrders/).
+     * @description: Get Orders Listing - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getOrders/).
      */
-    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, myOrders, requestHeaders, }?: OrderPlatformValidator.GetOrdersParam, { responseHeaders }?: object): Promise<OrderPlatformModel.OrderListingResponse>;
+    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, myOrders, showCrossCompanyData, customerId, requestHeaders, }?: OrderPlatformValidator.GetOrdersParam, { responseHeaders }?: object): Promise<OrderPlatformModel.OrderListingResponse>;
     /**
      * @param {OrderPlatformValidator.GetRoleBasedActionsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -206,7 +239,7 @@ declare class Order {
      * @returns {Promise<OrderPlatformModel.GetActionsResponse>} - Success response
      * @name getRoleBasedActions
      * @summary:
-     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getRoleBasedActions/).
+     * @description: Get Role Based Actions - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getRoleBasedActions/).
      */
     getRoleBasedActions({ requestHeaders }?: any, { responseHeaders }?: object): Promise<OrderPlatformModel.GetActionsResponse>;
     /**
@@ -216,7 +249,7 @@ declare class Order {
      * @returns {Promise<OrderPlatformModel.ShipmentInfoResponse>} - Success response
      * @name getShipmentById
      * @summary:
-     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getShipmentById/).
+     * @description: Get shipment details for the given shipment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getShipmentById/).
      */
     getShipmentById({ channelShipmentId, shipmentId, requestHeaders }?: OrderPlatformValidator.GetShipmentByIdParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ShipmentInfoResponse>;
     /**
@@ -226,7 +259,7 @@ declare class Order {
      * @returns {Promise<OrderPlatformModel.ShipmentHistoryResponse>} - Success response
      * @name getShipmentHistory
      * @summary:
-     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getShipmentHistory/).
+     * @description: Get Shipment History - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getShipmentHistory/).
      */
     getShipmentHistory({ shipmentId, bagId, requestHeaders }?: OrderPlatformValidator.GetShipmentHistoryParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ShipmentHistoryResponse>;
     /**
@@ -249,9 +282,9 @@ declare class Order {
      *
      * @name getShipments
      * @summary:
-     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getShipments/).
+     * @description: Get Shipments Listing for the company id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getShipments/).
      */
-    getShipments({ lane, bagStatus, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, myOrders, platformUserId, tags, requestHeaders, }?: OrderPlatformValidator.GetShipmentsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ShipmentInternalPlatformViewResponse>;
+    getShipments({ lane, bagStatus, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, myOrders, platformUserId, sortType, showCrossCompanyData, tags, customerId, requestHeaders, }?: OrderPlatformValidator.GetShipmentsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ShipmentInternalPlatformViewResponse>;
     /**
      * @param {OrderPlatformValidator.GetStateTransitionMapParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -259,7 +292,7 @@ declare class Order {
      * @returns {Promise<OrderPlatformModel.BagStateTransitionMap>} - Success response
      * @name getStateTransitionMap
      * @summary:
-     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getStateTransitionMap/).
+     * @description: Get State Transition Map - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getStateTransitionMap/).
      */
     getStateTransitionMap({ requestHeaders }?: any, { responseHeaders }?: object): Promise<OrderPlatformModel.BagStateTransitionMap>;
     /**
@@ -269,7 +302,7 @@ declare class Order {
      * @returns {Promise<OrderPlatformModel.FiltersResponse>} - Success response
      * @name getfilters
      * @summary:
-     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getfilters/).
+     * @description: Get Listing Filters - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getfilters/).
      */
     getfilters({ view, groupEntity, requestHeaders }?: OrderPlatformValidator.GetfiltersParam, { responseHeaders }?: object): Promise<OrderPlatformModel.FiltersResponse>;
     /**
@@ -290,7 +323,7 @@ declare class Order {
      * @returns {Promise<OrderPlatformModel.ResponseDetail>} - Success response
      * @name orderUpdate
      * @summary:
-     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/orderUpdate/).
+     * @description: Update Order - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/orderUpdate/).
      */
     orderUpdate({ body, requestHeaders }?: OrderPlatformValidator.OrderUpdateParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ResponseDetail>;
     /**
@@ -300,7 +333,7 @@ declare class Order {
      * @returns {Promise<OrderPlatformModel.ShipmentHistoryResponse>} - Success response
      * @name postShipmentHistory
      * @summary:
-     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/postShipmentHistory/).
+     * @description: Post shipment history - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/postShipmentHistory/).
      */
     postShipmentHistory({ body, requestHeaders }?: OrderPlatformValidator.PostShipmentHistoryParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ShipmentHistoryResponse>;
     /**
@@ -310,7 +343,7 @@ declare class Order {
      * @returns {Promise<OrderPlatformModel.CreateOrderResponse>} - Success response
      * @name processManifest
      * @summary:
-     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/processManifest/).
+     * @description: Process Manifest - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/processManifest/).
      */
     processManifest({ body, requestHeaders }?: OrderPlatformValidator.ProcessManifestParam, { responseHeaders }?: object): Promise<OrderPlatformModel.CreateOrderResponse>;
     /**
@@ -330,7 +363,7 @@ declare class Order {
      * @returns {Promise<OrderPlatformModel.OrderStatusResult>} - Success response
      * @name sendSmsNinja
      * @summary:
-     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/sendSmsNinja/).
+     * @description: Send SMS Ninja Panel - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/sendSmsNinja/).
      */
     sendSmsNinja({ body, requestHeaders }?: OrderPlatformValidator.SendSmsNinjaParam, { responseHeaders }?: object): Promise<OrderPlatformModel.OrderStatusResult>;
     /**
@@ -340,9 +373,20 @@ declare class Order {
      * @returns {Promise<OrderPlatformModel.SendUserMobileOtpResponse>} - Success response
      * @name sendUserMobileOTP
      * @summary:
-     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/sendUserMobileOTP/).
+     * @description: Send User Mobile OTP - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/sendUserMobileOTP/).
      */
     sendUserMobileOTP({ body, requestHeaders }?: OrderPlatformValidator.SendUserMobileOTPParam, { responseHeaders }?: object): Promise<OrderPlatformModel.SendUserMobileOtpResponse>;
+    /**
+     * @param {OrderPlatformValidator.TrackShipmentParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.CourierPartnerTrackingResponse>} -
+     *   Success response
+     * @name trackShipment
+     * @summary: Get courier partner tracking details
+     * @description: This endpoint allows users to get courier partner tracking details for a given shipment id or awb no. The service will fetch courier partner statuses that are pushed to oms. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/trackShipment/).
+     */
+    trackShipment({ shipmentId, awb, pageNo, pageSize, requestHeaders }?: OrderPlatformValidator.TrackShipmentParam, { responseHeaders }?: object): Promise<OrderPlatformModel.CourierPartnerTrackingResponse>;
     /**
      * @param {OrderPlatformValidator.UpdateAddressParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -350,7 +394,7 @@ declare class Order {
      * @returns {Promise<OrderPlatformModel.BaseResponse>} - Success response
      * @name updateAddress
      * @summary:
-     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/updateAddress/).
+     * @description: Update Address for the order - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/updateAddress/).
      */
     updateAddress({ shipmentId, addressCategory, name, address, addressType, pincode, phone, email, landmark, city, state, country, requestHeaders, }?: OrderPlatformValidator.UpdateAddressParam, { responseHeaders }?: object): Promise<OrderPlatformModel.BaseResponse>;
     /**
@@ -362,7 +406,7 @@ declare class Order {
      *
      * @name updatePackagingDimensions
      * @summary:
-     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/updatePackagingDimensions/).
+     * @description: Update Packaging Dimensions - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/updatePackagingDimensions/).
      */
     updatePackagingDimensions({ body, requestHeaders }?: OrderPlatformValidator.UpdatePackagingDimensionsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.UpdatePackagingDimensionsResponse>;
     /**
@@ -389,13 +433,24 @@ declare class Order {
      */
     updateShipmentStatus({ body, requestHeaders }?: OrderPlatformValidator.UpdateShipmentStatusParam, { responseHeaders }?: object): Promise<OrderPlatformModel.UpdateShipmentStatusResponseBody>;
     /**
+     * @param {OrderPlatformValidator.UpdateShipmentTrackingParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.CourierPartnerTrackingDetails>} -
+     *   Success response
+     * @name updateShipmentTracking
+     * @summary: Post courier partner tracking details
+     * @description: This endpoint allows users to post courier partner tracking details for a given shipment id or awb no. The service will add entry for courier partner statuses and will be saved to oms. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/updateShipmentTracking/).
+     */
+    updateShipmentTracking({ body, requestHeaders }?: OrderPlatformValidator.UpdateShipmentTrackingParam, { responseHeaders }?: object): Promise<OrderPlatformModel.CourierPartnerTrackingDetails>;
+    /**
      * @param {OrderPlatformValidator.UploadConsentParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<OrderPlatformModel.SuccessResponse>} - Success response
      * @name uploadConsent
      * @summary:
-     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/uploadConsent/).
+     * @description: Upload Consent - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/uploadConsent/).
      */
     uploadConsent({ body, requestHeaders }?: OrderPlatformValidator.UploadConsentParam, { responseHeaders }?: object): Promise<OrderPlatformModel.SuccessResponse>;
     /**
@@ -405,7 +460,7 @@ declare class Order {
      * @returns {Promise<OrderPlatformModel.VerifyOtpResponse>} - Success response
      * @name verifyMobileOTP
      * @summary:
-     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/verifyMobileOTP/).
+     * @description: Verify Mobile OTP - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/verifyMobileOTP/).
      */
     verifyMobileOTP({ body, requestHeaders }?: OrderPlatformValidator.VerifyMobileOTPParam, { responseHeaders }?: object): Promise<OrderPlatformModel.VerifyOtpResponse>;
 }

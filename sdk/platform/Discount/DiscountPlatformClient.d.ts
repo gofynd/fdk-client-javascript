@@ -63,6 +63,31 @@ declare class Discount {
      */
     getDiscounts({ view, q, pageNo, pageSize, archived, month, year, type, appIds, requestHeaders, }?: DiscountPlatformValidator.GetDiscountsParam, { responseHeaders }?: object): Promise<DiscountPlatformModel.ListOrCalender>;
     /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.view] - Listing or calender. Default is listing.
+     * @param {string} [arg.q] - The search query. This can be a partial or
+     *   complete name of a discount.
+     * @param {number} [arg.pageSize] - Page size. Default is 12.
+     * @param {boolean} [arg.archived] - Archived. Default is false.
+     * @param {number} [arg.month] - Month. Default is current month.
+     * @param {number} [arg.year] - Year. Default is current year.
+     * @param {string} [arg.type] - Basic or custom.
+     * @param {string[]} [arg.appIds] - Application ids.
+     * @returns {Paginator<DiscountPlatformModel.ListOrCalender>}
+     * @summary: Fetch discount list.
+     * @description: Fetch discount list.
+     */
+    getDiscountsPaginator({ view, q, pageSize, archived, month, year, type, appIds, }?: {
+        view?: string;
+        q?: string;
+        pageSize?: number;
+        archived?: boolean;
+        month?: number;
+        year?: number;
+        type?: string;
+        appIds?: string[];
+    }): Paginator<DiscountPlatformModel.ListOrCalender>;
+    /**
      * @param {DiscountPlatformValidator.GetDownloadJobParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -115,3 +140,4 @@ declare class Discount {
 }
 import DiscountPlatformValidator = require("./DiscountPlatformValidator");
 import DiscountPlatformModel = require("./DiscountPlatformModel");
+import Paginator = require("../../common/Paginator");

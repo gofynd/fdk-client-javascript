@@ -2,6 +2,8 @@ const Configuration = require("./Configuration/ConfigurationPublicClient");
 
 const Inventory = require("./Inventory/InventoryPublicClient");
 
+const Partner = require("./Partner/PartnerPublicClient");
+
 const Webhook = require("./Webhook/WebhookPublicClient");
 
 const { FDKClientValidationError } = require("../common/FDKError");
@@ -23,6 +25,8 @@ class PublicClient {
     this.configuration = new Configuration(config);
 
     this.inventory = new Inventory(config);
+
+    this.partner = new Partner(config);
 
     this.webhook = new Webhook(config);
   }

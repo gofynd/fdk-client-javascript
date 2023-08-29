@@ -514,6 +514,30 @@ export = OrderPlatformModel;
  * @property {BulkActionTemplate[]} [template_x_slug] - Allowed bulk action template slugs
  */
 /**
+ * @typedef BulkReportsDownloadFailedResponse
+ * @property {string} [error]
+ * @property {boolean} [status]
+ */
+/**
+ * @typedef BulkReportsDownloadRequest
+ * @property {Object} [custom_filters_for_lane]
+ * @property {string} [custom_headers] - Download report with specific headers
+ * @property {string[]} [entities] - Download for specific enitites, entities
+ *   can be bag, shipment or order_id, etc.
+ * @property {string} [filter_type]
+ * @property {string} [from_date]
+ * @property {boolean} [is_cross_company_enabled] - Download lanes for cross company.
+ * @property {string} [lane_type]
+ * @property {string} [report_type] - Type of report
+ * @property {string[]} [store_ids] - Download for specific store ids.
+ * @property {string} [to_date]
+ */
+/**
+ * @typedef BulkReportsDownloadResponse
+ * @property {string} [batch_id]
+ * @property {boolean} [success]
+ */
+/**
  * @typedef BuyerDetails
  * @property {string} address
  * @property {string} [ajio_site_id]
@@ -567,6 +591,30 @@ export = OrderPlatformModel;
  * @typedef ContactDetails
  * @property {string[]} [emails]
  * @property {PhoneDetails[]} [phone]
+ */
+/**
+ * @typedef CourierPartnerTrackingDetails
+ * @property {string} awb - AWB Number
+ * @property {string} [dp_location] - Current location of Courier partner
+ * @property {string} dp_name - Courier Partner name
+ * @property {string} dp_status - Status at Courier partner end
+ * @property {string} dp_status_updated_at - Date Time at which status was
+ *   updated at Courier partner
+ * @property {string} [estimated_delivery_date] - Estimated delivery date
+ *   received from Courier partner
+ * @property {number} [id] - Id of Tracking history
+ * @property {string} journey - Journey type of the shipment
+ * @property {Object} [meta] - Meta field to store Courier partner's meta data
+ * @property {string} operational_status - Operational status of OMS
+ * @property {string} [promised_delivery_date] - Promised delivery date received
+ *   from Courier partner
+ * @property {string} [remark] - Remark from courier partner
+ * @property {string} shipment_id - Shipment ID
+ */
+/**
+ * @typedef CourierPartnerTrackingResponse
+ * @property {CourierPartnerTrackingDetails[]} [items]
+ * @property {PageDetails} [page]
  */
 /**
  * @typedef CreateChannelConfig
@@ -727,6 +775,32 @@ export = OrderPlatformModel;
  * @property {string} [password]
  * @property {string} [user]
  * @property {string} [username]
+ */
+/**
+ * @typedef EInvoiceResponseData
+ * @property {string} [ack_dt]
+ * @property {string} [ack_no]
+ * @property {string} [irn]
+ * @property {string} message
+ * @property {string} shipment_id
+ * @property {boolean} success
+ * @property {number} [timeout]
+ * @property {string} [timeout_unit]
+ */
+/**
+ * @typedef EInvoiceRetry
+ * @property {EInvoiceRetryShipmentData[]} [shipments_data]
+ */
+/**
+ * @typedef EInvoiceRetryResponse
+ * @property {string} [message]
+ * @property {EInvoiceResponseData[]} response_data
+ * @property {boolean} [success]
+ * @property {number} success_count
+ */
+/**
+ * @typedef EInvoiceRetryShipmentData
+ * @property {string} shipment_id
  */
 /**
  * @typedef Entities
@@ -1038,7 +1112,7 @@ export = OrderPlatformModel;
 /**
  * @typedef LineItem
  * @property {Charge[]} [charges]
- * @property {string} [custom_messasge]
+ * @property {string} [custom_message]
  * @property {string} [external_line_id]
  * @property {Object} [meta]
  * @property {number} [quantity]
@@ -1269,6 +1343,15 @@ export = OrderPlatformModel;
  * @property {string} [next_id]
  * @property {number} [size]
  * @property {string} type
+ */
+/**
+ * @typedef PageDetails
+ * @property {number} [current] - Current page number
+ * @property {boolean} [has_next] - If next page contains any result
+ * @property {number} item_total - Total count of the results present in the
+ *   requested filter
+ * @property {number} [size] - Page size
+ * @property {string} [type] - Type of the page
  */
 /**
  * @typedef PaymentInfo
@@ -1638,6 +1721,11 @@ export = OrderPlatformModel;
  * @property {boolean} [returnable]
  * @property {number} [time]
  * @property {string} [unit]
+ */
+/**
+ * @typedef RoleBaseStateTransitionMapping
+ * @property {string[]} [next_statuses]
+ * @property {boolean} [success]
  */
 /**
  * @typedef SendSmsPayload
@@ -2122,6 +2210,7 @@ export = OrderPlatformModel;
  * @typedef TaxInfo
  * @property {string} [b2b_gstin_number]
  * @property {string} [gstin]
+ * @property {string} [pan_no]
  */
 /**
  * @typedef TrackingList
@@ -2254,7 +2343,7 @@ export = OrderPlatformModel;
 declare class OrderPlatformModel {
 }
 declare namespace OrderPlatformModel {
-    export { ActionInfo, AdvanceFilterInfo, Affiliate, AffiliateAppConfig, AffiliateAppConfigMeta, AffiliateBag, AffiliateBagDetails, AffiliateBagsDetails, AffiliateConfig, AffiliateDetails, AffiliateInventoryArticleAssignmentConfig, AffiliateInventoryConfig, AffiliateInventoryLogisticsConfig, AffiliateInventoryOrderConfig, AffiliateInventoryPaymentConfig, AffiliateInventoryStoreConfig, AffiliateMeta, AffiliateStoreIdMapping, AnnouncementResponse, AnnouncementsResponse, AppliedPromos, Article, ArticleDetails, AttachOrderUser, AttachOrderUserResponse, AttachUserInfo, AttachUserOtpData, Attributes, B2BPODetails, BagConfigs, BagDetailsPlatformResponse, BagGST, BagGSTDetails, BagMeta, BagPaymentMethods, BagReturnableCancelableStatus, BagReturnableCancelableStatus1, Bags, BagsPage, BagStateMapper, BagStateTransitionMap, BagStatusHistory, BagUnit, BaseResponse, BillingInfo, BillingStaffDetails, Brand, BulkActionTemplate, BulkActionTemplateResponse, BuyerDetails, BuyRules, Charge, CheckResponse, Click2CallResponse, CompanyDetails, ContactDetails, CreateChannelConfig, CreateChannelConfigData, CreateChannelConfigResponse, CreateChannelConifgErrorResponse, CreateChannelPaymentInfo, CreateOrderAPI, CreateOrderErrorReponse, CreateOrderPayload, CreateOrderResponse, CreditBalanceInfo, CurrentStatus, DataUpdates, Dates, DebugInfo, Dimension, Dimensions, DiscountRules, DispatchManifest, Document, DpConfiguration, DPDetailsData, EinvoiceInfo, EInvoicePortalDetails, Entities, EntitiesDataUpdates, EntitiesReasons, EntityReasonData, Error, ErrorDetail, ErrorResponse, FetchCreditBalanceRequestPayload, FetchCreditBalanceResponsePayload, FileResponse, FilterInfoOption, FiltersInfo, FiltersResponse, FinancialBreakup, Formatted, FulfillingStore, FyndOrderIdList, GeneratePosOrderReceiptResponse, GetActionsResponse, GetBagsPlatformResponse, GiftCard, GSTDetailsData, HistoryDict, HistoryMeta, HistoryReason, Identifier, InvalidateShipmentCacheNestedResponse, InvalidateShipmentCachePayload, InvalidateShipmentCacheResponse, InvoiceInfo, Item, ItemCriterias, LaneConfigResponse, LineItem, LocationDetails, LockData, MarketPlacePdf, Meta, OrderBagArticle, OrderBags, OrderBrandName, OrderConfig, OrderData, OrderDetails, OrderDetailsData, OrderDetailsResponse, OrderInfo, OrderingStoreDetails, OrderItemDataUpdates, OrderListingResponse, OrderMeta, OrderPriority, OrderStatus, OrderStatusData, OrderStatusResult, OrderUser, OriginalFilter, Page, PaymentInfo, PaymentMethod, PaymentMethods, PDFLinks, PhoneDetails, PlatformArticleAttributes, PlatformBreakupValues, PlatformChannel, PlatformDeliveryAddress, PlatformItem, PlatformOrderItems, PlatformOrderUpdate, PlatformShipment, PlatformShipmentReasonsResponse, PlatformShipmentTrack, PlatformTrack, PlatformUserDetails, PointBlankOtpData, PostActivityHistory, PostHistoryData, PostHistoryDict, PostHistoryFilters, PostShipmentHistory, Prices, ProcessingDates, Products, ProductsDataUpdates, ProductsDataUpdatesFilters, ProductsReasons, ProductsReasonsData, ProductsReasonsFilters, QuestionSet, Reason, ReasonsData, RefundModeConfigRequestPayload, RefundModeConfigResponsePayload, RefundModeInfo, RefundOption, ReplacementDetails, ResponseDetail, ReturnConfig, ReturnConfig1, SendSmsPayload, SendUserMobileOTP, SendUserMobileOtpResponse, Shipment, ShipmentConfig, ShipmentData, ShipmentDetail, ShipmentDetails, ShipmentHistoryResponse, ShipmentInfoResponse, ShipmentInternalPlatformViewResponse, ShipmentItem, ShipmentItemFulFillingStore, ShipmentItemMeta, ShipmentListingBrand, ShipmentListingChannel, ShipmentMeta, ShipmentPayments, ShipmentReasonsResponse, ShipmentResponseReasons, ShipmentsRequest, ShipmentsResponse, ShipmentStatus, ShipmentStatusData, ShipmentTags, ShipmentTimeStamp, ShippingInfo, SmsDataPayload, StatuesRequest, StatuesResponse, Store, StoreAddress, StoreDocuments, StoreEinvoice, StoreEwaybill, StoreGstCredentials, StoreMeta, StoreReassign, StoreReassignResponse, SubLane, SuccessResponse, SuperLane, Tax, TaxDetails, TaxInfo, TrackingList, TransactionData, UpdatePackagingDimensionsPayload, UpdatePackagingDimensionsResponse, UpdateShipmentLockPayload, UpdateShipmentLockResponse, UpdateShipmentStatusRequest, UpdateShipmentStatusResponseBody, UploadConsent, URL, UserData, UserDataInfo, UserDetailsData, VerifyMobileOTP, VerifyOtpData, VerifyOtpResponse, VerifyOtpResponseData, Weight };
+    export { ActionInfo, AdvanceFilterInfo, Affiliate, AffiliateAppConfig, AffiliateAppConfigMeta, AffiliateBag, AffiliateBagDetails, AffiliateBagsDetails, AffiliateConfig, AffiliateDetails, AffiliateInventoryArticleAssignmentConfig, AffiliateInventoryConfig, AffiliateInventoryLogisticsConfig, AffiliateInventoryOrderConfig, AffiliateInventoryPaymentConfig, AffiliateInventoryStoreConfig, AffiliateMeta, AffiliateStoreIdMapping, AnnouncementResponse, AnnouncementsResponse, AppliedPromos, Article, ArticleDetails, AttachOrderUser, AttachOrderUserResponse, AttachUserInfo, AttachUserOtpData, Attributes, B2BPODetails, BagConfigs, BagDetailsPlatformResponse, BagGST, BagGSTDetails, BagMeta, BagPaymentMethods, BagReturnableCancelableStatus, BagReturnableCancelableStatus1, Bags, BagsPage, BagStateMapper, BagStateTransitionMap, BagStatusHistory, BagUnit, BaseResponse, BillingInfo, BillingStaffDetails, Brand, BulkActionTemplate, BulkActionTemplateResponse, BulkReportsDownloadFailedResponse, BulkReportsDownloadRequest, BulkReportsDownloadResponse, BuyerDetails, BuyRules, Charge, CheckResponse, Click2CallResponse, CompanyDetails, ContactDetails, CourierPartnerTrackingDetails, CourierPartnerTrackingResponse, CreateChannelConfig, CreateChannelConfigData, CreateChannelConfigResponse, CreateChannelConifgErrorResponse, CreateChannelPaymentInfo, CreateOrderAPI, CreateOrderErrorReponse, CreateOrderPayload, CreateOrderResponse, CreditBalanceInfo, CurrentStatus, DataUpdates, Dates, DebugInfo, Dimension, Dimensions, DiscountRules, DispatchManifest, Document, DpConfiguration, DPDetailsData, EinvoiceInfo, EInvoicePortalDetails, EInvoiceResponseData, EInvoiceRetry, EInvoiceRetryResponse, EInvoiceRetryShipmentData, Entities, EntitiesDataUpdates, EntitiesReasons, EntityReasonData, Error, ErrorDetail, ErrorResponse, FetchCreditBalanceRequestPayload, FetchCreditBalanceResponsePayload, FileResponse, FilterInfoOption, FiltersInfo, FiltersResponse, FinancialBreakup, Formatted, FulfillingStore, FyndOrderIdList, GeneratePosOrderReceiptResponse, GetActionsResponse, GetBagsPlatformResponse, GiftCard, GSTDetailsData, HistoryDict, HistoryMeta, HistoryReason, Identifier, InvalidateShipmentCacheNestedResponse, InvalidateShipmentCachePayload, InvalidateShipmentCacheResponse, InvoiceInfo, Item, ItemCriterias, LaneConfigResponse, LineItem, LocationDetails, LockData, MarketPlacePdf, Meta, OrderBagArticle, OrderBags, OrderBrandName, OrderConfig, OrderData, OrderDetails, OrderDetailsData, OrderDetailsResponse, OrderInfo, OrderingStoreDetails, OrderItemDataUpdates, OrderListingResponse, OrderMeta, OrderPriority, OrderStatus, OrderStatusData, OrderStatusResult, OrderUser, OriginalFilter, Page, PageDetails, PaymentInfo, PaymentMethod, PaymentMethods, PDFLinks, PhoneDetails, PlatformArticleAttributes, PlatformBreakupValues, PlatformChannel, PlatformDeliveryAddress, PlatformItem, PlatformOrderItems, PlatformOrderUpdate, PlatformShipment, PlatformShipmentReasonsResponse, PlatformShipmentTrack, PlatformTrack, PlatformUserDetails, PointBlankOtpData, PostActivityHistory, PostHistoryData, PostHistoryDict, PostHistoryFilters, PostShipmentHistory, Prices, ProcessingDates, Products, ProductsDataUpdates, ProductsDataUpdatesFilters, ProductsReasons, ProductsReasonsData, ProductsReasonsFilters, QuestionSet, Reason, ReasonsData, RefundModeConfigRequestPayload, RefundModeConfigResponsePayload, RefundModeInfo, RefundOption, ReplacementDetails, ResponseDetail, ReturnConfig, ReturnConfig1, RoleBaseStateTransitionMapping, SendSmsPayload, SendUserMobileOTP, SendUserMobileOtpResponse, Shipment, ShipmentConfig, ShipmentData, ShipmentDetail, ShipmentDetails, ShipmentHistoryResponse, ShipmentInfoResponse, ShipmentInternalPlatformViewResponse, ShipmentItem, ShipmentItemFulFillingStore, ShipmentItemMeta, ShipmentListingBrand, ShipmentListingChannel, ShipmentMeta, ShipmentPayments, ShipmentReasonsResponse, ShipmentResponseReasons, ShipmentsRequest, ShipmentsResponse, ShipmentStatus, ShipmentStatusData, ShipmentTags, ShipmentTimeStamp, ShippingInfo, SmsDataPayload, StatuesRequest, StatuesResponse, Store, StoreAddress, StoreDocuments, StoreEinvoice, StoreEwaybill, StoreGstCredentials, StoreMeta, StoreReassign, StoreReassignResponse, SubLane, SuccessResponse, SuperLane, Tax, TaxDetails, TaxInfo, TrackingList, TransactionData, UpdatePackagingDimensionsPayload, UpdatePackagingDimensionsResponse, UpdateShipmentLockPayload, UpdateShipmentLockResponse, UpdateShipmentStatusRequest, UpdateShipmentStatusResponseBody, UploadConsent, URL, UserData, UserDataInfo, UserDetailsData, VerifyMobileOTP, VerifyOtpData, VerifyOtpResponse, VerifyOtpResponseData, Weight };
 }
 /** @returns {ActionInfo} */
 declare function ActionInfo(): ActionInfo;
@@ -2834,6 +2923,48 @@ type BulkActionTemplateResponse = {
      */
     template_x_slug?: BulkActionTemplate[];
 };
+/** @returns {BulkReportsDownloadFailedResponse} */
+declare function BulkReportsDownloadFailedResponse(): BulkReportsDownloadFailedResponse;
+type BulkReportsDownloadFailedResponse = {
+    error?: string;
+    status?: boolean;
+};
+/** @returns {BulkReportsDownloadRequest} */
+declare function BulkReportsDownloadRequest(): BulkReportsDownloadRequest;
+type BulkReportsDownloadRequest = {
+    custom_filters_for_lane?: any;
+    /**
+     * - Download report with specific headers
+     */
+    custom_headers?: string;
+    /**
+     * - Download for specific enitites, entities
+     * can be bag, shipment or order_id, etc.
+     */
+    entities?: string[];
+    filter_type?: string;
+    from_date?: string;
+    /**
+     * - Download lanes for cross company.
+     */
+    is_cross_company_enabled?: boolean;
+    lane_type?: string;
+    /**
+     * - Type of report
+     */
+    report_type?: string;
+    /**
+     * - Download for specific store ids.
+     */
+    store_ids?: string[];
+    to_date?: string;
+};
+/** @returns {BulkReportsDownloadResponse} */
+declare function BulkReportsDownloadResponse(): BulkReportsDownloadResponse;
+type BulkReportsDownloadResponse = {
+    batch_id?: string;
+    success?: boolean;
+};
 /** @returns {BuyerDetails} */
 declare function BuyerDetails(): BuyerDetails;
 type BuyerDetails = {
@@ -2925,6 +3056,71 @@ declare function ContactDetails(): ContactDetails;
 type ContactDetails = {
     emails?: string[];
     phone?: PhoneDetails[];
+};
+/** @returns {CourierPartnerTrackingDetails} */
+declare function CourierPartnerTrackingDetails(): CourierPartnerTrackingDetails;
+type CourierPartnerTrackingDetails = {
+    /**
+     * - AWB Number
+     */
+    awb: string;
+    /**
+     * - Current location of Courier partner
+     */
+    dp_location?: string;
+    /**
+     * - Courier Partner name
+     */
+    dp_name: string;
+    /**
+     * - Status at Courier partner end
+     */
+    dp_status: string;
+    /**
+     * - Date Time at which status was
+     * updated at Courier partner
+     */
+    dp_status_updated_at: string;
+    /**
+     * - Estimated delivery date
+     * received from Courier partner
+     */
+    estimated_delivery_date?: string;
+    /**
+     * - Id of Tracking history
+     */
+    id?: number;
+    /**
+     * - Journey type of the shipment
+     */
+    journey: string;
+    /**
+     * - Meta field to store Courier partner's meta data
+     */
+    meta?: any;
+    /**
+     * - Operational status of OMS
+     */
+    operational_status: string;
+    /**
+     * - Promised delivery date received
+     * from Courier partner
+     */
+    promised_delivery_date?: string;
+    /**
+     * - Remark from courier partner
+     */
+    remark?: string;
+    /**
+     * - Shipment ID
+     */
+    shipment_id: string;
+};
+/** @returns {CourierPartnerTrackingResponse} */
+declare function CourierPartnerTrackingResponse(): CourierPartnerTrackingResponse;
+type CourierPartnerTrackingResponse = {
+    items?: CourierPartnerTrackingDetails[];
+    page?: PageDetails;
 };
 /** @returns {CreateChannelConfig} */
 declare function CreateChannelConfig(): CreateChannelConfig;
@@ -3108,6 +3304,36 @@ type EInvoicePortalDetails = {
     password?: string;
     user?: string;
     username?: string;
+};
+/** @returns {EInvoiceResponseData} */
+declare function EInvoiceResponseData(): EInvoiceResponseData;
+type EInvoiceResponseData = {
+    ack_dt?: string;
+    ack_no?: string;
+    irn?: string;
+    message: string;
+    shipment_id: string;
+    success: boolean;
+    timeout?: number;
+    timeout_unit?: string;
+};
+/** @returns {EInvoiceRetry} */
+declare function EInvoiceRetry(): EInvoiceRetry;
+type EInvoiceRetry = {
+    shipments_data?: EInvoiceRetryShipmentData[];
+};
+/** @returns {EInvoiceRetryResponse} */
+declare function EInvoiceRetryResponse(): EInvoiceRetryResponse;
+type EInvoiceRetryResponse = {
+    message?: string;
+    response_data: EInvoiceResponseData[];
+    success?: boolean;
+    success_count: number;
+};
+/** @returns {EInvoiceRetryShipmentData} */
+declare function EInvoiceRetryShipmentData(): EInvoiceRetryShipmentData;
+type EInvoiceRetryShipmentData = {
+    shipment_id: string;
 };
 /** @returns {Entities} */
 declare function Entities(): Entities;
@@ -3522,7 +3748,7 @@ type LaneConfigResponse = {
 declare function LineItem(): LineItem;
 type LineItem = {
     charges?: Charge[];
-    custom_messasge?: string;
+    custom_message?: string;
     external_line_id?: string;
     meta?: any;
     quantity?: number;
@@ -3783,6 +4009,31 @@ type Page = {
     next_id?: string;
     size?: number;
     type: string;
+};
+/** @returns {PageDetails} */
+declare function PageDetails(): PageDetails;
+type PageDetails = {
+    /**
+     * - Current page number
+     */
+    current?: number;
+    /**
+     * - If next page contains any result
+     */
+    has_next?: boolean;
+    /**
+     * - Total count of the results present in the
+     * requested filter
+     */
+    item_total: number;
+    /**
+     * - Page size
+     */
+    size?: number;
+    /**
+     * - Type of the page
+     */
+    type?: string;
 };
 /** @returns {PaymentInfo} */
 declare function PaymentInfo(): PaymentInfo;
@@ -4215,6 +4466,12 @@ type ReturnConfig1 = {
     returnable?: boolean;
     time?: number;
     unit?: string;
+};
+/** @returns {RoleBaseStateTransitionMapping} */
+declare function RoleBaseStateTransitionMapping(): RoleBaseStateTransitionMapping;
+type RoleBaseStateTransitionMapping = {
+    next_statuses?: string[];
+    success?: boolean;
 };
 /** @returns {SendSmsPayload} */
 declare function SendSmsPayload(): SendSmsPayload;
@@ -4792,6 +5049,7 @@ declare function TaxInfo(): TaxInfo;
 type TaxInfo = {
     b2b_gstin_number?: string;
     gstin?: string;
+    pan_no?: string;
 };
 /** @returns {TrackingList} */
 declare function TrackingList(): TrackingList;

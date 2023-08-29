@@ -15,6 +15,8 @@ const AuditTrailPlatformModel = require("./AuditTrailPlatformModel");
 /**
  * @typedef GetAuditLogsParam
  * @property {string} qs - Logs Query
+ * @property {number} [limit] - Current request items count
+ * @property {Object} [sort] - To sort based on _id
  */
 
 /** @typedef GetEntityTypesParam */
@@ -38,6 +40,8 @@ class AuditTrailPlatformValidator {
   static getAuditLogs() {
     return Joi.object({
       qs: Joi.string().allow("").required(),
+      limit: Joi.number(),
+      sort: Joi.any(),
     }).required();
   }
 

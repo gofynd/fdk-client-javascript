@@ -213,7 +213,7 @@ export = PosCartApplicationModel;
  * @property {string} [billing_address_id]
  * @property {string} [callback_url]
  * @property {CartCheckoutCustomMeta[]} [custom_meta]
- * @property {CustomerDetails} [customer_details] - Customer details
+ * @property {Object} [customer_details] - Customer details
  * @property {Object} [delivery_address]
  * @property {Object} [extra_meta]
  * @property {Files[]} [files] - List of file url
@@ -1093,7 +1093,7 @@ type CartPosCheckoutDetailRequest = {
     /**
      * - Customer details
      */
-    customer_details?: CustomerDetails;
+    customer_details?: any;
     delivery_address?: any;
     extra_meta?: any;
     /**

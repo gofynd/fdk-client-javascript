@@ -14,6 +14,7 @@ declare class PublicClient {
     config: import("./PublicConfig");
     configuration: Configuration;
     inventory: Inventory;
+    partner: Partner;
     webhook: Webhook;
     /**
      * Sets the extra headers for the public client.
@@ -25,4 +26,5 @@ declare class PublicClient {
 }
 import Configuration = require("./Configuration/ConfigurationPublicClient");
 import Inventory = require("./Inventory/InventoryPublicClient");
+import Partner = require("./Partner/PartnerPublicClient");
 import Webhook = require("./Webhook/WebhookPublicClient");

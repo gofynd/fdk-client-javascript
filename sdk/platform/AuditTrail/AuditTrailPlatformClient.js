@@ -171,12 +171,14 @@ class AuditTrail {
    * @description: Get a paginated set of logs that can be filtered using the available set of parameters and get the relevant group of logs - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/audittrail/getAuditLogs/).
    */
   async getAuditLogs(
-    { qs, requestHeaders } = { requestHeaders: {} },
+    { qs, limit, sort, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = AuditTrailPlatformValidator.getAuditLogs().validate(
       {
         qs,
+        limit,
+        sort,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -190,6 +192,8 @@ class AuditTrail {
     } = AuditTrailPlatformValidator.getAuditLogs().validate(
       {
         qs,
+        limit,
+        sort,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -202,6 +206,8 @@ class AuditTrail {
 
     const query_params = {};
     query_params["qs"] = qs;
+    query_params["limit"] = limit;
+    query_params["sort"] = sort;
 
     const xHeaders = {};
 

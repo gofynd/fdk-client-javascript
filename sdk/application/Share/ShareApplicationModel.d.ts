@@ -13,16 +13,6 @@ export = ShareApplicationModel;
  * @property {string} [message]
  */
 /**
- * @typedef Page
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {boolean} [has_previous]
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {number} [size]
- * @property {string} type
- */
-/**
  * @typedef QRCodeResp
  * @property {string} [link]
  * @property {string} [svg]
@@ -38,11 +28,6 @@ export = ShareApplicationModel;
  * @property {boolean} [force_web]
  * @property {RedirectDevice} [ios]
  * @property {WebRedirect} [web]
- */
-/**
- * @typedef ShortLinkList
- * @property {ShortLinkRes[]} [items]
- * @property {Page} [page]
  */
 /**
  * @typedef ShortLinkReq
@@ -102,7 +87,7 @@ export = ShareApplicationModel;
 declare class ShareApplicationModel {
 }
 declare namespace ShareApplicationModel {
-    export { Attribution, CampaignShortLink, ErrorRes, Page, QRCodeResp, RedirectDevice, Redirects, ShortLinkList, ShortLinkReq, ShortLinkRes, SocialMediaTags, UrlInfo, WebRedirect };
+    export { Attribution, CampaignShortLink, ErrorRes, QRCodeResp, RedirectDevice, Redirects, ShortLinkReq, ShortLinkRes, SocialMediaTags, UrlInfo, WebRedirect };
 }
 /** @returns {Attribution} */
 declare function Attribution(): Attribution;
@@ -119,17 +104,6 @@ type CampaignShortLink = {
 declare function ErrorRes(): ErrorRes;
 type ErrorRes = {
     message?: string;
-};
-/** @returns {Page} */
-declare function Page(): Page;
-type Page = {
-    current?: number;
-    has_next?: boolean;
-    has_previous?: boolean;
-    item_total?: number;
-    next_id?: string;
-    size?: number;
-    type: string;
 };
 /** @returns {QRCodeResp} */
 declare function QRCodeResp(): QRCodeResp;
@@ -150,12 +124,6 @@ type Redirects = {
     force_web?: boolean;
     ios?: RedirectDevice;
     web?: WebRedirect;
-};
-/** @returns {ShortLinkList} */
-declare function ShortLinkList(): ShortLinkList;
-type ShortLinkList = {
-    items?: ShortLinkRes[];
-    page?: Page;
 };
 /** @returns {ShortLinkReq} */
 declare function ShortLinkReq(): ShortLinkReq;

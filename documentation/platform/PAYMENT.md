@@ -24,6 +24,9 @@ Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.in
 * [getBankAccountDetailsOpenAPI](#getbankaccountdetailsopenapi)
 * [getBrandPaymentGatewayConfig](#getbrandpaymentgatewayconfig)
 * [getEdcDevice](#getedcdevice)
+* [getMerchantAggregatorPaymentModeDetails](#getmerchantaggregatorpaymentmodedetails)
+* [getMerchantPaymentOption](#getmerchantpaymentoption)
+* [getPGConfigAggregators](#getpgconfigaggregators)
 * [getPaymentCodeOption](#getpaymentcodeoption)
 * [getPaymentLink](#getpaymentlink)
 * [getPaymentModeRoutes](#getpaymentmoderoutes)
@@ -36,6 +39,8 @@ Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.in
 * [initialisePayment](#initialisepayment)
 * [merchantOnBoarding](#merchantonboarding)
 * [oauthGetUrl](#oauthgeturl)
+* [patchMerchantAggregatorPaymentModeDetails](#patchmerchantaggregatorpaymentmodedetails)
+* [patchMerchantPaymentOption](#patchmerchantpaymentoption)
 * [paymentStatusBulk](#paymentstatusbulk)
 * [pollingPaymentLink](#pollingpaymentlink)
 * [repaymentDetails](#repaymentdetails)
@@ -47,7 +52,9 @@ Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.in
 * [saveSubscriptionSetupIntent](#savesubscriptionsetupintent)
 * [setUserCODlimitRoutes](#setusercodlimitroutes)
 * [updateEdcDevice](#updateedcdevice)
+* [updatePaymentSession](#updatepaymentsession)
 * [updatePayout](#updatepayout)
+* [updateRefundSession](#updaterefundsession)
 * [verifyCustomerForPayment](#verifycustomerforpayment)
 * [verifyIfscCode](#verifyifsccode)
 
@@ -977,6 +984,7 @@ Success
 
 ```json
 {
+  "message": "Refund Success",
   "success": true,
   "data": {
     "account_no": "XXXX-XXXX-6682",
@@ -1243,6 +1251,249 @@ Success. Returns the single edc device mapped to the terminal. Check the example
 ---
 
 
+### getMerchantAggregatorPaymentModeDetails
+Get Aggregator, payment mode and sub payment mode.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").payment.getMerchantAggregatorPaymentModeDetails({  aggregatorId : value,
+ businessUnit : value,
+ device : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").payment.getMerchantAggregatorPaymentModeDetails({  aggregatorId : value,
+ businessUnit : value,
+ device : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| aggregatorId | number | yes | Aggregators Id |   
+| businessUnit | string | yes |  |   
+| device | string | yes |  |  
+
+
+
+Get Aggregator, payment mode and sub payment mode details.
+
+*Returned Response:*
+
+
+
+
+[MerchnatPaymentModeResponse](#MerchnatPaymentModeResponse)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "business_unit": "storefront",
+  "device": "android",
+  "is_active": true,
+  "items": [
+    {
+      "id": 1,
+      "is_active": true
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getMerchantPaymentOption
+Get Payment modes and COD details.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").payment.getMerchantPaymentOption();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").payment.getMerchantPaymentOption();
+```
+
+
+
+
+
+
+This api fetches all the available PGs for merchant and its offline payment mode details.
+
+*Returned Response:*
+
+
+
+
+[MerchnatPaymentModeResponse](#MerchnatPaymentModeResponse)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; merchant_payment_response_success</i></summary>
+
+```json
+{
+  "summary": "List of active PGs for merchant and its offline payment configurations",
+  "value": {
+    "success": true,
+    "message": "",
+    "items": [
+      {
+        "online": {
+          "is_active": true,
+          "aggregators": [
+            {
+              "id": 1,
+              "name": "Simpl",
+              "logo": "https://hdn-1.fynd.com/payment/simpl-pg-logo.jpg"
+            }
+          ]
+        },
+        "offline": {
+          "is_active": true,
+          "payment_modes": {
+            "cod": [
+              {
+                "user_cod_limit": 0,
+                "cod_charges": 0,
+                "anonymous_cod": false,
+                "cod_max_order_value": 0,
+                "cod_min_order_value": 0,
+                "cod_charges_max_value": 0,
+                "cod_charges_min_value": 0
+              }
+            ]
+          }
+        },
+        "split": {
+          "is_active": true,
+          "payment_modes": {
+            "split_payment": {}
+          }
+        }
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getPGConfigAggregators
+Get Aggregators available to be added as PG.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").payment.getPGConfigAggregators();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").payment.getPGConfigAggregators();
+```
+
+
+
+
+
+
+Get Aggregators available to be added as PG.
+
+*Returned Response:*
+
+
+
+
+[MerchnatPaymentModeResponse](#MerchnatPaymentModeResponse)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "message": "",
+  "items": [
+    {
+      "id": 8,
+      "name": "Jio",
+      "slug": "jio",
+      "logos": {
+        "large": "",
+        "small": ""
+      },
+      "is_active": true,
+      "config": [
+        "self",
+        "fynd"
+      ],
+      "status": "active"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getPaymentCodeOption
 List Payment Options Method Codes
 
@@ -1282,53 +1533,42 @@ List Order Beneficiary
 {
   "success": true,
   "data": {
-    "WL": {
-      "codes": [
-        {
-          "code": "PAYTM",
-          "merchant_code": "PAYTM",
-          "name": "Paytm"
-        },
-        {
-          "code": "MOBIKWIK",
-          "merchant_code": "MOBIKWIK",
-          "name": "Mobikwik"
-        }
-      ],
-      "networks": [],
-      "types": [],
-      "name": "Wallet"
+    "description": "Successful Payment",
+    "method_code": {
+      "name": "Wallet",
+      "networks": "network",
+      "types": "",
+      "codes": {
+        "code": "W",
+        "merchant_code": "MOBIKWIK",
+        "MOBIKWIK": null,
+        "name": "Mobikwik"
+      }
     },
-    "NB": {
-      "codes": [
-        {
-          "code": "HDFC",
-          "merchant_code": "HDFC",
-          "name": "HDFC Bank"
-        },
-        {
-          "code": "ICIC",
-          "merchant_code": "ICIC",
-          "name": "ICICI Bank"
-        }
-      ],
-      "networks": [],
-      "types": [],
-      "name": "Net Banking"
+    "networks": [],
+    "types": [],
+    "name": "Net Banking",
+    "codes": {
+      "HDFC": {
+        "merchant_code": "HDFC",
+        "name": "HDFC Bank"
+      },
+      "ICIC": {
+        "merchant_code": "ICIC",
+        "name": "ICICI Bank"
+      }
     },
     "CARD": {
-      "codes": [
-        {
-          "code": "ICICI",
+      "codes": {
+        "ICICI": {
           "merchant_code": "ICICI",
           "name": "ICICI Bank"
         },
-        {
-          "code": "AXIS",
+        "AXIS": {
           "merchant_code": "AXIS",
           "name": "AXIS Bank"
         }
-      ],
+      },
       "networks": [
         "RUPAY",
         "VISA",
@@ -2441,7 +2681,7 @@ Success
             "merchant_code": "PAYPAL",
             "logo_url": {
               "small": "https://hdn-1.fynd.com/payment/paypal.jpg",
-              "large": "https://hdn-1.fynd.com/payment/paypal.jpg "
+              "large": "https://hdn-1.fynd.com/payment/paypal.jpg"
             },
             "aggregator_name": "Razorpay",
             "display_priority": 10
@@ -3671,7 +3911,7 @@ Success
             "merchant_code": "PAYPAL",
             "logo_url": {
               "small": "https://hdn-1.fynd.com/payment/paypal.jpg",
-              "large": "https://hdn-1.fynd.com/payment/paypal.jpg "
+              "large": "https://hdn-1.fynd.com/payment/paypal.jpg"
             },
             "aggregator_name": "Razorpay",
             "display_priority": 10
@@ -4163,7 +4403,7 @@ List User Beneficiary
       "email": "payment@gofynd.com",
       "address": "204A",
       "comment": "",
-      "is_active": null,
+      "is_active": true,
       "created_on": "2020-06-29 12:38:39",
       "modified_on": "2020-06-29 12:38:39",
       "display_name": "BANK",
@@ -4237,7 +4477,7 @@ Success. Returns user cod limit , remaining limit and usage of user for COD. Che
   "success": true,
   "user_cod_data": {
     "is_active": true,
-    "user_id": 5,
+    "user_id": "abc",
     "usages": 1000,
     "limit": 10000,
     "remaining_limit": 9000,
@@ -4313,7 +4553,7 @@ List Order Beneficiary
       "email": "prakashtest@gmail.com",
       "address": "49A, Dabhi seri, jodhpur, kalyanpur",
       "comment": "COD Refund",
-      "is_active": null,
+      "is_active": true,
       "created_on": "2021-01-22 11:31:02",
       "modified_on": "2021-01-22 11:31:02",
       "display_name": "BANK",
@@ -4533,6 +4773,169 @@ Success. Returns the status of payment. Check the example shown below or refer `
 ---
 
 
+### patchMerchantAggregatorPaymentModeDetails
+Update Aggregator, payment mode and sub payment mode.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").payment.patchMerchantAggregatorPaymentModeDetails({  aggregatorId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").payment.patchMerchantAggregatorPaymentModeDetails({  aggregatorId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| aggregatorId | number | yes | Aggregators Id |  
+| body | [MerchnatPaymentModeResponse](#MerchnatPaymentModeResponse) | yes | Request body |
+
+
+Update Aggregator, payment mode and sub payment mode details.
+
+*Returned Response:*
+
+
+
+
+[MerchnatPaymentModeResponse](#MerchnatPaymentModeResponse)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "business_unit": "storefront",
+  "device": "android",
+  "is_active": true,
+  "items": [
+    {
+      "id": 1,
+      "is_active": true
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### patchMerchantPaymentOption
+Update Payment modes and COD details.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").payment.patchMerchantPaymentOption({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").payment.patchMerchantPaymentOption({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [MerchnatPaymentModeRequest](#MerchnatPaymentModeRequest) | yes | Request body |
+
+
+To updated online payment as active/inactive or offline payment configuration like cod charges, anonymous cod allowed flags.
+
+*Returned Response:*
+
+
+
+
+[MerchnatPaymentModeResponse](#MerchnatPaymentModeResponse)
+
+Success.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; merchant_payment_response_success</i></summary>
+
+```json
+{
+  "summary": "updated payment mode configurations.",
+  "value": {
+    "success": true,
+    "message": "",
+    "items": [
+      {
+        "aggregators": [
+          {
+            "id": 1,
+            "name": "Simpl"
+          }
+        ]
+      }
+    ],
+    "offline": {
+      "is_active": true,
+      "payment_modes": {
+        "cod": {
+          "cod_charges": 0,
+          "user_cod_limit": 0,
+          "cod_min_order_value": 0,
+          "cod_max_order_value": 10000,
+          "cod_charges_min_value": 100,
+          "cod_charges_max_value": 49000,
+          "anonymous_cod": false
+        },
+        "split": {
+          "is_active": false
+        }
+      }
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### paymentStatusBulk
 Get Payment status and information for a list of order_ids
 
@@ -4574,6 +4977,7 @@ Success. Returns the status of payment. Check the example shown below or refer `
 
 ```json
 {
+  "status": 0,
   "success": "true",
   "count": 2,
   "data": [
@@ -5030,7 +5434,7 @@ Save Config Secret For Brand Payment Gateway Success Response.
 ```json
 {
   "success": true,
-  "aggregators": [
+  "aggregator": [
     "razorpay"
   ]
 }
@@ -5322,6 +5726,85 @@ Success. Returns the single edc device mapped to the terminal. Check the example
 ---
 
 
+### updatePaymentSession
+API to update status of a payment.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").payment.updatePaymentSession({  gid : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").payment.updatePaymentSession({  gid : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| gid | string | yes | global identifier of the entity (e.g. order, cart etc.) against which payment_session was initiated. This is generated by Fynd payments platform and is unique. |  
+| body | [PaymentSessionRequestSerializer](#PaymentSessionRequestSerializer) | yes | Request body |
+
+
+A payment_session is initiated against a global identifier (gid) which is identifies the entity payment is initiated against. e.g. order_id, cart_id. This endpoint is to update the status of the said payment_session.
+
+*Returned Response:*
+
+
+
+
+[PaymentSessionResponseSerializer](#PaymentSessionResponseSerializer)
+
+Success. Returns the status of Update or not. Check the example shown below or refer `PaymentSessionResponseSerializer` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; status_update_success</i></summary>
+
+```json
+{
+  "summary": "payment status updated successfully",
+  "value": {
+    "gid": "Payment Received",
+    "status": "initiated",
+    "total_amount": 100,
+    "currency": "INR",
+    "platform_transaction_details": [
+      {
+        "object": "platform_payment",
+        "transaction_id": "pay_wtt5r23mpebexcjsxzylyjhn7a",
+        "payment_id": "pay_wtt5r23mpebexcjsxzylyjhn7a"
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### updatePayout
 Update Payout
 
@@ -5371,6 +5854,87 @@ save payout response object
   "is_active": true
 }
 ```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateRefundSession
+API to update the status of a refund
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").payment.updateRefundSession({  gid : value,
+ requestId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").payment.updateRefundSession({  gid : value,
+ requestId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| gid | string | yes | global identifier of the entity (e.g. order, cart etc.) against which payment_session was initiated. This is generated by Fynd payments platform and is unique. |   
+| requestId | string | yes | A unique id that was used to initiate a refund session. This is generated by Fynd platform and is usually shipment_id. |  
+| body | [RefundSessionRequestSerializer](#RefundSessionRequestSerializer) | yes | Request body |
+
+
+A refund_session is initiated against a refund request, and this endpoint is to update the status against the refund request_id. A gid is unique indentifier of the entity against which payment was received e.g. an order.
+
+*Returned Response:*
+
+
+
+
+[RefundSessionResponseSerializer](#RefundSessionResponseSerializer)
+
+Returns the response weather it is success or not. Check the example shown below or refer `RefundSessionResponseSerializer` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; status_update_success</i></summary>
+
+```json
+{
+  "summary": "refund status is updated successfully",
+  "value": {
+    "gid": "FY615DE25839C4AF3A1A",
+    "status": "initiated",
+    "total_refund_amount": 100,
+    "currency": "INR",
+    "platform_refund_details": [
+      {
+        "transaction_id": "pay_wtt5r23mpebexcjsxzylyjhn7a",
+        "refund_id": "act_4lan4lrf2bxexdbinmqoln4nda"
+      }
+    ]
+  }
+}
+```
+</details>
+
 </details>
 
 
@@ -5568,6 +6132,33 @@ Bank details on correct Ifsc Code
  | ---------- | ---- | -------- | ----------- |
  | details | [BankDetailsForOTP](#BankDetailsForOTP) |  no  |  |
  | order_id | string |  no  |  |
+ 
+
+---
+
+#### [AddressDetail](#AddressDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | address | string |  no  | address details |
+ | address_type | string |  no  | address type e.g. home, office |
+ | area | string |  no  | area details |
+ | area_code | string |  no  | customer pin/zip code |
+ | area_code_slug | string |  no  | area slug code, use pin/zip code if not available |
+ | city | string |  no  | city name |
+ | country | string |  no  | country name |
+ | country_iso_code | string |  no  | country's code name e.g. `IN`, `GB` |
+ | country_phone_code | string |  no  | country's phone code |
+ | email | string? |  yes  | customer email |
+ | expire_at | string? |  yes  | address expiry timestamp |
+ | g_address_id | string |  no  | unique address id generated by Fynd platform |
+ | geo_location | string? |  yes  | location latitude and logitude |
+ | google_map_point | string? |  yes  | google map point of location |
+ | landmark | string? |  yes  | landmark |
+ | name | string |  no  | customer name |
+ | phone | string |  no  | phone number |
+ | state | string |  no  | state of the customer |
+ | tags | [string]? |  yes  | optional address tag |
  
 
 ---
@@ -5988,6 +6579,27 @@ Bank details on correct Ifsc Code
 
 ---
 
+#### [MerchnatPaymentModeRequest](#MerchnatPaymentModeRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | offline | string? |  yes  | Details to be updated for online payment configuration. |
+ | online | string? |  yes  | Details to be updated for offline payment configuration. |
+ 
+
+---
+
+#### [MerchnatPaymentModeResponse](#MerchnatPaymentModeResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [string]? |  yes  | List of all aggregator and payment mode details. |
+ | message | string? |  yes  | Message |
+ | success | boolean |  no  | Response is successful or not. |
+ 
+
+---
+
 #### [MultiTenderPaymentMeta](#MultiTenderPaymentMeta)
 
  | Properties | Type | Nullable | Description |
@@ -6057,6 +6669,20 @@ Bank details on correct Ifsc Code
  | ---------- | ---- | -------- | ----------- |
  | beneficiaries | [[OrderBeneficiaryDetails](#OrderBeneficiaryDetails)]? |  yes  | All Beneficiaries Of An Order |
  | show_beneficiary_details | boolean? |  yes  | Show beneficiary details or not. |
+ 
+
+---
+
+#### [OrderDetail](#OrderDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator | string |  no  | name of the payment gateway aggregator. |
+ | aggregator_order_details | string |  no  | aggregator order details generated by the payment gateway. |
+ | amount | number |  no  | amount paid. |
+ | currency | string |  no  | currency of the payment. |
+ | gid | string |  no  | Global identifier of the entity (e.g. order, cart etc.) against which payment_session was initiated. This is generated by Fynd payments platform and is unique. |
+ | status | string |  no  | order status created by payment gateway aggregator. |
  
 
 ---
@@ -6297,6 +6923,62 @@ Bank details on correct Ifsc Code
 
 ---
 
+#### [PaymentSessionDetail](#PaymentSessionDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | aggregator_customer_id | string? |  yes  | unique customer id generated by payment gateway, not required for standard checkout. |
+ | aggregator_order_id | string |  no  | unique order id or payment request id generated by payment gateway |
+ | amount | number |  no  | amount paid. |
+ | amount_captured | number |  no  | amount which is captured or credited to merchant account |
+ | amount_refunded | number? |  yes  |  |
+ | billing_address | [AddressDetail](#AddressDetail) |  no  | billing address |
+ | cancel_url | string |  no  | cancel url sent by Fynd platform at the time of payment creation |
+ | captured | boolean? |  yes  | whether the payment is captured (credited to merchant account) by payment gateway. |
+ | created | string? |  yes  | timestamp in epoch |
+ | currency | string |  no  | currency of the payment. |
+ | g_user_id | string |  no  | global user identifier - unique user id generated by Fynd platform |
+ | gid | string |  no  | Global identifier of the entity (e.g. order, cart etc.) against which payment_session was initiated. This is generated by Fynd payments platform and is unique. |
+ | kind | string? |  yes  | optional kind of purchase/payment - one time payment (sale) or subcription. defaults to sale. |
+ | locale | string? |  yes  | user's locale |
+ | merchant_locale | string? |  yes  | merchant's locale |
+ | mode | string |  no  | test or live, test mode uses test credentials so that actual payment is not created. |
+ | payment_id | string |  no  | unique transaction id generated by payment gateway |
+ | payment_methods | [string] |  no  | method of payment |
+ | shipping_address | [AddressDetail](#AddressDetail) |  no  | shipping address |
+ | status | string |  no  | stautus of the payment |
+ | success_url | string |  no  | success url sent by Fynd platform at the time of payment creation |
+ 
+
+---
+
+#### [PaymentSessionRequestSerializer](#PaymentSessionRequestSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | currency | string |  no  | currency of the payment. |
+ | gid | string |  no  | Global identifier of the entity (e.g. order, cart etc.) against which payment_session was initiated. This is generated by Fynd payments platform and is unique. |
+ | order_details | [OrderDetail](#OrderDetail) |  no  | The details of the order. |
+ | payment_details | [[PaymentSessionDetail](#PaymentSessionDetail)] |  no  | The payment details with the schema `PaymentSessionDetail`. |
+ | status | string |  no  | status of the payment. |
+ | total_amount | number |  no  | amount paid. |
+ 
+
+---
+
+#### [PaymentSessionResponseSerializer](#PaymentSessionResponseSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | currency | string |  no  | currency of the payment. |
+ | gid | string |  no  | Global identifier of the entity (e.g. order, cart etc.) against which payment_session was initiated. This is generated by Fynd payments platform and is unique. |
+ | platform_transaction_details | [string] |  no  | platform transaction details. |
+ | status | string |  no  | status of the payment. |
+ | total_amount | number |  no  | amount paid. |
+ 
+
+---
+
 #### [PaymentStatusBulkHandlerRequest](#PaymentStatusBulkHandlerRequest)
 
  | Properties | Type | Nullable | Description |
@@ -6505,6 +7187,53 @@ Bank details on correct Ifsc Code
  | is_verified_flag | boolean? |  yes  |  |
  | message | string |  no  | Response message |
  | success | boolean |  no  | Success or failure flag. |
+ 
+
+---
+
+#### [RefundSessionDetail](#RefundSessionDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | number |  no  | amount refunded. |
+ | balance_transaction | string? |  yes  | balance transaction. |
+ | created | string |  no  | timestamp in epoch. |
+ | currency | string |  no  | currency of the payment. |
+ | payment_id | string |  no  | Unique payment id generated by payment gateway. |
+ | reason | string? |  yes  | reason for refund, optional |
+ | receipt_number | string? |  yes  | unique receipt for refund, generated by payment gateway, if not available can be utr. |
+ | refund_utr | string? |  yes  | Unique refund utr generated by payment gateway. |
+ | request_id | string |  no  | refund request id, unique id generated by Fynd platform |
+ | source_transfer_reversal | string? |  yes  | description in case of reversal of payment. |
+ | status | string |  no  | status of the refund. |
+ | transfer_reversal | string? |  yes  | description in case of reversal of payment. |
+ 
+
+---
+
+#### [RefundSessionRequestSerializer](#RefundSessionRequestSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | currency | string |  no  | The currency of the payment. |
+ | gid | string |  no  | Global identifier of the entity (e.g. order, cart etc.) against which payment_session was initiated. This is generated by Fynd payments platform and is unique. |
+ | payment_details | [PaymentSessionDetail](#PaymentSessionDetail) |  no  | details of the payment |
+ | refund_details | [[RefundSessionDetail](#RefundSessionDetail)]? |  yes  | details of the refund |
+ | status | string |  no  | The status of the refund. |
+ | total_amount | number |  no  | The total amount refunded. |
+ 
+
+---
+
+#### [RefundSessionResponseSerializer](#RefundSessionResponseSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | currency | string |  no  | The currency of the payment. |
+ | gid | string |  no  | Global identifier of the entity (e.g. order, cart etc.) against which payment_session was initiated. This is generated by Fynd payments platform and is unique. |
+ | platform_refund_details | [string] |  no  | details of the refund |
+ | status | string |  no  | The status of the refund. |
+ | total_refund_amount | number |  no  | The total amount refunded. |
  
 
 ---

@@ -1,11 +1,15 @@
 export = ThemePlatformApplicationValidator;
 /**
+ * @typedef AddThemeToApplicationParam
+ * @property {ThemePlatformModel.ThemeReq} body
+ */
+/**
  * @typedef AddToThemeLibraryParam
  * @property {ThemePlatformModel.AddThemeRequestSchema} body
  */
 /**
  * @typedef ApplyThemeParam
- * @property {ThemePlatformModel.AddThemeRequestSchema} body
+ * @property {string} themeId - The ID of the apply
  */
 /**
  * @typedef ArchiveThemeParam
@@ -17,22 +21,24 @@ export = ThemePlatformApplicationValidator;
  * @property {ThemePlatformModel.AvailablePageSchema} body
  */
 /**
- * @typedef CreateThemeParam
- * @property {ThemePlatformModel.ThemesSchema} body
- */
-/**
  * @typedef DeletePageParam
  * @property {string} themeId - ID of the theme
  * @property {string} pageValue - Value of the page to be updated
  */
 /**
  * @typedef DeleteThemeParam
- * @property {string} themeId - ID allotted to the theme.
+ * @property {string} themeId - The ID of the theme to be deleted.
+ */
+/**
+ * @typedef DuplicateThemeParam
+ * @property {string} themeId - The ID of the theme to be duplicated
  */
 /**
  * @typedef GetAllPagesParam
  * @property {string} themeId - ID of the theme to be retrieved
  */
+/** @typedef GetApplicationThemesParam */
+/** @typedef GetApplicationThemesCountParam */
 /** @typedef GetAppliedThemeParam */
 /** @typedef GetFontsParam */
 /**
@@ -49,11 +55,11 @@ export = ThemePlatformApplicationValidator;
  */
 /**
  * @typedef GetThemeByIdParam
- * @property {string} themeId - ID allotted to the theme.
+ * @property {string} themeId - The ID of the theme
  */
 /**
  * @typedef GetThemeForPreviewParam
- * @property {string} themeId - ID allotted to the theme.
+ * @property {string} themeId - The ID of the theme
  */
 /**
  * @typedef GetThemeLastModifiedParam
@@ -68,7 +74,7 @@ export = ThemePlatformApplicationValidator;
  */
 /**
  * @typedef IsUpgradableParam
- * @property {string} themeId - Theme ID
+ * @property {string} themeId - The ID of the theme
  */
 /**
  * @typedef PublishThemeParam
@@ -95,14 +101,21 @@ export = ThemePlatformApplicationValidator;
  */
 /**
  * @typedef UpdateThemeParam
- * @property {string} themeId - ID allotted to the theme.
- * @property {ThemePlatformModel.ThemesSchema} body
+ * @property {string} themeId - The ID of the theme.
+ * @property {ThemePlatformModel.UpdateThemeRequestBody} body
+ */
+/**
+ * @typedef UpdateThemeNameParam
+ * @property {string} themeId - The ID of the theme to be updated.
+ * @property {ThemePlatformModel.UpdateThemeNameRequestBody} body
  */
 /**
  * @typedef UpgradeThemeParam
- * @property {string} themeId - ID allotted to the theme.
+ * @property {string} themeId - The ID of the upgrade
  */
 declare class ThemePlatformApplicationValidator {
+    /** @returns {AddThemeToApplicationParam} */
+    static addThemeToApplication(): AddThemeToApplicationParam;
     /** @returns {AddToThemeLibraryParam} */
     static addToThemeLibrary(): AddToThemeLibraryParam;
     /** @returns {ApplyThemeParam} */
@@ -111,14 +124,18 @@ declare class ThemePlatformApplicationValidator {
     static archiveTheme(): ArchiveThemeParam;
     /** @returns {CreatePageParam} */
     static createPage(): CreatePageParam;
-    /** @returns {CreateThemeParam} */
-    static createTheme(): CreateThemeParam;
     /** @returns {DeletePageParam} */
     static deletePage(): DeletePageParam;
     /** @returns {DeleteThemeParam} */
     static deleteTheme(): DeleteThemeParam;
+    /** @returns {DuplicateThemeParam} */
+    static duplicateTheme(): DuplicateThemeParam;
     /** @returns {GetAllPagesParam} */
     static getAllPages(): GetAllPagesParam;
+    /** @returns {GetApplicationThemesParam} */
+    static getApplicationThemes(): any;
+    /** @returns {GetApplicationThemesCountParam} */
+    static getApplicationThemesCount(): any;
     /** @returns {GetAppliedThemeParam} */
     static getAppliedTheme(): any;
     /** @returns {GetFontsParam} */
@@ -149,17 +166,25 @@ declare class ThemePlatformApplicationValidator {
     static updatePage(): UpdatePageParam;
     /** @returns {UpdateThemeParam} */
     static updateTheme(): UpdateThemeParam;
+    /** @returns {UpdateThemeNameParam} */
+    static updateThemeName(): UpdateThemeNameParam;
     /** @returns {UpgradeThemeParam} */
     static upgradeTheme(): UpgradeThemeParam;
 }
 declare namespace ThemePlatformApplicationValidator {
-    export { AddToThemeLibraryParam, ApplyThemeParam, ArchiveThemeParam, CreatePageParam, CreateThemeParam, DeletePageParam, DeleteThemeParam, GetAllPagesParam, GetAppliedThemeParam, GetFontsParam, GetPageParam, GetPublicThemesParam, GetThemeByIdParam, GetThemeForPreviewParam, GetThemeLastModifiedParam, GetThemeLibraryParam, IsUpgradableParam, PublishThemeParam, UnarchiveThemeParam, UnpublishThemeParam, UpdateMultiplePagesParam, UpdatePageParam, UpdateThemeParam, UpgradeThemeParam };
+    export { AddThemeToApplicationParam, AddToThemeLibraryParam, ApplyThemeParam, ArchiveThemeParam, CreatePageParam, DeletePageParam, DeleteThemeParam, DuplicateThemeParam, GetAllPagesParam, GetApplicationThemesParam, GetApplicationThemesCountParam, GetAppliedThemeParam, GetFontsParam, GetPageParam, GetPublicThemesParam, GetThemeByIdParam, GetThemeForPreviewParam, GetThemeLastModifiedParam, GetThemeLibraryParam, IsUpgradableParam, PublishThemeParam, UnarchiveThemeParam, UnpublishThemeParam, UpdateMultiplePagesParam, UpdatePageParam, UpdateThemeParam, UpdateThemeNameParam, UpgradeThemeParam };
 }
+type AddThemeToApplicationParam = {
+    body: ThemePlatformModel.ThemeReq;
+};
 type AddToThemeLibraryParam = {
     body: ThemePlatformModel.AddThemeRequestSchema;
 };
 type ApplyThemeParam = {
-    body: ThemePlatformModel.AddThemeRequestSchema;
+    /**
+     * - The ID of the apply
+     */
+    themeId: string;
 };
 type ArchiveThemeParam = {
     /**
@@ -174,9 +199,6 @@ type CreatePageParam = {
     themeId: string;
     body: ThemePlatformModel.AvailablePageSchema;
 };
-type CreateThemeParam = {
-    body: ThemePlatformModel.ThemesSchema;
-};
 type DeletePageParam = {
     /**
      * - ID of the theme
@@ -189,7 +211,13 @@ type DeletePageParam = {
 };
 type DeleteThemeParam = {
     /**
-     * - ID allotted to the theme.
+     * - The ID of the theme to be deleted.
+     */
+    themeId: string;
+};
+type DuplicateThemeParam = {
+    /**
+     * - The ID of the theme to be duplicated
      */
     themeId: string;
 };
@@ -223,13 +251,13 @@ type GetPublicThemesParam = {
 };
 type GetThemeByIdParam = {
     /**
-     * - ID allotted to the theme.
+     * - The ID of the theme
      */
     themeId: string;
 };
 type GetThemeForPreviewParam = {
     /**
-     * - ID allotted to the theme.
+     * - The ID of the theme
      */
     themeId: string;
 };
@@ -253,7 +281,7 @@ type GetThemeLibraryParam = {
 };
 type IsUpgradableParam = {
     /**
-     * - Theme ID
+     * - The ID of the theme
      */
     themeId: string;
 };
@@ -295,17 +323,26 @@ type UpdatePageParam = {
 };
 type UpdateThemeParam = {
     /**
-     * - ID allotted to the theme.
+     * - The ID of the theme.
      */
     themeId: string;
-    body: ThemePlatformModel.ThemesSchema;
+    body: ThemePlatformModel.UpdateThemeRequestBody;
+};
+type UpdateThemeNameParam = {
+    /**
+     * - The ID of the theme to be updated.
+     */
+    themeId: string;
+    body: ThemePlatformModel.UpdateThemeNameRequestBody;
 };
 type UpgradeThemeParam = {
     /**
-     * - ID allotted to the theme.
+     * - The ID of the upgrade
      */
     themeId: string;
 };
+type GetApplicationThemesParam = any;
+type GetApplicationThemesCountParam = any;
 type GetAppliedThemeParam = any;
 type GetFontsParam = any;
 import ThemePlatformModel = require("./ThemePlatformModel");

@@ -359,7 +359,7 @@ export = PaymentApplicationModel;
  */
 /**
  * @typedef ErrorResponse
- * @property {ErrorDescription} [error]
+ * @property {Object} [error]
  * @property {string} message - Message
  * @property {number} status_code - HTTP status code
  * @property {boolean} success - Successful or failure
@@ -378,7 +378,7 @@ export = PaymentApplicationModel;
  */
 /**
  * @typedef HttpErrorCodeAndResponse
- * @property {ErrorCodeAndDescription} error
+ * @property {ErrorCodeAndDescription} [error]
  * @property {boolean} success - Response is successful or not
  */
 /**
@@ -391,7 +391,7 @@ export = PaymentApplicationModel;
  * @typedef IntentApp
  * @property {string} [code] - Code
  * @property {string} [display_name] - Display_name
- * @property {PaymentModeLogo} [logos] - Logos
+ * @property {Object} [logos] - Logos
  * @property {string} [package_name] - Package_name
  */
 /**
@@ -481,20 +481,20 @@ export = PaymentApplicationModel;
  */
 /**
  * @typedef PaymentFlow
- * @property {AggregatorRoute} [ajiodhan] - Ajiodhan
- * @property {AggregatorRoute} [bqr_razorpay] - BQR_Razorpay
- * @property {AggregatorRoute} [ccavenue] - Ccavenue
- * @property {AggregatorRoute} [epaylater] - Epaylater
- * @property {AggregatorRoute} [fynd] - Fynd
- * @property {AggregatorRoute} [jiopay] - Jiopay
- * @property {AggregatorRoute} [juspay] - Juspay
- * @property {AggregatorRoute} [mswipe] - Mswipe
- * @property {AggregatorRoute} [payubiz] - Payubiz
- * @property {AggregatorRoute} [razorpay] - Razorpay
- * @property {AggregatorRoute} [rupifi] - Rupifi
- * @property {AggregatorRoute} [simpl] - Simpl
- * @property {AggregatorRoute} [stripe] - Stripe
- * @property {AggregatorRoute} [upi_razorpay] - UPI_Razorpay
+ * @property {Object} [ajiodhan] - Ajiodhan
+ * @property {Object} [bqr_razorpay] - BQR_Razorpay
+ * @property {Object} [ccavenue] - Ccavenue
+ * @property {Object} [epaylater] - Epaylater
+ * @property {Object} [fynd] - Fynd
+ * @property {Object} [jiopay] - Jiopay
+ * @property {Object} [juspay] - Juspay
+ * @property {Object} [mswipe] - Mswipe
+ * @property {Object} [payubiz] - Payubiz
+ * @property {Object} [razorpay] - Razorpay
+ * @property {Object} [rupifi] - Rupifi
+ * @property {Object} [simpl] - Simpl
+ * @property {Object} [stripe] - Stripe
+ * @property {Object} [upi_razorpay] - UPI_Razorpay
  */
 /**
  * @typedef PaymentInitializationRequest
@@ -568,7 +568,7 @@ export = PaymentApplicationModel;
  *   Intent_app_error_dict_list
  * @property {string[]} [intent_app_error_list] - Intent_app_error_list
  * @property {boolean} [intent_flow] - Intent_flow
- * @property {PaymentModeLogo} [logo_url] - Logo
+ * @property {Object} [logo_url] - Logo
  * @property {string} [merchant_code] - Merchant code
  * @property {string} [name] - Name
  * @property {string} [nickname] - Nickname
@@ -1804,7 +1804,7 @@ type ErrorDescription = {
 /** @returns {ErrorResponse} */
 declare function ErrorResponse(): ErrorResponse;
 type ErrorResponse = {
-    error?: ErrorDescription;
+    error?: any;
     /**
      * - Message
      */
@@ -1861,7 +1861,7 @@ type GetPaymentLinkResponse = {
 /** @returns {HttpErrorCodeAndResponse} */
 declare function HttpErrorCodeAndResponse(): HttpErrorCodeAndResponse;
 type HttpErrorCodeAndResponse = {
-    error: ErrorCodeAndDescription;
+    error?: ErrorCodeAndDescription;
     /**
      * - Response is successful or not
      */
@@ -1897,7 +1897,7 @@ type IntentApp = {
     /**
      * - Logos
      */
-    logos?: PaymentModeLogo;
+    logos?: any;
     /**
      * - Package_name
      */
@@ -2161,59 +2161,59 @@ type PaymentFlow = {
     /**
      * - Ajiodhan
      */
-    ajiodhan?: AggregatorRoute;
+    ajiodhan?: any;
     /**
      * - BQR_Razorpay
      */
-    bqr_razorpay?: AggregatorRoute;
+    bqr_razorpay?: any;
     /**
      * - Ccavenue
      */
-    ccavenue?: AggregatorRoute;
+    ccavenue?: any;
     /**
      * - Epaylater
      */
-    epaylater?: AggregatorRoute;
+    epaylater?: any;
     /**
      * - Fynd
      */
-    fynd?: AggregatorRoute;
+    fynd?: any;
     /**
      * - Jiopay
      */
-    jiopay?: AggregatorRoute;
+    jiopay?: any;
     /**
      * - Juspay
      */
-    juspay?: AggregatorRoute;
+    juspay?: any;
     /**
      * - Mswipe
      */
-    mswipe?: AggregatorRoute;
+    mswipe?: any;
     /**
      * - Payubiz
      */
-    payubiz?: AggregatorRoute;
+    payubiz?: any;
     /**
      * - Razorpay
      */
-    razorpay?: AggregatorRoute;
+    razorpay?: any;
     /**
      * - Rupifi
      */
-    rupifi?: AggregatorRoute;
+    rupifi?: any;
     /**
      * - Simpl
      */
-    simpl?: AggregatorRoute;
+    simpl?: any;
     /**
      * - Stripe
      */
-    stripe?: AggregatorRoute;
+    stripe?: any;
     /**
      * - UPI_Razorpay
      */
-    upi_razorpay?: AggregatorRoute;
+    upi_razorpay?: any;
 };
 /** @returns {PaymentInitializationRequest} */
 declare function PaymentInitializationRequest(): PaymentInitializationRequest;
@@ -2471,7 +2471,7 @@ type PaymentModeList = {
     /**
      * - Logo
      */
-    logo_url?: PaymentModeLogo;
+    logo_url?: any;
     /**
      * - Merchant code
      */

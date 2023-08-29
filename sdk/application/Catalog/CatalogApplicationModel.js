@@ -268,6 +268,16 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef DiscountMeta
+ * @property {string} [end] - The end time of the live discount.
+ * @property {string} [start] - The start time of the live discount.
+ * @property {number} [start_timer_in_minutes] - The time in minutes before the
+ *   discount ends when the countdown timer should start.
+ * @property {boolean} timer - Determines whether the discount countdown is
+ *   visible or not.
+ */
+
+/**
  * @typedef ErrorResponse
  * @property {string} [error]
  */
@@ -392,10 +402,12 @@ const Joi = require("joi");
 
 /**
  * @typedef Price
- * @property {string} [currency_code]
- * @property {string} [currency_symbol]
- * @property {number} [max]
- * @property {number} [min]
+ * @property {string} [currency_code] - The currency code for the currency in
+ *   which the product is available.
+ * @property {string} [currency_symbol] - The currency symbol for the currency
+ *   in which the product is available.
+ * @property {number} [max] - The maximum price for the product across stores.
+ * @property {number} [min] - The minimum price for the product across stores.
  */
 
 /**
@@ -555,7 +567,7 @@ const Joi = require("joi");
  * @property {UserDetail} [created_by] - User details of the creator of the document
  * @property {string} created_on - Timestamp of the creation of the document
  * @property {boolean} [is_active] - Whether the product grouping is active.
- * @property {Object} [logo] - The URL for the logo of the product grouping.
+ * @property {string} [logo] - The URL for the logo of the product grouping.
  * @property {Object} [meta] - A dictionary containing metadata information.
  * @property {UserDetail} [modified_by] - User details of the last modifier of
  *   the document
@@ -709,7 +721,9 @@ const Joi = require("joi");
  * @typedef ProductSizePriceResponseV3
  * @property {ArticleAssignmentV3} [article_assignment]
  * @property {string} [article_id]
+ * @property {PromiseSchema} [delivery_promise]
  * @property {string} [discount]
+ * @property {DiscountMeta} [discount_meta]
  * @property {SellerGroupAttributes[]} [grouped_attributes]
  * @property {boolean} [is_cod]
  * @property {boolean} [is_gift]
@@ -733,8 +747,9 @@ const Joi = require("joi");
 /**
  * @typedef ProductSizes
  * @property {string} [discount]
+ * @property {DiscountMeta} [discount_meta]
  * @property {boolean} [multi_size]
- * @property {ProductListingPrice} [price]
+ * @property {ProductSizesPrice} [price]
  * @property {boolean} [sellable]
  * @property {SizeChart} [size_chart]
  * @property {ProductSize[]} [sizes]
@@ -753,6 +768,13 @@ const Joi = require("joi");
  * @property {ProductSizePriceResponseV3[]} [items]
  * @property {Page} page
  * @property {ProductSizeSellerFilterSchemaV3[]} [sort_on]
+ */
+
+/**
+ * @typedef ProductSizesPrice
+ * @property {Price} [effective]
+ * @property {Price} [marked]
+ * @property {Price} [selling]
  */
 
 /**
@@ -784,9 +806,14 @@ const Joi = require("joi");
 
 /**
  * @typedef ProductStockPriceV3
- * @property {string} [currency]
- * @property {number} [effective]
- * @property {number} [marked]
+ * @property {string} [currency_code] - The currency code for which the product
+ *   is available
+ * @property {string} [currency_symbol] - The currency symbol for the currency
+ *   in which the product is available.
+ * @property {number} [effective] - The effective or final price for the product
+ *   at the given pincode.
+ * @property {number} [marked] - The marked price of the product.
+ * @property {number} [selling] - The selling price of the product.
  */
 
 /**
@@ -849,6 +876,12 @@ const Joi = require("joi");
 /**
  * @typedef ProductVariantsResponse
  * @property {ProductVariantResponse[]} [variants]
+ */
+
+/**
+ * @typedef PromiseSchema
+ * @property {string} [max]
+ * @property {string} [min]
  */
 
 /**
@@ -1393,6 +1426,16 @@ class CatalogApplicationModel {
     });
   }
 
+  /** @returns {DiscountMeta} */
+  static DiscountMeta() {
+    return Joi.object({
+      end: Joi.string().allow(""),
+      start: Joi.string().allow(""),
+      start_timer_in_minutes: Joi.number(),
+      timer: Joi.boolean().required(),
+    });
+  }
+
   /** @returns {ErrorResponse} */
   static ErrorResponse() {
     return Joi.object({
@@ -1755,7 +1798,7 @@ class CatalogApplicationModel {
       created_by: CatalogApplicationModel.UserDetail(),
       created_on: Joi.string().allow("").required(),
       is_active: Joi.boolean(),
-      logo: Joi.any(),
+      logo: Joi.string().allow("").allow(null),
       meta: Joi.any(),
       modified_by: CatalogApplicationModel.UserDetail(),
       modified_on: Joi.string().allow("").required(),
@@ -1937,7 +1980,9 @@ class CatalogApplicationModel {
     return Joi.object({
       article_assignment: CatalogApplicationModel.ArticleAssignmentV3(),
       article_id: Joi.string().allow(""),
+      delivery_promise: CatalogApplicationModel.PromiseSchema(),
       discount: Joi.string().allow(""),
+      discount_meta: CatalogApplicationModel.DiscountMeta(),
       grouped_attributes: Joi.array().items(
         CatalogApplicationModel.SellerGroupAttributes()
       ),
@@ -1969,8 +2014,9 @@ class CatalogApplicationModel {
   static ProductSizes() {
     return Joi.object({
       discount: Joi.string().allow(""),
+      discount_meta: CatalogApplicationModel.DiscountMeta(),
       multi_size: Joi.boolean(),
-      price: CatalogApplicationModel.ProductListingPrice(),
+      price: CatalogApplicationModel.ProductSizesPrice(),
       sellable: Joi.boolean(),
       size_chart: CatalogApplicationModel.SizeChart(),
       sizes: Joi.array().items(CatalogApplicationModel.ProductSize()),
@@ -1997,6 +2043,15 @@ class CatalogApplicationModel {
       sort_on: Joi.array().items(
         CatalogApplicationModel.ProductSizeSellerFilterSchemaV3()
       ),
+    });
+  }
+
+  /** @returns {ProductSizesPrice} */
+  static ProductSizesPrice() {
+    return Joi.object({
+      effective: CatalogApplicationModel.Price(),
+      marked: CatalogApplicationModel.Price(),
+      selling: CatalogApplicationModel.Price(),
     });
   }
 
@@ -2040,9 +2095,11 @@ class CatalogApplicationModel {
   /** @returns {ProductStockPriceV3} */
   static ProductStockPriceV3() {
     return Joi.object({
-      currency: Joi.string().allow(""),
+      currency_code: Joi.string().allow(""),
+      currency_symbol: Joi.string().allow(""),
       effective: Joi.number(),
       marked: Joi.number(),
+      selling: Joi.number(),
     });
   }
 
@@ -2129,6 +2186,14 @@ class CatalogApplicationModel {
       variants: Joi.array().items(
         CatalogApplicationModel.ProductVariantResponse()
       ),
+    });
+  }
+
+  /** @returns {PromiseSchema} */
+  static PromiseSchema() {
+    return Joi.object({
+      max: Joi.string().allow(""),
+      min: Joi.string().allow(""),
     });
   }
 

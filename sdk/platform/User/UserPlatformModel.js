@@ -21,40 +21,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef AuthenticationInternalServerErrorSchema
- * @property {string} [message]
- */
-
-/**
- * @typedef AuthSuccess
- * @property {string} [register_token]
- * @property {UserSchema} [user]
- * @property {boolean} [user_exists]
- */
-
-/**
- * @typedef AuthSuccessUser
- * @property {boolean} [active]
- * @property {AuthSuccessUserDebug} [debug]
- * @property {AuthSuccessUserEmails} [emails]
- * @property {string} [first_name]
- * @property {string} [last_name]
- */
-
-/**
- * @typedef AuthSuccessUserDebug
- * @property {string} [platform]
- */
-
-/**
- * @typedef AuthSuccessUserEmails
- * @property {boolean} [active]
- * @property {string} [email]
- * @property {boolean} [primary]
- * @property {boolean} [verified]
- */
-
-/**
  * @typedef BlockUserRequestSchema
  * @property {string} [reason]
  * @property {boolean} [status]
@@ -64,11 +30,6 @@ const Joi = require("joi");
 /**
  * @typedef BlockUserSuccess
  * @property {boolean} [success]
- */
-
-/**
- * @typedef CodeRequestBodySchema
- * @property {string} [code]
  */
 
 /**
@@ -129,62 +90,11 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef DeleteApplicationUserRequestSchema
- * @property {string} [otp]
- * @property {string} [reason]
- * @property {string} [reason_id]
- * @property {string} [request_id]
- * @property {string} [user_id]
- */
-
-/**
- * @typedef DeleteUserSuccess
- * @property {boolean} [success]
- */
-
-/**
- * @typedef EditEmailRequestSchema
- * @property {string} [email]
- */
-
-/**
- * @typedef EditMobileRequestSchema
- * @property {string} [country_code]
- * @property {string} [phone]
- */
-
-/**
- * @typedef EditProfileMobileSchema
- * @property {string} [country_code]
- * @property {string} [phone]
- */
-
-/**
- * @typedef EditProfileRequestSchema
- * @property {string} [android_hash]
- * @property {string} [country_code]
- * @property {string} [dob]
- * @property {string} [email]
- * @property {string} [first_name]
- * @property {string} [gender]
- * @property {string} [last_name]
- * @property {EditProfileMobileSchema} [mobile]
- * @property {string} [profile_pic_url]
- * @property {string} [register_token]
- * @property {string} [sender]
- */
-
-/**
  * @typedef Email
  * @property {boolean} [active]
  * @property {string} [email]
  * @property {boolean} [primary]
  * @property {boolean} [verified]
- */
-
-/**
- * @typedef EmailOtpSuccess
- * @property {boolean} [success]
  */
 
 /**
@@ -200,54 +110,14 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ForgotPasswordRequestSchema
- * @property {string} [code]
- * @property {string} [password]
- */
-
-/**
- * @typedef FormRegisterRequestSchema
- * @property {string} [email]
- * @property {string} [first_name]
- * @property {string} [gender]
- * @property {string} [last_name]
- * @property {string} [password]
- * @property {FormRegisterRequestSchemaPhone} [phone]
- * @property {string} [register_token]
- */
-
-/**
- * @typedef FormRegisterRequestSchemaPhone
- * @property {string} [country_code]
- * @property {string} [mobile]
- */
-
-/**
  * @typedef Google
  * @property {string} [app_id]
- */
-
-/**
- * @typedef HasPasswordSuccess
- * @property {boolean} [result]
  */
 
 /**
  * @typedef Login
  * @property {boolean} [otp]
  * @property {boolean} [password]
- */
-
-/**
- * @typedef LoginSuccess
- * @property {string} [register_token]
- * @property {string} [request_id]
- * @property {UserSchema} [user]
- */
-
-/**
- * @typedef LogoutSuccess
- * @property {boolean} [logout]
  */
 
 /**
@@ -262,79 +132,12 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef NotFoundSchema
- * @property {string} [message]
- */
-
-/**
- * @typedef OAuthRequestAppleSchema
- * @property {OAuthRequestAppleSchemaOauth} [oauth]
- * @property {OAuthRequestAppleSchemaProfile} [profile]
- * @property {string} [user_identifier]
- */
-
-/**
- * @typedef OAuthRequestAppleSchemaOauth
- * @property {string} [identity_token]
- */
-
-/**
- * @typedef OAuthRequestAppleSchemaProfile
- * @property {string} [first_name]
- * @property {string} [full_name]
- * @property {string} [last_name]
- */
-
-/**
- * @typedef OAuthRequestSchema
- * @property {boolean} [is_signed_in]
- * @property {OAuthRequestSchemaOauth2} [oauth2]
- * @property {OAuthRequestSchemaProfile} [profile]
- */
-
-/**
- * @typedef OAuthRequestSchemaOauth2
- * @property {string} [access_token]
- * @property {number} [expiry]
- * @property {string} [refresh_token]
- */
-
-/**
- * @typedef OAuthRequestSchemaProfile
- * @property {string} [email]
- * @property {string} [first_name]
- * @property {string} [full_name]
- * @property {string} [id]
- * @property {string} [image]
- * @property {string} [last_name]
- */
-
-/**
- * @typedef OtpSuccess
- * @property {string} [country_code]
- * @property {string} [message]
- * @property {string} [mobile]
- * @property {string} [register_token]
- * @property {string} [request_id]
- * @property {number} [resend_timer]
- * @property {string} [resend_token]
- * @property {boolean} [success]
- */
-
-/**
  * @typedef PaginationSchema
  * @property {number} [current]
  * @property {boolean} [has_next]
  * @property {number} [item_total]
  * @property {number} [size]
  * @property {string} [type]
- */
-
-/**
- * @typedef PasswordLoginRequestSchema
- * @property {string} [captcha_code]
- * @property {string} [password]
- * @property {string} [username]
  */
 
 /**
@@ -388,53 +191,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ProfileEditSuccess
- * @property {string} [country_code]
- * @property {string} [email]
- * @property {string} [message]
- * @property {string} [mobile]
- * @property {string} [register_token]
- * @property {string} [request_id]
- * @property {string} [resend_email_token]
- * @property {number} [resend_timer]
- * @property {string} [resend_token]
- * @property {boolean} [success]
- * @property {UserSchema} [user]
- * @property {boolean} [user_exists]
- * @property {boolean} [verify_email_link]
- * @property {boolean} [verify_email_otp]
- * @property {boolean} [verify_mobile_otp]
- */
-
-/**
- * @typedef ProfileEditSuccessSchema
- * @property {string} [email]
- * @property {string} [register_token]
- * @property {string} [user]
- * @property {boolean} [user_exists]
- * @property {boolean} [verify_email_link]
- * @property {boolean} [verify_email_otp]
- * @property {boolean} [verify_mobile_otp]
- */
-
-/**
- * @typedef RegisterFormSuccess
- * @property {string} [country_code]
- * @property {string} [email]
- * @property {string} [message]
- * @property {string} [mobile]
- * @property {string} [register_token]
- * @property {string} [request_id]
- * @property {string} [resend_email_token]
- * @property {number} [resend_timer]
- * @property {string} [resend_token]
- * @property {boolean} [success]
- * @property {boolean} [user_exists]
- * @property {boolean} [verify_email_otp]
- * @property {boolean} [verify_mobile_otp]
- */
-
-/**
  * @typedef RegisterRequiredFields
  * @property {RegisterRequiredFieldsEmail} [email]
  * @property {RegisterRequiredFieldsMobile} [mobile]
@@ -456,87 +212,6 @@ const Joi = require("joi");
  * @typedef RequiredFields
  * @property {PlatformEmail} [email]
  * @property {PlatformMobile} [mobile]
- */
-
-/**
- * @typedef ResetPasswordSuccess
- * @property {string} [status]
- */
-
-/**
- * @typedef SendEmailOtpRequestSchema
- * @property {string} [action]
- * @property {string} [email]
- * @property {string} [register_token]
- * @property {string} [token]
- */
-
-/**
- * @typedef SendEmailVerifyLinkSuccess
- * @property {boolean} [verify_email_link]
- */
-
-/**
- * @typedef SendMobileOtpRequestSchema
- * @property {string} [action]
- * @property {string} [android_hash]
- * @property {string} [captcha_code]
- * @property {string} [country_code]
- * @property {string} [force]
- * @property {string} [mobile]
- * @property {string} [token]
- */
-
-/**
- * @typedef SendMobileVerifyLinkSuccess
- * @property {boolean} [verify_mobile_link]
- */
-
-/**
- * @typedef SendOtpRequestSchema
- * @property {string} [android_hash]
- * @property {string} [captcha_code]
- * @property {string} [country_code]
- * @property {string} [mobile]
- */
-
-/**
- * @typedef SendOtpResponse
- * @property {string} [country_code]
- * @property {string} [email]
- * @property {string} [message]
- * @property {string} [mobile]
- * @property {string} [register_token]
- * @property {string} [request_id]
- * @property {string} [resend_email_token]
- * @property {number} [resend_timer]
- * @property {string} [resend_token]
- * @property {boolean} [success]
- * @property {boolean} [user_exists]
- * @property {boolean} [verify_email_otp]
- * @property {boolean} [verify_mobile_otp]
- */
-
-/**
- * @typedef SendResetPasswordEmailRequestSchema
- * @property {string} [captcha_code]
- * @property {string} [email]
- */
-
-/**
- * @typedef SendResetPasswordMobileRequestSchema
- * @property {string} [captcha_code]
- * @property {string} [country_code]
- * @property {string} [mobile]
- */
-
-/**
- * @typedef SendVerificationLinkMobileRequestSchema
- * @property {boolean} [active]
- * @property {string} [country_code]
- * @property {string} [phone]
- * @property {boolean} [primary]
- * @property {boolean} [verified]
  */
 
 /**
@@ -566,11 +241,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef SessionListSuccess
- * @property {string[]} [sessions]
- */
-
-/**
  * @typedef Social
  * @property {boolean} [account_kit]
  * @property {boolean} [apple]
@@ -586,21 +256,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef TokenRequestBodySchema
- * @property {string} [token]
- */
-
-/**
- * @typedef UnauthenticatedSchema
- * @property {boolean} [authenticated]
- */
-
-/**
- * @typedef UnauthorizedSchema
- * @property {string} [message]
- */
-
-/**
  * @typedef UnDeleteUserRequestSchema
  * @property {string} [reason]
  * @property {string} [reason_id]
@@ -610,12 +265,6 @@ const Joi = require("joi");
 /**
  * @typedef UnDeleteUserSuccess
  * @property {boolean} [success]
- */
-
-/**
- * @typedef UpdatePasswordRequestSchema
- * @property {string} [new_password]
- * @property {string} [old_password]
  */
 
 /**
@@ -665,11 +314,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef UserObjectSchema
- * @property {UserSchema} [user]
- */
-
-/**
  * @typedef UserPhoneNumbers
  * @property {boolean} [active]
  * @property {string} [country_code]
@@ -703,45 +347,6 @@ const Joi = require("joi");
  * @property {UserSchema[]} [users]
  */
 
-/**
- * @typedef VerifyEmailOtpRequestSchema
- * @property {string} [action]
- * @property {string} [email]
- * @property {string} [otp]
- * @property {string} [register_token]
- */
-
-/**
- * @typedef VerifyEmailOTPSuccess
- * @property {UserSchema} [user]
- * @property {boolean} [verify_email_link]
- */
-
-/**
- * @typedef VerifyEmailSuccess
- * @property {string} [message]
- */
-
-/**
- * @typedef VerifyMobileOTPSuccess
- * @property {UserSchema} [user]
- * @property {boolean} [verify_mobile_link]
- */
-
-/**
- * @typedef VerifyOtpRequestSchema
- * @property {string} [otp]
- * @property {string} [register_token]
- * @property {string} [request_id]
- */
-
-/**
- * @typedef VerifyOtpSuccess
- * @property {string} [register_token]
- * @property {UserSchema} [user]
- * @property {boolean} [user_exists]
- */
-
 class UserPlatformModel {
   /** @returns {Accountkit} */
   static Accountkit() {
@@ -771,50 +376,6 @@ class UserPlatformModel {
     });
   }
 
-  /** @returns {AuthenticationInternalServerErrorSchema} */
-  static AuthenticationInternalServerErrorSchema() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {AuthSuccess} */
-  static AuthSuccess() {
-    return Joi.object({
-      register_token: Joi.string().allow(""),
-      user: UserPlatformModel.UserSchema(),
-      user_exists: Joi.boolean(),
-    });
-  }
-
-  /** @returns {AuthSuccessUser} */
-  static AuthSuccessUser() {
-    return Joi.object({
-      active: Joi.boolean(),
-      debug: UserPlatformModel.AuthSuccessUserDebug(),
-      emails: UserPlatformModel.AuthSuccessUserEmails(),
-      first_name: Joi.string().allow(""),
-      last_name: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {AuthSuccessUserDebug} */
-  static AuthSuccessUserDebug() {
-    return Joi.object({
-      platform: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {AuthSuccessUserEmails} */
-  static AuthSuccessUserEmails() {
-    return Joi.object({
-      active: Joi.boolean(),
-      email: Joi.string().allow(""),
-      primary: Joi.boolean(),
-      verified: Joi.boolean(),
-    });
-  }
-
   /** @returns {BlockUserRequestSchema} */
   static BlockUserRequestSchema() {
     return Joi.object({
@@ -828,13 +389,6 @@ class UserPlatformModel {
   static BlockUserSuccess() {
     return Joi.object({
       success: Joi.boolean(),
-    });
-  }
-
-  /** @returns {CodeRequestBodySchema} */
-  static CodeRequestBodySchema() {
-    return Joi.object({
-      code: Joi.string().allow(""),
     });
   }
 
@@ -911,64 +465,6 @@ class UserPlatformModel {
     });
   }
 
-  /** @returns {DeleteApplicationUserRequestSchema} */
-  static DeleteApplicationUserRequestSchema() {
-    return Joi.object({
-      otp: Joi.string().allow(""),
-      reason: Joi.string().allow(""),
-      reason_id: Joi.string().allow(""),
-      request_id: Joi.string().allow(""),
-      user_id: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {DeleteUserSuccess} */
-  static DeleteUserSuccess() {
-    return Joi.object({
-      success: Joi.boolean(),
-    });
-  }
-
-  /** @returns {EditEmailRequestSchema} */
-  static EditEmailRequestSchema() {
-    return Joi.object({
-      email: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {EditMobileRequestSchema} */
-  static EditMobileRequestSchema() {
-    return Joi.object({
-      country_code: Joi.string().allow(""),
-      phone: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {EditProfileMobileSchema} */
-  static EditProfileMobileSchema() {
-    return Joi.object({
-      country_code: Joi.string().allow(""),
-      phone: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {EditProfileRequestSchema} */
-  static EditProfileRequestSchema() {
-    return Joi.object({
-      android_hash: Joi.string().allow(""),
-      country_code: Joi.string().allow(""),
-      dob: Joi.string().allow(""),
-      email: Joi.string().allow(""),
-      first_name: Joi.string().allow(""),
-      gender: Joi.string().allow(""),
-      last_name: Joi.string().allow(""),
-      mobile: UserPlatformModel.EditProfileMobileSchema(),
-      profile_pic_url: Joi.string().allow(""),
-      register_token: Joi.string().allow(""),
-      sender: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {Email} */
   static Email() {
     return Joi.object({
@@ -976,13 +472,6 @@ class UserPlatformModel {
       email: Joi.string().allow(""),
       primary: Joi.boolean(),
       verified: Joi.boolean(),
-    });
-  }
-
-  /** @returns {EmailOtpSuccess} */
-  static EmailOtpSuccess() {
-    return Joi.object({
-      success: Joi.boolean(),
     });
   }
 
@@ -1002,46 +491,10 @@ class UserPlatformModel {
     });
   }
 
-  /** @returns {ForgotPasswordRequestSchema} */
-  static ForgotPasswordRequestSchema() {
-    return Joi.object({
-      code: Joi.string().allow(""),
-      password: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {FormRegisterRequestSchema} */
-  static FormRegisterRequestSchema() {
-    return Joi.object({
-      email: Joi.string().allow(""),
-      first_name: Joi.string().allow(""),
-      gender: Joi.string().allow(""),
-      last_name: Joi.string().allow(""),
-      password: Joi.string().allow(""),
-      phone: UserPlatformModel.FormRegisterRequestSchemaPhone(),
-      register_token: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {FormRegisterRequestSchemaPhone} */
-  static FormRegisterRequestSchemaPhone() {
-    return Joi.object({
-      country_code: Joi.string().allow(""),
-      mobile: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {Google} */
   static Google() {
     return Joi.object({
       app_id: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {HasPasswordSuccess} */
-  static HasPasswordSuccess() {
-    return Joi.object({
-      result: Joi.boolean(),
     });
   }
 
@@ -1050,22 +503,6 @@ class UserPlatformModel {
     return Joi.object({
       otp: Joi.boolean(),
       password: Joi.boolean(),
-    });
-  }
-
-  /** @returns {LoginSuccess} */
-  static LoginSuccess() {
-    return Joi.object({
-      register_token: Joi.string().allow(""),
-      request_id: Joi.string().allow(""),
-      user: UserPlatformModel.UserSchema(),
-    });
-  }
-
-  /** @returns {LogoutSuccess} */
-  static LogoutSuccess() {
-    return Joi.object({
-      logout: Joi.boolean(),
     });
   }
 
@@ -1084,82 +521,6 @@ class UserPlatformModel {
     });
   }
 
-  /** @returns {NotFoundSchema} */
-  static NotFoundSchema() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {OAuthRequestAppleSchema} */
-  static OAuthRequestAppleSchema() {
-    return Joi.object({
-      oauth: UserPlatformModel.OAuthRequestAppleSchemaOauth(),
-      profile: UserPlatformModel.OAuthRequestAppleSchemaProfile(),
-      user_identifier: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {OAuthRequestAppleSchemaOauth} */
-  static OAuthRequestAppleSchemaOauth() {
-    return Joi.object({
-      identity_token: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {OAuthRequestAppleSchemaProfile} */
-  static OAuthRequestAppleSchemaProfile() {
-    return Joi.object({
-      first_name: Joi.string().allow(""),
-      full_name: Joi.string().allow(""),
-      last_name: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {OAuthRequestSchema} */
-  static OAuthRequestSchema() {
-    return Joi.object({
-      is_signed_in: Joi.boolean(),
-      oauth2: UserPlatformModel.OAuthRequestSchemaOauth2(),
-      profile: UserPlatformModel.OAuthRequestSchemaProfile(),
-    });
-  }
-
-  /** @returns {OAuthRequestSchemaOauth2} */
-  static OAuthRequestSchemaOauth2() {
-    return Joi.object({
-      access_token: Joi.string().allow(""),
-      expiry: Joi.number(),
-      refresh_token: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {OAuthRequestSchemaProfile} */
-  static OAuthRequestSchemaProfile() {
-    return Joi.object({
-      email: Joi.string().allow(""),
-      first_name: Joi.string().allow(""),
-      full_name: Joi.string().allow(""),
-      id: Joi.string().allow(""),
-      image: Joi.string().allow(""),
-      last_name: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {OtpSuccess} */
-  static OtpSuccess() {
-    return Joi.object({
-      country_code: Joi.string().allow(""),
-      message: Joi.string().allow(""),
-      mobile: Joi.string().allow(""),
-      register_token: Joi.string().allow(""),
-      request_id: Joi.string().allow(""),
-      resend_timer: Joi.number(),
-      resend_token: Joi.string().allow(""),
-      success: Joi.boolean(),
-    });
-  }
-
   /** @returns {PaginationSchema} */
   static PaginationSchema() {
     return Joi.object({
@@ -1168,15 +529,6 @@ class UserPlatformModel {
       item_total: Joi.number(),
       size: Joi.number(),
       type: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {PasswordLoginRequestSchema} */
-  static PasswordLoginRequestSchema() {
-    return Joi.object({
-      captcha_code: Joi.string().allow(""),
-      password: Joi.string().allow(""),
-      username: Joi.string().allow(""),
     });
   }
 
@@ -1240,59 +592,6 @@ class UserPlatformModel {
     });
   }
 
-  /** @returns {ProfileEditSuccess} */
-  static ProfileEditSuccess() {
-    return Joi.object({
-      country_code: Joi.string().allow(""),
-      email: Joi.string().allow(""),
-      message: Joi.string().allow(""),
-      mobile: Joi.string().allow(""),
-      register_token: Joi.string().allow(""),
-      request_id: Joi.string().allow(""),
-      resend_email_token: Joi.string().allow(""),
-      resend_timer: Joi.number(),
-      resend_token: Joi.string().allow(""),
-      success: Joi.boolean(),
-      user: UserPlatformModel.UserSchema(),
-      user_exists: Joi.boolean(),
-      verify_email_link: Joi.boolean(),
-      verify_email_otp: Joi.boolean(),
-      verify_mobile_otp: Joi.boolean(),
-    });
-  }
-
-  /** @returns {ProfileEditSuccessSchema} */
-  static ProfileEditSuccessSchema() {
-    return Joi.object({
-      email: Joi.string().allow(""),
-      register_token: Joi.string().allow(""),
-      user: Joi.string().allow(""),
-      user_exists: Joi.boolean(),
-      verify_email_link: Joi.boolean(),
-      verify_email_otp: Joi.boolean(),
-      verify_mobile_otp: Joi.boolean(),
-    });
-  }
-
-  /** @returns {RegisterFormSuccess} */
-  static RegisterFormSuccess() {
-    return Joi.object({
-      country_code: Joi.string().allow(""),
-      email: Joi.string().allow(""),
-      message: Joi.string().allow(""),
-      mobile: Joi.string().allow(""),
-      register_token: Joi.string().allow(""),
-      request_id: Joi.string().allow(""),
-      resend_email_token: Joi.string().allow(""),
-      resend_timer: Joi.number(),
-      resend_token: Joi.string().allow(""),
-      success: Joi.boolean(),
-      user_exists: Joi.boolean(),
-      verify_email_otp: Joi.boolean(),
-      verify_mobile_otp: Joi.boolean(),
-    });
-  }
-
   /** @returns {RegisterRequiredFields} */
   static RegisterRequiredFields() {
     return Joi.object({
@@ -1322,107 +621,6 @@ class UserPlatformModel {
     return Joi.object({
       email: UserPlatformModel.PlatformEmail(),
       mobile: UserPlatformModel.PlatformMobile(),
-    });
-  }
-
-  /** @returns {ResetPasswordSuccess} */
-  static ResetPasswordSuccess() {
-    return Joi.object({
-      status: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {SendEmailOtpRequestSchema} */
-  static SendEmailOtpRequestSchema() {
-    return Joi.object({
-      action: Joi.string().allow(""),
-      email: Joi.string().allow(""),
-      register_token: Joi.string().allow(""),
-      token: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {SendEmailVerifyLinkSuccess} */
-  static SendEmailVerifyLinkSuccess() {
-    return Joi.object({
-      verify_email_link: Joi.boolean(),
-    });
-  }
-
-  /** @returns {SendMobileOtpRequestSchema} */
-  static SendMobileOtpRequestSchema() {
-    return Joi.object({
-      action: Joi.string().allow(""),
-      android_hash: Joi.string().allow(""),
-      captcha_code: Joi.string().allow(""),
-      country_code: Joi.string().allow(""),
-      force: Joi.string().allow(""),
-      mobile: Joi.string().allow(""),
-      token: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {SendMobileVerifyLinkSuccess} */
-  static SendMobileVerifyLinkSuccess() {
-    return Joi.object({
-      verify_mobile_link: Joi.boolean(),
-    });
-  }
-
-  /** @returns {SendOtpRequestSchema} */
-  static SendOtpRequestSchema() {
-    return Joi.object({
-      android_hash: Joi.string().allow(""),
-      captcha_code: Joi.string().allow(""),
-      country_code: Joi.string().allow(""),
-      mobile: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {SendOtpResponse} */
-  static SendOtpResponse() {
-    return Joi.object({
-      country_code: Joi.string().allow(""),
-      email: Joi.string().allow(""),
-      message: Joi.string().allow(""),
-      mobile: Joi.string().allow(""),
-      register_token: Joi.string().allow(""),
-      request_id: Joi.string().allow(""),
-      resend_email_token: Joi.string().allow(""),
-      resend_timer: Joi.number(),
-      resend_token: Joi.string().allow(""),
-      success: Joi.boolean(),
-      user_exists: Joi.boolean(),
-      verify_email_otp: Joi.boolean(),
-      verify_mobile_otp: Joi.boolean(),
-    });
-  }
-
-  /** @returns {SendResetPasswordEmailRequestSchema} */
-  static SendResetPasswordEmailRequestSchema() {
-    return Joi.object({
-      captcha_code: Joi.string().allow(""),
-      email: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {SendResetPasswordMobileRequestSchema} */
-  static SendResetPasswordMobileRequestSchema() {
-    return Joi.object({
-      captcha_code: Joi.string().allow(""),
-      country_code: Joi.string().allow(""),
-      mobile: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {SendVerificationLinkMobileRequestSchema} */
-  static SendVerificationLinkMobileRequestSchema() {
-    return Joi.object({
-      active: Joi.boolean(),
-      country_code: Joi.string().allow(""),
-      phone: Joi.string().allow(""),
-      primary: Joi.boolean(),
-      verified: Joi.boolean(),
     });
   }
 
@@ -1460,13 +658,6 @@ class UserPlatformModel {
     });
   }
 
-  /** @returns {SessionListSuccess} */
-  static SessionListSuccess() {
-    return Joi.object({
-      sessions: Joi.array().items(Joi.string().allow("")),
-    });
-  }
-
   /** @returns {Social} */
   static Social() {
     return Joi.object({
@@ -1486,27 +677,6 @@ class UserPlatformModel {
     });
   }
 
-  /** @returns {TokenRequestBodySchema} */
-  static TokenRequestBodySchema() {
-    return Joi.object({
-      token: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {UnauthenticatedSchema} */
-  static UnauthenticatedSchema() {
-    return Joi.object({
-      authenticated: Joi.boolean(),
-    });
-  }
-
-  /** @returns {UnauthorizedSchema} */
-  static UnauthorizedSchema() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {UnDeleteUserRequestSchema} */
   static UnDeleteUserRequestSchema() {
     return Joi.object({
@@ -1520,14 +690,6 @@ class UserPlatformModel {
   static UnDeleteUserSuccess() {
     return Joi.object({
       success: Joi.boolean(),
-    });
-  }
-
-  /** @returns {UpdatePasswordRequestSchema} */
-  static UpdatePasswordRequestSchema() {
-    return Joi.object({
-      new_password: Joi.string().allow(""),
-      old_password: Joi.string().allow(""),
     });
   }
 
@@ -1587,13 +749,6 @@ class UserPlatformModel {
     });
   }
 
-  /** @returns {UserObjectSchema} */
-  static UserObjectSchema() {
-    return Joi.object({
-      user: UserPlatformModel.UserSchema(),
-    });
-  }
-
   /** @returns {UserPhoneNumbers} */
   static UserPhoneNumbers() {
     return Joi.object({
@@ -1631,57 +786,6 @@ class UserPlatformModel {
   static UserSearchResponseSchema() {
     return Joi.object({
       users: Joi.array().items(UserPlatformModel.UserSchema()),
-    });
-  }
-
-  /** @returns {VerifyEmailOtpRequestSchema} */
-  static VerifyEmailOtpRequestSchema() {
-    return Joi.object({
-      action: Joi.string().allow(""),
-      email: Joi.string().allow(""),
-      otp: Joi.string().allow(""),
-      register_token: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {VerifyEmailOTPSuccess} */
-  static VerifyEmailOTPSuccess() {
-    return Joi.object({
-      user: UserPlatformModel.UserSchema(),
-      verify_email_link: Joi.boolean(),
-    });
-  }
-
-  /** @returns {VerifyEmailSuccess} */
-  static VerifyEmailSuccess() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {VerifyMobileOTPSuccess} */
-  static VerifyMobileOTPSuccess() {
-    return Joi.object({
-      user: UserPlatformModel.UserSchema(),
-      verify_mobile_link: Joi.boolean(),
-    });
-  }
-
-  /** @returns {VerifyOtpRequestSchema} */
-  static VerifyOtpRequestSchema() {
-    return Joi.object({
-      otp: Joi.string().allow(""),
-      register_token: Joi.string().allow(""),
-      request_id: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {VerifyOtpSuccess} */
-  static VerifyOtpSuccess() {
-    return Joi.object({
-      register_token: Joi.string().allow(""),
-      user: UserPlatformModel.UserSchema(),
-      user_exists: Joi.boolean(),
     });
   }
 }

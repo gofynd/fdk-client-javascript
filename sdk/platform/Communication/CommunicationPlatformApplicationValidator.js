@@ -7,6 +7,12 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  * @property {CommunicationPlatformModel.AudienceReq} body
  */
 
+/** @typedef CreateBigQueryHeadersParam */
+
+/** @typedef CreateBigQueryNCountParam */
+
+/** @typedef CreateBigQueryRowCountParam */
+
 /**
  * @typedef CreateCampaignParam
  * @property {CommunicationPlatformModel.CampaignReq} body
@@ -33,14 +39,31 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  */
 
 /**
+ * @typedef DeleteAudienceByIdParam
+ * @property {string} id - Audience id
+ */
+
+/**
+ * @typedef DeleteEmailProviderByIdParam
+ * @property {string} id - Email provider id
+ */
+
+/**
  * @typedef DeleteEmailTemplateByIdParam
  * @property {string} id - Email template id
+ */
+
+/**
+ * @typedef DeleteSmsProviderByIdParam
+ * @property {string} id - Sms provider id
  */
 
 /**
  * @typedef DeleteSmsTemplateByIdParam
  * @property {string} id - Sms template id
  */
+
+/** @typedef GetAppProvidersParam */
 
 /**
  * @typedef GetAudienceByIdParam
@@ -55,8 +78,13 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  */
 
 /**
- * @typedef GetBigqueryHeadersParam
- * @property {CommunicationPlatformModel.BigqueryHeadersReq} body
+ * @typedef GetBigQueryHeadersByIdParam
+ * @property {string} id - Audience id
+ */
+
+/**
+ * @typedef GetBigQueryRowCountByIdParam
+ * @property {string} id - Audience id
  */
 
 /**
@@ -77,6 +105,15 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on _id
  * @property {Object} [query]
+ */
+
+/** @typedef GetDefaultSmsProvidersParam */
+
+/** @typedef GetDummyDatasourcesParam */
+
+/**
+ * @typedef GetDummyDatasourcesMetaParam
+ * @property {number} id - Dummy datasources meta ID
  */
 
 /**
@@ -110,6 +147,10 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  * @property {string} [populate] - Populate fields
  */
 
+/** @typedef GetGlobalProvidersParam */
+
+/** @typedef GetGlobalVariablesParam */
+
 /**
  * @typedef GetJobLogsParam
  * @property {number} [pageNo] - Current page no
@@ -128,6 +169,8 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  * @typedef GetNSampleRecordsFromCsvParam
  * @property {CommunicationPlatformModel.GetNRecordsCsvReq} body
  */
+
+/** @typedef GetNSampleRecordsFromCsvByGetParam */
 
 /**
  * @typedef GetSmsProviderByIdParam
@@ -159,17 +202,26 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  */
 
 /**
- * @typedef GetSystemEmailTemplatesParam
+ * @typedef GetSubscribedEmailTemplatesParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
- * @property {Object} [sort] - To sort based on created_at
  */
 
 /**
- * @typedef GetSystemSystemTemplatesParam
+ * @typedef GetSubscribedSmsTemplatesParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
- * @property {Object} [sort] - To sort based on created_at
+ */
+
+/** @typedef GetSystemAudiencesParam */
+
+/** @typedef GetSystemEmailTemplatesParam */
+
+/** @typedef GetSystemSmsTemplatesParam */
+
+/**
+ * @typedef PostGlobalVariablesParam
+ * @property {CommunicationPlatformModel.GlobalVariablesReq} body
  */
 
 /**
@@ -190,6 +242,11 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
 /**
  * @typedef TriggerCampaignJobParam
  * @property {CommunicationPlatformModel.TriggerJobRequest} body
+ */
+
+/**
+ * @typedef UpdateAppProvidersParam
+ * @property {CommunicationPlatformModel.AppProviderReq} body
  */
 
 /**
@@ -241,6 +298,21 @@ class CommunicationPlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {CreateBigQueryHeadersParam} */
+  static createBigQueryHeaders() {
+    return Joi.object({}).required();
+  }
+
+  /** @returns {CreateBigQueryNCountParam} */
+  static createBigQueryNCount() {
+    return Joi.object({}).required();
+  }
+
+  /** @returns {CreateBigQueryRowCountParam} */
+  static createBigQueryRowCount() {
+    return Joi.object({}).required();
+  }
+
   /** @returns {CreateCampaignParam} */
   static createCampaign() {
     return Joi.object({
@@ -276,8 +348,29 @@ class CommunicationPlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {DeleteAudienceByIdParam} */
+  static deleteAudienceById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {DeleteEmailProviderByIdParam} */
+  static deleteEmailProviderById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
   /** @returns {DeleteEmailTemplateByIdParam} */
   static deleteEmailTemplateById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {DeleteSmsProviderByIdParam} */
+  static deleteSmsProviderById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
@@ -288,6 +381,11 @@ class CommunicationPlatformApplicationValidator {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
+  }
+
+  /** @returns {GetAppProvidersParam} */
+  static getAppProviders() {
+    return Joi.object({}).required();
   }
 
   /** @returns {GetAudienceByIdParam} */
@@ -306,10 +404,17 @@ class CommunicationPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {GetBigqueryHeadersParam} */
-  static getBigqueryHeaders() {
+  /** @returns {GetBigQueryHeadersByIdParam} */
+  static getBigQueryHeadersById() {
     return Joi.object({
-      body: CommunicationPlatformModel.BigqueryHeadersReq().required(),
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {GetBigQueryRowCountByIdParam} */
+  static getBigQueryRowCountById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -336,6 +441,23 @@ class CommunicationPlatformApplicationValidator {
       pageSize: Joi.number(),
       sort: Joi.any(),
       query: Joi.any(),
+    }).required();
+  }
+
+  /** @returns {GetDefaultSmsProvidersParam} */
+  static getDefaultSmsProviders() {
+    return Joi.object({}).required();
+  }
+
+  /** @returns {GetDummyDatasourcesParam} */
+  static getDummyDatasources() {
+    return Joi.object({}).required();
+  }
+
+  /** @returns {GetDummyDatasourcesMetaParam} */
+  static getDummyDatasourcesMeta() {
+    return Joi.object({
+      id: Joi.number().required(),
     }).required();
   }
 
@@ -380,6 +502,16 @@ class CommunicationPlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {GetGlobalProvidersParam} */
+  static getGlobalProviders() {
+    return Joi.object({}).required();
+  }
+
+  /** @returns {GetGlobalVariablesParam} */
+  static getGlobalVariables() {
+    return Joi.object({}).required();
+  }
+
   /** @returns {GetJobLogsParam} */
   static getJobLogs() {
     return Joi.object({
@@ -403,6 +535,11 @@ class CommunicationPlatformApplicationValidator {
     return Joi.object({
       body: CommunicationPlatformModel.GetNRecordsCsvReq().required(),
     }).required();
+  }
+
+  /** @returns {GetNSampleRecordsFromCsvByGetParam} */
+  static getNSampleRecordsFromCsvByGet() {
+    return Joi.object({}).required();
   }
 
   /** @returns {GetSmsProviderByIdParam} */
@@ -444,21 +581,41 @@ class CommunicationPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {GetSystemEmailTemplatesParam} */
-  static getSystemEmailTemplates() {
+  /** @returns {GetSubscribedEmailTemplatesParam} */
+  static getSubscribedEmailTemplates() {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      sort: Joi.any(),
     }).required();
   }
 
-  /** @returns {GetSystemSystemTemplatesParam} */
-  static getSystemSystemTemplates() {
+  /** @returns {GetSubscribedSmsTemplatesParam} */
+  static getSubscribedSmsTemplates() {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      sort: Joi.any(),
+    }).required();
+  }
+
+  /** @returns {GetSystemAudiencesParam} */
+  static getSystemAudiences() {
+    return Joi.object({}).required();
+  }
+
+  /** @returns {GetSystemEmailTemplatesParam} */
+  static getSystemEmailTemplates() {
+    return Joi.object({}).required();
+  }
+
+  /** @returns {GetSystemSmsTemplatesParam} */
+  static getSystemSmsTemplates() {
+    return Joi.object({}).required();
+  }
+
+  /** @returns {PostGlobalVariablesParam} */
+  static postGlobalVariables() {
+    return Joi.object({
+      body: CommunicationPlatformModel.GlobalVariablesReq().required(),
     }).required();
   }
 
@@ -487,6 +644,13 @@ class CommunicationPlatformApplicationValidator {
   static triggerCampaignJob() {
     return Joi.object({
       body: CommunicationPlatformModel.TriggerJobRequest().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateAppProvidersParam} */
+  static updateAppProviders() {
+    return Joi.object({
+      body: CommunicationPlatformModel.AppProviderReq().required(),
     }).required();
   }
 

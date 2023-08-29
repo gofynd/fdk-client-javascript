@@ -15,7 +15,7 @@ declare class Configuration {
      * @returns {Promise<ConfigurationPublicModel.Locations>} - Success response
      * @name getLocations
      * @summary: Get countries, states, cities
-     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/configuration/getLocations/).
+     * @description: Get Location configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/public/configuration/getLocations/).
      */
     getLocations({ locationType, id, requestHeaders }?: ConfigurationPublicValidator.GetLocationsParam, { responseHeaders }?: object): Promise<ConfigurationPublicModel.Locations>;
     /**

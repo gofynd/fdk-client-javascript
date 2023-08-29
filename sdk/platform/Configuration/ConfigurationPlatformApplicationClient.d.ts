@@ -223,6 +223,19 @@ declare class Configuration {
      */
     getInventoryConfig({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.ApplicationInventory>;
     /**
+     * @param {ConfigurationPlatformApplicationValidator.GetOrderingStoreConfigParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ConfigurationPlatformModel.OrderingStoreConfig>} -
+     *   Success response
+     * @name getOrderingStoreConfig
+     * @summary: Get ordering store config
+     * @description: Fetch the details of the deployment stores (the selling locations where the application will be utilised for placing orders). - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getOrderingStoreConfig/).
+     */
+    getOrderingStoreConfig({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.OrderingStoreConfig>;
+    /**
      * @param {ConfigurationPlatformApplicationValidator.GetOrderingStoresByFilterParam} arg
      *   - Arg object
      *

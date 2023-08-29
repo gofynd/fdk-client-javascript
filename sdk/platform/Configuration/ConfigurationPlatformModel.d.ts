@@ -444,17 +444,6 @@ export = ConfigurationPlatformModel;
  * @property {Page} [page]
  */
 /**
- * @typedef CompanyAboutAddress
- * @property {string} [address_type] - Indicates different office types like
- *   office, registered, and home.
- * @property {string} [address1] - Primary address line of the company
- * @property {string} [address2] - Secondary address line of the company
- * @property {string} [city] - City name, e.g. Mumbai
- * @property {string} [country] - Country name, e.g. India
- * @property {number} [pincode] - 6-digit PIN code of the city, e.g. 400001
- * @property {string} [state] - State name, e.g. Maharashtra
- */
-/**
  * @typedef CompanyBrandInfo
  * @property {string} [brand_banner_portrait_url] - Hosted URL of the brand's
  *   portrait banner
@@ -534,21 +523,6 @@ export = ConfigurationPlatformModel;
  *   currency updation
  */
 /**
- * @typedef CurrencyConfig
- * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
- *   of all the currency configuration
- * @property {string} [code] - 3-character currency code, e.g. INR, USD, EUR.
- * @property {string} [created_at] - ISO 8601 timestamp of a given currency creation
- * @property {number} [decimal_digits] - Acceptable decimal limits for a given
- *   currency, e.g. 1.05$ means upto 2 decimal digits can be accepted as a valid
- *   value of a currency.
- * @property {boolean} [is_active] - Currency is enabled or not for the current
- *   sales channel
- * @property {string} [name] - Name of the currency, e.g Indian Rupee
- * @property {string} [symbol] - Unique symbol for identifying the currency, e.g. ₹
- * @property {string} [updated_at] - ISO 8601 timestamp of a given currency updation
- */
-/**
  * @typedef CurrencyFeature
  * @property {string} [default_currency] - 3-letter code of the default currency
  *   used in the application. Default vaule is 'INR'.
@@ -571,7 +545,7 @@ export = ConfigurationPlatformModel;
  */
 /**
  * @typedef DeliveryCharges
- * @property {Charges} [charges]
+ * @property {Charges[]} [charges] - Holds values for delivery charges.
  * @property {boolean} [enabled] - Allow delivery charges
  */
 /**
@@ -900,7 +874,8 @@ export = ConfigurationPlatformModel;
  * @typedef InventoryStore
  * @property {string} [criteria] - All stores or specific (explicit) stores to
  *   be shown on the website
- * @property {AppStoreRules} [rules]
+ * @property {AppStoreRules[]} [rules] - Rules to show which brands or companies
+ *   products should be listed on sales channel.
  * @property {Object[]} [stores] - List of stores
  */
 /**
@@ -1409,10 +1384,6 @@ export = ConfigurationPlatformModel;
  * @property {string} [title] - Name of the social media platform, e.g. Twitter
  */
 /**
- * @typedef UnhandledError
- * @property {string} [message]
- */
-/**
  * @typedef UpdateDomain
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   of the domain
@@ -1433,25 +1404,6 @@ export = ConfigurationPlatformModel;
 /**
  * @typedef UpdateIntegrationLevelRequest
  * @property {IntegrationLevel[]} [items]
- */
-/**
- * @typedef UserEmail
- * @property {boolean} [active] - Current email is active or not active
- * @property {string} [email] - Email address of the user
- * @property {boolean} [primary] - Indicates current email is primay email or
- *   not primary email of user
- * @property {boolean} [verified] - Indicates current email is verified email or
- *   not verified email
- */
-/**
- * @typedef UserPhoneNumber
- * @property {boolean} [active] - Current phone number is active or not active
- * @property {number} [country_code] - Country code, e.g. +91
- * @property {string} [phone] - Phone number of the user
- * @property {boolean} [primary] - Indicates current phone number is primay or
- *   not primary of user
- * @property {boolean} [verified] - Indicates current phone number is verified
- *   or not verified
  */
 /**
  * @typedef ValidationFailedResponse
@@ -1479,7 +1431,7 @@ export = ConfigurationPlatformModel;
 declare class ConfigurationPlatformModel {
 }
 declare namespace ConfigurationPlatformModel {
-    export { Android, App, AppCartConfig, AppCurrencyResponse, AppDomain, AppFeature, AppFeatureRequest, AppFeatureResponse, AppInventory, AppInventoryCompanies, AppInventoryConfig, AppInventoryPartialUpdate, AppInventoryStores, Application, ApplicationAuth, ApplicationCors, ApplicationDetail, ApplicationInformation, ApplicationInventory, ApplicationMeta, ApplicationRedirections, ApplicationsResponse, ApplicationWebsite, AppLogisticsConfig, AppOrderConfig, AppPaymentConfig, AppStoreRules, AppSupportedCurrency, ArticleAssignmentConfig, ArticleAssignmentRule, ArticleAssignmentRules, AuthenticationConfig, BlogLink, BrandCompanyInfo, BrandsByCompanyResponse, BrandStoreInfo, BuildVersion, BuildVersionHistory, BusinessHighlights, CallbackUrl, CartFeature, Charges, CommonFeature, CommsConfig, CommunicationConfig, CommunicationOptinDialogFeature, CompaniesResponse, CompanyAboutAddress, CompanyBrandInfo, CompanyByBrandsRequest, CompanyByBrandsResponse, CompanyValidator, CompareProductsFeature, CreateApplicationRequest, CreateAppResponse, Credentials, Credit, CurrenciesResponse, Currency, CurrencyConfig, CurrencyFeature, Debit, DefaultCurrency, DeliveryCharges, DeploymentMeta, DeploymentStoreSelectionFeature, Domain, DomainAdd, DomainAddRequest, DomainsResponse, DomainStatus, DomainStatusRequest, DomainStatusResponse, DomainSuggestion, DomainSuggestionsRequest, DomainSuggestionsResponse, FacebookLink, FeedbackFeature, FilterOrderingStoreRequest, Firebase, Freshchat, FreshchatCredentials, FyndRewards, FyndRewardsCredentials, GetIntegrationsOptInsResponse, GoogleMap, GoogleMapCredentials, GooglePlusLink, Gtm, GtmCredentials, HomePageFeature, InformationAddress, InformationPhone, InformationSupport, InstagramLink, Integration, IntegrationConfigResponse, IntegrationLevel, IntegrationMeta, IntegrationOptIn, InvalidPayloadRequest, InventoryArticleAssignment, InventoryBrand, InventoryBrandRule, InventoryCategory, InventoryDiscount, InventoryPaymentConfig, InventoryPrice, InventoryStore, InventoryStoreRule, InventoryValidator, Ios, JsonSchema, LandingImage, LandingPageFeature, LastPatch, LaunchPage, LinkedInLink, Links, ListingPriceFeature, LoyaltyPointsConfig, Methods, MobileAppConfigRequest, MobileAppConfiguration, Moengage, MoengageCredentials, NotFound, OptedApplicationResponse, OptedCompany, OptedInventory, OptedStore, OptedStoreAddress, OptedStoreIntegration, OptOutInventory, OptType, OrderFeature, OrderingStore, OrderingStoreConfig, OrderingStores, OrderingStoresResponse, OrderValidator, OtherEntity, OtherEntityData, OtherSellerApplication, OtherSellerApplications, OtherSellerCompany, Page, PanCardConfig, PaymentModeConfig, PaymentSelectionLock, PcrFeature, PinterestLink, ProductDetailFeature, QrFeature, RegistrationPageFeature, RevenueEngineFeature, RewardPointsConfig, Safetynet, SafetynetCredentials, SecureUrl, Segment, SegmentCredentials, SocialLinks, SplashImage, StoreByBrandsRequest, StoreByBrandsResponse, StoreCriteriaRule, StoreLatLong, StorePriority, StorePriorityRule, StoresResponse, StoreValidator, SuccessMessageResponse, TokenResponse, Tokens, TwitterLink, UnhandledError, UpdateDomain, UpdateDomainTypeRequest, UpdateIntegrationLevelRequest, UserEmail, UserPhoneNumber, ValidationFailedResponse, Validators, VimeoLink, YoutubeLink };
+    export { Android, App, AppCartConfig, AppCurrencyResponse, AppDomain, AppFeature, AppFeatureRequest, AppFeatureResponse, AppInventory, AppInventoryCompanies, AppInventoryConfig, AppInventoryPartialUpdate, AppInventoryStores, Application, ApplicationAuth, ApplicationCors, ApplicationDetail, ApplicationInformation, ApplicationInventory, ApplicationMeta, ApplicationRedirections, ApplicationsResponse, ApplicationWebsite, AppLogisticsConfig, AppOrderConfig, AppPaymentConfig, AppStoreRules, AppSupportedCurrency, ArticleAssignmentConfig, ArticleAssignmentRule, ArticleAssignmentRules, AuthenticationConfig, BlogLink, BrandCompanyInfo, BrandsByCompanyResponse, BrandStoreInfo, BuildVersion, BuildVersionHistory, BusinessHighlights, CallbackUrl, CartFeature, Charges, CommonFeature, CommsConfig, CommunicationConfig, CommunicationOptinDialogFeature, CompaniesResponse, CompanyBrandInfo, CompanyByBrandsRequest, CompanyByBrandsResponse, CompanyValidator, CompareProductsFeature, CreateApplicationRequest, CreateAppResponse, Credentials, Credit, CurrenciesResponse, Currency, CurrencyFeature, Debit, DefaultCurrency, DeliveryCharges, DeploymentMeta, DeploymentStoreSelectionFeature, Domain, DomainAdd, DomainAddRequest, DomainsResponse, DomainStatus, DomainStatusRequest, DomainStatusResponse, DomainSuggestion, DomainSuggestionsRequest, DomainSuggestionsResponse, FacebookLink, FeedbackFeature, FilterOrderingStoreRequest, Firebase, Freshchat, FreshchatCredentials, FyndRewards, FyndRewardsCredentials, GetIntegrationsOptInsResponse, GoogleMap, GoogleMapCredentials, GooglePlusLink, Gtm, GtmCredentials, HomePageFeature, InformationAddress, InformationPhone, InformationSupport, InstagramLink, Integration, IntegrationConfigResponse, IntegrationLevel, IntegrationMeta, IntegrationOptIn, InvalidPayloadRequest, InventoryArticleAssignment, InventoryBrand, InventoryBrandRule, InventoryCategory, InventoryDiscount, InventoryPaymentConfig, InventoryPrice, InventoryStore, InventoryStoreRule, InventoryValidator, Ios, JsonSchema, LandingImage, LandingPageFeature, LastPatch, LaunchPage, LinkedInLink, Links, ListingPriceFeature, LoyaltyPointsConfig, Methods, MobileAppConfigRequest, MobileAppConfiguration, Moengage, MoengageCredentials, NotFound, OptedApplicationResponse, OptedCompany, OptedInventory, OptedStore, OptedStoreAddress, OptedStoreIntegration, OptOutInventory, OptType, OrderFeature, OrderingStore, OrderingStoreConfig, OrderingStores, OrderingStoresResponse, OrderValidator, OtherEntity, OtherEntityData, OtherSellerApplication, OtherSellerApplications, OtherSellerCompany, Page, PanCardConfig, PaymentModeConfig, PaymentSelectionLock, PcrFeature, PinterestLink, ProductDetailFeature, QrFeature, RegistrationPageFeature, RevenueEngineFeature, RewardPointsConfig, Safetynet, SafetynetCredentials, SecureUrl, Segment, SegmentCredentials, SocialLinks, SplashImage, StoreByBrandsRequest, StoreByBrandsResponse, StoreCriteriaRule, StoreLatLong, StorePriority, StorePriorityRule, StoresResponse, StoreValidator, SuccessMessageResponse, TokenResponse, Tokens, TwitterLink, UpdateDomain, UpdateDomainTypeRequest, UpdateIntegrationLevelRequest, ValidationFailedResponse, Validators, VimeoLink, YoutubeLink };
 }
 /** @returns {Android} */
 declare function Android(): Android;
@@ -2356,39 +2308,6 @@ type CompaniesResponse = {
     items?: AppInventoryCompanies;
     page?: Page;
 };
-/** @returns {CompanyAboutAddress} */
-declare function CompanyAboutAddress(): CompanyAboutAddress;
-type CompanyAboutAddress = {
-    /**
-     * - Indicates different office types like
-     * office, registered, and home.
-     */
-    address_type?: string;
-    /**
-     * - Primary address line of the company
-     */
-    address1?: string;
-    /**
-     * - Secondary address line of the company
-     */
-    address2?: string;
-    /**
-     * - City name, e.g. Mumbai
-     */
-    city?: string;
-    /**
-     * - Country name, e.g. India
-     */
-    country?: string;
-    /**
-     * - 6-digit PIN code of the city, e.g. 400001
-     */
-    pincode?: number;
-    /**
-     * - State name, e.g. Maharashtra
-     */
-    state?: string;
-};
 /** @returns {CompanyBrandInfo} */
 declare function CompanyBrandInfo(): CompanyBrandInfo;
 type CompanyBrandInfo = {
@@ -2545,46 +2464,6 @@ type Currency = {
      */
     updated_at?: string;
 };
-/** @returns {CurrencyConfig} */
-declare function CurrencyConfig(): CurrencyConfig;
-type CurrencyConfig = {
-    /**
-     * - The unique identifier (24-digit Mongo Object ID)
-     * of all the currency configuration
-     */
-    _id?: string;
-    /**
-     * - 3-character currency code, e.g. INR, USD, EUR.
-     */
-    code?: string;
-    /**
-     * - ISO 8601 timestamp of a given currency creation
-     */
-    created_at?: string;
-    /**
-     * - Acceptable decimal limits for a given
-     * currency, e.g. 1.05$ means upto 2 decimal digits can be accepted as a valid
-     * value of a currency.
-     */
-    decimal_digits?: number;
-    /**
-     * - Currency is enabled or not for the current
-     * sales channel
-     */
-    is_active?: boolean;
-    /**
-     * - Name of the currency, e.g Indian Rupee
-     */
-    name?: string;
-    /**
-     * - Unique symbol for identifying the currency, e.g. ₹
-     */
-    symbol?: string;
-    /**
-     * - ISO 8601 timestamp of a given currency updation
-     */
-    updated_at?: string;
-};
 /** @returns {CurrencyFeature} */
 declare function CurrencyFeature(): CurrencyFeature;
 type CurrencyFeature = {
@@ -2636,7 +2515,10 @@ type DefaultCurrency = {
 /** @returns {DeliveryCharges} */
 declare function DeliveryCharges(): DeliveryCharges;
 type DeliveryCharges = {
-    charges?: Charges;
+    /**
+     * - Holds values for delivery charges.
+     */
+    charges?: Charges[];
     /**
      * - Allow delivery charges
      */
@@ -3340,7 +3222,11 @@ type InventoryStore = {
      * be shown on the website
      */
     criteria?: string;
-    rules?: AppStoreRules;
+    /**
+     * - Rules to show which brands or companies
+     * products should be listed on sales channel.
+     */
+    rules?: AppStoreRules[];
     /**
      * - List of stores
      */
@@ -4359,11 +4245,6 @@ type TwitterLink = {
      */
     title?: string;
 };
-/** @returns {UnhandledError} */
-declare function UnhandledError(): UnhandledError;
-type UnhandledError = {
-    message?: string;
-};
 /** @returns {UpdateDomain} */
 declare function UpdateDomain(): UpdateDomain;
 type UpdateDomain = {
@@ -4406,54 +4287,6 @@ type UpdateDomainTypeRequest = {
 declare function UpdateIntegrationLevelRequest(): UpdateIntegrationLevelRequest;
 type UpdateIntegrationLevelRequest = {
     items?: IntegrationLevel[];
-};
-/** @returns {UserEmail} */
-declare function UserEmail(): UserEmail;
-type UserEmail = {
-    /**
-     * - Current email is active or not active
-     */
-    active?: boolean;
-    /**
-     * - Email address of the user
-     */
-    email?: string;
-    /**
-     * - Indicates current email is primay email or
-     * not primary email of user
-     */
-    primary?: boolean;
-    /**
-     * - Indicates current email is verified email or
-     * not verified email
-     */
-    verified?: boolean;
-};
-/** @returns {UserPhoneNumber} */
-declare function UserPhoneNumber(): UserPhoneNumber;
-type UserPhoneNumber = {
-    /**
-     * - Current phone number is active or not active
-     */
-    active?: boolean;
-    /**
-     * - Country code, e.g. +91
-     */
-    country_code?: number;
-    /**
-     * - Phone number of the user
-     */
-    phone?: string;
-    /**
-     * - Indicates current phone number is primay or
-     * not primary of user
-     */
-    primary?: boolean;
-    /**
-     * - Indicates current phone number is verified
-     * or not verified
-     */
-    verified?: boolean;
 };
 /** @returns {ValidationFailedResponse} */
 declare function ValidationFailedResponse(): ValidationFailedResponse;

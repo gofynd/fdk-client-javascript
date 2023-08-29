@@ -52,11 +52,6 @@ export = RewardsPlatformModel;
  * @property {string} [updated_at]
  */
 /**
- * @typedef GiveawayAudience
- * @property {string} [audience_id]
- * @property {number} [current_count]
- */
-/**
  * @typedef GiveawayResponse
  * @property {Giveaway[]} [items]
  * @property {Page} [page]
@@ -170,7 +165,7 @@ export = RewardsPlatformModel;
 declare class RewardsPlatformModel {
 }
 declare namespace RewardsPlatformModel {
-    export { AppUser, Asset, ConfigurationRequest, ConfigurationRes, E, Giveaway, GiveawayAudience, GiveawayResponse, HistoryRes, Offer, Page, Points, PointsHistory, Referral, RewardsAudience, RewardsRule, RewardUser, Schedule, SetConfigurationRes, ShareMessages, UserRes };
+    export { AppUser, Asset, ConfigurationRequest, ConfigurationRes, E, Giveaway, GiveawayResponse, HistoryRes, Offer, Page, Points, PointsHistory, Referral, RewardsAudience, RewardsRule, RewardUser, Schedule, SetConfigurationRes, ShareMessages, UserRes };
 }
 /** @returns {AppUser} */
 declare function AppUser(): AppUser;
@@ -235,12 +230,6 @@ type Giveaway = {
     rule?: RewardsRule;
     title?: string;
     updated_at?: string;
-};
-/** @returns {GiveawayAudience} */
-declare function GiveawayAudience(): GiveawayAudience;
-type GiveawayAudience = {
-    audience_id?: string;
-    current_count?: number;
 };
 /** @returns {GiveawayResponse} */
 declare function GiveawayResponse(): GiveawayResponse;

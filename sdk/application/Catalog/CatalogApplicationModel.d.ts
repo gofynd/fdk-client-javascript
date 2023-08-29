@@ -234,6 +234,15 @@ export = CatalogApplicationModel;
  * @property {number} width - The width of the product
  */
 /**
+ * @typedef DiscountMeta
+ * @property {string} [end] - The end time of the live discount.
+ * @property {string} [start] - The start time of the live discount.
+ * @property {number} [start_timer_in_minutes] - The time in minutes before the
+ *   discount ends when the countdown timer should start.
+ * @property {boolean} timer - Determines whether the discount countdown is
+ *   visible or not.
+ */
+/**
  * @typedef ErrorResponse
  * @property {string} [error]
  */
@@ -342,10 +351,12 @@ export = CatalogApplicationModel;
  */
 /**
  * @typedef Price
- * @property {string} [currency_code]
- * @property {string} [currency_symbol]
- * @property {number} [max]
- * @property {number} [min]
+ * @property {string} [currency_code] - The currency code for the currency in
+ *   which the product is available.
+ * @property {string} [currency_symbol] - The currency symbol for the currency
+ *   in which the product is available.
+ * @property {number} [max] - The maximum price for the product across stores.
+ * @property {number} [min] - The minimum price for the product across stores.
  */
 /**
  * @typedef ProductBrand
@@ -491,7 +502,7 @@ export = CatalogApplicationModel;
  * @property {UserDetail} [created_by] - User details of the creator of the document
  * @property {string} created_on - Timestamp of the creation of the document
  * @property {boolean} [is_active] - Whether the product grouping is active.
- * @property {Object} [logo] - The URL for the logo of the product grouping.
+ * @property {string} [logo] - The URL for the logo of the product grouping.
  * @property {Object} [meta] - A dictionary containing metadata information.
  * @property {UserDetail} [modified_by] - User details of the last modifier of
  *   the document
@@ -632,7 +643,9 @@ export = CatalogApplicationModel;
  * @typedef ProductSizePriceResponseV3
  * @property {ArticleAssignmentV3} [article_assignment]
  * @property {string} [article_id]
+ * @property {PromiseSchema} [delivery_promise]
  * @property {string} [discount]
+ * @property {DiscountMeta} [discount_meta]
  * @property {SellerGroupAttributes[]} [grouped_attributes]
  * @property {boolean} [is_cod]
  * @property {boolean} [is_gift]
@@ -655,8 +668,9 @@ export = CatalogApplicationModel;
 /**
  * @typedef ProductSizes
  * @property {string} [discount]
+ * @property {DiscountMeta} [discount_meta]
  * @property {boolean} [multi_size]
- * @property {ProductListingPrice} [price]
+ * @property {ProductSizesPrice} [price]
  * @property {boolean} [sellable]
  * @property {SizeChart} [size_chart]
  * @property {ProductSize[]} [sizes]
@@ -673,6 +687,12 @@ export = CatalogApplicationModel;
  * @property {ProductSizePriceResponseV3[]} [items]
  * @property {Page} page
  * @property {ProductSizeSellerFilterSchemaV3[]} [sort_on]
+ */
+/**
+ * @typedef ProductSizesPrice
+ * @property {Price} [effective]
+ * @property {Price} [marked]
+ * @property {Price} [selling]
  */
 /**
  * @typedef ProductSizeStores
@@ -699,9 +719,14 @@ export = CatalogApplicationModel;
  */
 /**
  * @typedef ProductStockPriceV3
- * @property {string} [currency]
- * @property {number} [effective]
- * @property {number} [marked]
+ * @property {string} [currency_code] - The currency code for which the product
+ *   is available
+ * @property {string} [currency_symbol] - The currency symbol for the currency
+ *   in which the product is available.
+ * @property {number} [effective] - The effective or final price for the product
+ *   at the given pincode.
+ * @property {number} [marked] - The marked price of the product.
+ * @property {number} [selling] - The selling price of the product.
  */
 /**
  * @typedef ProductStockStatusItem
@@ -757,6 +782,11 @@ export = CatalogApplicationModel;
 /**
  * @typedef ProductVariantsResponse
  * @property {ProductVariantResponse[]} [variants]
+ */
+/**
+ * @typedef PromiseSchema
+ * @property {string} [max]
+ * @property {string} [min]
  */
 /**
  * @typedef ReturnConfigSchemaV3
@@ -937,7 +967,7 @@ export = CatalogApplicationModel;
 declare class CatalogApplicationModel {
 }
 declare namespace CatalogApplicationModel {
-    export { ApplicationItemMOQ, ApplicationItemSEO, ApplicationStoreListing, AppStore, ArticleAssignmentV3, AttributeDetail, AttributeMetadata, AutocompleteItem, AutoCompleteResponse, BrandDetailResponse, BrandItem, BrandListingResponse, CategoryBanner, CategoryItems, CategoryListingResponse, CategoryMetaResponse, Child, CollectionDetailResponse, CollectionListingFilter, CollectionListingFilterTag, CollectionListingFilterType, CollectionQuery, ColumnHeader, ColumnHeaders, CompanyDetail, CompanyStore, CustomMetaFields, Department, DepartmentCategoryTree, DepartmentIdentifier, DepartmentResponse, DetailsSchemaV3, Dimension, ErrorResponse, FollowerCountResponse, FollowIdsData, FollowIdsResponse, FollowPostResponse, GetCollectionDetailNest, GetCollectionListingResponse, GetFollowListingResponse, HomeListingResponse, ImageUrls, LatLong, MarketPlaceSttributesSchemaV3, Media, Meta, NetQuantity, Page, Price, ProductBrand, ProductBundle, ProductCategoryMap, ProductCompareResponse, ProductDetail, ProductDetailAttribute, ProductDetailCustomOrder, ProductDetailGroupedAttribute, ProductDetails, ProductFilters, ProductFiltersKey, ProductFiltersValue, ProductFrequentlyComparedSimilarResponse, ProductGroupingModel, ProductGroupPrice, ProductInGroup, ProductListingAction, ProductListingActionPage, ProductListingDetail, ProductListingPrice, ProductListingResponse, ProductsComparisonResponse, ProductSetDistributionSizeV3, ProductSetDistributionV3, ProductSetV3, ProductSize, ProductSizePriceResponseV3, ProductSizes, ProductSizeSellerFilterSchemaV3, ProductSizeSellersResponseV3, ProductSizeStores, ProductSortOn, ProductStockPolling, ProductStockPrice, ProductStockPriceV3, ProductStockStatusItem, ProductStockStatusResponse, ProductStockUnitPriceV3, ProductVariantItemResponse, ProductVariantListingResponse, ProductVariantResponse, ProductVariantsResponse, ReturnConfigSchemaV3, SecondLevelChild, Seller, SellerGroupAttributes, SellerPhoneNumber, SellerV3, Size, SizeChart, SizeChartValues, Store, StoreAddressSerializer, StoreDepartments, StoreDetail, StoreDetails, StoreListingResponse, StoreManagerSerializer, StoreTiming, StoreV3, StrategyWiseListingSchemaV3, ThirdLevelChild, Time, UserDetail, Weight };
+    export { ApplicationItemMOQ, ApplicationItemSEO, ApplicationStoreListing, AppStore, ArticleAssignmentV3, AttributeDetail, AttributeMetadata, AutocompleteItem, AutoCompleteResponse, BrandDetailResponse, BrandItem, BrandListingResponse, CategoryBanner, CategoryItems, CategoryListingResponse, CategoryMetaResponse, Child, CollectionDetailResponse, CollectionListingFilter, CollectionListingFilterTag, CollectionListingFilterType, CollectionQuery, ColumnHeader, ColumnHeaders, CompanyDetail, CompanyStore, CustomMetaFields, Department, DepartmentCategoryTree, DepartmentIdentifier, DepartmentResponse, DetailsSchemaV3, Dimension, DiscountMeta, ErrorResponse, FollowerCountResponse, FollowIdsData, FollowIdsResponse, FollowPostResponse, GetCollectionDetailNest, GetCollectionListingResponse, GetFollowListingResponse, HomeListingResponse, ImageUrls, LatLong, MarketPlaceSttributesSchemaV3, Media, Meta, NetQuantity, Page, Price, ProductBrand, ProductBundle, ProductCategoryMap, ProductCompareResponse, ProductDetail, ProductDetailAttribute, ProductDetailCustomOrder, ProductDetailGroupedAttribute, ProductDetails, ProductFilters, ProductFiltersKey, ProductFiltersValue, ProductFrequentlyComparedSimilarResponse, ProductGroupingModel, ProductGroupPrice, ProductInGroup, ProductListingAction, ProductListingActionPage, ProductListingDetail, ProductListingPrice, ProductListingResponse, ProductsComparisonResponse, ProductSetDistributionSizeV3, ProductSetDistributionV3, ProductSetV3, ProductSize, ProductSizePriceResponseV3, ProductSizes, ProductSizeSellerFilterSchemaV3, ProductSizeSellersResponseV3, ProductSizesPrice, ProductSizeStores, ProductSortOn, ProductStockPolling, ProductStockPrice, ProductStockPriceV3, ProductStockStatusItem, ProductStockStatusResponse, ProductStockUnitPriceV3, ProductVariantItemResponse, ProductVariantListingResponse, ProductVariantResponse, ProductVariantsResponse, PromiseSchema, ReturnConfigSchemaV3, SecondLevelChild, Seller, SellerGroupAttributes, SellerPhoneNumber, SellerV3, Size, SizeChart, SizeChartValues, Store, StoreAddressSerializer, StoreDepartments, StoreDetail, StoreDetails, StoreListingResponse, StoreManagerSerializer, StoreTiming, StoreV3, StrategyWiseListingSchemaV3, ThirdLevelChild, Time, UserDetail, Weight };
 }
 /** @returns {ApplicationItemMOQ} */
 declare function ApplicationItemMOQ(): ApplicationItemMOQ;
@@ -1242,6 +1272,28 @@ type Dimension = {
      */
     width: number;
 };
+/** @returns {DiscountMeta} */
+declare function DiscountMeta(): DiscountMeta;
+type DiscountMeta = {
+    /**
+     * - The end time of the live discount.
+     */
+    end?: string;
+    /**
+     * - The start time of the live discount.
+     */
+    start?: string;
+    /**
+     * - The time in minutes before the
+     * discount ends when the countdown timer should start.
+     */
+    start_timer_in_minutes?: number;
+    /**
+     * - Determines whether the discount countdown is
+     * visible or not.
+     */
+    timer: boolean;
+};
 /** @returns {ErrorResponse} */
 declare function ErrorResponse(): ErrorResponse;
 type ErrorResponse = {
@@ -1374,9 +1426,23 @@ type Page = {
 /** @returns {Price} */
 declare function Price(): Price;
 type Price = {
+    /**
+     * - The currency code for the currency in
+     * which the product is available.
+     */
     currency_code?: string;
+    /**
+     * - The currency symbol for the currency
+     * in which the product is available.
+     */
     currency_symbol?: string;
+    /**
+     * - The maximum price for the product across stores.
+     */
     max?: number;
+    /**
+     * - The minimum price for the product across stores.
+     */
     min?: number;
 };
 /** @returns {ProductBrand} */
@@ -1618,7 +1684,7 @@ type ProductGroupingModel = {
     /**
      * - The URL for the logo of the product grouping.
      */
-    logo?: any;
+    logo?: string;
     /**
      * - A dictionary containing metadata information.
      */
@@ -1844,7 +1910,9 @@ declare function ProductSizePriceResponseV3(): ProductSizePriceResponseV3;
 type ProductSizePriceResponseV3 = {
     article_assignment?: ArticleAssignmentV3;
     article_id?: string;
+    delivery_promise?: PromiseSchema;
     discount?: string;
+    discount_meta?: DiscountMeta;
     grouped_attributes?: SellerGroupAttributes[];
     is_cod?: boolean;
     is_gift?: boolean;
@@ -1868,8 +1936,9 @@ type ProductSizePriceResponseV3 = {
 declare function ProductSizes(): ProductSizes;
 type ProductSizes = {
     discount?: string;
+    discount_meta?: DiscountMeta;
     multi_size?: boolean;
-    price?: ProductListingPrice;
+    price?: ProductSizesPrice;
     sellable?: boolean;
     size_chart?: SizeChart;
     sizes?: ProductSize[];
@@ -1888,6 +1957,13 @@ type ProductSizeSellersResponseV3 = {
     items?: ProductSizePriceResponseV3[];
     page: Page;
     sort_on?: ProductSizeSellerFilterSchemaV3[];
+};
+/** @returns {ProductSizesPrice} */
+declare function ProductSizesPrice(): ProductSizesPrice;
+type ProductSizesPrice = {
+    effective?: Price;
+    marked?: Price;
+    selling?: Price;
 };
 /** @returns {ProductSizeStores} */
 declare function ProductSizeStores(): ProductSizeStores;
@@ -1919,9 +1995,29 @@ type ProductStockPrice = {
 /** @returns {ProductStockPriceV3} */
 declare function ProductStockPriceV3(): ProductStockPriceV3;
 type ProductStockPriceV3 = {
-    currency?: string;
+    /**
+     * - The currency code for which the product
+     * is available
+     */
+    currency_code?: string;
+    /**
+     * - The currency symbol for the currency
+     * in which the product is available.
+     */
+    currency_symbol?: string;
+    /**
+     * - The effective or final price for the product
+     * at the given pincode.
+     */
     effective?: number;
+    /**
+     * - The marked price of the product.
+     */
     marked?: number;
+    /**
+     * - The selling price of the product.
+     */
+    selling?: number;
 };
 /** @returns {ProductStockStatusItem} */
 declare function ProductStockStatusItem(): ProductStockStatusItem;
@@ -1984,6 +2080,12 @@ type ProductVariantResponse = {
 declare function ProductVariantsResponse(): ProductVariantsResponse;
 type ProductVariantsResponse = {
     variants?: ProductVariantResponse[];
+};
+/** @returns {PromiseSchema} */
+declare function PromiseSchema(): PromiseSchema;
+type PromiseSchema = {
+    max?: string;
+    min?: string;
 };
 /** @returns {ReturnConfigSchemaV3} */
 declare function ReturnConfigSchemaV3(): ReturnConfigSchemaV3;

@@ -157,7 +157,7 @@ declare class Content {
      *   Success response
      * @name getNavigations
      * @summary: Get the navigation
-     * @description: Use this API to fetch the navigations details which includes the items of the navigation pane. It also shows the links and sub-navigations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getNavigations/).
+     * @description: Use this API to fetch the navigations details which includes the items of the navigation panel. It also shows the links and sub-navigations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getNavigations/).
      */
     getNavigations({ pageNo, pageSize, requestHeaders }?: ContentApplicationValidator.GetNavigationsParam, { responseHeaders }?: object): Promise<ContentApplicationModel.NavigationGetResponse>;
     /**
@@ -165,7 +165,7 @@ declare class Content {
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
      * @returns {Paginator<ContentApplicationModel.NavigationGetResponse>}
      * @summary: Get the navigation
-     * @description: Use this API to fetch the navigations details which includes the items of the navigation pane. It also shows the links and sub-navigations.
+     * @description: Use this API to fetch the navigations details which includes the items of the navigation panel. It also shows the links and sub-navigations.
      */
     getNavigationsPaginator({ pageSize }?: {
         pageSize?: number;

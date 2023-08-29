@@ -17,17 +17,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef Page
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {boolean} [has_previous]
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {number} [size]
- * @property {string} type
- */
-
-/**
  * @typedef QRCodeResp
  * @property {string} [link]
  * @property {string} [svg]
@@ -45,12 +34,6 @@ const Joi = require("joi");
  * @property {boolean} [force_web]
  * @property {RedirectDevice} [ios]
  * @property {WebRedirect} [web]
- */
-
-/**
- * @typedef ShortLinkList
- * @property {ShortLinkRes[]} [items]
- * @property {Page} [page]
  */
 
 /**
@@ -136,19 +119,6 @@ class ShareApplicationModel {
     });
   }
 
-  /** @returns {Page} */
-  static Page() {
-    return Joi.object({
-      current: Joi.number(),
-      has_next: Joi.boolean(),
-      has_previous: Joi.boolean(),
-      item_total: Joi.number(),
-      next_id: Joi.string().allow(""),
-      size: Joi.number(),
-      type: Joi.string().allow("").required(),
-    });
-  }
-
   /** @returns {QRCodeResp} */
   static QRCodeResp() {
     return Joi.object({
@@ -172,14 +142,6 @@ class ShareApplicationModel {
       force_web: Joi.boolean(),
       ios: ShareApplicationModel.RedirectDevice(),
       web: ShareApplicationModel.WebRedirect(),
-    });
-  }
-
-  /** @returns {ShortLinkList} */
-  static ShortLinkList() {
-    return Joi.object({
-      items: Joi.array().items(ShareApplicationModel.ShortLinkRes()),
-      page: ShareApplicationModel.Page(),
     });
   }
 

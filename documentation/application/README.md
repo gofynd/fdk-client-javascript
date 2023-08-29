@@ -3,7 +3,7 @@
 # FDK Application Front API Documentaion
 
 
-* [Cart](CART.md) - Cart APIs 
+* [Cart](CART.md) - Manages Cart, Coupons, Promotions, Checkout 
 * [Catalog](CATALOG.md) - Catalog API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
 * [Common](COMMON.md) - Application configuration apis 
 * [Communication](COMMUNICATION.md) - Manages email, sms, push notifications sent to users 
@@ -17,5 +17,5 @@
 * [PosCart](POSCART.md) - Cart APIs 
 * [Rewards](REWARDS.md) - Earn and redeem reward points 
 * [Share](SHARE.md) - Short link and QR Code 
-* [Theme](THEME.md) - Responsible for themes 
+* [Theme](THEME.md) - Responsible for Storefront 
 * [User](USER.md) - Authentication Service 

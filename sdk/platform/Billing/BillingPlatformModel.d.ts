@@ -63,41 +63,6 @@ export = BillingPlatformModel;
  * @property {string} [start_date]
  */
 /**
- * @typedef DetailedPlan
- * @property {string} [_id]
- * @property {string[]} [addons]
- * @property {number} [amount]
- * @property {DetailedPlanComponents[]} [components]
- * @property {string} [country]
- * @property {string} [created_at]
- * @property {string} [currency]
- * @property {string} [description]
- * @property {boolean} [is_active]
- * @property {boolean} [is_trial_plan]
- * @property {boolean} [is_visible]
- * @property {string} [modified_at]
- * @property {string} [name]
- * @property {string} [plan_group]
- * @property {string} [product_suite_id]
- * @property {PlanRecurring} [recurring]
- * @property {string[]} [tag_lines]
- * @property {string[]} [tags]
- * @property {number} [trial_period]
- * @property {string} [type]
- */
-/**
- * @typedef DetailedPlanComponents
- * @property {Object} [config]
- * @property {string} [description]
- * @property {string} [display_text]
- * @property {boolean} [enabled]
- * @property {string} [group]
- * @property {string} [icon]
- * @property {Object} [links]
- * @property {string} [name]
- * @property {string} [slug]
- */
-/**
  * @typedef EntityChargePrice
  * @property {number} amount - Amount for price. Minimum value 1
  * @property {string} currency_code
@@ -162,44 +127,6 @@ export = BillingPlatformModel;
  * @property {string} [email]
  * @property {string} [name]
  * @property {string} [phone]
- */
-/**
- * @typedef InvoiceDetailsPaymentMethods
- * @property {InvoiceDetailsPaymentMethodsData} [data]
- * @property {number} [id]
- * @property {boolean} [is_default]
- * @property {string} [pg_payment_method_id]
- * @property {string} [type]
- */
-/**
- * @typedef InvoiceDetailsPaymentMethodsData
- * @property {string} [brand]
- * @property {InvoiceDetailsPaymentMethodsDataChecks} [checks]
- * @property {string} [country]
- * @property {number} [exp_month]
- * @property {number} [exp_year]
- * @property {string} [fingerprint]
- * @property {string} [funding]
- * @property {string} [generated_from]
- * @property {string} [last4]
- * @property {InvoiceDetailsPaymentMethodsDataNetworks} [networks]
- * @property {InvoiceDetailsPaymentMethodsDataThreeDSecureUsage} [three_d_secure_usage]
- * @property {string} [wallet]
- */
-/**
- * @typedef InvoiceDetailsPaymentMethodsDataChecks
- * @property {string} [address_line1_check]
- * @property {string} [address_postal_code_check]
- * @property {string} [cvc_check]
- */
-/**
- * @typedef InvoiceDetailsPaymentMethodsDataNetworks
- * @property {string[]} [available]
- * @property {string} [preferred]
- */
-/**
- * @typedef InvoiceDetailsPaymentMethodsDataThreeDSecureUsage
- * @property {boolean} [supported]
  */
 /**
  * @typedef InvoiceDetailsPeriod
@@ -318,6 +245,12 @@ export = BillingPlatformModel;
  * @property {string} [start]
  */
 /**
+ * @typedef Meta
+ * @property {boolean} [is_custom_plan]
+ * @property {boolean} [is_plan_upgrade]
+ * @property {boolean} [subscribe]
+ */
+/**
  * @typedef OneTimeChargeEntity
  * @property {string} [_id]
  * @property {string} [activated_on]
@@ -343,16 +276,6 @@ export = BillingPlatformModel;
  * @property {EntityChargePrice} price
  * @property {string} pricing_type
  * @property {string} [term]
- */
-/**
- * @typedef Page
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {boolean} [has_previous]
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {number} [size]
- * @property {string} type
  */
 /**
  * @typedef Phone
@@ -387,8 +310,21 @@ export = BillingPlatformModel;
  * @property {number} [interval_count]
  */
 /**
+ * @typedef PlanStatusUpdateReq
+ * @property {string} [plan_id]
+ * @property {string} [reason]
+ * @property {string} [seller_status]
+ */
+/**
  * @typedef ResourceNotFound
  * @property {string} [message] - Resource not found with {id}
+ */
+/**
+ * @typedef SubscribePlanRes
+ * @property {string} [current_status]
+ * @property {Meta} [meta]
+ * @property {string} [redirect_url]
+ * @property {string} [transaction_id]
  */
 /**
  * @typedef Subscription
@@ -550,17 +486,17 @@ export = BillingPlatformModel;
  * @property {string} [start_date]
  */
 /**
- * @typedef UnauthenticatedApplication
- * @property {string} [message] - Failure message.
- */
-/**
- * @typedef UnauthenticatedUser
- * @property {string} [message] - Failure message.
+ * @typedef SunscribePlan
+ * @property {string} [callback_url]
+ * @property {string} [collection_type]
+ * @property {string} [entity_type]
+ * @property {Meta} [meta]
+ * @property {string} [plan_id]
  */
 declare class BillingPlatformModel {
 }
 declare namespace BillingPlatformModel {
-    export { BadRequest, CancelSubscriptionReq, CancelSubscriptionRes, ChargeLineItem, CheckValidityResponse, CreateOneTimeCharge, CreateOneTimeChargeResponse, CreateSubscriptionCharge, CreateSubscriptionResponse, CurrentPeriod, DetailedPlan, DetailedPlanComponents, EntityChargePrice, EntityChargeRecurring, EntitySubscription, InternalServerError, Invoice, InvoiceDetails, InvoiceDetailsClient, InvoiceDetailsPaymentMethods, InvoiceDetailsPaymentMethodsData, InvoiceDetailsPaymentMethodsDataChecks, InvoiceDetailsPaymentMethodsDataNetworks, InvoiceDetailsPaymentMethodsDataThreeDSecureUsage, InvoiceDetailsPeriod, InvoiceDetailsStatusTrail, InvoiceItems, InvoiceItemsPeriod, InvoiceItemsPlan, InvoiceItemsPlanRecurring, InvoicePaymentMethod, Invoices, InvoicesData, InvoicesDataClient, InvoicesDataPaymentMethod, InvoicesDataPeriod, OneTimeChargeEntity, OneTimeChargeItem, Page, Phone, Plan, PlanRecurring, ResourceNotFound, Subscription, SubscriptionActivateReq, SubscriptionActivateRes, SubscriptionBillingAddress, SubscriptionCharge, SubscriptionCurrentPeriod, SubscriptionCustomer, SubscriptionCustomerCreate, SubscriptionInvoiceSettings, SubscriptionLimit, SubscriptionLimitApplication, SubscriptionLimitExtensions, SubscriptionLimitIntegrations, SubscriptionLimitMarketplace, SubscriptionLimitOtherPlatform, SubscriptionLimitProducts, SubscriptionLimitTeam, SubscriptionPauseCollection, SubscriptionStatus, SubscriptionTrial, SubscriptionTrialPeriod, UnauthenticatedApplication, UnauthenticatedUser };
+    export { BadRequest, CancelSubscriptionReq, CancelSubscriptionRes, ChargeLineItem, CheckValidityResponse, CreateOneTimeCharge, CreateOneTimeChargeResponse, CreateSubscriptionCharge, CreateSubscriptionResponse, CurrentPeriod, EntityChargePrice, EntityChargeRecurring, EntitySubscription, InternalServerError, Invoice, InvoiceDetails, InvoiceDetailsClient, InvoiceDetailsPeriod, InvoiceDetailsStatusTrail, InvoiceItems, InvoiceItemsPeriod, InvoiceItemsPlan, InvoiceItemsPlanRecurring, InvoicePaymentMethod, Invoices, InvoicesData, InvoicesDataClient, InvoicesDataPaymentMethod, InvoicesDataPeriod, Meta, OneTimeChargeEntity, OneTimeChargeItem, Phone, Plan, PlanRecurring, PlanStatusUpdateReq, ResourceNotFound, SubscribePlanRes, Subscription, SubscriptionActivateReq, SubscriptionActivateRes, SubscriptionBillingAddress, SubscriptionCharge, SubscriptionCurrentPeriod, SubscriptionCustomer, SubscriptionCustomerCreate, SubscriptionInvoiceSettings, SubscriptionLimit, SubscriptionLimitApplication, SubscriptionLimitExtensions, SubscriptionLimitIntegrations, SubscriptionLimitMarketplace, SubscriptionLimitOtherPlatform, SubscriptionLimitProducts, SubscriptionLimitTeam, SubscriptionPauseCollection, SubscriptionStatus, SubscriptionTrial, SubscriptionTrialPeriod, SunscribePlan };
 }
 /** @returns {BadRequest} */
 declare function BadRequest(): BadRequest;
@@ -637,43 +573,6 @@ declare function CurrentPeriod(): CurrentPeriod;
 type CurrentPeriod = {
     end_date?: string;
     start_date?: string;
-};
-/** @returns {DetailedPlan} */
-declare function DetailedPlan(): DetailedPlan;
-type DetailedPlan = {
-    _id?: string;
-    addons?: string[];
-    amount?: number;
-    components?: DetailedPlanComponents[];
-    country?: string;
-    created_at?: string;
-    currency?: string;
-    description?: string;
-    is_active?: boolean;
-    is_trial_plan?: boolean;
-    is_visible?: boolean;
-    modified_at?: string;
-    name?: string;
-    plan_group?: string;
-    product_suite_id?: string;
-    recurring?: PlanRecurring;
-    tag_lines?: string[];
-    tags?: string[];
-    trial_period?: number;
-    type?: string;
-};
-/** @returns {DetailedPlanComponents} */
-declare function DetailedPlanComponents(): DetailedPlanComponents;
-type DetailedPlanComponents = {
-    config?: any;
-    description?: string;
-    display_text?: string;
-    enabled?: boolean;
-    group?: string;
-    icon?: string;
-    links?: any;
-    name?: string;
-    slug?: string;
 };
 /** @returns {EntityChargePrice} */
 declare function EntityChargePrice(): EntityChargePrice;
@@ -756,49 +655,6 @@ type InvoiceDetailsClient = {
     email?: string;
     name?: string;
     phone?: string;
-};
-/** @returns {InvoiceDetailsPaymentMethods} */
-declare function InvoiceDetailsPaymentMethods(): InvoiceDetailsPaymentMethods;
-type InvoiceDetailsPaymentMethods = {
-    data?: InvoiceDetailsPaymentMethodsData;
-    id?: number;
-    is_default?: boolean;
-    pg_payment_method_id?: string;
-    type?: string;
-};
-/** @returns {InvoiceDetailsPaymentMethodsData} */
-declare function InvoiceDetailsPaymentMethodsData(): InvoiceDetailsPaymentMethodsData;
-type InvoiceDetailsPaymentMethodsData = {
-    brand?: string;
-    checks?: InvoiceDetailsPaymentMethodsDataChecks;
-    country?: string;
-    exp_month?: number;
-    exp_year?: number;
-    fingerprint?: string;
-    funding?: string;
-    generated_from?: string;
-    last4?: string;
-    networks?: InvoiceDetailsPaymentMethodsDataNetworks;
-    three_d_secure_usage?: InvoiceDetailsPaymentMethodsDataThreeDSecureUsage;
-    wallet?: string;
-};
-/** @returns {InvoiceDetailsPaymentMethodsDataChecks} */
-declare function InvoiceDetailsPaymentMethodsDataChecks(): InvoiceDetailsPaymentMethodsDataChecks;
-type InvoiceDetailsPaymentMethodsDataChecks = {
-    address_line1_check?: string;
-    address_postal_code_check?: string;
-    cvc_check?: string;
-};
-/** @returns {InvoiceDetailsPaymentMethodsDataNetworks} */
-declare function InvoiceDetailsPaymentMethodsDataNetworks(): InvoiceDetailsPaymentMethodsDataNetworks;
-type InvoiceDetailsPaymentMethodsDataNetworks = {
-    available?: string[];
-    preferred?: string;
-};
-/** @returns {InvoiceDetailsPaymentMethodsDataThreeDSecureUsage} */
-declare function InvoiceDetailsPaymentMethodsDataThreeDSecureUsage(): InvoiceDetailsPaymentMethodsDataThreeDSecureUsage;
-type InvoiceDetailsPaymentMethodsDataThreeDSecureUsage = {
-    supported?: boolean;
 };
 /** @returns {InvoiceDetailsPeriod} */
 declare function InvoiceDetailsPeriod(): InvoiceDetailsPeriod;
@@ -928,6 +784,13 @@ type InvoicesDataPeriod = {
     end?: string;
     start?: string;
 };
+/** @returns {Meta} */
+declare function Meta(): Meta;
+type Meta = {
+    is_custom_plan?: boolean;
+    is_plan_upgrade?: boolean;
+    subscribe?: boolean;
+};
 /** @returns {OneTimeChargeEntity} */
 declare function OneTimeChargeEntity(): OneTimeChargeEntity;
 type OneTimeChargeEntity = {
@@ -956,17 +819,6 @@ type OneTimeChargeItem = {
     price: EntityChargePrice;
     pricing_type: string;
     term?: string;
-};
-/** @returns {Page} */
-declare function Page(): Page;
-type Page = {
-    current?: number;
-    has_next?: boolean;
-    has_previous?: boolean;
-    item_total?: number;
-    next_id?: string;
-    size?: number;
-    type: string;
 };
 /** @returns {Phone} */
 declare function Phone(): Phone;
@@ -1003,6 +855,13 @@ type PlanRecurring = {
     interval?: string;
     interval_count?: number;
 };
+/** @returns {PlanStatusUpdateReq} */
+declare function PlanStatusUpdateReq(): PlanStatusUpdateReq;
+type PlanStatusUpdateReq = {
+    plan_id?: string;
+    reason?: string;
+    seller_status?: string;
+};
 /** @returns {ResourceNotFound} */
 declare function ResourceNotFound(): ResourceNotFound;
 type ResourceNotFound = {
@@ -1010,6 +869,14 @@ type ResourceNotFound = {
      * - Resource not found with {id}
      */
     message?: string;
+};
+/** @returns {SubscribePlanRes} */
+declare function SubscribePlanRes(): SubscribePlanRes;
+type SubscribePlanRes = {
+    current_status?: string;
+    meta?: Meta;
+    redirect_url?: string;
+    transaction_id?: string;
 };
 /** @returns {Subscription} */
 declare function Subscription(): Subscription;
@@ -1194,19 +1061,12 @@ type SubscriptionTrialPeriod = {
     end_date?: string;
     start_date?: string;
 };
-/** @returns {UnauthenticatedApplication} */
-declare function UnauthenticatedApplication(): UnauthenticatedApplication;
-type UnauthenticatedApplication = {
-    /**
-     * - Failure message.
-     */
-    message?: string;
-};
-/** @returns {UnauthenticatedUser} */
-declare function UnauthenticatedUser(): UnauthenticatedUser;
-type UnauthenticatedUser = {
-    /**
-     * - Failure message.
-     */
-    message?: string;
+/** @returns {SunscribePlan} */
+declare function SunscribePlan(): SunscribePlan;
+type SunscribePlan = {
+    callback_url?: string;
+    collection_type?: string;
+    entity_type?: string;
+    meta?: Meta;
+    plan_id?: string;
 };

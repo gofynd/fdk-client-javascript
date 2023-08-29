@@ -13,10 +13,87 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.AddToThemeLibraryParam} arg - Arg object
+   * @param {ThemePlatformApplicationValidator.AddThemeToApplicationParam} arg
+   *   - Arg object
+   *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
+   * @name addThemeToApplication
+   * @summary: Add a theme to an application
+   * @description: Add a theme to an application by providing the marketplace theme ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/addThemeToApplication/).
+   */
+  async addThemeToApplication(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ThemePlatformApplicationValidator.addThemeToApplication().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.addThemeToApplication().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Theme > addThemeToApplication \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/theme/v2.0/company/${this.config.companyId}/application/${this.applicationId}/`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ThemePlatformModel.ThemesSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Theme > addThemeToApplication \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ThemePlatformApplicationValidator.AddToThemeLibraryParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ThemePlatformModel.DummyResponse>} - Success response
    * @name addToThemeLibrary
    * @summary: Add a theme to the theme library
    * @description: Theme library is a personalized collection of themes that are chosen and added from the available themes. Use this API to choose a theme and add it to the theme library. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/addToThemeLibrary/).
@@ -72,7 +149,7 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemePlatformModel.ThemesSchema().validate(responseData, {
+    } = ThemePlatformModel.DummyResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -93,16 +170,16 @@ class Theme {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
    * @name applyTheme
-   * @summary: Apply a theme
-   * @description: Use this API to apply a theme to the website. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/applyTheme/).
+   * @summary: Apply theme to a specific application
+   * @description: Apply theme to a specific application by providing company_id, application_id, and theme_id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/applyTheme/).
    */
   async applyTheme(
-    { body, requestHeaders } = { requestHeaders: {} },
+    { themeId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = ThemePlatformApplicationValidator.applyTheme().validate(
       {
-        body,
+        themeId,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -115,7 +192,7 @@ class Theme {
       error: warrning,
     } = ThemePlatformApplicationValidator.applyTheme().validate(
       {
-        body,
+        themeId,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -130,10 +207,10 @@ class Theme {
 
     const response = await PlatformAPIClient.execute(
       this.config,
-      "post",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/apply`,
+      "patch",
+      `/service/platform/theme/v2.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/apply`,
       query_params,
-      body,
+      undefined,
       requestHeaders,
       { responseHeaders }
     );
@@ -164,7 +241,7 @@ class Theme {
    * @param {ThemePlatformApplicationValidator.ArchiveThemeParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
+   * @returns {Promise<ThemePlatformModel.DummyResponse>} - Success response
    * @name archiveTheme
    * @summary: Archive a theme
    * @description: Use this API to store an existing theme but not delete it so that it can be used in future if required.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/archiveTheme/).
@@ -218,7 +295,7 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemePlatformModel.ThemesSchema().validate(responseData, {
+    } = ThemePlatformModel.DummyResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -309,79 +386,6 @@ class Theme {
   }
 
   /**
-   * @param {ThemePlatformApplicationValidator.CreateThemeParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
-   * @name createTheme
-   * @summary: Create a new theme
-   * @description: Themes improve the look and appearance of a website. Use this API to create a theme. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/createTheme/).
-   */
-  async createTheme(
-    { body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = ThemePlatformApplicationValidator.createTheme().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ThemePlatformApplicationValidator.createTheme().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Theme > createTheme \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ThemePlatformModel.ThemesSchema().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Theme > createTheme \n ${res_error}`,
-      });
-    }
-
-    return response;
-  }
-
-  /**
    * @param {ThemePlatformApplicationValidator.DeletePageParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
@@ -463,7 +467,7 @@ class Theme {
    * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
    * @name deleteTheme
    * @summary: Delete a theme
-   * @description: Use this API to delete a theme from the theme library. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/deleteTheme/).
+   * @description: This endpoint is used to delete a theme from the specified company and application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/deleteTheme/).
    */
   async deleteTheme(
     { themeId, requestHeaders } = { requestHeaders: {} },
@@ -500,7 +504,7 @@ class Theme {
     const response = await PlatformAPIClient.execute(
       this.config,
       "delete",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}`,
+      `/service/platform/theme/v2.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}`,
       query_params,
       undefined,
       requestHeaders,
@@ -523,6 +527,81 @@ class Theme {
       Logger({
         level: "WARN",
         message: `Response Validation Warnnings for platform > Theme > deleteTheme \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ThemePlatformApplicationValidator.DuplicateThemeParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
+   * @name duplicateTheme
+   * @summary: Duplicate a Theme
+   * @description: This endpoint duplicates a Theme in the specified application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/duplicateTheme/).
+   */
+  async duplicateTheme(
+    { themeId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ThemePlatformApplicationValidator.duplicateTheme().validate(
+      {
+        themeId,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.duplicateTheme().validate(
+      {
+        themeId,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Theme > duplicateTheme \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/theme/v2.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/duplicate`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ThemePlatformModel.ThemesSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Theme > duplicateTheme \n ${res_error}`,
       });
     }
 
@@ -603,13 +682,154 @@ class Theme {
   }
 
   /**
+   * @param {ThemePlatformApplicationValidator.GetApplicationThemesParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ThemePlatformModel.ThemesSchema[]>} - Success response
+   * @name getApplicationThemes
+   * @summary: Get all the themes for a specific application
+   * @description: Get all the themes for a specific application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getApplicationThemes/).
+   */
+  async getApplicationThemes(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ThemePlatformApplicationValidator.getApplicationThemes().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.getApplicationThemes().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Theme > getApplicationThemes \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/theme/v2.0/company/${this.config.companyId}/application/${this.applicationId}/themes`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = Joi.array()
+      .items(ThemePlatformModel.ThemesSchema())
+      .validate(responseData, { abortEarly: false, allowUnknown: false });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Theme > getApplicationThemes \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ThemePlatformApplicationValidator.GetApplicationThemesCountParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<Object>} - Success response
+   * @name getApplicationThemesCount
+   * @summary: Get the count of themes for a specific application
+   * @description: Get the count of themes for a specific application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getApplicationThemesCount/).
+   */
+  async getApplicationThemesCount(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ThemePlatformApplicationValidator.getApplicationThemesCount().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.getApplicationThemesCount().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Theme > getApplicationThemesCount \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/theme/v2.0/company/${this.config.companyId}/application/${this.applicationId}/application_themes_count`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = Joi.any().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Theme > getApplicationThemesCount \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
    * @param {ThemePlatformApplicationValidator.GetAppliedThemeParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
    * @name getAppliedTheme
-   * @summary: Get the applied theme
-   * @description: Use this API to retrieve the theme that is currently applied to the website along with its details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getAppliedTheme/).
+   * @summary: Get the Applied theme of an Application
+   * @description: Get Applied Theme of an Application by Application Id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getAppliedTheme/).
    */
   async getAppliedTheme(
     { requestHeaders } = { requestHeaders: {} },
@@ -644,7 +864,7 @@ class Theme {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/`,
+      `/service/platform/theme/v2.0/company/${this.config.companyId}/application/${this.applicationId}`,
       query_params,
       undefined,
       requestHeaders,
@@ -821,8 +1041,7 @@ class Theme {
    * @param {ThemePlatformApplicationValidator.GetPublicThemesParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ThemePlatformModel.ThemesListingResponseSchema>} -
-   *   Success response
+   * @returns {Promise<ThemePlatformModel.DummyResponse>} - Success response
    * @name getPublicThemes
    * @summary: Get all public themes
    * @description: Use this API to get a list of free themes that you can apply to your website. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getPublicThemes/).
@@ -882,10 +1101,10 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemePlatformModel.ThemesListingResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = ThemePlatformModel.DummyResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
@@ -903,8 +1122,8 @@ class Theme {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
    * @name getThemeById
-   * @summary: Gets theme by id
-   * @description: Use this API to retrieve the details of a specific theme by using its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getThemeById/).
+   * @summary: Get Theme By Theme Id
+   * @description: Get Theme By Theme Id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getThemeById/).
    */
   async getThemeById(
     { themeId, requestHeaders } = { requestHeaders: {} },
@@ -941,7 +1160,7 @@ class Theme {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}`,
+      `/service/platform/theme/v2.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}`,
       query_params,
       undefined,
       requestHeaders,
@@ -976,8 +1195,8 @@ class Theme {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
    * @name getThemeForPreview
-   * @summary: Get a theme preview
-   * @description: A theme can be previewed before applying it. Use this API to retrieve the theme preview by using its ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getThemeForPreview/).
+   * @summary: Get Theme Preview By Theme Id
+   * @description: Get Theme Preview By Theme Id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getThemeForPreview/).
    */
   async getThemeForPreview(
     { themeId, requestHeaders } = { requestHeaders: {} },
@@ -1016,7 +1235,7 @@ class Theme {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/preview`,
+      `/service/platform/theme/v2.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/preview`,
       query_params,
       undefined,
       requestHeaders,
@@ -1093,7 +1312,7 @@ class Theme {
     const response = await PlatformAPIClient.execute(
       this.config,
       "head",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/polling`,
+      `/service/platform/theme/v2.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/polling`,
       query_params,
       undefined,
       requestHeaders,
@@ -1123,8 +1342,7 @@ class Theme {
    * @param {ThemePlatformApplicationValidator.GetThemeLibraryParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ThemePlatformModel.ThemesListingResponseSchema>} -
-   *   Success response
+   * @returns {Promise<ThemePlatformModel.DummyResponse>} - Success response
    * @name getThemeLibrary
    * @summary: Get a list of themes from the theme library
    * @description: Theme library is a personalized collection of themes that are chosen and added from the available themes. Use this API to fetch a list of themes from the library along with their configuration details.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/getThemeLibrary/).
@@ -1184,10 +1402,10 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemePlatformModel.ThemesListingResponseSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: false }
-    );
+    } = ThemePlatformModel.DummyResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
 
     if (res_error) {
       Logger({
@@ -1203,10 +1421,10 @@ class Theme {
    * @param {ThemePlatformApplicationValidator.IsUpgradableParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ThemePlatformModel.UpgradableThemeSchema>} - Success response
+   * @returns {Promise<ThemePlatformModel.ThemeUpgradableResponse>} - Success response
    * @name isUpgradable
-   * @summary: Checks if theme is upgradable
-   * @description: There's always a possibility that new features get added to a theme. Use this API to check if the applied theme has an upgrade available. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/isUpgradable/).
+   * @summary: Check if the theme is upgradable
+   * @description: This API endpoint checks if the theme is upgradable for a specific company and application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/isUpgradable/).
    */
   async isUpgradable(
     { themeId, requestHeaders } = { requestHeaders: {} },
@@ -1243,7 +1461,7 @@ class Theme {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/upgradable`,
+      `/service/platform/theme/v2.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/upgradable`,
       query_params,
       undefined,
       requestHeaders,
@@ -1257,7 +1475,7 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemePlatformModel.UpgradableThemeSchema().validate(responseData, {
+    } = ThemePlatformModel.ThemeUpgradableResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1276,7 +1494,7 @@ class Theme {
    * @param {ThemePlatformApplicationValidator.PublishThemeParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
+   * @returns {Promise<ThemePlatformModel.DummyResponse>} - Success response
    * @name publishTheme
    * @summary: Publish a theme
    * @description: Use this API to publish a theme that is either newly created or edited. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/publishTheme/).
@@ -1330,7 +1548,7 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemePlatformModel.ThemesSchema().validate(responseData, {
+    } = ThemePlatformModel.DummyResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1349,7 +1567,7 @@ class Theme {
    * @param {ThemePlatformApplicationValidator.UnarchiveThemeParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
+   * @returns {Promise<ThemePlatformModel.DummyResponse>} - Success response
    * @name unarchiveTheme
    * @summary: Unarchive a theme
    * @description: Use this API to restore an archived theme and bring it back for editing or publishing.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/unarchiveTheme/).
@@ -1405,7 +1623,7 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemePlatformModel.ThemesSchema().validate(responseData, {
+    } = ThemePlatformModel.DummyResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1424,7 +1642,7 @@ class Theme {
    * @param {ThemePlatformApplicationValidator.UnpublishThemeParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
+   * @returns {Promise<ThemePlatformModel.DummyResponse>} - Success response
    * @name unpublishTheme
    * @summary: Unpublish a theme
    * @description: Use this API to remove an existing theme from the list of available themes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/unpublishTheme/).
@@ -1480,7 +1698,7 @@ class Theme {
 
     const {
       error: res_error,
-    } = ThemePlatformModel.ThemesSchema().validate(responseData, {
+    } = ThemePlatformModel.DummyResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -1657,8 +1875,8 @@ class Theme {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
    * @name updateTheme
-   * @summary: Update a theme
-   * @description: Use this API to edit an existing theme. You can customize the website font, sections, images, styles, and many more. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/updateTheme/).
+   * @summary: Update theme for a specific company and application
+   * @description: Update theme for a specific company and application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/updateTheme/).
    */
   async updateTheme(
     { themeId, body, requestHeaders } = { requestHeaders: {} },
@@ -1697,7 +1915,7 @@ class Theme {
     const response = await PlatformAPIClient.execute(
       this.config,
       "put",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}`,
+      `/service/platform/theme/v2.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}`,
       query_params,
       body,
       requestHeaders,
@@ -1727,13 +1945,90 @@ class Theme {
   }
 
   /**
+   * @param {ThemePlatformApplicationValidator.UpdateThemeNameParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
+   * @name updateThemeName
+   * @summary: Update Theme Name
+   * @description: Update the name of a theme for a specific company and application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/updateThemeName/).
+   */
+  async updateThemeName(
+    { themeId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ThemePlatformApplicationValidator.updateThemeName().validate(
+      {
+        themeId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ThemePlatformApplicationValidator.updateThemeName().validate(
+      {
+        themeId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Theme > updateThemeName \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "patch",
+      `/service/platform/theme/v2.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/name`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ThemePlatformModel.ThemesSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Theme > updateThemeName \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
    * @param {ThemePlatformApplicationValidator.UpgradeThemeParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ThemePlatformModel.ThemesSchema>} - Success response
    * @name upgradeTheme
-   * @summary: Upgrade a theme
-   * @description: Use this API to upgrade the current theme to its latest version. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/upgradeTheme/).
+   * @summary: Upgrade an application
+   * @description: This endpoint allows you to upgrade an application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/theme/upgradeTheme/).
    */
   async upgradeTheme(
     { themeId, requestHeaders } = { requestHeaders: {} },
@@ -1770,7 +2065,7 @@ class Theme {
     const response = await PlatformAPIClient.execute(
       this.config,
       "put",
-      `/service/platform/theme/v1.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/upgrade`,
+      `/service/platform/theme/v2.0/company/${this.config.companyId}/application/${this.applicationId}/${themeId}/upgrade`,
       query_params,
       undefined,
       requestHeaders,

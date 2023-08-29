@@ -31,7 +31,7 @@ declare class AuditTrail {
      * @summary: Get paginated audit logs
      * @description: Get a paginated set of logs that can be filtered using the available set of parameters and get the relevant group of logs - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/audittrail/getAuditLogs/).
      */
-    getAuditLogs({ qs, requestHeaders }?: AuditTrailPlatformValidator.GetAuditLogsParam, { responseHeaders }?: object): Promise<AuditTrailPlatformModel.LogSchemaResponse>;
+    getAuditLogs({ qs, limit, sort, requestHeaders }?: AuditTrailPlatformValidator.GetAuditLogsParam, { responseHeaders }?: object): Promise<AuditTrailPlatformModel.LogSchemaResponse>;
     /**
      * @param {AuditTrailPlatformValidator.GetEntityTypesParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

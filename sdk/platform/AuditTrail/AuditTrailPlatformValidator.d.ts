@@ -10,6 +10,8 @@ export = AuditTrailPlatformValidator;
 /**
  * @typedef GetAuditLogsParam
  * @property {string} qs - Logs Query
+ * @property {number} [limit] - Current request items count
+ * @property {Object} [sort] - To sort based on _id
  */
 /** @typedef GetEntityTypesParam */
 declare class AuditTrailPlatformValidator {
@@ -39,6 +41,14 @@ type GetAuditLogsParam = {
      * - Logs Query
      */
     qs: string;
+    /**
+     * - Current request items count
+     */
+    limit?: number;
+    /**
+     * - To sort based on _id
+     */
+    sort?: any;
 };
 type GetEntityTypesParam = any;
 import AuditTrailPlatformModel = require("./AuditTrailPlatformModel");

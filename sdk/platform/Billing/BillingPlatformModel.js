@@ -74,43 +74,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef DetailedPlan
- * @property {string} [_id]
- * @property {string[]} [addons]
- * @property {number} [amount]
- * @property {DetailedPlanComponents[]} [components]
- * @property {string} [country]
- * @property {string} [created_at]
- * @property {string} [currency]
- * @property {string} [description]
- * @property {boolean} [is_active]
- * @property {boolean} [is_trial_plan]
- * @property {boolean} [is_visible]
- * @property {string} [modified_at]
- * @property {string} [name]
- * @property {string} [plan_group]
- * @property {string} [product_suite_id]
- * @property {PlanRecurring} [recurring]
- * @property {string[]} [tag_lines]
- * @property {string[]} [tags]
- * @property {number} [trial_period]
- * @property {string} [type]
- */
-
-/**
- * @typedef DetailedPlanComponents
- * @property {Object} [config]
- * @property {string} [description]
- * @property {string} [display_text]
- * @property {boolean} [enabled]
- * @property {string} [group]
- * @property {string} [icon]
- * @property {Object} [links]
- * @property {string} [name]
- * @property {string} [slug]
- */
-
-/**
  * @typedef EntityChargePrice
  * @property {number} amount - Amount for price. Minimum value 1
  * @property {string} currency_code
@@ -181,49 +144,6 @@ const Joi = require("joi");
  * @property {string} [email]
  * @property {string} [name]
  * @property {string} [phone]
- */
-
-/**
- * @typedef InvoiceDetailsPaymentMethods
- * @property {InvoiceDetailsPaymentMethodsData} [data]
- * @property {number} [id]
- * @property {boolean} [is_default]
- * @property {string} [pg_payment_method_id]
- * @property {string} [type]
- */
-
-/**
- * @typedef InvoiceDetailsPaymentMethodsData
- * @property {string} [brand]
- * @property {InvoiceDetailsPaymentMethodsDataChecks} [checks]
- * @property {string} [country]
- * @property {number} [exp_month]
- * @property {number} [exp_year]
- * @property {string} [fingerprint]
- * @property {string} [funding]
- * @property {string} [generated_from]
- * @property {string} [last4]
- * @property {InvoiceDetailsPaymentMethodsDataNetworks} [networks]
- * @property {InvoiceDetailsPaymentMethodsDataThreeDSecureUsage} [three_d_secure_usage]
- * @property {string} [wallet]
- */
-
-/**
- * @typedef InvoiceDetailsPaymentMethodsDataChecks
- * @property {string} [address_line1_check]
- * @property {string} [address_postal_code_check]
- * @property {string} [cvc_check]
- */
-
-/**
- * @typedef InvoiceDetailsPaymentMethodsDataNetworks
- * @property {string[]} [available]
- * @property {string} [preferred]
- */
-
-/**
- * @typedef InvoiceDetailsPaymentMethodsDataThreeDSecureUsage
- * @property {boolean} [supported]
  */
 
 /**
@@ -355,6 +275,13 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef Meta
+ * @property {boolean} [is_custom_plan]
+ * @property {boolean} [is_plan_upgrade]
+ * @property {boolean} [subscribe]
+ */
+
+/**
  * @typedef OneTimeChargeEntity
  * @property {string} [_id]
  * @property {string} [activated_on]
@@ -381,17 +308,6 @@ const Joi = require("joi");
  * @property {EntityChargePrice} price
  * @property {string} pricing_type
  * @property {string} [term]
- */
-
-/**
- * @typedef Page
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {boolean} [has_previous]
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {number} [size]
- * @property {string} type
  */
 
 /**
@@ -430,8 +346,23 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef PlanStatusUpdateReq
+ * @property {string} [plan_id]
+ * @property {string} [reason]
+ * @property {string} [seller_status]
+ */
+
+/**
  * @typedef ResourceNotFound
  * @property {string} [message] - Resource not found with {id}
+ */
+
+/**
+ * @typedef SubscribePlanRes
+ * @property {string} [current_status]
+ * @property {Meta} [meta]
+ * @property {string} [redirect_url]
+ * @property {string} [transaction_id]
  */
 
 /**
@@ -615,13 +546,12 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef UnauthenticatedApplication
- * @property {string} [message] - Failure message.
- */
-
-/**
- * @typedef UnauthenticatedUser
- * @property {string} [message] - Failure message.
+ * @typedef SunscribePlan
+ * @property {string} [callback_url]
+ * @property {string} [collection_type]
+ * @property {string} [entity_type]
+ * @property {Meta} [meta]
+ * @property {string} [plan_id]
  */
 
 class BillingPlatformModel {
@@ -720,49 +650,6 @@ class BillingPlatformModel {
     });
   }
 
-  /** @returns {DetailedPlan} */
-  static DetailedPlan() {
-    return Joi.object({
-      _id: Joi.string().allow(""),
-      addons: Joi.array().items(Joi.string().allow("")),
-      amount: Joi.number(),
-      components: Joi.array().items(
-        BillingPlatformModel.DetailedPlanComponents()
-      ),
-      country: Joi.string().allow(""),
-      created_at: Joi.string().allow(""),
-      currency: Joi.string().allow(""),
-      description: Joi.string().allow(""),
-      is_active: Joi.boolean(),
-      is_trial_plan: Joi.boolean(),
-      is_visible: Joi.boolean(),
-      modified_at: Joi.string().allow(""),
-      name: Joi.string().allow(""),
-      plan_group: Joi.string().allow(""),
-      product_suite_id: Joi.string().allow(""),
-      recurring: BillingPlatformModel.PlanRecurring(),
-      tag_lines: Joi.array().items(Joi.string().allow("")),
-      tags: Joi.array().items(Joi.string().allow("")),
-      trial_period: Joi.number(),
-      type: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {DetailedPlanComponents} */
-  static DetailedPlanComponents() {
-    return Joi.object({
-      config: Joi.any(),
-      description: Joi.string().allow(""),
-      display_text: Joi.string().allow(""),
-      enabled: Joi.boolean(),
-      group: Joi.string().allow(""),
-      icon: Joi.string().allow(""),
-      links: Joi.any(),
-      name: Joi.string().allow(""),
-      slug: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {EntityChargePrice} */
   static EntityChargePrice() {
     return Joi.object({
@@ -849,59 +736,6 @@ class BillingPlatformModel {
       email: Joi.string().allow(""),
       name: Joi.string().allow(""),
       phone: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {InvoiceDetailsPaymentMethods} */
-  static InvoiceDetailsPaymentMethods() {
-    return Joi.object({
-      data: BillingPlatformModel.InvoiceDetailsPaymentMethodsData(),
-      id: Joi.number(),
-      is_default: Joi.boolean(),
-      pg_payment_method_id: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {InvoiceDetailsPaymentMethodsData} */
-  static InvoiceDetailsPaymentMethodsData() {
-    return Joi.object({
-      brand: Joi.string().allow(""),
-      checks: BillingPlatformModel.InvoiceDetailsPaymentMethodsDataChecks(),
-      country: Joi.string().allow(""),
-      exp_month: Joi.number(),
-      exp_year: Joi.number(),
-      fingerprint: Joi.string().allow(""),
-      funding: Joi.string().allow(""),
-      generated_from: Joi.string().allow(""),
-      last4: Joi.string().allow(""),
-      networks: BillingPlatformModel.InvoiceDetailsPaymentMethodsDataNetworks(),
-      three_d_secure_usage: BillingPlatformModel.InvoiceDetailsPaymentMethodsDataThreeDSecureUsage(),
-      wallet: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {InvoiceDetailsPaymentMethodsDataChecks} */
-  static InvoiceDetailsPaymentMethodsDataChecks() {
-    return Joi.object({
-      address_line1_check: Joi.string().allow(""),
-      address_postal_code_check: Joi.string().allow(""),
-      cvc_check: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {InvoiceDetailsPaymentMethodsDataNetworks} */
-  static InvoiceDetailsPaymentMethodsDataNetworks() {
-    return Joi.object({
-      available: Joi.array().items(Joi.string().allow("")),
-      preferred: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {InvoiceDetailsPaymentMethodsDataThreeDSecureUsage} */
-  static InvoiceDetailsPaymentMethodsDataThreeDSecureUsage() {
-    return Joi.object({
-      supported: Joi.boolean(),
     });
   }
 
@@ -1059,6 +893,15 @@ class BillingPlatformModel {
     });
   }
 
+  /** @returns {Meta} */
+  static Meta() {
+    return Joi.object({
+      is_custom_plan: Joi.boolean(),
+      is_plan_upgrade: Joi.boolean(),
+      subscribe: Joi.boolean(),
+    });
+  }
+
   /** @returns {OneTimeChargeEntity} */
   static OneTimeChargeEntity() {
     return Joi.object({
@@ -1089,19 +932,6 @@ class BillingPlatformModel {
       price: BillingPlatformModel.EntityChargePrice().required(),
       pricing_type: Joi.string().allow("").required(),
       term: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {Page} */
-  static Page() {
-    return Joi.object({
-      current: Joi.number(),
-      has_next: Joi.boolean(),
-      has_previous: Joi.boolean(),
-      item_total: Joi.number(),
-      next_id: Joi.string().allow(""),
-      size: Joi.number(),
-      type: Joi.string().allow("").required(),
     });
   }
 
@@ -1146,10 +976,29 @@ class BillingPlatformModel {
     });
   }
 
+  /** @returns {PlanStatusUpdateReq} */
+  static PlanStatusUpdateReq() {
+    return Joi.object({
+      plan_id: Joi.string().allow(""),
+      reason: Joi.string().allow(""),
+      seller_status: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {ResourceNotFound} */
   static ResourceNotFound() {
     return Joi.object({
       message: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SubscribePlanRes} */
+  static SubscribePlanRes() {
+    return Joi.object({
+      current_status: Joi.string().allow(""),
+      meta: BillingPlatformModel.Meta(),
+      redirect_url: Joi.string().allow(""),
+      transaction_id: Joi.string().allow(""),
     });
   }
 
@@ -1377,17 +1226,14 @@ class BillingPlatformModel {
     });
   }
 
-  /** @returns {UnauthenticatedApplication} */
-  static UnauthenticatedApplication() {
+  /** @returns {SunscribePlan} */
+  static SunscribePlan() {
     return Joi.object({
-      message: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {UnauthenticatedUser} */
-  static UnauthenticatedUser() {
-    return Joi.object({
-      message: Joi.string().allow(""),
+      callback_url: Joi.string().allow(""),
+      collection_type: Joi.string().allow(""),
+      entity_type: Joi.string().allow(""),
+      meta: BillingPlatformModel.Meta(),
+      plan_id: Joi.string().allow(""),
     });
   }
 }

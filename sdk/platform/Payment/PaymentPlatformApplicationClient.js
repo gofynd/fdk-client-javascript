@@ -946,6 +946,240 @@ class Payment {
   }
 
   /**
+   * @param {PaymentPlatformApplicationValidator.GetMerchantAggregatorPaymentModeDetailsParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PaymentPlatformModel.MerchnatPaymentModeResponse>} -
+   *   Success response
+   * @name getMerchantAggregatorPaymentModeDetails
+   * @summary: Get Aggregator, payment mode and sub payment mode.
+   * @description: Get Aggregator, payment mode and sub payment mode details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getMerchantAggregatorPaymentModeDetails/).
+   */
+  async getMerchantAggregatorPaymentModeDetails(
+    { aggregatorId, businessUnit, device, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = PaymentPlatformApplicationValidator.getMerchantAggregatorPaymentModeDetails().validate(
+      {
+        aggregatorId,
+        businessUnit,
+        device,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentPlatformApplicationValidator.getMerchantAggregatorPaymentModeDetails().validate(
+      {
+        aggregatorId,
+        businessUnit,
+        device,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Payment > getMerchantAggregatorPaymentModeDetails \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["business_unit"] = businessUnit;
+    query_params["device"] = device;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/options/aggregators/${aggregatorId}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = PaymentPlatformModel.MerchnatPaymentModeResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Payment > getMerchantAggregatorPaymentModeDetails \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {PaymentPlatformApplicationValidator.GetMerchantPaymentOptionParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PaymentPlatformModel.MerchnatPaymentModeResponse>} -
+   *   Success response
+   * @name getMerchantPaymentOption
+   * @summary: Get Payment modes and COD details.
+   * @description: This api fetches all the available PGs for merchant and its offline payment mode details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getMerchantPaymentOption/).
+   */
+  async getMerchantPaymentOption(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = PaymentPlatformApplicationValidator.getMerchantPaymentOption().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentPlatformApplicationValidator.getMerchantPaymentOption().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Payment > getMerchantPaymentOption \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/options/configuration`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = PaymentPlatformModel.MerchnatPaymentModeResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Payment > getMerchantPaymentOption \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {PaymentPlatformApplicationValidator.GetPGConfigAggregatorsParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PaymentPlatformModel.MerchnatPaymentModeResponse>} -
+   *   Success response
+   * @name getPGConfigAggregators
+   * @summary: Get Aggregators available to be added as PG.
+   * @description: Get Aggregators available to be added as PG. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getPGConfigAggregators/).
+   */
+  async getPGConfigAggregators(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = PaymentPlatformApplicationValidator.getPGConfigAggregators().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentPlatformApplicationValidator.getPGConfigAggregators().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Payment > getPGConfigAggregators \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/options/configuration/aggregator`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = PaymentPlatformModel.MerchnatPaymentModeResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Payment > getPGConfigAggregators \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
    * @param {PaymentPlatformApplicationValidator.GetPaymentCodeOptionParam} arg
    *   - Arg object
    *
@@ -1755,6 +1989,164 @@ class Payment {
   }
 
   /**
+   * @param {PaymentPlatformApplicationValidator.PatchMerchantAggregatorPaymentModeDetailsParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PaymentPlatformModel.MerchnatPaymentModeResponse>} -
+   *   Success response
+   * @name patchMerchantAggregatorPaymentModeDetails
+   * @summary: Update Aggregator, payment mode and sub payment mode.
+   * @description: Update Aggregator, payment mode and sub payment mode details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/patchMerchantAggregatorPaymentModeDetails/).
+   */
+  async patchMerchantAggregatorPaymentModeDetails(
+    { aggregatorId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = PaymentPlatformApplicationValidator.patchMerchantAggregatorPaymentModeDetails().validate(
+      {
+        aggregatorId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentPlatformApplicationValidator.patchMerchantAggregatorPaymentModeDetails().validate(
+      {
+        aggregatorId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Payment > patchMerchantAggregatorPaymentModeDetails \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "patch",
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/options/aggregators/${aggregatorId}`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = PaymentPlatformModel.MerchnatPaymentModeResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Payment > patchMerchantAggregatorPaymentModeDetails \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {PaymentPlatformApplicationValidator.PatchMerchantPaymentOptionParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PaymentPlatformModel.MerchnatPaymentModeResponse>} -
+   *   Success response
+   * @name patchMerchantPaymentOption
+   * @summary: Update Payment modes and COD details.
+   * @description: To updated online payment as active/inactive or offline payment configuration like cod charges, anonymous cod allowed flags. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/patchMerchantPaymentOption/).
+   */
+  async patchMerchantPaymentOption(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = PaymentPlatformApplicationValidator.patchMerchantPaymentOption().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentPlatformApplicationValidator.patchMerchantPaymentOption().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Payment > patchMerchantPaymentOption \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "patch",
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/options/configuration`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = PaymentPlatformModel.MerchnatPaymentModeResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Payment > patchMerchantPaymentOption \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
    * @param {PaymentPlatformApplicationValidator.PaymentStatusBulkParam} arg
    *   - Arg object
    *
@@ -2442,6 +2834,170 @@ class Payment {
       Logger({
         level: "WARN",
         message: `Response Validation Warnnings for platform > Payment > updateEdcDevice \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {PaymentPlatformApplicationValidator.UpdatePaymentSessionParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PaymentPlatformModel.PaymentSessionResponseSerializer>}
+   *   - Success response
+   *
+   * @name updatePaymentSession
+   * @summary: API to update status of a payment.
+   * @description: A payment_session is initiated against a global identifier (gid) which is identifies the entity payment is initiated against. e.g. order_id, cart_id. This endpoint is to update the status of the said payment_session. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/updatePaymentSession/).
+   */
+  async updatePaymentSession(
+    { gid, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = PaymentPlatformApplicationValidator.updatePaymentSession().validate(
+      {
+        gid,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentPlatformApplicationValidator.updatePaymentSession().validate(
+      {
+        gid,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Payment > updatePaymentSession \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/session/${gid}`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = PaymentPlatformModel.PaymentSessionResponseSerializer().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Payment > updatePaymentSession \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {PaymentPlatformApplicationValidator.UpdateRefundSessionParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PaymentPlatformModel.RefundSessionResponseSerializer>}
+   *   - Success response
+   *
+   * @name updateRefundSession
+   * @summary: API to update the status of a refund
+   * @description: A refund_session is initiated against a refund request, and this endpoint is to update the status against the refund request_id. A gid is unique indentifier of the entity against which payment was received e.g. an order. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/updateRefundSession/).
+   */
+  async updateRefundSession(
+    { gid, requestId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = PaymentPlatformApplicationValidator.updateRefundSession().validate(
+      {
+        gid,
+        requestId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentPlatformApplicationValidator.updateRefundSession().validate(
+      {
+        gid,
+        requestId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Payment > updateRefundSession \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/${gid}/refund/session/${requestId}`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = PaymentPlatformModel.RefundSessionResponseSerializer().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Payment > updateRefundSession \n ${res_error}`,
       });
     }
 

@@ -33,10 +33,6 @@ export = ConfigurationApplicationModel;
  *   modifications to the sales channel feature configuration
  */
 /**
- * @typedef AppFeatureRequest
- * @property {AppFeature} [feature]
- */
-/**
  * @typedef AppFeatureResponse
  * @property {AppFeature} [feature]
  */
@@ -160,14 +156,6 @@ export = ConfigurationApplicationModel;
  *   for a short time period.
  */
 /**
- * @typedef ApplicationVersionRequest
- * @property {string} [id]
- * @property {string} name
- * @property {string} [namespace]
- * @property {string} [token]
- * @property {string} version
- */
-/**
  * @typedef ApplicationWebsite
  * @property {string} [basepath] - Base path for the current sales channel website
  * @property {boolean} [enabled] - Shows whether sales channel website URL is
@@ -209,17 +197,6 @@ export = ConfigurationApplicationModel;
  * @property {string} [created_at] - ISO 8601 timestamp of token creation
  * @property {Tokens} [tokens]
  * @property {string} [updated_at] - ISO 8601 timestamp of token updation
- */
-/**
- * @typedef AppVersionRequest
- * @property {ApplicationVersionRequest} application
- * @property {Device} device
- * @property {string} [locale]
- * @property {string} [timezone]
- */
-/**
- * @typedef ArticleAssignmentRule
- * @property {StorePriorityRule} [store_priority]
  */
 /**
  * @typedef BlogLink
@@ -359,12 +336,6 @@ export = ConfigurationApplicationModel;
  *   selection is optional.
  */
 /**
- * @typedef Device
- * @property {number} [build]
- * @property {string} [model]
- * @property {OS} os
- */
-/**
  * @typedef Domain
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   of the sales channel domain
@@ -470,36 +441,6 @@ export = ConfigurationApplicationModel;
  * @property {string} [icon] - Hosted URL of social icon image shown on the website
  * @property {string} [link] - Web URL of brand's Instagram page
  * @property {string} [title] - Name of the social media platform, e.g. Instagram
- */
-/**
- * @typedef InvalidPayloadRequest
- * @property {string} [message] - Error message when request body payload is improper
- */
-/**
- * @typedef InventoryArticleAssignment
- * @property {boolean} [post_order_reassignment] - Allow post order reassigment of article
- * @property {ArticleAssignmentRule} [rules]
- */
-/**
- * @typedef InventoryBrandRule
- * @property {number[]} [brands]
- * @property {string} [criteria] - Whether all brands are enabled, or explicitly
- *   few brands in the inventory
- */
-/**
- * @typedef InventoryPaymentConfig
- * @property {string} [mode_of_payment] - Mode of payment for the inventory of
- *   sales channel. It is required and default value is null.
- * @property {string} [source] - Source of the payment mode for the inventory
- *   payment of sales channel. Default value is FYND.
- */
-/**
- * @typedef InventoryStoreRule
- * @property {string} [criteria] - Whether all stores are enabled, or explicitly
- *   few stores in the inventory, or use brands and company filter.
- * @property {StoreCriteriaRule[]} [rules] - List of rules with company and
- *   brands uids. Used when critera is `filter`.
- * @property {number[]} [stores] - List of store uids. Used when critera is `explicit`.
  */
 /**
  * @typedef Ios
@@ -617,16 +558,6 @@ export = ConfigurationApplicationModel;
  * @property {OrderingStoreSelect} ordering_store
  */
 /**
- * @typedef OrderingStoresResponse
- * @property {OrderingStore[]} [items]
- * @property {Page} [page]
- */
-/**
- * @typedef OS
- * @property {string} name
- * @property {string} [version]
- */
-/**
  * @typedef OwnerInfo
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   of owner info
@@ -731,20 +662,9 @@ export = ConfigurationApplicationModel;
  * @property {YoutubeLink} [youtube]
  */
 /**
- * @typedef StoreCriteriaRule
- * @property {number[]} [brands] - List of brand UID
- * @property {number[]} [companies] - List of company UID
- */
-/**
  * @typedef StoreLatLong
  * @property {number[]} [coordinates]
  * @property {string} [type] - Coordinates type of the opted store
- */
-/**
- * @typedef StorePriorityRule
- * @property {boolean} [enabled] - Shows store priority is enabled or not
- *   enabled for the article assignment.
- * @property {string[]} [storetype_order]
  */
 /**
  * @typedef SuccessMessageResponse
@@ -775,11 +695,6 @@ export = ConfigurationApplicationModel;
 /**
  * @typedef UnhandledError
  * @property {string} [message]
- */
-/**
- * @typedef UpdateDialog
- * @property {number} [interval]
- * @property {string} [type]
  */
 /**
  * @typedef UserEmail
@@ -815,7 +730,7 @@ export = ConfigurationApplicationModel;
 declare class ConfigurationApplicationModel {
 }
 declare namespace ConfigurationApplicationModel {
-    export { Android, AppCurrencyResponse, AppFeature, AppFeatureRequest, AppFeatureResponse, Application, ApplicationAboutResponse, ApplicationAuth, ApplicationCors, ApplicationDetail, ApplicationInfo, ApplicationInformation, ApplicationMeta, ApplicationRedirections, ApplicationVersionRequest, ApplicationWebsite, AppStaff, AppStaffListResponse, AppStaffResponse, AppTokenResponse, AppVersionRequest, ArticleAssignmentRule, BlogLink, BusinessHighlights, CartFeature, CommonFeature, CommunicationOptinDialogFeature, CompanyAboutAddress, CompanyInfo, CompareProductsFeature, Credentials, Credit, CurrenciesResponse, Currency, CurrencyFeature, Debit, DefaultCurrency, DeploymentStoreSelectionFeature, Device, Domain, FacebookLink, FeedbackFeature, Firebase, Freshchat, FreshchatCredentials, FyndRewards, FyndRewardsCredentials, GoogleMap, GoogleMapCredentials, GooglePlusLink, Gtm, GtmCredentials, HomePageFeature, InformationAddress, InformationPhone, InformationSupport, InstagramLink, InvalidPayloadRequest, InventoryArticleAssignment, InventoryBrandRule, InventoryPaymentConfig, InventoryStoreRule, Ios, LandingPageFeature, LanguageResponse, LaunchPage, LinkedInLink, Links, ListingPriceFeature, Moengage, MoengageCredentials, NotFound, OptedStoreAddress, OrderFeature, OrderingStore, OrderingStores, OrderingStoreSelect, OrderingStoreSelectRequest, OrderingStoresResponse, OS, OwnerInfo, Page, PcrFeature, PinterestLink, ProductDetailFeature, QrFeature, RegistrationPageFeature, RevenueEngineFeature, RewardPointsConfig, Safetynet, SafetynetCredentials, SecureUrl, Segment, SegmentCredentials, SocialLinks, StoreCriteriaRule, StoreLatLong, StorePriorityRule, SuccessMessageResponse, SupportedLanguage, Tokens, TwitterLink, UnhandledError, UpdateDialog, UserEmail, UserPhoneNumber, VimeoLink, YoutubeLink };
+    export { Android, AppCurrencyResponse, AppFeature, AppFeatureResponse, Application, ApplicationAboutResponse, ApplicationAuth, ApplicationCors, ApplicationDetail, ApplicationInfo, ApplicationInformation, ApplicationMeta, ApplicationRedirections, ApplicationWebsite, AppStaff, AppStaffListResponse, AppStaffResponse, AppTokenResponse, BlogLink, BusinessHighlights, CartFeature, CommonFeature, CommunicationOptinDialogFeature, CompanyAboutAddress, CompanyInfo, CompareProductsFeature, Credentials, Credit, CurrenciesResponse, Currency, CurrencyFeature, Debit, DefaultCurrency, DeploymentStoreSelectionFeature, Domain, FacebookLink, FeedbackFeature, Firebase, Freshchat, FreshchatCredentials, FyndRewards, FyndRewardsCredentials, GoogleMap, GoogleMapCredentials, GooglePlusLink, Gtm, GtmCredentials, HomePageFeature, InformationAddress, InformationPhone, InformationSupport, InstagramLink, Ios, LandingPageFeature, LanguageResponse, LaunchPage, LinkedInLink, Links, ListingPriceFeature, Moengage, MoengageCredentials, NotFound, OptedStoreAddress, OrderFeature, OrderingStore, OrderingStores, OrderingStoreSelect, OrderingStoreSelectRequest, OwnerInfo, Page, PcrFeature, PinterestLink, ProductDetailFeature, QrFeature, RegistrationPageFeature, RevenueEngineFeature, RewardPointsConfig, Safetynet, SafetynetCredentials, SecureUrl, Segment, SegmentCredentials, SocialLinks, StoreLatLong, SuccessMessageResponse, SupportedLanguage, Tokens, TwitterLink, UnhandledError, UserEmail, UserPhoneNumber, VimeoLink, YoutubeLink };
 }
 /** @returns {Android} */
 declare function Android(): Android;
@@ -876,11 +791,6 @@ type AppFeature = {
      * modifications to the sales channel feature configuration
      */
     updated_at?: string;
-};
-/** @returns {AppFeatureRequest} */
-declare function AppFeatureRequest(): AppFeatureRequest;
-type AppFeatureRequest = {
-    feature?: AppFeature;
 };
 /** @returns {AppFeatureResponse} */
 declare function AppFeatureResponse(): AppFeatureResponse;
@@ -1123,15 +1033,6 @@ type ApplicationRedirections = {
      */
     type?: string;
 };
-/** @returns {ApplicationVersionRequest} */
-declare function ApplicationVersionRequest(): ApplicationVersionRequest;
-type ApplicationVersionRequest = {
-    id?: string;
-    name: string;
-    namespace?: string;
-    token?: string;
-    version: string;
-};
 /** @returns {ApplicationWebsite} */
 declare function ApplicationWebsite(): ApplicationWebsite;
 type ApplicationWebsite = {
@@ -1227,19 +1128,6 @@ type AppTokenResponse = {
      * - ISO 8601 timestamp of token updation
      */
     updated_at?: string;
-};
-/** @returns {AppVersionRequest} */
-declare function AppVersionRequest(): AppVersionRequest;
-type AppVersionRequest = {
-    application: ApplicationVersionRequest;
-    device: Device;
-    locale?: string;
-    timezone?: string;
-};
-/** @returns {ArticleAssignmentRule} */
-declare function ArticleAssignmentRule(): ArticleAssignmentRule;
-type ArticleAssignmentRule = {
-    store_priority?: StorePriorityRule;
 };
 /** @returns {BlogLink} */
 declare function BlogLink(): BlogLink;
@@ -1541,13 +1429,6 @@ type DeploymentStoreSelectionFeature = {
      */
     type?: string;
 };
-/** @returns {Device} */
-declare function Device(): Device;
-type Device = {
-    build?: number;
-    model?: string;
-    os: OS;
-};
 /** @returns {Domain} */
 declare function Domain(): Domain;
 type Domain = {
@@ -1771,65 +1652,6 @@ type InstagramLink = {
      * - Name of the social media platform, e.g. Instagram
      */
     title?: string;
-};
-/** @returns {InvalidPayloadRequest} */
-declare function InvalidPayloadRequest(): InvalidPayloadRequest;
-type InvalidPayloadRequest = {
-    /**
-     * - Error message when request body payload is improper
-     */
-    message?: string;
-};
-/** @returns {InventoryArticleAssignment} */
-declare function InventoryArticleAssignment(): InventoryArticleAssignment;
-type InventoryArticleAssignment = {
-    /**
-     * - Allow post order reassigment of article
-     */
-    post_order_reassignment?: boolean;
-    rules?: ArticleAssignmentRule;
-};
-/** @returns {InventoryBrandRule} */
-declare function InventoryBrandRule(): InventoryBrandRule;
-type InventoryBrandRule = {
-    brands?: number[];
-    /**
-     * - Whether all brands are enabled, or explicitly
-     * few brands in the inventory
-     */
-    criteria?: string;
-};
-/** @returns {InventoryPaymentConfig} */
-declare function InventoryPaymentConfig(): InventoryPaymentConfig;
-type InventoryPaymentConfig = {
-    /**
-     * - Mode of payment for the inventory of
-     * sales channel. It is required and default value is null.
-     */
-    mode_of_payment?: string;
-    /**
-     * - Source of the payment mode for the inventory
-     * payment of sales channel. Default value is FYND.
-     */
-    source?: string;
-};
-/** @returns {InventoryStoreRule} */
-declare function InventoryStoreRule(): InventoryStoreRule;
-type InventoryStoreRule = {
-    /**
-     * - Whether all stores are enabled, or explicitly
-     * few stores in the inventory, or use brands and company filter.
-     */
-    criteria?: string;
-    /**
-     * - List of rules with company and
-     * brands uids. Used when critera is `filter`.
-     */
-    rules?: StoreCriteriaRule[];
-    /**
-     * - List of store uids. Used when critera is `explicit`.
-     */
-    stores?: number[];
 };
 /** @returns {Ios} */
 declare function Ios(): Ios;
@@ -2085,18 +1907,6 @@ declare function OrderingStoreSelectRequest(): OrderingStoreSelectRequest;
 type OrderingStoreSelectRequest = {
     ordering_store: OrderingStoreSelect;
 };
-/** @returns {OrderingStoresResponse} */
-declare function OrderingStoresResponse(): OrderingStoresResponse;
-type OrderingStoresResponse = {
-    items?: OrderingStore[];
-    page?: Page;
-};
-/** @returns {OS} */
-declare function OS(): OS;
-type OS = {
-    name: string;
-    version?: string;
-};
 /** @returns {OwnerInfo} */
 declare function OwnerInfo(): OwnerInfo;
 type OwnerInfo = {
@@ -2282,18 +2092,6 @@ type SocialLinks = {
     vimeo?: VimeoLink;
     youtube?: YoutubeLink;
 };
-/** @returns {StoreCriteriaRule} */
-declare function StoreCriteriaRule(): StoreCriteriaRule;
-type StoreCriteriaRule = {
-    /**
-     * - List of brand UID
-     */
-    brands?: number[];
-    /**
-     * - List of company UID
-     */
-    companies?: number[];
-};
 /** @returns {StoreLatLong} */
 declare function StoreLatLong(): StoreLatLong;
 type StoreLatLong = {
@@ -2302,16 +2100,6 @@ type StoreLatLong = {
      * - Coordinates type of the opted store
      */
     type?: string;
-};
-/** @returns {StorePriorityRule} */
-declare function StorePriorityRule(): StorePriorityRule;
-type StorePriorityRule = {
-    /**
-     * - Shows store priority is enabled or not
-     * enabled for the article assignment.
-     */
-    enabled?: boolean;
-    storetype_order?: string[];
 };
 /** @returns {SuccessMessageResponse} */
 declare function SuccessMessageResponse(): SuccessMessageResponse;
@@ -2365,12 +2153,6 @@ type TwitterLink = {
 declare function UnhandledError(): UnhandledError;
 type UnhandledError = {
     message?: string;
-};
-/** @returns {UpdateDialog} */
-declare function UpdateDialog(): UpdateDialog;
-type UpdateDialog = {
-    interval?: number;
-    type?: string;
 };
 /** @returns {UserEmail} */
 declare function UserEmail(): UserEmail;

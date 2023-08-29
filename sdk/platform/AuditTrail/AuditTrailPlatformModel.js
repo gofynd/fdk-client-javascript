@@ -95,11 +95,6 @@ const Joi = require("joi");
  * @property {Object} log_payload
  */
 
-/**
- * @typedef ResourceNotFound
- * @property {string} [message] - Resource not found with {id}
- */
-
 class AuditTrailPlatformModel {
   /** @returns {BadRequest} */
   static BadRequest() {
@@ -221,13 +216,6 @@ class AuditTrailPlatformModel {
     return Joi.object({
       log_meta: AuditTrailPlatformModel.LogMetaObj().required(),
       log_payload: Joi.any().required(),
-    });
-  }
-
-  /** @returns {ResourceNotFound} */
-  static ResourceNotFound() {
-    return Joi.object({
-      message: Joi.string().allow(""),
     });
   }
 }

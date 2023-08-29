@@ -74,6 +74,8 @@ const UserPlatformModel = require("./UserPlatformModel");
 /**
  * @typedef SearchUsersParam
  * @property {string} [q] - The search query. Mobile number or email ID of a customer.
+ * @property {string[]} [query] - The search queries. Mobile numbers or email
+ *   IDs of customers.
  */
 
 /**
@@ -194,6 +196,7 @@ class UserPlatformApplicationValidator {
   static searchUsers() {
     return Joi.object({
       q: Joi.string().allow(""),
+      query: Joi.array().items(Joi.string().allow("")),
     }).required();
   }
 

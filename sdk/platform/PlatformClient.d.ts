@@ -25,9 +25,9 @@ declare class PlatformClient {
     inventory: Inventory;
     lead: Lead;
     order: Order;
-    partner: Partner;
     payment: Payment;
     serviceability: Serviceability;
+    theme: Theme;
     webhook: Webhook;
     /**
      * Creates an instance of PlatformApplicationClient to interact with a
@@ -60,8 +60,8 @@ import Finance = require("./Finance/FinancePlatformClient");
 import Inventory = require("./Inventory/InventoryPlatformClient");
 import Lead = require("./Lead/LeadPlatformClient");
 import Order = require("./Order/OrderPlatformClient");
-import Partner = require("./Partner/PartnerPlatformClient");
 import Payment = require("./Payment/PaymentPlatformClient");
 import Serviceability = require("./Serviceability/ServiceabilityPlatformClient");
+import Theme = require("./Theme/ThemePlatformClient");
 import Webhook = require("./Webhook/WebhookPlatformClient");
 import PlatformApplicationClient = require("./PlatformApplicationClient");

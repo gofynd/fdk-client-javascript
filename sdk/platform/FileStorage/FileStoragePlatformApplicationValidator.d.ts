@@ -10,7 +10,7 @@ export = FileStoragePlatformApplicationValidator;
 /**
  * @typedef AppCopyFilesParam
  * @property {boolean} [sync] - Sync
- * @property {FileStoragePlatformModel.BulkRequest} body
+ * @property {FileStoragePlatformModel.CopyFiles} body
  */
 /**
  * @typedef AppStartUploadParam
@@ -22,8 +22,35 @@ export = FileStoragePlatformApplicationValidator;
  */
 /**
  * @typedef AppbrowseParam
- * @property {string} namespace - Bucket name
- * @property {number} [pageNo] - Page no
+ * @property {string} namespace - Segregation of different types of
+ *   files(products, orders, logistics etc), Required for validating the data of
+ *   the file being uploaded, decides where exactly the file will be stored
+ *   inside the storage bucket.
+ * @property {number} [page] - Page no
+ * @property {number} [limit] - Limit
+ */
+/**
+ * @typedef GetDefaultHtmlTemplateParam
+ * @property {number} pdfTypeId
+ * @property {string} format
+ */
+/**
+ * @typedef GetDefaultPdfDataParam
+ * @property {number} pdfTypeId
+ */
+/**
+ * @typedef GetDefaultPdfTemplateParam
+ * @property {number} pdfTypeId
+ * @property {string} format
+ */
+/** @typedef GetPdfTypesParam */
+/**
+ * @typedef PreviewTemplateParam
+ * @property {FileStoragePlatformModel.pdfRender} body
+ */
+/**
+ * @typedef SaveHtmlTemplateParam
+ * @property {FileStoragePlatformModel.pdfConfig} body
  */
 declare class FileStoragePlatformApplicationValidator {
     /** @returns {AppCompleteUploadParam} */
@@ -34,9 +61,21 @@ declare class FileStoragePlatformApplicationValidator {
     static appStartUpload(): AppStartUploadParam;
     /** @returns {AppbrowseParam} */
     static appbrowse(): AppbrowseParam;
+    /** @returns {GetDefaultHtmlTemplateParam} */
+    static getDefaultHtmlTemplate(): GetDefaultHtmlTemplateParam;
+    /** @returns {GetDefaultPdfDataParam} */
+    static getDefaultPdfData(): GetDefaultPdfDataParam;
+    /** @returns {GetDefaultPdfTemplateParam} */
+    static getDefaultPdfTemplate(): GetDefaultPdfTemplateParam;
+    /** @returns {GetPdfTypesParam} */
+    static getPdfTypes(): any;
+    /** @returns {PreviewTemplateParam} */
+    static previewTemplate(): PreviewTemplateParam;
+    /** @returns {SaveHtmlTemplateParam} */
+    static saveHtmlTemplate(): SaveHtmlTemplateParam;
 }
 declare namespace FileStoragePlatformApplicationValidator {
-    export { AppCompleteUploadParam, AppCopyFilesParam, AppStartUploadParam, AppbrowseParam };
+    export { AppCompleteUploadParam, AppCopyFilesParam, AppStartUploadParam, AppbrowseParam, GetDefaultHtmlTemplateParam, GetDefaultPdfDataParam, GetDefaultPdfTemplateParam, GetPdfTypesParam, PreviewTemplateParam, SaveHtmlTemplateParam };
 }
 type AppCompleteUploadParam = {
     /**
@@ -53,7 +92,7 @@ type AppCopyFilesParam = {
      * - Sync
      */
     sync?: boolean;
-    body: FileStoragePlatformModel.BulkRequest;
+    body: FileStoragePlatformModel.CopyFiles;
 };
 type AppStartUploadParam = {
     /**
@@ -67,12 +106,37 @@ type AppStartUploadParam = {
 };
 type AppbrowseParam = {
     /**
-     * - Bucket name
+     * - Segregation of different types of
+     * files(products, orders, logistics etc), Required for validating the data of
+     * the file being uploaded, decides where exactly the file will be stored
+     * inside the storage bucket.
      */
     namespace: string;
     /**
      * - Page no
      */
-    pageNo?: number;
+    page?: number;
+    /**
+     * - Limit
+     */
+    limit?: number;
 };
+type GetDefaultHtmlTemplateParam = {
+    pdfTypeId: number;
+    format: string;
+};
+type GetDefaultPdfDataParam = {
+    pdfTypeId: number;
+};
+type GetDefaultPdfTemplateParam = {
+    pdfTypeId: number;
+    format: string;
+};
+type PreviewTemplateParam = {
+    body: FileStoragePlatformModel.pdfRender;
+};
+type SaveHtmlTemplateParam = {
+    body: FileStoragePlatformModel.pdfConfig;
+};
+type GetPdfTypesParam = any;
 import FileStoragePlatformModel = require("./FileStoragePlatformModel");

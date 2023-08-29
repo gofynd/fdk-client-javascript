@@ -165,7 +165,7 @@ const Joi = require("joi");
  * @property {string} [billing_address_id]
  * @property {string} [callback_url]
  * @property {CartCheckoutCustomMeta[]} [custom_meta]
- * @property {CustomerDetails} [customer_details] - Customer details
+ * @property {Object} [customer_details] - Customer details
  * @property {Object} [delivery_address]
  * @property {Object} [extra_meta]
  * @property {string} [id]
@@ -189,7 +189,7 @@ const Joi = require("joi");
  * @property {string} [callback_url]
  * @property {string} [cart_id]
  * @property {Object} [custom_meta]
- * @property {CustomerDetails} [customer_details] - Customer details
+ * @property {Object} [customer_details] - Customer details
  * @property {Object} [delivery_address]
  * @property {Object} [extra_meta]
  * @property {string} [id]
@@ -1130,7 +1130,7 @@ class CartApplicationModel {
       custom_meta: Joi.array().items(
         CartApplicationModel.CartCheckoutCustomMeta()
       ),
-      customer_details: CartApplicationModel.CustomerDetails(),
+      customer_details: Joi.any().allow(null),
       delivery_address: Joi.any(),
       extra_meta: Joi.any(),
       id: Joi.string().allow("").allow(null),
@@ -1156,7 +1156,7 @@ class CartApplicationModel {
       callback_url: Joi.string().allow("").allow(null),
       cart_id: Joi.string().allow(""),
       custom_meta: Joi.any(),
-      customer_details: CartApplicationModel.CustomerDetails(),
+      customer_details: Joi.any().allow(null),
       delivery_address: Joi.any(),
       extra_meta: Joi.any(),
       id: Joi.string().allow("").allow(null),

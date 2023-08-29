@@ -147,7 +147,7 @@ export = CartApplicationModel;
  * @property {string} [billing_address_id]
  * @property {string} [callback_url]
  * @property {CartCheckoutCustomMeta[]} [custom_meta]
- * @property {CustomerDetails} [customer_details] - Customer details
+ * @property {Object} [customer_details] - Customer details
  * @property {Object} [delivery_address]
  * @property {Object} [extra_meta]
  * @property {string} [id]
@@ -170,7 +170,7 @@ export = CartApplicationModel;
  * @property {string} [callback_url]
  * @property {string} [cart_id]
  * @property {Object} [custom_meta]
- * @property {CustomerDetails} [customer_details] - Customer details
+ * @property {Object} [customer_details] - Customer details
  * @property {Object} [delivery_address]
  * @property {Object} [extra_meta]
  * @property {string} [id]
@@ -1074,7 +1074,7 @@ type CartCheckoutDetailRequest = {
     /**
      * - Customer details
      */
-    customer_details?: CustomerDetails;
+    customer_details?: any;
     delivery_address?: any;
     extra_meta?: any;
     id?: string;
@@ -1101,7 +1101,7 @@ type CartCheckoutDetailV2Request = {
     /**
      * - Customer details
      */
-    customer_details?: CustomerDetails;
+    customer_details?: any;
     delivery_address?: any;
     extra_meta?: any;
     id?: string;

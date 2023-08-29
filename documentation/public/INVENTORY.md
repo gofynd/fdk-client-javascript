@@ -6,7 +6,7 @@
 ##### [Back to Public docs](./README.md)
 
 ## Inventory Methods
-
+Inventory Swoop API's
 
 * [getApiKey](#getapikey)
 * [getConfigByApiKey](#getconfigbyapikey)

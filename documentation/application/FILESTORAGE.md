@@ -311,37 +311,6 @@ Success. Next, call the `completeUpload` API and pass the response payload of th
 ### Schemas
 
 
-#### [BrowseResponse](#BrowseResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[DbRecord](#DbRecord)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
- 
-
----
-
-#### [BulkRequest](#BulkRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | configuration | [ReqConfiguration](#ReqConfiguration)? |  yes  |  |
- | destination | [Destination](#Destination) |  no  |  |
- | urls | [string] |  no  |  |
- 
-
----
-
-#### [BulkUploadResponse](#BulkUploadResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | task | [CopyFileTask](#CopyFileTask) |  no  |  |
- | tracking_url | string |  no  |  |
- 
-
----
-
 #### [CDN](#CDN)
 
  | Properties | Type | Nullable | Description |
@@ -374,96 +343,11 @@ Success. Next, call the `completeUpload` API and pass the response payload of th
 
 ---
 
-#### [CopyFileTask](#CopyFileTask)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | attempts_made | number |  no  |  |
- | data | [BulkRequest](#BulkRequest) |  no  |  |
- | delay | number |  no  |  |
- | finished_on | number |  no  |  |
- | id | string |  no  |  |
- | name | string |  no  |  |
- | opts | [Opts](#Opts) |  no  |  |
- | processed_on | number |  no  |  |
- | progress | number |  no  |  |
- | stacktrace | [string]? |  yes  |  |
- | timestamp | number |  no  |  |
- 
-
----
-
-#### [DbRecord](#DbRecord)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string |  no  |  |
- | cdn | [CDN](#CDN) |  no  |  |
- | content_type | string |  no  |  |
- | created_on | string |  no  |  |
- | file_name | string |  no  |  |
- | file_path | string |  no  |  |
- | modified_on | string |  no  |  |
- | namespace | string |  no  |  |
- | operation | string? |  yes  |  |
- | success | boolean |  no  |  |
- | tags | [string] |  no  |  |
- | upload | [Upload](#Upload) |  no  |  |
- 
-
----
-
-#### [Destination](#Destination)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | basepath | string? |  yes  |  |
- | namespace | string |  no  |  |
- | rewrite | string |  no  |  |
- 
-
----
-
 #### [FailedResponse](#FailedResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | message | string |  no  |  |
- 
-
----
-
-#### [Opts](#Opts)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | attempts | number? |  yes  |  |
- | delay | number? |  yes  |  |
- | timestamp | number? |  yes  |  |
- 
-
----
-
-#### [Page](#Page)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | current | number? |  yes  |  |
- | has_next | boolean? |  yes  |  |
- | has_previous | boolean? |  yes  |  |
- | item_total | number? |  yes  |  |
- | next_id | string? |  yes  |  |
- | size | number? |  yes  |  |
- | type | number |  no  |  |
- 
-
----
-
-#### [ReqConfiguration](#ReqConfiguration)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | concurrency | number? |  yes  |  |
  
 
 ---

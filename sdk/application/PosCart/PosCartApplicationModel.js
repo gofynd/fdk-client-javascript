@@ -239,7 +239,7 @@ const Joi = require("joi");
  * @property {string} [billing_address_id]
  * @property {string} [callback_url]
  * @property {CartCheckoutCustomMeta[]} [custom_meta]
- * @property {CustomerDetails} [customer_details] - Customer details
+ * @property {Object} [customer_details] - Customer details
  * @property {Object} [delivery_address]
  * @property {Object} [extra_meta]
  * @property {Files[]} [files] - List of file url
@@ -1144,7 +1144,7 @@ class PosCartApplicationModel {
       custom_meta: Joi.array().items(
         PosCartApplicationModel.CartCheckoutCustomMeta()
       ),
-      customer_details: PosCartApplicationModel.CustomerDetails(),
+      customer_details: Joi.any().allow(null),
       delivery_address: Joi.any(),
       extra_meta: Joi.any(),
       files: Joi.array().items(PosCartApplicationModel.Files()),

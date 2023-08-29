@@ -13,7 +13,6 @@ Logistics Configuration API's allows you to configure zone, application logistic
 * [deleteAppDp](#deleteappdp)
 * [getAllStores](#getallstores)
 * [getApplicationServiceability](#getapplicationserviceability)
-* [getApplicationServiceabilitySelfShipment](#getapplicationserviceabilityselfshipment)
 * [getCompanyStoreView](#getcompanystoreview)
 * [getDpAccount](#getdpaccount)
 * [getDpApplicationRules](#getdpapplicationrules)
@@ -23,17 +22,19 @@ Logistics Configuration API's allows you to configure zone, application logistic
 * [getEntityRegionView](#getentityregionview)
 * [getListView](#getlistview)
 * [getOptimalLocations](#getoptimallocations)
+* [getSelfShip](#getselfship)
 * [getStore](#getstore)
 * [getZoneDataView](#getzonedataview)
 * [getZoneFromPincodeView](#getzonefrompincodeview)
 * [getZoneListView](#getzonelistview)
 * [getZonesFromApplicationIdView](#getzonesfromapplicationidview)
-* [patchApplicationServiceabilitySelfShipment](#patchapplicationserviceabilityselfshipment)
+* [updateApplicationServiceability](#updateapplicationserviceability)
 * [updateDpRule](#updatedprule)
 * [updatePincodeAuditHistory](#updatepincodeaudithistory)
 * [updatePincodeBulkView](#updatepincodebulkview)
 * [updatePincodeCoDListing](#updatepincodecodlisting)
 * [updatePincodeMopView](#updatepincodemopview)
+* [updateSelfShip](#updateselfship)
 * [updateZoneControllerView](#updatezonecontrollerview)
 * [upsertDpAccount](#upsertdpaccount)
 * [upsertDpApplicationRules](#upsertdpapplicationrules)
@@ -306,77 +307,15 @@ Response Data
 ```json
 {
   "error": {
-    "type": null,
-    "value": null,
-    "message": null
+    "type": "",
+    "value": "",
+    "message": ""
   },
   "success": true,
   "data": {
     "channel_id": "5d656121a81320c2e6ee2a72",
     "channel_type": "application",
     "serviceability_type": "all"
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getApplicationServiceabilitySelfShipment
-Self-ship configuration of application.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").serviceability.getApplicationServiceabilitySelfShipment();
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").serviceability.getApplicationServiceabilitySelfShipment();
-```
-
-
-
-
-
-
-This API returns Self-ship configuration of the application.
-
-*Returned Response:*
-
-
-
-
-[ApplicationSelfShipConfigResponse](#ApplicationSelfShipConfigResponse)
-
-Response Data
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "data": {
-    "is_active": true,
-    "tat": 3
-  },
-  "success": true,
-  "error": {
-    "type": null,
-    "value": null,
-    "message": null
   }
 }
 ```
@@ -918,6 +857,68 @@ Response status_code
 ---
 
 
+### getSelfShip
+Self-ship configuration of application.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.getSelfShip();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.getSelfShip();
+```
+
+
+
+
+
+
+This API returns Self-ship configuration of the application.
+
+*Returned Response:*
+
+
+
+
+[ApplicationSelfShipConfigResponse](#ApplicationSelfShipConfigResponse)
+
+Response Data
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "data": {
+    "is_active": true,
+    "tat": 3
+  },
+  "success": true,
+  "error": {
+    "type": "",
+    "value": "",
+    "message": ""
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getStore
 GET stores data
 
@@ -1436,17 +1437,17 @@ List of zones for the given application_id
 ---
 
 
-### patchApplicationServiceabilitySelfShipment
-Self-ship configuration of application.
+### updateApplicationServiceability
+Zone configuration of application.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").serviceability.patchApplicationServiceabilitySelfShipment({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.updateApplicationServiceability({  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").serviceability.patchApplicationServiceabilitySelfShipment({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.updateApplicationServiceability({  body : value });
 ```
 
 
@@ -1455,17 +1456,17 @@ const data = await platformClient.application("<APPLICATION_ID>").serviceability
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
-| body | [SelfShipResponse](#SelfShipResponse) | yes | Request body |
+| body | [ServiceabilityPayloadSchema](#ServiceabilityPayloadSchema) | yes | Request body |
 
 
-This API updates Self-ship configuration of the application.
+This API updates serviceability config of the application.
 
 *Returned Response:*
 
 
 
 
-[ApplicationSelfShipConfigResponse](#ApplicationSelfShipConfigResponse)
+[ApplicationServiceabilityConfigResponse](#ApplicationServiceabilityConfigResponse)
 
 Response Data
 
@@ -1477,15 +1478,16 @@ Response Data
 
 ```json
 {
-  "data": {
-    "is_active": true,
-    "tat": 3
+  "error": {
+    "type": "",
+    "value": "",
+    "message": ""
   },
   "success": true,
-  "error": {
-    "type": null,
-    "value": null,
-    "message": null
+  "data": {
+    "channel_id": "5d656121a81320c2e6ee2a72",
+    "channel_type": "application",
+    "serviceability_type": "all"
   }
 }
 ```
@@ -1769,6 +1771,72 @@ Response Data
 
 ```json
 
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateSelfShip
+Self-ship configuration of application.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.updateSelfShip({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.updateSelfShip({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [SelfShipResponse](#SelfShipResponse) | yes | Request body |
+
+
+This API updates Self-ship configuration of the application.
+
+*Returned Response:*
+
+
+
+
+[ApplicationSelfShipConfigResponse](#ApplicationSelfShipConfigResponse)
+
+Response Data
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "data": {
+    "is_active": true,
+    "tat": 3
+  },
+  "success": true,
+  "error": {
+    "type": "",
+    "value": "",
+    "message": ""
+  }
+}
 ```
 </details>
 
@@ -3050,6 +3118,15 @@ Response status_code
  | item_total | number? |  yes  |  |
  | size | number? |  yes  |  |
  | type | string? |  yes  |  |
+ 
+
+---
+
+#### [ServiceabilityPayloadSchema](#ServiceabilityPayloadSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | serviceability_type | string |  no  |  |
  
 
 ---
