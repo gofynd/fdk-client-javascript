@@ -697,6 +697,7 @@ export = CartApplicationModel;
  * @property {number} [fynd_cash]
  * @property {number} [gift_card]
  * @property {number} [gst_charges]
+ * @property {number} [mop_total]
  * @property {number} [mrp_total]
  * @property {number} [subtotal]
  * @property {number} [total]
@@ -1888,6 +1889,7 @@ type RawBreakup = {
     fynd_cash?: number;
     gift_card?: number;
     gst_charges?: number;
+    mop_total?: number;
     mrp_total?: number;
     subtotal?: number;
     total?: number;

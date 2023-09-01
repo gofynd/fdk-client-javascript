@@ -597,7 +597,7 @@ const data = await platformClient.webhook.getSubscriberById({  subscriberId : va
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| subscriberId | number | yes | The ID of the company for which manual retry is to be initiated. |  
+| subscriberId | number | yes | subscriber id |  
 
 
 
@@ -1016,7 +1016,7 @@ const data = await platformClient.webhook.getSubscribersByCompany({  pageNo : va
 | --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | Page Number |    
 | pageSize | number | no | Page Size |    
-| extensionId | number | no | extension_id |  
+| extensionId | string | no | extension_id |  
 
 
 
@@ -1145,7 +1145,7 @@ const data = await platformClient.webhook.getSubscribersByExtensionId({  extensi
 | --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | Page Number |    
 | pageSize | number | no | Page Size |   
-| extensionId | number | yes | The ID of the company for which manual retry is to be initiated. |  
+| extensionId | string | yes | extension id |  
 
 
 

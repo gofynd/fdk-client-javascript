@@ -27,21 +27,19 @@ export = WebhookPlatformValidator;
  */
 /**
  * @typedef GetSubscriberByIdParam
- * @property {number} subscriberId - The ID of the company for which manual
- *   retry is to be initiated.
+ * @property {number} subscriberId - Subscriber id
  */
 /**
  * @typedef GetSubscribersByCompanyParam
  * @property {number} [pageNo] - Page Number
  * @property {number} [pageSize] - Page Size
- * @property {number} [extensionId] - Extension_id
+ * @property {string} [extensionId] - Extension_id
  */
 /**
  * @typedef GetSubscribersByExtensionIdParam
  * @property {number} [pageNo] - Page Number
  * @property {number} [pageSize] - Page Size
- * @property {number} extensionId - The ID of the company for which manual retry
- *   is to be initiated.
+ * @property {string} extensionId - Extension id
  */
 /** @typedef ManualRetryCancelParam */
 /**
@@ -120,8 +118,7 @@ type GetReportFiltersParam = {
 };
 type GetSubscriberByIdParam = {
     /**
-     * - The ID of the company for which manual
-     * retry is to be initiated.
+     * - Subscriber id
      */
     subscriberId: number;
 };
@@ -137,7 +134,7 @@ type GetSubscribersByCompanyParam = {
     /**
      * - Extension_id
      */
-    extensionId?: number;
+    extensionId?: string;
 };
 type GetSubscribersByExtensionIdParam = {
     /**
@@ -149,10 +146,9 @@ type GetSubscribersByExtensionIdParam = {
      */
     pageSize?: number;
     /**
-     * - The ID of the company for which manual retry
-     * is to be initiated.
+     * - Extension id
      */
-    extensionId: number;
+    extensionId: string;
 };
 type ManualRetryOfFailedEventParam = {
     body: WebhookPlatformModel.EventProcessRequest;

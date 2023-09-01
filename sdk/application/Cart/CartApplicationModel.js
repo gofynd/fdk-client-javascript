@@ -775,6 +775,7 @@ const Joi = require("joi");
  * @property {number} [fynd_cash]
  * @property {number} [gift_card]
  * @property {number} [gst_charges]
+ * @property {number} [mop_total]
  * @property {number} [mrp_total]
  * @property {number} [subtotal]
  * @property {number} [total]
@@ -1862,6 +1863,7 @@ class CartApplicationModel {
       fynd_cash: Joi.number(),
       gift_card: Joi.number(),
       gst_charges: Joi.number(),
+      mop_total: Joi.number(),
       mrp_total: Joi.number(),
       subtotal: Joi.number(),
       total: Joi.number(),

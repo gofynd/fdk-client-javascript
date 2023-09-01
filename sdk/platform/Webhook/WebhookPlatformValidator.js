@@ -38,23 +38,21 @@ const WebhookPlatformModel = require("./WebhookPlatformModel");
 
 /**
  * @typedef GetSubscriberByIdParam
- * @property {number} subscriberId - The ID of the company for which manual
- *   retry is to be initiated.
+ * @property {number} subscriberId - Subscriber id
  */
 
 /**
  * @typedef GetSubscribersByCompanyParam
  * @property {number} [pageNo] - Page Number
  * @property {number} [pageSize] - Page Size
- * @property {number} [extensionId] - Extension_id
+ * @property {string} [extensionId] - Extension_id
  */
 
 /**
  * @typedef GetSubscribersByExtensionIdParam
  * @property {number} [pageNo] - Page Number
  * @property {number} [pageSize] - Page Size
- * @property {number} extensionId - The ID of the company for which manual retry
- *   is to be initiated.
+ * @property {string} extensionId - Extension id
  */
 
 /** @typedef ManualRetryCancelParam */
@@ -144,7 +142,7 @@ class WebhookPlatformValidator {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      extensionId: Joi.number(),
+      extensionId: Joi.string().allow(""),
     }).required();
   }
 
@@ -153,7 +151,7 @@ class WebhookPlatformValidator {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      extensionId: Joi.number().required(),
+      extensionId: Joi.string().allow("").required(),
     }).required();
   }
 
