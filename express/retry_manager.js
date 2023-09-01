@@ -20,7 +20,10 @@ class RetryManger {
       nextRetrySeconds = 1000 * 60 * MINUTES_TO_WAIT;
     }
 
-    this.retryTimer = setTimeout(() => this.makeRetry(), nextRetrySeconds);
+    await (new Promise((resolve, reject) => {
+      this.retryTimer = setTimeout(resolve, nextRetrySeconds);
+    }))
+    return await this.makeRetry();
   }
 
   async makeRetry() {
@@ -31,11 +34,16 @@ class RetryManger {
     this.isRetryInProgress = true;
 
     try {
-      await this.fn(...this.args);
+      const data = await this.fn(...this.args);
       this.resetRetryState()
+      return data;
+
     } catch(error) {
-      this.retry();
+      console.error(`API call failed on retry ${this.retryCount}: ${error.message}`)
+      return await this.retry();
+
     } finally {
+
       this.isRetryInProgress = false;
     }
     

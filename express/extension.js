@@ -167,7 +167,7 @@ class Extension {
             if ([BAD_GATEWAY, SERVICE_UNAVAILABLE, TIMEOUT_STATUS].includes(statusCode)) {
 
                 if (!this.retryManager.isRetryInProgress){
-                    this.retryManager.retry();
+                    return await this.retryManager.retry();
                 }
             }
             throw new FdkInvalidExtensionConfig("Invalid api_key or api_secret. Reason:" + err.message);
