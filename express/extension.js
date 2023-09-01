@@ -21,6 +21,7 @@ class Extension {
         this.cluster = "https://api.fynd.com";
         this.webhookRegistry = null;
         this._isInitialized = false;
+        this.retryManager = new RetryManger(this.getExtensionDetails.bind(this));
     }
 
     async initialize(data) {
@@ -164,8 +165,10 @@ class Extension {
             const statusCode = (err.response && err.response.status) || err.code;
             
             if ([BAD_GATEWAY, SERVICE_UNAVAILABLE, TIMEOUT_STATUS].includes(statusCode)) {
-                const retryManager = new RetryManger(this.getExtensionDetails)
-                retryManager.retry();
+
+                if (!this.retryManager.isRetryInProgress){
+                    this.retryManager.retry();
+                }
             }
             throw new FdkInvalidExtensionConfig("Invalid api_key or api_secret. Reason:" + err.message);
         }
