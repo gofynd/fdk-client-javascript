@@ -1,6 +1,6 @@
 const querystring = require("query-string");
 const { fdkAxios } = require("../common/AxiosHelper");
-const { sign } = require("../common/RequestSigner");
+const { sign } = require("@gofynd/fp-signature");
 const { FDKTokenIssueError, FDKOAuthCodeError } = require("../common/FDKError");
 const { Logger } = require("../common/Logger");
 const { convertStringToBase64 } = require("../common/utils");
@@ -86,7 +86,7 @@ class OAuthClient {
       headers: {},
       signQuery: true,
     };
-    signingOptions = sign(signingOptions);
+    signingOptions = sign(signingOptions, "1234567");
     Logger({ level: "INFO", message: "Authorization successful.!" });
 
     return `${this.config.domain}${signingOptions.path}`;

@@ -1,6 +1,6 @@
 {
   "name": "@gofynd/fdk-client-javascript",
-  "version": "v1.3.1-beta.1",
+  "version": "1.3.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -17,7 +17,8 @@
     "crypto-js": "^4.1.1",
     "joi": "^17.7.0",
     "loglevel": "^1.8.1",
-    "query-string": "^7.1.3"
+    "query-string": "^7.1.3",
+    "@gofynd/fp-signature": "^0.0.2-alpha.1"
   },
   "devDependencies": {
     "axios-cookiejar-support": "^4.0.6",

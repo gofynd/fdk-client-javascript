@@ -2,7 +2,7 @@ const combineURLs = require("axios/lib/helpers/combineURLs");
 const isAbsoluteURL = require("axios/lib/helpers/isAbsoluteURL");
 const axios = require("axios");
 const querystring = require("query-string");
-const { sign } = require("./RequestSigner");
+const { sign } = require("@gofynd/fp-signature");
 const { FDKServerResponseError } = require("./FDKError");
 const { log, Logger, getLoggerLevel } = require("./Logger");
 const createCurl = require("./curlHelper");
@@ -73,7 +73,7 @@ function requestInterceptorFn() {
       body: transformedData,
       headers: headersToSign,
     };
-    sign(signingOptions);
+    sign(signingOptions, "1234567");
 
     config.headers["x-fp-date"] = signingOptions.headers["x-fp-date"];
     config.headers["x-fp-signature"] = signingOptions.headers["x-fp-signature"];

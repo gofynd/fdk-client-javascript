@@ -3,7 +3,7 @@ const { FDKTokenIssueError } = require("../common/FDKError");
 const { Logger } = require("../common/Logger");
 const BaseOAuthClient = require("../common/BaseOAuthClient");
 const querystring = require("query-string");
-const { sign } = require("../common/RequestSigner");
+const { sign } = require("@gofynd/fp-signature");
 
 class OAuthClient extends BaseOAuthClient {
   constructor(config) {
@@ -32,7 +32,7 @@ class OAuthClient extends BaseOAuthClient {
       headers: {},
       signQuery: true,
     };
-    signingOptions = sign(signingOptions);
+    signingOptions = sign(signingOptions, "1234567");
     Logger({ type: "DEBUG", message: "Authorization successful" });
 
     return `${this.config.domain}${signingOptions.path}`;
