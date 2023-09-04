@@ -27,6 +27,7 @@ class Extension {
     async initialize(data) {
 
         this._isInitialized = false;
+        this.configData = data;
 
         this.storage = data.storage;
 
@@ -55,20 +56,20 @@ class Extension {
         }
         this.webhookRegistry = new WebhookRegistry();
 
-        let extensionData = await this.getExtensionDetails();
+        await this.getExtensionDetails();
 
         if (data.base_url && !validator.isURL(data.base_url)) {
             throw new FdkInvalidExtensionConfig("Invalid base_url value. Invalid value: " + data.base_url);
         }
         else if (!data.base_url) {
-            data.base_url = extensionData.base_url;
+            data.base_url = this.extensionData.base_url;
         }
         this.base_url = data.base_url;
 
         if (data.scopes) {
-            data.scopes = this.verifyScopes(data.scopes, extensionData);
+            data.scopes = this.verifyScopes(data.scopes, this.extensionData);
         }
-        this.scopes = data.scopes || extensionData.scope;
+        this.scopes = data.scopes || this.extensionData.scope;
 
         logger.debug(`Extension initialized`);
 
@@ -99,9 +100,10 @@ class Extension {
         return this.access_mode === 'online';
     }
 
-    getPlatformConfig(companyId) {
-        if (!this._isInitialized){
-            throw new FdkInvalidExtensionConfig('Extension not initialized due to invalid data')    
+    async getPlatformConfig(companyId) {
+        if (!this._isInitialized && this.retryManager.isRetryInProgress){
+            this.retryManager.resetRetryState();
+            await this.initialize(this.configData);
         }
         let platformConfig = new PlatformConfig({
             companyId: parseInt(companyId),
@@ -115,12 +117,13 @@ class Extension {
     }
 
     async getPlatformClient(companyId, session) {
-        if (!this._isInitialized){
-            throw new FdkInvalidExtensionConfig('Extension not initialized due to invalid data')    
+        if (!this._isInitialized && this.retryManager.isRetryInProgress){
+            this.retryManager.resetRetryState();
+            await this.initialize(this.configData);
         }
         const SessionStorage = require('./session/session_storage');
         
-        let platformConfig = this.getPlatformConfig(companyId);
+        let platformConfig = await this.getPlatformConfig(companyId);
         platformConfig.oauthClient.setToken(session);
         platformConfig.oauthClient.token_expires_at = session.access_token_validity;
         
@@ -160,7 +163,7 @@ class Extension {
             };
             let extensionData = await fdkAxios.request(rawRequest);
             logger.debug(`Extension details received: ${logger.safeStringify(extensionData)}`);
-            return extensionData;
+            this.extensionData = extensionData;
         } catch (err) {
             const statusCode = (err.response && err.response.status) || err.code;
             

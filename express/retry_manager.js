@@ -10,9 +10,10 @@ class RetryManger {
   }
 
   async retry() {
+    this.isRetryInProgress = true;
     this.retryCount++;
 
-    let nextRetrySeconds = 5000; // 5 seconds
+    let nextRetrySeconds = 5*1000; // 5 seconds
 
     if (this.retryCount > 6) {
       const MAX_MINUTES_TO_WAIT = 3;
@@ -31,8 +32,6 @@ class RetryManger {
 
     // TODO: create request hash and compare to identify if request payload is changed or not
 
-    this.isRetryInProgress = true;
-
     try {
       const data = await this.fn(...this.args);
       this.resetRetryState()
@@ -42,16 +41,16 @@ class RetryManger {
       console.error(`API call failed on retry ${this.retryCount}: ${error.message}`)
       return await this.retry();
 
-    } finally {
-
-      this.isRetryInProgress = false;
     }
-    
   }
 
   resetRetryState() {
+    if (this.retryTimer) {
+      clearTimeout(this.retryTimer);
+    }
     this.retryCount = 0;
     this.lastRequestHash = null;
+    this.isRetryInProgress = false;
   }
 }
 

@@ -5,6 +5,7 @@ const { fdkAxios } = require("@gofynd/fdk-client-javascript/sdk/common/AxiosHelp
 const { TEST_WEBHOOK_EVENT_NAME, ASSOCIATION_CRITERIA } = require("./constants");
 const { FdkWebhookProcessError, FdkWebhookHandlerNotFound, FdkWebhookRegistrationError, FdkInvalidHMacError, FdkInvalidWebhookConfig } = require("./error_code");
 const logger = require("./logger");
+const { RetryManger } = require("./retry_manager");
 
 let eventConfig = {}
 class WebhookRegistry {
@@ -12,6 +13,7 @@ class WebhookRegistry {
         this._handlerMap = null;
         this._config = null;
         this._fdkConfig = null;
+        this.retryManager =  new RetryManger(this.getEventConfig.bind(this));
     }
 
     async initialize(config, fdkConfig) {
@@ -36,6 +38,7 @@ class WebhookRegistry {
             handlerConfig[eventName] = handlerData;
         }
 
+        this.retryManager.args = [handlerConfig]
         await this.getEventConfig(handlerConfig);                                             // get event config for required event_map in eventConfig.event_configs
         eventConfig.eventsMap = this._getEventIdMap(eventConfig.event_configs);               // generate eventIdMap from eventConfig.event_configs
         this._validateEventsMap(handlerConfig);                    
@@ -355,6 +358,13 @@ class WebhookRegistry {
             return responseData;            
         }
         catch (err) {
+            const statusCode = (err.response && err.response.status) || err.code;
+            if ([BAD_GATEWAY, SERVICE_UNAVAILABLE, TIMEOUT_STATUS].includes(statusCode)) {
+
+                if (!this.retryManager.isRetryInProgress) {
+                    return await this.retryManager.retry();
+                }
+            }
             throw new FdkInvalidWebhookConfig(`Error while fetching webhook events configuration, Reason: ${err.message}`)
         }
     }
