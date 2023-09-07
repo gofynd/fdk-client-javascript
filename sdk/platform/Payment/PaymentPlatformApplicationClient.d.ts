@@ -133,7 +133,7 @@ declare class Payment {
      * @summary: Get All Brand Payment Gateway Config Secret
      * @description: Get All Brand Payment Gateway Config Secret - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getBrandPaymentGatewayConfig/).
      */
-    getBrandPaymentGatewayConfig({ requestHeaders }?: any, { responseHeaders }?: object): Promise<PaymentPlatformModel.PaymentGatewayConfigResponse>;
+    getBrandPaymentGatewayConfig({ aggregator, configType, requestHeaders }?: PaymentPlatformApplicationValidator.GetBrandPaymentGatewayConfigParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.PaymentGatewayConfigResponse>;
     /**
      * @param {PaymentPlatformApplicationValidator.GetEdcDeviceParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

@@ -6483,7 +6483,7 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | brand_calculated_amount | number |  no  |  |
- | cgst_gst_fee | string? |  yes  |  |
+ | cgst_gst_fee | number? |  yes  |  |
  | cgst_tax_percentage | number? |  yes  |  |
  | gst_fee | number |  no  |  |
  | gst_tag | string? |  yes  |  |
@@ -6491,10 +6491,10 @@ Verify OTP
  | gstin_code | string? |  yes  |  |
  | hsn_code | string? |  yes  |  |
  | hsn_code_id | string? |  yes  |  |
- | igst_gst_fee | string? |  yes  |  |
+ | igst_gst_fee | number? |  yes  |  |
  | igst_tax_percentage | number? |  yes  |  |
  | is_default_hsn_code | boolean? |  yes  |  |
- | sgst_gst_fee | string? |  yes  |  |
+ | sgst_gst_fee | number? |  yes  |  |
  | sgst_tax_percentage | number? |  yes  |  |
  | tax_collected_at_source | number |  no  |  |
  | value_of_good | number |  no  |  |
@@ -6932,7 +6932,7 @@ Verify OTP
  | company_logo | string? |  yes  |  |
  | currency_symbol | string? |  yes  |  |
  | customer_note | string? |  yes  |  |
- | employee_id | number? |  yes  |  |
+ | employee_id | string? |  yes  |  |
  | extra_meta | string? |  yes  |  |
  | files | [string]? |  yes  |  |
  | mongo_cart_id | number? |  yes  |  |

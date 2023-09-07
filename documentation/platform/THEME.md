@@ -43491,17 +43491,6 @@ Successful upgrade
 
 ---
 
-#### [AdvanceSetting](#AdvanceSetting)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | divider_stroke_highlight | [DividerStrokeHighlightSetting](#DividerStrokeHighlightSetting)? |  yes  |  |
- | overlay_popup | [OverlayPopupSetting](#OverlayPopupSetting)? |  yes  |  |
- | user_alerts | [UserAlertsSetting](#UserAlertsSetting)? |  yes  |  |
- 
-
----
-
 #### [AllAvailablePageSchema](#AllAvailablePageSchema)
 
  | Properties | Type | Nullable | Description |
@@ -43518,16 +43507,6 @@ Successful upgrade
  | common_js | [CommonJS](#CommonJS)? |  yes  |  |
  | css | [CSS](#CSS)? |  yes  |  |
  | umd_js | [UMDJs](#UMDJs)? |  yes  |  |
- 
-
----
-
-#### [AuthConfig](#AuthConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | show_footer_auth | boolean? |  yes  | Whether to show footer authentication or not |
- | show_header_auth | boolean? |  yes  | Whether to show header authentication or not |
  
 
 ---
@@ -43666,37 +43645,12 @@ Successful upgrade
 
 ---
 
-#### [ButtonSetting](#ButtonSetting)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | button_link | string? |  yes  | The button link color |
- | button_primary | string? |  yes  | The primary button color |
- | button_secondary | string? |  yes  | The secondary button color |
- 
-
----
-
 #### [CheckboxProp](#CheckboxProp)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | type | string? |  yes  | The type of the property. |
  | value | boolean? |  yes  | The value of the checkbox property. |
- 
-
----
-
-#### [Colors](#Colors)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | accent_color | string? |  yes  | The accent color |
- | bg_color | string? |  yes  | The background color |
- | button_secondary_color | string? |  yes  | The secondary button color |
- | link_color | string? |  yes  | The link color |
- | primary_color | string? |  yes  | The primary color |
- | secondary_color | string? |  yes  | The secondary color |
  
 
 ---
@@ -43793,16 +43747,6 @@ Successful upgrade
 
 ---
 
-#### [DividerStrokeHighlightSetting](#DividerStrokeHighlightSetting)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | divider_strokes | string? |  yes  | The divider strokes color |
- | highlight | string? |  yes  | The highlight color |
- 
-
----
-
 #### [DummyResponse](#DummyResponse)
 
  | Properties | Type | Nullable | Description |
@@ -43882,59 +43826,11 @@ Successful upgrade
 
 ---
 
-#### [FooterSetting](#FooterSetting)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | footer_background | string? |  yes  | The footer background color |
- | footer_body_text | string? |  yes  | The footer body text color |
- | footer_bottom_background | string? |  yes  | The footer bottom background color |
- | footer_heading_text | string? |  yes  | The footer heading text color |
- | footer_icon | string? |  yes  | The footer icon color |
- 
-
----
-
-#### [GeneralSetting](#GeneralSetting)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | button | [ButtonSetting](#ButtonSetting)? |  yes  |  |
- | footer | [FooterSetting](#FooterSetting)? |  yes  |  |
- | header | [HeaderSetting](#HeaderSetting)? |  yes  |  |
- | sale_discount | [SaleDiscountSetting](#SaleDiscountSetting)? |  yes  |  |
- | text | [TextSetting](#TextSetting)? |  yes  |  |
- | theme | [ThemeSetting](#ThemeSetting)? |  yes  |  |
- 
-
----
-
-#### [GlobalConfig](#GlobalConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | custom | [CustomConfig](#CustomConfig)? |  yes  |  |
- | statics | [StaticConfig](#StaticConfig)? |  yes  |  |
- 
-
----
-
 #### [GlobalSchema](#GlobalSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | props | [[Prop](#Prop)]? |  yes  |  |
- 
-
----
-
-#### [HeaderSetting](#HeaderSetting)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | header_background | string? |  yes  | The header background color |
- | header_icon | string? |  yes  | The header icon color |
- | header_nav | string? |  yes  | The header navigation color |
  
 
 ---
@@ -43984,32 +43880,12 @@ Successful upgrade
 
 ---
 
-#### [OverlayPopupSetting](#OverlayPopupSetting)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | dialog_backgroung | string? |  yes  | The dialog background color |
- | overlay | string? |  yes  | The overlay color |
- 
-
----
-
 #### [Page](#Page)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | sections | [[Section](#Section)]? |  yes  |  |
  | value | string? |  yes  | The value of the page. |
- 
-
----
-
-#### [PaletteConfig](#PaletteConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | advance_setting | [AdvanceSetting](#AdvanceSetting)? |  yes  |  |
- | general_setting | [GeneralSetting](#GeneralSetting)? |  yes  |  |
  
 
 ---
@@ -44077,18 +43953,6 @@ Successful upgrade
 
 ---
 
-#### [SaleDiscountSetting](#SaleDiscountSetting)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | sale_badge_background | string? |  yes  | The sale badge background color |
- | sale_badge_text | string? |  yes  | The sale badge text color |
- | sale_discount_text | string? |  yes  | The sale discount text color |
- | sale_timer | string? |  yes  | The sale timer color |
- 
-
----
-
 #### [Screen](#Screen)
 
  | Properties | Type | Nullable | Description |
@@ -44146,44 +44010,12 @@ Successful upgrade
 
 ---
 
-#### [StaticConfig](#StaticConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | props | [StaticProps](#StaticProps)? |  yes  |  |
- 
-
----
-
-#### [StaticProps](#StaticProps)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | auth | [AuthConfig](#AuthConfig)? |  yes  |  |
- | colors | [Colors](#Colors)? |  yes  |  |
- | palette | [PaletteConfig](#PaletteConfig)? |  yes  |  |
- 
-
----
-
 #### [TextProp](#TextProp)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | type | string? |  yes  | The type of the property. |
  | value | string? |  yes  | The value of the text property. |
- 
-
----
-
-#### [TextSetting](#TextSetting)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | text_body | string? |  yes  | The text body color |
- | text_heading | string? |  yes  | The text heading color |
- | text_label | string? |  yes  | The text label color |
- | text_secondary | string? |  yes  | The secondary text color |
  
 
 ---
@@ -44238,16 +44070,6 @@ Successful upgrade
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | marketplace_theme_id | string? |  yes  | The ID of the marketplace theme to apply to the company. |
- 
-
----
-
-#### [ThemeSetting](#ThemeSetting)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | page_background | string? |  yes  | The page background color |
- | theme_accent | string? |  yes  | The theme accent color |
  
 
 ---
@@ -44342,20 +44164,6 @@ Successful upgrade
  | ---------- | ---- | -------- | ----------- |
  | type | string? |  yes  | The type of the property. |
  | value | string? |  yes  | The value of the URL property. |
- 
-
----
-
-#### [UserAlertsSetting](#UserAlertsSetting)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | error_background | string? |  yes  | The error background color |
- | error_text | string? |  yes  | The error text color |
- | info_background | string? |  yes  | The info background color |
- | info_text | string? |  yes  | The info text color |
- | success_background | string? |  yes  | The success background color |
- | success_text | string? |  yes  | The success text color |
  
 
 ---

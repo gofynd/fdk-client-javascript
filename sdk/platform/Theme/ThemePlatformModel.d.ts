@@ -4,12 +4,6 @@ export = ThemePlatformModel;
  * @property {string} [theme_id]
  */
 /**
- * @typedef AdvanceSetting
- * @property {DividerStrokeHighlightSetting} [divider_stroke_highlight]
- * @property {OverlayPopupSetting} [overlay_popup]
- * @property {UserAlertsSetting} [user_alerts]
- */
-/**
  * @typedef AllAvailablePageSchema
  * @property {AvailablePageSchema[]} [pages]
  */
@@ -18,11 +12,6 @@ export = ThemePlatformModel;
  * @property {CommonJS} [common_js]
  * @property {CSS} [css]
  * @property {UMDJs} [umd_js]
- */
-/**
- * @typedef AuthConfig
- * @property {boolean} [show_footer_auth] - Whether to show footer authentication or not
- * @property {boolean} [show_header_auth] - Whether to show header authentication or not
  */
 /**
  * @typedef AvailablePagePredicate
@@ -99,24 +88,9 @@ export = ThemePlatformModel;
  * @property {UrlProp} [slide_link]
  */
 /**
- * @typedef ButtonSetting
- * @property {string} [button_link] - The button link color
- * @property {string} [button_primary] - The primary button color
- * @property {string} [button_secondary] - The secondary button color
- */
-/**
  * @typedef CheckboxProp
  * @property {string} [type] - The type of the property.
  * @property {boolean} [value] - The value of the checkbox property.
- */
-/**
- * @typedef Colors
- * @property {string} [accent_color] - The accent color
- * @property {string} [bg_color] - The background color
- * @property {string} [button_secondary_color] - The secondary button color
- * @property {string} [link_color] - The link color
- * @property {string} [primary_color] - The primary color
- * @property {string} [secondary_color] - The secondary color
  */
 /**
  * @typedef CommonJS
@@ -186,11 +160,6 @@ export = ThemePlatformModel;
  *   price color
  */
 /**
- * @typedef DividerStrokeHighlightSetting
- * @property {string} [divider_strokes] - The divider strokes color
- * @property {string} [highlight] - The highlight color
- */
-/**
  * @typedef DummyResponse
  * @property {string} [message]
  */
@@ -235,36 +204,8 @@ export = ThemePlatformModel;
  * @property {FontVariant} [semi_bold]
  */
 /**
- * @typedef FooterSetting
- * @property {string} [footer_background] - The footer background color
- * @property {string} [footer_body_text] - The footer body text color
- * @property {string} [footer_bottom_background] - The footer bottom background color
- * @property {string} [footer_heading_text] - The footer heading text color
- * @property {string} [footer_icon] - The footer icon color
- */
-/**
- * @typedef GeneralSetting
- * @property {ButtonSetting} [button]
- * @property {FooterSetting} [footer]
- * @property {HeaderSetting} [header]
- * @property {SaleDiscountSetting} [sale_discount]
- * @property {TextSetting} [text]
- * @property {ThemeSetting} [theme]
- */
-/**
- * @typedef GlobalConfig
- * @property {CustomConfig} [custom]
- * @property {StaticConfig} [statics]
- */
-/**
  * @typedef GlobalSchema
  * @property {Prop[]} [props]
- */
-/**
- * @typedef HeaderSetting
- * @property {string} [header_background] - The header background color
- * @property {string} [header_icon] - The header icon color
- * @property {string} [header_nav] - The header navigation color
  */
 /**
  * @typedef ImagePickerProp
@@ -292,11 +233,6 @@ export = ThemePlatformModel;
  * @property {string} [slug] - The slug of the theme
  */
 /**
- * @typedef OverlayPopupSetting
- * @property {string} [dialog_backgroung] - The dialog background color
- * @property {string} [overlay] - The overlay color
- */
-/**
  * @typedef Page
  * @property {number} [current]
  * @property {boolean} [has_next]
@@ -305,11 +241,6 @@ export = ThemePlatformModel;
  * @property {string} [next_id]
  * @property {number} [size]
  * @property {string} type
- */
-/**
- * @typedef PaletteConfig
- * @property {AdvanceSetting} [advance_setting]
- * @property {GeneralSetting} [general_setting]
  */
 /**
  * @typedef Predicate
@@ -345,13 +276,6 @@ export = ThemePlatformModel;
  * @property {string} [selected] - The selected route.
  */
 /**
- * @typedef SaleDiscountSetting
- * @property {string} [sale_badge_background] - The sale badge background color
- * @property {string} [sale_badge_text] - The sale badge text color
- * @property {string} [sale_discount_text] - The sale discount text color
- * @property {string} [sale_timer] - The sale timer color
- */
-/**
  * @typedef Screen
  * @property {boolean} [desktop] - True if the screen is a desktop device.
  * @property {boolean} [mobile] - True if the screen is a mobile device.
@@ -384,26 +308,9 @@ export = ThemePlatformModel;
  * @property {TextProp} [title]
  */
 /**
- * @typedef StaticConfig
- * @property {StaticProps} [props]
- */
-/**
- * @typedef StaticProps
- * @property {AuthConfig} [auth]
- * @property {Colors} [colors]
- * @property {PaletteConfig} [palette]
- */
-/**
  * @typedef TextProp
  * @property {string} [type] - The type of the property.
  * @property {string} [value] - The value of the text property.
- */
-/**
- * @typedef TextSetting
- * @property {string} [text_body] - The text body color
- * @property {string} [text_heading] - The text heading color
- * @property {string} [text_label] - The text label color
- * @property {string} [text_secondary] - The secondary text color
  */
 /**
  * @typedef ThemeConfiguration
@@ -435,11 +342,6 @@ export = ThemePlatformModel;
  * @typedef ThemeReq
  * @property {string} [marketplace_theme_id] - The ID of the marketplace theme
  *   to apply to the company.
- */
-/**
- * @typedef ThemeSetting
- * @property {string} [page_background] - The page background color
- * @property {string} [theme_accent] - The theme accent color
  */
 /**
  * @typedef ThemesSchema
@@ -495,31 +397,15 @@ export = ThemePlatformModel;
  * @property {string} [type] - The type of the property.
  * @property {string} [value] - The value of the URL property.
  */
-/**
- * @typedef UserAlertsSetting
- * @property {string} [error_background] - The error background color
- * @property {string} [error_text] - The error text color
- * @property {string} [info_background] - The info background color
- * @property {string} [info_text] - The info text color
- * @property {string} [success_background] - The success background color
- * @property {string} [success_text] - The success text color
- */
 declare class ThemePlatformModel {
 }
 declare namespace ThemePlatformModel {
-    export { AddThemeRequestSchema, AdvanceSetting, AllAvailablePageSchema, Assets, AuthConfig, AvailablePagePredicate, AvailablePageRoutePredicate, AvailablePageSchema, AvailablePageSchemaSections, AvailablePageScreenPredicate, AvailablePageSectionMetaAttributes, AvailablePageSeo, AvailablePageUserPredicate, BlitzkriegApiErrorSchema, BlitzkriegInternalServerErrorSchema, Block, BlockProps, ButtonSetting, CheckboxProp, Colors, CommonJS, CompanyThemeSchema, Config, CSS, CustomConfig, CustomProps, DividerStrokeHighlightSetting, DummyResponse, Font, FontsSchema, FontsSchemaItems, FontsSchemaItemsFiles, FontVariant, FontVariants, FooterSetting, GeneralSetting, GlobalConfig, GlobalSchema, HeaderSetting, ImagePickerProp, Images, MarketplaceThemeId, Meta, OverlayPopupSetting, Page, PaletteConfig, Predicate, Preset, Prop, RangeProp, Release, Route, SaleDiscountSetting, Screen, Section, SectionItem, SectionPreset, SectionProps, StaticConfig, StaticProps, TextProp, TextSetting, ThemeConfiguration, ThemeImages, ThemeMeta, ThemePayment, ThemeReq, ThemeSetting, ThemesSchema, ThemeUpgradableResponse, ThemeUserSchema, ThemeVersions, UMDJs, UpdateThemeNameRequestBody, UpdateThemeRequestBody, UrlProp, UserAlertsSetting };
+    export { AddThemeRequestSchema, AllAvailablePageSchema, Assets, AvailablePagePredicate, AvailablePageRoutePredicate, AvailablePageSchema, AvailablePageSchemaSections, AvailablePageScreenPredicate, AvailablePageSectionMetaAttributes, AvailablePageSeo, AvailablePageUserPredicate, BlitzkriegApiErrorSchema, BlitzkriegInternalServerErrorSchema, Block, BlockProps, CheckboxProp, CommonJS, CompanyThemeSchema, Config, CSS, CustomConfig, CustomProps, DummyResponse, Font, FontsSchema, FontsSchemaItems, FontsSchemaItemsFiles, FontVariant, FontVariants, GlobalSchema, ImagePickerProp, Images, MarketplaceThemeId, Meta, Page, Predicate, Preset, Prop, RangeProp, Release, Route, Screen, Section, SectionItem, SectionPreset, SectionProps, TextProp, ThemeConfiguration, ThemeImages, ThemeMeta, ThemePayment, ThemeReq, ThemesSchema, ThemeUpgradableResponse, ThemeUserSchema, ThemeVersions, UMDJs, UpdateThemeNameRequestBody, UpdateThemeRequestBody, UrlProp };
 }
 /** @returns {AddThemeRequestSchema} */
 declare function AddThemeRequestSchema(): AddThemeRequestSchema;
 type AddThemeRequestSchema = {
     theme_id?: string;
-};
-/** @returns {AdvanceSetting} */
-declare function AdvanceSetting(): AdvanceSetting;
-type AdvanceSetting = {
-    divider_stroke_highlight?: DividerStrokeHighlightSetting;
-    overlay_popup?: OverlayPopupSetting;
-    user_alerts?: UserAlertsSetting;
 };
 /** @returns {AllAvailablePageSchema} */
 declare function AllAvailablePageSchema(): AllAvailablePageSchema;
@@ -532,18 +418,6 @@ type Assets = {
     common_js?: CommonJS;
     css?: CSS;
     umd_js?: UMDJs;
-};
-/** @returns {AuthConfig} */
-declare function AuthConfig(): AuthConfig;
-type AuthConfig = {
-    /**
-     * - Whether to show footer authentication or not
-     */
-    show_footer_auth?: boolean;
-    /**
-     * - Whether to show header authentication or not
-     */
-    show_header_auth?: boolean;
 };
 /** @returns {AvailablePagePredicate} */
 declare function AvailablePagePredicate(): AvailablePagePredicate;
@@ -637,22 +511,6 @@ type BlockProps = {
     image?: ImagePickerProp;
     slide_link?: UrlProp;
 };
-/** @returns {ButtonSetting} */
-declare function ButtonSetting(): ButtonSetting;
-type ButtonSetting = {
-    /**
-     * - The button link color
-     */
-    button_link?: string;
-    /**
-     * - The primary button color
-     */
-    button_primary?: string;
-    /**
-     * - The secondary button color
-     */
-    button_secondary?: string;
-};
 /** @returns {CheckboxProp} */
 declare function CheckboxProp(): CheckboxProp;
 type CheckboxProp = {
@@ -664,34 +522,6 @@ type CheckboxProp = {
      * - The value of the checkbox property.
      */
     value?: boolean;
-};
-/** @returns {Colors} */
-declare function Colors(): Colors;
-type Colors = {
-    /**
-     * - The accent color
-     */
-    accent_color?: string;
-    /**
-     * - The background color
-     */
-    bg_color?: string;
-    /**
-     * - The secondary button color
-     */
-    button_secondary_color?: string;
-    /**
-     * - The link color
-     */
-    link_color?: string;
-    /**
-     * - The primary color
-     */
-    primary_color?: string;
-    /**
-     * - The secondary color
-     */
-    secondary_color?: string;
 };
 /** @returns {CommonJS} */
 declare function CommonJS(): CommonJS;
@@ -877,18 +707,6 @@ type CustomProps = {
      */
     text_strikethrough_price_color?: string;
 };
-/** @returns {DividerStrokeHighlightSetting} */
-declare function DividerStrokeHighlightSetting(): DividerStrokeHighlightSetting;
-type DividerStrokeHighlightSetting = {
-    /**
-     * - The divider strokes color
-     */
-    divider_strokes?: string;
-    /**
-     * - The highlight color
-     */
-    highlight?: string;
-};
 /** @returns {DummyResponse} */
 declare function DummyResponse(): DummyResponse;
 type DummyResponse = {
@@ -949,66 +767,10 @@ type FontVariants = {
     regular?: FontVariant;
     semi_bold?: FontVariant;
 };
-/** @returns {FooterSetting} */
-declare function FooterSetting(): FooterSetting;
-type FooterSetting = {
-    /**
-     * - The footer background color
-     */
-    footer_background?: string;
-    /**
-     * - The footer body text color
-     */
-    footer_body_text?: string;
-    /**
-     * - The footer bottom background color
-     */
-    footer_bottom_background?: string;
-    /**
-     * - The footer heading text color
-     */
-    footer_heading_text?: string;
-    /**
-     * - The footer icon color
-     */
-    footer_icon?: string;
-};
-/** @returns {GeneralSetting} */
-declare function GeneralSetting(): GeneralSetting;
-type GeneralSetting = {
-    button?: ButtonSetting;
-    footer?: FooterSetting;
-    header?: HeaderSetting;
-    sale_discount?: SaleDiscountSetting;
-    text?: TextSetting;
-    theme?: ThemeSetting;
-};
-/** @returns {GlobalConfig} */
-declare function GlobalConfig(): GlobalConfig;
-type GlobalConfig = {
-    custom?: CustomConfig;
-    statics?: StaticConfig;
-};
 /** @returns {GlobalSchema} */
 declare function GlobalSchema(): GlobalSchema;
 type GlobalSchema = {
     props?: Prop[];
-};
-/** @returns {HeaderSetting} */
-declare function HeaderSetting(): HeaderSetting;
-type HeaderSetting = {
-    /**
-     * - The header background color
-     */
-    header_background?: string;
-    /**
-     * - The header icon color
-     */
-    header_icon?: string;
-    /**
-     * - The header navigation color
-     */
-    header_nav?: string;
 };
 /** @returns {ImagePickerProp} */
 declare function ImagePickerProp(): ImagePickerProp;
@@ -1069,18 +831,6 @@ type Meta = {
      */
     slug?: string;
 };
-/** @returns {OverlayPopupSetting} */
-declare function OverlayPopupSetting(): OverlayPopupSetting;
-type OverlayPopupSetting = {
-    /**
-     * - The dialog background color
-     */
-    dialog_backgroung?: string;
-    /**
-     * - The overlay color
-     */
-    overlay?: string;
-};
 /** @returns {Page} */
 declare function Page(): Page;
 type Page = {
@@ -1091,12 +841,6 @@ type Page = {
     next_id?: string;
     size?: number;
     type: string;
-};
-/** @returns {PaletteConfig} */
-declare function PaletteConfig(): PaletteConfig;
-type PaletteConfig = {
-    advance_setting?: AdvanceSetting;
-    general_setting?: GeneralSetting;
 };
 /** @returns {Predicate} */
 declare function Predicate(): Predicate;
@@ -1170,26 +914,6 @@ type Route = {
      */
     selected?: string;
 };
-/** @returns {SaleDiscountSetting} */
-declare function SaleDiscountSetting(): SaleDiscountSetting;
-type SaleDiscountSetting = {
-    /**
-     * - The sale badge background color
-     */
-    sale_badge_background?: string;
-    /**
-     * - The sale badge text color
-     */
-    sale_badge_text?: string;
-    /**
-     * - The sale discount text color
-     */
-    sale_discount_text?: string;
-    /**
-     * - The sale timer color
-     */
-    sale_timer?: string;
-};
 /** @returns {Screen} */
 declare function Screen(): Screen;
 type Screen = {
@@ -1248,18 +972,6 @@ type SectionProps = {
     slide_interval?: RangeProp;
     title?: TextProp;
 };
-/** @returns {StaticConfig} */
-declare function StaticConfig(): StaticConfig;
-type StaticConfig = {
-    props?: StaticProps;
-};
-/** @returns {StaticProps} */
-declare function StaticProps(): StaticProps;
-type StaticProps = {
-    auth?: AuthConfig;
-    colors?: Colors;
-    palette?: PaletteConfig;
-};
 /** @returns {TextProp} */
 declare function TextProp(): TextProp;
 type TextProp = {
@@ -1271,26 +983,6 @@ type TextProp = {
      * - The value of the text property.
      */
     value?: string;
-};
-/** @returns {TextSetting} */
-declare function TextSetting(): TextSetting;
-type TextSetting = {
-    /**
-     * - The text body color
-     */
-    text_body?: string;
-    /**
-     * - The text heading color
-     */
-    text_heading?: string;
-    /**
-     * - The text label color
-     */
-    text_label?: string;
-    /**
-     * - The secondary text color
-     */
-    text_secondary?: string;
 };
 /** @returns {ThemeConfiguration} */
 declare function ThemeConfiguration(): ThemeConfiguration;
@@ -1357,18 +1049,6 @@ type ThemeReq = {
      * to apply to the company.
      */
     marketplace_theme_id?: string;
-};
-/** @returns {ThemeSetting} */
-declare function ThemeSetting(): ThemeSetting;
-type ThemeSetting = {
-    /**
-     * - The page background color
-     */
-    page_background?: string;
-    /**
-     * - The theme accent color
-     */
-    theme_accent?: string;
 };
 /** @returns {ThemesSchema} */
 declare function ThemesSchema(): ThemesSchema;
@@ -1497,32 +1177,4 @@ type UrlProp = {
      * - The value of the URL property.
      */
     value?: string;
-};
-/** @returns {UserAlertsSetting} */
-declare function UserAlertsSetting(): UserAlertsSetting;
-type UserAlertsSetting = {
-    /**
-     * - The error background color
-     */
-    error_background?: string;
-    /**
-     * - The error text color
-     */
-    error_text?: string;
-    /**
-     * - The info background color
-     */
-    info_background?: string;
-    /**
-     * - The info text color
-     */
-    info_text?: string;
-    /**
-     * - The success background color
-     */
-    success_background?: string;
-    /**
-     * - The success text color
-     */
-    success_text?: string;
 };

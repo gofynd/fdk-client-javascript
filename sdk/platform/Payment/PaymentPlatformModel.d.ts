@@ -45,6 +45,12 @@ export = PaymentPlatformModel;
  * @property {boolean} success - Successful or failure
  */
 /**
+ * @typedef CODChargesLimitsResponse
+ * @property {number} [cod_charge] - Cod charges to be applied on order.
+ * @property {number} [max_cart_value] - Max allowed cart value for cod order.
+ * @property {number} [min_cart_value] - Min allowed cart value for cod order.
+ */
+/**
  * @typedef CODdata
  * @property {boolean} is_active - COD option is active or not
  * @property {number} limit - Total Limit of user
@@ -444,6 +450,7 @@ export = PaymentPlatformModel;
  * @property {string} [card_reference] - Card_reference
  * @property {string} [card_token] - Card_token
  * @property {string} [card_type] - Card_type
+ * @property {number} [cod_charges] - Cod charges to be applied on order.
  * @property {number} [cod_limit] - Cod limit
  * @property {number} [cod_limit_per_order] - Cod limit per order
  * @property {string} [code] - Code
@@ -464,6 +471,7 @@ export = PaymentPlatformModel;
  * @property {string} [merchant_code] - Merchant code
  * @property {string} [name] - Name
  * @property {string} [nickname] - Nickname
+ * @property {Object} [product_cod_data] - Product cod configurations.
  * @property {number} [remaining_limit] - Remaining limit
  * @property {number} [retry_count] - Retry_count
  * @property {number} [timeout] - Timeout
@@ -691,6 +699,11 @@ export = PaymentPlatformModel;
  * @property {boolean} [success] - Successful or failure
  */
 /**
+ * @typedef ProductCODData
+ * @property {Object} [cod_charges] - Cod charges and its allowed limits.
+ * @property {Object} [items] - Item id with its cod availability.
+ */
+/**
  * @typedef RefundAccountResponse
  * @property {Object} [data] - Refund account data.
  * @property {boolean} [is_verified_flag]
@@ -865,7 +878,7 @@ export = PaymentPlatformModel;
 declare class PaymentPlatformModel {
 }
 declare namespace PaymentPlatformModel {
-    export { AddBeneficiaryDetailsOTPRequest, AddressDetail, BankDetailsForOTP, CancelOrResendPaymentLinkRequest, CancelPaymentLinkResponse, CODdata, Code, CreatePaymentLinkMeta, CreatePaymentLinkRequest, CreatePaymentLinkResponse, DeletePayoutResponse, DeleteSubscriptionPaymentMethodResponse, EdcAddRequest, EdcAggregatorAndModelListResponse, EdcDevice, EdcDeviceAddResponse, EdcDeviceDetailsResponse, EdcDeviceListResponse, EdcDeviceStatsResponse, EdcDeviceUpdateResponse, EdcModelData, EdcUpdateRequest, ErrorCodeAndDescription, ErrorCodeDescription, ErrorDescription, ErrorResponse, GetOauthUrlResponse, GetPaymentCode, GetPaymentCodeResponse, GetPaymentLinkResponse, GetUserCODLimitResponse, HttpErrorCodeAndResponse, IfscCodeResponse, IntentApp, IntentAppErrorList, LinkStatus, MerchantOnBoardingRequest, MerchantOnBoardingResponse, MerchnatPaymentModeRequest, MerchnatPaymentModeResponse, MultiTenderPaymentMeta, MultiTenderPaymentMethod, NotFoundResourceError, OrderBeneficiaryDetails, OrderBeneficiaryResponse, OrderDetail, Page, PaymentCode, PaymentConfirmationRequest, PaymentConfirmationResponse, PaymentGatewayConfig, PaymentGatewayConfigRequest, PaymentGatewayConfigResponse, PaymentGatewayToBeReviewed, PaymentInitializationRequest, PaymentInitializationResponse, PaymentModeList, PaymentModeLogo, PaymentObjectListSerializer, PaymentOptions, PaymentOptionsResponse, PaymentSessionDetail, PaymentSessionRequestSerializer, PaymentSessionResponseSerializer, PaymentStatusBulkHandlerRequest, PaymentStatusBulkHandlerResponse, PaymentStatusObject, PaymentStatusUpdateRequest, PaymentStatusUpdateResponse, Payout, PayoutAggregator, PayoutBankDetails, PayoutCustomer, PayoutMoreAttributes, PayoutRequest, PayoutResponse, PayoutsResponse, PollingPaymentLinkResponse, RefundAccountResponse, RefundSessionDetail, RefundSessionRequestSerializer, RefundSessionResponseSerializer, RepaymentDetailsSerialiserPayAll, RepaymentRequestDetails, RepaymentResponse, ResendOrCancelPaymentRequest, ResendOrCancelPaymentResponse, ResendPaymentLinkResponse, RevokeOAuthToken, RootPaymentMode, SaveSubscriptionSetupIntentRequest, SaveSubscriptionSetupIntentResponse, SetCODForUserRequest, SetCODOptionResponse, StatisticsData, SubscriptionConfigResponse, SubscriptionPaymentMethodResponse, UpdatePayoutRequest, UpdatePayoutResponse, ValidateCustomerRequest, ValidateCustomerResponse };
+    export { AddBeneficiaryDetailsOTPRequest, AddressDetail, BankDetailsForOTP, CancelOrResendPaymentLinkRequest, CancelPaymentLinkResponse, CODChargesLimitsResponse, CODdata, Code, CreatePaymentLinkMeta, CreatePaymentLinkRequest, CreatePaymentLinkResponse, DeletePayoutResponse, DeleteSubscriptionPaymentMethodResponse, EdcAddRequest, EdcAggregatorAndModelListResponse, EdcDevice, EdcDeviceAddResponse, EdcDeviceDetailsResponse, EdcDeviceListResponse, EdcDeviceStatsResponse, EdcDeviceUpdateResponse, EdcModelData, EdcUpdateRequest, ErrorCodeAndDescription, ErrorCodeDescription, ErrorDescription, ErrorResponse, GetOauthUrlResponse, GetPaymentCode, GetPaymentCodeResponse, GetPaymentLinkResponse, GetUserCODLimitResponse, HttpErrorCodeAndResponse, IfscCodeResponse, IntentApp, IntentAppErrorList, LinkStatus, MerchantOnBoardingRequest, MerchantOnBoardingResponse, MerchnatPaymentModeRequest, MerchnatPaymentModeResponse, MultiTenderPaymentMeta, MultiTenderPaymentMethod, NotFoundResourceError, OrderBeneficiaryDetails, OrderBeneficiaryResponse, OrderDetail, Page, PaymentCode, PaymentConfirmationRequest, PaymentConfirmationResponse, PaymentGatewayConfig, PaymentGatewayConfigRequest, PaymentGatewayConfigResponse, PaymentGatewayToBeReviewed, PaymentInitializationRequest, PaymentInitializationResponse, PaymentModeList, PaymentModeLogo, PaymentObjectListSerializer, PaymentOptions, PaymentOptionsResponse, PaymentSessionDetail, PaymentSessionRequestSerializer, PaymentSessionResponseSerializer, PaymentStatusBulkHandlerRequest, PaymentStatusBulkHandlerResponse, PaymentStatusObject, PaymentStatusUpdateRequest, PaymentStatusUpdateResponse, Payout, PayoutAggregator, PayoutBankDetails, PayoutCustomer, PayoutMoreAttributes, PayoutRequest, PayoutResponse, PayoutsResponse, PollingPaymentLinkResponse, ProductCODData, RefundAccountResponse, RefundSessionDetail, RefundSessionRequestSerializer, RefundSessionResponseSerializer, RepaymentDetailsSerialiserPayAll, RepaymentRequestDetails, RepaymentResponse, ResendOrCancelPaymentRequest, ResendOrCancelPaymentResponse, ResendPaymentLinkResponse, RevokeOAuthToken, RootPaymentMode, SaveSubscriptionSetupIntentRequest, SaveSubscriptionSetupIntentResponse, SetCODForUserRequest, SetCODOptionResponse, StatisticsData, SubscriptionConfigResponse, SubscriptionPaymentMethodResponse, UpdatePayoutRequest, UpdatePayoutResponse, ValidateCustomerRequest, ValidateCustomerResponse };
 }
 /** @returns {AddBeneficiaryDetailsOTPRequest} */
 declare function AddBeneficiaryDetailsOTPRequest(): AddBeneficiaryDetailsOTPRequest;
@@ -985,6 +998,22 @@ type CancelPaymentLinkResponse = {
      * - Successful or failure
      */
     success: boolean;
+};
+/** @returns {CODChargesLimitsResponse} */
+declare function CODChargesLimitsResponse(): CODChargesLimitsResponse;
+type CODChargesLimitsResponse = {
+    /**
+     * - Cod charges to be applied on order.
+     */
+    cod_charge?: number;
+    /**
+     * - Max allowed cart value for cod order.
+     */
+    max_cart_value?: number;
+    /**
+     * - Min allowed cart value for cod order.
+     */
+    min_cart_value?: number;
 };
 /** @returns {CODdata} */
 declare function CODdata(): CODdata;
@@ -2078,6 +2107,10 @@ type PaymentModeList = {
      */
     card_type?: string;
     /**
+     * - Cod charges to be applied on order.
+     */
+    cod_charges?: number;
+    /**
      * - Cod limit
      */
     cod_limit?: number;
@@ -2151,6 +2184,10 @@ type PaymentModeList = {
      * - Nickname
      */
     nickname?: string;
+    /**
+     * - Product cod configurations.
+     */
+    product_cod_data?: any;
     /**
      * - Remaining limit
      */
@@ -2724,6 +2761,18 @@ type PollingPaymentLinkResponse = {
      * - Successful or failure
      */
     success?: boolean;
+};
+/** @returns {ProductCODData} */
+declare function ProductCODData(): ProductCODData;
+type ProductCODData = {
+    /**
+     * - Cod charges and its allowed limits.
+     */
+    cod_charges?: any;
+    /**
+     * - Item id with its cod availability.
+     */
+    items?: any;
 };
 /** @returns {RefundAccountResponse} */
 declare function RefundAccountResponse(): RefundAccountResponse;

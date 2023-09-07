@@ -1019,14 +1019,22 @@ Get All Brand Payment Gateway Config Secret
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").payment.getBrandPaymentGatewayConfig();
+const promise = platformClient.application("<APPLICATION_ID>").payment.getBrandPaymentGatewayConfig({  aggregator : value,
+ configType : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").payment.getBrandPaymentGatewayConfig();
+const data = await platformClient.application("<APPLICATION_ID>").payment.getBrandPaymentGatewayConfig({  aggregator : value,
+ configType : value });
 ```
 
 
 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| aggregator | string | no | aggregator slug |    
+| configType | string | no |  |  
 
 
 
@@ -6196,6 +6204,17 @@ Bank details on correct Ifsc Code
 
 ---
 
+#### [CODChargesLimitsResponse](#CODChargesLimitsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cod_charge | number? |  yes  | cod charges to be applied on order. |
+ | max_cart_value | number? |  yes  | max allowed cart value for cod order. |
+ | min_cart_value | number? |  yes  | min allowed cart value for cod order. |
+ 
+
+---
+
 #### [CODdata](#CODdata)
 
  | Properties | Type | Nullable | Description |
@@ -6843,6 +6862,7 @@ Bank details on correct Ifsc Code
  | card_reference | string? |  yes  | card_reference |
  | card_token | string? |  yes  | card_token |
  | card_type | string? |  yes  | card_type |
+ | cod_charges | number? |  yes  | cod charges to be applied on order. |
  | cod_limit | number? |  yes  | cod limit |
  | cod_limit_per_order | number? |  yes  | Cod limit per order |
  | code | string? |  yes  | code |
@@ -6861,6 +6881,7 @@ Bank details on correct Ifsc Code
  | merchant_code | string? |  yes  | merchant code |
  | name | string? |  yes  | name |
  | nickname | string? |  yes  | nickname |
+ | product_cod_data | [ProductCODData](#ProductCODData)? |  yes  | product cod configurations. |
  | remaining_limit | number? |  yes  | Remaining limit |
  | retry_count | number? |  yes  | retry_count |
  | timeout | number? |  yes  | timeout |
@@ -7175,6 +7196,16 @@ Bank details on correct Ifsc Code
  | status | string? |  yes  | Status of payment link |
  | status_code | number? |  yes  | HTTP status code |
  | success | boolean? |  yes  | Successful or failure |
+ 
+
+---
+
+#### [ProductCODData](#ProductCODData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cod_charges | [CODChargesLimitsResponse](#CODChargesLimitsResponse)? |  yes  | cod charges and its allowed limits. |
+ | items | string? |  yes  | item id with its cod availability. |
  
 
 ---

@@ -808,13 +808,16 @@ class Payment {
    * @description: Get All Brand Payment Gateway Config Secret - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getBrandPaymentGatewayConfig/).
    */
   async getBrandPaymentGatewayConfig(
-    { requestHeaders } = { requestHeaders: {} },
+    { aggregator, configType, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
     } = PaymentPlatformApplicationValidator.getBrandPaymentGatewayConfig().validate(
-      {},
+      {
+        aggregator,
+        configType,
+      },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -825,7 +828,10 @@ class Payment {
     const {
       error: warrning,
     } = PaymentPlatformApplicationValidator.getBrandPaymentGatewayConfig().validate(
-      {},
+      {
+        aggregator,
+        configType,
+      },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -836,6 +842,8 @@ class Payment {
     }
 
     const query_params = {};
+    query_params["aggregator"] = aggregator;
+    query_params["config_type"] = configType;
 
     const response = await PlatformAPIClient.execute(
       this.config,

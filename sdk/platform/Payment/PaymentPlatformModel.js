@@ -51,6 +51,13 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef CODChargesLimitsResponse
+ * @property {number} [cod_charge] - Cod charges to be applied on order.
+ * @property {number} [max_cart_value] - Max allowed cart value for cod order.
+ * @property {number} [min_cart_value] - Min allowed cart value for cod order.
+ */
+
+/**
  * @typedef CODdata
  * @property {boolean} is_active - COD option is active or not
  * @property {number} limit - Total Limit of user
@@ -501,6 +508,7 @@ const Joi = require("joi");
  * @property {string} [card_reference] - Card_reference
  * @property {string} [card_token] - Card_token
  * @property {string} [card_type] - Card_type
+ * @property {number} [cod_charges] - Cod charges to be applied on order.
  * @property {number} [cod_limit] - Cod limit
  * @property {number} [cod_limit_per_order] - Cod limit per order
  * @property {string} [code] - Code
@@ -521,6 +529,7 @@ const Joi = require("joi");
  * @property {string} [merchant_code] - Merchant code
  * @property {string} [name] - Name
  * @property {string} [nickname] - Nickname
+ * @property {Object} [product_cod_data] - Product cod configurations.
  * @property {number} [remaining_limit] - Remaining limit
  * @property {number} [retry_count] - Retry_count
  * @property {number} [timeout] - Timeout
@@ -767,6 +776,12 @@ const Joi = require("joi");
  * @property {string} [status] - Status of payment link
  * @property {number} [status_code] - HTTP status code
  * @property {boolean} [success] - Successful or failure
+ */
+
+/**
+ * @typedef ProductCODData
+ * @property {Object} [cod_charges] - Cod charges and its allowed limits.
+ * @property {Object} [items] - Item id with its cod availability.
  */
 
 /**
@@ -1022,6 +1037,15 @@ class PaymentPlatformModel {
       message: Joi.string().allow("").required(),
       status_code: Joi.number().required(),
       success: Joi.boolean().required(),
+    });
+  }
+
+  /** @returns {CODChargesLimitsResponse} */
+  static CODChargesLimitsResponse() {
+    return Joi.object({
+      cod_charge: Joi.number().allow(null),
+      max_cart_value: Joi.number().allow(null),
+      min_cart_value: Joi.number().allow(null),
     });
   }
 
@@ -1575,6 +1599,7 @@ class PaymentPlatformModel {
       card_reference: Joi.string().allow("").allow(null),
       card_token: Joi.string().allow("").allow(null),
       card_type: Joi.string().allow("").allow(null),
+      cod_charges: Joi.number().allow(null),
       cod_limit: Joi.number().allow(null),
       cod_limit_per_order: Joi.number().allow(null),
       code: Joi.string().allow("").allow(null),
@@ -1595,6 +1620,7 @@ class PaymentPlatformModel {
       merchant_code: Joi.string().allow("").allow(null),
       name: Joi.string().allow("").allow(null),
       nickname: Joi.string().allow("").allow(null),
+      product_cod_data: Joi.any().allow(null),
       remaining_limit: Joi.number().allow(null),
       retry_count: Joi.number().allow(null),
       timeout: Joi.number().allow(null),
@@ -1875,6 +1901,14 @@ class PaymentPlatformModel {
       status: Joi.string().allow("").allow(null),
       status_code: Joi.number().allow(null),
       success: Joi.boolean().allow(null),
+    });
+  }
+
+  /** @returns {ProductCODData} */
+  static ProductCODData() {
+    return Joi.object({
+      cod_charges: Joi.any().allow(null),
+      items: Joi.any().allow(null),
     });
   }
 

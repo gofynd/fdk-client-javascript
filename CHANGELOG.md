@@ -1,4 +1,214 @@
-# CHANGE LOG (1.3.0)
+# CHANGE LOG (1.3.2) FP-v1.8.1
+
+## Application Client
+
+
+
+### Cart
+
+
+
+#### getCart
+
+- ##### What's New
+	- [Added] property `breakup_values.raw.mop_total` of schema `RawBreakup` in response with status code 200
+
+
+#### addItems
+
+- ##### What's New
+	- [Added] property `cart.breakup_values.raw.mop_total` of schema `RawBreakup` in response with status code 200
+
+
+#### updateCart
+
+- ##### What's New
+	- [Added] property `cart.breakup_values.raw.mop_total` of schema `RawBreakup` in response with status code 200
+
+
+#### applyCoupon
+
+- ##### What's New
+	- [Added] property `breakup_values.raw.mop_total` of schema `RawBreakup` in response with status code 201
+
+
+#### removeCoupon
+
+- ##### What's New
+	- [Added] property `breakup_values.raw.mop_total` of schema `RawBreakup` in response with status code 200
+
+
+#### applyRewardPoints
+
+- ##### What's New
+	- [Added] property `breakup_values.raw.mop_total` of schema `RawBreakup` in response with status code 200
+
+
+#### selectAddress
+
+- ##### What's New
+	- [Added] property `breakup_values.raw.mop_total` of schema `RawBreakup` in response with status code 201
+
+
+#### selectPaymentMode
+
+- ##### What's New
+	- [Added] property `breakup_values.raw.mop_total` of schema `RawBreakup` in response with status code 200
+
+
+#### getShipments
+
+- ##### What's New
+	- [Added] property `breakup_values.raw.mop_total` of schema `RawBreakup` in response with status code 200
+
+
+#### checkoutCart
+
+- ##### What's New
+	- [Added] property `cart.breakup_values.raw.mop_total` of schema `RawBreakup` in response with status code 200
+
+
+#### getCartSharedItems
+
+- ##### What's New
+	- [Added] property `cart.breakup_values.raw.mop_total` of schema `RawBreakup` in response with status code 200
+	- [Added] property `cart.breakup_values.raw.mop_total` of schema `RawBreakup` in response with status code 404
+
+
+#### updateCartWithSharedItems
+
+- ##### What's New
+	- [Added] property `cart.breakup_values.raw.mop_total` of schema `RawBreakup` in response with status code 200
+
+
+#### checkoutCartV2
+
+- ##### What's New
+	- [Added] property `cart.breakup_values.raw.mop_total` of schema `RawBreakup` in response with status code 200
+
+
+## Platform Client
+
+
+
+### Order
+
+
+
+#### getShipments
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from `string` to `number` of property `items[].bags[].gst.igst_gst_fee` of schema `GSTDetailsData` in response with status code 200
+	- [Breaking] [Changed] Type from `string` to `number` of property `items[].bags[].gst.sgst_gst_fee` of schema `GSTDetailsData` in response with status code 200
+	- [Breaking] [Changed] Type from `string` to `number` of property `items[].bags[].gst.cgst_gst_fee` of schema `GSTDetailsData` in response with status code 200
+
+
+#### getShipmentById
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from `string` to `number` of property `shipments[].gst_details.igst_gst_fee` of schema `GSTDetailsData` in response with status code 200
+	- [Breaking] [Changed] Type from `string` to `number` of property `shipments[].gst_details.sgst_gst_fee` of schema `GSTDetailsData` in response with status code 200
+	- [Breaking] [Changed] Type from `string` to `number` of property `shipments[].gst_details.cgst_gst_fee` of schema `GSTDetailsData` in response with status code 200
+
+
+#### getOrderById
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from `integer` to `string` of property `order.meta.employee_id` of schema `OrderMeta` in response with status code 200
+	- [Breaking] [Changed] Type from `string` to `number` of property `shipments[].gst_details.igst_gst_fee` of schema `GSTDetailsData` in response with status code 200
+	- [Breaking] [Changed] Type from `string` to `number` of property `shipments[].gst_details.sgst_gst_fee` of schema `GSTDetailsData` in response with status code 200
+	- [Breaking] [Changed] Type from `string` to `number` of property `shipments[].gst_details.cgst_gst_fee` of schema `GSTDetailsData` in response with status code 200
+
+
+#### getOrders
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from `string` to `number` of property `items[].shipments[].gst_details.igst_gst_fee` of schema `GSTDetailsData` in response with status code 200
+	- [Breaking] [Changed] Type from `string` to `number` of property `items[].shipments[].gst_details.sgst_gst_fee` of schema `GSTDetailsData` in response with status code 200
+	- [Breaking] [Changed] Type from `string` to `number` of property `items[].shipments[].gst_details.cgst_gst_fee` of schema `GSTDetailsData` in response with status code 200
+
+
+### Payment
+
+
+
+#### getBrandPaymentGatewayConfig
+
+- ##### What's New
+	- [Added] `query` parameter `aggregator` (type: `string`)
+
+	- [Added] `query` parameter `configType` (type: `string`)
+
+
+
+### Theme
+
+
+
+#### getCompanyLevelThemes
+
+- ##### What's New
+	- [Added] Content in Response 401
+
+
+#### addMarketplaceThemeToCompany
+
+- ##### What's New
+	- [Added] Content in Response 401
+
+
+### Webhook
+
+
+
+#### getSubscribersByCompany
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible values from `active` from property `status` of schema `SubscriberResponse` in response with status code 200
+	- [Breaking] [Deleted] Possible values from `inactive` from property `status` of schema `SubscriberResponse` in response with status code 200
+	- [Breaking] [Deleted] Possible values from `blocked` from property `status` of schema `SubscriberResponse` in response with status code 200
+
+
+#### registerSubscriberToEvent
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible values from `active` from property `status` of schema `SubscriberConfig` in request body
+	- [Breaking] [Deleted] Possible values from `inactive` from property `status` of schema `SubscriberConfig` in request body
+	- [Breaking] [Deleted] Possible values from `blocked` from property `status` of schema `SubscriberConfig` in request body
+	- [Breaking] [Deleted] Possible values from `active` from property `status` of schema `SubscriberConfig` in response with status code 200
+	- [Breaking] [Deleted] Possible values from `inactive` from property `status` of schema `SubscriberConfig` in response with status code 200
+	- [Breaking] [Deleted] Possible values from `blocked` from property `status` of schema `SubscriberConfig` in response with status code 200
+
+
+#### updateSubscriberConfig
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible values from `active` from property `status` of schema `SubscriberConfig` in request body
+	- [Breaking] [Deleted] Possible values from `inactive` from property `status` of schema `SubscriberConfig` in request body
+	- [Breaking] [Deleted] Possible values from `blocked` from property `status` of schema `SubscriberConfig` in request body
+	- [Breaking] [Deleted] Possible values from `active` from property `status` of schema `SubscriberConfig` in response with status code 200
+	- [Breaking] [Deleted] Possible values from `inactive` from property `status` of schema `SubscriberConfig` in response with status code 200
+	- [Breaking] [Deleted] Possible values from `blocked` from property `status` of schema `SubscriberConfig` in response with status code 200
+
+
+#### getSubscriberById
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible values from `active` from property `status` of schema `SubscriberResponse` in response with status code 200
+	- [Breaking] [Deleted] Possible values from `inactive` from property `status` of schema `SubscriberResponse` in response with status code 200
+	- [Breaking] [Deleted] Possible values from `blocked` from property `status` of schema `SubscriberResponse` in response with status code 200
+
+
+#### getSubscribersByExtensionId
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Possible values from `active` from property `items[].status` of schema `SubscriberResponse` in response with status code 200
+	- [Breaking] [Deleted] Possible values from `inactive` from property `items[].status` of schema `SubscriberResponse` in response with status code 200
+	- [Breaking] [Deleted] Possible values from `blocked` from property `items[].status` of schema `SubscriberResponse` in response with status code 200
+
+
+
+# CHANGE LOG (1.3.0) FP-v1.8.0
 
 
 ## Application Client

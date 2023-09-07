@@ -970,7 +970,7 @@ export = OrderPlatformModel;
 /**
  * @typedef GSTDetailsData
  * @property {number} brand_calculated_amount
- * @property {string} [cgst_gst_fee]
+ * @property {number} [cgst_gst_fee]
  * @property {number} [cgst_tax_percentage]
  * @property {number} gst_fee
  * @property {string} [gst_tag]
@@ -978,10 +978,10 @@ export = OrderPlatformModel;
  * @property {string} [gstin_code]
  * @property {string} [hsn_code]
  * @property {string} [hsn_code_id]
- * @property {string} [igst_gst_fee]
+ * @property {number} [igst_gst_fee]
  * @property {number} [igst_tax_percentage]
  * @property {boolean} [is_default_hsn_code]
- * @property {string} [sgst_gst_fee]
+ * @property {number} [sgst_gst_fee]
  * @property {number} [sgst_tax_percentage]
  * @property {number} tax_collected_at_source
  * @property {number} value_of_good
@@ -1277,7 +1277,7 @@ export = OrderPlatformModel;
  * @property {string} [company_logo]
  * @property {string} [currency_symbol]
  * @property {string} [customer_note]
- * @property {number} [employee_id]
+ * @property {string} [employee_id]
  * @property {Object} [extra_meta]
  * @property {Object[]} [files]
  * @property {number} [mongo_cart_id]
@@ -3546,7 +3546,7 @@ type GiftCard = {
 declare function GSTDetailsData(): GSTDetailsData;
 type GSTDetailsData = {
     brand_calculated_amount: number;
-    cgst_gst_fee?: string;
+    cgst_gst_fee?: number;
     cgst_tax_percentage?: number;
     gst_fee: number;
     gst_tag?: string;
@@ -3554,10 +3554,10 @@ type GSTDetailsData = {
     gstin_code?: string;
     hsn_code?: string;
     hsn_code_id?: string;
-    igst_gst_fee?: string;
+    igst_gst_fee?: number;
     igst_tax_percentage?: number;
     is_default_hsn_code?: boolean;
-    sgst_gst_fee?: string;
+    sgst_gst_fee?: number;
     sgst_tax_percentage?: number;
     tax_collected_at_source: number;
     value_of_good: number;
@@ -3930,7 +3930,7 @@ type OrderMeta = {
     company_logo?: string;
     currency_symbol?: string;
     customer_note?: string;
-    employee_id?: number;
+    employee_id?: string;
     extra_meta?: any;
     files?: any[];
     mongo_cart_id?: number;

@@ -193,9 +193,7 @@ export = WebhookPlatformModel;
  * @property {number[]} [event_id]
  * @property {number} [id]
  * @property {string} [name]
- * @property {string} [status] - Active: Status is active inactive: Status is
- *   inactive blocked: Subscriber is blocked by system due to multiple failed
- *   delivery attempts.
+ * @property {SubscriberStatus} [status]
  * @property {string} [webhook_url]
  */
 /**
@@ -213,9 +211,7 @@ export = WebhookPlatformModel;
  * @property {EventConfig[]} [event_configs]
  * @property {number} [id]
  * @property {string} [name]
- * @property {string} [status] - Active: Status is active inactive: Status is
- *   inactive blocked: Subscriber is blocked by system due to multiple failed
- *   delivery attempts.
+ * @property {SubscriberStatus} [status]
  * @property {string} [updated_on]
  * @property {string} [webhook_url]
  */
@@ -228,10 +224,11 @@ export = WebhookPlatformModel;
  * @property {string} [name] - The name of the uploaded report file.
  * @property {string} [url] - The URL of the uploaded report file.
  */
+/** @typedef {"active" | "inactive" | "blocked"} SubscriberStatus */
 declare class WebhookPlatformModel {
 }
 declare namespace WebhookPlatformModel {
-    export { Association, AssociationDetails, AuthMeta, CancelResponse, CdnObject, Error, Event, EventConfig, EventConfigResponse, EventCountItem, EventProcessedSuccessResponse, EventProcessReportObject, EventProcessReports, EventProcessRequest, EventSuccessResponse, FailedEventsCountSuccessResponse, FilterResponseObject, FilterValues, HistoryFilters, HistoryPayload, HistoryResponse, HistoryResponseObject, ManualRetryFailedResponse, Page, PingWebhook, PingWebhookResponse, ReportFilterResponse, ReportFiltersPayload, RetryStatusResponse, SubscriberConfig, SubscriberConfigList, SubscriberResponse, UploadServiceObject, Url };
+    export { Association, AssociationDetails, AuthMeta, CancelResponse, CdnObject, Error, Event, EventConfig, EventConfigResponse, EventCountItem, EventProcessedSuccessResponse, EventProcessReportObject, EventProcessReports, EventProcessRequest, EventSuccessResponse, FailedEventsCountSuccessResponse, FilterResponseObject, FilterValues, HistoryFilters, HistoryPayload, HistoryResponse, HistoryResponseObject, ManualRetryFailedResponse, Page, PingWebhook, PingWebhookResponse, ReportFilterResponse, ReportFiltersPayload, RetryStatusResponse, SubscriberConfig, SubscriberConfigList, SubscriberResponse, UploadServiceObject, Url, SubscriberStatus };
 }
 /** @returns {Association} */
 declare function Association(): Association;
@@ -580,12 +577,7 @@ type SubscriberConfig = {
     event_id?: number[];
     id?: number;
     name?: string;
-    /**
-     * - Active: Status is active inactive: Status is
-     * inactive blocked: Subscriber is blocked by system due to multiple failed
-     * delivery attempts.
-     */
-    status?: string;
+    status?: SubscriberStatus;
     webhook_url?: string;
 };
 /** @returns {SubscriberConfigList} */
@@ -605,12 +597,7 @@ type SubscriberResponse = {
     event_configs?: EventConfig[];
     id?: number;
     name?: string;
-    /**
-     * - Active: Status is active inactive: Status is
-     * inactive blocked: Subscriber is blocked by system due to multiple failed
-     * delivery attempts.
-     */
-    status?: string;
+    status?: SubscriberStatus;
     updated_on?: string;
     webhook_url?: string;
 };
@@ -631,3 +618,10 @@ type Url = {
      */
     url?: string;
 };
+/**
+ * Enum: SubscriberStatus Used By: Webhook
+ *
+ * @returns {SubscriberStatus}
+ */
+declare function SubscriberStatus(): SubscriberStatus;
+type SubscriberStatus = "active" | "inactive" | "blocked";

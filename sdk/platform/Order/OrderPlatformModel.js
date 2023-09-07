@@ -1080,7 +1080,7 @@ const Joi = require("joi");
 /**
  * @typedef GSTDetailsData
  * @property {number} brand_calculated_amount
- * @property {string} [cgst_gst_fee]
+ * @property {number} [cgst_gst_fee]
  * @property {number} [cgst_tax_percentage]
  * @property {number} gst_fee
  * @property {string} [gst_tag]
@@ -1088,10 +1088,10 @@ const Joi = require("joi");
  * @property {string} [gstin_code]
  * @property {string} [hsn_code]
  * @property {string} [hsn_code_id]
- * @property {string} [igst_gst_fee]
+ * @property {number} [igst_gst_fee]
  * @property {number} [igst_tax_percentage]
  * @property {boolean} [is_default_hsn_code]
- * @property {string} [sgst_gst_fee]
+ * @property {number} [sgst_gst_fee]
  * @property {number} [sgst_tax_percentage]
  * @property {number} tax_collected_at_source
  * @property {number} value_of_good
@@ -1416,7 +1416,7 @@ const Joi = require("joi");
  * @property {string} [company_logo]
  * @property {string} [currency_symbol]
  * @property {string} [customer_note]
- * @property {number} [employee_id]
+ * @property {string} [employee_id]
  * @property {Object} [extra_meta]
  * @property {Object[]} [files]
  * @property {number} [mongo_cart_id]
@@ -3900,7 +3900,7 @@ class OrderPlatformModel {
   static GSTDetailsData() {
     return Joi.object({
       brand_calculated_amount: Joi.number().required(),
-      cgst_gst_fee: Joi.string().allow(""),
+      cgst_gst_fee: Joi.number(),
       cgst_tax_percentage: Joi.number(),
       gst_fee: Joi.number().required(),
       gst_tag: Joi.string().allow(""),
@@ -3908,10 +3908,10 @@ class OrderPlatformModel {
       gstin_code: Joi.string().allow("").allow(null),
       hsn_code: Joi.string().allow(""),
       hsn_code_id: Joi.string().allow(""),
-      igst_gst_fee: Joi.string().allow(""),
+      igst_gst_fee: Joi.number(),
       igst_tax_percentage: Joi.number(),
       is_default_hsn_code: Joi.boolean(),
-      sgst_gst_fee: Joi.string().allow(""),
+      sgst_gst_fee: Joi.number(),
       sgst_tax_percentage: Joi.number(),
       tax_collected_at_source: Joi.number().required(),
       value_of_good: Joi.number().required(),
@@ -4299,7 +4299,7 @@ class OrderPlatformModel {
       company_logo: Joi.string().allow(""),
       currency_symbol: Joi.string().allow(""),
       customer_note: Joi.string().allow(""),
-      employee_id: Joi.number().allow(null),
+      employee_id: Joi.string().allow("").allow(null),
       extra_meta: Joi.any(),
       files: Joi.array().items(Joi.any()),
       mongo_cart_id: Joi.number(),

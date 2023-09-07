@@ -52,7 +52,11 @@ const PaymentPlatformModel = require("./PaymentPlatformModel");
  * @property {string} [requestHash]
  */
 
-/** @typedef GetBrandPaymentGatewayConfigParam */
+/**
+ * @typedef GetBrandPaymentGatewayConfigParam
+ * @property {string} [aggregator] - Aggregator slug
+ * @property {string} [configType]
+ */
 
 /**
  * @typedef GetEdcDeviceParam
@@ -286,7 +290,10 @@ class PaymentPlatformApplicationValidator {
 
   /** @returns {GetBrandPaymentGatewayConfigParam} */
   static getBrandPaymentGatewayConfig() {
-    return Joi.object({}).required();
+    return Joi.object({
+      aggregator: Joi.string().allow(""),
+      configType: Joi.string().allow(""),
+    }).required();
   }
 
   /** @returns {GetEdcDeviceParam} */

@@ -39,7 +39,11 @@ export = PaymentPlatformApplicationValidator;
  * @property {string} orderId
  * @property {string} [requestHash]
  */
-/** @typedef GetBrandPaymentGatewayConfigParam */
+/**
+ * @typedef GetBrandPaymentGatewayConfigParam
+ * @property {string} [aggregator] - Aggregator slug
+ * @property {string} [configType]
+ */
 /**
  * @typedef GetEdcDeviceParam
  * @property {string} terminalUniqueIdentifier - Terminal unique identifier
@@ -191,7 +195,7 @@ declare class PaymentPlatformApplicationValidator {
     /** @returns {GetBankAccountDetailsOpenAPIParam} */
     static getBankAccountDetailsOpenAPI(): GetBankAccountDetailsOpenAPIParam;
     /** @returns {GetBrandPaymentGatewayConfigParam} */
-    static getBrandPaymentGatewayConfig(): any;
+    static getBrandPaymentGatewayConfig(): GetBrandPaymentGatewayConfigParam;
     /** @returns {GetEdcDeviceParam} */
     static getEdcDevice(): GetEdcDeviceParam;
     /** @returns {GetMerchantAggregatorPaymentModeDetailsParam} */
@@ -284,6 +288,13 @@ type EdcDeviceListParam = {
 type GetBankAccountDetailsOpenAPIParam = {
     orderId: string;
     requestHash?: string;
+};
+type GetBrandPaymentGatewayConfigParam = {
+    /**
+     * - Aggregator slug
+     */
+    aggregator?: string;
+    configType?: string;
 };
 type GetEdcDeviceParam = {
     /**
@@ -436,7 +447,6 @@ type VerifyCustomerForPaymentParam = {
 };
 type EdcAggregatorsAndModelListParam = any;
 type EdcDeviceStatsParam = any;
-type GetBrandPaymentGatewayConfigParam = any;
 type GetMerchantPaymentOptionParam = any;
 type GetPGConfigAggregatorsParam = any;
 type GetPaymentCodeOptionParam = any;

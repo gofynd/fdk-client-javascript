@@ -223,9 +223,7 @@ const Joi = require("joi");
  * @property {number[]} [event_id]
  * @property {number} [id]
  * @property {string} [name]
- * @property {string} [status] - Active: Status is active inactive: Status is
- *   inactive blocked: Subscriber is blocked by system due to multiple failed
- *   delivery attempts.
+ * @property {SubscriberStatus} [status]
  * @property {string} [webhook_url]
  */
 
@@ -245,9 +243,7 @@ const Joi = require("joi");
  * @property {EventConfig[]} [event_configs]
  * @property {number} [id]
  * @property {string} [name]
- * @property {string} [status] - Active: Status is active inactive: Status is
- *   inactive blocked: Subscriber is blocked by system due to multiple failed
- *   delivery attempts.
+ * @property {SubscriberStatus} [status]
  * @property {string} [updated_on]
  * @property {string} [webhook_url]
  */
@@ -262,6 +258,8 @@ const Joi = require("joi");
  * @property {string} [name] - The name of the uploaded report file.
  * @property {string} [url] - The URL of the uploaded report file.
  */
+
+/** @typedef {"active" | "inactive" | "blocked"} SubscriberStatus */
 
 class WebhookPlatformModel {
   /** @returns {Association} */
@@ -540,7 +538,7 @@ class WebhookPlatformModel {
       event_id: Joi.array().items(Joi.number()),
       id: Joi.number(),
       name: Joi.string().allow(""),
-      status: Joi.string().allow(""),
+      status: WebhookPlatformModel.SubscriberStatus(),
       webhook_url: Joi.string().allow(""),
     });
   }
@@ -564,7 +562,7 @@ class WebhookPlatformModel {
       event_configs: Joi.array().items(WebhookPlatformModel.EventConfig()),
       id: Joi.number(),
       name: Joi.string().allow(""),
-      status: Joi.string().allow(""),
+      status: WebhookPlatformModel.SubscriberStatus(),
       updated_on: Joi.string().allow(""),
       webhook_url: Joi.string().allow(""),
     });
@@ -583,6 +581,21 @@ class WebhookPlatformModel {
       name: Joi.string().allow(""),
       url: Joi.string().allow(""),
     });
+  }
+
+  /**
+   * Enum: SubscriberStatus Used By: Webhook
+   *
+   * @returns {SubscriberStatus}
+   */
+  static SubscriberStatus() {
+    return Joi.string().valid(
+      "active",
+
+      "inactive",
+
+      "blocked"
+    );
   }
 }
 module.exports = WebhookPlatformModel;
