@@ -81,6 +81,7 @@ export = OrderPlatformModel;
 /**
  * @typedef AffiliateConfig
  * @property {AffiliateAppConfig} [app]
+ * @property {number} [app_company_id]
  * @property {AffiliateInventoryConfig} [inventory]
  */
 /**
@@ -93,6 +94,7 @@ export = OrderPlatformModel;
  * @property {string} affiliate_shipment_id
  * @property {string} affiliate_store_id
  * @property {string} [company_affiliate_tag]
+ * @property {AffiliateConfig} [config]
  * @property {PDFLinks} [pdf_links]
  * @property {ShipmentMeta} shipment_meta
  */
@@ -1211,6 +1213,7 @@ export = OrderPlatformModel;
  * @property {string} [affiliate_id]
  * @property {string} [cod_charges]
  * @property {string} fynd_order_id
+ * @property {OrderMeta} [meta]
  * @property {string} [order_date]
  * @property {string} [order_value]
  * @property {string} [ordering_channel]
@@ -1484,6 +1487,7 @@ export = OrderPlatformModel;
  * @property {boolean} [can_update_dimension]
  * @property {CompanyDetails} [company_details]
  * @property {Object} [coupon]
+ * @property {string} [credit_note_id]
  * @property {string} [custom_message]
  * @property {Object[]} [custom_meta]
  * @property {UserDetailsData} [delivery_details]
@@ -1512,14 +1516,17 @@ export = OrderPlatformModel;
  * @property {Object} [pdf_links]
  * @property {string} [picked_date]
  * @property {string} [platform_logo]
+ * @property {string} [previous_shipment_id]
  * @property {Prices} [prices]
  * @property {string} [priority_text]
+ * @property {PlatformDeliveryAddress} [rto_address]
  * @property {string} [shipment_created_at]
  * @property {ShipmentDetails} [shipment_details]
  * @property {string} shipment_id
  * @property {string[]} [shipment_images]
  * @property {number} [shipment_quantity]
  * @property {string} [shipment_status]
+ * @property {number} [shipment_update_time]
  * @property {ShipmentStatusData} [status]
  * @property {number} [total_bags]
  * @property {number} [total_items]
@@ -2436,6 +2443,7 @@ type AffiliateBagsDetails = {
 declare function AffiliateConfig(): AffiliateConfig;
 type AffiliateConfig = {
     app?: AffiliateAppConfig;
+    app_company_id?: number;
     inventory?: AffiliateInventoryConfig;
 };
 /** @returns {AffiliateDetails} */
@@ -2449,6 +2457,7 @@ type AffiliateDetails = {
     affiliate_shipment_id: string;
     affiliate_store_id: string;
     company_affiliate_tag?: string;
+    config?: AffiliateConfig;
     pdf_links?: PDFLinks;
     shipment_meta: ShipmentMeta;
 };
@@ -3858,6 +3867,7 @@ type OrderDetailsData = {
     affiliate_id?: string;
     cod_charges?: string;
     fynd_order_id: string;
+    meta?: OrderMeta;
     order_date?: string;
     order_value?: string;
     ordering_channel?: string;
@@ -4179,6 +4189,7 @@ type PlatformShipment = {
     can_update_dimension?: boolean;
     company_details?: CompanyDetails;
     coupon?: any;
+    credit_note_id?: string;
     custom_message?: string;
     custom_meta?: any[];
     delivery_details?: UserDetailsData;
@@ -4207,14 +4218,17 @@ type PlatformShipment = {
     pdf_links?: any;
     picked_date?: string;
     platform_logo?: string;
+    previous_shipment_id?: string;
     prices?: Prices;
     priority_text?: string;
+    rto_address?: PlatformDeliveryAddress;
     shipment_created_at?: string;
     shipment_details?: ShipmentDetails;
     shipment_id: string;
     shipment_images?: string[];
     shipment_quantity?: number;
     shipment_status?: string;
+    shipment_update_time?: number;
     status?: ShipmentStatusData;
     total_bags?: number;
     total_items?: number;

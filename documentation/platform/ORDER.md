@@ -1749,7 +1749,7 @@ We are processing the report!
           "payment_type": "self",
           "mongo_cart_id": 1835,
           "order_platform": "platform-site",
-          "ordering_store": null,
+          "ordering_store": 1,
           "order_child_entities": [
             "bag",
             "shipment"
@@ -5101,6 +5101,7 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | app | [AffiliateAppConfig](#AffiliateAppConfig)? |  yes  |  |
+ | app_company_id | number? |  yes  |  |
  | inventory | [AffiliateInventoryConfig](#AffiliateInventoryConfig)? |  yes  |  |
  
 
@@ -5118,6 +5119,7 @@ Verify OTP
  | affiliate_shipment_id | string |  no  |  |
  | affiliate_store_id | string |  no  |  |
  | company_affiliate_tag | string? |  yes  |  |
+ | config | [AffiliateConfig](#AffiliateConfig)? |  yes  |  |
  | pdf_links | [PDFLinks](#PDFLinks)? |  yes  |  |
  | shipment_meta | [ShipmentMeta](#ShipmentMeta) |  no  |  |
  
@@ -6836,6 +6838,7 @@ Verify OTP
  | affiliate_id | string? |  yes  |  |
  | cod_charges | string? |  yes  |  |
  | fynd_order_id | string |  no  |  |
+ | meta | [OrderMeta](#OrderMeta)? |  yes  |  |
  | order_date | string? |  yes  |  |
  | order_value | string? |  yes  |  |
  | ordering_channel | string? |  yes  |  |
@@ -7242,6 +7245,7 @@ Verify OTP
  | can_update_dimension | boolean? |  yes  |  |
  | company_details | [CompanyDetails](#CompanyDetails)? |  yes  |  |
  | coupon | string? |  yes  |  |
+ | credit_note_id | string? |  yes  |  |
  | custom_message | string? |  yes  |  |
  | custom_meta | [string]? |  yes  |  |
  | delivery_details | [UserDetailsData](#UserDetailsData)? |  yes  |  |
@@ -7270,14 +7274,17 @@ Verify OTP
  | pdf_links | string? |  yes  |  |
  | picked_date | string? |  yes  |  |
  | platform_logo | string? |  yes  |  |
+ | previous_shipment_id | string? |  yes  |  |
  | prices | [Prices](#Prices)? |  yes  |  |
  | priority_text | string? |  yes  |  |
+ | rto_address | [PlatformDeliveryAddress](#PlatformDeliveryAddress)? |  yes  |  |
  | shipment_created_at | string? |  yes  |  |
  | shipment_details | [ShipmentDetails](#ShipmentDetails)? |  yes  |  |
  | shipment_id | string |  no  |  |
  | shipment_images | [string]? |  yes  |  |
  | shipment_quantity | number? |  yes  |  |
  | shipment_status | string? |  yes  |  |
+ | shipment_update_time | number? |  yes  |  |
  | status | [ShipmentStatusData](#ShipmentStatusData)? |  yes  |  |
  | total_bags | number? |  yes  |  |
  | total_items | number? |  yes  |  |

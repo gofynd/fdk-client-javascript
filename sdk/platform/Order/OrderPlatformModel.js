@@ -90,6 +90,7 @@ const Joi = require("joi");
 /**
  * @typedef AffiliateConfig
  * @property {AffiliateAppConfig} [app]
+ * @property {number} [app_company_id]
  * @property {AffiliateInventoryConfig} [inventory]
  */
 
@@ -103,6 +104,7 @@ const Joi = require("joi");
  * @property {string} affiliate_shipment_id
  * @property {string} affiliate_store_id
  * @property {string} [company_affiliate_tag]
+ * @property {AffiliateConfig} [config]
  * @property {PDFLinks} [pdf_links]
  * @property {ShipmentMeta} shipment_meta
  */
@@ -1344,6 +1346,7 @@ const Joi = require("joi");
  * @property {string} [affiliate_id]
  * @property {string} [cod_charges]
  * @property {string} fynd_order_id
+ * @property {OrderMeta} [meta]
  * @property {string} [order_date]
  * @property {string} [order_value]
  * @property {string} [ordering_channel]
@@ -1644,6 +1647,7 @@ const Joi = require("joi");
  * @property {boolean} [can_update_dimension]
  * @property {CompanyDetails} [company_details]
  * @property {Object} [coupon]
+ * @property {string} [credit_note_id]
  * @property {string} [custom_message]
  * @property {Object[]} [custom_meta]
  * @property {UserDetailsData} [delivery_details]
@@ -1672,14 +1676,17 @@ const Joi = require("joi");
  * @property {Object} [pdf_links]
  * @property {string} [picked_date]
  * @property {string} [platform_logo]
+ * @property {string} [previous_shipment_id]
  * @property {Prices} [prices]
  * @property {string} [priority_text]
+ * @property {PlatformDeliveryAddress} [rto_address]
  * @property {string} [shipment_created_at]
  * @property {ShipmentDetails} [shipment_details]
  * @property {string} shipment_id
  * @property {string[]} [shipment_images]
  * @property {number} [shipment_quantity]
  * @property {string} [shipment_status]
+ * @property {number} [shipment_update_time]
  * @property {ShipmentStatusData} [status]
  * @property {number} [total_bags]
  * @property {number} [total_items]
@@ -2702,6 +2709,7 @@ class OrderPlatformModel {
   static AffiliateConfig() {
     return Joi.object({
       app: OrderPlatformModel.AffiliateAppConfig(),
+      app_company_id: Joi.number().allow(null),
       inventory: OrderPlatformModel.AffiliateInventoryConfig(),
     });
   }
@@ -2717,6 +2725,7 @@ class OrderPlatformModel {
       affiliate_shipment_id: Joi.string().allow("").required(),
       affiliate_store_id: Joi.string().allow("").required(),
       company_affiliate_tag: Joi.string().allow(""),
+      config: OrderPlatformModel.AffiliateConfig(),
       pdf_links: OrderPlatformModel.PDFLinks(),
       shipment_meta: OrderPlatformModel.ShipmentMeta().required(),
     });
@@ -4215,6 +4224,7 @@ class OrderPlatformModel {
       affiliate_id: Joi.string().allow(""),
       cod_charges: Joi.string().allow(""),
       fynd_order_id: Joi.string().allow("").required(),
+      meta: OrderPlatformModel.OrderMeta(),
       order_date: Joi.string().allow(""),
       order_value: Joi.string().allow(""),
       ordering_channel: Joi.string().allow(""),
@@ -4572,6 +4582,7 @@ class OrderPlatformModel {
       can_update_dimension: Joi.boolean(),
       company_details: OrderPlatformModel.CompanyDetails(),
       coupon: Joi.any(),
+      credit_note_id: Joi.string().allow("").allow(null),
       custom_message: Joi.string().allow(""),
       custom_meta: Joi.array().items(Joi.any()),
       delivery_details: OrderPlatformModel.UserDetailsData(),
@@ -4600,14 +4611,17 @@ class OrderPlatformModel {
       pdf_links: Joi.any(),
       picked_date: Joi.string().allow(""),
       platform_logo: Joi.string().allow(""),
+      previous_shipment_id: Joi.string().allow("").allow(null),
       prices: OrderPlatformModel.Prices(),
       priority_text: Joi.string().allow("").allow(null),
+      rto_address: OrderPlatformModel.PlatformDeliveryAddress(),
       shipment_created_at: Joi.string().allow(""),
       shipment_details: OrderPlatformModel.ShipmentDetails(),
       shipment_id: Joi.string().allow("").required(),
       shipment_images: Joi.array().items(Joi.string().allow("")),
       shipment_quantity: Joi.number(),
       shipment_status: Joi.string().allow(""),
+      shipment_update_time: Joi.number().allow(null),
       status: OrderPlatformModel.ShipmentStatusData(),
       total_bags: Joi.number(),
       total_items: Joi.number(),
