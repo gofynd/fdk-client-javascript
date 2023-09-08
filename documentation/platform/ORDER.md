@@ -6028,7 +6028,7 @@ Verify OTP
  | state_type | string? |  yes  |  |
  | status | string? |  yes  |  |
  | store_id | number? |  yes  |  |
- | updated_at | number? |  yes  |  |
+ | updated_at | string? |  yes  |  |
  
 
 ---

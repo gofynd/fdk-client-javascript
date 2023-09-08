@@ -700,7 +700,7 @@ export = OrderPlatformModel;
  * @property {string} [state_type]
  * @property {string} [status]
  * @property {number} [store_id]
- * @property {number} [updated_at]
+ * @property {string} [updated_at]
  */
 /**
  * @typedef DataUpdates
@@ -3217,7 +3217,7 @@ type CurrentStatus = {
     state_type?: string;
     status?: string;
     store_id?: number;
-    updated_at?: number;
+    updated_at?: string;
 };
 /** @returns {DataUpdates} */
 declare function DataUpdates(): DataUpdates;

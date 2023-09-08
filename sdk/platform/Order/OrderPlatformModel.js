@@ -772,7 +772,7 @@ const Joi = require("joi");
  * @property {string} [state_type]
  * @property {string} [status]
  * @property {number} [store_id]
- * @property {number} [updated_at]
+ * @property {string} [updated_at]
  */
 
 /**
@@ -3513,7 +3513,7 @@ class OrderPlatformModel {
       state_type: Joi.string().allow(""),
       status: Joi.string().allow(""),
       store_id: Joi.number(),
-      updated_at: Joi.number(),
+      updated_at: Joi.string().allow(""),
     });
   }
 
