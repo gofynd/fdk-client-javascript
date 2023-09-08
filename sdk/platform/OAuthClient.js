@@ -202,7 +202,9 @@ class OAuthClient {
       scope: scopes,
       code: code,
     };
-    const token = btoa(`${this.config.apiKey}:${this.config.apiSecret}`);
+    const token = convertStringToBase64(
+      `${this.config.apiKey}:${this.config.apiSecret}`
+    );
     const rawRequest = {
       method: "post",
       url: url,

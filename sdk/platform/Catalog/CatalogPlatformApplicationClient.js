@@ -1532,7 +1532,8 @@ class Catalog {
    * @param {CatalogPlatformApplicationValidator.GetAppProductsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.ProductListingResponse>} - Success response
+   * @returns {Promise<CatalogPlatformModel.RawProductListingResponse>} -
+   *   Success response
    * @name getAppProducts
    * @summary: Get applicationwise products
    * @description: Products are the core resource of an application. Products can be associated by categories, collections, brands and more. If successful, returns a Product resource in the response body specified in `ApplicationProductListingResponseDatabasePowered` - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppProducts/).
@@ -1620,10 +1621,10 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.ProductListingResponse().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = CatalogPlatformModel.RawProductListingResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({

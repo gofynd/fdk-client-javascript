@@ -3939,7 +3939,7 @@ Products are the core resource of an application. Products can be associated by 
 
 
 
-[ProductListingResponse](#ProductListingResponse)
+[RawProductListingResponse](#RawProductListingResponse)
 
 The Product object. See example below or refer `ApplicationProductListingResponseDatabasePowered` for details.
 
@@ -4089,12 +4089,10 @@ The Product object. See example below or refer `ApplicationProductListingRespons
         "uid": 13
       },
       "images": [
-        {
-          "aspect_ratio": "16:25",
-          "aspect_ratio_f": 0.64,
-          "url": "https://hdn-1.addsale.com/x0/products/pictures/item/free/135x0/dcizgsG_Y-Tv-Set.png",
-          "secure_url": "https://hdn-1.addsale.com/x0/products/pictures/item/free/135x0/dcizgsG_Y-Tv-Set.png"
-        }
+        "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyprod/wrkr/products/pictures/item/free/original/5050407896640/8hn0-cPlN0-1.jpg",
+        "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyprod/wrkr/products/pictures/item/free/original/5050407896640/1ODGjR9NLY-2.jpg",
+        "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyprod/wrkr/products/pictures/item/free/original/5050407896640/mJqqfEQilY-3.jpg",
+        "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyprod/wrkr/products/pictures/item/free/original/5050407896640/htM1r1aHwa-4.jpg"
       ],
       "price": {
         "marked": {
@@ -19972,6 +19970,86 @@ List of fields and validation values fro each. See example below or refer `Inven
  | ---------- | ---- | -------- | ----------- |
  | count | number? |  yes  |  |
  | updated_at | string? |  yes  |  |
+ 
+
+---
+
+#### [RawProduct](#RawProduct)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string? |  yes  |  |
+ | all_company_ids | [number]? |  yes  |  |
+ | all_identifiers | [string]? |  yes  |  |
+ | all_sizes | [string]? |  yes  |  |
+ | attributes | string? |  yes  |  |
+ | brand | [Brand](#Brand)? |  yes  |  |
+ | brand_uid | number? |  yes  |  |
+ | category | string? |  yes  |  |
+ | category_slug | string? |  yes  |  |
+ | category_uid | number? |  yes  |  |
+ | color | string? |  yes  |  |
+ | company_id | number? |  yes  |  |
+ | country_of_origin | string? |  yes  |  |
+ | created_by | string? |  yes  |  |
+ | created_on | string? |  yes  |  |
+ | currency | string? |  yes  |  |
+ | custom_order | string? |  yes  |  |
+ | departments | [number]? |  yes  |  |
+ | description | string? |  yes  |  |
+ | highlights | [string]? |  yes  |  |
+ | hsn_code | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | image_nature | string? |  yes  |  |
+ | images | [string]? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | is_dependent | boolean? |  yes  |  |
+ | is_expirable | boolean? |  yes  |  |
+ | is_image_less_product | boolean? |  yes  |  |
+ | is_physical | boolean? |  yes  |  |
+ | is_set | boolean? |  yes  |  |
+ | item_code | string? |  yes  |  |
+ | item_type | string? |  yes  |  |
+ | l3_mapping | [string]? |  yes  |  |
+ | media | [[Media](#Media)]? |  yes  |  |
+ | modified_by | string? |  yes  |  |
+ | modified_on | string? |  yes  |  |
+ | moq | string? |  yes  |  |
+ | multi_size | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
+ | net_quantity | [NetQuantityResponse](#NetQuantityResponse)? |  yes  |  |
+ | no_of_boxes | number? |  yes  |  |
+ | pending | string? |  yes  |  |
+ | primary_color | string? |  yes  |  |
+ | product_group_tag | [string]? |  yes  |  |
+ | product_publish | [ProductPublished](#ProductPublished)? |  yes  |  |
+ | return_config | [ReturnConfigResponse](#ReturnConfigResponse)? |  yes  |  |
+ | short_description | string? |  yes  |  |
+ | size_guide | string? |  yes  |  |
+ | sizes | [string]? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | stage | string? |  yes  |  |
+ | tags | [string]? |  yes  |  |
+ | tax_identifier | string? |  yes  |  |
+ | teaser_tag | string? |  yes  |  |
+ | template_tag | string? |  yes  |  |
+ | trader | [[Trader](#Trader)]? |  yes  |  |
+ | uid | number? |  yes  |  |
+ | variant_group | string? |  yes  |  |
+ | variant_media | string? |  yes  |  |
+ | variants | string? |  yes  |  |
+ | verified_by | [VerifiedBy](#VerifiedBy)? |  yes  |  |
+ | verified_on | string? |  yes  |  |
+ 
+
+---
+
+#### [RawProductListingResponse](#RawProductListingResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[RawProduct](#RawProduct)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---

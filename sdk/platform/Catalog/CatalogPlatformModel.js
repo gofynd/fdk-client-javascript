@@ -2740,6 +2740,78 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef RawProduct
+ * @property {Object} [_custom_json]
+ * @property {number[]} [all_company_ids]
+ * @property {string[]} [all_identifiers]
+ * @property {Object[]} [all_sizes]
+ * @property {Object} [attributes]
+ * @property {Brand} [brand]
+ * @property {number} [brand_uid]
+ * @property {Object} [category]
+ * @property {string} [category_slug]
+ * @property {number} [category_uid]
+ * @property {string} [color]
+ * @property {number} [company_id]
+ * @property {string} [country_of_origin]
+ * @property {Object} [created_by]
+ * @property {string} [created_on]
+ * @property {string} [currency]
+ * @property {Object} [custom_order]
+ * @property {number[]} [departments]
+ * @property {string} [description]
+ * @property {string[]} [highlights]
+ * @property {string} [hsn_code]
+ * @property {string} [id]
+ * @property {string} [image_nature]
+ * @property {string[]} [images]
+ * @property {boolean} [is_active]
+ * @property {boolean} [is_dependent]
+ * @property {boolean} [is_expirable]
+ * @property {boolean} [is_image_less_product]
+ * @property {boolean} [is_physical]
+ * @property {boolean} [is_set]
+ * @property {string} [item_code]
+ * @property {string} [item_type]
+ * @property {string[]} [l3_mapping]
+ * @property {Media[]} [media]
+ * @property {Object} [modified_by]
+ * @property {string} [modified_on]
+ * @property {Object} [moq]
+ * @property {boolean} [multi_size]
+ * @property {string} [name]
+ * @property {NetQuantityResponse} [net_quantity]
+ * @property {number} [no_of_boxes]
+ * @property {string} [pending]
+ * @property {string} [primary_color]
+ * @property {string[]} [product_group_tag]
+ * @property {ProductPublished} [product_publish]
+ * @property {ReturnConfigResponse} [return_config]
+ * @property {string} [short_description]
+ * @property {string} [size_guide]
+ * @property {Object[]} [sizes]
+ * @property {string} [slug]
+ * @property {string} [stage]
+ * @property {string[]} [tags]
+ * @property {Object} [tax_identifier]
+ * @property {Object} [teaser_tag]
+ * @property {string} [template_tag]
+ * @property {Trader[]} [trader]
+ * @property {number} [uid]
+ * @property {Object} [variant_group]
+ * @property {Object} [variant_media]
+ * @property {Object} [variants]
+ * @property {VerifiedBy} [verified_by]
+ * @property {string} [verified_on]
+ */
+
+/**
+ * @typedef RawProductListingResponse
+ * @property {RawProduct[]} [items]
+ * @property {Page} [page]
+ */
+
+/**
  * @typedef ReturnConfig
  * @property {boolean} returnable
  * @property {number} time
@@ -6467,6 +6539,82 @@ class CatalogPlatformModel {
     return Joi.object({
       count: Joi.number(),
       updated_at: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {RawProduct} */
+  static RawProduct() {
+    return Joi.object({
+      _custom_json: Joi.any(),
+      all_company_ids: Joi.array().items(Joi.number()),
+      all_identifiers: Joi.array().items(Joi.string().allow("")),
+      all_sizes: Joi.array().items(Joi.any()),
+      attributes: Joi.any(),
+      brand: CatalogPlatformModel.Brand(),
+      brand_uid: Joi.number(),
+      category: Joi.any(),
+      category_slug: Joi.string().allow(""),
+      category_uid: Joi.number(),
+      color: Joi.string().allow(""),
+      company_id: Joi.number(),
+      country_of_origin: Joi.string().allow(""),
+      created_by: Joi.any(),
+      created_on: Joi.string().allow(""),
+      currency: Joi.string().allow(""),
+      custom_order: Joi.any(),
+      departments: Joi.array().items(Joi.number()),
+      description: Joi.string().allow(""),
+      highlights: Joi.array().items(Joi.string().allow("")),
+      hsn_code: Joi.string().allow(""),
+      id: Joi.string().allow(""),
+      image_nature: Joi.string().allow(""),
+      images: Joi.array().items(Joi.string().allow("")),
+      is_active: Joi.boolean(),
+      is_dependent: Joi.boolean(),
+      is_expirable: Joi.boolean(),
+      is_image_less_product: Joi.boolean(),
+      is_physical: Joi.boolean(),
+      is_set: Joi.boolean(),
+      item_code: Joi.string().allow(""),
+      item_type: Joi.string().allow(""),
+      l3_mapping: Joi.array().items(Joi.string().allow("")),
+      media: Joi.array().items(CatalogPlatformModel.Media()),
+      modified_by: Joi.any(),
+      modified_on: Joi.string().allow(""),
+      moq: Joi.any(),
+      multi_size: Joi.boolean(),
+      name: Joi.string().allow(""),
+      net_quantity: CatalogPlatformModel.NetQuantityResponse(),
+      no_of_boxes: Joi.number(),
+      pending: Joi.string().allow(""),
+      primary_color: Joi.string().allow(""),
+      product_group_tag: Joi.array().items(Joi.string().allow("")),
+      product_publish: CatalogPlatformModel.ProductPublished(),
+      return_config: CatalogPlatformModel.ReturnConfigResponse(),
+      short_description: Joi.string().allow(""),
+      size_guide: Joi.string().allow(""),
+      sizes: Joi.array().items(Joi.any()),
+      slug: Joi.string().allow(""),
+      stage: Joi.string().allow(""),
+      tags: Joi.array().items(Joi.string().allow("")),
+      tax_identifier: Joi.any(),
+      teaser_tag: Joi.any(),
+      template_tag: Joi.string().allow(""),
+      trader: Joi.array().items(CatalogPlatformModel.Trader()),
+      uid: Joi.number(),
+      variant_group: Joi.any(),
+      variant_media: Joi.any(),
+      variants: Joi.any(),
+      verified_by: CatalogPlatformModel.VerifiedBy(),
+      verified_on: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {RawProductListingResponse} */
+  static RawProductListingResponse() {
+    return Joi.object({
+      items: Joi.array().items(CatalogPlatformModel.RawProduct()),
+      page: CatalogPlatformModel.Page(),
     });
   }
 
