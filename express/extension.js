@@ -7,7 +7,6 @@ const { WebhookRegistry } = require('./webhook');
 const logger = require('./logger');
 const { fdkAxios } = require('@gofynd/fdk-client-javascript/sdk/common/AxiosHelper');
 const { version } = require('./../package.json');
-const { TIMEOUT_STATUS, SERVICE_UNAVAILABLE, BAD_GATEWAY } = require('./constants');
 const { RetryManger } = require("./retry_manager")
 
 class Extension {
@@ -21,10 +20,14 @@ class Extension {
         this.cluster = "https://api.fynd.com";
         this.webhookRegistry = null;
         this._isInitialized = false;
-        this.retryManager = new RetryManger(this.getExtensionDetails.bind(this));
+        this.retryManager = new RetryManger();
     }
 
     async initialize(data) {
+
+        if (this._isInitialized) {
+            return;
+        }
 
         this._isInitialized = false;
         this.configData = data;
@@ -101,8 +104,7 @@ class Extension {
     }
 
     async getPlatformConfig(companyId) {
-        if (!this._isInitialized && this.retryManager.isRetryInProgress){
-            this.retryManager.resetRetryState();
+        if (!this._isInitialized){
             await this.initialize(this.configData);
         }
         let platformConfig = new PlatformConfig({
@@ -117,8 +119,7 @@ class Extension {
     }
 
     async getPlatformClient(companyId, session) {
-        if (!this._isInitialized && this.retryManager.isRetryInProgress){
-            this.retryManager.resetRetryState();
+        if (!this._isInitialized){
             await this.initialize(this.configData);
         }
         const SessionStorage = require('./session/session_storage');
@@ -146,14 +147,22 @@ class Extension {
     }
 
     async getExtensionDetails() {
+
+        let url = `${this.cluster}/service/panel/partners/v1.0/extensions/details/${this.api_key}`;
+        const uniqueKey = `${url}`;
+
+        const retryInfo = this.retryManager.retryInfoMap.get(uniqueKey);
+        if (retryInfo && !retryInfo.isRetry) {
+            this.retryManager.resetRetryState(uniqueKey);
+        }
+
         try {
-            let url = `${this.cluster}/service/panel/partners/v1.0/extensions/details/${this.api_key}`;
             const token = Buffer.from(
                 `${this.api_key}:${this.api_secret}`,
                 "utf8"
             ).toString("base64");
             const rawRequest = {
-                method: "get",
+                method: "GET",
                 url: url,
                 headers: {
                     Authorization: `Basic ${token}`,
@@ -165,14 +174,15 @@ class Extension {
             logger.debug(`Extension details received: ${logger.safeStringify(extensionData)}`);
             this.extensionData = extensionData;
         } catch (err) {
-            const statusCode = (err.response && err.response.status) || err.code;
-            
-            if ([BAD_GATEWAY, SERVICE_UNAVAILABLE, TIMEOUT_STATUS].includes(statusCode)) {
 
-                if (!this.retryManager.isRetryInProgress){
-                    return await this.retryManager.retry();
-                }
+            if (
+                RetryManger.shouldRetryOnError(err) 
+                && !this.retryManager.retryInfoMap.get(uniqueKey)?.isRetryInProgress
+            ) { 
+                logger.debug(`API call failed. Starting retry for ${uniqueKey}`)
+                return await this.retryManager.retry(uniqueKey, this.getExtensionDetails.bind(this));
             }
+
             throw new FdkInvalidExtensionConfig("Invalid api_key or api_secret. Reason:" + err.message);
         }
     }

@@ -1,56 +1,109 @@
+const { BAD_GATEWAY, SERVICE_UNAVAILABLE, TIMEOUT_STATUS } = require("./constants");
+const logger = require('./logger');
+
+
+/**
+ * @typedef {Object} RetryInfo
+ * @property {boolean} isRetryInProgress
+ * @property {boolean} isRetry
+ * @property {number} retryCount
+ * @property {NodeJS.Timeout | null} retryTimer
+ * @property {function} fn
+ * @property {any[]} args
+ */
+
+/**
+ * @typedef {Map<string, RetryInfo>} RetryInfoMap
+ */
+
 class RetryManger {
 
-  constructor(fn, ...args) {
-    this.fn = fn;
-    this.args = args;
-    this.retryCount = 0;
-    this.retryTimer = null;
-    this.isRetryInProgress = false;
-    // this.lastRequestHash = null;
+  constructor() {
+    /**
+     * @type {RetryInfoMap}
+     */
+    this.retryInfoMap = new Map();
   }
 
-  async retry() {
-    this.isRetryInProgress = true;
-    this.retryCount++;
+  static shouldRetryOnError(err) {
+    const statusCode = (err.response && err.response.status) || err.code; 
+    return [BAD_GATEWAY, SERVICE_UNAVAILABLE, TIMEOUT_STATUS].includes(statusCode)
+  }
 
-    let nextRetrySeconds = 5*1000; // 5 seconds
 
-    if (this.retryCount > 6) {
-      const MAX_MINUTES_TO_WAIT = 3;
-      const MINUTES_TO_WAIT = Math.min((this.retryCount - 6), MAX_MINUTES_TO_WAIT);
-      nextRetrySeconds = 1000 * 60 * MINUTES_TO_WAIT;
+  async retry(uniqueKey, fn, ...args) {
+
+    if (!this.retryInfoMap.has(uniqueKey)) {
+      this.retryInfoMap.set(uniqueKey, {
+        fn: fn,
+        args: args,
+        retryCount: 0,
+        retryTimer: null,
+        isRetryInProgress: false
+      })
     }
 
+    const retryInfo = this.retryInfoMap.get(uniqueKey);
+
+    retryInfo.isRetryInProgress = true;
+    retryInfo.retryCount++;
+
     await (new Promise((resolve, reject) => {
-      this.retryTimer = setTimeout(resolve, nextRetrySeconds);
+      retryInfo.retryTimer = setTimeout(resolve, this.getNextRetryMilliseconds(retryInfo.retryCount));
     }))
-    return await this.makeRetry();
+
+    return await this.makeRetry(uniqueKey);
   }
 
-  async makeRetry() {
-    clearTimeout(this.retryTimer);
 
-    // TODO: create request hash and compare to identify if request payload is changed or not
+  getNextRetryMilliseconds(retryCount) {
+    let nextRetryMilliseconds = 30 * 1000; // 30 seconds
+
+    if (retryCount > 3) {
+      const MAX_MINUTES_TO_WAIT = 3;
+      const MINUTES_TO_WAIT = Math.min((retryCount - 3), MAX_MINUTES_TO_WAIT);
+      nextRetryMilliseconds = 1000 * 60 * MINUTES_TO_WAIT;
+    }
+
+    return nextRetryMilliseconds;
+  }
+
+
+
+  async makeRetry(uniqueKey) {
+
+    const retryInfo = this.retryInfoMap.get(uniqueKey);
+
+    clearTimeout(retryInfo.retryTimer);
 
     try {
-      const data = await this.fn(...this.args);
-      this.resetRetryState()
+      logger.debug(`Retrying api call for ${uniqueKey}. count: ${retryInfo.retryCount}`);
+      retryInfo.isRetry = true;
+      const data = await retryInfo.fn(...retryInfo.args);
+      logger.debug(`api call succeeded. stopping retry for ${uniqueKey}`);
+      this.resetRetryState(uniqueKey);
       return data;
 
     } catch(error) {
-      console.error(`API call failed on retry ${this.retryCount}: ${error.message}`)
-      return await this.retry();
+      retryInfo.isRetry = false;
+      logger.debug(`API call failed on retry ${retryInfo.retryCount}: ${error.message}`);
+      return await this.retry(uniqueKey, retryInfo.fn, ...retryInfo.args);
 
     }
   }
 
-  resetRetryState() {
-    if (this.retryTimer) {
-      clearTimeout(this.retryTimer);
+
+  resetRetryState(uniqueKey) {
+
+    const retryInfo = this.retryInfoMap.get(uniqueKey);
+
+    if (retryInfo.retryTimer) {
+      clearTimeout(retryInfo.retryTimer);
     }
-    this.retryCount = 0;
-    this.lastRequestHash = null;
-    this.isRetryInProgress = false;
+
+    retryInfo.isRetry = false;
+    retryInfo.isRetryInProgress = false;
+    retryInfo.retryCount = 0;
   }
 }
 
