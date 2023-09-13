@@ -1,3 +1,89 @@
+# CHANGE LOG (1.3.3-beta.1) - v1.8.0-prerelease-v1
+
+## Platform Client
+
+
+
+### Catalog
+
+
+
+#### getAppProducts
+
+- ##### What's Deprecated
+	- [Deleted] properties `items[].images[].aspect_ratio`, `items[].images[].secure_url`, `items[].images[].url`, `items[].images[].aspect_ratio_f` in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from `object` to `string` of property `items[].images[]` of schema `Image` in response with status code 200
+
+
+### Order
+
+
+
+#### processManifest
+
+- ##### What's New
+	- [Added] property `order_config.affiliate.config.app_company_id` of schema `AffiliateConfig` in request body
+
+
+#### getShipmentById
+
+- ##### What's New
+	- [Added] property `shipments[].order.meta` of schema `OrderMeta` in response with status code 200
+	- [Added] property `shipments[].affiliate_details.config` of schema `AffiliateConfig` in response with status code 200
+	- [Breaking] [Added] Value format `date-time` to property `shipments[].bags[].current_status.updated_at` of schema `CurrentStatus` in response with status code 200
+	- [Added] property `shipments[].previous_shipment_id` of schema `PlatformShipment` in response with status code 200
+	- [Added] property `shipments[].shipment_update_time` of schema `PlatformShipment` in response with status code 200
+	- [Added] property `shipments[].rto_address` of schema `PlatformDeliveryAddress` in response with status code 200
+	- [Added] property `shipments[].credit_note_id` of schema `PlatformShipment` in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from `integer` to `string` of property `shipments[].bags[].current_status.updated_at` of schema `CurrentStatus` in response with status code 200
+
+
+#### getOrderById
+
+- ##### What's New
+	- [Added] property `shipments[].order.meta` of schema `OrderMeta` in response with status code 200
+	- [Added] property `shipments[].affiliate_details.config` of schema `AffiliateConfig` in response with status code 200
+	- [Breaking] [Added] Value format `date-time` to property `shipments[].bags[].current_status.updated_at` of schema `CurrentStatus` in response with status code 200
+	- [Added] property `shipments[].previous_shipment_id` of schema `PlatformShipment` in response with status code 200
+	- [Added] property `shipments[].shipment_update_time` of schema `PlatformShipment` in response with status code 200
+	- [Added] property `shipments[].rto_address` of schema `PlatformDeliveryAddress` in response with status code 200
+	- [Added] property `shipments[].credit_note_id` of schema `PlatformShipment` in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from `integer` to `string` of property `shipments[].bags[].current_status.updated_at` of schema `CurrentStatus` in response with status code 200
+
+
+#### getOrders
+
+- ##### What's New
+	- [Added] property `items[].shipments[].order.meta` of schema `OrderMeta` in response with status code 200
+	- [Added] property `items[].shipments[].affiliate_details.config` of schema `AffiliateConfig` in response with status code 200
+	- [Breaking] [Added] Value format `date-time` to property `items[].shipments[].bags[].current_status.updated_at` of schema `CurrentStatus` in response with status code 200
+	- [Added] property `items[].shipments[].previous_shipment_id` of schema `PlatformShipment` in response with status code 200
+	- [Added] property `items[].shipments[].shipment_update_time` of schema `PlatformShipment` in response with status code 200
+	- [Added] property `items[].shipments[].rto_address` of schema `PlatformDeliveryAddress` in response with status code 200
+	- [Added] property `items[].shipments[].credit_note_id` of schema `PlatformShipment` in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from `integer` to `string` of property `items[].shipments[].bags[].current_status.updated_at` of schema `CurrentStatus` in response with status code 200
+
+
+#### getBagById
+
+- ##### What's New
+	- [Added] property `affiliate_details.config` of schema `AffiliateConfig` in response with status code 200
+
+
+#### getBags
+
+- ##### What's New
+	- [Added] property `items[].affiliate_details.config` of schema `AffiliateConfig` in response with status code 200
+
+
 # CHANGE LOG (1.3.2) FP-v1.8.1
 
 ## Application Client

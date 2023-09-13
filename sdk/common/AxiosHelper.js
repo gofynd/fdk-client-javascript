@@ -6,7 +6,7 @@ const { sign } = require("@gofynd/fp-signature");
 const { FDKServerResponseError } = require("./FDKError");
 const { log, Logger, getLoggerLevel } = require("./Logger");
 const createCurl = require("./curlHelper");
-const packageJson = require("../../package.json");
+const { version } = require("./../../package.json");
 axios.defaults.withCredentials = true;
 
 function getTransformer(config) {
@@ -39,7 +39,7 @@ function requestInterceptorFn() {
     }
     const { host, pathname, search } = new URL(url);
     const { data, headers, method, params } = config;
-    headers["x-fp-sdk-version"] = packageJson.version;
+    headers["x-fp-sdk-version"] = version;
     let querySearchObj = querystring.parse(search);
     querySearchObj = { ...querySearchObj, ...params };
     let queryParam = "";
