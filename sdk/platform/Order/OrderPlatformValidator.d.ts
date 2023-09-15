@@ -117,6 +117,7 @@ export = OrderPlatformValidator;
  * @property {boolean} [myOrders]
  * @property {boolean} [showCrossCompanyData] - Flag to view cross & non-cross
  *   company order
+ * @property {string} [orderType]
  */
 /**
  * @typedef GetOrderByIdParam
@@ -149,6 +150,7 @@ export = OrderPlatformValidator;
  * @property {boolean} [showCrossCompanyData] - Flag to view cross & non-cross
  *   company order
  * @property {string} [customerId]
+ * @property {string} [orderType]
  */
 /** @typedef GetRoleBasedActionsParam */
 /**
@@ -201,6 +203,7 @@ export = OrderPlatformValidator;
  *   company order
  * @property {string} [tags] - Comma separated values of tags
  * @property {string} [customerId]
+ * @property {string} [orderType]
  */
 /** @typedef GetStateTransitionMapParam */
 /**
@@ -593,6 +596,7 @@ type GetLaneConfigParam = {
      * company order
      */
     showCrossCompanyData?: boolean;
+    orderType?: string;
 };
 type GetOrderByIdParam = {
     orderId: string;
@@ -647,6 +651,7 @@ type GetOrdersParam = {
      */
     showCrossCompanyData?: boolean;
     customerId?: string;
+    orderType?: string;
 };
 type GetShipmentByIdParam = {
     /**
@@ -775,6 +780,7 @@ type GetShipmentsParam = {
      */
     tags?: string;
     customerId?: string;
+    orderType?: string;
 };
 type GetfiltersParam = {
     /**

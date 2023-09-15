@@ -387,6 +387,7 @@ export = CartPlatformModel;
  */
 /**
  * @typedef CouponAdd
+ * @property {string} [_id] - Coupon id
  * @property {CouponSchedule} [_schedule]
  * @property {CouponAction} [action]
  * @property {CouponAuthor} [author]
@@ -451,7 +452,7 @@ export = CartPlatformModel;
  */
 /**
  * @typedef CouponsResponse
- * @property {CouponAdd} [items]
+ * @property {CouponAdd[]} [items]
  * @property {Page} [page]
  */
 /**
@@ -2210,6 +2211,10 @@ type CouponAction = {
 /** @returns {CouponAdd} */
 declare function CouponAdd(): CouponAdd;
 type CouponAdd = {
+    /**
+     * - Coupon id
+     */
+    _id?: string;
     _schedule?: CouponSchedule;
     action?: CouponAction;
     author?: CouponAuthor;
@@ -2284,7 +2289,7 @@ type CouponSchedule = {
 /** @returns {CouponsResponse} */
 declare function CouponsResponse(): CouponsResponse;
 type CouponsResponse = {
-    items?: CouponAdd;
+    items?: CouponAdd[];
     page?: Page;
 };
 /** @returns {CouponUpdate} */

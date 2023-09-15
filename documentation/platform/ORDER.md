@@ -1331,7 +1331,8 @@ const promise = platformClient.order.getLaneConfig({  superLane : value,
  timeToDispatch : value,
  paymentMethods : value,
  myOrders : value,
- showCrossCompanyData : value });
+ showCrossCompanyData : value,
+ orderType : value });
 
 // Async/Await
 const data = await platformClient.order.getLaneConfig({  superLane : value,
@@ -1349,7 +1350,8 @@ const data = await platformClient.order.getLaneConfig({  superLane : value,
  timeToDispatch : value,
  paymentMethods : value,
  myOrders : value,
- showCrossCompanyData : value });
+ showCrossCompanyData : value,
+ orderType : value });
 ```
 
 
@@ -1373,7 +1375,8 @@ const data = await platformClient.order.getLaneConfig({  superLane : value,
 | timeToDispatch | string | no |  |    
 | paymentMethods | string | no |  |    
 | myOrders | boolean | no |  |    
-| showCrossCompanyData | boolean | no | Flag to view cross & non-cross company order |  
+| showCrossCompanyData | boolean | no | Flag to view cross & non-cross company order |    
+| orderType | string | no |  |  
 
 
 
@@ -2288,7 +2291,8 @@ const promise = platformClient.order.getOrders({  lane : value,
  customMeta : value,
  myOrders : value,
  showCrossCompanyData : value,
- customerId : value });
+ customerId : value,
+ orderType : value });
 
 // Async/Await
 const data = await platformClient.order.getOrders({  lane : value,
@@ -2309,7 +2313,8 @@ const data = await platformClient.order.getOrders({  lane : value,
  customMeta : value,
  myOrders : value,
  showCrossCompanyData : value,
- customerId : value });
+ customerId : value,
+ orderType : value });
 ```
 
 
@@ -2336,7 +2341,8 @@ const data = await platformClient.order.getOrders({  lane : value,
 | customMeta | string | no |  |    
 | myOrders | boolean | no |  |    
 | showCrossCompanyData | boolean | no | Flag to view cross & non-cross company order |    
-| customerId | string | no |  |  
+| customerId | string | no |  |    
+| orderType | string | no |  |  
 
 
 
@@ -3113,7 +3119,8 @@ const promise = platformClient.order.getShipments({  lane : value,
  sortType : value,
  showCrossCompanyData : value,
  tags : value,
- customerId : value });
+ customerId : value,
+ orderType : value });
 
 // Async/Await
 const data = await platformClient.order.getShipments({  lane : value,
@@ -3142,7 +3149,8 @@ const data = await platformClient.order.getShipments({  lane : value,
  sortType : value,
  showCrossCompanyData : value,
  tags : value,
- customerId : value });
+ customerId : value,
+ orderType : value });
 ```
 
 
@@ -3177,7 +3185,8 @@ const data = await platformClient.order.getShipments({  lane : value,
 | sortType | string | no | Sort the result data on basis of input |    
 | showCrossCompanyData | boolean | no | Flag to view cross & non-cross company order |    
 | tags | string | no | Comma separated values of tags |    
-| customerId | string | no |  |  
+| customerId | string | no |  |    
+| orderType | string | no |  |  
 
 
 
@@ -6767,6 +6776,7 @@ Verify OTP
  | group_id | string? |  yes  |  |
  | gst_details | [BagGST](#BagGST)? |  yes  |  |
  | identifier | string? |  yes  |  |
+ | is_parent | boolean? |  yes  |  |
  | item | [PlatformItem](#PlatformItem)? |  yes  |  |
  | line_number | number? |  yes  |  |
  | meta | [BagMeta](#BagMeta)? |  yes  |  |
@@ -6931,6 +6941,7 @@ Verify OTP
  | ---------- | ---- | -------- | ----------- |
  | billing_staff_details | [BillingStaffDetails](#BillingStaffDetails)? |  yes  |  |
  | cart_id | number? |  yes  |  |
+ | cart_object_id | string? |  yes  |  |
  | comment | string? |  yes  |  |
  | company_logo | string? |  yes  |  |
  | currency_symbol | string? |  yes  |  |
@@ -7261,9 +7272,11 @@ Verify OTP
  | invoice | [InvoiceInfo](#InvoiceInfo)? |  yes  |  |
  | invoice_id | string? |  yes  |  |
  | is_dp_assign_enabled | boolean? |  yes  |  |
+ | is_self_ship | boolean? |  yes  |  |
  | journey_type | string? |  yes  |  |
  | lock_status | boolean? |  yes  |  |
  | meta | [ShipmentMeta](#ShipmentMeta)? |  yes  |  |
+ | mode_of_payment | string? |  yes  |  |
  | operational_status | string? |  yes  |  |
  | order | [OrderDetailsData](#OrderDetailsData)? |  yes  |  |
  | ordering_store | [OrderingStoreDetails](#OrderingStoreDetails)? |  yes  |  |
@@ -7795,6 +7808,7 @@ Verify OTP
  | invoice_id | string? |  yes  |  |
  | lock_status | boolean? |  yes  |  |
  | meta | [ShipmentItemMeta](#ShipmentItemMeta)? |  yes  |  |
+ | mode_of_payment | string? |  yes  |  |
  | order_date | string? |  yes  |  |
  | order_id | string |  no  |  |
  | ordering_channnel | string? |  yes  |  |
@@ -7924,6 +7938,7 @@ Verify OTP
  | packaging_name | string? |  yes  |  |
  | parent_dp_id | string? |  yes  |  |
  | po_number | string? |  yes  |  |
+ | refund_to | string? |  yes  |  |
  | return_affiliate_order_id | string? |  yes  |  |
  | return_affiliate_shipment_id | string? |  yes  |  |
  | return_awb_number | string? |  yes  |  |

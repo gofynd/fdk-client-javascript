@@ -428,6 +428,7 @@ const Joi = require("joi");
 
 /**
  * @typedef CouponAdd
+ * @property {string} [_id] - Coupon id
  * @property {CouponSchedule} [_schedule]
  * @property {CouponAction} [action]
  * @property {CouponAuthor} [author]
@@ -499,7 +500,7 @@ const Joi = require("joi");
 
 /**
  * @typedef CouponsResponse
- * @property {CouponAdd} [items]
+ * @property {CouponAdd[]} [items]
  * @property {Page} [page]
  */
 
@@ -2324,6 +2325,7 @@ class CartPlatformModel {
   /** @returns {CouponAdd} */
   static CouponAdd() {
     return Joi.object({
+      _id: Joi.string().allow(""),
       _schedule: CartPlatformModel.CouponSchedule(),
       action: CartPlatformModel.CouponAction(),
       author: CartPlatformModel.CouponAuthor(),
@@ -2409,7 +2411,7 @@ class CartPlatformModel {
   /** @returns {CouponsResponse} */
   static CouponsResponse() {
     return Joi.object({
-      items: CartPlatformModel.CouponAdd(),
+      items: Joi.array().items(CartPlatformModel.CouponAdd()),
       page: CartPlatformModel.Page(),
     });
   }
