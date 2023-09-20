@@ -103,6 +103,20 @@ declare class Catalog {
      */
     createListingConfiguration({ configType, body, requestHeaders }?: CatalogPlatformApplicationValidator.CreateListingConfigurationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.AppConfigurationsSort>;
     /**
+     * @param {CatalogPlatformApplicationValidator.CreateSearchConfigurationParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.CreateSearchConfigurationResponse>}
+     *   - Success response
+     *
+     * @name createSearchConfiguration
+     * @summary: Update search configuration for an application
+     * @description: This view allows you to modify searchable attributes for an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createSearchConfiguration/).
+     */
+    createSearchConfiguration({ body, requestHeaders }?: CatalogPlatformApplicationValidator.CreateSearchConfigurationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.CreateSearchConfigurationResponse>;
+    /**
      * @param {CatalogPlatformApplicationValidator.DeleteAutocompleteKeywordParam} arg
      *   - Arg object
      *
@@ -148,6 +162,20 @@ declare class Catalog {
      * @description: Delete configuration for listing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteListingConfiguration/).
      */
     deleteListingConfiguration({ configType, configId, requestHeaders }?: CatalogPlatformApplicationValidator.DeleteListingConfigurationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.ConfigSuccessResponse>;
+    /**
+     * @param {CatalogPlatformApplicationValidator.DeleteSearchConfigurationParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.DeleteSearchConfigurationResponse>}
+     *   - Success response
+     *
+     * @name deleteSearchConfiguration
+     * @summary: Delete search configuration for an application
+     * @description: This view allows you to reset search config for an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteSearchConfiguration/).
+     */
+    deleteSearchConfiguration({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CatalogPlatformModel.DeleteSearchConfigurationResponse>;
     /**
      * @param {CatalogPlatformApplicationValidator.DeleteSearchKeywordsParam} arg
      *   - Arg object
@@ -651,6 +679,20 @@ declare class Catalog {
      */
     getQueryFilters({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetCollectionQueryOptionResponse>;
     /**
+     * @param {CatalogPlatformApplicationValidator.GetSearchConfigurationParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.GetSearchConfigurationResponse>}
+     *   - Success response
+     *
+     * @name getSearchConfiguration
+     * @summary: List search configuration for an application
+     * @description: This view allows you to add/modify searchable attributes for an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getSearchConfiguration/).
+     */
+    getSearchConfiguration({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetSearchConfigurationResponse>;
+    /**
      * @param {CatalogPlatformApplicationValidator.GetSearchKeywordsParam} arg
      *   - Arg object
      *
@@ -790,6 +832,20 @@ declare class Catalog {
      * @description: Update configuration for listing. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateListingConfiguration/).
      */
     updateListingConfiguration({ configType, configId, body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateListingConfigurationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.AppConfigurationsSort>;
+    /**
+     * @param {CatalogPlatformApplicationValidator.UpdateSearchConfigurationParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.UpdateSearchConfigurationResponse>}
+     *   - Success response
+     *
+     * @name updateSearchConfiguration
+     * @summary: Update search configuration for an application
+     * @description: This view allows you to modify searchable attributes for an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateSearchConfiguration/).
+     */
+    updateSearchConfiguration({ body, requestHeaders }?: CatalogPlatformApplicationValidator.UpdateSearchConfigurationParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.UpdateSearchConfigurationResponse>;
     /**
      * @param {CatalogPlatformApplicationValidator.UpdateSearchKeywordsParam} arg
      *   - Arg object

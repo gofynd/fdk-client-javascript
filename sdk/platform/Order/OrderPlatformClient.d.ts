@@ -211,7 +211,7 @@ declare class Order {
      * @summary:
      * @description: Get lane config for the order - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getLaneConfig/).
      */
-    getLaneConfig({ superLane, groupEntity, fromDate, toDate, dpIds, stores, salesChannels, paymentMode, bagStatus, searchType, searchValue, tags, timeToDispatch, paymentMethods, myOrders, showCrossCompanyData, requestHeaders, }?: OrderPlatformValidator.GetLaneConfigParam, { responseHeaders }?: object): Promise<OrderPlatformModel.LaneConfigResponse>;
+    getLaneConfig({ superLane, groupEntity, fromDate, toDate, dpIds, stores, salesChannels, paymentMode, bagStatus, searchType, searchValue, tags, timeToDispatch, paymentMethods, myOrders, showCrossCompanyData, orderType, requestHeaders, }?: OrderPlatformValidator.GetLaneConfigParam, { responseHeaders }?: object): Promise<OrderPlatformModel.LaneConfigResponse>;
     /**
      * @param {OrderPlatformValidator.GetOrderByIdParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -231,7 +231,60 @@ declare class Order {
      * @summary:
      * @description: Get Orders Listing - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getOrders/).
      */
-    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, myOrders, showCrossCompanyData, customerId, requestHeaders, }?: OrderPlatformValidator.GetOrdersParam, { responseHeaders }?: object): Promise<OrderPlatformModel.OrderListingResponse>;
+    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, myOrders, showCrossCompanyData, customerId, orderType, requestHeaders, }?: OrderPlatformValidator.GetOrdersParam, { responseHeaders }?: object): Promise<OrderPlatformModel.OrderListingResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.lane] - Lane refers to a section where orders are
+     *   assigned, indicating its grouping
+     * @param {string} [arg.searchType] - Search_type refers to the field that
+     *   will be used as the target for the search operation
+     * @param {string} [arg.bagStatus] - Bag_status refers to status of the
+     *   entity. Filters orders based on the status.
+     * @param {string} [arg.timeToDispatch] - Time_to_dispatch refers to
+     *   estimated SLA time.
+     * @param {string} [arg.paymentMethods] -
+     * @param {string} [arg.tags] - Tags refers to additional descriptive labels
+     *   associated with the order
+     * @param {string} [arg.searchValue] - Search_value is matched against the
+     *   field specified by the search_type
+     * @param {string} [arg.fromDate] -
+     * @param {string} [arg.toDate] -
+     * @param {string} [arg.dpIds] - Delivery Partner IDs to which shipments are assigned.
+     * @param {string} [arg.stores] -
+     * @param {string} [arg.salesChannels] -
+     * @param {number} [arg.pageSize] -
+     * @param {boolean} [arg.isPrioritySort] -
+     * @param {string} [arg.customMeta] -
+     * @param {boolean} [arg.myOrders] -
+     * @param {boolean} [arg.showCrossCompanyData] - Flag to view cross &
+     *   non-cross company order
+     * @param {string} [arg.customerId] -
+     * @param {string} [arg.orderType] -
+     * @returns {Paginator<OrderPlatformModel.OrderListingResponse>}
+     * @summary:
+     * @description: Get Orders Listing
+     */
+    getOrdersPaginator({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageSize, isPrioritySort, customMeta, myOrders, showCrossCompanyData, customerId, orderType, }?: {
+        lane?: string;
+        searchType?: string;
+        bagStatus?: string;
+        timeToDispatch?: string;
+        paymentMethods?: string;
+        tags?: string;
+        searchValue?: string;
+        fromDate?: string;
+        toDate?: string;
+        dpIds?: string;
+        stores?: string;
+        salesChannels?: string;
+        pageSize?: number;
+        isPrioritySort?: boolean;
+        customMeta?: string;
+        myOrders?: boolean;
+        showCrossCompanyData?: boolean;
+        customerId?: string;
+        orderType?: string;
+    }): Paginator<OrderPlatformModel.OrderListingResponse>;
     /**
      * @param {OrderPlatformValidator.GetRoleBasedActionsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -284,7 +337,71 @@ declare class Order {
      * @summary:
      * @description: Get Shipments Listing for the company id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getShipments/).
      */
-    getShipments({ lane, bagStatus, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, myOrders, platformUserId, sortType, showCrossCompanyData, tags, customerId, requestHeaders, }?: OrderPlatformValidator.GetShipmentsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ShipmentInternalPlatformViewResponse>;
+    getShipments({ lane, bagStatus, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, myOrders, platformUserId, sortType, showCrossCompanyData, tags, customerId, orderType, requestHeaders, }?: OrderPlatformValidator.GetShipmentsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ShipmentInternalPlatformViewResponse>;
+    /**
+     * @param {Object} arg - Arg object.
+     * @param {string} [arg.lane] - Name of lane for which data is to be fetched
+     * @param {string} [arg.bagStatus] - Comma separated values of bag statuses
+     * @param {boolean} [arg.statusOverrideLane] - Use this flag to fetch by
+     *   bag_status and override lane
+     * @param {number} [arg.timeToDispatch] -
+     * @param {string} [arg.searchType] - Search type key
+     * @param {string} [arg.searchValue] - Search type value
+     * @param {string} [arg.fromDate] - Start Date in DD-MM-YYYY format
+     * @param {string} [arg.toDate] - End Date in DD-MM-YYYY format
+     * @param {string} [arg.dpIds] - Comma separated values of delivery partner ids
+     * @param {string} [arg.stores] - Comma separated values of store ids
+     * @param {string} [arg.salesChannels] - Comma separated values of sales channel ids
+     * @param {number} [arg.pageSize] - Page size of data received per page
+     * @param {boolean} [arg.fetchActiveShipment] - Flag to fetch active shipments
+     * @param {boolean} [arg.excludeLockedShipments] - Flag to fetch locked shipments
+     * @param {string} [arg.paymentMethods] - Comma separated values of payment methods
+     * @param {string} [arg.channelShipmentId] - App Shipment Id
+     * @param {string} [arg.channelOrderId] - App Order Id
+     * @param {string} [arg.customMeta] -
+     * @param {string} [arg.orderingChannel] -
+     * @param {string} [arg.companyAffiliateTag] -
+     * @param {boolean} [arg.myOrders] -
+     * @param {string} [arg.platformUserId] -
+     * @param {string} [arg.sortType] - Sort the result data on basis of input
+     * @param {boolean} [arg.showCrossCompanyData] - Flag to view cross &
+     *   non-cross company order
+     * @param {string} [arg.tags] - Comma separated values of tags
+     * @param {string} [arg.customerId] -
+     * @param {string} [arg.orderType] -
+     * @returns {Paginator<OrderPlatformModel.ShipmentInternalPlatformViewResponse>}
+     * @summary:
+     * @description: Get Shipments Listing for the company id
+     */
+    getShipmentsPaginator({ lane, bagStatus, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageSize, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, myOrders, platformUserId, sortType, showCrossCompanyData, tags, customerId, orderType, }?: {
+        lane?: string;
+        bagStatus?: string;
+        statusOverrideLane?: boolean;
+        timeToDispatch?: number;
+        searchType?: string;
+        searchValue?: string;
+        fromDate?: string;
+        toDate?: string;
+        dpIds?: string;
+        stores?: string;
+        salesChannels?: string;
+        pageSize?: number;
+        fetchActiveShipment?: boolean;
+        excludeLockedShipments?: boolean;
+        paymentMethods?: string;
+        channelShipmentId?: string;
+        channelOrderId?: string;
+        customMeta?: string;
+        orderingChannel?: string;
+        companyAffiliateTag?: string;
+        myOrders?: boolean;
+        platformUserId?: string;
+        sortType?: string;
+        showCrossCompanyData?: boolean;
+        tags?: string;
+        customerId?: string;
+        orderType?: string;
+    }): Paginator<OrderPlatformModel.ShipmentInternalPlatformViewResponse>;
     /**
      * @param {OrderPlatformValidator.GetStateTransitionMapParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -466,3 +583,4 @@ declare class Order {
 }
 import OrderPlatformValidator = require("./OrderPlatformValidator");
 import OrderPlatformModel = require("./OrderPlatformModel");
+import Paginator = require("../../common/Paginator");

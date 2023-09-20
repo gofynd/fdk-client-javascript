@@ -276,7 +276,7 @@ export = OrderPlatformModel;
  * @property {string} [display_name]
  * @property {string} [entity_type]
  * @property {FinancialBreakup[]} [financial_breakup]
- * @property {BagGSTDetails} [gst_details]
+ * @property {GSTDetailsData} [gst_details]
  * @property {number} [id]
  * @property {string} [identifier]
  * @property {Item} [item]
@@ -1165,8 +1165,9 @@ export = OrderPlatformModel;
  * @property {string} [entity_type]
  * @property {FinancialBreakup} [financial_breakup]
  * @property {string} [group_id]
- * @property {BagGST} [gst_details]
+ * @property {GSTDetailsData} [gst_details]
  * @property {string} [identifier]
+ * @property {boolean} [is_parent]
  * @property {PlatformItem} [item]
  * @property {number} [line_number]
  * @property {BagMeta} [meta]
@@ -1276,6 +1277,7 @@ export = OrderPlatformModel;
  * @typedef OrderMeta
  * @property {BillingStaffDetails} [billing_staff_details]
  * @property {number} [cart_id]
+ * @property {string} [cart_object_id]
  * @property {string} [comment]
  * @property {string} [company_logo]
  * @property {string} [currency_symbol]
@@ -1503,9 +1505,11 @@ export = OrderPlatformModel;
  * @property {InvoiceInfo} [invoice]
  * @property {string} [invoice_id]
  * @property {boolean} [is_dp_assign_enabled]
+ * @property {boolean} [is_self_ship]
  * @property {string} [journey_type]
  * @property {boolean} [lock_status]
  * @property {ShipmentMeta} [meta]
+ * @property {string} [mode_of_payment]
  * @property {string} [operational_status]
  * @property {OrderDetailsData} [order]
  * @property {OrderingStoreDetails} [ordering_store]
@@ -1830,6 +1834,7 @@ export = OrderPlatformModel;
  * @property {string} [invoice_id]
  * @property {boolean} [lock_status]
  * @property {ShipmentItemMeta} [meta]
+ * @property {string} [mode_of_payment]
  * @property {string} [order_date]
  * @property {string} order_id
  * @property {string} [ordering_channnel]
@@ -1934,6 +1939,7 @@ export = OrderPlatformModel;
  * @property {string} [packaging_name]
  * @property {string} [parent_dp_id]
  * @property {string} [po_number]
+ * @property {string} [refund_to]
  * @property {string} [return_affiliate_order_id]
  * @property {string} [return_affiliate_shipment_id]
  * @property {string} [return_awb_number]
@@ -2660,7 +2666,7 @@ type BagDetailsPlatformResponse = {
     display_name?: string;
     entity_type?: string;
     financial_breakup?: FinancialBreakup[];
-    gst_details?: BagGSTDetails;
+    gst_details?: GSTDetailsData;
     id?: number;
     identifier?: string;
     item?: Item;
@@ -3814,8 +3820,9 @@ type OrderBags = {
     entity_type?: string;
     financial_breakup?: FinancialBreakup;
     group_id?: string;
-    gst_details?: BagGST;
+    gst_details?: GSTDetailsData;
     identifier?: string;
+    is_parent?: boolean;
     item?: PlatformItem;
     line_number?: number;
     meta?: BagMeta;
@@ -3936,6 +3943,7 @@ declare function OrderMeta(): OrderMeta;
 type OrderMeta = {
     billing_staff_details?: BillingStaffDetails;
     cart_id?: number;
+    cart_object_id?: string;
     comment?: string;
     company_logo?: string;
     currency_symbol?: string;
@@ -4205,9 +4213,11 @@ type PlatformShipment = {
     invoice?: InvoiceInfo;
     invoice_id?: string;
     is_dp_assign_enabled?: boolean;
+    is_self_ship?: boolean;
     journey_type?: string;
     lock_status?: boolean;
     meta?: ShipmentMeta;
+    mode_of_payment?: string;
     operational_status?: string;
     order?: OrderDetailsData;
     ordering_store?: OrderingStoreDetails;
@@ -4604,6 +4614,7 @@ type ShipmentItem = {
     invoice_id?: string;
     lock_status?: boolean;
     meta?: ShipmentItemMeta;
+    mode_of_payment?: string;
     order_date?: string;
     order_id: string;
     ordering_channnel?: string;
@@ -4713,6 +4724,7 @@ type ShipmentMeta = {
     packaging_name?: string;
     parent_dp_id?: string;
     po_number?: string;
+    refund_to?: string;
     return_affiliate_order_id?: string;
     return_affiliate_shipment_id?: string;
     return_awb_number?: string;

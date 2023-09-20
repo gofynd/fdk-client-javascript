@@ -35,6 +35,7 @@ Application configuration apis
 * [getInventoryConfig](#getinventoryconfig)
 * [getLevelActiveIntegrations](#getlevelactiveintegrations)
 * [getOrderingStoreConfig](#getorderingstoreconfig)
+* [getOrderingStoreCookie](#getorderingstorecookie)
 * [getOrderingStoresByFilter](#getorderingstoresbyfilter)
 * [getOtherSellerApplicationById](#getothersellerapplicationbyid)
 * [getOtherSellerApplications](#getothersellerapplications)
@@ -46,6 +47,7 @@ Application configuration apis
 * [optOutFromApplication](#optoutfromapplication)
 * [partiallyUpdateInventoryConfig](#partiallyupdateinventoryconfig)
 * [removeDomainById](#removedomainbyid)
+* [removeOrderingStoreCookie](#removeorderingstorecookie)
 * [updateAppApiTokens](#updateappapitokens)
 * [updateAppBasicDetails](#updateappbasicdetails)
 * [updateAppContactInfo](#updateappcontactinfo)
@@ -2599,6 +2601,63 @@ Success
 ---
 
 
+### getOrderingStoreCookie
+Get an Ordering Store signed cookie on selection of ordering store.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").configuration.getOrderingStoreCookie({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").configuration.getOrderingStoreCookie({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [OrderingStoreSelectRequest](#OrderingStoreSelectRequest) | yes | Request body |
+
+
+Use this API to get an Ordering Store signed cookie upon selecting an ordering store. This will be used by the cart service to verify a coupon against the selected ordering store in cart.
+
+*Returned Response:*
+
+
+
+
+[SuccessMessageResponse](#SuccessMessageResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "success"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getOrderingStoresByFilter
 Get ordering store by filter
 
@@ -3868,6 +3927,59 @@ Success
 ```json
 {
   "message": "Domain removed successfully"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### removeOrderingStoreCookie
+Unset the Ordering Store signed cookie.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").configuration.removeOrderingStoreCookie();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").configuration.removeOrderingStoreCookie();
+```
+
+
+
+
+
+
+Use this API to unset the Ordering Store cookie upon changing the sales channel, by its domain URL, in the Universal Fynd Store app.
+
+*Returned Response:*
+
+
+
+
+[SuccessMessageResponse](#SuccessMessageResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "message": "success"
 }
 ```
 </details>
@@ -6680,6 +6792,24 @@ Success
  | items | [[OrderingStore](#OrderingStore)]? |  yes  |  |
  | page | [Page](#Page)? |  yes  |  |
  | type | string? |  yes  | For hard type delivery, store selection is compulsory. For soft type, delivery store selection is optional. |
+ 
+
+---
+
+#### [OrderingStoreSelect](#OrderingStoreSelect)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | uid | number |  no  | Ordering store unique uid. It is required. |
+ 
+
+---
+
+#### [OrderingStoreSelectRequest](#OrderingStoreSelectRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | ordering_store | [OrderingStoreSelect](#OrderingStoreSelect) |  no  |  |
  
 
 ---

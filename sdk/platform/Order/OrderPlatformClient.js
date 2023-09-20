@@ -1587,6 +1587,7 @@ class Order {
       paymentMethods,
       myOrders,
       showCrossCompanyData,
+      orderType,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -1609,6 +1610,7 @@ class Order {
         paymentMethods,
         myOrders,
         showCrossCompanyData,
+        orderType,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1635,6 +1637,7 @@ class Order {
         paymentMethods,
         myOrders,
         showCrossCompanyData,
+        orderType,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1662,6 +1665,7 @@ class Order {
     query_params["payment_methods"] = paymentMethods;
     query_params["my_orders"] = myOrders;
     query_params["show_cross_company_data"] = showCrossCompanyData;
+    query_params["order_type"] = orderType;
 
     const xHeaders = {};
 
@@ -1801,6 +1805,7 @@ class Order {
       myOrders,
       showCrossCompanyData,
       customerId,
+      orderType,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -1826,6 +1831,7 @@ class Order {
         myOrders,
         showCrossCompanyData,
         customerId,
+        orderType,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1855,6 +1861,7 @@ class Order {
         myOrders,
         showCrossCompanyData,
         customerId,
+        orderType,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1885,6 +1892,7 @@ class Order {
     query_params["my_orders"] = myOrders;
     query_params["show_cross_company_data"] = showCrossCompanyData;
     query_params["customer_id"] = customerId;
+    query_params["order_type"] = orderType;
 
     const xHeaders = {};
 
@@ -1918,6 +1926,96 @@ class Order {
     }
 
     return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.lane] - Lane refers to a section where orders are
+   *   assigned, indicating its grouping
+   * @param {string} [arg.searchType] - Search_type refers to the field that
+   *   will be used as the target for the search operation
+   * @param {string} [arg.bagStatus] - Bag_status refers to status of the
+   *   entity. Filters orders based on the status.
+   * @param {string} [arg.timeToDispatch] - Time_to_dispatch refers to
+   *   estimated SLA time.
+   * @param {string} [arg.paymentMethods] -
+   * @param {string} [arg.tags] - Tags refers to additional descriptive labels
+   *   associated with the order
+   * @param {string} [arg.searchValue] - Search_value is matched against the
+   *   field specified by the search_type
+   * @param {string} [arg.fromDate] -
+   * @param {string} [arg.toDate] -
+   * @param {string} [arg.dpIds] - Delivery Partner IDs to which shipments are assigned.
+   * @param {string} [arg.stores] -
+   * @param {string} [arg.salesChannels] -
+   * @param {number} [arg.pageSize] -
+   * @param {boolean} [arg.isPrioritySort] -
+   * @param {string} [arg.customMeta] -
+   * @param {boolean} [arg.myOrders] -
+   * @param {boolean} [arg.showCrossCompanyData] - Flag to view cross &
+   *   non-cross company order
+   * @param {string} [arg.customerId] -
+   * @param {string} [arg.orderType] -
+   * @returns {Paginator<OrderPlatformModel.OrderListingResponse>}
+   * @summary:
+   * @description: Get Orders Listing
+   */
+  getOrdersPaginator({
+    lane,
+    searchType,
+    bagStatus,
+    timeToDispatch,
+    paymentMethods,
+    tags,
+    searchValue,
+    fromDate,
+    toDate,
+    dpIds,
+    stores,
+    salesChannels,
+    pageSize,
+    isPrioritySort,
+    customMeta,
+    myOrders,
+    showCrossCompanyData,
+    customerId,
+    orderType,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getOrders({
+        lane: lane,
+        searchType: searchType,
+        bagStatus: bagStatus,
+        timeToDispatch: timeToDispatch,
+        paymentMethods: paymentMethods,
+        tags: tags,
+        searchValue: searchValue,
+        fromDate: fromDate,
+        toDate: toDate,
+        dpIds: dpIds,
+        stores: stores,
+        salesChannels: salesChannels,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        isPrioritySort: isPrioritySort,
+        customMeta: customMeta,
+        myOrders: myOrders,
+        showCrossCompanyData: showCrossCompanyData,
+        customerId: customerId,
+        orderType: orderType,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
   }
 
   /**
@@ -2269,6 +2367,7 @@ class Order {
       showCrossCompanyData,
       tags,
       customerId,
+      orderType,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -2302,6 +2401,7 @@ class Order {
         showCrossCompanyData,
         tags,
         customerId,
+        orderType,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2339,6 +2439,7 @@ class Order {
         showCrossCompanyData,
         tags,
         customerId,
+        orderType,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -2377,6 +2478,7 @@ class Order {
     query_params["show_cross_company_data"] = showCrossCompanyData;
     query_params["tags"] = tags;
     query_params["customer_id"] = customerId;
+    query_params["order_type"] = orderType;
 
     const xHeaders = {};
 
@@ -2410,6 +2512,115 @@ class Order {
     }
 
     return response;
+  }
+
+  /**
+   * @param {Object} arg - Arg object.
+   * @param {string} [arg.lane] - Name of lane for which data is to be fetched
+   * @param {string} [arg.bagStatus] - Comma separated values of bag statuses
+   * @param {boolean} [arg.statusOverrideLane] - Use this flag to fetch by
+   *   bag_status and override lane
+   * @param {number} [arg.timeToDispatch] -
+   * @param {string} [arg.searchType] - Search type key
+   * @param {string} [arg.searchValue] - Search type value
+   * @param {string} [arg.fromDate] - Start Date in DD-MM-YYYY format
+   * @param {string} [arg.toDate] - End Date in DD-MM-YYYY format
+   * @param {string} [arg.dpIds] - Comma separated values of delivery partner ids
+   * @param {string} [arg.stores] - Comma separated values of store ids
+   * @param {string} [arg.salesChannels] - Comma separated values of sales channel ids
+   * @param {number} [arg.pageSize] - Page size of data received per page
+   * @param {boolean} [arg.fetchActiveShipment] - Flag to fetch active shipments
+   * @param {boolean} [arg.excludeLockedShipments] - Flag to fetch locked shipments
+   * @param {string} [arg.paymentMethods] - Comma separated values of payment methods
+   * @param {string} [arg.channelShipmentId] - App Shipment Id
+   * @param {string} [arg.channelOrderId] - App Order Id
+   * @param {string} [arg.customMeta] -
+   * @param {string} [arg.orderingChannel] -
+   * @param {string} [arg.companyAffiliateTag] -
+   * @param {boolean} [arg.myOrders] -
+   * @param {string} [arg.platformUserId] -
+   * @param {string} [arg.sortType] - Sort the result data on basis of input
+   * @param {boolean} [arg.showCrossCompanyData] - Flag to view cross &
+   *   non-cross company order
+   * @param {string} [arg.tags] - Comma separated values of tags
+   * @param {string} [arg.customerId] -
+   * @param {string} [arg.orderType] -
+   * @returns {Paginator<OrderPlatformModel.ShipmentInternalPlatformViewResponse>}
+   * @summary:
+   * @description: Get Shipments Listing for the company id
+   */
+  getShipmentsPaginator({
+    lane,
+    bagStatus,
+    statusOverrideLane,
+    timeToDispatch,
+    searchType,
+    searchValue,
+    fromDate,
+    toDate,
+    dpIds,
+    stores,
+    salesChannels,
+    pageSize,
+    fetchActiveShipment,
+    excludeLockedShipments,
+    paymentMethods,
+    channelShipmentId,
+    channelOrderId,
+    customMeta,
+    orderingChannel,
+    companyAffiliateTag,
+    myOrders,
+    platformUserId,
+    sortType,
+    showCrossCompanyData,
+    tags,
+    customerId,
+    orderType,
+  } = {}) {
+    const paginator = new Paginator();
+    const callback = async () => {
+      const pageId = paginator.nextId;
+      const pageNo = paginator.pageNo;
+      const pageType = "number";
+      const data = await this.getShipments({
+        lane: lane,
+        bagStatus: bagStatus,
+        statusOverrideLane: statusOverrideLane,
+        timeToDispatch: timeToDispatch,
+        searchType: searchType,
+        searchValue: searchValue,
+        fromDate: fromDate,
+        toDate: toDate,
+        dpIds: dpIds,
+        stores: stores,
+        salesChannels: salesChannels,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        fetchActiveShipment: fetchActiveShipment,
+        excludeLockedShipments: excludeLockedShipments,
+        paymentMethods: paymentMethods,
+        channelShipmentId: channelShipmentId,
+        channelOrderId: channelOrderId,
+        customMeta: customMeta,
+        orderingChannel: orderingChannel,
+        companyAffiliateTag: companyAffiliateTag,
+        myOrders: myOrders,
+        platformUserId: platformUserId,
+        sortType: sortType,
+        showCrossCompanyData: showCrossCompanyData,
+        tags: tags,
+        customerId: customerId,
+        orderType: orderType,
+      });
+      paginator.setPaginator({
+        hasNext: data.page.has_next ? true : false,
+        nextId: data.page.next_id,
+      });
+      return data;
+    };
+    paginator.setCallback(callback.bind(this));
+    return paginator;
   }
 
   /**

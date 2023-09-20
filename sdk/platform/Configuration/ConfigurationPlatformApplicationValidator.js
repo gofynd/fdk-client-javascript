@@ -61,6 +61,11 @@ const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
 /** @typedef GetOrderingStoreConfigParam */
 
 /**
+ * @typedef GetOrderingStoreCookieParam
+ * @property {ConfigurationPlatformModel.OrderingStoreSelectRequest} body
+ */
+
+/**
  * @typedef GetOrderingStoresByFilterParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
@@ -98,6 +103,8 @@ const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
  * @typedef RemoveDomainByIdParam
  * @property {string} id - The unique identifier (24-digit Mongo Object ID) of the domain
  */
+
+/** @typedef RemoveOrderingStoreCookieParam */
 
 /**
  * @typedef UpdateAppApiTokensParam
@@ -237,6 +244,13 @@ class ConfigurationPlatformApplicationValidator {
     return Joi.object({}).required();
   }
 
+  /** @returns {GetOrderingStoreCookieParam} */
+  static getOrderingStoreCookie() {
+    return Joi.object({
+      body: ConfigurationPlatformModel.OrderingStoreSelectRequest().required(),
+    }).required();
+  }
+
   /** @returns {GetOrderingStoresByFilterParam} */
   static getOrderingStoresByFilter() {
     return Joi.object({
@@ -281,6 +295,11 @@ class ConfigurationPlatformApplicationValidator {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
+  }
+
+  /** @returns {RemoveOrderingStoreCookieParam} */
+  static removeOrderingStoreCookie() {
+    return Joi.object({}).required();
   }
 
   /** @returns {UpdateAppApiTokensParam} */

@@ -4973,49 +4973,51 @@ Coupon List for sent page_size and page_no
 ```json
 {
   "value": {
-    "items": {
-      "_id": "5e1d9bec6d6b7e000146c840",
-      "rule": [],
-      "identifiers": {},
-      "validity": {
-        "priority": 0
-      },
-      "type_slug": "bundle_quantity_absolute",
-      "display_meta": {
-        "title": "percent50 title"
-      },
-      "_schedule": {
-        "next_schedule": [
-          {
-            "start": "2020-01-14T10:45:03.600000+00:00",
-            "end": "2020-01-16T10:45:03+00:00"
-          }
-        ],
-        "duration": null,
-        "start": "2020-01-14T10:45:03.600000+00:00",
-        "end": "2020-01-16T10:45:03+00:00",
-        "cron": ""
-      },
-      "state": {
-        "is_public": true,
-        "is_display": true,
-        "is_archived": false
-      },
-      "ownership": {
-        "payable_category": "seller",
-        "payable_by": ""
-      },
-      "code": "percent50",
-      "rule_definition": {
-        "type": "percentage",
-        "scope": [
-          "category_id"
-        ],
-        "applicable_on": "quantity",
-        "calculate_on": "esp",
-        "value_type": "percentage"
+    "items": [
+      {
+        "_id": "5e1d9bec6d6b7e000146c840",
+        "rule": [],
+        "identifiers": {},
+        "validity": {
+          "priority": 0
+        },
+        "type_slug": "bundle_quantity_absolute",
+        "display_meta": {
+          "title": "percent50 title"
+        },
+        "_schedule": {
+          "next_schedule": [
+            {
+              "start": "2020-01-14T10:45:03.600000+00:00",
+              "end": "2020-01-16T10:45:03+00:00"
+            }
+          ],
+          "duration": null,
+          "start": "2020-01-14T10:45:03.600000+00:00",
+          "end": "2020-01-16T10:45:03+00:00",
+          "cron": ""
+        },
+        "state": {
+          "is_public": true,
+          "is_display": true,
+          "is_archived": false
+        },
+        "ownership": {
+          "payable_category": "seller",
+          "payable_by": ""
+        },
+        "code": "percent50",
+        "rule_definition": {
+          "type": "percentage",
+          "scope": [
+            "category_id"
+          ],
+          "applicable_on": "quantity",
+          "calculate_on": "esp",
+          "value_type": "percentage"
+        }
       }
-    },
+    ],
     "page": {
       "type": "",
       "has_next": true,
@@ -13547,6 +13549,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  | Coupon id |
  | _schedule | [CouponSchedule](#CouponSchedule)? |  yes  |  |
  | action | [CouponAction](#CouponAction)? |  yes  |  |
  | author | [CouponAuthor](#CouponAuthor)? |  yes  |  |
@@ -13646,7 +13649,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [CouponAdd](#CouponAdd)? |  yes  |  |
+ | items | [[CouponAdd](#CouponAdd)]? |  yes  |  |
  | page | [Page](#Page)? |  yes  |  |
  
 
@@ -14308,6 +14311,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | mode | string |  no  |  |
  | name | string? |  yes  |  |
  | payment | string? |  yes  |  |
+ | payment_extra_identifiers | string? |  yes  |  |
  | payment_meta | [PaymentMeta](#PaymentMeta) |  no  |  |
  
 
@@ -14427,6 +14431,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | order_type | string |  no  |  |
  | ordering_store | number? |  yes  |  |
  | payment_auto_confirm | boolean? |  yes  |  |
+ | payment_extra_identifiers | string? |  yes  |  |
  | payment_identifier | string? |  yes  |  |
  | payment_mode | string |  no  |  |
  | payment_params | string? |  yes  |  |

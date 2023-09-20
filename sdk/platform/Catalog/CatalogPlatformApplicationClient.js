@@ -640,6 +640,85 @@ class Catalog {
   }
 
   /**
+   * @param {CatalogPlatformApplicationValidator.CreateSearchConfigurationParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.CreateSearchConfigurationResponse>}
+   *   - Success response
+   *
+   * @name createSearchConfiguration
+   * @summary: Update search configuration for an application
+   * @description: This view allows you to modify searchable attributes for an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createSearchConfiguration/).
+   */
+  async createSearchConfiguration(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformApplicationValidator.createSearchConfiguration().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogPlatformApplicationValidator.createSearchConfiguration().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Catalog > createSearchConfiguration \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/configuration/`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.CreateSearchConfigurationResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Catalog > createSearchConfiguration \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
    * @param {CatalogPlatformApplicationValidator.DeleteAutocompleteKeywordParam} arg
    *   - Arg object
    *
@@ -943,6 +1022,81 @@ class Catalog {
       Logger({
         level: "WARN",
         message: `Response Validation Warnnings for platform > Catalog > deleteListingConfiguration \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CatalogPlatformApplicationValidator.DeleteSearchConfigurationParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.DeleteSearchConfigurationResponse>}
+   *   - Success response
+   *
+   * @name deleteSearchConfiguration
+   * @summary: Delete search configuration for an application
+   * @description: This view allows you to reset search config for an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteSearchConfiguration/).
+   */
+  async deleteSearchConfiguration(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformApplicationValidator.deleteSearchConfiguration().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogPlatformApplicationValidator.deleteSearchConfiguration().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Catalog > deleteSearchConfiguration \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/configuration/`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.DeleteSearchConfigurationResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Catalog > deleteSearchConfiguration \n ${res_error}`,
       });
     }
 
@@ -3646,6 +3800,81 @@ class Catalog {
   }
 
   /**
+   * @param {CatalogPlatformApplicationValidator.GetSearchConfigurationParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.GetSearchConfigurationResponse>}
+   *   - Success response
+   *
+   * @name getSearchConfiguration
+   * @summary: List search configuration for an application
+   * @description: This view allows you to add/modify searchable attributes for an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getSearchConfiguration/).
+   */
+  async getSearchConfiguration(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformApplicationValidator.getSearchConfiguration().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogPlatformApplicationValidator.getSearchConfiguration().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Catalog > getSearchConfiguration \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/configuration/`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.GetSearchConfigurationResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Catalog > getSearchConfiguration \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
    * @param {CatalogPlatformApplicationValidator.GetSearchKeywordsParam} arg
    *   - Arg object
    *
@@ -4581,6 +4810,85 @@ class Catalog {
       Logger({
         level: "WARN",
         message: `Response Validation Warnnings for platform > Catalog > updateListingConfiguration \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CatalogPlatformApplicationValidator.UpdateSearchConfigurationParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.UpdateSearchConfigurationResponse>}
+   *   - Success response
+   *
+   * @name updateSearchConfiguration
+   * @summary: Update search configuration for an application
+   * @description: This view allows you to modify searchable attributes for an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateSearchConfiguration/).
+   */
+  async updateSearchConfiguration(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformApplicationValidator.updateSearchConfiguration().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogPlatformApplicationValidator.updateSearchConfiguration().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Catalog > updateSearchConfiguration \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/application/${this.applicationId}/search/configuration/`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.UpdateSearchConfigurationResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Catalog > updateSearchConfiguration \n ${res_error}`,
       });
     }
 

@@ -236,6 +236,19 @@ declare class Configuration {
      */
     getOrderingStoreConfig({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.OrderingStoreConfig>;
     /**
+     * @param {ConfigurationPlatformApplicationValidator.GetOrderingStoreCookieParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ConfigurationPlatformModel.SuccessMessageResponse>} -
+     *   Success response
+     * @name getOrderingStoreCookie
+     * @summary: Get an Ordering Store signed cookie on selection of ordering store.
+     * @description: Use this API to get an Ordering Store signed cookie upon selecting an ordering store. This will be used by the cart service to verify a coupon against the selected ordering store in cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/getOrderingStoreCookie/).
+     */
+    getOrderingStoreCookie({ body, requestHeaders }?: ConfigurationPlatformApplicationValidator.GetOrderingStoreCookieParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.SuccessMessageResponse>;
+    /**
      * @param {ConfigurationPlatformApplicationValidator.GetOrderingStoresByFilterParam} arg
      *   - Arg object
      *
@@ -349,6 +362,19 @@ declare class Configuration {
      * @description: Delete a domain (secondary or shortlink domain) added to a sales channel. It will disable user's access to website, shared links, and other features associated with this domain. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/removeDomainById/).
      */
     removeDomainById({ id, requestHeaders }?: ConfigurationPlatformApplicationValidator.RemoveDomainByIdParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.SuccessMessageResponse>;
+    /**
+     * @param {ConfigurationPlatformApplicationValidator.RemoveOrderingStoreCookieParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ConfigurationPlatformModel.SuccessMessageResponse>} -
+     *   Success response
+     * @name removeOrderingStoreCookie
+     * @summary: Unset the Ordering Store signed cookie.
+     * @description: Use this API to unset the Ordering Store cookie upon changing the sales channel, by its domain URL, in the Universal Fynd Store app. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/configuration/removeOrderingStoreCookie/).
+     */
+    removeOrderingStoreCookie({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.SuccessMessageResponse>;
     /**
      * @param {ConfigurationPlatformApplicationValidator.UpdateAppApiTokensParam} arg
      *   - Arg object

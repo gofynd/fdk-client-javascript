@@ -139,6 +139,7 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @property {boolean} [myOrders]
  * @property {boolean} [showCrossCompanyData] - Flag to view cross & non-cross
  *   company order
+ * @property {string} [orderType]
  */
 
 /**
@@ -173,6 +174,7 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @property {boolean} [showCrossCompanyData] - Flag to view cross & non-cross
  *   company order
  * @property {string} [customerId]
+ * @property {string} [orderType]
  */
 
 /** @typedef GetRoleBasedActionsParam */
@@ -230,6 +232,7 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  *   company order
  * @property {string} [tags] - Comma separated values of tags
  * @property {string} [customerId]
+ * @property {string} [orderType]
  */
 
 /** @typedef GetStateTransitionMapParam */
@@ -506,6 +509,7 @@ class OrderPlatformValidator {
       paymentMethods: Joi.string().allow(""),
       myOrders: Joi.boolean(),
       showCrossCompanyData: Joi.boolean(),
+      orderType: Joi.string().allow(""),
     }).required();
   }
 
@@ -538,6 +542,7 @@ class OrderPlatformValidator {
       myOrders: Joi.boolean(),
       showCrossCompanyData: Joi.boolean(),
       customerId: Joi.string().allow(""),
+      orderType: Joi.string().allow(""),
     }).required();
   }
 
@@ -601,6 +606,7 @@ class OrderPlatformValidator {
       showCrossCompanyData: Joi.boolean(),
       tags: Joi.string().allow(""),
       customerId: Joi.string().allow(""),
+      orderType: Joi.string().allow(""),
     }).required();
   }
 

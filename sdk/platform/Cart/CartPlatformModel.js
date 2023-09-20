@@ -428,6 +428,7 @@ const Joi = require("joi");
 
 /**
  * @typedef CouponAdd
+ * @property {string} [_id] - Coupon id
  * @property {CouponSchedule} [_schedule]
  * @property {CouponAction} [action]
  * @property {CouponAuthor} [author]
@@ -499,7 +500,7 @@ const Joi = require("joi");
 
 /**
  * @typedef CouponsResponse
- * @property {CouponAdd} [items]
+ * @property {CouponAdd[]} [items]
  * @property {Page} [page]
  */
 
@@ -962,6 +963,7 @@ const Joi = require("joi");
  * @property {string} mode
  * @property {string} [name]
  * @property {string} [payment]
+ * @property {Object} [payment_extra_identifiers]
  * @property {PaymentMeta} payment_meta
  */
 
@@ -1057,6 +1059,7 @@ const Joi = require("joi");
  * @property {string} order_type
  * @property {number} [ordering_store]
  * @property {boolean} [payment_auto_confirm]
+ * @property {Object} [payment_extra_identifiers]
  * @property {string} [payment_identifier]
  * @property {string} payment_mode
  * @property {Object} [payment_params]
@@ -2324,6 +2327,7 @@ class CartPlatformModel {
   /** @returns {CouponAdd} */
   static CouponAdd() {
     return Joi.object({
+      _id: Joi.string().allow(""),
       _schedule: CartPlatformModel.CouponSchedule(),
       action: CartPlatformModel.CouponAction(),
       author: CartPlatformModel.CouponAuthor(),
@@ -2409,7 +2413,7 @@ class CartPlatformModel {
   /** @returns {CouponsResponse} */
   static CouponsResponse() {
     return Joi.object({
-      items: CartPlatformModel.CouponAdd(),
+      items: Joi.array().items(CartPlatformModel.CouponAdd()),
       page: CartPlatformModel.Page(),
     });
   }
@@ -2977,6 +2981,7 @@ class CartPlatformModel {
       mode: Joi.string().allow("").required(),
       name: Joi.string().allow(""),
       payment: Joi.string().allow(""),
+      payment_extra_identifiers: Joi.any(),
       payment_meta: CartPlatformModel.PaymentMeta().required(),
     });
   }
@@ -3086,6 +3091,7 @@ class CartPlatformModel {
       order_type: Joi.string().allow("").required(),
       ordering_store: Joi.number().allow(null),
       payment_auto_confirm: Joi.boolean(),
+      payment_extra_identifiers: Joi.any(),
       payment_identifier: Joi.string().allow("").allow(null),
       payment_mode: Joi.string().allow("").required(),
       payment_params: Joi.any().allow(null),

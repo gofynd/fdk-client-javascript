@@ -32,6 +32,7 @@ Catalog - Platform Front API's' API's allows you to access list of products, pri
 * [createProductBundle](#createproductbundle)
 * [createProductExportJob](#createproductexportjob)
 * [createProductsInBulk](#createproductsinbulk)
+* [createSearchConfiguration](#createsearchconfiguration)
 * [createSizeGuide](#createsizeguide)
 * [deleteAutocompleteKeyword](#deleteautocompletekeyword)
 * [deleteBulkInventoryJob](#deletebulkinventoryjob)
@@ -42,6 +43,7 @@ Catalog - Platform Front API's' API's allows you to access list of products, pri
 * [deleteProduct](#deleteproduct)
 * [deleteProductBulkJob](#deleteproductbulkjob)
 * [deleteRealtimeInventory](#deleterealtimeinventory)
+* [deleteSearchConfiguration](#deletesearchconfiguration)
 * [deleteSearchKeywords](#deletesearchkeywords)
 * [deleteSize](#deletesize)
 * [downloadInventoryTemplateView](#downloadinventorytemplateview)
@@ -101,6 +103,7 @@ Catalog - Platform Front API's' API's allows you to access list of products, pri
 * [getProductValidation](#getproductvalidation)
 * [getProducts](#getproducts)
 * [getQueryFilters](#getqueryfilters)
+* [getSearchConfiguration](#getsearchconfiguration)
 * [getSearchKeywords](#getsearchkeywords)
 * [getSellerInsights](#getsellerinsights)
 * [getSingleProductHSNCode](#getsingleproducthsncode)
@@ -133,6 +136,7 @@ Catalog - Platform Front API's' API's allows you to access list of products, pri
 * [updateListingConfiguration](#updatelistingconfiguration)
 * [updateProductBundle](#updateproductbundle)
 * [updateRealtimeInventory](#updaterealtimeinventory)
+* [updateSearchConfiguration](#updatesearchconfiguration)
 * [updateSearchKeywords](#updatesearchkeywords)
 * [updateSizeGuide](#updatesizeguide)
 * [uploadBulkProducts](#uploadbulkproducts)
@@ -313,20 +317,20 @@ List Product Sizes. See example below or refer `AllSizes` for details
 {
   "all_sizes": [
     {
-      "size": "OS",
       "identifiers": [
         {
-          "primary": true,
           "gtin_type": "ean",
-          "gtin_value": "74352323423"
+          "gtin_value": "74352323423",
+          "primary": true
         }
       ],
+      "item_dimensions_unit_of_measure": "cm",
+      "item_height": 100,
       "item_length": 1000,
       "item_weight": 100,
-      "item_height": 100,
-      "item_width": 1000,
       "item_weight_unit_of_measure": "gram",
-      "item_dimensions_unit_of_measure": "cm"
+      "item_width": 1000,
+      "size": "OS"
     }
   ]
 }
@@ -503,7 +507,7 @@ Returns a success response
 ```json
 {
   "batch_id": "507f1f77bcf86cd799439011",
-  "created_on": "2022-12-31T23:59:59Z"
+  "created_on": "2021-04-02T15:43:59.410000Z"
 }
 ```
 </details>
@@ -561,7 +565,7 @@ Returns a success response
 ```json
 {
   "batch_id": "507f1f77bcf86cd799439011",
-  "created_on": "2022-12-31T23:59:59Z"
+  "created_on": "2021-04-02T15:43:59.410000Z"
 }
 ```
 </details>
@@ -676,65 +680,65 @@ List of all the collections including the one you added. See example below or re
 
 ```json
 {
-  "uid": "604f585a7051e30001173ac1",
-  "type": "query",
-  "query": [],
-  "name": "New",
-  "banners": {
-    "portrait": {
-      "type": "image",
-      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588858137/production/applications/app_000000000000000000000001/media/collection/portrait/xzuftshmmw4yuwzb12pm.png"
-    },
-    "landscape": {
-      "type": "image",
-      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857999/production/applications/app_000000000000000000000001/media/collection/landscape/avm7xibo2jgk8glc4bwl.png"
-    }
+  "_custom_json": {},
+  "_locale_language": {},
+  "_schedule": {
+    "end": null,
+    "next_schedule": [
+      {
+        "end": null,
+        "start": "2021-03-15T12:51:21.333000+00:00Z"
+      }
+    ],
+    "start": "2021-03-15T12:51:21.333000+00:00Z"
   },
-  "logo": {
-    "type": "image",
-    "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857854/production/applications/app_000000000000000000000001/media/collection/logo/w9ns7nfgv7fk45xqrpoh.png"
-  },
-  "published": true,
-  "description": "",
-  "is_active": true,
-  "tags": [],
-  "slug": "new",
   "action": {
     "page": {
-      "type": "collection",
       "query": {
         "collection": [
           "new"
         ]
-      }
+      },
+      "type": "collection"
     },
     "type": "page"
   },
   "allow_facets": true,
   "allow_sort": true,
-  "visible_facets_keys": [],
-  "meta": {},
   "badge": {
     "color": "#ffffff",
     "text": ""
   },
-  "sort_on": "depth_desc",
-  "_custom_json": {},
-  "_locale_language": {},
-  "_schedule": {
-    "start": "2021-03-15T12:51:21.333000+00:00Z",
-    "next_schedule": [
-      {
-        "start": "2021-03-15T12:51:21.333000+00:00Z",
-        "end": null
-      }
-    ],
-    "end": null
+  "banners": {
+    "landscape": {
+      "type": "image",
+      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857999/production/applications/app_000000000000000000000001/media/collection/landscape/avm7xibo2jgk8glc4bwl.png"
+    },
+    "portrait": {
+      "type": "image",
+      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588858137/production/applications/app_000000000000000000000001/media/collection/portrait/xzuftshmmw4yuwzb12pm.png"
+    }
   },
+  "description": "",
+  "is_active": true,
+  "logo": {
+    "type": "image",
+    "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857854/production/applications/app_000000000000000000000001/media/collection/logo/w9ns7nfgv7fk45xqrpoh.png"
+  },
+  "meta": {},
+  "name": "New",
+  "published": true,
+  "query": [],
   "seo": {
-    "title": "Test",
-    "description": "Test description"
-  }
+    "description": "Test description",
+    "title": "Test"
+  },
+  "slug": "new",
+  "sort_on": "depth_desc",
+  "tags": [],
+  "type": "query",
+  "uid": "604f585a7051e30001173ac1",
+  "visible_facets_keys": []
 }
 ```
 </details>
@@ -959,10 +963,7 @@ Get keyword object with id that is added. See example below or refer `GetSearchW
 
 ```json
 {
-  "uid": "602fa1e9a596ce349563f6b9",
-  "words": [
-    "sds"
-  ],
+  "_custom_json": {},
   "app_id": "000000000000000000000001",
   "is_active": true,
   "result": {
@@ -973,7 +974,10 @@ Get keyword object with id that is added. See example below or refer `GetSearchW
     },
     "sort_on": "popular"
   },
-  "_custom_json": {}
+  "uid": "602fa1e9a596ce349563f6b9",
+  "words": [
+    "sds"
+  ]
 }
 ```
 </details>
@@ -1091,26 +1095,26 @@ success flag will tell whether the operation was successful.
 
 ```json
 {
-  "priority": 1,
-  "is_default": false,
+  "app_id": "5d64e3500bcad8693a821c0d",
   "attributes": [
     {
-      "priority": 1,
       "display_type": "text",
+      "is_active": true,
       "key": "features",
       "name": "Features",
-      "is_active": true,
+      "priority": 1,
       "slug": "features"
     }
   ],
+  "id": "62b1cdab15c88fa867ee4dac",
+  "is_active": true,
+  "is_default": false,
   "name": "test",
-  "app_id": "5d64e3500bcad8693a821c0d",
+  "priority": 1,
+  "slug": "test15",
   "template_slugs": [
     "bags"
-  ],
-  "is_active": true,
-  "slug": "test15",
-  "id": "62b1cdab15c88fa867ee4dac"
+  ]
 }
 ```
 </details>
@@ -1280,15 +1284,15 @@ success flag will tell whether the operation was successful.
 
 ```json
 {
-  "priority": 4,
+  "app_id": "5d64e3500bcad8693a821c0d",
   "default_key": "",
+  "id": "62b1ccb815c88fa867ee4dab",
+  "is_active": true,
   "is_default": false,
   "key": "discount_dsc",
-  "name": "Discount High to Low",
-  "app_id": "5d64e3500bcad8693a821c0d",
-  "is_active": true,
   "logo": "https://hdn-1.fynd.com/products/pictures/attribute/logo/original/iG82Qjay9X-Popularity.png",
-  "id": "62b1ccb815c88fa867ee4dab"
+  "name": "Discount High to Low",
+  "priority": 4
 }
 ```
 </details>
@@ -1517,38 +1521,38 @@ Get bundle with id that is added. See example below or refer `GetProductBundleCr
 
 ```json
 {
-  "slug": "bag",
-  "logo": "http://g.com/poo.png/",
-  "name": "Bag",
   "choice": "multi",
-  "products": [
-    {
-      "product_uid": 7500001,
-      "max_quantity": 1,
-      "min_quantity": 1,
-      "auto_add_to_cart": false,
-      "auto_select": false,
-      "allow_remove": true
-    }
-  ],
-  "meta": {},
-  "same_store_assignment": true,
+  "company_id": 1,
+  "created_by": {
+    "uid": "123",
+    "username": "917827311650_22960"
+  },
+  "created_on": "2021-02-19 16:40:26.310007",
+  "id": "602f9ca2a596ce312f5956f9",
   "is_active": true,
+  "logo": "http://g.com/poo.png/",
+  "meta": {},
+  "modified_by": {
+    "uid": "123",
+    "username": "917827311650_22960"
+  },
+  "modified_on": "2021-02-19 16:40:26.310027",
+  "name": "Bag",
   "page_visibility": [
     "pdp"
   ],
-  "created_by": {
-    "username": "917827311650_22960",
-    "uid": "123"
-  },
-  "company_id": 1,
-  "created_on": "2021-02-19 16:40:26.310007",
-  "modified_by": {
-    "username": "917827311650_22960",
-    "uid": "123"
-  },
-  "modified_on": "2021-02-19 16:40:26.310027",
-  "id": "602f9ca2a596ce312f5956f9"
+  "products": [
+    {
+      "allow_remove": true,
+      "auto_add_to_cart": false,
+      "auto_select": false,
+      "max_quantity": 1,
+      "min_quantity": 1,
+      "product_uid": 7500001
+    }
+  ],
+  "same_store_assignment": true,
+  "slug": "bag"
 }
 ```
 </details>
@@ -1606,28 +1610,28 @@ Returns a success response
 ```json
 {
   "data": {
-    "filters": {
-      "templates": [
-        "footwear"
-      ],
-      "brands": [],
-      "catalogue_types": [
-        "standard"
-      ]
-    },
-    "stats": {},
-    "modified_on": "2023-03-03T10:26:47.047179",
-    "type": "excel",
+    "_id": "6401cb6729885c34aa30b0c6",
     "created_by": {
       "user_id": "550fe8ce436ea332b9e4b4b0",
       "username": "purvashukla_gofynd_com_44895"
     },
-    "notification_emails": [],
-    "status": "pending",
-    "_id": "6401cb6729885c34aa30b0c6",
-    "seller_id": 577,
     "created_on": "2023-03-03T10:26:47.047171Z",
-    "task_id": "e6c47f1a-b9ad-11ed-b7a0-3ef7b700888d"
+    "filters": {
+      "brands": [],
+      "catalogue_types": [
+        "standard"
+      ],
+      "templates": [
+        "footwear"
+      ]
+    },
+    "modified_on": "2023-03-03T10:26:47.047179",
+    "notification_emails": [],
+    "seller_id": 577,
+    "stats": {},
+    "status": "pending",
+    "task_id": "e6c47f1a-b9ad-11ed-b7a0-3ef7b700888d",
+    "type": "excel"
   }
 }
 ```
@@ -1689,6 +1693,76 @@ Returns a success response
 ```json
 {
   "success": true
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createSearchConfiguration
+Update search configuration for an application
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.createSearchConfiguration({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.createSearchConfiguration({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CreateSearchConfigurationRequest](#CreateSearchConfigurationRequest) | yes | Request body |
+
+
+This view allows you to modify searchable attributes for an application
+
+*Returned Response:*
+
+
+
+
+[CreateSearchConfigurationResponse](#CreateSearchConfigurationResponse)
+
+List of custom search keywords. See example below or refer `CreateSearchConfigurationResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "application_id": 1234,
+  "company_id": 1,
+  "is_proximity_enabled": false,
+  "proximity": 2,
+  "searchable_attributes": [
+    {
+      "key": "brand_uid",
+      "priority": 1
+    },
+    {
+      "key": "category_uid",
+      "priority": 2
+    }
+  ]
 }
 ```
 </details>
@@ -2284,37 +2358,90 @@ Returns a success response
 
 ```json
 {
-  "message": "Partially Successful",
   "items": [
     {
-      "reason": {
-        "reason_code": 2005,
-        "message": "Product not found"
-      },
       "data": {
-        "seller_identifier": "000000000490922067",
-        "store_id": 124,
-        "price_marked": 130,
+        "expiration_date": "9998-01-30T23:59:00",
         "price_effective": 109.01,
-        "total_quantity": 34,
-        "expiration_date": "9998-01-30T23:59:00"
+        "price_marked": 130,
+        "seller_identifier": "SELLER123",
+        "store_id": 124,
+        "total_quantity": 34
+      },
+      "reason": {
+        "message": "Product not found",
+        "reason_code": 2005
       }
     },
     {
-      "reason": {
-        "reason_code": 2004,
-        "message": "Size not found"
-      },
       "data": {
-        "seller_identifier": "000000000490922067",
-        "store_id": 124,
-        "price_marked": 130,
+        "expiration_date": "9998-01-30T23:59:00",
         "price_effective": 109.01,
-        "total_quantity": 34,
-        "expiration_date": "9998-01-30T23:59:00"
+        "price_marked": 130,
+        "seller_identifier": "SELLER123",
+        "store_id": 124,
+        "total_quantity": 34
+      },
+      "reason": {
+        "message": "Size not found",
+        "reason_code": 2004
       }
     }
-  ]
+  ],
+  "message": "Partially Successful"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteSearchConfiguration
+Delete search configuration for an application
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.deleteSearchConfiguration();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.deleteSearchConfiguration();
+```
+
+
+
+
+
+
+This view allows you to reset search config for an application
+
+*Returned Response:*
+
+
+
+
+[DeleteSearchConfigurationResponse](#DeleteSearchConfigurationResponse)
+
+Status of the delete operation. See `DeleteSearchConfigurationResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true
 }
 ```
 </details>
@@ -2433,12 +2560,12 @@ Returns a success response
 
 ```json
 {
-  "success": true,
   "data": {
+    "company_id": 1,
     "item_id": 114,
-    "size": "3",
-    "company_id": 1
-  }
+    "size": "3"
+  },
+  "success": true
 }
 ```
 </details>
@@ -2760,265 +2887,256 @@ List of collections. See example below or refer `GetCollectionListingResponse` f
 
 ```json
 {
-  "page": {
-    "current": 1,
-    "size": 19,
-    "has_previous": false,
-    "has_next": true,
-    "item_total": 190,
-    "type": "products"
-  },
-  "items": [
-    {
-      "uid": "6040fed076d8a500011ef829",
-      "type": "query",
-      "query": [
-        {
-          "attribute": "",
-          "op": "in",
-          "value": [],
-          "brand": [
-            "6",
-            "3",
-            "4",
-            "2"
-          ],
-          "min_price_effective": "[6319,INR TO 11805,INR]",
-          "platform_discount": "[15 TO 39]",
-          "sort_on": "price_asc"
-        }
-      ],
-      "name": "test1",
-      "banners": {
-        "portrait": {
-          "type": "image",
-          "url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000001/collections/pictures/portrait-banner/original/mP6OnINGR-1601466767814.jpeg"
-        },
-        "landscape": {
-          "type": "image",
-          "url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000001/collections/pictures/landscape-banner/original/3jSEzw9CN-1601465376892.jpeg"
-        }
-      },
-      "logo": {
-        "type": "image",
-        "url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000001/collections/pictures/square-logo/original/y_-XUYXwx-1602326103322.jpeg"
-      },
-      "published": true,
-      "description": "this is description",
-      "is_active": true,
-      "tags": [],
-      "slug": "test1",
-      "action": {
-        "page": {
-          "type": "collection",
-          "query": {
-            "collection": [
-              "test1"
-            ]
-          }
-        },
-        "type": "page"
-      },
-      "allow_facets": true,
-      "allow_sort": true,
-      "visible_facets_keys": [],
-      "meta": {},
-      "badge": {
-        "text": "",
-        "color": "#ffffff"
-      },
-      "sort_on": "price_asc",
-      "_custom_json": {},
-      "_locale_language": {},
-      "_schedule": {
-        "start": "2021-03-04T15:35:13.640000Z",
-        "next_schedule": [
-          {
-            "start": "2021-03-04T15:35:13.640000Z",
-            "end": null
-          }
-        ],
-        "end": null
-      }
-    },
-    {
-      "uid": "6040a9b250f97e0001886294",
-      "type": "items",
-      "query": [],
-      "name": "newapiplaform",
-      "banners": {
-        "portrait": {
-          "type": "image",
-          "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588858137/production/applications/app_000000000000000000000001/media/collection/portrait/xzuftshmmw4yuwzb12pm.png"
-        },
-        "landscape": {
-          "type": "image",
-          "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857999/production/applications/app_000000000000000000000001/media/collection/landscape/avm7xibo2jgk8glc4bwl.png"
-        }
-      },
-      "logo": {
-        "type": "image",
-        "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857854/production/applications/app_000000000000000000000001/media/collection/logo/w9ns7nfgv7fk45xqrpoh.png"
-      },
-      "published": true,
-      "description": "sadasd",
-      "is_active": true,
-      "tags": [
-        "sdsadas",
-        "asd"
-      ],
-      "slug": "newapiplaform",
-      "action": {
-        "page": {
-          "type": "collection",
-          "query": {
-            "collection": [
-              "newapiplaform"
-            ]
-          }
-        },
-        "type": "page"
-      },
-      "allow_facets": true,
-      "allow_sort": true,
-      "visible_facets_keys": [],
-      "meta": {},
-      "badge": {
-        "text": "",
-        "color": "#aa2727"
-      },
-      "sort_on": "popular",
-      "_custom_json": {},
-      "_locale_language": {},
-      "_schedule": {
-        "start": "2021-03-04T09:33:53.686000Z",
-        "next_schedule": [
-          {
-            "start": "2021-03-04T09:33:53.686000Z",
-            "end": null
-          }
-        ],
-        "end": null
-      }
-    },
-    {
-      "uid": "603f68fd953a69000145dc92",
-      "type": "query",
-      "query": [],
-      "name": "new",
-      "banners": {
-        "portrait": {
-          "type": "image",
-          "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588858137/production/applications/app_000000000000000000000001/media/collection/portrait/xzuftshmmw4yuwzb12pm.png"
-        },
-        "landscape": {
-          "type": "image",
-          "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857999/production/applications/app_000000000000000000000001/media/collection/landscape/avm7xibo2jgk8glc4bwl.png"
-        }
-      },
-      "logo": {
-        "type": "image",
-        "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857854/production/applications/app_000000000000000000000001/media/collection/logo/w9ns7nfgv7fk45xqrpoh.png"
-      },
-      "published": true,
-      "description": "",
-      "is_active": true,
-      "tags": [],
-      "slug": "old",
-      "action": {
-        "page": {
-          "type": "collection",
-          "query": {
-            "collection": [
-              "old"
-            ]
-          }
-        },
-        "type": "page"
-      },
-      "allow_facets": true,
-      "allow_sort": true,
-      "visible_facets_keys": [],
-      "meta": {},
-      "badge": {
-        "color": "#ffffff",
-        "text": ""
-      },
-      "sort_on": "popular",
-      "_custom_json": {},
-      "_locale_language": {},
-      "_schedule": {
-        "start": "2021-03-03T10:45:40.544000Z",
-        "next_schedule": [
-          {
-            "start": "2021-03-03T10:45:40.544000Z",
-            "end": null
-          }
-        ],
-        "end": null
-      }
-    }
-  ],
   "filters": {
     "tags": [
       {
-        "name": "1+",
+        "display": "1+",
         "is_selected": false,
-        "display": "1+"
+        "name": "1+"
       },
       {
-        "name": "aa",
+        "display": "aa",
         "is_selected": false,
-        "display": "aa"
+        "name": "aa"
       },
       {
-        "name": "asd",
+        "display": "asd",
         "is_selected": false,
-        "display": "asd"
+        "name": "asd"
       },
       {
-        "name": "dda",
+        "display": "dda",
         "is_selected": false,
-        "display": "dda"
+        "name": "dda"
       },
       {
-        "name": "fahim",
+        "display": "fahim",
         "is_selected": false,
-        "display": "fahim"
+        "name": "fahim"
       },
       {
-        "name": "gfg",
+        "display": "gfg",
         "is_selected": false,
-        "display": "gfg"
+        "name": "gfg"
       },
       {
-        "name": "sakri",
+        "display": "sakri",
         "is_selected": false,
-        "display": "sakri"
+        "name": "sakri"
       },
       {
-        "name": "sdsadas",
+        "display": "sdsadas",
         "is_selected": false,
-        "display": "sdsadas"
+        "name": "sdsadas"
       },
       {
-        "name": "uuy",
+        "display": "uuy",
         "is_selected": false,
-        "display": "uuy"
+        "name": "uuy"
       }
     ],
     "type": [
       {
-        "name": "items",
+        "display": "items",
         "is_selected": false,
-        "display": "items"
+        "name": "items"
       },
       {
-        "name": "query",
+        "display": "query",
         "is_selected": false,
-        "display": "query"
+        "name": "query"
       }
     ]
+  },
+  "items": [
+    {
+      "_custom_json": {},
+      "_locale_language": {},
+      "_schedule": {
+        "end": null,
+        "next_schedule": [
+          {
+            "end": null,
+            "start": "2021-03-04T15:35:13.640000Z"
+          }
+        ],
+        "start": "2021-03-04T15:35:13.640000Z"
+      },
+      "action": {
+        "page": {
+          "query": {
+            "collection": [
+              "test1"
+            ]
+          },
+          "type": "collection"
+        },
+        "type": "page"
+      },
+      "allow_facets": true,
+      "allow_sort": true,
+      "badge": {
+        "color": "#ffffff",
+        "text": ""
+      },
+      "banners": {
+        "landscape": {
+          "type": "image",
+          "url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000001/collections/pictures/landscape-banner/original/3jSEzw9CN-1601465376892.jpeg"
+        },
+        "portrait": {
+          "type": "image",
+          "url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000001/collections/pictures/portrait-banner/original/mP6OnINGR-1601466767814.jpeg"
+        }
+      },
+      "description": "this is description",
+      "is_active": true,
+      "logo": {
+        "type": "image",
+        "url": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000001/collections/pictures/square-logo/original/y_-XUYXwx-1602326103322.jpeg"
+      },
+      "meta": {},
+      "name": "test1",
+      "published": true,
+      "query": [],
+      "slug": "test1",
+      "sort_on": "price_asc",
+      "tags": [],
+      "type": "query",
+      "uid": "6040fed076d8a500011ef829",
+      "visible_facets_keys": []
+    },
+    {
+      "_custom_json": {},
+      "_locale_language": {},
+      "_schedule": {
+        "end": null,
+        "next_schedule": [
+          {
+            "end": null,
+            "start": "2021-03-04T09:33:53.686000Z"
+          }
+        ],
+        "start": "2021-03-04T09:33:53.686000Z"
+      },
+      "action": {
+        "page": {
+          "query": {
+            "collection": [
+              "newapiplaform"
+            ]
+          },
+          "type": "collection"
+        },
+        "type": "page"
+      },
+      "allow_facets": true,
+      "allow_sort": true,
+      "badge": {
+        "color": "#aa2727",
+        "text": ""
+      },
+      "banners": {
+        "landscape": {
+          "type": "image",
+          "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857999/production/applications/app_000000000000000000000001/media/collection/landscape/avm7xibo2jgk8glc4bwl.png"
+        },
+        "portrait": {
+          "type": "image",
+          "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588858137/production/applications/app_000000000000000000000001/media/collection/portrait/xzuftshmmw4yuwzb12pm.png"
+        }
+      },
+      "description": "sadasd",
+      "is_active": true,
+      "logo": {
+        "type": "image",
+        "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857854/production/applications/app_000000000000000000000001/media/collection/logo/w9ns7nfgv7fk45xqrpoh.png"
+      },
+      "meta": {},
+      "name": "newapiplaform",
+      "published": true,
+      "query": [
+        {
+          "attribute": "catalogue",
+          "op": "in",
+          "value": []
+        }
+      ],
+      "slug": "newapiplaform",
+      "sort_on": "popular",
+      "tags": [
+        "sdsadas",
+        "asd"
+      ],
+      "type": "items",
+      "uid": "6040a9b250f97e0001886294",
+      "visible_facets_keys": []
+    },
+    {
+      "_custom_json": {},
+      "_locale_language": {},
+      "_schedule": {
+        "end": null,
+        "next_schedule": [
+          {
+            "end": null,
+            "start": "2021-03-03T10:45:40.544000Z"
+          }
+        ],
+        "start": "2021-03-03T10:45:40.544000Z"
+      },
+      "action": {
+        "page": {
+          "query": {
+            "collection": [
+              "old"
+            ]
+          },
+          "type": "collection"
+        },
+        "type": "page"
+      },
+      "allow_facets": true,
+      "allow_sort": true,
+      "badge": {
+        "color": "#ffffff",
+        "text": ""
+      },
+      "banners": {
+        "landscape": {
+          "type": "image",
+          "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857999/production/applications/app_000000000000000000000001/media/collection/landscape/avm7xibo2jgk8glc4bwl.png"
+        },
+        "portrait": {
+          "type": "image",
+          "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588858137/production/applications/app_000000000000000000000001/media/collection/portrait/xzuftshmmw4yuwzb12pm.png"
+        }
+      },
+      "description": "",
+      "is_active": true,
+      "logo": {
+        "type": "image",
+        "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857854/production/applications/app_000000000000000000000001/media/collection/logo/w9ns7nfgv7fk45xqrpoh.png"
+      },
+      "meta": {},
+      "name": "new",
+      "published": true,
+      "query": [],
+      "slug": "old",
+      "sort_on": "popular",
+      "tags": [],
+      "type": "query",
+      "uid": "603f68fd953a69000145dc92",
+      "visible_facets_keys": []
+    }
+  ],
+  "page": {
+    "current": 1,
+    "has_next": true,
+    "has_previous": false,
+    "item_total": 190,
+    "size": 19,
+    "type": "collection"
   }
 }
 ```
@@ -3088,39 +3206,45 @@ List of all HSN Codes. See example below or refer `HsnCodesListingResponseSchema
 {
   "items": [
     {
-      "tax_on_esp": true,
-      "id": "619e17925e3d3ea77d6fe8cf",
-      "hs2_code": "26",
-      "modified_on": "2021-11-25T06:37:00.880000Z",
+      "country_code": "INDIA",
       "description": "final test updated",
-      "tax_on_mrp": false,
+      "hs2_code": "26",
+      "hsn_code": "123fght3",
+      "id": "619e17925e3d3ea77d6fe8cf",
+      "modified_on": "2021-11-25T06:37:00.880000Z",
+      "reporting_hsn": "12345678",
       "slabs": [
         {
-          "threshold": 100,
           "effective_date": "2021-11-18T10:00:31.798000+00:00",
-          "tax": 10
+          "tax": 10,
+          "threshold": 100
         },
         {
-          "threshold": 200,
           "effective_date": "2022-11-18T10:00:31.798000+00:00",
-          "tax": 20
+          "tax": 20,
+          "threshold": 200
         }
       ],
-      "hsn_code": "123fght3",
-      "uid": "123fgh43-1",
-      "country_code": "IN",
-      "reporting_hsn": "",
-      "taxes": [],
-      "type": "goods"
+      "tax_on_esp": true,
+      "tax_on_mrp": false,
+      "taxes": [
+        {
+          "effective_date": "2021-04-02T15:43:59.410000Z",
+          "rate": 0,
+          "threshold": 0.5
+        }
+      ],
+      "type": "goods",
+      "uid": "123fgh43-1"
     }
   ],
   "page": {
     "current": "1",
-    "type": "number",
-    "size": 8,
-    "has_previous": false,
     "has_next": true,
-    "item_total": 8
+    "has_previous": false,
+    "item_total": 8,
+    "size": 8,
+    "type": "number"
   }
 }
 ```
@@ -3174,20 +3298,9 @@ List of custom search keywords. See example below or refer `GetSearchWordsRespon
 
 ```json
 {
-  "page": {
-    "current": 1,
-    "size": 1,
-    "has_previous": false,
-    "has_next": false,
-    "item_count": 1,
-    "type": "products"
-  },
   "items": [
     {
-      "uid": "602fa1e9a596ce349563f6b9",
-      "words": [
-        "sds"
-      ],
+      "_custom_json": {},
       "app_id": "000000000000000000000001",
       "is_active": true,
       "result": {
@@ -3198,9 +3311,20 @@ List of custom search keywords. See example below or refer `GetSearchWordsRespon
         },
         "sort_on": "popular"
       },
-      "_custom_json": {}
+      "uid": "602fa1e9a596ce349563f6b9",
+      "words": [
+        "sds"
+      ]
     }
-  ]
+  ],
+  "page": {
+    "current": 1,
+    "has_next": false,
+    "has_previous": false,
+    "item_count": 1,
+    "size": 1,
+    "type": "number"
+  }
 }
 ```
 </details>
@@ -3278,50 +3402,91 @@ Success. Returns the article/stock of the product stock.
 {
   "items": [
     {
+      "_custom_json": {},
       "_id": "62d809eebeed53f4e27824b0",
+      "brand": {
+        "id": 2586
+      },
       "company": {
         "id": 3
       },
-      "weight": {
-        "unit": "gram",
-        "is_default": true,
-        "shipping": 40
-      },
-      "modified_by": {
-        "username": "mohitkhare_gofynd_com_12594",
-        "user_id": "2a00eecae43d7e7f4340e7cf"
-      },
-      "tax_identifier": {
-        "hsn_code_id": "000000000000000000000001"
-      },
-      "fynd_item_code": "LS101269",
-      "created_by": {
-        "username": "mohitkhare_gofynd_com_12594",
-        "user_id": "2a00eecae43d7e7f4340e7cf"
-      },
-      "meta": {
-        "service": "Inventory Job"
-      },
-      "uid": "624_LSRS401269",
-      "size": "11",
-      "total_quantity": 100,
-      "fragile": false,
       "country_of_origin": "India",
-      "expiration_date": "9998-01-30T23:59:00",
-      "raw_meta": {
-        "fynd_identifier": "624_LSRS401269"
+      "created_by": {
+        "user_id": "2a00eecae43d7e7f4340e7cf",
+        "username": "mohitkhare_gofynd_com_12594"
       },
+      "date_meta": {
+        "added_on_store": 1658325486,
+        "created_on": 1658325486,
+        "inventory_updated_on": 1658325486,
+        "modified_on": 1660913492
+      },
+      "dimension": {
+        "height": 30,
+        "is_default": true,
+        "length": 10,
+        "unit": "cm",
+        "width": 20
+      },
+      "discount_applied": null,
+      "expiration_date": "9998-01-30T23:59:00",
+      "fragile": false,
+      "fynd_article_code": "LS101269_11",
+      "fynd_item_code": "LS101269",
       "identifier": {
         "ean": "LSRS401269"
       },
-      "seller_identifier": "LSRS401269",
-      "dimension": {
-        "width": 20,
-        "unit": "cm",
-        "height": 30,
-        "length": 10,
-        "is_default": true
+      "is_active": true,
+      "is_set": false,
+      "item_id": 7523701,
+      "manufacturer": {
+        "address": "POLARIS, 2ND FLOOR, ANDHERI, JSNLCA, MAHARASHTRA, THANE",
+        "is_default": true,
+        "name": "Test 21"
       },
+      "meta": {
+        "service": "Inventory Job"
+      },
+      "modified_by": {
+        "user_id": "2a00eecae43d7e7f4340e7cf",
+        "username": "mohitkhare_gofynd_com_12594"
+      },
+      "platforms": {
+        "fynd": false,
+        "uniket_wholesale": true
+      },
+      "price": {
+        "currency": "INR",
+        "effective": 3250,
+        "marked": 5000,
+        "transfer": 0,
+        "updated_at": "2022-07-20T13:58:06.122914+00:00"
+      },
+      "quantities": {
+        "sellable": {
+          "count": 100,
+          "updated_at": 1658325486
+        }
+      },
+      "raw_meta": {
+        "fynd_identifier": "624_LSRS401269"
+      },
+      "return_config": {
+        "returnable": true,
+        "time": 30,
+        "unit": "days"
+      },
+      "seller_identifier": "LSRS401269",
+      "size": "11",
+      "stage": "verified",
+      "store": {
+        "id": 624
+      },
+      "tax_identifier": {
+        "hsn_code_id": "000000000000000000000001"
+      },
+      "total_quantity": 100,
+      "track_inventory": true,
       "trader": [
         {
           "address": [
@@ -3331,99 +3496,99 @@ Success. Returns the article/stock of the product stock.
           "type": "Importer"
         }
       ],
-      "is_active": true,
-      "return_config": {
-        "unit": "days",
-        "returnable": true,
-        "time": 30
-      },
-      "price": {
-        "currency": "INR",
-        "effective": 3250,
-        "marked": 5000,
-        "updated_at": "2022-07-20T13:58:06.122914+00:00",
-        "transfer": 0
-      },
-      "store": {
-        "id": 624
-      },
-      "manufacturer": {
-        "address": "POLARIS, 2ND FLOOR, ANDHERI, JSNLCA, MAHARASHTRA, THANE",
+      "uid": "624_LSRS401269",
+      "weight": {
         "is_default": true,
-        "name": "Test 21"
-      },
-      "track_inventory": true,
+        "shipping": 40,
+        "unit": "gram"
+      }
+    },
+    {
+      "_custom_json": {},
+      "_id": "62d809eebeed53f4e27824b2",
       "brand": {
         "id": 2586
       },
-      "is_set": false,
-      "quantities": {
-        "sellable": {
-          "count": 100,
-          "updated_at": 1658325486
-        }
-      },
-      "item_id": 7523701,
-      "fynd_article_code": "LS101269_11",
-      "date_meta": {
-        "added_on_store": 1658325486,
-        "inventory_updated_on": 1658325486,
-        "modified_on": 1660913492,
-        "created_on": 1658325486
-      },
-      "stage": "verified",
-      "_custom_json": {},
-      "platforms": {
-        "fynd": false,
-        "uniket_wholesale": true
-      },
-      "discount_applied": null
-    },
-    {
-      "_id": "62d809eebeed53f4e27824b2",
       "company": {
         "id": 3
       },
-      "weight": {
-        "unit": "gram",
-        "is_default": true,
-        "shipping": 40
-      },
-      "modified_by": {
-        "username": "mohitkhare_gofynd_com_12594",
-        "user_id": "2a00eecae43d7e7f4340e7cf"
-      },
-      "tax_identifier": {
-        "hsn_code_id": "000000000000000000000001"
-      },
-      "fynd_item_code": "LS101163",
-      "created_by": {
-        "username": "mohitkhare_gofynd_com_12594",
-        "user_id": "2a00eecae43d7e7f4340e7cf"
-      },
-      "meta": {
-        "service": "Inventory Job"
-      },
-      "uid": "624_LSRS401163",
-      "size": "11",
-      "total_quantity": 100,
-      "fragile": false,
       "country_of_origin": "India",
-      "expiration_date": "9998-01-30T23:59:00",
-      "raw_meta": {
-        "fynd_identifier": "624_LSRS401163"
+      "created_by": {
+        "user_id": "2a00eecae43d7e7f4340e7cf",
+        "username": "mohitkhare_gofynd_com_12594"
       },
+      "date_meta": {
+        "added_on_store": 1658325486,
+        "created_on": 1658325486,
+        "inventory_updated_on": 1658325486,
+        "modified_on": 1660913492
+      },
+      "dimension": {
+        "height": 30,
+        "is_default": true,
+        "length": 10,
+        "unit": "cm",
+        "width": 20
+      },
+      "discount_applied": null,
+      "expiration_date": "9998-01-30T23:59:00",
+      "fragile": false,
+      "fynd_article_code": "LS101163_11",
+      "fynd_item_code": "LS101163",
       "identifier": {
         "ean": "LSRS401163"
       },
-      "seller_identifier": "LSRS401163",
-      "dimension": {
-        "width": 20,
-        "unit": "cm",
-        "height": 30,
-        "length": 10,
-        "is_default": true
+      "is_active": true,
+      "is_set": false,
+      "item_id": 7523925,
+      "manufacturer": {
+        "address": "POLARIS, 2ND FLOOR, ANDHERI, JSNLCA, MAHARASHTRA, THANE",
+        "is_default": true,
+        "name": "Test 21"
       },
+      "meta": {
+        "service": "Inventory Job"
+      },
+      "modified_by": {
+        "user_id": "2a00eecae43d7e7f4340e7cf",
+        "username": "mohitkhare_gofynd_com_12594"
+      },
+      "platforms": {
+        "fynd": false,
+        "uniket_wholesale": true
+      },
+      "price": {
+        "currency": "INR",
+        "effective": 3250,
+        "marked": 5000,
+        "transfer": 0,
+        "updated_at": "2022-07-20T13:58:06.396235+00:00"
+      },
+      "quantities": {
+        "sellable": {
+          "count": 100,
+          "updated_at": 1658325486
+        }
+      },
+      "raw_meta": {
+        "fynd_identifier": "624_LSRS401163"
+      },
+      "return_config": {
+        "returnable": true,
+        "time": 30,
+        "unit": "days"
+      },
+      "seller_identifier": "LSRS401163",
+      "size": "11",
+      "stage": "verified",
+      "store": {
+        "id": 624
+      },
+      "tax_identifier": {
+        "hsn_code_id": "000000000000000000000001"
+      },
+      "total_quantity": 100,
+      "track_inventory": true,
       "trader": [
         {
           "address": [
@@ -3433,201 +3598,99 @@ Success. Returns the article/stock of the product stock.
           "type": "Importer"
         }
       ],
-      "is_active": true,
-      "return_config": {
-        "unit": "days",
-        "returnable": true,
-        "time": 30
-      },
-      "price": {
-        "currency": "INR",
-        "effective": 3250,
-        "marked": 5000,
-        "updated_at": "2022-07-20T13:58:06.396235+00:00",
-        "transfer": 0
-      },
-      "store": {
-        "id": 624
-      },
-      "manufacturer": {
-        "address": "POLARIS, 2ND FLOOR, ANDHERI, JSNLCA, MAHARASHTRA, THANE",
+      "uid": "624_LSRS401163",
+      "weight": {
         "is_default": true,
-        "name": "Test 21"
-      },
-      "track_inventory": true,
+        "shipping": 40,
+        "unit": "gram"
+      }
+    },
+    {
+      "_custom_json": {},
+      "_id": "62d809eebeed53f4e27824b4",
       "brand": {
         "id": 2586
       },
-      "is_set": false,
-      "quantities": {
-        "sellable": {
-          "count": 100,
-          "updated_at": 1658325486
-        }
-      },
-      "item_id": 7523925,
-      "fynd_article_code": "LS101163_11",
-      "date_meta": {
-        "added_on_store": 1658325486,
-        "inventory_updated_on": 1658325486,
-        "modified_on": 1660913492,
-        "created_on": 1658325486
-      },
-      "stage": "verified",
-      "_custom_json": {},
-      "platforms": {
-        "fynd": false,
-        "uniket_wholesale": true
-      },
-      "discount_applied": null
-    },
-    {
-      "_id": "62d809eebeed53f4e27824b4",
       "company": {
         "id": 3
       },
-      "weight": {
-        "unit": "gram",
-        "is_default": true,
-        "shipping": 40
-      },
-      "modified_by": {
-        "username": "mohitkhare_gofynd_com_12594",
-        "user_id": "2a00eecae43d7e7f4340e7cf"
-      },
-      "tax_identifier": {
-        "hsn_code_id": "000000000000000000000001"
-      },
-      "fynd_item_code": "LS101173",
-      "created_by": {
-        "username": "mohitkhare_gofynd_com_12594",
-        "user_id": "2a00eecae43d7e7f4340e7cf"
-      },
-      "meta": {
-        "service": "Inventory Job"
-      },
-      "uid": "624_LSRS401173",
-      "size": "11",
-      "total_quantity": 100,
-      "fragile": false,
       "country_of_origin": "India",
-      "expiration_date": "9998-01-30T23:59:00",
-      "raw_meta": {
-        "fynd_identifier": "624_LSRS401173"
+      "created_by": {
+        "user_id": "2a00eecae43d7e7f4340e7cf",
+        "username": "mohitkhare_gofynd_com_12594"
       },
+      "date_meta": {
+        "added_on_store": 1658325486,
+        "created_on": 1658325486,
+        "inventory_updated_on": 1658325486,
+        "modified_on": 1660913492
+      },
+      "dimension": {
+        "height": 30,
+        "is_default": true,
+        "length": 10,
+        "unit": "cm",
+        "width": 20
+      },
+      "discount_applied": null,
+      "expiration_date": "9998-01-30T23:59:00",
+      "fragile": false,
+      "fynd_article_code": "LS101173_11",
+      "fynd_item_code": "LS101173",
       "identifier": {
         "ean": "LSRS401173"
       },
-      "seller_identifier": "LSRS401173",
-      "dimension": {
-        "width": 20,
-        "unit": "cm",
-        "height": 30,
-        "length": 10,
-        "is_default": true
-      },
-      "trader": [
-        {
-          "address": [
-            "Load Galli, Mumbai"
-          ],
-          "name": "Load Company",
-          "type": "Importer"
-        }
-      ],
       "is_active": true,
-      "return_config": {
-        "unit": "days",
-        "returnable": true,
-        "time": 30
-      },
-      "price": {
-        "currency": "INR",
-        "effective": 3250,
-        "marked": 5000,
-        "updated_at": "2022-07-20T13:58:06.635248+00:00",
-        "transfer": 0
-      },
-      "store": {
-        "id": 624
-      },
+      "is_set": false,
+      "item_id": 7523691,
       "manufacturer": {
         "address": "POLARIS, 2ND FLOOR, ANDHERI, JSNLCA, MAHARASHTRA, THANE",
         "is_default": true,
         "name": "Test 21"
-      },
-      "track_inventory": true,
-      "brand": {
-        "id": 2586
-      },
-      "is_set": false,
-      "quantities": {
-        "sellable": {
-          "count": 100,
-          "updated_at": 1658325486
-        }
-      },
-      "item_id": 7523691,
-      "fynd_article_code": "LS101173_11",
-      "date_meta": {
-        "added_on_store": 1658325486,
-        "inventory_updated_on": 1658325486,
-        "modified_on": 1660913492,
-        "created_on": 1658325486
-      },
-      "stage": "verified",
-      "_custom_json": {},
-      "platforms": {
-        "fynd": false,
-        "uniket_wholesale": true
-      },
-      "discount_applied": null
-    },
-    {
-      "_id": "62d809eebeed53f4e27824b6",
-      "company": {
-        "id": 3
-      },
-      "weight": {
-        "unit": "gram",
-        "is_default": true,
-        "shipping": 40
-      },
-      "modified_by": {
-        "username": "mohitkhare_gofynd_com_12594",
-        "user_id": "2a00eecae43d7e7f4340e7cf"
-      },
-      "tax_identifier": {
-        "hsn_code_id": "000000000000000000000001"
-      },
-      "fynd_item_code": "LS101198",
-      "created_by": {
-        "username": "mohitkhare_gofynd_com_12594",
-        "user_id": "2a00eecae43d7e7f4340e7cf"
       },
       "meta": {
         "service": "Inventory Job"
       },
-      "uid": "624_LSRS401198",
-      "size": "11",
-      "total_quantity": 100,
-      "fragile": false,
-      "country_of_origin": "India",
-      "expiration_date": "9998-01-30T23:59:00",
+      "modified_by": {
+        "user_id": "2a00eecae43d7e7f4340e7cf",
+        "username": "mohitkhare_gofynd_com_12594"
+      },
+      "platforms": {
+        "fynd": false,
+        "uniket_wholesale": true
+      },
+      "price": {
+        "currency": "INR",
+        "effective": 3250,
+        "marked": 5000,
+        "transfer": 0,
+        "updated_at": "2022-07-20T13:58:06.635248+00:00"
+      },
+      "quantities": {
+        "sellable": {
+          "count": 100,
+          "updated_at": 1658325486
+        }
+      },
       "raw_meta": {
-        "fynd_identifier": "624_LSRS401198"
+        "fynd_identifier": "624_LSRS401173"
       },
-      "identifier": {
-        "ean": "LSRS401198"
+      "return_config": {
+        "returnable": true,
+        "time": 30,
+        "unit": "days"
       },
-      "seller_identifier": "LSRS401198",
-      "dimension": {
-        "width": 20,
-        "unit": "cm",
-        "height": 30,
-        "length": 10,
-        "is_default": true
+      "seller_identifier": "LSRS401173",
+      "size": "11",
+      "stage": "verified",
+      "store": {
+        "id": 624
       },
+      "tax_identifier": {
+        "hsn_code_id": "000000000000000000000001"
+      },
+      "total_quantity": 100,
+      "track_inventory": true,
       "trader": [
         {
           "address": [
@@ -3637,61 +3700,122 @@ Success. Returns the article/stock of the product stock.
           "type": "Importer"
         }
       ],
+      "uid": "624_LSRS401173",
+      "weight": {
+        "is_default": true,
+        "shipping": 40,
+        "unit": "gram"
+      }
+    },
+    {
+      "_custom_json": {},
+      "_id": "62d809eebeed53f4e27824b6",
+      "brand": {
+        "id": 2586
+      },
+      "company": {
+        "id": 3
+      },
+      "country_of_origin": "India",
+      "created_by": {
+        "user_id": "2a00eecae43d7e7f4340e7cf",
+        "username": "mohitkhare_gofynd_com_12594"
+      },
+      "date_meta": {
+        "added_on_store": 1658325486,
+        "created_on": 1658325486,
+        "inventory_updated_on": 1658325486,
+        "modified_on": 1660913492
+      },
+      "dimension": {
+        "height": 30,
+        "is_default": true,
+        "length": 10,
+        "unit": "cm",
+        "width": 20
+      },
+      "discount_applied": null,
+      "expiration_date": "9998-01-30T23:59:00",
+      "fragile": false,
+      "fynd_article_code": "LS101198_11",
+      "fynd_item_code": "LS101198",
+      "identifier": {
+        "ean": "LSRS401198"
+      },
       "is_active": true,
-      "return_config": {
-        "unit": "days",
-        "returnable": true,
-        "time": 30
-      },
-      "price": {
-        "currency": "INR",
-        "effective": 3250,
-        "marked": 5000,
-        "updated_at": "2022-07-20T13:58:06.898687+00:00",
-        "transfer": 0
-      },
-      "store": {
-        "id": 624
-      },
+      "is_set": false,
+      "item_id": 7524280,
       "manufacturer": {
         "address": "POLARIS, 2ND FLOOR, ANDHERI, JSNLCA, MAHARASHTRA, THANE",
         "is_default": true,
         "name": "Test 21"
       },
-      "track_inventory": true,
-      "brand": {
-        "id": 2586
+      "meta": {
+        "service": "Inventory Job"
       },
-      "is_set": false,
+      "modified_by": {
+        "user_id": "2a00eecae43d7e7f4340e7cf",
+        "username": "mohitkhare_gofynd_com_12594"
+      },
+      "platforms": {
+        "fynd": false,
+        "uniket_wholesale": true
+      },
+      "price": {
+        "currency": "INR",
+        "effective": 3250,
+        "marked": 5000,
+        "transfer": 0,
+        "updated_at": "2022-07-20T13:58:06.898687+00:00"
+      },
       "quantities": {
         "sellable": {
           "count": 100,
           "updated_at": 1658325486
         }
       },
-      "item_id": 7524280,
-      "fynd_article_code": "LS101198_11",
-      "date_meta": {
-        "added_on_store": 1658325486,
-        "inventory_updated_on": 1658325486,
-        "modified_on": 1660913492,
-        "created_on": 1658325486
+      "raw_meta": {
+        "fynd_identifier": "624_LSRS401198"
       },
+      "return_config": {
+        "returnable": true,
+        "time": 30,
+        "unit": "days"
+      },
+      "seller_identifier": "LSRS401198",
+      "size": "11",
       "stage": "verified",
-      "_custom_json": {},
-      "platforms": {
-        "fynd": false,
-        "uniket_wholesale": true
+      "store": {
+        "id": 624
       },
-      "discount_applied": null
+      "tax_identifier": {
+        "hsn_code_id": "000000000000000000000001"
+      },
+      "total_quantity": 100,
+      "track_inventory": true,
+      "trader": [
+        {
+          "address": [
+            "Load Galli, Mumbai"
+          ],
+          "name": "Load Company",
+          "type": "Importer"
+        }
+      ],
+      "uid": "624_LSRS401198",
+      "weight": {
+        "is_default": true,
+        "shipping": 40,
+        "unit": "gram"
+      }
     }
   ],
   "page": {
-    "type": "cursor",
-    "next_id": "62d809eebeed53f4e27824b6",
-    "has_previous": true,
     "has_next": true,
-    "item_total": 1714
+    "has_previous": true,
+    "item_total": 1714,
+    "next_id": "62d809eebeed53f4e27824b6",
+    "type": "cursor"
   }
 }
 ```
@@ -3765,43 +3889,43 @@ Company profile object. See example below or refer `LocationListSerializer` for 
 
 ```json
 {
-  "page": {
-    "current": 1,
-    "type": "number",
-    "size": 3,
-    "has_previous": false,
-    "has_next": true,
-    "item_total": 3
-  },
+  "filters": [],
   "items": [
     {
-      "phone_number": "+919876543210",
-      "code": "",
-      "uid": 2,
       "address": {
         "address1": "POLARIS 2ND FLOOR, ANDHERI",
         "address2": "",
+        "city": "MUMBAI",
+        "country": "INDIA",
         "landmark": "",
         "lat_long": {
-          "type": "Point",
           "coordinates": [
             72.8776559,
             19.0759837
-          ]
+          ],
+          "type": "Point"
         },
-        "country": "INDIA",
-        "state": "MAHARASHTRA",
-        "city": "MUMBAI",
-        "pincode": 400001
+        "pincode": 400001,
+        "state": "MAHARASHTRA"
       },
+      "code": "",
       "company_id": 2,
       "display_name": "Test",
       "name": "Test",
+      "phone_number": "",
       "store_code": "HS-a0c85",
-      "store_type": "high_street"
+      "store_type": "high_street",
+      "uid": 2
     }
   ],
-  "filters": []
+  "page": {
+    "current": 1,
+    "has_next": true,
+    "has_previous": false,
+    "item_total": 3,
+    "size": 3,
+    "type": "number"
+  }
 }
 ```
 </details>
@@ -3859,20 +3983,20 @@ The Company Applicaton Product Data(MOQ/SEO).
 
 ```json
 {
-  "moq": {
-    "minimum": 1,
-    "maximum": 10,
-    "increment_unit": 2
-  },
-  "seo": {
-    "title": "test-title",
-    "description": "test-description"
-  },
   "alt_text": {
     "https://test-url.com/test.png": "test-alt"
   },
+  "is_cod": false,
   "is_gift": false,
-  "is_cod": false
+  "moq": {
+    "increment_unit": 2,
+    "maximum": 10,
+    "minimum": 1
+  },
+  "seo": {
+    "description": "test-description",
+    "title": "test-title"
+  }
 }
 ```
 </details>
@@ -3953,49 +4077,17 @@ The Product object. See example below or refer `ApplicationProductListingRespons
 {
   "items": [
     {
-      "name": "TV Set",
-      "description": "Tv",
-      "country_of_origin": "India",
-      "currency": "INR",
-      "short_description": "",
-      "is_set": true,
-      "item_code": "TVSET111",
-      "brand_uid": 1,
-      "template_tag": "television",
-      "highlights": [
-        "42 Inch"
-      ],
-      "slug": "tv-set",
       "_custom_json": {},
-      "l3_mapping": [
-        "electronics>qled_television"
-      ],
-      "image_nature": "standard",
-      "departments": [
+      "all_company_ids": [
         1
       ],
-      "created_on": "2022-12-31T23:59:59Z",
-      "created_by": {
-        "username": "919049753052_37528",
-        "user_id": "5"
-      },
-      "modified_on": "2022-12-31T23:59:59Z",
-      "modified_by": {
-        "username": "xxxxxxxxxx",
-        "user_id": "xxxxxxxxxxx"
-      },
-      "stage": "verified",
-      "uid": 7501547,
-      "verified_by": {
-        "username": "Silverbolt",
-        "user_id": "0"
-      },
-      "verified_on": "1626965521",
+      "all_identifiers": [
+        "19WE100"
+      ],
       "all_sizes": [
         {
-          "item_code": "TVSET111",
           "brand_uid": 1,
-          "seller_identifier": "HGS272727272",
+          "company_id": 1,
           "identifiers": [
             {
               "gtin_type": "ean",
@@ -4003,62 +4095,98 @@ The Product object. See example below or refer `ApplicationProductListingRespons
               "primary": true
             }
           ],
-          "company_id": 1,
-          "size": "XXLX23, MX11, LX67, XLX45 (146 PCS)",
-          "marked_price": 35000
+          "item_code": "TVSET111",
+          "marked_price": 35000,
+          "seller_identifier": "HGS272727272",
+          "size": "XXLX23, MX11, LX67, XLX45 (146 PCS)"
         }
       ],
+      "brand": {
+        "logo": {
+          "aspect_ratio": "1:1",
+          "aspect_ratio_f": 1,
+          "secure_url": "https://hdn-1.jiox0.de/jioecomm/seller/pictures/logo/50x0/apple-7f951c/logo_apple.png",
+          "url": "https://hdn-1.jiox0.de/jioecomm/seller/pictures/logo/50x0/apple-7f951c/logo_apple.png"
+        },
+        "name": "Apple",
+        "uid": 13
+      },
+      "brand_uid": 1,
       "category_slug": "qled-television",
+      "category_uid": 1,
+      "country_of_origin": "India",
+      "created_by": {
+        "user_id": "5",
+        "username": "919049753052_37528"
+      },
+      "created_on": "2021-04-02T15:43:59.410000Z",
+      "currency": "INR",
+      "custom_order": {
+        "is_custom_order": true,
+        "manufacturing_time": 2,
+        "manufacturing_time_unit": "days"
+      },
+      "departments": [
+        1
+      ],
+      "description": "Tv",
+      "highlights": [
+        "42 Inch"
+      ],
+      "hsn_code": "11111111",
+      "id": "5f4f2f6371a5970001f13655",
+      "image_nature": "standard",
+      "images": [
+        "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyprod/wrkr/products/pictures/item/free/original/5050407896640/8hn0-cPlN0-1.jpg",
+        "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyprod/wrkr/products/pictures/item/free/original/5050407896640/1ODGjR9NLY-2.jpg",
+        "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyprod/wrkr/products/pictures/item/free/original/5050407896640/mJqqfEQilY-3.jpg",
+        "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyprod/wrkr/products/pictures/item/free/original/5050407896640/htM1r1aHwa-4.jpg"
+      ],
+      "is_dependent": false,
       "is_image_less_product": false,
+      "is_physical": true,
+      "is_set": true,
+      "item_code": "TVSET111",
+      "item_type": "set",
+      "l3_mapping": [
+        "electronics>qled_television"
+      ],
       "media": [
         {
-          "url": "https://hdn-1.addsale.com/x0/products/pictures/item/free/135x0/dcizgsG_Y-Tv-Set.png",
-          "type": "image"
+          "type": "image",
+          "url": "https://hdn-1.addsale.com/x0/products/pictures/item/free/135x0/dcizgsG_Y-Tv-Set.png"
         }
       ],
-      "variants": {},
+      "modified_by": {
+        "user_id": "xxxxxxxxxxx",
+        "username": "xxxxxxxxxx"
+      },
+      "modified_on": "2021-04-02T15:43:59.410000Z",
+      "multi_size": true,
+      "name": "TV Set",
+      "no_of_boxes": 1,
+      "price": {
+        "effective": {
+          "max": 25000,
+          "min": 25000
+        },
+        "marked": {
+          "max": 35000,
+          "min": 35000
+        }
+      },
+      "product_group_tag": [],
       "product_publish": {
         "is_set": false,
         "product_online_date": 1627642009
       },
-      "is_dependent": false,
-      "is_physical": true,
-      "item_type": "set",
-      "category_uid": 1,
-      "custom_order": {
-        "manufacturing_time": 2,
-        "is_custom_order": true,
-        "manufacturing_time_unit": "days"
-      },
-      "multi_size": true,
-      "no_of_boxes": 1,
-      "product_group_tag": [],
-      "size_guide": "slim-fit-shirts-for-men",
-      "tags": [],
-      "teaser_tag": {},
-      "synonyms": [],
-      "hsn_code": "11111111",
       "return_config": {
-        "unit": "days",
         "returnable": false,
-        "time": 0
+        "time": 0,
+        "unit": "days"
       },
-      "all_company_ids": [
-        1
-      ],
-      "all_identifiers": [
-        "19WE100"
-      ],
-      "trader": [
-        {
-          "address": [
-            "sdfdsfsdf"
-          ],
-          "name": "asdasd"
-        }
-      ],
-      "trader_type": "Packer",
-      "verification_status": "pending",
+      "short_description": "",
+      "size_guide": "slim-fit-shirts-for-men",
       "sizes": [
         {
           "size": "FGX33, GHX33 (66 PCS)",
@@ -4077,42 +4205,38 @@ The Product object. See example below or refer `ApplicationProductListingRespons
           "store_count": 3
         }
       ],
-      "id": "5f4f2f6371a5970001f13655",
-      "brand": {
-        "name": "Apple",
-        "logo": {
-          "aspect_ratio": "1:1",
-          "aspect_ratio_f": 1,
-          "url": "https://hdn-1.jiox0.de/jioecomm/seller/pictures/logo/50x0/apple-7f951c/logo_apple.png",
-          "secure_url": "https://hdn-1.jiox0.de/jioecomm/seller/pictures/logo/50x0/apple-7f951c/logo_apple.png"
-        },
-        "uid": 13
-      },
-      "images": [
-        "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyprod/wrkr/products/pictures/item/free/original/5050407896640/8hn0-cPlN0-1.jpg",
-        "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyprod/wrkr/products/pictures/item/free/original/5050407896640/1ODGjR9NLY-2.jpg",
-        "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyprod/wrkr/products/pictures/item/free/original/5050407896640/mJqqfEQilY-3.jpg",
-        "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyprod/wrkr/products/pictures/item/free/original/5050407896640/htM1r1aHwa-4.jpg"
-      ],
-      "price": {
-        "marked": {
-          "min": 35000,
-          "max": 35000
-        },
-        "effective": {
-          "min": 25000,
-          "max": 25000
+      "slug": "tv-set",
+      "stage": "verified",
+      "synonyms": [],
+      "tags": [],
+      "teaser_tag": {},
+      "template_tag": "television",
+      "trader": [
+        {
+          "address": [
+            "sdfdsfsdf"
+          ],
+          "name": "asdasd"
         }
-      }
+      ],
+      "trader_type": "Packer",
+      "uid": 7501547,
+      "variants": {},
+      "verification_status": "pending",
+      "verified_by": {
+        "user_id": "0",
+        "username": "Silverbolt"
+      },
+      "verified_on": "2021-04-02T15:43:59.410000Z"
     }
   ],
   "page": {
-    "type": "number",
     "current": 1,
-    "size": 1,
-    "item_total": 1,
+    "has_next": false,
     "has_previous": false,
-    "has_next": false
+    "item_total": 1,
+    "size": 1,
+    "type": "number"
   }
 }
 ```
@@ -4205,67 +4329,67 @@ List of Products. See example below or refer `ApplicationProductListingResponse`
     {
       "key": {
         "display": "Department",
-        "name": "department",
         "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Department.svg"
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Department.svg",
+        "name": "department"
       },
       "values": [
         {
-          "display": "Debra Villarreal",
           "count": 15,
+          "display": "Debra Villarreal",
           "is_selected": false,
-          "value": "Debra-Villarreal",
           "logo": {
             "type": "image",
             "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
-          }
+          },
+          "value": "Debra-Villarreal"
         },
         {
-          "display": "Tracey Miller",
           "count": 15,
+          "display": "Tracey Miller",
           "is_selected": false,
-          "value": "Tracey-Miller",
           "logo": {
             "type": "image",
             "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
-          }
+          },
+          "value": "Tracey-Miller"
         }
       ]
     },
     {
       "key": {
         "display": "Category",
-        "name": "category",
         "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Category.svg"
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Category.svg",
+        "name": "category"
       },
       "values": [
         {
-          "display": "Amy Kim DDS",
           "count": 15,
+          "display": "Amy Kim DDS",
           "is_selected": false,
-          "value": "3",
-          "logo": "http://cdn4.gofynd.com/media/banner/category/original/12063_a5bb91bd5cb44c3c9db98c2a0e6b3d99.jpg"
+          "logo": "http://cdn4.gofynd.com/media/banner/category/original/12063_a5bb91bd5cb44c3c9db98c2a0e6b3d99.jpg",
+          "value": "3"
         }
       ]
     },
     {
       "key": {
         "display": "Gender",
-        "name": "gender",
         "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Gender.svg"
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Gender.svg",
+        "name": "gender"
       },
       "values": [
         {
-          "display": "Men",
           "count": 15,
+          "display": "Men",
           "is_selected": false,
           "value": "men"
         },
         {
-          "display": "Women",
           "count": 15,
+          "display": "Women",
           "is_selected": false,
           "value": "women"
         }
@@ -4274,14 +4398,14 @@ List of Products. See example below or refer `ApplicationProductListingResponse`
     {
       "key": {
         "display": "Size",
-        "name": "sizes",
         "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Sizes.svg"
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Sizes.svg",
+        "name": "sizes"
       },
       "values": [
         {
-          "display": "13",
           "count": 15,
+          "display": "13",
           "is_selected": false,
           "value": "13"
         }
@@ -4290,47 +4414,47 @@ List of Products. See example below or refer `ApplicationProductListingResponse`
     {
       "key": {
         "display": "Brand",
-        "name": "brand",
         "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Brand%20ID.svg"
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Brand%20ID.svg",
+        "name": "brand"
       },
       "values": [
         {
-          "display": "Barry, Jennings and Larson",
           "count": 15,
+          "display": "Barry, Jennings and Larson",
           "is_selected": false,
-          "value": "1",
-          "logo": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+          "logo": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg",
+          "value": "1"
         }
       ]
     },
     {
       "key": {
         "display": "Rating",
-        "name": "rating",
         "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Rating.svg"
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Rating.svg",
+        "name": "rating"
       },
       "values": [
         {
           "count": 15,
           "display": "2 - 3",
-          "value": "[2 TO 3}",
-          "is_selected": false
+          "is_selected": false,
+          "value": "[2 TO 3}"
         }
       ]
     },
     {
       "key": {
         "display": "Image",
-        "name": "image_nature",
         "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/image%20Nature.svg"
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/image%20Nature.svg",
+        "name": "image_nature"
       },
       "values": [
         {
-          "display": "GoodQuality",
           "count": 15,
+          "display": "GoodQuality",
           "is_selected": false,
           "value": "standard"
         }
@@ -4339,14 +4463,14 @@ List of Products. See example below or refer `ApplicationProductListingResponse`
     {
       "key": {
         "display": "Monica Hampton",
-        "name": "material",
         "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/image%20Nature.svg"
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/image%20Nature.svg",
+        "name": "material"
       },
       "values": [
         {
-          "display": "Neoprene",
           "count": 15,
+          "display": "Neoprene",
           "is_selected": false,
           "value": "Neoprene"
         }
@@ -4355,14 +4479,14 @@ List of Products. See example below or refer `ApplicationProductListingResponse`
     {
       "key": {
         "display": "John Mendoza",
-        "name": "weight",
         "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/image%20Nature.svg"
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/image%20Nature.svg",
+        "name": "weight"
       },
       "values": [
         {
-          "display": "100",
           "count": 15,
+          "display": "100",
           "is_selected": false,
           "value": "100"
         }
@@ -4371,14 +4495,14 @@ List of Products. See example below or refer `ApplicationProductListingResponse`
     {
       "key": {
         "display": "Kimberly Mcdaniel",
-        "name": "gender",
         "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/image%20Nature.svg"
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/image%20Nature.svg",
+        "name": "gender"
       },
       "values": [
         {
-          "display": "['Men', 'Women']",
           "count": 15,
+          "display": "['Men', 'Women']",
           "is_selected": false,
           "value": "['Men', 'Women']"
         }
@@ -4387,14 +4511,14 @@ List of Products. See example below or refer `ApplicationProductListingResponse`
     {
       "key": {
         "display": "Kimberly Davidson",
-        "name": "color",
         "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/image%20Nature.svg"
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/image%20Nature.svg",
+        "name": "color"
       },
       "values": [
         {
-          "display": "Grey",
           "count": 15,
+          "display": "Grey",
           "is_selected": false,
           "value": "808080"
         }
@@ -4403,14 +4527,14 @@ List of Products. See example below or refer `ApplicationProductListingResponse`
     {
       "key": {
         "display": "Available",
-        "name": "is_available",
         "kind": "singlevalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/image%20Nature.svg"
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/image%20Nature.svg",
+        "name": "is_available"
       },
       "values": [
         {
-          "display": "Available",
           "count": 3,
+          "display": "Available",
           "is_selected": false,
           "value": true
         }
@@ -4419,403 +4543,403 @@ List of Products. See example below or refer `ApplicationProductListingResponse`
   ],
   "items": [
     {
-      "type": "product",
-      "attributes": {
-        "primary_color_hex": "808080",
-        "weight": "100",
-        "gender": "women",
-        "material": "Neoprene",
-        "primary_color": "DarkGrey"
-      },
-      "categories": [
-        {
-          "id": 3,
-          "uid": 3,
-          "name": "Amy Kim DDS",
-          "logo": {
-            "type": "image",
-            "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
-          },
-          "action": {
-            "page": {
-              "type": "category",
-              "query": {
-                "category": [
-                  "Amy-Kim-DDS"
-                ]
-              }
-            },
-            "type": "page"
-          },
-          "_custom_json": {}
-        }
-      ],
-      "sellable": true,
-      "name": "benchmark collaborative paradigms",
-      "slug": "benchmark-collaborative-paradigms",
-      "uid": 1,
-      "item_type": "set",
-      "brand": {
-        "type": "brand",
-        "name": "Hess Inc",
-        "logo": {
-          "type": "image",
-          "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
-        },
-        "action": {
-          "page": {
-            "type": "products",
-            "query": {
-              "brand": [
-                "Hess-Inc"
-              ]
-            }
-          },
-          "type": "page"
-        },
-        "_custom_json": {}
-      },
       "action": {
         "page": {
-          "type": "product",
           "query": {
             "slug": "benchmark-collaborative-paradigms"
-          }
+          },
+          "type": "product"
         },
         "type": "page"
       },
+      "attributes": {
+        "gender": "women",
+        "material": "Neoprene",
+        "primary_color": "DarkGrey",
+        "primary_color_hex": "808080",
+        "weight": "100"
+      },
+      "brand": {
+        "_custom_json": {},
+        "action": {
+          "page": {
+            "query": {
+              "brand": [
+                "Hess-Inc"
+              ]
+            },
+            "type": "products"
+          },
+          "type": "page"
+        },
+        "logo": {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+        },
+        "name": "Hess Inc",
+        "type": "brand"
+      },
+      "categories": [
+        {
+          "_custom_json": {},
+          "action": {
+            "page": {
+              "query": {
+                "category": [
+                  "Amy-Kim-DDS"
+                ]
+              },
+              "type": "category"
+            },
+            "type": "page"
+          },
+          "id": 3,
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
+          },
+          "name": "Amy Kim DDS",
+          "uid": 3
+        }
+      ],
+      "discount": "14% OFF",
+      "is_tryout": false,
+      "item_code": "ITEM_CODE_1",
+      "item_type": "set",
       "medias": [
         {
           "type": "image",
           "url": "https://hdn-1.fynd.com/media/fynd_store_items/l2_category/original/2830_c5bb5fc02f414307a828c4c56483c30a.jpg"
         }
       ],
-      "discount": "14% OFF",
+      "name": "benchmark collaborative paradigms",
       "price": {
-        "marked": {
-          "min": 1399,
-          "max": 1499,
-          "currency_code": "INR",
-          "currency_symbol": "₹"
-        },
         "effective": {
-          "min": 1199,
-          "max": 1399,
           "currency_code": "INR",
-          "currency_symbol": "₹"
+          "currency_symbol": "₹",
+          "max": 1399,
+          "min": 1199
+        },
+        "marked": {
+          "currency_code": "INR",
+          "currency_symbol": "₹",
+          "max": 1499,
+          "min": 1399
         }
       },
-      "is_tryout": false,
       "promo_meta": {
-        "title": "",
-        "subtitle": ""
+        "subtitle": "",
+        "title": ""
       },
-      "item_code": "ITEM_CODE_1",
-      "rating": 2.7
+      "rating": 2.7,
+      "sellable": true,
+      "slug": "benchmark-collaborative-paradigms",
+      "type": "product",
+      "uid": 1
     },
     {
-      "type": "product",
-      "attributes": {
-        "primary_color_hex": "808080",
-        "weight": "100",
-        "gender": "women",
-        "material": "Neoprene",
-        "primary_color": "DarkGrey"
-      },
-      "categories": [
-        {
-          "id": 3,
-          "uid": 3,
-          "name": "Amy Kim DDS",
-          "logo": {
-            "type": "image",
-            "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
-          },
-          "action": {
-            "page": {
-              "type": "category",
-              "query": {
-                "category": [
-                  "Amy-Kim-DDS"
-                ]
-              }
-            },
-            "type": "page"
-          },
-          "_custom_json": {}
-        }
-      ],
-      "sellable": true,
-      "name": "architect granular e-business",
-      "slug": "architect-granular-e-business",
-      "uid": 10,
-      "item_type": "set",
-      "brand": {
-        "type": "brand",
-        "name": "Hess Inc",
-        "logo": {
-          "type": "image",
-          "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
-        },
-        "action": {
-          "page": {
-            "type": "products",
-            "query": {
-              "brand": [
-                "Hess-Inc"
-              ]
-            }
-          },
-          "type": "page"
-        },
-        "_custom_json": {}
-      },
       "action": {
         "page": {
-          "type": "product",
           "query": {
             "slug": "architect-granular-e-business"
-          }
+          },
+          "type": "product"
         },
         "type": "page"
       },
+      "attributes": {
+        "gender": "women",
+        "material": "Neoprene",
+        "primary_color": "DarkGrey",
+        "primary_color_hex": "808080",
+        "weight": "100"
+      },
+      "brand": {
+        "_custom_json": {},
+        "action": {
+          "page": {
+            "query": {
+              "brand": [
+                "Hess-Inc"
+              ]
+            },
+            "type": "products"
+          },
+          "type": "page"
+        },
+        "logo": {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+        },
+        "name": "Hess Inc",
+        "type": "brand"
+      },
+      "categories": [
+        {
+          "_custom_json": {},
+          "action": {
+            "page": {
+              "query": {
+                "category": [
+                  "Amy-Kim-DDS"
+                ]
+              },
+              "type": "category"
+            },
+            "type": "page"
+          },
+          "id": 3,
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
+          },
+          "name": "Amy Kim DDS",
+          "uid": 3
+        }
+      ],
+      "discount": "14% OFF",
+      "is_tryout": false,
+      "item_code": "ITEM_CODE_2",
+      "item_type": "set",
       "medias": [
         {
           "type": "image",
           "url": "https://hdn-1.fynd.com/media/fynd_store_items/l2_category/original/2830_c5bb5fc02f414307a828c4c56483c30a.jpg"
         }
       ],
-      "discount": "14% OFF",
+      "name": "architect granular e-business",
       "price": {
-        "marked": {
-          "min": 1399,
-          "max": 1499,
-          "currency_code": "INR",
-          "currency_symbol": "₹"
-        },
         "effective": {
-          "min": 1199,
-          "max": 1399,
           "currency_code": "INR",
-          "currency_symbol": "₹"
+          "currency_symbol": "₹",
+          "max": 1399,
+          "min": 1199
+        },
+        "marked": {
+          "currency_code": "INR",
+          "currency_symbol": "₹",
+          "max": 1499,
+          "min": 1399
         }
       },
-      "is_tryout": false,
       "promo_meta": {
-        "title": "",
-        "subtitle": ""
+        "subtitle": "",
+        "title": ""
       },
-      "item_code": "ITEM_CODE_2",
-      "rating": 2.7
+      "rating": 2.7,
+      "sellable": true,
+      "slug": "architect-granular-e-business",
+      "type": "product",
+      "uid": 10
     },
     {
-      "type": "product",
-      "attributes": {
-        "primary_color_hex": "808080",
-        "weight": "100",
-        "gender": "women",
-        "material": "Neoprene",
-        "primary_color": "DarkGrey"
-      },
-      "categories": [
-        {
-          "id": 3,
-          "uid": 3,
-          "name": "Amy Kim DDS",
-          "logo": {
-            "type": "image",
-            "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
-          },
-          "action": {
-            "page": {
-              "type": "category",
-              "query": {
-                "category": [
-                  "Amy-Kim-DDS"
-                ]
-              }
-            },
-            "type": "page"
-          },
-          "_custom_json": {}
-        }
-      ],
-      "sellable": true,
-      "name": "facilitate enterprise supply-chains",
-      "slug": "facilitate-enterprise-supply-chains",
-      "uid": 11,
-      "item_type": "set",
-      "brand": {
-        "type": "brand",
-        "name": "Hess Inc",
-        "logo": {
-          "type": "image",
-          "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
-        },
-        "action": {
-          "page": {
-            "type": "products",
-            "query": {
-              "brand": [
-                "Hess-Inc"
-              ]
-            }
-          },
-          "type": "page"
-        },
-        "_custom_json": {}
-      },
       "action": {
         "page": {
-          "type": "product",
           "query": {
             "slug": "facilitate-enterprise-supply-chains"
-          }
+          },
+          "type": "product"
         },
         "type": "page"
       },
-      "medias": [
-        {
-          "type": "image",
-          "url": "https://hdn-1.fynd.com/media/fynd_store_items/l2_category/original/2830_c5bb5fc02f414307a828c4c56483c30a.jpg"
-        }
-      ],
-      "discount": "14% OFF",
-      "price": {
-        "marked": {
-          "min": 1399,
-          "max": 1499,
-          "currency_code": "INR",
-          "currency_symbol": "₹"
-        },
-        "effective": {
-          "min": 1199,
-          "max": 1399,
-          "currency_code": "INR",
-          "currency_symbol": "₹"
-        }
-      },
-      "is_tryout": false,
-      "promo_meta": {
-        "title": "",
-        "subtitle": ""
-      },
-      "item_code": "ITEM_CODE_3",
-      "rating": 2.7
-    },
-    {
-      "type": "product",
       "attributes": {
-        "primary_color_hex": "808080",
-        "weight": "100",
         "gender": "women",
         "material": "Neoprene",
-        "primary_color": "DarkGrey"
+        "primary_color": "DarkGrey",
+        "primary_color_hex": "808080",
+        "weight": "100"
       },
-      "categories": [
-        {
-          "id": 3,
-          "uid": 3,
-          "name": "Amy Kim DDS",
-          "logo": {
-            "type": "image",
-            "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
-          },
-          "action": {
-            "page": {
-              "type": "category",
-              "query": {
-                "category": [
-                  "Amy-Kim-DDS"
-                ]
-              }
-            },
-            "type": "page"
-          },
-          "_custom_json": {}
-        }
-      ],
-      "sellable": true,
-      "name": "optimize web-enabled e-tailers",
-      "slug": "optimize-web-enabled-e-tailers",
-      "uid": 12,
-      "item_type": "set",
       "brand": {
-        "type": "brand",
-        "name": "Hess Inc",
-        "logo": {
-          "type": "image",
-          "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
-        },
+        "_custom_json": {},
         "action": {
           "page": {
-            "type": "products",
             "query": {
               "brand": [
                 "Hess-Inc"
               ]
-            }
+            },
+            "type": "products"
           },
           "type": "page"
         },
-        "_custom_json": {}
-      },
-      "action": {
-        "page": {
-          "type": "product",
-          "query": {
-            "slug": "optimize-web-enabled-e-tailers"
-          }
+        "logo": {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
         },
-        "type": "page"
+        "name": "Hess Inc",
+        "type": "brand"
       },
+      "categories": [
+        {
+          "_custom_json": {},
+          "action": {
+            "page": {
+              "query": {
+                "category": [
+                  "Amy-Kim-DDS"
+                ]
+              },
+              "type": "category"
+            },
+            "type": "page"
+          },
+          "id": 3,
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
+          },
+          "name": "Amy Kim DDS",
+          "uid": 3
+        }
+      ],
+      "discount": "14% OFF",
+      "is_tryout": false,
+      "item_code": "ITEM_CODE_3",
+      "item_type": "set",
       "medias": [
         {
           "type": "image",
           "url": "https://hdn-1.fynd.com/media/fynd_store_items/l2_category/original/2830_c5bb5fc02f414307a828c4c56483c30a.jpg"
         }
       ],
-      "discount": "14% OFF",
+      "name": "facilitate enterprise supply-chains",
       "price": {
-        "marked": {
-          "min": 1399,
-          "max": 1499,
-          "currency_code": "INR",
-          "currency_symbol": "₹"
-        },
         "effective": {
-          "min": 1199,
-          "max": 1399,
           "currency_code": "INR",
-          "currency_symbol": "₹"
+          "currency_symbol": "₹",
+          "max": 1399,
+          "min": 1199
+        },
+        "marked": {
+          "currency_code": "INR",
+          "currency_symbol": "₹",
+          "max": 1499,
+          "min": 1399
         }
       },
-      "is_tryout": false,
       "promo_meta": {
-        "title": "",
-        "subtitle": ""
+        "subtitle": "",
+        "title": ""
       },
-      "item_code": "ITEM_CODE_4",
-      "rating": 2.7
-    }
-  ],
-  "sort_on": [
+      "rating": 2.7,
+      "sellable": true,
+      "slug": "facilitate-enterprise-supply-chains",
+      "type": "product",
+      "uid": 11
+    },
     {
-      "display": "Latest Products.",
-      "name": "Latest Products.",
-      "logo": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/360x0/56_MKT02AI060CORAL/1_1567590349681.jpg",
-      "value": "latest",
-      "is_selected": true
+      "action": {
+        "page": {
+          "query": {
+            "slug": "optimize-web-enabled-e-tailers"
+          },
+          "type": "product"
+        },
+        "type": "page"
+      },
+      "attributes": {
+        "gender": "women",
+        "material": "Neoprene",
+        "primary_color": "DarkGrey",
+        "primary_color_hex": "808080",
+        "weight": "100"
+      },
+      "brand": {
+        "_custom_json": {},
+        "action": {
+          "page": {
+            "query": {
+              "brand": [
+                "Hess-Inc"
+              ]
+            },
+            "type": "products"
+          },
+          "type": "page"
+        },
+        "logo": {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+        },
+        "name": "Hess Inc",
+        "type": "brand"
+      },
+      "categories": [
+        {
+          "_custom_json": {},
+          "action": {
+            "page": {
+              "query": {
+                "category": [
+                  "Amy-Kim-DDS"
+                ]
+              },
+              "type": "category"
+            },
+            "type": "page"
+          },
+          "id": 3,
+          "logo": {
+            "type": "image",
+            "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
+          },
+          "name": "Amy Kim DDS",
+          "uid": 3
+        }
+      ],
+      "discount": "14% OFF",
+      "is_tryout": false,
+      "item_code": "ITEM_CODE_4",
+      "item_type": "set",
+      "medias": [
+        {
+          "type": "image",
+          "url": "https://hdn-1.fynd.com/media/fynd_store_items/l2_category/original/2830_c5bb5fc02f414307a828c4c56483c30a.jpg"
+        }
+      ],
+      "name": "optimize web-enabled e-tailers",
+      "price": {
+        "effective": {
+          "currency_code": "INR",
+          "currency_symbol": "₹",
+          "max": 1399,
+          "min": 1199
+        },
+        "marked": {
+          "currency_code": "INR",
+          "currency_symbol": "₹",
+          "max": 1499,
+          "min": 1399
+        }
+      },
+      "promo_meta": {
+        "subtitle": "",
+        "title": ""
+      },
+      "rating": 2.7,
+      "sellable": true,
+      "slug": "optimize-web-enabled-e-tailers",
+      "type": "product",
+      "uid": 12
     }
   ],
   "page": {
     "current": 1,
-    "total": 2,
-    "has_previous": false,
     "has_next": true,
+    "has_previous": false,
     "item_total": 15,
+    "total": 2,
     "type": "number"
-  }
+  },
+  "sort_on": [
+    {
+      "display": "Latest Products.",
+      "is_selected": true,
+      "logo": "https://d2zv4gzhlr4ud6.cloudfront.net/media/pictures/tagged_items/360x0/56_MKT02AI060CORAL/1_1567590349681.jpg",
+      "name": "Latest Products.",
+      "value": "latest"
+    }
+  ]
 }
 ```
 </details>
@@ -4881,23 +5005,16 @@ List of Brands. See example below or refer `BrandListingResponse` for details
 {
   "items": [
     {
-      "uid": 1,
-      "name": "Barry, Jennings and Larson",
-      "slug": "Hess-Inc",
       "action": {
         "page": {
-          "type": "products",
           "query": {
             "brand": [
               "Hess-Inc"
             ]
-          }
+          },
+          "type": "products"
         },
         "type": "page"
-      },
-      "logo": {
-        "type": "image",
-        "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
       },
       "banners": {
         "portrait": {
@@ -4905,15 +5022,22 @@ List of Brands. See example below or refer `BrandListingResponse` for details
           "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/12537_9cdfc6835e814b0986ee1643d38cf6cd.png"
         }
       },
-      "en_name": "Barry, Jennings and Larson"
+      "en_name": "Barry, Jennings and Larson",
+      "logo": {
+        "type": "image",
+        "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+      },
+      "name": "Barry, Jennings and Larson",
+      "slug": "Hess-Inc",
+      "uid": 1
     }
   ],
   "page": {
     "current": 1,
-    "total": 1,
-    "has_previous": false,
     "has_next": false,
+    "has_previous": false,
     "item_total": 1,
+    "total": 1,
     "type": "number"
   }
 }
@@ -4987,23 +5111,16 @@ List of Brands. See example below or refer `BrandListingResponse` for details
 {
   "items": [
     {
-      "uid": 1,
-      "name": "Barry, Jennings and Larson",
-      "slug": "Hess-Inc",
       "action": {
         "page": {
-          "type": "products",
           "query": {
             "brand": [
               "Hess-Inc"
             ]
-          }
+          },
+          "type": "products"
         },
         "type": "page"
-      },
-      "logo": {
-        "type": "image",
-        "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
       },
       "banners": {
         "portrait": {
@@ -5011,15 +5128,22 @@ List of Brands. See example below or refer `BrandListingResponse` for details
           "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/12537_9cdfc6835e814b0986ee1643d38cf6cd.png"
         }
       },
-      "en_name": "Barry, Jennings and Larson"
+      "en_name": "Barry, Jennings and Larson",
+      "logo": {
+        "type": "image",
+        "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+      },
+      "name": "Barry, Jennings and Larson",
+      "slug": "Hess-Inc",
+      "uid": 1
     }
   ],
   "page": {
     "current": 1,
-    "total": 1,
-    "has_previous": false,
     "has_next": false,
+    "has_previous": false,
     "item_total": 1,
+    "total": 1,
     "type": "number"
   }
 }
@@ -5090,23 +5214,16 @@ List of Brands. See example below or refer `BrandListingResponse` for details
 {
   "items": [
     {
-      "uid": 1,
-      "name": "Barry, Jennings and Larson",
-      "slug": "Hess-Inc",
       "action": {
         "page": {
-          "type": "products",
           "query": {
             "brand": [
               "Hess-Inc"
             ]
-          }
+          },
+          "type": "products"
         },
         "type": "page"
-      },
-      "logo": {
-        "type": "image",
-        "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
       },
       "banners": {
         "portrait": {
@@ -5114,15 +5231,22 @@ List of Brands. See example below or refer `BrandListingResponse` for details
           "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/12537_9cdfc6835e814b0986ee1643d38cf6cd.png"
         }
       },
-      "en_name": "Barry, Jennings and Larson"
+      "en_name": "Barry, Jennings and Larson",
+      "logo": {
+        "type": "image",
+        "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+      },
+      "name": "Barry, Jennings and Larson",
+      "slug": "Hess-Inc",
+      "uid": 1
     }
   ],
   "page": {
     "current": 1,
-    "total": 1,
-    "has_previous": false,
     "has_next": false,
+    "has_previous": false,
     "item_total": 1,
+    "total": 1,
     "type": "number"
   }
 }
@@ -5190,37 +5314,37 @@ List of Departments. See example below or refer `BrandListingResponse` for detai
 {
   "items": [
     {
-      "app_id": "000000000000000000000001",
-      "uid": 1,
-      "name": "Barry, Jennings and Larson",
-      "slug": "Hess-Inc",
       "action": {
         "page": {
-          "type": "products",
           "query": {
             "brand": [
               "Hess-Inc"
             ]
-          }
+          },
+          "type": "products"
         },
         "type": "page"
       },
-      "logo": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg",
+      "app_id": "000000000000000000000001",
       "banners": {
         "portrait": {
           "type": "image",
           "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/12537_9cdfc6835e814b0986ee1643d38cf6cd.png"
         }
       },
-      "en_name": "Barry, Jennings and Larson"
+      "en_name": "Barry, Jennings and Larson",
+      "logo": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg",
+      "name": "Barry, Jennings and Larson",
+      "slug": "Hess-Inc",
+      "uid": 1
     }
   ],
   "page": {
     "current": 1,
-    "total": 1,
-    "has_previous": false,
     "has_next": false,
+    "has_previous": false,
     "item_total": 1,
+    "total": 1,
     "type": "number"
   }
 }
@@ -5275,31 +5399,14 @@ List of custom autocomplete keywords. See example below or refer `GetAutocomplet
 
 ```json
 {
-  "page": {
-    "current": 1,
-    "size": 1,
-    "has_previous": false,
-    "has_next": false,
-    "item_count": 1,
-    "type": "products"
-  },
   "items": [
     {
-      "uid": "602fa1eaa596ce349563f6c6",
       "app_id": "000000000000000000000001",
-      "words": [
-        "dasd"
-      ],
       "is_active": true,
       "results": [
         {
-          "_custom_json": null,
-          "display": "Helllow",
-          "logo": {
-            "url": "https://hdn-1.addsale.com/addsale/company/61/applications/600a5b3fe0991a4718cdb448/company/1/application/000000000000000000000001/search/pictures/square-logo/original/n_8bvEaBw-Helllow.png"
-          },
+          "_custom_json": {},
           "action": {
-            "type": "page",
             "page": {
               "query": {
                 "brand": [
@@ -5308,12 +5415,29 @@ List of custom autocomplete keywords. See example below or refer `GetAutocomplet
               },
               "type": "products",
               "url": "/products/?brand=nike"
-            }
+            },
+            "type": "page"
+          },
+          "display": "Helllow",
+          "logo": {
+            "url": "https://hdn-1.addsale.com/addsale/company/61/applications/600a5b3fe0991a4718cdb448/company/1/application/000000000000000000000001/search/pictures/square-logo/original/n_8bvEaBw-Helllow.png"
           }
         }
+      ],
+      "uid": "602fa1eaa596ce349563f6c6",
+      "words": [
+        "dasd"
       ]
     }
-  ]
+  ],
+  "page": {
+    "current": 1,
+    "has_next": false,
+    "has_previous": false,
+    "item_count": 1,
+    "size": 1,
+    "type": "number"
+  }
 }
 ```
 </details>
@@ -5371,21 +5495,12 @@ The mapping object. See example below or refer `GetAutocompleteWordsResponseSche
 
 ```json
 {
-  "uid": "602fa1eaa596ce349563f6c6",
   "app_id": "000000000000000000000001",
-  "words": [
-    "dasd"
-  ],
   "is_active": true,
   "results": [
     {
       "_custom_json": {},
-      "display": "Helllow",
-      "logo": {
-        "url": "https://hdn-1.addsale.com/addsale/company/61/applications/600a5b3fe0991a4718cdb448/company/1/application/000000000000000000000001/search/pictures/square-logo/original/n_8bvEaBw-Helllow.png"
-      },
       "action": {
-        "type": "page",
         "page": {
           "query": {
             "brand": [
@@ -5394,9 +5509,18 @@ The mapping object. See example below or refer `GetAutocompleteWordsResponseSche
           },
           "type": "products",
           "url": "/products/?brand=nike"
-        }
+        },
+        "type": "page"
+      },
+      "display": "Helllow",
+      "logo": {
+        "url": "https://hdn-1.addsale.com/addsale/company/61/applications/600a5b3fe0991a4718cdb448/company/1/application/000000000000000000000001/search/pictures/square-logo/original/n_8bvEaBw-Helllow.png"
       }
     }
+  ],
+  "uid": "602fa1eaa596ce349563f6c6",
+  "words": [
+    "dasd"
   ]
 }
 ```
@@ -5568,75 +5692,43 @@ List of Categories. See example below or refer `CategoryListingResponse` for det
 
 ```json
 {
-  "departments": [
-    {
-      "slug": "Cody-Doyle",
-      "uid": 1
-    }
-  ],
   "data": [
     {
       "department": "Cody-Doyle",
       "items": [
         {
-          "name": "Janet Parker",
-          "image": {
-            "aspect_ratio": "13:20",
-            "aspect_ratio_f": 0.65,
-            "url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/banner_portrait/category/resize-w:130,h:200/12064_e69e1d8b5e934d3488f0dc8663d8a158.jpg"
-          },
-          "uid": 1,
-          "slug": "Janet-Parker",
           "_custom_json": {},
           "action": {
-            "type": "category",
-            "url": "https://api.addsale.com/platform/content/v1/products/?l1_category=Janet-Parker&department=Jaime-Chambers",
             "query": {
-              "l1_category": [
-                "Janet-Parker"
-              ],
               "department": [
                 "Jaime-Chambers"
+              ],
+              "l1_category": [
+                "Janet-Parker"
               ]
-            }
+            },
+            "type": "category",
+            "url": "https://api.addsale.com/platform/content/v1/products/?l1_category=Janet-Parker&department=Jaime-Chambers"
           },
           "childs": [
             {
-              "name": "Hannah Lawson",
-              "image": {
-                "aspect_ratio": "13:20",
-                "aspect_ratio_f": 0.65,
-                "url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/banner_portrait/category/resize-w:130,h:200/12064_e69e1d8b5e934d3488f0dc8663d8a158.jpg"
-              },
-              "uid": 2,
-              "slug": "Hannah-Lawson",
               "_custom_json": {},
               "action": {
-                "type": "category",
-                "url": "https://api.addsale.com/platform/content/v1/products/?l2_category=Hannah-Lawson&department=Jaime-Chambers",
                 "query": {
-                  "l2_category": [
-                    "Hannah-Lawson"
-                  ],
                   "department": [
                     "Jaime-Chambers"
+                  ],
+                  "l2_category": [
+                    "Hannah-Lawson"
                   ]
-                }
+                },
+                "type": "category",
+                "url": "https://api.addsale.com/platform/content/v1/products/?l2_category=Hannah-Lawson&department=Jaime-Chambers"
               },
               "childs": [
                 {
-                  "name": "Logan Black",
-                  "image": {
-                    "aspect_ratio": "13:20",
-                    "aspect_ratio_f": 0.65,
-                    "url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/banner_portrait/category/resize-w:130,h:200/12064_e69e1d8b5e934d3488f0dc8663d8a158.jpg"
-                  },
-                  "uid": 3,
-                  "slug": "Logan-Black",
                   "_custom_json": {},
                   "action": {
-                    "type": "category",
-                    "url": "https://api.addsale.com/platform/content/v1/products/?category=Logan-Black&department=Jaime-Chambers",
                     "query": {
                       "category": [
                         "Logan-Black"
@@ -5644,15 +5736,47 @@ List of Categories. See example below or refer `CategoryListingResponse` for det
                       "department": [
                         "Jaime-Chambers"
                       ]
-                    }
+                    },
+                    "type": "category",
+                    "url": "https://api.addsale.com/platform/content/v1/products/?category=Logan-Black&department=Jaime-Chambers"
                   },
-                  "childs": []
+                  "childs": [],
+                  "image": {
+                    "aspect_ratio": "13:20",
+                    "aspect_ratio_f": 0.65,
+                    "url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/banner_portrait/category/resize-w:130,h:200/12064_e69e1d8b5e934d3488f0dc8663d8a158.jpg"
+                  },
+                  "name": "Logan Black",
+                  "slug": "Logan-Black",
+                  "uid": 3
                 }
-              ]
+              ],
+              "image": {
+                "aspect_ratio": "13:20",
+                "aspect_ratio_f": 0.65,
+                "url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/banner_portrait/category/resize-w:130,h:200/12064_e69e1d8b5e934d3488f0dc8663d8a158.jpg"
+              },
+              "name": "Hannah Lawson",
+              "slug": "Hannah-Lawson",
+              "uid": 2
             }
-          ]
+          ],
+          "image": {
+            "aspect_ratio": "13:20",
+            "aspect_ratio_f": 0.65,
+            "url": "https://d2zv4gzhlr4ud6.cloudfront.net/media/banner_portrait/category/resize-w:130,h:200/12064_e69e1d8b5e934d3488f0dc8663d8a158.jpg"
+          },
+          "name": "Janet Parker",
+          "slug": "Janet-Parker",
+          "uid": 1
         }
       ]
+    }
+  ],
+  "departments": [
+    {
+      "slug": "Cody-Doyle",
+      "uid": 1
     }
   ]
 }
@@ -5713,41 +5837,41 @@ Get Data for one category. See example below or refer `CategoryResponse` for det
 ```json
 {
   "data": {
-    "name": "Air Conditioners",
-    "media": {
-      "portrait": "https://hdn-1.addsale.com/x0/category/pictures/portrait-banner/original/_4p7Kz9Yp-banner.png",
-      "landscape": "https://hdn-1.addsale.com/x0/category/pictures/landscape-banner/original/nsi0nJ6gX-landscape.png",
-      "logo": "https://hdn-1.addsale.com/x0/category/pictures/square-logo/original/zTgh1zslj-.png"
-    },
-    "marketplaces": {},
-    "tryouts": [],
-    "is_active": true,
     "created_by": {
-      "username": "917972410891_48194",
-      "user_id": "5646"
+      "user_id": "5646",
+      "username": "917972410891_48194"
     },
-    "uid": 22330,
-    "slug": "air-conditioners",
-    "priority": 1,
-    "synonyms": [],
-    "modified_by": {
-      "username": "nikhilmhatre_gofynd_com_97636",
-      "user_id": "16"
-    },
-    "level": 3,
-    "hierarchy": [
-      {
-        "l1": 1,
-        "department": 1,
-        "l2": 22329
-      }
-    ],
     "created_on": "2021-04-02T15:43:59.410000Z",
     "departments": [
       1
     ],
+    "hierarchy": [
+      {
+        "department": 1,
+        "l1": 1,
+        "l2": 22329
+      }
+    ],
+    "id": "60673bbf7896da00017885ad",
+    "is_active": true,
+    "level": 3,
+    "marketplaces": {},
+    "media": {
+      "landscape": "https://hdn-1.addsale.com/x0/category/pictures/landscape-banner/original/nsi0nJ6gX-landscape.png",
+      "logo": "https://hdn-1.addsale.com/x0/category/pictures/square-logo/original/zTgh1zslj-.png",
+      "portrait": "https://hdn-1.addsale.com/x0/category/pictures/portrait-banner/original/_4p7Kz9Yp-banner.png"
+    },
+    "modified_by": {
+      "user_id": "16",
+      "username": "nikhilmhatre_gofynd_com_97636"
+    },
     "modified_on": "2021-04-13T13:57:56.443000Z",
-    "id": "60673bbf7896da00017885ad"
+    "name": "Air Conditioners",
+    "priority": 1,
+    "slug": "air-conditioners",
+    "synonyms": [],
+    "tryouts": [],
+    "uid": 22330
   }
 }
 ```
@@ -5806,71 +5930,67 @@ The Collection object. See example below or refer `CollectionDetailResponse` for
 
 ```json
 {
-  "uid": "5ec5fc757cb1e4740a17da23",
-  "type": "query",
-  "query": [
-    {
-      "attribute": "",
-      "value": [],
-      "op": "in",
-      "l3_categories": [
-        "12"
-      ],
-      "sort_on": "discount_asc"
-    }
-  ],
-  "name": "new",
-  "banners": {
-    "portrait": {
-      "type": "image",
-      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588858137/production/applications/app_000000000000000000000001/media/collection/portrait/xzuftshmmw4yuwzb12pm.png"
-    },
-    "landscape": {
-      "type": "image",
-      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857999/production/applications/app_000000000000000000000001/media/collection/landscape/avm7xibo2jgk8glc4bwl.png"
-    }
+  "_custom_json": {},
+  "_locale_language": {},
+  "_schedule": {
+    "end": null,
+    "next_schedule": [
+      {
+        "end": null,
+        "start": "2020-05-21T03:58:41.237000Z"
+      }
+    ],
+    "start": "2020-05-21T03:58:41.237000Z"
   },
-  "logo": {
-    "type": "image",
-    "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857854/production/applications/app_000000000000000000000001/media/collection/logo/w9ns7nfgv7fk45xqrpoh.png"
-  },
-  "published": true,
-  "description": "",
-  "is_active": true,
-  "tags": [],
-  "slug": "new",
   "action": {
     "page": {
-      "type": "collection",
       "query": {
         "collection": [
           "new"
         ]
-      }
+      },
+      "type": "collection"
     },
     "type": "page"
   },
   "allow_facets": true,
   "allow_sort": true,
-  "visible_facets_keys": [],
-  "meta": {},
   "badge": {
     "color": "#ffffff",
     "text": ""
   },
+  "banners": {
+    "landscape": {
+      "type": "image",
+      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857999/production/applications/app_000000000000000000000001/media/collection/landscape/avm7xibo2jgk8glc4bwl.png"
+    },
+    "portrait": {
+      "type": "image",
+      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588858137/production/applications/app_000000000000000000000001/media/collection/portrait/xzuftshmmw4yuwzb12pm.png"
+    }
+  },
+  "description": "",
+  "is_active": true,
+  "logo": {
+    "type": "image",
+    "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857854/production/applications/app_000000000000000000000001/media/collection/logo/w9ns7nfgv7fk45xqrpoh.png"
+  },
+  "meta": {},
+  "name": "new",
+  "published": true,
+  "query": [
+    {
+      "attribute": "",
+      "op": "in",
+      "value": []
+    }
+  ],
+  "slug": "new",
   "sort_on": "popular",
-  "_custom_json": {},
-  "_locale_language": {},
-  "_schedule": {
-    "start": "2020-05-21T03:58:41.237000Z",
-    "next_schedule": [
-      {
-        "start": "2020-05-21T03:58:41.237000Z",
-        "end": null
-      }
-    ],
-    "end": null
-  }
+  "tags": [],
+  "type": "query",
+  "uid": "5ec5fc757cb1e4740a17da23",
+  "visible_facets_keys": []
 }
 ```
 </details>
@@ -6222,531 +6342,536 @@ configuration details for catalog. See example below or refer `GetConfigMetadata
 
 ```json
 {
+  "condition": [
+    {
+      "display": "OR",
+      "key": "OR"
+    },
+    {
+      "display": "AND",
+      "key": "AND"
+    }
+  ],
   "data": [
     {
-      "key": "screen_size_filter",
+      "compatible_units": [],
       "display": "Screen Size",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "screen_size_filter"
     },
     {
-      "key": "primary_camera_filter",
+      "compatible_units": [],
       "display": "Primary Camera (duplicate)",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "primary_camera_filter"
     },
     {
-      "key": "selfie_camera_filter",
+      "compatible_units": [],
       "display": "Selfie Camera (Duplicate)",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "selfie_camera_filter"
     },
     {
-      "key": "weight_group",
+      "compatible_units": [],
       "display": "Weight Group",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "weight_group"
     },
     {
-      "key": "pallet",
+      "compatible_units": [],
       "display": "pallet",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "pallet"
     },
     {
-      "key": "general_information",
+      "compatible_units": [],
       "display": "General Information",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "general_information"
     },
     {
-      "key": "brand_name",
+      "compatible_units": [],
       "display": "brand",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "brand_name"
     },
     {
-      "key": "gender",
+      "compatible_units": [],
       "display": "Gender",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "gender"
     },
     {
-      "key": "socks_length",
+      "compatible_units": [],
       "display": "Socks Length",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "socks_length"
     },
     {
-      "key": "sub_brand",
+      "compatible_units": [],
       "display": "Sub-brand",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "sub_brand"
     },
     {
-      "key": "color",
+      "compatible_units": [],
       "display": "Colour",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "color"
     },
     {
-      "key": "boot_length",
+      "compatible_units": [],
       "display": "Boot Length",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "boot_length"
     },
     {
-      "key": "bottomwear_length",
+      "compatible_units": [],
       "display": "Bottomwear Length",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "bottomwear_length"
     },
     {
-      "key": "thread_count",
+      "compatible_units": [],
       "display": "Thread Count",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "thread_count"
     },
     {
-      "key": "sleeve_type",
+      "compatible_units": [],
       "display": "Sleeve Type",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "sleeve_type"
     },
     {
-      "key": "collar_type",
+      "compatible_units": [],
       "display": "Collar Type",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "collar_type"
     },
     {
-      "key": "food-preference",
+      "compatible_units": [],
       "display": "Food Preference",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "food-preference"
     },
     {
-      "key": "guitar-types",
+      "compatible_units": [],
       "display": "Guitar Types",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "guitar-types"
     },
     {
-      "key": "storage",
+      "compatible_units": [],
       "display": "Storage",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "storage"
     },
     {
-      "key": "quality",
+      "compatible_units": [],
       "display": "Quality",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "quality"
     },
     {
-      "key": "material",
+      "compatible_units": [],
       "display": "Material",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "material"
     },
     {
-      "key": "arch_type",
+      "compatible_units": [],
       "display": "Arch Type",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "arch_type"
     },
     {
-      "key": "like-dislike",
+      "compatible_units": [],
       "display": "Like & Dislike",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "like-dislike"
     },
     {
-      "key": "dietary-preference",
+      "compatible_units": [],
       "display": "Dietary preference",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "dietary-preference"
     },
     {
-      "key": "organic",
+      "compatible_units": [],
       "display": "organic",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "organic"
     },
     {
-      "key": "utility",
+      "compatible_units": [],
       "display": "Utility",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "utility"
     },
     {
-      "key": "dial_shape",
+      "compatible_units": [],
       "display": "Dial Shape",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "dial_shape"
     },
     {
-      "key": "sheet_size",
+      "compatible_units": [],
       "display": "Sheet Size",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "sheet_size"
     },
     {
-      "key": "strap_type",
+      "compatible_units": [],
       "display": "Strap Type",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "strap_type"
     },
     {
-      "key": "movement_type",
+      "compatible_units": [],
       "display": "Movement Type",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "movement_type"
     },
     {
-      "key": "sleeve_length",
+      "compatible_units": [],
       "display": "Sleeve Length",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "sleeve_length"
     },
     {
-      "key": "neck_type",
+      "compatible_units": [],
       "display": "Neck Type",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "neck_type"
     },
     {
-      "key": "denim_type",
+      "compatible_units": [],
       "display": "Denim Type",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "denim_type"
     },
     {
-      "key": "bed_size",
+      "compatible_units": [],
       "display": "Bed Size",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "bed_size"
     },
     {
-      "key": "pattern",
+      "compatible_units": [],
       "display": "Pattern",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "pattern"
     },
     {
-      "key": "topwear_length",
+      "compatible_units": [],
       "display": "Topwear Length",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "topwear_length"
     },
     {
-      "key": "closure_type",
+      "compatible_units": [],
       "display": "Closure Type",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "closure_type"
     },
     {
-      "key": "product_fit",
+      "compatible_units": [],
       "display": "Product Fit",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "product_fit"
     },
     {
-      "key": "clasp_type",
+      "compatible_units": [],
       "display": "Clasp Type",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "clasp_type"
     },
     {
-      "key": "toe_type",
+      "compatible_units": [],
       "display": "Toe Type",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "toe_type"
     },
     {
-      "key": "ram",
+      "compatible_units": [],
       "display": "Memory (RAM)",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "ram"
     },
     {
-      "key": "stone_type",
+      "compatible_units": [],
       "display": "Stone Type",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "stone_type"
     },
     {
-      "key": "hair_type",
+      "compatible_units": [],
       "display": "Hair Type",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "hair_type"
     },
     {
-      "key": "care_instructions",
+      "compatible_units": [],
       "display": "Care Instructions",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "care_instructions"
     },
     {
-      "key": "warranty",
+      "compatible_units": [],
       "display": "Warranty",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "warranty"
     },
     {
-      "key": "spf",
+      "compatible_units": [],
       "display": "Spf",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "spf"
     },
     {
-      "key": "fragrance_type",
+      "compatible_units": [],
       "display": "Fragrance Type",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "fragrance_type"
     },
     {
-      "key": "primary-colour",
+      "compatible_units": [],
       "display": "Primary Colour",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "primary-colour"
     },
     {
-      "key": "fretboard-material",
+      "compatible_units": [],
       "display": "Fretboard Material",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "fretboard-material"
     },
     {
-      "key": "cleaning-type",
+      "compatible_units": [],
       "display": "Cleaning Type",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "cleaning-type"
     },
     {
-      "key": "lens_material",
+      "compatible_units": [],
       "display": "Lens Material",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "lens_material"
     },
     {
-      "key": "maximum-shelf-life",
+      "compatible_units": [],
       "display": "Maximum Shelf Life",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "maximum-shelf-life"
     },
     {
-      "key": "base-flavour",
+      "compatible_units": [],
       "display": "Base Flavour",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "base-flavour"
     },
     {
-      "key": "battery",
+      "compatible_units": [],
       "display": "Battery",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "battery"
     },
     {
-      "key": "net-quantity",
+      "compatible_units": [],
       "display": "Net Quantity",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "net-quantity"
     },
     {
-      "key": "marketer-address",
+      "compatible_units": [],
       "display": "Marketer Address",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "marketer-address"
     },
     {
-      "key": "marketer-name",
+      "compatible_units": [],
       "display": "Marketer Name",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "marketer-name"
     },
     {
-      "key": "import-month-and-year",
+      "compatible_units": [],
       "display": "Import Month & Year",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "import-month-and-year"
     },
     {
-      "key": "name-of-the-commodity",
+      "compatible_units": [],
       "display": "Name of the commodity",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "name-of-the-commodity"
     },
     {
-      "key": "date-first-available",
+      "compatible_units": [],
       "display": "Date first available",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "date-first-available"
     },
     {
-      "key": "iron",
+      "compatible_units": [],
       "display": "iron_attribute",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "iron"
     },
     {
-      "key": "iron-template2",
+      "compatible_units": [],
       "display": "iron-template2",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "iron-template2"
     },
     {
-      "key": "mg",
-      "display": "Mg",
-      "filter_types": [
-        "multivalued"
-      ],
       "compatible_units": [
         "mg",
         "g",
         "oz",
         "kg",
         "lb"
-      ]
+      ],
+      "display": "Mg",
+      "filter_types": [
+        "multivalued"
+      ],
+      "key": "mg"
     },
     {
-      "key": "name",
+      "compatible_units": [],
       "display": "Name",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "name"
     },
     {
-      "key": "sassy-level",
-      "display": "Sassy Level",
-      "filter_types": [
-        "multivalued"
-      ],
       "compatible_units": [
         "mm",
         "cm",
@@ -6754,215 +6879,210 @@ configuration details for catalog. See example below or refer `GetConfigMetadata
         "ft",
         "m",
         "km"
-      ]
+      ],
+      "display": "Sassy Level",
+      "filter_types": [
+        "multivalued"
+      ],
+      "key": "sassy-level"
     },
     {
-      "key": "test-attribute",
+      "compatible_units": [],
       "display": "Test Attribute",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "test-attribute"
     },
     {
-      "key": "filter-type",
+      "compatible_units": [],
       "display": "Filter Type",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "filter-type"
     },
     {
-      "key": "l3-category",
+      "compatible_units": [],
       "display": "L3 Category",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "l3-category"
     },
     {
-      "key": "country_of_origin",
+      "compatible_units": [],
       "display": "Country of Origin",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "country_of_origin"
     },
     {
-      "key": "item_code",
+      "compatible_units": [],
       "display": "Item Code",
       "filter_types": [
         "multivalued"
       ],
-      "compatible_units": []
+      "key": "item_code"
     },
     {
-      "key": "item_code",
       "display": "Item Code",
       "filter_types": [
         "multivalued"
       ],
+      "key": "item_code",
       "units": []
     },
     {
-      "key": "brand",
       "display": "Brand",
       "filter_types": [
         "multivalued"
       ],
+      "key": "brand",
       "units": []
     },
     {
-      "key": "country_of_origin",
       "display": "Country Of Origin",
       "filter_types": [
         "multivalued"
       ],
+      "key": "country_of_origin",
       "units": []
     },
     {
-      "key": "image_nature",
       "display": "Image Type",
       "filter_types": [
         "multivalued"
-      ]
+      ],
+      "key": "image_nature"
     },
     {
-      "key": "sizes",
       "display": "Sizes",
       "filter_types": [
         "multivalued"
-      ]
+      ],
+      "key": "sizes"
     },
     {
-      "key": "discount",
       "display": "Discount",
       "filter_types": [
         "range",
         "intervals",
         "multivalued"
-      ]
+      ],
+      "key": "discount"
     },
     {
-      "key": "min_price_effective",
       "display": "Price",
       "filter_types": [
         "range",
         "intervals",
         "multivalued"
-      ]
+      ],
+      "key": "min_price_effective"
     },
     {
-      "key": "departments",
       "display": "Department",
       "filter_types": [
         "multivalued"
-      ]
+      ],
+      "key": "departments"
     },
     {
-      "key": "l3_category_slugs",
       "display": "Category",
       "filter_types": [
         "multivalued"
-      ]
+      ],
+      "key": "l3_category_slugs"
     },
     {
-      "key": "brand_slug",
       "display": "Brand",
       "filter_types": [
         "multivalued"
-      ]
+      ],
+      "key": "brand_slug"
     },
     {
-      "key": "size_depth",
       "display": "Size Depth",
       "filter_types": [
         "multivalued",
         "range"
-      ]
+      ],
+      "key": "size_depth"
     },
     {
-      "key": "is_set",
       "display": "Set",
       "filter_types": [
         "multivalued"
-      ]
+      ],
+      "key": "is_set"
     },
     {
-      "key": "country_of_origin",
       "display": "Country of Origin",
       "filter_types": [
         "multivalued"
-      ]
+      ],
+      "key": "country_of_origin"
     },
     {
-      "key": "item_code",
       "display": "Item Code",
       "filter_types": [
         "multivalued"
-      ]
+      ],
+      "key": "item_code"
     },
     {
-      "key": "is_available",
       "display": "Available",
       "filter_types": [
         "singlevalued"
-      ]
+      ],
+      "key": "is_available"
     },
     {
-      "key": "rating",
       "display": "Rating",
       "filter_types": [
         "range",
         "intervals",
         "multivalued"
-      ]
+      ],
+      "key": "rating"
     }
   ],
   "values": [
     {
-      "type": [
-        {
-          "key": "range",
-          "display": "Range Bar"
-        },
-        {
-          "key": "intervals",
-          "display": "Bucket Values"
-        },
-        {
-          "key": "multivalued",
-          "display": "Single"
-        },
-        {
-          "key": "singlevalued",
-          "display": "Single"
-        }
-      ],
       "sort": [
         {
-          "key": "count",
-          "display": "Product Count"
+          "display": "Product Count",
+          "key": "count"
         },
         {
-          "key": "ascending",
-          "display": "Ascending"
+          "display": "Ascending",
+          "key": "ascending"
         },
         {
-          "key": "descending",
-          "display": "Descending"
+          "display": "Descending",
+          "key": "descending"
+        }
+      ],
+      "type": [
+        {
+          "display": "Range Bar",
+          "key": "range"
+        },
+        {
+          "display": "Bucket Values",
+          "key": "intervals"
+        },
+        {
+          "display": "Single",
+          "key": "multivalued"
+        },
+        {
+          "display": "Single",
+          "key": "singlevalued"
         }
       ]
-    }
-  ],
-  "condition": [
-    {
-      "key": "OR",
-      "display": "OR"
-    },
-    {
-      "key": "AND",
-      "display": "AND"
     }
   ]
 }
@@ -7019,314 +7139,313 @@ Get application level configured catalog details. See example below or refer `Ge
 {
   "data": {
     "app_id": "000000000000000000000001",
+    "config_id": "000000000000000000000001",
+    "config_type": "app",
     "listing": {
       "filter": {
+        "allow_single": false,
         "attribute_config": [
           {
+            "is_active": true,
             "key": "gender",
+            "name": "Gender",
             "priority": 1,
             "type": "multivalued",
-            "name": "Gender",
             "value_config": {
-              "condition": "OR",
-              "sort": "count",
-              "value": "",
               "bucket_points": [],
-              "map": {}
-            },
-            "is_active": true
+              "condition": "OR",
+              "map": {},
+              "sort": "count",
+              "value": ""
+            }
           },
           {
+            "is_active": true,
             "key": "min_price_effective",
+            "name": "Price",
             "priority": 2,
             "type": "range",
-            "name": "Price",
             "value_config": {
-              "condition": "OR",
-              "sort": "count",
-              "value": "",
               "bucket_points": [],
+              "condition": "OR",
               "map": {
                 "< 500": "Below Rs. 500",
                 ">= 6000": "Above Rs. 6000"
-              }
-            },
-            "is_active": true
+              },
+              "sort": "count",
+              "value": ""
+            }
           },
           {
+            "is_active": true,
             "key": "departments",
+            "name": "Department",
             "priority": 3,
             "type": "multivalued",
-            "name": "Department",
             "value_config": {
-              "condition": "OR",
-              "sort": "count",
-              "value": "metadata",
               "bucket_points": [],
-              "map": {}
-            },
-            "is_active": true
+              "condition": "OR",
+              "map": {},
+              "sort": "count",
+              "value": "metadata"
+            }
           },
           {
+            "is_active": true,
             "key": "brand_id",
+            "name": "Brand",
             "priority": 4,
             "type": "multivalued",
-            "name": "Brand",
             "value_config": {
-              "condition": "OR",
-              "sort": "ascending",
-              "value": "metadata",
               "bucket_points": [],
+              "condition": "OR",
               "map": {
                 "5th Avenue": "A {{value}}"
-              }
-            },
-            "is_active": true
+              },
+              "sort": "ascending",
+              "value": "metadata"
+            }
           },
           {
+            "is_active": false,
             "key": "season",
+            "name": "Season",
             "priority": 5,
             "type": "multivalued",
-            "name": "Season",
             "value_config": {
-              "condition": "OR",
-              "sort": "count",
-              "value": "",
               "bucket_points": [],
+              "condition": "OR",
               "map": {
                 "": ""
-              }
-            },
-            "is_active": false
+              },
+              "sort": "count",
+              "value": ""
+            }
           },
           {
+            "is_active": true,
             "key": "is_set",
+            "name": "Set",
             "priority": 6,
             "type": "multivalued",
-            "name": "Set",
             "value_config": {
-              "condition": "OR",
-              "sort": "descending",
-              "value": "",
               "bucket_points": [],
+              "condition": "OR",
               "map": {
-                "true": "Yes",
-                "false": "No"
-              }
-            },
-            "is_active": true
+                "false": "No",
+                "true": "Yes"
+              },
+              "sort": "descending",
+              "value": ""
+            }
           },
           {
+            "is_active": true,
             "key": "rating",
+            "name": "Rating",
             "priority": 7,
             "type": "multivalued",
-            "name": "Rating",
             "value_config": {
-              "condition": "OR",
-              "sort": "count",
-              "value": "",
               "bucket_points": [],
+              "condition": "OR",
               "map": {
                 "": ""
-              }
-            },
-            "is_active": true
+              },
+              "sort": "count",
+              "value": ""
+            }
           },
           {
+            "is_active": true,
             "key": "size_depth",
+            "name": "Size Depth",
             "priority": 8,
             "type": "range",
-            "name": "Size Depth",
             "value_config": {
-              "condition": "OR",
-              "sort": "count",
-              "value": "",
               "bucket_points": [],
+              "condition": "OR",
               "map": {
                 "{} - {}": "{} - {}"
-              }
-            },
-            "is_active": true
-          }
-        ],
-        "allow_single": false
-      },
-      "sort": {
-        "default_key": "",
-        "default": "",
-        "config": [
-          {
-            "key": "price_dsc",
-            "logo": "https://hdn-1.fynd.com/global/menu-icons/Price%20High%20to%20Low.png",
-            "priority": 1,
-            "name": "Price High to Low",
-            "is_active": false
-          },
-          {
-            "key": "rating_dsc",
-            "logo": "https://hdn-1.fynd.com/global/menu-icons/Rating.png",
-            "priority": 2,
-            "name": "Rating",
-            "is_active": true
-          },
-          {
-            "key": "depth_desc",
-            "priority": 3,
-            "name": "Size Depth (High to Low)",
-            "is_active": true
-          },
-          {
-            "key": "discount_dsc",
-            "logo": "https://hdn-1.fynd.com/global/menu-icons/Discount%20Low%20to%20High.png",
-            "priority": 4,
-            "name": "Discount High to Low",
-            "is_active": true
-          },
-          {
-            "key": "popular",
-            "logo": "https://hdn-1.fynd.com/global/menu-icons/Popularity.png",
-            "priority": 5,
-            "name": "Popularity",
-            "is_active": true
-          },
-          {
-            "key": "relevance",
-            "priority": 6,
-            "name": "Relevance",
-            "is_active": true
-          },
-          {
-            "key": "price_asc",
-            "logo": "https://hdn-1.fynd.com/global/menu-icons/Price%20Low%20to%20High.png",
-            "priority": 7,
-            "name": "Price Low to High",
-            "is_active": true
+              },
+              "sort": "count",
+              "value": ""
+            }
           }
         ]
+      },
+      "sort": {
+        "config": [
+          {
+            "is_active": false,
+            "key": "price_dsc",
+            "logo": "https://hdn-1.fynd.com/global/menu-icons/Price%20High%20to%20Low.png",
+            "name": "Price High to Low",
+            "priority": 1
+          },
+          {
+            "is_active": true,
+            "key": "rating_dsc",
+            "logo": "https://hdn-1.fynd.com/global/menu-icons/Rating.png",
+            "name": "Rating",
+            "priority": 2
+          },
+          {
+            "is_active": true,
+            "key": "depth_desc",
+            "name": "Size Depth (High to Low)",
+            "priority": 3
+          },
+          {
+            "is_active": true,
+            "key": "discount_dsc",
+            "logo": "https://hdn-1.fynd.com/global/menu-icons/Discount%20Low%20to%20High.png",
+            "name": "Discount High to Low",
+            "priority": 4
+          },
+          {
+            "is_active": true,
+            "key": "popular",
+            "logo": "https://hdn-1.fynd.com/global/menu-icons/Popularity.png",
+            "name": "Popularity",
+            "priority": 5
+          },
+          {
+            "is_active": true,
+            "key": "relevance",
+            "name": "Relevance",
+            "priority": 6
+          },
+          {
+            "is_active": true,
+            "key": "price_asc",
+            "logo": "https://hdn-1.fynd.com/global/menu-icons/Price%20Low%20to%20High.png",
+            "name": "Price Low to High",
+            "priority": 7
+          }
+        ],
+        "default_key": ""
       }
     },
     "product": {
       "similar": {
         "config": [
           {
+            "is_active": true,
             "key": "seller",
-            "size": {
-              "max": 10,
-              "min": 2
-            },
             "priority": 1,
-            "title": "Seller",
-            "is_active": true,
-            "subtitle": ""
+            "size": {
+              "max": 10,
+              "min": 2
+            },
+            "subtitle": "",
+            "title": "Seller"
           },
           {
+            "is_active": true,
             "key": "visual",
-            "size": {
-              "max": 10,
-              "min": 2
-            },
             "priority": 2,
-            "title": "Visual",
-            "is_active": true,
-            "subtitle": ""
+            "size": {
+              "max": 10,
+              "min": 2
+            },
+            "subtitle": "",
+            "title": "Visual"
           },
           {
+            "is_active": true,
             "key": "brand",
+            "priority": 3,
             "size": {
               "max": 10,
               "min": 2
             },
-            "priority": 3,
-            "title": "Brand",
-            "is_active": true,
-            "subtitle": ""
+            "subtitle": "",
+            "title": "Brand"
           },
           {
+            "is_active": true,
             "key": "specs",
+            "priority": 4,
             "size": {
               "max": 10,
               "min": 2
             },
-            "priority": 4,
-            "title": "Specs",
-            "is_active": true,
-            "subtitle": ""
+            "subtitle": "",
+            "title": "Specs"
           }
         ]
       },
       "variant": {
         "config": [
           {
+            "display_type": "image",
+            "is_active": true,
             "key": "color",
-            "display_type": "image",
-            "size": {
-              "max": 10,
-              "min": 2
-            },
-            "priority": 1,
             "name": "Additional Colors12",
-            "is_active": true
+            "priority": 1,
+            "size": {
+              "max": 10,
+              "min": 2
+            }
           },
           {
+            "display_type": "text",
+            "is_active": true,
             "key": "storage",
-            "display_type": "text",
-            "size": {
-              "max": 10,
-              "min": 2
-            },
-            "priority": 2,
             "name": "Memory",
-            "is_active": true
+            "priority": 2,
+            "size": {
+              "max": 10,
+              "min": 2
+            }
           },
           {
-            "key": "visual",
             "display_type": "image",
-            "size": {
-              "max": 10,
-              "min": 2
-            },
-            "priority": 3,
+            "is_active": true,
+            "key": "visual",
             "name": "Additional Colors",
-            "is_active": true
+            "priority": 3,
+            "size": {
+              "max": 10,
+              "min": 2
+            }
           },
           {
+            "display_type": "text",
+            "is_active": true,
             "key": "ram_storage",
-            "display_type": "text",
-            "size": {
-              "max": 10,
-              "min": 2
-            },
-            "priority": 4,
             "name": "Ram_Storage",
-            "is_active": true
+            "priority": 4,
+            "size": {
+              "max": 10,
+              "min": 2
+            }
           },
           {
-            "key": "shade",
             "display_type": "color",
+            "is_active": true,
+            "key": "shade",
+            "name": "Additional Shades",
+            "priority": 5,
             "size": {
               "max": 10,
               "min": 2
-            },
-            "priority": 5,
-            "name": "Additional Shades",
-            "is_active": true
+            }
           },
           {
-            "key": "water_resistant",
             "display_type": "text",
+            "is_active": true,
+            "key": "water_resistant",
+            "name": "Water_Resistant",
+            "priority": 6,
             "size": {
               "max": 10,
               "min": 2
-            },
-            "priority": 6,
-            "name": "Water_Resistant",
-            "is_active": true
+            }
           }
         ]
       }
-    },
-    "config_id": "000000000000000000000001",
-    "config_type": "app"
+    }
   },
   "is_default": false
 }
@@ -7386,24 +7505,21 @@ Departments Data. See example below or refer `DepartmentsResponse` for details
 
 ```json
 {
-  "page": {
-    "type": ""
-  },
   "items": [
     {
-      "uid": 5,
       "_cls": "Department",
       "_custom_json": {},
       "created_by": {
-        "username": "918793638893_86554",
-        "user_id": "3"
+        "user_id": "3",
+        "username": "918793638893_86554"
       },
       "created_on": "2020-07-01T05:33:39.325000Z",
+      "id": "5efc2033623d390001782238",
       "is_active": true,
       "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/BSQ9Gk_123522-best-starry-sky-wallpaper-1920x1200-ipad-pro.jpgc7d0c15c-c1ff-47eb-8423-6e2df51f2ddf/BSQ9Gk_123522-best-starry-sky-wallpaper-1920x1200-ipad-pro.jpg",
       "modified_by": {
-        "username": "917753852478_51632",
-        "user_id": "5677"
+        "user_id": "5677",
+        "username": "917753852478_51632"
       },
       "modified_on": "2021-03-03T15:55:25.118000Z",
       "name": "Sample Dept",
@@ -7415,17 +7531,17 @@ Departments Data. See example below or refer `DepartmentsResponse` for details
         "sampe"
       ],
       "tags": [],
-      "id": "5efc2033623d390001782238"
+      "uid": 5
     },
     {
-      "uid": 2,
       "_cls": "Department",
       "_custom_json": {},
       "created_by": {
-        "username": "app@fynd.com",
-        "user_id": "0"
+        "user_id": "0",
+        "username": "app@fynd.com"
       },
       "created_on": "2020-05-19T06:53:37.629000Z",
+      "id": "5ec3827156a7200001c9aeea",
       "is_active": true,
       "logo": "https://hdn-1.addsale.com/addsale/media/logo/department/original/15974_381e2236c2a348cc851c29a5d05c66a9.png",
       "modified_by": {
@@ -7446,22 +7562,22 @@ Departments Data. See example below or refer `DepartmentsResponse` for details
       "slug": "men-s-fashion",
       "synonyms": [],
       "tags": [],
-      "id": "5ec3827156a7200001c9aeea"
+      "uid": 2
     },
     {
-      "uid": 4,
       "_cls": "Department",
       "_custom_json": {},
       "created_by": {
-        "username": "fahimsakri_gofynd_com_44938",
-        "user_id": "10"
+        "user_id": "10",
+        "username": "fahimsakri_gofynd_com_44938"
       },
       "created_on": "2020-06-29T10:59:33.620000Z",
+      "id": "5ef9c9959b04f00001e40dba",
       "is_active": true,
       "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/ywPVrU_preview_a637ca6e4da6e38f03eb0d650ac5d6ba.jpgc73cc22f-b5ee-4fd4-a585-8ada35762d68/ywPVrU_preview_a637ca6e4da6e38f03eb0d650ac5d6ba.jpg",
       "modified_by": {
-        "username": "918793638893_86554",
-        "user_id": "3"
+        "user_id": "3",
+        "username": "918793638893_86554"
       },
       "modified_on": "2020-08-06T18:08:02.675000Z",
       "name": "Groceries",
@@ -7470,17 +7586,17 @@ Departments Data. See example below or refer `DepartmentsResponse` for details
       "slug": "groceries",
       "synonyms": [],
       "tags": [],
-      "id": "5ef9c9959b04f00001e40dba"
+      "uid": 4
     },
     {
-      "uid": 1,
       "_cls": "Department",
       "_custom_json": {},
       "created_by": {
-        "username": "app@fynd.com",
-        "user_id": "0"
+        "user_id": "0",
+        "username": "app@fynd.com"
       },
       "created_on": "2020-05-18T16:14:41.689000Z",
+      "id": "5ec2b471661a4100019fca0d",
       "is_active": true,
       "logo": "https://hdn-1.addsale.com/x0/platform/pictures/free-logo/original/_G1Z2Fg1L-http:d3p8ifzkmzds37.cloudfront.netmedialogodepartmentoriginal15870_c287d3c2431a432bb0e49363ef6b82bc.png.png",
       "modified_by": {
@@ -7501,22 +7617,22 @@ Departments Data. See example below or refer `DepartmentsResponse` for details
       "slug": "electronics",
       "synonyms": [],
       "tags": [],
-      "id": "5ec2b471661a4100019fca0d"
+      "uid": 1
     },
     {
-      "uid": 3,
       "_cls": "Department",
       "_custom_json": {},
       "created_by": {
-        "username": "918793638893_86554",
-        "user_id": "3"
+        "user_id": "3",
+        "username": "918793638893_86554"
       },
       "created_on": "2020-05-27T12:04:19.111000Z",
+      "id": "5ece5743cd1bae0001440427",
       "is_active": true,
       "logo": "https://hdn-1.addsale.com/x0/seller/pictures/landscape-banner/original/g2plam_logo_Jio.pngeeb392ca-3958-46a0-9f13-23c205b596f7/g2plam_logo_Jio.png",
       "modified_by": {
-        "username": "918793638893_86554",
-        "user_id": "3"
+        "user_id": "3",
+        "username": "918793638893_86554"
       },
       "modified_on": "2020-08-06T18:07:46.060000Z",
       "name": "Industrial Supplies",
@@ -7525,22 +7641,22 @@ Departments Data. See example below or refer `DepartmentsResponse` for details
       "slug": "industrial-supplies",
       "synonyms": [],
       "tags": [],
-      "id": "5ece5743cd1bae0001440427"
+      "uid": 3
     },
     {
-      "uid": 6,
       "_cls": "Department",
       "_custom_json": {},
       "created_by": {
-        "username": "abhinavsrivastava_gofynd_com_05674",
-        "user_id": "13"
+        "user_id": "13",
+        "username": "abhinavsrivastava_gofynd_com_05674"
       },
       "created_on": "2020-07-06T07:56:01.508000Z",
+      "id": "5f02d9116b0ae500018923dd",
       "is_active": false,
       "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/wTcfEi_crysis_-_1.jpg14580947-a659-486d-b2d3-d2ca025b1cac/wTcfEi_crysis_-_1.jpg",
       "modified_by": {
-        "username": "918793638893_86554",
-        "user_id": "3"
+        "user_id": "3",
+        "username": "918793638893_86554"
       },
       "modified_on": "2020-08-06T18:08:12.576000Z",
       "name": "Clothing",
@@ -7549,22 +7665,22 @@ Departments Data. See example below or refer `DepartmentsResponse` for details
       "slug": "clothing",
       "synonyms": [],
       "tags": [],
-      "id": "5f02d9116b0ae500018923dd"
+      "uid": 6
     },
     {
-      "uid": 8,
       "_cls": "Department",
       "_custom_json": {},
       "created_by": {
-        "username": "asavarijadhav_gofynd_com_99880",
-        "user_id": "5634"
+        "user_id": "5634",
+        "username": "asavarijadhav_gofynd_com_99880"
       },
       "created_on": "2020-08-05T09:04:33.604000Z",
+      "id": "5f2a762131c66700018cdc47",
       "is_active": true,
       "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/RxTsd8_0DEFAULT-LOGO.jpg000ccfc1-2f79-4426-9ac3-de2468c2fcb9/RxTsd8_0DEFAULT-LOGO.jpg",
       "modified_by": {
-        "username": "asavarijadhav_gofynd_com_99880",
-        "user_id": "5634"
+        "user_id": "5634",
+        "username": "asavarijadhav_gofynd_com_99880"
       },
       "modified_on": "2020-08-05T09:44:01.234000Z",
       "name": "Kids",
@@ -7573,22 +7689,22 @@ Departments Data. See example below or refer `DepartmentsResponse` for details
       "slug": "kids",
       "synonyms": [],
       "tags": [],
-      "id": "5f2a762131c66700018cdc47"
+      "uid": 8
     },
     {
-      "uid": 9,
       "_cls": "Department",
       "_custom_json": {},
       "created_by": {
-        "username": "asavarijadhav_gofynd_com_99880",
-        "user_id": "5634"
+        "user_id": "5634",
+        "username": "asavarijadhav_gofynd_com_99880"
       },
       "created_on": "2020-08-05T09:44:46.632000Z",
+      "id": "5f2a7f8e31c66700018cdc49",
       "is_active": true,
       "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/tKkDB8_0DEFAULT-LOGO.jpg1c324d4d-f667-4af8-8d98-37205d34e3b5/tKkDB8_0DEFAULT-LOGO.jpg",
       "modified_by": {
-        "username": "918793638893_86554",
-        "user_id": "3"
+        "user_id": "3",
+        "username": "918793638893_86554"
       },
       "modified_on": "2020-08-06T18:07:35.231000Z",
       "name": "Women's Fashion",
@@ -7597,22 +7713,22 @@ Departments Data. See example below or refer `DepartmentsResponse` for details
       "slug": "women-s-fashion",
       "synonyms": [],
       "tags": [],
-      "id": "5f2a7f8e31c66700018cdc49"
+      "uid": 9
     },
     {
-      "uid": 10,
       "_cls": "Department",
       "_custom_json": {},
       "created_by": {
-        "username": "asavarijadhav_gofynd_com_99880",
-        "user_id": "5634"
+        "user_id": "5634",
+        "username": "asavarijadhav_gofynd_com_99880"
       },
       "created_on": "2020-08-05T09:45:12.075000Z",
+      "id": "5f2a7fa831c66700018cdc4a",
       "is_active": true,
       "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/oLoxiL_0DEFAULT-LOGO.jpgbd050200-700a-4a3e-9da6-e6b78fbee943/oLoxiL_0DEFAULT-LOGO.jpg",
       "modified_by": {
-        "username": "asavarijadhav_gofynd_com_99880",
-        "user_id": "5634"
+        "user_id": "5634",
+        "username": "asavarijadhav_gofynd_com_99880"
       },
       "modified_on": "2020-08-05T09:48:01.660000Z",
       "name": "Beauty & Personal Care",
@@ -7621,22 +7737,22 @@ Departments Data. See example below or refer `DepartmentsResponse` for details
       "slug": "beauty-personal-care",
       "synonyms": [],
       "tags": [],
-      "id": "5f2a7fa831c66700018cdc4a"
+      "uid": 10
     },
     {
-      "uid": 11,
       "_cls": "Department",
       "_custom_json": {},
       "created_by": {
-        "username": "asavarijadhav_gofynd_com_99880",
-        "user_id": "5634"
+        "user_id": "5634",
+        "username": "asavarijadhav_gofynd_com_99880"
       },
       "created_on": "2020-08-05T09:45:39.797000Z",
+      "id": "5f2a7fc331c66700018cdc4b",
       "is_active": true,
       "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/vQv4ot_0DEFAULT-LOGO.jpg701cb5af-2024-4abf-ae5d-b68bc1a3cd43/vQv4ot_0DEFAULT-LOGO.jpg",
       "modified_by": {
-        "username": "918793638893_86554",
-        "user_id": "3"
+        "user_id": "3",
+        "username": "918793638893_86554"
       },
       "modified_on": "2020-08-06T11:38:57.599000Z",
       "name": "Home & Living",
@@ -7645,22 +7761,22 @@ Departments Data. See example below or refer `DepartmentsResponse` for details
       "slug": "home-living",
       "synonyms": [],
       "tags": [],
-      "id": "5f2a7fc331c66700018cdc4b"
+      "uid": 11
     },
     {
-      "uid": 14,
       "_cls": "Department",
       "_custom_json": {},
       "created_by": {
-        "username": "asavarijadhav_gofynd_com_99880",
-        "user_id": "5634"
+        "user_id": "5634",
+        "username": "asavarijadhav_gofynd_com_99880"
       },
       "created_on": "2020-08-05T09:48:42.347000Z",
+      "id": "5f2a807a31c66700018cdc4e",
       "is_active": false,
       "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/hTobjV_0DEFAULT-LOGO.jpga020159c-7fe7-4c1c-a11a-4be61a60da9f/hTobjV_0DEFAULT-LOGO.jpg",
       "modified_by": {
-        "username": "asavarijadhav_gofynd_com_99880",
-        "user_id": "5634"
+        "user_id": "5634",
+        "username": "asavarijadhav_gofynd_com_99880"
       },
       "modified_on": "2020-08-05T09:48:42.347000Z",
       "name": "Baby Care & Kids Essentials",
@@ -7669,36 +7785,39 @@ Departments Data. See example below or refer `DepartmentsResponse` for details
       "slug": "baby-care-kids-essentials",
       "synonyms": [],
       "tags": [],
-      "id": "5f2a807a31c66700018cdc4e"
+      "uid": 14
     },
     {
       "_cls": "Department",
-      "created_on": "2021-01-13T10:12:33.002000Z",
-      "modified_on": "2021-01-13T13:50:55.415000Z",
+      "_custom_json": {},
       "created_by": {
-        "username": "919821012599_75351",
-        "user_id": "5721"
+        "user_id": "5721",
+        "username": "919821012599_75351"
       },
-      "modified_by": {
-        "username": "919821012599_75351",
-        "user_id": "5721"
-      },
-      "uid": 21,
-      "name": "Skin care products",
-      "slug": "skin-care-produts",
-      "logo": "https://hdn-1.addsale.com/x0/department/pictures/square-logo/original/rNz8grLys-.png",
-      "tags": [],
+      "created_on": "2021-01-13T10:12:33.002000Z",
+      "id": "5ffec79192813f0001eb6560",
       "is_active": true,
-      "priority_order": 10235,
+      "logo": "https://hdn-1.addsale.com/x0/department/pictures/square-logo/original/rNz8grLys-.png",
+      "modified_by": {
+        "user_id": "5721",
+        "username": "919821012599_75351"
+      },
+      "modified_on": "2021-01-13T13:50:55.415000Z",
+      "name": "Skin care products",
       "platforms": {},
+      "priority_order": 10235,
+      "slug": "skin-care-produts",
       "synonyms": [
         "skin",
         "care"
       ],
-      "_custom_json": {},
-      "id": "5ffec79192813f0001eb6560"
+      "tags": [],
+      "uid": 21
     }
-  ]
+  ],
+  "page": {
+    "type": ""
+  }
 }
 ```
 </details>
@@ -7753,104 +7872,104 @@ List of Departments. See example below or refer `DepartmentResponse` for details
 {
   "items": [
     {
-      "uid": 1,
+      "logo": {
+        "type": "image",
+        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
+      },
       "name": "Zachary Harris",
+      "priority_order": 7,
       "slug": "Zachary-Harris",
-      "priority_order": 7,
+      "uid": 1
+    },
+    {
       "logo": {
         "type": "image",
         "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
-      }
-    },
-    {
-      "uid": 2,
+      },
       "name": "Aaron Reilly",
+      "priority_order": 7,
       "slug": "Aaron-Reilly",
-      "priority_order": 7,
+      "uid": 2
+    },
+    {
       "logo": {
         "type": "image",
         "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
-      }
-    },
-    {
-      "uid": 3,
+      },
       "name": "Bobby Sandoval",
+      "priority_order": 7,
       "slug": "Bobby-Sandoval",
-      "priority_order": 7,
+      "uid": 3
+    },
+    {
       "logo": {
         "type": "image",
         "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
-      }
-    },
-    {
-      "uid": 4,
+      },
       "name": "Seth Hughes",
+      "priority_order": 7,
       "slug": "Seth-Hughes",
-      "priority_order": 7,
+      "uid": 4
+    },
+    {
       "logo": {
         "type": "image",
         "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
-      }
-    },
-    {
-      "uid": 5,
+      },
       "name": "Michelle Moore",
+      "priority_order": 7,
       "slug": "Michelle-Moore",
-      "priority_order": 7,
+      "uid": 5
+    },
+    {
       "logo": {
         "type": "image",
         "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
-      }
-    },
-    {
-      "uid": 6,
+      },
       "name": "Annette Baldwin",
+      "priority_order": 7,
       "slug": "Annette-Baldwin",
-      "priority_order": 7,
+      "uid": 6
+    },
+    {
       "logo": {
         "type": "image",
         "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
-      }
-    },
-    {
-      "uid": 7,
+      },
       "name": "Chris Mata",
+      "priority_order": 7,
       "slug": "Chris-Mata",
-      "priority_order": 7,
+      "uid": 7
+    },
+    {
       "logo": {
         "type": "image",
         "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
-      }
-    },
-    {
-      "uid": 8,
+      },
       "name": "Nicole Jacobs",
+      "priority_order": 7,
       "slug": "Nicole-Jacobs",
-      "priority_order": 7,
+      "uid": 8
+    },
+    {
       "logo": {
         "type": "image",
         "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
-      }
-    },
-    {
-      "uid": 9,
+      },
       "name": "Pamela Smith",
-      "slug": "Pamela-Smith",
       "priority_order": 7,
-      "logo": {
-        "type": "image",
-        "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
-      }
+      "slug": "Pamela-Smith",
+      "uid": 9
     },
     {
-      "uid": 10,
-      "name": "Nicole Simon",
-      "slug": "Nicole-Simon",
-      "priority_order": 7,
       "logo": {
         "type": "image",
         "url": "http://cdn4.gofynd.com/media/category_tab_icons/department/Men.png"
-      }
+      },
+      "name": "Nicole Simon",
+      "priority_order": 7,
+      "slug": "Nicole-Simon",
+      "uid": 10
     }
   ]
 }
@@ -7927,101 +8046,318 @@ returns a list of all inventory grouped by size and store
 {
   "items": [
     {
-      "manufacturer": {
-        "address": "luffy",
-        "name": "luffy",
-        "is_default": true
+      "brand": {
+        "id": 1,
+        "name": "ab"
       },
-      "identifier": {},
-      "fynd_item_code": "1234",
-      "fynd_article_code": "1234",
-      "fragile": true,
-      "dimension": {
-        "is_default": true,
-        "height": 1,
-        "length": 1,
-        "width": 1,
-        "unit": "km"
-      },
-      "country_of_origin": "",
       "company": {
         "id": 1
       },
-      "brand": {
-        "id": 1,
-        "name": "luffy"
-      },
-      "total_quantity": 10,
-      "weight": {
-        "is_default": true,
-        "shipping": 12,
-        "unit": "kg"
-      },
-      "store": {
-        "id": 1,
-        "name": "yosss sdd dsdyo",
-        "store_code": "sanic6sdfsf7",
-        "uid": 59,
-        "address": {
-          "state": "MAHARASHTRA",
-          "address1": "A/204, SAI VANDAN, NARAYAN NAGAR, TULINJ ROAD",
-          "lat_long": {
-            "type": "Point",
-            "coordinates": [
-              72.8231511,
-              19.4232024
-            ]
-          },
-          "address2": "",
-          "pincode": 401209,
-          "country": "INDIA",
-          "city": "MUMBAI",
-          "landmark": ""
-        },
-        "manager": {
-          "name": "abc",
-          "email": "a@b.com",
-          "mobile_no": {
-            "number": "2382634324",
-            "country_code": 91
-          }
-        },
-        "integration_type": {
-          "order": "browntape",
-          "inventory": "browntape"
-        },
-        "_custom_json": {}
-      },
-      "uid": "59_RTYUIDSDFV",
-      "size": "AAX1 (1 PCS)",
-      "inventory_updated_on": "2021-04-06T03:30:01.487000",
-      "seller_identifier": "RTYUIDSDFV",
-      "item_id": 7500651,
-      "quantity": 10,
-      "price": {
-        "currency": "INR",
-        "effective": 1234,
-        "transfer": 0,
-        "marked": 0
-      },
+      "country_of_origin": "",
       "currency": "INR",
-      "sellable_quantity": 10,
+      "dimension": {
+        "height": 15,
+        "is_default": true,
+        "length": 10.5,
+        "unit": "cm",
+        "width": 5.2
+      },
+      "fragile": true,
+      "fynd_article_code": "",
+      "fynd_item_code": "",
+      "identifier": {
+        "article_id": 1
+      },
       "identifiers": [
         {
           "gtin_type": "sku_code",
           "gtin_value": "RTYUIDSDFV",
           "primary": true
         }
-      ]
+      ],
+      "inventory_updated_on": "2021-04-06T03:30:01.487000",
+      "item_id": 7500651,
+      "manufacturer": {
+        "address": "st",
+        "is_default": true,
+        "name": "manufacturer"
+      },
+      "price": {
+        "currency": "USD",
+        "effective": 79.99,
+        "marked": 99.99,
+        "transfer": 79.99
+      },
+      "price_effective": 1234,
+      "price_transfer": 0,
+      "quantity": 10,
+      "sellable_quantity": 10,
+      "seller_identifier": "RTYUIDSDFV",
+      "size": "AAX1 (1 PCS)",
+      "store": {
+        "id": 1
+      },
+      "total_quantity": 1,
+      "uid": "59_RTYUIDSDFV",
+      "weight": {
+        "is_default": true,
+        "shipping": 1.5,
+        "unit": "kg"
+      }
+    },
+    {
+      "brand": {
+        "id": 1,
+        "name": "ab"
+      },
+      "company": {
+        "id": 1
+      },
+      "country_of_origin": "",
+      "currency": "INR",
+      "dimension": {
+        "height": 15,
+        "is_default": true,
+        "length": 10.5,
+        "unit": "cm",
+        "width": 5.2
+      },
+      "fragile": true,
+      "fynd_article_code": "",
+      "fynd_item_code": "",
+      "identifier": {
+        "article_id": 1
+      },
+      "identifiers": [
+        {
+          "gtin_type": "sku_code",
+          "gtin_value": "RTYUIDSDFV",
+          "primary": true
+        }
+      ],
+      "inventory_updated_on": "2021-04-06T03:29:35.291000",
+      "item_id": 7500651,
+      "manufacturer": {
+        "address": "st",
+        "is_default": true,
+        "name": "manufacturer"
+      },
+      "price": {
+        "currency": "USD",
+        "effective": 79.99,
+        "marked": 99.99,
+        "transfer": 79.99
+      },
+      "price_effective": 1234,
+      "price_transfer": 0,
+      "quantity": 10,
+      "sellable_quantity": 10,
+      "seller_identifier": "RTYUIDSDFV",
+      "size": "AAX1 (1 PCS)",
+      "store": {
+        "id": 1
+      },
+      "total_quantity": 1,
+      "uid": "10_RTYUIDSDFV",
+      "weight": {
+        "is_default": true,
+        "shipping": 1.5,
+        "unit": "kg"
+      }
+    },
+    {
+      "brand": {
+        "id": 1,
+        "name": "ab"
+      },
+      "company": {
+        "id": 1
+      },
+      "country_of_origin": "",
+      "currency": "INR",
+      "dimension": {
+        "height": 15,
+        "is_default": true,
+        "length": 10.5,
+        "unit": "cm",
+        "width": 5.2
+      },
+      "fragile": true,
+      "fynd_article_code": "",
+      "fynd_item_code": "",
+      "identifier": {
+        "article_id": 1
+      },
+      "identifiers": [
+        {
+          "gtin_type": "sku_code",
+          "gtin_value": "RTYUIDSDFV",
+          "primary": true
+        }
+      ],
+      "inventory_updated_on": "2021-03-17T12:35:29.992000",
+      "item_id": 7500651,
+      "manufacturer": {
+        "address": "st",
+        "is_default": true,
+        "name": "manufacturer"
+      },
+      "order_committed_quantity": 0,
+      "price": {
+        "currency": "USD",
+        "effective": 79.99,
+        "marked": 99.99,
+        "transfer": 79.99
+      },
+      "price_effective": 1234,
+      "price_transfer": 0,
+      "quantity": 10000000,
+      "sellable_quantity": 10000000,
+      "seller_identifier": "RTYUIDSDFV",
+      "size": "AAX1 (1 PCS)",
+      "store": {
+        "id": 1
+      },
+      "total_quantity": 1,
+      "uid": "11061_RTYUIDSDFV",
+      "weight": {
+        "is_default": true,
+        "shipping": 1.5,
+        "unit": "kg"
+      }
+    },
+    {
+      "brand": {
+        "id": 1,
+        "name": "ab"
+      },
+      "company": {
+        "id": 1
+      },
+      "country_of_origin": "",
+      "currency": "INR",
+      "damaged_quantity": 0,
+      "dimension": {
+        "height": 15,
+        "is_default": true,
+        "length": 10.5,
+        "unit": "cm",
+        "width": 5.2
+      },
+      "fragile": true,
+      "fynd_article_code": "",
+      "fynd_item_code": "",
+      "identifier": {
+        "article_id": 1
+      },
+      "identifiers": [
+        {
+          "gtin_type": "sku_code",
+          "gtin_value": "RTYUIDSDFV",
+          "primary": true
+        }
+      ],
+      "inventory_updated_on": "2021-03-31T19:00:10.943000",
+      "item_id": 7500651,
+      "manufacturer": {
+        "address": "st",
+        "is_default": true,
+        "name": "manufacturer"
+      },
+      "not_available_quantity": 0,
+      "order_committed_quantity": 7,
+      "price": {
+        "currency": "USD",
+        "effective": 79.99,
+        "marked": 99.99,
+        "transfer": 79.99
+      },
+      "price_effective": 1234,
+      "price_transfer": 0,
+      "quantity": 39,
+      "sellable_quantity": 18,
+      "seller_identifier": "RTYUIDSDFV",
+      "size": "AAX1 (1 PCS)",
+      "store": {
+        "id": 1
+      },
+      "total_quantity": 1,
+      "uid": "1_RTYUIDSDFV",
+      "weight": {
+        "is_default": true,
+        "shipping": 1.5,
+        "unit": "kg"
+      }
+    },
+    {
+      "brand": {
+        "id": 1,
+        "name": "ab"
+      },
+      "company": {
+        "id": 1
+      },
+      "country_of_origin": "",
+      "currency": "INR",
+      "dimension": {
+        "height": 15,
+        "is_default": true,
+        "length": 10.5,
+        "unit": "cm",
+        "width": 5.2
+      },
+      "fragile": true,
+      "fynd_article_code": "",
+      "fynd_item_code": "",
+      "identifier": {
+        "article_id": 1
+      },
+      "identifiers": [
+        {
+          "gtin_type": "sku_code",
+          "gtin_value": "RTYUIDSDFV",
+          "primary": true
+        }
+      ],
+      "inventory_updated_on": "2020-07-07T10:37:06.146000",
+      "item_id": 7500651,
+      "manufacturer": {
+        "address": "st",
+        "is_default": true,
+        "name": "manufacturer"
+      },
+      "order_committed_quantity": 39,
+      "price": {
+        "currency": "USD",
+        "effective": 79.99,
+        "marked": 99.99,
+        "transfer": 79.99
+      },
+      "price_effective": 1234,
+      "price_transfer": 0,
+      "quantity": 39,
+      "sellable_quantity": 0,
+      "seller_identifier": "RTYUIDSDFV",
+      "size": "AAX1 (1 PCS)",
+      "store": {
+        "id": 1
+      },
+      "total_quantity": 1,
+      "uid": "1_rtyuidsdfv",
+      "weight": {
+        "is_default": true,
+        "shipping": 1.5,
+        "unit": "kg"
+      }
     }
   ],
   "page": {
-    "type": "number",
     "current": 1,
-    "size": 1,
-    "item_total": 5,
+    "has_next": false,
     "has_previous": false,
-    "has_next": false
+    "item_total": 5,
+    "size": 1,
+    "type": "number"
   }
 }
 ```
@@ -8080,32 +8416,46 @@ Size guide object. See example below or refer `GenderDetailSchema` for details
 
 ```json
 {
-  "description": "Clothing department needs gener attribute",
-  "meta": {
-    "enriched": false,
-    "mandatory_details": {
-      "l3_keys": []
-    }
-  },
-  "slug": "gender",
-  "name": "Gender",
-  "enabled_for_end_consumer": true,
-  "details": {
-    "display_type": "text"
-  },
-  "is_nested": true,
-  "filters": {
-    "indexing": true,
-    "priority": 2
-  },
   "departments": [
     "men-s-fashion",
     "kids",
     "women-s-fashion",
     "beauty-personal-care"
   ],
+  "description": "Clothing department needs gener attribute",
+  "details": {
+    "display_type": "text"
+  },
+  "enabled_for_end_consumer": true,
+  "filters": {
+    "indexing": true,
+    "priority": 2
+  },
+  "id": "5ed11eb0be8d5e00016f0335",
+  "is_nested": true,
   "logo": "https://hdn-1.addsale.com/x0/products/pictures/attribute/logo/original/Rhv89tqRo-brand-website-logo.png",
-  "id": "5ed11eb0be8d5e00016f0335"
+  "meta": {
+    "enriched": false,
+    "mandatory_details": {
+      "l3_keys": []
+    }
+  },
+  "name": "Gender",
+  "schema": {
+    "enum": [
+      "Men",
+      "Women",
+      "Boy",
+      "Girl",
+      "more",
+      "men"
+    ],
+    "format": "",
+    "mandatory": false,
+    "multi": true,
+    "type": "str"
+  },
+  "slug": "gender"
 }
 ```
 </details>
@@ -8177,94 +8527,94 @@ configuration details for catalog. See example below or refer `GetConfigResponse
 {
   "data": [
     {
-      "is_active": true,
-      "slug": "test-group12-31",
-      "is_default": false,
+      "app_id": "5d65089e031f9029f8e8dc2f",
       "attributes": [
         {
-          "is_active": true,
           "display_type": "text",
-          "slug": "item_code",
+          "is_active": true,
           "key": "item_code",
+          "name": "Item Code",
           "priority": 1,
-          "name": "Item Code"
+          "slug": "item_code"
         },
         {
-          "is_active": true,
           "display_type": "text",
-          "slug": "brand",
+          "is_active": true,
           "key": "brand",
+          "name": "Brand",
           "priority": 2,
-          "name": "Brand"
+          "slug": "brand"
         }
       ],
-      "app_id": "5d65089e031f9029f8e8dc2f",
+      "id": "62a84b90bd43c0fe4cf53574",
+      "is_active": true,
+      "is_default": false,
+      "name": "Test Group12 ",
       "priority": 1,
+      "slug": "test-group12-31",
       "template_slugs": [
         "atesttemplate"
-      ],
-      "name": "Test Group12 ",
-      "id": "62a84b90bd43c0fe4cf53574"
+      ]
     },
     {
-      "is_active": true,
-      "slug": "et14",
-      "is_default": false,
+      "app_id": "5d65089e031f9029f8e8dc2f",
       "attributes": [
         {
-          "is_active": true,
           "display_type": "text",
-          "slug": "item_code",
+          "is_active": true,
           "key": "item_code",
+          "name": "Item Code",
           "priority": 1,
-          "name": "Item Code"
+          "slug": "item_code"
         },
         {
-          "is_active": true,
           "display_type": "text",
-          "slug": "brand",
+          "is_active": true,
           "key": "brand",
+          "name": "Brand",
           "priority": 2,
-          "name": "Brand"
+          "slug": "brand"
         },
         {
-          "is_active": true,
           "display_type": "text",
-          "slug": "country_of_origin",
+          "is_active": true,
           "key": "country_of_origin",
+          "name": "Country Of Origin",
           "priority": 3,
-          "name": "Country Of Origin"
+          "slug": "country_of_origin"
         },
         {
-          "is_active": true,
           "display_type": "text",
-          "slug": "image_nature",
+          "is_active": true,
           "key": "image_nature",
+          "name": "Image Type",
           "priority": 4,
-          "name": "Image Type"
+          "slug": "image_nature"
         },
         {
-          "is_active": true,
           "display_type": "text",
-          "slug": "discount",
+          "is_active": true,
           "key": "discount",
+          "name": "Discount",
           "priority": 5,
-          "name": "Discount"
+          "slug": "discount"
         }
       ],
-      "app_id": "5d65089e031f9029f8e8dc2f",
+      "id": "62a84b9ebd43c0fe4cf53576",
+      "is_active": true,
+      "is_default": false,
+      "name": "ET",
       "priority": 2,
+      "slug": "et14",
       "template_slugs": [
         "atesttemplate"
-      ],
-      "name": "ET",
-      "id": "62a84b9ebd43c0fe4cf53576"
+      ]
     }
   ],
   "page": {
     "current": 1,
-    "next": 2,
     "has_next": false,
+    "next": 2,
     "total_count": 2
   }
 }
@@ -8327,12 +8677,12 @@ See example below details
   "data": {
     "company_id": 1,
     "hs2_code": "xx",
-    "modified_by": {
-      "username": "narutouzumaki",
-      "user_id": "0"
-    },
+    "hsn_code": "xxxxxxxx",
     "id": "xxxxxxxxxxxx",
-    "tax_on": "esp",
+    "modified_by": {
+      "user_id": "0",
+      "username": "narutouzumaki"
+    },
     "slabs": [
       {
         "tax": 0,
@@ -8343,7 +8693,7 @@ See example below details
         "threshold": 0
       }
     ],
-    "hsn_code": "xxxxxxxx"
+    "tax_on": "esp"
   }
 }
 ```
@@ -8425,479 +8775,479 @@ returns a list of all inventory grouped by size and store
 {
   "items": [
     {
-      "is_set": false,
-      "size": "S",
-      "trader": [
-        {
-          "type": "Importer",
-          "name": "Imported & Marketed by Brooks Brothers India Pvt.Ltd",
-          "address": [
-            "Brooks Brothers India Private Limited registered address is 8th Floor, Maker Tower 'E' Cuffe Parade Mumbai MH 400005 IN"
-          ]
-        }
-      ],
-      "weight": {
-        "shipping": 999,
-        "unit": "gram"
+      "brand": {
+        "id": 355
+      },
+      "company": {
+        "id": 46
+      },
+      "country_of_origin": "Malaysia",
+      "created_by": {
+        "user_id": "68c3800d602c0fda0dab4fea",
+        "username": "abhishekbhakurlekar_gofynd_com_63787"
       },
       "date_meta": {
-        "modified_on": "2023-01-20T07:26:18.828000",
         "added_on_store": "2023-01-20T07:26:18.834000",
         "created_on": "2023-01-20T07:26:18.828000",
-        "inventory_updated_on": "2023-01-20T07:26:18.828000"
+        "inventory_updated_on": "2023-01-20T07:26:18.828000",
+        "modified_on": "2023-01-20T07:26:18.828000"
       },
-      "created_by": {
-        "user_id": "68c3800d602c0fda0dab4fea",
-        "username": "abhishekbhakurlekar_gofynd_com_63787"
+      "dimension": {
+        "height": 10,
+        "length": 25,
+        "unit": "cm",
+        "width": 15
+      },
+      "expiration_date": "9998-01-30T23:59:00",
+      "id": "63ca421a6fb0ce930685f46e",
+      "identifier": {
+        "alu": "410163085004",
+        "upc": "777697046"
+      },
+      "is_set": false,
+      "manufacturer": {
+        "address": "5TH FLOOR, COURT HOUSE,LOKMANYA TILAK MARGA, DHOBI TALAOMUMBAI MAHARASHTRA, , MAHARASHTRA, MUMBAI",
+        "is_default": true,
+        "name": "RELIANCE BRANDS LIMITED"
       },
       "modified_by": {
         "user_id": "68c3800d602c0fda0dab4fea",
         "username": "abhishekbhakurlekar_gofynd_com_63787"
       },
-      "brand": {
-        "id": 355
+      "platforms": {
+        "fynd": false,
+        "uniket_wholesale": false
       },
       "price": {
-        "marked": 8000,
-        "transfer": 0,
         "currency": "INR",
-        "effective": 8000
+        "effective": 8000,
+        "marked": 8000,
+        "transfer": 0
       },
-      "total_quantity": 12,
       "quantities": {
         "sellable": {
           "count": 12
         }
       },
-      "stage": "verified",
-      "seller_identifier": "410163085004",
-      "expiration_date": "9998-01-30T23:59:00",
-      "manufacturer": {
-        "name": "RELIANCE BRANDS LIMITED",
-        "is_default": true,
-        "address": "5TH FLOOR, COURT HOUSE,LOKMANYA TILAK MARGA, DHOBI TALAOMUMBAI MAHARASHTRA, , MAHARASHTRA, MUMBAI"
-      },
-      "id": "63ca421a6fb0ce930685f46e",
-      "country_of_origin": "Malaysia",
-      "identifier": {
-        "upc": "777697046",
-        "alu": "410163085004"
-      },
       "return_config": {
-        "unit": "days",
         "returnable": true,
-        "time": 30
+        "time": 30,
+        "unit": "days"
       },
-      "trace_id": "inventory.bb475064-9893-11ed-88db-2efc0f0504bd",
-      "uid": "10444_410163085004",
-      "platforms": {
-        "fynd": false,
-        "uniket_wholesale": false
-      },
+      "seller_identifier": "410163085004",
+      "size": "S",
+      "stage": "verified",
       "store": {
+        "name": "Khan Market",
         "store_code": "THR1",
         "store_type": "high_street",
-        "uid": 10444,
-        "name": "Khan Market"
-      },
-      "company": {
-        "id": 46
+        "uid": 10444
       },
       "tax_identifier": {
         "hsn_code_id": "000000000000000000000001"
       },
-      "dimension": {
-        "unit": "cm",
-        "width": 15,
-        "length": 25,
-        "height": 10
-      },
-      "track_inventory": true
-    },
-    {
-      "is_set": false,
-      "size": "M",
+      "total_quantity": 12,
+      "trace_id": "inventory.bb475064-9893-11ed-88db-2efc0f0504bd",
+      "track_inventory": true,
       "trader": [
         {
-          "type": "Importer",
-          "name": "Imported & Marketed by Brooks Brothers India Pvt.Ltd",
           "address": [
             "Brooks Brothers India Private Limited registered address is 8th Floor, Maker Tower 'E' Cuffe Parade Mumbai MH 400005 IN"
-          ]
+          ],
+          "name": "Imported & Marketed by Brooks Brothers India Pvt.Ltd",
+          "type": "Importer"
         }
       ],
+      "uid": "10444_410163085004",
       "weight": {
         "shipping": 999,
         "unit": "gram"
+      }
+    },
+    {
+      "brand": {
+        "id": 355
+      },
+      "company": {
+        "id": 46
+      },
+      "country_of_origin": "Malaysia",
+      "created_by": {
+        "user_id": "68c3800d602c0fda0dab4fea",
+        "username": "abhishekbhakurlekar_gofynd_com_63787"
       },
       "date_meta": {
-        "modified_on": "2023-01-16T05:25:49.482000",
         "added_on_store": "2023-01-16T05:25:49.491000",
         "created_on": "2023-01-16T05:25:49.482000",
-        "inventory_updated_on": "2023-01-16T05:25:49.482000"
+        "inventory_updated_on": "2023-01-16T05:25:49.482000",
+        "modified_on": "2023-01-16T05:25:49.482000"
       },
-      "created_by": {
-        "user_id": "68c3800d602c0fda0dab4fea",
-        "username": "abhishekbhakurlekar_gofynd_com_63787"
+      "dimension": {
+        "height": 10,
+        "length": 25,
+        "unit": "cm",
+        "width": 15
+      },
+      "expiration_date": "9998-01-30T23:59:00",
+      "id": "63c4dfdd11e44ffd96d600bc",
+      "identifier": {
+        "alu": "410163085005",
+        "upc": "777697038"
+      },
+      "is_set": false,
+      "manufacturer": {
+        "address": "5TH FLOOR, COURT HOUSE,LOKMANYA TILAK MARGA, DHOBI TALAOMUMBAI MAHARASHTRA, , MAHARASHTRA, MUMBAI",
+        "is_default": true,
+        "name": "RELIANCE BRANDS LIMITED"
       },
       "modified_by": {
         "user_id": "68c3800d602c0fda0dab4fea",
         "username": "abhishekbhakurlekar_gofynd_com_63787"
       },
-      "brand": {
-        "id": 355
+      "platforms": {
+        "fynd": false,
+        "uniket_wholesale": false
       },
       "price": {
-        "marked": 8000,
-        "transfer": 0,
         "currency": "INR",
-        "effective": 8000
+        "effective": 8000,
+        "marked": 8000,
+        "transfer": 0
       },
-      "total_quantity": 12,
       "quantities": {
         "sellable": {
           "count": 12
         }
       },
-      "stage": "verified",
-      "seller_identifier": "410163085005",
-      "expiration_date": "9998-01-30T23:59:00",
-      "manufacturer": {
-        "name": "RELIANCE BRANDS LIMITED",
-        "is_default": true,
-        "address": "5TH FLOOR, COURT HOUSE,LOKMANYA TILAK MARGA, DHOBI TALAOMUMBAI MAHARASHTRA, , MAHARASHTRA, MUMBAI"
-      },
-      "id": "63c4dfdd11e44ffd96d600bc",
-      "country_of_origin": "Malaysia",
-      "identifier": {
-        "upc": "777697038",
-        "alu": "410163085005"
-      },
       "return_config": {
-        "unit": "days",
         "returnable": true,
-        "time": 30
+        "time": 30,
+        "unit": "days"
       },
-      "trace_id": "inventory.3c9a25e4-955e-11ed-8584-92a07e366903",
-      "uid": "10444_410163085005",
-      "platforms": {
-        "fynd": false,
-        "uniket_wholesale": false
-      },
+      "seller_identifier": "410163085005",
+      "size": "M",
+      "stage": "verified",
       "store": {
+        "name": "Khan Market",
         "store_code": "THR1",
         "store_type": "high_street",
-        "uid": 10444,
-        "name": "Khan Market"
-      },
-      "company": {
-        "id": 46
+        "uid": 10444
       },
       "tax_identifier": {
         "hsn_code_id": "000000000000000000000001"
       },
-      "dimension": {
-        "unit": "cm",
-        "width": 15,
-        "length": 25,
-        "height": 10
-      },
-      "track_inventory": true
-    },
-    {
-      "is_set": false,
-      "size": "S",
+      "total_quantity": 12,
+      "trace_id": "inventory.3c9a25e4-955e-11ed-8584-92a07e366903",
+      "track_inventory": true,
       "trader": [
         {
-          "type": "Importer",
-          "name": "Imported & Marketed by Brooks Brothers India Pvt.Ltd",
           "address": [
             "Brooks Brothers India Private Limited registered address is 8th Floor, Maker Tower 'E' Cuffe Parade Mumbai MH 400005 IN"
-          ]
+          ],
+          "name": "Imported & Marketed by Brooks Brothers India Pvt.Ltd",
+          "type": "Importer"
         }
       ],
+      "uid": "10444_410163085005",
       "weight": {
         "shipping": 999,
         "unit": "gram"
+      }
+    },
+    {
+      "brand": {
+        "id": 355
       },
-      "date_meta": {
-        "modified_on": "2023-01-19T10:37:00.504000",
-        "added_on_store": "2023-01-05T10:45:41.988000",
-        "created_on": "2023-01-05T10:45:41.979000",
-        "inventory_updated_on": "2023-01-19T10:37:00.504000"
+      "company": {
+        "id": 46
       },
+      "country_of_origin": "Malaysia",
       "created_by": {
         "user_id": "bc5fbaf5e6f4b5288e9a9a22",
         "username": "sagardhiman_gofynd_com_43846"
       },
+      "date_meta": {
+        "added_on_store": "2023-01-05T10:45:41.988000",
+        "created_on": "2023-01-05T10:45:41.979000",
+        "inventory_updated_on": "2023-01-19T10:37:00.504000",
+        "modified_on": "2023-01-19T10:37:00.504000"
+      },
+      "dimension": {
+        "height": 10,
+        "length": 25,
+        "unit": "cm",
+        "width": 15
+      },
+      "expiration_date": "9998-01-30T23:59:00",
+      "id": "63b6aa5558bf3ed100740c10",
+      "identifier": {
+        "alu": "410163085004",
+        "upc": "777697046"
+      },
+      "is_set": false,
+      "manufacturer": {
+        "address": "5TH FLOOR, COURT HOUSE,LOKMANYA TILAK MARGA, DHOBI TALAOMUMBAI MAHARASHTRA, , MAHARASHTRA, MUMBAI",
+        "is_default": true,
+        "name": "RELIANCE BRANDS LIMITED"
+      },
       "modified_by": {
         "user_id": "68c3800d602c0fda0dab4fea",
         "username": "abhishekbhakurlekar_gofynd_com_63787"
       },
-      "brand": {
-        "id": 355
+      "platforms": {
+        "fynd": false,
+        "uniket_wholesale": false
       },
       "price": {
-        "marked": 8000,
-        "transfer": 0,
         "currency": "INR",
-        "effective": 7001
+        "effective": 7001,
+        "marked": 8000,
+        "transfer": 0
       },
-      "total_quantity": 5001,
       "quantities": {
-        "not_available": {
+        "damaged": {
           "count": 0
         },
-        "damaged": {
+        "not_available": {
           "count": 0
         },
         "sellable": {
           "count": 5001
         }
       },
-      "stage": "verified",
-      "seller_identifier": "410163085004",
-      "expiration_date": "9998-01-30T23:59:00",
-      "manufacturer": {
-        "name": "RELIANCE BRANDS LIMITED",
-        "is_default": true,
-        "address": "5TH FLOOR, COURT HOUSE,LOKMANYA TILAK MARGA, DHOBI TALAOMUMBAI MAHARASHTRA, , MAHARASHTRA, MUMBAI"
-      },
-      "id": "63b6aa5558bf3ed100740c10",
-      "country_of_origin": "Malaysia",
-      "identifier": {
-        "upc": "777697046",
-        "alu": "410163085004"
-      },
       "return_config": {
-        "unit": "days",
         "returnable": true,
-        "time": 30
+        "time": 30,
+        "unit": "days"
       },
-      "trace_id": "inventory.3485e8b4-97e5-11ed-a9d9-5eca1fff6de0",
-      "uid": "11336_410163085004",
-      "platforms": {
-        "fynd": false,
-        "uniket_wholesale": false
-      },
+      "seller_identifier": "410163085004",
+      "size": "S",
+      "stage": "verified",
       "store": {
+        "name": "Reliance 2",
         "store_code": "R591",
         "store_type": "warehouse",
-        "uid": 11336,
-        "name": "Reliance 2"
-      },
-      "company": {
-        "id": 46
+        "uid": 11336
       },
       "tax_identifier": {
         "hsn_code_id": "000000000000000000000001"
       },
-      "dimension": {
-        "unit": "cm",
-        "width": 15,
-        "length": 25,
-        "height": 10
-      },
-      "track_inventory": true
-    },
-    {
-      "is_set": false,
-      "size": "XXL",
+      "total_quantity": 5001,
+      "trace_id": "inventory.3485e8b4-97e5-11ed-a9d9-5eca1fff6de0",
+      "track_inventory": true,
       "trader": [
         {
-          "type": "Importer",
-          "name": "Imported & Marketed by Brooks Brothers India Pvt.Ltd",
           "address": [
             "Brooks Brothers India Private Limited registered address is 8th Floor, Maker Tower 'E' Cuffe Parade Mumbai MH 400005 IN"
-          ]
+          ],
+          "name": "Imported & Marketed by Brooks Brothers India Pvt.Ltd",
+          "type": "Importer"
         }
       ],
+      "uid": "11336_410163085004",
       "weight": {
         "shipping": 999,
         "unit": "gram"
+      }
+    },
+    {
+      "brand": {
+        "id": 355
+      },
+      "company": {
+        "id": 46
+      },
+      "country_of_origin": "Malaysia",
+      "created_by": {
+        "user_id": "5f200182ee4d3377e83330c2",
+        "username": "meghanakate_gofynd_com_58351"
       },
       "date_meta": {
-        "modified_on": "2022-11-29T11:18:35.183000",
         "added_on_store": "2022-11-29T11:17:42.271000",
         "created_on": "2022-11-29T11:17:42.263000",
-        "inventory_updated_on": "2022-11-29T11:18:35.183000"
+        "inventory_updated_on": "2022-11-29T11:18:35.183000",
+        "modified_on": "2022-11-29T11:18:35.183000"
       },
-      "created_by": {
-        "user_id": "5f200182ee4d3377e83330c2",
-        "username": "meghanakate_gofynd_com_58351"
+      "dimension": {
+        "height": 10,
+        "length": 25,
+        "unit": "cm",
+        "width": 15
+      },
+      "expiration_date": "9998-01-30T23:59:00",
+      "id": "6385ea569715e74d8a92ce88",
+      "identifier": {
+        "alu": "410163085001",
+        "upc": "777697079"
+      },
+      "is_set": false,
+      "manufacturer": {
+        "address": "5TH FLOOR, COURT HOUSE,LOKMANYA TILAK MARGA, DHOBI TALAOMUMBAI MAHARASHTRA, , MAHARASHTRA, MUMBAI",
+        "is_default": true,
+        "name": "RELIANCE BRANDS LIMITED"
       },
       "modified_by": {
         "user_id": "5f200182ee4d3377e83330c2",
         "username": "meghanakate_gofynd_com_58351"
       },
-      "brand": {
-        "id": 355
+      "platforms": {
+        "fynd": false,
+        "uniket_wholesale": false
       },
       "price": {
-        "marked": 8000,
-        "transfer": 0,
         "currency": "INR",
-        "effective": 8000
+        "effective": 8000,
+        "marked": 8000,
+        "transfer": 0
       },
-      "total_quantity": 1000,
       "quantities": {
-        "not_available": {
+        "damaged": {
           "count": 0
         },
-        "damaged": {
+        "not_available": {
           "count": 0
         },
         "sellable": {
           "count": 1000
         }
       },
-      "stage": "verified",
-      "seller_identifier": "410163085001",
-      "expiration_date": "9998-01-30T23:59:00",
-      "manufacturer": {
-        "name": "RELIANCE BRANDS LIMITED",
-        "is_default": true,
-        "address": "5TH FLOOR, COURT HOUSE,LOKMANYA TILAK MARGA, DHOBI TALAOMUMBAI MAHARASHTRA, , MAHARASHTRA, MUMBAI"
-      },
-      "id": "6385ea569715e74d8a92ce88",
-      "country_of_origin": "Malaysia",
-      "identifier": {
-        "upc": "777697079",
-        "alu": "410163085001"
-      },
       "return_config": {
-        "unit": "days",
         "returnable": true,
-        "time": 30
+        "time": 30,
+        "unit": "days"
       },
-      "uid": "11701_410163085001",
-      "platforms": {
-        "fynd": false,
-        "uniket_wholesale": false
-      },
+      "seller_identifier": "410163085001",
+      "size": "XXL",
+      "stage": "verified",
       "store": {
+        "name": "Shopsense Retail Technologies",
         "store_code": "SRT91",
         "store_type": "warehouse",
-        "uid": 11701,
-        "name": "Shopsense Retail Technologies"
-      },
-      "company": {
-        "id": 46
+        "uid": 11701
       },
       "tax_identifier": {
         "hsn_code_id": "000000000000000000000001"
       },
-      "dimension": {
-        "unit": "cm",
-        "width": 15,
-        "length": 25,
-        "height": 10
-      },
-      "track_inventory": true
-    },
-    {
-      "is_set": false,
-      "size": "XL",
+      "total_quantity": 1000,
+      "track_inventory": true,
       "trader": [
         {
-          "type": "Importer",
-          "name": "Imported & Marketed by Brooks Brothers India Pvt.Ltd",
           "address": [
             "Brooks Brothers India Private Limited registered address is 8th Floor, Maker Tower 'E' Cuffe Parade Mumbai MH 400005 IN"
-          ]
+          ],
+          "name": "Imported & Marketed by Brooks Brothers India Pvt.Ltd",
+          "type": "Importer"
         }
       ],
+      "uid": "11701_410163085001",
       "weight": {
         "shipping": 999,
         "unit": "gram"
+      }
+    },
+    {
+      "brand": {
+        "id": 355
       },
-      "date_meta": {
-        "modified_on": "2022-11-29T11:18:27.331000",
-        "added_on_store": "2022-11-29T11:17:34.431000",
-        "created_on": "2022-11-29T11:17:34.424000",
-        "inventory_updated_on": "2022-11-29T11:18:27.331000"
+      "company": {
+        "id": 46
       },
+      "country_of_origin": "Malaysia",
       "created_by": {
         "user_id": "5f200182ee4d3377e83330c2",
         "username": "meghanakate_gofynd_com_58351"
+      },
+      "date_meta": {
+        "added_on_store": "2022-11-29T11:17:34.431000",
+        "created_on": "2022-11-29T11:17:34.424000",
+        "inventory_updated_on": "2022-11-29T11:18:27.331000",
+        "modified_on": "2022-11-29T11:18:27.331000"
+      },
+      "dimension": {
+        "height": 10,
+        "length": 25,
+        "unit": "cm",
+        "width": 15
+      },
+      "expiration_date": "9998-01-30T23:59:00",
+      "id": "6385ea4e9715e74d8a92ce86",
+      "identifier": {
+        "alu": "410163085003",
+        "upc": "777697053"
+      },
+      "is_set": false,
+      "manufacturer": {
+        "address": "5TH FLOOR, COURT HOUSE,LOKMANYA TILAK MARGA, DHOBI TALAOMUMBAI MAHARASHTRA, , MAHARASHTRA, MUMBAI",
+        "is_default": true,
+        "name": "RELIANCE BRANDS LIMITED"
       },
       "modified_by": {
         "user_id": "5f200182ee4d3377e83330c2",
         "username": "meghanakate_gofynd_com_58351"
       },
-      "brand": {
-        "id": 355
+      "platforms": {
+        "fynd": false,
+        "uniket_wholesale": false
       },
       "price": {
-        "marked": 8000,
-        "transfer": 0,
         "currency": "INR",
-        "effective": 8000
+        "effective": 8000,
+        "marked": 8000,
+        "transfer": 0
       },
-      "total_quantity": 1000,
       "quantities": {
-        "not_available": {
+        "damaged": {
           "count": 0
         },
-        "damaged": {
+        "not_available": {
           "count": 0
         },
         "sellable": {
           "count": 1000
         }
       },
-      "stage": "verified",
-      "seller_identifier": "410163085003",
-      "expiration_date": "9998-01-30T23:59:00",
-      "manufacturer": {
-        "name": "RELIANCE BRANDS LIMITED",
-        "is_default": true,
-        "address": "5TH FLOOR, COURT HOUSE,LOKMANYA TILAK MARGA, DHOBI TALAOMUMBAI MAHARASHTRA, , MAHARASHTRA, MUMBAI"
-      },
-      "id": "6385ea4e9715e74d8a92ce86",
-      "country_of_origin": "Malaysia",
-      "identifier": {
-        "upc": "777697053",
-        "alu": "410163085003"
-      },
       "return_config": {
-        "unit": "days",
         "returnable": true,
-        "time": 30
+        "time": 30,
+        "unit": "days"
       },
-      "uid": "11701_410163085003",
-      "platforms": {
-        "fynd": false,
-        "uniket_wholesale": false
-      },
+      "seller_identifier": "410163085003",
+      "size": "XL",
+      "stage": "verified",
       "store": {
+        "name": "Shopsense Retail Technologies",
         "store_code": "SRT91",
         "store_type": "warehouse",
-        "uid": 11701,
-        "name": "Shopsense Retail Technologies"
-      },
-      "company": {
-        "id": 46
+        "uid": 11701
       },
       "tax_identifier": {
         "hsn_code_id": "000000000000000000000001"
       },
-      "dimension": {
-        "unit": "cm",
-        "width": 15,
-        "length": 25,
-        "height": 10
-      },
-      "track_inventory": true
+      "total_quantity": 1000,
+      "track_inventory": true,
+      "trader": [
+        {
+          "address": [
+            "Brooks Brothers India Private Limited registered address is 8th Floor, Maker Tower 'E' Cuffe Parade Mumbai MH 400005 IN"
+          ],
+          "name": "Imported & Marketed by Brooks Brothers India Pvt.Ltd",
+          "type": "Importer"
+        }
+      ],
+      "uid": "11701_410163085003",
+      "weight": {
+        "shipping": 999,
+        "unit": "gram"
+      }
     }
   ],
   "page": {
-    "type": "number",
     "current": 1,
-    "size": 1,
-    "item_total": 5,
+    "has_next": false,
     "has_previous": false,
-    "has_next": false
+    "item_total": 5,
+    "size": 1,
+    "type": "number"
   }
 }
 ```
@@ -8961,301 +9311,297 @@ List of bulk Inventory upload jobs. See `BulkInventoryGetSchema` for details
 {
   "items": [
     {
-      "succeed": 1,
-      "stage": "completed",
-      "file_path": "https://hdn-1.addsale.com/x0/company/1/self/documents/inventory-import/free/original/50DbgKLND-NtnL_EAVb-REicn1sDv-V8ZrKdnLt-product_inventory.csv",
-      "created_on": "2021-03-11T10:54:44.998000Z",
-      "cancelled_records": [],
-      "created_by": {
-        "username": "nikhilmhatre_gofynd_com_97636",
-        "user_id": "16",
-        "full_name": "Nikhil Mhatre"
-      },
-      "modified_on": "2021-03-11T10:54:45.296000Z",
       "cancelled": 0,
+      "cancelled_records": [],
+      "company_id": 1,
+      "created_by": {
+        "full_name": "Nikhil Mhatre",
+        "user_id": "16",
+        "username": "nikhilmhatre_gofynd_com_97636"
+      },
+      "created_on": "2021-03-11T10:54:44.998000Z",
       "failed": 0,
+      "failed_records": [],
+      "file_path": "https://hdn-1.addsale.com/x0/company/1/self/documents/inventory-import/free/original/50DbgKLND-NtnL_EAVb-REicn1sDv-V8ZrKdnLt-product_inventory.csv",
+      "id": "6049f6f5723043000125a9ea",
+      "is_active": true,
       "modified_by": {
         "user_id": "0",
         "username": "Silverbolt"
       },
-      "company_id": 1,
-      "total": 1,
-      "is_active": true,
-      "failed_records": [],
-      "id": "6049f6f5723043000125a9ea"
-    },
-    {
-      "created_by": {
-        "username": "silverbolt",
-        "user_id": "-1"
-      },
-      "cancelled": 0,
-      "modified_by": {
-        "username": "Silverbolt",
-        "user_id": "0"
-      },
-      "created_on": "2021-03-04T09:46:51.714000Z",
-      "company_id": 1,
-      "failed": 0,
-      "failed_records": [],
-      "succeed": 1,
-      "file_path": "https://hdn-1.addsale.com/x0/company/1/self/documents/inventory-import/free/original/NtnL_EAVb-REicn1sDv-V8ZrKdnLt-product_inventory.csv",
-      "cancelled_records": [],
-      "total": 1,
-      "is_active": true,
-      "modified_on": "2021-03-04T09:46:55.349000Z",
+      "modified_on": "2021-03-11T10:54:45.296000Z",
       "stage": "completed",
-      "id": "6040ac8b1803830001fcc1ed"
+      "succeed": 1,
+      "total": 1
     },
     {
+      "cancelled": 0,
+      "cancelled_records": [],
       "company_id": 1,
-      "failed": 0,
-      "modified_by": {
+      "created_by": {
         "user_id": "-1",
         "username": "silverbolt"
       },
-      "cancelled": 0,
+      "created_on": "2021-03-04T09:46:51.714000Z",
+      "failed": 0,
+      "failed_records": [],
+      "file_path": "https://hdn-1.addsale.com/x0/company/1/self/documents/inventory-import/free/original/NtnL_EAVb-REicn1sDv-V8ZrKdnLt-product_inventory.csv",
+      "id": "6040ac8b1803830001fcc1ed",
       "is_active": true,
+      "modified_by": {
+        "user_id": "0",
+        "username": "Silverbolt"
+      },
+      "modified_on": "2021-03-04T09:46:55.349000Z",
+      "stage": "completed",
+      "succeed": 1,
+      "total": 1
+    },
+    {
+      "cancelled": 0,
       "cancelled_records": [],
-      "file_path": "https://hdn-1.addsale.com/x0/company/1/self/documents/inventory-import/free/original/bmBZY9iAX-REicn1sDv-V8ZrKdnLt-product_inventory.csv",
+      "company_id": 1,
       "created_by": {
+        "user_id": "-1",
+        "username": "silverbolt"
+      },
+      "created_on": "2021-03-04T09:22:32.222000Z",
+      "failed": 0,
+      "failed_records": [],
+      "file_path": "https://hdn-1.addsale.com/x0/company/1/self/documents/inventory-import/free/original/bmBZY9iAX-REicn1sDv-V8ZrKdnLt-product_inventory.csv",
+      "id": "6040a6d8104f110001a85061",
+      "is_active": true,
+      "modified_by": {
         "user_id": "-1",
         "username": "silverbolt"
       },
       "modified_on": "2021-03-04T09:22:32.222000Z",
-      "succeed": 0,
-      "failed_records": [],
       "stage": "terminated",
-      "created_on": "2021-03-04T09:22:32.222000Z",
-      "total": 1,
-      "id": "6040a6d8104f110001a85061"
+      "succeed": 0,
+      "total": 1
     },
     {
+      "cancelled": 0,
+      "cancelled_records": [],
       "company_id": 1,
-      "failed": 0,
-      "modified_by": {
+      "created_by": {
         "user_id": "-1",
         "username": "silverbolt"
       },
-      "cancelled": 0,
-      "is_active": true,
-      "cancelled_records": [],
+      "created_on": "2021-03-04T09:20:29.719000Z",
+      "failed": 0,
+      "failed_records": [],
       "file_path": "https://hdn-1.addsale.com/x0/company/1/self/documents/inventory-import/free/original/m73yWRT3v-REicn1sDv-V8ZrKdnLt-product_inventory.csv",
-      "created_by": {
+      "id": "6040a65d104f110001a85060",
+      "is_active": true,
+      "modified_by": {
         "user_id": "-1",
         "username": "silverbolt"
       },
       "modified_on": "2021-03-04T09:20:29.719000Z",
-      "succeed": 0,
-      "failed_records": [],
       "stage": "terminated",
-      "created_on": "2021-03-04T09:20:29.719000Z",
-      "total": 1,
-      "id": "6040a65d104f110001a85060"
+      "succeed": 0,
+      "total": 1
     },
     {
-      "created_on": "2021-03-04T08:50:49.367000Z",
-      "cancelled_records": [],
-      "failed_records": [],
-      "succeed": 0,
       "cancelled": 0,
-      "file_path": "https://hdn-1.addsale.com/x0/company/1/self/documents/inventory-import/free/original/W9lxe19Uu-REicn1sDv-V8ZrKdnLt-product_inventory.csv",
-      "total": 1,
+      "cancelled_records": [],
+      "company_id": 1,
       "created_by": {
-        "username": "silverbolt",
-        "user_id": "-1"
+        "user_id": "-1",
+        "username": "silverbolt"
       },
+      "created_on": "2021-03-04T08:50:49.367000Z",
+      "failed": 0,
+      "failed_records": [],
+      "file_path": "https://hdn-1.addsale.com/x0/company/1/self/documents/inventory-import/free/original/W9lxe19Uu-REicn1sDv-V8ZrKdnLt-product_inventory.csv",
+      "id": "60409f699b21e30001c1e6b5",
       "is_active": true,
       "modified_by": {
-        "username": "silverbolt",
-        "user_id": "-1"
+        "user_id": "-1",
+        "username": "silverbolt"
       },
-      "company_id": 1,
-      "failed": 0,
       "modified_on": "2021-03-04T08:50:49.367000Z",
       "stage": "terminated",
-      "id": "60409f699b21e30001c1e6b5"
+      "succeed": 0,
+      "total": 1
     },
     {
-      "total": 1,
-      "succeed": 1,
+      "cancelled": 0,
+      "cancelled_records": [],
+      "company_id": 1,
+      "created_by": {
+        "full_name": "Sourabh Nilakhe",
+        "user_id": "5646",
+        "username": "917972410891_48194"
+      },
       "created_on": "2021-02-10T10:57:57.236000Z",
       "failed": 0,
+      "failed_records": [],
+      "file_path": "https://hdn-1.addsale.com/x0/company/1/self/documents/inventory-import/free/original/REicn1sDv-V8ZrKdnLt-product_inventory.csv",
+      "id": "6023bc35c85ca1000171e08a",
+      "is_active": true,
       "modified_by": {
         "user_id": "0",
         "username": "Silverbolt"
       },
-      "created_by": {
-        "username": "917972410891_48194",
-        "user_id": "5646",
-        "full_name": "Sourabh Nilakhe"
-      },
-      "is_active": true,
-      "cancelled_records": [],
-      "failed_records": [],
-      "company_id": 1,
-      "file_path": "https://hdn-1.addsale.com/x0/company/1/self/documents/inventory-import/free/original/REicn1sDv-V8ZrKdnLt-product_inventory.csv",
       "modified_on": "2021-02-10T10:57:57.571000Z",
       "stage": "completed",
-      "cancelled": 0,
-      "id": "6023bc35c85ca1000171e08a"
+      "succeed": 1,
+      "total": 1
     },
     {
-      "total": 1,
-      "succeed": 1,
+      "cancelled": 0,
+      "cancelled_records": [],
+      "company_id": 1,
+      "created_by": {
+        "full_name": "Sourabh Nilakhe",
+        "user_id": "5646",
+        "username": "917972410891_48194"
+      },
       "created_on": "2021-02-10T10:57:22.535000Z",
       "failed": 0,
+      "failed_records": [],
+      "file_path": "https://hdn-1.addsale.com/x0/company/1/self/documents/inventory-import/free/original/Oth_LaVyI-V8ZrKdnLt-product_inventory.csv",
+      "id": "6023bc12c85ca1000171e089",
+      "is_active": true,
       "modified_by": {
         "user_id": "0",
         "username": "Silverbolt"
       },
-      "created_by": {
-        "username": "917972410891_48194",
-        "user_id": "5646",
-        "full_name": "Sourabh Nilakhe"
-      },
-      "is_active": true,
-      "cancelled_records": [],
-      "failed_records": [],
-      "company_id": 1,
-      "file_path": "https://hdn-1.addsale.com/x0/company/1/self/documents/inventory-import/free/original/Oth_LaVyI-V8ZrKdnLt-product_inventory.csv",
       "modified_on": "2021-02-10T10:57:23.311000Z",
       "stage": "completed",
-      "cancelled": 0,
-      "id": "6023bc12c85ca1000171e089"
-    },
-    {
-      "created_by": {
-        "user_id": "16",
-        "username": "nikhilmhatre_gofynd_com_97636",
-        "full_name": "Nikhil Mhatre"
-      },
       "succeed": 1,
-      "failed": 0,
-      "file_path": "https://hdn-1.addsale.com/x0/company/1/self/documents/inventory-import/free/original/V8ZrKdnLt-product_inventory.csv",
-      "company_id": 1,
-      "created_on": "2021-01-13T13:58:06.155000Z",
-      "stage": "completed",
-      "modified_by": {
-        "username": "Silverbolt",
-        "user_id": "0"
-      },
-      "is_active": true,
-      "total": 1,
-      "failed_records": [],
-      "modified_on": "2021-01-13T13:58:06.369000Z",
-      "cancelled_records": [],
-      "cancelled": 0,
-      "id": "5ffefc6ee2db8f000183fab8"
+      "total": 1
     },
     {
-      "succeed": 0,
-      "is_active": true,
       "cancelled": 0,
-      "failed_records": [
-        "Invalid identifier: 1.91887E+11. Product not found."
-      ],
-      "total": 1,
-      "stage": "failed",
-      "modified_by": {
-        "username": "Silverbolt",
-        "user_id": "0"
-      },
-      "file_path": "https://hdn-1.addsale.com/x0/company/1/self/documents/inventory-import/free/original/t3T6X2Riy-product_inventory.csv",
       "cancelled_records": [],
+      "company_id": 1,
       "created_by": {
-        "username": "nikhilmhatre_gofynd_com_97636",
+        "full_name": "Nikhil Mhatre",
         "user_id": "16",
-        "full_name": "Nikhil Mhatre"
+        "username": "nikhilmhatre_gofynd_com_97636"
+      },
+      "created_on": "2021-01-13T13:58:06.155000Z",
+      "failed": 0,
+      "failed_records": [],
+      "file_path": "https://hdn-1.addsale.com/x0/company/1/self/documents/inventory-import/free/original/V8ZrKdnLt-product_inventory.csv",
+      "id": "5ffefc6ee2db8f000183fab8",
+      "is_active": true,
+      "modified_by": {
+        "user_id": "0",
+        "username": "Silverbolt"
+      },
+      "modified_on": "2021-01-13T13:58:06.369000Z",
+      "stage": "completed",
+      "succeed": 1,
+      "total": 1
+    },
+    {
+      "cancelled": 0,
+      "cancelled_records": [],
+      "company_id": 1,
+      "created_by": {
+        "full_name": "Nikhil Mhatre",
+        "user_id": "16",
+        "username": "nikhilmhatre_gofynd_com_97636"
       },
       "created_on": "2021-01-13T13:57:38.598000Z",
-      "company_id": 1,
       "failed": 1,
+      "failed_records": [],
+      "file_path": "https://hdn-1.addsale.com/x0/company/1/self/documents/inventory-import/free/original/t3T6X2Riy-product_inventory.csv",
+      "id": "5ffefc5252f31100012ea981",
+      "is_active": true,
+      "modified_by": {
+        "user_id": "0",
+        "username": "Silverbolt"
+      },
       "modified_on": "2021-01-13T13:57:38.832000Z",
-      "id": "5ffefc5252f31100012ea981"
+      "stage": "failed",
+      "succeed": 0,
+      "total": 1
     },
     {
-      "total": 1,
+      "cancelled": 0,
+      "cancelled_records": [],
       "company_id": 1,
       "created_by": {
+        "full_name": "Nikhil Mhatre",
         "user_id": "16",
-        "username": "nikhilmhatre_gofynd_com_97636",
-        "full_name": "Nikhil Mhatre"
+        "username": "nikhilmhatre_gofynd_com_97636"
       },
-      "failed": 1,
-      "modified_on": "2021-01-13T13:57:13.847000Z",
-      "succeed": 0,
-      "stage": "failed",
-      "cancelled_records": [],
-      "failed_records": [
-        "Invalid identifier: 1.91887E+11. Product not found."
-      ],
-      "file_path": "https://hdn-1.addsale.com/x0/company/1/self/documents/inventory-import/free/original/NSTuhgsgq-product_inventory.csv",
-      "is_active": true,
       "created_on": "2021-01-13T13:57:13.639000Z",
-      "cancelled": 0,
+      "failed": 1,
+      "failed_records": [],
+      "file_path": "https://hdn-1.addsale.com/x0/company/1/self/documents/inventory-import/free/original/NSTuhgsgq-product_inventory.csv",
+      "id": "5ffefc39a0d1e20001ae118c",
+      "is_active": true,
       "modified_by": {
-        "username": "Silverbolt",
-        "user_id": "0"
+        "user_id": "0",
+        "username": "Silverbolt"
       },
-      "id": "5ffefc39a0d1e20001ae118c"
+      "modified_on": "2021-01-13T13:57:13.847000Z",
+      "stage": "failed",
+      "succeed": 0,
+      "total": 1
     },
     {
-      "succeed": 1,
+      "cancelled": 0,
+      "cancelled_records": [],
+      "company_id": 1,
+      "created_by": {
+        "full_name": "Nikhil Mhatre",
+        "user_id": "16",
+        "username": "nikhilmhatre_gofynd_com_97636"
+      },
+      "created_on": "2021-01-12T06:37:06.167000Z",
       "failed": 0,
       "failed_records": [],
-      "cancelled": 0,
       "file_path": "https://hdn-1.addsale.com/x0/company/1/self/documents/inventory-import/free/original/cwQV-Z6gT-product_inventory.xlsx",
-      "created_on": "2021-01-12T06:37:06.167000Z",
+      "id": "5ffd4392b4c34d000170697b",
       "is_active": true,
-      "cancelled_records": [],
-      "created_by": {
-        "user_id": "16",
-        "username": "nikhilmhatre_gofynd_com_97636",
-        "full_name": "Nikhil Mhatre"
-      },
-      "company_id": 1,
-      "stage": "completed",
       "modified_by": {
-        "username": "Silverbolt",
-        "user_id": "0"
+        "user_id": "0",
+        "username": "Silverbolt"
       },
       "modified_on": "2021-01-12T06:37:06.307000Z",
-      "total": 1,
-      "id": "5ffd4392b4c34d000170697b"
+      "stage": "completed",
+      "succeed": 1,
+      "total": 1
     },
     {
-      "succeed": 1,
+      "cancelled": 0,
+      "cancelled_records": [],
+      "company_id": 1,
+      "created_by": {
+        "full_name": "Nikhil Mhatre",
+        "user_id": "16",
+        "username": "nikhilmhatre_gofynd_com_97636"
+      },
+      "created_on": "2021-01-12T06:36:24.292000Z",
       "failed": 0,
       "failed_records": [],
-      "cancelled": 0,
       "file_path": "https://hdn-1.addsale.com/x0/company/1/self/documents/inventory-import/free/original/gccehef2f-product_inventory.xlsx",
-      "created_on": "2021-01-12T06:36:24.292000Z",
+      "id": "5ffd4368b4c34d0001706960",
       "is_active": true,
-      "cancelled_records": [],
-      "created_by": {
-        "user_id": "16",
-        "username": "nikhilmhatre_gofynd_com_97636",
-        "full_name": "Nikhil Mhatre"
-      },
-      "company_id": 1,
-      "stage": "completed",
       "modified_by": {
-        "username": "Silverbolt",
-        "user_id": "0"
+        "user_id": "0",
+        "username": "Silverbolt"
       },
       "modified_on": "2021-01-12T06:36:24.535000Z",
-      "total": 1,
-      "id": "5ffd4368b4c34d0001706960"
+      "stage": "completed",
+      "succeed": 1,
+      "total": 1
     }
   ],
   "page": {
-    "type": "number",
     "current": 1,
-    "size": 4,
-    "item_total": 39,
+    "has_next": true,
     "has_previous": false,
-    "has_next": true
+    "item_total": 39,
+    "size": 4,
+    "type": "number"
   }
 }
 ```
@@ -9331,274 +9677,274 @@ returns a list of all inventory grouped by size and store
 {
   "items": [
     {
+      "currency": "INR",
+      "identifiers": {
+        "gtin_type": "sku_code",
+        "gtin_value": "RTYUIDSDFV",
+        "primary": true
+      },
+      "inventory_updated_on": "2021-04-06T03:30:01.487000",
+      "item_id": 7500651,
+      "price": 1234,
+      "price_effective": 1234,
+      "price_transfer": 0,
+      "quantity": 10,
+      "sellable_quantity": 10,
+      "seller_identifier": "RTYUIDSDFV",
+      "size": "AAX1 (1 PCS)",
       "store": {
-        "name": "yosss sdd dsdyo",
-        "store_code": "sanic6sdfsf7",
-        "uid": 59,
+        "_custom_json": {},
         "address": {
-          "state": "MAHARASHTRA",
           "address1": "A/204, SAI VANDAN, NARAYAN NAGAR, TULINJ ROAD",
+          "address2": "",
+          "city": "MUMBAI",
+          "country": "INDIA",
+          "landmark": "",
           "lat_long": {
-            "type": "Point",
             "coordinates": [
               72.8231511,
               19.4232024
-            ]
+            ],
+            "type": "Point"
           },
-          "address2": "",
           "pincode": 401209,
-          "country": "INDIA",
-          "city": "MUMBAI",
-          "landmark": ""
+          "state": "MAHARASHTRA"
+        },
+        "integration_type": {
+          "inventory": "browntape",
+          "order": "browntape"
         },
         "manager": {
-          "name": "abc",
           "email": "a@b.com",
           "mobile_no": {
-            "number": "2382634324",
-            "country_code": 91
-          }
+            "country_code": 91,
+            "number": "2382634324"
+          },
+          "name": "abc"
         },
-        "integration_type": {
-          "order": "browntape",
-          "inventory": "browntape"
-        },
-        "_custom_json": {}
+        "name": "yosss sdd dsdyo",
+        "store_code": "sanic6sdfsf7",
+        "uid": 59
       },
-      "uid": "59_RTYUIDSDFV",
-      "size": "AAX1 (1 PCS)",
-      "inventory_updated_on": "2021-04-06T03:30:01.487000",
-      "seller_identifier": "RTYUIDSDFV",
-      "item_id": 7500651,
-      "quantity": 10,
-      "price": 1234,
-      "price_effective": 1234,
-      "price_transfer": 0,
+      "uid": "59_RTYUIDSDFV"
+    },
+    {
       "currency": "INR",
-      "sellable_quantity": 10,
       "identifiers": {
         "gtin_type": "sku_code",
         "gtin_value": "RTYUIDSDFV",
         "primary": true
-      }
-    },
-    {
+      },
+      "inventory_updated_on": "2021-04-06T03:29:35.291000",
+      "item_id": 7500651,
+      "price": 1234,
+      "price_effective": 1234,
+      "price_transfer": 0,
+      "quantity": 10,
+      "sellable_quantity": 10,
+      "seller_identifier": "RTYUIDSDFV",
+      "size": "AAX1 (1 PCS)",
       "store": {
-        "name": "Saran Ledonne",
-        "store_code": "af6198fe-2c23-4441-bbf4-e694c96e255c",
-        "uid": 10,
+        "_custom_json": {},
         "address": {
-          "state": "MAHA",
           "address1": "NO",
+          "address2": "",
+          "city": "MUMBAI",
+          "country": "INDIA",
           "lat_long": {
-            "type": "Point",
             "coordinates": [
               1,
               1
-            ]
+            ],
+            "type": "Point"
           },
-          "address2": "",
           "pincode": 400072,
-          "country": "INDIA",
-          "city": "MUMBAI"
+          "state": "MAHA"
+        },
+        "integration_type": {
+          "inventory": "browntape",
+          "order": "browntape"
         },
         "manager": {
-          "name": "abc",
           "email": "rehman@cashkart.com",
           "mobile_no": {
-            "number": "9167943983",
-            "country_code": 91
-          }
+            "country_code": 91,
+            "number": "9167943983"
+          },
+          "name": "abc"
         },
-        "integration_type": {
-          "order": "browntape",
-          "inventory": "browntape"
-        },
-        "_custom_json": {}
+        "name": "Saran Ledonne",
+        "store_code": "af6198fe-2c23-4441-bbf4-e694c96e255c",
+        "uid": 10
       },
-      "uid": "10_RTYUIDSDFV",
-      "size": "AAX1 (1 PCS)",
-      "inventory_updated_on": "2021-04-06T03:29:35.291000",
-      "seller_identifier": "RTYUIDSDFV",
-      "item_id": 7500651,
-      "quantity": 10,
-      "price": 1234,
-      "price_effective": 1234,
-      "price_transfer": 0,
+      "uid": "10_RTYUIDSDFV"
+    },
+    {
       "currency": "INR",
-      "sellable_quantity": 10,
       "identifiers": {
         "gtin_type": "sku_code",
         "gtin_value": "RTYUIDSDFV",
         "primary": true
-      }
-    },
-    {
+      },
+      "inventory_updated_on": "2021-03-17T12:35:29.992000",
+      "item_id": 7500651,
+      "order_committed_quantity": 0,
+      "price": 1234,
+      "price_effective": 1234,
+      "price_transfer": 0,
+      "quantity": 10000000,
+      "sellable_quantity": 10000000,
+      "seller_identifier": "RTYUIDSDFV",
+      "size": "AAX1 (1 PCS)",
       "store": {
-        "name": "ABC-1-17",
-        "store_code": "ABC-1-17",
-        "uid": 11061,
+        "_custom_json": {},
         "address": {
-          "state": "MAHARASHTRA",
           "address1": "14/1, VINOBHA BHAVE NAGAR",
+          "address2": "VINOBHA BHAVE NAGAR, KURLA WEST, KURLA, ",
+          "city": "MUMBAI",
+          "country": "INDIA",
           "lat_long": {
-            "type": "Point",
             "coordinates": [
               1,
               1
-            ]
+            ],
+            "type": "Point"
           },
-          "address2": "VINOBHA BHAVE NAGAR, KURLA WEST, KURLA, ",
           "pincode": 400070,
-          "country": "INDIA",
-          "city": "MUMBAI"
+          "state": "MAHARASHTRA"
+        },
+        "integration_type": {
+          "inventory": "browntape",
+          "order": "browntape"
         },
         "manager": {
-          "name": "Fahim",
           "email": "fahimsakri@gofynd.com",
           "mobile_no": {
-            "number": "9594495254",
-            "country_code": 91
-          }
+            "country_code": 91,
+            "number": "9594495254"
+          },
+          "name": "Fahim"
         },
-        "integration_type": {
-          "order": "browntape",
-          "inventory": "browntape"
-        },
-        "_custom_json": {}
+        "name": "ABC-1-17",
+        "store_code": "ABC-1-17",
+        "uid": 11061
       },
-      "uid": "11061_RTYUIDSDFV",
-      "size": "AAX1 (1 PCS)",
-      "inventory_updated_on": "2021-03-17T12:35:29.992000",
-      "seller_identifier": "RTYUIDSDFV",
-      "item_id": 7500651,
-      "quantity": 10000000,
-      "price": 1234,
-      "price_effective": 1234,
-      "price_transfer": 0,
-      "currency": "INR",
-      "sellable_quantity": 10000000,
-      "order_committed_quantity": 0,
-      "identifiers": {
-        "gtin_type": "sku_code",
-        "gtin_value": "RTYUIDSDFV",
-        "primary": true
-      }
+      "uid": "11061_RTYUIDSDFV"
     },
     {
-      "store": {
-        "name": "RRL01",
-        "store_code": "WH_8513",
-        "uid": 1,
-        "address": {
-          "state": "MAHARASHTRA",
-          "address1": "SHOPSENSE RETAIL TECHNOLOGIES PRIVATE LIMITED 1ST FLOOR WEWORK VIJAY DIAMOND, CROSS RD B, AJIT NAGAR,",
-          "lat_long": {
-            "type": "Point",
-            "coordinates": [
-              72.8691788,
-              19.1174114
-            ]
-          },
-          "address2": "KONDIVITA, ANDHERI EAST, MUMBAI, MAHARASHTRA 400069",
-          "pincode": 400059,
-          "country": "INDIA",
-          "city": "MUMBAI"
-        },
-        "manager": {
-          "name": "ASHISH CHANDORKAR",
-          "email": "ASHISHCHANDORKAR@FYND.COM",
-          "mobile_no": {
-            "number": "8369782851",
-            "country_code": 91
-          }
-        },
-        "integration_type": {
-          "order": "browntape",
-          "inventory": "browntape"
-        },
-        "_custom_json": {}
-      },
-      "uid": "1_RTYUIDSDFV",
-      "size": "AAX1 (1 PCS)",
-      "inventory_updated_on": "2021-03-31T19:00:10.943000",
-      "seller_identifier": "RTYUIDSDFV",
-      "item_id": 7500651,
-      "quantity": 39,
-      "price": 1234,
-      "price_effective": 1234,
-      "price_transfer": 0,
       "currency": "INR",
-      "sellable_quantity": 18,
-      "order_committed_quantity": 7,
-      "not_available_quantity": 0,
       "damaged_quantity": 0,
       "identifiers": {
         "gtin_type": "sku_code",
         "gtin_value": "RTYUIDSDFV",
         "primary": true
-      }
-    },
-    {
-      "store": {
-        "name": "RRL01",
-        "store_code": "WH_8513",
-        "uid": 1,
-        "address": {
-          "state": "MAHARASHTRA",
-          "address1": "SHOPSENSE RETAIL TECHNOLOGIES PRIVATE LIMITED 1ST FLOOR WEWORK VIJAY DIAMOND, CROSS RD B, AJIT NAGAR,",
-          "lat_long": {
-            "type": "Point",
-            "coordinates": [
-              72.8691788,
-              19.1174114
-            ]
-          },
-          "address2": "KONDIVITA, ANDHERI EAST, MUMBAI, MAHARASHTRA 400069",
-          "pincode": 400059,
-          "country": "INDIA",
-          "city": "MUMBAI"
-        },
-        "manager": {
-          "name": "ASHISH CHANDORKAR",
-          "email": "ASHISHCHANDORKAR@FYND.COM",
-          "mobile_no": {
-            "number": "8369782851",
-            "country_code": 91
-          }
-        },
-        "integration_type": {
-          "order": "browntape",
-          "inventory": "browntape"
-        },
-        "_custom_json": {}
       },
-      "uid": "1_rtyuidsdfv",
-      "size": "AAX1 (1 PCS)",
-      "inventory_updated_on": "2020-07-07T10:37:06.146000",
-      "seller_identifier": "RTYUIDSDFV",
+      "inventory_updated_on": "2021-03-31T19:00:10.943000",
       "item_id": 7500651,
-      "quantity": 39,
+      "not_available_quantity": 0,
+      "order_committed_quantity": 7,
       "price": 1234,
       "price_effective": 1234,
       "price_transfer": 0,
+      "quantity": 39,
+      "sellable_quantity": 18,
+      "seller_identifier": "RTYUIDSDFV",
+      "size": "AAX1 (1 PCS)",
+      "store": {
+        "_custom_json": {},
+        "address": {
+          "address1": "SHOPSENSE RETAIL TECHNOLOGIES PRIVATE LIMITED 1ST FLOOR WEWORK VIJAY DIAMOND, CROSS RD B, AJIT NAGAR,",
+          "address2": "KONDIVITA, ANDHERI EAST, MUMBAI, MAHARASHTRA 400069",
+          "city": "MUMBAI",
+          "country": "INDIA",
+          "lat_long": {
+            "coordinates": [
+              72.8691788,
+              19.1174114
+            ],
+            "type": "Point"
+          },
+          "pincode": 400059,
+          "state": "MAHARASHTRA"
+        },
+        "integration_type": {
+          "inventory": "browntape",
+          "order": "browntape"
+        },
+        "manager": {
+          "email": "ASHISHCHANDORKAR@FYND.COM",
+          "mobile_no": {
+            "country_code": 91,
+            "number": "8369782851"
+          },
+          "name": "ASHISH CHANDORKAR"
+        },
+        "name": "RRL01",
+        "store_code": "WH_8513",
+        "uid": 1
+      },
+      "uid": "1_RTYUIDSDFV"
+    },
+    {
       "currency": "INR",
-      "sellable_quantity": 0,
-      "order_committed_quantity": 39,
       "identifiers": {
         "gtin_type": "sku_code",
         "gtin_value": "RTYUIDSDFV",
         "primary": true
-      }
+      },
+      "inventory_updated_on": "2020-07-07T10:37:06.146000",
+      "item_id": 7500651,
+      "order_committed_quantity": 39,
+      "price": 1234,
+      "price_effective": 1234,
+      "price_transfer": 0,
+      "quantity": 39,
+      "sellable_quantity": 0,
+      "seller_identifier": "RTYUIDSDFV",
+      "size": "AAX1 (1 PCS)",
+      "store": {
+        "_custom_json": {},
+        "address": {
+          "address1": "SHOPSENSE RETAIL TECHNOLOGIES PRIVATE LIMITED 1ST FLOOR WEWORK VIJAY DIAMOND, CROSS RD B, AJIT NAGAR,",
+          "address2": "KONDIVITA, ANDHERI EAST, MUMBAI, MAHARASHTRA 400069",
+          "city": "MUMBAI",
+          "country": "INDIA",
+          "lat_long": {
+            "coordinates": [
+              72.8691788,
+              19.1174114
+            ],
+            "type": "Point"
+          },
+          "pincode": 400059,
+          "state": "MAHARASHTRA"
+        },
+        "integration_type": {
+          "inventory": "browntape",
+          "order": "browntape"
+        },
+        "manager": {
+          "email": "ASHISHCHANDORKAR@FYND.COM",
+          "mobile_no": {
+            "country_code": 91,
+            "number": "8369782851"
+          },
+          "name": "ASHISH CHANDORKAR"
+        },
+        "name": "RRL01",
+        "store_code": "WH_8513",
+        "uid": 1
+      },
+      "uid": "1_rtyuidsdfv"
     }
   ],
   "page": {
-    "type": "number",
     "current": 1,
-    "size": 1,
-    "item_total": 5,
+    "has_next": false,
     "has_previous": false,
-    "has_next": false
+    "item_total": 5,
+    "size": 1,
+    "type": "number"
   }
 }
 ```
@@ -9674,101 +10020,308 @@ returns a list of all inventory grouped by size and store
 {
   "items": [
     {
-      "manufacturer": {
-        "address": "luffy",
-        "name": "luffy",
-        "is_default": true
+      "brand": {
+        "id": 1,
+        "name": "ab"
       },
-      "identifier": {},
-      "fynd_item_code": "1234",
-      "fynd_article_code": "1234",
-      "fragile": true,
-      "dimension": {
-        "is_default": true,
-        "height": 1,
-        "length": 1,
-        "width": 1,
-        "unit": "km"
-      },
-      "country_of_origin": "",
       "company": {
         "id": 1
       },
-      "brand": {
-        "id": 1,
-        "name": "luffy"
-      },
-      "total_quantity": 10,
-      "weight": {
-        "is_default": true,
-        "shipping": 12,
-        "unit": "kg"
-      },
-      "store": {
-        "id": 1,
-        "name": "yosss sdd dsdyo",
-        "store_code": "sanic6sdfsf7",
-        "uid": 59,
-        "address": {
-          "state": "MAHARASHTRA",
-          "address1": "A/204, SAI VANDAN, NARAYAN NAGAR, TULINJ ROAD",
-          "lat_long": {
-            "type": "Point",
-            "coordinates": [
-              72.8231511,
-              19.4232024
-            ]
-          },
-          "address2": "",
-          "pincode": 401209,
-          "country": "INDIA",
-          "city": "MUMBAI",
-          "landmark": ""
-        },
-        "manager": {
-          "name": "abc",
-          "email": "a@b.com",
-          "mobile_no": {
-            "number": "2382634324",
-            "country_code": 91
-          }
-        },
-        "integration_type": {
-          "order": "browntape",
-          "inventory": "browntape"
-        },
-        "_custom_json": {}
-      },
-      "uid": "59_RTYUIDSDFV",
-      "size": "AAX1 (1 PCS)",
-      "inventory_updated_on": "2021-04-06T03:30:01.487000",
-      "seller_identifier": "RTYUIDSDFV",
-      "item_id": 7500651,
-      "quantity": 10,
-      "price": {
-        "currency": "INR",
-        "effective": 1234,
-        "transfer": 0,
-        "marked": 0
-      },
+      "country_of_origin": "",
       "currency": "INR",
-      "sellable_quantity": 10,
+      "dimension": {
+        "height": 13.1,
+        "is_default": true,
+        "length": 1.3,
+        "unit": "cm",
+        "width": 23.4
+      },
+      "fragile": false,
+      "fynd_article_code": "",
+      "fynd_item_code": "",
+      "identifier": {},
       "identifiers": [
         {
           "gtin_type": "sku_code",
           "gtin_value": "RTYUIDSDFV",
           "primary": true
         }
-      ]
+      ],
+      "inventory_updated_on": "2021-04-06T03:30:01.487000",
+      "item_id": 7500651,
+      "manufacturer": {
+        "address": "ab",
+        "is_default": true,
+        "name": "ab"
+      },
+      "price": {
+        "currency": "USD",
+        "effective": 79.99,
+        "marked": 99.99,
+        "transfer": 89.99
+      },
+      "price_effective": 1234,
+      "price_transfer": 0,
+      "quantity": 10,
+      "sellable_quantity": 10,
+      "seller_identifier": "RTYUIDSDFV",
+      "size": "AAX1 (1 PCS)",
+      "store": {
+        "id": 1
+      },
+      "total_quantity": 1,
+      "uid": "59_RTYUIDSDFV",
+      "weight": {
+        "is_default": true,
+        "shipping": 1.5,
+        "unit": "kg"
+      }
+    },
+    {
+      "brand": {
+        "id": 1,
+        "name": "ab"
+      },
+      "company": {
+        "id": 1
+      },
+      "country_of_origin": "",
+      "currency": "INR",
+      "dimension": {
+        "height": 13.1,
+        "is_default": true,
+        "length": 1.3,
+        "unit": "cm",
+        "width": 23.4
+      },
+      "fragile": false,
+      "fynd_article_code": "",
+      "fynd_item_code": "",
+      "identifier": {},
+      "identifiers": [
+        {
+          "gtin_type": "sku_code",
+          "gtin_value": "RTYUIDSDFV",
+          "primary": true
+        }
+      ],
+      "inventory_updated_on": "2021-04-06T03:29:35.291000",
+      "item_id": 7500651,
+      "manufacturer": {
+        "address": "ab",
+        "is_default": true,
+        "name": "ab"
+      },
+      "price": {
+        "currency": "USD",
+        "effective": 79.99,
+        "marked": 99.99,
+        "transfer": 89.99
+      },
+      "price_effective": 1234,
+      "price_transfer": 0,
+      "quantity": 10,
+      "sellable_quantity": 10,
+      "seller_identifier": "RTYUIDSDFV",
+      "size": "AAX1 (1 PCS)",
+      "store": {
+        "id": 1
+      },
+      "total_quantity": 1,
+      "uid": "10_RTYUIDSDFV",
+      "weight": {
+        "is_default": true,
+        "shipping": 1.5,
+        "unit": "kg"
+      }
+    },
+    {
+      "brand": {
+        "id": 1,
+        "name": "ab"
+      },
+      "company": {
+        "id": 1
+      },
+      "country_of_origin": "",
+      "currency": "INR",
+      "dimension": {
+        "height": 13.1,
+        "is_default": true,
+        "length": 1.3,
+        "unit": "cm",
+        "width": 23.4
+      },
+      "fragile": false,
+      "fynd_article_code": "",
+      "fynd_item_code": "",
+      "identifier": {},
+      "identifiers": [
+        {
+          "gtin_type": "sku_code",
+          "gtin_value": "RTYUIDSDFV",
+          "primary": true
+        }
+      ],
+      "inventory_updated_on": "2021-03-17T12:35:29.992000",
+      "item_id": 7500651,
+      "manufacturer": {
+        "address": "ab",
+        "is_default": true,
+        "name": "ab"
+      },
+      "order_committed_quantity": 0,
+      "price": {
+        "currency": "USD",
+        "effective": 79.99,
+        "marked": 99.99,
+        "transfer": 89.99
+      },
+      "price_effective": 1234,
+      "price_transfer": 0,
+      "quantity": 10000000,
+      "sellable_quantity": 10000000,
+      "seller_identifier": "RTYUIDSDFV",
+      "size": "AAX1 (1 PCS)",
+      "store": {
+        "id": 1
+      },
+      "total_quantity": 1,
+      "uid": "11061_RTYUIDSDFV",
+      "weight": {
+        "is_default": true,
+        "shipping": 1.5,
+        "unit": "kg"
+      }
+    },
+    {
+      "brand": {
+        "id": 1,
+        "name": "ab"
+      },
+      "company": {
+        "id": 1
+      },
+      "country_of_origin": "",
+      "currency": "INR",
+      "damaged_quantity": 0,
+      "dimension": {
+        "height": 13.1,
+        "is_default": true,
+        "length": 1.3,
+        "unit": "cm",
+        "width": 23.4
+      },
+      "fragile": false,
+      "fynd_article_code": "",
+      "fynd_item_code": "",
+      "identifier": {},
+      "identifiers": [
+        {
+          "gtin_type": "sku_code",
+          "gtin_value": "RTYUIDSDFV",
+          "primary": true
+        }
+      ],
+      "inventory_updated_on": "2021-03-31T19:00:10.943000",
+      "item_id": 7500651,
+      "manufacturer": {
+        "address": "ab",
+        "is_default": true,
+        "name": "ab"
+      },
+      "not_available_quantity": 0,
+      "order_committed_quantity": 7,
+      "price": {
+        "currency": "USD",
+        "effective": 79.99,
+        "marked": 99.99,
+        "transfer": 89.99
+      },
+      "price_effective": 1234,
+      "price_transfer": 0,
+      "quantity": 39,
+      "sellable_quantity": 18,
+      "seller_identifier": "RTYUIDSDFV",
+      "size": "AAX1 (1 PCS)",
+      "store": {
+        "id": 1
+      },
+      "total_quantity": 1,
+      "uid": "1_RTYUIDSDFV",
+      "weight": {
+        "is_default": true,
+        "shipping": 1.5,
+        "unit": "kg"
+      }
+    },
+    {
+      "brand": {
+        "id": 1,
+        "name": "ab"
+      },
+      "company": {
+        "id": 1
+      },
+      "country_of_origin": "",
+      "currency": "INR",
+      "dimension": {
+        "height": 13.1,
+        "is_default": true,
+        "length": 1.3,
+        "unit": "cm",
+        "width": 23.4
+      },
+      "fragile": false,
+      "fynd_article_code": "",
+      "fynd_item_code": "",
+      "identifier": {},
+      "identifiers": [
+        {
+          "gtin_type": "sku_code",
+          "gtin_value": "RTYUIDSDFV",
+          "primary": true
+        }
+      ],
+      "inventory_updated_on": "2020-07-07T10:37:06.146000",
+      "item_id": 7500651,
+      "manufacturer": {
+        "address": "ab",
+        "is_default": true,
+        "name": "ab"
+      },
+      "order_committed_quantity": 39,
+      "price": {
+        "currency": "USD",
+        "effective": 79.99,
+        "marked": 99.99,
+        "transfer": 89.99
+      },
+      "price_effective": 1234,
+      "price_transfer": 0,
+      "quantity": 39,
+      "sellable_quantity": 0,
+      "seller_identifier": "RTYUIDSDFV",
+      "size": "AAX1 (1 PCS)",
+      "store": {
+        "id": 1
+      },
+      "total_quantity": 1,
+      "uid": "1_rtyuidsdfv",
+      "weight": {
+        "is_default": true,
+        "shipping": 1.5,
+        "unit": "kg"
+      }
     }
   ],
   "page": {
-    "type": "number",
     "current": 1,
-    "size": 1,
-    "item_total": 5,
+    "has_next": false,
     "has_previous": false,
-    "has_next": false
+    "item_total": 5,
+    "size": 1,
+    "type": "number"
   }
 }
 ```
@@ -9889,95 +10442,96 @@ configuration details for catalog. See example below or refer `GetConfigResponse
 {
   "data": [
     {
-      "is_active": true,
-      "slug": "test-group12-31",
-      "is_default": false,
+      "app_id": "5d65089e031f9029f8e8dc2f",
       "attributes": [
         {
-          "is_active": true,
           "display_type": "text",
-          "slug": "item_code",
+          "is_active": true,
           "key": "item_code",
+          "name": "Item Code",
           "priority": 1,
-          "name": "Item Code"
+          "slug": "item_code"
         },
         {
-          "is_active": true,
           "display_type": "text",
-          "slug": "brand",
+          "is_active": true,
           "key": "brand",
+          "name": "Brand",
           "priority": 2,
-          "name": "Brand"
+          "slug": "brand"
         }
       ],
-      "app_id": "5d65089e031f9029f8e8dc2f",
+      "id": "62a84b90bd43c0fe4cf53574",
+      "is_active": true,
+      "is_default": false,
+      "name": "Test Group12 ",
       "priority": 1,
+      "slug": "test-group12-31",
       "template_slugs": [
         "atesttemplate"
-      ],
-      "name": "Test Group12 ",
-      "id": "62a84b90bd43c0fe4cf53574"
+      ]
     },
     {
-      "is_active": true,
-      "slug": "et14",
-      "is_default": false,
+      "app_id": "5d65089e031f9029f8e8dc2f",
       "attributes": [
         {
-          "is_active": true,
           "display_type": "text",
-          "slug": "item_code",
+          "is_active": true,
           "key": "item_code",
+          "name": "Item Code",
           "priority": 1,
-          "name": "Item Code"
+          "slug": "item_code"
         },
         {
-          "is_active": true,
           "display_type": "text",
-          "slug": "brand",
+          "is_active": true,
           "key": "brand",
+          "name": "Brand",
           "priority": 2,
-          "name": "Brand"
+          "slug": "brand"
         },
         {
-          "is_active": true,
           "display_type": "text",
-          "slug": "country_of_origin",
+          "is_active": true,
           "key": "country_of_origin",
+          "name": "Country Of Origin",
           "priority": 3,
-          "name": "Country Of Origin"
+          "slug": "country_of_origin"
         },
         {
-          "is_active": true,
           "display_type": "text",
-          "slug": "image_nature",
+          "is_active": true,
           "key": "image_nature",
+          "name": "Image Type",
           "priority": 4,
-          "name": "Image Type"
+          "slug": "image_nature"
         },
         {
-          "is_active": true,
           "display_type": "text",
-          "slug": "discount",
+          "is_active": true,
           "key": "discount",
+          "name": "Discount",
           "priority": 5,
-          "name": "Discount"
+          "slug": "discount"
         }
       ],
-      "app_id": "5d65089e031f9029f8e8dc2f",
+      "id": "62a84b9ebd43c0fe4cf53576",
+      "is_active": true,
+      "is_default": false,
+      "name": "ET",
       "priority": 2,
+      "slug": "et14",
       "template_slugs": [
         "atesttemplate"
-      ],
-      "name": "ET",
-      "id": "62a84b9ebd43c0fe4cf53576"
+      ]
     }
   ],
   "page": {
     "current": 1,
-    "next": 2,
     "has_next": false,
-    "total_count": 2
+    "next": 2,
+    "total_count": 2,
+    "type": "number"
   }
 }
 ```
@@ -10067,7 +10621,7 @@ const data = await platformClient.catalog.getOptimalLocations({  body : value })
 | body | [AssignStore](#AssignStore) | yes | Request body |
 
 
-Location Reassignment
+
 
 *Returned Response:*
 
@@ -10086,25 +10640,24 @@ Returns a success response
 
 ```json
 {
-  "meta": {},
-  "store_id": 11550,
-  "size": "OS",
   "_id": "61161830f1061e7c7f81d8ed",
-  "store_pincode": 201303,
-  "company_id": 783,
-  "s_city": "NOIDA",
-  "quantity": 1,
-  "price_effective": 995,
-  "status": true,
-  "price_marked": 995,
-  "uid": "11550_000000410234883001",
   "article_assignment": {
-    "strategy": "app-config",
-    "level": "multi-company"
+    "level": "multi-company",
+    "strategy": "app-config"
   },
+  "company_id": 783,
+  "index": 0,
   "item_id": 75252658,
+  "price_effective": 995,
+  "price_marked": 995,
+  "quantity": 1,
+  "s_city": "NOIDA",
+  "size": "OS",
+  "status": true,
+  "store_id": 11550,
+  "store_pincode": 201303,
   "strategy_wise_listing": [],
-  "index": 0
+  "uid": "11550_000000410234883001"
 }
 ```
 </details>
@@ -10169,162 +10722,162 @@ Product object. See example below or refer `product.utils.format_product_respons
 ```json
 {
   "data": {
-    "is_image_less_product": false,
-    "short_description": "",
-    "departments": [
-      21
-    ],
-    "country_of_origin": "India",
-    "net_quantity": {},
-    "is_set": false,
-    "variant_media": {},
-    "brand_uid": 3272,
-    "item_type": "standard",
-    "category_slug": "abayas",
-    "media": [
-      {
-        "type": "image",
-        "url": "/x0/products/pictures/item/free/original/Hsw-U3Kut-Test-01.jpeg"
-      }
-    ],
-    "product_publish": {
-      "is_set": false,
-      "product_online_date": "2023-02-16T09:37:29.620000Z"
-    },
-    "return_config": {
-      "returnable": false,
-      "unit": "days",
-      "time": 0
-    },
-    "slug": "test-01-7542894",
-    "teaser_tag": {},
-    "no_of_boxes": 1,
     "_custom_json": {},
-    "is_dependent": false,
-    "item_code": "TEST-01",
-    "custom_order": {
-      "manufacturing_time_unit": "days",
-      "is_custom_order": false,
-      "manufacturing_time": 0
-    },
-    "highlights": [],
-    "currency": "INR",
-    "product_group_tag": [],
-    "name": "Test-01",
-    "description": "",
-    "multi_size": false,
-    "tags": [],
-    "size_guide": "",
-    "template_tag": "ethnicwear",
-    "category_uid": 441,
-    "variants": {},
-    "created_on": "2023-02-16T09:37:31.304000",
-    "created_by": {
-      "username": "mdnehalahmed_fynd_external_com_90136",
-      "user_id": "757bf08ff5dd4ba95f8778cf",
-      "super_user": false
-    },
-    "modified_on": "2023-02-16T09:37:31.304000",
-    "modified_by": {
-      "username": "mdnehalahmed_fynd_external_com_90136",
-      "user_id": "757bf08ff5dd4ba95f8778cf",
-      "super_user": false
-    },
-    "stage": "pending",
-    "uid": 7542894,
     "all_company_ids": [
       835
     ],
     "all_identifiers": [
       "TEST-015434"
     ],
-    "id": "63edf95bf314486d44a6b361",
+    "attributes": {
+      "essential": "No",
+      "gender": [
+        "Men"
+      ],
+      "marketer-address": "dfg",
+      "marketer-name": "gfdfd",
+      "pattern": "Printed",
+      "primary_color": "Black",
+      "primary_material": "Cotton Blend"
+    },
     "brand": {
-      "name": "name",
       "logo": {
         "aspect_ratio": "1:1",
         "aspect_ratio_f": 1,
-        "url": "",
-        "secure_url": ""
+        "secure_url": "",
+        "url": ""
       },
+      "name": "product1",
       "uid": 3272
     },
-    "sizes": [
+    "brand_uid": 3272,
+    "category": {
+      "l1": {
+        "name": "Ethnic Wear",
+        "slug": "ethnic-wear",
+        "uid": 443
+      },
+      "l2": {
+        "name": "Hijabs & Abayas",
+        "slug": "hijabs-abayas",
+        "uid": 414
+      },
+      "l3": {
+        "name": "Abayas",
+        "slug": "abayas",
+        "uid": 441
+      }
+    },
+    "category_slug": "abayas",
+    "category_uid": 441,
+    "country_of_origin": "India",
+    "created_by": {
+      "super_user": false,
+      "user_id": "757bf08ff5dd4ba95f8778cf",
+      "username": "mdnehalahmed_fynd_external_com_90136"
+    },
+    "created_on": "2023-02-16T09:37:31.304000",
+    "currency": "INR",
+    "custom_order": {
+      "is_custom_order": false,
+      "manufacturing_time": 0,
+      "manufacturing_time_unit": "days"
+    },
+    "departments": [
+      21
+    ],
+    "description": "",
+    "highlights": [],
+    "id": "63edf95bf314486d44a6b361",
+    "is_active": true,
+    "is_dependent": false,
+    "is_expirable": false,
+    "is_image_less_product": false,
+    "is_set": false,
+    "item_code": "TEST-01",
+    "item_type": "standard",
+    "media": [
       {
-        "price_transfer": 0,
-        "is_set": false,
-        "item_dimensions_unit_of_measure": "cm",
-        "item_weight_unit_of_measure": "gram",
-        "item_width": 10,
-        "item_length": 10,
-        "size": "OS",
-        "price_effective": 10,
-        "identifiers": [
-          {
-            "gtin_value": "TEST-015434",
-            "primary": true,
-            "gtin_type": "ean"
-          }
-        ],
-        "price": 10,
-        "item_weight": 10,
-        "seller_identifier": "TEST-015434",
-        "track_inventory": true,
-        "item_height": 10,
-        "_custom_json": {},
-        "item_code": "TEST-01",
-        "company_id": 835,
-        "currency": "INR",
-        "modified_on": "2023-02-16T09:37:31.352000",
-        "brand_uid": 3272,
-        "created_on": "2023-02-16T09:37:31.352000",
-        "id": "63edf95bf314486d44a6b364"
+        "type": "image",
+        "url": "/x0/products/pictures/item/free/original/Hsw-U3Kut-Test-01.jpeg"
       }
     ],
-    "is_expirable": false,
-    "is_active": true,
+    "modified_by": {
+      "super_user": false,
+      "user_id": "757bf08ff5dd4ba95f8778cf",
+      "username": "mdnehalahmed_fynd_external_com_90136"
+    },
+    "modified_on": "2023-02-16T09:37:31.304000",
+    "multi_size": false,
+    "name": "Test-01",
+    "net_quantity": {},
+    "no_of_boxes": 1,
+    "product_group_tag": [],
+    "product_publish": {
+      "is_set": false,
+      "product_online_date": "2023-02-16T09:37:29.620000Z"
+    },
+    "return_config": {
+      "returnable": false,
+      "time": 0,
+      "unit": "days"
+    },
+    "short_description": "",
+    "size_guide": "",
+    "sizes": [
+      {
+        "_custom_json": {},
+        "brand_uid": 3272,
+        "company_id": 835,
+        "created_on": "2023-02-16T09:37:31.352000",
+        "currency": "INR",
+        "id": "63edf95bf314486d44a6b364",
+        "identifiers": [
+          {
+            "gtin_type": "ean",
+            "gtin_value": "TEST-015434",
+            "primary": true
+          }
+        ],
+        "is_set": false,
+        "item_code": "TEST-01",
+        "item_dimensions_unit_of_measure": "cm",
+        "item_height": 10,
+        "item_length": 10,
+        "item_weight": 10,
+        "item_weight_unit_of_measure": "gram",
+        "item_width": 10,
+        "modified_on": "2023-02-16T09:37:31.352000",
+        "price": 10,
+        "price_effective": 10,
+        "price_transfer": 0,
+        "seller_identifier": "TEST-015434",
+        "size": "OS",
+        "track_inventory": true
+      }
+    ],
+    "slug": "test-01-7542894",
+    "stage": "pending",
+    "tags": [],
+    "tax_identifier": {
+      "hsn_code": "97211110",
+      "hsn_code_id": "63d78f483c1714abdd406766",
+      "reporting_hsn": "97211110H1"
+    },
+    "teaser_tag": {},
+    "template_tag": "ethnicwear",
     "trader": [
       {
-        "type": "Manufacturer",
         "address": [
           "fdgh"
         ],
-        "name": "fgt"
+        "name": "fgt",
+        "type": "Manufacturer"
       }
     ],
-    "tax_identifier": {
-      "hsn_code_id": "63d78f483c1714abdd406766",
-      "reporting_hsn": "97211110H1",
-      "hsn_code": "97211110"
-    },
-    "category": {
-      "l3": {
-        "name": "Abayas",
-        "uid": 441,
-        "slug": "abayas"
-      },
-      "l1": {
-        "uid": 443,
-        "name": "Ethnic Wear",
-        "slug": "ethnic-wear"
-      },
-      "l2": {
-        "uid": 414,
-        "name": "Hijabs & Abayas",
-        "slug": "hijabs-abayas"
-      }
-    },
-    "attributes": {
-      "marketer-address": "dfg",
-      "primary_color": "Black",
-      "essential": "No",
-      "pattern": "Printed",
-      "primary_material": "Cotton Blend",
-      "marketer-name": "gfdfd",
-      "gender": [
-        "Men"
-      ]
-    }
+    "uid": 7542894,
+    "variant_media": {},
+    "variants": {}
   }
 }
 ```
@@ -10388,13 +10941,19 @@ List of bulk asset jobs List. See `BulkUtil.modify_batch_response` for details
 {
   "items": [
     {
-      "created_on": "2021-02-25T16:45:22.425000Z",
-      "file_path": "https://hdn-1.fynd.com/company/61/self/documents/product-import/free/original/ZUSmmXHmZ-U8mTYx3KR-Nike-hoddie.zip",
-      "succeed": 1,
+      "cancelled": 0,
       "cancelled_records": [],
+      "company_id": 61,
+      "created_by": {
+        "full_name": "nikhil mhatre",
+        "user_id": "23175373",
+        "username": "nikhilmhatre_gofynd_com_28085_23175373"
+      },
+      "created_on": "2021-02-25T16:45:22.425000Z",
       "failed": 0,
       "failed_records": [],
-      "stage": "completed",
+      "file_path": "https://hdn-1.fynd.com/company/61/self/documents/product-import/free/original/ZUSmmXHmZ-U8mTYx3KR-Nike-hoddie.zip",
+      "id": "6037d422aa879600015c6d1d",
       "is_active": true,
       "modified_by": {
         "user_id": "23175373",
@@ -10402,25 +10961,19 @@ List of bulk asset jobs List. See `BulkUtil.modify_batch_response` for details
       },
       "modified_on": "2021-02-25T16:47:24.551000Z",
       "retry": 1,
+      "stage": "completed",
+      "succeed": 1,
       "total": 1,
-      "company_id": 61,
-      "created_by": {
-        "user_id": "23175373",
-        "username": "nikhilmhatre_gofynd_com_28085_23175373",
-        "full_name": "nikhil mhatre"
-      },
-      "cancelled": 0,
-      "tracking_url": "https://api.fynd.com/common/assets/v1/asset/status/extract-zips/3296",
-      "id": "6037d422aa879600015c6d1d"
+      "tracking_url": "https://api.fynd.com/common/assets/v1/asset/status/extract-zips/3296"
     }
   ],
   "page": {
-    "type": "",
     "current": 1,
-    "size": 3,
-    "has_previous": false,
     "has_next": false,
-    "item_total": 1
+    "has_previous": false,
+    "item_total": 1,
+    "size": 3,
+    "type": "number"
   }
 }
 ```
@@ -10484,93 +11037,111 @@ Size guide object. See example below or refer `ProductAttributesResponseSchema` 
 {
   "items": [
     {
-      "filters": {
-        "indexing": false
-      },
-      "schema": {
-        "multi": true,
-        "allowed_values": [],
-        "format": "",
-        "type": "int",
-        "range": {}
+      "created_by": {
+        "user_id": "8ec76d9df98f4246a9d6e5a6",
+        "username": "anveshreddy_fynd_external_com_85084"
       },
       "created_on": "2022-05-25T16:15:01.276000Z",
-      "modified_on": "2022-05-25T16:15:01.276000Z",
-      "slug": "test-number-area",
-      "modified_by": {
-        "username": "anveshreddy_fynd_external_com_85084",
-        "user_id": "8ec76d9df98f4246a9d6e5a6"
-      },
-      "details": {
-        "display_type": "text"
-      },
-      "description": "to test the attribute that represents area",
-      "unit": "ft**2",
-      "variant": false,
       "departments": [
         "men-s-fashion"
       ],
-      "created_by": {
-        "username": "anveshreddy_fynd_external_com_85084",
-        "user_id": "8ec76d9df98f4246a9d6e5a6"
-      },
-      "name": "test number area",
-      "id": "628e5605c71589dba709c365"
-    },
-    {
-      "created_by": {
-        "username": "anveshreddy_fynd_external_com_85084",
-        "user_id": "8ec76d9df98f4246a9d6e5a6"
-      },
-      "name": "Motor Power",
+      "description": "to test the attribute that represents area",
       "details": {
         "display_type": "text"
       },
-      "slug": "motor-power",
-      "logo": "https://hdn-1.jiomarketx0.de/x0/products/pictures/attribute/logo/original/UYTUHgLGj-Color.png",
-      "modified_on": "2022-05-05T09:40:00.453000Z",
+      "filters": {
+        "indexing": false
+      },
+      "id": "628e5605c71589dba709c365",
+      "modified_by": {
+        "user_id": "8ec76d9df98f4246a9d6e5a6",
+        "username": "anveshreddy_fynd_external_com_85084"
+      },
+      "modified_on": "2022-05-25T16:15:01.276000Z",
+      "name": "test number area",
       "schema": {
         "allowed_values": [],
         "format": "",
-        "multi": false,
-        "range": {
-          "min": 1,
-          "max": 10
-        },
-        "mandatory": true,
+        "multi": true,
+        "range": {},
         "type": "int"
       },
-      "modified_by": {
-        "username": "anveshreddy_fynd_external_com_85084",
-        "user_id": "8ec76d9df98f4246a9d6e5a6"
+      "slug": "test-number-area",
+      "unit": "ft**2",
+      "variant": false
+    },
+    {
+      "created_by": {
+        "user_id": "8ec76d9df98f4246a9d6e5a6",
+        "username": "anveshreddy_fynd_external_com_85084"
       },
       "created_on": "2022-05-05T09:40:00.453000Z",
-      "filters": {
-        "indexing": true,
-        "priority": 26
-      },
-      "variant": true,
-      "enabled_for_end_consumer": true,
-      "description": "tells the power of the motor",
       "departments": [
         "men-s-fashion",
         "anvesh-department"
       ],
-      "unit": "hp",
-      "id": "62739b7043385c1f314d4868"
-    },
-    {
-      "created_by": {
-        "username": "anveshreddy_fynd_external_com_85084",
-        "user_id": "8ec76d9df98f4246a9d6e5a6"
-      },
-      "name": "SIZE NEW",
+      "description": "tells the power of the motor",
       "details": {
         "display_type": "text"
       },
-      "slug": "size-new",
+      "enabled_for_end_consumer": true,
+      "filters": {
+        "indexing": true,
+        "priority": 26
+      },
+      "id": "62739b7043385c1f314d4868",
       "logo": "https://hdn-1.jiomarketx0.de/x0/products/pictures/attribute/logo/original/UYTUHgLGj-Color.png",
+      "modified_by": {
+        "user_id": "8ec76d9df98f4246a9d6e5a6",
+        "username": "anveshreddy_fynd_external_com_85084"
+      },
+      "modified_on": "2022-05-05T09:40:00.453000Z",
+      "name": "Motor Power",
+      "schema": {
+        "allowed_values": [],
+        "format": "",
+        "mandatory": true,
+        "multi": false,
+        "range": {
+          "max": 10,
+          "min": 1
+        },
+        "type": "int"
+      },
+      "slug": "motor-power",
+      "unit": "hp",
+      "variant": true
+    },
+    {
+      "created_by": {
+        "user_id": "8ec76d9df98f4246a9d6e5a6",
+        "username": "anveshreddy_fynd_external_com_85084"
+      },
+      "created_on": "2022-05-05T08:56:59.483000Z",
+      "departments": [
+        "men-s-fashion",
+        "electronics-test",
+        "anvesh-department",
+        "fashion",
+        "test1"
+      ],
+      "description": "describes the size of the item",
+      "details": {
+        "display_type": "text"
+      },
+      "enabled_for_end_consumer": true,
+      "filters": {
+        "indexing": true,
+        "priority": 25
+      },
+      "id": "6273915b43385c1f314d4867",
+      "logo": "https://hdn-1.jiomarketx0.de/x0/products/pictures/attribute/logo/original/UYTUHgLGj-Color.png",
+      "modified_by": {
+        "user_id": "8ec76d9df98f4246a9d6e5a6",
+        "username": "anveshreddy_fynd_external_com_85084"
+      },
       "modified_on": "2022-05-05T13:25:33.353000Z",
+      "name": "SIZE NEW",
       "schema": {
         "allowed_values": [
           "XS",
@@ -10581,288 +11152,270 @@ Size guide object. See example below or refer `ProductAttributesResponseSchema` 
           "XXXL"
         ],
         "format": "upper case",
+        "mandatory": true,
         "multi": false,
         "range": {},
-        "mandatory": true,
         "type": "str"
       },
-      "modified_by": {
-        "username": "anveshreddy_fynd_external_com_85084",
-        "user_id": "8ec76d9df98f4246a9d6e5a6"
-      },
-      "created_on": "2022-05-05T08:56:59.483000Z",
-      "filters": {
-        "indexing": true,
-        "priority": 25
-      },
-      "variant": false,
-      "enabled_for_end_consumer": true,
-      "description": "describes the size of the item",
-      "departments": [
-        "men-s-fashion",
-        "electronics-test",
-        "anvesh-department",
-        "fashion",
-        "test1"
-      ],
-      "id": "6273915b43385c1f314d4867"
+      "slug": "size-new",
+      "variant": false
     },
     {
-      "variant": false,
-      "modified_on": "2022-04-13T13:35:53.611000Z",
-      "modified_by": {
-        "username": "piyushsinha_fynd_external_com_34090",
-        "user_id": "5d9aa3ca5acdcb33fdcc8472"
+      "created_by": {
+        "user_id": "5d9aa3ca5acdcb33fdcc8472",
+        "username": "piyushsinha_fynd_external_com_34090"
       },
-      "filters": {
-        "indexing": false
-      },
-      "slug": "white",
       "created_on": "2022-04-13T13:35:53.611000Z",
       "departments": [
         "men-s-fashion"
       ],
-      "created_by": {
-        "username": "piyushsinha_fynd_external_com_34090",
-        "user_id": "5d9aa3ca5acdcb33fdcc8472"
-      },
-      "schema": {
-        "format": "title case",
-        "multi": false,
-        "allowed_values": [],
-        "range": {},
-        "type": "str"
-      },
-      "name": "White",
       "details": {
         "display_type": "text"
       },
-      "id": "6256d1b9635e136dc2cb9a02"
-    },
-    {
       "filters": {
         "indexing": false
       },
+      "id": "6256d1b9635e136dc2cb9a02",
+      "modified_by": {
+        "user_id": "5d9aa3ca5acdcb33fdcc8472",
+        "username": "piyushsinha_fynd_external_com_34090"
+      },
+      "modified_on": "2022-04-13T13:35:53.611000Z",
+      "name": "White",
+      "schema": {
+        "allowed_values": [],
+        "format": "title case",
+        "multi": false,
+        "range": {},
+        "type": "str"
+      },
+      "slug": "white",
+      "variant": false
+    },
+    {
       "created_by": {
-        "username": "jagadeshsahadevan_gofynd_com_66706",
-        "user_id": "f6fccadda27e6b365b87c027"
+        "user_id": "f6fccadda27e6b365b87c027",
+        "username": "jagadeshsahadevan_gofynd_com_66706"
       },
-      "name": "Test Attributes",
-      "details": {
-        "display_type": "text"
-      },
+      "created_on": "2022-03-24T07:16:59.998000Z",
       "departments": [
         "men-s-fashion"
       ],
-      "modified_by": {
-        "username": "jagadeshsahadevan_gofynd_com_66706",
-        "user_id": "f6fccadda27e6b365b87c027"
+      "description": "Hello World",
+      "details": {
+        "display_type": "text"
       },
-      "slug": "test-attributes",
+      "filters": {
+        "indexing": false
+      },
+      "id": "623c1aecb9e8edcfeb8d076a",
+      "modified_by": {
+        "user_id": "f6fccadda27e6b365b87c027",
+        "username": "jagadeshsahadevan_gofynd_com_66706"
+      },
+      "modified_on": "2022-03-24T07:16:59.998000Z",
+      "name": "Test Attributes",
       "schema": {
-        "format": "",
-        "range": {},
         "allowed_values": [
           "A",
           "B"
         ],
-        "type": "str",
-        "multi": true
-      },
-      "modified_on": "2022-03-24T07:16:59.998000Z",
-      "variant": false,
-      "created_on": "2022-03-24T07:16:59.998000Z",
-      "description": "Hello World",
-      "id": "623c1aecb9e8edcfeb8d076a"
-    },
-    {
-      "schema": {
-        "allowed_values": [],
-        "multi": false,
         "format": "",
+        "multi": true,
         "range": {},
         "type": "str"
       },
-      "modified_by": {
-        "username": "rockypatro_gofynd_com_32787",
-        "user_id": "59ad6a452775bfd63674f0a5"
-      },
-      "name": "Care Instructions",
-      "details": {
-        "display_type": "text"
+      "slug": "test-attributes",
+      "variant": false
+    },
+    {
+      "created_by": {
+        "user_id": "59ad6a452775bfd63674f0a5",
+        "username": "rockypatro_gofynd_com_32787"
       },
       "created_on": "2022-03-17T14:54:41.251000Z",
-      "created_by": {
-        "username": "rockypatro_gofynd_com_32787",
-        "user_id": "59ad6a452775bfd63674f0a5"
-      },
-      "description": "Any specific care instruction note or Safety instructions that needs to be followed",
-      "variant": false,
-      "modified_on": "2022-03-17T14:54:41.251000Z",
-      "enabled_for_end_consumer": true,
       "departments": [
         "men-s-fashion"
       ],
+      "description": "Any specific care instruction note or Safety instructions that needs to be followed",
+      "details": {
+        "display_type": "text"
+      },
+      "enabled_for_end_consumer": true,
       "filters": {
         "indexing": true,
         "priority": 9
       },
+      "id": "62334bb1d6b144588682e1c0",
+      "modified_by": {
+        "user_id": "59ad6a452775bfd63674f0a5",
+        "username": "rockypatro_gofynd_com_32787"
+      },
+      "modified_on": "2022-03-17T14:54:41.251000Z",
+      "name": "Care Instructions",
+      "schema": {
+        "allowed_values": [],
+        "format": "",
+        "multi": false,
+        "range": {},
+        "type": "str"
+      },
       "slug": "care-instructions",
-      "id": "62334bb1d6b144588682e1c0"
+      "variant": false
     },
     {
+      "created_by": {
+        "user_id": "59ad6a452775bfd63674f0a5",
+        "username": "rockypatro_gofynd_com_32787"
+      },
+      "created_on": "2022-03-17T14:53:45.700000Z",
+      "departments": [
+        "men-s-fashion"
+      ],
+      "description": "Specify the length of the sleeve. Select the value from the dropdown",
+      "details": {
+        "display_type": "text"
+      },
+      "enabled_for_end_consumer": true,
+      "filters": {
+        "indexing": true,
+        "priority": 8
+      },
+      "id": "62334b79d6b144588682e1bf",
+      "modified_by": {
+        "user_id": "59ad6a452775bfd63674f0a5",
+        "username": "rockypatro_gofynd_com_32787"
+      },
+      "modified_on": "2022-03-17T14:53:45.700000Z",
+      "name": "Sleeve Length",
       "schema": {
         "allowed_values": [
           "Sleeveless",
           "Short",
           "Long"
         ],
-        "multi": false,
         "format": "",
+        "multi": false,
         "range": {},
         "type": "str"
       },
-      "modified_by": {
-        "username": "rockypatro_gofynd_com_32787",
-        "user_id": "59ad6a452775bfd63674f0a5"
+      "slug": "sleeve-length",
+      "variant": false
+    },
+    {
+      "created_by": {
+        "user_id": "59ad6a452775bfd63674f0a5",
+        "username": "rockypatro_gofynd_com_32787"
       },
-      "name": "Sleeve Length",
+      "created_on": "2022-03-17T14:52:12.367000Z",
+      "departments": [
+        "men-s-fashion",
+        "women-s-fashion"
+      ],
+      "description": "A repeated form or design on the product, Select the values from the dropdown.",
       "details": {
         "display_type": "text"
       },
-      "created_on": "2022-03-17T14:53:45.700000Z",
-      "created_by": {
-        "username": "rockypatro_gofynd_com_32787",
-        "user_id": "59ad6a452775bfd63674f0a5"
-      },
-      "description": "Specify the length of the sleeve. Select the value from the dropdown",
-      "variant": false,
-      "modified_on": "2022-03-17T14:53:45.700000Z",
       "enabled_for_end_consumer": true,
-      "departments": [
-        "men-s-fashion"
-      ],
       "filters": {
         "indexing": true,
-        "priority": 8
+        "priority": 7
       },
-      "slug": "sleeve-length",
-      "id": "62334b79d6b144588682e1bf"
-    },
-    {
+      "id": "62334b1cd6b144588682e1be",
+      "modified_by": {
+        "user_id": "f6fccadda27e6b365b87c027",
+        "username": "jagadeshsahadevan_gofynd_com_66706"
+      },
+      "modified_on": "2022-03-24T07:23:32.752000Z",
+      "name": "Pattern",
       "schema": {
-        "format": "",
-        "range": {},
         "allowed_values": [
           "Solid",
           "Printed",
           "Ripped",
           "Checked"
         ],
-        "type": "str",
-        "multi": false
-      },
-      "modified_by": {
-        "username": "jagadeshsahadevan_gofynd_com_66706",
-        "user_id": "f6fccadda27e6b365b87c027"
-      },
-      "name": "Pattern",
-      "details": {
-        "display_type": "text"
-      },
-      "created_on": "2022-03-17T14:52:12.367000Z",
-      "created_by": {
-        "username": "rockypatro_gofynd_com_32787",
-        "user_id": "59ad6a452775bfd63674f0a5"
-      },
-      "description": "A repeated form or design on the product, Select the values from the dropdown.",
-      "variant": false,
-      "modified_on": "2022-03-24T07:23:32.752000Z",
-      "enabled_for_end_consumer": true,
-      "departments": [
-        "men-s-fashion",
-        "women-s-fashion"
-      ],
-      "filters": {
-        "priority": 7,
-        "indexing": true
-      },
-      "slug": "pattern",
-      "id": "62334b1cd6b144588682e1be"
-    },
-    {
-      "schema": {
-        "allowed_values": [],
-        "multi": false,
         "format": "",
+        "multi": false,
         "range": {},
         "type": "str"
       },
-      "modified_by": {
-        "username": "rockypatro_gofynd_com_32787",
-        "user_id": "59ad6a452775bfd63674f0a5"
-      },
-      "name": "Material",
-      "details": {
-        "display_type": "text"
+      "slug": "pattern",
+      "variant": false
+    },
+    {
+      "created_by": {
+        "user_id": "59ad6a452775bfd63674f0a5",
+        "username": "rockypatro_gofynd_com_32787"
       },
       "created_on": "2022-03-17T14:50:30.717000Z",
-      "created_by": {
-        "username": "rockypatro_gofynd_com_32787",
-        "user_id": "59ad6a452775bfd63674f0a5"
-      },
-      "description": "Specify the Material name or Material composition of the product",
-      "variant": false,
-      "modified_on": "2022-03-17T14:50:30.717000Z",
-      "enabled_for_end_consumer": true,
       "departments": [
         "men-s-fashion",
         "beauty-and-personal-care",
         "electronics"
       ],
+      "description": "Specify the Material name or Material composition of the product",
+      "details": {
+        "display_type": "text"
+      },
+      "enabled_for_end_consumer": true,
       "filters": {
         "indexing": true,
         "priority": 6
       },
-      "slug": "material",
-      "id": "62334ab6d6b144588682e1bd"
-    },
-    {
+      "id": "62334ab6d6b144588682e1bd",
+      "modified_by": {
+        "user_id": "59ad6a452775bfd63674f0a5",
+        "username": "rockypatro_gofynd_com_32787"
+      },
+      "modified_on": "2022-03-17T14:50:30.717000Z",
+      "name": "Material",
       "schema": {
         "allowed_values": [],
-        "multi": false,
         "format": "",
+        "multi": false,
         "range": {},
         "type": "str"
       },
-      "modified_by": {
-        "username": "rockypatro_gofynd_com_32787",
-        "user_id": "59ad6a452775bfd63674f0a5"
-      },
-      "name": "Colour",
-      "details": {
-        "display_type": "text"
+      "slug": "material",
+      "variant": false
+    },
+    {
+      "created_by": {
+        "user_id": "59ad6a452775bfd63674f0a5",
+        "username": "rockypatro_gofynd_com_32787"
       },
       "created_on": "2022-03-17T14:49:43.160000Z",
-      "created_by": {
-        "username": "rockypatro_gofynd_com_32787",
-        "user_id": "59ad6a452775bfd63674f0a5"
-      },
-      "description": "Specify the colour of the product, if you have any customized colour name Specify in this column.",
-      "variant": false,
-      "modified_on": "2022-03-17T14:49:43.160000Z",
-      "enabled_for_end_consumer": true,
       "departments": [
         "men-s-fashion",
         "beauty-and-personal-care",
         "electronics"
       ],
+      "description": "Specify the colour of the product, if you have any customized colour name Specify in this column.",
+      "details": {
+        "display_type": "text"
+      },
+      "enabled_for_end_consumer": true,
       "filters": {
         "indexing": true,
         "priority": 5
       },
+      "id": "62334a87d6b144588682e1bc",
+      "modified_by": {
+        "user_id": "59ad6a452775bfd63674f0a5",
+        "username": "rockypatro_gofynd_com_32787"
+      },
+      "modified_on": "2022-03-17T14:49:43.160000Z",
+      "name": "Colour",
+      "schema": {
+        "allowed_values": [],
+        "format": "",
+        "multi": false,
+        "range": {},
+        "type": "str"
+      },
       "slug": "colour",
-      "id": "62334a87d6b144588682e1bc"
+      "variant": false
     }
   ]
 }
@@ -10929,52 +11482,52 @@ List of bulk product upload jobs. See `BulkRequestGetSchema` for details
 ```json
 {
   "items": {
-    "stage": "completed",
-    "company_id": 61,
-    "is_active": true,
-    "cancelled_records": [],
-    "failed": 0,
-    "template_tag": "footwear",
-    "modified_on": "2021-03-12T08:11:08.646000Z",
-    "created_on": "2021-03-12T08:11:06.848000Z",
-    "failed_records": [],
-    "created_by": {
-      "username": "yadavanuja039_gmail_com_82948",
-      "user_id": "23218433",
-      "full_name": "Anuja Yadav"
-    },
-    "total": 1,
-    "file_path": "https://hdn-1.fynd.com/company/61/self/documents/product-import/free/original/mkX5ApRmw-sample_bulk_products_footwear.xlsx",
-    "succeed": 1,
-    "modified_by": {
-      "username": "Silverbolt",
-      "user_id": "0"
-    },
     "cancelled": 0,
+    "cancelled_records": [],
+    "company_id": 61,
+    "created_by": {
+      "full_name": "Anuja Yadav",
+      "user_id": "23218433",
+      "username": "yadavanuja039_gmail_com_82948"
+    },
+    "created_on": "2021-03-12T08:11:06.848000Z",
+    "failed": 0,
+    "failed_records": [],
+    "file_path": "https://hdn-1.fynd.com/company/61/self/documents/product-import/free/original/mkX5ApRmw-sample_bulk_products_footwear.xlsx",
+    "id": "604b221a73bfa20001cb00e8",
+    "is_active": true,
+    "modified_by": {
+      "user_id": "0",
+      "username": "Silverbolt"
+    },
+    "modified_on": "2021-03-12T08:11:08.646000Z",
+    "stage": "completed",
+    "succeed": 1,
     "template": {
-      "is_expirable": false,
-      "is_physical": true,
-      "name": "Footwear",
       "banner": "https://hdn-1.fynd.com/seller/pictures/landscape-banner/original/nFPtXR_Beauty_&_Personal_Care_L.jpgf30455a5-d265-4382-b513-65afb9240320/nFPtXR_Beauty_and_Personal_Care_L.jpg",
-      "slug": "footwear",
-      "logo": "https://hdn-1.fynd.com/seller/pictures/logo/original/9Y2UEp_ssssss.jpg7359e4c6-4c53-4dbe-a920-ef8ac658afb1/9Y2UEp_ssssss.jpg",
       "departments": [
         "men",
         "women",
         "kids",
         "fashion"
       ],
-      "description": "Footwear is a garment worn on the feet to protect against environmental adversities like heat or ground textures. Example: Sports Shoes"
+      "description": "Footwear is a garment worn on the feet to protect against environmental adversities like heat or ground textures. Example: Sports Shoes",
+      "is_expirable": true,
+      "is_physical": true,
+      "logo": "https://hdn-1.fynd.com/seller/pictures/logo/original/9Y2UEp_ssssss.jpg7359e4c6-4c53-4dbe-a920-ef8ac658afb1/9Y2UEp_ssssss.jpg",
+      "name": "Footwear",
+      "slug": "footwear"
     },
-    "id": "604b221a73bfa20001cb00e8"
+    "template_tag": "footwear",
+    "total": 1
   },
   "page": {
-    "type": "",
     "current": 1,
-    "size": 26,
-    "has_previous": false,
     "has_next": true,
-    "item_total": 251
+    "has_previous": false,
+    "item_total": 251,
+    "size": 26,
+    "type": "number"
   }
 }
 ```
@@ -11036,152 +11589,152 @@ List of bundle configured for a company. See example below or refer `GetProductB
 
 ```json
 {
-  "page": {
-    "current": 1,
-    "total": 1,
-    "has_previous": false,
-    "has_next": false,
-    "total_item_count": 4,
-    "type": "products"
-  },
   "items": [
     {
-      "slug": "bag",
-      "logo": "http://g.com/poo.png/",
-      "name": "Bag",
       "choice": "multi",
-      "products": [
-        {
-          "product_uid": 7500001,
-          "max_quantity": 1,
-          "min_quantity": 1,
-          "auto_add_to_cart": false,
-          "auto_select": false,
-          "allow_remove": true
-        }
-      ],
-      "meta": {},
-      "same_store_assignment": true,
-      "is_active": true,
-      "page_visibility": [
-        "pdp"
-      ],
-      "created_by": {
-        "username": "917827311650_22960",
-        "uid": "123"
-      },
       "company_id": 1,
+      "created_by": {
+        "uid": "123",
+        "username": "917827311650_22960"
+      },
       "created_on": "2021-02-19 16:40:26.310007",
+      "id": "602f9ca2a596ce312f5956f9",
+      "is_active": true,
+      "logo": "http://g.com/poo.png/",
+      "meta": {},
       "modified_by": {
-        "username": "917827311650_22960",
-        "uid": "123"
+        "uid": "123",
+        "username": "917827311650_22960"
       },
       "modified_on": "2021-02-19 16:40:26.310027",
-      "id": "602f9ca2a596ce312f5956f9"
-    },
-    {
-      "choice": "multi",
-      "same_store_assignment": true,
-      "products": [
-        {
-          "auto_select": false,
-          "allow_remove": true,
-          "auto_add_to_cart": false,
-          "max_quantity": 1,
-          "product_uid": 7500001,
-          "min_quantity": 1
-        }
-      ],
-      "is_active": true,
-      "slug": "bag",
-      "meta": {},
-      "logo": "http://g.com/poo.png/",
+      "name": "Bag",
       "page_visibility": [
         "pdp"
       ],
-      "name": "Bag",
-      "created_by": {
-        "username": "917827311650_22960",
-        "uid": "123"
-      },
+      "products": [
+        {
+          "allow_remove": true,
+          "auto_add_to_cart": false,
+          "auto_select": false,
+          "max_quantity": 1,
+          "min_quantity": 1,
+          "product_uid": 7500001
+        }
+      ],
+      "same_store_assignment": true,
+      "slug": "bag"
+    },
+    {
+      "choice": "multi",
       "company_id": 1,
+      "created_by": {
+        "uid": "123",
+        "username": "917827311650_22960"
+      },
       "created_on": "2021-02-19 16:21:35.091512",
+      "id": "602f9837a596ce2edf9868e2",
+      "is_active": true,
+      "logo": "http://g.com/poo.png/",
+      "meta": {},
       "modified_by": {
-        "username": "917827311650_22960",
-        "uid": "123"
+        "uid": "123",
+        "username": "917827311650_22960"
       },
       "modified_on": "2021-02-19 16:21:35.091540",
-      "id": "602f9837a596ce2edf9868e2"
-    },
-    {
-      "slug": "bag",
-      "is_active": true,
-      "same_store_assignment": true,
-      "meta": {},
-      "choice": "multi",
-      "logo": "http://g.com/poo.png/",
+      "name": "Bag",
       "page_visibility": [
         "pdp"
       ],
-      "name": "Bag",
       "products": [
         {
-          "auto_select": false,
-          "min_quantity": 1,
           "allow_remove": true,
           "auto_add_to_cart": false,
+          "auto_select": false,
           "max_quantity": 1,
+          "min_quantity": 1,
           "product_uid": 7500001
         }
       ],
-      "created_by": {
-        "username": "917827311650_22960",
-        "uid": "123"
-      },
+      "same_store_assignment": true,
+      "slug": "bag"
+    },
+    {
+      "choice": "multi",
       "company_id": 1,
+      "created_by": {
+        "uid": "123",
+        "username": "917827311650_22960"
+      },
       "created_on": "2021-02-19 16:20:24.605207",
+      "id": "602f97f0a596ce2ead47cd0b",
+      "is_active": true,
+      "logo": "http://g.com/poo.png/",
+      "meta": {},
       "modified_by": {
-        "username": "917827311650_22960",
-        "uid": "123"
+        "uid": "123",
+        "username": "917827311650_22960"
       },
       "modified_on": "2021-02-19 16:20:24.605230",
-      "id": "602f97f0a596ce2ead47cd0b"
-    },
-    {
-      "products": [
-        {
-          "auto_select": false,
-          "auto_add_to_cart": false,
-          "min_quantity": 1,
-          "allow_remove": true,
-          "max_quantity": 1,
-          "product_uid": 7500001
-        }
-      ],
-      "is_active": true,
-      "logo": "http://g.com/poo.png/",
       "name": "Bag",
-      "choice": "multi",
-      "slug": "bag",
-      "same_store_assignment": true,
       "page_visibility": [
         "pdp"
       ],
-      "meta": {},
-      "created_by": {
-        "username": "917827311650_22960",
-        "uid": "123"
-      },
+      "products": [
+        {
+          "allow_remove": true,
+          "auto_add_to_cart": false,
+          "auto_select": false,
+          "max_quantity": 1,
+          "min_quantity": 1,
+          "product_uid": 7500001
+        }
+      ],
+      "same_store_assignment": true,
+      "slug": "bag"
+    },
+    {
+      "choice": "multi",
       "company_id": 1,
+      "created_by": {
+        "uid": "123",
+        "username": "917827311650_22960"
+      },
       "created_on": "2021-02-19 16:16:46.196449",
+      "id": "602f9716a596ce2e415196df",
+      "is_active": true,
+      "logo": "http://g.com/poo.png/",
+      "meta": {},
       "modified_by": {
-        "username": "917827311650_22960",
-        "uid": "123"
+        "uid": "123",
+        "username": "917827311650_22960"
       },
       "modified_on": "2021-02-19 16:16:46.196467",
-      "id": "602f9716a596ce2e415196df"
+      "name": "Bag",
+      "page_visibility": [
+        "pdp"
+      ],
+      "products": [
+        {
+          "allow_remove": true,
+          "auto_add_to_cart": false,
+          "auto_select": false,
+          "max_quantity": 1,
+          "min_quantity": 1,
+          "product_uid": 7500001
+        }
+      ],
+      "same_store_assignment": true,
+      "slug": "bag"
     }
-  ]
+  ],
+  "page": {
+    "current": 1,
+    "has_next": false,
+    "has_previous": false,
+    "total": 1,
+    "total_item_count": 4,
+    "type": "number"
+  }
 }
 ```
 </details>
@@ -11239,39 +11792,39 @@ The Collection object. See example below or refer `GetProductBundleResponse` for
 
 ```json
 {
-  "slug": "bag",
+  "choice": "multi",
   "company_id": 1,
   "logo": "http://g.com/poo.png/",
+  "meta": {},
   "name": "Bag",
-  "choice": "multi",
+  "page_visibility": [
+    "pdp"
+  ],
   "products": [
     {
-      "product_uid": 7500001,
+      "allow_remove": true,
+      "auto_add_to_cart": false,
+      "auto_select": false,
+      "max_quantity": 1,
+      "min_quantity": 1,
       "product_details": {
-        "country_of_origin": "India",
-        "slug": "slug-1",
-        "item_code": "760B3BFF-4905-44B8-A50E-082829E7107F",
         "attributes": {
           "brand_name": "brand 2"
         },
-        "name": "Some Phone",
+        "country_of_origin": "India",
         "images": [
           "https://hdn-1.addsale.com/x0/media/pictures/tagged_items/original/random_code_4/FE6DUR_000000.png"
         ],
+        "item_code": "760B3BFF-4905-44B8-A50E-082829E7107F",
+        "name": "Some Phone",
+        "slug": "slug-1",
         "uid": 7500001
       },
-      "max_quantity": 1,
-      "min_quantity": 1,
-      "auto_add_to_cart": false,
-      "auto_select": false,
-      "allow_remove": true
+      "product_uid": 7500001
     }
   ],
-  "meta": {},
   "same_store_assignment": true,
-  "page_visibility": [
-    "pdp"
-  ]
+  "slug": "bag"
 }
 ```
 </details>
@@ -11329,10 +11882,73 @@ The Product object. See example below or refer `ProductDetail` for details.
 
 ```json
 {
-  "type": "product",
+  "attributes": {
+    "brand": "Barry, Jennings and Larson",
+    "color": "DarkGrey",
+    "color_hex": "808080",
+    "gender": [
+      "Men",
+      "Women"
+    ],
+    "item_code": "LGLAPTOPSLEEVE5",
+    "material": "Neoprene",
+    "occasion": "Casual",
+    "primary_color": "Grey",
+    "primary_color_hex": "808080",
+    "primary_material": "Others",
+    "product_details": "This is a Unisex Product.",
+    "product_type": "LaptopBags",
+    "style_note": "Shape up your overall appeal with this stunning laptop bag. The amazing storage and great design will let you carry your laptop in style!",
+    "variant": "LGLAPTOPSLEEVE5",
+    "weight": 100
+  },
+  "brand": {
+    "_custom_json": {},
+    "action": {
+      "page": {
+        "query": {
+          "brand": [
+            "Hess-Inc"
+          ]
+        },
+        "type": "products"
+      },
+      "type": "page"
+    },
+    "logo": {
+      "type": "image",
+      "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+    },
+    "name": "Barry, Jennings and Larson",
+    "uid": 1
+  },
+  "categories": [
+    {
+      "_custom_json": {},
+      "action": {
+        "page": {
+          "query": {
+            "category": [
+              "Amy-Kim-DDS"
+            ]
+          },
+          "type": "category"
+        },
+        "type": "page"
+      },
+      "id": 3,
+      "logo": {
+        "type": "image",
+        "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
+      },
+      "name": "Amy Kim DDS",
+      "uid": 3
+    }
+  ],
+  "color": "808080",
+  "custom_order": {},
   "grouped_attributes": [
     {
-      "title": "Alexander Sawyer",
       "details": [
         {
           "key": "Kimberly Davidson",
@@ -11354,97 +11970,34 @@ The Product object. See example below or refer `ProductDetail` for details.
           "type": "text",
           "value": "100 g"
         }
-      ]
+      ],
+      "title": "Alexander Sawyer"
     }
   ],
+  "has_variant": true,
+  "image_nature": "standard",
   "medias": [
     {
       "type": "image",
       "url": "http://cdn4.gofynd.com/media/pictures/tagged_items/original/1309_LGLAPTOPSLEEVE5/1_1564735832806.jpg"
     }
   ],
-  "brand": {
-    "name": "Barry, Jennings and Larson",
-    "uid": 1,
-    "logo": {
-      "type": "image",
-      "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
-    },
-    "action": {
-      "page": {
-        "type": "products",
-        "query": {
-          "brand": [
-            "Hess-Inc"
-          ]
-        }
-      },
-      "type": "page"
-    },
-    "_custom_json": {}
-  },
-  "uid": 1,
-  "slug": "benchmark-collaborative-paradigms",
-  "attributes": {
-    "color_hex": "808080",
-    "weight": 100,
-    "product_type": "LaptopBags",
-    "gender": [
-      "Men",
-      "Women"
-    ],
-    "material": "Neoprene",
-    "style_note": "Shape up your overall appeal with this stunning laptop bag. The amazing storage and great design will let you carry your laptop in style!",
-    "item_code": "LGLAPTOPSLEEVE5",
-    "occasion": "Casual",
-    "primary_color": "Grey",
-    "primary_material": "Others",
-    "variant": "LGLAPTOPSLEEVE5",
-    "color": "DarkGrey",
-    "product_details": "This is a Unisex Product.",
-    "primary_color_hex": "808080",
-    "brand": "Barry, Jennings and Larson"
-  },
   "name": "benchmark collaborative paradigms",
-  "has_variant": true,
-  "categories": [
-    {
-      "id": 3,
-      "uid": 3,
-      "name": "Amy Kim DDS",
-      "logo": {
-        "type": "image",
-        "url": "https://hdn-1.fynd.com/media/banner_portrait/brand/original/540_ecba3a1af141467da8abc20500f983db.jpg"
-      },
-      "action": {
-        "page": {
-          "type": "category",
-          "query": {
-            "category": [
-              "Amy-Kim-DDS"
-            ]
-          }
-        },
-        "type": "page"
-      },
-      "_custom_json": {}
-    }
-  ],
-  "tryouts": [],
+  "no_of_boxes": 1,
+  "product_online_date": "2021-02-03T07:22:29Z",
   "rating": 2.7,
   "rating_count": 2,
-  "image_nature": "standard",
+  "similars": [
+    "brand"
+  ],
+  "slug": "benchmark-collaborative-paradigms",
   "tags": [
     "Digital"
   ],
   "teaser_tag": {},
-  "no_of_boxes": 1,
-  "product_online_date": "2021-02-03T07:22:29Z",
-  "custom_order": {},
-  "color": "808080",
-  "similars": [
-    "brand"
-  ]
+  "tryouts": [],
+  "type": "product",
+  "uid": 1
 }
 ```
 </details>
@@ -11511,22 +12064,24 @@ List of Product Downloads Data. See example below or refer `ProductDownloadsResp
 
 ```json
 {
-  "page": {},
   "items": [
     {
+      "completed_on": "2020-12-23T07:23:41.031000Z",
       "created_by": {
-        "username": "917972410891_48194",
-        "user_id": "5646"
+        "user_id": "5646",
+        "username": "917972410891_48194"
       },
       "data": {
-        "type": "csv",
         "brand": [
           "ruosh"
         ],
         "templates": [
           "mobile-phones-and-tablet"
-        ]
+        ],
+        "type": "csv"
       },
+      "id": "5fe2f077516d980001880943",
+      "seller_id": 3,
       "status": "success",
       "task_id": "c4b54ace-44ef-11eb-9806-1ef9bc4a2da1",
       "template_tags": {
@@ -11536,12 +12091,10 @@ List of Product Downloads Data. See example below or refer `ProductDownloadsResp
         }
       },
       "trigger_on": "2020-12-23T07:23:35.302000Z",
-      "seller_id": 3,
-      "completed_on": "2020-12-23T07:23:41.031000Z",
-      "url": "https://regrowth.s3.amazonaws.com/slingshot-catalogues/seller-catalog/3/c4b54ace-44ef-11eb-9806-1ef9bc4a2da1/c4b54ace-44ef-11eb-9806-1ef9bc4a2da1.zip",
-      "id": "5fe2f077516d980001880943"
+      "url": "https://regrowth.s3.amazonaws.com/slingshot-catalogues/seller-catalog/3/c4b54ace-44ef-11eb-9806-1ef9bc4a2da1/c4b54ace-44ef-11eb-9806-1ef9bc4a2da1.zip"
     }
-  ]
+  ],
+  "page": {}
 }
 ```
 </details>
@@ -11608,105 +12161,105 @@ Product object. See example below for details
 
 ```json
 {
-  "name": "SQUADMTGIVESPACE",
-  "country_of_origin": "India",
-  "highlights": null,
-  "hsn_code": "61099090",
-  "item_code": "ACTESTCREATELISTING1",
-  "is_set": false,
-  "description": "",
-  "currency": "INR",
-  "slug": "play-clan-squadmtgivespace-857587-e928b0",
-  "template_tag": "topwear",
-  "is_active": false,
-  "departments": [
-    1
-  ],
-  "uid": 857587,
   "all_sizes": [
     "3XL"
   ],
-  "category_slug": "t-shirts",
-  "company_id": 61,
-  "media": [],
-  "size_guide": "play-clan-men-casual-tees",
-  "is_dependent": false,
-  "item_type": "standard",
-  "multi_size": true,
-  "product_publish": {
-    "is_set": false,
-    "product_online_date": 1595478043
-  },
-  "id": "5f19101b99ee0500011dc896",
-  "brand": {
-    "name": "play clan",
-    "logo": {
-      "aspect_ratio": "1:1",
-      "aspect_ratio_f": 1,
-      "url": "https://hdn-1.fynd.com/brands/pictures/square-logo/50x0/zjt4-wU8Lk-VQYu0pcokb-r6yteuannoorjkq9f4tk.jpg",
-      "secure_url": "https://hdn-1.fynd.com/brands/pictures/square-logo/50x0/zjt4-wU8Lk-VQYu0pcokb-r6yteuannoorjkq9f4tk.jpg"
-    },
-    "uid": 85
-  },
-  "images": [],
-  "sizes": [
-    {
-      "price_transfer": 0,
-      "price_effective": 10000,
-      "price": 10000,
-      "currency": "INR",
-      "is_set": false,
-      "size": "3XL",
-      "identifiers": [
-        {
-          "gtin_type": "sku_code",
-          "gtin_value": "ACTESTCREATELISTING1_3XL",
-          "primary": true
-        }
-      ]
-    }
-  ],
   "attributes": {
-    "essential": "Yes",
     "color": "Red",
+    "created_by": {
+      "company_id": 1181,
+      "user_id": "-1",
+      "username": "silverbolt"
+    },
+    "created_on": "2020-07-23T04:20:43.810000Z",
+    "essential": "Yes",
     "gender": [
       "Men"
     ],
-    "material": "cotton",
-    "pattern": "Printed",
-    "product_fit": "Regular",
-    "sleeve_length": "Short",
-    "neck_type": "Round Neck",
-    "primary_color": "Red",
-    "primary_material": "Others",
+    "image_nature": "standard",
+    "is_image_less_product": false,
     "l3_mapping": [
       "men>casual_tees",
       "women>casual_tees",
       "girls>casual_tees",
       "more>casual_tees"
     ],
-    "image_nature": "standard",
+    "material": "cotton",
     "meta_nature": "standard",
-    "created_on": "2020-07-23T04:20:43.810000Z",
-    "created_by": {
-      "username": "silverbolt",
+    "modified_by": {
+      "company_id": 61,
       "user_id": "-1",
-      "company_id": 1181
+      "username": "silverbolt"
     },
     "modified_on": "2020-07-23T04:20:44.185000Z",
-    "modified_by": {
-      "username": "silverbolt",
-      "user_id": "-1",
-      "company_id": 61
-    },
+    "neck_type": "Round Neck",
+    "pattern": "Printed",
+    "primary_color": "Red",
+    "primary_material": "Others",
+    "product_fit": "Regular",
+    "sleeve_length": "Short",
     "stage": "verified",
     "verified_by": {
-      "username": "Silverbolt",
-      "user_id": "0"
+      "user_id": "0",
+      "username": "Silverbolt"
     },
-    "verified_on": 1595478044,
-    "is_image_less_product": false
-  }
+    "verified_on": 1595478044
+  },
+  "brand": {
+    "logo": {
+      "aspect_ratio": "1:1",
+      "aspect_ratio_f": 1,
+      "secure_url": "https://hdn-1.fynd.com/brands/pictures/square-logo/50x0/zjt4-wU8Lk-VQYu0pcokb-r6yteuannoorjkq9f4tk.jpg",
+      "url": "https://hdn-1.fynd.com/brands/pictures/square-logo/50x0/zjt4-wU8Lk-VQYu0pcokb-r6yteuannoorjkq9f4tk.jpg"
+    },
+    "name": "play clan",
+    "uid": 85
+  },
+  "category_slug": "t-shirts",
+  "company_id": 61,
+  "country_of_origin": "India",
+  "currency": "INR",
+  "departments": [
+    1
+  ],
+  "description": "",
+  "highlights": null,
+  "hsn_code": "61099090",
+  "id": "5f19101b99ee0500011dc896",
+  "images": [],
+  "is_active": false,
+  "is_dependent": false,
+  "is_set": false,
+  "item_code": "ACTESTCREATELISTING1",
+  "item_type": "standard",
+  "media": [],
+  "multi_size": true,
+  "name": "SQUADMTGIVESPACE",
+  "product_publish": {
+    "is_set": false,
+    "product_online_date": 1595478043
+  },
+  "size_guide": "play-clan-men-casual-tees",
+  "sizes": [
+    {
+      "currency": "INR",
+      "identifiers": [
+        {
+          "gtin_type": "sku_code",
+          "gtin_value": "ACTESTCREATELISTING1_3XL",
+          "primary": true
+        }
+      ],
+      "is_set": false,
+      "price": 10000,
+      "price_effective": 10000,
+      "price_transfer": 0,
+      "size": "3XL"
+    }
+  ],
+  "slug": "play-clan-squadmtgivespace-857587-e928b0",
+  "template_tag": "topwear",
+  "uid": 857587
 }
 ```
 </details>
@@ -11899,49 +12452,17 @@ Product Meta. See example below for details
 {
   "items": [
     {
-      "name": "TV Set",
-      "description": "Tv",
-      "country_of_origin": "India",
-      "currency": "INR",
-      "short_description": "",
-      "is_set": true,
-      "item_code": "TVSET111",
-      "brand_uid": 1,
-      "template_tag": "television",
-      "highlights": [
-        "42 Inch"
-      ],
-      "slug": "tv-set",
       "_custom_json": {},
-      "l3_mapping": [
-        "electronics>qled_television"
-      ],
-      "image_nature": "standard",
-      "departments": [
+      "all_company_ids": [
         1
       ],
-      "created_on": "2022-12-31T23:59:59Z",
-      "created_by": {
-        "username": "919049753052_37528",
-        "user_id": "5"
-      },
-      "modified_on": "2022-12-31T23:59:59Z",
-      "modified_by": {
-        "username": "xxxxxxxxxx",
-        "user_id": "xxxxxxxxxxx"
-      },
-      "stage": "verified",
-      "uid": 7501547,
-      "verified_by": {
-        "username": "Silverbolt",
-        "user_id": "0"
-      },
-      "verified_on": "2020-07-23T04:20:43.810000Z",
+      "all_identifiers": [
+        "19WE100"
+      ],
       "all_sizes": [
         {
-          "item_code": "TVSET111",
           "brand_uid": 1,
-          "seller_identifier": "HGS272727272",
+          "company_id": 1,
           "identifiers": [
             {
               "gtin_type": "ean",
@@ -11949,62 +12470,100 @@ Product Meta. See example below for details
               "primary": true
             }
           ],
-          "company_id": 1,
-          "size": "XXLX23, MX11, LX67, XLX45 (146 PCS)",
-          "marked_price": 35000
+          "item_code": "TVSET111",
+          "marked_price": 35000,
+          "seller_identifier": "HGS272727272",
+          "size": "XXLX23, MX11, LX67, XLX45 (146 PCS)"
         }
       ],
-      "category_slug": "qled-television",
-      "is_image_less_product": false,
-      "media": [
-        {
-          "url": "https://hdn-1.addsale.com/x0/products/pictures/item/free/135x0/dcizgsG_Y-Tv-Set.png",
-          "type": "image"
-        }
-      ],
-      "variants": {},
-      "product_publish": {
-        "is_set": false,
-        "product_online_date": "2022-12-31T23:59:59Z"
+      "brand": {
+        "logo": {
+          "aspect_ratio": "1:1",
+          "aspect_ratio_f": 1,
+          "secure_url": "https://hdn-1.jiox0.de/jioecomm/seller/pictures/logo/50x0/apple-7f951c/logo_apple.png",
+          "url": "https://hdn-1.jiox0.de/jioecomm/seller/pictures/logo/50x0/apple-7f951c/logo_apple.png"
+        },
+        "name": "Apple",
+        "uid": 13
       },
-      "is_dependent": false,
-      "is_physical": true,
-      "item_type": "set",
+      "brand_uid": 1,
+      "category_slug": "qled-television",
       "category_uid": 1,
+      "country_of_origin": "India",
+      "created_by": {
+        "user_id": "5",
+        "username": "919049753052_37528"
+      },
+      "created_on": "2021-04-02T15:43:59.410000Z",
+      "currency": "INR",
       "custom_order": {
-        "manufacturing_time": 2,
         "is_custom_order": true,
+        "manufacturing_time": 2,
         "manufacturing_time_unit": "days"
       },
-      "multi_size": true,
-      "no_of_boxes": 1,
-      "product_group_tag": [],
-      "size_guide": "slim-fit-shirts-for-men",
-      "tags": [],
-      "teaser_tag": {},
-      "synonyms": [],
-      "hsn_code": "11111111",
-      "return_config": {
-        "unit": "days",
-        "returnable": false,
-        "time": 0
-      },
-      "all_company_ids": [
+      "departments": [
         1
       ],
-      "all_identifiers": [
-        "19WE100"
+      "description": "Tv",
+      "highlights": [
+        "42 Inch"
       ],
-      "trader": [
+      "hsn_code": "11111111",
+      "id": "5f4f2f6371a5970001f13655",
+      "image_nature": "standard",
+      "images": [
         {
-          "address": [
-            "sdfdsfsdf"
-          ],
-          "name": "asdasd"
+          "aspect_ratio": "16:25",
+          "aspect_ratio_f": 0.64,
+          "secure_url": "https://hdn-1.addsale.com/x0/products/pictures/item/free/135x0/dcizgsG_Y-Tv-Set.png",
+          "url": "https://hdn-1.addsale.com/x0/products/pictures/item/free/135x0/dcizgsG_Y-Tv-Set.png"
         }
       ],
-      "trader_type": "Packer",
-      "verification_status": "pending",
+      "is_dependent": false,
+      "is_image_less_product": false,
+      "is_physical": true,
+      "is_set": true,
+      "item_code": "TVSET111",
+      "item_type": "set",
+      "l3_mapping": [
+        "electronics>qled_television"
+      ],
+      "media": [
+        {
+          "type": "image",
+          "url": "https://hdn-1.addsale.com/x0/products/pictures/item/free/135x0/dcizgsG_Y-Tv-Set.png"
+        }
+      ],
+      "modified_by": {
+        "user_id": "xxxxxxxxxxx",
+        "username": "xxxxxxxxxx"
+      },
+      "modified_on": "2021-04-02T15:43:59.410000Z",
+      "multi_size": true,
+      "name": "TV Set",
+      "no_of_boxes": 1,
+      "price": {
+        "effective": {
+          "max": 25000,
+          "min": 25000
+        },
+        "marked": {
+          "max": 35000,
+          "min": 35000
+        }
+      },
+      "product_group_tag": [],
+      "product_publish": {
+        "is_set": false,
+        "product_online_date": "2021-04-02T15:43:59.410000Z"
+      },
+      "return_config": {
+        "returnable": false,
+        "time": 0,
+        "unit": "days"
+      },
+      "short_description": "",
+      "size_guide": "slim-fit-shirts-for-men",
       "sizes": [
         {
           "size": "FGX33, GHX33 (66 PCS)",
@@ -12023,44 +12582,38 @@ Product Meta. See example below for details
           "store_count": 3
         }
       ],
-      "id": "5f4f2f6371a5970001f13655",
-      "brand": {
-        "name": "Apple",
-        "logo": {
-          "aspect_ratio": "1:1",
-          "aspect_ratio_f": 1,
-          "url": "https://hdn-1.jiox0.de/jioecomm/seller/pictures/logo/50x0/apple-7f951c/logo_apple.png",
-          "secure_url": "https://hdn-1.jiox0.de/jioecomm/seller/pictures/logo/50x0/apple-7f951c/logo_apple.png"
-        },
-        "uid": 13
-      },
-      "images": [
+      "slug": "tv-set",
+      "stage": "verified",
+      "synonyms": [],
+      "tags": [],
+      "teaser_tag": {},
+      "template_tag": "television",
+      "trader": [
         {
-          "aspect_ratio": "16:25",
-          "aspect_ratio_f": 0.64,
-          "url": "https://hdn-1.addsale.com/x0/products/pictures/item/free/135x0/dcizgsG_Y-Tv-Set.png",
-          "secure_url": "https://hdn-1.addsale.com/x0/products/pictures/item/free/135x0/dcizgsG_Y-Tv-Set.png"
+          "address": [
+            "sdfdsfsdf"
+          ],
+          "name": "asdasd"
         }
       ],
-      "price": {
-        "marked": {
-          "min": 35000,
-          "max": 35000
-        },
-        "effective": {
-          "min": 25000,
-          "max": 25000
-        }
-      }
+      "trader_type": "Packer",
+      "uid": 7501547,
+      "variants": {},
+      "verification_status": "pending",
+      "verified_by": {
+        "user_id": "0",
+        "username": "Silverbolt"
+      },
+      "verified_on": "2020-07-23T04:20:43.810000Z"
     }
   ],
   "page": {
-    "type": "number",
     "current": 1,
-    "size": 1,
-    "item_total": 1,
+    "has_next": false,
     "has_previous": false,
-    "has_next": false
+    "item_total": 1,
+    "size": 1,
+    "type": "number"
   }
 }
 ```
@@ -12114,58 +12667,55 @@ The attached items of an collection. See example below or refer `GetCollectionQu
 
 ```json
 {
-  "operators": {
-    "additionalProperties": ""
-  },
   "filters": [
     {
       "key": {
         "display": "Department",
-        "name": "department",
         "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Department.png"
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Department.png",
+        "name": "department"
       },
       "values": [
         {
-          "display": "Men's Fashion",
           "count": 2113,
+          "display": "Men's Fashion",
           "is_selected": false,
-          "value": "men",
           "logo": {
             "type": "image",
             "url": "https://hdn-1.fynd.com/media/category_tab_icons/department/Men.png"
-          }
+          },
+          "value": "men"
         }
       ]
     },
     {
       "key": {
         "display": "Category",
-        "name": "category",
         "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Category.png"
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Category.png",
+        "name": "category"
       },
       "values": [
         {
-          "display": "T-Shirts",
           "count": 968,
+          "display": "T-Shirts",
           "is_selected": false,
-          "value": "192",
-          "logo": "https://hdn-1.fynd.com/media/logo/category/original/15442_57fdc97abfd248aaaf8841f097a4ed67.jpg"
+          "logo": "https://hdn-1.fynd.com/media/logo/category/original/15442_57fdc97abfd248aaaf8841f097a4ed67.jpg",
+          "value": "192"
         }
       ]
     },
     {
       "key": {
         "display": "Size",
-        "name": "sizes",
         "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Sizes.png"
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Sizes.png",
+        "name": "sizes"
       },
       "values": [
         {
-          "display": "S",
           "count": 1438,
+          "display": "S",
           "is_selected": false,
           "value": "S"
         }
@@ -12174,47 +12724,47 @@ The attached items of an collection. See example below or refer `GetCollectionQu
     {
       "key": {
         "display": "Brand",
-        "name": "brand",
         "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Brand%20ID.png"
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Brand%20ID.png",
+        "name": "brand"
       },
       "values": [
         {
-          "display": "Superdry",
           "count": 4263,
+          "display": "Superdry",
           "is_selected": false,
-          "value": "235",
-          "logo": "https://hdn-1.fynd.com/media/logo/brand/original/1008_238113b8e11448f792e9bf860aac30f2.jpg"
+          "logo": "https://hdn-1.fynd.com/media/logo/brand/original/1008_238113b8e11448f792e9bf860aac30f2.jpg",
+          "value": "235"
         }
       ]
     },
     {
       "key": {
         "display": "Rating",
-        "name": "rating",
         "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Rating.png"
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Rating.png",
+        "name": "rating"
       },
       "values": [
         {
           "count": 3,
           "display": "5 ★",
-          "value": "[4 TO *}",
-          "is_selected": false
+          "is_selected": false,
+          "value": "[4 TO *}"
         }
       ]
     },
     {
       "key": {
         "display": "Company",
-        "name": "company_id_list",
         "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Store%20ID%20List.png"
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Store%20ID%20List.png",
+        "name": "company_id_list"
       },
       "values": [
         {
-          "display": "RELIANCE BRANDS LIMITED",
           "count": 4262,
+          "display": "RELIANCE BRANDS LIMITED",
           "is_selected": false,
           "value": "46"
         }
@@ -12223,14 +12773,14 @@ The attached items of an collection. See example below or refer `GetCollectionQu
     {
       "key": {
         "display": "Store Ids",
-        "name": "store_id_list",
         "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Store%20ID%20List.png"
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Store%20ID%20List.png",
+        "name": "store_id_list"
       },
       "values": [
         {
-          "display": "PHOENIX, ,PALLADIUM,  LOWER PAREL - 5410",
           "count": 1385,
+          "display": "PHOENIX, ,PALLADIUM,  LOWER PAREL - 5410",
           "is_selected": false,
           "value": "2201"
         }
@@ -12239,20 +12789,20 @@ The attached items of an collection. See example below or refer `GetCollectionQu
     {
       "key": {
         "display": "Image",
-        "name": "image_nature",
         "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/image%20Nature.png"
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/image%20Nature.png",
+        "name": "image_nature"
       },
       "values": [
         {
-          "display": "Good Quality",
           "count": 3111,
+          "display": "Good Quality",
           "is_selected": false,
           "value": "standard"
         },
         {
-          "display": "No Image",
           "count": 1152,
+          "display": "No Image",
           "is_selected": false,
           "value": "default"
         }
@@ -12261,14 +12811,14 @@ The attached items of an collection. See example below or refer `GetCollectionQu
     {
       "key": {
         "display": "Set",
-        "name": "is_set",
         "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Size%20Depth.png"
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Department.png",
+        "name": "is_set"
       },
       "values": [
         {
-          "display": "No",
           "count": 4263,
+          "display": "No",
           "is_selected": false,
           "value": false
         }
@@ -12277,14 +12827,14 @@ The attached items of an collection. See example below or refer `GetCollectionQu
     {
       "key": {
         "display": "Product Fit",
-        "name": "product_fit",
         "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Size%20Depth.png"
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Department.png",
+        "name": "product_fit"
       },
       "values": [
         {
-          "display": "Regular",
           "count": 14,
+          "display": "Regular",
           "is_selected": false,
           "value": "Regular"
         }
@@ -12293,14 +12843,14 @@ The attached items of an collection. See example below or refer `GetCollectionQu
     {
       "key": {
         "display": "Primary Material",
-        "name": "primary_material",
         "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Size%20Depth.png"
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Department.png",
+        "name": "primary_material"
       },
       "values": [
         {
-          "display": "Cotton",
           "count": 1246,
+          "display": "Cotton",
           "is_selected": false,
           "value": "Cotton"
         }
@@ -12309,20 +12859,20 @@ The attached items of an collection. See example below or refer `GetCollectionQu
     {
       "key": {
         "display": "Gender",
-        "name": "gender",
         "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Size%20Depth.png"
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Department.png",
+        "name": "gender"
       },
       "values": [
         {
-          "display": "Men",
           "count": 2125,
+          "display": "Men",
           "is_selected": false,
           "value": "Men"
         },
         {
-          "display": "Women",
           "count": 1492,
+          "display": "Women",
           "is_selected": false,
           "value": "Women"
         }
@@ -12331,14 +12881,14 @@ The attached items of an collection. See example below or refer `GetCollectionQu
     {
       "key": {
         "display": "Primary Colour",
-        "name": "primary_color",
         "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Size%20Depth.png"
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Department.png",
+        "name": "primary_color"
       },
       "values": [
         {
-          "display": "Multi",
           "count": 1403,
+          "display": "Multi",
           "is_selected": false,
           "value": "Multi"
         }
@@ -12347,127 +12897,198 @@ The attached items of an collection. See example below or refer `GetCollectionQu
     {
       "key": {
         "display": "Size Depth",
-        "name": "size_depth",
         "kind": "range",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Size%20Depth.png"
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Size%20Depth.png",
+        "name": "size_depth"
       },
       "values": [
         {
           "count": 4263,
-          "min": 0,
-          "max": 9,
-          "is_selected": false,
-          "selected_min": 0,
-          "selected_max": 9,
-          "query_format": "[{} TO {}]",
-          "display_format": "{} - {}",
           "display": "0 - 9",
-          "value": ""
+          "display_format": "{} - {}",
+          "is_selected": false,
+          "max": 9,
+          "min": 0,
+          "query_format": "[{} TO {}]",
+          "selected_max": 9,
+          "selected_min": 0,
+          "value": 1
         }
       ]
     },
     {
       "key": {
         "display": "Price",
-        "name": "min_price_effective",
         "kind": "range",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Min%20price%20effective.png"
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Min%20price%20effective.png",
+        "name": "min_price_effective"
       },
       "values": [
         {
           "count": 4263,
-          "min": 398,
-          "max": 24999,
-          "is_selected": false,
-          "selected_min": 398,
-          "selected_max": 24998,
           "currency_code": "INR",
           "currency_symbol": "₹",
-          "query_format": "[{},INR TO {},INR]",
           "display": "0 - 9",
-          "value": ""
+          "is_selected": false,
+          "max": 24999,
+          "min": 398,
+          "query_format": "[{},INR TO {},INR]",
+          "selected_max": 24998,
+          "selected_min": 398,
+          "value": 1
         }
       ]
     },
     {
       "key": {
         "display": "Discount",
-        "name": "platform_discount",
         "kind": "range",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Platform%20Discount.png"
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Platform%20Discount.png",
+        "name": "platform_discount"
       },
       "values": [
         {
           "count": 4263,
-          "min": 0,
-          "max": 50,
-          "is_selected": false,
-          "selected_min": 0,
-          "selected_max": 50,
-          "query_format": "[{} TO {}]",
-          "display_format": "{} - {}",
           "display": "0 - 50",
-          "value": ""
+          "display_format": "{} - {}",
+          "is_selected": false,
+          "max": 50,
+          "min": 0,
+          "query_format": "[{} TO {}]",
+          "selected_max": 50,
+          "selected_min": 0,
+          "value": 1
         }
       ]
     }
   ],
+  "operators": {
+    "key": "value"
+  },
   "sort_on": [
     {
       "display": "Latest Products",
-      "name": "Latest Products",
+      "is_selected": true,
       "logo": "https://hdn-1.fynd.com/global/menu-icons/Latest%20Products.png",
-      "value": "latest",
-      "is_selected": true
+      "name": "Latest Products",
+      "value": "latest"
     },
     {
       "display": "Popularity",
-      "name": "Popularity",
+      "is_selected": false,
       "logo": "https://hdn-1.fynd.com/global/menu-icons/Popularity.png",
-      "value": "popular",
-      "is_selected": false
+      "name": "Popularity",
+      "value": "popular"
     },
     {
       "display": "Price Low to High",
-      "name": "Price Low to High",
+      "is_selected": false,
       "logo": "https://hdn-1.fynd.com/global/menu-icons/Price%20High%20to%20Low.png",
-      "value": "price_asc",
-      "is_selected": false
+      "name": "Price Low to High",
+      "value": "price_asc"
     },
     {
       "display": "Price High to Low",
-      "name": "Price High to Low",
+      "is_selected": false,
       "logo": "https://hdn-1.fynd.com/global/menu-icons/Price%20High%20to%20Low.png",
-      "value": "price_dsc",
-      "is_selected": false
+      "name": "Price High to Low",
+      "value": "price_dsc"
     },
     {
       "display": "Discount Low to High",
-      "name": "Discount Low to High",
+      "is_selected": false,
       "logo": "https://hdn-1.fynd.com/global/menu-icons/Discount%20Low%20to%20High.png",
-      "value": "discount_asc",
-      "is_selected": false
+      "name": "Discount Low to High",
+      "value": "discount_asc"
     },
     {
       "display": "Discount High to Low",
-      "name": "Discount High to Low",
+      "is_selected": false,
       "logo": "https://hdn-1.fynd.com/global/menu-icons/Discount%20Low%20to%20High.png",
-      "value": "discount_dsc",
-      "is_selected": false
+      "name": "Discount High to Low",
+      "value": "discount_dsc"
     },
     {
       "display": "Rating",
-      "name": "Rating",
+      "is_selected": false,
       "logo": "https://hdn-1.fynd.com/global/menu-icons/Rating.png",
-      "value": "rating_dsc",
-      "is_selected": false
+      "name": "Rating",
+      "value": "rating_dsc"
     },
     {
       "display": "Size Depth (High to Low)",
-      "name": "Size Depth (High to Low)",
+      "is_selected": false,
       "logo": "https://hdn-1.fynd.com/global/menu-icons/Size%20Depth.png",
-      "value": "depth_desc",
-      "is_selected": false
+      "name": "Size Depth (High to Low)",
+      "value": "depth_desc"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getSearchConfiguration
+List search configuration for an application
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getSearchConfiguration();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getSearchConfiguration();
+```
+
+
+
+
+
+
+This view allows you to add/modify searchable attributes for an application
+
+*Returned Response:*
+
+
+
+
+[GetSearchConfigurationResponse](#GetSearchConfigurationResponse)
+
+Search configuration for the specified application. See example below or refer `GetSearchConfigurationResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "application_id": "1234",
+  "company_id": 1,
+  "is_proximity_enabled": false,
+  "proximity": 2,
+  "searchable_attributes": [
+    {
+      "key": "brand_uid",
+      "name": "",
+      "priority": 1
+    },
+    {
+      "key": "category_uid",
+      "name": "",
+      "priority": 2
     }
   ]
 }
@@ -12527,10 +13148,7 @@ The Collection object. See example below or refer `GetSearchWordsDetailResponseS
 
 ```json
 {
-  "uid": "602fa1e9a596ce349563f6b9",
-  "words": [
-    "sds"
-  ],
+  "_custom_json": {},
   "app_id": "000000000000000000000001",
   "is_active": true,
   "result": {
@@ -12541,7 +13159,10 @@ The Collection object. See example below or refer `GetSearchWordsDetailResponseS
     },
     "sort_on": "popular"
   },
-  "_custom_json": {}
+  "uid": "602fa1e9a596ce349563f6b9",
+  "words": [
+    "sds"
+  ]
 }
 ```
 </details>
@@ -12599,8 +13220,8 @@ Response Data
 
 ```json
 {
-  "products": 18,
-  "articles": 18
+  "articles": 18,
+  "products": 18
 }
 ```
 </details>
@@ -12658,25 +13279,27 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
 
 ```json
 {
-  "description": "Data for HSN Code",
-  "created_on": "2022-02-24T09:14:03Z",
+  "country_code": "IN",
   "created_by": {
-    "username": "silverbolt",
-    "user_id": -1
+    "user_id": -1,
+    "username": "silverbolt"
+  },
+  "created_on": "2022-02-24T09:14:03Z",
+  "description": "Data for HSN Code",
+  "hsn_code": "89787179",
+  "id": "6216ff0378da3f906fc82544",
+  "modified_by": {
+    "user_id": -1,
+    "username": "silverbolt"
   },
   "modified_on": "2022-02-24T09:14:03Z",
   "reporting_hsn": "89787179H29",
-  "modified_by": {
-    "username": "silverbolt",
-    "user_id": -1
-  },
-  "country_code": "IN",
   "taxes": [
     {
+      "cess": 23,
       "effective_date": "2022-02-11T15:00:00",
       "rate": 5,
-      "threshold": 10000,
-      "cess": 23
+      "threshold": 10000
     },
     {
       "effective_date": "2022-02-11T15:00:00",
@@ -12689,9 +13312,7 @@ Get specific HSN details. See example below or refer `HsnCodesListingResponseSch
       "threshold": 5000
     }
   ],
-  "type": "goods",
-  "hsn_code": "89787179",
-  "id": "6216ff0378da3f906fc82544"
+  "type": "goods"
 }
 ```
 </details>
@@ -12751,30 +13372,25 @@ Brand object. See example below or refer `SizeGuideResponseSchema` for details
 {
   "active": true,
   "brand_id": 1,
-  "created_on": "2021-02-24T17:46:04.146000Z",
-  "modified_on": "2021-02-25T15:19:30.822000Z",
-  "created_by": {
-    "username": "silverbolt",
-    "user_id": "-1"
-  },
-  "modified_by": {
-    "username": "917827311650_22960",
-    "user_id": "123"
-  },
-  "name": "edited size guide",
   "company_id": 1,
+  "created_by": {
+    "user_id": "-1",
+    "username": "silverbolt"
+  },
+  "created_on": "2021-02-24T17:46:04.146000Z",
   "guide": {
     "meta": {
       "headers": {
         "col_1": {
-          "value": "Head",
-          "convertable": false
+          "convertable": false,
+          "value": "Head"
         },
         "col_2": {
-          "value": "Shoulder",
-          "convertable": true
+          "convertable": true,
+          "value": "Shoulder"
         }
       },
+      "unit": "cm",
       "values": [
         {
           "col_1": "10",
@@ -12788,14 +13404,19 @@ Brand object. See example below or refer `SizeGuideResponseSchema` for details
           "col_1": "14",
           "col_2": "24"
         }
-      ],
-      "unit": "cm"
+      ]
     }
   },
-  "tag": "demo",
-  "title": "Demo SG",
+  "id": "60364384f08385bee776f83d",
+  "modified_by": {
+    "user_id": "123",
+    "username": "917827311650_22960"
+  },
+  "modified_on": "2021-02-25T15:19:30.822000Z",
+  "name": "edited size guide",
   "subtitle": "I am demo",
-  "id": "60364384f08385bee776f83d"
+  "tag": "demo",
+  "title": "Demo SG"
 }
 ```
 </details>
@@ -12867,24 +13488,27 @@ Size guide object. See example below or refer `ListSizeGuide` for details
 {
   "items": [
     {
-      "modified_by": {
-        "username": "silverbolt",
-        "user_id": "-1"
-      },
       "active": true,
-      "id": "60364384f08385bee776f83d",
-      "title": "Demo SG",
-      "modified_on": "2021-02-24T17:46:04.146000Z",
       "brand_id": 2,
-      "created_by": {
-        "username": "silverbolt",
-        "user_id": "-1"
-      },
-      "subtitle": "I am demo",
       "company_id": 12,
+      "created_by": {
+        "user_id": "-1",
+        "username": "silverbolt"
+      },
       "created_on": "2021-02-24T17:46:04.146000Z",
       "guide": {
         "meta": {
+          "headers": {
+            "col_1": {
+              "convertable": false,
+              "value": "Head"
+            },
+            "col_2": {
+              "convertable": true,
+              "value": "Shoulder"
+            }
+          },
+          "unit": "cm",
           "values": [
             {
               "col_1": "10",
@@ -12898,30 +13522,28 @@ Size guide object. See example below or refer `ListSizeGuide` for details
               "col_1": "14",
               "col_2": "24"
             }
-          ],
-          "unit": "cm",
-          "headers": {
-            "col_1": {
-              "value": "Head",
-              "convertable": false
-            },
-            "col_2": {
-              "value": "Shoulder",
-              "convertable": true
-            }
-          }
+          ]
         }
       },
+      "id": "60364384f08385bee776f83d",
+      "modified_by": {
+        "user_id": "-1",
+        "username": "silverbolt"
+      },
+      "modified_on": "2021-02-24T17:46:04.146000Z",
+      "name": "Demo",
+      "subtitle": "I am demo",
       "tag": "demo",
-      "name": "Demo"
+      "title": "Demo SG"
     }
   ],
   "page": {
     "current": 1,
-    "size": 1,
-    "has_previous": false,
     "has_next": false,
-    "item_count": 1
+    "has_previous": false,
+    "item_count": 1,
+    "size": 1,
+    "type": "number"
   }
 }
 ```
@@ -13051,11 +13673,19 @@ Product Meta. See example below for details
 
 ```json
 {
+  "page": {
+    "current": 1,
+    "has_next": false,
+    "has_previous": false,
+    "item_total": 1,
+    "size": 1,
+    "type": "number"
+  },
   "variants": [
     {
-      "slug": "test-msa-6",
-      "item_code": "TEST-MSA-6",
       "brand_uid": 401,
+      "category_uid": 3938,
+      "item_code": "TEST-MSA-6",
       "media": [
         {
           "type": "image",
@@ -13063,18 +13693,10 @@ Product Meta. See example below for details
         }
       ],
       "name": "test-msa-6",
-      "category_uid": 3938,
+      "slug": "test-msa-6",
       "uid": 7526471
     }
-  ],
-  "page": {
-    "type": "number",
-    "current": 1,
-    "size": 1,
-    "item_total": 1,
-    "has_previous": false,
-    "has_next": false
-  }
+  ]
 }
 ```
 </details>
@@ -13144,215 +13766,214 @@ Category Meta. See example below or refer `CategoryResponse` for details
 
 ```json
 {
-  "page": {
-    "type": "",
-    "current": 1,
-    "size": 58,
-    "has_previous": false,
-    "has_next": true,
-    "item_total": 574
-  },
   "items": [
     {
-      "name": "Air Conditioners",
-      "media": {
-        "logo": "https://hdn-1.addsale.com/x0/category/pictures/square-logo/original/zTgh1zslj-.png",
-        "portrait": "https://hdn-1.addsale.com/x0/category/pictures/portrait-banner/original/VKqwRngFh-.png",
-        "landscape": "https://hdn-1.addsale.com/x0/category/pictures/landscape-banner/original/_7GDi3tyi-.png"
-      },
-      "marketplaces": {},
-      "tryouts": [],
-      "is_active": true,
       "created_by": {
-        "username": "917972410891_48194",
-        "user_id": "5646"
+        "user_id": "5646",
+        "username": "917972410891_48194"
       },
-      "uid": 22330,
-      "slug": "air-conditioners",
-      "priority": 1,
-      "synonyms": [],
-      "modified_by": {
-        "username": "917972410891_48194",
-        "user_id": "5646"
-      },
-      "level": 3,
-      "hierarchy": [
-        {
-          "l1": 1,
-          "department": 1,
-          "l2": 22329
-        }
-      ],
       "created_on": "2021-04-02T15:43:59.410000Z",
       "departments": [
         1
       ],
+      "hierarchy": [
+        {
+          "department": 1,
+          "l1": 1,
+          "l2": 22329
+        }
+      ],
+      "id": "60673bbf7896da00017885ad",
+      "is_active": true,
+      "level": 3,
+      "marketplaces": {},
+      "media": {
+        "landscape": "https://hdn-1.addsale.com/x0/category/pictures/landscape-banner/original/_7GDi3tyi-.png",
+        "logo": "https://hdn-1.addsale.com/x0/category/pictures/square-logo/original/zTgh1zslj-.png",
+        "portrait": "https://hdn-1.addsale.com/x0/category/pictures/portrait-banner/original/VKqwRngFh-.png"
+      },
+      "modified_by": {
+        "user_id": "5646",
+        "username": "917972410891_48194"
+      },
       "modified_on": "2021-04-02T15:43:59.410000Z",
-      "id": "60673bbf7896da00017885ad"
+      "name": "Air Conditioners",
+      "priority": 1,
+      "slug": "air-conditioners",
+      "synonyms": [],
+      "tryouts": [],
+      "uid": 22330
     },
     {
-      "name": "Home Appliances",
-      "media": {
-        "logo": "https://hdn-1.addsale.com/x0/category/pictures/square-logo/original/zTgh1zslj-.png",
-        "portrait": "https://hdn-1.addsale.com/x0/category/pictures/portrait-banner/original/VKqwRngFh-.png",
-        "landscape": "https://hdn-1.addsale.com/x0/category/pictures/landscape-banner/original/_7GDi3tyi-.png"
-      },
-      "is_active": true,
       "created_by": {
-        "username": "917972410891_48194",
-        "user_id": "5646"
+        "user_id": "5646",
+        "username": "917972410891_48194"
       },
-      "uid": 22329,
-      "slug": "home-appliances",
-      "priority": 1,
-      "synonyms": [],
-      "modified_by": {
-        "username": "917972410891_48194",
-        "user_id": "5646"
-      },
-      "level": 2,
-      "hierarchy": [],
       "created_on": "2021-04-02T15:42:55.405000Z",
       "departments": [
         1
       ],
+      "hierarchy": [],
+      "id": "60673b7f7896da00017885ac",
+      "is_active": true,
+      "level": 2,
+      "media": {
+        "landscape": "https://hdn-1.addsale.com/x0/category/pictures/landscape-banner/original/_7GDi3tyi-.png",
+        "logo": "https://hdn-1.addsale.com/x0/category/pictures/square-logo/original/zTgh1zslj-.png",
+        "portrait": "https://hdn-1.addsale.com/x0/category/pictures/portrait-banner/original/VKqwRngFh-.png"
+      },
+      "modified_by": {
+        "user_id": "5646",
+        "username": "917972410891_48194"
+      },
       "modified_on": "2021-04-02T15:42:55.405000Z",
-      "id": "60673b7f7896da00017885ac"
+      "name": "Home Appliances",
+      "priority": 1,
+      "slug": "home-appliances",
+      "synonyms": [],
+      "uid": 22329
     },
     {
       "created_by": {
-        "username": "919821012599_75351",
-        "user_id": "5721"
+        "user_id": "5721",
+        "username": "919821012599_75351"
       },
-      "slug": "dummy-category-level-2",
-      "level": 2,
-      "uid": 22323,
+      "created_on": "2021-01-14T05:28:02.148000Z",
+      "departments": [
+        21
+      ],
+      "hierarchy": [],
+      "id": "5fffd662e64eb40001fc8a42",
       "is_active": true,
+      "level": 2,
       "media": {
-        "portrait": "https://hdn-1.addsale.com/x0/category/pictures/portrait-banner/original/VKqwRngFh-.png",
         "landscape": "https://hdn-1.addsale.com/x0/category/pictures/landscape-banner/original/0wCdjxWpI-.png",
-        "logo": "https://hdn-1.addsale.com/x0/category/pictures/square-logo/original/zTgh1zslj-.png"
+        "logo": "https://hdn-1.addsale.com/x0/category/pictures/square-logo/original/zTgh1zslj-.png",
+        "portrait": "https://hdn-1.addsale.com/x0/category/pictures/portrait-banner/original/VKqwRngFh-.png"
       },
-      "name": "Dummy category level 2 by fahim",
-      "modified_on": "2021-03-04T15:43:50.495000Z",
       "modified_by": {
-        "username": "917753852478_51632",
-        "user_id": "5677"
+        "user_id": "5677",
+        "username": "917753852478_51632"
       },
+      "modified_on": "2021-03-04T15:43:50.495000Z",
+      "name": "Dummy category level 2 by fahim",
+      "priority": 123456,
+      "slug": "dummy-category-level-2",
       "synonyms": [
         "skin",
         "care",
         "asdasd"
       ],
-      "created_on": "2021-01-14T05:28:02.148000Z",
-      "priority": 123456,
-      "hierarchy": [],
+      "uid": 22323
+    },
+    {
+      "created_by": {
+        "user_id": "-1",
+        "username": "silverbolt"
+      },
+      "created_on": "2021-02-25T00:00:47.589000Z",
       "departments": [
         21
       ],
-      "id": "5fffd662e64eb40001fc8a42"
-    },
-    {
-      "synonyms": [],
+      "hierarchy": [
+        {
+          "department": 21,
+          "l1": 22322,
+          "l2": 22323
+        }
+      ],
+      "id": "60369b57d23031d14be92c18",
+      "is_active": true,
+      "level": 3,
       "marketplaces": {},
-      "created_on": "2021-02-25T00:00:47.589000Z",
-      "modified_by": {
-        "username": "917753852478_51632",
-        "user_id": "5677"
-      },
       "media": {
         "landscape": "https://hdn-1.addsale.com/x0/category/pictures/landscape-banner/original/0wCdjxWpI-.png",
         "logo": "https://hdn-1.addsale.com/x0/category/pictures/square-logo/original/EfCt9iXx8-http/d3p8ifzkmzds37.cloudfront.net/media/logo/department/original/15870_c287d3c2431a432bb0e49363ef6b82bc.png.jpeg",
         "portrait": "https://hdn-1.addsale.com/x0/category/pictures/portrait-banner/original/S1axCMOJ4-.png"
+      },
+      "modified_by": {
+        "user_id": "5677",
+        "username": "917753852478_51632"
       },
       "modified_on": "2021-03-04T15:39:52.108000Z",
-      "hierarchy": [
-        {
-          "l2": 22323,
-          "l1": 22322,
-          "department": 21
-        }
-      ],
       "name": "Dummy level 4",
-      "is_active": true,
-      "slug": "dummy-level-4",
-      "departments": [
-        21
-      ],
-      "level": 3,
-      "tryouts": [],
-      "uid": 22325,
       "priority": 986532,
-      "created_by": {
-        "username": "silverbolt",
-        "user_id": "-1"
-      },
-      "id": "60369b57d23031d14be92c18"
+      "slug": "dummy-level-4",
+      "synonyms": [],
+      "tryouts": [],
+      "uid": 22325
     },
     {
       "created_by": {
-        "username": "919821012599_75351",
-        "user_id": "5721"
+        "user_id": "5721",
+        "username": "919821012599_75351"
       },
-      "slug": "dummy-level-3",
-      "level": 3,
-      "uid": 22324,
-      "is_active": true,
-      "media": {
-        "landscape": "https://hdn-1.addsale.com/x0/category/pictures/landscape-banner/original/0wCdjxWpI-.png",
-        "logo": "https://hdn-1.addsale.com/x0/category/pictures/square-logo/original/EfCt9iXx8-http/d3p8ifzkmzds37.cloudfront.net/media/logo/department/original/15870_c287d3c2431a432bb0e49363ef6b82bc.png.jpeg",
-        "portrait": "https://hdn-1.addsale.com/x0/category/pictures/portrait-banner/original/S1axCMOJ4-.png"
-      },
-      "name": "Dummy level 3 by fahim",
-      "tryouts": [
-        "Lipstick",
-        "Eyeliner"
-      ],
-      "modified_on": "2021-03-04T15:39:46.246000Z",
-      "modified_by": {
-        "username": "917753852478_51632",
-        "user_id": "5677"
-      },
-      "synonyms": [],
-      "marketplaces": {},
       "created_on": "2021-01-14T05:28:59.852000Z",
-      "priority": 986532,
-      "hierarchy": [
-        {
-          "l2": 22323,
-          "l1": 22322,
-          "department": 21
-        },
-        {
-          "l2": 3732,
-          "l1": 3672,
-          "department": 4
-        },
-        {
-          "l2": 730,
-          "l1": 595,
-          "department": 2
-        }
-      ],
       "departments": [
         2,
         4,
         21
       ],
-      "id": "5fffd69be64eb40001fc8a65"
+      "hierarchy": [
+        {
+          "department": 21,
+          "l1": 22322,
+          "l2": 22323
+        },
+        {
+          "department": 4,
+          "l1": 3672,
+          "l2": 3732
+        },
+        {
+          "department": 2,
+          "l1": 595,
+          "l2": 730
+        }
+      ],
+      "id": "5fffd69be64eb40001fc8a65",
+      "is_active": true,
+      "level": 3,
+      "marketplaces": {},
+      "media": {
+        "landscape": "https://hdn-1.addsale.com/x0/category/pictures/landscape-banner/original/0wCdjxWpI-.png",
+        "logo": "https://hdn-1.addsale.com/x0/category/pictures/square-logo/original/EfCt9iXx8-http/d3p8ifzkmzds37.cloudfront.net/media/logo/department/original/15870_c287d3c2431a432bb0e49363ef6b82bc.png.jpeg",
+        "portrait": "https://hdn-1.addsale.com/x0/category/pictures/portrait-banner/original/S1axCMOJ4-.png"
+      },
+      "modified_by": {
+        "user_id": "5677",
+        "username": "917753852478_51632"
+      },
+      "modified_on": "2021-03-04T15:39:46.246000Z",
+      "name": "Dummy level 3 by fahim",
+      "priority": 986532,
+      "slug": "dummy-level-3",
+      "synonyms": [],
+      "tryouts": [
+        "Lipstick",
+        "Eyeliner"
+      ],
+      "uid": 22324
     },
     {
-      "uid": 3151,
+      "created_on": "2016-04-09T06:44:35Z",
       "departments": [
         4
       ],
+      "hierarchy": [],
+      "id": "5fabab8ea18a1284b97ff6c4",
       "is_active": true,
       "level": 1,
       "media": {
+        "landscape": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/ywPVrU_preview_a637ca6e4da6e38f03eb0d650ac5d6ba.jpgc73cc22f-b5ee-4fd4-a585-8ada35762d68/ywPVrU_preview_a637ca6e4da6e38f03eb0d650ac5d6ba.jpg",
         "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/YHIeoQ_fruit___vegetable_logo.jpg16aab608-a78a-458f-b60b-524525f27dec/YHIeoQ_fruit___vegetable_logo.jpg",
-        "portrait": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/ywPVrU_preview_a637ca6e4da6e38f03eb0d650ac5d6ba.jpgc73cc22f-b5ee-4fd4-a585-8ada35762d68/ywPVrU_preview_a637ca6e4da6e38f03eb0d650ac5d6ba.jpg",
-        "landscape": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/ywPVrU_preview_a637ca6e4da6e38f03eb0d650ac5d6ba.jpgc73cc22f-b5ee-4fd4-a585-8ada35762d68/ywPVrU_preview_a637ca6e4da6e38f03eb0d650ac5d6ba.jpg"
+        "portrait": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/ywPVrU_preview_a637ca6e4da6e38f03eb0d650ac5d6ba.jpgc73cc22f-b5ee-4fd4-a585-8ada35762d68/ywPVrU_preview_a637ca6e4da6e38f03eb0d650ac5d6ba.jpg"
       },
+      "modified_by": {
+        "uid": "5677",
+        "username": "917753852478_51632"
+      },
+      "modified_on": "2021-03-03T09:35:50.415000Z",
       "name": "Gourmet & World Food",
       "priority": 123,
       "slug": "gourmet-world-food",
@@ -13361,103 +13982,103 @@ Category Meta. See example below or refer `CategoryResponse` for details
         "food",
         "gourmet"
       ],
-      "created_on": "2016-04-09T06:44:35Z",
-      "hierarchy": [],
-      "modified_by": {
-        "username": "917753852478_51632",
-        "uid": "5677"
-      },
-      "modified_on": "2021-03-03T09:35:50.415000Z",
-      "id": "5fabab8ea18a1284b97ff6c4"
+      "uid": 3151
     },
     {
-      "modified_by": {
-        "username": "917753852478_51632",
-        "uid": "5677"
+      "created_by": {
+        "uid": "5677",
+        "username": "917753852478_51632"
       },
-      "marketplaces": {},
+      "created_on": "2021-03-03T06:30:08.342000Z",
+      "departments": [
+        1,
+        2
+      ],
       "hierarchy": [
         {
+          "department": 2,
           "l1": 595,
-          "l2": 714,
-          "department": 2
+          "l2": 714
         },
         {
+          "department": 1,
           "l1": 2,
-          "l2": 4,
-          "department": 1
+          "l2": 4
         }
       ],
-      "created_on": "2021-03-03T06:30:08.342000Z",
-      "created_by": {
-        "username": "917753852478_51632",
-        "uid": "5677"
-      },
+      "id": "603f2cf0aac0360001c00731",
+      "is_active": true,
       "level": 3,
-      "name": "Test Category kaf",
+      "marketplaces": {},
       "media": {
         "landscape": "https://hdn-1.addsale.com/x0/category/pictures/landscape-banner/original/0wCdjxWpI-.png",
         "logo": "https://hdn-1.addsale.com/x0/category/pictures/square-logo/original/EfCt9iXx8-http/d3p8ifzkmzds37.cloudfront.net/media/logo/department/original/15870_c287d3c2431a432bb0e49363ef6b82bc.png.jpeg",
         "portrait": "https://hdn-1.addsale.com/x0/category/pictures/portrait-banner/original/VKqwRngFh-.png"
       },
-      "tryouts": [
-        "Lipstick",
-        "Blush"
-      ],
-      "is_active": true,
+      "modified_by": {
+        "uid": "5677",
+        "username": "917753852478_51632"
+      },
+      "modified_on": "2021-03-03T08:34:47.999000Z",
+      "name": "Test Category kaf",
+      "priority": 23,
       "slug": "test-category-kaf",
-      "uid": 22328,
       "synonyms": [
         "test",
         "category"
       ],
-      "priority": 23,
-      "departments": [
-        1,
-        2
+      "tryouts": [
+        "Lipstick",
+        "Blush"
       ],
-      "modified_on": "2021-03-03T08:34:47.999000Z",
-      "id": "603f2cf0aac0360001c00731"
+      "uid": 22328
     },
     {
-      "level": 3,
+      "created_by": {
+        "user_id": "-1",
+        "username": "silverbolt"
+      },
+      "created_on": "2021-02-25T09:26:53.123000Z",
       "departments": [
         1
       ],
-      "is_active": false,
-      "created_by": {
-        "username": "silverbolt",
-        "user_id": "-1"
-      },
-      "created_on": "2021-02-25T09:26:53.123000Z",
-      "tryouts": [],
-      "slug": "smart-cell",
-      "marketplaces": {},
-      "priority": 5,
-      "media": {
-        "portrait": "http://cdn4.gofynd.com/media/logo/department/original/13239_660c6f5b2b8d458789de4552d241ea1b.jpg",
-        "landscape": "https://hdn-1.fynd.com/media/banner/category/original/16128_380bed8bff064a0b981041df65e0d8b3.jpg",
-        "logo": "http://d3p8ifzkmzds37.cloudfront.net/media/logo/department/original/15870_c287d3c2431a432bb0e49363ef6b82bc.png"
-      },
-      "modified_on": "2021-02-25T09:26:53.123000Z",
-      "synonyms": [],
-      "uid": 22327,
       "hierarchy": [
         {
+          "department": 1,
           "l1": 2,
-          "l2": 3,
-          "department": 1
+          "l2": 3
         }
       ],
-      "name": "Smart Cell",
-      "modified_by": {
-        "username": "silverbolt",
-        "user_id": "-1"
+      "id": "60372005d230311fe9e51f0b",
+      "is_active": false,
+      "level": 3,
+      "marketplaces": {},
+      "media": {
+        "landscape": "https://hdn-1.fynd.com/media/banner/category/original/16128_380bed8bff064a0b981041df65e0d8b3.jpg",
+        "logo": "http://d3p8ifzkmzds37.cloudfront.net/media/logo/department/original/15870_c287d3c2431a432bb0e49363ef6b82bc.png",
+        "portrait": "http://cdn4.gofynd.com/media/logo/department/original/13239_660c6f5b2b8d458789de4552d241ea1b.jpg"
       },
-      "id": "60372005d230311fe9e51f0b"
+      "modified_by": {
+        "user_id": "-1",
+        "username": "silverbolt"
+      },
+      "modified_on": "2021-02-25T09:26:53.123000Z",
+      "name": "Smart Cell",
+      "priority": 5,
+      "slug": "smart-cell",
+      "synonyms": [],
+      "tryouts": [],
+      "uid": 22327
     },
     {
-      "is_active": true,
+      "created_by": {
+        "user_id": "-1",
+        "username": "silverbolt"
+      },
+      "created_on": "2021-02-25T00:09:35.026000Z",
+      "departments": [
+        21
+      ],
       "hierarchy": [
         {
           "department": 21,
@@ -13465,36 +14086,28 @@ Category Meta. See example below or refer `CategoryResponse` for details
           "l2": 22323
         }
       ],
-      "slug": "dummy-level-98",
-      "priority": 986532,
-      "uid": 22326,
-      "departments": [
-        21
-      ],
-      "created_by": {
-        "username": "silverbolt",
-        "user_id": "-1"
-      },
-      "modified_on": "2021-02-25T00:09:35.026000Z",
+      "id": "60369d67d2303111b8924dcf",
+      "is_active": true,
+      "level": 3,
       "marketplaces": {},
-      "tryouts": [],
-      "synonyms": [],
       "media": {
         "landscape": "https://hdn-1.addsale.com/x0/category/pictures/landscape-banner/original/0wCdjxWpI-.png",
-        "portrait": "https://hdn-1.addsale.com/x0/category/pictures/portrait-banner/original/S1axCMOJ4-.png",
-        "logo": "https://hdn-1.addsale.com/x0/category/pictures/square-logo/original/EfCt9iXx8-http/d3p8ifzkmzds37.cloudfront.net/media/logo/department/original/15870_c287d3c2431a432bb0e49363ef6b82bc.png.jpeg"
+        "logo": "https://hdn-1.addsale.com/x0/category/pictures/square-logo/original/EfCt9iXx8-http/d3p8ifzkmzds37.cloudfront.net/media/logo/department/original/15870_c287d3c2431a432bb0e49363ef6b82bc.png.jpeg",
+        "portrait": "https://hdn-1.addsale.com/x0/category/pictures/portrait-banner/original/S1axCMOJ4-.png"
       },
-      "level": 3,
-      "name": "Dummy level 98",
-      "created_on": "2021-02-25T00:09:35.026000Z",
       "modified_by": {
-        "username": "silverbolt",
-        "user_id": "-1"
+        "user_id": "-1",
+        "username": "silverbolt"
       },
-      "id": "60369d67d2303111b8924dcf"
+      "modified_on": "2021-02-25T00:09:35.026000Z",
+      "name": "Dummy level 98",
+      "priority": 986532,
+      "slug": "dummy-level-98",
+      "synonyms": [],
+      "tryouts": [],
+      "uid": 22326
     },
     {
-      "uid": 315,
       "created_on": "2016-04-09T06:44:35Z",
       "departments": [
         2,
@@ -13502,21 +14115,22 @@ Category Meta. See example below or refer `CategoryResponse` for details
       ],
       "hierarchy": [
         {
+          "department": 2,
           "l1": 65,
-          "l2": 66,
-          "department": 2
+          "l2": 66
         },
         {
+          "department": 2,
           "l1": 442,
-          "l2": 26,
-          "department": 2
+          "l2": 26
         },
         {
+          "department": 3,
           "l1": 442,
-          "l2": 26,
-          "department": 3
+          "l2": 26
         }
       ],
+      "id": "5fdba984642de8d93efb0d71",
       "is_active": true,
       "level": 3,
       "marketplaces": {},
@@ -13526,8 +14140,8 @@ Category Meta. See example below or refer `CategoryResponse` for details
         "portrait": "https://hdn-1.fynd.com/media/banner_portrait/category/original/19960_c679d51cb1bd4ca99f00f9050aa647a4.jpg"
       },
       "modified_by": {
-        "username": "917753852478_51632",
-        "user_id": "5677"
+        "user_id": "5677",
+        "username": "917753852478_51632"
       },
       "modified_on": "2021-02-15T15:48:05.329000Z",
       "name": "Sports Bra",
@@ -13539,9 +14153,17 @@ Category Meta. See example below or refer `CategoryResponse` for details
         "gym bra"
       ],
       "tryouts": [],
-      "id": "5fdba984642de8d93efb0d71"
+      "uid": 315
     }
-  ]
+  ],
+  "page": {
+    "current": 1,
+    "has_next": true,
+    "has_previous": false,
+    "item_total": 574,
+    "size": 58,
+    "type": "number"
+  }
 }
 ```
 </details>
@@ -13614,29 +14236,21 @@ List of departments data. See example below or refer `DepartmentsResponse` for d
 
 ```json
 {
-  "page": {
-    "type": "",
-    "current": 1,
-    "size": 1,
-    "has_previous": false,
-    "has_next": false,
-    "item_total": 12
-  },
   "items": [
     {
-      "uid": 5,
       "_cls": "Department",
       "_custom_json": {},
       "created_by": {
-        "username": "918793638893_86554",
-        "user_id": "3"
+        "user_id": "3",
+        "username": "918793638893_86554"
       },
       "created_on": "2020-07-01T05:33:39.325000Z",
+      "id": "5efc2033623d390001782238",
       "is_active": true,
       "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/BSQ9Gk_123522-best-starry-sky-wallpaper-1920x1200-ipad-pro.jpgc7d0c15c-c1ff-47eb-8423-6e2df51f2ddf/BSQ9Gk_123522-best-starry-sky-wallpaper-1920x1200-ipad-pro.jpg",
       "modified_by": {
-        "username": "917753852478_51632",
-        "user_id": "5677"
+        "user_id": "5677",
+        "username": "917753852478_51632"
       },
       "modified_on": "2021-03-03T15:55:25.118000Z",
       "name": "Sample Dept",
@@ -13648,17 +14262,17 @@ List of departments data. See example below or refer `DepartmentsResponse` for d
         "sampe"
       ],
       "tags": [],
-      "id": "5efc2033623d390001782238"
+      "uid": 5
     },
     {
-      "uid": 2,
       "_cls": "Department",
       "_custom_json": {},
       "created_by": {
-        "username": "app@fynd.com",
-        "user_id": "0"
+        "user_id": "0",
+        "username": "app@fynd.com"
       },
       "created_on": "2020-05-19T06:53:37.629000Z",
+      "id": "5ec3827156a7200001c9aeea",
       "is_active": true,
       "logo": "https://hdn-1.addsale.com/addsale/media/logo/department/original/15974_381e2236c2a348cc851c29a5d05c66a9.png",
       "modified_by": {
@@ -13679,22 +14293,22 @@ List of departments data. See example below or refer `DepartmentsResponse` for d
       "slug": "men-s-fashion",
       "synonyms": [],
       "tags": [],
-      "id": "5ec3827156a7200001c9aeea"
+      "uid": 2
     },
     {
-      "uid": 4,
       "_cls": "Department",
       "_custom_json": {},
       "created_by": {
-        "username": "fahimsakri_gofynd_com_44938",
-        "user_id": "10"
+        "user_id": "10",
+        "username": "fahimsakri_gofynd_com_44938"
       },
       "created_on": "2020-06-29T10:59:33.620000Z",
+      "id": "5ef9c9959b04f00001e40dba",
       "is_active": true,
       "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/ywPVrU_preview_a637ca6e4da6e38f03eb0d650ac5d6ba.jpgc73cc22f-b5ee-4fd4-a585-8ada35762d68/ywPVrU_preview_a637ca6e4da6e38f03eb0d650ac5d6ba.jpg",
       "modified_by": {
-        "username": "918793638893_86554",
-        "user_id": "3"
+        "user_id": "3",
+        "username": "918793638893_86554"
       },
       "modified_on": "2020-08-06T18:08:02.675000Z",
       "name": "Groceries",
@@ -13703,17 +14317,17 @@ List of departments data. See example below or refer `DepartmentsResponse` for d
       "slug": "groceries",
       "synonyms": [],
       "tags": [],
-      "id": "5ef9c9959b04f00001e40dba"
+      "uid": 4
     },
     {
-      "uid": 1,
       "_cls": "Department",
       "_custom_json": {},
       "created_by": {
-        "username": "app@fynd.com",
-        "user_id": "0"
+        "user_id": "0",
+        "username": "app@fynd.com"
       },
       "created_on": "2020-05-18T16:14:41.689000Z",
+      "id": "5ec2b471661a4100019fca0d",
       "is_active": true,
       "logo": "https://hdn-1.addsale.com/x0/platform/pictures/free-logo/original/_G1Z2Fg1L-http:d3p8ifzkmzds37.cloudfront.netmedialogodepartmentoriginal15870_c287d3c2431a432bb0e49363ef6b82bc.png.png",
       "modified_by": {
@@ -13734,22 +14348,22 @@ List of departments data. See example below or refer `DepartmentsResponse` for d
       "slug": "electronics",
       "synonyms": [],
       "tags": [],
-      "id": "5ec2b471661a4100019fca0d"
+      "uid": 1
     },
     {
-      "uid": 3,
       "_cls": "Department",
       "_custom_json": {},
       "created_by": {
-        "username": "918793638893_86554",
-        "user_id": "3"
+        "user_id": "3",
+        "username": "918793638893_86554"
       },
       "created_on": "2020-05-27T12:04:19.111000Z",
+      "id": "5ece5743cd1bae0001440427",
       "is_active": true,
       "logo": "https://hdn-1.addsale.com/x0/seller/pictures/landscape-banner/original/g2plam_logo_Jio.pngeeb392ca-3958-46a0-9f13-23c205b596f7/g2plam_logo_Jio.png",
       "modified_by": {
-        "username": "918793638893_86554",
-        "user_id": "3"
+        "user_id": "3",
+        "username": "918793638893_86554"
       },
       "modified_on": "2020-08-06T18:07:46.060000Z",
       "name": "Industrial Supplies",
@@ -13758,22 +14372,22 @@ List of departments data. See example below or refer `DepartmentsResponse` for d
       "slug": "industrial-supplies",
       "synonyms": [],
       "tags": [],
-      "id": "5ece5743cd1bae0001440427"
+      "uid": 3
     },
     {
-      "uid": 6,
       "_cls": "Department",
       "_custom_json": {},
       "created_by": {
-        "username": "abhinavsrivastava_gofynd_com_05674",
-        "user_id": "13"
+        "user_id": "13",
+        "username": "abhinavsrivastava_gofynd_com_05674"
       },
       "created_on": "2020-07-06T07:56:01.508000Z",
+      "id": "5f02d9116b0ae500018923dd",
       "is_active": false,
       "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/wTcfEi_crysis_-_1.jpg14580947-a659-486d-b2d3-d2ca025b1cac/wTcfEi_crysis_-_1.jpg",
       "modified_by": {
-        "username": "918793638893_86554",
-        "user_id": "3"
+        "user_id": "3",
+        "username": "918793638893_86554"
       },
       "modified_on": "2020-08-06T18:08:12.576000Z",
       "name": "Clothing",
@@ -13782,22 +14396,22 @@ List of departments data. See example below or refer `DepartmentsResponse` for d
       "slug": "clothing",
       "synonyms": [],
       "tags": [],
-      "id": "5f02d9116b0ae500018923dd"
+      "uid": 6
     },
     {
-      "uid": 8,
       "_cls": "Department",
       "_custom_json": {},
       "created_by": {
-        "username": "asavarijadhav_gofynd_com_99880",
-        "user_id": "5634"
+        "user_id": "5634",
+        "username": "asavarijadhav_gofynd_com_99880"
       },
       "created_on": "2020-08-05T09:04:33.604000Z",
+      "id": "5f2a762131c66700018cdc47",
       "is_active": true,
       "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/RxTsd8_0DEFAULT-LOGO.jpg000ccfc1-2f79-4426-9ac3-de2468c2fcb9/RxTsd8_0DEFAULT-LOGO.jpg",
       "modified_by": {
-        "username": "asavarijadhav_gofynd_com_99880",
-        "user_id": "5634"
+        "user_id": "5634",
+        "username": "asavarijadhav_gofynd_com_99880"
       },
       "modified_on": "2020-08-05T09:44:01.234000Z",
       "name": "Kids",
@@ -13806,22 +14420,22 @@ List of departments data. See example below or refer `DepartmentsResponse` for d
       "slug": "kids",
       "synonyms": [],
       "tags": [],
-      "id": "5f2a762131c66700018cdc47"
+      "uid": 8
     },
     {
-      "uid": 9,
       "_cls": "Department",
       "_custom_json": {},
       "created_by": {
-        "username": "asavarijadhav_gofynd_com_99880",
-        "user_id": "5634"
+        "user_id": "5634",
+        "username": "asavarijadhav_gofynd_com_99880"
       },
       "created_on": "2020-08-05T09:44:46.632000Z",
+      "id": "5f2a7f8e31c66700018cdc49",
       "is_active": true,
       "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/tKkDB8_0DEFAULT-LOGO.jpg1c324d4d-f667-4af8-8d98-37205d34e3b5/tKkDB8_0DEFAULT-LOGO.jpg",
       "modified_by": {
-        "username": "918793638893_86554",
-        "user_id": "3"
+        "user_id": "3",
+        "username": "918793638893_86554"
       },
       "modified_on": "2020-08-06T18:07:35.231000Z",
       "name": "Women's Fashion",
@@ -13830,22 +14444,22 @@ List of departments data. See example below or refer `DepartmentsResponse` for d
       "slug": "women-s-fashion",
       "synonyms": [],
       "tags": [],
-      "id": "5f2a7f8e31c66700018cdc49"
+      "uid": 9
     },
     {
-      "uid": 10,
       "_cls": "Department",
       "_custom_json": {},
       "created_by": {
-        "username": "asavarijadhav_gofynd_com_99880",
-        "user_id": "5634"
+        "user_id": "5634",
+        "username": "asavarijadhav_gofynd_com_99880"
       },
       "created_on": "2020-08-05T09:45:12.075000Z",
+      "id": "5f2a7fa831c66700018cdc4a",
       "is_active": true,
       "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/oLoxiL_0DEFAULT-LOGO.jpgbd050200-700a-4a3e-9da6-e6b78fbee943/oLoxiL_0DEFAULT-LOGO.jpg",
       "modified_by": {
-        "username": "asavarijadhav_gofynd_com_99880",
-        "user_id": "5634"
+        "user_id": "5634",
+        "username": "asavarijadhav_gofynd_com_99880"
       },
       "modified_on": "2020-08-05T09:48:01.660000Z",
       "name": "Beauty & Personal Care",
@@ -13854,22 +14468,22 @@ List of departments data. See example below or refer `DepartmentsResponse` for d
       "slug": "beauty-personal-care",
       "synonyms": [],
       "tags": [],
-      "id": "5f2a7fa831c66700018cdc4a"
+      "uid": 10
     },
     {
-      "uid": 11,
       "_cls": "Department",
       "_custom_json": {},
       "created_by": {
-        "username": "asavarijadhav_gofynd_com_99880",
-        "user_id": "5634"
+        "user_id": "5634",
+        "username": "asavarijadhav_gofynd_com_99880"
       },
       "created_on": "2020-08-05T09:45:39.797000Z",
+      "id": "5f2a7fc331c66700018cdc4b",
       "is_active": true,
       "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/vQv4ot_0DEFAULT-LOGO.jpg701cb5af-2024-4abf-ae5d-b68bc1a3cd43/vQv4ot_0DEFAULT-LOGO.jpg",
       "modified_by": {
-        "username": "918793638893_86554",
-        "user_id": "3"
+        "user_id": "3",
+        "username": "918793638893_86554"
       },
       "modified_on": "2020-08-06T11:38:57.599000Z",
       "name": "Home & Living",
@@ -13878,22 +14492,22 @@ List of departments data. See example below or refer `DepartmentsResponse` for d
       "slug": "home-living",
       "synonyms": [],
       "tags": [],
-      "id": "5f2a7fc331c66700018cdc4b"
+      "uid": 11
     },
     {
-      "uid": 14,
       "_cls": "Department",
       "_custom_json": {},
       "created_by": {
-        "username": "asavarijadhav_gofynd_com_99880",
-        "user_id": "5634"
+        "user_id": "5634",
+        "username": "asavarijadhav_gofynd_com_99880"
       },
       "created_on": "2020-08-05T09:48:42.347000Z",
+      "id": "5f2a807a31c66700018cdc4e",
       "is_active": false,
       "logo": "https://hdn-1.addsale.com/x0/seller/pictures/logo/original/hTobjV_0DEFAULT-LOGO.jpga020159c-7fe7-4c1c-a11a-4be61a60da9f/hTobjV_0DEFAULT-LOGO.jpg",
       "modified_by": {
-        "username": "asavarijadhav_gofynd_com_99880",
-        "user_id": "5634"
+        "user_id": "5634",
+        "username": "asavarijadhav_gofynd_com_99880"
       },
       "modified_on": "2020-08-05T09:48:42.347000Z",
       "name": "Baby Care & Kids Essentials",
@@ -13902,36 +14516,44 @@ List of departments data. See example below or refer `DepartmentsResponse` for d
       "slug": "baby-care-kids-essentials",
       "synonyms": [],
       "tags": [],
-      "id": "5f2a807a31c66700018cdc4e"
+      "uid": 14
     },
     {
       "_cls": "Department",
-      "created_on": "2021-01-13T10:12:33.002000Z",
-      "modified_on": "2021-01-13T13:50:55.415000Z",
+      "_custom_json": {},
       "created_by": {
-        "username": "919821012599_75351",
-        "user_id": "5721"
+        "user_id": "5721",
+        "username": "919821012599_75351"
       },
-      "modified_by": {
-        "username": "919821012599_75351",
-        "user_id": "5721"
-      },
-      "uid": 21,
-      "name": "Skin care products",
-      "slug": "skin-care-produts",
-      "logo": "https://hdn-1.addsale.com/x0/department/pictures/square-logo/original/rNz8grLys-.png",
-      "tags": [],
+      "created_on": "2021-01-13T10:12:33.002000Z",
+      "id": "5ffec79192813f0001eb6560",
       "is_active": true,
-      "priority_order": 10235,
+      "logo": "https://hdn-1.addsale.com/x0/department/pictures/square-logo/original/rNz8grLys-.png",
+      "modified_by": {
+        "user_id": "5721",
+        "username": "919821012599_75351"
+      },
+      "modified_on": "2021-01-13T13:50:55.415000Z",
+      "name": "Skin care products",
       "platforms": {},
+      "priority_order": 10235,
+      "slug": "skin-care-produts",
       "synonyms": [
         "skin",
         "care"
       ],
-      "_custom_json": {},
-      "id": "5ffec79192813f0001eb6560"
+      "tags": [],
+      "uid": 21
     }
-  ]
+  ],
+  "page": {
+    "current": 1,
+    "has_next": false,
+    "has_previous": false,
+    "item_total": 12,
+    "size": 1,
+    "type": "number"
+  }
 }
 ```
 </details>
@@ -14060,35 +14682,35 @@ Returns a list of inventory export jobs
 ```json
 {
   "items": {
-    "url": "https://regrowth.s3.amazonaws.com/slingshot-catalogues/seller-catalog/577/ab469da4-b9a5-11ed-955a-d6fb21611540/ab469da4-b9a5-11ed-955a-d6fb21611540.zip",
-    "type": "excel",
-    "created_on": "2023-03-03T09:27:51.262000Z",
     "_id": "6401bd972a2e6c3d508c9203",
-    "task_id": "ab469da4-b9a5-11ed-955a-d6fb21611540",
+    "completed_on": "2023-03-03T09:33:11.416000Z",
+    "created_by": {
+      "user_id": "5e199e6998cfe1776f1385dc",
+      "username": "rohanshah@fynd.com"
+    },
+    "created_on": "2023-03-03T09:27:51.262000Z",
     "filters": {
       "brand_ids": [
         2751
       ],
-      "store_ids": [
-        3622
-      ],
       "brands": [
         "Puma"
+      ],
+      "store_ids": [
+        3622
       ],
       "stores": [
         "Vikings Cbs"
       ]
     },
+    "id": "6401bd972a2e6c3d508c9203",
     "modified_on": "2023-03-03T09:27:51.262000",
-    "status": "success",
     "notification_emails": [],
-    "created_by": {
-      "username": "rohanshah@fynd.com",
-      "user_id": "5e199e6998cfe1776f1385dc"
-    },
-    "completed_on": "2023-03-03T09:33:11.416000Z",
     "seller_id": 577,
-    "id": "6401bd972a2e6c3d508c9203"
+    "status": "success",
+    "task_id": "ab469da4-b9a5-11ed-955a-d6fb21611540",
+    "type": "excel",
+    "url": "https://regrowth.s3.amazonaws.com/slingshot-catalogues/seller-catalog/577/ab469da4-b9a5-11ed-955a-d6fb21611540/ab469da4-b9a5-11ed-955a-d6fb21611540.zip"
   }
 }
 ```
@@ -14147,143 +14769,17 @@ List of product templates. See example below or refer `TemplatesResponse` for de
 
 ```json
 {
-  "page": {
-    "current": 1,
-    "size": 3,
-    "has_previous": false,
-    "has_next": true,
-    "item_total": 36,
-    "type": ""
-  },
   "items": {
-    "name": "Accessories",
+    "attributes": [
+      "gender",
+      "fragile",
+      "manufacturer-packer-importer-name",
+      "manufacturer-packer-importer-address"
+    ],
+    "banner": "https://hdn-1.fynd.com/seller/pictures/landscape-banner/original/F4W6Pd_DEFAULT-BANNER_LANDSCAPE.jpgd54cb24d-dd2c-441c-bca0-8f65ea3b101c/F4W6Pd_DEFAULT-BANNER_LANDSCAPE.jpg",
     "categories": [
       "accessories-adornments",
-      "messenger-bags",
-      "wallets",
-      "satchels",
-      "backpacks",
-      "laptop-bags",
-      "briefcases",
-      "suitcases",
-      "duffles",
-      "analog-watches",
-      "chronograph-watches",
-      "digital-watches",
-      "aviators",
-      "wayfarers",
-      "round-sunglasses",
-      "cateye-sunglasses",
-      "rectangle-sunglasses",
-      "oversized-sunglasses",
-      "browline-sunglasses",
-      "square-sunglasses",
-      "sports-sunglasses",
-      "belts",
-      "ties",
-      "cufflinks",
-      "pocket-squares",
-      "tie-pins",
-      "brooches",
-      "baseball-caps",
-      "hats",
-      "shawls",
-      "mufflers",
-      "stoles",
       "socks",
-      "dupattas",
-      "handbags",
-      "clutches",
-      "totes",
-      "sling-bags",
-      "hobos",
-      "scarves",
-      "stockings",
-      "hairbands",
-      "hair-clips",
-      "pouches",
-      "oval-sunglasses",
-      "gloves",
-      "frames",
-      "maang-tikka",
-      "bags",
-      "sunglasses",
-      "mittens",
-      "money-clips",
-      "card-cases",
-      "brushes",
-      "horns",
-      "spray",
-      "cleaner",
-      "cream",
-      "polishes",
-      "decoration-charms",
-      "care-kits",
-      "trees",
-      "shoe-bag",
-      "laces",
-      "insoles",
-      "handkerchief",
-      "toy-box",
-      "play-gym",
-      "camera-bag",
-      "fanny-pack",
-      "usb-cable",
-      "rca-cable",
-      "usb-c-to-multiport-adapter",
-      "batteries",
-      "power-banks",
-      "lightning-cable",
-      "tos-cable",
-      "aux-cable",
-      "hdmi-cable",
-      "charging-cable",
-      "mini-display-port-hdmi-cable",
-      "thunderbolt-cable",
-      "bluetooth-headphones",
-      "headphone",
-      "bluetooth-earphones",
-      "earphones",
-      "hard-disk-drive",
-      "photo-frame",
-      "notebook",
-      "pen",
-      "luggage-tag",
-      "stationery-combo",
-      "jewellery-case",
-      "folder",
-      "key-chain",
-      "suspender",
-      "cummerbund",
-      "cravet",
-      "toiletry-bag",
-      "cosmetic-bag",
-      "gift-bag",
-      "packaging-material",
-      "spectacle-case",
-      "cuff-bands",
-      "playing-cards",
-      "kalangi",
-      "kataar",
-      "safa",
-      "watch-case",
-      "paper-weight",
-      "caps",
-      "visor-caps",
-      "bucket-hats",
-      "beanie-caps",
-      "cowboy-hats",
-      "gatsby-caps",
-      "fedora-hats",
-      "rain-cover",
-      "round-glasses",
-      "rectangle-glasses",
-      "cateye-glasses",
-      "aviator-glasses",
-      "square-glasses",
-      "oval-glasses",
-      "almond-glasses",
-      "wayfarer-glasses",
       "toric-contact-lenses",
       "daily-disposable",
       "monthly-reusable",
@@ -14291,7 +14787,6 @@ List of product templates. See example below or refer `TemplatesResponse` for de
       "solutions-accessories",
       "coloured-lenses"
     ],
-    "description": "This is the file validation template for the fashion department and accessories category.",
     "departments": [
       "electronics",
       "men",
@@ -14299,34 +14794,21 @@ List of product templates. See example below or refer `TemplatesResponse` for de
       "kids",
       "toys"
     ],
-    "attributes": [
-      "gender",
-      "age-group",
-      "occasion",
-      "collection",
-      "season",
-      "color",
-      "material",
-      "product_type",
-      "pattern",
-      "closure_type",
-      "product_length",
-      "feature",
-      "care_instructions",
-      "package_contents",
-      "essential",
-      "gst-inclusive",
-      "gst-if-exclusive",
-      "fragile",
-      "manufacturer-packer-importer-name",
-      "manufacturer-packer-importer-address"
-    ],
-    "slug": "accessories",
-    "banner": "https://hdn-1.fynd.com/seller/pictures/landscape-banner/original/F4W6Pd_DEFAULT-BANNER_LANDSCAPE.jpgd54cb24d-dd2c-441c-bca0-8f65ea3b101c/F4W6Pd_DEFAULT-BANNER_LANDSCAPE.jpg",
-    "logo": "https://hdn-1.fynd.com/seller/pictures/logo/original/hkE1dC_0DEFAULT-LOGO.jpgfb5b1b31-9449-43db-9049-435fec88ee77/hkE1dC_0DEFAULT-LOGO.jpg",
-    "is_physical": true,
+    "description": "This is the file validation template for the fashion department and accessories category.",
     "id": "5f04a23544a2e5404274bc07",
-    "is_expirable": true
+    "is_expirable": true,
+    "is_physical": true,
+    "logo": "https://hdn-1.fynd.com/seller/pictures/logo/original/hkE1dC_0DEFAULT-LOGO.jpgfb5b1b31-9449-43db-9049-435fec88ee77/hkE1dC_0DEFAULT-LOGO.jpg",
+    "name": "Accessories",
+    "slug": "accessories"
+  },
+  "page": {
+    "current": 1,
+    "has_next": true,
+    "has_previous": false,
+    "item_total": 36,
+    "size": 3,
+    "type": "number"
   }
 }
 ```
@@ -14388,10 +14870,10 @@ List of all categories attached to departments specified. See example below or r
 
 ```json
 {
+  "items": [],
   "page": {
     "type": ""
-  },
-  "items": []
+  }
 }
 ```
 </details>
@@ -14444,22 +14926,24 @@ List of Product Downloads Data. See example below or refer `ProductDownloadsResp
 
 ```json
 {
-  "page": {},
   "items": [
     {
+      "completed_on": "2020-12-23T07:23:41.031000Z",
       "created_by": {
-        "username": "917972410891_48194",
-        "user_id": "5646"
+        "user_id": "5646",
+        "username": "917972410891_48194"
       },
       "data": {
-        "type": "csv",
         "brand": [
           "ruosh"
         ],
         "templates": [
           "mobile-phones-and-tablet"
-        ]
+        ],
+        "type": "csv"
       },
+      "id": "5fe2f077516d980001880943",
+      "seller_id": 3,
       "status": "success",
       "task_id": "c4b54ace-44ef-11eb-9806-1ef9bc4a2da1",
       "template_tags": {
@@ -14469,12 +14953,10 @@ List of Product Downloads Data. See example below or refer `ProductDownloadsResp
         }
       },
       "trigger_on": "2020-12-23T07:23:35.302000Z",
-      "seller_id": 3,
-      "completed_on": "2020-12-23T07:23:41.031000Z",
-      "url": "https://regrowth.s3.amazonaws.com/slingshot-catalogues/seller-catalog/3/c4b54ace-44ef-11eb-9806-1ef9bc4a2da1/c4b54ace-44ef-11eb-9806-1ef9bc4a2da1.zip",
-      "id": "5fe2f077516d980001880943"
+      "url": "https://regrowth.s3.amazonaws.com/slingshot-catalogues/seller-catalog/3/c4b54ace-44ef-11eb-9806-1ef9bc4a2da1/c4b54ace-44ef-11eb-9806-1ef9bc4a2da1.zip"
     }
-  ]
+  ],
+  "page": {}
 }
 ```
 </details>
@@ -15079,68 +15561,68 @@ The Collection object. See example below or refer `UpdateCollectionSchema` for d
 
 ```json
 {
-  "uid": "604f585a7051e30001173ac1",
-  "type": "query",
-  "query": [],
-  "name": "New",
-  "banners": {
-    "portrait": {
-      "aspect_ratio": "16:9",
-      "type": "image",
-      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588858137/production/applications/app_000000000000000000000001/media/collection/portrait/xzuftshmmw4yuwzb12pm.png"
-    },
-    "landscape": {
-      "aspect_ratio": "16:9",
-      "type": "image",
-      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857999/production/applications/app_000000000000000000000001/media/collection/landscape/avm7xibo2jgk8glc4bwl.png"
-    }
+  "_custom_json": {},
+  "_locale_language": {},
+  "_schedule": {
+    "end": null,
+    "next_schedule": [
+      {
+        "end": null,
+        "start": "2021-04-02T15:43:59.410000Z"
+      }
+    ],
+    "start": "2021-04-02T15:43:59.410000Z"
   },
-  "logo": {
-    "aspect_ratio": "16:9",
-    "type": "image",
-    "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857854/production/applications/app_000000000000000000000001/media/collection/logo/w9ns7nfgv7fk45xqrpoh.png"
-  },
-  "published": true,
-  "description": "",
-  "is_active": true,
-  "tags": [],
-  "slug": "new",
   "action": {
     "page": {
-      "type": "collection",
       "query": {
         "collection": [
           "new"
         ]
-      }
+      },
+      "type": "collection"
     },
     "type": "page"
   },
   "allow_facets": true,
   "allow_sort": true,
-  "visible_facets_keys": [],
-  "meta": {},
   "badge": {
     "color": "#ffffff",
     "text": ""
   },
-  "sort_on": "depth_desc",
-  "_custom_json": {},
-  "_locale_language": {},
-  "_schedule": {
-    "start": "2022-12-31T23:59:59Z",
-    "next_schedule": [
-      {
-        "start": "2022-12-31T23:59:59Z",
-        "end": null
-      }
-    ],
-    "end": null
+  "banners": {
+    "landscape": {
+      "aspect_ratio": "250",
+      "type": "image",
+      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857999/production/applications/app_000000000000000000000001/media/collection/landscape/avm7xibo2jgk8glc4bwl.png"
+    },
+    "portrait": {
+      "aspect_ratio": "250",
+      "type": "image",
+      "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588858137/production/applications/app_000000000000000000000001/media/collection/portrait/xzuftshmmw4yuwzb12pm.png"
+    }
   },
+  "description": "",
+  "is_active": true,
+  "logo": {
+    "aspect_ratio": "250",
+    "type": "image",
+    "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857854/production/applications/app_000000000000000000000001/media/collection/logo/w9ns7nfgv7fk45xqrpoh.png"
+  },
+  "meta": {},
+  "name": "New",
+  "published": true,
+  "query": [],
   "seo": {
-    "title": "Test",
-    "description": "Test description"
-  }
+    "description": "Test description",
+    "title": "Test"
+  },
+  "slug": "new",
+  "sort_on": "depth_desc",
+  "tags": [],
+  "type": "query",
+  "uid": "604f585a7051e30001173ac1",
+  "visible_facets_keys": []
 }
 ```
 </details>
@@ -15255,22 +15737,22 @@ Success Response. See example below or refer `DepartmentCreateResponseSchema` fo
 
 ```json
 {
+  "created_on": "2021-04-02T15:43:59.410000Z",
   "is_active": true,
-  "name": "Fashion",
-  "slug": "fashion",
-  "priority_order": 1,
   "logo": "https://hdn-1.addsale.com/x0/department/pictures/square-logo/original/xKDsQBbu4-department.png",
+  "modified_by": {
+    "user_id": "f5b6a546565146sdfg584c342",
+    "username": "31315573458_05620"
+  },
+  "modified_on": "2022-08-09T15:44:02.540740",
+  "name": "Fashion",
+  "priority_order": 1,
+  "slug": "fashion",
   "synonyms": [
     "fashion",
     "mensfashion"
   ],
-  "uid": 2,
-  "modified_by": {
-    "username": "31315573458_05620",
-    "user_id": "f5b6a546565146sdfg584c342"
-  },
-  "modified_on": "2022-08-09T15:44:02.540740",
-  "created_on": "2022-08-09T15:44:02.540740"
+  "uid": 2
 }
 ```
 </details>
@@ -15333,26 +15815,26 @@ success flag will tell whether the operation was successful.
 
 ```json
 {
-  "is_active": true,
-  "template_slugs": [
-    "bags"
-  ],
-  "priority": 1,
-  "slug": "test15",
-  "name": "test",
   "app_id": "5d64e3500bcad8693a821c0d",
-  "is_default": false,
   "attributes": [
     {
+      "display_type": "text",
       "is_active": true,
-      "priority": 1,
-      "slug": "features",
-      "name": "Features",
       "key": "features",
-      "display_type": "text"
+      "name": "Features",
+      "priority": 1,
+      "slug": "features"
     }
   ],
-  "id": "62b1cdab15c88fa867ee4dac"
+  "id": "62b1cdab15c88fa867ee4dac",
+  "is_active": true,
+  "is_default": false,
+  "name": "test",
+  "priority": 1,
+  "slug": "test15",
+  "template_slugs": [
+    "bags"
+  ]
 }
 ```
 </details>
@@ -15415,12 +15897,12 @@ See example below for details
   "data": {
     "company_id": 1,
     "hs2_code": "xx",
-    "modified_by": {
-      "username": "narutouzumaki",
-      "user_id": "0"
-    },
+    "hsn_code": "xxxxxxxx",
     "id": "xxxxxxxxxxxx",
-    "tax_on": "esp",
+    "modified_by": {
+      "user_id": "0",
+      "username": "narutouzumaki"
+    },
     "slabs": [
       {
         "tax": 0,
@@ -15431,7 +15913,7 @@ See example below for details
         "threshold": 0
       }
     ],
-    "hsn_code": "xxxxxxxx"
+    "tax_on": "esp"
   }
 }
 ```
@@ -15489,37 +15971,37 @@ Returns a success or partial success response
 
 ```json
 {
-  "message": "Partially Successful",
   "items": [
     {
-      "reason": {
-        "reason_code": 2005,
-        "message": "Product not found"
-      },
       "data": {
-        "seller_identifier": "000000000490922067",
-        "store_id": 124,
-        "price_marked": 130,
+        "expiration_date": "9998-01-30T23:59:00",
         "price_effective": 109.01,
-        "total_quantity": 34,
-        "expiration_date": "9998-01-30T23:59:00"
+        "price_marked": 130,
+        "seller_identifier": "SELLER123",
+        "store_id": 124,
+        "total_quantity": 34
+      },
+      "reason": {
+        "message": "Product not found",
+        "reason_code": 2005
       }
     },
     {
-      "reason": {
-        "reason_code": 2004,
-        "message": "Size not found"
-      },
       "data": {
-        "seller_identifier": "000000000490922067",
-        "store_id": 124,
-        "price_marked": 130,
+        "expiration_date": "9998-01-30T23:59:00",
         "price_effective": 109.01,
-        "total_quantity": 34,
-        "expiration_date": "9998-01-30T23:59:00"
+        "price_marked": 130,
+        "seller_identifier": "SELLER123",
+        "store_id": 124,
+        "total_quantity": 34
+      },
+      "reason": {
+        "message": "Size not found",
+        "reason_code": 2004
       }
     }
-  ]
+  ],
+  "message": "Partially Successful"
 }
 ```
 </details>
@@ -15583,13 +16065,13 @@ success flag will tell whether the operation was successful.
 ```json
 {
   "app_id": "5d64e3500bcad8693a821c0d",
-  "key": "latest",
   "default_key": "latest",
+  "id": "6250568de404abd533db571d",
   "is_active": true,
   "is_default": false,
+  "key": "latest",
   "name": "Latest",
-  "priority": 1,
-  "id": "6250568de404abd533db571d"
+  "priority": 1
 }
 ```
 </details>
@@ -15649,38 +16131,38 @@ The Collection object. See example below or refer `GetProductBundleCreateRespons
 
 ```json
 {
-  "slug": "bag",
-  "logo": "http://g.com/poo.png/",
-  "name": "Bag",
   "choice": "multi",
-  "products": [
-    {
-      "product_uid": 7500001,
-      "max_quantity": 1,
-      "min_quantity": 1,
-      "auto_add_to_cart": false,
-      "auto_select": false,
-      "allow_remove": true
-    }
-  ],
-  "meta": {},
-  "same_store_assignment": true,
+  "company_id": 1,
+  "created_by": {
+    "uid": "123",
+    "username": "917827311650_22960"
+  },
+  "created_on": "2021-02-19 16:40:26.310007",
+  "id": "602f9ca2a596ce312f5956f9",
   "is_active": true,
+  "logo": "http://g.com/poo.png/",
+  "meta": {},
+  "modified_by": {
+    "uid": "123",
+    "username": "917827311650_22960"
+  },
+  "modified_on": "2021-02-19 16:40:26.310027",
+  "name": "Bag",
   "page_visibility": [
     "pdp"
   ],
-  "created_by": {
-    "username": "917827311650_22960",
-    "uid": "123"
-  },
-  "company_id": 1,
-  "created_on": "2021-02-19 16:40:26.310007",
-  "modified_by": {
-    "username": "917827311650_22960",
-    "uid": "123"
-  },
-  "modified_on": "2021-02-19 16:40:26.310027",
-  "id": "602f9ca2a596ce312f5956f9"
+  "products": [
+    {
+      "allow_remove": true,
+      "auto_add_to_cart": false,
+      "auto_select": false,
+      "max_quantity": 1,
+      "min_quantity": 1,
+      "product_uid": 7500001
+    }
+  ],
+  "same_store_assignment": true,
+  "slug": "bag"
 }
 ```
 </details>
@@ -15743,37 +16225,94 @@ Returns a success response
 
 ```json
 {
-  "message": "Partially Successful",
   "items": [
     {
-      "reason": {
-        "reason_code": 2005,
-        "message": "Product not found"
-      },
       "data": {
-        "seller_identifier": "000000000490922067",
-        "store_id": 124,
-        "price_marked": 130,
+        "expiration_date": "9998-01-30T23:59:00",
         "price_effective": 109.01,
-        "total_quantity": 34,
-        "expiration_date": "9998-01-30T23:59:00"
+        "price_marked": 130,
+        "seller_identifier": "SELLER123",
+        "store_id": 124,
+        "total_quantity": 34
+      },
+      "reason": {
+        "message": "Product not found",
+        "reason_code": 2005
       }
     },
     {
-      "reason": {
-        "reason_code": 2004,
-        "message": "Size not found"
-      },
       "data": {
-        "seller_identifier": "000000000490922067",
-        "store_id": 124,
-        "price_marked": 130,
+        "expiration_date": "9998-01-30T23:59:00",
         "price_effective": 109.01,
-        "total_quantity": 34,
-        "expiration_date": "9998-01-30T23:59:00"
+        "price_marked": 130,
+        "seller_identifier": "SELLER123",
+        "store_id": 124,
+        "total_quantity": 34
+      },
+      "reason": {
+        "message": "Size not found",
+        "reason_code": 2004
       }
     }
-  ]
+  ],
+  "message": "Partially Successful"
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateSearchConfiguration
+Update search configuration for an application
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.updateSearchConfiguration({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.updateSearchConfiguration({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [UpdateSearchConfigurationRequest](#UpdateSearchConfigurationRequest) | yes | Request body |
+
+
+This view allows you to modify searchable attributes for an application
+
+*Returned Response:*
+
+
+
+
+[UpdateSearchConfigurationResponse](#UpdateSearchConfigurationResponse)
+
+List of custom search keywords. See example below or refer `UpdateSearchConfigurationResponse` for details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "searchable_attributes": {}
 }
 ```
 </details>
@@ -15955,7 +16494,7 @@ Returns a success response
 ```json
 {
   "batch_id": "507f1f77bcf86cd799439011",
-  "created_on": "2022-12-31T23:59:59Z"
+  "created_on": "2021-04-02T15:43:59.410000Z"
 }
 ```
 </details>
@@ -16018,7 +16557,22 @@ List of fields and validation values fro each. See example below or refer `Templ
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-{}
+{
+  "data": {
+    "global_validation": {
+      "properties": {},
+      "required": []
+    }
+  },
+  "template_details": {
+    "attributes": [],
+    "categories": [],
+    "departments": [],
+    "is_expirable": true,
+    "is_physical": true,
+    "slug": ""
+  }
+}
 ```
 </details>
 
@@ -16076,88 +16630,50 @@ List of fields and validation values fro each. See example below or refer `Inven
 ```json
 {
   "data": {
-    "title": "InventoryValidationResponse",
-    "type": "object",
-    "properties": {
-      "item": {
-        "$ref": "#/components/schemas/ItemQuery"
-      },
-      "sizes": {
-        "title": "Sizes",
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/ItemQuery"
-        }
-      }
-    },
-    "required": [
-      "item",
-      "sizes"
-    ],
     "definitions": {
-      "ItemQuery": {
-        "title": "ItemQuery",
-        "type": "object",
-        "properties": {
-          "uid": {
-            "title": "Uid",
-            "type": "integer"
-          },
-          "brand_uid": {
-            "title": "Brand Uid",
-            "type": "integer"
-          },
-          "item_code": {
-            "title": "Item Code",
-            "type": "integer"
-          }
-        }
-      },
       "InventoryBaseSchema": {
-        "title": "InventoryBaseSchema",
-        "type": "object",
         "properties": {
+          "currency": {
+            "enum": [
+              "INR",
+              "QAR"
+            ],
+            "title": "Currency",
+            "type": "string"
+          },
           "price": {
-            "title": "Actual Price",
             "exclusiveMinimum": 1,
+            "title": "Actual Price",
             "type": "number"
           },
           "price_effective": {
-            "title": "Selling Price",
             "exclusiveMinimum": 1,
+            "title": "Selling Price",
             "type": "number"
           },
-          "seller_identifier": {
-            "title": "Gtin Value",
-            "pattern": "^[A-Za-z0-9]*$",
-            "type": "string"
-          },
           "quantity": {
-            "title": "Quantity",
             "minimum": 0,
+            "title": "Quantity",
             "type": "integer"
           },
+          "seller_identifier": {
+            "pattern": "^[A-Za-z0-9]*$",
+            "title": "Gtin Value",
+            "type": "string"
+          },
+          "size": {
+            "title": "Size",
+            "type": "string"
+          },
           "store_code": {
-            "title": "Store Code",
-            "type": "string",
             "enum": [
               "RUOSH43",
               "S106",
               "S108",
               "TIO9",
               "talha"
-            ]
-          },
-          "currency": {
-            "title": "Currency",
-            "enum": [
-              "INR",
-              "QAR"
             ],
-            "type": "string"
-          },
-          "size": {
-            "title": "Size",
+            "title": "Store Code",
             "type": "string"
           }
         },
@@ -16169,9 +16685,41 @@ List of fields and validation values fro each. See example below or refer `Inven
           "store_code",
           "currency",
           "size"
-        ]
+        ],
+        "title": "InventoryBaseSchema",
+        "type": "object"
+      },
+      "ItemQuery": {
+        "properties": {
+          "brand_uid": {
+            "title": "Brand Uid",
+            "type": "integer"
+          },
+          "item_code": {
+            "title": "Item Code",
+            "type": "integer"
+          },
+          "uid": {
+            "title": "Uid",
+            "type": "integer"
+          }
+        },
+        "title": "ItemQuery",
+        "type": "object"
       }
-    }
+    },
+    "properties": {
+      "sizes": {
+        "title": "Sizes",
+        "type": "array"
+      }
+    },
+    "required": [
+      "item",
+      "sizes"
+    ],
+    "title": "InventoryValidationResponse",
+    "type": "object"
   },
   "message": "Success"
 }
@@ -16231,9 +16779,9 @@ List of fields and validation values fro each. See example below or refer `Inven
  | item_height | number |  no  |  |
  | item_length | number |  no  |  |
  | item_weight | number |  no  |  |
- | item_weight_unit_of_measure | any |  no  |  |
+ | item_weight_unit_of_measure | string |  no  |  |
  | item_width | number |  no  |  |
- | size | any |  no  |  |
+ | size | string |  no  |  |
  
 
 ---
@@ -16389,8 +16937,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | any? |  yes  | The SEO description of the item |
- | title | any? |  yes  | The SEO title of the item |
+ | description | string? |  yes  | The SEO description of the item |
+ | title | string? |  yes  | The SEO title of the item |
  
 
 ---
@@ -17434,6 +17982,32 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
+#### [CreateSearchConfigurationRequest](#CreateSearchConfigurationRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | application_id | string |  no  | The application id where custom search configuration is set |
+ | company_id | number |  no  | The company id where custom search configuration is set |
+ | created_by | [UserSerializer](#UserSerializer)? |  yes  | The user who created the search configuration. |
+ | created_on | string? |  yes  | The date and time when the search configuration was created. |
+ | is_proximity_enabled | boolean? |  yes  | Flag indicating if proximity search is enabled for this attribute. |
+ | modified_by | [UserSerializer](#UserSerializer)? |  yes  | The user who modified the search configuration. |
+ | modified_on | string? |  yes  | The date and time when the search configuration was last modified. |
+ | proximity | number? |  yes  | Proximity distance configuration |
+ | searchable_attributes | [[SearchableAttribute](#SearchableAttribute)]? |  yes  | The searchable attributes defined on the application. |
+ 
+
+---
+
+#### [CreateSearchConfigurationResponse](#CreateSearchConfigurationResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
 #### [CreateSearchKeyword](#CreateSearchKeyword)
 
  | Properties | Type | Nullable | Description |
@@ -17504,6 +18078,15 @@ List of fields and validation values fro each. See example below or refer `Inven
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | message | string? |  yes  |  |
+ 
+
+---
+
+#### [DeleteSearchConfigurationResponse](#DeleteSearchConfigurationResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -17596,19 +18179,19 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _cls | any? |  yes  |  |
+ | _cls | string? |  yes  |  |
  | _custom_json | string? |  yes  |  |
- | _id | any? |  yes  |  |
+ | _id | string? |  yes  |  |
  | created_by | [UserDetail](#UserDetail)? |  yes  | User details of the creator of the document |
  | created_on | string |  no  | Timestamp of the creation of the document |
  | is_active | boolean? |  yes  | Whether the department is currently active |
- | logo | any |  no  | The URL of the department's logo |
+ | logo | string |  no  | The URL of the department's logo |
  | modified_by | [UserDetail](#UserDetail)? |  yes  | User details of the last modifier of the document |
  | modified_on | string |  no  | Timestamp of the last modification of the document |
- | name | any |  no  | The name of the department |
+ | name | string |  no  | The name of the department |
  | priority_order | number |  no  | The priority order of the department |
- | slug | any |  no  | The unique slug identifier for the department |
- | synonyms | [any]? |  yes  | A list of synonyms for the department name |
+ | slug | string |  no  | The unique slug identifier for the department |
+ | synonyms | [string]? |  yes  | A list of synonyms for the department name |
  | uid | number |  no  | The unique ID for the department |
  | verified_by | [UserDetail](#UserDetail)? |  yes  | User details of the verifier of the document, if applicable |
  | verified_on | string? |  yes  | Timestamp of when the document was verified, if applicable |
@@ -17902,15 +18485,15 @@ List of fields and validation values fro each. See example below or refer `Inven
  | addresses | [[GetAddressSerializer](#GetAddressSerializer)]? |  yes  |  |
  | business_type | string? |  yes  |  |
  | company_type | string? |  yes  |  |
- | created_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | created_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
  | created_on | string? |  yes  |  |
- | modified_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | modified_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
  | modified_on | string? |  yes  |  |
  | name | string? |  yes  |  |
  | reject_reason | string? |  yes  |  |
  | stage | string? |  yes  |  |
  | uid | number? |  yes  |  |
- | verified_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
+ | verified_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
  | verified_on | string? |  yes  |  |
  
 
@@ -17941,12 +18524,12 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | created_by | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | created_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
  | created_on | string? |  yes  |  |
  | is_active | boolean? |  yes  |  |
  | item_type | string? |  yes  |  |
  | logo | string? |  yes  |  |
- | modified_by | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | modified_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
  | modified_on | string? |  yes  |  |
  | name | string? |  yes  |  |
  | page_no | number? |  yes  |  |
@@ -17967,7 +18550,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | brand | [BrandMeta1](#BrandMeta1)? |  yes  |  |
  | company | [CompanyMeta1](#CompanyMeta1)? |  yes  |  |
  | country_of_origin | string? |  yes  |  |
- | created_by | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | created_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
  | date_meta | [DateMeta](#DateMeta)? |  yes  |  |
  | dimension | [DimensionResponse1](#DimensionResponse1)? |  yes  |  |
  | expiration_date | string? |  yes  |  |
@@ -17977,7 +18560,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | is_set | boolean? |  yes  |  |
  | item_id | number? |  yes  |  |
  | manufacturer | [ManufacturerResponse1](#ManufacturerResponse1)? |  yes  |  |
- | modified_by | [UserSerializer](#UserSerializer)? |  yes  |  |
+ | modified_by | [UserSerializer1](#UserSerializer1)? |  yes  |  |
  | platforms | string? |  yes  |  |
  | price | [PriceArticle](#PriceArticle)? |  yes  |  |
  | quantities | [QuantitiesArticle](#QuantitiesArticle)? |  yes  |  |
@@ -18017,14 +18600,14 @@ List of fields and validation values fro each. See example below or refer `Inven
  | code | string |  no  |  |
  | company | [GetCompanySerializer](#GetCompanySerializer)? |  yes  |  |
  | contact_numbers | [[SellerPhoneNumber](#SellerPhoneNumber)]? |  yes  |  |
- | created_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
+ | created_by | [UserSerializer3](#UserSerializer3)? |  yes  |  |
  | created_on | string? |  yes  |  |
  | display_name | string |  no  |  |
  | documents | [[Document](#Document)]? |  yes  |  |
  | gst_credentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)? |  yes  |  |
  | integration_type | [LocationIntegrationType](#LocationIntegrationType)? |  yes  |  |
  | manager | [LocationManagerSerializer](#LocationManagerSerializer)? |  yes  |  |
- | modified_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
+ | modified_by | [UserSerializer3](#UserSerializer3)? |  yes  |  |
  | modified_on | string? |  yes  |  |
  | name | string |  no  |  |
  | notification_emails | [string]? |  yes  |  |
@@ -18034,7 +18617,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | store_type | string? |  yes  |  |
  | timing | [[LocationDayWiseSerializer](#LocationDayWiseSerializer)]? |  yes  |  |
  | uid | number? |  yes  |  |
- | verified_by | [UserSerializer2](#UserSerializer2)? |  yes  |  |
+ | verified_by | [UserSerializer3](#UserSerializer3)? |  yes  |  |
  | verified_on | string? |  yes  |  |
  | warnings | string? |  yes  |  |
  
@@ -18119,6 +18702,23 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
+#### [GetSearchConfigurationResponse](#GetSearchConfigurationResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | application_id | string |  no  | The application id where custom search configuration is set |
+ | company_id | number |  no  | The company id where custom search configuration is set |
+ | created_by | [UserSerializer](#UserSerializer)? |  yes  | The user who created the search configuration. |
+ | created_on | string? |  yes  | The date and time when the search configuration was created. |
+ | is_proximity_enabled | boolean? |  yes  | Flag indicating if proximity search is enabled for this attribute. |
+ | modified_by | [UserSerializer](#UserSerializer)? |  yes  | The user who modified the search configuration. |
+ | modified_on | string? |  yes  | The date and time when the search configuration was last modified. |
+ | proximity | number? |  yes  | Proximity distance configuration |
+ | searchable_attributes | [[SearchableAttribute](#SearchableAttribute)]? |  yes  | The searchable attributes defined on the application. |
+ 
+
+---
+
 #### [GetSearchWordsData](#GetSearchWordsData)
 
  | Properties | Type | Nullable | Description |
@@ -18172,7 +18772,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | gtin_type | string |  no  |  |
- | gtin_value | any |  no  |  |
+ | gtin_value | string |  no  |  |
  | primary | boolean? |  yes  |  |
  
 
@@ -18464,7 +19064,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | modified_on | string? |  yes  | This is the timestamp of the modification for this job. |
  | notification_emails | [string]? |  yes  | User email to get notification post completion of the job. |
  | seller_id | number |  no  | This ID of the company. |
- | status | any? |  yes  | This tells you the current status of the export job. |
+ | status | string? |  yes  | This tells you the current status of the export job. |
  | task_id | string |  no  | This is the task id of the jobs that is used for search. |
  | type | string? |  yes  | This is the file type of the export. |
  | url | string |  no  | This is the url to download the export. |
@@ -18617,7 +19217,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | brand | [BrandMeta](#BrandMeta) |  no  | The metadata of the brand. |
  | company | [CompanyMeta](#CompanyMeta) |  no  | The metadata of the company. |
  | country_of_origin | string |  no  | The country of origin of the article. |
- | created_by | [UserSerializer](#UserSerializer)? |  yes  | The user who created the article. |
+ | created_by | [UserSerializer1](#UserSerializer1)? |  yes  | The user who created the article. |
  | dimension | [DimensionResponse](#DimensionResponse) |  no  | The dimensions of the article. |
  | expiration_date | string? |  yes  | The expiration date of the article. |
  | fragile | boolean |  no  | Indicates if the article is fragile. |
@@ -18630,7 +19230,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | item_id | number |  no  | The ID of the item. |
  | manufacturer | [ManufacturerResponse](#ManufacturerResponse) |  no  | The manufacturer of the article. |
  | meta | string? |  yes  | Additional metadata for the article. |
- | modified_by | [UserSerializer](#UserSerializer)? |  yes  | The user who modified the article. |
+ | modified_by | [UserSerializer1](#UserSerializer1)? |  yes  | The user who modified the article. |
  | price | [PriceMeta](#PriceMeta) |  no  | The price metadata of the article. |
  | quantities | [Quantities](#Quantities)? |  yes  |  |
  | raw_meta | string? |  yes  | The raw metadata of the article. |
@@ -18733,7 +19333,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | price_transfer | number? |  yes  |  |
  | quantity | number |  no  |  |
  | set | [InventorySet](#InventorySet)? |  yes  |  |
- | size | any |  no  |  |
+ | size | string |  no  |  |
  | store_code | string |  no  |  |
  
 
@@ -18990,8 +19590,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | any |  no  | The key of the metadata. Should be a non-empty string and length should not exceed 30 characters. |
- | value | any |  no  | The value of the metadata. Should be a non-empty string and length should not exceed 100 characters. |
+ | key | string |  no  | The key of the metadata. Should be a non-empty string and length should not exceed 30 characters. |
+ | value | string |  no  | The value of the metadata. Should be a non-empty string and length should not exceed 100 characters. |
  
 
 ---
@@ -19442,7 +20042,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | net_quantity | [NetQuantity](#NetQuantity)? |  yes  |  |
  | no_of_boxes | number? |  yes  |  |
  | product_group_tag | [string]? |  yes  |  |
- | product_publish | [ProductPublish](#ProductPublish)? |  yes  |  |
+ | product_publish | [ProductPublish1](#ProductPublish1)? |  yes  |  |
  | requester | string? |  yes  |  |
  | return_config | [ReturnConfig](#ReturnConfig) |  no  |  |
  | short_description | string? |  yes  |  |
@@ -19718,7 +20318,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | pending | string? |  yes  |  |
  | primary_color | string? |  yes  |  |
  | product_group_tag | [string]? |  yes  |  |
- | product_publish | [ProductPublish1](#ProductPublish1)? |  yes  |  |
+ | product_publish | [ProductPublish](#ProductPublish)? |  yes  |  |
  | return_config | [ReturnConfigResponse](#ReturnConfigResponse)? |  yes  |  |
  | short_description | string? |  yes  |  |
  | size_guide | string? |  yes  |  |
@@ -20098,6 +20698,17 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
+#### [SearchableAttribute](#SearchableAttribute)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | string |  no  | The attribute key to search on. This key matches the solr document key |
+ | name | string |  no  | The name of key to search on. This is for displaying purposes on platform |
+ | priority | number |  no  | Order in which the searchable attribute should kick in. Higher the priority, higher the weight considered while searching |
+ 
+
+---
+
 #### [SearchKeywordResult](#SearchKeywordResult)
 
  | Properties | Type | Nullable | Description |
@@ -20137,8 +20748,8 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | any? |  yes  |  |
- | title | any? |  yes  |  |
+ | description | string? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -20445,7 +21056,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | is_visible | boolean? |  yes  |  |
  | logo | [CollectionImage](#CollectionImage)? |  yes  |  |
  | meta | string? |  yes  |  |
- | modified_by | [UserInfo](#UserInfo)? |  yes  |  |
+ | modified_by | [UserInfo](#UserInfo)? |  yes  | User info. |
  | name | string? |  yes  |  |
  | priority | number? |  yes  |  |
  | published | boolean? |  yes  |  |
@@ -20466,6 +21077,32 @@ List of fields and validation values fro each. See example below or refer `Inven
  | ---------- | ---- | -------- | ----------- |
  | items_not_updated | [number]? |  yes  |  |
  | message | string? |  yes  |  |
+ 
+
+---
+
+#### [UpdateSearchConfigurationRequest](#UpdateSearchConfigurationRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | application_id | string |  no  | The application id where custom search configuration is set |
+ | company_id | number |  no  | The company id where custom search configuration is set |
+ | created_by | [UserSerializer](#UserSerializer)? |  yes  | The user who created the search configuration. |
+ | created_on | string? |  yes  | The date and time when the search configuration was created. |
+ | is_proximity_enabled | boolean? |  yes  | Flag indicating if proximity search is enabled for this attribute. |
+ | modified_by | [UserSerializer](#UserSerializer)? |  yes  | The user who modified the search configuration. |
+ | modified_on | string? |  yes  | The date and time when the search configuration was last modified. |
+ | proximity | number? |  yes  | Proximity distance configuration |
+ | searchable_attributes | [[SearchableAttribute](#SearchableAttribute)]? |  yes  | The searchable attributes defined on the application. |
+ 
+
+---
+
+#### [UpdateSearchConfigurationResponse](#UpdateSearchConfigurationResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -20532,6 +21169,17 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | contact | string? |  yes  | The contact information of the user. |
+ | user_id | string? |  yes  | The unique ID of the user. |
+ | username | string? |  yes  | The username of the user. |
+ 
+
+---
+
+#### [UserSerializer1](#UserSerializer1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
  | _id | string? |  yes  |  |
  | contact | string? |  yes  |  |
  | uid | string? |  yes  |  |
@@ -20541,7 +21189,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
-#### [UserSerializer1](#UserSerializer1)
+#### [UserSerializer2](#UserSerializer2)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -20552,7 +21200,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
-#### [UserSerializer2](#UserSerializer2)
+#### [UserSerializer3](#UserSerializer3)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |

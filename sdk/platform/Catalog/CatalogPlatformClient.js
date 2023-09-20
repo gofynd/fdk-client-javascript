@@ -3235,7 +3235,7 @@ class Catalog {
    * @returns {Promise<CatalogPlatformModel.StoreAssignResponse>} - Success response
    * @name getOptimalLocations
    * @summary: Location Reassignment
-   * @description: Location Reassignment - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getOptimalLocations/).
+   * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getOptimalLocations/).
    */
   async getOptimalLocations(
     { body, requestHeaders } = { requestHeaders: {} },

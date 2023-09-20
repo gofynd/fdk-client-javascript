@@ -1266,6 +1266,16 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef OrderingStoreSelect
+ * @property {number} uid - Ordering store unique uid. It is required.
+ */
+
+/**
+ * @typedef OrderingStoreSelectRequest
+ * @property {OrderingStoreSelect} ordering_store
+ */
+
+/**
  * @typedef OrderingStoresResponse
  * @property {OrderingStore[]} [items]
  * @property {Page} [page]
@@ -2973,6 +2983,20 @@ class ConfigurationPlatformModel {
       items: Joi.array().items(ConfigurationPlatformModel.OrderingStore()),
       page: ConfigurationPlatformModel.Page(),
       type: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {OrderingStoreSelect} */
+  static OrderingStoreSelect() {
+    return Joi.object({
+      uid: Joi.number().required(),
+    });
+  }
+
+  /** @returns {OrderingStoreSelectRequest} */
+  static OrderingStoreSelectRequest() {
+    return Joi.object({
+      ordering_store: ConfigurationPlatformModel.OrderingStoreSelect().required(),
     });
   }
 

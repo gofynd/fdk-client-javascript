@@ -387,6 +387,7 @@ export = CartPlatformModel;
  */
 /**
  * @typedef CouponAdd
+ * @property {string} [_id] - Coupon id
  * @property {CouponSchedule} [_schedule]
  * @property {CouponAction} [action]
  * @property {CouponAuthor} [author]
@@ -451,7 +452,7 @@ export = CartPlatformModel;
  */
 /**
  * @typedef CouponsResponse
- * @property {CouponAdd} [items]
+ * @property {CouponAdd[]} [items]
  * @property {Page} [page]
  */
 /**
@@ -864,6 +865,7 @@ export = CartPlatformModel;
  * @property {string} mode
  * @property {string} [name]
  * @property {string} [payment]
+ * @property {Object} [payment_extra_identifiers]
  * @property {PaymentMeta} payment_meta
  */
 /**
@@ -953,6 +955,7 @@ export = CartPlatformModel;
  * @property {string} order_type
  * @property {number} [ordering_store]
  * @property {boolean} [payment_auto_confirm]
+ * @property {Object} [payment_extra_identifiers]
  * @property {string} [payment_identifier]
  * @property {string} payment_mode
  * @property {Object} [payment_params]
@@ -2210,6 +2213,10 @@ type CouponAction = {
 /** @returns {CouponAdd} */
 declare function CouponAdd(): CouponAdd;
 type CouponAdd = {
+    /**
+     * - Coupon id
+     */
+    _id?: string;
     _schedule?: CouponSchedule;
     action?: CouponAction;
     author?: CouponAuthor;
@@ -2284,7 +2291,7 @@ type CouponSchedule = {
 /** @returns {CouponsResponse} */
 declare function CouponsResponse(): CouponsResponse;
 type CouponsResponse = {
-    items?: CouponAdd;
+    items?: CouponAdd[];
     page?: Page;
 };
 /** @returns {CouponUpdate} */
@@ -2813,6 +2820,7 @@ type PaymentMethod = {
     mode: string;
     name?: string;
     payment?: string;
+    payment_extra_identifiers?: any;
     payment_meta: PaymentMeta;
 };
 /** @returns {PaymentModes} */
@@ -2914,6 +2922,7 @@ type PlatformCartCheckoutDetailRequest = {
     order_type: string;
     ordering_store?: number;
     payment_auto_confirm?: boolean;
+    payment_extra_identifiers?: any;
     payment_identifier?: string;
     payment_mode: string;
     payment_params?: any;
