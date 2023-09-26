@@ -6,6 +6,7 @@ class Session {
     constructor(id, isNew = true) {
         this.id = id;
         this.company_id = null;
+        this.organization_id = null;
         this.state = null;
         this.scope = null;
         this.expires = null;
@@ -28,6 +29,7 @@ class Session {
     toJSON() {
         return {
             company_id: this.company_id,
+            organization_id: this.organization_id,
             state: this.state,
             scope: this.scope,
             expires: this.expires && this.expires.getTime(),
@@ -54,7 +56,7 @@ class Session {
         if(isOnline) {
             return v4();
         } else {
-            return sha256(`${options.cluster}:${options.companyId}`).toString();
+            return sha256(`${options.cluster}:${options.id}`).toString();
         }
     }
 }

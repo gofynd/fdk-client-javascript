@@ -2,7 +2,7 @@
 const validator = require('validator');
 const { FdkInvalidExtensionConfig } = require("./error_code");
 const urljoin = require('url-join');
-const { PlatformConfig, PlatformClient } = require("@gofynd/fdk-client-javascript");
+const { PlatformConfig, PlatformClient, PartnerConfig } = require("@gofynd/fdk-client-javascript");
 const { WebhookRegistry } = require('./webhook');
 const logger = require('./logger');
 const { fdkAxios } = require('@gofynd/fdk-client-javascript/sdk/common/AxiosHelper');
@@ -109,6 +109,21 @@ class Extension {
         });
         return platformConfig;
         
+    }
+
+    getPartnerConfig(organizationId) {
+        if (!this._isInitialized) {
+            throw new FdkInvalidExtensionConfig("Extension not initialized due to invalid data");
+        }
+
+        let partnerConfig = new PartnerConfig({
+          organizationId: organizationId,
+          domain: this.cluster,
+          apiKey: this.api_key,
+          apiSecret: this.api_secret,
+          useAutoRenewTimer: false  
+        })
+        return partnerConfig;
     }
 
     async getPlatformClient(companyId, session) {

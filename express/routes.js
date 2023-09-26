@@ -4,8 +4,8 @@ const { v4: uuidv4 } = require("uuid");
 const Session = require("./session/session");
 const SessionStorage = require("./session/session_storage");
 const { FdkSessionNotFoundError, FdkInvalidOAuthError } = require("./error_code");
-const { SESSION_COOKIE_NAME } = require('./constants');
-const { sessionMiddleware } = require('./middleware/session_middleware');
+const { SESSION_COOKIE_NAME, PARTNER_SESSION_COOKIE_NAME } = require('./constants');
+const { sessionMiddleware, partnerSessionMiddleware } = require('./middleware/session_middleware');
 const logger = require('./logger');
 const FdkRoutes = express.Router();
 
@@ -105,7 +105,7 @@ function setupRoutes(ext) {
 
                 let sid = Session.generateSessionId(false, {
                     cluster: ext.cluster,
-                    companyId: companyId
+                    id: companyId
                 });
                 let session = await SessionStorage.getSession(sid);
                 if (!session) {
@@ -164,7 +164,7 @@ function setupRoutes(ext) {
             let platformConfig = ext.getPlatformConfig(company_id);
             let sid = Session.generateSessionId(false, {
                 cluster: ext.cluster,
-                companyId: company_id
+                id: company_id
             });
             
             let session = await SessionStorage.getSession(sid);
@@ -212,7 +212,7 @@ function setupRoutes(ext) {
             if (!ext.isOnlineAccessMode()) {
                 sid = Session.generateSessionId(false, {
                     cluster: ext.cluster,
-                    companyId: company_id
+                    id: company_id
                 });
                 await SessionStorage.deleteSession(sid);
             }
@@ -224,6 +224,137 @@ function setupRoutes(ext) {
             next(error);
         }
     });
+
+    FdkRoutes.get("/partner/install", async (req, res, next) => {
+        try {
+            let organizationId = req.query.organization_id;
+            let partnerConfig = ext.getPartnerConfig(organizationId);
+            let session;
+
+            session = new Session(Session.generateSessionId(true));
+            let sessionExpires = new Date(Date.now() + 900000);
+
+            if (session.isNew) {
+                session.organization_id = organizationId;
+                session.scope = ext.scopes;
+                session.expires = sessionExpires;
+                session.access_mode = 'online';
+                session.extension_id = ext.api_key;
+            } else {
+                if (session.expires) {
+                    session.expires = new Date(session.expires);
+                }
+            }
+
+            req.FdkSession = session;
+            req.extension = ext;
+
+            const partnerCookieName = `${PARTNER_SESSION_COOKIE_NAME}_${organizationId}`;
+            res.header['x-organization-id'] = organizationId;
+            res.cookie(partnerCookieName, session.id, {
+                secure: true,
+                httpOnly: true,
+                expires: session.expires,
+                signed: true,
+                sameSite: "none"
+            })
+
+            session.state = uuidv4();
+
+            let authCallback = urljoin(ext.base_url, "/partner/auth");
+
+            // TODO: create authorize api on skywarp
+            let redirectUrl = partnerConfig.oauthClient.startAuthorization({
+                scope: session.scope,
+                redirectUri: authCallback,
+                state: session.state,
+                access_mode: 'online'
+            })
+
+            await SessionStorage.saveSession(session);
+            logger.debug(`Redirect after partner install callback to url: ${redirectUrl}`);
+            res.redirect(redirectUrl);
+
+        } catch(error) {
+            logger.error(error);
+            next(error);
+        }
+    })
+
+    FdkRoutes.get("/partner/auth", partnerSessionMiddleware(false), async (req, res, next) => {
+        try {
+            if (!res.fdkSession) {
+                throw new FdkSessionNotFoundError("Can not complete oauth process as session not found");
+            }
+
+            if (req.fdkSession.state !== req.query.state) {
+                throw new FdkInvalidOAuthError('Invalid oauth call');
+            }
+            
+            // TODO: add organization id validation
+            const organizationId = req.fdkSession.organization_id;
+
+            const partnerConfig = ext.getPartnerConfig(req.fdkSession.organization_id);
+            await partnerConfig.oauthClient.verifyCallback(req.query);
+
+            let token = partnerConfig.oauthClient.raw_token;
+            let sessionExpires = new Date(Date.now() + token.expires_in * 1000);
+            
+            req.fdkSession.expires = sessionExpires;
+            token.access_token_validity = sessionExpires.getTime();
+            req.fdkSession.updateToken(token);
+
+            await SessionStorage.saveSession(req.fdkSession);
+
+            // offline token
+            if (!ext.isOnlineAccessMode()) {
+                let sid = Session.generateSessionId(false, {
+                    cluster: ext.cluster,
+                    id: organizationId
+                });
+
+                let session = await SessionStorage.getSession(sid);
+
+                if (!session) {
+                    session = new Session(sid);
+                } else if (session.extension_id !== ext.api_key) {
+                    session = new Session(sid);
+                }
+                
+                // TODO: crate api in skywarp and add offline token method in sdk
+                let offlineTokenRes = await partnerConfig.oauthClient.getOfflineAccessToken(ext.scopes, req.query.code);
+
+                session.organization_id = organizationId;
+                session.scope = ext.scopes;
+                session.state = req.fdkSession.state;
+                session.extension_id = ext.api_key;
+                offlineTokenRes.access_token_validity = platformConfig.oauthClient.token_expires_at;
+                offlineTokenRes.access_mode = 'offline';
+                session.updateToken(offlineTokenRes);
+
+                await SessionStorage.saveSession(session);
+            }
+
+            const partnerCookieName = `${PARTNER_SESSION_COOKIE_NAME}_${organizationId}`;
+
+            res.cookie(partnerCookieName, req.fdkSession.id, {
+                secure: true,
+                httpOnly: true, 
+                expires: sessionExpires,
+                signed: true,
+                sameSite: 'none'
+            })
+            res.header['x-organization-id'] = organizationId;
+
+            let redirectUrl = urljoin(ext.base_url, '/admin')
+            logger.debug(`Redirecting after auth callback to url: ${redirectUrl}`)
+            res.redirect(redirectUrl);
+
+        } catch(error) {
+            logger.error(error);
+            next(error);
+        }
+    })
 
     return FdkRoutes;
 }
