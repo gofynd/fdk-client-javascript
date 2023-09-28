@@ -6,7 +6,7 @@ const { sign } = require("@gofynd/fp-signature");
 const { FDKServerResponseError } = require("./FDKError");
 const { log, Logger, getLoggerLevel } = require("./Logger");
 const createCurl = require("./curlHelper");
-const { version } = require("./../../package.json");
+const packageJson = require("../../package.json");
 axios.defaults.withCredentials = true;
 
 function getTransformer(config) {
@@ -39,7 +39,7 @@ function requestInterceptorFn() {
     }
     const { host, pathname, search } = new URL(url);
     const { data, headers, method, params } = config;
-    headers["x-fp-sdk-version"] = version;
+    headers["x-fp-sdk-version"] = packageJson.version;
     let querySearchObj = querystring.parse(search);
     querySearchObj = { ...querySearchObj, ...params };
     let queryParam = "";
@@ -136,6 +136,11 @@ fdkAxios.interceptors.response.use(
         level: "ERROR",
         message: error.response.data || error.message,
         stack: error.response.data.stack || error.stack,
+        request: {
+          method: error.config.method,
+          url: error.config.url,
+          headers: error.config.headers,
+        },
       });
       throw new FDKServerResponseError(
         error.response.data.message || error.message,
@@ -150,6 +155,11 @@ fdkAxios.interceptors.response.use(
         level: "ERROR",
         message: error.data || error.message,
         stack: error.data.stack || error.stack,
+        request: {
+          method: error.config.method,
+          url: error.config.url,
+          headers: error.config.headers,
+        },
       });
       throw new FDKServerResponseError(
         error.message,
