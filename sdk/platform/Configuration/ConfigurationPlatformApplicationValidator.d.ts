@@ -42,6 +42,10 @@ export = ConfigurationPlatformApplicationValidator;
 /** @typedef GetInventoryConfigParam */
 /** @typedef GetOrderingStoreConfigParam */
 /**
+ * @typedef GetOrderingStoreCookieParam
+ * @property {ConfigurationPlatformModel.OrderingStoreSelectRequest} body
+ */
+/**
  * @typedef GetOrderingStoresByFilterParam
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
@@ -74,6 +78,7 @@ export = ConfigurationPlatformApplicationValidator;
  * @typedef RemoveDomainByIdParam
  * @property {string} id - The unique identifier (24-digit Mongo Object ID) of the domain
  */
+/** @typedef RemoveOrderingStoreCookieParam */
 /**
  * @typedef UpdateAppApiTokensParam
  * @property {ConfigurationPlatformModel.TokenResponse} body
@@ -141,6 +146,8 @@ declare class ConfigurationPlatformApplicationValidator {
     static getInventoryConfig(): any;
     /** @returns {GetOrderingStoreConfigParam} */
     static getOrderingStoreConfig(): any;
+    /** @returns {GetOrderingStoreCookieParam} */
+    static getOrderingStoreCookie(): GetOrderingStoreCookieParam;
     /** @returns {GetOrderingStoresByFilterParam} */
     static getOrderingStoresByFilter(): GetOrderingStoresByFilterParam;
     /** @returns {GetPreviousVersionsParam} */
@@ -153,6 +160,8 @@ declare class ConfigurationPlatformApplicationValidator {
     static partiallyUpdateInventoryConfig(): PartiallyUpdateInventoryConfigParam;
     /** @returns {RemoveDomainByIdParam} */
     static removeDomainById(): RemoveDomainByIdParam;
+    /** @returns {RemoveOrderingStoreCookieParam} */
+    static removeOrderingStoreCookie(): any;
     /** @returns {UpdateAppApiTokensParam} */
     static updateAppApiTokens(): UpdateAppApiTokensParam;
     /** @returns {UpdateAppBasicDetailsParam} */
@@ -171,7 +180,7 @@ declare class ConfigurationPlatformApplicationValidator {
     static updateOrderingStoreConfig(): UpdateOrderingStoreConfigParam;
 }
 declare namespace ConfigurationPlatformApplicationValidator {
-    export { AddDomainParam, ChangeDomainTypeParam, GetAppApiTokensParam, GetAppBasicDetailsParam, GetAppCompaniesParam, GetAppContactInfoParam, GetAppCurrencyConfigParam, GetAppFeaturesParam, GetAppStoresParam, GetAppSupportedCurrencyParam, GetApplicationByIdParam, GetBuildConfigParam, GetDomainStatusParam, GetDomainsParam, GetInventoryConfigParam, GetOrderingStoreConfigParam, GetOrderingStoresByFilterParam, GetPreviousVersionsParam, GetStaffOrderingStoresParam, ModifyAppFeaturesParam, PartiallyUpdateInventoryConfigParam, RemoveDomainByIdParam, UpdateAppApiTokensParam, UpdateAppBasicDetailsParam, UpdateAppContactInfoParam, UpdateAppCurrencyConfigParam, UpdateAppFeaturesParam, UpdateBuildConfigParam, UpdateInventoryConfigParam, UpdateOrderingStoreConfigParam };
+    export { AddDomainParam, ChangeDomainTypeParam, GetAppApiTokensParam, GetAppBasicDetailsParam, GetAppCompaniesParam, GetAppContactInfoParam, GetAppCurrencyConfigParam, GetAppFeaturesParam, GetAppStoresParam, GetAppSupportedCurrencyParam, GetApplicationByIdParam, GetBuildConfigParam, GetDomainStatusParam, GetDomainsParam, GetInventoryConfigParam, GetOrderingStoreConfigParam, GetOrderingStoreCookieParam, GetOrderingStoresByFilterParam, GetPreviousVersionsParam, GetStaffOrderingStoresParam, ModifyAppFeaturesParam, PartiallyUpdateInventoryConfigParam, RemoveDomainByIdParam, RemoveOrderingStoreCookieParam, UpdateAppApiTokensParam, UpdateAppBasicDetailsParam, UpdateAppContactInfoParam, UpdateAppCurrencyConfigParam, UpdateAppFeaturesParam, UpdateBuildConfigParam, UpdateInventoryConfigParam, UpdateOrderingStoreConfigParam };
 }
 type AddDomainParam = {
     body: ConfigurationPlatformModel.DomainAddRequest;
@@ -216,6 +225,9 @@ type GetBuildConfigParam = {
 };
 type GetDomainStatusParam = {
     body: ConfigurationPlatformModel.DomainStatusRequest;
+};
+type GetOrderingStoreCookieParam = {
+    body: ConfigurationPlatformModel.OrderingStoreSelectRequest;
 };
 type GetOrderingStoresByFilterParam = {
     /**
@@ -304,4 +316,5 @@ type GetApplicationByIdParam = any;
 type GetDomainsParam = any;
 type GetInventoryConfigParam = any;
 type GetOrderingStoreConfigParam = any;
+type RemoveOrderingStoreCookieParam = any;
 import ConfigurationPlatformModel = require("./ConfigurationPlatformModel");

@@ -276,7 +276,7 @@ export = OrderPlatformModel;
  * @property {string} [display_name]
  * @property {string} [entity_type]
  * @property {FinancialBreakup[]} [financial_breakup]
- * @property {BagGSTDetails} [gst_details]
+ * @property {GSTDetailsData} [gst_details]
  * @property {number} [id]
  * @property {string} [identifier]
  * @property {Item} [item]
@@ -1165,7 +1165,7 @@ export = OrderPlatformModel;
  * @property {string} [entity_type]
  * @property {FinancialBreakup} [financial_breakup]
  * @property {string} [group_id]
- * @property {BagGST} [gst_details]
+ * @property {GSTDetailsData} [gst_details]
  * @property {string} [identifier]
  * @property {boolean} [is_parent]
  * @property {PlatformItem} [item]
@@ -2666,7 +2666,7 @@ type BagDetailsPlatformResponse = {
     display_name?: string;
     entity_type?: string;
     financial_breakup?: FinancialBreakup[];
-    gst_details?: BagGSTDetails;
+    gst_details?: GSTDetailsData;
     id?: number;
     identifier?: string;
     item?: Item;
@@ -3820,7 +3820,7 @@ type OrderBags = {
     entity_type?: string;
     financial_breakup?: FinancialBreakup;
     group_id?: string;
-    gst_details?: BagGST;
+    gst_details?: GSTDetailsData;
     identifier?: string;
     is_parent?: boolean;
     item?: PlatformItem;

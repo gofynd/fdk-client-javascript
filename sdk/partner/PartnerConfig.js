@@ -29,11 +29,9 @@ class PartnerConfig {
     this.domain = config.domain || "https://api.fynd.com";
     this.apiKey = config.apiKey;
     this.apiSecret = config.apiSecret;
-    (this.scope = config.scope),
-      (this.useAutoRenewTimer =
-        config.useAutoRenewTimer !== undefined
-          ? config.useAutoRenewTimer
-          : true);
+    this.scope = config.scope;
+    this.useAutoRenewTimer =
+      config.useAutoRenewTimer !== undefined ? config.useAutoRenewTimer : true;
     this.oauthClient = new OauthClient(this);
     this.logLevel = config.logLevel || "ERROR";
     this.setLogLevel(this.logLevel);

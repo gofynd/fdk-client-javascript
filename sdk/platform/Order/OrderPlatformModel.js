@@ -307,7 +307,7 @@ const Joi = require("joi");
  * @property {string} [display_name]
  * @property {string} [entity_type]
  * @property {FinancialBreakup[]} [financial_breakup]
- * @property {BagGSTDetails} [gst_details]
+ * @property {GSTDetailsData} [gst_details]
  * @property {number} [id]
  * @property {string} [identifier]
  * @property {Item} [item]
@@ -1293,7 +1293,7 @@ const Joi = require("joi");
  * @property {string} [entity_type]
  * @property {FinancialBreakup} [financial_breakup]
  * @property {string} [group_id]
- * @property {BagGST} [gst_details]
+ * @property {GSTDetailsData} [gst_details]
  * @property {string} [identifier]
  * @property {boolean} [is_parent]
  * @property {PlatformItem} [item]
@@ -2980,7 +2980,7 @@ class OrderPlatformModel {
       financial_breakup: Joi.array().items(
         OrderPlatformModel.FinancialBreakup()
       ),
-      gst_details: OrderPlatformModel.BagGSTDetails(),
+      gst_details: OrderPlatformModel.GSTDetailsData(),
       id: Joi.number().allow(null),
       identifier: Joi.string().allow("").allow(null),
       item: OrderPlatformModel.Item(),
@@ -4163,7 +4163,7 @@ class OrderPlatformModel {
       entity_type: Joi.string().allow("").allow(null),
       financial_breakup: OrderPlatformModel.FinancialBreakup(),
       group_id: Joi.string().allow("").allow(null),
-      gst_details: OrderPlatformModel.BagGST(),
+      gst_details: OrderPlatformModel.GSTDetailsData(),
       identifier: Joi.string().allow("").allow(null),
       is_parent: Joi.boolean().allow(null),
       item: OrderPlatformModel.PlatformItem(),

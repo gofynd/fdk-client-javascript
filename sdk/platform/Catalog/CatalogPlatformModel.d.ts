@@ -23,9 +23,9 @@ export = CatalogPlatformModel;
  * @property {number} item_height
  * @property {number} item_length
  * @property {number} item_weight
- * @property {Object} item_weight_unit_of_measure
+ * @property {string} item_weight_unit_of_measure
  * @property {number} item_width
- * @property {Object} size
+ * @property {string} size
  */
 /**
  * @typedef AppCatalogConfiguration
@@ -124,8 +124,8 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef ApplicationItemSEO
- * @property {Object} [description] - The SEO description of the item
- * @property {Object} [title] - The SEO title of the item
+ * @property {string} [description] - The SEO description of the item
+ * @property {string} [title] - The SEO title of the item
  */
 /**
  * @typedef ApplicationProductListingResponse
@@ -359,7 +359,7 @@ export = CatalogPlatformModel;
  * @property {Object[]} [failed_records]
  * @property {string} [file_path]
  * @property {boolean} [is_active] - Whether the item is active or not.
- * @property {UserInfo1} [modified_by] - The user who last modified the item.
+ * @property {string} [modified_by] - The user who last modified the item.
  * @property {string} [modified_on] - The date and time when the item was last modified.
  * @property {string} [stage]
  * @property {number} [succeed]
@@ -777,6 +777,29 @@ export = CatalogPlatformModel;
  * @property {string[]} [visible_facets_keys]
  */
 /**
+ * @typedef CreateSearchConfigurationRequest
+ * @property {string} application_id - The application id where custom search
+ *   configuration is set
+ * @property {number} company_id - The company id where custom search configuration is set
+ * @property {UserSerializer} [created_by] - The user who created the search
+ *   configuration.
+ * @property {string} [created_on] - The date and time when the search
+ *   configuration was created.
+ * @property {boolean} [is_proximity_enabled] - Flag indicating if proximity
+ *   search is enabled for this attribute.
+ * @property {UserSerializer} [modified_by] - The user who modified the search
+ *   configuration.
+ * @property {string} [modified_on] - The date and time when the search
+ *   configuration was last modified.
+ * @property {number} [proximity] - Proximity distance configuration
+ * @property {SearchableAttribute[]} [searchable_attributes] - The searchable
+ *   attributes defined on the application.
+ */
+/**
+ * @typedef CreateSearchConfigurationResponse
+ * @property {boolean} [success]
+ */
+/**
  * @typedef CreateSearchKeyword
  * @property {Object} [_custom_json]
  * @property {string} [app_id]
@@ -814,6 +837,10 @@ export = CatalogPlatformModel;
 /**
  * @typedef DeleteResponse
  * @property {string} [message]
+ */
+/**
+ * @typedef DeleteSearchConfigurationResponse
+ * @property {boolean} [success]
  */
 /**
  * @typedef Department
@@ -866,20 +893,20 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef DepartmentModel
- * @property {Object} [_cls]
+ * @property {string} [_cls]
  * @property {Object} [_custom_json]
- * @property {Object} [_id]
+ * @property {string} [_id]
  * @property {UserDetail} [created_by] - User details of the creator of the document
  * @property {string} created_on - Timestamp of the creation of the document
  * @property {boolean} [is_active] - Whether the department is currently active
- * @property {Object} logo - The URL of the department's logo
+ * @property {string} logo - The URL of the department's logo
  * @property {UserDetail} [modified_by] - User details of the last modifier of
  *   the document
  * @property {string} modified_on - Timestamp of the last modification of the document
- * @property {Object} name - The name of the department
+ * @property {string} name - The name of the department
  * @property {number} priority_order - The priority order of the department
- * @property {Object} slug - The unique slug identifier for the department
- * @property {Object[]} [synonyms] - A list of synonyms for the department name
+ * @property {string} slug - The unique slug identifier for the department
+ * @property {string[]} [synonyms] - A list of synonyms for the department name
  * @property {number} uid - The unique ID for the department
  * @property {UserDetail} [verified_by] - User details of the verifier of the
  *   document, if applicable
@@ -1060,15 +1087,15 @@ export = CatalogPlatformModel;
  * @property {GetAddressSerializer[]} [addresses]
  * @property {string} [business_type]
  * @property {string} [company_type]
- * @property {UserSerializer1} [created_by]
+ * @property {UserSerializer2} [created_by]
  * @property {string} [created_on]
- * @property {UserSerializer1} [modified_by]
+ * @property {UserSerializer2} [modified_by]
  * @property {string} [modified_on]
  * @property {string} [name]
  * @property {string} [reject_reason]
  * @property {string} [stage]
  * @property {number} [uid]
- * @property {UserSerializer1} [verified_by]
+ * @property {UserSerializer2} [verified_by]
  * @property {string} [verified_on]
  */
 /**
@@ -1084,12 +1111,12 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef GetDepartment
- * @property {UserSerializer} [created_by]
+ * @property {UserSerializer1} [created_by]
  * @property {string} [created_on]
  * @property {boolean} [is_active]
  * @property {string} [item_type]
  * @property {string} [logo]
- * @property {UserSerializer} [modified_by]
+ * @property {UserSerializer1} [modified_by]
  * @property {string} [modified_on]
  * @property {string} [name]
  * @property {number} [page_no]
@@ -1105,7 +1132,7 @@ export = CatalogPlatformModel;
  * @property {BrandMeta1} [brand]
  * @property {CompanyMeta1} [company]
  * @property {string} [country_of_origin]
- * @property {UserSerializer} [created_by]
+ * @property {UserSerializer1} [created_by]
  * @property {DateMeta} [date_meta]
  * @property {DimensionResponse1} [dimension]
  * @property {string} [expiration_date]
@@ -1115,7 +1142,7 @@ export = CatalogPlatformModel;
  * @property {boolean} [is_set]
  * @property {number} [item_id]
  * @property {ManufacturerResponse1} [manufacturer]
- * @property {UserSerializer} [modified_by]
+ * @property {UserSerializer1} [modified_by]
  * @property {Object} [platforms]
  * @property {PriceArticle} [price]
  * @property {QuantitiesArticle} [quantities]
@@ -1145,14 +1172,14 @@ export = CatalogPlatformModel;
  * @property {string} code
  * @property {GetCompanySerializer} [company]
  * @property {SellerPhoneNumber[]} [contact_numbers]
- * @property {UserSerializer2} [created_by]
+ * @property {UserSerializer3} [created_by]
  * @property {string} [created_on]
  * @property {string} display_name
  * @property {Document[]} [documents]
  * @property {InvoiceDetailsSerializer} [gst_credentials]
  * @property {LocationIntegrationType} [integration_type]
  * @property {LocationManagerSerializer} [manager]
- * @property {UserSerializer2} [modified_by]
+ * @property {UserSerializer3} [modified_by]
  * @property {string} [modified_on]
  * @property {string} name
  * @property {string[]} [notification_emails]
@@ -1162,7 +1189,7 @@ export = CatalogPlatformModel;
  * @property {string} [store_type]
  * @property {LocationDayWiseSerializer[]} [timing]
  * @property {number} [uid]
- * @property {UserSerializer2} [verified_by]
+ * @property {UserSerializer3} [verified_by]
  * @property {string} [verified_on]
  * @property {Object} [warnings]
  */
@@ -1220,6 +1247,25 @@ export = CatalogPlatformModel;
  * @property {Size[]} [sizes]
  */
 /**
+ * @typedef GetSearchConfigurationResponse
+ * @property {string} application_id - The application id where custom search
+ *   configuration is set
+ * @property {number} company_id - The company id where custom search configuration is set
+ * @property {UserSerializer} [created_by] - The user who created the search
+ *   configuration.
+ * @property {string} [created_on] - The date and time when the search
+ *   configuration was created.
+ * @property {boolean} [is_proximity_enabled] - Flag indicating if proximity
+ *   search is enabled for this attribute.
+ * @property {UserSerializer} [modified_by] - The user who modified the search
+ *   configuration.
+ * @property {string} [modified_on] - The date and time when the search
+ *   configuration was last modified.
+ * @property {number} [proximity] - Proximity distance configuration
+ * @property {SearchableAttribute[]} [searchable_attributes] - The searchable
+ *   attributes defined on the application.
+ */
+/**
  * @typedef GetSearchWordsData
  * @property {Object} [_custom_json]
  * @property {string} [app_id]
@@ -1250,7 +1296,7 @@ export = CatalogPlatformModel;
 /**
  * @typedef GTIN
  * @property {string} gtin_type
- * @property {Object} gtin_value
+ * @property {string} gtin_value
  * @property {boolean} [primary]
  */
 /**
@@ -1446,7 +1492,7 @@ export = CatalogPlatformModel;
  * @property {string[]} [notification_emails] - User email to get notification
  *   post completion of the job.
  * @property {number} seller_id - This ID of the company.
- * @property {Object} [status] - This tells you the current status of the export job.
+ * @property {string} [status] - This tells you the current status of the export job.
  * @property {string} task_id - This is the task id of the jobs that is used for search.
  * @property {string} [type] - This is the file type of the export.
  * @property {string} url - This is the url to download the export.
@@ -1634,7 +1680,7 @@ export = CatalogPlatformModel;
  * @property {number} [price_transfer]
  * @property {number} quantity
  * @property {InventorySet} [set]
- * @property {Object} size
+ * @property {string} size
  * @property {string} store_code
  */
 /**
@@ -1781,9 +1827,9 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef MetaFields
- * @property {Object} key - The key of the metadata. Should be a non-empty
+ * @property {string} key - The key of the metadata. Should be a non-empty
  *   string and length should not exceed 30 characters.
- * @property {Object} value - The value of the metadata. Should be a non-empty
+ * @property {string} value - The value of the metadata. Should be a non-empty
  *   string and length should not exceed 100 characters.
  */
 /**
@@ -2093,7 +2139,7 @@ export = CatalogPlatformModel;
  * @property {NetQuantity} [net_quantity]
  * @property {number} [no_of_boxes]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish} [product_publish]
+ * @property {ProductPublish1} [product_publish]
  * @property {string} [requester]
  * @property {ReturnConfig} return_config
  * @property {string} [short_description]
@@ -2289,7 +2335,7 @@ export = CatalogPlatformModel;
  * @property {string} [pending]
  * @property {string} [primary_color]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish1} [product_publish]
+ * @property {ProductPublish} [product_publish]
  * @property {ReturnConfigResponse} [return_config]
  * @property {string} [short_description]
  * @property {string} [size_guide]
@@ -2557,6 +2603,15 @@ export = CatalogPlatformModel;
  * @property {string} [unit]
  */
 /**
+ * @typedef SearchableAttribute
+ * @property {string} key - The attribute key to search on. This key matches the
+ *   solr document key
+ * @property {string} name - The name of key to search on. This is for
+ *   displaying purposes on platform
+ * @property {number} priority - Order in which the searchable attribute should
+ *   kick in. Higher the priority, higher the weight considered while searching
+ */
+/**
  * @typedef SearchKeywordResult
  * @property {Object} query
  * @property {string} sort_on
@@ -2578,8 +2633,8 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef SEOData
- * @property {Object} [description]
- * @property {Object} [title]
+ * @property {string} [description]
+ * @property {string} [title]
  */
 /**
  * @typedef SeoDetail
@@ -2766,7 +2821,7 @@ export = CatalogPlatformModel;
  * @property {boolean} [is_visible]
  * @property {CollectionImage} [logo]
  * @property {Object} [meta]
- * @property {string} [modified_by]
+ * @property {string} [modified_by] - User info.
  * @property {string} [name]
  * @property {number} [priority]
  * @property {boolean} [published]
@@ -2782,6 +2837,29 @@ export = CatalogPlatformModel;
  * @typedef UpdatedResponse
  * @property {number[]} [items_not_updated]
  * @property {string} [message]
+ */
+/**
+ * @typedef UpdateSearchConfigurationRequest
+ * @property {string} application_id - The application id where custom search
+ *   configuration is set
+ * @property {number} company_id - The company id where custom search configuration is set
+ * @property {UserSerializer} [created_by] - The user who created the search
+ *   configuration.
+ * @property {string} [created_on] - The date and time when the search
+ *   configuration was created.
+ * @property {boolean} [is_proximity_enabled] - Flag indicating if proximity
+ *   search is enabled for this attribute.
+ * @property {UserSerializer} [modified_by] - The user who modified the search
+ *   configuration.
+ * @property {string} [modified_on] - The date and time when the search
+ *   configuration was last modified.
+ * @property {number} [proximity] - Proximity distance configuration
+ * @property {SearchableAttribute[]} [searchable_attributes] - The searchable
+ *   attributes defined on the application.
+ */
+/**
+ * @typedef UpdateSearchConfigurationResponse
+ * @property {boolean} [success]
  */
 /**
  * @typedef UserCommon
@@ -2818,6 +2896,12 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef UserSerializer
+ * @property {string} [contact] - The contact information of the user.
+ * @property {string} [user_id] - The unique ID of the user.
+ * @property {string} [username] - The username of the user.
+ */
+/**
+ * @typedef UserSerializer1
  * @property {string} [_id]
  * @property {string} [contact]
  * @property {string} [uid]
@@ -2825,13 +2909,13 @@ export = CatalogPlatformModel;
  * @property {string} [username]
  */
 /**
- * @typedef UserSerializer1
+ * @typedef UserSerializer2
  * @property {string} [contact]
  * @property {string} [user_id]
  * @property {string} [username]
  */
 /**
- * @typedef UserSerializer2
+ * @typedef UserSerializer3
  * @property {string} [contact]
  * @property {string} [user_id]
  * @property {string} [username]
@@ -2931,7 +3015,7 @@ export = CatalogPlatformModel;
 declare class CatalogPlatformModel {
 }
 declare namespace CatalogPlatformModel {
-    export { Action, ActionPage, AllowSingleRequest, AllSizes, AppCatalogConfiguration, AppConfiguration, AppConfigurationDetail, AppConfigurationsSort, ApplicationBrandJson, ApplicationCategoryJson, ApplicationDepartment, ApplicationDepartmentJson, ApplicationDepartmentListingResponse, ApplicationItemMeta, ApplicationItemMOQ, ApplicationItemSEO, ApplicationProductListingResponse, ApplicationStoreJson, ArticleAssignment, ArticleAssignment1, ArticleQuery, ArticleStoreResponse, AssignStore, AssignStoreArticle, AttributeDetailsGroup, AttributeMaster, AttributeMasterDetails, AttributeMasterFilter, AttributeMasterMandatoryDetails, AttributeMasterMeta, AttributeMasterSerializer, AttributeSchemaRange, AutocompleteAction, AutoCompleteMedia, AutocompletePageAction, AutocompleteResult, BannerImage, Brand, BrandItem, BrandListingResponse, BrandMeta, BrandMeta1, BulkAssetResponse, BulkHsnResponse, BulkHsnUpsert, BulkInventoryGet, BulkInventoryGetItems, BulkJob, BulkProductRequest, BulkResponse, CatalogInsightBrand, CatalogInsightItem, CatalogInsightResponse, CategoriesResponse, Category, CategoryCreateResponse, CategoryItems, CategoryListingResponse, CategoryMapping, CategoryMappingValues, CategoryRequestBody, CategoryResponse, CategoryUpdateResponse, Child, CollectionBadge, CollectionBanner, CollectionCreateResponse, CollectionDetailResponse, CollectionImage, CollectionItem, CollectionItemUpdate, CollectionListingFilter, CollectionListingFilterTag, CollectionListingFilterType, CollectionQuery, CollectionSchedule, CompanyBrandDetail, CompanyMeta, CompanyMeta1, CompanyOptIn, ConfigErrorResponse, ConfigSuccessResponse, ConfigurationBucketPoints, ConfigurationListing, ConfigurationListingFilter, ConfigurationListingFilterConfig, ConfigurationListingFilterValue, ConfigurationListingSort, ConfigurationListingSortConfig, ConfigurationProduct, ConfigurationProductConfig, ConfigurationProductSimilar, ConfigurationProductVariant, ConfigurationProductVariantConfig, CreateAutocompleteKeyword, CreateAutocompleteWordsResponse, CreateCollection, CreateSearchKeyword, CrossSellingData, CrossSellingResponse, CustomOrder, DateMeta, DefaultKeyRequest, DeleteResponse, Department, DepartmentCategoryTree, DepartmentCreateErrorResponse, DepartmentCreateResponse, DepartmentCreateUpdate, DepartmentErrorResponse, DepartmentIdentifier, DepartmentModel, DepartmentResponse, DepartmentsResponse, DimensionResponse, DimensionResponse1, Document, EntityConfiguration, ErrorResponse, FilerList, GenderDetail, GetAddressSerializer, GetAllSizes, GetAppCatalogConfiguration, GetAppCatalogEntityConfiguration, GetAutocompleteWordsData, GetAutocompleteWordsResponse, GetCatalogConfigurationDetailsProduct, GetCatalogConfigurationDetailsSchemaListing, GetCatalogConfigurationMetaData, GetCollectionDetailNest, GetCollectionItemsResponse, GetCollectionListingResponse, GetCollectionQueryOptionResponse, GetCompanySerializer, GetConfigMetadataResponse, GetConfigResponse, GetDepartment, GetInventories, GetInventoriesResponse, GetLocationSerializer, GetOptInPlatform, GetProductBundleCreateResponse, GetProductBundleListingResponse, GetProductBundleResponse, GetProducts, GetSearchWordsData, GetSearchWordsDetailResponse, GetSearchWordsResponse, GlobalValidation, GTIN, Guide, Hierarchy, HsnCode, HsnCodesListingResponseSchemaV2, HsnCodesObject, HSNCodesResponse, HSNData, HSNDataInsertV2, HsnUpsert, Image, ImageUrls, InventoryBulkRequest, InventoryConfig, InventoryCreateRequest, InventoryExportAdvanceOption, InventoryExportFilter, InventoryExportJob, InventoryExportJobListResponse, InventoryExportQuantityFilter, InventoryExportRequest, InventoryExportResponse, InventoryFailedReason, InventoryJobDetailResponse, InventoryJobFilters, InventoryJobPayload, InventoryPage, InventoryPayload, InventoryRequest, InventoryRequestSchemaV2, InventoryResponse, InventoryResponseItem, InventoryResponsePaginated, InventorySellerIdentifierResponsePaginated, InventorySellerResponse, InventorySet, InventoryStockResponse, InventoryUpdateResponse, InventoryValidationResponse, InvoiceCredSerializer, InvoiceDetailsSerializer, InvSize, ItemQuery, Items, LimitedProductData, ListSizeGuide, LocationDayWiseSerializer, LocationIntegrationType, LocationListSerializer, LocationManagerSerializer, LocationTimingSerializer, Logo, ManufacturerResponse, ManufacturerResponse1, Media, Media1, Media2, Meta, MetaDataListingFilterMetaResponse, MetaDataListingFilterResponse, MetaDataListingResponse, MetaDataListingSortMetaResponse, MetaDataListingSortResponse, MetaFields, MOQData, NetQuantity, NetQuantityResponse, NextSchedule, OptinCompanyBrandDetailsView, OptinCompanyDetail, OptinCompanyMetrics, OptInPostRequest, OptinStoreDetails, OwnerAppItemResponse, Page, PageResponse, PageResponseType, Price, Price1, PriceArticle, PriceMeta, ProdcutTemplateCategoriesResponse, Product, ProductAttributesResponse, ProductBrand, ProductBulkAssets, ProductBulkRequest, ProductBulkRequestList, ProductBundleItem, ProductBundleRequest, ProductBundleUpdateRequest, ProductConfigurationDownloads, ProductCreateUpdateSchemaV2, ProductDetail, ProductDetailAttribute, ProductDetailGroupedAttribute, ProductDownloadsResponse, ProductFilters, ProductFiltersKey, ProductFiltersValue, ProductListingDetail, ProductListingPrice, ProductListingResponse, ProductListingResponseV2, ProductPublish, ProductPublish1, ProductPublished, ProductReturnConfigSerializer, ProductSchemaV2, ProductSize, ProductSizeDeleteDataResponse, ProductSizeDeleteResponse, ProductSortOn, ProductTagsViewResponse, ProductTemplate, ProductTemplateDownloadsExport, ProductTemplateExportFilterRequest, ProductTemplateExportResponse, ProductVariants, ProductVariantsResponse, Properties, PTErrorResponse, Quantities, QuantitiesArticle, Quantity, QuantityBase, RawProduct, RawProductListingResponse, ReturnConfig, ReturnConfig1, ReturnConfig2, ReturnConfigResponse, SearchKeywordResult, SecondLevelChild, SellerPhoneNumber, SEOData, SeoDetail, SetSize, SingleCategoryResponse, SingleProductResponse, Size, SizeDistribution, SizeGuideResponse, StoreAssignResponse, StoreDetail, StoreMeta, SuccessResponse, SuccessResponse1, TaxIdentifier, TaxSlab, TeaserTag, TemplateDetails, TemplatesResponse, TemplatesValidationResponse, TemplateValidationData, ThirdLevelChild, Trader, Trader1, Trader2, UpdateCollection, UpdatedResponse, UserCommon, UserDetail, UserDetail1, UserInfo, UserInfo1, UserSerializer, UserSerializer1, UserSerializer2, ValidateIdentifier, ValidateProduct, ValidateSizeGuide, VerifiedBy, WeightResponse, WeightResponse1, PageType };
+    export { Action, ActionPage, AllowSingleRequest, AllSizes, AppCatalogConfiguration, AppConfiguration, AppConfigurationDetail, AppConfigurationsSort, ApplicationBrandJson, ApplicationCategoryJson, ApplicationDepartment, ApplicationDepartmentJson, ApplicationDepartmentListingResponse, ApplicationItemMeta, ApplicationItemMOQ, ApplicationItemSEO, ApplicationProductListingResponse, ApplicationStoreJson, ArticleAssignment, ArticleAssignment1, ArticleQuery, ArticleStoreResponse, AssignStore, AssignStoreArticle, AttributeDetailsGroup, AttributeMaster, AttributeMasterDetails, AttributeMasterFilter, AttributeMasterMandatoryDetails, AttributeMasterMeta, AttributeMasterSerializer, AttributeSchemaRange, AutocompleteAction, AutoCompleteMedia, AutocompletePageAction, AutocompleteResult, BannerImage, Brand, BrandItem, BrandListingResponse, BrandMeta, BrandMeta1, BulkAssetResponse, BulkHsnResponse, BulkHsnUpsert, BulkInventoryGet, BulkInventoryGetItems, BulkJob, BulkProductRequest, BulkResponse, CatalogInsightBrand, CatalogInsightItem, CatalogInsightResponse, CategoriesResponse, Category, CategoryCreateResponse, CategoryItems, CategoryListingResponse, CategoryMapping, CategoryMappingValues, CategoryRequestBody, CategoryResponse, CategoryUpdateResponse, Child, CollectionBadge, CollectionBanner, CollectionCreateResponse, CollectionDetailResponse, CollectionImage, CollectionItem, CollectionItemUpdate, CollectionListingFilter, CollectionListingFilterTag, CollectionListingFilterType, CollectionQuery, CollectionSchedule, CompanyBrandDetail, CompanyMeta, CompanyMeta1, CompanyOptIn, ConfigErrorResponse, ConfigSuccessResponse, ConfigurationBucketPoints, ConfigurationListing, ConfigurationListingFilter, ConfigurationListingFilterConfig, ConfigurationListingFilterValue, ConfigurationListingSort, ConfigurationListingSortConfig, ConfigurationProduct, ConfigurationProductConfig, ConfigurationProductSimilar, ConfigurationProductVariant, ConfigurationProductVariantConfig, CreateAutocompleteKeyword, CreateAutocompleteWordsResponse, CreateCollection, CreateSearchConfigurationRequest, CreateSearchConfigurationResponse, CreateSearchKeyword, CrossSellingData, CrossSellingResponse, CustomOrder, DateMeta, DefaultKeyRequest, DeleteResponse, DeleteSearchConfigurationResponse, Department, DepartmentCategoryTree, DepartmentCreateErrorResponse, DepartmentCreateResponse, DepartmentCreateUpdate, DepartmentErrorResponse, DepartmentIdentifier, DepartmentModel, DepartmentResponse, DepartmentsResponse, DimensionResponse, DimensionResponse1, Document, EntityConfiguration, ErrorResponse, FilerList, GenderDetail, GetAddressSerializer, GetAllSizes, GetAppCatalogConfiguration, GetAppCatalogEntityConfiguration, GetAutocompleteWordsData, GetAutocompleteWordsResponse, GetCatalogConfigurationDetailsProduct, GetCatalogConfigurationDetailsSchemaListing, GetCatalogConfigurationMetaData, GetCollectionDetailNest, GetCollectionItemsResponse, GetCollectionListingResponse, GetCollectionQueryOptionResponse, GetCompanySerializer, GetConfigMetadataResponse, GetConfigResponse, GetDepartment, GetInventories, GetInventoriesResponse, GetLocationSerializer, GetOptInPlatform, GetProductBundleCreateResponse, GetProductBundleListingResponse, GetProductBundleResponse, GetProducts, GetSearchConfigurationResponse, GetSearchWordsData, GetSearchWordsDetailResponse, GetSearchWordsResponse, GlobalValidation, GTIN, Guide, Hierarchy, HsnCode, HsnCodesListingResponseSchemaV2, HsnCodesObject, HSNCodesResponse, HSNData, HSNDataInsertV2, HsnUpsert, Image, ImageUrls, InventoryBulkRequest, InventoryConfig, InventoryCreateRequest, InventoryExportAdvanceOption, InventoryExportFilter, InventoryExportJob, InventoryExportJobListResponse, InventoryExportQuantityFilter, InventoryExportRequest, InventoryExportResponse, InventoryFailedReason, InventoryJobDetailResponse, InventoryJobFilters, InventoryJobPayload, InventoryPage, InventoryPayload, InventoryRequest, InventoryRequestSchemaV2, InventoryResponse, InventoryResponseItem, InventoryResponsePaginated, InventorySellerIdentifierResponsePaginated, InventorySellerResponse, InventorySet, InventoryStockResponse, InventoryUpdateResponse, InventoryValidationResponse, InvoiceCredSerializer, InvoiceDetailsSerializer, InvSize, ItemQuery, Items, LimitedProductData, ListSizeGuide, LocationDayWiseSerializer, LocationIntegrationType, LocationListSerializer, LocationManagerSerializer, LocationTimingSerializer, Logo, ManufacturerResponse, ManufacturerResponse1, Media, Media1, Media2, Meta, MetaDataListingFilterMetaResponse, MetaDataListingFilterResponse, MetaDataListingResponse, MetaDataListingSortMetaResponse, MetaDataListingSortResponse, MetaFields, MOQData, NetQuantity, NetQuantityResponse, NextSchedule, OptinCompanyBrandDetailsView, OptinCompanyDetail, OptinCompanyMetrics, OptInPostRequest, OptinStoreDetails, OwnerAppItemResponse, Page, PageResponse, PageResponseType, Price, Price1, PriceArticle, PriceMeta, ProdcutTemplateCategoriesResponse, Product, ProductAttributesResponse, ProductBrand, ProductBulkAssets, ProductBulkRequest, ProductBulkRequestList, ProductBundleItem, ProductBundleRequest, ProductBundleUpdateRequest, ProductConfigurationDownloads, ProductCreateUpdateSchemaV2, ProductDetail, ProductDetailAttribute, ProductDetailGroupedAttribute, ProductDownloadsResponse, ProductFilters, ProductFiltersKey, ProductFiltersValue, ProductListingDetail, ProductListingPrice, ProductListingResponse, ProductListingResponseV2, ProductPublish, ProductPublish1, ProductPublished, ProductReturnConfigSerializer, ProductSchemaV2, ProductSize, ProductSizeDeleteDataResponse, ProductSizeDeleteResponse, ProductSortOn, ProductTagsViewResponse, ProductTemplate, ProductTemplateDownloadsExport, ProductTemplateExportFilterRequest, ProductTemplateExportResponse, ProductVariants, ProductVariantsResponse, Properties, PTErrorResponse, Quantities, QuantitiesArticle, Quantity, QuantityBase, RawProduct, RawProductListingResponse, ReturnConfig, ReturnConfig1, ReturnConfig2, ReturnConfigResponse, SearchableAttribute, SearchKeywordResult, SecondLevelChild, SellerPhoneNumber, SEOData, SeoDetail, SetSize, SingleCategoryResponse, SingleProductResponse, Size, SizeDistribution, SizeGuideResponse, StoreAssignResponse, StoreDetail, StoreMeta, SuccessResponse, SuccessResponse1, TaxIdentifier, TaxSlab, TeaserTag, TemplateDetails, TemplatesResponse, TemplatesValidationResponse, TemplateValidationData, ThirdLevelChild, Trader, Trader1, Trader2, UpdateCollection, UpdatedResponse, UpdateSearchConfigurationRequest, UpdateSearchConfigurationResponse, UserCommon, UserDetail, UserDetail1, UserInfo, UserInfo1, UserSerializer, UserSerializer1, UserSerializer2, UserSerializer3, ValidateIdentifier, ValidateProduct, ValidateSizeGuide, VerifiedBy, WeightResponse, WeightResponse1, PageType };
 }
 /** @returns {Action} */
 declare function Action(): Action;
@@ -2961,9 +3045,9 @@ type AllSizes = {
     item_height: number;
     item_length: number;
     item_weight: number;
-    item_weight_unit_of_measure: any;
+    item_weight_unit_of_measure: string;
     item_width: number;
-    size: any;
+    size: string;
 };
 /** @returns {AppCatalogConfiguration} */
 declare function AppCatalogConfiguration(): AppCatalogConfiguration;
@@ -3107,11 +3191,11 @@ type ApplicationItemSEO = {
     /**
      * - The SEO description of the item
      */
-    description?: any;
+    description?: string;
     /**
      * - The SEO title of the item
      */
-    title?: any;
+    title?: string;
 };
 /** @returns {ApplicationProductListingResponse} */
 declare function ApplicationProductListingResponse(): ApplicationProductListingResponse;
@@ -3392,7 +3476,7 @@ type BulkJob = {
     /**
      * - The user who last modified the item.
      */
-    modified_by?: UserInfo1;
+    modified_by?: string;
     /**
      * - The date and time when the item was last modified.
      */
@@ -3996,6 +4080,58 @@ type CreateCollection = {
     type: string;
     visible_facets_keys?: string[];
 };
+/** @returns {CreateSearchConfigurationRequest} */
+declare function CreateSearchConfigurationRequest(): CreateSearchConfigurationRequest;
+type CreateSearchConfigurationRequest = {
+    /**
+     * - The application id where custom search
+     * configuration is set
+     */
+    application_id: string;
+    /**
+     * - The company id where custom search configuration is set
+     */
+    company_id: number;
+    /**
+     * - The user who created the search
+     * configuration.
+     */
+    created_by?: UserSerializer;
+    /**
+     * - The date and time when the search
+     * configuration was created.
+     */
+    created_on?: string;
+    /**
+     * - Flag indicating if proximity
+     * search is enabled for this attribute.
+     */
+    is_proximity_enabled?: boolean;
+    /**
+     * - The user who modified the search
+     * configuration.
+     */
+    modified_by?: UserSerializer;
+    /**
+     * - The date and time when the search
+     * configuration was last modified.
+     */
+    modified_on?: string;
+    /**
+     * - Proximity distance configuration
+     */
+    proximity?: number;
+    /**
+     * - The searchable
+     * attributes defined on the application.
+     */
+    searchable_attributes?: SearchableAttribute[];
+};
+/** @returns {CreateSearchConfigurationResponse} */
+declare function CreateSearchConfigurationResponse(): CreateSearchConfigurationResponse;
+type CreateSearchConfigurationResponse = {
+    success?: boolean;
+};
 /** @returns {CreateSearchKeyword} */
 declare function CreateSearchKeyword(): CreateSearchKeyword;
 type CreateSearchKeyword = {
@@ -4041,6 +4177,11 @@ type DefaultKeyRequest = {
 declare function DeleteResponse(): DeleteResponse;
 type DeleteResponse = {
     message?: string;
+};
+/** @returns {DeleteSearchConfigurationResponse} */
+declare function DeleteSearchConfigurationResponse(): DeleteSearchConfigurationResponse;
+type DeleteSearchConfigurationResponse = {
+    success?: boolean;
 };
 /** @returns {Department} */
 declare function Department(): Department;
@@ -4101,9 +4242,9 @@ type DepartmentIdentifier = {
 /** @returns {DepartmentModel} */
 declare function DepartmentModel(): DepartmentModel;
 type DepartmentModel = {
-    _cls?: any;
+    _cls?: string;
     _custom_json?: any;
-    _id?: any;
+    _id?: string;
     /**
      * - User details of the creator of the document
      */
@@ -4119,7 +4260,7 @@ type DepartmentModel = {
     /**
      * - The URL of the department's logo
      */
-    logo: any;
+    logo: string;
     /**
      * - User details of the last modifier of
      * the document
@@ -4132,7 +4273,7 @@ type DepartmentModel = {
     /**
      * - The name of the department
      */
-    name: any;
+    name: string;
     /**
      * - The priority order of the department
      */
@@ -4140,11 +4281,11 @@ type DepartmentModel = {
     /**
      * - The unique slug identifier for the department
      */
-    slug: any;
+    slug: string;
     /**
      * - A list of synonyms for the department name
      */
-    synonyms?: any[];
+    synonyms?: string[];
     /**
      * - The unique ID for the department
      */
@@ -4372,15 +4513,15 @@ type GetCompanySerializer = {
     addresses?: GetAddressSerializer[];
     business_type?: string;
     company_type?: string;
-    created_by?: UserSerializer1;
+    created_by?: UserSerializer2;
     created_on?: string;
-    modified_by?: UserSerializer1;
+    modified_by?: UserSerializer2;
     modified_on?: string;
     name?: string;
     reject_reason?: string;
     stage?: string;
     uid?: number;
-    verified_by?: UserSerializer1;
+    verified_by?: UserSerializer2;
     verified_on?: string;
 };
 /** @returns {GetConfigMetadataResponse} */
@@ -4399,12 +4540,12 @@ type GetConfigResponse = {
 /** @returns {GetDepartment} */
 declare function GetDepartment(): GetDepartment;
 type GetDepartment = {
-    created_by?: UserSerializer;
+    created_by?: UserSerializer1;
     created_on?: string;
     is_active?: boolean;
     item_type?: string;
     logo?: string;
-    modified_by?: UserSerializer;
+    modified_by?: UserSerializer1;
     modified_on?: string;
     name?: string;
     page_no?: number;
@@ -4421,7 +4562,7 @@ type GetInventories = {
     brand?: BrandMeta1;
     company?: CompanyMeta1;
     country_of_origin?: string;
-    created_by?: UserSerializer;
+    created_by?: UserSerializer1;
     date_meta?: DateMeta;
     dimension?: DimensionResponse1;
     expiration_date?: string;
@@ -4431,7 +4572,7 @@ type GetInventories = {
     is_set?: boolean;
     item_id?: number;
     manufacturer?: ManufacturerResponse1;
-    modified_by?: UserSerializer;
+    modified_by?: UserSerializer1;
     platforms?: any;
     price?: PriceArticle;
     quantities?: QuantitiesArticle;
@@ -4463,14 +4604,14 @@ type GetLocationSerializer = {
     code: string;
     company?: GetCompanySerializer;
     contact_numbers?: SellerPhoneNumber[];
-    created_by?: UserSerializer2;
+    created_by?: UserSerializer3;
     created_on?: string;
     display_name: string;
     documents?: Document[];
     gst_credentials?: InvoiceDetailsSerializer;
     integration_type?: LocationIntegrationType;
     manager?: LocationManagerSerializer;
-    modified_by?: UserSerializer2;
+    modified_by?: UserSerializer3;
     modified_on?: string;
     name: string;
     notification_emails?: string[];
@@ -4480,7 +4621,7 @@ type GetLocationSerializer = {
     store_type?: string;
     timing?: LocationDayWiseSerializer[];
     uid?: number;
-    verified_by?: UserSerializer2;
+    verified_by?: UserSerializer3;
     verified_on?: string;
     warnings?: any;
 };
@@ -4542,6 +4683,53 @@ type GetProducts = {
     product_uid?: number;
     sizes?: Size[];
 };
+/** @returns {GetSearchConfigurationResponse} */
+declare function GetSearchConfigurationResponse(): GetSearchConfigurationResponse;
+type GetSearchConfigurationResponse = {
+    /**
+     * - The application id where custom search
+     * configuration is set
+     */
+    application_id: string;
+    /**
+     * - The company id where custom search configuration is set
+     */
+    company_id: number;
+    /**
+     * - The user who created the search
+     * configuration.
+     */
+    created_by?: UserSerializer;
+    /**
+     * - The date and time when the search
+     * configuration was created.
+     */
+    created_on?: string;
+    /**
+     * - Flag indicating if proximity
+     * search is enabled for this attribute.
+     */
+    is_proximity_enabled?: boolean;
+    /**
+     * - The user who modified the search
+     * configuration.
+     */
+    modified_by?: UserSerializer;
+    /**
+     * - The date and time when the search
+     * configuration was last modified.
+     */
+    modified_on?: string;
+    /**
+     * - Proximity distance configuration
+     */
+    proximity?: number;
+    /**
+     * - The searchable
+     * attributes defined on the application.
+     */
+    searchable_attributes?: SearchableAttribute[];
+};
 /** @returns {GetSearchWordsData} */
 declare function GetSearchWordsData(): GetSearchWordsData;
 type GetSearchWordsData = {
@@ -4578,7 +4766,7 @@ type GlobalValidation = {
 declare function GTIN(): GTIN;
 type GTIN = {
     gtin_type: string;
-    gtin_value: any;
+    gtin_value: string;
     primary?: boolean;
 };
 /** @returns {Guide} */
@@ -5037,7 +5225,7 @@ type InventoryJobDetailResponse = {
     /**
      * - This tells you the current status of the export job.
      */
-    status?: any;
+    status?: string;
     /**
      * - This is the task id of the jobs that is used for search.
      */
@@ -5462,7 +5650,7 @@ type InvSize = {
     price_transfer?: number;
     quantity: number;
     set?: InventorySet;
-    size: any;
+    size: string;
     store_code: string;
 };
 /** @returns {ItemQuery} */
@@ -5653,12 +5841,12 @@ type MetaFields = {
      * - The key of the metadata. Should be a non-empty
      * string and length should not exceed 30 characters.
      */
-    key: any;
+    key: string;
     /**
      * - The value of the metadata. Should be a non-empty
      * string and length should not exceed 100 characters.
      */
-    value: any;
+    value: string;
 };
 /** @returns {MOQData} */
 declare function MOQData(): MOQData;
@@ -6035,7 +6223,7 @@ type ProductCreateUpdateSchemaV2 = {
     net_quantity?: NetQuantity;
     no_of_boxes?: number;
     product_group_tag?: string[];
-    product_publish?: ProductPublish;
+    product_publish?: ProductPublish1;
     requester?: string;
     return_config: ReturnConfig;
     short_description?: string;
@@ -6250,7 +6438,7 @@ type ProductSchemaV2 = {
     pending?: string;
     primary_color?: string;
     product_group_tag?: string[];
-    product_publish?: ProductPublish1;
+    product_publish?: ProductPublish;
     return_config?: ReturnConfigResponse;
     short_description?: string;
     size_guide?: string;
@@ -6603,6 +6791,25 @@ type ReturnConfigResponse = {
     time?: number;
     unit?: string;
 };
+/** @returns {SearchableAttribute} */
+declare function SearchableAttribute(): SearchableAttribute;
+type SearchableAttribute = {
+    /**
+     * - The attribute key to search on. This key matches the
+     * solr document key
+     */
+    key: string;
+    /**
+     * - The name of key to search on. This is for
+     * displaying purposes on platform
+     */
+    name: string;
+    /**
+     * - Order in which the searchable attribute should
+     * kick in. Higher the priority, higher the weight considered while searching
+     */
+    priority: number;
+};
 /** @returns {SearchKeywordResult} */
 declare function SearchKeywordResult(): SearchKeywordResult;
 type SearchKeywordResult = {
@@ -6629,8 +6836,8 @@ type SellerPhoneNumber = {
 /** @returns {SEOData} */
 declare function SEOData(): SEOData;
 type SEOData = {
-    description?: any;
-    title?: any;
+    description?: string;
+    title?: string;
 };
 /** @returns {SeoDetail} */
 declare function SeoDetail(): SeoDetail;
@@ -6841,6 +7048,9 @@ type UpdateCollection = {
     is_visible?: boolean;
     logo?: CollectionImage;
     meta?: any;
+    /**
+     * - User info.
+     */
     modified_by?: string;
     name?: string;
     priority?: number;
@@ -6858,6 +7068,58 @@ declare function UpdatedResponse(): UpdatedResponse;
 type UpdatedResponse = {
     items_not_updated?: number[];
     message?: string;
+};
+/** @returns {UpdateSearchConfigurationRequest} */
+declare function UpdateSearchConfigurationRequest(): UpdateSearchConfigurationRequest;
+type UpdateSearchConfigurationRequest = {
+    /**
+     * - The application id where custom search
+     * configuration is set
+     */
+    application_id: string;
+    /**
+     * - The company id where custom search configuration is set
+     */
+    company_id: number;
+    /**
+     * - The user who created the search
+     * configuration.
+     */
+    created_by?: UserSerializer;
+    /**
+     * - The date and time when the search
+     * configuration was created.
+     */
+    created_on?: string;
+    /**
+     * - Flag indicating if proximity
+     * search is enabled for this attribute.
+     */
+    is_proximity_enabled?: boolean;
+    /**
+     * - The user who modified the search
+     * configuration.
+     */
+    modified_by?: UserSerializer;
+    /**
+     * - The date and time when the search
+     * configuration was last modified.
+     */
+    modified_on?: string;
+    /**
+     * - Proximity distance configuration
+     */
+    proximity?: number;
+    /**
+     * - The searchable
+     * attributes defined on the application.
+     */
+    searchable_attributes?: SearchableAttribute[];
+};
+/** @returns {UpdateSearchConfigurationResponse} */
+declare function UpdateSearchConfigurationResponse(): UpdateSearchConfigurationResponse;
+type UpdateSearchConfigurationResponse = {
+    success?: boolean;
 };
 /** @returns {UserCommon} */
 declare function UserCommon(): UserCommon;
@@ -6924,22 +7186,38 @@ type UserInfo1 = {
 /** @returns {UserSerializer} */
 declare function UserSerializer(): UserSerializer;
 type UserSerializer = {
+    /**
+     * - The contact information of the user.
+     */
+    contact?: string;
+    /**
+     * - The unique ID of the user.
+     */
+    user_id?: string;
+    /**
+     * - The username of the user.
+     */
+    username?: string;
+};
+/** @returns {UserSerializer1} */
+declare function UserSerializer1(): UserSerializer1;
+type UserSerializer1 = {
     _id?: string;
     contact?: string;
     uid?: string;
     user_id?: string;
     username?: string;
 };
-/** @returns {UserSerializer1} */
-declare function UserSerializer1(): UserSerializer1;
-type UserSerializer1 = {
+/** @returns {UserSerializer2} */
+declare function UserSerializer2(): UserSerializer2;
+type UserSerializer2 = {
     contact?: string;
     user_id?: string;
     username?: string;
 };
-/** @returns {UserSerializer2} */
-declare function UserSerializer2(): UserSerializer2;
-type UserSerializer2 = {
+/** @returns {UserSerializer3} */
+declare function UserSerializer3(): UserSerializer3;
+type UserSerializer3 = {
     contact?: string;
     user_id?: string;
     username?: string;

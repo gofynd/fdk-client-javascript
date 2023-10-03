@@ -38,6 +38,10 @@ export = CatalogPlatformApplicationValidator;
  * @property {CatalogPlatformModel.AppConfigurationsSort} body
  */
 /**
+ * @typedef CreateSearchConfigurationParam
+ * @property {CatalogPlatformModel.CreateSearchConfigurationRequest} body
+ */
+/**
  * @typedef DeleteAutocompleteKeywordParam
  * @property {string} id - A `id` is a unique identifier for a particular
  *   detail. Pass the `id` of the keywords which you want to delete.
@@ -60,6 +64,7 @@ export = CatalogPlatformApplicationValidator;
  * @property {string} configId - A `config_id` is a unique identifier of a
  *   particular configuration.
  */
+/** @typedef DeleteSearchConfigurationParam */
 /**
  * @typedef DeleteSearchKeywordsParam
  * @property {string} id - A `id` is a unique identifier for a particular
@@ -279,6 +284,7 @@ export = CatalogPlatformApplicationValidator;
  *   **v1.0/products/**
  */
 /** @typedef GetQueryFiltersParam */
+/** @typedef GetSearchConfigurationParam */
 /**
  * @typedef GetSearchKeywordsParam
  * @property {string} id - A `id` is a unique identifier for a particular
@@ -346,6 +352,10 @@ export = CatalogPlatformApplicationValidator;
  * @property {CatalogPlatformModel.AppConfigurationsSort} body
  */
 /**
+ * @typedef UpdateSearchConfigurationParam
+ * @property {CatalogPlatformModel.UpdateSearchConfigurationRequest} body
+ */
+/**
  * @typedef UpdateSearchKeywordsParam
  * @property {string} id - A `id` is a unique identifier for a particular
  *   detail. Pass the `id` of the keywords which you want to delete.
@@ -368,6 +378,8 @@ declare class CatalogPlatformApplicationValidator {
     static createGroupConfiguration(): CreateGroupConfigurationParam;
     /** @returns {CreateListingConfigurationParam} */
     static createListingConfiguration(): CreateListingConfigurationParam;
+    /** @returns {CreateSearchConfigurationParam} */
+    static createSearchConfiguration(): CreateSearchConfigurationParam;
     /** @returns {DeleteAutocompleteKeywordParam} */
     static deleteAutocompleteKeyword(): DeleteAutocompleteKeywordParam;
     /** @returns {DeleteCollectionParam} */
@@ -376,6 +388,8 @@ declare class CatalogPlatformApplicationValidator {
     static deleteGroupConfiguration(): DeleteGroupConfigurationParam;
     /** @returns {DeleteListingConfigurationParam} */
     static deleteListingConfiguration(): DeleteListingConfigurationParam;
+    /** @returns {DeleteSearchConfigurationParam} */
+    static deleteSearchConfiguration(): any;
     /** @returns {DeleteSearchKeywordsParam} */
     static deleteSearchKeywords(): DeleteSearchKeywordsParam;
     /** @returns {GetAllCollectionsParam} */
@@ -432,6 +446,8 @@ declare class CatalogPlatformApplicationValidator {
     static getProductDetailBySlug(): GetProductDetailBySlugParam;
     /** @returns {GetQueryFiltersParam} */
     static getQueryFilters(): any;
+    /** @returns {GetSearchConfigurationParam} */
+    static getSearchConfiguration(): any;
     /** @returns {GetSearchKeywordsParam} */
     static getSearchKeywords(): GetSearchKeywordsParam;
     /** @returns {UpdateAllowSingleParam} */
@@ -456,11 +472,13 @@ declare class CatalogPlatformApplicationValidator {
     static updateGroupConfiguration(): UpdateGroupConfigurationParam;
     /** @returns {UpdateListingConfigurationParam} */
     static updateListingConfiguration(): UpdateListingConfigurationParam;
+    /** @returns {UpdateSearchConfigurationParam} */
+    static updateSearchConfiguration(): UpdateSearchConfigurationParam;
     /** @returns {UpdateSearchKeywordsParam} */
     static updateSearchKeywords(): UpdateSearchKeywordsParam;
 }
 declare namespace CatalogPlatformApplicationValidator {
-    export { AddCollectionItemsParam, CreateCollectionParam, CreateConfigurationByTypeParam, CreateConfigurationProductListingParam, CreateCustomAutocompleteRuleParam, CreateCustomKeywordParam, CreateGroupConfigurationParam, CreateListingConfigurationParam, DeleteAutocompleteKeywordParam, DeleteCollectionParam, DeleteGroupConfigurationParam, DeleteListingConfigurationParam, DeleteSearchKeywordsParam, GetAllCollectionsParam, GetAllSearchKeywordParam, GetAppInventoryParam, GetAppLocationsParam, GetAppProductParam, GetAppProductsParam, GetAppicationProductsParam, GetApplicationBrandListingParam, GetApplicationBrandsParam, GetApplicationCategoryListingParam, GetApplicationDepartmentListingParam, GetAutocompleteConfigParam, GetAutocompleteKeywordDetailParam, GetCatalogConfigurationParam, GetCatalogInsightsParam, GetCategoriesParam, GetCollectionDetailParam, GetCollectionItemsParam, GetConfigurationByTypeParam, GetConfigurationMetadataParam, GetConfigurationsParam, GetDepartmentsParam, GetDiscountedInventoryBySizeIdentifierParam, GetGroupConfigurationsParam, GetListingConfigurationsParam, GetProductDetailBySlugParam, GetQueryFiltersParam, GetSearchKeywordsParam, UpdateAllowSingleParam, UpdateAppBrandParam, UpdateAppCategoryParam, UpdateAppDepartmentParam, UpdateAppLocationParam, UpdateAppProductParam, UpdateAutocompleteKeywordParam, UpdateCollectionParam, UpdateDefaultSortParam, UpdateGroupConfigurationParam, UpdateListingConfigurationParam, UpdateSearchKeywordsParam };
+    export { AddCollectionItemsParam, CreateCollectionParam, CreateConfigurationByTypeParam, CreateConfigurationProductListingParam, CreateCustomAutocompleteRuleParam, CreateCustomKeywordParam, CreateGroupConfigurationParam, CreateListingConfigurationParam, CreateSearchConfigurationParam, DeleteAutocompleteKeywordParam, DeleteCollectionParam, DeleteGroupConfigurationParam, DeleteListingConfigurationParam, DeleteSearchConfigurationParam, DeleteSearchKeywordsParam, GetAllCollectionsParam, GetAllSearchKeywordParam, GetAppInventoryParam, GetAppLocationsParam, GetAppProductParam, GetAppProductsParam, GetAppicationProductsParam, GetApplicationBrandListingParam, GetApplicationBrandsParam, GetApplicationCategoryListingParam, GetApplicationDepartmentListingParam, GetAutocompleteConfigParam, GetAutocompleteKeywordDetailParam, GetCatalogConfigurationParam, GetCatalogInsightsParam, GetCategoriesParam, GetCollectionDetailParam, GetCollectionItemsParam, GetConfigurationByTypeParam, GetConfigurationMetadataParam, GetConfigurationsParam, GetDepartmentsParam, GetDiscountedInventoryBySizeIdentifierParam, GetGroupConfigurationsParam, GetListingConfigurationsParam, GetProductDetailBySlugParam, GetQueryFiltersParam, GetSearchConfigurationParam, GetSearchKeywordsParam, UpdateAllowSingleParam, UpdateAppBrandParam, UpdateAppCategoryParam, UpdateAppDepartmentParam, UpdateAppLocationParam, UpdateAppProductParam, UpdateAutocompleteKeywordParam, UpdateCollectionParam, UpdateDefaultSortParam, UpdateGroupConfigurationParam, UpdateListingConfigurationParam, UpdateSearchConfigurationParam, UpdateSearchKeywordsParam };
 }
 type AddCollectionItemsParam = {
     /**
@@ -503,6 +521,9 @@ type CreateListingConfigurationParam = {
      */
     configType: string;
     body: CatalogPlatformModel.AppConfigurationsSort;
+};
+type CreateSearchConfigurationParam = {
+    body: CatalogPlatformModel.CreateSearchConfigurationRequest;
 };
 type DeleteAutocompleteKeywordParam = {
     /**
@@ -1071,6 +1092,9 @@ type UpdateListingConfigurationParam = {
     configId: string;
     body: CatalogPlatformModel.AppConfigurationsSort;
 };
+type UpdateSearchConfigurationParam = {
+    body: CatalogPlatformModel.UpdateSearchConfigurationRequest;
+};
 type UpdateSearchKeywordsParam = {
     /**
      * - A `id` is a unique identifier for a particular
@@ -1079,10 +1103,12 @@ type UpdateSearchKeywordsParam = {
     id: string;
     body: CatalogPlatformModel.CreateSearchKeyword;
 };
+type DeleteSearchConfigurationParam = any;
 type GetAllSearchKeywordParam = any;
 type GetAutocompleteConfigParam = any;
 type GetCatalogConfigurationParam = any;
 type GetConfigurationsParam = any;
 type GetDepartmentsParam = any;
 type GetQueryFiltersParam = any;
+type GetSearchConfigurationParam = any;
 import CatalogPlatformModel = require("./CatalogPlatformModel");

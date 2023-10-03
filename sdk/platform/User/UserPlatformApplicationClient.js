@@ -1316,6 +1316,85 @@ class User {
 
     return response;
   }
+
+  /**
+   * @param {UserPlatformApplicationValidator.UpdateUserGroupPartiallyParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<UserPlatformModel.UserGroupResponseSchema>} - Success response
+   * @name updateUserGroupPartially
+   * @summary: Add or Remove an user from particular user group and update user group details
+   * @description: Use this API to update user group details and add or remove an user to the user group. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/updateUserGroupPartially/).
+   */
+  async updateUserGroupPartially(
+    { groupId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = UserPlatformApplicationValidator.updateUserGroupPartially().validate(
+      {
+        groupId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = UserPlatformApplicationValidator.updateUserGroupPartially().validate(
+      {
+        groupId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > User > updateUserGroupPartially \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "patch",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/user_group/${groupId}`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = UserPlatformModel.UserGroupResponseSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > User > updateUserGroupPartially \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
 }
 
 module.exports = User;

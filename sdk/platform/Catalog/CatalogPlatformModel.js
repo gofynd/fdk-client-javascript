@@ -27,9 +27,9 @@ const Joi = require("joi");
  * @property {number} item_height
  * @property {number} item_length
  * @property {number} item_weight
- * @property {Object} item_weight_unit_of_measure
+ * @property {string} item_weight_unit_of_measure
  * @property {number} item_width
- * @property {Object} size
+ * @property {string} size
  */
 
 /**
@@ -140,8 +140,8 @@ const Joi = require("joi");
 
 /**
  * @typedef ApplicationItemSEO
- * @property {Object} [description] - The SEO description of the item
- * @property {Object} [title] - The SEO title of the item
+ * @property {string} [description] - The SEO description of the item
+ * @property {string} [title] - The SEO title of the item
  */
 
 /**
@@ -407,7 +407,7 @@ const Joi = require("joi");
  * @property {Object[]} [failed_records]
  * @property {string} [file_path]
  * @property {boolean} [is_active] - Whether the item is active or not.
- * @property {UserInfo1} [modified_by] - The user who last modified the item.
+ * @property {string} [modified_by] - The user who last modified the item.
  * @property {string} [modified_on] - The date and time when the item was last modified.
  * @property {string} [stage]
  * @property {number} [succeed]
@@ -875,6 +875,31 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef CreateSearchConfigurationRequest
+ * @property {string} application_id - The application id where custom search
+ *   configuration is set
+ * @property {number} company_id - The company id where custom search configuration is set
+ * @property {UserSerializer} [created_by] - The user who created the search
+ *   configuration.
+ * @property {string} [created_on] - The date and time when the search
+ *   configuration was created.
+ * @property {boolean} [is_proximity_enabled] - Flag indicating if proximity
+ *   search is enabled for this attribute.
+ * @property {UserSerializer} [modified_by] - The user who modified the search
+ *   configuration.
+ * @property {string} [modified_on] - The date and time when the search
+ *   configuration was last modified.
+ * @property {number} [proximity] - Proximity distance configuration
+ * @property {SearchableAttribute[]} [searchable_attributes] - The searchable
+ *   attributes defined on the application.
+ */
+
+/**
+ * @typedef CreateSearchConfigurationResponse
+ * @property {boolean} [success]
+ */
+
+/**
  * @typedef CreateSearchKeyword
  * @property {Object} [_custom_json]
  * @property {string} [app_id]
@@ -918,6 +943,11 @@ const Joi = require("joi");
 /**
  * @typedef DeleteResponse
  * @property {string} [message]
+ */
+
+/**
+ * @typedef DeleteSearchConfigurationResponse
+ * @property {boolean} [success]
  */
 
 /**
@@ -978,20 +1008,20 @@ const Joi = require("joi");
 
 /**
  * @typedef DepartmentModel
- * @property {Object} [_cls]
+ * @property {string} [_cls]
  * @property {Object} [_custom_json]
- * @property {Object} [_id]
+ * @property {string} [_id]
  * @property {UserDetail} [created_by] - User details of the creator of the document
  * @property {string} created_on - Timestamp of the creation of the document
  * @property {boolean} [is_active] - Whether the department is currently active
- * @property {Object} logo - The URL of the department's logo
+ * @property {string} logo - The URL of the department's logo
  * @property {UserDetail} [modified_by] - User details of the last modifier of
  *   the document
  * @property {string} modified_on - Timestamp of the last modification of the document
- * @property {Object} name - The name of the department
+ * @property {string} name - The name of the department
  * @property {number} priority_order - The priority order of the department
- * @property {Object} slug - The unique slug identifier for the department
- * @property {Object[]} [synonyms] - A list of synonyms for the department name
+ * @property {string} slug - The unique slug identifier for the department
+ * @property {string[]} [synonyms] - A list of synonyms for the department name
  * @property {number} uid - The unique ID for the department
  * @property {UserDetail} [verified_by] - User details of the verifier of the
  *   document, if applicable
@@ -1195,15 +1225,15 @@ const Joi = require("joi");
  * @property {GetAddressSerializer[]} [addresses]
  * @property {string} [business_type]
  * @property {string} [company_type]
- * @property {UserSerializer1} [created_by]
+ * @property {UserSerializer2} [created_by]
  * @property {string} [created_on]
- * @property {UserSerializer1} [modified_by]
+ * @property {UserSerializer2} [modified_by]
  * @property {string} [modified_on]
  * @property {string} [name]
  * @property {string} [reject_reason]
  * @property {string} [stage]
  * @property {number} [uid]
- * @property {UserSerializer1} [verified_by]
+ * @property {UserSerializer2} [verified_by]
  * @property {string} [verified_on]
  */
 
@@ -1222,12 +1252,12 @@ const Joi = require("joi");
 
 /**
  * @typedef GetDepartment
- * @property {UserSerializer} [created_by]
+ * @property {UserSerializer1} [created_by]
  * @property {string} [created_on]
  * @property {boolean} [is_active]
  * @property {string} [item_type]
  * @property {string} [logo]
- * @property {UserSerializer} [modified_by]
+ * @property {UserSerializer1} [modified_by]
  * @property {string} [modified_on]
  * @property {string} [name]
  * @property {number} [page_no]
@@ -1244,7 +1274,7 @@ const Joi = require("joi");
  * @property {BrandMeta1} [brand]
  * @property {CompanyMeta1} [company]
  * @property {string} [country_of_origin]
- * @property {UserSerializer} [created_by]
+ * @property {UserSerializer1} [created_by]
  * @property {DateMeta} [date_meta]
  * @property {DimensionResponse1} [dimension]
  * @property {string} [expiration_date]
@@ -1254,7 +1284,7 @@ const Joi = require("joi");
  * @property {boolean} [is_set]
  * @property {number} [item_id]
  * @property {ManufacturerResponse1} [manufacturer]
- * @property {UserSerializer} [modified_by]
+ * @property {UserSerializer1} [modified_by]
  * @property {Object} [platforms]
  * @property {PriceArticle} [price]
  * @property {QuantitiesArticle} [quantities]
@@ -1286,14 +1316,14 @@ const Joi = require("joi");
  * @property {string} code
  * @property {GetCompanySerializer} [company]
  * @property {SellerPhoneNumber[]} [contact_numbers]
- * @property {UserSerializer2} [created_by]
+ * @property {UserSerializer3} [created_by]
  * @property {string} [created_on]
  * @property {string} display_name
  * @property {Document[]} [documents]
  * @property {InvoiceDetailsSerializer} [gst_credentials]
  * @property {LocationIntegrationType} [integration_type]
  * @property {LocationManagerSerializer} [manager]
- * @property {UserSerializer2} [modified_by]
+ * @property {UserSerializer3} [modified_by]
  * @property {string} [modified_on]
  * @property {string} name
  * @property {string[]} [notification_emails]
@@ -1303,7 +1333,7 @@ const Joi = require("joi");
  * @property {string} [store_type]
  * @property {LocationDayWiseSerializer[]} [timing]
  * @property {number} [uid]
- * @property {UserSerializer2} [verified_by]
+ * @property {UserSerializer3} [verified_by]
  * @property {string} [verified_on]
  * @property {Object} [warnings]
  */
@@ -1367,6 +1397,26 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef GetSearchConfigurationResponse
+ * @property {string} application_id - The application id where custom search
+ *   configuration is set
+ * @property {number} company_id - The company id where custom search configuration is set
+ * @property {UserSerializer} [created_by] - The user who created the search
+ *   configuration.
+ * @property {string} [created_on] - The date and time when the search
+ *   configuration was created.
+ * @property {boolean} [is_proximity_enabled] - Flag indicating if proximity
+ *   search is enabled for this attribute.
+ * @property {UserSerializer} [modified_by] - The user who modified the search
+ *   configuration.
+ * @property {string} [modified_on] - The date and time when the search
+ *   configuration was last modified.
+ * @property {number} [proximity] - Proximity distance configuration
+ * @property {SearchableAttribute[]} [searchable_attributes] - The searchable
+ *   attributes defined on the application.
+ */
+
+/**
  * @typedef GetSearchWordsData
  * @property {Object} [_custom_json]
  * @property {string} [app_id]
@@ -1401,7 +1451,7 @@ const Joi = require("joi");
 /**
  * @typedef GTIN
  * @property {string} gtin_type
- * @property {Object} gtin_value
+ * @property {string} gtin_value
  * @property {boolean} [primary]
  */
 
@@ -1620,7 +1670,7 @@ const Joi = require("joi");
  * @property {string[]} [notification_emails] - User email to get notification
  *   post completion of the job.
  * @property {number} seller_id - This ID of the company.
- * @property {Object} [status] - This tells you the current status of the export job.
+ * @property {string} [status] - This tells you the current status of the export job.
  * @property {string} task_id - This is the task id of the jobs that is used for search.
  * @property {string} [type] - This is the file type of the export.
  * @property {string} url - This is the url to download the export.
@@ -1826,7 +1876,7 @@ const Joi = require("joi");
  * @property {number} [price_transfer]
  * @property {number} quantity
  * @property {InventorySet} [set]
- * @property {Object} size
+ * @property {string} size
  * @property {string} store_code
  */
 
@@ -1995,9 +2045,9 @@ const Joi = require("joi");
 
 /**
  * @typedef MetaFields
- * @property {Object} key - The key of the metadata. Should be a non-empty
+ * @property {string} key - The key of the metadata. Should be a non-empty
  *   string and length should not exceed 30 characters.
- * @property {Object} value - The value of the metadata. Should be a non-empty
+ * @property {string} value - The value of the metadata. Should be a non-empty
  *   string and length should not exceed 100 characters.
  */
 
@@ -2336,7 +2386,7 @@ const Joi = require("joi");
  * @property {NetQuantity} [net_quantity]
  * @property {number} [no_of_boxes]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish} [product_publish]
+ * @property {ProductPublish1} [product_publish]
  * @property {string} [requester]
  * @property {ReturnConfig} return_config
  * @property {string} [short_description]
@@ -2548,7 +2598,7 @@ const Joi = require("joi");
  * @property {string} [pending]
  * @property {string} [primary_color]
  * @property {string[]} [product_group_tag]
- * @property {ProductPublish1} [product_publish]
+ * @property {ProductPublish} [product_publish]
  * @property {ReturnConfigResponse} [return_config]
  * @property {string} [short_description]
  * @property {string} [size_guide]
@@ -2840,6 +2890,16 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef SearchableAttribute
+ * @property {string} key - The attribute key to search on. This key matches the
+ *   solr document key
+ * @property {string} name - The name of key to search on. This is for
+ *   displaying purposes on platform
+ * @property {number} priority - Order in which the searchable attribute should
+ *   kick in. Higher the priority, higher the weight considered while searching
+ */
+
+/**
  * @typedef SearchKeywordResult
  * @property {Object} query
  * @property {string} sort_on
@@ -2864,8 +2924,8 @@ const Joi = require("joi");
 
 /**
  * @typedef SEOData
- * @property {Object} [description]
- * @property {Object} [title]
+ * @property {string} [description]
+ * @property {string} [title]
  */
 
 /**
@@ -3076,7 +3136,7 @@ const Joi = require("joi");
  * @property {boolean} [is_visible]
  * @property {CollectionImage} [logo]
  * @property {Object} [meta]
- * @property {string} [modified_by]
+ * @property {string} [modified_by] - User info.
  * @property {string} [name]
  * @property {number} [priority]
  * @property {boolean} [published]
@@ -3093,6 +3153,31 @@ const Joi = require("joi");
  * @typedef UpdatedResponse
  * @property {number[]} [items_not_updated]
  * @property {string} [message]
+ */
+
+/**
+ * @typedef UpdateSearchConfigurationRequest
+ * @property {string} application_id - The application id where custom search
+ *   configuration is set
+ * @property {number} company_id - The company id where custom search configuration is set
+ * @property {UserSerializer} [created_by] - The user who created the search
+ *   configuration.
+ * @property {string} [created_on] - The date and time when the search
+ *   configuration was created.
+ * @property {boolean} [is_proximity_enabled] - Flag indicating if proximity
+ *   search is enabled for this attribute.
+ * @property {UserSerializer} [modified_by] - The user who modified the search
+ *   configuration.
+ * @property {string} [modified_on] - The date and time when the search
+ *   configuration was last modified.
+ * @property {number} [proximity] - Proximity distance configuration
+ * @property {SearchableAttribute[]} [searchable_attributes] - The searchable
+ *   attributes defined on the application.
+ */
+
+/**
+ * @typedef UpdateSearchConfigurationResponse
+ * @property {boolean} [success]
  */
 
 /**
@@ -3135,6 +3220,13 @@ const Joi = require("joi");
 
 /**
  * @typedef UserSerializer
+ * @property {string} [contact] - The contact information of the user.
+ * @property {string} [user_id] - The unique ID of the user.
+ * @property {string} [username] - The username of the user.
+ */
+
+/**
+ * @typedef UserSerializer1
  * @property {string} [_id]
  * @property {string} [contact]
  * @property {string} [uid]
@@ -3143,14 +3235,14 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef UserSerializer1
+ * @typedef UserSerializer2
  * @property {string} [contact]
  * @property {string} [user_id]
  * @property {string} [username]
  */
 
 /**
- * @typedef UserSerializer2
+ * @typedef UserSerializer3
  * @property {string} [contact]
  * @property {string} [user_id]
  * @property {string} [username]
@@ -3296,9 +3388,9 @@ class CatalogPlatformModel {
       item_height: Joi.number().required(),
       item_length: Joi.number().required(),
       item_weight: Joi.number().required(),
-      item_weight_unit_of_measure: Joi.any().required(),
+      item_weight_unit_of_measure: Joi.string().allow("").required(),
       item_width: Joi.number().required(),
-      size: Joi.any().required(),
+      size: Joi.string().allow("").required(),
     });
   }
 
@@ -3432,8 +3524,8 @@ class CatalogPlatformModel {
   /** @returns {ApplicationItemSEO} */
   static ApplicationItemSEO() {
     return Joi.object({
-      description: Joi.any(),
-      title: Joi.any(),
+      description: Joi.string().allow(""),
+      title: Joi.string().allow(""),
     });
   }
 
@@ -3764,7 +3856,7 @@ class CatalogPlatformModel {
       failed_records: Joi.array().items(Joi.any()),
       file_path: Joi.string().allow(""),
       is_active: Joi.boolean(),
-      modified_by: CatalogPlatformModel.UserInfo1(),
+      modified_by: Joi.string().allow("").allow(null),
       modified_on: Joi.string().allow(""),
       stage: Joi.string().allow(""),
       succeed: Joi.number(),
@@ -4332,6 +4424,30 @@ class CatalogPlatformModel {
     });
   }
 
+  /** @returns {CreateSearchConfigurationRequest} */
+  static CreateSearchConfigurationRequest() {
+    return Joi.object({
+      application_id: Joi.string().allow("").required(),
+      company_id: Joi.number().required(),
+      created_by: CatalogPlatformModel.UserSerializer(),
+      created_on: Joi.string().allow(""),
+      is_proximity_enabled: Joi.boolean(),
+      modified_by: CatalogPlatformModel.UserSerializer(),
+      modified_on: Joi.string().allow(""),
+      proximity: Joi.number(),
+      searchable_attributes: Joi.array().items(
+        CatalogPlatformModel.SearchableAttribute()
+      ),
+    });
+  }
+
+  /** @returns {CreateSearchConfigurationResponse} */
+  static CreateSearchConfigurationResponse() {
+    return Joi.object({
+      success: Joi.boolean(),
+    });
+  }
+
   /** @returns {CreateSearchKeyword} */
   static CreateSearchKeyword() {
     return Joi.object({
@@ -4389,6 +4505,13 @@ class CatalogPlatformModel {
   static DeleteResponse() {
     return Joi.object({
       message: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {DeleteSearchConfigurationResponse} */
+  static DeleteSearchConfigurationResponse() {
+    return Joi.object({
+      success: Joi.boolean(),
     });
   }
 
@@ -4465,19 +4588,19 @@ class CatalogPlatformModel {
   /** @returns {DepartmentModel} */
   static DepartmentModel() {
     return Joi.object({
-      _cls: Joi.any(),
+      _cls: Joi.string().allow(""),
       _custom_json: Joi.any(),
-      _id: Joi.any(),
+      _id: Joi.string().allow(""),
       created_by: CatalogPlatformModel.UserDetail(),
       created_on: Joi.string().allow("").required(),
       is_active: Joi.boolean(),
-      logo: Joi.any().required(),
+      logo: Joi.string().allow("").required(),
       modified_by: CatalogPlatformModel.UserDetail(),
       modified_on: Joi.string().allow("").required(),
-      name: Joi.any().required(),
+      name: Joi.string().allow("").required(),
       priority_order: Joi.number().required(),
-      slug: Joi.any().required(),
-      synonyms: Joi.array().items(Joi.any()),
+      slug: Joi.string().allow("").required(),
+      synonyms: Joi.array().items(Joi.string().allow("")),
       uid: Joi.number().required(),
       verified_by: CatalogPlatformModel.UserDetail(),
       verified_on: Joi.string().allow(""),
@@ -4725,15 +4848,15 @@ class CatalogPlatformModel {
       addresses: Joi.array().items(CatalogPlatformModel.GetAddressSerializer()),
       business_type: Joi.string().allow(""),
       company_type: Joi.string().allow(""),
-      created_by: CatalogPlatformModel.UserSerializer1(),
+      created_by: CatalogPlatformModel.UserSerializer2(),
       created_on: Joi.string().allow(""),
-      modified_by: CatalogPlatformModel.UserSerializer1(),
+      modified_by: CatalogPlatformModel.UserSerializer2(),
       modified_on: Joi.string().allow(""),
       name: Joi.string().allow(""),
       reject_reason: Joi.string().allow(""),
       stage: Joi.string().allow(""),
       uid: Joi.number(),
-      verified_by: CatalogPlatformModel.UserSerializer1(),
+      verified_by: CatalogPlatformModel.UserSerializer2(),
       verified_on: Joi.string().allow(""),
     });
   }
@@ -4758,12 +4881,12 @@ class CatalogPlatformModel {
   /** @returns {GetDepartment} */
   static GetDepartment() {
     return Joi.object({
-      created_by: CatalogPlatformModel.UserSerializer(),
+      created_by: CatalogPlatformModel.UserSerializer1(),
       created_on: Joi.string().allow(""),
       is_active: Joi.boolean(),
       item_type: Joi.string().allow(""),
       logo: Joi.string().allow(""),
-      modified_by: CatalogPlatformModel.UserSerializer(),
+      modified_by: CatalogPlatformModel.UserSerializer1(),
       modified_on: Joi.string().allow(""),
       name: Joi.string().allow(""),
       page_no: Joi.number(),
@@ -4782,7 +4905,7 @@ class CatalogPlatformModel {
       brand: CatalogPlatformModel.BrandMeta1(),
       company: CatalogPlatformModel.CompanyMeta1(),
       country_of_origin: Joi.string().allow(""),
-      created_by: CatalogPlatformModel.UserSerializer(),
+      created_by: CatalogPlatformModel.UserSerializer1(),
       date_meta: CatalogPlatformModel.DateMeta(),
       dimension: CatalogPlatformModel.DimensionResponse1(),
       expiration_date: Joi.string().allow(""),
@@ -4792,7 +4915,7 @@ class CatalogPlatformModel {
       is_set: Joi.boolean(),
       item_id: Joi.number(),
       manufacturer: CatalogPlatformModel.ManufacturerResponse1(),
-      modified_by: CatalogPlatformModel.UserSerializer(),
+      modified_by: CatalogPlatformModel.UserSerializer1(),
       platforms: Joi.any(),
       price: CatalogPlatformModel.PriceArticle(),
       quantities: CatalogPlatformModel.QuantitiesArticle(),
@@ -4830,14 +4953,14 @@ class CatalogPlatformModel {
       contact_numbers: Joi.array().items(
         CatalogPlatformModel.SellerPhoneNumber()
       ),
-      created_by: CatalogPlatformModel.UserSerializer2(),
+      created_by: CatalogPlatformModel.UserSerializer3(),
       created_on: Joi.string().allow(""),
       display_name: Joi.string().allow("").required(),
       documents: Joi.array().items(CatalogPlatformModel.Document()),
       gst_credentials: CatalogPlatformModel.InvoiceDetailsSerializer(),
       integration_type: CatalogPlatformModel.LocationIntegrationType(),
       manager: CatalogPlatformModel.LocationManagerSerializer(),
-      modified_by: CatalogPlatformModel.UserSerializer2(),
+      modified_by: CatalogPlatformModel.UserSerializer3(),
       modified_on: Joi.string().allow(""),
       name: Joi.string().allow("").required(),
       notification_emails: Joi.array().items(Joi.string().allow("")),
@@ -4849,7 +4972,7 @@ class CatalogPlatformModel {
         CatalogPlatformModel.LocationDayWiseSerializer()
       ),
       uid: Joi.number(),
-      verified_by: CatalogPlatformModel.UserSerializer2(),
+      verified_by: CatalogPlatformModel.UserSerializer3(),
       verified_on: Joi.string().allow(""),
       warnings: Joi.any(),
     });
@@ -4927,6 +5050,23 @@ class CatalogPlatformModel {
     });
   }
 
+  /** @returns {GetSearchConfigurationResponse} */
+  static GetSearchConfigurationResponse() {
+    return Joi.object({
+      application_id: Joi.string().allow("").required(),
+      company_id: Joi.number().required(),
+      created_by: CatalogPlatformModel.UserSerializer(),
+      created_on: Joi.string().allow(""),
+      is_proximity_enabled: Joi.boolean(),
+      modified_by: CatalogPlatformModel.UserSerializer(),
+      modified_on: Joi.string().allow(""),
+      proximity: Joi.number(),
+      searchable_attributes: Joi.array().items(
+        CatalogPlatformModel.SearchableAttribute()
+      ),
+    });
+  }
+
   /** @returns {GetSearchWordsData} */
   static GetSearchWordsData() {
     return Joi.object({
@@ -4971,7 +5111,7 @@ class CatalogPlatformModel {
   static GTIN() {
     return Joi.object({
       gtin_type: Joi.string().allow("").required(),
-      gtin_value: Joi.any().required(),
+      gtin_value: Joi.string().allow("").required(),
       primary: Joi.boolean(),
     });
   }
@@ -5219,7 +5359,7 @@ class CatalogPlatformModel {
       modified_on: Joi.string().allow(""),
       notification_emails: Joi.array().items(Joi.string().allow("")),
       seller_id: Joi.number().required(),
-      status: Joi.any(),
+      status: Joi.string().allow(""),
       task_id: Joi.string().allow("").required(),
       type: Joi.string().allow("").allow(null),
       url: Joi.string().allow("").required(),
@@ -5452,7 +5592,7 @@ class CatalogPlatformModel {
       price_transfer: Joi.number().allow(null),
       quantity: Joi.number().required(),
       set: CatalogPlatformModel.InventorySet(),
-      size: Joi.any().required(),
+      size: Joi.string().allow("").required(),
       store_code: Joi.string().allow("").required(),
     });
   }
@@ -5669,8 +5809,8 @@ class CatalogPlatformModel {
   /** @returns {MetaFields} */
   static MetaFields() {
     return Joi.object({
-      key: Joi.any().required(),
-      value: Joi.any().required(),
+      key: Joi.string().allow("").required(),
+      value: Joi.string().allow("").required(),
     });
   }
 
@@ -6069,7 +6209,7 @@ class CatalogPlatformModel {
       net_quantity: CatalogPlatformModel.NetQuantity(),
       no_of_boxes: Joi.number(),
       product_group_tag: Joi.array().items(Joi.string().allow("")),
-      product_publish: CatalogPlatformModel.ProductPublish(),
+      product_publish: CatalogPlatformModel.ProductPublish1(),
       requester: Joi.string().allow(""),
       return_config: CatalogPlatformModel.ReturnConfig().required(),
       short_description: Joi.string().allow(""),
@@ -6321,7 +6461,7 @@ class CatalogPlatformModel {
       pending: Joi.string().allow(""),
       primary_color: Joi.string().allow(""),
       product_group_tag: Joi.array().items(Joi.string().allow("")),
-      product_publish: CatalogPlatformModel.ProductPublish1(),
+      product_publish: CatalogPlatformModel.ProductPublish(),
       return_config: CatalogPlatformModel.ReturnConfigResponse(),
       short_description: Joi.string().allow(""),
       size_guide: Joi.string().allow(""),
@@ -6654,6 +6794,15 @@ class CatalogPlatformModel {
     });
   }
 
+  /** @returns {SearchableAttribute} */
+  static SearchableAttribute() {
+    return Joi.object({
+      key: Joi.string().allow("").required(),
+      name: Joi.string().allow("").required(),
+      priority: Joi.number().required(),
+    });
+  }
+
   /** @returns {SearchKeywordResult} */
   static SearchKeywordResult() {
     return Joi.object({
@@ -6686,8 +6835,8 @@ class CatalogPlatformModel {
   /** @returns {SEOData} */
   static SEOData() {
     return Joi.object({
-      description: Joi.any(),
-      title: Joi.any(),
+      description: Joi.string().allow(""),
+      title: Joi.string().allow(""),
     });
   }
 
@@ -6968,6 +7117,30 @@ class CatalogPlatformModel {
     });
   }
 
+  /** @returns {UpdateSearchConfigurationRequest} */
+  static UpdateSearchConfigurationRequest() {
+    return Joi.object({
+      application_id: Joi.string().allow("").required(),
+      company_id: Joi.number().required(),
+      created_by: CatalogPlatformModel.UserSerializer(),
+      created_on: Joi.string().allow(""),
+      is_proximity_enabled: Joi.boolean(),
+      modified_by: CatalogPlatformModel.UserSerializer(),
+      modified_on: Joi.string().allow(""),
+      proximity: Joi.number(),
+      searchable_attributes: Joi.array().items(
+        CatalogPlatformModel.SearchableAttribute()
+      ),
+    });
+  }
+
+  /** @returns {UpdateSearchConfigurationResponse} */
+  static UpdateSearchConfigurationResponse() {
+    return Joi.object({
+      success: Joi.boolean(),
+    });
+  }
+
   /** @returns {UserCommon} */
   static UserCommon() {
     return Joi.object({
@@ -7019,9 +7192,7 @@ class CatalogPlatformModel {
   /** @returns {UserSerializer} */
   static UserSerializer() {
     return Joi.object({
-      _id: Joi.string().allow(""),
       contact: Joi.string().allow(""),
-      uid: Joi.string().allow(""),
       user_id: Joi.string().allow(""),
       username: Joi.string().allow(""),
     });
@@ -7030,7 +7201,9 @@ class CatalogPlatformModel {
   /** @returns {UserSerializer1} */
   static UserSerializer1() {
     return Joi.object({
+      _id: Joi.string().allow(""),
       contact: Joi.string().allow(""),
+      uid: Joi.string().allow(""),
       user_id: Joi.string().allow(""),
       username: Joi.string().allow(""),
     });
@@ -7038,6 +7211,15 @@ class CatalogPlatformModel {
 
   /** @returns {UserSerializer2} */
   static UserSerializer2() {
+    return Joi.object({
+      contact: Joi.string().allow(""),
+      user_id: Joi.string().allow(""),
+      username: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {UserSerializer3} */
+  static UserSerializer3() {
     return Joi.object({
       contact: Joi.string().allow(""),
       user_id: Joi.string().allow(""),

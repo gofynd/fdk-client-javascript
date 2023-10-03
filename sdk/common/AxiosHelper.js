@@ -136,6 +136,11 @@ fdkAxios.interceptors.response.use(
         level: "ERROR",
         message: error.response.data || error.message,
         stack: error.response.data.stack || error.stack,
+        request: {
+          method: error.config.method,
+          url: error.config.url,
+          headers: error.config.headers,
+        },
       });
       throw new FDKServerResponseError(
         error.response.data.message || error.message,
@@ -150,6 +155,11 @@ fdkAxios.interceptors.response.use(
         level: "ERROR",
         message: error.data || error.message,
         stack: error.data.stack || error.stack,
+        request: {
+          method: error.config.method,
+          url: error.config.url,
+          headers: error.config.headers,
+        },
       });
       throw new FDKServerResponseError(
         error.message,

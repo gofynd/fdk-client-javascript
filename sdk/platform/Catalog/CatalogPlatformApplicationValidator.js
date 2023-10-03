@@ -49,6 +49,11 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
+ * @typedef CreateSearchConfigurationParam
+ * @property {CatalogPlatformModel.CreateSearchConfigurationRequest} body
+ */
+
+/**
  * @typedef DeleteAutocompleteKeywordParam
  * @property {string} id - A `id` is a unique identifier for a particular
  *   detail. Pass the `id` of the keywords which you want to delete.
@@ -74,6 +79,8 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @property {string} configId - A `config_id` is a unique identifier of a
  *   particular configuration.
  */
+
+/** @typedef DeleteSearchConfigurationParam */
 
 /**
  * @typedef DeleteSearchKeywordsParam
@@ -322,6 +329,8 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /** @typedef GetQueryFiltersParam */
 
+/** @typedef GetSearchConfigurationParam */
+
 /**
  * @typedef GetSearchKeywordsParam
  * @property {string} id - A `id` is a unique identifier for a particular
@@ -401,6 +410,11 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
+ * @typedef UpdateSearchConfigurationParam
+ * @property {CatalogPlatformModel.UpdateSearchConfigurationRequest} body
+ */
+
+/**
  * @typedef UpdateSearchKeywordsParam
  * @property {string} id - A `id` is a unique identifier for a particular
  *   detail. Pass the `id` of the keywords which you want to delete.
@@ -468,6 +482,13 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {CreateSearchConfigurationParam} */
+  static createSearchConfiguration() {
+    return Joi.object({
+      body: CatalogPlatformModel.CreateSearchConfigurationRequest().required(),
+    }).required();
+  }
+
   /** @returns {DeleteAutocompleteKeywordParam} */
   static deleteAutocompleteKeyword() {
     return Joi.object({
@@ -496,6 +517,11 @@ class CatalogPlatformApplicationValidator {
       configType: Joi.string().allow("").required(),
       configId: Joi.string().allow("").required(),
     }).required();
+  }
+
+  /** @returns {DeleteSearchConfigurationParam} */
+  static deleteSearchConfiguration() {
+    return Joi.object({}).required();
   }
 
   /** @returns {DeleteSearchKeywordsParam} */
@@ -743,6 +769,11 @@ class CatalogPlatformApplicationValidator {
     return Joi.object({}).required();
   }
 
+  /** @returns {GetSearchConfigurationParam} */
+  static getSearchConfiguration() {
+    return Joi.object({}).required();
+  }
+
   /** @returns {GetSearchKeywordsParam} */
   static getSearchKeywords() {
     return Joi.object({
@@ -835,6 +866,13 @@ class CatalogPlatformApplicationValidator {
       configType: Joi.string().allow("").required(),
       configId: Joi.string().allow("").required(),
       body: CatalogPlatformModel.AppConfigurationsSort().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateSearchConfigurationParam} */
+  static updateSearchConfiguration() {
+    return Joi.object({
+      body: CatalogPlatformModel.UpdateSearchConfigurationRequest().required(),
     }).required();
   }
 

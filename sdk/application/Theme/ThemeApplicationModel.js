@@ -244,8 +244,7 @@ const Joi = require("joi");
 
 /**
  * @typedef GlobalConfig
- * @property {AuthConfig} [auth]
- * @property {PaletteConfig} [palette]
+ * @property {CustomConfig} [custom]
  * @property {StaticConfig} [statics]
  */
 
@@ -400,6 +399,7 @@ const Joi = require("joi");
  * @typedef StaticProps
  * @property {AuthConfig} [auth]
  * @property {Colors} [colors]
+ * @property {PaletteConfig} [palette]
  */
 
 /**
@@ -418,8 +418,7 @@ const Joi = require("joi");
 
 /**
  * @typedef ThemeConfiguration
- * @property {CustomConfig} [custom]
- * @property {GlobalConfig} [global_config]
+ * @property {Object} [global_config]
  * @property {string} [name] - The name of the configuration
  * @property {string[]} [page] - An array of pages
  */
@@ -791,8 +790,7 @@ class ThemeApplicationModel {
   /** @returns {GlobalConfig} */
   static GlobalConfig() {
     return Joi.object({
-      auth: ThemeApplicationModel.AuthConfig(),
-      palette: ThemeApplicationModel.PaletteConfig(),
+      custom: ThemeApplicationModel.CustomConfig(),
       statics: ThemeApplicationModel.StaticConfig(),
     });
   }
@@ -991,6 +989,7 @@ class ThemeApplicationModel {
     return Joi.object({
       auth: ThemeApplicationModel.AuthConfig(),
       colors: ThemeApplicationModel.Colors(),
+      palette: ThemeApplicationModel.PaletteConfig(),
     });
   }
 
@@ -1015,8 +1014,7 @@ class ThemeApplicationModel {
   /** @returns {ThemeConfiguration} */
   static ThemeConfiguration() {
     return Joi.object({
-      custom: ThemeApplicationModel.CustomConfig(),
-      global_config: ThemeApplicationModel.GlobalConfig(),
+      global_config: Joi.any(),
       name: Joi.string().allow(""),
       page: Joi.array().items(Joi.string().allow("")),
     });

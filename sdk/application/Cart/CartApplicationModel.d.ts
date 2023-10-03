@@ -156,6 +156,7 @@ export = CartApplicationModel;
  * @property {string} [order_type]
  * @property {number} [ordering_store]
  * @property {boolean} [payment_auto_confirm]
+ * @property {Object} [payment_extra_identifiers]
  * @property {string} [payment_identifier]
  * @property {string} payment_mode
  * @property {Object} [payment_params]
@@ -588,6 +589,7 @@ export = CartApplicationModel;
  * @property {string} mode
  * @property {string} [name]
  * @property {string} [payment]
+ * @property {Object} [payment_extra_identifiers]
  * @property {PaymentMeta} payment_meta
  */
 /**
@@ -1084,6 +1086,7 @@ type CartCheckoutDetailRequest = {
     order_type?: string;
     ordering_store?: number;
     payment_auto_confirm?: boolean;
+    payment_extra_identifiers?: any;
     payment_identifier?: string;
     payment_mode: string;
     payment_params?: any;
@@ -1742,6 +1745,7 @@ type PaymentMethod = {
     mode: string;
     name?: string;
     payment?: string;
+    payment_extra_identifiers?: any;
     payment_meta: PaymentMeta;
 };
 /** @returns {PaymentSelectionLock} */

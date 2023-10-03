@@ -174,6 +174,7 @@ const Joi = require("joi");
  * @property {string} [order_type]
  * @property {number} [ordering_store]
  * @property {boolean} [payment_auto_confirm]
+ * @property {Object} [payment_extra_identifiers]
  * @property {string} [payment_identifier]
  * @property {string} payment_mode
  * @property {Object} [payment_params]
@@ -652,6 +653,7 @@ const Joi = require("joi");
  * @property {string} mode
  * @property {string} [name]
  * @property {string} [payment]
+ * @property {Object} [payment_extra_identifiers]
  * @property {PaymentMeta} payment_meta
  */
 
@@ -1140,6 +1142,7 @@ class CartApplicationModel {
       order_type: Joi.string().allow(""),
       ordering_store: Joi.number().allow(null),
       payment_auto_confirm: Joi.boolean(),
+      payment_extra_identifiers: Joi.any(),
       payment_identifier: Joi.string().allow("").allow(null),
       payment_mode: Joi.string().allow("").required(),
       payment_params: Joi.any().allow(null),
@@ -1708,6 +1711,7 @@ class CartApplicationModel {
       mode: Joi.string().allow("").required(),
       name: Joi.string().allow(""),
       payment: Joi.string().allow(""),
+      payment_extra_identifiers: Joi.any(),
       payment_meta: CartApplicationModel.PaymentMeta().required(),
     });
   }

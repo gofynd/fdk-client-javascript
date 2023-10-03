@@ -14311,6 +14311,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | mode | string |  no  |  |
  | name | string? |  yes  |  |
  | payment | string? |  yes  |  |
+ | payment_extra_identifiers | string? |  yes  |  |
  | payment_meta | [PaymentMeta](#PaymentMeta) |  no  |  |
  
 
@@ -14430,6 +14431,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | order_type | string |  no  |  |
  | ordering_store | number? |  yes  |  |
  | payment_auto_confirm | boolean? |  yes  |  |
+ | payment_extra_identifiers | string? |  yes  |  |
  | payment_identifier | string? |  yes  |  |
  | payment_mode | string |  no  |  |
  | payment_params | string? |  yes  |  |

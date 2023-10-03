@@ -80,6 +80,11 @@ export = UserPlatformApplicationValidator;
  * @property {string} groupId - Numeric ID allotted to a User Group
  * @property {UserPlatformModel.UpdateUserGroupSchema} body
  */
+/**
+ * @typedef UpdateUserGroupPartiallyParam
+ * @property {string} groupId - Numeric ID allotted to a User Group
+ * @property {UserPlatformModel.PartialUserGroupUpdateSchema} body
+ */
 declare class UserPlatformApplicationValidator {
     /** @returns {ArchiveUserParam} */
     static archiveUser(): ArchiveUserParam;
@@ -115,9 +120,11 @@ declare class UserPlatformApplicationValidator {
     static updateUser(): UpdateUserParam;
     /** @returns {UpdateUserGroupParam} */
     static updateUserGroup(): UpdateUserGroupParam;
+    /** @returns {UpdateUserGroupPartiallyParam} */
+    static updateUserGroupPartially(): UpdateUserGroupPartiallyParam;
 }
 declare namespace UserPlatformApplicationValidator {
-    export { ArchiveUserParam, BlockOrUnblockUsersParam, CreateUserParam, CreateUserGroupParam, CreateUserSessionParam, DeleteActiveSessionsParam, DeleteSessionParam, GetActiveSessionsParam, GetCustomersParam, GetPlatformConfigParam, GetUserGroupByIdParam, GetUserGroupsParam, SearchUsersParam, UnDeleteUserParam, UpdatePlatformConfigParam, UpdateUserParam, UpdateUserGroupParam };
+    export { ArchiveUserParam, BlockOrUnblockUsersParam, CreateUserParam, CreateUserGroupParam, CreateUserSessionParam, DeleteActiveSessionsParam, DeleteSessionParam, GetActiveSessionsParam, GetCustomersParam, GetPlatformConfigParam, GetUserGroupByIdParam, GetUserGroupsParam, SearchUsersParam, UnDeleteUserParam, UpdatePlatformConfigParam, UpdateUserParam, UpdateUserGroupParam, UpdateUserGroupPartiallyParam };
 }
 type ArchiveUserParam = {
     body: UserPlatformModel.ArchiveUserRequestSchema;
@@ -239,6 +246,13 @@ type UpdateUserGroupParam = {
      */
     groupId: string;
     body: UserPlatformModel.UpdateUserGroupSchema;
+};
+type UpdateUserGroupPartiallyParam = {
+    /**
+     * - Numeric ID allotted to a User Group
+     */
+    groupId: string;
+    body: UserPlatformModel.PartialUserGroupUpdateSchema;
 };
 type GetPlatformConfigParam = any;
 import UserPlatformModel = require("./UserPlatformModel");
