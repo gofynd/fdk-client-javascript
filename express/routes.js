@@ -7,6 +7,7 @@ const { FdkSessionNotFoundError, FdkInvalidOAuthError } = require("./error_code"
 const { SESSION_COOKIE_NAME, PARTNER_SESSION_COOKIE_NAME } = require('./constants');
 const { sessionMiddleware, partnerSessionMiddleware } = require('./middleware/session_middleware');
 const logger = require('./logger');
+const urljoin = require('url-join');
 const FdkRoutes = express.Router();
 
 
@@ -257,7 +258,7 @@ function setupRoutes(ext) {
                 expires: session.expires,
                 signed: true,
                 sameSite: "none"
-            })
+            });
 
             session.state = uuidv4();
 
@@ -283,7 +284,7 @@ function setupRoutes(ext) {
 
     FdkRoutes.get("/partner/auth", partnerSessionMiddleware(false), async (req, res, next) => {
         try {
-            if (!res.fdkSession) {
+            if (!req.fdkSession) {
                 throw new FdkSessionNotFoundError("Can not complete oauth process as session not found");
             }
 
