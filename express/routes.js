@@ -226,7 +226,7 @@ function setupRoutes(ext) {
         }
     });
 
-    FdkRoutes.get("/partner/install", async (req, res, next) => {
+    FdkRoutes.get("/adm/install", async (req, res, next) => {
         try {
             let organizationId = req.query.organization_id;
             let partnerConfig = ext.getPartnerConfig(organizationId);
@@ -282,7 +282,7 @@ function setupRoutes(ext) {
         }
     })
 
-    FdkRoutes.get("/partner/auth", partnerSessionMiddleware(false), async (req, res, next) => {
+    FdkRoutes.get("/adm/auth", partnerSessionMiddleware(false), async (req, res, next) => {
         try {
             if (!req.fdkSession) {
                 throw new FdkSessionNotFoundError("Can not complete oauth process as session not found");
