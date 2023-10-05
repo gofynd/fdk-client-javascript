@@ -1,5 +1,5 @@
 'use strict';
-const { SESSION_COOKIE_NAME, PARTNER_SESSION_COOKIE_NAME } = require('./../constants');
+const { SESSION_COOKIE_NAME, ADMIN_SESSION_COOKIE_NAME } = require('./../constants');
 const SessionStorage = require("../session/session_storage");
 
 function sessionMiddleware(strict) {
@@ -24,8 +24,8 @@ function partnerSessionMiddleware(isStrict) {
     return async (req, res, next) => {
         try {
             const organizationId = req.headers['x-organization-id'] || req.query['organization_id'];
-            const partnerCookieName = `${PARTNER_SESSION_COOKIE_NAME}_${organizationId}`;
-            let sessionId = req.signedCookies[partnerCookieName];
+            const cookieName = `${ADMIN_SESSION_COOKIE_NAME}_${organizationId}`;
+            let sessionId = req.signedCookies[cookieName];
             req.fdkSession = await SessionStorage.getSession(sessionId);
 
             if (isStrict && !req.fdkSession) {

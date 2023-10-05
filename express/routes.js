@@ -4,7 +4,7 @@ const { v4: uuidv4 } = require("uuid");
 const Session = require("./session/session");
 const SessionStorage = require("./session/session_storage");
 const { FdkSessionNotFoundError, FdkInvalidOAuthError } = require("./error_code");
-const { SESSION_COOKIE_NAME, PARTNER_SESSION_COOKIE_NAME } = require('./constants');
+const { SESSION_COOKIE_NAME, ADMIN_SESSION_COOKIE_NAME } = require('./constants');
 const { sessionMiddleware, partnerSessionMiddleware } = require('./middleware/session_middleware');
 const logger = require('./logger');
 const urljoin = require('url-join');
@@ -250,9 +250,9 @@ function setupRoutes(ext) {
             req.FdkSession = session;
             req.extension = ext;
 
-            const partnerCookieName = `${PARTNER_SESSION_COOKIE_NAME}_${organizationId}`;
+            const cookieName = `${ADMIN_SESSION_COOKIE_NAME}_${organizationId}`;
             res.header['x-organization-id'] = organizationId;
-            res.cookie(partnerCookieName, session.id, {
+            res.cookie(cookieName, session.id, {
                 secure: true,
                 httpOnly: true,
                 expires: session.expires,
@@ -262,7 +262,7 @@ function setupRoutes(ext) {
 
             session.state = uuidv4();
 
-            let authCallback = urljoin(ext.base_url, "/partner/auth");
+            let authCallback = urljoin(ext.base_url, "/adm/auth");
 
             // TODO: create authorize api on skywarp
             let redirectUrl = partnerConfig.oauthClient.startAuthorization({
@@ -336,9 +336,9 @@ function setupRoutes(ext) {
                 await SessionStorage.saveSession(session);
             }
 
-            const partnerCookieName = `${PARTNER_SESSION_COOKIE_NAME}_${organizationId}`;
+            const cookieName = `${ADMIN_SESSION_COOKIE_NAME}_${organizationId}`;
 
-            res.cookie(partnerCookieName, req.fdkSession.id, {
+            res.cookie(cookieName, req.fdkSession.id, {
                 secure: true,
                 httpOnly: true, 
                 expires: sessionExpires,

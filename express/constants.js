@@ -1,7 +1,7 @@
 'use strict';
 
 exports.SESSION_COOKIE_NAME = "ext_session";
-exports.PARTNER_SESSION_COOKIE_NAME='ext_partner_session';
+exports.ADMIN_SESSION_COOKIE_NAME='ext_adm_session';
 exports.TEST_WEBHOOK_EVENT_NAME = "ping"
 exports.ASSOCIATION_CRITERIA = {
     ALL: "ALL",
