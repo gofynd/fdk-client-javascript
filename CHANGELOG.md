@@ -1,4 +1,4 @@
-# CHANGE LOG (1.3.5-beta.2) - v1.8.3-prerelease-v2
+# CHANGE LOG (1.3.4-beta.2) - v1.8.3-prerelease-v2
 
 ## Application Client
 
