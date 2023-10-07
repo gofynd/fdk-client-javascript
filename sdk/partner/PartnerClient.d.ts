@@ -13,6 +13,7 @@ declare class PartnerClient {
      */
     constructor(config: import("./PartnerConfig"));
     config: import("./PartnerConfig");
+    fileStorage: FileStorage;
     theme: Theme;
     /**
      * Sets the extra headers for the partner client.
@@ -22,4 +23,5 @@ declare class PartnerClient {
      */
     setExtraHeaders(header: object): void;
 }
+import FileStorage = require("./FileStorage/FileStoragePartnerClient");
 import Theme = require("./Theme/ThemePartnerClient");

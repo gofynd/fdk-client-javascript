@@ -3,15 +3,16 @@
 
 
 
-##### [Back to Application docs](./README.md)
+##### [Back to Partner docs](./README.md)
 
 ## FileStorage Methods
-File Storage
+This service provides functionality to manage assets and generate pdf. You can upload the assets, get the cdn link for the assets, proxy the assets and many more things.
+
 
 * [upload](#upload)
 
+* [browse](#browse)
 * [completeUpload](#completeupload)
-* [signUrls](#signurls)
 * [startUpload](#startupload)
 
 
@@ -100,18 +101,131 @@ Use this API to perform the upload of an arbitrarily sized buffer or blob.
 
 
 
-### completeUpload
-Completes the upload process. After successfully uploading a file, call this API to finish the upload process.
+### browse
+Browse Files
 
 
 
 ```javascript
 // Promise
-const promise = applicationClient.fileStorage.completeUpload({  namespace : value,
+const promise = partnerClient.fileStorage.browse({  namespace : value,
+ organizationId : value,
+ page : value,
+ limit : value });
+
+// Async/Await
+const data = await partnerClient.fileStorage.browse({  namespace : value,
+ organizationId : value,
+ page : value,
+ limit : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| namespace | string | yes | Segregation of different types of files(products, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |   
+| organizationId | number | yes |  |    
+| page | number | no | page no |    
+| limit | number | no | Limit |  
+
+
+
+Browse Files
+
+*Returned Response:*
+
+
+
+
+[Object](#Object)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "_id": "64e1e6fe0153e1a6d3e101f4",
+        "file_name": "logo.png",
+        "file_path": "/brands/pictures/square-logo/original/uY0P_ZtIz-logo.png",
+        "success": true,
+        "namespace": "brand-square-logo",
+        "content_type": "image/png",
+        "size": 3298,
+        "operation": "putObject",
+        "tags": [],
+        "cdn": {
+          "url": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/brands/pictures/square-logo/original/uY0P_ZtIz-logo.png",
+          "absolute_url": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/brands/pictures/square-logo/original/uY0P_ZtIz-logo.png",
+          "relative_url": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/brands/pictures/square-logo/original/uY0P_ZtIz-logo.png"
+        },
+        "upload": {
+          "url": "https://fynd-staging-assets.s3-accelerate.amazonaws.com/addsale/brands/pictures/square-logo/original/uY0P_ZtIz-logo.png?Content-Type=image%2Fpng&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=%2F20230820%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230820T101213Z&X-Amz-Expires=1800&X-Amz-Signature=04915b14aec15712abdea3c340d5dc43729e7c982a4994650488c0150c22b0ae&X-Amz-SignedHeaders=host%3Bx-amz-acl&x-amz-acl=public-read",
+          "expiry": 1800
+        },
+        "created_by": {
+          "username": "fp_sdet_gofynd_com_65071"
+        },
+        "company_id": 6520,
+        "bucket_key": "addsale/brands/pictures/square-logo/original/uY0P_ZtIz-logo.png",
+        "createdAt": "2023-08-20T10:12:14.118Z",
+        "updatedAt": "2023-08-20T10:12:14.118Z",
+        "__v": 0
+      }
+    ],
+    "page": {
+      "current": 1,
+      "has_previous": false,
+      "has_next": true,
+      "item_total": 481,
+      "type": "number"
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### completeUpload
+This will complete the upload process. After successfully uploading file, you can call this operation to complete the upload process.
+
+
+
+```javascript
+// Promise
+const promise = partnerClient.fileStorage.completeUpload({  namespace : value,
+ organizationId : value,
  body : value });
 
 // Async/Await
-const data = await applicationClient.fileStorage.completeUpload({  namespace : value,
+const data = await partnerClient.fileStorage.completeUpload({  namespace : value,
+ organizationId : value,
  body : value });
 ```
 
@@ -121,28 +235,29 @@ const data = await applicationClient.fileStorage.completeUpload({  namespace : v
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| namespace | string | yes | Segregation of different types of files(products, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |  
+| namespace | string | yes | Segregation of different types of files(products, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |   
+| organizationId | number | yes |  |  
 | body | [StartResponse](#StartResponse) | yes | Request body |
 
 
-Use this API to perform the third step of uploading (i.e. **Complete**) an arbitrarily sized buffer or blob.
+Uploads an arbitrarily sized buffer or blob.
 
-The three major steps are:
+It has three Major Steps:
 * Start
 * Upload
 * Complete
 
 ### Start
 Initiates the assets upload using `startUpload`.
-It returns a storage link in response.
+It returns the storage link in response.
 
 ### Upload
 Use the storage link to upload a file (Buffer or Blob) to the File Storage.
-Make a `PUT` request on storage link received from `startUpload` API with the file (Buffer or Blob) in the request body.
+Make a `PUT` request on storage link received from `startUpload` api with file (Buffer or Blob) as a request body.
 
 ### Complete
-After successfully upload, call the `completeUpload` API to finish the upload process.
-This operation will return the URL of the uploaded file.
+After successfully upload, call `completeUpload` api to complete the upload process.
+This operation will return the url for the uploaded file.
 
 
 *Returned Response:*
@@ -174,7 +289,6 @@ Success
     "content_type": "image/png",
     "namespace": "products-item-images",
     "operation": "putObject",
-    "company_id": 2,
     "tags": [
       "clothing",
       "shirt"
@@ -190,81 +304,7 @@ Success
       "url": "https://xxx.xxx.xxx/products/pictures/free/original/qwertyuiop-shirt.png?AWSAccessKeyId=xxx&Content-Type=image%2Fpng&Expires=5000&Signature=xxx&x-amz-acl=public-read"
     },
     "created_on": "2020-02-03T09:50:04.240Z",
-    "modified_on": "2020-02-03T09:50:04.240Z",
-    "created_by": {
-      "username": "app@fynd.com"
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### signUrls
-Explain here
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.fileStorage.signUrls({  body : value });
-
-// Async/Await
-const data = await applicationClient.fileStorage.signUrls({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [SignUrlRequest](#SignUrlRequest) | yes | Request body |
-
-
-Describe here
-
-*Returned Response:*
-
-
-
-
-[SignUrlResponse](#SignUrlResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "urls": [
-      {
-        "url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x0/documents/manifest/PDFs/test/s3EtYk5p9-new_fee.pdf",
-        "signed_url": "https://fynd-staging-assets-private.s3-accelerate.amazonaws.com/addsale/v2/falling-surf-7c8bb8/fyndnp/wrkr/x0/documents/manifest/PDFs/test/s3EtYk5p9-new_fee.pdf",
-        "expiry": 1800
-      }
-    ]
+    "modified_on": "2020-02-03T09:50:04.240Z"
   }
 }
 ```
@@ -284,17 +324,19 @@ Success
 
 
 ### startUpload
-Initiates an upload and returns a storage link that is valid for 30 minutes. You can use the storage link to make subsequent upload request with file buffer or blob.
+This operation initiates upload and returns storage link which is valid for 30 Minutes. You can use that storage link to make subsequent upload request with file buffer or blob.
 
 
 
 ```javascript
 // Promise
-const promise = applicationClient.fileStorage.startUpload({  namespace : value,
+const promise = partnerClient.fileStorage.startUpload({  namespace : value,
+ organizationId : value,
  body : value });
 
 // Async/Await
-const data = await applicationClient.fileStorage.startUpload({  namespace : value,
+const data = await partnerClient.fileStorage.startUpload({  namespace : value,
+ organizationId : value,
  body : value });
 ```
 
@@ -304,28 +346,29 @@ const data = await applicationClient.fileStorage.startUpload({  namespace : valu
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| namespace | string | yes | Segregation of different types of files(products, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |  
+| namespace | string | yes | Segregation of different types of files(products, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |   
+| organizationId | number | yes |  |  
 | body | [StartRequest](#StartRequest) | yes | Request body |
 
 
-Use this API to perform the first step of uploading (i.e. **Start**) an arbitrarily sized buffer or blob.
+Uploads an arbitrarily sized buffer or blob.
 
-The three major steps are:
+It has three Major Steps:
 * Start
 * Upload
 * Complete
 
 ### Start
 Initiates the assets upload using `startUpload`.
-It returns a storage link in response.
+It returns the storage link in response.
 
 ### Upload
 Use the storage link to upload a file (Buffer or Blob) to the File Storage.
-Make a `PUT` request on storage link received from `startUpload` API with the file (Buffer or Blob) in the request body.
+Make a `PUT` request on storage link received from `startUpload` api with file (Buffer or Blob) as a request body.
 
 ### Complete
-After successfully upload, call the `completeUpload` API to finish the upload process.
-This operation will return the URL of the uploaded file.
+After successfully upload, call `completeUpload` api to complete the upload process.
+This operation will return the url for the uploaded file.
 
 
 *Returned Response:*
@@ -434,30 +477,20 @@ Success. Returns a response containing relaving and absolute_url of storage serv
 
 ---
 
+#### [FailedResponse](#FailedResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string |  no  |  |
+ 
+
+---
+
 #### [Params](#Params)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | subpath | string? |  yes  | The subpath for the file. |
- 
-
----
-
-#### [SignUrlRequest](#SignUrlRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | expiry | number |  no  |  |
- | urls | [string] |  no  |  |
- 
-
----
-
-#### [SignUrlResponse](#SignUrlResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | urls | [[Urls](#Urls)] |  no  |  |
  
 
 ---
@@ -498,17 +531,6 @@ Success. Returns a response containing relaving and absolute_url of storage serv
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | expiry | number |  no  |  |
- | url | string |  no  |  |
- 
-
----
-
-#### [Urls](#Urls)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | expiry | number |  no  |  |
- | signed_url | string |  no  |  |
  | url | string |  no  |  |
  
 

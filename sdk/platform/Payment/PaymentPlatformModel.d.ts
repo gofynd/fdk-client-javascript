@@ -711,6 +711,19 @@ export = PaymentPlatformModel;
  * @property {boolean} success - Success or failure flag.
  */
 /**
+ * @typedef RefundPriorityRequestSerializer
+ * @property {boolean} apportion - Apportion refund to multiple sources
+ * @property {RefundSourcesPriority[]} refund_sources_priority - Refund sources priority
+ */
+/**
+ * @typedef RefundPriorityResponseSerializer
+ * @property {boolean} apportion - Apportion refund to multiple sources
+ * @property {string} configuration - Configuration for merchant or customer
+ * @property {string} [message] - Message
+ * @property {RefundSourcesPriority[]} refund_sources_priority - Refund sources priority
+ * @property {boolean} success - Success
+ */
+/**
  * @typedef RefundSessionDetail
  * @property {number} amount - Amount refunded.
  * @property {string} [balance_transaction] - Balance transaction.
@@ -747,6 +760,12 @@ export = PaymentPlatformModel;
  * @property {Object[]} platform_refund_details - Details of the refund
  * @property {string} status - The status of the refund.
  * @property {number} total_refund_amount - The total amount refunded.
+ */
+/**
+ * @typedef RefundSourcesPriority
+ * @property {string} description - Description of refund source
+ * @property {number} priority - Priority of refund source, 0 being highest
+ * @property {string} source - Source of refund
  */
 /**
  * @typedef RepaymentDetailsSerialiserPayAll
@@ -878,7 +897,7 @@ export = PaymentPlatformModel;
 declare class PaymentPlatformModel {
 }
 declare namespace PaymentPlatformModel {
-    export { AddBeneficiaryDetailsOTPRequest, AddressDetail, BankDetailsForOTP, CancelOrResendPaymentLinkRequest, CancelPaymentLinkResponse, CODChargesLimitsResponse, CODdata, Code, CreatePaymentLinkMeta, CreatePaymentLinkRequest, CreatePaymentLinkResponse, DeletePayoutResponse, DeleteSubscriptionPaymentMethodResponse, EdcAddRequest, EdcAggregatorAndModelListResponse, EdcDevice, EdcDeviceAddResponse, EdcDeviceDetailsResponse, EdcDeviceListResponse, EdcDeviceStatsResponse, EdcDeviceUpdateResponse, EdcModelData, EdcUpdateRequest, ErrorCodeAndDescription, ErrorCodeDescription, ErrorDescription, ErrorResponse, GetOauthUrlResponse, GetPaymentCode, GetPaymentCodeResponse, GetPaymentLinkResponse, GetUserCODLimitResponse, HttpErrorCodeAndResponse, IfscCodeResponse, IntentApp, IntentAppErrorList, LinkStatus, MerchantOnBoardingRequest, MerchantOnBoardingResponse, MerchnatPaymentModeRequest, MerchnatPaymentModeResponse, MultiTenderPaymentMeta, MultiTenderPaymentMethod, NotFoundResourceError, OrderBeneficiaryDetails, OrderBeneficiaryResponse, OrderDetail, Page, PaymentCode, PaymentConfirmationRequest, PaymentConfirmationResponse, PaymentGatewayConfig, PaymentGatewayConfigRequest, PaymentGatewayConfigResponse, PaymentGatewayToBeReviewed, PaymentInitializationRequest, PaymentInitializationResponse, PaymentModeList, PaymentModeLogo, PaymentObjectListSerializer, PaymentOptions, PaymentOptionsResponse, PaymentSessionDetail, PaymentSessionRequestSerializer, PaymentSessionResponseSerializer, PaymentStatusBulkHandlerRequest, PaymentStatusBulkHandlerResponse, PaymentStatusObject, PaymentStatusUpdateRequest, PaymentStatusUpdateResponse, Payout, PayoutAggregator, PayoutBankDetails, PayoutCustomer, PayoutMoreAttributes, PayoutRequest, PayoutResponse, PayoutsResponse, PollingPaymentLinkResponse, ProductCODData, RefundAccountResponse, RefundSessionDetail, RefundSessionRequestSerializer, RefundSessionResponseSerializer, RepaymentDetailsSerialiserPayAll, RepaymentRequestDetails, RepaymentResponse, ResendOrCancelPaymentRequest, ResendOrCancelPaymentResponse, ResendPaymentLinkResponse, RevokeOAuthToken, RootPaymentMode, SaveSubscriptionSetupIntentRequest, SaveSubscriptionSetupIntentResponse, SetCODForUserRequest, SetCODOptionResponse, StatisticsData, SubscriptionConfigResponse, SubscriptionPaymentMethodResponse, UpdatePayoutRequest, UpdatePayoutResponse, ValidateCustomerRequest, ValidateCustomerResponse };
+    export { AddBeneficiaryDetailsOTPRequest, AddressDetail, BankDetailsForOTP, CancelOrResendPaymentLinkRequest, CancelPaymentLinkResponse, CODChargesLimitsResponse, CODdata, Code, CreatePaymentLinkMeta, CreatePaymentLinkRequest, CreatePaymentLinkResponse, DeletePayoutResponse, DeleteSubscriptionPaymentMethodResponse, EdcAddRequest, EdcAggregatorAndModelListResponse, EdcDevice, EdcDeviceAddResponse, EdcDeviceDetailsResponse, EdcDeviceListResponse, EdcDeviceStatsResponse, EdcDeviceUpdateResponse, EdcModelData, EdcUpdateRequest, ErrorCodeAndDescription, ErrorCodeDescription, ErrorDescription, ErrorResponse, GetOauthUrlResponse, GetPaymentCode, GetPaymentCodeResponse, GetPaymentLinkResponse, GetUserCODLimitResponse, HttpErrorCodeAndResponse, IfscCodeResponse, IntentApp, IntentAppErrorList, LinkStatus, MerchantOnBoardingRequest, MerchantOnBoardingResponse, MerchnatPaymentModeRequest, MerchnatPaymentModeResponse, MultiTenderPaymentMeta, MultiTenderPaymentMethod, NotFoundResourceError, OrderBeneficiaryDetails, OrderBeneficiaryResponse, OrderDetail, Page, PaymentCode, PaymentConfirmationRequest, PaymentConfirmationResponse, PaymentGatewayConfig, PaymentGatewayConfigRequest, PaymentGatewayConfigResponse, PaymentGatewayToBeReviewed, PaymentInitializationRequest, PaymentInitializationResponse, PaymentModeList, PaymentModeLogo, PaymentObjectListSerializer, PaymentOptions, PaymentOptionsResponse, PaymentSessionDetail, PaymentSessionRequestSerializer, PaymentSessionResponseSerializer, PaymentStatusBulkHandlerRequest, PaymentStatusBulkHandlerResponse, PaymentStatusObject, PaymentStatusUpdateRequest, PaymentStatusUpdateResponse, Payout, PayoutAggregator, PayoutBankDetails, PayoutCustomer, PayoutMoreAttributes, PayoutRequest, PayoutResponse, PayoutsResponse, PollingPaymentLinkResponse, ProductCODData, RefundAccountResponse, RefundPriorityRequestSerializer, RefundPriorityResponseSerializer, RefundSessionDetail, RefundSessionRequestSerializer, RefundSessionResponseSerializer, RefundSourcesPriority, RepaymentDetailsSerialiserPayAll, RepaymentRequestDetails, RepaymentResponse, ResendOrCancelPaymentRequest, ResendOrCancelPaymentResponse, ResendPaymentLinkResponse, RevokeOAuthToken, RootPaymentMode, SaveSubscriptionSetupIntentRequest, SaveSubscriptionSetupIntentResponse, SetCODForUserRequest, SetCODOptionResponse, StatisticsData, SubscriptionConfigResponse, SubscriptionPaymentMethodResponse, UpdatePayoutRequest, UpdatePayoutResponse, ValidateCustomerRequest, ValidateCustomerResponse };
 }
 /** @returns {AddBeneficiaryDetailsOTPRequest} */
 declare function AddBeneficiaryDetailsOTPRequest(): AddBeneficiaryDetailsOTPRequest;
@@ -2791,6 +2810,42 @@ type RefundAccountResponse = {
      */
     success: boolean;
 };
+/** @returns {RefundPriorityRequestSerializer} */
+declare function RefundPriorityRequestSerializer(): RefundPriorityRequestSerializer;
+type RefundPriorityRequestSerializer = {
+    /**
+     * - Apportion refund to multiple sources
+     */
+    apportion: boolean;
+    /**
+     * - Refund sources priority
+     */
+    refund_sources_priority: RefundSourcesPriority[];
+};
+/** @returns {RefundPriorityResponseSerializer} */
+declare function RefundPriorityResponseSerializer(): RefundPriorityResponseSerializer;
+type RefundPriorityResponseSerializer = {
+    /**
+     * - Apportion refund to multiple sources
+     */
+    apportion: boolean;
+    /**
+     * - Configuration for merchant or customer
+     */
+    configuration: string;
+    /**
+     * - Message
+     */
+    message?: string;
+    /**
+     * - Refund sources priority
+     */
+    refund_sources_priority: RefundSourcesPriority[];
+    /**
+     * - Success
+     */
+    success: boolean;
+};
 /** @returns {RefundSessionDetail} */
 declare function RefundSessionDetail(): RefundSessionDetail;
 type RefundSessionDetail = {
@@ -2900,6 +2955,22 @@ type RefundSessionResponseSerializer = {
      * - The total amount refunded.
      */
     total_refund_amount: number;
+};
+/** @returns {RefundSourcesPriority} */
+declare function RefundSourcesPriority(): RefundSourcesPriority;
+type RefundSourcesPriority = {
+    /**
+     * - Description of refund source
+     */
+    description: string;
+    /**
+     * - Priority of refund source, 0 being highest
+     */
+    priority: number;
+    /**
+     * - Source of refund
+     */
+    source: string;
 };
 /** @returns {RepaymentDetailsSerialiserPayAll} */
 declare function RepaymentDetailsSerialiserPayAll(): RepaymentDetailsSerialiserPayAll;

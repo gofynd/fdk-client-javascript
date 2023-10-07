@@ -4,6 +4,14 @@ export = UserApplicationModel;
  * @property {string} [app_id]
  */
 /**
+ * @typedef APIError
+ * @property {string} [code]
+ * @property {string} [info] - Error code description link
+ * @property {string} [message]
+ * @property {Object} [meta]
+ * @property {string} [request_id]
+ */
+/**
  * @typedef AuthenticationApiErrorSchema
  * @property {string} [message]
  */
@@ -299,8 +307,18 @@ export = UserApplicationModel;
  * @property {PlatformMobile} [mobile]
  */
 /**
+ * @typedef ResetForgotPasswordSuccess
+ * @property {boolean} [success]
+ */
+/**
  * @typedef ResetPasswordSuccess
  * @property {string} [status]
+ */
+/**
+ * @typedef SendEmailForgotOtpRequestSchema
+ * @property {string} [action]
+ * @property {string} [email]
+ * @property {string} [token]
  */
 /**
  * @typedef SendEmailOtpRequestSchema
@@ -313,6 +331,14 @@ export = UserApplicationModel;
 /**
  * @typedef SendEmailVerifyLinkSuccess
  * @property {boolean} [verify_email_link]
+ */
+/**
+ * @typedef SendMobileForgotOtpRequestSchema
+ * @property {string} [action]
+ * @property {string} [android_hash]
+ * @property {string} [country_code]
+ * @property {string} [mobile]
+ * @property {string} [token]
  */
 /**
  * @typedef SendMobileOtpRequestSchema
@@ -426,6 +452,11 @@ export = UserApplicationModel;
  * @property {string} [username]
  */
 /**
+ * @typedef VerifyEmailForgotOtpRequestSchema
+ * @property {string} [email]
+ * @property {string} [otp]
+ */
+/**
  * @typedef VerifyEmailOtpRequestSchema
  * @property {string} [action]
  * @property {string} [email]
@@ -440,6 +471,16 @@ export = UserApplicationModel;
 /**
  * @typedef VerifyEmailSuccess
  * @property {string} [message]
+ */
+/**
+ * @typedef VerifyForgotOtpSuccess
+ * @property {string} [forgot_token]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef VerifyMobileForgotOtpRequestSchema
+ * @property {string} [otp]
+ * @property {string} [request_id]
  */
 /**
  * @typedef VerifyMobileOTPSuccess
@@ -461,12 +502,24 @@ export = UserApplicationModel;
 declare class UserApplicationModel {
 }
 declare namespace UserApplicationModel {
-    export { Accountkit, AuthenticationApiErrorSchema, AuthenticationInternalServerErrorSchema, AuthSuccess, CodeRequestBodySchema, DeleteAccountConsent, DeleteAccountReasons, DeleteApplicationUserRequestSchema, DeleteUserSuccess, EditEmailRequestSchema, EditMobileRequestSchema, EditProfileMobileSchema, EditProfileRequestSchema, Email, EmailOtpSuccess, Facebook, FlashCard, ForgotPasswordRequestSchema, FormRegisterRequestSchema, FormRegisterRequestSchemaPhone, Google, HasPasswordSuccess, Login, LoginSuccess, LogoutSuccess, LookAndFeel, MetaSchema, OAuthRequestAppleSchema, OAuthRequestAppleSchemaOauth, OAuthRequestAppleSchemaProfile, OAuthRequestSchema, OAuthRequestSchemaOauth2, OAuthRequestSchemaProfile, OtpSuccess, PasswordLoginRequestSchema, PhoneNumber, PlatformEmail, PlatformMobile, PlatformSchema, ProfileEditSuccess, RegisterFormSuccess, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, RequiredFields, ResetPasswordSuccess, SendEmailOtpRequestSchema, SendEmailVerifyLinkSuccess, SendMobileOtpRequestSchema, SendMobileVerifyLinkSuccess, SendOtpRequestSchema, SendOtpResponse, SendResetPasswordEmailRequestSchema, SendResetPasswordMobileRequestSchema, SendVerificationLinkMobileRequestSchema, SessionExpiry, SessionListSuccess, Social, SocialTokens, TokenRequestBodySchema, UpdatePasswordRequestSchema, UserObjectSchema, UserSchema, VerifyEmailOtpRequestSchema, VerifyEmailOTPSuccess, VerifyEmailSuccess, VerifyMobileOTPSuccess, VerifyOtpRequestSchema, VerifyOtpSuccess };
+    export { Accountkit, APIError, AuthenticationApiErrorSchema, AuthenticationInternalServerErrorSchema, AuthSuccess, CodeRequestBodySchema, DeleteAccountConsent, DeleteAccountReasons, DeleteApplicationUserRequestSchema, DeleteUserSuccess, EditEmailRequestSchema, EditMobileRequestSchema, EditProfileMobileSchema, EditProfileRequestSchema, Email, EmailOtpSuccess, Facebook, FlashCard, ForgotPasswordRequestSchema, FormRegisterRequestSchema, FormRegisterRequestSchemaPhone, Google, HasPasswordSuccess, Login, LoginSuccess, LogoutSuccess, LookAndFeel, MetaSchema, OAuthRequestAppleSchema, OAuthRequestAppleSchemaOauth, OAuthRequestAppleSchemaProfile, OAuthRequestSchema, OAuthRequestSchemaOauth2, OAuthRequestSchemaProfile, OtpSuccess, PasswordLoginRequestSchema, PhoneNumber, PlatformEmail, PlatformMobile, PlatformSchema, ProfileEditSuccess, RegisterFormSuccess, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, RequiredFields, ResetForgotPasswordSuccess, ResetPasswordSuccess, SendEmailForgotOtpRequestSchema, SendEmailOtpRequestSchema, SendEmailVerifyLinkSuccess, SendMobileForgotOtpRequestSchema, SendMobileOtpRequestSchema, SendMobileVerifyLinkSuccess, SendOtpRequestSchema, SendOtpResponse, SendResetPasswordEmailRequestSchema, SendResetPasswordMobileRequestSchema, SendVerificationLinkMobileRequestSchema, SessionExpiry, SessionListSuccess, Social, SocialTokens, TokenRequestBodySchema, UpdatePasswordRequestSchema, UserObjectSchema, UserSchema, VerifyEmailForgotOtpRequestSchema, VerifyEmailOtpRequestSchema, VerifyEmailOTPSuccess, VerifyEmailSuccess, VerifyForgotOtpSuccess, VerifyMobileForgotOtpRequestSchema, VerifyMobileOTPSuccess, VerifyOtpRequestSchema, VerifyOtpSuccess };
 }
 /** @returns {Accountkit} */
 declare function Accountkit(): Accountkit;
 type Accountkit = {
     app_id?: string;
+};
+/** @returns {APIError} */
+declare function APIError(): APIError;
+type APIError = {
+    code?: string;
+    /**
+     * - Error code description link
+     */
+    info?: string;
+    message?: string;
+    meta?: any;
+    request_id?: string;
 };
 /** @returns {AuthenticationApiErrorSchema} */
 declare function AuthenticationApiErrorSchema(): AuthenticationApiErrorSchema;
@@ -807,10 +860,22 @@ type RequiredFields = {
     email?: PlatformEmail;
     mobile?: PlatformMobile;
 };
+/** @returns {ResetForgotPasswordSuccess} */
+declare function ResetForgotPasswordSuccess(): ResetForgotPasswordSuccess;
+type ResetForgotPasswordSuccess = {
+    success?: boolean;
+};
 /** @returns {ResetPasswordSuccess} */
 declare function ResetPasswordSuccess(): ResetPasswordSuccess;
 type ResetPasswordSuccess = {
     status?: string;
+};
+/** @returns {SendEmailForgotOtpRequestSchema} */
+declare function SendEmailForgotOtpRequestSchema(): SendEmailForgotOtpRequestSchema;
+type SendEmailForgotOtpRequestSchema = {
+    action?: string;
+    email?: string;
+    token?: string;
 };
 /** @returns {SendEmailOtpRequestSchema} */
 declare function SendEmailOtpRequestSchema(): SendEmailOtpRequestSchema;
@@ -825,6 +890,15 @@ type SendEmailOtpRequestSchema = {
 declare function SendEmailVerifyLinkSuccess(): SendEmailVerifyLinkSuccess;
 type SendEmailVerifyLinkSuccess = {
     verify_email_link?: boolean;
+};
+/** @returns {SendMobileForgotOtpRequestSchema} */
+declare function SendMobileForgotOtpRequestSchema(): SendMobileForgotOtpRequestSchema;
+type SendMobileForgotOtpRequestSchema = {
+    action?: string;
+    android_hash?: string;
+    country_code?: string;
+    mobile?: string;
+    token?: string;
 };
 /** @returns {SendMobileOtpRequestSchema} */
 declare function SendMobileOtpRequestSchema(): SendMobileOtpRequestSchema;
@@ -952,6 +1026,12 @@ type UserSchema = {
     user_id?: string;
     username?: string;
 };
+/** @returns {VerifyEmailForgotOtpRequestSchema} */
+declare function VerifyEmailForgotOtpRequestSchema(): VerifyEmailForgotOtpRequestSchema;
+type VerifyEmailForgotOtpRequestSchema = {
+    email?: string;
+    otp?: string;
+};
 /** @returns {VerifyEmailOtpRequestSchema} */
 declare function VerifyEmailOtpRequestSchema(): VerifyEmailOtpRequestSchema;
 type VerifyEmailOtpRequestSchema = {
@@ -970,6 +1050,18 @@ type VerifyEmailOTPSuccess = {
 declare function VerifyEmailSuccess(): VerifyEmailSuccess;
 type VerifyEmailSuccess = {
     message?: string;
+};
+/** @returns {VerifyForgotOtpSuccess} */
+declare function VerifyForgotOtpSuccess(): VerifyForgotOtpSuccess;
+type VerifyForgotOtpSuccess = {
+    forgot_token?: string;
+    success?: boolean;
+};
+/** @returns {VerifyMobileForgotOtpRequestSchema} */
+declare function VerifyMobileForgotOtpRequestSchema(): VerifyMobileForgotOtpRequestSchema;
+type VerifyMobileForgotOtpRequestSchema = {
+    otp?: string;
+    request_id?: string;
 };
 /** @returns {VerifyMobileOTPSuccess} */
 declare function VerifyMobileOTPSuccess(): VerifyMobileOTPSuccess;

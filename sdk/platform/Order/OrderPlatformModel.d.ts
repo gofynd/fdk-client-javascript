@@ -1180,7 +1180,7 @@ export = OrderPlatformModel;
 /**
  * @typedef OrderBrandName
  * @property {string} [brand_name]
- * @property {number} company
+ * @property {number} [company]
  * @property {string} [created_on]
  * @property {number} id
  * @property {string} [logo]
@@ -1879,6 +1879,7 @@ export = OrderPlatformModel;
  * @property {Formatted} [formatted]
  * @property {string} [fulfilment_priority_text]
  * @property {boolean} [is_international]
+ * @property {boolean} [is_self_ship]
  * @property {LockData} [lock_data]
  * @property {string} [order_type]
  * @property {string} [packaging_name]
@@ -1927,12 +1928,14 @@ export = OrderPlatformModel;
  * @property {string} [dp_sort_key]
  * @property {string} [due_date]
  * @property {EinvoiceInfo} [einvoice_info]
+ * @property {string} [estimated_delivery_date]
  * @property {Object} [ewaybill_info]
  * @property {Object} [external]
  * @property {Formatted} [formatted]
  * @property {string} [forward_affiliate_order_id]
  * @property {string} [forward_affiliate_shipment_id]
  * @property {string} [fulfilment_priority_text]
+ * @property {boolean} [is_self_ship]
  * @property {LockData} [lock_data]
  * @property {string} [marketplace_store_id]
  * @property {string} [order_type]
@@ -1951,6 +1954,7 @@ export = OrderPlatformModel;
  * @property {number} [shipment_weight]
  * @property {string} [store_invoice_updated_date]
  * @property {ShipmentTimeStamp} [timestamp]
+ * @property {string} [tracking_url]
  * @property {number} weight
  */
 /**
@@ -3836,7 +3840,7 @@ type OrderBags = {
 declare function OrderBrandName(): OrderBrandName;
 type OrderBrandName = {
     brand_name?: string;
-    company: number;
+    company?: number;
     created_on?: string;
     id: number;
     logo?: string;
@@ -4661,6 +4665,7 @@ type ShipmentItemMeta = {
     formatted?: Formatted;
     fulfilment_priority_text?: string;
     is_international?: boolean;
+    is_self_ship?: boolean;
     lock_data?: LockData;
     order_type?: string;
     packaging_name?: string;
@@ -4712,12 +4717,14 @@ type ShipmentMeta = {
     dp_sort_key?: string;
     due_date?: string;
     einvoice_info?: EinvoiceInfo;
+    estimated_delivery_date?: string;
     ewaybill_info?: any;
     external?: any;
     formatted?: Formatted;
     forward_affiliate_order_id?: string;
     forward_affiliate_shipment_id?: string;
     fulfilment_priority_text?: string;
+    is_self_ship?: boolean;
     lock_data?: LockData;
     marketplace_store_id?: string;
     order_type?: string;
@@ -4736,6 +4743,7 @@ type ShipmentMeta = {
     shipment_weight?: number;
     store_invoice_updated_date?: string;
     timestamp?: ShipmentTimeStamp;
+    tracking_url?: string;
     weight: number;
 };
 /** @returns {ShipmentPayments} */

@@ -1372,7 +1372,7 @@ const data = await platformClient.order.getLaneConfig({  superLane : value,
 | searchType | string | no |  |    
 | searchValue | string | no |  |    
 | tags | string | no |  |    
-| timeToDispatch | string | no |  |    
+| timeToDispatch | number | no |  |    
 | paymentMethods | string | no |  |    
 | myOrders | boolean | no |  |    
 | showCrossCompanyData | boolean | no | Flag to view cross & non-cross company order |    
@@ -2326,7 +2326,7 @@ const data = await platformClient.order.getOrders({  lane : value,
 | lane | string | no | lane refers to a section where orders are assigned, indicating its grouping |    
 | searchType | string | no | search_type refers to the field that will be used as the target for the search operation |    
 | bagStatus | string | no | bag_status refers to status of the entity. Filters orders based on the status. |    
-| timeToDispatch | string | no | time_to_dispatch refers to estimated SLA time. |    
+| timeToDispatch | number | no | time_to_dispatch refers to estimated SLA time. |    
 | paymentMethods | string | no |  |    
 | tags | string | no | tags refers to additional descriptive labels associated with the order |    
 | searchValue | string | no | search_value is matched against the field specified by the search_type |    
@@ -6795,7 +6795,7 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | brand_name | string? |  yes  |  |
- | company | number |  no  |  |
+ | company | number? |  yes  |  |
  | created_on | string? |  yes  |  |
  | id | number |  no  |  |
  | logo | string? |  yes  |  |
@@ -7864,6 +7864,7 @@ Verify OTP
  | formatted | [Formatted](#Formatted)? |  yes  |  |
  | fulfilment_priority_text | string? |  yes  |  |
  | is_international | boolean? |  yes  |  |
+ | is_self_ship | boolean? |  yes  |  |
  | lock_data | [LockData](#LockData)? |  yes  |  |
  | order_type | string? |  yes  |  |
  | packaging_name | string? |  yes  |  |
@@ -7927,12 +7928,14 @@ Verify OTP
  | dp_sort_key | string? |  yes  |  |
  | due_date | string? |  yes  |  |
  | einvoice_info | [EinvoiceInfo](#EinvoiceInfo)? |  yes  |  |
+ | estimated_delivery_date | string? |  yes  |  |
  | ewaybill_info | string? |  yes  |  |
  | external | string? |  yes  |  |
  | formatted | [Formatted](#Formatted)? |  yes  |  |
  | forward_affiliate_order_id | string? |  yes  |  |
  | forward_affiliate_shipment_id | string? |  yes  |  |
  | fulfilment_priority_text | string? |  yes  |  |
+ | is_self_ship | boolean? |  yes  |  |
  | lock_data | [LockData](#LockData)? |  yes  |  |
  | marketplace_store_id | string? |  yes  |  |
  | order_type | string? |  yes  |  |
@@ -7951,6 +7954,7 @@ Verify OTP
  | shipment_weight | number? |  yes  |  |
  | store_invoice_updated_date | string? |  yes  |  |
  | timestamp | [ShipmentTimeStamp](#ShipmentTimeStamp)? |  yes  |  |
+ | tracking_url | string? |  yes  |  |
  | weight | number |  no  |  |
  
 

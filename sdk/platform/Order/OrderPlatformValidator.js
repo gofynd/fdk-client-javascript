@@ -134,7 +134,7 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @property {string} [searchType]
  * @property {string} [searchValue]
  * @property {string} [tags]
- * @property {string} [timeToDispatch]
+ * @property {number} [timeToDispatch]
  * @property {string} [paymentMethods]
  * @property {boolean} [myOrders]
  * @property {boolean} [showCrossCompanyData] - Flag to view cross & non-cross
@@ -155,7 +155,7 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  *   be used as the target for the search operation
  * @property {string} [bagStatus] - Bag_status refers to status of the entity.
  *   Filters orders based on the status.
- * @property {string} [timeToDispatch] - Time_to_dispatch refers to estimated SLA time.
+ * @property {number} [timeToDispatch] - Time_to_dispatch refers to estimated SLA time.
  * @property {string} [paymentMethods]
  * @property {string} [tags] - Tags refers to additional descriptive labels
  *   associated with the order
@@ -505,7 +505,7 @@ class OrderPlatformValidator {
       searchType: Joi.string().allow(""),
       searchValue: Joi.string().allow(""),
       tags: Joi.string().allow(""),
-      timeToDispatch: Joi.string().allow(""),
+      timeToDispatch: Joi.number(),
       paymentMethods: Joi.string().allow(""),
       myOrders: Joi.boolean(),
       showCrossCompanyData: Joi.boolean(),
@@ -526,7 +526,7 @@ class OrderPlatformValidator {
       lane: Joi.string().allow(""),
       searchType: Joi.string().allow(""),
       bagStatus: Joi.string().allow(""),
-      timeToDispatch: Joi.string().allow(""),
+      timeToDispatch: Joi.number(),
       paymentMethods: Joi.string().allow(""),
       tags: Joi.string().allow(""),
       searchValue: Joi.string().allow(""),

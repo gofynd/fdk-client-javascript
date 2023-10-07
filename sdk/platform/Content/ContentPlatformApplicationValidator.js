@@ -63,8 +63,6 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  * @property {ContentPlatformModel.SlideshowRequest} body
  */
 
-/** @typedef DeleteAllInjectableTagsParam */
-
 /**
  * @typedef DeleteAnnouncementParam
  * @property {string} announcementId - ID allotted to the announcement.
@@ -196,7 +194,10 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  *   can get slug value of an FAQ category from `getFaqCategories` API.
  */
 
-/** @typedef GetInjectableTagsParam */
+/**
+ * @typedef GetInjectableTagsParam
+ * @property {boolean} [all] - Get all tags irrespective of the creator of tags
+ */
 
 /**
  * @typedef GetLandingPagesParam
@@ -469,11 +470,6 @@ class ContentPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {DeleteAllInjectableTagsParam} */
-  static deleteAllInjectableTags() {
-    return Joi.object({}).required();
-  }
-
   /** @returns {DeleteAnnouncementParam} */
   static deleteAnnouncement() {
     return Joi.object({
@@ -644,7 +640,9 @@ class ContentPlatformApplicationValidator {
 
   /** @returns {GetInjectableTagsParam} */
   static getInjectableTags() {
-    return Joi.object({}).required();
+    return Joi.object({
+      all: Joi.boolean(),
+    }).required();
   }
 
   /** @returns {GetLandingPagesParam} */

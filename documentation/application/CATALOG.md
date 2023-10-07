@@ -4655,6 +4655,15 @@ Success. Returns a Product object. Check the example shown below or refer `Produ
     },
     "_custom_json": {}
   },
+  "department": {
+    "name": "Electronics",
+    "uid": 1,
+    "logo": {
+      "type": "image",
+      "url": "https://hdn-1.fynd.com/media/logo/brand/original/12391_0d956c6c71a4427895c15e44cba82f88.jpg"
+    },
+    "slug": "electronics"
+  },
   "uid": 1,
   "slug": "benchmark-collaborative-paradigms",
   "attributes": {
@@ -8585,6 +8594,18 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
 ---
 
+#### [ProductDepartment](#ProductDepartment)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | logo | [Media](#Media)? |  yes  |  |
+ | name | string? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | uid | number? |  yes  |  |
+ 
+
+---
+
 #### [ProductDetail](#ProductDetail)
 
  | Properties | Type | Nullable | Description |
@@ -8598,6 +8619,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
  | category_map | [ProductCategoryMap](#ProductCategoryMap)? |  yes  |  |
  | color | string? |  yes  |  |
  | custom_order | [ProductDetailCustomOrder](#ProductDetailCustomOrder)? |  yes  |  |
+ | department | [ProductDepartment](#ProductDepartment)? |  yes  |  |
  | description | string? |  yes  |  |
  | discount | string? |  yes  |  |
  | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)]? |  yes  |  |

@@ -1,6 +1,455 @@
-# CHANGE LOG (1.3.4-beta.1) - v1.8.2-prerelease-v1
+# CHANGE LOG (1.3.5-beta.2) - v1.8.3-prerelease-v2
+
+## Application Client
+
+
+
+### Catalog
+
+
+
+#### getProductDetailBySlug
+
+- ##### What's New
+	- [Added] property `department` of schema `ProductDetail` in response with status code 200
+
+
+#### getProductComparisonBySlugs
+
+- ##### What's New
+	- [Added] property `items[].department` of schema `ProductDetail` in response with status code 200
+
+
+#### getSimilarComparisonProductBySlug
+
+- ##### What's New
+	- [Added] property `items[].department` of schema `ProductDetail` in response with status code 200
+
+
+#### getComparedFrequentlyProductBySlug
+
+- ##### What's New
+	- [Added] property `similars.items[].department` of schema `ProductDetail` in response with status code 200
+
+
+### FileStorage
+
+
+
+#### startUpload
+
+- ##### What's New
+	- [Breaking] [Added] properties `params.subpath` in request body
+	- [Added] property `status` of schema `` in response with status code 400
+	- [Added] property `valid_namespaces` of schema `` in response with status code 400
+
+- ##### What's Changed
+	- [Changed] Path From `/service/application/assets/v1.0/namespaces/{namespace}/upload/start/` To `/service/application/assets/v1.0/namespaces/{namespace}/upload/start`
+
+
+#### completeUpload
+
+- ##### What's New
+	- [Added] property `created_by` of schema `CompleteResponse` in response with status code 200
+	- [Added] property `_message` of schema `` in response with status code 400
+	- [Added] property `name` of schema `` in response with status code 400
+	- [Added] property `errors` of schema `` in response with status code 400
+
+- ##### What's Changed
+	- [Changed] Path From `/service/application/assets/v1.0/namespaces/{namespace}/upload/complete/` To `/service/application/assets/v1.0/namespaces/{namespace}/upload/complete`
+
+
+#### signUrls
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Response with status 400
+
+- ##### What's Changed
+	- [Changed] Path From `/service/application/assets/v1.0/sign-urls/` To `/service/application/assets/v1.0/sign-urls`
+
+
+### User
+
+
+
+#### resetForgotPassword
+
+- ##### What's New
+	- [Added] method `resetForgotPassword`
+
+
+
+#### sendForgotOTPOnMobile
+
+- ##### What's New
+	- [Added] method `sendForgotOTPOnMobile`
+
+
+
+#### verifyMobileForgotOTP
+
+- ##### What's New
+	- [Added] method `verifyMobileForgotOTP`
+
+
+
+#### sendForgotOTPOnEmail
+
+- ##### What's New
+	- [Added] method `sendForgotOTPOnEmail`
+
+
+
+#### verifyEmailForgotOTP
+
+- ##### What's New
+	- [Added] method `verifyEmailForgotOTP`
+
+
+
+## Partner Client
+
+- [Added] FileStorage class in partner client
+
 
 ## Platform Client
+
+
+
+### Content
+
+
+
+#### deleteAllInjectableTags
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method `deleteAllInjectableTags`
+
+
+
+#### getInjectableTags
+
+- ##### What's New
+	- [Added] `query` parameter `all` (type: `boolean`)
+
+
+
+### FileStorage
+
+
+
+#### startUpload
+
+- ##### What's New
+	- [Breaking] [Added] properties `params.subpath` in request body
+	- [Added] property `status` of schema `` in response with status code 400
+	- [Added] property `valid_namespaces` of schema `` in response with status code 400
+
+
+#### completeUpload
+
+- ##### What's New
+	- [Breaking] [Added] Required status to property `company_id` in response with status code 200
+	- [Added] property `company_id` of schema `CompleteResponse` in response with status code 200
+	- [Added] property `created_by` of schema `CompleteResponse` in response with status code 200
+	- [Added] property `_message` of schema `` in response with status code 400
+	- [Added] property `name` of schema `` in response with status code 400
+	- [Added] property `errors` of schema `` in response with status code 400
+
+
+#### appStartUpload
+
+- ##### What's New
+	- [Breaking] [Added] properties `params.subpath` in request body
+	- [Added] property `status` of schema `` in response with status code 400
+	- [Added] property `valid_namespaces` of schema `` in response with status code 400
+
+
+#### appCompleteUpload
+
+- ##### What's New
+	- [Breaking] [Added] Required status to property `company_id` in response with status code 200
+	- [Added] property `company_id` of schema `CompleteResponse` in response with status code 200
+	- [Added] property `created_by` of schema `CompleteResponse` in response with status code 200
+	- [Added] property `_message` of schema `` in response with status code 400
+	- [Added] property `name` of schema `` in response with status code 400
+	- [Added] property `errors` of schema `` in response with status code 400
+
+
+#### getSignUrls
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Response with status 500
+
+
+#### copyFiles
+
+- ##### What's New
+	- [Added] property `tracking_url` of schema `` in response with status code 200
+	- [Added] property `task` of schema `` in response with status code 200
+	- [Added] property `message` of schema `` in response with status code 400
+
+- ##### What's Deprecated
+	- [Deleted] Required status from property `urls` in request body
+	- [Deleted] Required status from property `status` in response with status code 200
+	- [Breaking] [Deleted] property `status` of schema `BulkUploadSyncMode` in response with status code 200
+	- [Breaking] [Deleted] property `files` of schema `BulkUploadSyncMode` in response with status code 200
+	- [Deleted] Required status from property `status` in response with status code 400
+	- [Breaking] [Deleted] property `status` of schema `BulkUploadFailResponse` in response with status code 400
+
+
+#### appCopyFiles
+
+- ##### What's New
+	- [Added] property `tracking_url` of schema `` in response with status code 200
+	- [Added] property `task` of schema `` in response with status code 200
+	- [Added] property `message` of schema `` in response with status code 400
+
+- ##### What's Deprecated
+	- [Deleted] Required status from property `urls` in request body
+	- [Deleted] Required status from property `status` in response with status code 200
+	- [Breaking] [Deleted] property `status` of schema `BulkUploadSyncMode` in response with status code 200
+	- [Breaking] [Deleted] property `files` of schema `BulkUploadSyncMode` in response with status code 200
+	- [Deleted] Required status from property `status` in response with status code 400
+	- [Breaking] [Deleted] property `status` of schema `BulkUploadFailResponse` in response with status code 400
+
+
+#### browse
+
+- ##### What's New
+	- [Added] property `items[].size` of schema `` in response with status code 200
+	- [Added] property `items[].created_by` of schema `` in response with status code 200
+	- [Added] property `items[].company_id` of schema `` in response with status code 200
+	- [Added] property `items[].bucket_key` of schema `` in response with status code 200
+	- [Added] property `items[].createdAt` of schema `` in response with status code 200
+	- [Added] property `items[].updatedAt` of schema `` in response with status code 200
+	- [Added] property `items[].__v` of schema `` in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Required status from properties `items[].success`, `items[].tags`, `items[]._id`, `items[].file_name`, `items[].namespace`, `items[].content_type`, `items[].file_path`, `items[].upload`, `items[].cdn`, `items[].created_on`, `items[].modified_on` in response with status code 200
+	- [Deleted] Required status from properties `items[].upload.expiry`, `items[].upload.url` in response with status code 200
+	- [Deleted] Required status from properties `items[].cdn.url`, `items[].cdn.absolute_url`, `items[].cdn.relative_url` in response with status code 200
+	- [Breaking] [Deleted] property `items[].cdn.absolute_url` of schema `CDN` in response with status code 200
+	- [Breaking] [Deleted] property `items[].cdn.relative_url` of schema `CDN` in response with status code 200
+	- [Breaking] [Deleted] property `items[].created_on` of schema `DbRecord` in response with status code 200
+	- [Breaking] [Deleted] property `items[].modified_on` of schema `DbRecord` in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from `integer` to `number` of property `items[].upload.expiry` of schema `Upload` in response with status code 200
+
+
+#### appbrowse
+
+- ##### What's New
+	- [Added] property `items[].size` of schema `` in response with status code 200
+	- [Added] property `items[].created_by` of schema `` in response with status code 200
+	- [Added] property `items[].company_id` of schema `` in response with status code 200
+	- [Added] property `items[].bucket_key` of schema `` in response with status code 200
+	- [Added] property `items[].createdAt` of schema `` in response with status code 200
+	- [Added] property `items[].updatedAt` of schema `` in response with status code 200
+	- [Added] property `items[].__v` of schema `` in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Required status from properties `items[].success`, `items[].tags`, `items[]._id`, `items[].file_name`, `items[].namespace`, `items[].content_type`, `items[].file_path`, `items[].upload`, `items[].cdn`, `items[].created_on`, `items[].modified_on` in response with status code 200
+	- [Deleted] Required status from properties `items[].upload.expiry`, `items[].upload.url` in response with status code 200
+	- [Deleted] Required status from properties `items[].cdn.url`, `items[].cdn.absolute_url`, `items[].cdn.relative_url` in response with status code 200
+	- [Breaking] [Deleted] property `items[].cdn.absolute_url` of schema `CDN` in response with status code 200
+	- [Breaking] [Deleted] property `items[].cdn.relative_url` of schema `CDN` in response with status code 200
+	- [Breaking] [Deleted] property `items[].created_on` of schema `DbRecord` in response with status code 200
+	- [Breaking] [Deleted] property `items[].modified_on` of schema `DbRecord` in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from `integer` to `number` of property `items[].upload.expiry` of schema `Upload` in response with status code 200
+
+
+#### proxy
+
+- ##### What's New
+	- [Added] Content (application/json) in Response 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Content (application/octet-stream) in Response 200
+
+
+#### getPdfTypes
+
+- ##### What's New
+	- [Breaking] [Added] Required status to properties `data`, `success` in response with status code 200
+	- [Breaking] [Added] properties `data`, `success` in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property `[]` of schema `` in response with status code 200
+	- [Breaking] [Deleted] Response with status 500
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from `array` to `object` of property `` of schema `` in response with status code 200
+
+
+#### getDefaultPdfData
+
+- ##### What's New
+	- [Breaking] [Added] Required status to properties `data`, `success` in response with status code 200
+	- [Breaking] [Added] properties `data`, `success` in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property `[]` of schema `` in response with status code 200
+	- [Breaking] [Deleted] Response with status 500
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from `array` to `object` of property `` of schema `` in response with status code 200
+
+
+#### getDefaultHtmlTemplate
+
+- ##### What's New
+	- [Breaking] [Added] properties `data`, `success` in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property `[]` of schema `` in response with status code 200
+	- [Breaking] [Deleted] Response with status 500
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from `array` to `object` of property `` of schema `` in response with status code 200
+
+
+#### saveHtmlTemplate
+
+- ##### What's New
+	- [Added] Response with status 201
+	- [Added] property `success` of schema `` in response with status code 500
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] Response with status 200
+	- [Deleted] Required status from property `message` in response with status code 500
+
+- ##### What's Changed
+	- [Changed] http method type from `put` To `post`
+
+
+#### previewTemplate
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] method `previewTemplate`
+
+
+
+#### getDefaultPdfTemplate
+
+- ##### What's New
+	- [Breaking] [Added] properties `data`, `success` in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property `[]` of schema `` in response with status code 200
+	- [Breaking] [Deleted] Response with status 500
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from `array` to `object` of property `` of schema `` in response with status code 200
+
+
+#### updateHtmlTemplate
+
+- ##### What's New
+	- [Added] method `updateHtmlTemplate`
+
+
+
+#### generatePaymentReceipt
+
+- ##### What's New
+	- [Added] method `generatePaymentReceipt`
+
+
+
+### Order
+
+
+
+#### getShipments
+
+- ##### What's New
+	- [Added] property `items[].meta.is_self_ship` of schema `ShipmentItemMeta` in response with status code 200
+
+
+#### getShipmentById
+
+- ##### What's New
+	- [Added] property `shipments[].affiliate_details.shipment_meta.tracking_url` of schema `ShipmentMeta` in response with status code 200
+	- [Added] property `shipments[].affiliate_details.shipment_meta.estimated_delivery_date` of schema `ShipmentMeta` in response with status code 200
+	- [Added] property `shipments[].affiliate_details.shipment_meta.is_self_ship` of schema `ShipmentMeta` in response with status code 200
+	- [Added] property `shipments[].meta.tracking_url` of schema `ShipmentMeta` in response with status code 200
+	- [Added] property `shipments[].meta.estimated_delivery_date` of schema `ShipmentMeta` in response with status code 200
+	- [Added] property `shipments[].meta.is_self_ship` of schema `ShipmentMeta` in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Required status from property `shipments[].bags[].brand.company` in response with status code 200
+
+
+#### getOrderById
+
+- ##### What's New
+	- [Added] property `shipments[].affiliate_details.shipment_meta.tracking_url` of schema `ShipmentMeta` in response with status code 200
+	- [Added] property `shipments[].affiliate_details.shipment_meta.estimated_delivery_date` of schema `ShipmentMeta` in response with status code 200
+	- [Added] property `shipments[].affiliate_details.shipment_meta.is_self_ship` of schema `ShipmentMeta` in response with status code 200
+	- [Added] property `shipments[].meta.tracking_url` of schema `ShipmentMeta` in response with status code 200
+	- [Added] property `shipments[].meta.estimated_delivery_date` of schema `ShipmentMeta` in response with status code 200
+	- [Added] property `shipments[].meta.is_self_ship` of schema `ShipmentMeta` in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Required status from property `shipments[].bags[].brand.company` in response with status code 200
+
+
+#### getOrders
+
+- ##### What's New
+	- [Added] property `items[].shipments[].affiliate_details.shipment_meta.tracking_url` of schema `ShipmentMeta` in response with status code 200
+	- [Added] property `items[].shipments[].affiliate_details.shipment_meta.estimated_delivery_date` of schema `ShipmentMeta` in response with status code 200
+	- [Added] property `items[].shipments[].affiliate_details.shipment_meta.is_self_ship` of schema `ShipmentMeta` in response with status code 200
+	- [Added] property `items[].shipments[].meta.tracking_url` of schema `ShipmentMeta` in response with status code 200
+	- [Added] property `items[].shipments[].meta.estimated_delivery_date` of schema `ShipmentMeta` in response with status code 200
+	- [Added] property `items[].shipments[].meta.is_self_ship` of schema `ShipmentMeta` in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] Required status from property `items[].shipments[].bags[].brand.company` in response with status code 200
+
+
+#### getBagById
+
+- ##### What's New
+	- [Added] property `affiliate_details.shipment_meta.tracking_url` of schema `ShipmentMeta` in response with status code 200
+	- [Added] property `affiliate_details.shipment_meta.estimated_delivery_date` of schema `ShipmentMeta` in response with status code 200
+	- [Added] property `affiliate_details.shipment_meta.is_self_ship` of schema `ShipmentMeta` in response with status code 200
+
+
+#### getBags
+
+- ##### What's New
+	- [Added] property `items[].affiliate_details.shipment_meta.tracking_url` of schema `ShipmentMeta` in response with status code 200
+	- [Added] property `items[].affiliate_details.shipment_meta.estimated_delivery_date` of schema `ShipmentMeta` in response with status code 200
+	- [Added] property `items[].affiliate_details.shipment_meta.is_self_ship` of schema `ShipmentMeta` in response with status code 200
+
+
+### Payment
+
+
+
+#### getMerchantRefundPriority
+
+- ##### What's New
+	- [Added] method `getMerchantRefundPriority`
+
+
+
+#### createMerchantRefundPriority
+
+- ##### What's New
+	- [Added] method `createMerchantRefundPriority`
+
+
+
+#### updateMerchantRefundPriority
+
+- ##### What's New
+	- [Added] method `updateMerchantRefundPriority`
 
 
 

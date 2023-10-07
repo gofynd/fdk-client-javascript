@@ -41,6 +41,12 @@ class User {
       logout: "/service/application/user/authentication/v1.0/logout",
       registerWithForm:
         "/service/application/user/authentication/v1.0/register/form",
+      resetForgotPassword:
+        "/service/application/user/authentication/v1.0/login/password/forgot",
+      sendForgotOTPOnEmail:
+        "/service/application/user/authentication/v1.0/otp/forgot/email/send",
+      sendForgotOTPOnMobile:
+        "/service/application/user/authentication/v1.0/otp/forgot/mobile/send",
       sendOTPOnEmail:
         "/service/application/user/authentication/v1.0/otp/email/send",
       sendOTPOnMobile:
@@ -61,10 +67,14 @@ class User {
       updatePassword: "/service/application/user/authentication/v1.0/password",
       updateProfile: "/service/application/user/profile/v1.0/detail",
       verifyEmail: "/service/application/user/authentication/v1.0/verify/email",
+      verifyEmailForgotOTP:
+        "/service/application/user/authentication/v1.0/otp/forgot/email/verify",
       verifyEmailOTP:
         "/service/application/user/authentication/v1.0/otp/email/verify",
       verifyMobile:
         "/service/application/user/authentication/v1.0/verify/mobile",
+      verifyMobileForgotOTP:
+        "/service/application/user/authentication/v1.0/otp/forgot/mobile/verify",
       verifyMobileOTP:
         "/service/application/user/authentication/v1.0/otp/mobile/verify",
     };
@@ -1592,6 +1602,231 @@ class User {
   }
 
   /**
+   * @param {UserApplicationValidator.ResetForgotPasswordParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<UserApplicationModel.ResetForgotPasswordSuccess>} -
+   *   Success response
+   * @name resetForgotPassword
+   * @summary: Reset forgot Password
+   * @description: Use this API to reset a password using the code sent on email or SMS. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/resetForgotPassword/).
+   */
+  async resetForgotPassword(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = UserApplicationValidator.resetForgotPassword().validate(
+      { body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = UserApplicationValidator.resetForgotPassword().validate(
+      { body },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for application > User > resetForgotPassword \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["resetForgotPassword"],
+        params: {},
+      }),
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = UserApplicationModel.ResetForgotPasswordSuccess().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for application > User > resetForgotPassword \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {UserApplicationValidator.SendForgotOTPOnEmailParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<UserApplicationModel.EmailOtpSuccess>} - Success response
+   * @name sendForgotOTPOnEmail
+   * @summary: Send Forgot OTP on email
+   * @description: Use this API to send an Forgot OTP to an email ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendForgotOTPOnEmail/).
+   */
+  async sendForgotOTPOnEmail(
+    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = UserApplicationValidator.sendForgotOTPOnEmail().validate(
+      { body, platform },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = UserApplicationValidator.sendForgotOTPOnEmail().validate(
+      { body, platform },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for application > User > sendForgotOTPOnEmail \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["platform"] = platform;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["sendForgotOTPOnEmail"],
+        params: {},
+      }),
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = UserApplicationModel.EmailOtpSuccess().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for application > User > sendForgotOTPOnEmail \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {UserApplicationValidator.SendForgotOTPOnMobileParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<UserApplicationModel.OtpSuccess>} - Success response
+   * @name sendForgotOTPOnMobile
+   * @summary: Send Forgot OTP on mobile
+   * @description: Use this API to send an Forgot OTP to a mobile number. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendForgotOTPOnMobile/).
+   */
+  async sendForgotOTPOnMobile(
+    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = UserApplicationValidator.sendForgotOTPOnMobile().validate(
+      { body, platform },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = UserApplicationValidator.sendForgotOTPOnMobile().validate(
+      { body, platform },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for application > User > sendForgotOTPOnMobile \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["platform"] = platform;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["sendForgotOTPOnMobile"],
+        params: {},
+      }),
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = UserApplicationModel.OtpSuccess().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for application > User > sendForgotOTPOnMobile \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
    * @param {UserApplicationValidator.SendOTPOnEmailParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
@@ -2500,6 +2735,81 @@ class User {
   }
 
   /**
+   * @param {UserApplicationValidator.VerifyEmailForgotOTPParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<UserApplicationModel.VerifyForgotOtpSuccess>} - Success response
+   * @name verifyEmailForgotOTP
+   * @summary: Verify Forgot OTP on email
+   * @description: Use this API to verify the Forgot OTP received on an email ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyEmailForgotOTP/).
+   */
+  async verifyEmailForgotOTP(
+    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = UserApplicationValidator.verifyEmailForgotOTP().validate(
+      { body, platform },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = UserApplicationValidator.verifyEmailForgotOTP().validate(
+      { body, platform },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for application > User > verifyEmailForgotOTP \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["platform"] = platform;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["verifyEmailForgotOTP"],
+        params: {},
+      }),
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = UserApplicationModel.VerifyForgotOtpSuccess().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for application > User > verifyEmailForgotOTP \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
    * @param {UserApplicationValidator.VerifyEmailOTPParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
@@ -2642,6 +2952,81 @@ class User {
       Logger({
         level: "WARN",
         message: `Response Validation Warnnings for application > User > verifyMobile \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {UserApplicationValidator.VerifyMobileForgotOTPParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<UserApplicationModel.VerifyForgotOtpSuccess>} - Success response
+   * @name verifyMobileForgotOTP
+   * @summary: Verify Forgot OTP on mobile
+   * @description: Use this API to verify the Forgot OTP received on a mobile number. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyMobileForgotOTP/).
+   */
+  async verifyMobileForgotOTP(
+    { body, platform, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = UserApplicationValidator.verifyMobileForgotOTP().validate(
+      { body, platform },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = UserApplicationValidator.verifyMobileForgotOTP().validate(
+      { body, platform },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for application > User > verifyMobileForgotOTP \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["platform"] = platform;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["verifyMobileForgotOTP"],
+        params: {},
+      }),
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = UserApplicationModel.VerifyForgotOtpSuccess().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for application > User > verifyMobileForgotOTP \n ${res_error}`,
       });
     }
 

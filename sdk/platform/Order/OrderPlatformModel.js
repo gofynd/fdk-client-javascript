@@ -1309,7 +1309,7 @@ const Joi = require("joi");
 /**
  * @typedef OrderBrandName
  * @property {string} [brand_name]
- * @property {number} company
+ * @property {number} [company]
  * @property {string} [created_on]
  * @property {number} id
  * @property {string} [logo]
@@ -2083,6 +2083,7 @@ const Joi = require("joi");
  * @property {Formatted} [formatted]
  * @property {string} [fulfilment_priority_text]
  * @property {boolean} [is_international]
+ * @property {boolean} [is_self_ship]
  * @property {LockData} [lock_data]
  * @property {string} [order_type]
  * @property {string} [packaging_name]
@@ -2134,12 +2135,14 @@ const Joi = require("joi");
  * @property {string} [dp_sort_key]
  * @property {string} [due_date]
  * @property {EinvoiceInfo} [einvoice_info]
+ * @property {string} [estimated_delivery_date]
  * @property {Object} [ewaybill_info]
  * @property {Object} [external]
  * @property {Formatted} [formatted]
  * @property {string} [forward_affiliate_order_id]
  * @property {string} [forward_affiliate_shipment_id]
  * @property {string} [fulfilment_priority_text]
+ * @property {boolean} [is_self_ship]
  * @property {LockData} [lock_data]
  * @property {string} [marketplace_store_id]
  * @property {string} [order_type]
@@ -2158,6 +2161,7 @@ const Joi = require("joi");
  * @property {number} [shipment_weight]
  * @property {string} [store_invoice_updated_date]
  * @property {ShipmentTimeStamp} [timestamp]
+ * @property {string} [tracking_url]
  * @property {number} weight
  */
 
@@ -4183,7 +4187,7 @@ class OrderPlatformModel {
   static OrderBrandName() {
     return Joi.object({
       brand_name: Joi.string().allow("").allow(null),
-      company: Joi.number().allow(null).required(),
+      company: Joi.number().allow(null),
       created_on: Joi.string().allow("").allow(null),
       id: Joi.number().required(),
       logo: Joi.string().allow("").allow(null),
@@ -5119,6 +5123,7 @@ class OrderPlatformModel {
       formatted: OrderPlatformModel.Formatted(),
       fulfilment_priority_text: Joi.string().allow("").allow(null),
       is_international: Joi.boolean().allow(null),
+      is_self_ship: Joi.boolean().allow(null),
       lock_data: OrderPlatformModel.LockData(),
       order_type: Joi.string().allow("").allow(null),
       packaging_name: Joi.string().allow("").allow(null),
@@ -5176,12 +5181,14 @@ class OrderPlatformModel {
       dp_sort_key: Joi.string().allow("").allow(null),
       due_date: Joi.string().allow("").allow(null),
       einvoice_info: OrderPlatformModel.EinvoiceInfo(),
+      estimated_delivery_date: Joi.string().allow("").allow(null),
       ewaybill_info: Joi.any().allow(null),
       external: Joi.any().allow(null),
       formatted: OrderPlatformModel.Formatted(),
       forward_affiliate_order_id: Joi.string().allow("").allow(null),
       forward_affiliate_shipment_id: Joi.string().allow("").allow(null),
       fulfilment_priority_text: Joi.string().allow("").allow(null),
+      is_self_ship: Joi.boolean().allow(null),
       lock_data: OrderPlatformModel.LockData(),
       marketplace_store_id: Joi.string().allow("").allow(null),
       order_type: Joi.string().allow("").allow(null),
@@ -5200,6 +5207,7 @@ class OrderPlatformModel {
       shipment_weight: Joi.number().allow(null),
       store_invoice_updated_date: Joi.string().allow("").allow(null),
       timestamp: OrderPlatformModel.ShipmentTimeStamp(),
+      tracking_url: Joi.string().allow("").allow(null),
       weight: Joi.number().required(),
     });
   }

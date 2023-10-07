@@ -13,10 +13,10 @@ class FileStorage {
     this._conf = _conf;
     this._relativeUrls = {
       completeUpload:
-        "/service/application/assets/v1.0/namespaces/{namespace}/upload/complete/",
-      signUrls: "/service/application/assets/v1.0/sign-urls/",
+        "/service/application/assets/v1.0/namespaces/{namespace}/upload/complete",
+      signUrls: "/service/application/assets/v1.0/sign-urls",
       startUpload:
-        "/service/application/assets/v1.0/namespaces/{namespace}/upload/start/",
+        "/service/application/assets/v1.0/namespaces/{namespace}/upload/start",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {

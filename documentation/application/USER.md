@@ -28,6 +28,9 @@ Authentication Service
 * [loginWithToken](#loginwithtoken)
 * [logout](#logout)
 * [registerWithForm](#registerwithform)
+* [resetForgotPassword](#resetforgotpassword)
+* [sendForgotOTPOnEmail](#sendforgototponemail)
+* [sendForgotOTPOnMobile](#sendforgototponmobile)
 * [sendOTPOnEmail](#sendotponemail)
 * [sendOTPOnMobile](#sendotponmobile)
 * [sendResetPasswordEmail](#sendresetpasswordemail)
@@ -40,8 +43,10 @@ Authentication Service
 * [updatePassword](#updatepassword)
 * [updateProfile](#updateprofile)
 * [verifyEmail](#verifyemail)
+* [verifyEmailForgotOTP](#verifyemailforgototp)
 * [verifyEmailOTP](#verifyemailotp)
 * [verifyMobile](#verifymobile)
+* [verifyMobileForgotOTP](#verifymobileforgototp)
 * [verifyMobileOTP](#verifymobileotp)
 
 
@@ -1889,6 +1894,213 @@ Success. Check the example shown below or refer `RegisterFormSuccess` for more d
 ---
 
 
+### resetForgotPassword
+Reset forgot Password
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.resetForgotPassword({  body : value });
+
+// Async/Await
+const data = await applicationClient.user.resetForgotPassword({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ForgotPasswordRequestSchema](#ForgotPasswordRequestSchema) | yes | Request body |
+
+
+Use this API to reset a password using the code sent on email or SMS.
+
+*Returned Response:*
+
+
+
+
+[ResetForgotPasswordSuccess](#ResetForgotPasswordSuccess)
+
+Success. Check the example shown below or refer `ResetForgotPasswordSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; reset forgot password success</i></summary>
+
+```json
+{
+  "value": {
+    "success": true
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### sendForgotOTPOnEmail
+Send Forgot OTP on email
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.sendForgotOTPOnEmail({  body : value,
+ platform : value });
+
+// Async/Await
+const data = await applicationClient.user.sendForgotOTPOnEmail({  body : value,
+ platform : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| platform | string | no | ID of the application |  
+| body | [SendEmailForgotOtpRequestSchema](#SendEmailForgotOtpRequestSchema) | yes | Request body |
+
+
+Use this API to send an Forgot OTP to an email ID.
+
+*Returned Response:*
+
+
+
+
+[EmailOtpSuccess](#EmailOtpSuccess)
+
+Success. Returns a JSON object as shown below. Refer `EmailOtpSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; send forgot otp on email success</i></summary>
+
+```json
+{
+  "value": {
+    "success": true
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### sendForgotOTPOnMobile
+Send Forgot OTP on mobile
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.sendForgotOTPOnMobile({  body : value,
+ platform : value });
+
+// Async/Await
+const data = await applicationClient.user.sendForgotOTPOnMobile({  body : value,
+ platform : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| platform | string | no | ID of the application |  
+| body | [SendMobileForgotOtpRequestSchema](#SendMobileForgotOtpRequestSchema) | yes | Request body |
+
+
+Use this API to send an Forgot OTP to a mobile number.
+
+*Returned Response:*
+
+
+
+
+[OtpSuccess](#OtpSuccess)
+
+Success. Returns a JSON object as shown below. Refer `OtpSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; send forgot otp on mobile success</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "request_id": "01503005aeab87cbed93d40f46cc2749",
+    "message": "OTP sent",
+    "mobile": "8652523958",
+    "country_code": "91",
+    "resend_timer": 30,
+    "resend_token": "18fc3d60-66e5-11eb-9399-0312fbf2c2a6"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### sendOTPOnEmail
 Send OTP on email
 
@@ -2811,6 +3023,75 @@ Success. Check the example shown below or refer `VerifyEmailSuccess` for more de
 ---
 
 
+### verifyEmailForgotOTP
+Verify Forgot OTP on email
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.verifyEmailForgotOTP({  body : value,
+ platform : value });
+
+// Async/Await
+const data = await applicationClient.user.verifyEmailForgotOTP({  body : value,
+ platform : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| platform | string | no | ID of the application |  
+| body | [VerifyEmailForgotOtpRequestSchema](#VerifyEmailForgotOtpRequestSchema) | yes | Request body |
+
+
+Use this API to verify the Forgot OTP received on an email ID.
+
+*Returned Response:*
+
+
+
+
+[VerifyForgotOtpSuccess](#VerifyForgotOtpSuccess)
+
+Success. Returns a JSON object as shown below. Refer `VerifyForgotOtpSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; verify forgot otp on email success</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "forgot_token": "d6c9df22-7e65-41be-9852-8207a8d2d54d"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### verifyEmailOTP
 Verify OTP on email
 
@@ -2982,6 +3263,75 @@ Success. Check the example shown below or refer `VerifyEmailSuccess` for more de
 ---
 
 
+### verifyMobileForgotOTP
+Verify Forgot OTP on mobile
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.verifyMobileForgotOTP({  body : value,
+ platform : value });
+
+// Async/Await
+const data = await applicationClient.user.verifyMobileForgotOTP({  body : value,
+ platform : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| platform | string | no | ID of the application |  
+| body | [VerifyMobileForgotOtpRequestSchema](#VerifyMobileForgotOtpRequestSchema) | yes | Request body |
+
+
+Use this API to verify the Forgot OTP received on a mobile number.
+
+*Returned Response:*
+
+
+
+
+[VerifyForgotOtpSuccess](#VerifyForgotOtpSuccess)
+
+Success. Returns a JSON object as shown below. Refer `VerifyForgotOtpSuccess` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; verify forgot otp on mobile success</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "forgot_token": "d6c9df22-7e65-41be-9852-8207a8d2d54d"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### verifyMobileOTP
 Verify OTP on mobile
 
@@ -3105,6 +3455,19 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | app_id | string? |  yes  |  |
+ 
+
+---
+
+#### [APIError](#APIError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string? |  yes  |  |
+ | info | string? |  yes  | Error code description link |
+ | message | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | request_id | string? |  yes  |  |
  
 
 ---
@@ -3624,11 +3987,31 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
 ---
 
+#### [ResetForgotPasswordSuccess](#ResetForgotPasswordSuccess)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
 #### [ResetPasswordSuccess](#ResetPasswordSuccess)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | status | string? |  yes  |  |
+ 
+
+---
+
+#### [SendEmailForgotOtpRequestSchema](#SendEmailForgotOtpRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | action | string? |  yes  |  |
+ | email | string? |  yes  |  |
+ | token | string? |  yes  |  |
  
 
 ---
@@ -3651,6 +4034,19 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | verify_email_link | boolean? |  yes  |  |
+ 
+
+---
+
+#### [SendMobileForgotOtpRequestSchema](#SendMobileForgotOtpRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | action | string? |  yes  |  |
+ | android_hash | string? |  yes  |  |
+ | country_code | string? |  yes  |  |
+ | mobile | string? |  yes  |  |
+ | token | string? |  yes  |  |
  
 
 ---
@@ -3841,6 +4237,16 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
 ---
 
+#### [VerifyEmailForgotOtpRequestSchema](#VerifyEmailForgotOtpRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | email | string? |  yes  |  |
+ | otp | string? |  yes  |  |
+ 
+
+---
+
 #### [VerifyEmailOtpRequestSchema](#VerifyEmailOtpRequestSchema)
 
  | Properties | Type | Nullable | Description |
@@ -3868,6 +4274,26 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | message | string? |  yes  |  |
+ 
+
+---
+
+#### [VerifyForgotOtpSuccess](#VerifyForgotOtpSuccess)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | forgot_token | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [VerifyMobileForgotOtpRequestSchema](#VerifyMobileForgotOtpRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | otp | string? |  yes  |  |
+ | request_id | string? |  yes  |  |
  
 
 ---

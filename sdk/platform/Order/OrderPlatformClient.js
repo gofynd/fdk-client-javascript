@@ -1936,7 +1936,7 @@ class Order {
    *   will be used as the target for the search operation
    * @param {string} [arg.bagStatus] - Bag_status refers to status of the
    *   entity. Filters orders based on the status.
-   * @param {string} [arg.timeToDispatch] - Time_to_dispatch refers to
+   * @param {number} [arg.timeToDispatch] - Time_to_dispatch refers to
    *   estimated SLA time.
    * @param {string} [arg.paymentMethods] -
    * @param {string} [arg.tags] - Tags refers to additional descriptive labels

@@ -48,7 +48,6 @@ export = ContentPlatformApplicationValidator;
  * @typedef CreateSlideshowParam
  * @property {ContentPlatformModel.SlideshowRequest} body
  */
-/** @typedef DeleteAllInjectableTagsParam */
 /**
  * @typedef DeleteAnnouncementParam
  * @property {string} announcementId - ID allotted to the announcement.
@@ -156,7 +155,10 @@ export = ContentPlatformApplicationValidator;
  *   Slug is a short, human-readable, URL-friendly identifier of an object. You
  *   can get slug value of an FAQ category from `getFaqCategories` API.
  */
-/** @typedef GetInjectableTagsParam */
+/**
+ * @typedef GetInjectableTagsParam
+ * @property {boolean} [all] - Get all tags irrespective of the creator of tags
+ */
 /**
  * @typedef GetLandingPagesParam
  * @property {number} [pageNo] - The page number to navigate through the given
@@ -335,8 +337,6 @@ declare class ContentPlatformApplicationValidator {
     static createPagePreview(): CreatePagePreviewParam;
     /** @returns {CreateSlideshowParam} */
     static createSlideshow(): CreateSlideshowParam;
-    /** @returns {DeleteAllInjectableTagsParam} */
-    static deleteAllInjectableTags(): any;
     /** @returns {DeleteAnnouncementParam} */
     static deleteAnnouncement(): DeleteAnnouncementParam;
     /** @returns {DeleteBlogParam} */
@@ -386,7 +386,7 @@ declare class ContentPlatformApplicationValidator {
     /** @returns {GetFaqsByCategoryIdOrSlugParam} */
     static getFaqsByCategoryIdOrSlug(): GetFaqsByCategoryIdOrSlugParam;
     /** @returns {GetInjectableTagsParam} */
-    static getInjectableTags(): any;
+    static getInjectableTags(): GetInjectableTagsParam;
     /** @returns {GetLandingPagesParam} */
     static getLandingPages(): GetLandingPagesParam;
     /** @returns {GetLegalInformationParam} */
@@ -453,7 +453,7 @@ declare class ContentPlatformApplicationValidator {
     static updateSupportInformation(): UpdateSupportInformationParam;
 }
 declare namespace ContentPlatformApplicationValidator {
-    export { AddDataLoaderParam, AddFaqParam, AddInjectableTagParam, AddPathRedirectionRulesParam, CreateAnnouncementParam, CreateBlogParam, CreateFaqCategoryParam, CreateLandingPageParam, CreateNavigationParam, CreatePageParam, CreatePagePreviewParam, CreateSlideshowParam, DeleteAllInjectableTagsParam, DeleteAnnouncementParam, DeleteBlogParam, DeleteDataLoaderParam, DeleteFaqParam, DeleteFaqCategoryParam, DeleteLandingPageParam, DeleteNavigationParam, DeletePageParam, DeletePathRedirectionRulesParam, DeleteSlideshowParam, EditDataLoaderParam, EditInjectableTagParam, GenerateSEOTitleParam, GetAnnouncementByIdParam, GetAnnouncementsListParam, GetBlogBySlugParam, GetBlogsParam, GetComponentByIdParam, GetDataLoadersParam, GetDefaultNavigationsParam, GetFaqByIdOrSlugParam, GetFaqCategoriesParam, GetFaqCategoryBySlugOrIdParam, GetFaqsByCategoryIdOrSlugParam, GetInjectableTagsParam, GetLandingPagesParam, GetLegalInformationParam, GetNavigationBySlugParam, GetNavigationsParam, GetPageBySlugParam, GetPageMetaParam, GetPageSpecParam, GetPagesParam, GetPathRedirectionRuleParam, GetPathRedirectionRulesParam, GetSEOConfigurationParam, GetSlideshowBySlugParam, GetSlideshowsParam, GetSupportInformationParam, RemoveInjectableTagParam, ResetDataLoaderParam, SelectDataLoaderParam, UpdateAnnouncementParam, UpdateAnnouncementScheduleParam, UpdateBlogParam, UpdateFaqParam, UpdateFaqCategoryParam, UpdateInjectableTagParam, UpdateLandingPageParam, UpdateLegalInformationParam, UpdateNavigationParam, UpdatePageParam, UpdatePagePreviewParam, UpdatePathRedirectionRulesParam, UpdateSEOConfigurationParam, UpdateSlideshowParam, UpdateSupportInformationParam };
+    export { AddDataLoaderParam, AddFaqParam, AddInjectableTagParam, AddPathRedirectionRulesParam, CreateAnnouncementParam, CreateBlogParam, CreateFaqCategoryParam, CreateLandingPageParam, CreateNavigationParam, CreatePageParam, CreatePagePreviewParam, CreateSlideshowParam, DeleteAnnouncementParam, DeleteBlogParam, DeleteDataLoaderParam, DeleteFaqParam, DeleteFaqCategoryParam, DeleteLandingPageParam, DeleteNavigationParam, DeletePageParam, DeletePathRedirectionRulesParam, DeleteSlideshowParam, EditDataLoaderParam, EditInjectableTagParam, GenerateSEOTitleParam, GetAnnouncementByIdParam, GetAnnouncementsListParam, GetBlogBySlugParam, GetBlogsParam, GetComponentByIdParam, GetDataLoadersParam, GetDefaultNavigationsParam, GetFaqByIdOrSlugParam, GetFaqCategoriesParam, GetFaqCategoryBySlugOrIdParam, GetFaqsByCategoryIdOrSlugParam, GetInjectableTagsParam, GetLandingPagesParam, GetLegalInformationParam, GetNavigationBySlugParam, GetNavigationsParam, GetPageBySlugParam, GetPageMetaParam, GetPageSpecParam, GetPagesParam, GetPathRedirectionRuleParam, GetPathRedirectionRulesParam, GetSEOConfigurationParam, GetSlideshowBySlugParam, GetSlideshowsParam, GetSupportInformationParam, RemoveInjectableTagParam, ResetDataLoaderParam, SelectDataLoaderParam, UpdateAnnouncementParam, UpdateAnnouncementScheduleParam, UpdateBlogParam, UpdateFaqParam, UpdateFaqCategoryParam, UpdateInjectableTagParam, UpdateLandingPageParam, UpdateLegalInformationParam, UpdateNavigationParam, UpdatePageParam, UpdatePagePreviewParam, UpdatePathRedirectionRulesParam, UpdateSEOConfigurationParam, UpdateSlideshowParam, UpdateSupportInformationParam };
 }
 type AddDataLoaderParam = {
     body: ContentPlatformModel.DataLoaderSchema;
@@ -649,6 +649,12 @@ type GetFaqsByCategoryIdOrSlugParam = {
      * can get slug value of an FAQ category from `getFaqCategories` API.
      */
     idOrSlug: string;
+};
+type GetInjectableTagsParam = {
+    /**
+     * - Get all tags irrespective of the creator of tags
+     */
+    all?: boolean;
 };
 type GetLandingPagesParam = {
     /**
@@ -870,11 +876,9 @@ type UpdateSlideshowParam = {
 type UpdateSupportInformationParam = {
     body: ContentPlatformModel.Support;
 };
-type DeleteAllInjectableTagsParam = any;
 type GetDataLoadersParam = any;
 type GetDefaultNavigationsParam = any;
 type GetFaqCategoriesParam = any;
-type GetInjectableTagsParam = any;
 type GetLegalInformationParam = any;
 type GetPageMetaParam = any;
 type GetPageSpecParam = any;

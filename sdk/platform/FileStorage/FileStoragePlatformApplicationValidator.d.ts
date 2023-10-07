@@ -30,6 +30,10 @@ export = FileStoragePlatformApplicationValidator;
  * @property {number} [limit] - Limit
  */
 /**
+ * @typedef GeneratePaymentReceiptParam
+ * @property {FileStoragePlatformModel.PaymentReceiptRequestBody} body
+ */
+/**
  * @typedef GetDefaultHtmlTemplateParam
  * @property {number} pdfTypeId
  * @property {string} format
@@ -45,12 +49,13 @@ export = FileStoragePlatformApplicationValidator;
  */
 /** @typedef GetPdfTypesParam */
 /**
- * @typedef PreviewTemplateParam
- * @property {FileStoragePlatformModel.pdfRender} body
+ * @typedef SaveHtmlTemplateParam
+ * @property {FileStoragePlatformModel.PdfConfig} body
  */
 /**
- * @typedef SaveHtmlTemplateParam
- * @property {FileStoragePlatformModel.pdfConfig} body
+ * @typedef UpdateHtmlTemplateParam
+ * @property {string} id
+ * @property {FileStoragePlatformModel.PdfConfig} body
  */
 declare class FileStoragePlatformApplicationValidator {
     /** @returns {AppCompleteUploadParam} */
@@ -61,6 +66,8 @@ declare class FileStoragePlatformApplicationValidator {
     static appStartUpload(): AppStartUploadParam;
     /** @returns {AppbrowseParam} */
     static appbrowse(): AppbrowseParam;
+    /** @returns {GeneratePaymentReceiptParam} */
+    static generatePaymentReceipt(): GeneratePaymentReceiptParam;
     /** @returns {GetDefaultHtmlTemplateParam} */
     static getDefaultHtmlTemplate(): GetDefaultHtmlTemplateParam;
     /** @returns {GetDefaultPdfDataParam} */
@@ -69,13 +76,13 @@ declare class FileStoragePlatformApplicationValidator {
     static getDefaultPdfTemplate(): GetDefaultPdfTemplateParam;
     /** @returns {GetPdfTypesParam} */
     static getPdfTypes(): any;
-    /** @returns {PreviewTemplateParam} */
-    static previewTemplate(): PreviewTemplateParam;
     /** @returns {SaveHtmlTemplateParam} */
     static saveHtmlTemplate(): SaveHtmlTemplateParam;
+    /** @returns {UpdateHtmlTemplateParam} */
+    static updateHtmlTemplate(): UpdateHtmlTemplateParam;
 }
 declare namespace FileStoragePlatformApplicationValidator {
-    export { AppCompleteUploadParam, AppCopyFilesParam, AppStartUploadParam, AppbrowseParam, GetDefaultHtmlTemplateParam, GetDefaultPdfDataParam, GetDefaultPdfTemplateParam, GetPdfTypesParam, PreviewTemplateParam, SaveHtmlTemplateParam };
+    export { AppCompleteUploadParam, AppCopyFilesParam, AppStartUploadParam, AppbrowseParam, GeneratePaymentReceiptParam, GetDefaultHtmlTemplateParam, GetDefaultPdfDataParam, GetDefaultPdfTemplateParam, GetPdfTypesParam, SaveHtmlTemplateParam, UpdateHtmlTemplateParam };
 }
 type AppCompleteUploadParam = {
     /**
@@ -121,6 +128,9 @@ type AppbrowseParam = {
      */
     limit?: number;
 };
+type GeneratePaymentReceiptParam = {
+    body: FileStoragePlatformModel.PaymentReceiptRequestBody;
+};
 type GetDefaultHtmlTemplateParam = {
     pdfTypeId: number;
     format: string;
@@ -132,11 +142,12 @@ type GetDefaultPdfTemplateParam = {
     pdfTypeId: number;
     format: string;
 };
-type PreviewTemplateParam = {
-    body: FileStoragePlatformModel.pdfRender;
-};
 type SaveHtmlTemplateParam = {
-    body: FileStoragePlatformModel.pdfConfig;
+    body: FileStoragePlatformModel.PdfConfig;
+};
+type UpdateHtmlTemplateParam = {
+    id: string;
+    body: FileStoragePlatformModel.PdfConfig;
 };
 type GetPdfTypesParam = any;
 import FileStoragePlatformModel = require("./FileStoragePlatformModel");

@@ -793,6 +793,21 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef RefundPriorityRequestSerializer
+ * @property {boolean} apportion - Apportion refund to multiple sources
+ * @property {RefundSourcesPriority[]} refund_sources_priority - Refund sources priority
+ */
+
+/**
+ * @typedef RefundPriorityResponseSerializer
+ * @property {boolean} apportion - Apportion refund to multiple sources
+ * @property {string} configuration - Configuration for merchant or customer
+ * @property {string} [message] - Message
+ * @property {RefundSourcesPriority[]} refund_sources_priority - Refund sources priority
+ * @property {boolean} success - Success
+ */
+
+/**
  * @typedef RefundSessionDetail
  * @property {number} amount - Amount refunded.
  * @property {string} [balance_transaction] - Balance transaction.
@@ -831,6 +846,13 @@ const Joi = require("joi");
  * @property {Object[]} platform_refund_details - Details of the refund
  * @property {string} status - The status of the refund.
  * @property {number} total_refund_amount - The total amount refunded.
+ */
+
+/**
+ * @typedef RefundSourcesPriority
+ * @property {string} description - Description of refund source
+ * @property {number} priority - Priority of refund source, 0 being highest
+ * @property {string} source - Source of refund
  */
 
 /**
@@ -1922,6 +1944,29 @@ class PaymentPlatformModel {
     });
   }
 
+  /** @returns {RefundPriorityRequestSerializer} */
+  static RefundPriorityRequestSerializer() {
+    return Joi.object({
+      apportion: Joi.boolean().required(),
+      refund_sources_priority: Joi.array()
+        .items(PaymentPlatformModel.RefundSourcesPriority())
+        .required(),
+    });
+  }
+
+  /** @returns {RefundPriorityResponseSerializer} */
+  static RefundPriorityResponseSerializer() {
+    return Joi.object({
+      apportion: Joi.boolean().required(),
+      configuration: Joi.string().allow("").required(),
+      message: Joi.string().allow(""),
+      refund_sources_priority: Joi.array()
+        .items(PaymentPlatformModel.RefundSourcesPriority())
+        .required(),
+      success: Joi.boolean().required(),
+    });
+  }
+
   /** @returns {RefundSessionDetail} */
   static RefundSessionDetail() {
     return Joi.object({
@@ -1962,6 +2007,15 @@ class PaymentPlatformModel {
       platform_refund_details: Joi.array().items(Joi.any()).required(),
       status: Joi.string().allow("").required(),
       total_refund_amount: Joi.number().required(),
+    });
+  }
+
+  /** @returns {RefundSourcesPriority} */
+  static RefundSourcesPriority() {
+    return Joi.object({
+      description: Joi.string().allow("").required(),
+      priority: Joi.number().required(),
+      source: Joi.string().allow("").required(),
     });
   }
 

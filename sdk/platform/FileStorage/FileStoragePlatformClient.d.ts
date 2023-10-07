@@ -6,12 +6,12 @@ declare class FileStorage {
      * @param {FileStoragePlatformValidator.BrowseParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<FileStoragePlatformModel.BrowseResponse>} - Success response
+     * @returns {Promise<Object>} - Success response
      * @name browse
      * @summary: Browse Files
      * @description: Browse Files - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/browse/).
      */
-    browse({ namespace, page, limit, requestHeaders }?: FileStoragePlatformValidator.BrowseParam, { responseHeaders }?: object): Promise<FileStoragePlatformModel.BrowseResponse>;
+    browse({ namespace, page, limit, requestHeaders }?: FileStoragePlatformValidator.BrowseParam, { responseHeaders }?: object): Promise<any>;
     /**
      * @param {FileStoragePlatformValidator.CompleteUploadParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -44,12 +44,12 @@ declare class FileStorage {
      * @param {FileStoragePlatformValidator.CopyFilesParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<FileStoragePlatformModel.BulkUploadSyncMode>} - Success response
+     * @returns {Promise<Object>} - Success response
      * @name copyFiles
      * @summary: Copy Files
      * @description: Copy Files - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/copyFiles/).
      */
-    copyFiles({ body, sync, requestHeaders }?: FileStoragePlatformValidator.CopyFilesParam, { responseHeaders }?: object): Promise<FileStoragePlatformModel.BulkUploadSyncMode>;
+    copyFiles({ body, sync, requestHeaders }?: FileStoragePlatformValidator.CopyFilesParam, { responseHeaders }?: object): Promise<any>;
     /**
      * @param {FileStoragePlatformValidator.GetSignUrlsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
