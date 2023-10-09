@@ -264,7 +264,6 @@ function setupRoutes(ext) {
 
             let authCallback = urljoin(ext.base_url, "/adm/auth");
 
-            // TODO: create authorize api on skywarp
             let redirectUrl = partnerConfig.oauthClient.startAuthorization({
                 scope: session.scope,
                 redirectUri: authCallback,
@@ -292,7 +291,6 @@ function setupRoutes(ext) {
                 throw new FdkInvalidOAuthError('Invalid oauth call');
             }
             
-            // TODO: add organization id validation
             const organizationId = req.fdkSession.organization_id;
 
             const partnerConfig = ext.getPartnerConfig(req.fdkSession.organization_id);
@@ -322,14 +320,13 @@ function setupRoutes(ext) {
                     session = new Session(sid);
                 }
                 
-                // TODO: crate api in skywarp and add offline token method in sdk
                 let offlineTokenRes = await partnerConfig.oauthClient.getOfflineAccessToken(ext.scopes, req.query.code);
 
                 session.organization_id = organizationId;
                 session.scope = ext.scopes;
                 session.state = req.fdkSession.state;
                 session.extension_id = ext.api_key;
-                offlineTokenRes.access_token_validity = platformConfig.oauthClient.token_expires_at;
+                offlineTokenRes.access_token_validity = partnerConfig.oauthClient.token_expires_at;
                 offlineTokenRes.access_mode = 'offline';
                 session.updateToken(offlineTokenRes);
 
