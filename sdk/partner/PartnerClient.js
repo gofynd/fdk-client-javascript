@@ -1,3 +1,5 @@
+const FileStorage = require("./FileStorage/FileStoragePartnerClient");
+
 const Theme = require("./Theme/ThemePartnerClient");
 
 const { FDKClientValidationError } = require("../common/FDKError");
@@ -16,6 +18,7 @@ class PartnerClient {
    */
   constructor(config) {
     this.config = config;
+    this.fileStorage = new FileStorage(config);
     this.theme = new Theme(config);
   }
 

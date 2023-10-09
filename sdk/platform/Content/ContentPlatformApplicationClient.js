@@ -921,79 +921,6 @@ class Content {
   }
 
   /**
-   * @param {ContentPlatformApplicationValidator.DeleteAllInjectableTagsParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
-   * @name deleteAllInjectableTags
-   * @summary: Delete tags in application
-   * @description: Use this API to delete all the existing tags at once. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/deleteAllInjectableTags/).
-   */
-  async deleteAllInjectableTags(
-    { requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ContentPlatformApplicationValidator.deleteAllInjectableTags().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ContentPlatformApplicationValidator.deleteAllInjectableTags().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Content > deleteAllInjectableTags \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/content/v1.0/company/${this.config.companyId}/application/${this.applicationId}/tags`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ContentPlatformModel.TagsSchema().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Content > deleteAllInjectableTags \n ${res_error}`,
-      });
-    }
-
-    return response;
-  }
-
-  /**
    * @param {ContentPlatformApplicationValidator.DeleteAnnouncementParam} arg
    *   - Arg object
    *
@@ -2890,16 +2817,18 @@ class Content {
    * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
    * @name getInjectableTags
    * @summary: Get all the tags in an application
-   * @description: Use this API to get all the CSS and JS injected in the application in the form of tags. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getInjectableTags/).
+   * @description: Use this API to get the CSS and JS injected in the application in the form of tags. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getInjectableTags/).
    */
   async getInjectableTags(
-    { requestHeaders } = { requestHeaders: {} },
+    { all, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.getInjectableTags().validate(
-      {},
+      {
+        all,
+      },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -2910,7 +2839,9 @@ class Content {
     const {
       error: warrning,
     } = ContentPlatformApplicationValidator.getInjectableTags().validate(
-      {},
+      {
+        all,
+      },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -2921,6 +2852,7 @@ class Content {
     }
 
     const query_params = {};
+    query_params["all"] = all;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -4815,8 +4747,8 @@ class Content {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<ContentPlatformModel.TagsSchema>} - Success response
    * @name updateInjectableTag
-   * @summary: Update a tag
-   * @description: Use this API to edit the details of an existing tag. This includes the tag name, tag type (css/js), url and position of the tag. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateInjectableTag/).
+   * @summary: Update the exisitng tags for an application by replacing with provided tags
+   * @description: Use this API to edit and override all existing tags. All existing tags will be replaced by the new tags provided in body.  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/updateInjectableTag/).
    */
   async updateInjectableTag(
     { body, requestHeaders } = { requestHeaders: {} },

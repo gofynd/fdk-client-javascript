@@ -31,19 +31,13 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef FailedResponse
+ * @property {string} message
+ */
+
+/**
  * @typedef Params
  * @property {string} [subpath] - The subpath for the file.
- */
-
-/**
- * @typedef SignUrlRequest
- * @property {number} expiry
- * @property {string[]} urls
- */
-
-/**
- * @typedef SignUrlResponse
- * @property {Urls[]} urls
  */
 
 /**
@@ -75,14 +69,7 @@ const Joi = require("joi");
  * @property {string} url
  */
 
-/**
- * @typedef Urls
- * @property {number} expiry
- * @property {string} signed_url
- * @property {string} url
- */
-
-class FileStorageApplicationModel {
+class FileStoragePartnerModel {
   /** @returns {CDN} */
   static CDN() {
     return Joi.object({
@@ -96,9 +83,9 @@ class FileStorageApplicationModel {
   static CompleteResponse() {
     return Joi.object({
       _id: Joi.string().allow("").required(),
-      cdn: FileStorageApplicationModel.CDN().required(),
+      cdn: FileStoragePartnerModel.CDN().required(),
       content_type: Joi.string().allow("").required(),
-      created_by: FileStorageApplicationModel.CreatedBy(),
+      created_by: FileStoragePartnerModel.CreatedBy(),
       created_on: Joi.string().allow("").required(),
       file_name: Joi.string().allow("").required(),
       file_path: Joi.string().allow("").required(),
@@ -108,7 +95,7 @@ class FileStorageApplicationModel {
       size: Joi.number().required(),
       success: Joi.boolean().required(),
       tags: Joi.array().items(Joi.string().allow("")),
-      upload: FileStorageApplicationModel.Upload().required(),
+      upload: FileStoragePartnerModel.Upload().required(),
     });
   }
 
@@ -119,25 +106,17 @@ class FileStorageApplicationModel {
     });
   }
 
+  /** @returns {FailedResponse} */
+  static FailedResponse() {
+    return Joi.object({
+      message: Joi.string().allow("").required(),
+    });
+  }
+
   /** @returns {Params} */
   static Params() {
     return Joi.object({
       subpath: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {SignUrlRequest} */
-  static SignUrlRequest() {
-    return Joi.object({
-      expiry: Joi.number().required(),
-      urls: Joi.array().items(Joi.string().allow("")).required(),
-    });
-  }
-
-  /** @returns {SignUrlResponse} */
-  static SignUrlResponse() {
-    return Joi.object({
-      urls: Joi.array().items(FileStorageApplicationModel.Urls()).required(),
     });
   }
 
@@ -146,7 +125,7 @@ class FileStorageApplicationModel {
     return Joi.object({
       content_type: Joi.string().allow("").required(),
       file_name: Joi.string().allow("").required(),
-      params: FileStorageApplicationModel.Params(),
+      params: FileStoragePartnerModel.Params(),
       size: Joi.number().required(),
       tags: Joi.array().items(Joi.string().allow("")),
     });
@@ -155,7 +134,7 @@ class FileStorageApplicationModel {
   /** @returns {StartResponse} */
   static StartResponse() {
     return Joi.object({
-      cdn: FileStorageApplicationModel.CDN().required(),
+      cdn: FileStoragePartnerModel.CDN().required(),
       content_type: Joi.string().allow("").required(),
       file_name: Joi.string().allow("").required(),
       file_path: Joi.string().allow("").required(),
@@ -164,7 +143,7 @@ class FileStorageApplicationModel {
       operation: Joi.string().allow("").required(),
       size: Joi.number().required(),
       tags: Joi.array().items(Joi.string().allow("")),
-      upload: FileStorageApplicationModel.Upload().required(),
+      upload: FileStoragePartnerModel.Upload().required(),
     });
   }
 
@@ -175,14 +154,5 @@ class FileStorageApplicationModel {
       url: Joi.string().allow("").required(),
     });
   }
-
-  /** @returns {Urls} */
-  static Urls() {
-    return Joi.object({
-      expiry: Joi.number().required(),
-      signed_url: Joi.string().allow("").required(),
-      url: Joi.string().allow("").required(),
-    });
-  }
 }
-module.exports = FileStorageApplicationModel;
+module.exports = FileStoragePartnerModel;

@@ -20,7 +20,6 @@ Content System
 * [createPage](#createpage)
 * [createPagePreview](#createpagepreview)
 * [createSlideshow](#createslideshow)
-* [deleteAllInjectableTags](#deleteallinjectabletags)
 * [deleteAnnouncement](#deleteannouncement)
 * [deleteBlog](#deleteblog)
 * [deleteDataLoader](#deletedataloader)
@@ -1282,79 +1281,6 @@ Success. Refer `SlideshowSchema` for more details.
 ```
 </details>
 
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### deleteAllInjectableTags
-Delete tags in application
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.deleteAllInjectableTags();
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.deleteAllInjectableTags();
-```
-
-
-
-
-
-
-Use this API to delete all the existing tags at once.
-
-*Returned Response:*
-
-
-
-
-[TagsSchema](#TagsSchema)
-
-Success.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "_id": "601f77e7aa61066feda44487",
-  "tags": [
-    {
-      "name": "Test",
-      "sub_type": "external",
-      "_id": "601f77e7aa61066feda44488",
-      "type": "js",
-      "url": "youtube.com/watch?v=AaxFIY-cWH0&list=PL3O3jhFJEElBHFbs6XsOqZAWZLtlEkZTw&index=31",
-      "position": "head"
-    },
-    {
-      "name": "Test 2",
-      "sub_type": "external",
-      "_id": "601f77e7aa61066feda44489",
-      "type": "js",
-      "url": "youtube.com/watch?v=AaxFIY-cWH0&list=PL3O3jhFJEElBHFbs6XsOqZAWZLtlEkZTw&index=31",
-      "position": "head"
-    }
-  ],
-  "application": "000000000000000000000001",
-  "__v": 0
-}
-```
 </details>
 
 
@@ -4207,18 +4133,23 @@ Get all the tags in an application
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.getInjectableTags();
+const promise = platformClient.application("<APPLICATION_ID>").content.getInjectableTags({  all : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.getInjectableTags();
+const data = await platformClient.application("<APPLICATION_ID>").content.getInjectableTags({  all : value });
 ```
 
 
 
 
 
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| all | boolean | no | Get all tags irrespective of the creator of tags |  
 
-Use this API to get all the CSS and JS injected in the application in the form of tags.
+
+
+Use this API to get the CSS and JS injected in the application in the form of tags.
 
 *Returned Response:*
 
@@ -6585,7 +6516,7 @@ Success.
 
 
 ### updateInjectableTag
-Update a tag
+Update the exisitng tags for an application by replacing with provided tags
 
 
 
@@ -6606,7 +6537,7 @@ const data = await platformClient.application("<APPLICATION_ID>").content.update
 | body | [CreateTagRequestSchema](#CreateTagRequestSchema) | yes | Request body |
 
 
-Use this API to edit the details of an existing tag. This includes the tag name, tag type (css/js), url and position of the tag.
+Use this API to edit and override all existing tags. All existing tags will be replaced by the new tags provided in body. 
 
 *Returned Response:*
 

@@ -6,6 +6,15 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef APIError
+ * @property {string} [code]
+ * @property {string} [info] - Error code description link
+ * @property {string} [message]
+ * @property {Object} [meta]
+ * @property {string} [request_id]
+ */
+
+/**
  * @typedef AuthenticationApiErrorSchema
  * @property {string} [message]
  */
@@ -345,8 +354,20 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef ResetForgotPasswordSuccess
+ * @property {boolean} [success]
+ */
+
+/**
  * @typedef ResetPasswordSuccess
  * @property {string} [status]
+ */
+
+/**
+ * @typedef SendEmailForgotOtpRequestSchema
+ * @property {string} [action]
+ * @property {string} [email]
+ * @property {string} [token]
  */
 
 /**
@@ -361,6 +382,15 @@ const Joi = require("joi");
 /**
  * @typedef SendEmailVerifyLinkSuccess
  * @property {boolean} [verify_email_link]
+ */
+
+/**
+ * @typedef SendMobileForgotOtpRequestSchema
+ * @property {string} [action]
+ * @property {string} [android_hash]
+ * @property {string} [country_code]
+ * @property {string} [mobile]
+ * @property {string} [token]
  */
 
 /**
@@ -490,6 +520,12 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef VerifyEmailForgotOtpRequestSchema
+ * @property {string} [email]
+ * @property {string} [otp]
+ */
+
+/**
  * @typedef VerifyEmailOtpRequestSchema
  * @property {string} [action]
  * @property {string} [email]
@@ -506,6 +542,18 @@ const Joi = require("joi");
 /**
  * @typedef VerifyEmailSuccess
  * @property {string} [message]
+ */
+
+/**
+ * @typedef VerifyForgotOtpSuccess
+ * @property {string} [forgot_token]
+ * @property {boolean} [success]
+ */
+
+/**
+ * @typedef VerifyMobileForgotOtpRequestSchema
+ * @property {string} [otp]
+ * @property {string} [request_id]
  */
 
 /**
@@ -533,6 +581,17 @@ class UserApplicationModel {
   static Accountkit() {
     return Joi.object({
       app_id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {APIError} */
+  static APIError() {
+    return Joi.object({
+      code: Joi.string().allow(""),
+      info: Joi.string().allow(""),
+      message: Joi.string().allow(""),
+      meta: Joi.any(),
+      request_id: Joi.string().allow(""),
     });
   }
 
@@ -965,10 +1024,26 @@ class UserApplicationModel {
     });
   }
 
+  /** @returns {ResetForgotPasswordSuccess} */
+  static ResetForgotPasswordSuccess() {
+    return Joi.object({
+      success: Joi.boolean(),
+    });
+  }
+
   /** @returns {ResetPasswordSuccess} */
   static ResetPasswordSuccess() {
     return Joi.object({
       status: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SendEmailForgotOtpRequestSchema} */
+  static SendEmailForgotOtpRequestSchema() {
+    return Joi.object({
+      action: Joi.string().allow(""),
+      email: Joi.string().allow(""),
+      token: Joi.string().allow(""),
     });
   }
 
@@ -987,6 +1062,17 @@ class UserApplicationModel {
   static SendEmailVerifyLinkSuccess() {
     return Joi.object({
       verify_email_link: Joi.boolean(),
+    });
+  }
+
+  /** @returns {SendMobileForgotOtpRequestSchema} */
+  static SendMobileForgotOtpRequestSchema() {
+    return Joi.object({
+      action: Joi.string().allow(""),
+      android_hash: Joi.string().allow(""),
+      country_code: Joi.string().allow(""),
+      mobile: Joi.string().allow(""),
+      token: Joi.string().allow(""),
     });
   }
 
@@ -1146,6 +1232,14 @@ class UserApplicationModel {
     });
   }
 
+  /** @returns {VerifyEmailForgotOtpRequestSchema} */
+  static VerifyEmailForgotOtpRequestSchema() {
+    return Joi.object({
+      email: Joi.string().allow(""),
+      otp: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {VerifyEmailOtpRequestSchema} */
   static VerifyEmailOtpRequestSchema() {
     return Joi.object({
@@ -1168,6 +1262,22 @@ class UserApplicationModel {
   static VerifyEmailSuccess() {
     return Joi.object({
       message: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {VerifyForgotOtpSuccess} */
+  static VerifyForgotOtpSuccess() {
+    return Joi.object({
+      forgot_token: Joi.string().allow(""),
+      success: Joi.boolean(),
+    });
+  }
+
+  /** @returns {VerifyMobileForgotOtpRequestSchema} */
+  static VerifyMobileForgotOtpRequestSchema() {
+    return Joi.object({
+      otp: Joi.string().allow(""),
+      request_id: Joi.string().allow(""),
     });
   }
 

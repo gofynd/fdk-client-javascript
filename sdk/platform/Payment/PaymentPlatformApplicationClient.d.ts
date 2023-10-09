@@ -63,6 +63,20 @@ declare class Payment {
      */
     confirmPayment({ body, requestHeaders }?: PaymentPlatformApplicationValidator.ConfirmPaymentParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.PaymentConfirmationResponse>;
     /**
+     * @param {PaymentPlatformApplicationValidator.CreateMerchantRefundPriorityParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<PaymentPlatformModel.RefundPriorityResponseSerializer>}
+     *   - Success response
+     *
+     * @name createMerchantRefundPriority
+     * @summary: API to create merchant refund priority
+     * @description: API to update merchant refund priority - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/createMerchantRefundPriority/).
+     */
+    createMerchantRefundPriority({ configType, body, requestHeaders }?: PaymentPlatformApplicationValidator.CreateMerchantRefundPriorityParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.RefundPriorityResponseSerializer>;
+    /**
      * @param {PaymentPlatformApplicationValidator.CreatePaymentLinkParam} arg
      *   - Arg object
      *
@@ -171,6 +185,20 @@ declare class Payment {
      * @description: This api fetches all the available PGs for merchant and its offline payment mode details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getMerchantPaymentOption/).
      */
     getMerchantPaymentOption({ requestHeaders }?: any, { responseHeaders }?: object): Promise<PaymentPlatformModel.MerchnatPaymentModeResponse>;
+    /**
+     * @param {PaymentPlatformApplicationValidator.GetMerchantRefundPriorityParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<PaymentPlatformModel.RefundPriorityResponseSerializer>}
+     *   - Success response
+     *
+     * @name getMerchantRefundPriority
+     * @summary: API to get merchant refund priority
+     * @description: API to get merchant refund priority - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getMerchantRefundPriority/).
+     */
+    getMerchantRefundPriority({ configType, requestHeaders }?: PaymentPlatformApplicationValidator.GetMerchantRefundPriorityParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.RefundPriorityResponseSerializer>;
     /**
      * @param {PaymentPlatformApplicationValidator.GetPGConfigAggregatorsParam} arg
      *   - Arg object
@@ -438,6 +466,20 @@ declare class Payment {
      * @description: Use this API to map new edc device to the terminal - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/updateEdcDevice/).
      */
     updateEdcDevice({ body, requestHeaders }?: PaymentPlatformApplicationValidator.UpdateEdcDeviceParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.EdcDeviceAddResponse>;
+    /**
+     * @param {PaymentPlatformApplicationValidator.UpdateMerchantRefundPriorityParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<PaymentPlatformModel.RefundPriorityResponseSerializer>}
+     *   - Success response
+     *
+     * @name updateMerchantRefundPriority
+     * @summary: API to update merchant refund priority
+     * @description: API to update merchant refund priority - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/updateMerchantRefundPriority/).
+     */
+    updateMerchantRefundPriority({ configType, body, requestHeaders }?: PaymentPlatformApplicationValidator.UpdateMerchantRefundPriorityParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.RefundPriorityResponseSerializer>;
     /**
      * @param {PaymentPlatformApplicationValidator.UpdatePaymentSessionParam} arg
      *   - Arg object

@@ -37,6 +37,11 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
  */
 
 /**
+ * @typedef GeneratePaymentReceiptParam
+ * @property {FileStoragePlatformModel.PaymentReceiptRequestBody} body
+ */
+
+/**
  * @typedef GetDefaultHtmlTemplateParam
  * @property {number} pdfTypeId
  * @property {string} format
@@ -56,13 +61,14 @@ const FileStoragePlatformModel = require("./FileStoragePlatformModel");
 /** @typedef GetPdfTypesParam */
 
 /**
- * @typedef PreviewTemplateParam
- * @property {FileStoragePlatformModel.pdfRender} body
+ * @typedef SaveHtmlTemplateParam
+ * @property {FileStoragePlatformModel.PdfConfig} body
  */
 
 /**
- * @typedef SaveHtmlTemplateParam
- * @property {FileStoragePlatformModel.pdfConfig} body
+ * @typedef UpdateHtmlTemplateParam
+ * @property {string} id
+ * @property {FileStoragePlatformModel.PdfConfig} body
  */
 
 class FileStoragePlatformApplicationValidator {
@@ -103,6 +109,13 @@ class FileStoragePlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {GeneratePaymentReceiptParam} */
+  static generatePaymentReceipt() {
+    return Joi.object({
+      body: FileStoragePlatformModel.PaymentReceiptRequestBody().required(),
+    }).required();
+  }
+
   /** @returns {GetDefaultHtmlTemplateParam} */
   static getDefaultHtmlTemplate() {
     return Joi.object({
@@ -131,17 +144,18 @@ class FileStoragePlatformApplicationValidator {
     return Joi.object({}).required();
   }
 
-  /** @returns {PreviewTemplateParam} */
-  static previewTemplate() {
-    return Joi.object({
-      body: FileStoragePlatformModel.pdfRender().required(),
-    }).required();
-  }
-
   /** @returns {SaveHtmlTemplateParam} */
   static saveHtmlTemplate() {
     return Joi.object({
-      body: FileStoragePlatformModel.pdfConfig().required(),
+      body: FileStoragePlatformModel.PdfConfig().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateHtmlTemplateParam} */
+  static updateHtmlTemplate() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      body: FileStoragePlatformModel.PdfConfig().required(),
     }).required();
   }
 }

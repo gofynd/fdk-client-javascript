@@ -141,6 +141,21 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef PartialUserGroupUpdateSchema
+ * @property {string} [description]
+ * @property {string} [file_url] - Required property when passed type file_url.
+ *   Internet reachable csv file url which will be used to fetch download data.
+ *   It must have one of columns from `phone_number``, `email`, `user_id` and
+ *   must have `action` column. `action` column can have `add` or `remove` value.
+ * @property {string} [name]
+ * @property {string} [type] - Source of update to be used to update individual
+ *   users. Default value is considered file_url if not passed.
+ * @property {UserGroupUpdateData[]} [user_data] - Required property when passed
+ *   type json. Array of user data. Must have `action` field and one of
+ *   `phone_number`, `email` or `user_id` field in object
+ */
+
+/**
  * @typedef PhoneNumber
  * @property {boolean} [active]
  * @property {number} [country_code]
@@ -311,6 +326,14 @@ const Joi = require("joi");
  * @property {string} [name]
  * @property {string} [status]
  * @property {number} [uid]
+ */
+
+/**
+ * @typedef UserGroupUpdateData
+ * @property {string} action
+ * @property {string} [email] - Email of registered user
+ * @property {string} [phone_number] - Phone number of registered user
+ * @property {string} [user_id] - Must be valid mongodb objectid of existing user
  */
 
 /**
@@ -532,6 +555,17 @@ class UserPlatformModel {
     });
   }
 
+  /** @returns {PartialUserGroupUpdateSchema} */
+  static PartialUserGroupUpdateSchema() {
+    return Joi.object({
+      description: Joi.string().allow(""),
+      file_url: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+      user_data: Joi.array().items(UserPlatformModel.UserGroupUpdateData()),
+    });
+  }
+
   /** @returns {PhoneNumber} */
   static PhoneNumber() {
     return Joi.object({
@@ -746,6 +780,16 @@ class UserPlatformModel {
       name: Joi.string().allow(""),
       status: Joi.string().allow(""),
       uid: Joi.number(),
+    });
+  }
+
+  /** @returns {UserGroupUpdateData} */
+  static UserGroupUpdateData() {
+    return Joi.object({
+      action: Joi.string().allow("").required(),
+      email: Joi.string().allow(""),
+      phone_number: Joi.string().allow(""),
+      user_id: Joi.string().allow(""),
     });
   }
 

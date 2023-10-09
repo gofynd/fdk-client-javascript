@@ -112,7 +112,7 @@ export = OrderPlatformValidator;
  * @property {string} [searchType]
  * @property {string} [searchValue]
  * @property {string} [tags]
- * @property {string} [timeToDispatch]
+ * @property {number} [timeToDispatch]
  * @property {string} [paymentMethods]
  * @property {boolean} [myOrders]
  * @property {boolean} [showCrossCompanyData] - Flag to view cross & non-cross
@@ -131,7 +131,7 @@ export = OrderPlatformValidator;
  *   be used as the target for the search operation
  * @property {string} [bagStatus] - Bag_status refers to status of the entity.
  *   Filters orders based on the status.
- * @property {string} [timeToDispatch] - Time_to_dispatch refers to estimated SLA time.
+ * @property {number} [timeToDispatch] - Time_to_dispatch refers to estimated SLA time.
  * @property {string} [paymentMethods]
  * @property {string} [tags] - Tags refers to additional descriptive labels
  *   associated with the order
@@ -588,7 +588,7 @@ type GetLaneConfigParam = {
     searchType?: string;
     searchValue?: string;
     tags?: string;
-    timeToDispatch?: string;
+    timeToDispatch?: number;
     paymentMethods?: string;
     myOrders?: boolean;
     /**
@@ -620,7 +620,7 @@ type GetOrdersParam = {
     /**
      * - Time_to_dispatch refers to estimated SLA time.
      */
-    timeToDispatch?: string;
+    timeToDispatch?: number;
     paymentMethods?: string;
     /**
      * - Tags refers to additional descriptive labels

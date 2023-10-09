@@ -25,6 +25,7 @@ Authentication Service
 * [updatePlatformConfig](#updateplatformconfig)
 * [updateUser](#updateuser)
 * [updateUserGroup](#updateusergroup)
+* [updateUserGroupPartially](#updateusergrouppartially)
 
 
 
@@ -1487,6 +1488,76 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 ---
 
 
+### updateUserGroupPartially
+Add or Remove an user from particular user group and update user group details
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").user.updateUserGroupPartially({  groupId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").user.updateUserGroupPartially({  groupId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| groupId | string | yes | Numeric ID allotted to a User Group |  
+| body | [PartialUserGroupUpdateSchema](#PartialUserGroupUpdateSchema) | yes | Request body |
+
+
+Use this API to update user group details and add or remove an user to the user group.
+
+*Returned Response:*
+
+
+
+
+[UserGroupResponseSchema](#UserGroupResponseSchema)
+
+Success. returns updated User Group. `UserGroupResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "is_active": true,
+  "_id": "6345677535474fbb6944b7ce",
+  "name": "Group 1",
+  "description": "description",
+  "file_url": "url",
+  "status": "pending",
+  "uid": 1,
+  "application_id": "000000000000000000000001",
+  "created_at": "2022-10-11T12:54:13.539Z",
+  "modified_at": "2022-10-11T12:54:13.539Z",
+  "__v": 0
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 
 ### Schemas
 
@@ -1715,6 +1786,19 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
  | item_total | number? |  yes  |  |
  | size | number? |  yes  |  |
  | type | string? |  yes  |  |
+ 
+
+---
+
+#### [PartialUserGroupUpdateSchema](#PartialUserGroupUpdateSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string? |  yes  |  |
+ | file_url | string? |  yes  | Required property when passed type file_url. Internet reachable csv file url which will be used to fetch download data. It must have one of columns from `phone_number``, `email``, `user_id`` and must have `action` column. `action` column can have `add` or `remove` value. |
+ | name | string? |  yes  |  |
+ | type | string? |  yes  | Source of update to be used to update individual users. Default value is considered file_url if not passed. |
+ | user_data | [[UserGroupUpdateData](#UserGroupUpdateData)]? |  yes  | Required property when passed type json. Array of user data. Must have `action` field and one of `phone_number`, `email` or `user_id` field in object |
  
 
 ---
@@ -1972,6 +2056,18 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
  | name | string? |  yes  |  |
  | status | string? |  yes  |  |
  | uid | number? |  yes  |  |
+ 
+
+---
+
+#### [UserGroupUpdateData](#UserGroupUpdateData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | action | string |  no  |  |
+ | email | string? |  yes  | Email of registered user |
+ | phone_number | string? |  yes  | Phone number of registered user |
+ | user_id | string? |  yes  | Must be valid mongodb objectid of existing user |
  
 
 ---

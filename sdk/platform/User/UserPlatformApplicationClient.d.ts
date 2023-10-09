@@ -181,6 +181,18 @@ declare class User {
      * @description: Use this API to update an existing user Group - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/updateUserGroup/).
      */
     updateUserGroup({ groupId, body, requestHeaders }?: UserPlatformApplicationValidator.UpdateUserGroupParam, { responseHeaders }?: object): Promise<UserPlatformModel.UserGroupResponseSchema>;
+    /**
+     * @param {UserPlatformApplicationValidator.UpdateUserGroupPartiallyParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<UserPlatformModel.UserGroupResponseSchema>} - Success response
+     * @name updateUserGroupPartially
+     * @summary: Add or Remove an user from particular user group and update user group details
+     * @description: Use this API to update user group details and add or remove an user to the user group. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/updateUserGroupPartially/).
+     */
+    updateUserGroupPartially({ groupId, body, requestHeaders }?: UserPlatformApplicationValidator.UpdateUserGroupPartiallyParam, { responseHeaders }?: object): Promise<UserPlatformModel.UserGroupResponseSchema>;
 }
 import UserPlatformApplicationValidator = require("./UserPlatformApplicationValidator");
 import UserPlatformModel = require("./UserPlatformModel");

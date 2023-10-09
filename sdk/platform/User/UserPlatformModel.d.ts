@@ -118,6 +118,20 @@ export = UserPlatformModel;
  * @property {string} [type]
  */
 /**
+ * @typedef PartialUserGroupUpdateSchema
+ * @property {string} [description]
+ * @property {string} [file_url] - Required property when passed type file_url.
+ *   Internet reachable csv file url which will be used to fetch download data.
+ *   It must have one of columns from `phone_number``, `email`, `user_id` and
+ *   must have `action` column. `action` column can have `add` or `remove` value.
+ * @property {string} [name]
+ * @property {string} [type] - Source of update to be used to update individual
+ *   users. Default value is considered file_url if not passed.
+ * @property {UserGroupUpdateData[]} [user_data] - Required property when passed
+ *   type json. Array of user data. Must have `action` field and one of
+ *   `phone_number`, `email` or `user_id` field in object
+ */
+/**
  * @typedef PhoneNumber
  * @property {boolean} [active]
  * @property {number} [country_code]
@@ -270,6 +284,13 @@ export = UserPlatformModel;
  * @property {number} [uid]
  */
 /**
+ * @typedef UserGroupUpdateData
+ * @property {string} action
+ * @property {string} [email] - Email of registered user
+ * @property {string} [phone_number] - Phone number of registered user
+ * @property {string} [user_id] - Must be valid mongodb objectid of existing user
+ */
+/**
  * @typedef UserPhoneNumbers
  * @property {boolean} [active]
  * @property {string} [country_code]
@@ -303,7 +324,7 @@ export = UserPlatformModel;
 declare class UserPlatformModel {
 }
 declare namespace UserPlatformModel {
-    export { Accountkit, ArchiveUserRequestSchema, ArchiveUserSuccess, AuthenticationApiErrorSchema, BlockUserRequestSchema, BlockUserSuccess, CreateUserGroupSchema, CreateUserRequestSchema, CreateUserResponseSchema, CreateUserSessionRequestSchema, CreateUserSessionResponseSchema, CustomerListResponseSchema, DeleteAccountConsent, DeleteAccountReasons, Email, Facebook, FlashCard, Google, Login, LookAndFeel, MetaSchema, PaginationSchema, PhoneNumber, PlatformEmail, PlatformMobile, PlatformSchema, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, RequiredFields, SessionDeleteResponseSchema, SessionExpiry, SessionListResponseInfo, SessionListResponseSchema, Social, SocialTokens, UnDeleteUserRequestSchema, UnDeleteUserSuccess, UpdateUserGroupSchema, UpdateUserRequestSchema, UserEmails, UserGroupListResponseSchema, UserGroupResponseSchema, UserPhoneNumbers, UserSchema, UserSearchResponseSchema };
+    export { Accountkit, ArchiveUserRequestSchema, ArchiveUserSuccess, AuthenticationApiErrorSchema, BlockUserRequestSchema, BlockUserSuccess, CreateUserGroupSchema, CreateUserRequestSchema, CreateUserResponseSchema, CreateUserSessionRequestSchema, CreateUserSessionResponseSchema, CustomerListResponseSchema, DeleteAccountConsent, DeleteAccountReasons, Email, Facebook, FlashCard, Google, Login, LookAndFeel, MetaSchema, PaginationSchema, PartialUserGroupUpdateSchema, PhoneNumber, PlatformEmail, PlatformMobile, PlatformSchema, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, RequiredFields, SessionDeleteResponseSchema, SessionExpiry, SessionListResponseInfo, SessionListResponseSchema, Social, SocialTokens, UnDeleteUserRequestSchema, UnDeleteUserSuccess, UpdateUserGroupSchema, UpdateUserRequestSchema, UserEmails, UserGroupListResponseSchema, UserGroupResponseSchema, UserGroupUpdateData, UserPhoneNumbers, UserSchema, UserSearchResponseSchema };
 }
 /** @returns {Accountkit} */
 declare function Accountkit(): Accountkit;
@@ -444,6 +465,30 @@ type PaginationSchema = {
     item_total?: number;
     size?: number;
     type?: string;
+};
+/** @returns {PartialUserGroupUpdateSchema} */
+declare function PartialUserGroupUpdateSchema(): PartialUserGroupUpdateSchema;
+type PartialUserGroupUpdateSchema = {
+    description?: string;
+    /**
+     * - Required property when passed type file_url.
+     * Internet reachable csv file url which will be used to fetch download data.
+     * It must have one of columns from `phone_number``, `email`, `user_id` and
+     * must have `action` column. `action` column can have `add` or `remove` value.
+     */
+    file_url?: string;
+    name?: string;
+    /**
+     * - Source of update to be used to update individual
+     * users. Default value is considered file_url if not passed.
+     */
+    type?: string;
+    /**
+     * - Required property when passed
+     * type json. Array of user data. Must have `action` field and one of
+     * `phone_number`, `email` or `user_id` field in object
+     */
+    user_data?: UserGroupUpdateData[];
 };
 /** @returns {PhoneNumber} */
 declare function PhoneNumber(): PhoneNumber;
@@ -617,6 +662,23 @@ type UserGroupResponseSchema = {
     name?: string;
     status?: string;
     uid?: number;
+};
+/** @returns {UserGroupUpdateData} */
+declare function UserGroupUpdateData(): UserGroupUpdateData;
+type UserGroupUpdateData = {
+    action: string;
+    /**
+     * - Email of registered user
+     */
+    email?: string;
+    /**
+     * - Phone number of registered user
+     */
+    phone_number?: string;
+    /**
+     * - Must be valid mongodb objectid of existing user
+     */
+    user_id?: string;
 };
 /** @returns {UserPhoneNumbers} */
 declare function UserPhoneNumbers(): UserPhoneNumbers;

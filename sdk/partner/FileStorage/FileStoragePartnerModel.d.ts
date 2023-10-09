@@ -1,4 +1,4 @@
-export = FileStorageApplicationModel;
+export = FileStoragePartnerModel;
 /**
  * @typedef CDN
  * @property {string} absolute_url
@@ -27,17 +27,12 @@ export = FileStorageApplicationModel;
  * @property {string} [username]
  */
 /**
+ * @typedef FailedResponse
+ * @property {string} message
+ */
+/**
  * @typedef Params
  * @property {string} [subpath] - The subpath for the file.
- */
-/**
- * @typedef SignUrlRequest
- * @property {number} expiry
- * @property {string[]} urls
- */
-/**
- * @typedef SignUrlResponse
- * @property {Urls[]} urls
  */
 /**
  * @typedef StartRequest
@@ -65,16 +60,10 @@ export = FileStorageApplicationModel;
  * @property {number} expiry
  * @property {string} url
  */
-/**
- * @typedef Urls
- * @property {number} expiry
- * @property {string} signed_url
- * @property {string} url
- */
-declare class FileStorageApplicationModel {
+declare class FileStoragePartnerModel {
 }
-declare namespace FileStorageApplicationModel {
-    export { CDN, CompleteResponse, CreatedBy, Params, SignUrlRequest, SignUrlResponse, StartRequest, StartResponse, Upload, Urls };
+declare namespace FileStoragePartnerModel {
+    export { CDN, CompleteResponse, CreatedBy, FailedResponse, Params, StartRequest, StartResponse, Upload };
 }
 /** @returns {CDN} */
 declare function CDN(): CDN;
@@ -106,6 +95,11 @@ declare function CreatedBy(): CreatedBy;
 type CreatedBy = {
     username?: string;
 };
+/** @returns {FailedResponse} */
+declare function FailedResponse(): FailedResponse;
+type FailedResponse = {
+    message: string;
+};
 /** @returns {Params} */
 declare function Params(): Params;
 type Params = {
@@ -113,17 +107,6 @@ type Params = {
      * - The subpath for the file.
      */
     subpath?: string;
-};
-/** @returns {SignUrlRequest} */
-declare function SignUrlRequest(): SignUrlRequest;
-type SignUrlRequest = {
-    expiry: number;
-    urls: string[];
-};
-/** @returns {SignUrlResponse} */
-declare function SignUrlResponse(): SignUrlResponse;
-type SignUrlResponse = {
-    urls: Urls[];
 };
 /** @returns {StartRequest} */
 declare function StartRequest(): StartRequest;
@@ -152,12 +135,5 @@ type StartResponse = {
 declare function Upload(): Upload;
 type Upload = {
     expiry: number;
-    url: string;
-};
-/** @returns {Urls} */
-declare function Urls(): Urls;
-type Urls = {
-    expiry: number;
-    signed_url: string;
     url: string;
 };

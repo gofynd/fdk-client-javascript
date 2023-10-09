@@ -384,6 +384,13 @@ export = CatalogApplicationModel;
  * @property {string} [title]
  */
 /**
+ * @typedef ProductDepartment
+ * @property {Media} [logo]
+ * @property {string} [name]
+ * @property {string} [slug]
+ * @property {number} [uid]
+ */
+/**
  * @typedef ProductDetail
  * @property {Object} [_custom_json]
  * @property {CustomMetaFields[]} [_custom_meta]
@@ -394,6 +401,7 @@ export = CatalogApplicationModel;
  * @property {ProductCategoryMap} [category_map]
  * @property {string} [color]
  * @property {ProductDetailCustomOrder} [custom_order]
+ * @property {ProductDepartment} [department]
  * @property {string} [description]
  * @property {string} [discount]
  * @property {ProductDetailGroupedAttribute[]} [grouped_attributes]
@@ -967,7 +975,7 @@ export = CatalogApplicationModel;
 declare class CatalogApplicationModel {
 }
 declare namespace CatalogApplicationModel {
-    export { ApplicationItemMOQ, ApplicationItemSEO, ApplicationStoreListing, AppStore, ArticleAssignmentV3, AttributeDetail, AttributeMetadata, AutocompleteItem, AutoCompleteResponse, BrandDetailResponse, BrandItem, BrandListingResponse, CategoryBanner, CategoryItems, CategoryListingResponse, CategoryMetaResponse, Child, CollectionDetailResponse, CollectionListingFilter, CollectionListingFilterTag, CollectionListingFilterType, CollectionQuery, ColumnHeader, ColumnHeaders, CompanyDetail, CompanyStore, CustomMetaFields, Department, DepartmentCategoryTree, DepartmentIdentifier, DepartmentResponse, DetailsSchemaV3, Dimension, DiscountMeta, ErrorResponse, FollowerCountResponse, FollowIdsData, FollowIdsResponse, FollowPostResponse, GetCollectionDetailNest, GetCollectionListingResponse, GetFollowListingResponse, HomeListingResponse, ImageUrls, LatLong, MarketPlaceSttributesSchemaV3, Media, Meta, NetQuantity, Page, Price, ProductBrand, ProductBundle, ProductCategoryMap, ProductCompareResponse, ProductDetail, ProductDetailAttribute, ProductDetailCustomOrder, ProductDetailGroupedAttribute, ProductDetails, ProductFilters, ProductFiltersKey, ProductFiltersValue, ProductFrequentlyComparedSimilarResponse, ProductGroupingModel, ProductGroupPrice, ProductInGroup, ProductListingAction, ProductListingActionPage, ProductListingDetail, ProductListingPrice, ProductListingResponse, ProductsComparisonResponse, ProductSetDistributionSizeV3, ProductSetDistributionV3, ProductSetV3, ProductSize, ProductSizePriceResponseV3, ProductSizes, ProductSizeSellerFilterSchemaV3, ProductSizeSellersResponseV3, ProductSizesPrice, ProductSizeStores, ProductSortOn, ProductStockPolling, ProductStockPrice, ProductStockPriceV3, ProductStockStatusItem, ProductStockStatusResponse, ProductStockUnitPriceV3, ProductVariantItemResponse, ProductVariantListingResponse, ProductVariantResponse, ProductVariantsResponse, PromiseSchema, ReturnConfigSchemaV3, SecondLevelChild, Seller, SellerGroupAttributes, SellerPhoneNumber, SellerV3, Size, SizeChart, SizeChartValues, Store, StoreAddressSerializer, StoreDepartments, StoreDetail, StoreDetails, StoreListingResponse, StoreManagerSerializer, StoreTiming, StoreV3, StrategyWiseListingSchemaV3, ThirdLevelChild, Time, UserDetail, Weight };
+    export { ApplicationItemMOQ, ApplicationItemSEO, ApplicationStoreListing, AppStore, ArticleAssignmentV3, AttributeDetail, AttributeMetadata, AutocompleteItem, AutoCompleteResponse, BrandDetailResponse, BrandItem, BrandListingResponse, CategoryBanner, CategoryItems, CategoryListingResponse, CategoryMetaResponse, Child, CollectionDetailResponse, CollectionListingFilter, CollectionListingFilterTag, CollectionListingFilterType, CollectionQuery, ColumnHeader, ColumnHeaders, CompanyDetail, CompanyStore, CustomMetaFields, Department, DepartmentCategoryTree, DepartmentIdentifier, DepartmentResponse, DetailsSchemaV3, Dimension, DiscountMeta, ErrorResponse, FollowerCountResponse, FollowIdsData, FollowIdsResponse, FollowPostResponse, GetCollectionDetailNest, GetCollectionListingResponse, GetFollowListingResponse, HomeListingResponse, ImageUrls, LatLong, MarketPlaceSttributesSchemaV3, Media, Meta, NetQuantity, Page, Price, ProductBrand, ProductBundle, ProductCategoryMap, ProductCompareResponse, ProductDepartment, ProductDetail, ProductDetailAttribute, ProductDetailCustomOrder, ProductDetailGroupedAttribute, ProductDetails, ProductFilters, ProductFiltersKey, ProductFiltersValue, ProductFrequentlyComparedSimilarResponse, ProductGroupingModel, ProductGroupPrice, ProductInGroup, ProductListingAction, ProductListingActionPage, ProductListingDetail, ProductListingPrice, ProductListingResponse, ProductsComparisonResponse, ProductSetDistributionSizeV3, ProductSetDistributionV3, ProductSetV3, ProductSize, ProductSizePriceResponseV3, ProductSizes, ProductSizeSellerFilterSchemaV3, ProductSizeSellersResponseV3, ProductSizesPrice, ProductSizeStores, ProductSortOn, ProductStockPolling, ProductStockPrice, ProductStockPriceV3, ProductStockStatusItem, ProductStockStatusResponse, ProductStockUnitPriceV3, ProductVariantItemResponse, ProductVariantListingResponse, ProductVariantResponse, ProductVariantsResponse, PromiseSchema, ReturnConfigSchemaV3, SecondLevelChild, Seller, SellerGroupAttributes, SellerPhoneNumber, SellerV3, Size, SizeChart, SizeChartValues, Store, StoreAddressSerializer, StoreDepartments, StoreDetail, StoreDetails, StoreListingResponse, StoreManagerSerializer, StoreTiming, StoreV3, StrategyWiseListingSchemaV3, ThirdLevelChild, Time, UserDetail, Weight };
 }
 /** @returns {ApplicationItemMOQ} */
 declare function ApplicationItemMOQ(): ApplicationItemMOQ;
@@ -1474,6 +1482,14 @@ type ProductCompareResponse = {
     subtitle?: string;
     title?: string;
 };
+/** @returns {ProductDepartment} */
+declare function ProductDepartment(): ProductDepartment;
+type ProductDepartment = {
+    logo?: Media;
+    name?: string;
+    slug?: string;
+    uid?: number;
+};
 /** @returns {ProductDetail} */
 declare function ProductDetail(): ProductDetail;
 type ProductDetail = {
@@ -1486,6 +1502,7 @@ type ProductDetail = {
     category_map?: ProductCategoryMap;
     color?: string;
     custom_order?: ProductDetailCustomOrder;
+    department?: ProductDepartment;
     description?: string;
     discount?: string;
     grouped_attributes?: ProductDetailGroupedAttribute[];

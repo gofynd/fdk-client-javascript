@@ -14,6 +14,7 @@ Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.in
 * [cancelPaymentLink](#cancelpaymentlink)
 * [checkAndUpdatePaymentStatus](#checkandupdatepaymentstatus)
 * [confirmPayment](#confirmpayment)
+* [createMerchantRefundPriority](#createmerchantrefundpriority)
 * [createPaymentLink](#createpaymentlink)
 * [deletePayout](#deletepayout)
 * [deleteSubscriptionPaymentMethod](#deletesubscriptionpaymentmethod)
@@ -26,6 +27,7 @@ Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.in
 * [getEdcDevice](#getedcdevice)
 * [getMerchantAggregatorPaymentModeDetails](#getmerchantaggregatorpaymentmodedetails)
 * [getMerchantPaymentOption](#getmerchantpaymentoption)
+* [getMerchantRefundPriority](#getmerchantrefundpriority)
 * [getPGConfigAggregators](#getpgconfigaggregators)
 * [getPaymentCodeOption](#getpaymentcodeoption)
 * [getPaymentLink](#getpaymentlink)
@@ -52,6 +54,7 @@ Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.in
 * [saveSubscriptionSetupIntent](#savesubscriptionsetupintent)
 * [setUserCODlimitRoutes](#setusercodlimitroutes)
 * [updateEdcDevice](#updateedcdevice)
+* [updateMerchantRefundPriority](#updatemerchantrefundpriority)
 * [updatePaymentSession](#updatepaymentsession)
 * [updatePayout](#updatepayout)
 * [updateRefundSession](#updaterefundsession)
@@ -411,6 +414,100 @@ Success. Returns the status of payment. Check the example shown below or refer `
   "order_id": "FY60F90AEF01FF43E878"
 }
 ```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createMerchantRefundPriority
+API to create merchant refund priority
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").payment.createMerchantRefundPriority({  configType : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").payment.createMerchantRefundPriority({  configType : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| configType | string | yes | configuration for merchant or customer |  
+| body | [RefundPriorityRequestSerializer](#RefundPriorityRequestSerializer) | yes | Request body |
+
+
+API to update merchant refund priority
+
+*Returned Response:*
+
+
+
+
+[RefundPriorityResponseSerializer](#RefundPriorityResponseSerializer)
+
+Success. Returns the status of Update or not. Check the example shown below or refer `RefundPriorityResponseSerializer` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "summary": "success",
+  "value": {
+    "success": true,
+    "message": "Created successfully",
+    "apportion": true,
+    "configuration": "merchant",
+    "refund_sources_priority": [
+      {
+        "source": "back_to_online_source,",
+        "description": "Back to online payment source",
+        "priority": 0
+      },
+      {
+        "source": "RONE",
+        "description": "Rone wallet",
+        "priority": 1
+      },
+      {
+        "source": "FC",
+        "description": "Fynd Cash",
+        "priority": 2
+      },
+      {
+        "source": "CreditNote",
+        "description": "Credit Note",
+        "priority": 3
+      }
+    ]
+  }
+}
+```
+</details>
+
 </details>
 
 
@@ -1411,6 +1508,98 @@ Success.
             "split_payment": {}
           }
         }
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getMerchantRefundPriority
+API to get merchant refund priority
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").payment.getMerchantRefundPriority({  configType : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").payment.getMerchantRefundPriority({  configType : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| configType | string | yes | configuration for merchant or customer |  
+
+
+
+API to get merchant refund priority
+
+*Returned Response:*
+
+
+
+
+[RefundPriorityResponseSerializer](#RefundPriorityResponseSerializer)
+
+Success. Returns the status of Update or not. Check the example shown below or refer `RefundPriorityResponseSerializer` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "summary": "success",
+  "value": {
+    "success": true,
+    "message": "Created successfully",
+    "apportion": true,
+    "configuration": "merchant",
+    "refund_sources_priority": [
+      {
+        "source": "back_to_online_source,",
+        "description": "Back to online payment source",
+        "priority": 0
+      },
+      {
+        "source": "RONE",
+        "description": "Rone wallet",
+        "priority": 1
+      },
+      {
+        "source": "FC",
+        "description": "Fynd Cash",
+        "priority": 2
+      },
+      {
+        "source": "CreditNote",
+        "description": "Credit Note",
+        "priority": 3
       }
     ]
   }
@@ -5734,6 +5923,100 @@ Success. Returns the single edc device mapped to the terminal. Check the example
 ---
 
 
+### updateMerchantRefundPriority
+API to update merchant refund priority
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").payment.updateMerchantRefundPriority({  configType : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").payment.updateMerchantRefundPriority({  configType : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| configType | string | yes | configuration for merchant or customer |  
+| body | [RefundPriorityRequestSerializer](#RefundPriorityRequestSerializer) | yes | Request body |
+
+
+API to update merchant refund priority
+
+*Returned Response:*
+
+
+
+
+[RefundPriorityResponseSerializer](#RefundPriorityResponseSerializer)
+
+Success. Returns the status of Update or not. Check the example shown below or refer `RefundPriorityResponseSerializer` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "summary": "success",
+  "value": {
+    "success": true,
+    "message": "Created successfully",
+    "apportion": true,
+    "configuration": "merchant",
+    "refund_sources_priority": [
+      {
+        "source": "back_to_online_source,",
+        "description": "Back to online payment source",
+        "priority": 0
+      },
+      {
+        "source": "RONE",
+        "description": "Rone wallet",
+        "priority": 1
+      },
+      {
+        "source": "FC",
+        "description": "Fynd Cash",
+        "priority": 2
+      },
+      {
+        "source": "CreditNote",
+        "description": "Credit Note",
+        "priority": 3
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### updatePaymentSession
 API to update status of a payment.
 
@@ -7222,6 +7505,29 @@ Bank details on correct Ifsc Code
 
 ---
 
+#### [RefundPriorityRequestSerializer](#RefundPriorityRequestSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | apportion | boolean |  no  | apportion refund to multiple sources |
+ | refund_sources_priority | [[RefundSourcesPriority](#RefundSourcesPriority)] |  no  | refund sources priority |
+ 
+
+---
+
+#### [RefundPriorityResponseSerializer](#RefundPriorityResponseSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | apportion | boolean |  no  | apportion refund to multiple sources |
+ | configuration | string |  no  | configuration for merchant or customer |
+ | message | string? |  yes  | message |
+ | refund_sources_priority | [[RefundSourcesPriority](#RefundSourcesPriority)] |  no  | refund sources priority |
+ | success | boolean |  no  | success |
+ 
+
+---
+
 #### [RefundSessionDetail](#RefundSessionDetail)
 
  | Properties | Type | Nullable | Description |
@@ -7265,6 +7571,17 @@ Bank details on correct Ifsc Code
  | platform_refund_details | [string] |  no  | details of the refund |
  | status | string |  no  | The status of the refund. |
  | total_refund_amount | number |  no  | The total amount refunded. |
+ 
+
+---
+
+#### [RefundSourcesPriority](#RefundSourcesPriority)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string |  no  | description of refund source |
+ | priority | number |  no  | priority of refund source, 0 being highest |
+ | source | string |  no  | source of refund |
  
 
 ---

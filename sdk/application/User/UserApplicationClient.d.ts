@@ -23,6 +23,9 @@ declare class User {
         loginWithToken: string;
         logout: string;
         registerWithForm: string;
+        resetForgotPassword: string;
+        sendForgotOTPOnEmail: string;
+        sendForgotOTPOnMobile: string;
         sendOTPOnEmail: string;
         sendOTPOnMobile: string;
         sendResetPasswordEmail: string;
@@ -35,8 +38,10 @@ declare class User {
         updatePassword: string;
         updateProfile: string;
         verifyEmail: string;
+        verifyEmailForgotOTP: string;
         verifyEmailOTP: string;
         verifyMobile: string;
+        verifyMobileForgotOTP: string;
         verifyMobileOTP: string;
     };
     _urls: {};
@@ -242,6 +247,37 @@ declare class User {
      */
     registerWithForm({ body, platform, requestHeaders }?: UserApplicationValidator.RegisterWithFormParam, { responseHeaders }?: object): Promise<UserApplicationModel.RegisterFormSuccess>;
     /**
+     * @param {UserApplicationValidator.ResetForgotPasswordParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<UserApplicationModel.ResetForgotPasswordSuccess>} -
+     *   Success response
+     * @name resetForgotPassword
+     * @summary: Reset forgot Password
+     * @description: Use this API to reset a password using the code sent on email or SMS. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/resetForgotPassword/).
+     */
+    resetForgotPassword({ body, requestHeaders }?: UserApplicationValidator.ResetForgotPasswordParam, { responseHeaders }?: object): Promise<UserApplicationModel.ResetForgotPasswordSuccess>;
+    /**
+     * @param {UserApplicationValidator.SendForgotOTPOnEmailParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<UserApplicationModel.EmailOtpSuccess>} - Success response
+     * @name sendForgotOTPOnEmail
+     * @summary: Send Forgot OTP on email
+     * @description: Use this API to send an Forgot OTP to an email ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendForgotOTPOnEmail/).
+     */
+    sendForgotOTPOnEmail({ body, platform, requestHeaders }?: UserApplicationValidator.SendForgotOTPOnEmailParam, { responseHeaders }?: object): Promise<UserApplicationModel.EmailOtpSuccess>;
+    /**
+     * @param {UserApplicationValidator.SendForgotOTPOnMobileParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<UserApplicationModel.OtpSuccess>} - Success response
+     * @name sendForgotOTPOnMobile
+     * @summary: Send Forgot OTP on mobile
+     * @description: Use this API to send an Forgot OTP to a mobile number. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/sendForgotOTPOnMobile/).
+     */
+    sendForgotOTPOnMobile({ body, platform, requestHeaders }?: UserApplicationValidator.SendForgotOTPOnMobileParam, { responseHeaders }?: object): Promise<UserApplicationModel.OtpSuccess>;
+    /**
      * @param {UserApplicationValidator.SendOTPOnEmailParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -367,6 +403,16 @@ declare class User {
      */
     verifyEmail({ body, requestHeaders }?: UserApplicationValidator.VerifyEmailParam, { responseHeaders }?: object): Promise<UserApplicationModel.VerifyEmailSuccess>;
     /**
+     * @param {UserApplicationValidator.VerifyEmailForgotOTPParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<UserApplicationModel.VerifyForgotOtpSuccess>} - Success response
+     * @name verifyEmailForgotOTP
+     * @summary: Verify Forgot OTP on email
+     * @description: Use this API to verify the Forgot OTP received on an email ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyEmailForgotOTP/).
+     */
+    verifyEmailForgotOTP({ body, platform, requestHeaders }?: UserApplicationValidator.VerifyEmailForgotOTPParam, { responseHeaders }?: object): Promise<UserApplicationModel.VerifyForgotOtpSuccess>;
+    /**
      * @param {UserApplicationValidator.VerifyEmailOTPParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -386,6 +432,16 @@ declare class User {
      * @description: Use this API to send a verification code to verify a mobile number. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyMobile/).
      */
     verifyMobile({ body, requestHeaders }?: UserApplicationValidator.VerifyMobileParam, { responseHeaders }?: object): Promise<UserApplicationModel.VerifyEmailSuccess>;
+    /**
+     * @param {UserApplicationValidator.VerifyMobileForgotOTPParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<UserApplicationModel.VerifyForgotOtpSuccess>} - Success response
+     * @name verifyMobileForgotOTP
+     * @summary: Verify Forgot OTP on mobile
+     * @description: Use this API to verify the Forgot OTP received on a mobile number. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/verifyMobileForgotOTP/).
+     */
+    verifyMobileForgotOTP({ body, platform, requestHeaders }?: UserApplicationValidator.VerifyMobileForgotOTPParam, { responseHeaders }?: object): Promise<UserApplicationModel.VerifyForgotOtpSuccess>;
     /**
      * @param {UserApplicationValidator.VerifyMobileOTPParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

@@ -17,7 +17,7 @@ class FileStorage {
    * @param {FileStoragePlatformValidator.BrowseParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<FileStoragePlatformModel.BrowseResponse>} - Success response
+   * @returns {Promise<Object>} - Success response
    * @name browse
    * @summary: Browse Files
    * @description: Browse Files - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/browse/).
@@ -77,9 +77,7 @@ class FileStorage {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = FileStoragePlatformModel.BrowseResponse().validate(responseData, {
+    const { error: res_error } = Joi.any().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });
@@ -195,7 +193,7 @@ class FileStorage {
    * @param {FileStoragePlatformValidator.CopyFilesParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<FileStoragePlatformModel.BulkUploadSyncMode>} - Success response
+   * @returns {Promise<Object>} - Success response
    * @name copyFiles
    * @summary: Copy Files
    * @description: Copy Files - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/copyFiles/).
@@ -252,9 +250,7 @@ class FileStorage {
       responseData = response[0];
     }
 
-    const {
-      error: res_error,
-    } = FileStoragePlatformModel.BulkUploadSyncMode().validate(responseData, {
+    const { error: res_error } = Joi.any().validate(responseData, {
       abortEarly: false,
       allowUnknown: false,
     });

@@ -440,6 +440,14 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef ProductDepartment
+ * @property {Media} [logo]
+ * @property {string} [name]
+ * @property {string} [slug]
+ * @property {number} [uid]
+ */
+
+/**
  * @typedef ProductDetail
  * @property {Object} [_custom_json]
  * @property {CustomMetaFields[]} [_custom_meta]
@@ -450,6 +458,7 @@ const Joi = require("joi");
  * @property {ProductCategoryMap} [category_map]
  * @property {string} [color]
  * @property {ProductDetailCustomOrder} [custom_order]
+ * @property {ProductDepartment} [department]
  * @property {string} [description]
  * @property {string} [discount]
  * @property {ProductDetailGroupedAttribute[]} [grouped_attributes]
@@ -1643,6 +1652,16 @@ class CatalogApplicationModel {
     });
   }
 
+  /** @returns {ProductDepartment} */
+  static ProductDepartment() {
+    return Joi.object({
+      logo: CatalogApplicationModel.Media(),
+      name: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
+      uid: Joi.number(),
+    });
+  }
+
   /** @returns {ProductDetail} */
   static ProductDetail() {
     return Joi.object({
@@ -1657,6 +1676,7 @@ class CatalogApplicationModel {
       category_map: CatalogApplicationModel.ProductCategoryMap(),
       color: Joi.string().allow(""),
       custom_order: CatalogApplicationModel.ProductDetailCustomOrder(),
+      department: CatalogApplicationModel.ProductDepartment(),
       description: Joi.string().allow(""),
       discount: Joi.string().allow(""),
       grouped_attributes: Joi.array().items(

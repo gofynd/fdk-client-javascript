@@ -100,6 +100,12 @@ const UserPlatformModel = require("./UserPlatformModel");
  * @property {UserPlatformModel.UpdateUserGroupSchema} body
  */
 
+/**
+ * @typedef UpdateUserGroupPartiallyParam
+ * @property {string} groupId - Numeric ID allotted to a User Group
+ * @property {UserPlatformModel.PartialUserGroupUpdateSchema} body
+ */
+
 class UserPlatformApplicationValidator {
   /** @returns {ArchiveUserParam} */
   static archiveUser() {
@@ -227,6 +233,14 @@ class UserPlatformApplicationValidator {
     return Joi.object({
       groupId: Joi.string().allow("").required(),
       body: UserPlatformModel.UpdateUserGroupSchema().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateUserGroupPartiallyParam} */
+  static updateUserGroupPartially() {
+    return Joi.object({
+      groupId: Joi.string().allow("").required(),
+      body: UserPlatformModel.PartialUserGroupUpdateSchema().required(),
     }).required();
   }
 }
