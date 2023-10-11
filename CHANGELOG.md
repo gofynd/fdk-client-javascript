@@ -1,4 +1,26 @@
-# CHANGE LOG (1.3.4-beta.2) - v1.8.3-prerelease-v2
+# CHANGE LOG (1.3.5-beta.1) - v1.8.4-prerelease-v1
+
+## Platform Client
+
+
+
+### Catalog
+
+
+
+#### getProductBulkUploadHistory
+
+- ##### What's New
+	- [Added] property `items[]` of schema `ProductBulkRequestList` in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] properties `items.cancelled`, `items.cancelled_records`, `items.company_id`, `items.created_by`, `items.created_on`, `items.failed`, `items.failed_records`, `items.file_path`, `items.is_active`, `items.modified_by`, `items.modified_on`, `items.stage`, `items.succeed`, `items.template`, `items.template_tag`, `items.total` in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from `object` to `array` of property `items` of schema `ProductBulkRequest` in response with status code 200
+
+
+# CHANGE LOG (1.3.4) - fp-v1.8.3
 
 ## Application Client
 

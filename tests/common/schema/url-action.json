@@ -290,7 +290,6 @@
         }
       }
     },
-
     {
       "name": "faq with category",
       "path": "/faq/:category",
@@ -300,9 +299,7 @@
           "page": {
             "type": "faq",
             "query": {},
-            "params": {
-              "category": ["order123"]
-            }
+            "params": {}
           }
         }
       }
@@ -495,7 +492,7 @@
     },
     {
       "name": "shared token",
-      "path": "/shared-cart/:1234",
+      "path": "/shared-cart/1234",
       "result": {
         "action": {
           "type": "page",

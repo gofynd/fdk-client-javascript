@@ -2304,7 +2304,7 @@ const Joi = require("joi");
 
 /**
  * @typedef ProductBulkRequestList
- * @property {ProductBulkRequest} [items]
+ * @property {ProductBulkRequest[]} [items]
  * @property {Page} [page]
  */
 
@@ -6113,7 +6113,7 @@ class CatalogPlatformModel {
   /** @returns {ProductBulkRequestList} */
   static ProductBulkRequestList() {
     return Joi.object({
-      items: CatalogPlatformModel.ProductBulkRequest(),
+      items: Joi.array().items(CatalogPlatformModel.ProductBulkRequest()),
       page: CatalogPlatformModel.Page(),
     });
   }

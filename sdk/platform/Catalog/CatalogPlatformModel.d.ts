@@ -2062,7 +2062,7 @@ export = CatalogPlatformModel;
  */
 /**
  * @typedef ProductBulkRequestList
- * @property {ProductBulkRequest} [items]
+ * @property {ProductBulkRequest[]} [items]
  * @property {Page} [page]
  */
 /**
@@ -6141,7 +6141,7 @@ type ProductBulkRequest = {
 /** @returns {ProductBulkRequestList} */
 declare function ProductBulkRequestList(): ProductBulkRequestList;
 type ProductBulkRequestList = {
-    items?: ProductBulkRequest;
+    items?: ProductBulkRequest[];
     page?: Page;
 };
 /** @returns {ProductBundleItem} */

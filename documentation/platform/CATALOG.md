@@ -11481,46 +11481,48 @@ List of bulk product upload jobs. See `BulkRequestGetSchema` for details
 
 ```json
 {
-  "items": {
-    "cancelled": 0,
-    "cancelled_records": [],
-    "company_id": 61,
-    "created_by": {
-      "full_name": "Anuja Yadav",
-      "user_id": "23218433",
-      "username": "yadavanuja039_gmail_com_82948"
-    },
-    "created_on": "2021-03-12T08:11:06.848000Z",
-    "failed": 0,
-    "failed_records": [],
-    "file_path": "https://hdn-1.fynd.com/company/61/self/documents/product-import/free/original/mkX5ApRmw-sample_bulk_products_footwear.xlsx",
-    "id": "604b221a73bfa20001cb00e8",
-    "is_active": true,
-    "modified_by": {
-      "user_id": "0",
-      "username": "Silverbolt"
-    },
-    "modified_on": "2021-03-12T08:11:08.646000Z",
-    "stage": "completed",
-    "succeed": 1,
-    "template": {
-      "banner": "https://hdn-1.fynd.com/seller/pictures/landscape-banner/original/nFPtXR_Beauty_&_Personal_Care_L.jpgf30455a5-d265-4382-b513-65afb9240320/nFPtXR_Beauty_and_Personal_Care_L.jpg",
-      "departments": [
-        "men",
-        "women",
-        "kids",
-        "fashion"
-      ],
-      "description": "Footwear is a garment worn on the feet to protect against environmental adversities like heat or ground textures. Example: Sports Shoes",
-      "is_expirable": true,
-      "is_physical": true,
-      "logo": "https://hdn-1.fynd.com/seller/pictures/logo/original/9Y2UEp_ssssss.jpg7359e4c6-4c53-4dbe-a920-ef8ac658afb1/9Y2UEp_ssssss.jpg",
-      "name": "Footwear",
-      "slug": "footwear"
-    },
-    "template_tag": "footwear",
-    "total": 1
-  },
+  "items": [
+    {
+      "cancelled": 0,
+      "cancelled_records": [],
+      "company_id": 61,
+      "created_by": {
+        "full_name": "Anuja Yadav",
+        "user_id": "23218433",
+        "username": "yadavanuja039_gmail_com_82948"
+      },
+      "created_on": "2021-03-12T08:11:06.848000Z",
+      "failed": 0,
+      "failed_records": [],
+      "file_path": "https://hdn-1.fynd.com/company/61/self/documents/product-import/free/original/mkX5ApRmw-sample_bulk_products_footwear.xlsx",
+      "id": "604b221a73bfa20001cb00e8",
+      "is_active": true,
+      "modified_by": {
+        "user_id": "0",
+        "username": "Silverbolt"
+      },
+      "modified_on": "2021-03-12T08:11:08.646000Z",
+      "stage": "completed",
+      "succeed": 1,
+      "template": {
+        "banner": "https://hdn-1.fynd.com/seller/pictures/landscape-banner/original/nFPtXR_Beauty_&_Personal_Care_L.jpgf30455a5-d265-4382-b513-65afb9240320/nFPtXR_Beauty_and_Personal_Care_L.jpg",
+        "departments": [
+          "men",
+          "women",
+          "kids",
+          "fashion"
+        ],
+        "description": "Footwear is a garment worn on the feet to protect against environmental adversities like heat or ground textures. Example: Sports Shoes",
+        "is_expirable": true,
+        "is_physical": true,
+        "logo": "https://hdn-1.fynd.com/seller/pictures/logo/original/9Y2UEp_ssssss.jpg7359e4c6-4c53-4dbe-a920-ef8ac658afb1/9Y2UEp_ssssss.jpg",
+        "name": "Footwear",
+        "slug": "footwear"
+      },
+      "template_tag": "footwear",
+      "total": 1
+    }
+  ],
   "page": {
     "current": 1,
     "has_next": true,
@@ -19940,7 +19942,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [ProductBulkRequest](#ProductBulkRequest)? |  yes  |  |
+ | items | [[ProductBulkRequest](#ProductBulkRequest)]? |  yes  |  |
  | page | [Page](#Page)? |  yes  |  |
  
 
