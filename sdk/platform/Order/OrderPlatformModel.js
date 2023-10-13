@@ -1955,6 +1955,7 @@ const Joi = require("joi");
  * @property {LineItem[]} line_items
  * @property {number} location_id
  * @property {Object} [meta]
+ * @property {string} [order_type]
  * @property {number} [priority]
  * @property {ProcessingDates} [processing_dates]
  */
@@ -2222,6 +2223,7 @@ const Joi = require("joi");
  * @typedef ShipmentStatusData
  * @property {string[]} [bag_list]
  * @property {string} [created_at]
+ * @property {string} [current_shipment_status]
  * @property {string} [display_name]
  * @property {number} [id]
  * @property {Object} [meta]
@@ -4969,6 +4971,7 @@ class OrderPlatformModel {
       line_items: Joi.array().items(OrderPlatformModel.LineItem()).required(),
       location_id: Joi.number().required(),
       meta: Joi.any(),
+      order_type: Joi.string().allow(""),
       priority: Joi.number(),
       processing_dates: OrderPlatformModel.ProcessingDates(),
     });
@@ -5284,6 +5287,7 @@ class OrderPlatformModel {
     return Joi.object({
       bag_list: Joi.array().items(Joi.string().allow("")),
       created_at: Joi.string().allow("").allow(null),
+      current_shipment_status: Joi.string().allow("").allow(null),
       display_name: Joi.string().allow("").allow(null),
       id: Joi.number().allow(null),
       meta: Joi.any().allow(null),

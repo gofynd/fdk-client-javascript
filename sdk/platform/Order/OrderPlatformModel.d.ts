@@ -1761,6 +1761,7 @@ export = OrderPlatformModel;
  * @property {LineItem[]} line_items
  * @property {number} location_id
  * @property {Object} [meta]
+ * @property {string} [order_type]
  * @property {number} [priority]
  * @property {ProcessingDates} [processing_dates]
  */
@@ -2008,6 +2009,7 @@ export = OrderPlatformModel;
  * @typedef ShipmentStatusData
  * @property {string[]} [bag_list]
  * @property {string} [created_at]
+ * @property {string} [current_shipment_status]
  * @property {string} [display_name]
  * @property {number} [id]
  * @property {Object} [meta]
@@ -4537,6 +4539,7 @@ type Shipment = {
     line_items: LineItem[];
     location_id: number;
     meta?: any;
+    order_type?: string;
     priority?: number;
     processing_dates?: ProcessingDates;
 };
@@ -4810,6 +4813,7 @@ declare function ShipmentStatusData(): ShipmentStatusData;
 type ShipmentStatusData = {
     bag_list?: string[];
     created_at?: string;
+    current_shipment_status?: string;
     display_name?: string;
     id?: number;
     meta?: any;

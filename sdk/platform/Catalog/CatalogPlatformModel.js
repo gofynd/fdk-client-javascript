@@ -2285,12 +2285,12 @@ const Joi = require("joi");
 /**
  * @typedef ProductBulkRequest
  * @property {number} [cancelled]
- * @property {string[]} [cancelled_records]
+ * @property {Object[]} [cancelled_records]
  * @property {number} [company_id]
  * @property {UserDetail1} [created_by]
  * @property {string} [created_on]
  * @property {number} [failed]
- * @property {string[]} [failed_records]
+ * @property {Object[]} [failed_records]
  * @property {string} [file_path]
  * @property {boolean} [is_active]
  * @property {UserDetail1} [modified_by]
@@ -6092,12 +6092,12 @@ class CatalogPlatformModel {
   static ProductBulkRequest() {
     return Joi.object({
       cancelled: Joi.number(),
-      cancelled_records: Joi.array().items(Joi.string().allow("")),
+      cancelled_records: Joi.array().items(Joi.any()),
       company_id: Joi.number(),
       created_by: CatalogPlatformModel.UserDetail1(),
       created_on: Joi.string().allow(""),
       failed: Joi.number(),
-      failed_records: Joi.array().items(Joi.string().allow("")),
+      failed_records: Joi.array().items(Joi.any()),
       file_path: Joi.string().allow(""),
       is_active: Joi.boolean(),
       modified_by: CatalogPlatformModel.UserDetail1(),

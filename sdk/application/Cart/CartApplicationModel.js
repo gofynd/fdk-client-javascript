@@ -1129,23 +1129,23 @@ class CartApplicationModel {
       aggregator: Joi.string().allow(""),
       billing_address: Joi.any(),
       billing_address_id: Joi.string().allow(""),
-      callback_url: Joi.string().allow("").allow(null),
+      callback_url: Joi.string().allow(""),
       custom_meta: Joi.array().items(
         CartApplicationModel.CartCheckoutCustomMeta()
       ),
-      customer_details: Joi.any().allow(null),
+      customer_details: Joi.any(),
       delivery_address: Joi.any(),
       extra_meta: Joi.any(),
-      id: Joi.string().allow("").allow(null),
+      id: Joi.string().allow(""),
       merchant_code: Joi.string().allow(""),
       meta: Joi.any(),
       order_type: Joi.string().allow(""),
-      ordering_store: Joi.number().allow(null),
+      ordering_store: Joi.number(),
       payment_auto_confirm: Joi.boolean(),
       payment_extra_identifiers: Joi.any(),
-      payment_identifier: Joi.string().allow("").allow(null),
+      payment_identifier: Joi.string().allow(""),
       payment_mode: Joi.string().allow("").required(),
-      payment_params: Joi.any().allow(null),
+      payment_params: Joi.any(),
       staff: CartApplicationModel.StaffCheckout(),
     });
   }
@@ -1452,7 +1452,7 @@ class CartApplicationModel {
   /** @returns {CustomerDetails} */
   static CustomerDetails() {
     return Joi.object({
-      email: Joi.string().allow("").allow(null),
+      email: Joi.string().allow(""),
       mobile: Joi.string().allow("").required(),
       name: Joi.string().allow(""),
     });

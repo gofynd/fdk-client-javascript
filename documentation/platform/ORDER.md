@@ -7696,6 +7696,7 @@ Verify OTP
  | line_items | [[LineItem](#LineItem)] |  no  |  |
  | location_id | number |  no  |  |
  | meta | string? |  yes  |  |
+ | order_type | string? |  yes  |  |
  | priority | number? |  yes  |  |
  | processing_dates | [ProcessingDates](#ProcessingDates)? |  yes  |  |
  
@@ -8043,6 +8044,7 @@ Verify OTP
  | ---------- | ---- | -------- | ----------- |
  | bag_list | [string]? |  yes  |  |
  | created_at | string? |  yes  |  |
+ | current_shipment_status | string? |  yes  |  |
  | display_name | string? |  yes  |  |
  | id | number? |  yes  |  |
  | meta | string? |  yes  |  |

@@ -2044,12 +2044,12 @@ export = CatalogPlatformModel;
 /**
  * @typedef ProductBulkRequest
  * @property {number} [cancelled]
- * @property {string[]} [cancelled_records]
+ * @property {Object[]} [cancelled_records]
  * @property {number} [company_id]
  * @property {UserDetail1} [created_by]
  * @property {string} [created_on]
  * @property {number} [failed]
- * @property {string[]} [failed_records]
+ * @property {Object[]} [failed_records]
  * @property {string} [file_path]
  * @property {boolean} [is_active]
  * @property {UserDetail1} [modified_by]
@@ -6122,12 +6122,12 @@ type ProductBulkAssets = {
 declare function ProductBulkRequest(): ProductBulkRequest;
 type ProductBulkRequest = {
     cancelled?: number;
-    cancelled_records?: string[];
+    cancelled_records?: any[];
     company_id?: number;
     created_by?: UserDetail1;
     created_on?: string;
     failed?: number;
-    failed_records?: string[];
+    failed_records?: any[];
     file_path?: string;
     is_active?: boolean;
     modified_by?: UserDetail1;
