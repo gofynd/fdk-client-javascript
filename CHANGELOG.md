@@ -1,24 +1,4 @@
-# CHANGE LOG (1.3.5-beta.2) - v1.8.4-prerelease-v2
-
-## Application Client
-
-
-
-### Cart
-
-
-
-#### checkoutCart
-
-- ##### What's Deprecated
-	- [Deleted] Possible nullable value from `true` from property `customer_details` of schema `CartCheckoutDetailRequest` in request body
-	- [Deleted] Possible nullable value from `true` from property `id` of schema `CartCheckoutDetailRequest` in request body
-	- [Breaking] [Deleted] Default value from property `callback_url` of schema `CartCheckoutDetailRequest` in request body
-	- [Deleted] Possible nullable value from `true` from property `callback_url` of schema `CartCheckoutDetailRequest` in request body
-	- [Deleted] Possible nullable value from `true` from property `ordering_store` of schema `CartCheckoutDetailRequest` in request body
-	- [Deleted] Possible nullable value from `true` from property `payment_identifier` of schema `CartCheckoutDetailRequest` in request body
-	- [Deleted] Possible nullable value from `true` from property `payment_params` of schema `CartCheckoutDetailRequest` in request body
-
+# CHANGE LOG (1.3.5-beta.3) - v1.8.4-prerelease-v3
 
 ## Platform Client
 
@@ -40,32 +20,33 @@
 	- [Breaking] [Changed] Type from `object` to `array` of property `items` of schema `ProductBulkRequest` in response with status code 200
 
 
-### Order
+### User
 
 
 
-#### createOrder
-
-- ##### What's New
-	- [Added] property `shipments[].order_type` of schema `Shipment` in request body
-
-
-#### getShipmentById
+#### getCustomers
 
 - ##### What's New
-	- [Added] property `shipments[].status.current_shipment_status` of schema `ShipmentStatusData` in response with status code 200
+	- [Added] property `items[].external_id` of schema `UserSchema` in response with status code 200
 
 
-#### getOrderById
-
-- ##### What's New
-	- [Added] property `shipments[].status.current_shipment_status` of schema `ShipmentStatusData` in response with status code 200
-
-
-#### getOrders
+#### searchUsers
 
 - ##### What's New
-	- [Added] property `items[].shipments[].status.current_shipment_status` of schema `ShipmentStatusData` in response with status code 200
+	- [Added] property `users[].external_id` of schema `UserSchema` in response with status code 200
+
+
+#### createUser
+
+- ##### What's New
+	- [Added] property `external_id` of schema `CreateUserRequestSchema` in request body
+	- [Added] property `user.external_id` of schema `UserSchema` in response with status code 200
+
+
+#### updateUser
+
+- ##### What's New
+	- [Added] property `user.external_id` of schema `UserSchema` in response with status code 200
 
 
 # CHANGE LOG (1.3.4) - fp-v1.8.3

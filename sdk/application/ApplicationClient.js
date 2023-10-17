@@ -58,12 +58,19 @@ class ApplicationClient {
    *
    * @param {import("./ApplicationConfig").LocationObject} locationDetails -
    *   The location details to set.
+   * @param {boolean} [isNew=false] - If passed `true`, it will flush all the
+   *   old data and assign new one. if passed `false` it will update only new
+   *   passed values and keep old values for other data. Default is `false`
    */
-  setLocationDetails(locationDetails) {
-    this.config.locationDetails = {
-      ...this.config.locationDetails,
-      ...locationDetails,
-    };
+  setLocationDetails(locationDetails, isNew = false) {
+    if (isNew === true) {
+      this.config.locationDetails = locationDetails;
+    } else {
+      this.config.locationDetails = {
+        ...this.config.locationDetails,
+        ...locationDetails,
+      };
+    }
   }
 
   /**

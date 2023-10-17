@@ -34,6 +34,7 @@ export = UserPlatformModel;
 /**
  * @typedef CreateUserRequestSchema
  * @property {string} [email]
+ * @property {string} [external_id]
  * @property {string} [first_name]
  * @property {string} [gender]
  * @property {string} [last_name]
@@ -307,6 +308,7 @@ export = UserPlatformModel;
  * @property {string} [created_at]
  * @property {string} [dob]
  * @property {Email[]} [emails]
+ * @property {string} [external_id]
  * @property {string} [first_name]
  * @property {string} [gender]
  * @property {string} [last_name]
@@ -369,6 +371,7 @@ type CreateUserGroupSchema = {
 declare function CreateUserRequestSchema(): CreateUserRequestSchema;
 type CreateUserRequestSchema = {
     email?: string;
+    external_id?: string;
     first_name?: string;
     gender?: string;
     last_name?: string;
@@ -699,6 +702,7 @@ type UserSchema = {
     created_at?: string;
     dob?: string;
     emails?: Email[];
+    external_id?: string;
     first_name?: string;
     gender?: string;
     last_name?: string;

@@ -42,6 +42,7 @@ const Joi = require("joi");
 /**
  * @typedef CreateUserRequestSchema
  * @property {string} [email]
+ * @property {string} [external_id]
  * @property {string} [first_name]
  * @property {string} [gender]
  * @property {string} [last_name]
@@ -354,6 +355,7 @@ const Joi = require("joi");
  * @property {string} [created_at]
  * @property {string} [dob]
  * @property {Email[]} [emails]
+ * @property {string} [external_id]
  * @property {string} [first_name]
  * @property {string} [gender]
  * @property {string} [last_name]
@@ -428,6 +430,7 @@ class UserPlatformModel {
   static CreateUserRequestSchema() {
     return Joi.object({
       email: Joi.string().allow(""),
+      external_id: Joi.string().allow(""),
       first_name: Joi.string().allow(""),
       gender: Joi.string().allow(""),
       last_name: Joi.string().allow(""),
@@ -814,6 +817,7 @@ class UserPlatformModel {
       created_at: Joi.string().allow(""),
       dob: Joi.string().allow(""),
       emails: Joi.array().items(UserPlatformModel.Email()),
+      external_id: Joi.string().allow(""),
       first_name: Joi.string().allow(""),
       gender: Joi.string().allow(""),
       last_name: Joi.string().allow(""),

@@ -36,8 +36,11 @@ declare class ApplicationClient {
      *
      * @param {import("./ApplicationConfig").LocationObject} locationDetails -
      *   The location details to set.
+     * @param {boolean} [isNew=false] - If passed `true`, it will flush all the
+     *   old data and assign new one. if passed `false` it will update only new
+     *   passed values and keep old values for other data. Default is `false`
      */
-    setLocationDetails(locationDetails: import("./ApplicationConfig").LocationObject): void;
+    setLocationDetails(locationDetails: import("./ApplicationConfig").LocationObject, isNew?: boolean): void;
     /**
      * Sets the currency code in ApplicationConfig.
      *

@@ -1634,6 +1634,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | email | string? |  yes  |  |
+ | external_id | string? |  yes  |  |
  | first_name | string? |  yes  |  |
  | gender | string? |  yes  |  |
  | last_name | string? |  yes  |  |
@@ -2096,6 +2097,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
  | created_at | string? |  yes  |  |
  | dob | string? |  yes  |  |
  | emails | [[Email](#Email)]? |  yes  |  |
+ | external_id | string? |  yes  |  |
  | first_name | string? |  yes  |  |
  | gender | string? |  yes  |  |
  | last_name | string? |  yes  |  |
