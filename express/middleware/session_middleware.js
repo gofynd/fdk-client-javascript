@@ -23,9 +23,7 @@ function sessionMiddleware(strict) {
 function partnerSessionMiddleware(isStrict) {
     return async (req, res, next) => {
         try {
-            const organizationId = req.headers['x-organization-id'] || req.query['organization_id'];
-            const cookieName = `${ADMIN_SESSION_COOKIE_NAME}_${organizationId}`;
-            let sessionId = req.signedCookies[cookieName];
+            let sessionId = req.signedCookies[ADMIN_SESSION_COOKIE_NAME];
             req.fdkSession = await SessionStorage.getSession(sessionId);
 
             if (isStrict && !req.fdkSession) {

@@ -247,11 +247,10 @@ function setupRoutes(ext) {
                 }
             }
 
-            req.FdkSession = session;
+            req.fdkSession = session;
             req.extension = ext;
 
-            const cookieName = `${ADMIN_SESSION_COOKIE_NAME}_${organizationId}`;
-            res.header['x-organization-id'] = organizationId;
+            const cookieName = ADMIN_SESSION_COOKIE_NAME;
             res.cookie(cookieName, session.id, {
                 secure: true,
                 httpOnly: true,
@@ -333,7 +332,7 @@ function setupRoutes(ext) {
                 await SessionStorage.saveSession(session);
             }
 
-            const cookieName = `${ADMIN_SESSION_COOKIE_NAME}_${organizationId}`;
+            const cookieName = ADMIN_SESSION_COOKIE_NAME;
 
             res.cookie(cookieName, req.fdkSession.id, {
                 secure: true,
@@ -342,7 +341,6 @@ function setupRoutes(ext) {
                 signed: true,
                 sameSite: 'none'
             })
-            res.header['x-organization-id'] = organizationId;
 
             let redirectUrl = urljoin(ext.base_url, '/admin')
             logger.debug(`Redirecting after auth callback to url: ${redirectUrl}`)
