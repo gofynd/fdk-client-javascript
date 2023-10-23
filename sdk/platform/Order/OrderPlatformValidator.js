@@ -145,6 +145,7 @@ const OrderPlatformModel = require("./OrderPlatformModel");
 /**
  * @typedef GetOrderByIdParam
  * @property {string} orderId
+ * @property {boolean} [myOrders]
  */
 
 /**
@@ -517,6 +518,7 @@ class OrderPlatformValidator {
   static getOrderById() {
     return Joi.object({
       orderId: Joi.string().allow("").required(),
+      myOrders: Joi.boolean(),
     }).required();
   }
 

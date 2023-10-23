@@ -94,6 +94,7 @@ export = DiscountPlatformModel;
  * @property {Object} [body]
  * @property {number} company_id
  * @property {number} failed
+ * @property {string} file_path
  * @property {string} file_type
  * @property {string} stage
  * @property {number} total
@@ -246,6 +247,7 @@ type FileJobResponse = {
     body?: any;
     company_id: number;
     failed: number;
+    file_path: string;
     file_type: string;
     stage: string;
     total: number;

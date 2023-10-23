@@ -1493,10 +1493,12 @@ Response containing count of shipments of the given status
 
 ```javascript
 // Promise
-const promise = platformClient.order.getOrderById({  orderId : value });
+const promise = platformClient.order.getOrderById({  orderId : value,
+ myOrders : value });
 
 // Async/Await
-const data = await platformClient.order.getOrderById({  orderId : value });
+const data = await platformClient.order.getOrderById({  orderId : value,
+ myOrders : value });
 ```
 
 
@@ -1505,7 +1507,8 @@ const data = await platformClient.order.getOrderById({  orderId : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| orderId | string | yes |  |  
+| orderId | string | yes |  |    
+| myOrders | boolean | no |  |  
 
 
 
@@ -5973,6 +5976,7 @@ Verify OTP
  | shipments | [[Shipment](#Shipment)] |  no  |  |
  | shipping_info | [ShippingInfo](#ShippingInfo) |  no  |  |
  | tax_info | [TaxInfo](#TaxInfo)? |  yes  |  |
+ | user_info | [UserInfo](#UserInfo) |  no  |  |
  
 
 ---
@@ -7696,6 +7700,7 @@ Verify OTP
  | line_items | [[LineItem](#LineItem)] |  no  |  |
  | location_id | number |  no  |  |
  | meta | string? |  yes  |  |
+ | order_type | string? |  yes  |  |
  | priority | number? |  yes  |  |
  | processing_dates | [ProcessingDates](#ProcessingDates)? |  yes  |  |
  
@@ -8043,6 +8048,7 @@ Verify OTP
  | ---------- | ---- | -------- | ----------- |
  | bag_list | [string]? |  yes  |  |
  | created_at | string? |  yes  |  |
+ | current_shipment_status | string? |  yes  |  |
  | display_name | string? |  yes  |  |
  | id | number? |  yes  |  |
  | meta | string? |  yes  |  |
@@ -8526,6 +8532,21 @@ Verify OTP
  | phone | string |  no  |  |
  | pincode | string |  no  |  |
  | state | string |  no  |  |
+ 
+
+---
+
+#### [UserInfo](#UserInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | email | string |  no  |  |
+ | first_name | string |  no  |  |
+ | gender | string? |  yes  |  |
+ | last_name | string? |  yes  |  |
+ | mobile | string |  no  |  |
+ | user_id | string? |  yes  |  |
+ | user_type | string? |  yes  |  |
  
 
 ---

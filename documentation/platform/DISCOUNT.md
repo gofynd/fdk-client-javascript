@@ -817,6 +817,7 @@ Success
  | body | string? |  yes  |  |
  | company_id | number |  no  |  |
  | failed | number |  no  |  |
+ | file_path | string |  no  |  |
  | file_type | string |  no  |  |
  | stage | string |  no  |  |
  | total | number |  no  |  |

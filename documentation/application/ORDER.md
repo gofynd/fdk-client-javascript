@@ -1867,7 +1867,8 @@ Success. Check the example shown below or refer `ShipmentById` for more details.
           "size": "OS",
           "code": "TIS-102",
           "id": 7500474,
-          "seller_identifier": "987432134"
+          "seller_identifier": "987432134",
+          "attributes": {}
         },
         "financial_breakup": [
           {
@@ -2799,6 +2800,7 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | attributes | string? |  yes  |  |
  | brand | [ItemBrand](#ItemBrand)? |  yes  |  |
  | code | string? |  yes  |  |
  | id | number? |  yes  |  |

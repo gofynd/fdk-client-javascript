@@ -6,7 +6,7 @@
 ##### [Back to Platform docs](./README.md)
 
 ## Catalog Methods
-Catalog - Platform Front API's' API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features. 
+Catalog - Platform Front API's' API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.
 
 * [addCollectionItems](#addcollectionitems)
 * [addInventory](#addinventory)
@@ -3995,7 +3995,14 @@ The Company Applicaton Product Data(MOQ/SEO).
   },
   "seo": {
     "description": "test-description",
-    "title": "test-title"
+    "title": "test-title",
+    "breadcrumbs": [],
+    "sitemap": {},
+    "meta_tags": []
+  },
+  "size_promotion_threshold": {
+    "threshold_type": "flat",
+    "threshold_value": 100
   }
 }
 ```
@@ -16920,6 +16927,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | is_gift | boolean? |  yes  | Whether the item is a gift or not |
  | moq | [ApplicationItemMOQ](#ApplicationItemMOQ)? |  yes  | Minimum Order Quantity information for the item |
  | seo | [ApplicationItemSEO](#ApplicationItemSEO)? |  yes  | Search Engine Optimization information for the item |
+ | size_promotion_threshold | [SizePromotionThreshold](#SizePromotionThreshold)? |  yes  | Size level promotion limitation information for item |
  
 
 ---
@@ -16941,6 +16949,46 @@ List of fields and validation values fro each. See example below or refer `Inven
  | ---------- | ---- | -------- | ----------- |
  | description | string? |  yes  | The SEO description of the item |
  | title | string? |  yes  | The SEO title of the item |
+ 
+
+---
+
+#### [ApplicationItemSeoAction](#ApplicationItemSeoAction)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | page | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
+
+---
+
+#### [ApplicationItemSeoBreadcrumbs](#ApplicationItemSeoBreadcrumbs)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | action | [[ApplicationItemSeoAction](#ApplicationItemSeoAction)]? |  yes  |  |
+ | url | string? |  yes  |  |
+ 
+
+---
+
+#### [ApplicationItemSeoMetaTagItem](#ApplicationItemSeoMetaTagItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | string? |  yes  |  |
+ | value | string? |  yes  |  |
+ 
+
+---
+
+#### [ApplicationItemSeoMetaTags](#ApplicationItemSeoMetaTags)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[ApplicationItemSeoMetaTagItem](#ApplicationItemSeoMetaTagItem)]? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -19598,6 +19646,16 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
+#### [Metatags](#Metatags)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[ApplicationItemSeoMetaTags](#ApplicationItemSeoMetaTags)]? |  yes  |  |
+ | title | string? |  yes  |  |
+ 
+
+---
+
 #### [MOQData](#MOQData)
 
  | Properties | Type | Nullable | Description |
@@ -20750,7 +20808,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | breadcrumbs | [[ApplicationItemSeoBreadcrumbs](#ApplicationItemSeoBreadcrumbs)]? |  yes  |  |
  | description | string? |  yes  |  |
+ | meta_tags | [[Metatags](#Metatags)]? |  yes  |  |
+ | sitemap | [Sitemap](#Sitemap)? |  yes  |  |
  | title | string? |  yes  |  |
  
 
@@ -20760,7 +20821,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | breadcrumbs | [[ApplicationItemSeoBreadcrumbs](#ApplicationItemSeoBreadcrumbs)]? |  yes  |  |
  | description | string? |  yes  |  |
+ | meta_tags | [[Metatags](#Metatags)]? |  yes  |  |
+ | sitemap | string? |  yes  |  |
  | title | string? |  yes  |  |
  
 
@@ -20790,6 +20854,16 @@ List of fields and validation values fro each. See example below or refer `Inven
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | data | [ProductSchemaV2](#ProductSchemaV2)? |  yes  |  |
+ 
+
+---
+
+#### [Sitemap](#Sitemap)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | frequency | string? |  yes  |  |
+ | priority | number? |  yes  |  |
  
 
 ---
@@ -20832,6 +20906,16 @@ List of fields and validation values fro each. See example below or refer `Inven
  | subtitle | string? |  yes  |  |
  | tag | string? |  yes  |  |
  | title | string? |  yes  |  |
+ 
+
+---
+
+#### [SizePromotionThreshold](#SizePromotionThreshold)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | threshold_type | string? |  yes  |  |
+ | threshold_value | number? |  yes  |  |
  
 
 ---

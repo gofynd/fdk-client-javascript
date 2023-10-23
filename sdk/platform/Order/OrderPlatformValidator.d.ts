@@ -122,6 +122,7 @@ export = OrderPlatformValidator;
 /**
  * @typedef GetOrderByIdParam
  * @property {string} orderId
+ * @property {boolean} [myOrders]
  */
 /**
  * @typedef GetOrdersParam
@@ -600,6 +601,7 @@ type GetLaneConfigParam = {
 };
 type GetOrderByIdParam = {
     orderId: string;
+    myOrders?: boolean;
 };
 type GetOrdersParam = {
     /**

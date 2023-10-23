@@ -727,6 +727,7 @@ const Joi = require("joi");
  * @property {Shipment[]} shipments
  * @property {ShippingInfo} shipping_info
  * @property {TaxInfo} [tax_info]
+ * @property {UserInfo} user_info
  */
 
 /**
@@ -1955,6 +1956,7 @@ const Joi = require("joi");
  * @property {LineItem[]} line_items
  * @property {number} location_id
  * @property {Object} [meta]
+ * @property {string} [order_type]
  * @property {number} [priority]
  * @property {ProcessingDates} [processing_dates]
  */
@@ -2222,6 +2224,7 @@ const Joi = require("joi");
  * @typedef ShipmentStatusData
  * @property {string[]} [bag_list]
  * @property {string} [created_at]
+ * @property {string} [current_shipment_status]
  * @property {string} [display_name]
  * @property {number} [id]
  * @property {Object} [meta]
@@ -2573,6 +2576,17 @@ const Joi = require("joi");
  * @property {string} phone
  * @property {string} pincode
  * @property {string} state
+ */
+
+/**
+ * @typedef UserInfo
+ * @property {string} email
+ * @property {string} first_name
+ * @property {string} [gender]
+ * @property {string} [last_name]
+ * @property {string} mobile
+ * @property {string} [user_id]
+ * @property {string} [user_type]
  */
 
 /**
@@ -3475,6 +3489,7 @@ class OrderPlatformModel {
       shipments: Joi.array().items(OrderPlatformModel.Shipment()).required(),
       shipping_info: OrderPlatformModel.ShippingInfo().required(),
       tax_info: OrderPlatformModel.TaxInfo(),
+      user_info: OrderPlatformModel.UserInfo().required(),
     });
   }
 
@@ -4969,6 +4984,7 @@ class OrderPlatformModel {
       line_items: Joi.array().items(OrderPlatformModel.LineItem()).required(),
       location_id: Joi.number().required(),
       meta: Joi.any(),
+      order_type: Joi.string().allow(""),
       priority: Joi.number(),
       processing_dates: OrderPlatformModel.ProcessingDates(),
     });
@@ -5284,6 +5300,7 @@ class OrderPlatformModel {
     return Joi.object({
       bag_list: Joi.array().items(Joi.string().allow("")),
       created_at: Joi.string().allow("").allow(null),
+      current_shipment_status: Joi.string().allow("").allow(null),
       display_name: Joi.string().allow("").allow(null),
       id: Joi.number().allow(null),
       meta: Joi.any().allow(null),
@@ -5699,6 +5716,19 @@ class OrderPlatformModel {
       phone: Joi.string().allow("").required(),
       pincode: Joi.string().allow("").required(),
       state: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {UserInfo} */
+  static UserInfo() {
+    return Joi.object({
+      email: Joi.string().allow("").required(),
+      first_name: Joi.string().allow("").required(),
+      gender: Joi.string().allow(""),
+      last_name: Joi.string().allow(""),
+      mobile: Joi.string().allow("").required(),
+      user_id: Joi.string().allow(""),
+      user_type: Joi.string().allow(""),
     });
   }
 
