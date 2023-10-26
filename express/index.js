@@ -25,7 +25,7 @@ function setupFdk(data, syncInitialization) {
         if (!extension.isOnlineAccessMode()) {
             let sid = Session.generateSessionId(false, {
                 cluster: extension.cluster,
-                companyId: companyId
+                id: companyId
             });
             let session = await SessionStorage.getSession(sid);
             client = await extension.getPlatformClient(companyId, session);
