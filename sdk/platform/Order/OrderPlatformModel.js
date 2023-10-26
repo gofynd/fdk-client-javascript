@@ -313,7 +313,7 @@ const Joi = require("joi");
  * @property {Item} [item]
  * @property {string} [journey_type]
  * @property {number} [line_number]
- * @property {BagMeta} [meta]
+ * @property {Object} [meta]
  * @property {number} [no_of_bags_order]
  * @property {string} [operational_status]
  * @property {string} [order_integration_id]
@@ -727,6 +727,7 @@ const Joi = require("joi");
  * @property {Shipment[]} shipments
  * @property {ShippingInfo} shipping_info
  * @property {TaxInfo} [tax_info]
+ * @property {UserInfo} [user_info]
  */
 
 /**
@@ -1347,7 +1348,7 @@ const Joi = require("joi");
  * @property {string} [affiliate_id]
  * @property {string} [cod_charges]
  * @property {string} fynd_order_id
- * @property {OrderMeta} [meta]
+ * @property {Object} [meta]
  * @property {string} [order_date]
  * @property {string} [order_value]
  * @property {string} [ordering_channel]
@@ -1668,7 +1669,7 @@ const Joi = require("joi");
  * @property {boolean} [is_self_ship]
  * @property {string} [journey_type]
  * @property {boolean} [lock_status]
- * @property {ShipmentMeta} [meta]
+ * @property {Object} [meta]
  * @property {string} [mode_of_payment]
  * @property {string} [operational_status]
  * @property {OrderDetailsData} [order]
@@ -1955,6 +1956,7 @@ const Joi = require("joi");
  * @property {LineItem[]} line_items
  * @property {number} location_id
  * @property {Object} [meta]
+ * @property {string} [order_type]
  * @property {number} [priority]
  * @property {ProcessingDates} [processing_dates]
  */
@@ -2222,6 +2224,7 @@ const Joi = require("joi");
  * @typedef ShipmentStatusData
  * @property {string[]} [bag_list]
  * @property {string} [created_at]
+ * @property {string} [current_shipment_status]
  * @property {string} [display_name]
  * @property {number} [id]
  * @property {Object} [meta]
@@ -2550,6 +2553,7 @@ const Joi = require("joi");
  * @typedef UserDataInfo
  * @property {string} [avis_user_id]
  * @property {string} [email]
+ * @property {string} [external_customer_id]
  * @property {string} [first_name]
  * @property {string} [gender]
  * @property {boolean} [is_anonymous_user]
@@ -2557,6 +2561,7 @@ const Joi = require("joi");
  * @property {string} [mobile]
  * @property {string} [name]
  * @property {number} [uid]
+ * @property {string} [user_oid]
  */
 
 /**
@@ -2573,6 +2578,17 @@ const Joi = require("joi");
  * @property {string} phone
  * @property {string} pincode
  * @property {string} state
+ */
+
+/**
+ * @typedef UserInfo
+ * @property {string} email
+ * @property {string} first_name
+ * @property {string} [gender]
+ * @property {string} [last_name]
+ * @property {string} mobile
+ * @property {string} [user_id]
+ * @property {string} [user_type]
  */
 
 /**
@@ -2990,7 +3006,7 @@ class OrderPlatformModel {
       item: OrderPlatformModel.Item(),
       journey_type: Joi.string().allow("").allow(null),
       line_number: Joi.number().allow(null),
-      meta: OrderPlatformModel.BagMeta(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       no_of_bags_order: Joi.number().allow(null),
       operational_status: Joi.string().allow("").allow(null),
       order_integration_id: Joi.string().allow("").allow(null),
@@ -3475,6 +3491,7 @@ class OrderPlatformModel {
       shipments: Joi.array().items(OrderPlatformModel.Shipment()).required(),
       shipping_info: OrderPlatformModel.ShippingInfo().required(),
       tax_info: OrderPlatformModel.TaxInfo(),
+      user_info: OrderPlatformModel.UserInfo(),
     });
   }
 
@@ -4235,7 +4252,7 @@ class OrderPlatformModel {
       affiliate_id: Joi.string().allow("").allow(null),
       cod_charges: Joi.string().allow("").allow(null),
       fynd_order_id: Joi.string().allow("").required(),
-      meta: OrderPlatformModel.OrderMeta(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       order_date: Joi.string().allow("").allow(null),
       order_value: Joi.string().allow("").allow(null),
       ordering_channel: Joi.string().allow("").allow(null),
@@ -4613,7 +4630,7 @@ class OrderPlatformModel {
       is_self_ship: Joi.boolean().allow(null),
       journey_type: Joi.string().allow("").allow(null),
       lock_status: Joi.boolean().allow(null),
-      meta: OrderPlatformModel.ShipmentMeta(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       mode_of_payment: Joi.string().allow("").allow(null),
       operational_status: Joi.string().allow("").allow(null),
       order: OrderPlatformModel.OrderDetailsData(),
@@ -4969,6 +4986,7 @@ class OrderPlatformModel {
       line_items: Joi.array().items(OrderPlatformModel.LineItem()).required(),
       location_id: Joi.number().required(),
       meta: Joi.any(),
+      order_type: Joi.string().allow(""),
       priority: Joi.number(),
       processing_dates: OrderPlatformModel.ProcessingDates(),
     });
@@ -5284,6 +5302,7 @@ class OrderPlatformModel {
     return Joi.object({
       bag_list: Joi.array().items(Joi.string().allow("")),
       created_at: Joi.string().allow("").allow(null),
+      current_shipment_status: Joi.string().allow("").allow(null),
       display_name: Joi.string().allow("").allow(null),
       id: Joi.number().allow(null),
       meta: Joi.any().allow(null),
@@ -5674,6 +5693,7 @@ class OrderPlatformModel {
     return Joi.object({
       avis_user_id: Joi.string().allow("").allow(null),
       email: Joi.string().allow("").allow(null),
+      external_customer_id: Joi.string().allow("").allow(null),
       first_name: Joi.string().allow("").allow(null),
       gender: Joi.string().allow("").allow(null),
       is_anonymous_user: Joi.boolean().allow(null),
@@ -5681,6 +5701,7 @@ class OrderPlatformModel {
       mobile: Joi.string().allow("").allow(null),
       name: Joi.string().allow("").allow(null),
       uid: Joi.number().allow(null),
+      user_oid: Joi.string().allow("").allow(null),
     });
   }
 
@@ -5699,6 +5720,19 @@ class OrderPlatformModel {
       phone: Joi.string().allow("").required(),
       pincode: Joi.string().allow("").required(),
       state: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {UserInfo} */
+  static UserInfo() {
+    return Joi.object({
+      email: Joi.string().allow("").required(),
+      first_name: Joi.string().allow("").required(),
+      gender: Joi.string().allow(""),
+      last_name: Joi.string().allow(""),
+      mobile: Joi.string().allow("").required(),
+      user_id: Joi.string().allow(""),
+      user_type: Joi.string().allow(""),
     });
   }
 

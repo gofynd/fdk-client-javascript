@@ -1711,12 +1711,13 @@ class Order {
    * @description: Get Order Details by ID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getOrderById/).
    */
   async getOrderById(
-    { orderId, requestHeaders } = { requestHeaders: {} },
+    { orderId, myOrders, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = OrderPlatformValidator.getOrderById().validate(
       {
         orderId,
+        myOrders,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1728,6 +1729,7 @@ class Order {
     const { error: warrning } = OrderPlatformValidator.getOrderById().validate(
       {
         orderId,
+        myOrders,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1740,6 +1742,7 @@ class Order {
 
     const query_params = {};
     query_params["order_id"] = orderId;
+    query_params["my_orders"] = myOrders;
 
     const xHeaders = {};
 

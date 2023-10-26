@@ -1,3 +1,299 @@
+# CHANGE LOG (1.3.5) - fp-v1.8.4
+
+## Application Client
+
+
+
+### Cart
+
+
+
+#### checkoutCart
+
+- ##### What's Deprecated
+	- [Deleted] Possible nullable value from `true` from property `customer_details` of schema `CartCheckoutDetailRequest` in request body
+	- [Deleted] Possible nullable value from `true` from property `id` of schema `CartCheckoutDetailRequest` in request body
+	- [Breaking] [Deleted] Default value from property `callback_url` of schema `CartCheckoutDetailRequest` in request body
+	- [Deleted] Possible nullable value from `true` from property `callback_url` of schema `CartCheckoutDetailRequest` in request body
+	- [Deleted] Possible nullable value from `true` from property `ordering_store` of schema `CartCheckoutDetailRequest` in request body
+	- [Deleted] Possible nullable value from `true` from property `payment_identifier` of schema `CartCheckoutDetailRequest` in request body
+	- [Deleted] Possible nullable value from `true` from property `payment_params` of schema `CartCheckoutDetailRequest` in request body
+
+
+### Order
+
+
+
+#### getOrders
+
+- ##### What's New
+	- [Added] property `items[].shipments[].bags[].item.attributes` of schema `Item` in response with status code 200
+
+
+#### getOrderById
+
+- ##### What's New
+	- [Added] property `order.shipments[].bags[].item.attributes` of schema `Item` in response with status code 200
+
+
+#### getPosOrderById
+
+- ##### What's New
+	- [Added] property `order.shipments[].bags[].item.attributes` of schema `Item` in response with status code 200
+
+
+#### getShipmentById
+
+- ##### What's New
+	- [Added] property `shipment.bags[].item.attributes` of schema `Item` in response with status code 200
+
+
+## Platform Client
+
+
+
+### Cart
+
+
+
+#### getStoreAddressByUid
+
+- ##### What's New
+	- [Added] property `items[].store_manager_name` of schema `PickupStoreDetail` in response with status code 200
+
+
+### Catalog
+
+
+
+#### createCollection
+
+- ##### What's New
+	- [Added] property `seo.sitemap` of schema `SeoDetail` in request body
+	- [Added] property `seo.breadcrumbs` of schema `SeoDetail` in request body
+	- [Added] property `seo.meta_tags` of schema `SeoDetail` in request body
+
+
+#### updateCollection
+
+- ##### What's New
+	- [Added] property `seo.sitemap` of schema `SeoDetail` in request body
+	- [Added] property `seo.breadcrumbs` of schema `SeoDetail` in request body
+	- [Added] property `seo.meta_tags` of schema `SeoDetail` in request body
+	- [Added] property `seo.sitemap` of schema `SeoDetail` in response with status code 200
+	- [Added] property `seo.breadcrumbs` of schema `SeoDetail` in response with status code 200
+	- [Added] property `seo.meta_tags` of schema `SeoDetail` in response with status code 200
+
+
+#### getAppProduct
+
+- ##### What's New
+	- [Added] Default value to property `seo` of schema `OwnerAppItemResponse` in response with status code 200
+	- [Added] Default value `` to property `seo` of schema `OwnerAppItemResponse` in response with status code 200
+	- [Added] Default value `` to property `seo` of schema `OwnerAppItemResponse` in response with status code 200
+
+
+#### updateAppProduct
+
+- ##### What's New
+	- [Added] property `size_promotion_threshold` of schema `ApplicationItemMeta` in request body
+
+
+#### getProductBulkUploadHistory
+
+- ##### What's New
+	- [Added] property `items[]` of schema `ProductBulkRequestList` in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] properties `items.cancelled`, `items.cancelled_records`, `items.company_id`, `items.created_by`, `items.created_on`, `items.failed`, `items.failed_records`, `items.file_path`, `items.is_active`, `items.modified_by`, `items.modified_on`, `items.stage`, `items.succeed`, `items.template`, `items.template_tag`, `items.total` in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from `object` to `array` of property `items` of schema `ProductBulkRequest` in response with status code 200
+
+
+### Discount
+
+
+
+#### validateDiscountFile
+
+- ##### What's New
+	- [Added] property `file_path` of schema `FileJobResponse` in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from `validation` to `validate` of property `type` of schema `FileJobResponse` in response with status code 200
+
+
+#### downloadDiscountFile
+
+- ##### What's New
+	- [Added] property `file_path` of schema `FileJobResponse` in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from `validation` to `validate` of property `type` of schema `FileJobResponse` in response with status code 200
+
+
+#### getValidationJob
+
+- ##### What's New
+	- [Added] property `file_path` of schema `FileJobResponse` in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from `validation` to `validate` of property `type` of schema `FileJobResponse` in response with status code 200
+
+
+#### getDownloadJob
+
+- ##### What's New
+	- [Added] property `file_path` of schema `FileJobResponse` in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Possible values from `validation` to `validate` of property `type` of schema `FileJobResponse` in response with status code 200
+
+
+### Order
+
+
+
+#### createOrder
+
+- ##### What's New
+	- [Added] property `shipments[].order_type` of schema `Shipment` in request body
+	- [Added] property `user_info` of schema `CreateOrderAPI` in request body
+
+
+#### getShipments
+
+- ##### What's New
+	- [Added] property `items[].user.user_oid` of schema `UserDataInfo` in response with status code 200
+	- [Added] property `items[].user.external_customer_id` of schema `UserDataInfo` in response with status code 200
+
+
+#### getShipmentById
+
+- ##### What's New
+	- [Added] property `shipments[].user.user_oid` of schema `UserDataInfo` in response with status code 200
+	- [Added] property `shipments[].user.external_customer_id` of schema `UserDataInfo` in response with status code 200
+	- [Added] property `shipments[].status.current_shipment_status` of schema `ShipmentStatusData` in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] properties `shipments[].order.meta.platform_user_details`, `shipments[].order.meta.company_logo`, `shipments[].order.meta.currency_symbol`, `shipments[].order.meta.comment`, `shipments[].order.meta.extra_meta`, `shipments[].order.meta.files`, `shipments[].order.meta.transaction_data`, `shipments[].order.meta.billing_staff_details`, `shipments[].order.meta.ordering_store`, `shipments[].order.meta.payment_type`, `shipments[].order.meta.mongo_cart_id`, `shipments[].order.meta.order_child_entities`, `shipments[].order.meta.order_type`, `shipments[].order.meta.order_platform`, `shipments[].order.meta.employee_id`, `shipments[].order.meta.order_tags`, `shipments[].order.meta.customer_note`, `shipments[].order.meta.staff`, `shipments[].order.meta.cart_id`, `shipments[].order.meta.cart_object_id` in response with status code 200
+	- [Deleted] properties `shipments[].meta.tracking_url`, `shipments[].meta.estimated_delivery_date`, `shipments[].meta.same_store_available`, `shipments[].meta.b2b_buyer_details`, `shipments[].meta.formatted`, `shipments[].meta.debug_info`, `shipments[].meta.return_awb_number`, `shipments[].meta.is_self_ship`, `shipments[].meta.box_type`, `shipments[].meta.einvoice_info`, `shipments[].meta.return_affiliate_shipment_id`, `shipments[].meta.parent_dp_id`, `shipments[].meta.shipment_weight`, `shipments[].meta.dimension`, `shipments[].meta.dp_options`, `shipments[].meta.assign_dp_from_sb`, `shipments[].meta.due_date`, `shipments[].meta.store_invoice_updated_date`, `shipments[].meta.forward_affiliate_shipment_id`, `shipments[].meta.return_store_node`, `shipments[].meta.fulfilment_priority_text`, `shipments[].meta.shipment_tags`, `shipments[].meta.external`, `shipments[].meta.awb_number`, `shipments[].meta.lock_data`, `shipments[].meta.order_type`, `shipments[].meta.ewaybill_info`, `shipments[].meta.dp_id`, `shipments[].meta.shipment_volumetric_weight`, `shipments[].meta.marketplace_store_id`, `shipments[].meta.return_details`, `shipments[].meta.dp_sort_key`, `shipments[].meta.packaging_name`, `shipments[].meta.timestamp`, `shipments[].meta.auto_trigger_dp_assignment_acf`, `shipments[].meta.dp_name`, `shipments[].meta.po_number`, `shipments[].meta.weight`, `shipments[].meta.b2c_buyer_details`, `shipments[].meta.forward_affiliate_order_id`, `shipments[].meta.return_affiliate_order_id`, `shipments[].meta.bag_weight`, `shipments[].meta.refund_to` in response with status code 200
+	- [Deleted] Required status from properties `shipments[].meta.same_store_available`, `shipments[].meta.weight` in response with status code 200
+
+
+#### getOrderById
+
+- ##### What's New
+	- [Added] `query` parameter `myOrders` (type: `boolean`)
+
+	- [Added] property `shipments[].user.user_oid` of schema `UserDataInfo` in response with status code 200
+	- [Added] property `shipments[].user.external_customer_id` of schema `UserDataInfo` in response with status code 200
+	- [Added] property `shipments[].status.current_shipment_status` of schema `ShipmentStatusData` in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] properties `shipments[].order.meta.platform_user_details`, `shipments[].order.meta.company_logo`, `shipments[].order.meta.currency_symbol`, `shipments[].order.meta.comment`, `shipments[].order.meta.extra_meta`, `shipments[].order.meta.files`, `shipments[].order.meta.transaction_data`, `shipments[].order.meta.billing_staff_details`, `shipments[].order.meta.ordering_store`, `shipments[].order.meta.payment_type`, `shipments[].order.meta.mongo_cart_id`, `shipments[].order.meta.order_child_entities`, `shipments[].order.meta.order_type`, `shipments[].order.meta.order_platform`, `shipments[].order.meta.employee_id`, `shipments[].order.meta.order_tags`, `shipments[].order.meta.customer_note`, `shipments[].order.meta.staff`, `shipments[].order.meta.cart_id`, `shipments[].order.meta.cart_object_id` in response with status code 200
+	- [Deleted] properties `shipments[].meta.tracking_url`, `shipments[].meta.estimated_delivery_date`, `shipments[].meta.same_store_available`, `shipments[].meta.b2b_buyer_details`, `shipments[].meta.formatted`, `shipments[].meta.debug_info`, `shipments[].meta.return_awb_number`, `shipments[].meta.is_self_ship`, `shipments[].meta.box_type`, `shipments[].meta.einvoice_info`, `shipments[].meta.return_affiliate_shipment_id`, `shipments[].meta.parent_dp_id`, `shipments[].meta.shipment_weight`, `shipments[].meta.dimension`, `shipments[].meta.dp_options`, `shipments[].meta.assign_dp_from_sb`, `shipments[].meta.due_date`, `shipments[].meta.store_invoice_updated_date`, `shipments[].meta.forward_affiliate_shipment_id`, `shipments[].meta.return_store_node`, `shipments[].meta.fulfilment_priority_text`, `shipments[].meta.shipment_tags`, `shipments[].meta.external`, `shipments[].meta.awb_number`, `shipments[].meta.lock_data`, `shipments[].meta.order_type`, `shipments[].meta.ewaybill_info`, `shipments[].meta.dp_id`, `shipments[].meta.shipment_volumetric_weight`, `shipments[].meta.marketplace_store_id`, `shipments[].meta.return_details`, `shipments[].meta.dp_sort_key`, `shipments[].meta.packaging_name`, `shipments[].meta.timestamp`, `shipments[].meta.auto_trigger_dp_assignment_acf`, `shipments[].meta.dp_name`, `shipments[].meta.po_number`, `shipments[].meta.weight`, `shipments[].meta.b2c_buyer_details`, `shipments[].meta.forward_affiliate_order_id`, `shipments[].meta.return_affiliate_order_id`, `shipments[].meta.bag_weight`, `shipments[].meta.refund_to` in response with status code 200
+	- [Deleted] Required status from properties `shipments[].meta.same_store_available`, `shipments[].meta.weight` in response with status code 200
+
+
+#### getOrders
+
+- ##### What's New
+	- [Added] property `items[].shipments[].user.user_oid` of schema `UserDataInfo` in response with status code 200
+	- [Added] property `items[].shipments[].user.external_customer_id` of schema `UserDataInfo` in response with status code 200
+	- [Added] property `items[].shipments[].status.current_shipment_status` of schema `ShipmentStatusData` in response with status code 200
+	- [Added] property `items[].user_info.user_oid` of schema `UserDataInfo` in response with status code 200
+	- [Added] property `items[].user_info.external_customer_id` of schema `UserDataInfo` in response with status code 200
+
+- ##### What's Deprecated
+	- [Deleted] properties `items[].shipments[].order.meta.platform_user_details`, `items[].shipments[].order.meta.company_logo`, `items[].shipments[].order.meta.currency_symbol`, `items[].shipments[].order.meta.comment`, `items[].shipments[].order.meta.extra_meta`, `items[].shipments[].order.meta.files`, `items[].shipments[].order.meta.transaction_data`, `items[].shipments[].order.meta.billing_staff_details`, `items[].shipments[].order.meta.ordering_store`, `items[].shipments[].order.meta.payment_type`, `items[].shipments[].order.meta.mongo_cart_id`, `items[].shipments[].order.meta.order_child_entities`, `items[].shipments[].order.meta.order_type`, `items[].shipments[].order.meta.order_platform`, `items[].shipments[].order.meta.employee_id`, `items[].shipments[].order.meta.order_tags`, `items[].shipments[].order.meta.customer_note`, `items[].shipments[].order.meta.staff`, `items[].shipments[].order.meta.cart_id`, `items[].shipments[].order.meta.cart_object_id` in response with status code 200
+	- [Deleted] properties `items[].shipments[].meta.tracking_url`, `items[].shipments[].meta.estimated_delivery_date`, `items[].shipments[].meta.same_store_available`, `items[].shipments[].meta.b2b_buyer_details`, `items[].shipments[].meta.formatted`, `items[].shipments[].meta.debug_info`, `items[].shipments[].meta.return_awb_number`, `items[].shipments[].meta.is_self_ship`, `items[].shipments[].meta.box_type`, `items[].shipments[].meta.einvoice_info`, `items[].shipments[].meta.return_affiliate_shipment_id`, `items[].shipments[].meta.parent_dp_id`, `items[].shipments[].meta.shipment_weight`, `items[].shipments[].meta.dimension`, `items[].shipments[].meta.dp_options`, `items[].shipments[].meta.assign_dp_from_sb`, `items[].shipments[].meta.due_date`, `items[].shipments[].meta.store_invoice_updated_date`, `items[].shipments[].meta.forward_affiliate_shipment_id`, `items[].shipments[].meta.return_store_node`, `items[].shipments[].meta.fulfilment_priority_text`, `items[].shipments[].meta.shipment_tags`, `items[].shipments[].meta.external`, `items[].shipments[].meta.awb_number`, `items[].shipments[].meta.lock_data`, `items[].shipments[].meta.order_type`, `items[].shipments[].meta.ewaybill_info`, `items[].shipments[].meta.dp_id`, `items[].shipments[].meta.shipment_volumetric_weight`, `items[].shipments[].meta.marketplace_store_id`, `items[].shipments[].meta.return_details`, `items[].shipments[].meta.dp_sort_key`, `items[].shipments[].meta.packaging_name`, `items[].shipments[].meta.timestamp`, `items[].shipments[].meta.auto_trigger_dp_assignment_acf`, `items[].shipments[].meta.dp_name`, `items[].shipments[].meta.po_number`, `items[].shipments[].meta.weight`, `items[].shipments[].meta.b2c_buyer_details`, `items[].shipments[].meta.forward_affiliate_order_id`, `items[].shipments[].meta.return_affiliate_order_id`, `items[].shipments[].meta.bag_weight`, `items[].shipments[].meta.refund_to` in response with status code 200
+	- [Deleted] Required status from properties `items[].shipments[].meta.same_store_available`, `items[].shipments[].meta.weight` in response with status code 200
+
+
+#### getBagById
+
+- ##### What's Deprecated
+	- [Deleted] properties `meta.gift_card`, `meta.custom_message`, `meta.docket_number`, `meta.group_id`, `meta.partial_can_ret`, `meta.extra_meta`, `meta.b2b_po_details`, `meta.custom_json` in response with status code 200
+
+
+#### getBags
+
+- ##### What's Deprecated
+	- [Deleted] properties `items[].meta.gift_card`, `items[].meta.custom_message`, `items[].meta.docket_number`, `items[].meta.group_id`, `items[].meta.partial_can_ret`, `items[].meta.extra_meta`, `items[].meta.b2b_po_details`, `items[].meta.custom_json` in response with status code 200
+
+
+### Payment
+
+
+
+#### updatePaymentSession
+
+- ##### What's New
+	- [Added] property `meta` of schema `PaymentSessionRequestSerializer` in request body
+
+- ##### What's Deprecated
+	- [Deleted] Possible values from `test,live` from property `payment_details[].mode` of schema `PaymentSessionDetail` in request body
+	- [Deleted] Required status from property `payment_details[].billing_address` in request body
+	- [Deleted] Required status from property `payment_details[].shipping_address` in request body
+
+
+#### updateRefundSession
+
+- ##### What's New
+	- [Added] property `meta` of schema `RefundSessionRequestSerializer` in request body
+
+
+### User
+
+
+
+#### getCustomers
+
+- ##### What's New
+	- [Added] property `items[].external_id` of schema `UserSchema` in response with status code 200
+
+
+#### searchUsers
+
+- ##### What's New
+	- [Added] property `users[].external_id` of schema `UserSchema` in response with status code 200
+
+
+#### createUser
+
+- ##### What's New
+	- [Added] property `external_id` of schema `CreateUserRequestSchema` in request body
+	- [Added] property `user.external_id` of schema `UserSchema` in response with status code 200
+
+
+#### updateUser
+
+- ##### What's New
+	- [Added] property `user.external_id` of schema `UserSchema` in response with status code 200
+
+
+#### deleteSession
+
+- ##### What's New
+	- [Added] property `user_id` of schema `SessionDeleteResponseSchema` in response with status code 200
+	- [Added] property `session_id` of schema `SessionDeleteResponseSchema` in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property `items` of schema `SessionDeleteResponseSchema` in response with status code 200
+
+
+#### deleteActiveSessions
+
+- ##### What's New
+	- [Added] property `user_id` of schema `SessionsDeleteResponseSchema` in response with status code 200
+	- [Added] property `session_ids` of schema `SessionsDeleteResponseSchema` in response with status code 200
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property `items` of schema `SessionDeleteResponseSchema` in response with status code 200
+
+
 # CHANGE LOG (1.3.4) - fp-v1.8.3
 
 ## Application Client

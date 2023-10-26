@@ -6,7 +6,7 @@
 * [AuditTrail](AUDITTRAIL.md) - Audit Logging Service that logs the crucial updates on the Platform 
 * [Billing](BILLING.md) - Handle platform subscription 
 * [Cart](CART.md) - Cart APIs 
-* [Catalog](CATALOG.md) - Catalog - Platform Front API's' API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
+* [Catalog](CATALOG.md) - Catalog - Platform Front API's' API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features. 
 * [Common](COMMON.md) - Application configuration apis 
 * [Communication](COMMUNICATION.md) - Manages email, sms, push notifications sent to users 
 * [CompanyProfile](COMPANYPROFILE.md) - Catalog CBS - platform Front API's 

@@ -42,6 +42,7 @@ const Joi = require("joi");
 /**
  * @typedef CreateUserRequestSchema
  * @property {string} [email]
+ * @property {string} [external_id]
  * @property {string} [first_name]
  * @property {string} [gender]
  * @property {string} [last_name]
@@ -231,7 +232,8 @@ const Joi = require("joi");
 
 /**
  * @typedef SessionDeleteResponseSchema
- * @property {string[]} [items]
+ * @property {string} [session_id]
+ * @property {string} [user_id]
  */
 
 /**
@@ -253,6 +255,12 @@ const Joi = require("joi");
 /**
  * @typedef SessionListResponseSchema
  * @property {SessionListResponseInfo[]} [items]
+ */
+
+/**
+ * @typedef SessionsDeleteResponseSchema
+ * @property {string[]} [session_ids]
+ * @property {string} [user_id]
  */
 
 /**
@@ -354,6 +362,7 @@ const Joi = require("joi");
  * @property {string} [created_at]
  * @property {string} [dob]
  * @property {Email[]} [emails]
+ * @property {string} [external_id]
  * @property {string} [first_name]
  * @property {string} [gender]
  * @property {string} [last_name]
@@ -428,6 +437,7 @@ class UserPlatformModel {
   static CreateUserRequestSchema() {
     return Joi.object({
       email: Joi.string().allow(""),
+      external_id: Joi.string().allow(""),
       first_name: Joi.string().allow(""),
       gender: Joi.string().allow(""),
       last_name: Joi.string().allow(""),
@@ -661,7 +671,8 @@ class UserPlatformModel {
   /** @returns {SessionDeleteResponseSchema} */
   static SessionDeleteResponseSchema() {
     return Joi.object({
-      items: Joi.array().items(Joi.string().allow("")),
+      session_id: Joi.string().allow(""),
+      user_id: Joi.string().allow(""),
     });
   }
 
@@ -689,6 +700,14 @@ class UserPlatformModel {
   static SessionListResponseSchema() {
     return Joi.object({
       items: Joi.array().items(UserPlatformModel.SessionListResponseInfo()),
+    });
+  }
+
+  /** @returns {SessionsDeleteResponseSchema} */
+  static SessionsDeleteResponseSchema() {
+    return Joi.object({
+      session_ids: Joi.array().items(Joi.string().allow("")),
+      user_id: Joi.string().allow(""),
     });
   }
 
@@ -814,6 +833,7 @@ class UserPlatformModel {
       created_at: Joi.string().allow(""),
       dob: Joi.string().allow(""),
       emails: Joi.array().items(UserPlatformModel.Email()),
+      external_id: Joi.string().allow(""),
       first_name: Joi.string().allow(""),
       gender: Joi.string().allow(""),
       last_name: Joi.string().allow(""),

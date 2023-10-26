@@ -1493,10 +1493,12 @@ Response containing count of shipments of the given status
 
 ```javascript
 // Promise
-const promise = platformClient.order.getOrderById({  orderId : value });
+const promise = platformClient.order.getOrderById({  orderId : value,
+ myOrders : value });
 
 // Async/Await
-const data = await platformClient.order.getOrderById({  orderId : value });
+const data = await platformClient.order.getOrderById({  orderId : value,
+ myOrders : value });
 ```
 
 
@@ -1505,7 +1507,8 @@ const data = await platformClient.order.getOrderById({  orderId : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| orderId | string | yes |  |  
+| orderId | string | yes |  |    
+| myOrders | boolean | no |  |  
 
 
 
@@ -5422,7 +5425,7 @@ Verify OTP
  | item | [Item](#Item)? |  yes  |  |
  | journey_type | string? |  yes  |  |
  | line_number | number? |  yes  |  |
- | meta | [BagMeta](#BagMeta)? |  yes  |  |
+ | meta | string? |  yes  |  |
  | no_of_bags_order | number? |  yes  |  |
  | operational_status | string? |  yes  |  |
  | order_integration_id | string? |  yes  |  |
@@ -5973,6 +5976,7 @@ Verify OTP
  | shipments | [[Shipment](#Shipment)] |  no  |  |
  | shipping_info | [ShippingInfo](#ShippingInfo) |  no  |  |
  | tax_info | [TaxInfo](#TaxInfo)? |  yes  |  |
+ | user_info | [UserInfo](#UserInfo)? |  yes  |  |
  
 
 ---
@@ -6849,7 +6853,7 @@ Verify OTP
  | affiliate_id | string? |  yes  |  |
  | cod_charges | string? |  yes  |  |
  | fynd_order_id | string |  no  |  |
- | meta | [OrderMeta](#OrderMeta)? |  yes  |  |
+ | meta | string? |  yes  |  |
  | order_date | string? |  yes  |  |
  | order_value | string? |  yes  |  |
  | ordering_channel | string? |  yes  |  |
@@ -7276,7 +7280,7 @@ Verify OTP
  | is_self_ship | boolean? |  yes  |  |
  | journey_type | string? |  yes  |  |
  | lock_status | boolean? |  yes  |  |
- | meta | [ShipmentMeta](#ShipmentMeta)? |  yes  |  |
+ | meta | string? |  yes  |  |
  | mode_of_payment | string? |  yes  |  |
  | operational_status | string? |  yes  |  |
  | order | [OrderDetailsData](#OrderDetailsData)? |  yes  |  |
@@ -7696,6 +7700,7 @@ Verify OTP
  | line_items | [[LineItem](#LineItem)] |  no  |  |
  | location_id | number |  no  |  |
  | meta | string? |  yes  |  |
+ | order_type | string? |  yes  |  |
  | priority | number? |  yes  |  |
  | processing_dates | [ProcessingDates](#ProcessingDates)? |  yes  |  |
  
@@ -8043,6 +8048,7 @@ Verify OTP
  | ---------- | ---- | -------- | ----------- |
  | bag_list | [string]? |  yes  |  |
  | created_at | string? |  yes  |  |
+ | current_shipment_status | string? |  yes  |  |
  | display_name | string? |  yes  |  |
  | id | number? |  yes  |  |
  | meta | string? |  yes  |  |
@@ -8499,6 +8505,7 @@ Verify OTP
  | ---------- | ---- | -------- | ----------- |
  | avis_user_id | string? |  yes  |  |
  | email | string? |  yes  |  |
+ | external_customer_id | string? |  yes  |  |
  | first_name | string? |  yes  |  |
  | gender | string? |  yes  |  |
  | is_anonymous_user | boolean? |  yes  |  |
@@ -8506,6 +8513,7 @@ Verify OTP
  | mobile | string? |  yes  |  |
  | name | string? |  yes  |  |
  | uid | number? |  yes  |  |
+ | user_oid | string? |  yes  |  |
  
 
 ---
@@ -8526,6 +8534,21 @@ Verify OTP
  | phone | string |  no  |  |
  | pincode | string |  no  |  |
  | state | string |  no  |  |
+ 
+
+---
+
+#### [UserInfo](#UserInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | email | string |  no  |  |
+ | first_name | string |  no  |  |
+ | gender | string? |  yes  |  |
+ | last_name | string? |  yes  |  |
+ | mobile | string |  no  |  |
+ | user_id | string? |  yes  |  |
+ | user_type | string? |  yes  |  |
  
 
 ---

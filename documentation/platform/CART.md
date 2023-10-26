@@ -6372,6 +6372,7 @@ Success. Returns available store information with its address as shown below.
       "state": "MAHA",
       "store_code": "6462b3cd-9d64-4da9-a764-b0e6a52cf5e8",
       "uid": 20,
+      "store_manager_name": "Salma",
       "geo_location": {
         "longitude": 1,
         "latitude": 1
@@ -14360,6 +14361,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | pincode | number? |  yes  |  |
  | state | string? |  yes  |  |
  | store_code | string? |  yes  |  |
+ | store_manager_name | string? |  yes  |  |
  | uid | number? |  yes  |  |
  
 

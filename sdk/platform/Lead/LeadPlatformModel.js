@@ -329,6 +329,7 @@ const Joi = require("joi");
  * @property {string} [created_at]
  * @property {string} [dob]
  * @property {Email[]} [emails]
+ * @property {string} [external_id]
  * @property {string} [first_name]
  * @property {string} [gender]
  * @property {string} [last_name]
@@ -759,6 +760,7 @@ class LeadPlatformModel {
       created_at: Joi.string().allow(""),
       dob: Joi.string().allow(""),
       emails: Joi.array().items(LeadPlatformModel.Email()),
+      external_id: Joi.string().allow(""),
       first_name: Joi.string().allow(""),
       gender: Joi.string().allow(""),
       last_name: Joi.string().allow(""),

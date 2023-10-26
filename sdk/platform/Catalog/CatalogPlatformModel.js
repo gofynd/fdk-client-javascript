@@ -128,6 +128,8 @@ const Joi = require("joi");
  * @property {ApplicationItemMOQ} [moq] - Minimum Order Quantity information for the item
  * @property {ApplicationItemSEO} [seo] - Search Engine Optimization information
  *   for the item
+ * @property {SizePromotionThreshold} [size_promotion_threshold] - Size level
+ *   promotion limitation information for item
  */
 
 /**
@@ -142,6 +144,30 @@ const Joi = require("joi");
  * @typedef ApplicationItemSEO
  * @property {string} [description] - The SEO description of the item
  * @property {string} [title] - The SEO title of the item
+ */
+
+/**
+ * @typedef ApplicationItemSeoAction
+ * @property {Object} [page]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef ApplicationItemSeoBreadcrumbs
+ * @property {ApplicationItemSeoAction[]} [action]
+ * @property {string} [url]
+ */
+
+/**
+ * @typedef ApplicationItemSeoMetaTagItem
+ * @property {string} [key]
+ * @property {string} [value]
+ */
+
+/**
+ * @typedef ApplicationItemSeoMetaTags
+ * @property {ApplicationItemSeoMetaTagItem[]} [items]
+ * @property {string} [title]
  */
 
 /**
@@ -2052,6 +2078,12 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef Metatags
+ * @property {ApplicationItemSeoMetaTags[]} [items]
+ * @property {string} [title]
+ */
+
+/**
  * @typedef MOQData
  * @property {number} [increment_unit]
  * @property {number} [maximum]
@@ -2285,12 +2317,12 @@ const Joi = require("joi");
 /**
  * @typedef ProductBulkRequest
  * @property {number} [cancelled]
- * @property {string[]} [cancelled_records]
+ * @property {Object[]} [cancelled_records]
  * @property {number} [company_id]
  * @property {UserDetail1} [created_by]
  * @property {string} [created_on]
  * @property {number} [failed]
- * @property {string[]} [failed_records]
+ * @property {Object[]} [failed_records]
  * @property {string} [file_path]
  * @property {boolean} [is_active]
  * @property {UserDetail1} [modified_by]
@@ -2304,7 +2336,7 @@ const Joi = require("joi");
 
 /**
  * @typedef ProductBulkRequestList
- * @property {ProductBulkRequest} [items]
+ * @property {ProductBulkRequest[]} [items]
  * @property {Page} [page]
  */
 
@@ -2924,13 +2956,19 @@ const Joi = require("joi");
 
 /**
  * @typedef SEOData
+ * @property {ApplicationItemSeoBreadcrumbs[]} [breadcrumbs]
  * @property {string} [description]
+ * @property {Metatags[]} [meta_tags]
+ * @property {Sitemap} [sitemap]
  * @property {string} [title]
  */
 
 /**
  * @typedef SeoDetail
+ * @property {ApplicationItemSeoBreadcrumbs[]} [breadcrumbs]
  * @property {string} [description]
+ * @property {Metatags[]} [meta_tags]
+ * @property {Object} [sitemap]
  * @property {string} [title]
  */
 
@@ -2948,6 +2986,12 @@ const Joi = require("joi");
 /**
  * @typedef SingleProductResponse
  * @property {ProductSchemaV2} [data]
+ */
+
+/**
+ * @typedef Sitemap
+ * @property {string} [frequency]
+ * @property {number} [priority]
  */
 
 /**
@@ -2978,6 +3022,12 @@ const Joi = require("joi");
  * @property {string} [subtitle]
  * @property {string} [tag]
  * @property {string} [title]
+ */
+
+/**
+ * @typedef SizePromotionThreshold
+ * @property {string} [threshold_type]
+ * @property {number} [threshold_value]
  */
 
 /**
@@ -3509,6 +3559,7 @@ class CatalogPlatformModel {
       is_gift: Joi.boolean(),
       moq: CatalogPlatformModel.ApplicationItemMOQ(),
       seo: CatalogPlatformModel.ApplicationItemSEO(),
+      size_promotion_threshold: CatalogPlatformModel.SizePromotionThreshold(),
     });
   }
 
@@ -3525,6 +3576,42 @@ class CatalogPlatformModel {
   static ApplicationItemSEO() {
     return Joi.object({
       description: Joi.string().allow(""),
+      title: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ApplicationItemSeoAction} */
+  static ApplicationItemSeoAction() {
+    return Joi.object({
+      page: Joi.any(),
+      type: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ApplicationItemSeoBreadcrumbs} */
+  static ApplicationItemSeoBreadcrumbs() {
+    return Joi.object({
+      action: Joi.array().items(
+        CatalogPlatformModel.ApplicationItemSeoAction()
+      ),
+      url: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ApplicationItemSeoMetaTagItem} */
+  static ApplicationItemSeoMetaTagItem() {
+    return Joi.object({
+      key: Joi.string().allow(""),
+      value: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ApplicationItemSeoMetaTags} */
+  static ApplicationItemSeoMetaTags() {
+    return Joi.object({
+      items: Joi.array().items(
+        CatalogPlatformModel.ApplicationItemSeoMetaTagItem()
+      ),
       title: Joi.string().allow(""),
     });
   }
@@ -5814,6 +5901,16 @@ class CatalogPlatformModel {
     });
   }
 
+  /** @returns {Metatags} */
+  static Metatags() {
+    return Joi.object({
+      items: Joi.array().items(
+        CatalogPlatformModel.ApplicationItemSeoMetaTags()
+      ),
+      title: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {MOQData} */
   static MOQData() {
     return Joi.object({
@@ -6092,12 +6189,12 @@ class CatalogPlatformModel {
   static ProductBulkRequest() {
     return Joi.object({
       cancelled: Joi.number(),
-      cancelled_records: Joi.array().items(Joi.string().allow("")),
+      cancelled_records: Joi.array().items(Joi.any()),
       company_id: Joi.number(),
       created_by: CatalogPlatformModel.UserDetail1(),
       created_on: Joi.string().allow(""),
       failed: Joi.number(),
-      failed_records: Joi.array().items(Joi.string().allow("")),
+      failed_records: Joi.array().items(Joi.any()),
       file_path: Joi.string().allow(""),
       is_active: Joi.boolean(),
       modified_by: CatalogPlatformModel.UserDetail1(),
@@ -6113,7 +6210,7 @@ class CatalogPlatformModel {
   /** @returns {ProductBulkRequestList} */
   static ProductBulkRequestList() {
     return Joi.object({
-      items: CatalogPlatformModel.ProductBulkRequest(),
+      items: Joi.array().items(CatalogPlatformModel.ProductBulkRequest()),
       page: CatalogPlatformModel.Page(),
     });
   }
@@ -6835,7 +6932,12 @@ class CatalogPlatformModel {
   /** @returns {SEOData} */
   static SEOData() {
     return Joi.object({
+      breadcrumbs: Joi.array().items(
+        CatalogPlatformModel.ApplicationItemSeoBreadcrumbs()
+      ),
       description: Joi.string().allow(""),
+      meta_tags: Joi.array().items(CatalogPlatformModel.Metatags()),
+      sitemap: CatalogPlatformModel.Sitemap(),
       title: Joi.string().allow(""),
     });
   }
@@ -6843,7 +6945,12 @@ class CatalogPlatformModel {
   /** @returns {SeoDetail} */
   static SeoDetail() {
     return Joi.object({
+      breadcrumbs: Joi.array().items(
+        CatalogPlatformModel.ApplicationItemSeoBreadcrumbs()
+      ),
       description: Joi.string().allow(""),
+      meta_tags: Joi.array().items(CatalogPlatformModel.Metatags()),
+      sitemap: Joi.any(),
       title: Joi.string().allow(""),
     });
   }
@@ -6867,6 +6974,14 @@ class CatalogPlatformModel {
   static SingleProductResponse() {
     return Joi.object({
       data: CatalogPlatformModel.ProductSchemaV2(),
+    });
+  }
+
+  /** @returns {Sitemap} */
+  static Sitemap() {
+    return Joi.object({
+      frequency: Joi.string().allow(""),
+      priority: Joi.number(),
     });
   }
 
@@ -6903,6 +7018,14 @@ class CatalogPlatformModel {
       subtitle: Joi.string().allow(""),
       tag: Joi.string().allow(""),
       title: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SizePromotionThreshold} */
+  static SizePromotionThreshold() {
+    return Joi.object({
+      threshold_type: Joi.string().allow(""),
+      threshold_value: Joi.number(),
     });
   }
 

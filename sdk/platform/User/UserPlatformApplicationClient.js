@@ -390,7 +390,7 @@ class User {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<UserPlatformModel.SessionDeleteResponseSchema>} -
+   * @returns {Promise<UserPlatformModel.SessionsDeleteResponseSchema>} -
    *   Success response
    * @name deleteActiveSessions
    * @summary: Delete a list of all session for a user
@@ -451,10 +451,10 @@ class User {
 
     const {
       error: res_error,
-    } = UserPlatformModel.SessionDeleteResponseSchema().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
+    } = UserPlatformModel.SessionsDeleteResponseSchema().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: false }
+    );
 
     if (res_error) {
       Logger({

@@ -104,6 +104,7 @@ const Joi = require("joi");
  * @property {Object} [body]
  * @property {number} company_id
  * @property {number} failed
+ * @property {string} file_path
  * @property {string} file_type
  * @property {string} stage
  * @property {number} total
@@ -262,6 +263,7 @@ class DiscountPlatformModel {
       body: Joi.any(),
       company_id: Joi.number().required(),
       failed: Joi.number().required(),
+      file_path: Joi.string().allow("").required(),
       file_type: Joi.string().allow("").required(),
       stage: Joi.string().allow("").required(),
       total: Joi.number().required(),

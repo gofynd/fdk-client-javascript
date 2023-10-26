@@ -200,6 +200,7 @@ export = OrderApplicationModel;
  */
 /**
  * @typedef Item
+ * @property {Object} [attributes]
  * @property {ItemBrand} [brand]
  * @property {string} [code]
  * @property {number} [id]
@@ -744,6 +745,7 @@ type Invoice = {
 /** @returns {Item} */
 declare function Item(): Item;
 type Item = {
+    attributes?: any;
     brand?: ItemBrand;
     code?: string;
     id?: number;

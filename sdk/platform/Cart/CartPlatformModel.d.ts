@@ -899,6 +899,7 @@ export = CartPlatformModel;
  * @property {number} [pincode]
  * @property {string} [state]
  * @property {string} [store_code]
+ * @property {string} [store_manager_name]
  * @property {number} [uid]
  */
 /**
@@ -2857,6 +2858,7 @@ type PickupStoreDetail = {
     pincode?: number;
     state?: string;
     store_code?: string;
+    store_manager_name?: string;
     uid?: number;
 };
 /** @returns {PlatformAddCartRequest} */

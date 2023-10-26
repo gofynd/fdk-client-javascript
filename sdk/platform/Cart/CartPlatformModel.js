@@ -1000,6 +1000,7 @@ const Joi = require("joi");
  * @property {number} [pincode]
  * @property {string} [state]
  * @property {string} [store_code]
+ * @property {string} [store_manager_name]
  * @property {number} [uid]
  */
 
@@ -3024,6 +3025,7 @@ class CartPlatformModel {
       pincode: Joi.number(),
       state: Joi.string().allow(""),
       store_code: Joi.string().allow(""),
+      store_manager_name: Joi.string().allow(""),
       uid: Joi.number(),
     });
   }

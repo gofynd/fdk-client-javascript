@@ -6,7 +6,7 @@
 ##### [Back to Platform docs](./README.md)
 
 ## Catalog Methods
-Catalog - Platform Front API's' API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features. 
+Catalog - Platform Front API's' API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.
 
 * [addCollectionItems](#addcollectionitems)
 * [addInventory](#addinventory)
@@ -3995,7 +3995,14 @@ The Company Applicaton Product Data(MOQ/SEO).
   },
   "seo": {
     "description": "test-description",
-    "title": "test-title"
+    "title": "test-title",
+    "breadcrumbs": [],
+    "sitemap": {},
+    "meta_tags": []
+  },
+  "size_promotion_threshold": {
+    "threshold_type": "flat",
+    "threshold_value": 100
   }
 }
 ```
@@ -11481,46 +11488,48 @@ List of bulk product upload jobs. See `BulkRequestGetSchema` for details
 
 ```json
 {
-  "items": {
-    "cancelled": 0,
-    "cancelled_records": [],
-    "company_id": 61,
-    "created_by": {
-      "full_name": "Anuja Yadav",
-      "user_id": "23218433",
-      "username": "yadavanuja039_gmail_com_82948"
-    },
-    "created_on": "2021-03-12T08:11:06.848000Z",
-    "failed": 0,
-    "failed_records": [],
-    "file_path": "https://hdn-1.fynd.com/company/61/self/documents/product-import/free/original/mkX5ApRmw-sample_bulk_products_footwear.xlsx",
-    "id": "604b221a73bfa20001cb00e8",
-    "is_active": true,
-    "modified_by": {
-      "user_id": "0",
-      "username": "Silverbolt"
-    },
-    "modified_on": "2021-03-12T08:11:08.646000Z",
-    "stage": "completed",
-    "succeed": 1,
-    "template": {
-      "banner": "https://hdn-1.fynd.com/seller/pictures/landscape-banner/original/nFPtXR_Beauty_&_Personal_Care_L.jpgf30455a5-d265-4382-b513-65afb9240320/nFPtXR_Beauty_and_Personal_Care_L.jpg",
-      "departments": [
-        "men",
-        "women",
-        "kids",
-        "fashion"
-      ],
-      "description": "Footwear is a garment worn on the feet to protect against environmental adversities like heat or ground textures. Example: Sports Shoes",
-      "is_expirable": true,
-      "is_physical": true,
-      "logo": "https://hdn-1.fynd.com/seller/pictures/logo/original/9Y2UEp_ssssss.jpg7359e4c6-4c53-4dbe-a920-ef8ac658afb1/9Y2UEp_ssssss.jpg",
-      "name": "Footwear",
-      "slug": "footwear"
-    },
-    "template_tag": "footwear",
-    "total": 1
-  },
+  "items": [
+    {
+      "cancelled": 0,
+      "cancelled_records": [],
+      "company_id": 61,
+      "created_by": {
+        "full_name": "Anuja Yadav",
+        "user_id": "23218433",
+        "username": "yadavanuja039_gmail_com_82948"
+      },
+      "created_on": "2021-03-12T08:11:06.848000Z",
+      "failed": 0,
+      "failed_records": [],
+      "file_path": "https://hdn-1.fynd.com/company/61/self/documents/product-import/free/original/mkX5ApRmw-sample_bulk_products_footwear.xlsx",
+      "id": "604b221a73bfa20001cb00e8",
+      "is_active": true,
+      "modified_by": {
+        "user_id": "0",
+        "username": "Silverbolt"
+      },
+      "modified_on": "2021-03-12T08:11:08.646000Z",
+      "stage": "completed",
+      "succeed": 1,
+      "template": {
+        "banner": "https://hdn-1.fynd.com/seller/pictures/landscape-banner/original/nFPtXR_Beauty_&_Personal_Care_L.jpgf30455a5-d265-4382-b513-65afb9240320/nFPtXR_Beauty_and_Personal_Care_L.jpg",
+        "departments": [
+          "men",
+          "women",
+          "kids",
+          "fashion"
+        ],
+        "description": "Footwear is a garment worn on the feet to protect against environmental adversities like heat or ground textures. Example: Sports Shoes",
+        "is_expirable": true,
+        "is_physical": true,
+        "logo": "https://hdn-1.fynd.com/seller/pictures/logo/original/9Y2UEp_ssssss.jpg7359e4c6-4c53-4dbe-a920-ef8ac658afb1/9Y2UEp_ssssss.jpg",
+        "name": "Footwear",
+        "slug": "footwear"
+      },
+      "template_tag": "footwear",
+      "total": 1
+    }
+  ],
   "page": {
     "current": 1,
     "has_next": true,
@@ -16918,6 +16927,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | is_gift | boolean? |  yes  | Whether the item is a gift or not |
  | moq | [ApplicationItemMOQ](#ApplicationItemMOQ)? |  yes  | Minimum Order Quantity information for the item |
  | seo | [ApplicationItemSEO](#ApplicationItemSEO)? |  yes  | Search Engine Optimization information for the item |
+ | size_promotion_threshold | [SizePromotionThreshold](#SizePromotionThreshold)? |  yes  | Size level promotion limitation information for item |
  
 
 ---
@@ -16939,6 +16949,46 @@ List of fields and validation values fro each. See example below or refer `Inven
  | ---------- | ---- | -------- | ----------- |
  | description | string? |  yes  | The SEO description of the item |
  | title | string? |  yes  | The SEO title of the item |
+ 
+
+---
+
+#### [ApplicationItemSeoAction](#ApplicationItemSeoAction)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | page | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
+
+---
+
+#### [ApplicationItemSeoBreadcrumbs](#ApplicationItemSeoBreadcrumbs)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | action | [[ApplicationItemSeoAction](#ApplicationItemSeoAction)]? |  yes  |  |
+ | url | string? |  yes  |  |
+ 
+
+---
+
+#### [ApplicationItemSeoMetaTagItem](#ApplicationItemSeoMetaTagItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | string? |  yes  |  |
+ | value | string? |  yes  |  |
+ 
+
+---
+
+#### [ApplicationItemSeoMetaTags](#ApplicationItemSeoMetaTags)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[ApplicationItemSeoMetaTagItem](#ApplicationItemSeoMetaTagItem)]? |  yes  |  |
+ | title | string? |  yes  |  |
  
 
 ---
@@ -19596,6 +19646,16 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
+#### [Metatags](#Metatags)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[ApplicationItemSeoMetaTags](#ApplicationItemSeoMetaTags)]? |  yes  |  |
+ | title | string? |  yes  |  |
+ 
+
+---
+
 #### [MOQData](#MOQData)
 
  | Properties | Type | Nullable | Description |
@@ -19940,7 +20000,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [ProductBulkRequest](#ProductBulkRequest)? |  yes  |  |
+ | items | [[ProductBulkRequest](#ProductBulkRequest)]? |  yes  |  |
  | page | [Page](#Page)? |  yes  |  |
  
 
@@ -20748,7 +20808,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | breadcrumbs | [[ApplicationItemSeoBreadcrumbs](#ApplicationItemSeoBreadcrumbs)]? |  yes  |  |
  | description | string? |  yes  |  |
+ | meta_tags | [[Metatags](#Metatags)]? |  yes  |  |
+ | sitemap | [Sitemap](#Sitemap)? |  yes  |  |
  | title | string? |  yes  |  |
  
 
@@ -20758,7 +20821,10 @@ List of fields and validation values fro each. See example below or refer `Inven
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | breadcrumbs | [[ApplicationItemSeoBreadcrumbs](#ApplicationItemSeoBreadcrumbs)]? |  yes  |  |
  | description | string? |  yes  |  |
+ | meta_tags | [[Metatags](#Metatags)]? |  yes  |  |
+ | sitemap | string? |  yes  |  |
  | title | string? |  yes  |  |
  
 
@@ -20788,6 +20854,16 @@ List of fields and validation values fro each. See example below or refer `Inven
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | data | [ProductSchemaV2](#ProductSchemaV2)? |  yes  |  |
+ 
+
+---
+
+#### [Sitemap](#Sitemap)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | frequency | string? |  yes  |  |
+ | priority | number? |  yes  |  |
  
 
 ---
@@ -20830,6 +20906,16 @@ List of fields and validation values fro each. See example below or refer `Inven
  | subtitle | string? |  yes  |  |
  | tag | string? |  yes  |  |
  | title | string? |  yes  |  |
+ 
+
+---
+
+#### [SizePromotionThreshold](#SizePromotionThreshold)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | threshold_type | string? |  yes  |  |
+ | threshold_value | number? |  yes  |  |
  
 
 ---

@@ -223,6 +223,7 @@ const Joi = require("joi");
 
 /**
  * @typedef Item
+ * @property {Object} [attributes]
  * @property {ItemBrand} [brand]
  * @property {string} [code]
  * @property {number} [id]
@@ -853,6 +854,7 @@ class OrderApplicationModel {
   /** @returns {Item} */
   static Item() {
     return Joi.object({
+      attributes: Joi.object().pattern(/\S/, Joi.any()),
       brand: OrderApplicationModel.ItemBrand(),
       code: Joi.string().allow(""),
       id: Joi.number(),
