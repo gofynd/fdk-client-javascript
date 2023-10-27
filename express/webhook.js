@@ -322,7 +322,7 @@ class WebhookRegistry {
     async registerSubscriberConfig(platformClient, subscriberConfig) {
         const uniqueKey = `registerSubscriberToEvent_${platformClient.config.companyId}_${this._fdkConfig.api_key}`;
 
-        const retryInfo = this.retryManager.retryInfoMap.get(uniqueKey);
+        const retryInfo = retryManager.retryInfoMap.get(uniqueKey);
         if (retryInfo && !retryInfo.isRetry) {
             retryManager.resetRetryState(uniqueKey);
         }
