@@ -12,6 +12,8 @@ Catalog - Platform Front API's' API's allows you to access list of products, pri
 * [addInventory](#addinventory)
 * [allSizes](#allsizes)
 * [bulkHsnCode](#bulkhsncode)
+* [createAppCategoryReturnConfiguration](#createappcategoryreturnconfiguration)
+* [createAppReturnConfiguration](#createappreturnconfiguration)
 * [createBulkInventory](#createbulkinventory)
 * [createBulkInventoryJob](#createbulkinventoryjob)
 * [createBulkProductUploadJob](#createbulkproductuploadjob)
@@ -34,6 +36,7 @@ Catalog - Platform Front API's' API's allows you to access list of products, pri
 * [createProductsInBulk](#createproductsinbulk)
 * [createSearchConfiguration](#createsearchconfiguration)
 * [createSizeGuide](#createsizeguide)
+* [deleteAppCategoryReturnConfiguration](#deleteappcategoryreturnconfiguration)
 * [deleteAutocompleteKeyword](#deleteautocompletekeyword)
 * [deleteBulkInventoryJob](#deletebulkinventoryjob)
 * [deleteCollection](#deletecollection)
@@ -53,10 +56,12 @@ Catalog - Platform Front API's' API's allows you to access list of products, pri
 * [getAllCollections](#getallcollections)
 * [getAllProductHsnCodes](#getallproducthsncodes)
 * [getAllSearchKeyword](#getallsearchkeyword)
+* [getAppCategoryReturnConfig](#getappcategoryreturnconfig)
 * [getAppInventory](#getappinventory)
 * [getAppLocations](#getapplocations)
 * [getAppProduct](#getappproduct)
 * [getAppProducts](#getappproducts)
+* [getAppReturnConfiguration](#getappreturnconfiguration)
 * [getAppicationProducts](#getappicationproducts)
 * [getApplicationBrandListing](#getapplicationbrandlisting)
 * [getApplicationBrands](#getapplicationbrands)
@@ -122,9 +127,11 @@ Catalog - Platform Front API's' API's allows you to access list of products, pri
 * [updateAllowSingle](#updateallowsingle)
 * [updateAppBrand](#updateappbrand)
 * [updateAppCategory](#updateappcategory)
+* [updateAppCategoryReturnConfiguration](#updateappcategoryreturnconfiguration)
 * [updateAppDepartment](#updateappdepartment)
 * [updateAppLocation](#updateapplocation)
 * [updateAppProduct](#updateappproduct)
+* [updateAppReturnConfiguration](#updateappreturnconfiguration)
 * [updateAutocompleteKeyword](#updateautocompletekeyword)
 * [updateCategory](#updatecategory)
 * [updateCollection](#updatecollection)
@@ -392,6 +399,136 @@ See example below for details
   "success": true
 }
 ```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createAppCategoryReturnConfiguration
+Create Category level Application Return Configuration setttings
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.createAppCategoryReturnConfiguration({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.createAppCategoryReturnConfiguration({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [BaseAppCategoryReturnConfig](#BaseAppCategoryReturnConfig) | yes | Request body |
+
+
+Create Category level Application Return Configuration setttings
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse1](#SuccessResponse1)
+
+success message will tell whether the operation was successful.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "success": true
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createAppReturnConfiguration
+Create Return configuration level set for an application
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.createAppReturnConfiguration({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.createAppReturnConfiguration({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CreateUpdateAppReturnConfig](#CreateUpdateAppReturnConfig) | yes | Request body |
+
+
+Create Return configuration level set for an application.
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse1](#SuccessResponse1)
+
+success message will tell whether the operation was successful.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "success": true
+  }
+}
+```
+</details>
+
 </details>
 
 
@@ -1822,6 +1959,71 @@ Returns a success response
   "success": true
 }
 ```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteAppCategoryReturnConfiguration
+Delete Category level Application Return Configuration setttings
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.deleteAppCategoryReturnConfiguration({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.deleteAppCategoryReturnConfiguration({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [DeleteAppCategoryReturnConfig](#DeleteAppCategoryReturnConfig) | yes | Request body |
+
+
+Delete Category level Application Return Configuration setttings
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse](#SuccessResponse)
+
+success message will tell whether the operation was successful.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "success": true
+  }
+}
+```
+</details>
+
 </details>
 
 
@@ -3340,6 +3542,87 @@ List of custom search keywords. See example below or refer `GetSearchWordsRespon
 ---
 
 
+### getAppCategoryReturnConfig
+Get all category level configuration level set for an application
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getAppCategoryReturnConfig();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getAppCategoryReturnConfig();
+```
+
+
+
+
+
+
+Get all category level configuration level set for an application.
+
+*Returned Response:*
+
+
+
+
+[BaseAppCategoryReturnConfigResponse](#BaseAppCategoryReturnConfigResponse)
+
+success message will tell whether the operation was successful.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "data": [
+      {
+        "app_id": "5d638512c9accedcd910591a",
+        "category_id": 1659,
+        "logo": "https://hdn-1.addsale.com/addsale/category/pictures/square-logo/original/7hR5xHVUi0-eTdgOunCZ-.jpeg",
+        "name": "MG TEST DIGITAL",
+        "return_config": {
+          "returnable": true,
+          "time": 10,
+          "unit": "days"
+        }
+      }
+    ],
+    "page": {
+      "current": "1",
+      "has_next": false,
+      "has_previous": false,
+      "item_total": 1,
+      "size": 1,
+      "type": "number"
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getAppInventory
 Get the stock of a product
 
@@ -4245,6 +4528,71 @@ The Product object. See example below or refer `ApplicationProductListingRespons
     "size": 1,
     "type": "number"
   }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getAppReturnConfiguration
+Get Return configuration level set for an application
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.getAppReturnConfiguration();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.getAppReturnConfiguration();
+```
+
+
+
+
+
+
+Get Product Return configuration set at an application level
+
+*Returned Response:*
+
+
+
+
+[AppReturnConfigResponse](#AppReturnConfigResponse)
+
+success message will tell whether the operation was successful.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "app_id": "5d638512c9accedcd910591a",
+  "category_count": 32,
+  "company_id": 1,
+  "created_by": {
+    "user_id": "054bb99f009aece85a3fa087",
+    "username": "test"
+  },
+  "modified_by": {
+    "user_id": "054bb99f009aece85a3fa087",
+    "username": "test"
+  },
+  "modified_on": "2023-03-28T06:05:24.026000",
+  "return_config_level": "category"
 }
 ```
 </details>
@@ -15230,6 +15578,71 @@ Returns a success response
 ---
 
 
+### updateAppCategoryReturnConfiguration
+Update Category level Application Return Configuration setttings
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.updateAppCategoryReturnConfiguration({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.updateAppCategoryReturnConfiguration({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [BaseAppCategoryReturnConfig](#BaseAppCategoryReturnConfig) | yes | Request body |
+
+
+Update Category level Application Return Configuration setttings
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse](#SuccessResponse)
+
+success message will tell whether the operation was successful.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "success": true
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### updateAppDepartment
 Update a single custom json.
 
@@ -15397,6 +15810,71 @@ Returns a success response
   "success": true
 }
 ```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateAppReturnConfiguration
+Update Return configuration level set for an application
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").catalog.updateAppReturnConfiguration({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").catalog.updateAppReturnConfiguration({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CreateUpdateAppReturnConfig](#CreateUpdateAppReturnConfig) | yes | Request body |
+
+
+Update Return configuration level set for an application.
+
+*Returned Response:*
+
+
+
+
+[SuccessResponse1](#SuccessResponse1)
+
+success message will tell whether the operation was successful.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "success": true
+  }
+}
+```
+</details>
+
 </details>
 
 
@@ -16814,6 +17292,29 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
+#### [AppCategoryReturnConfig](#AppCategoryReturnConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | category_id | number |  no  | Unique identifier for L3 category |
+ | return_config | [ProductReturnConfigBaseSerializer](#ProductReturnConfigBaseSerializer) |  no  | Return configuration details |
+ 
+
+---
+
+#### [AppCategoryReturnConfigResponse](#AppCategoryReturnConfigResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | app_id | string? |  yes  | Channel identifier |
+ | category_id | number? |  yes  | Unique identifer of L3 category |
+ | logo | string? |  yes  |  |
+ | name | string? |  yes  | Name of L3 category |
+ | return_config | [ProductReturnConfigBaseSerializer](#ProductReturnConfigBaseSerializer)? |  yes  |  |
+ 
+
+---
+
 #### [AppConfiguration](#AppConfiguration)
 
  | Properties | Type | Nullable | Description |
@@ -17011,6 +17512,21 @@ List of fields and validation values fro each. See example below or refer `Inven
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | _custom_json | string |  no  |  |
+ 
+
+---
+
+#### [AppReturnConfigResponse](#AppReturnConfigResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | app_id | string? |  yes  | Channel identifier |
+ | category_count | number? |  yes  | Count of L3 category return config set for application |
+ | company_id | number? |  yes  | Unique identifer of company |
+ | created_by | string? |  yes  | User details |
+ | modified_by | string? |  yes  | User details |
+ | modified_on | string? |  yes  | Modification date |
+ | return_config_level | string? |  yes  | configuration level of return window category\|product\|no-return |
  
 
 ---
@@ -17245,6 +17761,27 @@ List of fields and validation values fro each. See example below or refer `Inven
  | aspect_ratio | string? |  yes  |  |
  | type | string? |  yes  |  |
  | url | string? |  yes  |  |
+ 
+
+---
+
+#### [BaseAppCategoryReturnConfig](#BaseAppCategoryReturnConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | app_id | string |  no  | Channel identifier |
+ | company_id | number |  no  | Unique identifer of company |
+ | data | [[AppCategoryReturnConfig](#AppCategoryReturnConfig)] |  no  | Category level return config details |
+ 
+
+---
+
+#### [BaseAppCategoryReturnConfigResponse](#BaseAppCategoryReturnConfigResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [[AppCategoryReturnConfigResponse](#AppCategoryReturnConfigResponse)]? |  yes  |  |
+ | page | [PageResponse](#PageResponse)? |  yes  |  |
  
 
 ---
@@ -18071,6 +18608,17 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
+#### [CreateUpdateAppReturnConfig](#CreateUpdateAppReturnConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | app_id | string |  no  | Channel identifier |
+ | company_id | number |  no  | Unique identifer of company |
+ | return_config_level | string |  no  | Return configurtion Level category\|product\|no-return |
+ 
+
+---
+
 #### [CrossSellingData](#CrossSellingData)
 
  | Properties | Type | Nullable | Description |
@@ -18119,6 +18667,17 @@ List of fields and validation values fro each. See example below or refer `Inven
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | default_key | string |  no  |  |
+ 
+
+---
+
+#### [DeleteAppCategoryReturnConfig](#DeleteAppCategoryReturnConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | app_id | string |  no  | Channel identifier |
+ | category_ids | [number] |  no  | List of category_ids to be deleted. |
+ | company_id | number |  no  | Unique identifer of company |
  
 
 ---
@@ -19795,6 +20354,20 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
+#### [PageResponse1](#PageResponse1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | current | number? |  yes  |  |
+ | has_next | boolean? |  yes  |  |
+ | has_previous | boolean? |  yes  |  |
+ | item_total | number? |  yes  |  |
+ | size | number? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
+
+---
+
 #### [PageResponseType](#PageResponseType)
 
  | Properties | Type | Nullable | Description |
@@ -20316,6 +20889,17 @@ List of fields and validation values fro each. See example below or refer `Inven
  | ---------- | ---- | -------- | ----------- |
  | is_set | boolean? |  yes  |  |
  | product_online_date | number? |  yes  |  |
+ 
+
+---
+
+#### [ProductReturnConfigBaseSerializer](#ProductReturnConfigBaseSerializer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | returnable | boolean |  no  | Boolean Flag for item returnable |
+ | time | number |  no  | Valid return time for an item |
+ | unit | string |  no  | Unit of return config days\|hours |
  
 
 ---

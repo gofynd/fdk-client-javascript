@@ -60,13 +60,13 @@ declare class User {
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<UserPlatformModel.SessionDeleteResponseSchema>} -
+     * @returns {Promise<UserPlatformModel.SessionsDeleteResponseSchema>} -
      *   Success response
      * @name deleteActiveSessions
      * @summary: Delete a list of all session for a user
      * @description: Use this API to Delete a list of session of customers who have registered in the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/deleteActiveSessions/).
      */
-    deleteActiveSessions({ id, reason, requestHeaders }?: UserPlatformApplicationValidator.DeleteActiveSessionsParam, { responseHeaders }?: object): Promise<UserPlatformModel.SessionDeleteResponseSchema>;
+    deleteActiveSessions({ id, reason, requestHeaders }?: UserPlatformApplicationValidator.DeleteActiveSessionsParam, { responseHeaders }?: object): Promise<UserPlatformModel.SessionsDeleteResponseSchema>;
     /**
      * @param {UserPlatformApplicationValidator.DeleteSessionParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

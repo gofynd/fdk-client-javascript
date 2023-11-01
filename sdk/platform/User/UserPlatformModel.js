@@ -232,7 +232,8 @@ const Joi = require("joi");
 
 /**
  * @typedef SessionDeleteResponseSchema
- * @property {string[]} [items]
+ * @property {string} [session_id]
+ * @property {string} [user_id]
  */
 
 /**
@@ -254,6 +255,12 @@ const Joi = require("joi");
 /**
  * @typedef SessionListResponseSchema
  * @property {SessionListResponseInfo[]} [items]
+ */
+
+/**
+ * @typedef SessionsDeleteResponseSchema
+ * @property {string[]} [session_ids]
+ * @property {string} [user_id]
  */
 
 /**
@@ -664,7 +671,8 @@ class UserPlatformModel {
   /** @returns {SessionDeleteResponseSchema} */
   static SessionDeleteResponseSchema() {
     return Joi.object({
-      items: Joi.array().items(Joi.string().allow("")),
+      session_id: Joi.string().allow(""),
+      user_id: Joi.string().allow(""),
     });
   }
 
@@ -692,6 +700,14 @@ class UserPlatformModel {
   static SessionListResponseSchema() {
     return Joi.object({
       items: Joi.array().items(UserPlatformModel.SessionListResponseInfo()),
+    });
+  }
+
+  /** @returns {SessionsDeleteResponseSchema} */
+  static SessionsDeleteResponseSchema() {
+    return Joi.object({
+      session_ids: Joi.array().items(Joi.string().allow("")),
+      user_id: Joi.string().allow(""),
     });
   }
 

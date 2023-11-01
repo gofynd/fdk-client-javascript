@@ -284,7 +284,7 @@ export = CartApplicationModel;
  * @property {Object} [moq]
  * @property {Object} [parent_item_identifiers]
  * @property {ProductPriceInfo} [price]
- * @property {ProductPriceInfo} [price_per_unit]
+ * @property {ProductPricePerUnitInfo} [price_per_unit]
  * @property {CartProduct} [product]
  * @property {PromoMeta} [promo_meta]
  * @property {AppliedPromotion[]} [promotions_applied]
@@ -661,6 +661,20 @@ export = CartApplicationModel;
  * @property {ProductPrice} [converted]
  */
 /**
+ * @typedef ProductPricePerUnit
+ * @property {number} [add_on]
+ * @property {string} [currency_code]
+ * @property {string} [currency_symbol]
+ * @property {number} [effective]
+ * @property {number} [marked]
+ * @property {number} [selling_price]
+ */
+/**
+ * @typedef ProductPricePerUnitInfo
+ * @property {ProductPricePerUnit} [base]
+ * @property {ProductPricePerUnit} [converted]
+ */
+/**
  * @typedef PromiseFormatted
  * @property {string} [max]
  * @property {string} [min]
@@ -837,7 +851,7 @@ export = CartApplicationModel;
 declare class CartApplicationModel {
 }
 declare namespace CartApplicationModel {
-    export { ActionQuery, AddCartDetailResponse, AddCartRequest, AddProductCart, Address, AppliedFreeArticles, AppliedPromotion, ApplyCouponRequest, ArticleGiftDetail, ArticlePriceInfo, BaseInfo, BasePrice, BulkPriceOffer, BulkPriceResponse, BuyRules, CartBreakup, CartCheckoutCustomMeta, CartCheckoutDetailRequest, CartCheckoutDetailV2Request, CartCheckoutResponse, CartCurrency, CartDetailResponse, CartItemCountResponse, CartMetaMissingResponse, CartMetaRequest, CartMetaResponse, CartProduct, CartProductIdentifer, CartProductInfo, CartShipmentsResponse, CategoryInfo, CheckCart, Coupon, CouponBreakup, CouponDetails, CouponValidity, CurrencyInfo, CustomerDetails, DeleteAddressResponse, DeleteCartDetailResponse, DiscountRulesApp, DisplayBreakup, FreeGiftItem, FreeGiftItems, GeoLocation, GetAddressesResponse, GetCouponResponse, GetShareCartLinkRequest, GetShareCartLinkResponse, GiftDetail, LadderOfferItem, LadderPrice, LadderPriceOffer, LadderPriceOffers, LoyaltyPoints, OfferItem, OfferPrice, OfferSeller, OperationErrorResponse, Ownership, PageCoupon, PaymentCouponValidate, PaymentMeta, PaymentMethod, PaymentSelectionLock, ProductAction, ProductArticle, ProductAvailability, ProductAvailabilitySize, ProductImage, ProductPrice, ProductPriceInfo, PromiseFormatted, PromiseTimestamp, PromoMeta, PromotionOffer, PromotionOffersResponse, RawBreakup, RewardPointRequest, SaveAddressResponse, SelectCartAddressRequest, SharedCart, SharedCartDetails, SharedCartResponse, ShipmentPromise, ShipmentResponse, StaffCheckout, StoreInfo, Tags, UpdateAddressResponse, UpdateCartDetailResponse, UpdateCartPaymentRequest, UpdateCartRequest, UpdateProductCart };
+    export { ActionQuery, AddCartDetailResponse, AddCartRequest, AddProductCart, Address, AppliedFreeArticles, AppliedPromotion, ApplyCouponRequest, ArticleGiftDetail, ArticlePriceInfo, BaseInfo, BasePrice, BulkPriceOffer, BulkPriceResponse, BuyRules, CartBreakup, CartCheckoutCustomMeta, CartCheckoutDetailRequest, CartCheckoutDetailV2Request, CartCheckoutResponse, CartCurrency, CartDetailResponse, CartItemCountResponse, CartMetaMissingResponse, CartMetaRequest, CartMetaResponse, CartProduct, CartProductIdentifer, CartProductInfo, CartShipmentsResponse, CategoryInfo, CheckCart, Coupon, CouponBreakup, CouponDetails, CouponValidity, CurrencyInfo, CustomerDetails, DeleteAddressResponse, DeleteCartDetailResponse, DiscountRulesApp, DisplayBreakup, FreeGiftItem, FreeGiftItems, GeoLocation, GetAddressesResponse, GetCouponResponse, GetShareCartLinkRequest, GetShareCartLinkResponse, GiftDetail, LadderOfferItem, LadderPrice, LadderPriceOffer, LadderPriceOffers, LoyaltyPoints, OfferItem, OfferPrice, OfferSeller, OperationErrorResponse, Ownership, PageCoupon, PaymentCouponValidate, PaymentMeta, PaymentMethod, PaymentSelectionLock, ProductAction, ProductArticle, ProductAvailability, ProductAvailabilitySize, ProductImage, ProductPrice, ProductPriceInfo, ProductPricePerUnit, ProductPricePerUnitInfo, PromiseFormatted, PromiseTimestamp, PromoMeta, PromotionOffer, PromotionOffersResponse, RawBreakup, RewardPointRequest, SaveAddressResponse, SelectCartAddressRequest, SharedCart, SharedCartDetails, SharedCartResponse, ShipmentPromise, ShipmentResponse, StaffCheckout, StoreInfo, Tags, UpdateAddressResponse, UpdateCartDetailResponse, UpdateCartPaymentRequest, UpdateCartRequest, UpdateProductCart };
 }
 /** @returns {ActionQuery} */
 declare function ActionQuery(): ActionQuery;
@@ -1243,7 +1257,7 @@ type CartProductInfo = {
     moq?: any;
     parent_item_identifiers?: any;
     price?: ProductPriceInfo;
-    price_per_unit?: ProductPriceInfo;
+    price_per_unit?: ProductPricePerUnitInfo;
     product?: CartProduct;
     promo_meta?: PromoMeta;
     promotions_applied?: AppliedPromotion[];
@@ -1823,6 +1837,22 @@ declare function ProductPriceInfo(): ProductPriceInfo;
 type ProductPriceInfo = {
     base?: ProductPrice;
     converted?: ProductPrice;
+};
+/** @returns {ProductPricePerUnit} */
+declare function ProductPricePerUnit(): ProductPricePerUnit;
+type ProductPricePerUnit = {
+    add_on?: number;
+    currency_code?: string;
+    currency_symbol?: string;
+    effective?: number;
+    marked?: number;
+    selling_price?: number;
+};
+/** @returns {ProductPricePerUnitInfo} */
+declare function ProductPricePerUnitInfo(): ProductPricePerUnitInfo;
+type ProductPricePerUnitInfo = {
+    base?: ProductPricePerUnit;
+    converted?: ProductPricePerUnit;
 };
 /** @returns {PromiseFormatted} */
 declare function PromiseFormatted(): PromiseFormatted;

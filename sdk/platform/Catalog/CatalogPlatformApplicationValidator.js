@@ -9,6 +9,16 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
+ * @typedef CreateAppCategoryReturnConfigurationParam
+ * @property {CatalogPlatformModel.BaseAppCategoryReturnConfig} body
+ */
+
+/**
+ * @typedef CreateAppReturnConfigurationParam
+ * @property {CatalogPlatformModel.CreateUpdateAppReturnConfig} body
+ */
+
+/**
  * @typedef CreateCollectionParam
  * @property {CatalogPlatformModel.CreateCollection} body
  */
@@ -51,6 +61,11 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 /**
  * @typedef CreateSearchConfigurationParam
  * @property {CatalogPlatformModel.CreateSearchConfigurationRequest} body
+ */
+
+/**
+ * @typedef DeleteAppCategoryReturnConfigurationParam
+ * @property {CatalogPlatformModel.DeleteAppCategoryReturnConfig} body
  */
 
 /**
@@ -104,6 +119,8 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /** @typedef GetAllSearchKeywordParam */
 
+/** @typedef GetAppCategoryReturnConfigParam */
+
 /**
  * @typedef GetAppInventoryParam
  * @property {number[]} [itemIds] - The Item Id of the product.
@@ -147,6 +164,8 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   Default is 10.
  * @property {string} [q] - Search with Item Code, Name, Slug or Identifier.
  */
+
+/** @typedef GetAppReturnConfigurationParam */
 
 /**
  * @typedef GetAppicationProductsParam
@@ -355,6 +374,11 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  */
 
 /**
+ * @typedef UpdateAppCategoryReturnConfigurationParam
+ * @property {CatalogPlatformModel.BaseAppCategoryReturnConfig} body
+ */
+
+/**
  * @typedef UpdateAppDepartmentParam
  * @property {string} departmentUid - Department id for which the custom_json is
  *   associated.
@@ -371,6 +395,11 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  * @typedef UpdateAppProductParam
  * @property {string} itemId - Product id for which the custom_meta is associated.
  * @property {CatalogPlatformModel.ApplicationItemMeta} body
+ */
+
+/**
+ * @typedef UpdateAppReturnConfigurationParam
+ * @property {CatalogPlatformModel.CreateUpdateAppReturnConfig} body
  */
 
 /**
@@ -430,6 +459,20 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {CreateAppCategoryReturnConfigurationParam} */
+  static createAppCategoryReturnConfiguration() {
+    return Joi.object({
+      body: CatalogPlatformModel.BaseAppCategoryReturnConfig().required(),
+    }).required();
+  }
+
+  /** @returns {CreateAppReturnConfigurationParam} */
+  static createAppReturnConfiguration() {
+    return Joi.object({
+      body: CatalogPlatformModel.CreateUpdateAppReturnConfig().required(),
+    }).required();
+  }
+
   /** @returns {CreateCollectionParam} */
   static createCollection() {
     return Joi.object({
@@ -486,6 +529,13 @@ class CatalogPlatformApplicationValidator {
   static createSearchConfiguration() {
     return Joi.object({
       body: CatalogPlatformModel.CreateSearchConfigurationRequest().required(),
+    }).required();
+  }
+
+  /** @returns {DeleteAppCategoryReturnConfigurationParam} */
+  static deleteAppCategoryReturnConfiguration() {
+    return Joi.object({
+      body: CatalogPlatformModel.DeleteAppCategoryReturnConfig().required(),
     }).required();
   }
 
@@ -549,6 +599,11 @@ class CatalogPlatformApplicationValidator {
     return Joi.object({}).required();
   }
 
+  /** @returns {GetAppCategoryReturnConfigParam} */
+  static getAppCategoryReturnConfig() {
+    return Joi.object({}).required();
+  }
+
   /** @returns {GetAppInventoryParam} */
   static getAppInventory() {
     return Joi.object({
@@ -593,6 +648,11 @@ class CatalogPlatformApplicationValidator {
       pageSize: Joi.number(),
       q: Joi.string().allow(""),
     }).required();
+  }
+
+  /** @returns {GetAppReturnConfigurationParam} */
+  static getAppReturnConfiguration() {
+    return Joi.object({}).required();
   }
 
   /** @returns {GetAppicationProductsParam} */
@@ -804,6 +864,13 @@ class CatalogPlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {UpdateAppCategoryReturnConfigurationParam} */
+  static updateAppCategoryReturnConfiguration() {
+    return Joi.object({
+      body: CatalogPlatformModel.BaseAppCategoryReturnConfig().required(),
+    }).required();
+  }
+
   /** @returns {UpdateAppDepartmentParam} */
   static updateAppDepartment() {
     return Joi.object({
@@ -825,6 +892,13 @@ class CatalogPlatformApplicationValidator {
     return Joi.object({
       itemId: Joi.string().allow("").required(),
       body: CatalogPlatformModel.ApplicationItemMeta().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateAppReturnConfigurationParam} */
+  static updateAppReturnConfiguration() {
+    return Joi.object({
+      body: CatalogPlatformModel.CreateUpdateAppReturnConfig().required(),
     }).required();
   }
 

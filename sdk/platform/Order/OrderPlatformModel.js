@@ -313,7 +313,7 @@ const Joi = require("joi");
  * @property {Item} [item]
  * @property {string} [journey_type]
  * @property {number} [line_number]
- * @property {BagMeta} [meta]
+ * @property {Object} [meta]
  * @property {number} [no_of_bags_order]
  * @property {string} [operational_status]
  * @property {string} [order_integration_id]
@@ -727,7 +727,7 @@ const Joi = require("joi");
  * @property {Shipment[]} shipments
  * @property {ShippingInfo} shipping_info
  * @property {TaxInfo} [tax_info]
- * @property {UserInfo} user_info
+ * @property {UserInfo} [user_info]
  */
 
 /**
@@ -1192,6 +1192,7 @@ const Joi = require("joi");
  * @property {string} [external_invoice_id]
  * @property {string} [invoice_url]
  * @property {string} [label_url]
+ * @property {Object} [links]
  * @property {string} [store_invoice_id]
  * @property {string} [updated_date]
  */
@@ -1299,7 +1300,7 @@ const Joi = require("joi");
  * @property {boolean} [is_parent]
  * @property {PlatformItem} [item]
  * @property {number} [line_number]
- * @property {BagMeta} [meta]
+ * @property {Object} [meta]
  * @property {Object} [parent_promo_bags]
  * @property {BagPaymentMethods[]} [payment_methods]
  * @property {Prices} [prices]
@@ -1330,7 +1331,7 @@ const Joi = require("joi");
 /**
  * @typedef OrderData
  * @property {string} fynd_order_id
- * @property {OrderMeta} [meta]
+ * @property {Object} [meta]
  * @property {string} order_date
  * @property {Object} [payment_methods]
  * @property {Prices} [prices]
@@ -1348,7 +1349,7 @@ const Joi = require("joi");
  * @property {string} [affiliate_id]
  * @property {string} [cod_charges]
  * @property {string} fynd_order_id
- * @property {OrderMeta} [meta]
+ * @property {Object} [meta]
  * @property {string} [order_date]
  * @property {string} [order_value]
  * @property {string} [ordering_channel]
@@ -1669,7 +1670,7 @@ const Joi = require("joi");
  * @property {boolean} [is_self_ship]
  * @property {string} [journey_type]
  * @property {boolean} [lock_status]
- * @property {ShipmentMeta} [meta]
+ * @property {Object} [meta]
  * @property {string} [mode_of_payment]
  * @property {string} [operational_status]
  * @property {OrderDetailsData} [order]
@@ -2037,7 +2038,7 @@ const Joi = require("joi");
  * @property {ShipmentItemFulFillingStore} [fulfilling_store]
  * @property {string} [invoice_id]
  * @property {boolean} [lock_status]
- * @property {ShipmentItemMeta} [meta]
+ * @property {Object} [meta]
  * @property {string} [mode_of_payment]
  * @property {string} [order_date]
  * @property {string} order_id
@@ -2553,6 +2554,7 @@ const Joi = require("joi");
  * @typedef UserDataInfo
  * @property {string} [avis_user_id]
  * @property {string} [email]
+ * @property {string} [external_customer_id]
  * @property {string} [first_name]
  * @property {string} [gender]
  * @property {boolean} [is_anonymous_user]
@@ -2560,6 +2562,7 @@ const Joi = require("joi");
  * @property {string} [mobile]
  * @property {string} [name]
  * @property {number} [uid]
+ * @property {string} [user_oid]
  */
 
 /**
@@ -3004,7 +3007,7 @@ class OrderPlatformModel {
       item: OrderPlatformModel.Item(),
       journey_type: Joi.string().allow("").allow(null),
       line_number: Joi.number().allow(null),
-      meta: OrderPlatformModel.BagMeta(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       no_of_bags_order: Joi.number().allow(null),
       operational_status: Joi.string().allow("").allow(null),
       order_integration_id: Joi.string().allow("").allow(null),
@@ -3489,7 +3492,7 @@ class OrderPlatformModel {
       shipments: Joi.array().items(OrderPlatformModel.Shipment()).required(),
       shipping_info: OrderPlatformModel.ShippingInfo().required(),
       tax_info: OrderPlatformModel.TaxInfo(),
-      user_info: OrderPlatformModel.UserInfo().required(),
+      user_info: OrderPlatformModel.UserInfo(),
     });
   }
 
@@ -4058,6 +4061,7 @@ class OrderPlatformModel {
       external_invoice_id: Joi.string().allow("").allow(null),
       invoice_url: Joi.string().allow("").allow(null),
       label_url: Joi.string().allow("").allow(null),
+      links: Joi.object().pattern(/\S/, Joi.any()),
       store_invoice_id: Joi.string().allow("").allow(null),
       updated_date: Joi.string().allow("").allow(null),
     });
@@ -4187,7 +4191,7 @@ class OrderPlatformModel {
       is_parent: Joi.boolean().allow(null),
       item: OrderPlatformModel.PlatformItem(),
       line_number: Joi.number().allow(null),
-      meta: OrderPlatformModel.BagMeta(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       parent_promo_bags: Joi.any().allow(null),
       payment_methods: Joi.array().items(
         OrderPlatformModel.BagPaymentMethods()
@@ -4228,7 +4232,7 @@ class OrderPlatformModel {
   static OrderData() {
     return Joi.object({
       fynd_order_id: Joi.string().allow("").required(),
-      meta: OrderPlatformModel.OrderMeta(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       order_date: Joi.string().allow("").required(),
       payment_methods: Joi.any().allow(null),
       prices: OrderPlatformModel.Prices(),
@@ -4250,7 +4254,7 @@ class OrderPlatformModel {
       affiliate_id: Joi.string().allow("").allow(null),
       cod_charges: Joi.string().allow("").allow(null),
       fynd_order_id: Joi.string().allow("").required(),
-      meta: OrderPlatformModel.OrderMeta(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       order_date: Joi.string().allow("").allow(null),
       order_value: Joi.string().allow("").allow(null),
       ordering_channel: Joi.string().allow("").allow(null),
@@ -4628,7 +4632,7 @@ class OrderPlatformModel {
       is_self_ship: Joi.boolean().allow(null),
       journey_type: Joi.string().allow("").allow(null),
       lock_status: Joi.boolean().allow(null),
-      meta: OrderPlatformModel.ShipmentMeta(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       mode_of_payment: Joi.string().allow("").allow(null),
       operational_status: Joi.string().allow("").allow(null),
       order: OrderPlatformModel.OrderDetailsData(),
@@ -5087,7 +5091,7 @@ class OrderPlatformModel {
       fulfilling_store: OrderPlatformModel.ShipmentItemFulFillingStore(),
       invoice_id: Joi.string().allow("").allow(null),
       lock_status: Joi.boolean().allow(null),
-      meta: OrderPlatformModel.ShipmentItemMeta(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       mode_of_payment: Joi.string().allow(""),
       order_date: Joi.string().allow("").allow(null),
       order_id: Joi.string().allow("").required(),
@@ -5691,6 +5695,7 @@ class OrderPlatformModel {
     return Joi.object({
       avis_user_id: Joi.string().allow("").allow(null),
       email: Joi.string().allow("").allow(null),
+      external_customer_id: Joi.string().allow("").allow(null),
       first_name: Joi.string().allow("").allow(null),
       gender: Joi.string().allow("").allow(null),
       is_anonymous_user: Joi.boolean().allow(null),
@@ -5698,6 +5703,7 @@ class OrderPlatformModel {
       mobile: Joi.string().allow("").allow(null),
       name: Joi.string().allow("").allow(null),
       uid: Joi.number().allow(null),
+      user_oid: Joi.string().allow("").allow(null),
     });
   }
 

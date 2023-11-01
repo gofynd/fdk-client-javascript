@@ -200,7 +200,8 @@ export = UserPlatformModel;
  */
 /**
  * @typedef SessionDeleteResponseSchema
- * @property {string[]} [items]
+ * @property {string} [session_id]
+ * @property {string} [user_id]
  */
 /**
  * @typedef SessionExpiry
@@ -219,6 +220,11 @@ export = UserPlatformModel;
 /**
  * @typedef SessionListResponseSchema
  * @property {SessionListResponseInfo[]} [items]
+ */
+/**
+ * @typedef SessionsDeleteResponseSchema
+ * @property {string[]} [session_ids]
+ * @property {string} [user_id]
  */
 /**
  * @typedef Social
@@ -326,7 +332,7 @@ export = UserPlatformModel;
 declare class UserPlatformModel {
 }
 declare namespace UserPlatformModel {
-    export { Accountkit, ArchiveUserRequestSchema, ArchiveUserSuccess, AuthenticationApiErrorSchema, BlockUserRequestSchema, BlockUserSuccess, CreateUserGroupSchema, CreateUserRequestSchema, CreateUserResponseSchema, CreateUserSessionRequestSchema, CreateUserSessionResponseSchema, CustomerListResponseSchema, DeleteAccountConsent, DeleteAccountReasons, Email, Facebook, FlashCard, Google, Login, LookAndFeel, MetaSchema, PaginationSchema, PartialUserGroupUpdateSchema, PhoneNumber, PlatformEmail, PlatformMobile, PlatformSchema, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, RequiredFields, SessionDeleteResponseSchema, SessionExpiry, SessionListResponseInfo, SessionListResponseSchema, Social, SocialTokens, UnDeleteUserRequestSchema, UnDeleteUserSuccess, UpdateUserGroupSchema, UpdateUserRequestSchema, UserEmails, UserGroupListResponseSchema, UserGroupResponseSchema, UserGroupUpdateData, UserPhoneNumbers, UserSchema, UserSearchResponseSchema };
+    export { Accountkit, ArchiveUserRequestSchema, ArchiveUserSuccess, AuthenticationApiErrorSchema, BlockUserRequestSchema, BlockUserSuccess, CreateUserGroupSchema, CreateUserRequestSchema, CreateUserResponseSchema, CreateUserSessionRequestSchema, CreateUserSessionResponseSchema, CustomerListResponseSchema, DeleteAccountConsent, DeleteAccountReasons, Email, Facebook, FlashCard, Google, Login, LookAndFeel, MetaSchema, PaginationSchema, PartialUserGroupUpdateSchema, PhoneNumber, PlatformEmail, PlatformMobile, PlatformSchema, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, RequiredFields, SessionDeleteResponseSchema, SessionExpiry, SessionListResponseInfo, SessionListResponseSchema, SessionsDeleteResponseSchema, Social, SocialTokens, UnDeleteUserRequestSchema, UnDeleteUserSuccess, UpdateUserGroupSchema, UpdateUserRequestSchema, UserEmails, UserGroupListResponseSchema, UserGroupResponseSchema, UserGroupUpdateData, UserPhoneNumbers, UserSchema, UserSearchResponseSchema };
 }
 /** @returns {Accountkit} */
 declare function Accountkit(): Accountkit;
@@ -570,7 +576,8 @@ type RequiredFields = {
 /** @returns {SessionDeleteResponseSchema} */
 declare function SessionDeleteResponseSchema(): SessionDeleteResponseSchema;
 type SessionDeleteResponseSchema = {
-    items?: string[];
+    session_id?: string;
+    user_id?: string;
 };
 /** @returns {SessionExpiry} */
 declare function SessionExpiry(): SessionExpiry;
@@ -592,6 +599,12 @@ type SessionListResponseInfo = {
 declare function SessionListResponseSchema(): SessionListResponseSchema;
 type SessionListResponseSchema = {
     items?: SessionListResponseInfo[];
+};
+/** @returns {SessionsDeleteResponseSchema} */
+declare function SessionsDeleteResponseSchema(): SessionsDeleteResponseSchema;
+type SessionsDeleteResponseSchema = {
+    session_ids?: string[];
+    user_id?: string;
 };
 /** @returns {Social} */
 declare function Social(): Social;

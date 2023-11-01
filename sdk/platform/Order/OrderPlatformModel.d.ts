@@ -282,7 +282,7 @@ export = OrderPlatformModel;
  * @property {Item} [item]
  * @property {string} [journey_type]
  * @property {number} [line_number]
- * @property {BagMeta} [meta]
+ * @property {Object} [meta]
  * @property {number} [no_of_bags_order]
  * @property {string} [operational_status]
  * @property {string} [order_integration_id]
@@ -660,7 +660,7 @@ export = OrderPlatformModel;
  * @property {Shipment[]} shipments
  * @property {ShippingInfo} shipping_info
  * @property {TaxInfo} [tax_info]
- * @property {UserInfo} user_info
+ * @property {UserInfo} [user_info]
  */
 /**
  * @typedef CreateOrderErrorReponse
@@ -1074,6 +1074,7 @@ export = OrderPlatformModel;
  * @property {string} [external_invoice_id]
  * @property {string} [invoice_url]
  * @property {string} [label_url]
+ * @property {Object} [links]
  * @property {string} [store_invoice_id]
  * @property {string} [updated_date]
  */
@@ -1171,7 +1172,7 @@ export = OrderPlatformModel;
  * @property {boolean} [is_parent]
  * @property {PlatformItem} [item]
  * @property {number} [line_number]
- * @property {BagMeta} [meta]
+ * @property {Object} [meta]
  * @property {Object} [parent_promo_bags]
  * @property {BagPaymentMethods[]} [payment_methods]
  * @property {Prices} [prices]
@@ -1199,7 +1200,7 @@ export = OrderPlatformModel;
 /**
  * @typedef OrderData
  * @property {string} fynd_order_id
- * @property {OrderMeta} [meta]
+ * @property {Object} [meta]
  * @property {string} order_date
  * @property {Object} [payment_methods]
  * @property {Prices} [prices]
@@ -1215,7 +1216,7 @@ export = OrderPlatformModel;
  * @property {string} [affiliate_id]
  * @property {string} [cod_charges]
  * @property {string} fynd_order_id
- * @property {OrderMeta} [meta]
+ * @property {Object} [meta]
  * @property {string} [order_date]
  * @property {string} [order_value]
  * @property {string} [ordering_channel]
@@ -1509,7 +1510,7 @@ export = OrderPlatformModel;
  * @property {boolean} [is_self_ship]
  * @property {string} [journey_type]
  * @property {boolean} [lock_status]
- * @property {ShipmentMeta} [meta]
+ * @property {Object} [meta]
  * @property {string} [mode_of_payment]
  * @property {string} [operational_status]
  * @property {OrderDetailsData} [order]
@@ -1835,7 +1836,7 @@ export = OrderPlatformModel;
  * @property {ShipmentItemFulFillingStore} [fulfilling_store]
  * @property {string} [invoice_id]
  * @property {boolean} [lock_status]
- * @property {ShipmentItemMeta} [meta]
+ * @property {Object} [meta]
  * @property {string} [mode_of_payment]
  * @property {string} [order_date]
  * @property {string} order_id
@@ -2306,6 +2307,7 @@ export = OrderPlatformModel;
  * @typedef UserDataInfo
  * @property {string} [avis_user_id]
  * @property {string} [email]
+ * @property {string} [external_customer_id]
  * @property {string} [first_name]
  * @property {string} [gender]
  * @property {boolean} [is_anonymous_user]
@@ -2313,6 +2315,7 @@ export = OrderPlatformModel;
  * @property {string} [mobile]
  * @property {string} [name]
  * @property {number} [uid]
+ * @property {string} [user_oid]
  */
 /**
  * @typedef UserDetailsData
@@ -2689,7 +2692,7 @@ type BagDetailsPlatformResponse = {
     item?: Item;
     journey_type?: string;
     line_number?: number;
-    meta?: BagMeta;
+    meta?: any;
     no_of_bags_order?: number;
     operational_status?: string;
     order_integration_id?: string;
@@ -3202,7 +3205,7 @@ type CreateOrderAPI = {
     shipments: Shipment[];
     shipping_info: ShippingInfo;
     tax_info?: TaxInfo;
-    user_info: UserInfo;
+    user_info?: UserInfo;
 };
 /** @returns {CreateOrderErrorReponse} */
 declare function CreateOrderErrorReponse(): CreateOrderErrorReponse;
@@ -3736,6 +3739,7 @@ type InvoiceInfo = {
     external_invoice_id?: string;
     invoice_url?: string;
     label_url?: string;
+    links?: any;
     store_invoice_id?: string;
     updated_date?: string;
 };
@@ -3843,7 +3847,7 @@ type OrderBags = {
     is_parent?: boolean;
     item?: PlatformItem;
     line_number?: number;
-    meta?: BagMeta;
+    meta?: any;
     parent_promo_bags?: any;
     payment_methods?: BagPaymentMethods[];
     prices?: Prices;
@@ -3874,7 +3878,7 @@ type OrderConfig = {
 declare function OrderData(): OrderData;
 type OrderData = {
     fynd_order_id: string;
-    meta?: OrderMeta;
+    meta?: any;
     order_date: string;
     payment_methods?: any;
     prices?: Prices;
@@ -3892,7 +3896,7 @@ type OrderDetailsData = {
     affiliate_id?: string;
     cod_charges?: string;
     fynd_order_id: string;
-    meta?: OrderMeta;
+    meta?: any;
     order_date?: string;
     order_value?: string;
     ordering_channel?: string;
@@ -4234,7 +4238,7 @@ type PlatformShipment = {
     is_self_ship?: boolean;
     journey_type?: string;
     lock_status?: boolean;
-    meta?: ShipmentMeta;
+    meta?: any;
     mode_of_payment?: string;
     operational_status?: string;
     order?: OrderDetailsData;
@@ -4632,7 +4636,7 @@ type ShipmentItem = {
     fulfilling_store?: ShipmentItemFulFillingStore;
     invoice_id?: string;
     lock_status?: boolean;
-    meta?: ShipmentItemMeta;
+    meta?: any;
     mode_of_payment?: string;
     order_date?: string;
     order_id: string;
@@ -5214,6 +5218,7 @@ declare function UserDataInfo(): UserDataInfo;
 type UserDataInfo = {
     avis_user_id?: string;
     email?: string;
+    external_customer_id?: string;
     first_name?: string;
     gender?: string;
     is_anonymous_user?: boolean;
@@ -5221,6 +5226,7 @@ type UserDataInfo = {
     mobile?: string;
     name?: string;
     uid?: number;
+    user_oid?: string;
 };
 /** @returns {UserDetailsData} */
 declare function UserDetailsData(): UserDetailsData;

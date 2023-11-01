@@ -5425,7 +5425,7 @@ Verify OTP
  | item | [Item](#Item)? |  yes  |  |
  | journey_type | string? |  yes  |  |
  | line_number | number? |  yes  |  |
- | meta | [BagMeta](#BagMeta)? |  yes  |  |
+ | meta | string? |  yes  |  |
  | no_of_bags_order | number? |  yes  |  |
  | operational_status | string? |  yes  |  |
  | order_integration_id | string? |  yes  |  |
@@ -5976,7 +5976,7 @@ Verify OTP
  | shipments | [[Shipment](#Shipment)] |  no  |  |
  | shipping_info | [ShippingInfo](#ShippingInfo) |  no  |  |
  | tax_info | [TaxInfo](#TaxInfo)? |  yes  |  |
- | user_info | [UserInfo](#UserInfo) |  no  |  |
+ | user_info | [UserInfo](#UserInfo)? |  yes  |  |
  
 
 ---
@@ -6637,6 +6637,7 @@ Verify OTP
  | external_invoice_id | string? |  yes  |  |
  | invoice_url | string? |  yes  |  |
  | label_url | string? |  yes  |  |
+ | links | string? |  yes  |  |
  | store_invoice_id | string? |  yes  |  |
  | updated_date | string? |  yes  |  |
  
@@ -6784,7 +6785,7 @@ Verify OTP
  | is_parent | boolean? |  yes  |  |
  | item | [PlatformItem](#PlatformItem)? |  yes  |  |
  | line_number | number? |  yes  |  |
- | meta | [BagMeta](#BagMeta)? |  yes  |  |
+ | meta | string? |  yes  |  |
  | parent_promo_bags | string? |  yes  |  |
  | payment_methods | [[BagPaymentMethods](#BagPaymentMethods)]? |  yes  |  |
  | prices | [Prices](#Prices)? |  yes  |  |
@@ -6827,7 +6828,7 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | fynd_order_id | string |  no  |  |
- | meta | [OrderMeta](#OrderMeta)? |  yes  |  |
+ | meta | string? |  yes  |  |
  | order_date | string |  no  |  |
  | payment_methods | string? |  yes  |  |
  | prices | [Prices](#Prices)? |  yes  |  |
@@ -6853,7 +6854,7 @@ Verify OTP
  | affiliate_id | string? |  yes  |  |
  | cod_charges | string? |  yes  |  |
  | fynd_order_id | string |  no  |  |
- | meta | [OrderMeta](#OrderMeta)? |  yes  |  |
+ | meta | string? |  yes  |  |
  | order_date | string? |  yes  |  |
  | order_value | string? |  yes  |  |
  | ordering_channel | string? |  yes  |  |
@@ -7280,7 +7281,7 @@ Verify OTP
  | is_self_ship | boolean? |  yes  |  |
  | journey_type | string? |  yes  |  |
  | lock_status | boolean? |  yes  |  |
- | meta | [ShipmentMeta](#ShipmentMeta)? |  yes  |  |
+ | meta | string? |  yes  |  |
  | mode_of_payment | string? |  yes  |  |
  | operational_status | string? |  yes  |  |
  | order | [OrderDetailsData](#OrderDetailsData)? |  yes  |  |
@@ -7813,7 +7814,7 @@ Verify OTP
  | fulfilling_store | [ShipmentItemFulFillingStore](#ShipmentItemFulFillingStore)? |  yes  |  |
  | invoice_id | string? |  yes  |  |
  | lock_status | boolean? |  yes  |  |
- | meta | [ShipmentItemMeta](#ShipmentItemMeta)? |  yes  |  |
+ | meta | string? |  yes  |  |
  | mode_of_payment | string? |  yes  |  |
  | order_date | string? |  yes  |  |
  | order_id | string |  no  |  |
@@ -8505,6 +8506,7 @@ Verify OTP
  | ---------- | ---- | -------- | ----------- |
  | avis_user_id | string? |  yes  |  |
  | email | string? |  yes  |  |
+ | external_customer_id | string? |  yes  |  |
  | first_name | string? |  yes  |  |
  | gender | string? |  yes  |  |
  | is_anonymous_user | boolean? |  yes  |  |
@@ -8512,6 +8514,7 @@ Verify OTP
  | mobile | string? |  yes  |  |
  | name | string? |  yes  |  |
  | uid | number? |  yes  |  |
+ | user_oid | string? |  yes  |  |
  
 
 ---

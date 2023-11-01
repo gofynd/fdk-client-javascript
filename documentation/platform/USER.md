@@ -408,9 +408,9 @@ Use this API to Delete a list of session of customers who have registered in the
 
 
 
-[SessionDeleteResponseSchema](#SessionDeleteResponseSchema)
+[SessionsDeleteResponseSchema](#SessionsDeleteResponseSchema)
 
-Success. Refer `SessionDeleteResponseSchema` for more details.
+Success. Refer `SessionsDeleteResponseSchema` for more details.
 
 
 
@@ -425,7 +425,8 @@ Success. Refer `SessionDeleteResponseSchema` for more details.
 ```json
 {
   "value": {
-    "items": [
+    "user_id": "61f02c3dcc701256044ed6c0",
+    "session_ids": [
       "sess:123",
       "sess:456"
     ]
@@ -500,10 +501,8 @@ Success. Refer `SessionDeleteResponseSchema` for more details.
 ```json
 {
   "value": {
-    "items": [
-      "sess:123",
-      "sess:456"
-    ]
+    "user_id": "61f02c3dcc701256044ed6c0",
+    "session_id": "sess:123"
   }
 }
 ```
@@ -1914,7 +1913,8 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [string]? |  yes  |  |
+ | session_id | string? |  yes  |  |
+ | user_id | string? |  yes  |  |
  
 
 ---
@@ -1948,6 +1948,16 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | items | [[SessionListResponseInfo](#SessionListResponseInfo)]? |  yes  |  |
+ 
+
+---
+
+#### [SessionsDeleteResponseSchema](#SessionsDeleteResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | session_ids | [string]? |  yes  |  |
+ | user_id | string? |  yes  |  |
  
 
 ---

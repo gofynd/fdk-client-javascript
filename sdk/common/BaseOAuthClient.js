@@ -40,11 +40,11 @@ class BaseOAuthClient {
     this.raw_token = token;
     this.token_expires_in = token.expires_in;
     this.token = token.access_token;
-    this.token_expires_at = token.expires_at || this.token_expires_at;
     this.refreshToken = token.refresh_token ? token.refresh_token : null;
     if (this.refreshToken && this.useAutoRenewTimer) {
       this.retryOAuthToken(token.expires_in);
     }
+    Logger({ level: "INFO", message: "Partner token set." });
   }
 
   retryOAuthToken(expires_in) {

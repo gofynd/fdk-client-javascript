@@ -9255,7 +9255,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | moq | string? |  yes  |  |
  | parent_item_identifiers | string? |  yes  |  |
  | price | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
- | price_per_unit | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
+ | price_per_unit | [ProductPricePerUnitInfo](#ProductPricePerUnitInfo)? |  yes  |  |
  | product | [CartProduct](#CartProduct)? |  yes  |  |
  | promo_meta | [PromoMeta](#PromoMeta)? |  yes  |  |
  | promotions_applied | [[AppliedPromotion](#AppliedPromotion)]? |  yes  |  |
@@ -9837,6 +9837,30 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | ---------- | ---- | -------- | ----------- |
  | base | [ProductPrice](#ProductPrice)? |  yes  |  |
  | converted | [ProductPrice](#ProductPrice)? |  yes  |  |
+ 
+
+---
+
+#### [ProductPricePerUnit](#ProductPricePerUnit)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | add_on | number? |  yes  |  |
+ | currency_code | string? |  yes  |  |
+ | currency_symbol | string? |  yes  |  |
+ | effective | number? |  yes  |  |
+ | marked | number? |  yes  |  |
+ | selling_price | number? |  yes  |  |
+ 
+
+---
+
+#### [ProductPricePerUnitInfo](#ProductPricePerUnitInfo)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | base | [ProductPricePerUnit](#ProductPricePerUnit)? |  yes  |  |
+ | converted | [ProductPricePerUnit](#ProductPricePerUnit)? |  yes  |  |
  
 
 ---
