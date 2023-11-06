@@ -296,6 +296,16 @@ declare class Order {
      */
     getRoleBasedActions({ requestHeaders }?: any, { responseHeaders }?: object): Promise<OrderPlatformModel.GetActionsResponse>;
     /**
+     * @param {OrderPlatformValidator.GetShipmentBagReasonsParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.ShipmentBagReasons>} - Success response
+     * @name getShipmentBagReasons
+     * @summary: Get reasons behind full or partial cancellation of a shipment
+     * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getShipmentBagReasons/).
+     */
+    getShipmentBagReasons({ shipmentId, lineNumber, requestHeaders }?: OrderPlatformValidator.GetShipmentBagReasonsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ShipmentBagReasons>;
+    /**
      * @param {OrderPlatformValidator.GetShipmentByIdParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options

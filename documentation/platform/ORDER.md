@@ -32,6 +32,7 @@ Handles all platform order and shipment api(s)
 * [getOrders](#getorders)
 * [getPlatformShipmentReasons](#getplatformshipmentreasons)
 * [getRoleBasedActions](#getrolebasedactions)
+* [getShipmentBagReasons](#getshipmentbagreasons)
 * [getShipmentById](#getshipmentbyid)
 * [getShipmentHistory](#getshipmenthistory)
 * [getShipmentReasons](#getshipmentreasons)
@@ -2487,6 +2488,107 @@ You will get an array of actions allowed for that particular user based on their
       "display_text": "Call",
       "id": 3,
       "description": "Call"
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getShipmentBagReasons
+Get reasons behind full or partial cancellation of a shipment
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.getShipmentBagReasons({  shipmentId : value,
+ lineNumber : value });
+
+// Async/Await
+const data = await platformClient.order.getShipmentBagReasons({  shipmentId : value,
+ lineNumber : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| shipmentId | string | yes | ID of the bag. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |   
+| lineNumber | number | yes | line number of bag. |  
+
+
+
+Use this API to retrieve the issues that led to the cancellation of bags within a shipment.
+
+*Returned Response:*
+
+
+
+
+[ShipmentBagReasons](#ShipmentBagReasons)
+
+Success. Check the example shown below or refer `ShipmentBagReasons` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "reasons": [
+    {
+      "id": 1,
+      "display_name": "Not available",
+      "qc_type": [],
+      "question_set": []
+    },
+    {
+      "reasons": [
+        {
+          "id": 2,
+          "display_name": "Processing other orders",
+          "qc_type": [],
+          "question_set": []
+        },
+        {
+          "id": 3,
+          "display_name": "Printer not working",
+          "qc_type": [],
+          "question_set": []
+        },
+        {
+          "reasons": [
+            {
+              "id": 4,
+              "display_name": "Card issues",
+              "qc_type": [],
+              "question_set": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "display_name": "Card issues",
+      "qc_type": [],
+      "question_set": []
     }
   ]
 }
@@ -5521,6 +5623,29 @@ Verify OTP
 
 ---
 
+#### [BagReasonMeta](#BagReasonMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | show_text_area | boolean? |  yes  |  |
+ 
+
+---
+
+#### [BagReasons](#BagReasons)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display_name | string? |  yes  |  |
+ | id | number? |  yes  |  |
+ | meta | [BagReasonMeta](#BagReasonMeta)? |  yes  |  |
+ | qc_type | [string]? |  yes  |  |
+ | question_set | [[QuestionSet](#QuestionSet)]? |  yes  |  |
+ | reasons | [[BagReasons](#BagReasons)]? |  yes  |  |
+ 
+
+---
+
 #### [BagReturnableCancelableStatus](#BagReturnableCancelableStatus)
 
  | Properties | Type | Nullable | Description |
@@ -7708,6 +7833,16 @@ Verify OTP
 
 ---
 
+#### [ShipmentBagReasons](#ShipmentBagReasons)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | reasons | [[BagReasons](#BagReasons)]? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
 #### [ShipmentConfig](#ShipmentConfig)
 
  | Properties | Type | Nullable | Description |
@@ -8543,11 +8678,11 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | string |  no  |  |
  | first_name | string |  no  |  |
  | gender | string? |  yes  |  |
  | last_name | string? |  yes  |  |
- | mobile | string |  no  |  |
+ | primary_email | string |  no  |  |
+ | primary_mobile_number | string |  no  |  |
  | user_id | string? |  yes  |  |
  | user_type | string? |  yes  |  |
  

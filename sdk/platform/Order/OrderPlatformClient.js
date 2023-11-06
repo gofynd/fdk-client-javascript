@@ -2093,6 +2093,83 @@ class Order {
   }
 
   /**
+   * @param {OrderPlatformValidator.GetShipmentBagReasonsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<OrderPlatformModel.ShipmentBagReasons>} - Success response
+   * @name getShipmentBagReasons
+   * @summary: Get reasons behind full or partial cancellation of a shipment
+   * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getShipmentBagReasons/).
+   */
+  async getShipmentBagReasons(
+    { shipmentId, lineNumber, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = OrderPlatformValidator.getShipmentBagReasons().validate(
+      {
+        shipmentId,
+        lineNumber,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = OrderPlatformValidator.getShipmentBagReasons().validate(
+      {
+        shipmentId,
+        lineNumber,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Order > getShipmentBagReasons \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order/v1.0/company/${this.config.companyId}/application/<application_id>/orders/shipments/<shipment_id>/line_number/<line_number>/reasons`,
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = OrderPlatformModel.ShipmentBagReasons().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: false,
+    });
+
+    if (res_error) {
+      Logger({
+        level: "WARN",
+        message: `Response Validation Warnnings for platform > Order > getShipmentBagReasons \n ${res_error}`,
+      });
+    }
+
+    return response;
+  }
+
+  /**
    * @param {OrderPlatformValidator.GetShipmentByIdParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options

@@ -392,6 +392,21 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef BagReasonMeta
+ * @property {boolean} [show_text_area]
+ */
+
+/**
+ * @typedef BagReasons
+ * @property {string} [display_name]
+ * @property {number} [id]
+ * @property {BagReasonMeta} [meta]
+ * @property {string[]} [qc_type]
+ * @property {QuestionSet[]} [question_set]
+ * @property {BagReasons[]} [reasons]
+ */
+
+/**
  * @typedef BagReturnableCancelableStatus
  * @property {boolean} can_be_cancelled
  * @property {boolean} enable_tracking
@@ -1963,6 +1978,12 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef ShipmentBagReasons
+ * @property {BagReasons[]} [reasons]
+ * @property {boolean} [success]
+ */
+
+/**
  * @typedef ShipmentConfig
  * @property {string} action
  * @property {string} identifier
@@ -2583,11 +2604,11 @@ const Joi = require("joi");
 
 /**
  * @typedef UserInfo
- * @property {string} email
  * @property {string} first_name
  * @property {string} [gender]
  * @property {string} [last_name]
- * @property {string} mobile
+ * @property {string} primary_email
+ * @property {string} primary_mobile_number
  * @property {string} [user_id]
  * @property {string} [user_type]
  */
@@ -3092,6 +3113,25 @@ class OrderPlatformModel {
       amount: Joi.number().allow(null),
       mode: Joi.string().allow("").allow(null),
     });
+  }
+
+  /** @returns {BagReasonMeta} */
+  static BagReasonMeta() {
+    return Joi.object({
+      show_text_area: Joi.boolean(),
+    });
+  }
+
+  /** @returns {BagReasons} */
+  static BagReasons() {
+    return Joi.object({
+      display_name: Joi.string().allow(""),
+      id: Joi.number(),
+      meta: OrderPlatformModel.BagReasonMeta(),
+      qc_type: Joi.array().items(Joi.string().allow("")),
+      question_set: Joi.array().items(OrderPlatformModel.QuestionSet()),
+      reasons: Joi.array().items(Joi.link("#BagReasons")),
+    }).id("BagReasons");
   }
 
   /** @returns {BagReturnableCancelableStatus} */
@@ -4994,6 +5034,14 @@ class OrderPlatformModel {
     });
   }
 
+  /** @returns {ShipmentBagReasons} */
+  static ShipmentBagReasons() {
+    return Joi.object({
+      reasons: Joi.array().items(OrderPlatformModel.BagReasons()),
+      success: Joi.boolean(),
+    });
+  }
+
   /** @returns {ShipmentConfig} */
   static ShipmentConfig() {
     return Joi.object({
@@ -5728,11 +5776,11 @@ class OrderPlatformModel {
   /** @returns {UserInfo} */
   static UserInfo() {
     return Joi.object({
-      email: Joi.string().allow("").required(),
       first_name: Joi.string().allow("").required(),
       gender: Joi.string().allow(""),
       last_name: Joi.string().allow(""),
-      mobile: Joi.string().allow("").required(),
+      primary_email: Joi.string().allow("").required(),
+      primary_mobile_number: Joi.string().allow("").required(),
       user_id: Joi.string().allow(""),
       user_type: Joi.string().allow(""),
     });
