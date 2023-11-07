@@ -80,10 +80,14 @@ class Serviceability {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Serviceability > addAppDp \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Serviceability > addAppDp \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -159,10 +163,14 @@ class Serviceability {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Serviceability > deleteAppDp \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Serviceability > deleteAppDp \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -234,10 +242,14 @@ class Serviceability {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Serviceability > getApplicationServiceability \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Serviceability > getApplicationServiceability \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -309,10 +321,14 @@ class Serviceability {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Serviceability > getDpApplicationRules \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Serviceability > getDpApplicationRules \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -384,10 +400,14 @@ class Serviceability {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Serviceability > getSelfShip \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Serviceability > getSelfShip \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -463,10 +483,14 @@ class Serviceability {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Serviceability > getZoneFromPincodeView \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Serviceability > getZoneFromPincodeView \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -552,10 +576,14 @@ class Serviceability {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Serviceability > getZonesFromApplicationIdView \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Serviceability > getZonesFromApplicationIdView \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -631,10 +659,14 @@ class Serviceability {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Serviceability > updateApplicationServiceability \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Serviceability > updateApplicationServiceability \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -710,10 +742,14 @@ class Serviceability {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Serviceability > updatePincodeAuditHistory \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Serviceability > updatePincodeAuditHistory \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -789,10 +825,14 @@ class Serviceability {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Serviceability > updatePincodeBulkView \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Serviceability > updatePincodeBulkView \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -868,10 +908,14 @@ class Serviceability {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Serviceability > updatePincodeCoDListing \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Serviceability > updatePincodeCoDListing \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -946,10 +990,14 @@ class Serviceability {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Serviceability > updatePincodeMopView \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Serviceability > updatePincodeMopView \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1025,10 +1073,14 @@ class Serviceability {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Serviceability > updateSelfShip \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Serviceability > updateSelfShip \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1104,10 +1156,14 @@ class Serviceability {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Serviceability > upsertDpApplicationRules \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Serviceability > upsertDpApplicationRules \n ${res_error}`,
+        });
+      }
     }
 
     return response;

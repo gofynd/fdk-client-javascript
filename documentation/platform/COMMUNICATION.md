@@ -6683,6 +6683,7 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | expiry | number? |  yes  |  |
  | otp_length | number? |  yes  |  |
+ | provider | [SendOtpEmailCommsProvider](#SendOtpEmailCommsProvider)? |  yes  |  |
  | template | [SendOtpEmailCommsTemplate](#SendOtpEmailCommsTemplate)? |  yes  |  |
  
 
@@ -6733,6 +6734,16 @@ Success
  | request_id | string? |  yes  |  |
  | resend_timer | number? |  yes  |  |
  | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [SendOtpEmailCommsProvider](#SendOtpEmailCommsProvider)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | slug | string? |  yes  |  |
  
 
 ---

@@ -1,5 +1,8 @@
 const ApplicationAPIClient = require("../ApplicationAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const {
+  FDKClientValidationError,
+  FDKResponseValidationError,
+} = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
 const LogisticApplicationValidator = require("./LogisticApplicationValidator");
@@ -99,10 +102,14 @@ class Logistic {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Logistic > getAllCountries \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Logistic > getAllCountries \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -176,10 +183,14 @@ class Logistic {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Logistic > getOptimalLocations \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Logistic > getOptimalLocations \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -250,10 +261,14 @@ class Logistic {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Logistic > getPincodeCity \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Logistic > getPincodeCity \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -326,10 +341,14 @@ class Logistic {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Logistic > getPincodeZones \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Logistic > getPincodeZones \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -400,10 +419,14 @@ class Logistic {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Logistic > getTatProduct \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Logistic > getTatProduct \n ${res_error}`,
+        });
+      }
     }
 
     return response;

@@ -42,6 +42,20 @@ export = CatalogPlatformModel;
  * @property {string} [type]
  */
 /**
+ * @typedef AppCategoryReturnConfig
+ * @property {number} category_id - Unique identifier for L3 category
+ * @property {ProductReturnConfigBaseSerializer} return_config - Return
+ *   configuration details
+ */
+/**
+ * @typedef AppCategoryReturnConfigResponse
+ * @property {string} [app_id] - Channel identifier
+ * @property {number} [category_id] - Unique identifer of L3 category
+ * @property {string} [logo]
+ * @property {string} [name] - Name of L3 category
+ * @property {ProductReturnConfigBaseSerializer} [return_config]
+ */
+/**
  * @typedef AppConfiguration
  * @property {string} app_id
  * @property {string} [config_id]
@@ -160,6 +174,18 @@ export = CatalogPlatformModel;
 /**
  * @typedef ApplicationStoreJson
  * @property {Object} _custom_json
+ */
+/**
+ * @typedef AppReturnConfigResponse
+ * @property {string} [app_id] - Channel identifier
+ * @property {number} [category_count] - Count of L3 category return config set
+ *   for application
+ * @property {number} [company_id] - Unique identifer of company
+ * @property {Object} [created_by] - User details
+ * @property {Object} [modified_by] - User details
+ * @property {string} [modified_on] - Modification date
+ * @property {string} [return_config_level] - Configuration level of return
+ *   window category|product|no-return
  */
 /**
  * @typedef ArticleAssignment
@@ -299,6 +325,17 @@ export = CatalogPlatformModel;
  * @property {string} [aspect_ratio]
  * @property {string} [type]
  * @property {string} [url]
+ */
+/**
+ * @typedef BaseAppCategoryReturnConfig
+ * @property {string} app_id - Channel identifier
+ * @property {number} company_id - Unique identifer of company
+ * @property {AppCategoryReturnConfig[]} data - Category level return config details
+ */
+/**
+ * @typedef BaseAppCategoryReturnConfigResponse
+ * @property {AppCategoryReturnConfigResponse[]} [data]
+ * @property {PageResponse} [page]
  */
 /**
  * @typedef Brand
@@ -830,6 +867,13 @@ export = CatalogPlatformModel;
  * @property {string[]} [words]
  */
 /**
+ * @typedef CreateUpdateAppReturnConfig
+ * @property {string} app_id - Channel identifier
+ * @property {number} company_id - Unique identifer of company
+ * @property {string} return_config_level - Return configurtion Level
+ *   category|product|no-return
+ */
+/**
  * @typedef CrossSellingData
  * @property {number} [articles]
  * @property {number} [products]
@@ -855,6 +899,12 @@ export = CatalogPlatformModel;
 /**
  * @typedef DefaultKeyRequest
  * @property {string} default_key
+ */
+/**
+ * @typedef DeleteAppCategoryReturnConfig
+ * @property {string} app_id - Channel identifier
+ * @property {number[]} category_ids - List of category_ids to be deleted.
+ * @property {number} company_id - Unique identifer of company
  */
 /**
  * @typedef DeleteResponse
@@ -1942,6 +1992,15 @@ export = CatalogPlatformModel;
  * @property {number} [size] - It is the size of each page.
  */
 /**
+ * @typedef PageResponse1
+ * @property {number} [current]
+ * @property {boolean} [has_next]
+ * @property {boolean} [has_previous]
+ * @property {number} [item_total]
+ * @property {number} [size]
+ * @property {string} [type]
+ */
+/**
  * @typedef PageResponseType
  * @property {number} current
  * @property {boolean} has_next
@@ -2310,6 +2369,12 @@ export = CatalogPlatformModel;
  * @typedef ProductPublished
  * @property {boolean} [is_set]
  * @property {number} [product_online_date]
+ */
+/**
+ * @typedef ProductReturnConfigBaseSerializer
+ * @property {boolean} returnable - Boolean Flag for item returnable
+ * @property {number} time - Valid return time for an item
+ * @property {string} unit - Unit of return config days|hours
  */
 /**
  * @typedef ProductReturnConfigSerializer
@@ -3058,7 +3123,7 @@ export = CatalogPlatformModel;
 declare class CatalogPlatformModel {
 }
 declare namespace CatalogPlatformModel {
-    export { Action, ActionPage, AllowSingleRequest, AllSizes, AppCatalogConfiguration, AppConfiguration, AppConfigurationDetail, AppConfigurationsSort, ApplicationBrandJson, ApplicationCategoryJson, ApplicationDepartment, ApplicationDepartmentJson, ApplicationDepartmentListingResponse, ApplicationItemMeta, ApplicationItemMOQ, ApplicationItemSEO, ApplicationItemSeoAction, ApplicationItemSeoBreadcrumbs, ApplicationItemSeoMetaTagItem, ApplicationItemSeoMetaTags, ApplicationProductListingResponse, ApplicationStoreJson, ArticleAssignment, ArticleAssignment1, ArticleQuery, ArticleStoreResponse, AssignStore, AssignStoreArticle, AttributeDetailsGroup, AttributeMaster, AttributeMasterDetails, AttributeMasterFilter, AttributeMasterMandatoryDetails, AttributeMasterMeta, AttributeMasterSerializer, AttributeSchemaRange, AutocompleteAction, AutoCompleteMedia, AutocompletePageAction, AutocompleteResult, BannerImage, Brand, BrandItem, BrandListingResponse, BrandMeta, BrandMeta1, BulkAssetResponse, BulkHsnResponse, BulkHsnUpsert, BulkInventoryGet, BulkInventoryGetItems, BulkJob, BulkProductRequest, BulkResponse, CatalogInsightBrand, CatalogInsightItem, CatalogInsightResponse, CategoriesResponse, Category, CategoryCreateResponse, CategoryItems, CategoryListingResponse, CategoryMapping, CategoryMappingValues, CategoryRequestBody, CategoryResponse, CategoryUpdateResponse, Child, CollectionBadge, CollectionBanner, CollectionCreateResponse, CollectionDetailResponse, CollectionImage, CollectionItem, CollectionItemUpdate, CollectionListingFilter, CollectionListingFilterTag, CollectionListingFilterType, CollectionQuery, CollectionSchedule, CompanyBrandDetail, CompanyMeta, CompanyMeta1, CompanyOptIn, ConfigErrorResponse, ConfigSuccessResponse, ConfigurationBucketPoints, ConfigurationListing, ConfigurationListingFilter, ConfigurationListingFilterConfig, ConfigurationListingFilterValue, ConfigurationListingSort, ConfigurationListingSortConfig, ConfigurationProduct, ConfigurationProductConfig, ConfigurationProductSimilar, ConfigurationProductVariant, ConfigurationProductVariantConfig, CreateAutocompleteKeyword, CreateAutocompleteWordsResponse, CreateCollection, CreateSearchConfigurationRequest, CreateSearchConfigurationResponse, CreateSearchKeyword, CrossSellingData, CrossSellingResponse, CustomOrder, DateMeta, DefaultKeyRequest, DeleteResponse, DeleteSearchConfigurationResponse, Department, DepartmentCategoryTree, DepartmentCreateErrorResponse, DepartmentCreateResponse, DepartmentCreateUpdate, DepartmentErrorResponse, DepartmentIdentifier, DepartmentModel, DepartmentResponse, DepartmentsResponse, DimensionResponse, DimensionResponse1, Document, EntityConfiguration, ErrorResponse, FilerList, GenderDetail, GetAddressSerializer, GetAllSizes, GetAppCatalogConfiguration, GetAppCatalogEntityConfiguration, GetAutocompleteWordsData, GetAutocompleteWordsResponse, GetCatalogConfigurationDetailsProduct, GetCatalogConfigurationDetailsSchemaListing, GetCatalogConfigurationMetaData, GetCollectionDetailNest, GetCollectionItemsResponse, GetCollectionListingResponse, GetCollectionQueryOptionResponse, GetCompanySerializer, GetConfigMetadataResponse, GetConfigResponse, GetDepartment, GetInventories, GetInventoriesResponse, GetLocationSerializer, GetOptInPlatform, GetProductBundleCreateResponse, GetProductBundleListingResponse, GetProductBundleResponse, GetProducts, GetSearchConfigurationResponse, GetSearchWordsData, GetSearchWordsDetailResponse, GetSearchWordsResponse, GlobalValidation, GTIN, Guide, Hierarchy, HsnCode, HsnCodesListingResponseSchemaV2, HsnCodesObject, HSNCodesResponse, HSNData, HSNDataInsertV2, HsnUpsert, Image, ImageUrls, InventoryBulkRequest, InventoryConfig, InventoryCreateRequest, InventoryExportAdvanceOption, InventoryExportFilter, InventoryExportJob, InventoryExportJobListResponse, InventoryExportQuantityFilter, InventoryExportRequest, InventoryExportResponse, InventoryFailedReason, InventoryJobDetailResponse, InventoryJobFilters, InventoryJobPayload, InventoryPage, InventoryPayload, InventoryRequest, InventoryRequestSchemaV2, InventoryResponse, InventoryResponseItem, InventoryResponsePaginated, InventorySellerIdentifierResponsePaginated, InventorySellerResponse, InventorySet, InventoryStockResponse, InventoryUpdateResponse, InventoryValidationResponse, InvoiceCredSerializer, InvoiceDetailsSerializer, InvSize, ItemQuery, Items, LimitedProductData, ListSizeGuide, LocationDayWiseSerializer, LocationIntegrationType, LocationListSerializer, LocationManagerSerializer, LocationTimingSerializer, Logo, ManufacturerResponse, ManufacturerResponse1, Media, Media1, Media2, Meta, MetaDataListingFilterMetaResponse, MetaDataListingFilterResponse, MetaDataListingResponse, MetaDataListingSortMetaResponse, MetaDataListingSortResponse, MetaFields, Metatags, MOQData, NetQuantity, NetQuantityResponse, NextSchedule, OptinCompanyBrandDetailsView, OptinCompanyDetail, OptinCompanyMetrics, OptInPostRequest, OptinStoreDetails, OwnerAppItemResponse, Page, PageResponse, PageResponseType, Price, Price1, PriceArticle, PriceMeta, ProdcutTemplateCategoriesResponse, Product, ProductAttributesResponse, ProductBrand, ProductBulkAssets, ProductBulkRequest, ProductBulkRequestList, ProductBundleItem, ProductBundleRequest, ProductBundleUpdateRequest, ProductConfigurationDownloads, ProductCreateUpdateSchemaV2, ProductDetail, ProductDetailAttribute, ProductDetailGroupedAttribute, ProductDownloadsResponse, ProductFilters, ProductFiltersKey, ProductFiltersValue, ProductListingDetail, ProductListingPrice, ProductListingResponse, ProductListingResponseV2, ProductPublish, ProductPublish1, ProductPublished, ProductReturnConfigSerializer, ProductSchemaV2, ProductSize, ProductSizeDeleteDataResponse, ProductSizeDeleteResponse, ProductSortOn, ProductTagsViewResponse, ProductTemplate, ProductTemplateDownloadsExport, ProductTemplateExportFilterRequest, ProductTemplateExportResponse, ProductVariants, ProductVariantsResponse, Properties, PTErrorResponse, Quantities, QuantitiesArticle, Quantity, QuantityBase, RawProduct, RawProductListingResponse, ReturnConfig, ReturnConfig1, ReturnConfig2, ReturnConfigResponse, SearchableAttribute, SearchKeywordResult, SecondLevelChild, SellerPhoneNumber, SEOData, SeoDetail, SetSize, SingleCategoryResponse, SingleProductResponse, Sitemap, Size, SizeDistribution, SizeGuideResponse, SizePromotionThreshold, StoreAssignResponse, StoreDetail, StoreMeta, SuccessResponse, SuccessResponse1, TaxIdentifier, TaxSlab, TeaserTag, TemplateDetails, TemplatesResponse, TemplatesValidationResponse, TemplateValidationData, ThirdLevelChild, Trader, Trader1, Trader2, UpdateCollection, UpdatedResponse, UpdateSearchConfigurationRequest, UpdateSearchConfigurationResponse, UserCommon, UserDetail, UserDetail1, UserInfo, UserInfo1, UserSerializer, UserSerializer1, UserSerializer2, UserSerializer3, ValidateIdentifier, ValidateProduct, ValidateSizeGuide, VerifiedBy, WeightResponse, WeightResponse1, PageType };
+    export { Action, ActionPage, AllowSingleRequest, AllSizes, AppCatalogConfiguration, AppCategoryReturnConfig, AppCategoryReturnConfigResponse, AppConfiguration, AppConfigurationDetail, AppConfigurationsSort, ApplicationBrandJson, ApplicationCategoryJson, ApplicationDepartment, ApplicationDepartmentJson, ApplicationDepartmentListingResponse, ApplicationItemMeta, ApplicationItemMOQ, ApplicationItemSEO, ApplicationItemSeoAction, ApplicationItemSeoBreadcrumbs, ApplicationItemSeoMetaTagItem, ApplicationItemSeoMetaTags, ApplicationProductListingResponse, ApplicationStoreJson, AppReturnConfigResponse, ArticleAssignment, ArticleAssignment1, ArticleQuery, ArticleStoreResponse, AssignStore, AssignStoreArticle, AttributeDetailsGroup, AttributeMaster, AttributeMasterDetails, AttributeMasterFilter, AttributeMasterMandatoryDetails, AttributeMasterMeta, AttributeMasterSerializer, AttributeSchemaRange, AutocompleteAction, AutoCompleteMedia, AutocompletePageAction, AutocompleteResult, BannerImage, BaseAppCategoryReturnConfig, BaseAppCategoryReturnConfigResponse, Brand, BrandItem, BrandListingResponse, BrandMeta, BrandMeta1, BulkAssetResponse, BulkHsnResponse, BulkHsnUpsert, BulkInventoryGet, BulkInventoryGetItems, BulkJob, BulkProductRequest, BulkResponse, CatalogInsightBrand, CatalogInsightItem, CatalogInsightResponse, CategoriesResponse, Category, CategoryCreateResponse, CategoryItems, CategoryListingResponse, CategoryMapping, CategoryMappingValues, CategoryRequestBody, CategoryResponse, CategoryUpdateResponse, Child, CollectionBadge, CollectionBanner, CollectionCreateResponse, CollectionDetailResponse, CollectionImage, CollectionItem, CollectionItemUpdate, CollectionListingFilter, CollectionListingFilterTag, CollectionListingFilterType, CollectionQuery, CollectionSchedule, CompanyBrandDetail, CompanyMeta, CompanyMeta1, CompanyOptIn, ConfigErrorResponse, ConfigSuccessResponse, ConfigurationBucketPoints, ConfigurationListing, ConfigurationListingFilter, ConfigurationListingFilterConfig, ConfigurationListingFilterValue, ConfigurationListingSort, ConfigurationListingSortConfig, ConfigurationProduct, ConfigurationProductConfig, ConfigurationProductSimilar, ConfigurationProductVariant, ConfigurationProductVariantConfig, CreateAutocompleteKeyword, CreateAutocompleteWordsResponse, CreateCollection, CreateSearchConfigurationRequest, CreateSearchConfigurationResponse, CreateSearchKeyword, CreateUpdateAppReturnConfig, CrossSellingData, CrossSellingResponse, CustomOrder, DateMeta, DefaultKeyRequest, DeleteAppCategoryReturnConfig, DeleteResponse, DeleteSearchConfigurationResponse, Department, DepartmentCategoryTree, DepartmentCreateErrorResponse, DepartmentCreateResponse, DepartmentCreateUpdate, DepartmentErrorResponse, DepartmentIdentifier, DepartmentModel, DepartmentResponse, DepartmentsResponse, DimensionResponse, DimensionResponse1, Document, EntityConfiguration, ErrorResponse, FilerList, GenderDetail, GetAddressSerializer, GetAllSizes, GetAppCatalogConfiguration, GetAppCatalogEntityConfiguration, GetAutocompleteWordsData, GetAutocompleteWordsResponse, GetCatalogConfigurationDetailsProduct, GetCatalogConfigurationDetailsSchemaListing, GetCatalogConfigurationMetaData, GetCollectionDetailNest, GetCollectionItemsResponse, GetCollectionListingResponse, GetCollectionQueryOptionResponse, GetCompanySerializer, GetConfigMetadataResponse, GetConfigResponse, GetDepartment, GetInventories, GetInventoriesResponse, GetLocationSerializer, GetOptInPlatform, GetProductBundleCreateResponse, GetProductBundleListingResponse, GetProductBundleResponse, GetProducts, GetSearchConfigurationResponse, GetSearchWordsData, GetSearchWordsDetailResponse, GetSearchWordsResponse, GlobalValidation, GTIN, Guide, Hierarchy, HsnCode, HsnCodesListingResponseSchemaV2, HsnCodesObject, HSNCodesResponse, HSNData, HSNDataInsertV2, HsnUpsert, Image, ImageUrls, InventoryBulkRequest, InventoryConfig, InventoryCreateRequest, InventoryExportAdvanceOption, InventoryExportFilter, InventoryExportJob, InventoryExportJobListResponse, InventoryExportQuantityFilter, InventoryExportRequest, InventoryExportResponse, InventoryFailedReason, InventoryJobDetailResponse, InventoryJobFilters, InventoryJobPayload, InventoryPage, InventoryPayload, InventoryRequest, InventoryRequestSchemaV2, InventoryResponse, InventoryResponseItem, InventoryResponsePaginated, InventorySellerIdentifierResponsePaginated, InventorySellerResponse, InventorySet, InventoryStockResponse, InventoryUpdateResponse, InventoryValidationResponse, InvoiceCredSerializer, InvoiceDetailsSerializer, InvSize, ItemQuery, Items, LimitedProductData, ListSizeGuide, LocationDayWiseSerializer, LocationIntegrationType, LocationListSerializer, LocationManagerSerializer, LocationTimingSerializer, Logo, ManufacturerResponse, ManufacturerResponse1, Media, Media1, Media2, Meta, MetaDataListingFilterMetaResponse, MetaDataListingFilterResponse, MetaDataListingResponse, MetaDataListingSortMetaResponse, MetaDataListingSortResponse, MetaFields, Metatags, MOQData, NetQuantity, NetQuantityResponse, NextSchedule, OptinCompanyBrandDetailsView, OptinCompanyDetail, OptinCompanyMetrics, OptInPostRequest, OptinStoreDetails, OwnerAppItemResponse, Page, PageResponse, PageResponse1, PageResponseType, Price, Price1, PriceArticle, PriceMeta, ProdcutTemplateCategoriesResponse, Product, ProductAttributesResponse, ProductBrand, ProductBulkAssets, ProductBulkRequest, ProductBulkRequestList, ProductBundleItem, ProductBundleRequest, ProductBundleUpdateRequest, ProductConfigurationDownloads, ProductCreateUpdateSchemaV2, ProductDetail, ProductDetailAttribute, ProductDetailGroupedAttribute, ProductDownloadsResponse, ProductFilters, ProductFiltersKey, ProductFiltersValue, ProductListingDetail, ProductListingPrice, ProductListingResponse, ProductListingResponseV2, ProductPublish, ProductPublish1, ProductPublished, ProductReturnConfigBaseSerializer, ProductReturnConfigSerializer, ProductSchemaV2, ProductSize, ProductSizeDeleteDataResponse, ProductSizeDeleteResponse, ProductSortOn, ProductTagsViewResponse, ProductTemplate, ProductTemplateDownloadsExport, ProductTemplateExportFilterRequest, ProductTemplateExportResponse, ProductVariants, ProductVariantsResponse, Properties, PTErrorResponse, Quantities, QuantitiesArticle, Quantity, QuantityBase, RawProduct, RawProductListingResponse, ReturnConfig, ReturnConfig1, ReturnConfig2, ReturnConfigResponse, SearchableAttribute, SearchKeywordResult, SecondLevelChild, SellerPhoneNumber, SEOData, SeoDetail, SetSize, SingleCategoryResponse, SingleProductResponse, Sitemap, Size, SizeDistribution, SizeGuideResponse, SizePromotionThreshold, StoreAssignResponse, StoreDetail, StoreMeta, SuccessResponse, SuccessResponse1, TaxIdentifier, TaxSlab, TeaserTag, TemplateDetails, TemplatesResponse, TemplatesValidationResponse, TemplateValidationData, ThirdLevelChild, Trader, Trader1, Trader2, UpdateCollection, UpdatedResponse, UpdateSearchConfigurationRequest, UpdateSearchConfigurationResponse, UserCommon, UserDetail, UserDetail1, UserInfo, UserInfo1, UserSerializer, UserSerializer1, UserSerializer2, UserSerializer3, ValidateIdentifier, ValidateProduct, ValidateSizeGuide, VerifiedBy, WeightResponse, WeightResponse1, PageType };
 }
 /** @returns {Action} */
 declare function Action(): Action;
@@ -3106,6 +3171,37 @@ type AppCatalogConfiguration = {
     modified_on?: string;
     product?: ConfigurationProduct;
     type?: string;
+};
+/** @returns {AppCategoryReturnConfig} */
+declare function AppCategoryReturnConfig(): AppCategoryReturnConfig;
+type AppCategoryReturnConfig = {
+    /**
+     * - Unique identifier for L3 category
+     */
+    category_id: number;
+    /**
+     * - Return
+     * configuration details
+     */
+    return_config: ProductReturnConfigBaseSerializer;
+};
+/** @returns {AppCategoryReturnConfigResponse} */
+declare function AppCategoryReturnConfigResponse(): AppCategoryReturnConfigResponse;
+type AppCategoryReturnConfigResponse = {
+    /**
+     * - Channel identifier
+     */
+    app_id?: string;
+    /**
+     * - Unique identifer of L3 category
+     */
+    category_id?: number;
+    logo?: string;
+    /**
+     * - Name of L3 category
+     */
+    name?: string;
+    return_config?: ProductReturnConfigBaseSerializer;
 };
 /** @returns {AppConfiguration} */
 declare function AppConfiguration(): AppConfiguration;
@@ -3283,6 +3379,40 @@ declare function ApplicationStoreJson(): ApplicationStoreJson;
 type ApplicationStoreJson = {
     _custom_json: any;
 };
+/** @returns {AppReturnConfigResponse} */
+declare function AppReturnConfigResponse(): AppReturnConfigResponse;
+type AppReturnConfigResponse = {
+    /**
+     * - Channel identifier
+     */
+    app_id?: string;
+    /**
+     * - Count of L3 category return config set
+     * for application
+     */
+    category_count?: number;
+    /**
+     * - Unique identifer of company
+     */
+    company_id?: number;
+    /**
+     * - User details
+     */
+    created_by?: any;
+    /**
+     * - User details
+     */
+    modified_by?: any;
+    /**
+     * - Modification date
+     */
+    modified_on?: string;
+    /**
+     * - Configuration level of return
+     * window category|product|no-return
+     */
+    return_config_level?: string;
+};
 /** @returns {ArticleAssignment} */
 declare function ArticleAssignment(): ArticleAssignment;
 type ArticleAssignment = {
@@ -3440,6 +3570,28 @@ type BannerImage = {
     aspect_ratio?: string;
     type?: string;
     url?: string;
+};
+/** @returns {BaseAppCategoryReturnConfig} */
+declare function BaseAppCategoryReturnConfig(): BaseAppCategoryReturnConfig;
+type BaseAppCategoryReturnConfig = {
+    /**
+     * - Channel identifier
+     */
+    app_id: string;
+    /**
+     * - Unique identifer of company
+     */
+    company_id: number;
+    /**
+     * - Category level return config details
+     */
+    data: AppCategoryReturnConfig[];
+};
+/** @returns {BaseAppCategoryReturnConfigResponse} */
+declare function BaseAppCategoryReturnConfigResponse(): BaseAppCategoryReturnConfigResponse;
+type BaseAppCategoryReturnConfigResponse = {
+    data?: AppCategoryReturnConfigResponse[];
+    page?: PageResponse;
 };
 /** @returns {Brand} */
 declare function Brand(): Brand;
@@ -4213,6 +4365,23 @@ type CreateSearchKeyword = {
     result: SearchKeywordResult;
     words?: string[];
 };
+/** @returns {CreateUpdateAppReturnConfig} */
+declare function CreateUpdateAppReturnConfig(): CreateUpdateAppReturnConfig;
+type CreateUpdateAppReturnConfig = {
+    /**
+     * - Channel identifier
+     */
+    app_id: string;
+    /**
+     * - Unique identifer of company
+     */
+    company_id: number;
+    /**
+     * - Return configurtion Level
+     * category|product|no-return
+     */
+    return_config_level: string;
+};
 /** @returns {CrossSellingData} */
 declare function CrossSellingData(): CrossSellingData;
 type CrossSellingData = {
@@ -4244,6 +4413,22 @@ type DateMeta = {
 declare function DefaultKeyRequest(): DefaultKeyRequest;
 type DefaultKeyRequest = {
     default_key: string;
+};
+/** @returns {DeleteAppCategoryReturnConfig} */
+declare function DeleteAppCategoryReturnConfig(): DeleteAppCategoryReturnConfig;
+type DeleteAppCategoryReturnConfig = {
+    /**
+     * - Channel identifier
+     */
+    app_id: string;
+    /**
+     * - List of category_ids to be deleted.
+     */
+    category_ids: number[];
+    /**
+     * - Unique identifer of company
+     */
+    company_id: number;
 };
 /** @returns {DeleteResponse} */
 declare function DeleteResponse(): DeleteResponse;
@@ -6041,6 +6226,16 @@ type PageResponse = {
      */
     size?: number;
 };
+/** @returns {PageResponse1} */
+declare function PageResponse1(): PageResponse1;
+type PageResponse1 = {
+    current?: number;
+    has_next?: boolean;
+    has_previous?: boolean;
+    item_total?: number;
+    size?: number;
+    type?: string;
+};
 /** @returns {PageResponseType} */
 declare function PageResponseType(): PageResponseType;
 type PageResponseType = {
@@ -6462,6 +6657,22 @@ declare function ProductPublished(): ProductPublished;
 type ProductPublished = {
     is_set?: boolean;
     product_online_date?: number;
+};
+/** @returns {ProductReturnConfigBaseSerializer} */
+declare function ProductReturnConfigBaseSerializer(): ProductReturnConfigBaseSerializer;
+type ProductReturnConfigBaseSerializer = {
+    /**
+     * - Boolean Flag for item returnable
+     */
+    returnable: boolean;
+    /**
+     * - Valid return time for an item
+     */
+    time: number;
+    /**
+     * - Unit of return config days|hours
+     */
+    unit: string;
 };
 /** @returns {ProductReturnConfigSerializer} */
 declare function ProductReturnConfigSerializer(): ProductReturnConfigSerializer;

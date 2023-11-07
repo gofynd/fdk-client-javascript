@@ -78,10 +78,14 @@ class Lead {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Lead > closeVideoRoom \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Lead > closeVideoRoom \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -153,10 +157,14 @@ class Lead {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Lead > createCustomForm \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Lead > createCustomForm \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -228,10 +236,14 @@ class Lead {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Lead > createHistory \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Lead > createHistory \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -305,10 +317,14 @@ class Lead {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Lead > editCustomForm \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Lead > editCustomForm \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -380,10 +396,14 @@ class Lead {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Lead > editTicket \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Lead > editTicket \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -453,10 +473,14 @@ class Lead {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Lead > getCustomForm \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Lead > getCustomForm \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -524,10 +548,14 @@ class Lead {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Lead > getCustomForms \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Lead > getCustomForms \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -597,10 +625,14 @@ class Lead {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Lead > getTicket \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Lead > getTicket \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -672,10 +704,14 @@ class Lead {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Lead > getTicketHistory \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Lead > getTicketHistory \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -763,10 +799,14 @@ class Lead {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Lead > getTickets \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Lead > getTickets \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -841,10 +881,14 @@ class Lead {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Lead > getTokenForVideoRoom \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Lead > getTokenForVideoRoom \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -920,10 +964,14 @@ class Lead {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Lead > getVideoParticipants \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Lead > getVideoParticipants \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -993,10 +1041,14 @@ class Lead {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Lead > openVideoRoom \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Lead > openVideoRoom \n ${res_error}`,
+        });
+      }
     }
 
     return response;

@@ -1,5 +1,8 @@
 const ApplicationAPIClient = require("../ApplicationAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const {
+  FDKClientValidationError,
+  FDKResponseValidationError,
+} = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
 const ShareApplicationValidator = require("./ShareApplicationValidator");
@@ -104,10 +107,14 @@ class Share {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Share > createShortLink \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Share > createShortLink \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -178,10 +185,14 @@ class Share {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Share > getApplicationQRCode \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Share > getApplicationQRCode \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -254,10 +265,14 @@ class Share {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Share > getCollectionQRCodeBySlug \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Share > getCollectionQRCodeBySlug \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -331,10 +346,14 @@ class Share {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Share > getOriginalShortLinkByHash \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Share > getOriginalShortLinkByHash \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -407,10 +426,14 @@ class Share {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Share > getProductQRCodeBySlug \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Share > getProductQRCodeBySlug \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -481,10 +504,14 @@ class Share {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Share > getShortLinkByHash \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Share > getShortLinkByHash \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -556,10 +583,14 @@ class Share {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Share > getUrlQRCode \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Share > getUrlQRCode \n ${res_error}`,
+        });
+      }
     }
 
     return response;

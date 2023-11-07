@@ -1,5 +1,8 @@
 const ApplicationAPIClient = require("../ApplicationAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const {
+  FDKClientValidationError,
+  FDKResponseValidationError,
+} = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
 const RewardsApplicationValidator = require("./RewardsApplicationValidator");
@@ -106,10 +109,14 @@ class Rewards {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Rewards > catalogueOrder \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Rewards > catalogueOrder \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -180,10 +187,14 @@ class Rewards {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Rewards > getOfferByName \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Rewards > getOfferByName \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -255,10 +266,14 @@ class Rewards {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Rewards > getOrderDiscount \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Rewards > getOrderDiscount \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -329,10 +344,14 @@ class Rewards {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Rewards > getUserPoints \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Rewards > getUserPoints \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -408,10 +427,14 @@ class Rewards {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Rewards > getUserPointsHistory \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Rewards > getUserPointsHistory \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -512,10 +535,14 @@ class Rewards {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Rewards > getUserReferralDetails \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Rewards > getUserReferralDetails \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -587,10 +614,14 @@ class Rewards {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Rewards > redeemReferralCode \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Rewards > redeemReferralCode \n ${res_error}`,
+        });
+      }
     }
 
     return response;

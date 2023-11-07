@@ -28,7 +28,11 @@ declare class ApplicationConfig {
      *   options: TRACE, DEBUG, INFO, WARN, ERROR. Default is `'ERROR'`
      * @param {LocationObject} [_conf.locationDetails] - The location details.
      * @param {string} [_conf.currencyCode='INR'] - The currency code. Default is `'INR'`
-     * @param {object} [_opts] - Additional options.
+     * @param {object} [options] - Additional options.
+     * @param {boolean} [options.strictResponseCheck=false] - Strict check for
+     *   response schema validation. Passing this `true` will check response
+     *   against response schema and throw FDKResponseValidationError if it
+     *   doesn't match. Default is `false`
      */
     constructor(_conf: {
         applicationID: string;
@@ -37,10 +41,14 @@ declare class ApplicationConfig {
         logLevel?: "TRACE" | "DEBUG" | "INFO" | "WARN" | "ERROR";
         locationDetails?: LocationObject;
         currencyCode?: string;
-    }, _opts?: object);
+    }, options?: {
+        strictResponseCheck?: boolean;
+    });
     applicationID: string;
     applicationToken: string;
-    opts: any;
+    options: {
+        strictResponseCheck: boolean;
+    };
     domain: string;
     logLevel: "TRACE" | "DEBUG" | "INFO" | "WARN" | "ERROR";
     extraHeaders: any[];

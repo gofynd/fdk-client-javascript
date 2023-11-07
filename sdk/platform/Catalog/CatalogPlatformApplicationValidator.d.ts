@@ -5,6 +5,14 @@ export = CatalogPlatformApplicationValidator;
  * @property {CatalogPlatformModel.CollectionItemUpdate} body
  */
 /**
+ * @typedef CreateAppCategoryReturnConfigurationParam
+ * @property {CatalogPlatformModel.BaseAppCategoryReturnConfig} body
+ */
+/**
+ * @typedef CreateAppReturnConfigurationParam
+ * @property {CatalogPlatformModel.CreateUpdateAppReturnConfig} body
+ */
+/**
  * @typedef CreateCollectionParam
  * @property {CatalogPlatformModel.CreateCollection} body
  */
@@ -40,6 +48,10 @@ export = CatalogPlatformApplicationValidator;
 /**
  * @typedef CreateSearchConfigurationParam
  * @property {CatalogPlatformModel.CreateSearchConfigurationRequest} body
+ */
+/**
+ * @typedef DeleteAppCategoryReturnConfigurationParam
+ * @property {CatalogPlatformModel.DeleteAppCategoryReturnConfig} body
  */
 /**
  * @typedef DeleteAutocompleteKeywordParam
@@ -84,6 +96,7 @@ export = CatalogPlatformApplicationValidator;
  *   Default is 12.
  */
 /** @typedef GetAllSearchKeywordParam */
+/** @typedef GetAppCategoryReturnConfigParam */
 /**
  * @typedef GetAppInventoryParam
  * @property {number[]} [itemIds] - The Item Id of the product.
@@ -124,6 +137,7 @@ export = CatalogPlatformApplicationValidator;
  *   Default is 10.
  * @property {string} [q] - Search with Item Code, Name, Slug or Identifier.
  */
+/** @typedef GetAppReturnConfigurationParam */
 /**
  * @typedef GetAppicationProductsParam
  * @property {string} [q] - The search query. This can be a partial or complete
@@ -305,6 +319,10 @@ export = CatalogPlatformApplicationValidator;
  * @property {CatalogPlatformModel.ApplicationCategoryJson} body
  */
 /**
+ * @typedef UpdateAppCategoryReturnConfigurationParam
+ * @property {CatalogPlatformModel.BaseAppCategoryReturnConfig} body
+ */
+/**
  * @typedef UpdateAppDepartmentParam
  * @property {string} departmentUid - Department id for which the custom_json is
  *   associated.
@@ -319,6 +337,10 @@ export = CatalogPlatformApplicationValidator;
  * @typedef UpdateAppProductParam
  * @property {string} itemId - Product id for which the custom_meta is associated.
  * @property {CatalogPlatformModel.ApplicationItemMeta} body
+ */
+/**
+ * @typedef UpdateAppReturnConfigurationParam
+ * @property {CatalogPlatformModel.CreateUpdateAppReturnConfig} body
  */
 /**
  * @typedef UpdateAutocompleteKeywordParam
@@ -364,6 +386,10 @@ export = CatalogPlatformApplicationValidator;
 declare class CatalogPlatformApplicationValidator {
     /** @returns {AddCollectionItemsParam} */
     static addCollectionItems(): AddCollectionItemsParam;
+    /** @returns {CreateAppCategoryReturnConfigurationParam} */
+    static createAppCategoryReturnConfiguration(): CreateAppCategoryReturnConfigurationParam;
+    /** @returns {CreateAppReturnConfigurationParam} */
+    static createAppReturnConfiguration(): CreateAppReturnConfigurationParam;
     /** @returns {CreateCollectionParam} */
     static createCollection(): CreateCollectionParam;
     /** @returns {CreateConfigurationByTypeParam} */
@@ -380,6 +406,8 @@ declare class CatalogPlatformApplicationValidator {
     static createListingConfiguration(): CreateListingConfigurationParam;
     /** @returns {CreateSearchConfigurationParam} */
     static createSearchConfiguration(): CreateSearchConfigurationParam;
+    /** @returns {DeleteAppCategoryReturnConfigurationParam} */
+    static deleteAppCategoryReturnConfiguration(): DeleteAppCategoryReturnConfigurationParam;
     /** @returns {DeleteAutocompleteKeywordParam} */
     static deleteAutocompleteKeyword(): DeleteAutocompleteKeywordParam;
     /** @returns {DeleteCollectionParam} */
@@ -396,6 +424,8 @@ declare class CatalogPlatformApplicationValidator {
     static getAllCollections(): GetAllCollectionsParam;
     /** @returns {GetAllSearchKeywordParam} */
     static getAllSearchKeyword(): any;
+    /** @returns {GetAppCategoryReturnConfigParam} */
+    static getAppCategoryReturnConfig(): any;
     /** @returns {GetAppInventoryParam} */
     static getAppInventory(): GetAppInventoryParam;
     /** @returns {GetAppLocationsParam} */
@@ -404,6 +434,8 @@ declare class CatalogPlatformApplicationValidator {
     static getAppProduct(): GetAppProductParam;
     /** @returns {GetAppProductsParam} */
     static getAppProducts(): GetAppProductsParam;
+    /** @returns {GetAppReturnConfigurationParam} */
+    static getAppReturnConfiguration(): any;
     /** @returns {GetAppicationProductsParam} */
     static getAppicationProducts(): GetAppicationProductsParam;
     /** @returns {GetApplicationBrandListingParam} */
@@ -456,12 +488,16 @@ declare class CatalogPlatformApplicationValidator {
     static updateAppBrand(): UpdateAppBrandParam;
     /** @returns {UpdateAppCategoryParam} */
     static updateAppCategory(): UpdateAppCategoryParam;
+    /** @returns {UpdateAppCategoryReturnConfigurationParam} */
+    static updateAppCategoryReturnConfiguration(): UpdateAppCategoryReturnConfigurationParam;
     /** @returns {UpdateAppDepartmentParam} */
     static updateAppDepartment(): UpdateAppDepartmentParam;
     /** @returns {UpdateAppLocationParam} */
     static updateAppLocation(): UpdateAppLocationParam;
     /** @returns {UpdateAppProductParam} */
     static updateAppProduct(): UpdateAppProductParam;
+    /** @returns {UpdateAppReturnConfigurationParam} */
+    static updateAppReturnConfiguration(): UpdateAppReturnConfigurationParam;
     /** @returns {UpdateAutocompleteKeywordParam} */
     static updateAutocompleteKeyword(): UpdateAutocompleteKeywordParam;
     /** @returns {UpdateCollectionParam} */
@@ -478,7 +514,7 @@ declare class CatalogPlatformApplicationValidator {
     static updateSearchKeywords(): UpdateSearchKeywordsParam;
 }
 declare namespace CatalogPlatformApplicationValidator {
-    export { AddCollectionItemsParam, CreateCollectionParam, CreateConfigurationByTypeParam, CreateConfigurationProductListingParam, CreateCustomAutocompleteRuleParam, CreateCustomKeywordParam, CreateGroupConfigurationParam, CreateListingConfigurationParam, CreateSearchConfigurationParam, DeleteAutocompleteKeywordParam, DeleteCollectionParam, DeleteGroupConfigurationParam, DeleteListingConfigurationParam, DeleteSearchConfigurationParam, DeleteSearchKeywordsParam, GetAllCollectionsParam, GetAllSearchKeywordParam, GetAppInventoryParam, GetAppLocationsParam, GetAppProductParam, GetAppProductsParam, GetAppicationProductsParam, GetApplicationBrandListingParam, GetApplicationBrandsParam, GetApplicationCategoryListingParam, GetApplicationDepartmentListingParam, GetAutocompleteConfigParam, GetAutocompleteKeywordDetailParam, GetCatalogConfigurationParam, GetCatalogInsightsParam, GetCategoriesParam, GetCollectionDetailParam, GetCollectionItemsParam, GetConfigurationByTypeParam, GetConfigurationMetadataParam, GetConfigurationsParam, GetDepartmentsParam, GetDiscountedInventoryBySizeIdentifierParam, GetGroupConfigurationsParam, GetListingConfigurationsParam, GetProductDetailBySlugParam, GetQueryFiltersParam, GetSearchConfigurationParam, GetSearchKeywordsParam, UpdateAllowSingleParam, UpdateAppBrandParam, UpdateAppCategoryParam, UpdateAppDepartmentParam, UpdateAppLocationParam, UpdateAppProductParam, UpdateAutocompleteKeywordParam, UpdateCollectionParam, UpdateDefaultSortParam, UpdateGroupConfigurationParam, UpdateListingConfigurationParam, UpdateSearchConfigurationParam, UpdateSearchKeywordsParam };
+    export { AddCollectionItemsParam, CreateAppCategoryReturnConfigurationParam, CreateAppReturnConfigurationParam, CreateCollectionParam, CreateConfigurationByTypeParam, CreateConfigurationProductListingParam, CreateCustomAutocompleteRuleParam, CreateCustomKeywordParam, CreateGroupConfigurationParam, CreateListingConfigurationParam, CreateSearchConfigurationParam, DeleteAppCategoryReturnConfigurationParam, DeleteAutocompleteKeywordParam, DeleteCollectionParam, DeleteGroupConfigurationParam, DeleteListingConfigurationParam, DeleteSearchConfigurationParam, DeleteSearchKeywordsParam, GetAllCollectionsParam, GetAllSearchKeywordParam, GetAppCategoryReturnConfigParam, GetAppInventoryParam, GetAppLocationsParam, GetAppProductParam, GetAppProductsParam, GetAppReturnConfigurationParam, GetAppicationProductsParam, GetApplicationBrandListingParam, GetApplicationBrandsParam, GetApplicationCategoryListingParam, GetApplicationDepartmentListingParam, GetAutocompleteConfigParam, GetAutocompleteKeywordDetailParam, GetCatalogConfigurationParam, GetCatalogInsightsParam, GetCategoriesParam, GetCollectionDetailParam, GetCollectionItemsParam, GetConfigurationByTypeParam, GetConfigurationMetadataParam, GetConfigurationsParam, GetDepartmentsParam, GetDiscountedInventoryBySizeIdentifierParam, GetGroupConfigurationsParam, GetListingConfigurationsParam, GetProductDetailBySlugParam, GetQueryFiltersParam, GetSearchConfigurationParam, GetSearchKeywordsParam, UpdateAllowSingleParam, UpdateAppBrandParam, UpdateAppCategoryParam, UpdateAppCategoryReturnConfigurationParam, UpdateAppDepartmentParam, UpdateAppLocationParam, UpdateAppProductParam, UpdateAppReturnConfigurationParam, UpdateAutocompleteKeywordParam, UpdateCollectionParam, UpdateDefaultSortParam, UpdateGroupConfigurationParam, UpdateListingConfigurationParam, UpdateSearchConfigurationParam, UpdateSearchKeywordsParam };
 }
 type AddCollectionItemsParam = {
     /**
@@ -486,6 +522,12 @@ type AddCollectionItemsParam = {
      */
     id: string;
     body: CatalogPlatformModel.CollectionItemUpdate;
+};
+type CreateAppCategoryReturnConfigurationParam = {
+    body: CatalogPlatformModel.BaseAppCategoryReturnConfig;
+};
+type CreateAppReturnConfigurationParam = {
+    body: CatalogPlatformModel.CreateUpdateAppReturnConfig;
 };
 type CreateCollectionParam = {
     body: CatalogPlatformModel.CreateCollection;
@@ -524,6 +566,9 @@ type CreateListingConfigurationParam = {
 };
 type CreateSearchConfigurationParam = {
     body: CatalogPlatformModel.CreateSearchConfigurationRequest;
+};
+type DeleteAppCategoryReturnConfigurationParam = {
+    body: CatalogPlatformModel.DeleteAppCategoryReturnConfig;
 };
 type DeleteAutocompleteKeywordParam = {
     /**
@@ -1026,6 +1071,9 @@ type UpdateAppCategoryParam = {
     categoryUid: string;
     body: CatalogPlatformModel.ApplicationCategoryJson;
 };
+type UpdateAppCategoryReturnConfigurationParam = {
+    body: CatalogPlatformModel.BaseAppCategoryReturnConfig;
+};
 type UpdateAppDepartmentParam = {
     /**
      * - Department id for which the custom_json is
@@ -1047,6 +1095,9 @@ type UpdateAppProductParam = {
      */
     itemId: string;
     body: CatalogPlatformModel.ApplicationItemMeta;
+};
+type UpdateAppReturnConfigurationParam = {
+    body: CatalogPlatformModel.CreateUpdateAppReturnConfig;
 };
 type UpdateAutocompleteKeywordParam = {
     /**
@@ -1105,6 +1156,8 @@ type UpdateSearchKeywordsParam = {
 };
 type DeleteSearchConfigurationParam = any;
 type GetAllSearchKeywordParam = any;
+type GetAppCategoryReturnConfigParam = any;
+type GetAppReturnConfigurationParam = any;
 type GetAutocompleteConfigParam = any;
 type GetCatalogConfigurationParam = any;
 type GetConfigurationsParam = any;

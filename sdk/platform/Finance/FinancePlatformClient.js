@@ -1,5 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const {
+  FDKClientValidationError,
+  FDKResponseValidationError,
+} = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
 const FinancePlatformValidator = require("./FinancePlatformValidator");
 const FinancePlatformModel = require("./FinancePlatformModel");
@@ -79,10 +82,14 @@ class Finance {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Finance > channelDisplayName \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Finance > channelDisplayName \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -160,10 +167,14 @@ class Finance {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Finance > createSellerCreditNoteConfig \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Finance > createSellerCreditNoteConfig \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -236,10 +247,14 @@ class Finance {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Finance > creditNoteDetails \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Finance > creditNoteDetails \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -315,10 +330,14 @@ class Finance {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Finance > creditlineDataplatform \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Finance > creditlineDataplatform \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -390,10 +409,14 @@ class Finance {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Finance > deleteConfig \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Finance > deleteConfig \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -469,10 +492,14 @@ class Finance {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Finance > downloadCreditDebitNote \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Finance > downloadCreditDebitNote \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -544,10 +571,14 @@ class Finance {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Finance > downloadReport \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Finance > downloadReport \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -623,10 +654,14 @@ class Finance {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Finance > downloadReportCustomerCn \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Finance > downloadReportCustomerCn \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -698,10 +733,14 @@ class Finance {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Finance > generateReport \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Finance > generateReport \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -777,10 +816,14 @@ class Finance {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Finance > generateReportCustomerCn \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Finance > generateReportCustomerCn \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -852,10 +895,14 @@ class Finance {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Finance > getAffiliate \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Finance > getAffiliate \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -925,10 +972,14 @@ class Finance {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Finance > getCnConfig \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Finance > getCnConfig \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1004,10 +1055,14 @@ class Finance {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Finance > getCustomerCreditBalance \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Finance > getCustomerCreditBalance \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1077,10 +1132,14 @@ class Finance {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Finance > getData \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Finance > getData \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1152,10 +1211,14 @@ class Finance {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Finance > getPdfUrlView \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Finance > getPdfUrlView \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1225,10 +1288,14 @@ class Finance {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Finance > getReason \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Finance > getReason \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1300,10 +1367,14 @@ class Finance {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Finance > getReportList \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Finance > getReportList \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1380,10 +1451,14 @@ class Finance {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Finance > getReportingFilters \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Finance > getReportingFilters \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1455,10 +1530,14 @@ class Finance {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Finance > invoiceListing \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Finance > invoiceListing \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1528,10 +1607,14 @@ class Finance {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Finance > invoicePDF \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Finance > invoicePDF \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1601,10 +1684,14 @@ class Finance {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Finance > invoiceType \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Finance > invoiceType \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1677,10 +1764,14 @@ class Finance {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Finance > isCnRefundMethod \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Finance > isCnRefundMethod \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1753,10 +1844,14 @@ class Finance {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Finance > isCreditlinePlatform \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Finance > isCreditlinePlatform \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1828,10 +1923,14 @@ class Finance {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Finance > paymentProcess \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Finance > paymentProcess \n ${res_error}`,
+        });
+      }
     }
 
     return response;

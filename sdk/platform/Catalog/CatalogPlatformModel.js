@@ -48,6 +48,22 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef AppCategoryReturnConfig
+ * @property {number} category_id - Unique identifier for L3 category
+ * @property {ProductReturnConfigBaseSerializer} return_config - Return
+ *   configuration details
+ */
+
+/**
+ * @typedef AppCategoryReturnConfigResponse
+ * @property {string} [app_id] - Channel identifier
+ * @property {number} [category_id] - Unique identifer of L3 category
+ * @property {string} [logo]
+ * @property {string} [name] - Name of L3 category
+ * @property {ProductReturnConfigBaseSerializer} [return_config]
+ */
+
+/**
  * @typedef AppConfiguration
  * @property {string} app_id
  * @property {string} [config_id]
@@ -182,6 +198,19 @@ const Joi = require("joi");
 /**
  * @typedef ApplicationStoreJson
  * @property {Object} _custom_json
+ */
+
+/**
+ * @typedef AppReturnConfigResponse
+ * @property {string} [app_id] - Channel identifier
+ * @property {number} [category_count] - Count of L3 category return config set
+ *   for application
+ * @property {number} [company_id] - Unique identifer of company
+ * @property {Object} [created_by] - User details
+ * @property {Object} [modified_by] - User details
+ * @property {string} [modified_on] - Modification date
+ * @property {string} [return_config_level] - Configuration level of return
+ *   window category|product|no-return
  */
 
 /**
@@ -340,6 +369,19 @@ const Joi = require("joi");
  * @property {string} [aspect_ratio]
  * @property {string} [type]
  * @property {string} [url]
+ */
+
+/**
+ * @typedef BaseAppCategoryReturnConfig
+ * @property {string} app_id - Channel identifier
+ * @property {number} company_id - Unique identifer of company
+ * @property {AppCategoryReturnConfig[]} data - Category level return config details
+ */
+
+/**
+ * @typedef BaseAppCategoryReturnConfigResponse
+ * @property {AppCategoryReturnConfigResponse[]} [data]
+ * @property {PageResponse} [page]
  */
 
 /**
@@ -935,6 +977,14 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef CreateUpdateAppReturnConfig
+ * @property {string} app_id - Channel identifier
+ * @property {number} company_id - Unique identifer of company
+ * @property {string} return_config_level - Return configurtion Level
+ *   category|product|no-return
+ */
+
+/**
  * @typedef CrossSellingData
  * @property {number} [articles]
  * @property {number} [products]
@@ -964,6 +1014,13 @@ const Joi = require("joi");
 /**
  * @typedef DefaultKeyRequest
  * @property {string} default_key
+ */
+
+/**
+ * @typedef DeleteAppCategoryReturnConfig
+ * @property {string} app_id - Channel identifier
+ * @property {number[]} category_ids - List of category_ids to be deleted.
+ * @property {number} company_id - Unique identifer of company
  */
 
 /**
@@ -2178,6 +2235,16 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef PageResponse1
+ * @property {number} [current]
+ * @property {boolean} [has_next]
+ * @property {boolean} [has_previous]
+ * @property {number} [item_total]
+ * @property {number} [size]
+ * @property {string} [type]
+ */
+
+/**
  * @typedef PageResponseType
  * @property {number} current
  * @property {boolean} has_next
@@ -2576,6 +2643,13 @@ const Joi = require("joi");
  * @typedef ProductPublished
  * @property {boolean} [is_set]
  * @property {number} [product_online_date]
+ */
+
+/**
+ * @typedef ProductReturnConfigBaseSerializer
+ * @property {boolean} returnable - Boolean Flag for item returnable
+ * @property {number} time - Valid return time for an item
+ * @property {string} unit - Unit of return config days|hours
  */
 
 /**
@@ -3461,6 +3535,25 @@ class CatalogPlatformModel {
     });
   }
 
+  /** @returns {AppCategoryReturnConfig} */
+  static AppCategoryReturnConfig() {
+    return Joi.object({
+      category_id: Joi.number().required(),
+      return_config: CatalogPlatformModel.ProductReturnConfigBaseSerializer().required(),
+    });
+  }
+
+  /** @returns {AppCategoryReturnConfigResponse} */
+  static AppCategoryReturnConfigResponse() {
+    return Joi.object({
+      app_id: Joi.string().allow(""),
+      category_id: Joi.number(),
+      logo: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      return_config: CatalogPlatformModel.ProductReturnConfigBaseSerializer(),
+    });
+  }
+
   /** @returns {AppConfiguration} */
   static AppConfiguration() {
     return Joi.object({
@@ -3631,6 +3724,19 @@ class CatalogPlatformModel {
   static ApplicationStoreJson() {
     return Joi.object({
       _custom_json: Joi.any().required(),
+    });
+  }
+
+  /** @returns {AppReturnConfigResponse} */
+  static AppReturnConfigResponse() {
+    return Joi.object({
+      app_id: Joi.string().allow(""),
+      category_count: Joi.number(),
+      company_id: Joi.number(),
+      created_by: Joi.any(),
+      modified_by: Joi.any(),
+      modified_on: Joi.string().allow(""),
+      return_config_level: Joi.string().allow(""),
     });
   }
 
@@ -3829,6 +3935,27 @@ class CatalogPlatformModel {
       aspect_ratio: Joi.string().allow(""),
       type: Joi.string().allow(""),
       url: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {BaseAppCategoryReturnConfig} */
+  static BaseAppCategoryReturnConfig() {
+    return Joi.object({
+      app_id: Joi.string().allow("").required(),
+      company_id: Joi.number().required(),
+      data: Joi.array()
+        .items(CatalogPlatformModel.AppCategoryReturnConfig())
+        .required(),
+    });
+  }
+
+  /** @returns {BaseAppCategoryReturnConfigResponse} */
+  static BaseAppCategoryReturnConfigResponse() {
+    return Joi.object({
+      data: Joi.array().items(
+        CatalogPlatformModel.AppCategoryReturnConfigResponse()
+      ),
+      page: CatalogPlatformModel.PageResponse(),
     });
   }
 
@@ -4546,6 +4673,15 @@ class CatalogPlatformModel {
     });
   }
 
+  /** @returns {CreateUpdateAppReturnConfig} */
+  static CreateUpdateAppReturnConfig() {
+    return Joi.object({
+      app_id: Joi.string().allow("").required(),
+      company_id: Joi.number().required(),
+      return_config_level: Joi.string().allow("").required(),
+    });
+  }
+
   /** @returns {CrossSellingData} */
   static CrossSellingData() {
     return Joi.object({
@@ -4585,6 +4721,15 @@ class CatalogPlatformModel {
   static DefaultKeyRequest() {
     return Joi.object({
       default_key: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {DeleteAppCategoryReturnConfig} */
+  static DeleteAppCategoryReturnConfig() {
+    return Joi.object({
+      app_id: Joi.string().allow("").required(),
+      category_ids: Joi.array().items(Joi.number()).required(),
+      company_id: Joi.number().required(),
     });
   }
 
@@ -6026,6 +6171,18 @@ class CatalogPlatformModel {
     });
   }
 
+  /** @returns {PageResponse1} */
+  static PageResponse1() {
+    return Joi.object({
+      current: Joi.number(),
+      has_next: Joi.boolean(),
+      has_previous: Joi.boolean(),
+      item_total: Joi.number(),
+      size: Joi.number(),
+      type: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {PageResponseType} */
   static PageResponseType() {
     return Joi.object({
@@ -6500,6 +6657,15 @@ class CatalogPlatformModel {
     return Joi.object({
       is_set: Joi.boolean(),
       product_online_date: Joi.number(),
+    });
+  }
+
+  /** @returns {ProductReturnConfigBaseSerializer} */
+  static ProductReturnConfigBaseSerializer() {
+    return Joi.object({
+      returnable: Joi.boolean().required(),
+      time: Joi.number().required(),
+      unit: Joi.string().allow("").required(),
     });
   }
 

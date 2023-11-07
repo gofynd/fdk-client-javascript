@@ -1,5 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const {
+  FDKClientValidationError,
+  FDKResponseValidationError,
+} = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
 const BillingPlatformValidator = require("./BillingPlatformValidator");
 const BillingPlatformModel = require("./BillingPlatformModel");
@@ -79,10 +82,14 @@ class Billing {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Billing > activateSubscriptionPlan \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Billing > activateSubscriptionPlan \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -158,10 +165,14 @@ class Billing {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Billing > cancelSubscriptionCharge \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Billing > cancelSubscriptionCharge \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -235,10 +246,14 @@ class Billing {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Billing > cancelSubscriptionPlan \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Billing > cancelSubscriptionPlan \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -314,10 +329,14 @@ class Billing {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Billing > checkCouponValidity \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Billing > checkCouponValidity \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -392,10 +411,14 @@ class Billing {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Billing > createOneTimeCharge \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Billing > createOneTimeCharge \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -472,10 +495,14 @@ class Billing {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Billing > createSubscriptionCharge \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Billing > createSubscriptionCharge \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -549,10 +576,14 @@ class Billing {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Billing > getChargeDetails \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Billing > getChargeDetails \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -620,10 +651,14 @@ class Billing {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Billing > getCustomerDetail \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Billing > getCustomerDetail \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -689,10 +724,14 @@ class Billing {
       .validate(responseData, { abortEarly: false, allowUnknown: false });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Billing > getEnterprisePlans \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Billing > getEnterprisePlans \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -760,10 +799,14 @@ class Billing {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Billing > getFeatureLimitConfig \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Billing > getFeatureLimitConfig \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -835,10 +878,14 @@ class Billing {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Billing > getInvoiceById \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Billing > getInvoiceById \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -904,10 +951,14 @@ class Billing {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Billing > getInvoices \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Billing > getInvoices \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -976,10 +1027,14 @@ class Billing {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Billing > getSubscription \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Billing > getSubscription \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1053,10 +1108,14 @@ class Billing {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Billing > getSubscriptionCharge \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Billing > getSubscriptionCharge \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1128,10 +1187,14 @@ class Billing {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Billing > planStatusUpdate \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Billing > planStatusUpdate \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1203,10 +1266,14 @@ class Billing {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Billing > subscripePlan \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Billing > subscripePlan \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1278,10 +1345,14 @@ class Billing {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Billing > upsertCustomerDetail \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Billing > upsertCustomerDetail \n ${res_error}`,
+        });
+      }
     }
 
     return response;

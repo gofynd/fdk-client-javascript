@@ -1,5 +1,8 @@
 const PublicAPIClient = require("../PublicAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const {
+  FDKClientValidationError,
+  FDKResponseValidationError,
+} = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
 const InventoryPublicValidator = require("./InventoryPublicValidator");
@@ -103,10 +106,14 @@ class Inventory {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for public > Inventory > getApiKey \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for public > Inventory > getApiKey \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -180,10 +187,14 @@ class Inventory {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for public > Inventory > getConfigByApiKey \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for public > Inventory > getConfigByApiKey \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -255,10 +266,14 @@ class Inventory {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for public > Inventory > getJobByCode \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for public > Inventory > getJobByCode \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -331,10 +346,14 @@ class Inventory {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for public > Inventory > getJobCodesMetrics \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for public > Inventory > getJobCodesMetrics \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -413,10 +432,14 @@ class Inventory {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for public > Inventory > getJobConfigByIntegrationType \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for public > Inventory > getJobConfigByIntegrationType \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -489,10 +512,14 @@ class Inventory {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for public > Inventory > saveJobCodesMetrics \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for public > Inventory > saveJobCodesMetrics \n ${res_error}`,
+        });
+      }
     }
 
     return response;

@@ -4,11 +4,12 @@ declare class OAuthClient extends BaseOAuthClient {
     verifyCallback(query: any): Promise<void>;
     renewAccessToken(isOfflineToken?: boolean): Promise<any>;
     getNewAccessToken(): Promise<any>;
-    getAccesstokenObj({ grant_type, client_id, client_secret, scope }: {
+    getAccesstokenObj({ grant_type, refresh_token, code }: {
         grant_type: any;
-        client_id: any;
-        client_secret: any;
-        scope: any;
+        refresh_token: any;
+        code: any;
     }): Promise<any>;
+    getOfflineAccessToken(scopes: any, code: any): Promise<any>;
+    getOfflineAccessTokenObj(scopes: any, code: any): Promise<any>;
 }
 import BaseOAuthClient = require("../common/BaseOAuthClient");

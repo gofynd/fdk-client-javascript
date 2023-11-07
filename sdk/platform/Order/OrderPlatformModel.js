@@ -392,6 +392,21 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef BagReasonMeta
+ * @property {boolean} [show_text_area]
+ */
+
+/**
+ * @typedef BagReasons
+ * @property {string} [display_name]
+ * @property {number} [id]
+ * @property {BagReasonMeta} [meta]
+ * @property {string[]} [qc_type]
+ * @property {QuestionSet[]} [question_set]
+ * @property {BagReasons[]} [reasons]
+ */
+
+/**
  * @typedef BagReturnableCancelableStatus
  * @property {boolean} can_be_cancelled
  * @property {boolean} enable_tracking
@@ -1192,6 +1207,7 @@ const Joi = require("joi");
  * @property {string} [external_invoice_id]
  * @property {string} [invoice_url]
  * @property {string} [label_url]
+ * @property {Object} [links]
  * @property {string} [store_invoice_id]
  * @property {string} [updated_date]
  */
@@ -1299,7 +1315,7 @@ const Joi = require("joi");
  * @property {boolean} [is_parent]
  * @property {PlatformItem} [item]
  * @property {number} [line_number]
- * @property {BagMeta} [meta]
+ * @property {Object} [meta]
  * @property {Object} [parent_promo_bags]
  * @property {BagPaymentMethods[]} [payment_methods]
  * @property {Prices} [prices]
@@ -1330,7 +1346,7 @@ const Joi = require("joi");
 /**
  * @typedef OrderData
  * @property {string} fynd_order_id
- * @property {OrderMeta} [meta]
+ * @property {Object} [meta]
  * @property {string} order_date
  * @property {Object} [payment_methods]
  * @property {Prices} [prices]
@@ -1962,6 +1978,12 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef ShipmentBagReasons
+ * @property {BagReasons[]} [reasons]
+ * @property {boolean} [success]
+ */
+
+/**
  * @typedef ShipmentConfig
  * @property {string} action
  * @property {string} identifier
@@ -2037,7 +2059,7 @@ const Joi = require("joi");
  * @property {ShipmentItemFulFillingStore} [fulfilling_store]
  * @property {string} [invoice_id]
  * @property {boolean} [lock_status]
- * @property {ShipmentItemMeta} [meta]
+ * @property {Object} [meta]
  * @property {string} [mode_of_payment]
  * @property {string} [order_date]
  * @property {string} order_id
@@ -2582,11 +2604,11 @@ const Joi = require("joi");
 
 /**
  * @typedef UserInfo
- * @property {string} email
  * @property {string} first_name
  * @property {string} [gender]
  * @property {string} [last_name]
- * @property {string} mobile
+ * @property {string} primary_email
+ * @property {string} primary_mobile_number
  * @property {string} [user_id]
  * @property {string} [user_type]
  */
@@ -3091,6 +3113,25 @@ class OrderPlatformModel {
       amount: Joi.number().allow(null),
       mode: Joi.string().allow("").allow(null),
     });
+  }
+
+  /** @returns {BagReasonMeta} */
+  static BagReasonMeta() {
+    return Joi.object({
+      show_text_area: Joi.boolean(),
+    });
+  }
+
+  /** @returns {BagReasons} */
+  static BagReasons() {
+    return Joi.object({
+      display_name: Joi.string().allow(""),
+      id: Joi.number(),
+      meta: OrderPlatformModel.BagReasonMeta(),
+      qc_type: Joi.array().items(Joi.string().allow("")),
+      question_set: Joi.array().items(OrderPlatformModel.QuestionSet()),
+      reasons: Joi.array().items(Joi.link("#BagReasons")),
+    }).id("BagReasons");
   }
 
   /** @returns {BagReturnableCancelableStatus} */
@@ -4060,6 +4101,7 @@ class OrderPlatformModel {
       external_invoice_id: Joi.string().allow("").allow(null),
       invoice_url: Joi.string().allow("").allow(null),
       label_url: Joi.string().allow("").allow(null),
+      links: Joi.object().pattern(/\S/, Joi.any()),
       store_invoice_id: Joi.string().allow("").allow(null),
       updated_date: Joi.string().allow("").allow(null),
     });
@@ -4189,7 +4231,7 @@ class OrderPlatformModel {
       is_parent: Joi.boolean().allow(null),
       item: OrderPlatformModel.PlatformItem(),
       line_number: Joi.number().allow(null),
-      meta: OrderPlatformModel.BagMeta(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       parent_promo_bags: Joi.any().allow(null),
       payment_methods: Joi.array().items(
         OrderPlatformModel.BagPaymentMethods()
@@ -4230,7 +4272,7 @@ class OrderPlatformModel {
   static OrderData() {
     return Joi.object({
       fynd_order_id: Joi.string().allow("").required(),
-      meta: OrderPlatformModel.OrderMeta(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       order_date: Joi.string().allow("").required(),
       payment_methods: Joi.any().allow(null),
       prices: OrderPlatformModel.Prices(),
@@ -4992,6 +5034,14 @@ class OrderPlatformModel {
     });
   }
 
+  /** @returns {ShipmentBagReasons} */
+  static ShipmentBagReasons() {
+    return Joi.object({
+      reasons: Joi.array().items(OrderPlatformModel.BagReasons()),
+      success: Joi.boolean(),
+    });
+  }
+
   /** @returns {ShipmentConfig} */
   static ShipmentConfig() {
     return Joi.object({
@@ -5089,7 +5139,7 @@ class OrderPlatformModel {
       fulfilling_store: OrderPlatformModel.ShipmentItemFulFillingStore(),
       invoice_id: Joi.string().allow("").allow(null),
       lock_status: Joi.boolean().allow(null),
-      meta: OrderPlatformModel.ShipmentItemMeta(),
+      meta: Joi.object().pattern(/\S/, Joi.any()),
       mode_of_payment: Joi.string().allow(""),
       order_date: Joi.string().allow("").allow(null),
       order_id: Joi.string().allow("").required(),
@@ -5726,11 +5776,11 @@ class OrderPlatformModel {
   /** @returns {UserInfo} */
   static UserInfo() {
     return Joi.object({
-      email: Joi.string().allow("").required(),
       first_name: Joi.string().allow("").required(),
       gender: Joi.string().allow(""),
       last_name: Joi.string().allow(""),
-      mobile: Joi.string().allow("").required(),
+      primary_email: Joi.string().allow("").required(),
+      primary_mobile_number: Joi.string().allow("").required(),
       user_id: Joi.string().allow(""),
       user_type: Joi.string().allow(""),
     });

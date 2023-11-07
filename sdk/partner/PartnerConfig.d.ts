@@ -20,6 +20,11 @@ declare class PartnerConfig {
      *   to use the auto-renew timer. Default is `true`
      * @param {logLevelEnum} [config.logLevel='ERROR'] - The log level. Available
      *   options: TRACE, DEBUG, INFO, WARN, ERROR. Default is `'ERROR'`
+     * @param {object} [options] - Additional options.
+     * @param {boolean} [options.strictResponseCheck=false] - Strict check for
+     *   response schema validation. Passing this `true` will check response
+     *   against response schema and throw FDKResponseValidationError if it
+     *   doesn't match. Default is `false`
      */
     constructor(config: {
         organizationId: string;
@@ -29,6 +34,8 @@ declare class PartnerConfig {
         scope?: string;
         useAutoRenewTimer?: boolean;
         logLevel?: "TRACE" | "DEBUG" | "INFO" | "WARN" | "ERROR";
+    }, options?: {
+        strictResponseCheck?: boolean;
     });
     organizationId: string;
     domain: string;
@@ -39,6 +46,9 @@ declare class PartnerConfig {
     oauthClient: OauthClient;
     logLevel: "TRACE" | "DEBUG" | "INFO" | "WARN" | "ERROR";
     extraHeaders: any[];
+    options: {
+        strictResponseCheck: boolean;
+    };
     /**
      * Sets the log level for the partner.
      *

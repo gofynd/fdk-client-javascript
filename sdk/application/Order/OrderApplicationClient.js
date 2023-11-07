@@ -1,5 +1,8 @@
 const ApplicationAPIClient = require("../ApplicationAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const {
+  FDKClientValidationError,
+  FDKResponseValidationError,
+} = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
 const OrderApplicationValidator = require("./OrderApplicationValidator");
@@ -120,10 +123,14 @@ class Order {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Order > getCustomerDetailsByShipmentId \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Order > getCustomerDetailsByShipmentId \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -197,10 +204,14 @@ class Order {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Order > getInvoiceByShipmentId \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Order > getInvoiceByShipmentId \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -271,10 +282,14 @@ class Order {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Order > getOrderById \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Order > getOrderById \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -357,10 +372,14 @@ class Order {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Order > getOrders \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Order > getOrders \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -431,10 +450,14 @@ class Order {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Order > getPosOrderById \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Order > getPosOrderById \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -507,10 +530,14 @@ class Order {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Order > getShipmentBagReasons \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Order > getShipmentBagReasons \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -581,10 +608,14 @@ class Order {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Order > getShipmentById \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Order > getShipmentById \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -655,10 +686,14 @@ class Order {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Order > getShipmentReasons \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Order > getShipmentReasons \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -732,10 +767,14 @@ class Order {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Order > sendOtpToShipmentCustomer \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Order > sendOtpToShipmentCustomer \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -806,10 +845,14 @@ class Order {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Order > trackShipment \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Order > trackShipment \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -882,10 +925,14 @@ class Order {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Order > updateShipmentStatus \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Order > updateShipmentStatus \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -958,10 +1005,14 @@ class Order {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Order > verifyOtpShipmentCustomer \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Order > verifyOtpShipmentCustomer \n ${res_error}`,
+        });
+      }
     }
 
     return response;

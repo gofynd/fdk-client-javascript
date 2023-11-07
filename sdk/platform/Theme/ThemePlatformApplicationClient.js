@@ -80,10 +80,14 @@ class Theme {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Theme > addThemeToApplication \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Theme > addThemeToApplication \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -155,10 +159,14 @@ class Theme {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Theme > addToThemeLibrary \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Theme > addToThemeLibrary \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -228,10 +236,14 @@ class Theme {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Theme > applyTheme \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Theme > applyTheme \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -301,10 +313,14 @@ class Theme {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Theme > archiveTheme \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Theme > archiveTheme \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -376,10 +392,14 @@ class Theme {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Theme > createPage \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Theme > createPage \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -451,10 +471,14 @@ class Theme {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Theme > deletePage \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Theme > deletePage \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -524,10 +548,14 @@ class Theme {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Theme > deleteTheme \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Theme > deleteTheme \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -599,10 +627,14 @@ class Theme {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Theme > duplicateTheme \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Theme > duplicateTheme \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -672,10 +704,14 @@ class Theme {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Theme > getAllPages \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Theme > getAllPages \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -742,10 +778,14 @@ class Theme {
       .validate(responseData, { abortEarly: false, allowUnknown: false });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Theme > getApplicationThemes \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Theme > getApplicationThemes \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -813,10 +853,14 @@ class Theme {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Theme > getApplicationThemesCount \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Theme > getApplicationThemesCount \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -884,10 +928,14 @@ class Theme {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Theme > getAppliedTheme \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Theme > getAppliedTheme \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -953,10 +1001,14 @@ class Theme {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Theme > getFonts \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Theme > getFonts \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1028,10 +1080,14 @@ class Theme {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Theme > getPage \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Theme > getPage \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1107,10 +1163,14 @@ class Theme {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Theme > getPublicThemes \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Theme > getPublicThemes \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1180,10 +1240,14 @@ class Theme {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Theme > getThemeById \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Theme > getThemeById \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1255,10 +1319,14 @@ class Theme {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Theme > getThemeForPreview \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Theme > getThemeForPreview \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1329,10 +1397,14 @@ class Theme {
       .validate(responseData, { abortEarly: false, allowUnknown: false });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Theme > getThemeLastModified \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Theme > getThemeLastModified \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1408,10 +1480,14 @@ class Theme {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Theme > getThemeLibrary \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Theme > getThemeLibrary \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1481,10 +1557,14 @@ class Theme {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Theme > isUpgradable \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Theme > isUpgradable \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1554,10 +1634,14 @@ class Theme {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Theme > publishTheme \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Theme > publishTheme \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1629,10 +1713,14 @@ class Theme {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Theme > unarchiveTheme \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Theme > unarchiveTheme \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1704,10 +1792,14 @@ class Theme {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Theme > unpublishTheme \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Theme > unpublishTheme \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1783,10 +1875,14 @@ class Theme {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Theme > updateMultiplePages \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Theme > updateMultiplePages \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1860,10 +1956,14 @@ class Theme {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Theme > updatePage \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Theme > updatePage \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1935,10 +2035,14 @@ class Theme {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Theme > updateTheme \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Theme > updateTheme \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2012,10 +2116,14 @@ class Theme {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Theme > updateThemeName \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Theme > updateThemeName \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2085,10 +2193,14 @@ class Theme {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Theme > upgradeTheme \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Theme > upgradeTheme \n ${res_error}`,
+        });
+      }
     }
 
     return response;

@@ -1,5 +1,8 @@
 const ApplicationAPIClient = require("../ApplicationAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const {
+  FDKClientValidationError,
+  FDKResponseValidationError,
+} = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
 const UserApplicationValidator = require("./UserApplicationValidator");
@@ -158,10 +161,14 @@ class User {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > addEmail \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > addEmail \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -233,10 +240,14 @@ class User {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > addMobileNumber \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > addMobileNumber \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -312,10 +323,14 @@ class User {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > deleteEmail \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > deleteEmail \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -400,10 +415,14 @@ class User {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > deleteMobileNumber \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > deleteMobileNumber \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -472,10 +491,14 @@ class User {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > deleteUser \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > deleteUser \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -546,10 +569,14 @@ class User {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > forgotPassword \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > forgotPassword \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -622,10 +649,14 @@ class User {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > getListOfActiveSessions \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > getListOfActiveSessions \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -696,10 +727,14 @@ class User {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > getLoggedInUser \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > getLoggedInUser \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -771,10 +806,14 @@ class User {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > getPlatformConfig \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > getPlatformConfig \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -843,10 +882,14 @@ class User {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > hasPassword \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > hasPassword \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -918,10 +961,14 @@ class User {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > loginWithAppleIOS \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > loginWithAppleIOS \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -994,10 +1041,14 @@ class User {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > loginWithEmailAndPassword \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > loginWithEmailAndPassword \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1069,10 +1120,14 @@ class User {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > loginWithFacebook \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > loginWithFacebook \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1144,10 +1199,14 @@ class User {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > loginWithGoogle \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > loginWithGoogle \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1221,10 +1280,14 @@ class User {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > loginWithGoogleAndroid \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > loginWithGoogleAndroid \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1296,10 +1359,14 @@ class User {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > loginWithGoogleIOS \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > loginWithGoogleIOS \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1371,10 +1438,14 @@ class User {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > loginWithOTP \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > loginWithOTP \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1445,10 +1516,14 @@ class User {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > loginWithToken \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > loginWithToken \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1517,10 +1592,14 @@ class User {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > logout \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > logout \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1592,10 +1671,14 @@ class User {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > registerWithForm \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > registerWithForm \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1667,10 +1750,14 @@ class User {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > resetForgotPassword \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > resetForgotPassword \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1742,10 +1829,14 @@ class User {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > sendForgotOTPOnEmail \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > sendForgotOTPOnEmail \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1817,10 +1908,14 @@ class User {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > sendForgotOTPOnMobile \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > sendForgotOTPOnMobile \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1892,10 +1987,14 @@ class User {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > sendOTPOnEmail \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > sendOTPOnEmail \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1967,10 +2066,14 @@ class User {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > sendOTPOnMobile \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > sendOTPOnMobile \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2044,10 +2147,14 @@ class User {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > sendResetPasswordEmail \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > sendResetPasswordEmail \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2121,10 +2228,14 @@ class User {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > sendResetPasswordMobile \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > sendResetPasswordMobile \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2195,10 +2306,14 @@ class User {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > sendResetToken \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > sendResetToken \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2274,10 +2389,14 @@ class User {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > sendVerificationLinkToEmail \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > sendVerificationLinkToEmail \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2354,10 +2473,14 @@ class User {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > sendVerificationLinkToMobile \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > sendVerificationLinkToMobile \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2428,10 +2551,14 @@ class User {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > setEmailAsPrimary \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > setEmailAsPrimary \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2504,10 +2631,14 @@ class User {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > setMobileNumberAsPrimary \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > setMobileNumberAsPrimary \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2578,10 +2709,14 @@ class User {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > updatePassword \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > updatePassword \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2653,10 +2788,14 @@ class User {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > updateProfile \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > updateProfile \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2725,10 +2864,14 @@ class User {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > verifyEmail \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > verifyEmail \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2800,10 +2943,14 @@ class User {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > verifyEmailForgotOTP \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > verifyEmailForgotOTP \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2875,10 +3022,14 @@ class User {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > verifyEmailOTP \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > verifyEmailOTP \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2949,10 +3100,14 @@ class User {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > verifyMobile \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > verifyMobile \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -3024,10 +3179,14 @@ class User {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > verifyMobileForgotOTP \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > verifyMobileForgotOTP \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -3099,10 +3258,14 @@ class User {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > User > verifyMobileOTP \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > verifyMobileOTP \n ${res_error}`,
+        });
+      }
     }
 
     return response;

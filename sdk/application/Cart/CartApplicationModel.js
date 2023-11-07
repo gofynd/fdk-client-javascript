@@ -313,7 +313,7 @@ const Joi = require("joi");
  * @property {Object} [moq]
  * @property {Object} [parent_item_identifiers]
  * @property {ProductPriceInfo} [price]
- * @property {ProductPriceInfo} [price_per_unit]
+ * @property {ProductPricePerUnitInfo} [price_per_unit]
  * @property {CartProduct} [product]
  * @property {PromoMeta} [promo_meta]
  * @property {AppliedPromotion[]} [promotions_applied]
@@ -731,6 +731,22 @@ const Joi = require("joi");
  * @typedef ProductPriceInfo
  * @property {ProductPrice} [base]
  * @property {ProductPrice} [converted]
+ */
+
+/**
+ * @typedef ProductPricePerUnit
+ * @property {number} [add_on]
+ * @property {string} [currency_code]
+ * @property {string} [currency_symbol]
+ * @property {number} [effective]
+ * @property {number} [marked]
+ * @property {number} [selling_price]
+ */
+
+/**
+ * @typedef ProductPricePerUnitInfo
+ * @property {ProductPricePerUnit} [base]
+ * @property {ProductPricePerUnit} [converted]
  */
 
 /**
@@ -1305,7 +1321,7 @@ class CartApplicationModel {
       moq: Joi.any(),
       parent_item_identifiers: Joi.any(),
       price: CartApplicationModel.ProductPriceInfo(),
-      price_per_unit: CartApplicationModel.ProductPriceInfo(),
+      price_per_unit: CartApplicationModel.ProductPricePerUnitInfo(),
       product: CartApplicationModel.CartProduct(),
       promo_meta: CartApplicationModel.PromoMeta(),
       promotions_applied: Joi.array().items(
@@ -1807,6 +1823,26 @@ class CartApplicationModel {
     return Joi.object({
       base: CartApplicationModel.ProductPrice(),
       converted: CartApplicationModel.ProductPrice(),
+    });
+  }
+
+  /** @returns {ProductPricePerUnit} */
+  static ProductPricePerUnit() {
+    return Joi.object({
+      add_on: Joi.number(),
+      currency_code: Joi.string().allow(""),
+      currency_symbol: Joi.string().allow(""),
+      effective: Joi.number(),
+      marked: Joi.number(),
+      selling_price: Joi.number(),
+    });
+  }
+
+  /** @returns {ProductPricePerUnitInfo} */
+  static ProductPricePerUnitInfo() {
+    return Joi.object({
+      base: CartApplicationModel.ProductPricePerUnit(),
+      converted: CartApplicationModel.ProductPricePerUnit(),
     });
   }
 

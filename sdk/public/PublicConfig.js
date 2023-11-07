@@ -15,13 +15,22 @@ class PublicConfig {
    * @param {string} [_conf.language] - The language for localization.
    * @param {string} [_conf.currency] - The currency for pricing and financial
    *   calculations.
+   * @param {object} [options] - Additional options.
+   * @param {boolean} [options.strictResponseCheck=false] - Strict check for
+   *   response schema validation. Passing this `true` will check response
+   *   against response schema and throw FDKResponseValidationError if it
+   *   doesn't match. Default is `false`
    */
-  constructor(_conf, _opts) {
+  constructor(_conf, options) {
     this.domain = _conf.domain || "https://api.fynd.com";
     this.userAgent = _conf.userAgent || "";
     this.language = _conf.language;
     this.currency = _conf.currency;
     this.extraHeaders = [];
+    this.options = {
+      ...{ strictResponseCheck: false },
+      ...options,
+    };
   }
 }
 

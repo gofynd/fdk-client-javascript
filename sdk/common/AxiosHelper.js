@@ -73,10 +73,10 @@ function requestInterceptorFn() {
       body: transformedData,
       headers: headersToSign,
     };
-    sign(signingOptions, "1234567");
+    const signature = sign(signingOptions);
 
-    config.headers["x-fp-date"] = signingOptions.headers["x-fp-date"];
-    config.headers["x-fp-signature"] = signingOptions.headers["x-fp-signature"];
+    config.headers["x-fp-date"] = signature["x-fp-date"];
+    config.headers["x-fp-signature"] = signature["x-fp-signature"];
     // config.headers["fp-sdk-version"] = version;
     return config;
   };

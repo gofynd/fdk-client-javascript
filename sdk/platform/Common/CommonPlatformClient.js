@@ -1,5 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const {
+  FDKClientValidationError,
+  FDKResponseValidationError,
+} = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
 const CommonPlatformValidator = require("./CommonPlatformValidator");
 const CommonPlatformModel = require("./CommonPlatformModel");
@@ -73,10 +76,14 @@ class Common {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Common > getLocations \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Common > getLocations \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -146,10 +153,14 @@ class Common {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Common > searchApplication \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Common > searchApplication \n ${res_error}`,
+        });
+      }
     }
 
     return response;

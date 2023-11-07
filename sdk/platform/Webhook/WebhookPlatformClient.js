@@ -1,5 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const {
+  FDKClientValidationError,
+  FDKResponseValidationError,
+} = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
 const WebhookPlatformValidator = require("./WebhookPlatformValidator");
 const WebhookPlatformModel = require("./WebhookPlatformModel");
@@ -77,10 +80,14 @@ class Webhook {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Webhook > cancelJobByName \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Webhook > cancelJobByName \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -152,10 +159,14 @@ class Webhook {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Webhook > downloadDeliveryReport \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Webhook > downloadDeliveryReport \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -225,10 +236,14 @@ class Webhook {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Webhook > fetchAllEventConfigurations \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Webhook > fetchAllEventConfigurations \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -300,10 +315,14 @@ class Webhook {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Webhook > getDeliveryReports \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Webhook > getDeliveryReports \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -378,10 +397,14 @@ class Webhook {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Webhook > getEventCounts \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Webhook > getEventCounts \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -453,10 +476,14 @@ class Webhook {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Webhook > getHistoricalReports \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Webhook > getHistoricalReports \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -525,10 +552,14 @@ class Webhook {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Webhook > getManualRetryStatus \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Webhook > getManualRetryStatus \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -600,10 +631,14 @@ class Webhook {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Webhook > getReportFilters \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Webhook > getReportFilters \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -675,10 +710,14 @@ class Webhook {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Webhook > getSubscriberById \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Webhook > getSubscriberById \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -759,10 +798,14 @@ class Webhook {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Webhook > getSubscribersByCompany \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Webhook > getSubscribersByCompany \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -842,10 +885,14 @@ class Webhook {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Webhook > getSubscribersByExtensionId \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Webhook > getSubscribersByExtensionId \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -914,10 +961,14 @@ class Webhook {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Webhook > manualRetryCancel \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Webhook > manualRetryCancel \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -993,10 +1044,14 @@ class Webhook {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Webhook > manualRetryOfFailedEvent \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Webhook > manualRetryOfFailedEvent \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1066,10 +1121,14 @@ class Webhook {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Webhook > pingWebhook \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Webhook > pingWebhook \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1143,10 +1202,14 @@ class Webhook {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Webhook > registerSubscriberToEvent \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Webhook > registerSubscriberToEvent \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1220,10 +1283,14 @@ class Webhook {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Webhook > updateSubscriberConfig \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Webhook > updateSubscriberConfig \n ${res_error}`,
+        });
+      }
     }
 
     return response;

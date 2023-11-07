@@ -1,5 +1,8 @@
 const ApplicationAPIClient = require("../ApplicationAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const {
+  FDKClientValidationError,
+  FDKResponseValidationError,
+} = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
 const ConfigurationApplicationValidator = require("./ConfigurationApplicationValidator");
@@ -116,10 +119,14 @@ class Configuration {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Configuration > getAppCurrencies \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Configuration > getAppCurrencies \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -207,10 +214,14 @@ class Configuration {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Configuration > getAppStaffList \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Configuration > getAppStaffList \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -331,10 +342,14 @@ class Configuration {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Configuration > getAppStaffs \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Configuration > getAppStaffs \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -407,10 +422,14 @@ class Configuration {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Configuration > getApplication \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Configuration > getApplication \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -484,10 +503,14 @@ class Configuration {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Configuration > getBasicDetails \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Configuration > getBasicDetails \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -562,10 +585,14 @@ class Configuration {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Configuration > getContactInfo \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Configuration > getContactInfo \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -639,10 +666,14 @@ class Configuration {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Configuration > getCurrencies \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Configuration > getCurrencies \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -715,10 +746,14 @@ class Configuration {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Configuration > getCurrencyById \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Configuration > getCurrencyById \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -790,10 +825,14 @@ class Configuration {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Configuration > getFeatures \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Configuration > getFeatures \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -869,10 +908,14 @@ class Configuration {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Configuration > getIntegrationTokens \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Configuration > getIntegrationTokens \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -944,10 +987,14 @@ class Configuration {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Configuration > getLanguages \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Configuration > getLanguages \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1024,10 +1071,14 @@ class Configuration {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Configuration > getOrderingStoreCookie \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Configuration > getOrderingStoreCookie \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1103,10 +1154,14 @@ class Configuration {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Configuration > getOrderingStores \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Configuration > getOrderingStores \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1209,10 +1264,14 @@ class Configuration {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Configuration > getOwnerInfo \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Configuration > getOwnerInfo \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1286,10 +1345,14 @@ class Configuration {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Configuration > getStoreDetailById \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Configuration > getStoreDetailById \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1366,10 +1429,14 @@ class Configuration {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Configuration > removeOrderingStoreCookie \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Configuration > removeOrderingStoreCookie \n ${res_error}`,
+        });
+      }
     }
 
     return response;

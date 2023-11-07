@@ -1,5 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const {
+  FDKClientValidationError,
+  FDKResponseValidationError,
+} = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
 const CommunicationPlatformValidator = require("./CommunicationPlatformValidator");
 const CommunicationPlatformModel = require("./CommunicationPlatformModel");
@@ -86,10 +89,14 @@ class Communication {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Communication > getSystemNotifications \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Communication > getSystemNotifications \n ${res_error}`,
+        });
+      }
     }
 
     return response;
