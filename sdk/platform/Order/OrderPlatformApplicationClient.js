@@ -286,7 +286,7 @@ class Order {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/order/v1.0/company/${this.config.companyId}/application/<application_id>/orders/shipments/<shipment_id>/line_number/<line_number>/reasons`,
+      `/service/platform/order/v1.0/company/${this.config.companyId}/application/${this.applicationId}/orders/shipments/${shipmentId}/line_number/${lineNumber}/reasons`,
       query_params,
       undefined,
       requestHeaders,
