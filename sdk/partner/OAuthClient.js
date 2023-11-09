@@ -31,12 +31,17 @@ class OAuthClient extends BaseOAuthClient {
       path: reqPath,
       body: null,
       headers: {},
-      signQuery: true,
     };
-    signingOptions = sign(signingOptions, "1234567");
+    const signature = sign(signingOptions, {
+      signQuery: true,
+    });
     Logger({ type: "DEBUG", message: "Authorization successful" });
 
-    return `${this.config.domain}${signingOptions.path}`;
+    const urlObj = new URL(reqPath, this.config.domain);
+    urlObj.searchParams.set("x-fp-date", signature["x-fp-date"]);
+    urlObj.searchParams.set("x-fp-signature", signature["x-fp-signature"]);
+
+    return urlObj.href;
   }
 
   async verifyCallback(query) {

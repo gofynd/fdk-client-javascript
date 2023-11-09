@@ -84,12 +84,16 @@ class OAuthClient {
       path: reqPath,
       body: null,
       headers: {},
-      signQuery: true,
     };
-    signingOptions = sign(signingOptions, "1234567");
+    const signature = sign(signingOptions, {
+      signQuery: true,
+    });
     Logger({ level: "INFO", message: "Authorization successful.!" });
+    const urlObj = new URL(reqPath, this.config.domain);
+    urlObj.searchParams.set("x-fp-date", signature["x-fp-date"]);
+    urlObj.searchParams.set("x-fp-signature", signature["x-fp-signature"]);
 
-    return `${this.config.domain}${signingOptions.path}`;
+    return urlObj.href;
   }
 
   async verifyCallback(query) {
