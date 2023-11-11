@@ -1144,7 +1144,7 @@ class Cart {
    * @description: Use this API to get details of all the items added to a cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getAbandonedCartDetails/).
    */
   async getAbandonedCartDetails(
-    { id, i, b, c, requestHeaders } = { requestHeaders: {} },
+    { id, i, b, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -1154,7 +1154,6 @@ class Cart {
         id,
         i,
         b,
-        c,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1170,7 +1169,6 @@ class Cart {
         id,
         i,
         b,
-        c,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1185,7 +1183,6 @@ class Cart {
     query_params["id"] = id;
     query_params["i"] = i;
     query_params["b"] = b;
-    query_params["c"] = c;
 
     const response = await PlatformAPIClient.execute(
       this.config,

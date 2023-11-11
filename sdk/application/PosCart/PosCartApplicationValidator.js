@@ -84,7 +84,6 @@ const PosCartApplicationModel = require("./PosCartApplicationModel");
  * @property {string} [id]
  * @property {boolean} [i]
  * @property {boolean} [b]
- * @property {boolean} [c]
  * @property {number} [assignCardId]
  * @property {string} [areaCode]
  * @property {boolean} [buyNow]
@@ -322,7 +321,6 @@ class PosCartApplicationValidator {
       id: Joi.string().allow(""),
       i: Joi.boolean(),
       b: Joi.boolean(),
-      c: Joi.boolean(),
       assignCardId: Joi.number(),
       areaCode: Joi.string().allow(""),
       buyNow: Joi.boolean(),

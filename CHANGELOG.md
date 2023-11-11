@@ -1,3 +1,46 @@
+# CHANGE LOG (1.3.9-beta.101) - v1.8.5-prerelease-v101
+
+## Application Client
+
+
+
+### Cart
+
+
+
+#### getCart
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] `query` parameter `c` (type: `boolean`)
+
+
+
+### PosCart
+
+
+
+#### getCart
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] `query` parameter `c` (type: `boolean`)
+
+
+
+## Platform Client
+
+
+
+### Cart
+
+
+
+#### getAbandonedCartDetails
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] `query` parameter `c` (type: `boolean`)
+
+
+
 # CHANGE LOG (1.3.8) - fp-v1.8.5
 
 ## Application Client

@@ -3226,14 +3226,12 @@ Fetch all items added to the cart
 // Promise
 const promise = platformClient.application("<APPLICATION_ID>").cart.getAbandonedCartDetails({  id : value,
  i : value,
- b : value,
- c : value });
+ b : value });
 
 // Async/Await
 const data = await platformClient.application("<APPLICATION_ID>").cart.getAbandonedCartDetails({  id : value,
  i : value,
- b : value,
- c : value });
+ b : value });
 ```
 
 
@@ -3244,8 +3242,7 @@ const data = await platformClient.application("<APPLICATION_ID>").cart.getAbando
 | --------- | -----  | -------- | ----------- |  
 | id | string | no |  |    
 | i | boolean | no |  |    
-| b | boolean | no |  |    
-| c | boolean | no |  |  
+| b | boolean | no |  |  
 
 
 

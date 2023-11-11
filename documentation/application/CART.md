@@ -3708,7 +3708,6 @@ Fetch all items added to the cart
 const promise = applicationClient.cart.getCart({  id : value,
  i : value,
  b : value,
- c : value,
  assignCardId : value,
  areaCode : value,
  buyNow : value });
@@ -3717,7 +3716,6 @@ const promise = applicationClient.cart.getCart({  id : value,
 const data = await applicationClient.cart.getCart({  id : value,
  i : value,
  b : value,
- c : value,
  assignCardId : value,
  areaCode : value,
  buyNow : value });
@@ -3732,7 +3730,6 @@ const data = await applicationClient.cart.getCart({  id : value,
 | id | string | no |  |    
 | i | boolean | no |  |    
 | b | boolean | no |  |    
-| c | boolean | no |  |    
 | assignCardId | number | no |  |    
 | areaCode | string | no |  |    
 | buyNow | boolean | no |  |  
