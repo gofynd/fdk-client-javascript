@@ -67,6 +67,7 @@ export = CartPlatformApplicationValidator;
  * @property {string} [id]
  * @property {boolean} [i]
  * @property {boolean} [b]
+ * @property {boolean} [c]
  */
 /**
  * @typedef GetAddressByIdParam
@@ -521,6 +522,7 @@ type GetAbandonedCartDetailsParam = {
     id?: string;
     i?: boolean;
     b?: boolean;
+    c?: boolean;
 };
 type GetAddressByIdParam = {
     id: string;

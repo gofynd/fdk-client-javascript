@@ -896,13 +896,13 @@ class Cart {
    * @description: Use this API to get details of all the items added to a cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCart/).
    */
   async getCart(
-    { id, i, b, assignCardId, areaCode, buyNow, requestHeaders } = {
+    { id, i, b, c, assignCardId, areaCode, buyNow, requestHeaders } = {
       requestHeaders: {},
     },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartApplicationValidator.getCart().validate(
-      { id, i, b, assignCardId, areaCode, buyNow },
+      { id, i, b, c, assignCardId, areaCode, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -911,7 +911,7 @@ class Cart {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = CartApplicationValidator.getCart().validate(
-      { id, i, b, assignCardId, areaCode, buyNow },
+      { id, i, b, c, assignCardId, areaCode, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -925,6 +925,7 @@ class Cart {
     query_params["id"] = id;
     query_params["i"] = i;
     query_params["b"] = b;
+    query_params["c"] = c;
     query_params["assign_card_id"] = assignCardId;
     query_params["area_code"] = areaCode;
     query_params["buy_now"] = buyNow;
