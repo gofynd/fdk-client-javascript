@@ -1,4 +1,4 @@
-# CHANGE LOG (1.3.9-beta.102) - v1.8.5-prerelease-v102
+# CHANGE LOG (1.3.8-local) - master Branch/Tag of API Specifications
 
 # CHANGE LOG (1.3.8) - fp-v1.8.5
 
