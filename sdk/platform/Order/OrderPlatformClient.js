@@ -2464,6 +2464,7 @@ class Order {
       pageNo,
       pageSize,
       fetchActiveShipment,
+      allowInactive,
       excludeLockedShipments,
       paymentMethods,
       channelShipmentId,
@@ -2498,6 +2499,7 @@ class Order {
         pageNo,
         pageSize,
         fetchActiveShipment,
+        allowInactive,
         excludeLockedShipments,
         paymentMethods,
         channelShipmentId,
@@ -2536,6 +2538,7 @@ class Order {
         pageNo,
         pageSize,
         fetchActiveShipment,
+        allowInactive,
         excludeLockedShipments,
         paymentMethods,
         channelShipmentId,
@@ -2575,6 +2578,7 @@ class Order {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
     query_params["fetch_active_shipment"] = fetchActiveShipment;
+    query_params["allow_inactive"] = allowInactive;
     query_params["exclude_locked_shipments"] = excludeLockedShipments;
     query_params["payment_methods"] = paymentMethods;
     query_params["channel_shipment_id"] = channelShipmentId;
@@ -2644,6 +2648,7 @@ class Order {
    * @param {string} [arg.salesChannels] - Comma separated values of sales channel ids
    * @param {number} [arg.pageSize] - Page size of data received per page
    * @param {boolean} [arg.fetchActiveShipment] - Flag to fetch active shipments
+   * @param {boolean} [arg.allowInactive] - Flag to allow inactive shipments
    * @param {boolean} [arg.excludeLockedShipments] - Flag to fetch locked shipments
    * @param {string} [arg.paymentMethods] - Comma separated values of payment methods
    * @param {string} [arg.channelShipmentId] - App Shipment Id
@@ -2677,6 +2682,7 @@ class Order {
     salesChannels,
     pageSize,
     fetchActiveShipment,
+    allowInactive,
     excludeLockedShipments,
     paymentMethods,
     channelShipmentId,
@@ -2712,6 +2718,7 @@ class Order {
         pageNo: pageNo,
         pageSize: pageSize,
         fetchActiveShipment: fetchActiveShipment,
+        allowInactive: allowInactive,
         excludeLockedShipments: excludeLockedShipments,
         paymentMethods: paymentMethods,
         channelShipmentId: channelShipmentId,

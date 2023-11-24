@@ -190,6 +190,7 @@ export = OrderPlatformValidator;
  * @property {number} [pageNo] - Page number for paginated data
  * @property {number} [pageSize] - Page size of data received per page
  * @property {boolean} [fetchActiveShipment] - Flag to fetch active shipments
+ * @property {boolean} [allowInactive] - Flag to allow inactive shipments
  * @property {boolean} [excludeLockedShipments] - Flag to fetch locked shipments
  * @property {string} [paymentMethods] - Comma separated values of payment methods
  * @property {string} [channelShipmentId] - App Shipment Id
@@ -747,6 +748,10 @@ type GetShipmentsParam = {
      * - Flag to fetch active shipments
      */
     fetchActiveShipment?: boolean;
+    /**
+     * - Flag to allow inactive shipments
+     */
+    allowInactive?: boolean;
     /**
      * - Flag to fetch locked shipments
      */

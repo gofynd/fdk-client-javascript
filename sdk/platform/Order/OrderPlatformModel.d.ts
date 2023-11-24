@@ -133,9 +133,12 @@ export = OrderPlatformModel;
  * @property {string} [channel_order_id]
  * @property {string} [channel_shipment_id]
  * @property {string} [coupon_code]
+ * @property {number} [customer_selling_price]
  * @property {string} [due_date]
  * @property {number} [employee_discount]
+ * @property {number} [fulfilment_priority]
  * @property {boolean} [is_priority]
+ * @property {boolean} [is_serial_number_required]
  * @property {number} [loyalty_discount]
  * @property {string} [marketplace_invoice_id]
  * @property {string} [order_item_id]
@@ -2547,9 +2550,12 @@ type AffiliateMeta = {
     channel_order_id?: string;
     channel_shipment_id?: string;
     coupon_code?: string;
+    customer_selling_price?: number;
     due_date?: string;
     employee_discount?: number;
+    fulfilment_priority?: number;
     is_priority?: boolean;
+    is_serial_number_required?: boolean;
     loyalty_discount?: number;
     marketplace_invoice_id?: string;
     order_item_id?: string;

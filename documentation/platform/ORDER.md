@@ -3312,6 +3312,7 @@ const promise = platformClient.order.getShipments({  lane : value,
  pageNo : value,
  pageSize : value,
  fetchActiveShipment : value,
+ allowInactive : value,
  excludeLockedShipments : value,
  paymentMethods : value,
  channelShipmentId : value,
@@ -3342,6 +3343,7 @@ const data = await platformClient.order.getShipments({  lane : value,
  pageNo : value,
  pageSize : value,
  fetchActiveShipment : value,
+ allowInactive : value,
  excludeLockedShipments : value,
  paymentMethods : value,
  channelShipmentId : value,
@@ -3378,6 +3380,7 @@ const data = await platformClient.order.getShipments({  lane : value,
 | pageNo | number | no | Page number for paginated data |    
 | pageSize | number | no | Page size of data received per page |    
 | fetchActiveShipment | boolean | no | flag to fetch active shipments |    
+| allowInactive | boolean | no | Flag to allow inactive shipments |    
 | excludeLockedShipments | boolean | no | flag to fetch locked shipments |    
 | paymentMethods | string | no | Comma separated values of payment methods |    
 | channelShipmentId | string | no | App Shipment Id |    
@@ -5407,9 +5410,12 @@ Verify OTP
  | channel_order_id | string? |  yes  |  |
  | channel_shipment_id | string? |  yes  |  |
  | coupon_code | string? |  yes  |  |
+ | customer_selling_price | number? |  yes  |  |
  | due_date | string? |  yes  |  |
  | employee_discount | number? |  yes  |  |
+ | fulfilment_priority | number? |  yes  |  |
  | is_priority | boolean? |  yes  |  |
+ | is_serial_number_required | boolean? |  yes  |  |
  | loyalty_discount | number? |  yes  |  |
  | marketplace_invoice_id | string? |  yes  |  |
  | order_item_id | string? |  yes  |  |

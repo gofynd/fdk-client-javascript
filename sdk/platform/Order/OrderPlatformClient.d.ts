@@ -337,7 +337,7 @@ declare class Order {
      * @summary:
      * @description: Get Shipments Listing for the company id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getShipments/).
      */
-    getShipments({ lane, bagStatus, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, myOrders, platformUserId, sortType, showCrossCompanyData, tags, customerId, orderType, requestHeaders, }?: OrderPlatformValidator.GetShipmentsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ShipmentInternalPlatformViewResponse>;
+    getShipments({ lane, bagStatus, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, fetchActiveShipment, allowInactive, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, myOrders, platformUserId, sortType, showCrossCompanyData, tags, customerId, orderType, requestHeaders, }?: OrderPlatformValidator.GetShipmentsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ShipmentInternalPlatformViewResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.lane] - Name of lane for which data is to be fetched
@@ -354,6 +354,7 @@ declare class Order {
      * @param {string} [arg.salesChannels] - Comma separated values of sales channel ids
      * @param {number} [arg.pageSize] - Page size of data received per page
      * @param {boolean} [arg.fetchActiveShipment] - Flag to fetch active shipments
+     * @param {boolean} [arg.allowInactive] - Flag to allow inactive shipments
      * @param {boolean} [arg.excludeLockedShipments] - Flag to fetch locked shipments
      * @param {string} [arg.paymentMethods] - Comma separated values of payment methods
      * @param {string} [arg.channelShipmentId] - App Shipment Id
@@ -373,7 +374,7 @@ declare class Order {
      * @summary:
      * @description: Get Shipments Listing for the company id
      */
-    getShipmentsPaginator({ lane, bagStatus, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageSize, fetchActiveShipment, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, myOrders, platformUserId, sortType, showCrossCompanyData, tags, customerId, orderType, }?: {
+    getShipmentsPaginator({ lane, bagStatus, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageSize, fetchActiveShipment, allowInactive, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, myOrders, platformUserId, sortType, showCrossCompanyData, tags, customerId, orderType, }?: {
         lane?: string;
         bagStatus?: string;
         statusOverrideLane?: boolean;
@@ -387,6 +388,7 @@ declare class Order {
         salesChannels?: string;
         pageSize?: number;
         fetchActiveShipment?: boolean;
+        allowInactive?: boolean;
         excludeLockedShipments?: boolean;
         paymentMethods?: string;
         channelShipmentId?: string;

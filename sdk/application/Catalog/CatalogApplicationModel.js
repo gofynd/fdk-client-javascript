@@ -977,6 +977,7 @@ const Joi = require("joi");
  * @property {string} [state]
  * @property {string} [store_code]
  * @property {string} [store_email]
+ * @property {string[]} [tags]
  * @property {number} [uid]
  */
 
@@ -2320,6 +2321,7 @@ class CatalogApplicationModel {
       state: Joi.string().allow(""),
       store_code: Joi.string().allow(""),
       store_email: Joi.string().allow(""),
+      tags: Joi.array().items(Joi.string().allow("")),
       uid: Joi.number(),
     });
   }

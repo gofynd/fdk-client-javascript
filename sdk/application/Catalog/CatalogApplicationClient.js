@@ -2788,12 +2788,13 @@ class Catalog {
       range,
       latitude,
       longitude,
+      tags,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CatalogApplicationValidator.getStores().validate(
-      { pageNo, pageSize, q, city, range, latitude, longitude },
+      { pageNo, pageSize, q, city, range, latitude, longitude, tags },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -2804,7 +2805,7 @@ class Catalog {
     const {
       error: warrning,
     } = CatalogApplicationValidator.getStores().validate(
-      { pageNo, pageSize, q, city, range, latitude, longitude },
+      { pageNo, pageSize, q, city, range, latitude, longitude, tags },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -2822,6 +2823,7 @@ class Catalog {
     query_params["range"] = range;
     query_params["latitude"] = latitude;
     query_params["longitude"] = longitude;
+    query_params["tags"] = tags;
 
     const xHeaders = {};
 
@@ -2875,11 +2877,20 @@ class Catalog {
    *   wants to retreive the nearest stores, e.g. 72.8691788
    * @param {number} [arg.longitude] - Longitude of the location from where
    *   one wants to retreive the nearest stores, e.g. 19.1174114
+   * @param {string} [arg.tags] - Search stores based on tags.
    * @returns {Paginator<CatalogApplicationModel.StoreListingResponse>}
    * @summary: Get store meta information.
    * @description: Use this API to get a list of stores in a specific application.
    */
-  getStoresPaginator({ pageSize, q, city, range, latitude, longitude } = {}) {
+  getStoresPaginator({
+    pageSize,
+    q,
+    city,
+    range,
+    latitude,
+    longitude,
+    tags,
+  } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
       const pageId = paginator.nextId;
@@ -2893,6 +2904,7 @@ class Catalog {
         range: range,
         latitude: latitude,
         longitude: longitude,
+        tags: tags,
       });
       paginator.setPaginator({
         hasNext: data.page.has_next ? true : false,

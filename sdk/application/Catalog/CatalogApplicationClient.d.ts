@@ -524,7 +524,7 @@ declare class Catalog {
      * @summary: Get store meta information.
      * @description: Use this API to get a list of stores in a specific application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getStores/).
      */
-    getStores({ pageNo, pageSize, q, city, range, latitude, longitude, requestHeaders, }?: CatalogApplicationValidator.GetStoresParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.StoreListingResponse>;
+    getStores({ pageNo, pageSize, q, city, range, latitude, longitude, tags, requestHeaders, }?: CatalogApplicationValidator.GetStoresParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.StoreListingResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {number} [arg.pageSize] - Number of items to retrieve in each page.
@@ -536,17 +536,19 @@ declare class Catalog {
      *   wants to retreive the nearest stores, e.g. 72.8691788
      * @param {number} [arg.longitude] - Longitude of the location from where
      *   one wants to retreive the nearest stores, e.g. 19.1174114
+     * @param {string} [arg.tags] - Search stores based on tags.
      * @returns {Paginator<CatalogApplicationModel.StoreListingResponse>}
      * @summary: Get store meta information.
      * @description: Use this API to get a list of stores in a specific application.
      */
-    getStoresPaginator({ pageSize, q, city, range, latitude, longitude }?: {
+    getStoresPaginator({ pageSize, q, city, range, latitude, longitude, tags, }?: {
         pageSize?: number;
         q?: string;
         city?: string;
         range?: number;
         latitude?: number;
         longitude?: number;
+        tags?: string;
     }): Paginator<CatalogApplicationModel.StoreListingResponse>;
     /**
      * @param {CatalogApplicationValidator.UnfollowByIdParam} arg - Arg object.

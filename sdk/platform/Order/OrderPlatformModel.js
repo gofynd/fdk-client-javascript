@@ -150,9 +150,12 @@ const Joi = require("joi");
  * @property {string} [channel_order_id]
  * @property {string} [channel_shipment_id]
  * @property {string} [coupon_code]
+ * @property {number} [customer_selling_price]
  * @property {string} [due_date]
  * @property {number} [employee_discount]
+ * @property {number} [fulfilment_priority]
  * @property {boolean} [is_priority]
+ * @property {boolean} [is_serial_number_required]
  * @property {number} [loyalty_discount]
  * @property {string} [marketplace_invoice_id]
  * @property {string} [order_item_id]
@@ -2833,9 +2836,12 @@ class OrderPlatformModel {
       channel_order_id: Joi.string().allow("").allow(null),
       channel_shipment_id: Joi.string().allow("").allow(null),
       coupon_code: Joi.string().allow("").allow(null),
+      customer_selling_price: Joi.number().allow(null),
       due_date: Joi.string().allow("").allow(null),
       employee_discount: Joi.number().allow(null),
+      fulfilment_priority: Joi.number().allow(null),
       is_priority: Joi.boolean().allow(null),
+      is_serial_number_required: Joi.boolean().allow(null),
       loyalty_discount: Joi.number().allow(null),
       marketplace_invoice_id: Joi.string().allow("").allow(null),
       order_item_id: Joi.string().allow("").allow(null),

@@ -7782,7 +7782,8 @@ const promise = applicationClient.catalog.getStores({  pageNo : value,
  city : value,
  range : value,
  latitude : value,
- longitude : value });
+ longitude : value,
+ tags : value });
 
 // Async/Await
 const data = await applicationClient.catalog.getStores({  pageNo : value,
@@ -7791,7 +7792,8 @@ const data = await applicationClient.catalog.getStores({  pageNo : value,
  city : value,
  range : value,
  latitude : value,
- longitude : value });
+ longitude : value,
+ tags : value });
 ```
 
 
@@ -7806,7 +7808,8 @@ const data = await applicationClient.catalog.getStores({  pageNo : value,
 | city | string | no | Search stores by the city in which they are situated. |    
 | range | number | no | Use this to retrieve stores within a particular range in meters, e.g. 10000, to indicate a 10km range |    
 | latitude | number | no | Latitude of the location from where one wants to retreive the nearest stores, e.g. 72.8691788 |    
-| longitude | number | no | Longitude of the location from where one wants to retreive the nearest stores, e.g. 19.1174114 |  
+| longitude | number | no | Longitude of the location from where one wants to retreive the nearest stores, e.g. 19.1174114 |    
+| tags | string | no | Search stores based on tags. |  
 
 
 
@@ -7857,7 +7860,11 @@ Success. Returns a list of selling locations. Check the example shown below or r
       },
       "name": "RRL01",
       "store_code": "WH_8513",
-      "uid": 1
+      "uid": 1,
+      "tags": [
+        "test",
+        "digital"
+      ]
     }
   ]
 }
@@ -9321,6 +9328,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
  | state | string? |  yes  |  |
  | store_code | string? |  yes  |  |
  | store_email | string? |  yes  |  |
+ | tags | [string]? |  yes  |  |
  | uid | number? |  yes  |  |
  
 

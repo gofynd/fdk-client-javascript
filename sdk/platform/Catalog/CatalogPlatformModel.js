@@ -673,6 +673,7 @@ const Joi = require("joi");
  * @property {string} [sort_on]
  * @property {string[]} [tag]
  * @property {string} [type]
+ * @property {string} [uid]
  * @property {string[]} [visible_facets_keys]
  */
 
@@ -4295,6 +4296,7 @@ class CatalogPlatformModel {
       sort_on: Joi.string().allow(""),
       tag: Joi.array().items(Joi.string().allow("")),
       type: Joi.string().allow(""),
+      uid: Joi.string().allow(""),
       visible_facets_keys: Joi.array().items(Joi.string().allow("")),
     });
   }

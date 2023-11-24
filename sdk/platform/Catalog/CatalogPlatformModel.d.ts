@@ -597,6 +597,7 @@ export = CatalogPlatformModel;
  * @property {string} [sort_on]
  * @property {string[]} [tag]
  * @property {string} [type]
+ * @property {string} [uid]
  * @property {string[]} [visible_facets_keys]
  */
 /**
@@ -4027,6 +4028,7 @@ type CollectionCreateResponse = {
     sort_on?: string;
     tag?: string[];
     type?: string;
+    uid?: string;
     visible_facets_keys?: string[];
 };
 /** @returns {CollectionDetailResponse} */
