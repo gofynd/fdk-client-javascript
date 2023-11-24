@@ -1,5 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const {
+  FDKClientValidationError,
+  FDKResponseValidationError,
+} = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
 const ConfigurationPlatformValidator = require("./ConfigurationPlatformValidator");
 const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
@@ -79,10 +82,14 @@ class Configuration {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Configuration > createApplication \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Configuration > createApplication \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -162,10 +169,14 @@ class Configuration {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Configuration > getApplications \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Configuration > getApplications \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -274,10 +285,14 @@ class Configuration {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Configuration > getAvailableOptIns \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Configuration > getAvailableOptIns \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -381,10 +396,14 @@ class Configuration {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Configuration > getBrandsByCompany \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Configuration > getBrandsByCompany \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -465,10 +484,14 @@ class Configuration {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Configuration > getCompanyByBrands \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Configuration > getCompanyByBrands \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -567,10 +590,14 @@ class Configuration {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Configuration > getCurrencies \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Configuration > getCurrencies \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -646,10 +673,14 @@ class Configuration {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Configuration > getDomainAvailibility \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Configuration > getDomainAvailibility \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -723,10 +754,14 @@ class Configuration {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Configuration > getIntegrationById \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Configuration > getIntegrationById \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -806,10 +841,14 @@ class Configuration {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Configuration > getIntegrationByLevelId \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Configuration > getIntegrationByLevelId \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -897,10 +936,14 @@ class Configuration {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Configuration > getIntegrationLevelConfig \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Configuration > getIntegrationLevelConfig \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -981,10 +1024,14 @@ class Configuration {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Configuration > getLevelActiveIntegrations \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Configuration > getLevelActiveIntegrations \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1062,10 +1109,14 @@ class Configuration {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Configuration > getOtherSellerApplicationById \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Configuration > getOtherSellerApplicationById \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1146,10 +1197,14 @@ class Configuration {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Configuration > getOtherSellerApplications \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Configuration > getOtherSellerApplications \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1261,10 +1316,14 @@ class Configuration {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Configuration > getSelectedOptIns \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Configuration > getSelectedOptIns \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1377,10 +1436,14 @@ class Configuration {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Configuration > getStoreByBrands \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Configuration > getStoreByBrands \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1487,10 +1550,14 @@ class Configuration {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Configuration > optOutFromApplication \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Configuration > optOutFromApplication \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1570,10 +1637,14 @@ class Configuration {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Configuration > updateLevelIntegration \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Configuration > updateLevelIntegration \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1655,10 +1726,14 @@ class Configuration {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Configuration > updateLevelUidIntegration \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Configuration > updateLevelUidIntegration \n ${res_error}`,
+        });
+      }
     }
 
     return response;

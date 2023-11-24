@@ -18179,6 +18179,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | sort_on | string? |  yes  |  |
  | tag | [string]? |  yes  |  |
  | type | string? |  yes  |  |
+ | uid | string? |  yes  |  |
  | visible_facets_keys | [string]? |  yes  |  |
  
 

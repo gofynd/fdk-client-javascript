@@ -78,10 +78,14 @@ class Rewards {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Rewards > getGiveawayById \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Rewards > getGiveawayById \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -149,10 +153,14 @@ class Rewards {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Rewards > getOfferByName \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Rewards > getOfferByName \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -222,10 +230,14 @@ class Rewards {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Rewards > getRewardsConfiguration \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Rewards > getRewardsConfiguration \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -293,10 +305,14 @@ class Rewards {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Rewards > getUserDetails \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Rewards > getUserDetails \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -378,10 +394,14 @@ class Rewards {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Rewards > getUserPointsHistory \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Rewards > getUserPointsHistory \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -491,10 +511,14 @@ class Rewards {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Rewards > saveGiveAway \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Rewards > saveGiveAway \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -568,10 +592,14 @@ class Rewards {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Rewards > setRewardsConfiguration \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Rewards > setRewardsConfiguration \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -647,10 +675,14 @@ class Rewards {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Rewards > showGiveaways \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Rewards > showGiveaways \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -713,10 +745,14 @@ class Rewards {
       .validate(responseData, { abortEarly: false, allowUnknown: false });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Rewards > showOffers \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Rewards > showOffers \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -790,10 +826,14 @@ class Rewards {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Rewards > updateGiveAway \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Rewards > updateGiveAway \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -871,10 +911,14 @@ class Rewards {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Rewards > updateOfferByName \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Rewards > updateOfferByName \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -950,10 +994,14 @@ class Rewards {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Rewards > updateUserStatus \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Rewards > updateUserStatus \n ${res_error}`,
+        });
+      }
     }
 
     return response;

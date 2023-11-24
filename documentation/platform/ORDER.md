@@ -22,6 +22,7 @@ Handles all platform order and shipment api(s)
 * [generatePOSReceiptByOrderId](#generateposreceiptbyorderid)
 * [getAllowedStateTransition](#getallowedstatetransition)
 * [getAnnouncements](#getannouncements)
+* [getApplicationShipments](#getapplicationshipments)
 * [getBagById](#getbagbyid)
 * [getBags](#getbags)
 * [getBulkActionTemplate](#getbulkactiontemplate)
@@ -908,6 +909,104 @@ Get Announcements
 [AnnouncementsResponse](#AnnouncementsResponse)
 
 Announcements retrieved successfully
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getApplicationShipments
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").order.getApplicationShipments({  lane : value,
+ searchType : value,
+ searchId : value,
+ fromDate : value,
+ toDate : value,
+ dpIds : value,
+ orderingCompanyId : value,
+ stores : value,
+ salesChannel : value,
+ requestByExt : value,
+ pageNo : value,
+ pageSize : value,
+ customerId : value,
+ isPrioritySort : value,
+ excludeLockedShipments : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").order.getApplicationShipments({  lane : value,
+ searchType : value,
+ searchId : value,
+ fromDate : value,
+ toDate : value,
+ dpIds : value,
+ orderingCompanyId : value,
+ stores : value,
+ salesChannel : value,
+ requestByExt : value,
+ pageNo : value,
+ pageSize : value,
+ customerId : value,
+ isPrioritySort : value,
+ excludeLockedShipments : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| lane | string | no |  |    
+| searchType | string | no |  |    
+| searchId | string | no |  |    
+| fromDate | string | no |  |    
+| toDate | string | no |  |    
+| dpIds | string | no |  |    
+| orderingCompanyId | string | no |  |    
+| stores | string | no |  |    
+| salesChannel | string | no |  |    
+| requestByExt | string | no |  |    
+| pageNo | number | no |  |    
+| pageSize | number | no |  |    
+| customerId | string | no |  |    
+| isPrioritySort | boolean | no |  |    
+| excludeLockedShipments | boolean | no |  |  
+
+
+
+
+
+*Returned Response:*
+
+
+
+
+[ShipmentInternalPlatformViewResponse](#ShipmentInternalPlatformViewResponse)
+
+We are processing the report!
 
 
 
@@ -2512,11 +2611,11 @@ Get reasons behind full or partial cancellation of a shipment
 
 ```javascript
 // Promise
-const promise = platformClient.order.getShipmentBagReasons({  shipmentId : value,
+const promise = platformClient.application("<APPLICATION_ID>").order.getShipmentBagReasons({  shipmentId : value,
  lineNumber : value });
 
 // Async/Await
-const data = await platformClient.order.getShipmentBagReasons({  shipmentId : value,
+const data = await platformClient.application("<APPLICATION_ID>").order.getShipmentBagReasons({  shipmentId : value,
  lineNumber : value });
 ```
 
@@ -3213,6 +3312,7 @@ const promise = platformClient.order.getShipments({  lane : value,
  pageNo : value,
  pageSize : value,
  fetchActiveShipment : value,
+ allowInactive : value,
  excludeLockedShipments : value,
  paymentMethods : value,
  channelShipmentId : value,
@@ -3243,6 +3343,7 @@ const data = await platformClient.order.getShipments({  lane : value,
  pageNo : value,
  pageSize : value,
  fetchActiveShipment : value,
+ allowInactive : value,
  excludeLockedShipments : value,
  paymentMethods : value,
  channelShipmentId : value,
@@ -3279,6 +3380,7 @@ const data = await platformClient.order.getShipments({  lane : value,
 | pageNo | number | no | Page number for paginated data |    
 | pageSize | number | no | Page size of data received per page |    
 | fetchActiveShipment | boolean | no | flag to fetch active shipments |    
+| allowInactive | boolean | no | Flag to allow inactive shipments |    
 | excludeLockedShipments | boolean | no | flag to fetch locked shipments |    
 | paymentMethods | string | no | Comma separated values of payment methods |    
 | channelShipmentId | string | no | App Shipment Id |    
@@ -5308,9 +5410,12 @@ Verify OTP
  | channel_order_id | string? |  yes  |  |
  | channel_shipment_id | string? |  yes  |  |
  | coupon_code | string? |  yes  |  |
+ | customer_selling_price | number? |  yes  |  |
  | due_date | string? |  yes  |  |
  | employee_discount | number? |  yes  |  |
+ | fulfilment_priority | number? |  yes  |  |
  | is_priority | boolean? |  yes  |  |
+ | is_serial_number_required | boolean? |  yes  |  |
  | loyalty_discount | number? |  yes  |  |
  | marketplace_invoice_id | string? |  yes  |  |
  | order_item_id | string? |  yes  |  |

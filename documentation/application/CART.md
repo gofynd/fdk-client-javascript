@@ -3708,6 +3708,7 @@ Fetch all items added to the cart
 const promise = applicationClient.cart.getCart({  id : value,
  i : value,
  b : value,
+ c : value,
  assignCardId : value,
  areaCode : value,
  buyNow : value });
@@ -3716,6 +3717,7 @@ const promise = applicationClient.cart.getCart({  id : value,
 const data = await applicationClient.cart.getCart({  id : value,
  i : value,
  b : value,
+ c : value,
  assignCardId : value,
  areaCode : value,
  buyNow : value });
@@ -3730,6 +3732,7 @@ const data = await applicationClient.cart.getCart({  id : value,
 | id | string | no |  |    
 | i | boolean | no |  |    
 | b | boolean | no |  |    
+| c | boolean | no |  |    
 | assignCardId | number | no |  |    
 | areaCode | string | no |  |    
 | buyNow | boolean | no |  |  
@@ -9128,12 +9131,45 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
+#### [CartCommonConfig](#CartCommonConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | delivery_charges_config | [DeliveryChargesConfig](#DeliveryChargesConfig)? |  yes  |  |
+ 
+
+---
+
 #### [CartCurrency](#CartCurrency)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | code | string? |  yes  | Currency code defined by ISO 4217:2015 |
  | symbol | string? |  yes  |  |
+ 
+
+---
+
+#### [CartDetailCoupon](#CartDetailCoupon)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cashback_amount | number? |  yes  |  |
+ | cashback_message_primary | string? |  yes  |  |
+ | cashback_message_secondary | string? |  yes  |  |
+ | coupon_code | string? |  yes  |  |
+ | coupon_description | string? |  yes  |  |
+ | coupon_id | string? |  yes  |  |
+ | coupon_subtitle | string? |  yes  |  |
+ | coupon_title | string? |  yes  |  |
+ | coupon_type | string? |  yes  |  |
+ | coupon_value | number? |  yes  |  |
+ | discount | number? |  yes  |  |
+ | is_applied | boolean? |  yes  |  |
+ | is_valid | boolean? |  yes  |  |
+ | maximum_discount_value | number? |  yes  |  |
+ | message | string? |  yes  |  |
+ | minimum_cart_value | number? |  yes  |  |
  
 
 ---
@@ -9145,8 +9181,11 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | applied_promo_details | [[AppliedPromotion](#AppliedPromotion)]? |  yes  |  |
  | breakup_values | [CartBreakup](#CartBreakup)? |  yes  |  |
  | buy_now | boolean? |  yes  |  |
+ | cart_id | number? |  yes  |  |
  | checkout_mode | string? |  yes  |  |
  | comment | string? |  yes  |  |
+ | common_config | [CartCommonConfig](#CartCommonConfig)? |  yes  |  |
+ | coupon | [CartDetailCoupon](#CartDetailCoupon)? |  yes  |  |
  | coupon_text | string? |  yes  |  |
  | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
  | delivery_charge_info | string? |  yes  |  |
@@ -9157,10 +9196,14 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
  | last_modified | string? |  yes  |  |
  | message | string? |  yes  |  |
+ | notification | string? |  yes  |  |
  | pan_config | string? |  yes  |  |
  | pan_no | string? |  yes  |  |
  | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
  | restrict_checkout | boolean? |  yes  |  |
+ | staff_user_id | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ | uid | string? |  yes  |  |
  
 
 ---
@@ -9297,6 +9340,16 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | ---------- | ---- | -------- | ----------- |
  | name | string? |  yes  |  |
  | uid | number? |  yes  | Product Category Id |
+ 
+
+---
+
+#### [ChargesThreshold](#ChargesThreshold)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | charges | number? |  yes  |  |
+ | threshold | number? |  yes  |  |
  
 
 ---
@@ -9441,6 +9494,16 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | ---------- | ---- | -------- | ----------- |
  | message | string? |  yes  |  |
  | success | boolean? |  yes  | True if cart is archived successfully. False if not archived. |
+ 
+
+---
+
+#### [DeliveryChargesConfig](#DeliveryChargesConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | charges | [[ChargesThreshold](#ChargesThreshold)]? |  yes  |  |
+ | enabled | boolean? |  yes  |  |
  
 
 ---

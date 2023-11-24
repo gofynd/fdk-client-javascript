@@ -16,16 +16,26 @@ declare class PublicConfig {
      * @param {string} [_conf.language] - The language for localization.
      * @param {string} [_conf.currency] - The currency for pricing and financial
      *   calculations.
+     * @param {object} [options] - Additional options.
+     * @param {boolean} [options.strictResponseCheck=false] - Strict check for
+     *   response schema validation. Passing this `true` will check response
+     *   against response schema and throw FDKResponseValidationError if it
+     *   doesn't match. Default is `false`
      */
     constructor(_conf: {
         domain?: string;
         userAgent?: string;
         language?: string;
         currency?: string;
-    }, _opts: any);
+    }, options?: {
+        strictResponseCheck?: boolean;
+    });
     domain: string;
     userAgent: string;
     language: string;
     currency: string;
     extraHeaders: any[];
+    options: {
+        strictResponseCheck: boolean;
+    };
 }

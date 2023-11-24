@@ -1,5 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const {
+  FDKClientValidationError,
+  FDKResponseValidationError,
+} = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
 const DiscountPlatformValidator = require("./DiscountPlatformValidator");
 const DiscountPlatformModel = require("./DiscountPlatformModel");
@@ -77,10 +80,14 @@ class Discount {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Discount > cancelDownloadJob \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Discount > cancelDownloadJob \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -152,10 +159,14 @@ class Discount {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Discount > cancelValidationJob \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Discount > cancelValidationJob \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -227,10 +238,14 @@ class Discount {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Discount > createDiscount \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Discount > createDiscount \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -304,10 +319,14 @@ class Discount {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Discount > downloadDiscountFile \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Discount > downloadDiscountFile \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -379,10 +398,14 @@ class Discount {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Discount > getDiscount \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Discount > getDiscount \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -490,10 +513,14 @@ class Discount {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Discount > getDiscounts \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Discount > getDiscounts \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -616,10 +643,14 @@ class Discount {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Discount > getDownloadJob \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Discount > getDownloadJob \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -691,10 +722,14 @@ class Discount {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Discount > getValidationJob \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Discount > getValidationJob \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -768,10 +803,14 @@ class Discount {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Discount > updateDiscount \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Discount > updateDiscount \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -843,10 +882,14 @@ class Discount {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Discount > upsertDiscountItems \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Discount > upsertDiscountItems \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -921,10 +964,14 @@ class Discount {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Discount > validateDiscountFile \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Discount > validateDiscountFile \n ${res_error}`,
+        });
+      }
     }
 
     return response;

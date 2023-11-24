@@ -198,17 +198,43 @@ export = CartApplicationModel;
  * @property {boolean} [success]
  */
 /**
+ * @typedef CartCommonConfig
+ * @property {DeliveryChargesConfig} [delivery_charges_config]
+ */
+/**
  * @typedef CartCurrency
  * @property {string} [code] - Currency code defined by ISO 4217:2015
  * @property {string} [symbol]
+ */
+/**
+ * @typedef CartDetailCoupon
+ * @property {number} [cashback_amount]
+ * @property {string} [cashback_message_primary]
+ * @property {string} [cashback_message_secondary]
+ * @property {string} [coupon_code]
+ * @property {string} [coupon_description]
+ * @property {string} [coupon_id]
+ * @property {string} [coupon_subtitle]
+ * @property {string} [coupon_title]
+ * @property {string} [coupon_type]
+ * @property {number} [coupon_value]
+ * @property {number} [discount]
+ * @property {boolean} [is_applied]
+ * @property {boolean} [is_valid]
+ * @property {number} [maximum_discount_value]
+ * @property {string} [message]
+ * @property {number} [minimum_cart_value]
  */
 /**
  * @typedef CartDetailResponse
  * @property {AppliedPromotion[]} [applied_promo_details]
  * @property {CartBreakup} [breakup_values]
  * @property {boolean} [buy_now]
+ * @property {number} [cart_id]
  * @property {string} [checkout_mode]
  * @property {string} [comment]
+ * @property {CartCommonConfig} [common_config]
+ * @property {CartDetailCoupon} [coupon]
  * @property {string} [coupon_text]
  * @property {CartCurrency} [currency]
  * @property {string} [delivery_charge_info]
@@ -219,10 +245,14 @@ export = CartApplicationModel;
  * @property {CartProductInfo[]} [items]
  * @property {string} [last_modified]
  * @property {string} [message]
+ * @property {Object} [notification]
  * @property {Object} [pan_config]
  * @property {string} [pan_no]
  * @property {PaymentSelectionLock} [payment_selection_lock]
  * @property {boolean} [restrict_checkout]
+ * @property {string} [staff_user_id]
+ * @property {boolean} [success]
+ * @property {string} [uid]
  */
 /**
  * @typedef CartItemCountResponse
@@ -316,6 +346,11 @@ export = CartApplicationModel;
  * @typedef CategoryInfo
  * @property {string} [name]
  * @property {number} [uid] - Product Category Id
+ */
+/**
+ * @typedef ChargesThreshold
+ * @property {number} [charges]
+ * @property {number} [threshold]
  */
 /**
  * @typedef CheckCart
@@ -416,6 +451,11 @@ export = CartApplicationModel;
  * @property {string} [message]
  * @property {boolean} [success] - True if cart is archived successfully. False
  *   if not archived.
+ */
+/**
+ * @typedef DeliveryChargesConfig
+ * @property {ChargesThreshold[]} [charges]
+ * @property {boolean} [enabled]
  */
 /**
  * @typedef DiscountRulesApp
@@ -851,7 +891,7 @@ export = CartApplicationModel;
 declare class CartApplicationModel {
 }
 declare namespace CartApplicationModel {
-    export { ActionQuery, AddCartDetailResponse, AddCartRequest, AddProductCart, Address, AppliedFreeArticles, AppliedPromotion, ApplyCouponRequest, ArticleGiftDetail, ArticlePriceInfo, BaseInfo, BasePrice, BulkPriceOffer, BulkPriceResponse, BuyRules, CartBreakup, CartCheckoutCustomMeta, CartCheckoutDetailRequest, CartCheckoutDetailV2Request, CartCheckoutResponse, CartCurrency, CartDetailResponse, CartItemCountResponse, CartMetaMissingResponse, CartMetaRequest, CartMetaResponse, CartProduct, CartProductIdentifer, CartProductInfo, CartShipmentsResponse, CategoryInfo, CheckCart, Coupon, CouponBreakup, CouponDetails, CouponValidity, CurrencyInfo, CustomerDetails, DeleteAddressResponse, DeleteCartDetailResponse, DiscountRulesApp, DisplayBreakup, FreeGiftItem, FreeGiftItems, GeoLocation, GetAddressesResponse, GetCouponResponse, GetShareCartLinkRequest, GetShareCartLinkResponse, GiftDetail, LadderOfferItem, LadderPrice, LadderPriceOffer, LadderPriceOffers, LoyaltyPoints, OfferItem, OfferPrice, OfferSeller, OperationErrorResponse, Ownership, PageCoupon, PaymentCouponValidate, PaymentMeta, PaymentMethod, PaymentSelectionLock, ProductAction, ProductArticle, ProductAvailability, ProductAvailabilitySize, ProductImage, ProductPrice, ProductPriceInfo, ProductPricePerUnit, ProductPricePerUnitInfo, PromiseFormatted, PromiseTimestamp, PromoMeta, PromotionOffer, PromotionOffersResponse, RawBreakup, RewardPointRequest, SaveAddressResponse, SelectCartAddressRequest, SharedCart, SharedCartDetails, SharedCartResponse, ShipmentPromise, ShipmentResponse, StaffCheckout, StoreInfo, Tags, UpdateAddressResponse, UpdateCartDetailResponse, UpdateCartPaymentRequest, UpdateCartRequest, UpdateProductCart };
+    export { ActionQuery, AddCartDetailResponse, AddCartRequest, AddProductCart, Address, AppliedFreeArticles, AppliedPromotion, ApplyCouponRequest, ArticleGiftDetail, ArticlePriceInfo, BaseInfo, BasePrice, BulkPriceOffer, BulkPriceResponse, BuyRules, CartBreakup, CartCheckoutCustomMeta, CartCheckoutDetailRequest, CartCheckoutDetailV2Request, CartCheckoutResponse, CartCommonConfig, CartCurrency, CartDetailCoupon, CartDetailResponse, CartItemCountResponse, CartMetaMissingResponse, CartMetaRequest, CartMetaResponse, CartProduct, CartProductIdentifer, CartProductInfo, CartShipmentsResponse, CategoryInfo, ChargesThreshold, CheckCart, Coupon, CouponBreakup, CouponDetails, CouponValidity, CurrencyInfo, CustomerDetails, DeleteAddressResponse, DeleteCartDetailResponse, DeliveryChargesConfig, DiscountRulesApp, DisplayBreakup, FreeGiftItem, FreeGiftItems, GeoLocation, GetAddressesResponse, GetCouponResponse, GetShareCartLinkRequest, GetShareCartLinkResponse, GiftDetail, LadderOfferItem, LadderPrice, LadderPriceOffer, LadderPriceOffers, LoyaltyPoints, OfferItem, OfferPrice, OfferSeller, OperationErrorResponse, Ownership, PageCoupon, PaymentCouponValidate, PaymentMeta, PaymentMethod, PaymentSelectionLock, ProductAction, ProductArticle, ProductAvailability, ProductAvailabilitySize, ProductImage, ProductPrice, ProductPriceInfo, ProductPricePerUnit, ProductPricePerUnitInfo, PromiseFormatted, PromiseTimestamp, PromoMeta, PromotionOffer, PromotionOffersResponse, RawBreakup, RewardPointRequest, SaveAddressResponse, SelectCartAddressRequest, SharedCart, SharedCartDetails, SharedCartResponse, ShipmentPromise, ShipmentResponse, StaffCheckout, StoreInfo, Tags, UpdateAddressResponse, UpdateCartDetailResponse, UpdateCartPaymentRequest, UpdateCartRequest, UpdateProductCart };
 }
 /** @returns {ActionQuery} */
 declare function ActionQuery(): ActionQuery;
@@ -1146,6 +1186,11 @@ type CartCheckoutResponse = {
     payment_confirm_url?: string;
     success?: boolean;
 };
+/** @returns {CartCommonConfig} */
+declare function CartCommonConfig(): CartCommonConfig;
+type CartCommonConfig = {
+    delivery_charges_config?: DeliveryChargesConfig;
+};
 /** @returns {CartCurrency} */
 declare function CartCurrency(): CartCurrency;
 type CartCurrency = {
@@ -1155,14 +1200,37 @@ type CartCurrency = {
     code?: string;
     symbol?: string;
 };
+/** @returns {CartDetailCoupon} */
+declare function CartDetailCoupon(): CartDetailCoupon;
+type CartDetailCoupon = {
+    cashback_amount?: number;
+    cashback_message_primary?: string;
+    cashback_message_secondary?: string;
+    coupon_code?: string;
+    coupon_description?: string;
+    coupon_id?: string;
+    coupon_subtitle?: string;
+    coupon_title?: string;
+    coupon_type?: string;
+    coupon_value?: number;
+    discount?: number;
+    is_applied?: boolean;
+    is_valid?: boolean;
+    maximum_discount_value?: number;
+    message?: string;
+    minimum_cart_value?: number;
+};
 /** @returns {CartDetailResponse} */
 declare function CartDetailResponse(): CartDetailResponse;
 type CartDetailResponse = {
     applied_promo_details?: AppliedPromotion[];
     breakup_values?: CartBreakup;
     buy_now?: boolean;
+    cart_id?: number;
     checkout_mode?: string;
     comment?: string;
+    common_config?: CartCommonConfig;
+    coupon?: CartDetailCoupon;
     coupon_text?: string;
     currency?: CartCurrency;
     delivery_charge_info?: string;
@@ -1173,10 +1241,14 @@ type CartDetailResponse = {
     items?: CartProductInfo[];
     last_modified?: string;
     message?: string;
+    notification?: any;
     pan_config?: any;
     pan_no?: string;
     payment_selection_lock?: PaymentSelectionLock;
     restrict_checkout?: boolean;
+    staff_user_id?: string;
+    success?: boolean;
+    uid?: string;
 };
 /** @returns {CartItemCountResponse} */
 declare function CartItemCountResponse(): CartItemCountResponse;
@@ -1295,6 +1367,12 @@ type CategoryInfo = {
      */
     uid?: number;
 };
+/** @returns {ChargesThreshold} */
+declare function ChargesThreshold(): ChargesThreshold;
+type ChargesThreshold = {
+    charges?: number;
+    threshold?: number;
+};
 /** @returns {CheckCart} */
 declare function CheckCart(): CheckCart;
 type CheckCart = {
@@ -1406,6 +1484,12 @@ type DeleteCartDetailResponse = {
      * if not archived.
      */
     success?: boolean;
+};
+/** @returns {DeliveryChargesConfig} */
+declare function DeliveryChargesConfig(): DeliveryChargesConfig;
+type DeliveryChargesConfig = {
+    charges?: ChargesThreshold[];
+    enabled?: boolean;
 };
 /** @returns {DiscountRulesApp} */
 declare function DiscountRulesApp(): DiscountRulesApp;

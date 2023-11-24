@@ -277,6 +277,7 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
  *   to retreive the nearest stores, e.g. 72.8691788
  * @property {number} [longitude] - Longitude of the location from where one
  *   wants to retreive the nearest stores, e.g. 19.1174114
+ * @property {string} [tags] - Search stores based on tags.
  */
 
 /**
@@ -540,6 +541,7 @@ class CatalogApplicationValidator {
       range: Joi.number(),
       latitude: Joi.number(),
       longitude: Joi.number(),
+      tags: Joi.string().allow(""),
     });
   }
 

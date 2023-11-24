@@ -516,6 +516,7 @@ export = CommunicationPlatformModel;
  * @typedef SendOtpCommsReqEmail
  * @property {number} [expiry]
  * @property {number} [otp_length]
+ * @property {SendOtpEmailCommsProvider} [provider]
  * @property {SendOtpEmailCommsTemplate} [template]
  */
 /**
@@ -546,6 +547,11 @@ export = CommunicationPlatformModel;
  * @property {string} [request_id]
  * @property {number} [resend_timer]
  * @property {boolean} [success]
+ */
+/**
+ * @typedef SendOtpEmailCommsProvider
+ * @property {string} [_id]
+ * @property {string} [slug]
  */
 /**
  * @typedef SendOtpEmailCommsTemplate
@@ -779,7 +785,7 @@ export = CommunicationPlatformModel;
 declare class CommunicationPlatformModel {
 }
 declare namespace CommunicationPlatformModel {
-    export { AppProvider, AppProviderReq, AppProviderRes, AppProviderResObj, AppProviderResVoice, Audience, AudienceReq, Audiences, BadRequestSchema, Campaign, CampaignEmail, CampaignEmailTemplate, CampaignReq, Campaigns, CampignEmailProvider, DefaultSmsProviders, DummyDatasources, DummyDatasourcesMeta, DummyDatasourcesMetaObj, EmailProvider, EmailProviderReq, EmailProviderReqFrom, EmailProviders, EmailTemplate, EmailTemplateHeaders, EmailTemplateKeys, EmailTemplateReq, EmailTemplates, EnabledObj, EngineRequest, EngineResponse, EventSubscription, EventSubscriptions, EventSubscriptionTemplate, EventSubscriptionTemplateEmail, EventSubscriptionTemplateSms, GenericDelete, GenericError, GetNRecordsCsvReq, GetNRecordsCsvRes, GetNRecordsCsvResItems, GetStats, GlobalProviders, GlobalProvidersResObj, GlobalVariablesGetResponse, GlobalVariablesPostResponse, GlobalVariablesReq, Job, JobLog, JobLogs, Jobs, Log, LogEmail, LogMeta, LogPushnotification, Logs, Message, metaObj, MetaStructure, NotFound, Notification, Page, PayloadEmailProviderStructure, PayloadEmailStructure, PayloadEmailTemplateStructure, PayloadSmsProviderStructure, PayloadSmsStructure, PayloadSmsTemplateStructure, PayloadStructure, RecipientHeaders, SendOtpCommsReq, SendOtpCommsReqData, SendOtpCommsReqEmail, SendOtpCommsReqSms, SendOtpCommsRes, SendOtpCommsResEmail, SendOtpCommsResSms, SendOtpEmailCommsTemplate, SendOtpSmsCommsProvider, SendOtpSmsCommsTemplate, SmsProvider, SmsProviderReq, SmsProviders, SmsTemplate, SmsTemplateMessage, SmsTemplateReq, SmsTemplates, Stats, StatsImported, StatsProcessed, StatsProcessedEmail, StatsProcessedSms, SystemEmailTemplate, SystemEmailTemplates, SystemNotification, SystemNotifications, SystemNotificationUser, SystemSmsTemplates, TemplateAndType, TriggerJobRequest, TriggerJobResponse, VerifyOtpCommsErrorRes, VerifyOtpCommsReq, VerifyOtpCommsSuccessRes };
+    export { AppProvider, AppProviderReq, AppProviderRes, AppProviderResObj, AppProviderResVoice, Audience, AudienceReq, Audiences, BadRequestSchema, Campaign, CampaignEmail, CampaignEmailTemplate, CampaignReq, Campaigns, CampignEmailProvider, DefaultSmsProviders, DummyDatasources, DummyDatasourcesMeta, DummyDatasourcesMetaObj, EmailProvider, EmailProviderReq, EmailProviderReqFrom, EmailProviders, EmailTemplate, EmailTemplateHeaders, EmailTemplateKeys, EmailTemplateReq, EmailTemplates, EnabledObj, EngineRequest, EngineResponse, EventSubscription, EventSubscriptions, EventSubscriptionTemplate, EventSubscriptionTemplateEmail, EventSubscriptionTemplateSms, GenericDelete, GenericError, GetNRecordsCsvReq, GetNRecordsCsvRes, GetNRecordsCsvResItems, GetStats, GlobalProviders, GlobalProvidersResObj, GlobalVariablesGetResponse, GlobalVariablesPostResponse, GlobalVariablesReq, Job, JobLog, JobLogs, Jobs, Log, LogEmail, LogMeta, LogPushnotification, Logs, Message, metaObj, MetaStructure, NotFound, Notification, Page, PayloadEmailProviderStructure, PayloadEmailStructure, PayloadEmailTemplateStructure, PayloadSmsProviderStructure, PayloadSmsStructure, PayloadSmsTemplateStructure, PayloadStructure, RecipientHeaders, SendOtpCommsReq, SendOtpCommsReqData, SendOtpCommsReqEmail, SendOtpCommsReqSms, SendOtpCommsRes, SendOtpCommsResEmail, SendOtpCommsResSms, SendOtpEmailCommsProvider, SendOtpEmailCommsTemplate, SendOtpSmsCommsProvider, SendOtpSmsCommsTemplate, SmsProvider, SmsProviderReq, SmsProviders, SmsTemplate, SmsTemplateMessage, SmsTemplateReq, SmsTemplates, Stats, StatsImported, StatsProcessed, StatsProcessedEmail, StatsProcessedSms, SystemEmailTemplate, SystemEmailTemplates, SystemNotification, SystemNotifications, SystemNotificationUser, SystemSmsTemplates, TemplateAndType, TriggerJobRequest, TriggerJobResponse, VerifyOtpCommsErrorRes, VerifyOtpCommsReq, VerifyOtpCommsSuccessRes };
 }
 /** @returns {AppProvider} */
 declare function AppProvider(): AppProvider;
@@ -1380,6 +1386,7 @@ declare function SendOtpCommsReqEmail(): SendOtpCommsReqEmail;
 type SendOtpCommsReqEmail = {
     expiry?: number;
     otp_length?: number;
+    provider?: SendOtpEmailCommsProvider;
     template?: SendOtpEmailCommsTemplate;
 };
 /** @returns {SendOtpCommsReqSms} */
@@ -1414,6 +1421,12 @@ type SendOtpCommsResSms = {
     request_id?: string;
     resend_timer?: number;
     success?: boolean;
+};
+/** @returns {SendOtpEmailCommsProvider} */
+declare function SendOtpEmailCommsProvider(): SendOtpEmailCommsProvider;
+type SendOtpEmailCommsProvider = {
+    _id?: string;
+    slug?: string;
 };
 /** @returns {SendOtpEmailCommsTemplate} */
 declare function SendOtpEmailCommsTemplate(): SendOtpEmailCommsTemplate;

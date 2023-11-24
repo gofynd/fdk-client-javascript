@@ -871,6 +871,7 @@ export = CatalogApplicationModel;
  * @property {string} [state]
  * @property {string} [store_code]
  * @property {string} [store_email]
+ * @property {string[]} [tags]
  * @property {number} [uid]
  */
 /**
@@ -2201,6 +2202,7 @@ type Store = {
     state?: string;
     store_code?: string;
     store_email?: string;
+    tags?: string[];
     uid?: number;
 };
 /** @returns {StoreAddressSerializer} */

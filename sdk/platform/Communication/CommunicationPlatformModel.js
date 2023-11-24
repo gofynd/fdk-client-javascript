@@ -589,6 +589,7 @@ const Joi = require("joi");
  * @typedef SendOtpCommsReqEmail
  * @property {number} [expiry]
  * @property {number} [otp_length]
+ * @property {SendOtpEmailCommsProvider} [provider]
  * @property {SendOtpEmailCommsTemplate} [template]
  */
 
@@ -623,6 +624,12 @@ const Joi = require("joi");
  * @property {string} [request_id]
  * @property {number} [resend_timer]
  * @property {boolean} [success]
+ */
+
+/**
+ * @typedef SendOtpEmailCommsProvider
+ * @property {string} [_id]
+ * @property {string} [slug]
  */
 
 /**
@@ -1632,6 +1639,7 @@ class CommunicationPlatformModel {
     return Joi.object({
       expiry: Joi.number(),
       otp_length: Joi.number(),
+      provider: CommunicationPlatformModel.SendOtpEmailCommsProvider(),
       template: CommunicationPlatformModel.SendOtpEmailCommsTemplate(),
     });
   }
@@ -1674,6 +1682,14 @@ class CommunicationPlatformModel {
       request_id: Joi.string().allow(""),
       resend_timer: Joi.number(),
       success: Joi.boolean(),
+    });
+  }
+
+  /** @returns {SendOtpEmailCommsProvider} */
+  static SendOtpEmailCommsProvider() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
     });
   }
 

@@ -1,5 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const {
+  FDKClientValidationError,
+  FDKResponseValidationError,
+} = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
 const CompanyProfilePlatformValidator = require("./CompanyProfilePlatformValidator");
 const CompanyProfilePlatformModel = require("./CompanyProfilePlatformModel");
@@ -75,10 +78,14 @@ class CompanyProfile {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > CompanyProfile > cbsOnboardGet \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > CompanyProfile > cbsOnboardGet \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -151,10 +158,14 @@ class CompanyProfile {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > CompanyProfile > createBrand \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > CompanyProfile > createBrand \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -231,10 +242,14 @@ class CompanyProfile {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > CompanyProfile > createCompanyBrandMapping \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > CompanyProfile > createCompanyBrandMapping \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -307,10 +322,14 @@ class CompanyProfile {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > CompanyProfile > createLocation \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > CompanyProfile > createLocation \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -385,10 +404,14 @@ class CompanyProfile {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > CompanyProfile > createLocationBulk \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > CompanyProfile > createLocationBulk \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -463,10 +486,14 @@ class CompanyProfile {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > CompanyProfile > editBrand \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > CompanyProfile > editBrand \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -540,10 +567,14 @@ class CompanyProfile {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > CompanyProfile > getBrand \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > CompanyProfile > getBrand \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -624,10 +655,14 @@ class CompanyProfile {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > CompanyProfile > getBrands \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > CompanyProfile > getBrands \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -728,10 +763,14 @@ class CompanyProfile {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > CompanyProfile > getCompanyMetrics \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > CompanyProfile > getCompanyMetrics \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -806,10 +845,14 @@ class CompanyProfile {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > CompanyProfile > getLocationDetail \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > CompanyProfile > getLocationDetail \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -881,10 +924,14 @@ class CompanyProfile {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > CompanyProfile > getLocationTags \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > CompanyProfile > getLocationTags \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -975,10 +1022,14 @@ class CompanyProfile {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > CompanyProfile > getLocations \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > CompanyProfile > getLocations \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1089,10 +1140,14 @@ class CompanyProfile {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > CompanyProfile > updateCompany \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > CompanyProfile > updateCompany \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1167,10 +1222,14 @@ class CompanyProfile {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > CompanyProfile > updateLocation \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > CompanyProfile > updateLocation \n ${res_error}`,
+        });
+      }
     }
 
     return response;

@@ -1,5 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const {
+  FDKClientValidationError,
+  FDKResponseValidationError,
+} = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
 const AuditTrailPlatformValidator = require("./AuditTrailPlatformValidator");
 const AuditTrailPlatformModel = require("./AuditTrailPlatformModel");
@@ -77,10 +80,14 @@ class AuditTrail {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > AuditTrail > createAuditLog \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > AuditTrail > createAuditLog \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -152,10 +159,14 @@ class AuditTrail {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > AuditTrail > getAuditLog \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > AuditTrail > getAuditLog \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -234,10 +245,14 @@ class AuditTrail {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > AuditTrail > getAuditLogs \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > AuditTrail > getAuditLogs \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -305,10 +320,14 @@ class AuditTrail {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > AuditTrail > getEntityTypes \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > AuditTrail > getEntityTypes \n ${res_error}`,
+        });
+      }
     }
 
     return response;

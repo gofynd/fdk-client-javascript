@@ -104,10 +104,14 @@ class FileStorage {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > FileStorage > appCompleteUpload \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > FileStorage > appCompleteUpload \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -180,10 +184,14 @@ class FileStorage {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > FileStorage > appCopyFiles \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > FileStorage > appCopyFiles \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -279,10 +287,14 @@ class FileStorage {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > FileStorage > appStartUpload \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > FileStorage > appStartUpload \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -360,10 +372,14 @@ class FileStorage {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > FileStorage > appbrowse \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > FileStorage > appbrowse \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -435,10 +451,14 @@ class FileStorage {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > FileStorage > generatePaymentReceipt \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > FileStorage > generatePaymentReceipt \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -516,10 +536,14 @@ class FileStorage {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > FileStorage > getDefaultHtmlTemplate \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > FileStorage > getDefaultHtmlTemplate \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -595,10 +619,14 @@ class FileStorage {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > FileStorage > getDefaultPdfData \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > FileStorage > getDefaultPdfData \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -677,10 +705,14 @@ class FileStorage {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > FileStorage > getDefaultPdfTemplate \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > FileStorage > getDefaultPdfTemplate \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -749,10 +781,14 @@ class FileStorage {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > FileStorage > getPdfTypes \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > FileStorage > getPdfTypes \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -827,10 +863,14 @@ class FileStorage {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > FileStorage > saveHtmlTemplate \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > FileStorage > saveHtmlTemplate \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -907,10 +947,14 @@ class FileStorage {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > FileStorage > updateHtmlTemplate \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > FileStorage > updateHtmlTemplate \n ${res_error}`,
+        });
+      }
     }
 
     return response;

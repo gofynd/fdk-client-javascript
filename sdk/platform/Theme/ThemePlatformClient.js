@@ -1,5 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const {
+  FDKClientValidationError,
+  FDKResponseValidationError,
+} = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
 const ThemePlatformValidator = require("./ThemePlatformValidator");
 const ThemePlatformModel = require("./ThemePlatformModel");
@@ -79,10 +82,14 @@ class Theme {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Theme > addMarketplaceThemeToCompany \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Theme > addMarketplaceThemeToCompany \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -154,10 +161,14 @@ class Theme {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Theme > deleteCompanyTheme \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Theme > deleteCompanyTheme \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -222,10 +233,14 @@ class Theme {
       .validate(responseData, { abortEarly: false, allowUnknown: false });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Theme > getCompanyLevelThemes \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Theme > getCompanyLevelThemes \n ${res_error}`,
+        });
+      }
     }
 
     return response;

@@ -155,12 +155,6 @@ export = OrderPlatformValidator;
  */
 /** @typedef GetRoleBasedActionsParam */
 /**
- * @typedef GetShipmentBagReasonsParam
- * @property {string} shipmentId - ID of the bag. An order may contain multiple
- *   items and may get divided into one or more shipment, each having its own ID.
- * @property {number} lineNumber - Line number of bag.
- */
-/**
  * @typedef GetShipmentByIdParam
  * @property {string} [channelShipmentId] - App Shipment Id
  * @property {string} [shipmentId] - Shipment Id
@@ -196,6 +190,7 @@ export = OrderPlatformValidator;
  * @property {number} [pageNo] - Page number for paginated data
  * @property {number} [pageSize] - Page size of data received per page
  * @property {boolean} [fetchActiveShipment] - Flag to fetch active shipments
+ * @property {boolean} [allowInactive] - Flag to allow inactive shipments
  * @property {boolean} [excludeLockedShipments] - Flag to fetch locked shipments
  * @property {string} [paymentMethods] - Comma separated values of payment methods
  * @property {string} [channelShipmentId] - App Shipment Id
@@ -339,8 +334,6 @@ declare class OrderPlatformValidator {
     static getOrders(): GetOrdersParam;
     /** @returns {GetRoleBasedActionsParam} */
     static getRoleBasedActions(): any;
-    /** @returns {GetShipmentBagReasonsParam} */
-    static getShipmentBagReasons(): GetShipmentBagReasonsParam;
     /** @returns {GetShipmentByIdParam} */
     static getShipmentById(): GetShipmentByIdParam;
     /** @returns {GetShipmentHistoryParam} */
@@ -385,7 +378,7 @@ declare class OrderPlatformValidator {
     static verifyMobileOTP(): VerifyMobileOTPParam;
 }
 declare namespace OrderPlatformValidator {
-    export { AttachOrderUserParam, CheckOrderStatusParam, Click2CallParam, CreateChannelConfigParam, CreateOrderParam, DispatchManifestParam, DownloadBulkActionTemplateParam, DownloadLanesReportParam, EInvoiceRetryParam, FetchCreditBalanceDetailParam, FetchRefundModeConfigParam, GeneratePOSReceiptByOrderIdParam, GetAllowedStateTransitionParam, GetAnnouncementsParam, GetBagByIdParam, GetBagsParam, GetBulkActionTemplateParam, GetBulkShipmentExcelFileParam, GetChannelConfigParam, GetLaneConfigParam, GetOrderByIdParam, GetOrdersParam, GetRoleBasedActionsParam, GetShipmentBagReasonsParam, GetShipmentByIdParam, GetShipmentHistoryParam, GetShipmentReasonsParam, GetShipmentsParam, GetStateTransitionMapParam, GetfiltersParam, InvalidateShipmentCacheParam, OrderUpdateParam, PostShipmentHistoryParam, ProcessManifestParam, ReassignLocationParam, SendSmsNinjaParam, SendUserMobileOTPParam, TrackShipmentParam, UpdateAddressParam, UpdatePackagingDimensionsParam, UpdateShipmentLockParam, UpdateShipmentStatusParam, UpdateShipmentTrackingParam, UploadConsentParam, VerifyMobileOTPParam };
+    export { AttachOrderUserParam, CheckOrderStatusParam, Click2CallParam, CreateChannelConfigParam, CreateOrderParam, DispatchManifestParam, DownloadBulkActionTemplateParam, DownloadLanesReportParam, EInvoiceRetryParam, FetchCreditBalanceDetailParam, FetchRefundModeConfigParam, GeneratePOSReceiptByOrderIdParam, GetAllowedStateTransitionParam, GetAnnouncementsParam, GetBagByIdParam, GetBagsParam, GetBulkActionTemplateParam, GetBulkShipmentExcelFileParam, GetChannelConfigParam, GetLaneConfigParam, GetOrderByIdParam, GetOrdersParam, GetRoleBasedActionsParam, GetShipmentByIdParam, GetShipmentHistoryParam, GetShipmentReasonsParam, GetShipmentsParam, GetStateTransitionMapParam, GetfiltersParam, InvalidateShipmentCacheParam, OrderUpdateParam, PostShipmentHistoryParam, ProcessManifestParam, ReassignLocationParam, SendSmsNinjaParam, SendUserMobileOTPParam, TrackShipmentParam, UpdateAddressParam, UpdatePackagingDimensionsParam, UpdateShipmentLockParam, UpdateShipmentStatusParam, UpdateShipmentTrackingParam, UploadConsentParam, VerifyMobileOTPParam };
 }
 type AttachOrderUserParam = {
     body: OrderPlatformModel.AttachOrderUser;
@@ -663,17 +656,6 @@ type GetOrdersParam = {
     customerId?: string;
     orderType?: string;
 };
-type GetShipmentBagReasonsParam = {
-    /**
-     * - ID of the bag. An order may contain multiple
-     * items and may get divided into one or more shipment, each having its own ID.
-     */
-    shipmentId: string;
-    /**
-     * - Line number of bag.
-     */
-    lineNumber: number;
-};
 type GetShipmentByIdParam = {
     /**
      * - App Shipment Id
@@ -766,6 +748,10 @@ type GetShipmentsParam = {
      * - Flag to fetch active shipments
      */
     fetchActiveShipment?: boolean;
+    /**
+     * - Flag to allow inactive shipments
+     */
+    allowInactive?: boolean;
     /**
      * - Flag to fetch locked shipments
      */

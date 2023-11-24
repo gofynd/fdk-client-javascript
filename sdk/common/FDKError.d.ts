@@ -15,6 +15,10 @@ export class FDKClientValidationError extends Error {
     constructor(errObj: any);
     details: any;
 }
+export class FDKResponseValidationError extends Error {
+    constructor(errObj: any);
+    details: any;
+}
 export class FDKInvalidCredentialError extends Error {
     constructor(message: any);
 }

@@ -1,5 +1,8 @@
 const ApplicationAPIClient = require("../ApplicationAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const {
+  FDKClientValidationError,
+  FDKResponseValidationError,
+} = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
 const PosCartApplicationValidator = require("./PosCartApplicationValidator");
@@ -124,10 +127,14 @@ class PosCart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > addAddress \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > PosCart > addAddress \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -204,10 +211,14 @@ class PosCart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > addItems \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > PosCart > addItems \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -283,10 +294,14 @@ class PosCart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > applyCoupon \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > PosCart > applyCoupon \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -361,10 +376,14 @@ class PosCart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > applyRewardPoints \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > PosCart > applyRewardPoints \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -436,10 +455,14 @@ class PosCart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > checkoutCart \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > PosCart > checkoutCart \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -525,10 +548,14 @@ class PosCart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > getAddressById \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > PosCart > getAddressById \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -613,10 +640,14 @@ class PosCart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > getAddresses \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > PosCart > getAddresses \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -694,10 +725,14 @@ class PosCart {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > getAvailableDeliveryModes \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > PosCart > getAvailableDeliveryModes \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -774,10 +809,14 @@ class PosCart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > getBulkDiscountOffers \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > PosCart > getBulkDiscountOffers \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -793,13 +832,13 @@ class PosCart {
    * @description: Use this API to get details of all the items added to a cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getCart/).
    */
   async getCart(
-    { id, i, b, assignCardId, areaCode, buyNow, requestHeaders } = {
+    { id, i, b, c, assignCardId, areaCode, buyNow, requestHeaders } = {
       requestHeaders: {},
     },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = PosCartApplicationValidator.getCart().validate(
-      { id, i, b, assignCardId, areaCode, buyNow },
+      { id, i, b, c, assignCardId, areaCode, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -808,7 +847,7 @@ class PosCart {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = PosCartApplicationValidator.getCart().validate(
-      { id, i, b, assignCardId, areaCode, buyNow },
+      { id, i, b, c, assignCardId, areaCode, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -822,6 +861,7 @@ class PosCart {
     query_params["id"] = id;
     query_params["i"] = i;
     query_params["b"] = b;
+    query_params["c"] = c;
     query_params["assign_card_id"] = assignCardId;
     query_params["area_code"] = areaCode;
     query_params["buy_now"] = buyNow;
@@ -854,10 +894,14 @@ class PosCart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > getCart \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > PosCart > getCart \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -928,10 +972,14 @@ class PosCart {
       .validate(responseData, { abortEarly: false, allowUnknown: false });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > getCartLastModified \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > PosCart > getCartLastModified \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1003,10 +1051,14 @@ class PosCart {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > getCartShareLink \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > PosCart > getCartShareLink \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1077,10 +1129,14 @@ class PosCart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > getCartSharedItems \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > PosCart > getCartSharedItems \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1153,10 +1209,14 @@ class PosCart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > getCoupons \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > PosCart > getCoupons \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1230,10 +1290,14 @@ class PosCart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > getItemCount \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > PosCart > getItemCount \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1337,10 +1401,14 @@ class PosCart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > getShipments \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > PosCart > getShipments \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1414,10 +1482,14 @@ class PosCart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > getStoreAddressByUid \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > PosCart > getStoreAddressByUid \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1489,10 +1561,14 @@ class PosCart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > removeAddress \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > PosCart > removeAddress \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1565,10 +1641,14 @@ class PosCart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > removeCoupon \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > PosCart > removeCoupon \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1643,10 +1723,14 @@ class PosCart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > selectAddress \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > PosCart > selectAddress \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1719,10 +1803,14 @@ class PosCart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > selectPaymentMode \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > PosCart > selectPaymentMode \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1794,10 +1882,14 @@ class PosCart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > updateAddress \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > PosCart > updateAddress \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1876,10 +1968,14 @@ class PosCart {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > updateCart \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > PosCart > updateCart \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1952,10 +2048,14 @@ class PosCart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > updateCartMeta \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > PosCart > updateCartMeta \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2030,10 +2130,14 @@ class PosCart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > updateCartWithSharedItems \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > PosCart > updateCartWithSharedItems \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2113,10 +2217,14 @@ class PosCart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > updateShipments \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > PosCart > updateShipments \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2239,10 +2347,14 @@ class PosCart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > PosCart > validateCouponForPayment \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > PosCart > validateCouponForPayment \n ${res_error}`,
+        });
+      }
     }
 
     return response;

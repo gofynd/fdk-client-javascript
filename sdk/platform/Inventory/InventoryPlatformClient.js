@@ -1,5 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const {
+  FDKClientValidationError,
+  FDKResponseValidationError,
+} = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
 const InventoryPlatformValidator = require("./InventoryPlatformValidator");
 const InventoryPlatformModel = require("./InventoryPlatformModel");
@@ -76,10 +79,14 @@ class Inventory {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Inventory > createJob \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Inventory > createJob \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -150,10 +157,14 @@ class Inventory {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Inventory > disable \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Inventory > disable \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -223,10 +234,14 @@ class Inventory {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Inventory > getConfigByCompany \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Inventory > getConfigByCompany \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -300,10 +315,14 @@ class Inventory {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Inventory > getJobByCode \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Inventory > getJobByCode \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -389,10 +408,14 @@ class Inventory {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Inventory > getJobByCompanyAndIntegration \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Inventory > getJobByCompanyAndIntegration \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -480,10 +503,14 @@ class Inventory {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Inventory > getJobCodeMetrics \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Inventory > getJobCodeMetrics \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -569,10 +596,14 @@ class Inventory {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Inventory > getJobCodesByCompanyAndIntegration \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Inventory > getJobCodesByCompanyAndIntegration \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -644,10 +675,14 @@ class Inventory {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Inventory > getJobConfigDefaults \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Inventory > getJobConfigDefaults \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -721,10 +756,14 @@ class Inventory {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Inventory > getJobSteps \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Inventory > getJobSteps \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -802,10 +841,14 @@ class Inventory {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Inventory > getJobsByCompany \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Inventory > getJobsByCompany \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -879,10 +922,14 @@ class Inventory {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Inventory > suppressStores \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Inventory > suppressStores \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -953,10 +1000,14 @@ class Inventory {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Inventory > updateJob \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Inventory > updateJob \n ${res_error}`,
+        });
+      }
     }
 
     return response;

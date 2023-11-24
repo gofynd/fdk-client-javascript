@@ -82,10 +82,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > addCollectionItems \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > addCollectionItems \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -159,10 +163,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > createAppCategoryReturnConfiguration \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > createAppCategoryReturnConfiguration \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -236,10 +244,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > createAppReturnConfiguration \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > createAppReturnConfiguration \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -312,10 +324,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > createCollection \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > createCollection \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -392,10 +408,14 @@ class Catalog {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > createConfigurationByType \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > createConfigurationByType \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -470,10 +490,14 @@ class Catalog {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > createConfigurationProductListing \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > createConfigurationProductListing \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -549,10 +573,14 @@ class Catalog {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > createCustomAutocompleteRule \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > createCustomAutocompleteRule \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -626,10 +654,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > createCustomKeyword \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > createCustomKeyword \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -705,10 +737,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > createGroupConfiguration \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > createGroupConfiguration \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -784,10 +820,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > createListingConfiguration \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > createListingConfiguration \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -863,10 +903,14 @@ class Catalog {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > createSearchConfiguration \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > createSearchConfiguration \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -940,10 +984,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > deleteAppCategoryReturnConfiguration \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > deleteAppCategoryReturnConfiguration \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1017,10 +1065,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > deleteAutocompleteKeyword \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > deleteAutocompleteKeyword \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1092,10 +1144,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > deleteCollection \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > deleteCollection \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1171,10 +1227,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > deleteGroupConfiguration \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > deleteGroupConfiguration \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1250,10 +1310,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > deleteListingConfiguration \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > deleteListingConfiguration \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1325,10 +1389,14 @@ class Catalog {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > deleteSearchConfiguration \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > deleteSearchConfiguration \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1402,10 +1470,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > deleteSearchKeywords \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > deleteSearchKeywords \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1508,10 +1580,14 @@ class Catalog {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > getAllCollections \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getAllCollections \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1581,10 +1657,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > getAllSearchKeyword \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getAllSearchKeyword \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1656,10 +1736,14 @@ class Catalog {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > getAppCategoryReturnConfig \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getAppCategoryReturnConfig \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1759,10 +1843,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > getAppInventory \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getAppInventory \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1852,10 +1940,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > getAppLocations \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getAppLocations \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1979,10 +2071,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > getAppProduct \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getAppProduct \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2087,10 +2183,14 @@ class Catalog {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > getAppProducts \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getAppProducts \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2160,10 +2260,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > getAppReturnConfiguration \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getAppReturnConfiguration \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2283,10 +2387,14 @@ class Catalog {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > getAppicationProducts \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getAppicationProducts \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2439,10 +2547,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > getApplicationBrandListing \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getApplicationBrandListing \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2573,10 +2685,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > getApplicationBrands \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getApplicationBrands \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2714,10 +2830,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > getApplicationCategoryListing \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getApplicationCategoryListing \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2846,10 +2966,14 @@ class Catalog {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > getApplicationDepartmentListing \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getApplicationDepartmentListing \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2962,10 +3086,14 @@ class Catalog {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > getAutocompleteConfig \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getAutocompleteConfig \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -3040,10 +3168,14 @@ class Catalog {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > getAutocompleteKeywordDetail \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getAutocompleteKeywordDetail \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -3115,10 +3247,14 @@ class Catalog {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > getCatalogConfiguration \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getCatalogConfiguration \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -3193,10 +3329,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > getCatalogInsights \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getCatalogInsights \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -3269,10 +3409,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > getCategories \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getCategories \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -3347,10 +3491,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > getCollectionDetail \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getCollectionDetail \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -3434,10 +3582,14 @@ class Catalog {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > getCollectionItems \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getCollectionItems \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -3513,10 +3665,14 @@ class Catalog {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > getConfigurationByType \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getConfigurationByType \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -3594,10 +3750,14 @@ class Catalog {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > getConfigurationMetadata \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getConfigurationMetadata \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -3668,10 +3828,14 @@ class Catalog {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > getConfigurations \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getConfigurations \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -3739,10 +3903,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > getDepartments \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getDepartments \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -3840,10 +4008,14 @@ class Catalog {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > getDiscountedInventoryBySizeIdentifier \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getDiscountedInventoryBySizeIdentifier \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -3931,10 +4103,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > getGroupConfigurations \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getGroupConfigurations \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -4019,10 +4195,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > getListingConfigurations \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getListingConfigurations \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -4096,10 +4276,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > getProductDetailBySlug \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getProductDetailBySlug \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -4169,10 +4353,14 @@ class Catalog {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > getQueryFilters \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getQueryFilters \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -4244,10 +4432,14 @@ class Catalog {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > getSearchConfiguration \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getSearchConfiguration \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -4322,10 +4514,14 @@ class Catalog {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > getSearchKeywords \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getSearchKeywords \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -4399,10 +4595,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > updateAllowSingle \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > updateAllowSingle \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -4476,10 +4676,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > updateAppBrand \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > updateAppBrand \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -4555,10 +4759,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > updateAppCategory \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > updateAppCategory \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -4632,10 +4840,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > updateAppCategoryReturnConfiguration \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > updateAppCategoryReturnConfiguration \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -4711,10 +4923,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > updateAppDepartment \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > updateAppDepartment \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -4790,10 +5006,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > updateAppLocation \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > updateAppLocation \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -4867,10 +5087,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > updateAppProduct \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > updateAppProduct \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -4944,10 +5168,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > updateAppReturnConfiguration \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > updateAppReturnConfiguration \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -5024,10 +5252,14 @@ class Catalog {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > updateAutocompleteKeyword \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > updateAutocompleteKeyword \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -5101,10 +5333,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > updateCollection \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > updateCollection \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -5178,10 +5414,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > updateDefaultSort \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > updateDefaultSort \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -5259,10 +5499,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > updateGroupConfiguration \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > updateGroupConfiguration \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -5340,10 +5584,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > updateListingConfiguration \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > updateListingConfiguration \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -5419,10 +5667,14 @@ class Catalog {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > updateSearchConfiguration \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > updateSearchConfiguration \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -5498,10 +5750,14 @@ class Catalog {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Catalog > updateSearchKeywords \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > updateSearchKeywords \n ${res_error}`,
+        });
+      }
     }
 
     return response;

@@ -1,5 +1,8 @@
 const PublicAPIClient = require("../PublicAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const {
+  FDKClientValidationError,
+  FDKResponseValidationError,
+} = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
 const ConfigurationPublicValidator = require("./ConfigurationPublicValidator");
@@ -98,10 +101,14 @@ class Configuration {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for public > Configuration > getLocations \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for public > Configuration > getLocations \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -174,10 +181,14 @@ class Configuration {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for public > Configuration > searchApplication \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for public > Configuration > searchApplication \n ${res_error}`,
+        });
+      }
     }
 
     return response;

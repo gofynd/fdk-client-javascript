@@ -136,7 +136,7 @@ declare class PosCart {
      * @summary: Fetch all items added to the cart
      * @description: Use this API to get details of all the items added to a cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/poscart/getCart/).
      */
-    getCart({ id, i, b, assignCardId, areaCode, buyNow, requestHeaders }?: PosCartApplicationValidator.GetCartParam, { responseHeaders }?: object): Promise<PosCartApplicationModel.CartDetailResponse>;
+    getCart({ id, i, b, c, assignCardId, areaCode, buyNow, requestHeaders }?: PosCartApplicationValidator.GetCartParam, { responseHeaders }?: object): Promise<PosCartApplicationModel.CartDetailResponse>;
     /**
      * @param {PosCartApplicationValidator.GetCartLastModifiedParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

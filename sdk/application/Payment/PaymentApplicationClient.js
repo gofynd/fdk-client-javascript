@@ -1,5 +1,8 @@
 const ApplicationAPIClient = require("../ApplicationAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const {
+  FDKClientValidationError,
+  FDKResponseValidationError,
+} = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
 const PaymentApplicationValidator = require("./PaymentApplicationValidator");
@@ -166,10 +169,14 @@ class Payment {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > addBeneficiaryDetails \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > addBeneficiaryDetails \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -245,10 +252,14 @@ class Payment {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > addRefundBankAccountUsingOTP \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > addRefundBankAccountUsingOTP \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -321,10 +332,14 @@ class Payment {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > attachCardToCustomer \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > attachCardToCustomer \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -396,10 +411,14 @@ class Payment {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > cancelPaymentLink \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > cancelPaymentLink \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -471,10 +490,14 @@ class Payment {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > cardDetails \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > cardDetails \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -551,10 +574,14 @@ class Payment {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > checkAndUpdatePaymentStatus \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > checkAndUpdatePaymentStatus \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -631,10 +658,14 @@ class Payment {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > checkAndUpdatePaymentStatusPaymentLink \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > checkAndUpdatePaymentStatusPaymentLink \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -706,10 +737,14 @@ class Payment {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > checkCredit \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > checkCredit \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -785,10 +820,14 @@ class Payment {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > createOrderHandlerPaymentLink \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > createOrderHandlerPaymentLink \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -860,10 +899,14 @@ class Payment {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > createPaymentLink \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > createPaymentLink \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -939,10 +982,14 @@ class Payment {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > customerCreditSummary \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > customerCreditSummary \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1014,10 +1061,14 @@ class Payment {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > customerOnboard \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > customerOnboard \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1088,10 +1139,14 @@ class Payment {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > deleteUserCard \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > deleteUserCard \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1168,10 +1223,14 @@ class Payment {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > enableOrDisableRefundTransferMode \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > enableOrDisableRefundTransferMode \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1247,10 +1306,14 @@ class Payment {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > getActiveCardAggregator \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > getActiveCardAggregator \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1325,10 +1388,14 @@ class Payment {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > getActiveRefundTransferModes \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > getActiveRefundTransferModes \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1400,10 +1467,14 @@ class Payment {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > getActiveUserCards \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > getActiveUserCards \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1480,10 +1551,14 @@ class Payment {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > getAggregatorsConfig \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > getAggregatorsConfig \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1559,10 +1634,14 @@ class Payment {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > getEpaylaterBannerDetails \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > getEpaylaterBannerDetails \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1639,10 +1718,14 @@ class Payment {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > getOrderBeneficiariesDetail \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > getOrderBeneficiariesDetail \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1715,10 +1798,14 @@ class Payment {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > getPaymentLink \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > getPaymentLink \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1824,10 +1911,14 @@ class Payment {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > getPaymentModeRoutes \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > getPaymentModeRoutes \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1904,10 +1995,14 @@ class Payment {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > getPaymentModeRoutesPaymentLink \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > getPaymentModeRoutesPaymentLink \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2017,10 +2112,14 @@ class Payment {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > getPosPaymentModeRoutes \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > getPosPaymentModeRoutes \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2093,10 +2192,14 @@ class Payment {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > getRupifiBannerDetails \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > getRupifiBannerDetails \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2173,10 +2276,14 @@ class Payment {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > getUserBeneficiariesDetail \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > getUserBeneficiariesDetail \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2249,10 +2356,14 @@ class Payment {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > initialisePayment \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > initialisePayment \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2329,10 +2440,14 @@ class Payment {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > initialisePaymentPaymentLink \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > initialisePaymentPaymentLink \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2408,10 +2523,14 @@ class Payment {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > outstandingOrderDetails \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > outstandingOrderDetails \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2484,10 +2603,14 @@ class Payment {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > paidOrderDetails \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > paidOrderDetails \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2560,10 +2683,14 @@ class Payment {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > pollingPaymentLink \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > pollingPaymentLink \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2640,10 +2767,14 @@ class Payment {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > redirectToAggregator \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > redirectToAggregator \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2714,10 +2845,14 @@ class Payment {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > renderHTML \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > renderHTML \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2792,10 +2927,14 @@ class Payment {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > resendOrCancelPayment \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > resendOrCancelPayment \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2867,10 +3006,14 @@ class Payment {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > resendPaymentLink \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > resendPaymentLink \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2946,10 +3089,14 @@ class Payment {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > updateDefaultBeneficiary \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > updateDefaultBeneficiary \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -3020,10 +3167,14 @@ class Payment {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > validateVPA \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > validateVPA \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -3097,10 +3248,14 @@ class Payment {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > verifyAndChargePayment \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > verifyAndChargePayment \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -3175,10 +3330,14 @@ class Payment {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > verifyCustomerForPayment \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > verifyCustomerForPayment \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -3250,10 +3409,14 @@ class Payment {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > verifyIfscCode \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > verifyIfscCode \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -3330,10 +3493,14 @@ class Payment {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > verifyOtpAndAddBeneficiaryForBank \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > verifyOtpAndAddBeneficiaryForBank \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -3408,10 +3575,14 @@ class Payment {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for application > Payment > verifyOtpAndAddBeneficiaryForWallet \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > verifyOtpAndAddBeneficiaryForWallet \n ${res_error}`,
+        });
+      }
     }
 
     return response;

@@ -76,6 +76,7 @@ export = CartApplicationValidator;
  * @property {string} [id]
  * @property {boolean} [i]
  * @property {boolean} [b]
+ * @property {boolean} [c]
  * @property {number} [assignCardId]
  * @property {string} [areaCode]
  * @property {boolean} [buyNow]
@@ -345,6 +346,7 @@ type GetCartParam = {
     id?: string;
     i?: boolean;
     b?: boolean;
+    c?: boolean;
     assignCardId?: number;
     areaCode?: string;
     buyNow?: boolean;

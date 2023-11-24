@@ -32,12 +32,19 @@ class ApplicationConfig {
    *   options: TRACE, DEBUG, INFO, WARN, ERROR. Default is `'ERROR'`
    * @param {LocationObject} [_conf.locationDetails] - The location details.
    * @param {string} [_conf.currencyCode='INR'] - The currency code. Default is `'INR'`
-   * @param {object} [_opts] - Additional options.
+   * @param {object} [options] - Additional options.
+   * @param {boolean} [options.strictResponseCheck=false] - Strict check for
+   *   response schema validation. Passing this `true` will check response
+   *   against response schema and throw FDKResponseValidationError if it
+   *   doesn't match. Default is `false`
    */
-  constructor(_conf, _opts) {
+  constructor(_conf, options) {
     this.applicationID = _conf.applicationID || "";
     this.applicationToken = _conf.applicationToken || "";
-    this.opts = _opts || {};
+    this.options = {
+      ...{ strictResponseCheck: false },
+      ...options,
+    };
     this.domain = _conf.domain || "https://api.fynd.com";
     this.logLevel = _conf.logLevel || "ERROR";
     this.setLogLevel(this.logLevel);
@@ -84,6 +91,17 @@ class ApplicationConfig {
     if (this.applicationToken.length < 5) {
       Logger({ level: "ERROR", message: "Invalid Application Token" });
       throw new FDKInvalidCredentialError("Invalid Application Token");
+    }
+    if (typeof this.options.strictResponseCheck !== "boolean") {
+      Logger({ level: "ERROR", message: "Invalid Application Token" });
+      Logger({
+        level: "ERROR",
+        message:
+          "Invalid Value for options.strictResponseCheck, provide boolean value",
+      });
+      throw new FDKInvalidCredentialError(
+        "Invalid Value for options.strictResponseCheck, provide boolean value"
+      );
     }
   }
 }

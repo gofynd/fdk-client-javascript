@@ -76,10 +76,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > addAddress \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > addAddress \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -154,10 +158,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > addItems \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > addItems \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -229,10 +237,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > addPriceAdjustment \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > addPriceAdjustment \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -317,10 +329,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > applyCoupon \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > applyCoupon \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -396,10 +412,14 @@ class Cart {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > checkCartServiceability \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > checkCartServiceability \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -469,10 +489,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > checkoutCart \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > checkoutCart \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -546,10 +570,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > createCartMetaConfig \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > createCartMetaConfig \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -619,10 +647,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > createCoupon \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > createCoupon \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -694,10 +726,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > createPromotion \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > createPromotion \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -770,10 +806,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > deleteCart \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > deleteCart \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -847,10 +887,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > fetchAndvalidateCartItems \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > fetchAndvalidateCartItems \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -918,10 +962,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > fetchCartMetaConfig \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > fetchCartMetaConfig \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1021,10 +1069,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > getAbandonedCart \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > getAbandonedCart \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1092,7 +1144,7 @@ class Cart {
    * @description: Use this API to get details of all the items added to a cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getAbandonedCartDetails/).
    */
   async getAbandonedCartDetails(
-    { id, i, b, requestHeaders } = { requestHeaders: {} },
+    { id, i, b, c, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -1102,6 +1154,7 @@ class Cart {
         id,
         i,
         b,
+        c,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1117,6 +1170,7 @@ class Cart {
         id,
         i,
         b,
+        c,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1131,6 +1185,7 @@ class Cart {
     query_params["id"] = id;
     query_params["i"] = i;
     query_params["b"] = b;
+    query_params["c"] = c;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -1155,10 +1210,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > getAbandonedCartDetails \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > getAbandonedCartDetails \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1261,10 +1320,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > getAddressById \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > getAddressById \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1363,10 +1426,14 @@ class Cart {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > getAddresses \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > getAddresses \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1440,10 +1507,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > getAppCoupons \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > getAppCoupons \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1521,10 +1592,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > getAvailableDeliveryModes \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > getAvailableDeliveryModes \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1612,10 +1687,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > getCart \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > getCart \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1692,10 +1771,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > getCartList \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > getCartList \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1767,10 +1850,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > getCartShareLink \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > getCartShareLink \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1842,10 +1929,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > getCartSharedItems \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > getCartSharedItems \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1915,10 +2006,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > getCouponById \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > getCouponById \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -1989,10 +2084,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > getCouponCodeExists \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > getCouponCodeExists \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2060,10 +2159,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > getCouponOptionValues \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > getCouponOptionValues \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2165,10 +2268,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > getCoupons \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > getCoupons \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2295,10 +2402,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > getItemCount \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > getItemCount \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2376,10 +2487,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > getPromosCouponConfig \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > getPromosCouponConfig \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2451,10 +2566,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > getPromotionById \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > getPromotionById \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2527,10 +2646,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > getPromotionCodeExists \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > getPromotionCodeExists \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2632,10 +2755,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > getPromotions \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > getPromotions \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2791,10 +2918,14 @@ class Cart {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > getShipments \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > getShipments \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2869,10 +3000,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > getStoreAddressByUid \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > getStoreAddressByUid \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -2942,10 +3077,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > overrideCart \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > overrideCart \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -3029,10 +3168,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > platformAddItems \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > platformAddItems \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -3109,10 +3252,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > platformCheckoutCart \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > platformCheckoutCart \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -3189,10 +3336,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > platformCheckoutCartV2 \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > platformCheckoutCartV2 \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -3276,10 +3427,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > platformUpdateCart \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > platformUpdateCart \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -3352,10 +3507,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > removeAddress \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > removeAddress \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -3429,10 +3588,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > removeCoupon \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > removeCoupon \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -3506,10 +3669,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > removePriceAdjustment \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > removePriceAdjustment \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -3591,10 +3758,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > selectAddress \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > selectAddress \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -3675,10 +3846,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > selectPaymentMode \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > selectPaymentMode \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -3759,10 +3934,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > selectPaymentModeV2 \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > selectPaymentModeV2 \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -3834,10 +4013,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > updateAddress \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > updateAddress \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -3912,10 +4095,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > updateCart \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > updateCart \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -3993,10 +4180,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > updateCartMeta \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > updateCartMeta \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -4072,10 +4263,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > updateCartMetaConfig \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > updateCartMetaConfig \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -4150,10 +4345,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > updateCartUser \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > updateCartUser \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -4232,10 +4431,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > updateCartWithSharedItems \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > updateCartWithSharedItems \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -4307,10 +4510,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > updateCoupon \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > updateCoupon \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -4386,10 +4593,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > updateCouponPartially \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > updateCouponPartially \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -4465,10 +4676,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > updatePriceAdjustment \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > updatePriceAdjustment \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -4542,10 +4757,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > updatePromotion \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > updatePromotion \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -4621,10 +4840,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > updatePromotionPartially \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > updatePromotionPartially \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -4717,10 +4940,14 @@ class Cart {
     );
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > updateShipments \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > updateShipments \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -4822,10 +5049,14 @@ class Cart {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > Cart > validateCouponForPayment \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Cart > validateCouponForPayment \n ${res_error}`,
+        });
+      }
     }
 
     return response;

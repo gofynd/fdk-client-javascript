@@ -1,5 +1,8 @@
 const PublicAPIClient = require("../PublicAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const {
+  FDKClientValidationError,
+  FDKResponseValidationError,
+} = require("../../common/FDKError");
 const constructUrl = require("../constructUrl");
 const Paginator = require("../../common/Paginator");
 const WebhookPublicValidator = require("./WebhookPublicValidator");
@@ -96,10 +99,14 @@ class Webhook {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for public > Webhook > fetchAllWebhookEvents \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for public > Webhook > fetchAllWebhookEvents \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -172,10 +179,14 @@ class Webhook {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for public > Webhook > queryWebhookEventDetails \n ${res_error}`,
-      });
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for public > Webhook > queryWebhookEventDetails \n ${res_error}`,
+        });
+      }
     }
 
     return response;

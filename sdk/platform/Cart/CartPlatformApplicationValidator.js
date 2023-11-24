@@ -83,6 +83,7 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @property {string} [id]
  * @property {boolean} [i]
  * @property {boolean} [b]
+ * @property {boolean} [c]
  */
 
 /**
@@ -512,6 +513,7 @@ class CartPlatformApplicationValidator {
       id: Joi.string().allow(""),
       i: Joi.boolean(),
       b: Joi.boolean(),
+      c: Joi.boolean(),
     }).required();
   }
 

@@ -1,5 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const {
+  FDKClientValidationError,
+  FDKResponseValidationError,
+} = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
 const FileStoragePlatformValidator = require("./FileStoragePlatformValidator");
 const FileStoragePlatformModel = require("./FileStoragePlatformModel");
@@ -83,10 +86,14 @@ class FileStorage {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > FileStorage > browse \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > FileStorage > browse \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -180,10 +187,14 @@ class FileStorage {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > FileStorage > completeUpload \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > FileStorage > completeUpload \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -256,10 +267,14 @@ class FileStorage {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > FileStorage > copyFiles \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > FileStorage > copyFiles \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -331,10 +346,14 @@ class FileStorage {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > FileStorage > getSignUrls \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > FileStorage > getSignUrls \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -402,10 +421,14 @@ class FileStorage {
       .validate(responseData, { abortEarly: false, allowUnknown: false });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > FileStorage > proxy \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > FileStorage > proxy \n ${res_error}`,
+        });
+      }
     }
 
     return response;
@@ -499,10 +522,14 @@ class FileStorage {
     });
 
     if (res_error) {
-      Logger({
-        level: "WARN",
-        message: `Response Validation Warnnings for platform > FileStorage > startUpload \n ${res_error}`,
-      });
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > FileStorage > startUpload \n ${res_error}`,
+        });
+      }
     }
 
     return response;

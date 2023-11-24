@@ -181,13 +181,6 @@ const OrderPlatformModel = require("./OrderPlatformModel");
 /** @typedef GetRoleBasedActionsParam */
 
 /**
- * @typedef GetShipmentBagReasonsParam
- * @property {string} shipmentId - ID of the bag. An order may contain multiple
- *   items and may get divided into one or more shipment, each having its own ID.
- * @property {number} lineNumber - Line number of bag.
- */
-
-/**
  * @typedef GetShipmentByIdParam
  * @property {string} [channelShipmentId] - App Shipment Id
  * @property {string} [shipmentId] - Shipment Id
@@ -226,6 +219,7 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  * @property {number} [pageNo] - Page number for paginated data
  * @property {number} [pageSize] - Page size of data received per page
  * @property {boolean} [fetchActiveShipment] - Flag to fetch active shipments
+ * @property {boolean} [allowInactive] - Flag to allow inactive shipments
  * @property {boolean} [excludeLockedShipments] - Flag to fetch locked shipments
  * @property {string} [paymentMethods] - Comma separated values of payment methods
  * @property {string} [channelShipmentId] - App Shipment Id
@@ -560,14 +554,6 @@ class OrderPlatformValidator {
     return Joi.object({}).required();
   }
 
-  /** @returns {GetShipmentBagReasonsParam} */
-  static getShipmentBagReasons() {
-    return Joi.object({
-      shipmentId: Joi.string().allow("").required(),
-      lineNumber: Joi.number().required(),
-    }).required();
-  }
-
   /** @returns {GetShipmentByIdParam} */
   static getShipmentById() {
     return Joi.object({
@@ -610,6 +596,7 @@ class OrderPlatformValidator {
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       fetchActiveShipment: Joi.boolean(),
+      allowInactive: Joi.boolean(),
       excludeLockedShipments: Joi.boolean(),
       paymentMethods: Joi.string().allow(""),
       channelShipmentId: Joi.string().allow(""),

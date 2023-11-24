@@ -23,8 +23,13 @@ class PartnerConfig {
    *   to use the auto-renew timer. Default is `true`
    * @param {logLevelEnum} [config.logLevel='ERROR'] - The log level. Available
    *   options: TRACE, DEBUG, INFO, WARN, ERROR. Default is `'ERROR'`
+   * @param {object} [options] - Additional options.
+   * @param {boolean} [options.strictResponseCheck=false] - Strict check for
+   *   response schema validation. Passing this `true` will check response
+   *   against response schema and throw FDKResponseValidationError if it
+   *   doesn't match. Default is `false`
    */
-  constructor(config) {
+  constructor(config, options) {
     this.organizationId = config.organizationId;
     this.domain = config.domain || "https://api.fynd.com";
     this.apiKey = config.apiKey;
@@ -36,6 +41,10 @@ class PartnerConfig {
     this.logLevel = config.logLevel || "ERROR";
     this.setLogLevel(this.logLevel);
     this.extraHeaders = [];
+    this.options = {
+      ...{ strictResponseCheck: false },
+      ...options,
+    };
   }
 
   /**

@@ -23,6 +23,14 @@ class FDKClientValidationError extends Error {
   }
 }
 
+class FDKResponseValidationError extends Error {
+  constructor(errObj) {
+    super(errObj.message);
+    this.name = "FDKResponseValidationError";
+    this.details = JSON.parse(JSON.stringify(errObj.details));
+  }
+}
+
 class FDKInvalidCredentialError extends Error {
   constructor(message) {
     super(message);
@@ -52,6 +60,7 @@ class FDKException extends Error {
 module.exports = {
   FDKServerResponseError,
   FDKClientValidationError,
+  FDKResponseValidationError,
   FDKInvalidCredentialError,
   FDKTokenIssueError,
   FDKOAuthCodeError,
