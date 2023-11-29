@@ -76,6 +76,7 @@ export = OrderPlatformModel;
 /**
  * @typedef AffiliateBagsDetails
  * @property {string} [affiliate_bag_id]
+ * @property {AffiliateMeta} [affiliate_meta]
  * @property {string} [coupon_code]
  */
 /**
@@ -2484,6 +2485,7 @@ type AffiliateBagDetails = {
 declare function AffiliateBagsDetails(): AffiliateBagsDetails;
 type AffiliateBagsDetails = {
     affiliate_bag_id?: string;
+    affiliate_meta?: AffiliateMeta;
     coupon_code?: string;
 };
 /** @returns {AffiliateConfig} */

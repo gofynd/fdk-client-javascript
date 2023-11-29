@@ -5308,6 +5308,7 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | affiliate_bag_id | string? |  yes  |  |
+ | affiliate_meta | [AffiliateMeta](#AffiliateMeta)? |  yes  |  |
  | coupon_code | string? |  yes  |  |
  
 

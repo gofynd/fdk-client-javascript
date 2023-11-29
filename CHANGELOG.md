@@ -1,4 +1,32 @@
-# CHANGE LOG (1.3.9-beta.1) - v1.8.6-prerelease-v1
+# CHANGE LOG (1.3.10-beta.1) - v1.8.7-prerelease-v1
+
+## Platform Client
+
+
+
+### Order
+
+
+
+#### getShipmentById
+
+- ##### What's New
+	- [Added] property `shipments[].bags[].affiliate_bag_details.affiliate_meta` of schema `AffiliateBagsDetails` in response with status code 200
+
+
+#### getOrderById
+
+- ##### What's New
+	- [Added] property `shipments[].bags[].affiliate_bag_details.affiliate_meta` of schema `AffiliateBagsDetails` in response with status code 200
+
+
+#### getOrders
+
+- ##### What's New
+	- [Added] property `items[].shipments[].bags[].affiliate_bag_details.affiliate_meta` of schema `AffiliateBagsDetails` in response with status code 200
+
+
+# CHANGE LOG (1.3.9) - fp-v1.8.6
 
 ## Application Client
 

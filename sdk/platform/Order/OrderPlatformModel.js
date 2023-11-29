@@ -84,6 +84,7 @@ const Joi = require("joi");
 /**
  * @typedef AffiliateBagsDetails
  * @property {string} [affiliate_bag_id]
+ * @property {AffiliateMeta} [affiliate_meta]
  * @property {string} [coupon_code]
  */
 
@@ -2752,6 +2753,7 @@ class OrderPlatformModel {
   static AffiliateBagsDetails() {
     return Joi.object({
       affiliate_bag_id: Joi.string().allow("").allow(null),
+      affiliate_meta: OrderPlatformModel.AffiliateMeta(),
       coupon_code: Joi.string().allow("").allow(null),
     });
   }
