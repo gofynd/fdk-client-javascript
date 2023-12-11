@@ -8,6 +8,8 @@
 ## Webhook Methods
 This service provides functionality to emits different events to the subscribed webhook url's. It auto retry three times for all the failed events after certain interval as well as you can also retry manually the failed events and can view the reports.
 
+
+Default
 * [cancelJobByName](#canceljobbyname)
 * [downloadDeliveryReport](#downloaddeliveryreport)
 * [fetchAllEventConfigurations](#fetchalleventconfigurations)
@@ -27,7 +29,9 @@ This service provides functionality to emits different events to the subscribed 
 
 
 
+
 ## Methods with example and description
+
 
 
 
@@ -1582,6 +1586,7 @@ Success
 
 
 ---
+
 
 
 

@@ -8,6 +8,8 @@
 ## Order Methods
 Handles all Application order and shipment api(s)
 
+
+Default
 * [getCustomerDetailsByShipmentId](#getcustomerdetailsbyshipmentid)
 * [getInvoiceByShipmentId](#getinvoicebyshipmentid)
 * [getOrderById](#getorderbyid)
@@ -23,7 +25,9 @@ Handles all Application order and shipment api(s)
 
 
 
+
 ## Methods with example and description
+
 
 
 
@@ -2481,6 +2485,7 @@ Success, the code is valid and returns a session token
 
 
 ---
+
 
 
 

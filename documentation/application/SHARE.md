@@ -8,6 +8,8 @@
 ## Share Methods
 Short link and QR Code
 
+
+Default
 * [createShortLink](#createshortlink)
 * [getApplicationQRCode](#getapplicationqrcode)
 * [getCollectionQRCodeBySlug](#getcollectionqrcodebyslug)
@@ -18,7 +20,9 @@ Short link and QR Code
 
 
 
+
 ## Methods with example and description
+
 
 
 
@@ -539,6 +543,7 @@ Success. Check the example shown below or refer `QRCodeResp` for more details.
 
 
 ---
+
 
 
 

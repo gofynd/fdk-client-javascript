@@ -8,6 +8,8 @@
 ## Theme Methods
 Responsible for themes
 
+
+Default
 * [addMarketplaceThemeToCompany](#addmarketplacethemetocompany)
 * [addThemeToApplication](#addthemetoapplication)
 * [addToThemeLibrary](#addtothemelibrary)
@@ -42,7 +44,9 @@ Responsible for themes
 
 
 
+
 ## Methods with example and description
+
 
 
 
@@ -43476,6 +43480,7 @@ Successful upgrade
 
 
 ---
+
 
 
 

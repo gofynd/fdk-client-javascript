@@ -32,6 +32,7 @@ const Joi = require("joi");
  * @property {number[]} [store_ids]
  * @property {ValidityObject} validity
  * @property {number} [value]
+ * @property {string[]} [zone_ids]
  */
 
 /**
@@ -182,6 +183,7 @@ class DiscountPlatformModel {
       store_ids: Joi.array().items(Joi.number()),
       validity: DiscountPlatformModel.ValidityObject().required(),
       value: Joi.number(),
+      zone_ids: Joi.array().items(Joi.string().allow("")),
     });
   }
 

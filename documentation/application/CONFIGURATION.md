@@ -8,6 +8,8 @@
 ## Configuration Methods
 Application configuration apis
 
+
+Default
 * [getAppCurrencies](#getappcurrencies)
 * [getAppStaffList](#getappstafflist)
 * [getAppStaffs](#getappstaffs)
@@ -27,7 +29,9 @@ Application configuration apis
 
 
 
+
 ## Methods with example and description
+
 
 
 
@@ -1450,6 +1454,7 @@ Success
 
 
 ---
+
 
 
 

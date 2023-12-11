@@ -8,6 +8,8 @@
 ## Content Methods
 Content System
 
+
+Default
 * [addDataLoader](#adddataloader)
 * [addFaq](#addfaq)
 * [addInjectableTag](#addinjectabletag)
@@ -80,7 +82,9 @@ Content System
 
 
 
+
 ## Methods with example and description
+
 
 
 
@@ -7584,6 +7588,7 @@ Success. Refer `Support` for more details.
 
 
 ---
+
 
 
 

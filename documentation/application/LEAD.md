@@ -8,6 +8,8 @@
 ## Lead Methods
 Handles communication between Staff and Users
 
+
+Default
 * [createHistory](#createhistory)
 * [createTicket](#createticket)
 * [getCustomForm](#getcustomform)
@@ -18,7 +20,9 @@ Handles communication between Staff and Users
 
 
 
+
 ## Methods with example and description
+
 
 
 
@@ -1130,6 +1134,7 @@ Success
 
 
 ---
+
 
 
 

@@ -8,6 +8,8 @@
 ## Payment Methods
 Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account
 
+
+Default
 * [addBeneficiaryDetails](#addbeneficiarydetails)
 * [addRefundBankAccountUsingOTP](#addrefundbankaccountusingotp)
 * [attachCardToCustomer](#attachcardtocustomer)
@@ -53,7 +55,9 @@ Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.in
 
 
 
+
 ## Methods with example and description
+
 
 
 
@@ -4007,6 +4011,7 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 
 
 ---
+
 
 
 

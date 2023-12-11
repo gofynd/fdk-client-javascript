@@ -8,6 +8,8 @@
 ## Catalog Methods
 Catalog API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features. 
 
+
+Default
 * [followById](#followbyid)
 * [getBrandDetailBySlug](#getbranddetailbyslug)
 * [getBrands](#getbrands)
@@ -41,7 +43,9 @@ Catalog API's allows you to access list of products, prices, seller details, sim
 
 
 
+
 ## Methods with example and description
+
 
 
 
@@ -7942,6 +7946,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
 
 ---
+
 
 
 

@@ -8,11 +8,15 @@
 ## Partner Methods
 Partner configuration apis
 
+
+Default
 * [getPanelExtensionDetails](#getpanelextensiondetails)
 
 
 
+
 ## Methods with example and description
+
 
 
 
@@ -166,6 +170,7 @@ Success
 
 
 ---
+
 
 
 

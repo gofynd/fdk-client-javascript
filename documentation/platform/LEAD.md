@@ -8,6 +8,8 @@
 ## Lead Methods
 Handles communication between Administrator
 
+
+Default
 * [closeVideoRoom](#closevideoroom)
 * [createCustomForm](#createcustomform)
 * [createHistory](#createhistory)
@@ -35,7 +37,9 @@ Handles communication between Administrator
 
 
 
+
 ## Methods with example and description
+
 
 
 
@@ -4003,6 +4007,7 @@ Success
 
 
 ---
+
 
 
 

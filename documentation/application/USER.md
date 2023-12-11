@@ -8,6 +8,8 @@
 ## User Methods
 Authentication Service
 
+
+Default
 * [addEmail](#addemail)
 * [addMobileNumber](#addmobilenumber)
 * [deleteEmail](#deleteemail)
@@ -51,7 +53,9 @@ Authentication Service
 
 
 
+
 ## Methods with example and description
+
 
 
 
@@ -3444,6 +3448,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
 
 ---
+
 
 
 

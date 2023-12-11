@@ -28,6 +28,7 @@ export = DiscountPlatformModel;
  * @property {number[]} [store_ids]
  * @property {ValidityObject} validity
  * @property {number} [value]
+ * @property {string[]} [zone_ids]
  */
 /**
  * @typedef DiscountItems
@@ -163,6 +164,7 @@ type CreateUpdateDiscount = {
     store_ids?: number[];
     validity: ValidityObject;
     value?: number;
+    zone_ids?: string[];
 };
 /** @returns {DiscountItems} */
 declare function DiscountItems(): DiscountItems;

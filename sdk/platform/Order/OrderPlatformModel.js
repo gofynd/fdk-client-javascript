@@ -1305,6 +1305,7 @@ const Joi = require("joi");
  * @property {OrderBagArticle} [article]
  * @property {BagConfigs} [bag_configs]
  * @property {number} bag_id
+ * @property {BagStatusHistory[]} [bag_status]
  * @property {OrderBrandName} [brand]
  * @property {boolean} [can_cancel]
  * @property {boolean} [can_return]
@@ -2083,7 +2084,7 @@ const Joi = require("joi");
 /**
  * @typedef ShipmentItemFulFillingStore
  * @property {string} [address]
- * @property {string} [brand_store_tags]
+ * @property {string[]} [brand_store_tags]
  * @property {string} [city]
  * @property {string} code
  * @property {number} id
@@ -4225,6 +4226,7 @@ class OrderPlatformModel {
       article: OrderPlatformModel.OrderBagArticle(),
       bag_configs: OrderPlatformModel.BagConfigs(),
       bag_id: Joi.number().required(),
+      bag_status: Joi.array().items(OrderPlatformModel.BagStatusHistory()),
       brand: OrderPlatformModel.OrderBrandName(),
       can_cancel: Joi.boolean().allow(null),
       can_return: Joi.boolean().allow(null),
@@ -5169,7 +5171,7 @@ class OrderPlatformModel {
   static ShipmentItemFulFillingStore() {
     return Joi.object({
       address: Joi.string().allow("").allow(null),
-      brand_store_tags: Joi.string().allow("").allow(null),
+      brand_store_tags: Joi.array().items(Joi.string().allow("")),
       city: Joi.string().allow("").allow(null),
       code: Joi.string().allow("").required(),
       id: Joi.number().required(),

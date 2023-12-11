@@ -8,6 +8,8 @@
 ## Communication Methods
 Manages email, sms, push notifications sent to users
 
+
+Default
 * [createAudience](#createaudience)
 * [createBigQueryHeaders](#createbigqueryheaders)
 * [createBigQueryNCount](#createbigqueryncount)
@@ -71,7 +73,9 @@ Manages email, sms, push notifications sent to users
 
 
 
+
 ## Methods with example and description
+
 
 
 
@@ -5798,6 +5802,7 @@ Success
 
 
 ---
+
 
 
 

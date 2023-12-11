@@ -8,6 +8,8 @@
 ## Content Methods
 Content System
 
+
+Default
 * [getAnnouncements](#getannouncements)
 * [getBlog](#getblog)
 * [getBlogs](#getblogs)
@@ -30,7 +32,9 @@ Content System
 
 
 
+
 ## Methods with example and description
+
 
 
 
@@ -1840,6 +1844,7 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
 
 ---
+
 
 
 

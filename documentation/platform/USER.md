@@ -8,6 +8,8 @@
 ## User Methods
 Authentication Service
 
+
+Default
 * [archiveUser](#archiveuser)
 * [blockOrUnblockUsers](#blockorunblockusers)
 * [createUser](#createuser)
@@ -29,7 +31,9 @@ Authentication Service
 
 
 
+
 ## Methods with example and description
+
 
 
 
@@ -1555,6 +1559,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
 
 ---
+
 
 
 

@@ -8,6 +8,8 @@
 ## Theme Methods
 Responsible for partner theme submission
 
+
+Default
 * [createNewThemeInOrganization](#createnewthemeinorganization)
 * [createPage](#createpage)
 * [deleteOrganizationTheme](#deleteorganizationtheme)
@@ -30,7 +32,9 @@ Responsible for partner theme submission
 
 
 
+
 ## Methods with example and description
+
 
 
 
@@ -15926,6 +15930,7 @@ Theme updated successfully
 
 
 ---
+
 
 
 

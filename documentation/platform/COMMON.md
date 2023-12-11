@@ -8,12 +8,16 @@
 ## Common Methods
 Application configuration apis
 
+
+Default
 * [getLocations](#getlocations)
 * [searchApplication](#searchapplication)
 
 
 
+
 ## Methods with example and description
+
 
 
 
@@ -195,6 +199,7 @@ Success
 
 
 ---
+
 
 
 

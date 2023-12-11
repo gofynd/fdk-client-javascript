@@ -10,9 +10,12 @@ File Storage
 
 * [upload](#upload)
 
+
+Default
 * [completeUpload](#completeupload)
 * [signUrls](#signurls)
 * [startUpload](#startupload)
+
 
 
 
@@ -95,6 +98,7 @@ Use this API to perform the upload of an arbitrarily sized buffer or blob.
 </details>
 
 ---
+
 
 
 
@@ -386,6 +390,7 @@ Success. Returns a response containing relaving and absolute_url of storage serv
 
 
 ---
+
 
 
 

@@ -8,6 +8,8 @@
 ## Cart Methods
 Cart APIs
 
+
+Default
 * [addAddress](#addaddress)
 * [addItems](#additems)
 * [addPriceAdjustment](#addpriceadjustment)
@@ -68,7 +70,9 @@ Cart APIs
 
 
 
+
 ## Methods with example and description
+
 
 
 
@@ -12965,6 +12969,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 
 ---
+
 
 
 

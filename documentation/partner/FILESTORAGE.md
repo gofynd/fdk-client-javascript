@@ -11,9 +11,12 @@ This service provides functionality to manage assets and generate pdf. You can u
 
 * [upload](#upload)
 
+
+Default
 * [browse](#browse)
 * [completeUpload](#completeupload)
 * [startUpload](#startupload)
+
 
 
 
@@ -96,6 +99,7 @@ Use this API to perform the upload of an arbitrarily sized buffer or blob.
 </details>
 
 ---
+
 
 
 
@@ -429,6 +433,7 @@ Success. Returns a response containing relaving and absolute_url of storage serv
 
 
 ---
+
 
 
 

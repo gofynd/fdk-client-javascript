@@ -1175,6 +1175,7 @@ export = OrderPlatformModel;
  * @property {OrderBagArticle} [article]
  * @property {BagConfigs} [bag_configs]
  * @property {number} bag_id
+ * @property {BagStatusHistory[]} [bag_status]
  * @property {OrderBrandName} [brand]
  * @property {boolean} [can_cancel]
  * @property {boolean} [can_return]
@@ -1877,7 +1878,7 @@ export = OrderPlatformModel;
 /**
  * @typedef ShipmentItemFulFillingStore
  * @property {string} [address]
- * @property {string} [brand_store_tags]
+ * @property {string[]} [brand_store_tags]
  * @property {string} [city]
  * @property {string} code
  * @property {number} id
@@ -3874,6 +3875,7 @@ type OrderBags = {
     article?: OrderBagArticle;
     bag_configs?: BagConfigs;
     bag_id: number;
+    bag_status?: BagStatusHistory[];
     brand?: OrderBrandName;
     can_cancel?: boolean;
     can_return?: boolean;
@@ -4703,7 +4705,7 @@ type ShipmentItem = {
 declare function ShipmentItemFulFillingStore(): ShipmentItemFulFillingStore;
 type ShipmentItemFulFillingStore = {
     address?: string;
-    brand_store_tags?: string;
+    brand_store_tags?: string[];
     city?: string;
     code: string;
     id: number;

@@ -8,6 +8,8 @@
 ## Payment Methods
 Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account
 
+
+Default
 * [activateAndDectivatePayout](#activateanddectivatepayout)
 * [addEdcDevice](#addedcdevice)
 * [addRefundBankAccountUsingOTP](#addrefundbankaccountusingotp)
@@ -63,7 +65,9 @@ Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.in
 
 
 
+
 ## Methods with example and description
+
 
 
 
@@ -6411,6 +6415,7 @@ Bank details on correct Ifsc Code
 
 
 ---
+
 
 
 

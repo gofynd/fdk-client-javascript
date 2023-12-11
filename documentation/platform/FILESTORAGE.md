@@ -11,6 +11,8 @@ This service provides functionality to manage assets and generate pdf. You can u
 
 * [upload](#upload)
 
+
+Default
 * [appCompleteUpload](#appcompleteupload)
 * [appCopyFiles](#appcopyfiles)
 * [appStartUpload](#appstartupload)
@@ -28,6 +30,7 @@ This service provides functionality to manage assets and generate pdf. You can u
 * [saveHtmlTemplate](#savehtmltemplate)
 * [startUpload](#startupload)
 * [updateHtmlTemplate](#updatehtmltemplate)
+
 
 
 
@@ -110,6 +113,7 @@ Use this API to perform the upload of an arbitrarily sized buffer or blob.
 </details>
 
 ---
+
 
 
 
@@ -1911,6 +1915,7 @@ Update html template for invoice
 
 
 ---
+
 
 
 

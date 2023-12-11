@@ -8,6 +8,8 @@
 ## Serviceability Methods
 Logistics Configuration API's allows you to configure zone, application logistics and many more useful features. 
 
+
+Default
 * [addAppDp](#addappdp)
 * [createZone](#createzone)
 * [deleteAppDp](#deleteappdp)
@@ -43,7 +45,9 @@ Logistics Configuration API's allows you to configure zone, application logistic
 
 
 
+
 ## Methods with example and description
+
 
 
 
@@ -2127,6 +2131,7 @@ Response status_code
 
 
 ---
+
 
 
 

@@ -8,6 +8,8 @@
 ## Cart Methods
 Manages Cart, Coupons, Promotions, Checkout
 
+
+Default
 * [addAddress](#addaddress)
 * [addItems](#additems)
 * [applyCoupon](#applycoupon)
@@ -39,7 +41,9 @@ Manages Cart, Coupons, Promotions, Checkout
 
 
 
+
 ## Methods with example and description
+
 
 
 
@@ -8832,6 +8836,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 
 ---
+
 
 
 

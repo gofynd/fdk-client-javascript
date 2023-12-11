@@ -8,6 +8,8 @@
 ## Share Methods
 Short link and QR Code
 
+
+Default
 * [createShortLink](#createshortlink)
 * [getShortLinkByHash](#getshortlinkbyhash)
 * [getShortLinkClickStats](#getshortlinkclickstats)
@@ -16,7 +18,9 @@ Short link and QR Code
 
 
 
+
 ## Methods with example and description
+
 
 
 
@@ -483,6 +487,7 @@ Success
 
 
 ---
+
 
 
 

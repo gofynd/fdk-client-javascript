@@ -8,6 +8,8 @@
 ## Discount Methods
 Discount
 
+
+Default
 * [cancelDownloadJob](#canceldownloadjob)
 * [cancelValidationJob](#cancelvalidationjob)
 * [createDiscount](#creatediscount)
@@ -22,7 +24,9 @@ Discount
 
 
 
+
 ## Methods with example and description
+
 
 
 
@@ -675,6 +679,7 @@ Success
 
 
 
+
 ### Schemas
 
 
@@ -724,6 +729,7 @@ Success
  | store_ids | [number]? |  yes  |  |
  | validity | [ValidityObject](#ValidityObject) |  no  |  |
  | value | number? |  yes  |  |
+ | zone_ids | [string]? |  yes  |  |
  
 
 ---

@@ -8,6 +8,8 @@
 ## Catalog Methods
 Catalog - Platform Front API's' API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.
 
+
+Default
 * [addCollectionItems](#addcollectionitems)
 * [addInventory](#addinventory)
 * [allSizes](#allsizes)
@@ -152,7 +154,9 @@ Catalog - Platform Front API's' API's allows you to access list of products, pri
 
 
 
+
 ## Methods with example and description
+
 
 
 
@@ -17222,6 +17226,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 
 ---
+
 
 
 

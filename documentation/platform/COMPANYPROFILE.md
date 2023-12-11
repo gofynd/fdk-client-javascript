@@ -8,6 +8,8 @@
 ## CompanyProfile Methods
 Catalog CBS - platform Front API's
 
+
+Default
 * [cbsOnboardGet](#cbsonboardget)
 * [createBrand](#createbrand)
 * [createCompanyBrandMapping](#createcompanybrandmapping)
@@ -25,7 +27,9 @@ Catalog CBS - platform Front API's
 
 
 
+
 ## Methods with example and description
+
 
 
 
@@ -1429,6 +1433,7 @@ Returns a success response
 
 
 ---
+
 
 
 

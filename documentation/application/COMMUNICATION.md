@@ -8,13 +8,17 @@
 ## Communication Methods
 Manages email, sms, push notifications sent to users
 
+
+Default
 * [getCommunicationConsent](#getcommunicationconsent)
 * [upsertAppPushtoken](#upsertapppushtoken)
 * [upsertCommunicationConsent](#upsertcommunicationconsent)
 
 
 
+
 ## Methods with example and description
+
 
 
 
@@ -292,6 +296,7 @@ Success. Updates the channels for which user has consented. Check the example sh
 
 
 ---
+
 
 
 

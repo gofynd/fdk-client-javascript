@@ -8,6 +8,8 @@
 ## Configuration Methods
 Application configuration apis
 
+
+Default
 * [addDomain](#adddomain)
 * [changeDomainType](#changedomaintype)
 * [createApplication](#createapplication)
@@ -61,7 +63,9 @@ Application configuration apis
 
 
 
+
 ## Methods with example and description
+
 
 
 
@@ -5155,6 +5159,7 @@ Success
 
 
 ---
+
 
 
 

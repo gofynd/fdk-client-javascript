@@ -8,6 +8,8 @@
 ## Finance Methods
 Handles all finance related activities
 
+
+Default
 * [channelDisplayName](#channeldisplayname)
 * [createSellerCreditNoteConfig](#createsellercreditnoteconfig)
 * [creditNoteDetails](#creditnotedetails)
@@ -35,7 +37,9 @@ Handles all finance related activities
 
 
 
+
 ## Methods with example and description
+
 
 
 
@@ -2210,6 +2214,7 @@ Success
 
 
 ---
+
 
 
 

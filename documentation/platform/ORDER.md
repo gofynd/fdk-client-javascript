@@ -8,6 +8,8 @@
 ## Order Methods
 Handles all platform order and shipment api(s)
 
+
+Default
 * [attachOrderUser](#attachorderuser)
 * [checkOrderStatus](#checkorderstatus)
 * [click2Call](#click2call)
@@ -59,7 +61,9 @@ Handles all platform order and shipment api(s)
 
 
 
+
 ## Methods with example and description
+
 
 
 
@@ -5191,6 +5195,7 @@ Verify OTP
 
 
 
+
 ### Schemas
 
 
@@ -7002,6 +7007,7 @@ Verify OTP
  | article | [OrderBagArticle](#OrderBagArticle)? |  yes  |  |
  | bag_configs | [BagConfigs](#BagConfigs)? |  yes  |  |
  | bag_id | number |  no  |  |
+ | bag_status | [[BagStatusHistory](#BagStatusHistory)]? |  yes  |  |
  | brand | [OrderBrandName](#OrderBrandName)? |  yes  |  |
  | can_cancel | boolean? |  yes  |  |
  | can_return | boolean? |  yes  |  |
@@ -8079,7 +8085,7 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | address | string? |  yes  |  |
- | brand_store_tags | string? |  yes  |  |
+ | brand_store_tags | [string]? |  yes  |  |
  | city | string? |  yes  |  |
  | code | string |  no  |  |
  | id | number |  no  |  |

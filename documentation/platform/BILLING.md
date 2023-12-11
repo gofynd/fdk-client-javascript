@@ -8,6 +8,8 @@
 ## Billing Methods
 Handle platform subscription
 
+
+Default
 * [activateSubscriptionPlan](#activatesubscriptionplan)
 * [cancelSubscriptionCharge](#cancelsubscriptioncharge)
 * [cancelSubscriptionPlan](#cancelsubscriptionplan)
@@ -28,7 +30,9 @@ Handle platform subscription
 
 
 
+
 ## Methods with example and description
+
 
 
 
@@ -2509,6 +2513,7 @@ Success
 
 
 ---
+
 
 
 
