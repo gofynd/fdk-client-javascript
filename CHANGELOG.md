@@ -1,7 +1,335 @@
-# CHANGE LOG (1.3.10-beta.2) - v1.8.7-prerelease-v2
+# CHANGE LOG (1.3.10-beta.3) - v1.8.7-prerelease-v3
+
+## Application Client
+
+
+
+### Cart
+
+
+
+#### getCart
+
+- ##### What's New
+	- [Added] property `items[].product.attributes` of schema `CartProduct` in response with status code 200
+	- [Added] property `items[].product_ean_id` of schema `CartProductInfo` in response with status code 200
+
+
+#### addItems
+
+- ##### What's New
+	- [Added] property `cart.items[].product.attributes` of schema `CartProduct` in response with status code 200
+	- [Added] property `cart.items[].product_ean_id` of schema `CartProductInfo` in response with status code 200
+
+
+#### updateCart
+
+- ##### What's New
+	- [Added] property `cart.items[].product.attributes` of schema `CartProduct` in response with status code 200
+	- [Added] property `cart.items[].product_ean_id` of schema `CartProductInfo` in response with status code 200
+
+
+#### applyCoupon
+
+- ##### What's New
+	- [Added] property `items[].product.attributes` of schema `CartProduct` in response with status code 201
+	- [Added] property `items[].product_ean_id` of schema `CartProductInfo` in response with status code 201
+
+
+#### removeCoupon
+
+- ##### What's New
+	- [Added] property `items[].product.attributes` of schema `CartProduct` in response with status code 200
+	- [Added] property `items[].product_ean_id` of schema `CartProductInfo` in response with status code 200
+
+
+#### applyRewardPoints
+
+- ##### What's New
+	- [Added] property `items[].product.attributes` of schema `CartProduct` in response with status code 200
+	- [Added] property `items[].product_ean_id` of schema `CartProductInfo` in response with status code 200
+
+
+#### selectAddress
+
+- ##### What's New
+	- [Added] property `items[].product.attributes` of schema `CartProduct` in response with status code 201
+	- [Added] property `items[].product_ean_id` of schema `CartProductInfo` in response with status code 201
+
+
+#### selectPaymentMode
+
+- ##### What's New
+	- [Added] property `items[].product.attributes` of schema `CartProduct` in response with status code 200
+	- [Added] property `items[].product_ean_id` of schema `CartProductInfo` in response with status code 200
+
+
+#### getShipments
+
+- ##### What's New
+	- [Added] property `shipments[].items[].product.attributes` of schema `CartProduct` in response with status code 200
+	- [Added] property `shipments[].items[].product_ean_id` of schema `CartProductInfo` in response with status code 200
+
+
+#### checkoutCart
+
+- ##### What's New
+	- [Added] property `cart.items[].product.attributes` of schema `CartProduct` in response with status code 200
+	- [Added] property `cart.items[].product_ean_id` of schema `CartProductInfo` in response with status code 200
+
+
+#### getCartSharedItems
+
+- ##### What's New
+	- [Added] property `cart.items[].product.attributes` of schema `CartProduct` in response with status code 200
+	- [Added] property `cart.items[].product_ean_id` of schema `CartProductInfo` in response with status code 200
+	- [Added] property `cart.items[].product.attributes` of schema `CartProduct` in response with status code 404
+	- [Added] property `cart.items[].product_ean_id` of schema `CartProductInfo` in response with status code 404
+
+
+#### updateCartWithSharedItems
+
+- ##### What's New
+	- [Added] property `cart.items[].product.attributes` of schema `CartProduct` in response with status code 200
+	- [Added] property `cart.items[].product_ean_id` of schema `CartProductInfo` in response with status code 200
+
+
+#### checkoutCartV2
+
+- ##### What's New
+	- [Added] property `cart.items[].product.attributes` of schema `CartProduct` in response with status code 200
+	- [Added] property `cart.items[].product_ean_id` of schema `CartProductInfo` in response with status code 200
+
 
 ## Platform Client
 
+
+
+### Cart
+
+
+
+#### fetchAndvalidateCartItems
+
+- ##### What's New
+	- [Added] property `items[].product.attributes` of schema `CartProduct` in response with status code 200
+	- [Added] property `items[].product_ean_id` of schema `CartProductInfo` in response with status code 200
+
+
+#### checkCartServiceability
+
+- ##### What's New
+	- [Added] property `items[].product.attributes` of schema `CartProduct` in response with status code 200
+	- [Added] property `items[].product_ean_id` of schema `CartProductInfo` in response with status code 200
+
+
+#### getAbandonedCartDetails
+
+- ##### What's New
+	- [Added] property `items[].product.attributes` of schema `CartProduct` in response with status code 200
+	- [Added] property `items[].product_ean_id` of schema `CartProductInfo` in response with status code 200
+	- [Added] property `cart_id` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `uid` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `common_config` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `coupon` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `notification` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `staff_user_id` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `success` of schema `CartDetailResponse` in response with status code 200
+
+
+#### addItems
+
+- ##### What's New
+	- [Added] property `cart.items[].product.attributes` of schema `CartProduct` in response with status code 200
+	- [Added] property `cart.items[].product_ean_id` of schema `CartProductInfo` in response with status code 200
+	- [Added] property `cart.cart_id` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.uid` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.common_config` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.coupon` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.notification` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.staff_user_id` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.success` of schema `CartDetailResponse` in response with status code 200
+
+
+#### updateCart
+
+- ##### What's New
+	- [Added] property `cart.items[].product.attributes` of schema `CartProduct` in response with status code 200
+	- [Added] property `cart.items[].product_ean_id` of schema `CartProductInfo` in response with status code 200
+	- [Added] property `cart.cart_id` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.uid` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.common_config` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.coupon` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.notification` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.staff_user_id` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.success` of schema `CartDetailResponse` in response with status code 200
+
+
+#### getCartSharedItems
+
+- ##### What's New
+	- [Added] property `cart.items[].product.attributes` of schema `CartProduct` in response with status code 200
+	- [Added] property `cart.items[].product_ean_id` of schema `CartProductInfo` in response with status code 200
+	- [Added] property `cart.items[].product.attributes` of schema `CartProduct` in response with status code 404
+	- [Added] property `cart.items[].product_ean_id` of schema `CartProductInfo` in response with status code 404
+
+
+#### updateCartWithSharedItems
+
+- ##### What's New
+	- [Added] property `cart.items[].product.attributes` of schema `CartProduct` in response with status code 200
+	- [Added] property `cart.items[].product_ean_id` of schema `CartProductInfo` in response with status code 200
+
+
+#### updateCartUser
+
+- ##### What's New
+	- [Added] property `items[].product.attributes` of schema `CartProduct` in response with status code 200
+	- [Added] property `items[].product_ean_id` of schema `CartProductInfo` in response with status code 200
+
+
+#### getCart
+
+- ##### What's New
+	- [Added] property `items[].product.attributes` of schema `CartProduct` in response with status code 200
+	- [Added] property `items[].product_ean_id` of schema `CartProductInfo` in response with status code 200
+	- [Added] property `cart_id` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `uid` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `common_config` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `coupon` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `notification` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `staff_user_id` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `success` of schema `CartDetailResponse` in response with status code 200
+
+
+#### platformAddItems
+
+- ##### What's New
+	- [Added] property `cart.items[].product.attributes` of schema `CartProduct` in response with status code 200
+	- [Added] property `cart.items[].product_ean_id` of schema `CartProductInfo` in response with status code 200
+	- [Added] property `cart.cart_id` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.uid` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.common_config` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.coupon` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.notification` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.staff_user_id` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.success` of schema `CartDetailResponse` in response with status code 200
+
+
+#### platformUpdateCart
+
+- ##### What's New
+	- [Added] property `cart.items[].product.attributes` of schema `CartProduct` in response with status code 200
+	- [Added] property `cart.items[].product_ean_id` of schema `CartProductInfo` in response with status code 200
+	- [Added] property `cart.cart_id` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.uid` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.common_config` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.coupon` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.notification` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.staff_user_id` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `cart.success` of schema `CartDetailResponse` in response with status code 200
+
+
+#### applyCoupon
+
+- ##### What's New
+	- [Added] property `items[].product.attributes` of schema `CartProduct` in response with status code 201
+	- [Added] property `items[].product_ean_id` of schema `CartProductInfo` in response with status code 201
+	- [Added] property `cart_id` of schema `CartDetailResponse` in response with status code 201
+	- [Added] property `uid` of schema `CartDetailResponse` in response with status code 201
+	- [Added] property `common_config` of schema `CartDetailResponse` in response with status code 201
+	- [Added] property `coupon` of schema `CartDetailResponse` in response with status code 201
+	- [Added] property `notification` of schema `CartDetailResponse` in response with status code 201
+	- [Added] property `staff_user_id` of schema `CartDetailResponse` in response with status code 201
+	- [Added] property `success` of schema `CartDetailResponse` in response with status code 201
+
+
+#### removeCoupon
+
+- ##### What's New
+	- [Added] property `items[].product.attributes` of schema `CartProduct` in response with status code 200
+	- [Added] property `items[].product_ean_id` of schema `CartProductInfo` in response with status code 200
+	- [Added] property `cart_id` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `uid` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `common_config` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `coupon` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `notification` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `staff_user_id` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `success` of schema `CartDetailResponse` in response with status code 200
+
+
+#### selectAddress
+
+- ##### What's New
+	- [Added] property `items[].product.attributes` of schema `CartProduct` in response with status code 201
+	- [Added] property `items[].product_ean_id` of schema `CartProductInfo` in response with status code 201
+	- [Added] property `cart_id` of schema `CartDetailResponse` in response with status code 201
+	- [Added] property `uid` of schema `CartDetailResponse` in response with status code 201
+	- [Added] property `common_config` of schema `CartDetailResponse` in response with status code 201
+	- [Added] property `coupon` of schema `CartDetailResponse` in response with status code 201
+	- [Added] property `notification` of schema `CartDetailResponse` in response with status code 201
+	- [Added] property `staff_user_id` of schema `CartDetailResponse` in response with status code 201
+	- [Added] property `success` of schema `CartDetailResponse` in response with status code 201
+
+
+#### getShipments
+
+- ##### What's New
+	- [Added] property `items[].product.attributes` of schema `CartProduct` in response with status code 200
+	- [Added] property `items[].product_ean_id` of schema `CartProductInfo` in response with status code 200
+	- [Added] property `shipments[].items[].product.attributes` of schema `CartProduct` in response with status code 200
+	- [Added] property `shipments[].items[].product_ean_id` of schema `CartProductInfo` in response with status code 200
+
+
+#### updateShipments
+
+- ##### What's New
+	- [Added] property `items[].product.attributes` of schema `CartProduct` in response with status code 200
+	- [Added] property `items[].product_ean_id` of schema `CartProductInfo` in response with status code 200
+	- [Added] property `shipments[].items[].product.attributes` of schema `CartProduct` in response with status code 200
+	- [Added] property `shipments[].items[].product_ean_id` of schema `CartProductInfo` in response with status code 200
+
+
+#### platformCheckoutCart
+
+- ##### What's New
+	- [Added] property `cart.items[].product.attributes` of schema `CartProduct` in response with status code 200
+	- [Added] property `cart.items[].product_ean_id` of schema `CartProductInfo` in response with status code 200
+
+
+#### selectPaymentMode
+
+- ##### What's New
+	- [Added] property `items[].product.attributes` of schema `CartProduct` in response with status code 200
+	- [Added] property `items[].product_ean_id` of schema `CartProductInfo` in response with status code 200
+	- [Added] property `cart_id` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `uid` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `common_config` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `coupon` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `notification` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `staff_user_id` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `success` of schema `CartDetailResponse` in response with status code 200
+
+
+#### platformCheckoutCartV2
+
+- ##### What's New
+	- [Added] property `cart.items[].product.attributes` of schema `CartProduct` in response with status code 200
+	- [Added] property `cart.items[].product_ean_id` of schema `CartProductInfo` in response with status code 200
+
+
+#### selectPaymentModeV2
+
+- ##### What's New
+	- [Added] property `items[].product.attributes` of schema `CartProduct` in response with status code 200
+	- [Added] property `items[].product_ean_id` of schema `CartProductInfo` in response with status code 200
+	- [Added] property `cart_id` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `uid` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `common_config` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `coupon` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `notification` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `staff_user_id` of schema `CartDetailResponse` in response with status code 200
+	- [Added] property `success` of schema `CartDetailResponse` in response with status code 200
 
 
 ### Discount

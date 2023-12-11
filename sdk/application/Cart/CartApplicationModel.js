@@ -310,6 +310,7 @@ const Joi = require("joi");
  * @typedef CartProduct
  * @property {Object} [_custom_json]
  * @property {ProductAction} [action]
+ * @property {Object} [attributes]
  * @property {BaseInfo} [brand]
  * @property {CategoryInfo[]} [categories]
  * @property {ProductImage[]} [images]
@@ -347,6 +348,7 @@ const Joi = require("joi");
  * @property {ProductPriceInfo} [price]
  * @property {ProductPricePerUnitInfo} [price_per_unit]
  * @property {CartProduct} [product]
+ * @property {string} [product_ean_id]
  * @property {PromoMeta} [promo_meta]
  * @property {AppliedPromotion[]} [promotions_applied]
  * @property {number} [quantity]
@@ -1363,6 +1365,7 @@ class CartApplicationModel {
     return Joi.object({
       _custom_json: Joi.any(),
       action: CartApplicationModel.ProductAction(),
+      attributes: Joi.any(),
       brand: CartApplicationModel.BaseInfo(),
       categories: Joi.array().items(CartApplicationModel.CategoryInfo()),
       images: Joi.array().items(CartApplicationModel.ProductImage()),
@@ -1403,6 +1406,7 @@ class CartApplicationModel {
       price: CartApplicationModel.ProductPriceInfo(),
       price_per_unit: CartApplicationModel.ProductPricePerUnitInfo(),
       product: CartApplicationModel.CartProduct(),
+      product_ean_id: Joi.string().allow(""),
       promo_meta: CartApplicationModel.PromoMeta(),
       promotions_applied: Joi.array().items(
         CartApplicationModel.AppliedPromotion()

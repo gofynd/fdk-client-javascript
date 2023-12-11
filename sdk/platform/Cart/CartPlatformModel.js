@@ -201,6 +201,11 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef CartCommonConfig
+ * @property {DeliveryChargesConfig} [delivery_charges_config]
+ */
+
+/**
  * @typedef CartCurrency
  * @property {string} [code] - Currency code defined by ISO 4217:2015
  * @property {string} [symbol]
@@ -213,12 +218,35 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef CartDetailCoupon
+ * @property {number} [cashback_amount]
+ * @property {string} [cashback_message_primary]
+ * @property {string} [cashback_message_secondary]
+ * @property {string} [coupon_code]
+ * @property {string} [coupon_description]
+ * @property {string} [coupon_id]
+ * @property {string} [coupon_subtitle]
+ * @property {string} [coupon_title]
+ * @property {string} [coupon_type]
+ * @property {number} [coupon_value]
+ * @property {number} [discount]
+ * @property {boolean} [is_applied]
+ * @property {boolean} [is_valid]
+ * @property {number} [maximum_discount_value]
+ * @property {string} [message]
+ * @property {number} [minimum_cart_value]
+ */
+
+/**
  * @typedef CartDetailResponse
  * @property {AppliedPromotion[]} [applied_promo_details]
  * @property {CartBreakup} [breakup_values]
  * @property {boolean} [buy_now]
+ * @property {number} [cart_id]
  * @property {string} [checkout_mode]
  * @property {string} [comment]
+ * @property {CartCommonConfig} [common_config]
+ * @property {CartDetailCoupon} [coupon]
  * @property {string} [coupon_text]
  * @property {CartCurrency} [currency]
  * @property {string} [delivery_charge_info]
@@ -229,10 +257,14 @@ const Joi = require("joi");
  * @property {CartProductInfo[]} [items]
  * @property {string} [last_modified]
  * @property {string} [message]
+ * @property {Object} [notification]
  * @property {Object} [pan_config]
  * @property {string} [pan_no]
  * @property {PaymentSelectionLock} [payment_selection_lock]
  * @property {boolean} [restrict_checkout]
+ * @property {string} [staff_user_id]
+ * @property {boolean} [success]
+ * @property {string} [uid]
  */
 
 /**
@@ -302,6 +334,7 @@ const Joi = require("joi");
  * @typedef CartProduct
  * @property {Object} [_custom_json]
  * @property {ProductAction} [action]
+ * @property {Object} [attributes]
  * @property {BaseInfo} [brand]
  * @property {CategoryInfo[]} [categories]
  * @property {ProductImage[]} [images]
@@ -339,6 +372,7 @@ const Joi = require("joi");
  * @property {ProductPriceInfo} [price]
  * @property {ProductPriceInfo} [price_per_unit]
  * @property {CartProduct} [product]
+ * @property {string} [product_ean_id]
  * @property {PromoMeta} [promo_meta]
  * @property {AppliedPromotion[]} [promotions_applied]
  * @property {number} [quantity]
@@ -352,6 +386,12 @@ const Joi = require("joi");
 
 /**
  * @typedef Charges
+ * @property {number} [charges]
+ * @property {number} [threshold]
+ */
+
+/**
+ * @typedef ChargesThreshold
  * @property {number} [charges]
  * @property {number} [threshold]
  */
@@ -562,6 +602,12 @@ const Joi = require("joi");
 /**
  * @typedef DeliveryCharges
  * @property {Charges[]} [charges]
+ * @property {boolean} [enabled]
+ */
+
+/**
+ * @typedef DeliveryChargesConfig
+ * @property {ChargesThreshold[]} [charges]
  * @property {boolean} [enabled]
  */
 
@@ -2054,6 +2100,13 @@ class CartPlatformModel {
     });
   }
 
+  /** @returns {CartCommonConfig} */
+  static CartCommonConfig() {
+    return Joi.object({
+      delivery_charges_config: CartPlatformModel.DeliveryChargesConfig(),
+    });
+  }
+
   /** @returns {CartCurrency} */
   static CartCurrency() {
     return Joi.object({
@@ -2070,6 +2123,28 @@ class CartPlatformModel {
     });
   }
 
+  /** @returns {CartDetailCoupon} */
+  static CartDetailCoupon() {
+    return Joi.object({
+      cashback_amount: Joi.number(),
+      cashback_message_primary: Joi.string().allow(""),
+      cashback_message_secondary: Joi.string().allow(""),
+      coupon_code: Joi.string().allow(""),
+      coupon_description: Joi.string().allow(""),
+      coupon_id: Joi.string().allow(""),
+      coupon_subtitle: Joi.string().allow(""),
+      coupon_title: Joi.string().allow(""),
+      coupon_type: Joi.string().allow(""),
+      coupon_value: Joi.number(),
+      discount: Joi.number(),
+      is_applied: Joi.boolean(),
+      is_valid: Joi.boolean(),
+      maximum_discount_value: Joi.number(),
+      message: Joi.string().allow(""),
+      minimum_cart_value: Joi.number(),
+    });
+  }
+
   /** @returns {CartDetailResponse} */
   static CartDetailResponse() {
     return Joi.object({
@@ -2078,8 +2153,11 @@ class CartPlatformModel {
       ),
       breakup_values: CartPlatformModel.CartBreakup(),
       buy_now: Joi.boolean(),
+      cart_id: Joi.number(),
       checkout_mode: Joi.string().allow(""),
       comment: Joi.string().allow(""),
+      common_config: CartPlatformModel.CartCommonConfig(),
+      coupon: CartPlatformModel.CartDetailCoupon(),
       coupon_text: Joi.string().allow(""),
       currency: CartPlatformModel.CartCurrency(),
       delivery_charge_info: Joi.string().allow(""),
@@ -2090,10 +2168,14 @@ class CartPlatformModel {
       items: Joi.array().items(CartPlatformModel.CartProductInfo()),
       last_modified: Joi.string().allow(""),
       message: Joi.string().allow(""),
+      notification: Joi.any(),
       pan_config: Joi.any(),
       pan_no: Joi.string().allow(""),
       payment_selection_lock: CartPlatformModel.PaymentSelectionLock(),
       restrict_checkout: Joi.boolean(),
+      staff_user_id: Joi.string().allow(""),
+      success: Joi.boolean(),
+      uid: Joi.string().allow(""),
     });
   }
 
@@ -2181,6 +2263,7 @@ class CartPlatformModel {
     return Joi.object({
       _custom_json: Joi.any(),
       action: CartPlatformModel.ProductAction(),
+      attributes: Joi.any(),
       brand: CartPlatformModel.BaseInfo(),
       categories: Joi.array().items(CartPlatformModel.CategoryInfo()),
       images: Joi.array().items(CartPlatformModel.ProductImage()),
@@ -2221,6 +2304,7 @@ class CartPlatformModel {
       price: CartPlatformModel.ProductPriceInfo(),
       price_per_unit: CartPlatformModel.ProductPriceInfo(),
       product: CartPlatformModel.CartProduct(),
+      product_ean_id: Joi.string().allow(""),
       promo_meta: CartPlatformModel.PromoMeta(),
       promotions_applied: Joi.array().items(
         CartPlatformModel.AppliedPromotion()
@@ -2239,6 +2323,14 @@ class CartPlatformModel {
 
   /** @returns {Charges} */
   static Charges() {
+    return Joi.object({
+      charges: Joi.number(),
+      threshold: Joi.number(),
+    });
+  }
+
+  /** @returns {ChargesThreshold} */
+  static ChargesThreshold() {
     return Joi.object({
       charges: Joi.number(),
       threshold: Joi.number(),
@@ -2489,6 +2581,14 @@ class CartPlatformModel {
   static DeliveryCharges() {
     return Joi.object({
       charges: Joi.array().items(CartPlatformModel.Charges()),
+      enabled: Joi.boolean(),
+    });
+  }
+
+  /** @returns {DeliveryChargesConfig} */
+  static DeliveryChargesConfig() {
+    return Joi.object({
+      charges: Joi.array().items(CartPlatformModel.ChargesThreshold()),
       enabled: Joi.boolean(),
     });
   }

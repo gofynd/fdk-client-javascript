@@ -13245,6 +13245,15 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
+#### [CartCommonConfig](#CartCommonConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | delivery_charges_config | [DeliveryChargesConfig](#DeliveryChargesConfig)? |  yes  |  |
+ 
+
+---
+
 #### [CartCurrency](#CartCurrency)
 
  | Properties | Type | Nullable | Description |
@@ -13265,6 +13274,30 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
 ---
 
+#### [CartDetailCoupon](#CartDetailCoupon)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cashback_amount | number? |  yes  |  |
+ | cashback_message_primary | string? |  yes  |  |
+ | cashback_message_secondary | string? |  yes  |  |
+ | coupon_code | string? |  yes  |  |
+ | coupon_description | string? |  yes  |  |
+ | coupon_id | string? |  yes  |  |
+ | coupon_subtitle | string? |  yes  |  |
+ | coupon_title | string? |  yes  |  |
+ | coupon_type | string? |  yes  |  |
+ | coupon_value | number? |  yes  |  |
+ | discount | number? |  yes  |  |
+ | is_applied | boolean? |  yes  |  |
+ | is_valid | boolean? |  yes  |  |
+ | maximum_discount_value | number? |  yes  |  |
+ | message | string? |  yes  |  |
+ | minimum_cart_value | number? |  yes  |  |
+ 
+
+---
+
 #### [CartDetailResponse](#CartDetailResponse)
 
  | Properties | Type | Nullable | Description |
@@ -13272,8 +13305,11 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | applied_promo_details | [[AppliedPromotion](#AppliedPromotion)]? |  yes  |  |
  | breakup_values | [CartBreakup](#CartBreakup)? |  yes  |  |
  | buy_now | boolean? |  yes  |  |
+ | cart_id | number? |  yes  |  |
  | checkout_mode | string? |  yes  |  |
  | comment | string? |  yes  |  |
+ | common_config | [CartCommonConfig](#CartCommonConfig)? |  yes  |  |
+ | coupon | [CartDetailCoupon](#CartDetailCoupon)? |  yes  |  |
  | coupon_text | string? |  yes  |  |
  | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
  | delivery_charge_info | string? |  yes  |  |
@@ -13284,10 +13320,14 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | items | [[CartProductInfo](#CartProductInfo)]? |  yes  |  |
  | last_modified | string? |  yes  |  |
  | message | string? |  yes  |  |
+ | notification | string? |  yes  |  |
  | pan_config | string? |  yes  |  |
  | pan_no | string? |  yes  |  |
  | payment_selection_lock | [PaymentSelectionLock](#PaymentSelectionLock)? |  yes  |  |
  | restrict_checkout | boolean? |  yes  |  |
+ | staff_user_id | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ | uid | string? |  yes  |  |
  
 
 ---
@@ -13393,6 +13433,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | ---------- | ---- | -------- | ----------- |
  | _custom_json | string? |  yes  |  |
  | action | [ProductAction](#ProductAction)? |  yes  |  |
+ | attributes | string? |  yes  |  |
  | brand | [BaseInfo](#BaseInfo)? |  yes  |  |
  | categories | [[CategoryInfo](#CategoryInfo)]? |  yes  |  |
  | images | [[ProductImage](#ProductImage)]? |  yes  |  |
@@ -13437,6 +13478,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | price | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
  | price_per_unit | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
  | product | [CartProduct](#CartProduct)? |  yes  |  |
+ | product_ean_id | string? |  yes  |  |
  | promo_meta | [PromoMeta](#PromoMeta)? |  yes  |  |
  | promotions_applied | [[AppliedPromotion](#AppliedPromotion)]? |  yes  |  |
  | quantity | number? |  yes  |  |
@@ -13455,6 +13497,16 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 ---
 
 #### [Charges](#Charges)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | charges | number? |  yes  |  |
+ | threshold | number? |  yes  |  |
+ 
+
+---
+
+#### [ChargesThreshold](#ChargesThreshold)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -13747,6 +13799,16 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | charges | [[Charges](#Charges)]? |  yes  |  |
+ | enabled | boolean? |  yes  |  |
+ 
+
+---
+
+#### [DeliveryChargesConfig](#DeliveryChargesConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | charges | [[ChargesThreshold](#ChargesThreshold)]? |  yes  |  |
  | enabled | boolean? |  yes  |  |
  
 

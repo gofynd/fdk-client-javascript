@@ -9261,6 +9261,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | ---------- | ---- | -------- | ----------- |
  | _custom_json | string? |  yes  |  |
  | action | [ProductAction](#ProductAction)? |  yes  |  |
+ | attributes | string? |  yes  |  |
  | brand | [BaseInfo](#BaseInfo)? |  yes  |  |
  | categories | [[CategoryInfo](#CategoryInfo)]? |  yes  |  |
  | images | [[ProductImage](#ProductImage)]? |  yes  |  |
@@ -9305,6 +9306,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | price | [ProductPriceInfo](#ProductPriceInfo)? |  yes  |  |
  | price_per_unit | [ProductPricePerUnitInfo](#ProductPricePerUnitInfo)? |  yes  |  |
  | product | [CartProduct](#CartProduct)? |  yes  |  |
+ | product_ean_id | string? |  yes  |  |
  | promo_meta | [PromoMeta](#PromoMeta)? |  yes  |  |
  | promotions_applied | [[AppliedPromotion](#AppliedPromotion)]? |  yes  |  |
  | quantity | number? |  yes  |  |

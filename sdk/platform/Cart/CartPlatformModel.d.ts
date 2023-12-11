@@ -181,6 +181,10 @@ export = CartPlatformModel;
  * @property {boolean} [success]
  */
 /**
+ * @typedef CartCommonConfig
+ * @property {DeliveryChargesConfig} [delivery_charges_config]
+ */
+/**
  * @typedef CartCurrency
  * @property {string} [code] - Currency code defined by ISO 4217:2015
  * @property {string} [symbol]
@@ -191,12 +195,34 @@ export = CartPlatformModel;
  * @property {number[]} [pickup_stores] - Store pick up available store uids
  */
 /**
+ * @typedef CartDetailCoupon
+ * @property {number} [cashback_amount]
+ * @property {string} [cashback_message_primary]
+ * @property {string} [cashback_message_secondary]
+ * @property {string} [coupon_code]
+ * @property {string} [coupon_description]
+ * @property {string} [coupon_id]
+ * @property {string} [coupon_subtitle]
+ * @property {string} [coupon_title]
+ * @property {string} [coupon_type]
+ * @property {number} [coupon_value]
+ * @property {number} [discount]
+ * @property {boolean} [is_applied]
+ * @property {boolean} [is_valid]
+ * @property {number} [maximum_discount_value]
+ * @property {string} [message]
+ * @property {number} [minimum_cart_value]
+ */
+/**
  * @typedef CartDetailResponse
  * @property {AppliedPromotion[]} [applied_promo_details]
  * @property {CartBreakup} [breakup_values]
  * @property {boolean} [buy_now]
+ * @property {number} [cart_id]
  * @property {string} [checkout_mode]
  * @property {string} [comment]
+ * @property {CartCommonConfig} [common_config]
+ * @property {CartDetailCoupon} [coupon]
  * @property {string} [coupon_text]
  * @property {CartCurrency} [currency]
  * @property {string} [delivery_charge_info]
@@ -207,10 +233,14 @@ export = CartPlatformModel;
  * @property {CartProductInfo[]} [items]
  * @property {string} [last_modified]
  * @property {string} [message]
+ * @property {Object} [notification]
  * @property {Object} [pan_config]
  * @property {string} [pan_no]
  * @property {PaymentSelectionLock} [payment_selection_lock]
  * @property {boolean} [restrict_checkout]
+ * @property {string} [staff_user_id]
+ * @property {boolean} [success]
+ * @property {string} [uid]
  */
 /**
  * @typedef CartItem
@@ -271,6 +301,7 @@ export = CartPlatformModel;
  * @typedef CartProduct
  * @property {Object} [_custom_json]
  * @property {ProductAction} [action]
+ * @property {Object} [attributes]
  * @property {BaseInfo} [brand]
  * @property {CategoryInfo[]} [categories]
  * @property {ProductImage[]} [images]
@@ -306,6 +337,7 @@ export = CartPlatformModel;
  * @property {ProductPriceInfo} [price]
  * @property {ProductPriceInfo} [price_per_unit]
  * @property {CartProduct} [product]
+ * @property {string} [product_ean_id]
  * @property {PromoMeta} [promo_meta]
  * @property {AppliedPromotion[]} [promotions_applied]
  * @property {number} [quantity]
@@ -317,6 +349,11 @@ export = CartPlatformModel;
  */
 /**
  * @typedef Charges
+ * @property {number} [charges]
+ * @property {number} [threshold]
+ */
+/**
+ * @typedef ChargesThreshold
  * @property {number} [charges]
  * @property {number} [threshold]
  */
@@ -507,6 +544,11 @@ export = CartPlatformModel;
 /**
  * @typedef DeliveryCharges
  * @property {Charges[]} [charges]
+ * @property {boolean} [enabled]
+ */
+/**
+ * @typedef DeliveryChargesConfig
+ * @property {ChargesThreshold[]} [charges]
  * @property {boolean} [enabled]
  */
 /**
@@ -1645,7 +1687,7 @@ export = CartPlatformModel;
 declare class CartPlatformModel {
 }
 declare namespace CartPlatformModel {
-    export { AbandonedCart, AbandonedCartResponse, ActionQuery, ActivePromosResponse, AddCartDetailResponse, AddCartRequest, AddProductCart, AppliedFreeArticles, AppliedPromotion, ApplyCouponRequest, Article, ArticlePriceInfo, BaseInfo, BasePrice, BulkBundleRestriction, BuyRules, CartBreakup, CartCheckoutCustomMeta, CartCheckoutResponse, CartCurrency, CartDeliveryModesResponse, CartDetailResponse, CartItem, CartItemCountResponse, CartItemMeta, CartList, CartMetaConfigAdd, CartMetaConfigUpdate, CartMetaMissingResponse, CartMetaResponse, CartProduct, CartProductIdentifer, CartProductInfo, CategoryInfo, Charges, CheckCart, Collection, CompareObject, Coupon, CouponAction, CouponAdd, CouponAuthor, CouponBreakup, CouponDateMeta, CouponDetails, CouponPartialUpdate, CouponSchedule, CouponsResponse, CouponUpdate, CouponValidity, CustomerDetails, DeleteAddressResponse, DeleteCartDetailResponse, DeleteCartRequest, DeliveryCharges, DiscountOffer, DiscountRule, DiscountRulesApp, DisplayBreakup, DisplayMeta, DisplayMeta1, DisplayMetaDict, Files, FreeGiftItem, GeoLocation, GetCouponResponse, GetShareCartLinkRequest, GetShareCartLinkResponse, Identifier, ItemCriteria, LoyaltyPoints, MultiCartResponse, MultiTenderPaymentMeta, MultiTenderPaymentMethod, OpenapiCartDetailsRequest, OpenapiCartDetailsResponse, OpenApiCartServiceabilityRequest, OpenApiCartServiceabilityResponse, OpenApiCheckoutResponse, OpenApiErrorResponse, OpenApiFiles, OpenApiOrderItem, OpenApiPlatformCheckoutReq, OperationErrorResponse, OverrideCartItem, OverrideCartItemPromo, OverrideCheckoutReq, OverrideCheckoutResponse, Ownership, Ownership1, Ownership2, Page, PageCoupon, PaymentAllowValue, PaymentAllowValue1, PaymentCouponValidate, PaymentMeta, PaymentMethod, PaymentModes, PaymentSelectionLock, PickupStoreDetail, PlatformAddCartRequest, PlatformAddress, PlatformCartCheckoutDetailRequest, PlatformCartCheckoutDetailV2Request, PlatformCartMetaRequest, PlatformCartShipmentsResponse, PlatformGetAddressesResponse, PlatformSelectCartAddressRequest, PlatformShipmentResponse, PlatformUpdateCartRequest, PostOrder, PostOrder1, PriceAdjustment, PriceAdjustmentAdd, PriceAdjustmentResponse, PriceAdjustmentUpdate, PriceRange, ProductAction, ProductArticle, ProductAvailability, ProductAvailabilitySize, ProductImage, ProductPrice, ProductPriceInfo, PromiseFormatted, PromiseTimestamp, PromoMeta, PromotionAction, PromotionAdd, PromotionAuthor, PromotionDateMeta, PromotionListItem, PromotionPartialUpdate, PromotionPaymentModes, PromotionSchedule, PromotionsResponse, PromotionUpdate, RawBreakup, Restrictions, Restrictions1, Rule, RuleDefinition, SaveAddressResponse, SharedCart, SharedCartDetails, SharedCartResponse, ShipmentArticle, ShipmentPromise, ShippingAddress, StaffCheckout, State, StoreDetailsResponse, StoreInfo, SuccessMessage, Tags, UpdateAddressResponse, UpdateCartDetailResponse, UpdateCartPaymentRequest, UpdateCartPaymentRequestV2, UpdateCartRequest, UpdateCartShipmentItem, UpdateCartShipmentRequest, UpdateProductCart, UpdateUserCartMapping, UserCartMappingResponse, UserInfo, UserRegistered, UsesRemaining, UsesRemaining1, UsesRestriction, UsesRestriction1, Validation, Validity, Visibility };
+    export { AbandonedCart, AbandonedCartResponse, ActionQuery, ActivePromosResponse, AddCartDetailResponse, AddCartRequest, AddProductCart, AppliedFreeArticles, AppliedPromotion, ApplyCouponRequest, Article, ArticlePriceInfo, BaseInfo, BasePrice, BulkBundleRestriction, BuyRules, CartBreakup, CartCheckoutCustomMeta, CartCheckoutResponse, CartCommonConfig, CartCurrency, CartDeliveryModesResponse, CartDetailCoupon, CartDetailResponse, CartItem, CartItemCountResponse, CartItemMeta, CartList, CartMetaConfigAdd, CartMetaConfigUpdate, CartMetaMissingResponse, CartMetaResponse, CartProduct, CartProductIdentifer, CartProductInfo, CategoryInfo, Charges, ChargesThreshold, CheckCart, Collection, CompareObject, Coupon, CouponAction, CouponAdd, CouponAuthor, CouponBreakup, CouponDateMeta, CouponDetails, CouponPartialUpdate, CouponSchedule, CouponsResponse, CouponUpdate, CouponValidity, CustomerDetails, DeleteAddressResponse, DeleteCartDetailResponse, DeleteCartRequest, DeliveryCharges, DeliveryChargesConfig, DiscountOffer, DiscountRule, DiscountRulesApp, DisplayBreakup, DisplayMeta, DisplayMeta1, DisplayMetaDict, Files, FreeGiftItem, GeoLocation, GetCouponResponse, GetShareCartLinkRequest, GetShareCartLinkResponse, Identifier, ItemCriteria, LoyaltyPoints, MultiCartResponse, MultiTenderPaymentMeta, MultiTenderPaymentMethod, OpenapiCartDetailsRequest, OpenapiCartDetailsResponse, OpenApiCartServiceabilityRequest, OpenApiCartServiceabilityResponse, OpenApiCheckoutResponse, OpenApiErrorResponse, OpenApiFiles, OpenApiOrderItem, OpenApiPlatformCheckoutReq, OperationErrorResponse, OverrideCartItem, OverrideCartItemPromo, OverrideCheckoutReq, OverrideCheckoutResponse, Ownership, Ownership1, Ownership2, Page, PageCoupon, PaymentAllowValue, PaymentAllowValue1, PaymentCouponValidate, PaymentMeta, PaymentMethod, PaymentModes, PaymentSelectionLock, PickupStoreDetail, PlatformAddCartRequest, PlatformAddress, PlatformCartCheckoutDetailRequest, PlatformCartCheckoutDetailV2Request, PlatformCartMetaRequest, PlatformCartShipmentsResponse, PlatformGetAddressesResponse, PlatformSelectCartAddressRequest, PlatformShipmentResponse, PlatformUpdateCartRequest, PostOrder, PostOrder1, PriceAdjustment, PriceAdjustmentAdd, PriceAdjustmentResponse, PriceAdjustmentUpdate, PriceRange, ProductAction, ProductArticle, ProductAvailability, ProductAvailabilitySize, ProductImage, ProductPrice, ProductPriceInfo, PromiseFormatted, PromiseTimestamp, PromoMeta, PromotionAction, PromotionAdd, PromotionAuthor, PromotionDateMeta, PromotionListItem, PromotionPartialUpdate, PromotionPaymentModes, PromotionSchedule, PromotionsResponse, PromotionUpdate, RawBreakup, Restrictions, Restrictions1, Rule, RuleDefinition, SaveAddressResponse, SharedCart, SharedCartDetails, SharedCartResponse, ShipmentArticle, ShipmentPromise, ShippingAddress, StaffCheckout, State, StoreDetailsResponse, StoreInfo, SuccessMessage, Tags, UpdateAddressResponse, UpdateCartDetailResponse, UpdateCartPaymentRequest, UpdateCartPaymentRequestV2, UpdateCartRequest, UpdateCartShipmentItem, UpdateCartShipmentRequest, UpdateProductCart, UpdateUserCartMapping, UserCartMappingResponse, UserInfo, UserRegistered, UsesRemaining, UsesRemaining1, UsesRestriction, UsesRestriction1, Validation, Validity, Visibility };
 }
 /** @returns {AbandonedCart} */
 declare function AbandonedCart(): AbandonedCart;
@@ -1964,6 +2006,11 @@ type CartCheckoutResponse = {
     payment_confirm_url?: string;
     success?: boolean;
 };
+/** @returns {CartCommonConfig} */
+declare function CartCommonConfig(): CartCommonConfig;
+type CartCommonConfig = {
+    delivery_charges_config?: DeliveryChargesConfig;
+};
 /** @returns {CartCurrency} */
 declare function CartCurrency(): CartCurrency;
 type CartCurrency = {
@@ -1985,14 +2032,37 @@ type CartDeliveryModesResponse = {
      */
     pickup_stores?: number[];
 };
+/** @returns {CartDetailCoupon} */
+declare function CartDetailCoupon(): CartDetailCoupon;
+type CartDetailCoupon = {
+    cashback_amount?: number;
+    cashback_message_primary?: string;
+    cashback_message_secondary?: string;
+    coupon_code?: string;
+    coupon_description?: string;
+    coupon_id?: string;
+    coupon_subtitle?: string;
+    coupon_title?: string;
+    coupon_type?: string;
+    coupon_value?: number;
+    discount?: number;
+    is_applied?: boolean;
+    is_valid?: boolean;
+    maximum_discount_value?: number;
+    message?: string;
+    minimum_cart_value?: number;
+};
 /** @returns {CartDetailResponse} */
 declare function CartDetailResponse(): CartDetailResponse;
 type CartDetailResponse = {
     applied_promo_details?: AppliedPromotion[];
     breakup_values?: CartBreakup;
     buy_now?: boolean;
+    cart_id?: number;
     checkout_mode?: string;
     comment?: string;
+    common_config?: CartCommonConfig;
+    coupon?: CartDetailCoupon;
     coupon_text?: string;
     currency?: CartCurrency;
     delivery_charge_info?: string;
@@ -2003,10 +2073,14 @@ type CartDetailResponse = {
     items?: CartProductInfo[];
     last_modified?: string;
     message?: string;
+    notification?: any;
     pan_config?: any;
     pan_no?: string;
     payment_selection_lock?: PaymentSelectionLock;
     restrict_checkout?: boolean;
+    staff_user_id?: string;
+    success?: boolean;
+    uid?: string;
 };
 /** @returns {CartItem} */
 declare function CartItem(): CartItem;
@@ -2079,6 +2153,7 @@ declare function CartProduct(): CartProduct;
 type CartProduct = {
     _custom_json?: any;
     action?: ProductAction;
+    attributes?: any;
     brand?: BaseInfo;
     categories?: CategoryInfo[];
     images?: ProductImage[];
@@ -2122,6 +2197,7 @@ type CartProductInfo = {
     price?: ProductPriceInfo;
     price_per_unit?: ProductPriceInfo;
     product?: CartProduct;
+    product_ean_id?: string;
     promo_meta?: PromoMeta;
     promotions_applied?: AppliedPromotion[];
     quantity?: number;
@@ -2138,6 +2214,12 @@ type CategoryInfo = {
 /** @returns {Charges} */
 declare function Charges(): Charges;
 type Charges = {
+    charges?: number;
+    threshold?: number;
+};
+/** @returns {ChargesThreshold} */
+declare function ChargesThreshold(): ChargesThreshold;
+type ChargesThreshold = {
     charges?: number;
     threshold?: number;
 };
@@ -2357,6 +2439,12 @@ type DeleteCartRequest = {
 declare function DeliveryCharges(): DeliveryCharges;
 type DeliveryCharges = {
     charges?: Charges[];
+    enabled?: boolean;
+};
+/** @returns {DeliveryChargesConfig} */
+declare function DeliveryChargesConfig(): DeliveryChargesConfig;
+type DeliveryChargesConfig = {
+    charges?: ChargesThreshold[];
     enabled?: boolean;
 };
 /** @returns {DiscountOffer} */

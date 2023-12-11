@@ -281,6 +281,7 @@ export = CartApplicationModel;
  * @typedef CartProduct
  * @property {Object} [_custom_json]
  * @property {ProductAction} [action]
+ * @property {Object} [attributes]
  * @property {BaseInfo} [brand]
  * @property {CategoryInfo[]} [categories]
  * @property {ProductImage[]} [images]
@@ -316,6 +317,7 @@ export = CartApplicationModel;
  * @property {ProductPriceInfo} [price]
  * @property {ProductPricePerUnitInfo} [price_per_unit]
  * @property {CartProduct} [product]
+ * @property {string} [product_ean_id]
  * @property {PromoMeta} [promo_meta]
  * @property {AppliedPromotion[]} [promotions_applied]
  * @property {number} [quantity]
@@ -1288,6 +1290,7 @@ declare function CartProduct(): CartProduct;
 type CartProduct = {
     _custom_json?: any;
     action?: ProductAction;
+    attributes?: any;
     brand?: BaseInfo;
     categories?: CategoryInfo[];
     images?: ProductImage[];
@@ -1331,6 +1334,7 @@ type CartProductInfo = {
     price?: ProductPriceInfo;
     price_per_unit?: ProductPricePerUnitInfo;
     product?: CartProduct;
+    product_ean_id?: string;
     promo_meta?: PromoMeta;
     promotions_applied?: AppliedPromotion[];
     quantity?: number;

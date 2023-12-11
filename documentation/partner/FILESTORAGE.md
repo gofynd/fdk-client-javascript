@@ -131,7 +131,7 @@ const data = await partnerClient.fileStorage.browse({  namespace : value,
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | namespace | string | yes | Segregation of different types of files(products, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |   
-| organizationId | number | yes |  |    
+| organizationId | string | yes |  |    
 | page | number | no | page no |    
 | limit | number | no | Limit |  
 
@@ -240,7 +240,7 @@ const data = await partnerClient.fileStorage.completeUpload({  namespace : value
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | namespace | string | yes | Segregation of different types of files(products, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |   
-| organizationId | number | yes |  |  
+| organizationId | string | yes |  |  
 | body | [StartResponse](#StartResponse) | yes | Request body |
 
 
@@ -351,7 +351,7 @@ const data = await partnerClient.fileStorage.startUpload({  namespace : value,
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | namespace | string | yes | Segregation of different types of files(products, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |   
-| organizationId | number | yes |  |  
+| organizationId | string | yes |  |  
 | body | [StartRequest](#StartRequest) | yes | Request body |
 
 
