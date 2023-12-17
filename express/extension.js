@@ -7,7 +7,7 @@ const { WebhookRegistry } = require('./webhook');
 const logger = require('./logger');
 const { fdkAxios } = require('@gofynd/fdk-client-javascript/sdk/common/AxiosHelper');
 const { version } = require('./../package.json');
-const { TIMEOUT_STATUS, SERVICE_UNAVAILABLE, BAD_GATEWAY } = require('./constants');
+const { RetryManger } = require("./retry_manager")
 
 class Extension {
     constructor() {
@@ -20,11 +20,17 @@ class Extension {
         this.cluster = "https://api.fynd.com";
         this.webhookRegistry = null;
         this._isInitialized = false;
+        this.retryManager = new RetryManger();
     }
 
     async initialize(data) {
 
+        if (this._isInitialized) {
+            return;
+        }
+
         this._isInitialized = false;
+        this.configData = data;
 
         this.storage = data.storage;
 
@@ -53,20 +59,20 @@ class Extension {
         }
         this.webhookRegistry = new WebhookRegistry();
 
-        let extensionData = await this.getExtensionDetails();
+        await this.getExtensionDetails();
 
         if (data.base_url && !validator.isURL(data.base_url)) {
             throw new FdkInvalidExtensionConfig("Invalid base_url value. Invalid value: " + data.base_url);
         }
         else if (!data.base_url) {
-            data.base_url = extensionData.base_url;
+            data.base_url = this.extensionData.base_url;
         }
         this.base_url = data.base_url;
 
         if (data.scopes) {
-            data.scopes = this.verifyScopes(data.scopes, extensionData);
+            data.scopes = this.verifyScopes(data.scopes, this.extensionData);
         }
-        this.scopes = data.scopes || extensionData.scope;
+        this.scopes = data.scopes || this.extensionData.scope;
 
         logger.debug(`Extension initialized`);
 
@@ -97,9 +103,9 @@ class Extension {
         return this.access_mode === 'online';
     }
 
-    getPlatformConfig(companyId) {
+    async getPlatformConfig(companyId) {
         if (!this._isInitialized){
-            throw new FdkInvalidExtensionConfig('Extension not initialized due to invalid data')    
+            await this.initialize(this.configData);
         }
         let platformConfig = new PlatformConfig({
             companyId: parseInt(companyId),
@@ -114,11 +120,11 @@ class Extension {
 
     async getPlatformClient(companyId, session) {
         if (!this._isInitialized){
-            throw new FdkInvalidExtensionConfig('Extension not initialized due to invalid data')    
+            await this.initialize(this.configData);
         }
         const SessionStorage = require('./session/session_storage');
         
-        let platformConfig = this.getPlatformConfig(companyId);
+        let platformConfig = await this.getPlatformConfig(companyId);
         platformConfig.oauthClient.setToken(session);
         platformConfig.oauthClient.token_expires_at = session.access_token_validity;
         
@@ -140,15 +146,23 @@ class Extension {
         return platformClient;
     }
 
-    async getExtensionDetails(retryCount = 0) {
+    async getExtensionDetails() {
+
+        let url = `${this.cluster}/service/panel/partners/v1.0/extensions/details/${this.api_key}`;
+        const uniqueKey = `${url}`;
+
+        const retryInfo = this.retryManager.retryInfoMap.get(uniqueKey);
+        if (retryInfo && !retryInfo.isRetry) {
+            this.retryManager.resetRetryState(uniqueKey);
+        }
+
         try {
-            let url = `${this.cluster}/service/panel/partners/v1.0/extensions/details/${this.api_key}`;
             const token = Buffer.from(
                 `${this.api_key}:${this.api_secret}`,
                 "utf8"
             ).toString("base64");
             const rawRequest = {
-                method: "get",
+                method: "GET",
                 url: url,
                 headers: {
                     Authorization: `Basic ${token}`,
@@ -158,28 +172,17 @@ class Extension {
             };
             let extensionData = await fdkAxios.request(rawRequest);
             logger.debug(`Extension details received: ${logger.safeStringify(extensionData)}`);
-            return extensionData;
+            this.extensionData = extensionData;
         } catch (err) {
-            const statusCode = (err.response && err.response.status) || err.code;
-            
-            if ([BAD_GATEWAY, SERVICE_UNAVAILABLE, TIMEOUT_STATUS].includes(statusCode)) {
-                
-                const SECONDS_5_MILLISECONDS = 1000 * 5;
-                let nextRetrySeconds = SECONDS_5_MILLISECONDS;
-                // await for 5 second interval after every fail, for 30 seconds. Then retry for 1 min, 2min and 3 min infinitely.
-                if (retryCount > 6) {
-                    const MAX_MINUTES_TO_WAIT = 3;
-                    const MINUTES_TO_WAIT = Math.min((retryCount - 6), MAX_MINUTES_TO_WAIT);
-                    nextRetrySeconds = 1000 * 60 * MINUTES_TO_WAIT;
-                }
-                
-                logger.debug(`Extension service not reachable. Retrying fetching extension details. Retry count: ${retryCount}`);
-                await (new Promise(function(resolve, reject){
-                    setTimeout(resolve, nextRetrySeconds);
-                }));
 
-                return this.getExtensionDetails(retryCount + 1);
+            if (
+                RetryManger.shouldRetryOnError(err) 
+                && !this.retryManager.retryInfoMap.get(uniqueKey)?.isRetryInProgress
+            ) { 
+                logger.debug(`API call failed. Starting retry for ${uniqueKey}`)
+                return await this.retryManager.retry(uniqueKey, this.getExtensionDetails.bind(this));
             }
+
             throw new FdkInvalidExtensionConfig("Invalid api_key or api_secret. Reason:" + err.message);
         }
     }
