@@ -76,7 +76,7 @@ class Serviceability {
       error: res_error,
     } = ServiceabilityPlatformModel.ApplicationCompanyDpViewResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -159,7 +159,7 @@ class Serviceability {
       error: res_error,
     } = ServiceabilityPlatformModel.ApplicationCompanyDpViewResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -238,7 +238,7 @@ class Serviceability {
       error: res_error,
     } = ServiceabilityPlatformModel.ApplicationServiceabilityConfigResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -317,7 +317,7 @@ class Serviceability {
       error: res_error,
     } = ServiceabilityPlatformModel.DPApplicationRuleResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -396,7 +396,7 @@ class Serviceability {
       error: res_error,
     } = ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -479,7 +479,7 @@ class Serviceability {
       error: res_error,
     } = ServiceabilityPlatformModel.GetZoneFromPincodeViewResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -572,7 +572,7 @@ class Serviceability {
       error: res_error,
     } = ServiceabilityPlatformModel.GetZoneFromApplicationIdViewResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -655,7 +655,7 @@ class Serviceability {
       error: res_error,
     } = ServiceabilityPlatformModel.ApplicationServiceabilityConfigResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -738,7 +738,7 @@ class Serviceability {
       error: res_error,
     } = ServiceabilityPlatformModel.PincodeMopUpdateAuditHistoryResponseData().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -821,7 +821,7 @@ class Serviceability {
       error: res_error,
     } = ServiceabilityPlatformModel.PincodeBulkViewResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -904,7 +904,7 @@ class Serviceability {
       error: res_error,
     } = ServiceabilityPlatformModel.PincodeCodStatusListingResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -986,7 +986,7 @@ class Serviceability {
       error: res_error,
     } = ServiceabilityPlatformModel.PincodeMOPresponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1069,7 +1069,7 @@ class Serviceability {
       error: res_error,
     } = ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1152,7 +1152,7 @@ class Serviceability {
       error: res_error,
     } = ServiceabilityPlatformModel.DPApplicationRuleResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {

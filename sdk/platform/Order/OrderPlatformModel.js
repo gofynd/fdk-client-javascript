@@ -1071,6 +1071,37 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef GenerateInvoiceIDErrorResponse
+ * @property {GenerateInvoiceIDErrorResponseData} [items]
+ */
+
+/**
+ * @typedef GenerateInvoiceIDErrorResponseData
+ * @property {string} [error_message]
+ * @property {boolean} [invoice_id]
+ * @property {string} [shipment_id]
+ * @property {boolean} [success]
+ */
+
+/**
+ * @typedef GenerateInvoiceIDRequest
+ * @property {string[]} shipment_ids
+ */
+
+/**
+ * @typedef GenerateInvoiceIDResponse
+ * @property {GenerateInvoiceIDResponseData} [items]
+ */
+
+/**
+ * @typedef GenerateInvoiceIDResponseData
+ * @property {boolean} [error_message]
+ * @property {string} [invoice_id]
+ * @property {string} [shipment_id]
+ * @property {boolean} [success]
+ */
+
+/**
  * @typedef GeneratePosOrderReceiptResponse
  * @property {string} [customer_cn_receipt]
  * @property {string} [invoice_receipt]
@@ -3940,6 +3971,47 @@ class OrderPlatformModel {
   static FyndOrderIdList() {
     return Joi.object({
       fynd_order_id: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {GenerateInvoiceIDErrorResponse} */
+  static GenerateInvoiceIDErrorResponse() {
+    return Joi.object({
+      items: OrderPlatformModel.GenerateInvoiceIDErrorResponseData(),
+    });
+  }
+
+  /** @returns {GenerateInvoiceIDErrorResponseData} */
+  static GenerateInvoiceIDErrorResponseData() {
+    return Joi.object({
+      error_message: Joi.string().allow(""),
+      invoice_id: Joi.boolean(),
+      shipment_id: Joi.string().allow(""),
+      success: Joi.boolean(),
+    });
+  }
+
+  /** @returns {GenerateInvoiceIDRequest} */
+  static GenerateInvoiceIDRequest() {
+    return Joi.object({
+      shipment_ids: Joi.array().items(Joi.string().allow("")).required(),
+    });
+  }
+
+  /** @returns {GenerateInvoiceIDResponse} */
+  static GenerateInvoiceIDResponse() {
+    return Joi.object({
+      items: OrderPlatformModel.GenerateInvoiceIDResponseData(),
+    });
+  }
+
+  /** @returns {GenerateInvoiceIDResponseData} */
+  static GenerateInvoiceIDResponseData() {
+    return Joi.object({
+      error_message: Joi.boolean(),
+      invoice_id: Joi.string().allow(""),
+      shipment_id: Joi.string().allow(""),
+      success: Joi.boolean(),
     });
   }
 

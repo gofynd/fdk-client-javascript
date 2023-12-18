@@ -76,7 +76,7 @@ class Webhook {
       error: res_error,
     } = WebhookPlatformModel.CancelResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -155,7 +155,7 @@ class Webhook {
 
     const { error: res_error } = Joi.any().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -232,7 +232,7 @@ class Webhook {
       error: res_error,
     } = WebhookPlatformModel.EventConfigResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -311,7 +311,7 @@ class Webhook {
       error: res_error,
     } = WebhookPlatformModel.EventProcessReports().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -393,7 +393,7 @@ class Webhook {
       error: res_error,
     } = WebhookPlatformModel.FailedEventsCountSuccessResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -472,7 +472,7 @@ class Webhook {
       error: res_error,
     } = WebhookPlatformModel.HistoryResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -548,7 +548,7 @@ class Webhook {
       error: res_error,
     } = WebhookPlatformModel.RetryStatusResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -627,7 +627,7 @@ class Webhook {
       error: res_error,
     } = WebhookPlatformModel.ReportFilterResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -706,7 +706,7 @@ class Webhook {
       error: res_error,
     } = WebhookPlatformModel.SubscriberResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -794,7 +794,7 @@ class Webhook {
       error: res_error,
     } = WebhookPlatformModel.SubscriberResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -881,7 +881,7 @@ class Webhook {
       error: res_error,
     } = WebhookPlatformModel.SubscriberConfigList().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -957,7 +957,7 @@ class Webhook {
       error: res_error,
     } = WebhookPlatformModel.EventSuccessResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1040,7 +1040,7 @@ class Webhook {
       error: res_error,
     } = WebhookPlatformModel.EventProcessedSuccessResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1117,7 +1117,7 @@ class Webhook {
       error: res_error,
     } = WebhookPlatformModel.PingWebhookResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1198,7 +1198,7 @@ class Webhook {
       error: res_error,
     } = WebhookPlatformModel.SubscriberConfig().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1279,7 +1279,7 @@ class Webhook {
       error: res_error,
     } = WebhookPlatformModel.SubscriberConfig().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

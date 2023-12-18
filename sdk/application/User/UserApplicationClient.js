@@ -157,7 +157,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.VerifyEmailOTPSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -236,7 +236,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.VerifyMobileOTPSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -319,7 +319,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.LoginSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -411,7 +411,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.LoginSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -487,7 +487,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.DeleteUserSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -565,7 +565,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.LoginSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -645,7 +645,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.SessionListSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -723,7 +723,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.UserObjectSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -802,7 +802,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.PlatformSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -878,7 +878,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.HasPasswordSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -957,7 +957,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.AuthSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1037,7 +1037,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.LoginSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1116,7 +1116,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.AuthSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1195,7 +1195,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.AuthSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1276,7 +1276,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.AuthSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1355,7 +1355,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.AuthSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1434,7 +1434,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.SendOtpResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1512,7 +1512,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.LoginSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1588,7 +1588,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.LogoutSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1667,7 +1667,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.RegisterFormSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1746,7 +1746,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.ResetForgotPasswordSuccess().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1825,7 +1825,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.EmailOtpSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1904,7 +1904,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.OtpSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1983,7 +1983,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.EmailOtpSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2062,7 +2062,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.OtpSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2143,7 +2143,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.ResetPasswordSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2224,7 +2224,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.ResetPasswordSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2302,7 +2302,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.ResetPasswordSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2385,7 +2385,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.SendEmailVerifyLinkSuccess().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -2469,7 +2469,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.SendMobileVerifyLinkSuccess().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -2547,7 +2547,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.LoginSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2627,7 +2627,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.LoginSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2705,7 +2705,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.VerifyEmailSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2784,7 +2784,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.ProfileEditSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2860,7 +2860,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.VerifyEmailSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2939,7 +2939,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.VerifyForgotOtpSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3018,7 +3018,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.VerifyOtpSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3096,7 +3096,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.VerifyEmailSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3175,7 +3175,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.VerifyForgotOtpSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3254,7 +3254,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.VerifyOtpSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

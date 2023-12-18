@@ -74,7 +74,7 @@ class Share {
       error: res_error,
     } = SharePlatformModel.ShortLinkRes().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -153,7 +153,7 @@ class Share {
       error: res_error,
     } = SharePlatformModel.ShortLinkRes().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -231,7 +231,7 @@ class Share {
       error: res_error,
     } = SharePlatformModel.ClickStatsResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -325,7 +325,7 @@ class Share {
       error: res_error,
     } = SharePlatformModel.ShortLinkList().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -408,7 +408,7 @@ class Share {
       error: res_error,
     } = SharePlatformModel.ShortLinkRes().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

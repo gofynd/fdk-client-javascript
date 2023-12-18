@@ -72,7 +72,7 @@ class User {
       error: res_error,
     } = UserPlatformModel.ArchiveUserSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -151,7 +151,7 @@ class User {
       error: res_error,
     } = UserPlatformModel.BlockUserSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -228,7 +228,7 @@ class User {
       error: res_error,
     } = UserPlatformModel.CreateUserResponseSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -307,7 +307,7 @@ class User {
       error: res_error,
     } = UserPlatformModel.UserGroupResponseSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -387,7 +387,7 @@ class User {
       error: res_error,
     } = UserPlatformModel.CreateUserSessionResponseSchema().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -473,7 +473,7 @@ class User {
       error: res_error,
     } = UserPlatformModel.SessionsDeleteResponseSchema().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -558,7 +558,7 @@ class User {
       error: res_error,
     } = UserPlatformModel.SessionDeleteResponseSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -638,7 +638,7 @@ class User {
       error: res_error,
     } = UserPlatformModel.SessionListResponseSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -722,7 +722,7 @@ class User {
       error: res_error,
     } = UserPlatformModel.CustomerListResponseSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -797,7 +797,7 @@ class User {
       error: res_error,
     } = UserPlatformModel.PlatformSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -876,7 +876,7 @@ class User {
       error: res_error,
     } = UserPlatformModel.UserGroupResponseSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -969,7 +969,7 @@ class User {
       error: res_error,
     } = UserPlatformModel.UserGroupListResponseSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1050,7 +1050,7 @@ class User {
       error: res_error,
     } = UserPlatformModel.UserSearchResponseSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1127,7 +1127,7 @@ class User {
       error: res_error,
     } = UserPlatformModel.UnDeleteUserSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1208,7 +1208,7 @@ class User {
       error: res_error,
     } = UserPlatformModel.PlatformSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1287,7 +1287,7 @@ class User {
       error: res_error,
     } = UserPlatformModel.CreateUserResponseSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1368,7 +1368,7 @@ class User {
       error: res_error,
     } = UserPlatformModel.UserGroupResponseSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1451,7 +1451,7 @@ class User {
       error: res_error,
     } = UserPlatformModel.UserGroupResponseSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

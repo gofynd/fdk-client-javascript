@@ -76,7 +76,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.AttachOrderUserResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -155,7 +155,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.OrderStatusResult().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -249,7 +249,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.Click2CallResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -329,7 +329,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.CreateChannelConfigResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -406,7 +406,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.CreateOrderResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -485,7 +485,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -567,7 +567,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.FileResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -647,7 +647,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.BulkReportsDownloadResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -724,7 +724,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.EInvoiceRetryResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -807,7 +807,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.FetchCreditBalanceResponsePayload().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -887,7 +887,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.RefundModeConfigResponsePayload().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -897,6 +897,87 @@ class Order {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Order > fetchRefundModeConfig \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {OrderPlatformValidator.GenerateInvoiceIDParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<OrderPlatformModel.GenerateInvoiceIDResponse>} - Success response
+   * @name generateInvoiceID
+   * @summary:
+   * @description: This API is used to manually generate Invoice ID against shipments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/generateInvoiceID/).
+   */
+  async generateInvoiceID(
+    { invoiceType, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = OrderPlatformValidator.generateInvoiceID().validate(
+      {
+        invoiceType,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = OrderPlatformValidator.generateInvoiceID().validate(
+      {
+        invoiceType,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Order > generateInvoiceID \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/${invoiceType}/id/generate`,
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = OrderPlatformModel.GenerateInvoiceIDResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Order > generateInvoiceID \n ${res_error}`,
         });
       }
     }
@@ -977,7 +1058,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.GeneratePosOrderReceiptResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1064,7 +1145,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.RoleBaseStateTransitionMapping().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1144,7 +1225,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.AnnouncementsResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1229,7 +1310,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.BagDetailsPlatformResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1342,7 +1423,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.GetBagsPlatformResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1418,7 +1499,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.BulkActionTemplateResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1547,7 +1628,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.FileResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1622,7 +1703,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.CreateChannelConfigData().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1767,7 +1848,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.LaneConfigResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1848,7 +1929,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.OrderDetailsResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2005,7 +2086,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.OrderListingResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2170,7 +2251,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.GetActionsResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2253,7 +2334,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.ShipmentInfoResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2336,7 +2417,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.ShipmentHistoryResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2420,7 +2501,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.PlatformShipmentReasonsResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -2615,7 +2696,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.ShipmentInternalPlatformViewResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -2802,7 +2883,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.BagStateTransitionMap().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2883,7 +2964,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.FiltersResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2963,7 +3044,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.InvalidateShipmentCacheResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -3040,7 +3121,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.ResponseDetail().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3119,7 +3200,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.ShipmentHistoryResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3198,7 +3279,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.CreateOrderResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3277,7 +3358,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.StoreReassignResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3354,7 +3435,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.OrderStatusResult().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3433,7 +3514,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.SendUserMobileOtpResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3523,7 +3604,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.CourierPartnerTrackingResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -3650,7 +3731,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.BaseResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3733,7 +3814,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.UpdatePackagingDimensionsResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -3813,7 +3894,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.UpdateShipmentLockResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3894,7 +3975,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.UpdateShipmentStatusResponseBody().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -3974,7 +4055,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.CourierPartnerTrackingDetails().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -4051,7 +4132,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4130,7 +4211,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.VerifyOtpResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

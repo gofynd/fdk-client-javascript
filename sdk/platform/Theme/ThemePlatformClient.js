@@ -78,7 +78,7 @@ class Theme {
       error: res_error,
     } = ThemePlatformModel.CompanyThemeSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -157,7 +157,7 @@ class Theme {
       error: res_error,
     } = ThemePlatformModel.CompanyThemeSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -230,7 +230,7 @@ class Theme {
 
     const { error: res_error } = Joi.array()
       .items(ThemePlatformModel.CompanyThemeSchema())
-      .validate(responseData, { abortEarly: false, allowUnknown: false });
+      .validate(responseData, { abortEarly: false, allowUnknown: true });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {

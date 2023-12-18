@@ -76,7 +76,7 @@ class Partner {
       error: res_error,
     } = PartnerPlatformModel.AddProxyResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -157,7 +157,7 @@ class Partner {
       error: res_error,
     } = PartnerPlatformModel.RemoveProxyResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

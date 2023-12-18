@@ -98,7 +98,7 @@ class Logistic {
       error: res_error,
     } = LogisticApplicationModel.CountryListResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -179,7 +179,7 @@ class Logistic {
       error: res_error,
     } = LogisticApplicationModel.ReAssignStoreResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -257,7 +257,7 @@ class Logistic {
       error: res_error,
     } = LogisticApplicationModel.PincodeApiResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -337,7 +337,7 @@ class Logistic {
       error: res_error,
     } = LogisticApplicationModel.GetZoneFromPincodeViewResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -415,7 +415,7 @@ class Logistic {
       error: res_error,
     } = LogisticApplicationModel.TATViewResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

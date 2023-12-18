@@ -78,7 +78,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.UpdatedResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -159,7 +159,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.SuccessResponse1().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -240,7 +240,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.SuccessResponse1().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -320,7 +320,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.CollectionCreateResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -404,7 +404,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.GetAppCatalogConfiguration().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -486,7 +486,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.GetAppCatalogConfiguration().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -569,7 +569,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.CreateAutocompleteWordsResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -650,7 +650,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.GetSearchWordsData().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -733,7 +733,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.AppConfigurationDetail().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -816,7 +816,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.AppConfigurationsSort().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -899,7 +899,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.CreateSearchConfigurationResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -980,7 +980,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1061,7 +1061,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.DeleteResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1140,7 +1140,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.DeleteResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1223,7 +1223,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.ConfigSuccessResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1306,7 +1306,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.ConfigSuccessResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1385,7 +1385,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.DeleteSearchConfigurationResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1466,7 +1466,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.DeleteResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1576,7 +1576,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.GetCollectionListingResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1653,7 +1653,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.GetSearchWordsResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1732,7 +1732,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.BaseAppCategoryReturnConfigResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1839,7 +1839,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.InventoryStockResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1936,7 +1936,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.LocationListSerializer().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2067,7 +2067,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.OwnerAppItemResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2179,7 +2179,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.RawProductListingResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -2256,7 +2256,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.AppReturnConfigResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2383,7 +2383,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.ApplicationProductListingResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -2543,7 +2543,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.BrandListingResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2681,7 +2681,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.BrandListingResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2826,7 +2826,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.BrandListingResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2962,7 +2962,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.ApplicationDepartmentListingResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -3082,7 +3082,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.GetAutocompleteWordsResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -3164,7 +3164,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.GetAutocompleteWordsResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -3243,7 +3243,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.GetCatalogConfigurationMetaData().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -3325,7 +3325,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.CatalogInsightResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3405,7 +3405,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.CategoryListingResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3487,7 +3487,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.CollectionDetailResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3578,7 +3578,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.GetCollectionItemsResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -3661,7 +3661,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.GetAppCatalogEntityConfiguration().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -3746,7 +3746,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.GetConfigMetadataResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -3824,7 +3824,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.GetAppCatalogConfiguration().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -3899,7 +3899,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.DepartmentResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4004,7 +4004,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.InventorySellerIdentifierResponsePaginated().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -4099,7 +4099,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.GetConfigResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4191,7 +4191,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.GetConfigResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4272,7 +4272,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.ProductDetail().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4349,7 +4349,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.GetCollectionQueryOptionResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -4428,7 +4428,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.GetSearchConfigurationResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -4510,7 +4510,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.GetSearchWordsDetailResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -4591,7 +4591,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.ConfigSuccessResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4672,7 +4672,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.SuccessResponse1().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4755,7 +4755,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.SuccessResponse1().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4836,7 +4836,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4919,7 +4919,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.SuccessResponse1().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -5002,7 +5002,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.SuccessResponse1().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -5083,7 +5083,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.SuccessResponse1().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -5164,7 +5164,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.SuccessResponse1().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -5248,7 +5248,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.GetAutocompleteWordsResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -5329,7 +5329,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.UpdateCollection().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -5410,7 +5410,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.ConfigSuccessResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -5495,7 +5495,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.AppConfigurationDetail().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -5580,7 +5580,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.AppConfigurationsSort().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -5663,7 +5663,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.UpdateSearchConfigurationResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -5746,7 +5746,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.GetSearchWordsData().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

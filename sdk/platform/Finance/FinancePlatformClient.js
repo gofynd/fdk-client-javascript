@@ -78,7 +78,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.ChannelDisplayNameResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -163,7 +163,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.CreateSellerCreditNoteConfigResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -243,7 +243,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.CreditNoteDetailsResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -326,7 +326,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.CreditlineDataPlatformResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -405,7 +405,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.DeleteConfigResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -488,7 +488,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.DownloadCreditDebitNoteResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -567,7 +567,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.DownloadReportList().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -650,7 +650,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.DownloadReportCustomerCnResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -729,7 +729,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.GenerateReportJson().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -812,7 +812,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.GenerateReportCustomerCnResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -891,7 +891,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.GetAffiliateResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -968,7 +968,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.GetCnConfigResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1051,7 +1051,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.GetCustomerCreditBalanceResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1128,7 +1128,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.GetEngineResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1207,7 +1207,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.GetPdfUrlViewResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1284,7 +1284,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.GetReasonResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1363,7 +1363,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.GetReportListResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1447,7 +1447,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.GetReportingFiltersResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1526,7 +1526,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.InvoiceListingResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1603,7 +1603,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.InvoicePdfResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1680,7 +1680,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.InvoiceTypeResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1760,7 +1760,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.IsCnRefundMethodResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1840,7 +1840,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.IsCreditlinePlatformResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1919,7 +1919,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.PaymentProcessResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

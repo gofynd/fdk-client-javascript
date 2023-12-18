@@ -100,7 +100,7 @@ class FileStorage {
       error: res_error,
     } = FileStoragePlatformModel.CompleteResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -180,7 +180,7 @@ class FileStorage {
 
     const { error: res_error } = Joi.any().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -283,7 +283,7 @@ class FileStorage {
       error: res_error,
     } = FileStoragePlatformModel.StartResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -368,7 +368,7 @@ class FileStorage {
 
     const { error: res_error } = Joi.any().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -447,7 +447,7 @@ class FileStorage {
 
     const { error: res_error } = Joi.any().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -532,7 +532,7 @@ class FileStorage {
       error: res_error,
     } = FileStoragePlatformModel.PdfConfigSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -615,7 +615,7 @@ class FileStorage {
       error: res_error,
     } = FileStoragePlatformModel.DummyTemplateDataItems().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -701,7 +701,7 @@ class FileStorage {
       error: res_error,
     } = FileStoragePlatformModel.PdfDefaultTemplateSuccess().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -777,7 +777,7 @@ class FileStorage {
       error: res_error,
     } = FileStoragePlatformModel.InvoiceTypesResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -859,7 +859,7 @@ class FileStorage {
       error: res_error,
     } = FileStoragePlatformModel.PdfConfigSaveSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -943,7 +943,7 @@ class FileStorage {
       error: res_error,
     } = FileStoragePlatformModel.PdfConfigSaveSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

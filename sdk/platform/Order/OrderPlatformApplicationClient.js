@@ -138,7 +138,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.ShipmentInternalPlatformViewResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -219,7 +219,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.ShipmentReasonsResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -302,7 +302,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.ShipmentBagReasons().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -383,7 +383,7 @@ class Order {
       error: res_error,
     } = OrderPlatformModel.PlatformShipmentTrack().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

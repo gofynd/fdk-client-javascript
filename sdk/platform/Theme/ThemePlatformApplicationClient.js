@@ -76,7 +76,7 @@ class Theme {
       error: res_error,
     } = ThemePlatformModel.ThemesSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -155,7 +155,7 @@ class Theme {
       error: res_error,
     } = ThemePlatformModel.DummyResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -232,7 +232,7 @@ class Theme {
       error: res_error,
     } = ThemePlatformModel.ThemesSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -309,7 +309,7 @@ class Theme {
       error: res_error,
     } = ThemePlatformModel.DummyResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -388,7 +388,7 @@ class Theme {
       error: res_error,
     } = ThemePlatformModel.AvailablePageSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -467,7 +467,7 @@ class Theme {
       error: res_error,
     } = ThemePlatformModel.AvailablePageSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -544,7 +544,7 @@ class Theme {
       error: res_error,
     } = ThemePlatformModel.ThemesSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -623,7 +623,7 @@ class Theme {
       error: res_error,
     } = ThemePlatformModel.ThemesSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -700,7 +700,7 @@ class Theme {
       error: res_error,
     } = ThemePlatformModel.AllAvailablePageSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -775,7 +775,7 @@ class Theme {
 
     const { error: res_error } = Joi.array()
       .items(ThemePlatformModel.ThemesSchema())
-      .validate(responseData, { abortEarly: false, allowUnknown: false });
+      .validate(responseData, { abortEarly: false, allowUnknown: true });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -849,7 +849,7 @@ class Theme {
 
     const { error: res_error } = Joi.any().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -924,7 +924,7 @@ class Theme {
       error: res_error,
     } = ThemePlatformModel.ThemesSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -997,7 +997,7 @@ class Theme {
       error: res_error,
     } = ThemePlatformModel.FontsSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1076,7 +1076,7 @@ class Theme {
       error: res_error,
     } = ThemePlatformModel.AvailablePageSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1159,7 +1159,7 @@ class Theme {
       error: res_error,
     } = ThemePlatformModel.DummyResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1236,7 +1236,7 @@ class Theme {
       error: res_error,
     } = ThemePlatformModel.ThemesSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1315,7 +1315,7 @@ class Theme {
       error: res_error,
     } = ThemePlatformModel.ThemesSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1394,7 +1394,7 @@ class Theme {
 
     const { error: res_error } = Joi.string()
       .allow("")
-      .validate(responseData, { abortEarly: false, allowUnknown: false });
+      .validate(responseData, { abortEarly: false, allowUnknown: true });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -1476,7 +1476,7 @@ class Theme {
       error: res_error,
     } = ThemePlatformModel.DummyResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1553,7 +1553,7 @@ class Theme {
       error: res_error,
     } = ThemePlatformModel.ThemeUpgradableResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1630,7 +1630,7 @@ class Theme {
       error: res_error,
     } = ThemePlatformModel.DummyResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1709,7 +1709,7 @@ class Theme {
       error: res_error,
     } = ThemePlatformModel.DummyResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1788,7 +1788,7 @@ class Theme {
       error: res_error,
     } = ThemePlatformModel.DummyResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1871,7 +1871,7 @@ class Theme {
       error: res_error,
     } = ThemePlatformModel.AllAvailablePageSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1952,7 +1952,7 @@ class Theme {
       error: res_error,
     } = ThemePlatformModel.AvailablePageSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2031,7 +2031,7 @@ class Theme {
       error: res_error,
     } = ThemePlatformModel.ThemesSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2112,7 +2112,7 @@ class Theme {
       error: res_error,
     } = ThemePlatformModel.ThemesSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2189,7 +2189,7 @@ class Theme {
       error: res_error,
     } = ThemePlatformModel.ThemesSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

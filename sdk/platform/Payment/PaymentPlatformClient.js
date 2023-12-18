@@ -80,7 +80,7 @@ class Payment {
       error: res_error,
     } = PaymentPlatformModel.UpdatePayoutResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -159,7 +159,7 @@ class Payment {
       error: res_error,
     } = PaymentPlatformModel.DeletePayoutResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -250,7 +250,7 @@ class Payment {
       error: res_error,
     } = PaymentPlatformModel.DeleteSubscriptionPaymentMethodResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -330,7 +330,7 @@ class Payment {
       error: res_error,
     } = PaymentPlatformModel.PayoutsResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -406,7 +406,7 @@ class Payment {
       error: res_error,
     } = PaymentPlatformModel.SubscriptionConfigResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -492,7 +492,7 @@ class Payment {
       error: res_error,
     } = PaymentPlatformModel.SubscriptionPaymentMethodResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -569,7 +569,7 @@ class Payment {
       error: res_error,
     } = PaymentPlatformModel.PayoutResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -652,7 +652,7 @@ class Payment {
       error: res_error,
     } = PaymentPlatformModel.SaveSubscriptionSetupIntentResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -733,7 +733,7 @@ class Payment {
       error: res_error,
     } = PaymentPlatformModel.UpdatePayoutResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -813,7 +813,7 @@ class Payment {
       error: res_error,
     } = PaymentPlatformModel.IfscCodeResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

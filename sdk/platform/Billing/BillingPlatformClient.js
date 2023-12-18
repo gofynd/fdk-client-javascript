@@ -78,7 +78,7 @@ class Billing {
       error: res_error,
     } = BillingPlatformModel.SubscriptionActivateRes().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -161,7 +161,7 @@ class Billing {
       error: res_error,
     } = BillingPlatformModel.EntitySubscription().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -242,7 +242,7 @@ class Billing {
       error: res_error,
     } = BillingPlatformModel.CancelSubscriptionRes().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -325,7 +325,7 @@ class Billing {
       error: res_error,
     } = BillingPlatformModel.CheckValidityResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -407,7 +407,7 @@ class Billing {
       error: res_error,
     } = BillingPlatformModel.CreateOneTimeChargeResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -491,7 +491,7 @@ class Billing {
       error: res_error,
     } = BillingPlatformModel.CreateSubscriptionResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -572,7 +572,7 @@ class Billing {
       error: res_error,
     } = BillingPlatformModel.OneTimeChargeEntity().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -647,7 +647,7 @@ class Billing {
       error: res_error,
     } = BillingPlatformModel.SubscriptionCustomer().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -721,7 +721,7 @@ class Billing {
 
     const { error: res_error } = Joi.array()
       .items(BillingPlatformModel.Plan())
-      .validate(responseData, { abortEarly: false, allowUnknown: false });
+      .validate(responseData, { abortEarly: false, allowUnknown: true });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -795,7 +795,7 @@ class Billing {
       error: res_error,
     } = BillingPlatformModel.SubscriptionLimit().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -874,7 +874,7 @@ class Billing {
       error: res_error,
     } = BillingPlatformModel.Invoice().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -947,7 +947,7 @@ class Billing {
       error: res_error,
     } = BillingPlatformModel.Invoices().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1023,7 +1023,7 @@ class Billing {
       error: res_error,
     } = BillingPlatformModel.SubscriptionStatus().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1104,7 +1104,7 @@ class Billing {
       error: res_error,
     } = BillingPlatformModel.EntitySubscription().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1183,7 +1183,7 @@ class Billing {
       error: res_error,
     } = BillingPlatformModel.Plan().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1262,7 +1262,7 @@ class Billing {
       error: res_error,
     } = BillingPlatformModel.SubscribePlanRes().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1341,7 +1341,7 @@ class Billing {
       error: res_error,
     } = BillingPlatformModel.SubscriptionCustomer().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

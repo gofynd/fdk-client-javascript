@@ -48,6 +48,11 @@ export = OrderPlatformValidator;
  * @property {OrderPlatformModel.RefundModeConfigRequestPayload} body
  */
 /**
+ * @typedef GenerateInvoiceIDParam
+ * @property {string} invoiceType - Mention the type of invoice id to generate
+ * @property {OrderPlatformModel.GenerateInvoiceIDRequest} body
+ */
+/**
  * @typedef GeneratePOSReceiptByOrderIdParam
  * @property {string} orderId
  * @property {string} [shipmentId]
@@ -310,6 +315,8 @@ declare class OrderPlatformValidator {
     static fetchCreditBalanceDetail(): FetchCreditBalanceDetailParam;
     /** @returns {FetchRefundModeConfigParam} */
     static fetchRefundModeConfig(): FetchRefundModeConfigParam;
+    /** @returns {GenerateInvoiceIDParam} */
+    static generateInvoiceID(): GenerateInvoiceIDParam;
     /** @returns {GeneratePOSReceiptByOrderIdParam} */
     static generatePOSReceiptByOrderId(): GeneratePOSReceiptByOrderIdParam;
     /** @returns {GetAllowedStateTransitionParam} */
@@ -378,7 +385,7 @@ declare class OrderPlatformValidator {
     static verifyMobileOTP(): VerifyMobileOTPParam;
 }
 declare namespace OrderPlatformValidator {
-    export { AttachOrderUserParam, CheckOrderStatusParam, Click2CallParam, CreateChannelConfigParam, CreateOrderParam, DispatchManifestParam, DownloadBulkActionTemplateParam, DownloadLanesReportParam, EInvoiceRetryParam, FetchCreditBalanceDetailParam, FetchRefundModeConfigParam, GeneratePOSReceiptByOrderIdParam, GetAllowedStateTransitionParam, GetAnnouncementsParam, GetBagByIdParam, GetBagsParam, GetBulkActionTemplateParam, GetBulkShipmentExcelFileParam, GetChannelConfigParam, GetLaneConfigParam, GetOrderByIdParam, GetOrdersParam, GetRoleBasedActionsParam, GetShipmentByIdParam, GetShipmentHistoryParam, GetShipmentReasonsParam, GetShipmentsParam, GetStateTransitionMapParam, GetfiltersParam, InvalidateShipmentCacheParam, OrderUpdateParam, PostShipmentHistoryParam, ProcessManifestParam, ReassignLocationParam, SendSmsNinjaParam, SendUserMobileOTPParam, TrackShipmentParam, UpdateAddressParam, UpdatePackagingDimensionsParam, UpdateShipmentLockParam, UpdateShipmentStatusParam, UpdateShipmentTrackingParam, UploadConsentParam, VerifyMobileOTPParam };
+    export { AttachOrderUserParam, CheckOrderStatusParam, Click2CallParam, CreateChannelConfigParam, CreateOrderParam, DispatchManifestParam, DownloadBulkActionTemplateParam, DownloadLanesReportParam, EInvoiceRetryParam, FetchCreditBalanceDetailParam, FetchRefundModeConfigParam, GenerateInvoiceIDParam, GeneratePOSReceiptByOrderIdParam, GetAllowedStateTransitionParam, GetAnnouncementsParam, GetBagByIdParam, GetBagsParam, GetBulkActionTemplateParam, GetBulkShipmentExcelFileParam, GetChannelConfigParam, GetLaneConfigParam, GetOrderByIdParam, GetOrdersParam, GetRoleBasedActionsParam, GetShipmentByIdParam, GetShipmentHistoryParam, GetShipmentReasonsParam, GetShipmentsParam, GetStateTransitionMapParam, GetfiltersParam, InvalidateShipmentCacheParam, OrderUpdateParam, PostShipmentHistoryParam, ProcessManifestParam, ReassignLocationParam, SendSmsNinjaParam, SendUserMobileOTPParam, TrackShipmentParam, UpdateAddressParam, UpdatePackagingDimensionsParam, UpdateShipmentLockParam, UpdateShipmentStatusParam, UpdateShipmentTrackingParam, UploadConsentParam, VerifyMobileOTPParam };
 }
 type AttachOrderUserParam = {
     body: OrderPlatformModel.AttachOrderUser;
@@ -434,6 +441,13 @@ type FetchCreditBalanceDetailParam = {
 };
 type FetchRefundModeConfigParam = {
     body: OrderPlatformModel.RefundModeConfigRequestPayload;
+};
+type GenerateInvoiceIDParam = {
+    /**
+     * - Mention the type of invoice id to generate
+     */
+    invoiceType: string;
+    body: OrderPlatformModel.GenerateInvoiceIDRequest;
 };
 type GeneratePOSReceiptByOrderIdParam = {
     orderId: string;

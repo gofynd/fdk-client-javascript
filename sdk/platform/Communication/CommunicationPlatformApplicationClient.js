@@ -76,7 +76,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.Audience().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -151,7 +151,7 @@ class Communication {
 
     const { error: res_error } = Joi.any().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -226,7 +226,7 @@ class Communication {
 
     const { error: res_error } = Joi.any().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -301,7 +301,7 @@ class Communication {
 
     const { error: res_error } = Joi.any().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -382,7 +382,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.Campaign().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -463,7 +463,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.EmailProvider().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -544,7 +544,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.EmailTemplate().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -623,7 +623,7 @@ class Communication {
 
     const { error: res_error } = Joi.any().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -704,7 +704,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.SmsTemplate().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -785,7 +785,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.GenericDelete().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -866,7 +866,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.GenericDelete().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -947,7 +947,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.GenericDelete().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1028,7 +1028,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.GenericDelete().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1109,7 +1109,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.GenericDelete().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1186,7 +1186,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.AppProvider().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1267,7 +1267,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.Audience().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1355,7 +1355,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.Audiences().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1467,7 +1467,7 @@ class Communication {
 
     const { error: res_error } = Joi.any().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1546,7 +1546,7 @@ class Communication {
 
     const { error: res_error } = Joi.any().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1627,7 +1627,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.Campaign().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1715,7 +1715,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.Campaigns().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1839,7 +1839,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.Logs().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1956,7 +1956,7 @@ class Communication {
 
     const { error: res_error } = Joi.array()
       .items(CommunicationPlatformModel.DefaultSmsProviders())
-      .validate(responseData, { abortEarly: false, allowUnknown: false });
+      .validate(responseData, { abortEarly: false, allowUnknown: true });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -2031,7 +2031,7 @@ class Communication {
 
     const { error: res_error } = Joi.array()
       .items(CommunicationPlatformModel.DummyDatasources())
-      .validate(responseData, { abortEarly: false, allowUnknown: false });
+      .validate(responseData, { abortEarly: false, allowUnknown: true });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -2112,7 +2112,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.DummyDatasourcesMeta().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -2193,7 +2193,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.EmailProvider().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2281,7 +2281,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.EmailProviders().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2400,7 +2400,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.EmailTemplate().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2488,7 +2488,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.EmailTemplates().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2615,7 +2615,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.EventSubscriptions().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2730,7 +2730,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.GlobalProviders().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2809,7 +2809,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.GlobalVariablesGetResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -2895,7 +2895,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.JobLogs().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3014,7 +3014,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.Jobs().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3128,7 +3128,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.GetNRecordsCsvRes().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3205,7 +3205,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.GetNRecordsCsvRes().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3284,7 +3284,7 @@ class Communication {
 
     const { error: res_error } = Joi.any().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3370,7 +3370,7 @@ class Communication {
 
     const { error: res_error } = Joi.any().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3451,7 +3451,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.SmsTemplate().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3539,7 +3539,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.SmsTemplates().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3653,7 +3653,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.GetStats().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3738,7 +3738,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.EmailTemplates().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3858,7 +3858,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.SmsTemplates().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3968,7 +3968,7 @@ class Communication {
 
     const { error: res_error } = Joi.any().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4046,7 +4046,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.SystemEmailTemplates().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -4122,7 +4122,7 @@ class Communication {
 
     const { error: res_error } = Joi.array()
       .items(CommunicationPlatformModel.SystemSmsTemplates())
-      .validate(responseData, { abortEarly: false, allowUnknown: false });
+      .validate(responseData, { abortEarly: false, allowUnknown: true });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -4204,7 +4204,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.GlobalVariablesPostResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -4285,7 +4285,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.EngineResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4366,7 +4366,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.EngineResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4445,7 +4445,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.SendOtpCommsRes().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4527,7 +4527,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.TriggerJobResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4608,7 +4608,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.AppProvider().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4691,7 +4691,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.Audience().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4774,7 +4774,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.Campaign().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4857,7 +4857,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.EmailProvider().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4940,7 +4940,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.EmailTemplate().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -5021,7 +5021,7 @@ class Communication {
 
     const { error: res_error } = Joi.any().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -5104,7 +5104,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.SmsTemplate().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -5185,7 +5185,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.VerifyOtpCommsSuccessRes().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {

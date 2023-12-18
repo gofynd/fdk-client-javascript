@@ -95,7 +95,7 @@ class Webhook {
       error: res_error,
     } = WebhookPublicModel.EventConfigResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -175,7 +175,7 @@ class Webhook {
       error: res_error,
     } = WebhookPublicModel.EventConfigResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

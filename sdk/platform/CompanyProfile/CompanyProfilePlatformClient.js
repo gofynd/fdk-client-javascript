@@ -74,7 +74,7 @@ class CompanyProfile {
       error: res_error,
     } = CompanyProfilePlatformModel.GetCompanyProfileSerializerResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -154,7 +154,7 @@ class CompanyProfile {
       error: res_error,
     } = CompanyProfilePlatformModel.ProfileSuccessResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -238,7 +238,7 @@ class CompanyProfile {
       error: res_error,
     } = CompanyProfilePlatformModel.ProfileSuccessResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -318,7 +318,7 @@ class CompanyProfile {
       error: res_error,
     } = CompanyProfilePlatformModel.ProfileSuccessResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -400,7 +400,7 @@ class CompanyProfile {
       error: res_error,
     } = CompanyProfilePlatformModel.ProfileSuccessResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -482,7 +482,7 @@ class CompanyProfile {
       error: res_error,
     } = CompanyProfilePlatformModel.ProfileSuccessResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -563,7 +563,7 @@ class CompanyProfile {
       error: res_error,
     } = CompanyProfilePlatformModel.GetBrandResponseSerializer().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -651,7 +651,7 @@ class CompanyProfile {
       error: res_error,
     } = CompanyProfilePlatformModel.CompanyBrandListSerializer().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -759,7 +759,7 @@ class CompanyProfile {
       error: res_error,
     } = CompanyProfilePlatformModel.MetricsSerializer().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -841,7 +841,7 @@ class CompanyProfile {
       error: res_error,
     } = CompanyProfilePlatformModel.GetLocationSerializer().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -920,7 +920,7 @@ class CompanyProfile {
       error: res_error,
     } = CompanyProfilePlatformModel.StoreTagsResponseSchema().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1018,7 +1018,7 @@ class CompanyProfile {
       error: res_error,
     } = CompanyProfilePlatformModel.LocationListSerializer().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1136,7 +1136,7 @@ class CompanyProfile {
       error: res_error,
     } = CompanyProfilePlatformModel.ProfileSuccessResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1218,7 +1218,7 @@ class CompanyProfile {
       error: res_error,
     } = CompanyProfilePlatformModel.ProfileSuccessResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {

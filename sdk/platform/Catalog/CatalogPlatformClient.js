@@ -80,7 +80,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -157,7 +157,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.GetAllSizes().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -234,7 +234,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.BulkHsnResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -315,7 +315,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -396,7 +396,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.BulkResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -477,7 +477,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.BulkResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -556,7 +556,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.CategoryCreateResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -636,7 +636,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.DepartmentCreateResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -715,7 +715,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.InventoryExportResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -796,7 +796,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.InventoryExportResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -879,7 +879,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.UpdatedResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -958,7 +958,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1039,7 +1039,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1120,7 +1120,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.GetProductBundleCreateResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1202,7 +1202,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.ProductDownloadsResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1283,7 +1283,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1362,7 +1362,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1443,7 +1443,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1526,7 +1526,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1605,7 +1605,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1684,7 +1684,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1769,7 +1769,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.InventoryUpdateResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1849,7 +1849,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.ProductSizeDeleteResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1931,7 +1931,7 @@ class Catalog {
 
     const { error: res_error } = Joi.string()
       .allow("")
-      .validate(responseData, { abortEarly: false, allowUnknown: false });
+      .validate(responseData, { abortEarly: false, allowUnknown: true });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -2017,7 +2017,7 @@ class Catalog {
 
     const { error: res_error } = Joi.string()
       .allow("")
-      .validate(responseData, { abortEarly: false, allowUnknown: false });
+      .validate(responseData, { abortEarly: false, allowUnknown: true });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -2095,7 +2095,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2175,7 +2175,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.InventoryConfig().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2266,7 +2266,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.HsnCodesListingResponseSchemaV2().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -2345,7 +2345,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.SingleCategoryResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2440,7 +2440,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.OptinCompanyBrandDetailsView().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -2515,7 +2515,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.OptinCompanyDetail().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2590,7 +2590,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.OptinCompanyMetrics().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2669,7 +2669,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.DepartmentsResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2748,7 +2748,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.GenderDetail().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2825,7 +2825,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.HsnCode().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2936,7 +2936,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.GetInventoriesResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3023,7 +3023,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.BulkInventoryGet().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3119,7 +3119,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.InventoryResponsePaginated().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -3226,7 +3226,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.InventorySellerIdentifierResponsePaginated().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -3301,7 +3301,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.InventoryExportJob().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3378,7 +3378,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.GetOptInPlatform().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3457,7 +3457,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.StoreAssignResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3540,7 +3540,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.SingleProductResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3625,7 +3625,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.BulkAssetResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3709,7 +3709,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.ProductAttributesResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -3797,7 +3797,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.ProductBulkRequestList().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3882,7 +3882,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.GetProductBundleListingResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -3964,7 +3964,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.GetProductBundleResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4054,7 +4054,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.ProductDownloadsResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4144,7 +4144,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.ProductListingResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4219,7 +4219,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.ProductTagsViewResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4294,7 +4294,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.ValidateProduct().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4408,7 +4408,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.ProductListingResponseV2().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4487,7 +4487,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.CrossSellingResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4564,7 +4564,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.HSNDataInsertV2().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4643,7 +4643,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.SizeGuideResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4737,7 +4737,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.ListSizeGuide().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4823,7 +4823,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.OptinStoreDetails().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4912,7 +4912,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.ProductVariantsResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -5006,7 +5006,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.CategoryResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -5103,7 +5103,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.DepartmentsResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -5178,7 +5178,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.HSNCodesResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -5269,7 +5269,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.InventoryExportJobListResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -5349,7 +5349,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.TemplatesResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -5438,7 +5438,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.ProdcutTemplateCategoriesResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -5518,7 +5518,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.ProductDownloadsResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -5607,7 +5607,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.ProductConfigurationDownloads().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -5688,7 +5688,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.CategoryUpdateResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -5769,7 +5769,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.DepartmentModel().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -5850,7 +5850,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.HsnCode().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -5929,7 +5929,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.InventoryUpdateResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -6012,7 +6012,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.GetProductBundleCreateResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -6097,7 +6097,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.InventoryUpdateResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -6178,7 +6178,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -6263,7 +6263,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.BulkResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -6351,7 +6351,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.TemplatesValidationResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -6436,7 +6436,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.InventoryValidationResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {

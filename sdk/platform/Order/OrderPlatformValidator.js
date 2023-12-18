@@ -62,6 +62,12 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
+ * @typedef GenerateInvoiceIDParam
+ * @property {string} invoiceType - Mention the type of invoice id to generate
+ * @property {OrderPlatformModel.GenerateInvoiceIDRequest} body
+ */
+
+/**
  * @typedef GeneratePOSReceiptByOrderIdParam
  * @property {string} orderId
  * @property {string} [shipmentId]
@@ -413,6 +419,14 @@ class OrderPlatformValidator {
   static fetchRefundModeConfig() {
     return Joi.object({
       body: OrderPlatformModel.RefundModeConfigRequestPayload().required(),
+    }).required();
+  }
+
+  /** @returns {GenerateInvoiceIDParam} */
+  static generateInvoiceID() {
+    return Joi.object({
+      invoiceType: Joi.string().allow("").required(),
+      body: OrderPlatformModel.GenerateInvoiceIDRequest().required(),
     }).required();
   }
 

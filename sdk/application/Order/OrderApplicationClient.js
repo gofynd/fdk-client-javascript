@@ -119,7 +119,7 @@ class Order {
       error: res_error,
     } = OrderApplicationModel.CustomerDetailsResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -200,7 +200,7 @@ class Order {
       error: res_error,
     } = OrderApplicationModel.ResponseGetInvoiceShipment().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -278,7 +278,7 @@ class Order {
       error: res_error,
     } = OrderApplicationModel.OrderById().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -368,7 +368,7 @@ class Order {
       error: res_error,
     } = OrderApplicationModel.OrderList().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -446,7 +446,7 @@ class Order {
       error: res_error,
     } = OrderApplicationModel.OrderById().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -526,7 +526,7 @@ class Order {
       error: res_error,
     } = OrderApplicationModel.ShipmentBagReasons().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -604,7 +604,7 @@ class Order {
       error: res_error,
     } = OrderApplicationModel.ShipmentById().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -682,7 +682,7 @@ class Order {
       error: res_error,
     } = OrderApplicationModel.ShipmentReasons().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -763,7 +763,7 @@ class Order {
       error: res_error,
     } = OrderApplicationModel.SendOtpToCustomerResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -841,7 +841,7 @@ class Order {
       error: res_error,
     } = OrderApplicationModel.ShipmentTrack().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -921,7 +921,7 @@ class Order {
       error: res_error,
     } = OrderApplicationModel.ShipmentApplicationStatusResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1001,7 +1001,7 @@ class Order {
       error: res_error,
     } = OrderApplicationModel.VerifyOtpResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

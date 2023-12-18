@@ -96,7 +96,7 @@ class Theme {
       error: res_error,
     } = ThemeApplicationModel.AllAvailablePageSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -174,7 +174,7 @@ class Theme {
       error: res_error,
     } = ThemeApplicationModel.ThemesSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -250,7 +250,7 @@ class Theme {
       error: res_error,
     } = ThemeApplicationModel.AvailablePageSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -328,7 +328,7 @@ class Theme {
       error: res_error,
     } = ThemeApplicationModel.ThemesSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

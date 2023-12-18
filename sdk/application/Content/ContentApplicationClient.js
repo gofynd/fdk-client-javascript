@@ -115,7 +115,7 @@ class Content {
       error: res_error,
     } = ContentApplicationModel.AnnouncementsResponseSchema().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -192,7 +192,7 @@ class Content {
       error: res_error,
     } = ContentApplicationModel.BlogSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -270,7 +270,7 @@ class Content {
       error: res_error,
     } = ContentApplicationModel.BlogGetResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -375,7 +375,7 @@ class Content {
       error: res_error,
     } = ContentApplicationModel.DataLoadersSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -453,7 +453,7 @@ class Content {
       error: res_error,
     } = ContentApplicationModel.FaqSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -532,7 +532,7 @@ class Content {
       error: res_error,
     } = ContentApplicationModel.GetFaqCategoriesSchema().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -613,7 +613,7 @@ class Content {
       error: res_error,
     } = ContentApplicationModel.GetFaqCategoryBySlugSchema().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -689,7 +689,7 @@ class Content {
       error: res_error,
     } = ContentApplicationModel.FaqResponseSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -769,7 +769,7 @@ class Content {
       error: res_error,
     } = ContentApplicationModel.GetFaqSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -847,7 +847,7 @@ class Content {
       error: res_error,
     } = ContentApplicationModel.LandingPageSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -927,7 +927,7 @@ class Content {
       error: res_error,
     } = ContentApplicationModel.ApplicationLegal().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1008,7 +1008,7 @@ class Content {
       error: res_error,
     } = ContentApplicationModel.NavigationGetResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1112,7 +1112,7 @@ class Content {
       error: res_error,
     } = ContentApplicationModel.PageSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1190,7 +1190,7 @@ class Content {
       error: res_error,
     } = ContentApplicationModel.PageGetResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1297,7 +1297,7 @@ class Content {
       error: res_error,
     } = ContentApplicationModel.SeoComponent().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1375,7 +1375,7 @@ class Content {
       error: res_error,
     } = ContentApplicationModel.SlideshowSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1455,7 +1455,7 @@ class Content {
       error: res_error,
     } = ContentApplicationModel.SlideshowGetResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1562,7 +1562,7 @@ class Content {
       error: res_error,
     } = ContentApplicationModel.Support().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1638,7 +1638,7 @@ class Content {
       error: res_error,
     } = ContentApplicationModel.TagsSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

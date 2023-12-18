@@ -76,7 +76,7 @@ class Serviceability {
       error: res_error,
     } = ServiceabilityPlatformModel.ZoneResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -152,7 +152,7 @@ class Serviceability {
       error: res_error,
     } = ServiceabilityPlatformModel.GetStoresViewResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -239,7 +239,7 @@ class Serviceability {
       error: res_error,
     } = ServiceabilityPlatformModel.CompanyStoreView_Response().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -340,7 +340,7 @@ class Serviceability {
       error: res_error,
     } = ServiceabilityPlatformModel.CompanyDpAccountListResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -418,7 +418,7 @@ class Serviceability {
       error: res_error,
     } = ServiceabilityPlatformModel.DPCompanyRuleResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -505,7 +505,7 @@ class Serviceability {
       error: res_error,
     } = ServiceabilityPlatformModel.DpMultipleRuleSuccessResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -585,7 +585,7 @@ class Serviceability {
       error: res_error,
     } = ServiceabilityPlatformModel.DpRuleSuccessResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -668,7 +668,7 @@ class Serviceability {
       error: res_error,
     } = ServiceabilityPlatformModel.EntityRegionView_Response().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -765,7 +765,7 @@ class Serviceability {
       error: res_error,
     } = ServiceabilityPlatformModel.ListViewResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -847,7 +847,7 @@ class Serviceability {
       error: res_error,
     } = ServiceabilityPlatformModel.ReAssignStoreResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -927,7 +927,7 @@ class Serviceability {
       error: res_error,
     } = ServiceabilityPlatformModel.GetStoresViewResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1010,7 +1010,7 @@ class Serviceability {
       error: res_error,
     } = ServiceabilityPlatformModel.GetSingleZoneDataViewResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1123,7 +1123,7 @@ class Serviceability {
       error: res_error,
     } = ServiceabilityPlatformModel.ListViewResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1206,7 +1206,7 @@ class Serviceability {
       error: res_error,
     } = ServiceabilityPlatformModel.DpRuleUpdateSuccessResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1294,7 +1294,7 @@ class Serviceability {
       error: res_error,
     } = ServiceabilityPlatformModel.ZoneSuccessResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1377,7 +1377,7 @@ class Serviceability {
       error: res_error,
     } = ServiceabilityPlatformModel.CompanyDpAccountResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1459,7 +1459,7 @@ class Serviceability {
       error: res_error,
     } = ServiceabilityPlatformModel.DPCompanyRuleResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1539,7 +1539,7 @@ class Serviceability {
       error: res_error,
     } = ServiceabilityPlatformModel.DpRuleSuccessResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {

@@ -21,6 +21,7 @@ Default
 * [eInvoiceRetry](#einvoiceretry)
 * [fetchCreditBalanceDetail](#fetchcreditbalancedetail)
 * [fetchRefundModeConfig](#fetchrefundmodeconfig)
+* [generateInvoiceID](#generateinvoiceid)
 * [generatePOSReceiptByOrderId](#generateposreceiptbyorderid)
 * [getAllowedStateTransition](#getallowedstatetransition)
 * [getAnnouncements](#getannouncements)
@@ -728,6 +729,76 @@ Refund mode config is returned based on input parameter
 
 ```json
 
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### generateInvoiceID
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.generateInvoiceID({  invoiceType : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.order.generateInvoiceID({  invoiceType : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| invoiceType | string | yes | mention the type of invoice id to generate |  
+| body | [GenerateInvoiceIDRequest](#GenerateInvoiceIDRequest) | yes | Request body |
+
+
+This API is used to manually generate Invoice ID against shipments.
+
+*Returned Response:*
+
+
+
+
+[GenerateInvoiceIDResponse](#GenerateInvoiceIDResponse)
+
+NOTE success response can contains success and failed result as well
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": {
+    "type": "array",
+    "items": [
+      {
+        "shipment_id": "16838049724111283577",
+        "success": true,
+        "invoice_id": "A0B1C2D3",
+        "error_message": null
+      }
+    ]
+  }
+}
 ```
 </details>
 
@@ -6681,6 +6752,57 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | fynd_order_id | [string]? |  yes  |  |
+ 
+
+---
+
+#### [GenerateInvoiceIDErrorResponse](#GenerateInvoiceIDErrorResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [GenerateInvoiceIDErrorResponseData](#GenerateInvoiceIDErrorResponseData)? |  yes  |  |
+ 
+
+---
+
+#### [GenerateInvoiceIDErrorResponseData](#GenerateInvoiceIDErrorResponseData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | error_message | string? |  yes  |  |
+ | invoice_id | boolean? |  yes  |  |
+ | shipment_id | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [GenerateInvoiceIDRequest](#GenerateInvoiceIDRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shipment_ids | [string] |  no  |  |
+ 
+
+---
+
+#### [GenerateInvoiceIDResponse](#GenerateInvoiceIDResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [GenerateInvoiceIDResponseData](#GenerateInvoiceIDResponseData)? |  yes  |  |
+ 
+
+---
+
+#### [GenerateInvoiceIDResponseData](#GenerateInvoiceIDResponseData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | error_message | boolean? |  yes  |  |
+ | invoice_id | string? |  yes  |  |
+ | shipment_id | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
  
 
 ---

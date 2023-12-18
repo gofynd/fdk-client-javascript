@@ -76,7 +76,7 @@ class AuditTrail {
       error: res_error,
     } = AuditTrailPlatformModel.CreateLogResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -155,7 +155,7 @@ class AuditTrail {
       error: res_error,
     } = AuditTrailPlatformModel.LogSchemaResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -241,7 +241,7 @@ class AuditTrail {
       error: res_error,
     } = AuditTrailPlatformModel.LogSchemaResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -316,7 +316,7 @@ class AuditTrail {
       error: res_error,
     } = AuditTrailPlatformModel.EntityTypesResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

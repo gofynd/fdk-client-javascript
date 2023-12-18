@@ -103,7 +103,7 @@ class Share {
       error: res_error,
     } = ShareApplicationModel.ShortLinkRes().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -181,7 +181,7 @@ class Share {
       error: res_error,
     } = ShareApplicationModel.QRCodeResp().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -261,7 +261,7 @@ class Share {
       error: res_error,
     } = ShareApplicationModel.QRCodeResp().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -342,7 +342,7 @@ class Share {
       error: res_error,
     } = ShareApplicationModel.ShortLinkRes().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -422,7 +422,7 @@ class Share {
       error: res_error,
     } = ShareApplicationModel.QRCodeResp().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -500,7 +500,7 @@ class Share {
       error: res_error,
     } = ShareApplicationModel.ShortLinkRes().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -579,7 +579,7 @@ class Share {
       error: res_error,
     } = ShareApplicationModel.QRCodeResp().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

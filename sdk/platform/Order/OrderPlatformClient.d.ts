@@ -118,6 +118,16 @@ declare class Order {
      */
     fetchRefundModeConfig({ body, requestHeaders }?: OrderPlatformValidator.FetchRefundModeConfigParam, { responseHeaders }?: object): Promise<OrderPlatformModel.RefundModeConfigResponsePayload>;
     /**
+     * @param {OrderPlatformValidator.GenerateInvoiceIDParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.GenerateInvoiceIDResponse>} - Success response
+     * @name generateInvoiceID
+     * @summary:
+     * @description: This API is used to manually generate Invoice ID against shipments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/generateInvoiceID/).
+     */
+    generateInvoiceID({ invoiceType, body, requestHeaders }?: OrderPlatformValidator.GenerateInvoiceIDParam, { responseHeaders }?: object): Promise<OrderPlatformModel.GenerateInvoiceIDResponse>;
+    /**
      * @param {OrderPlatformValidator.GeneratePOSReceiptByOrderIdParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options

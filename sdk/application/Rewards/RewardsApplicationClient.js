@@ -105,7 +105,7 @@ class Rewards {
       error: res_error,
     } = RewardsApplicationModel.CatalogueOrderResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -183,7 +183,7 @@ class Rewards {
       error: res_error,
     } = RewardsApplicationModel.Offer().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -262,7 +262,7 @@ class Rewards {
       error: res_error,
     } = RewardsApplicationModel.OrderDiscountResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -340,7 +340,7 @@ class Rewards {
       error: res_error,
     } = RewardsApplicationModel.PointsResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -423,7 +423,7 @@ class Rewards {
       error: res_error,
     } = RewardsApplicationModel.PointsHistoryResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -531,7 +531,7 @@ class Rewards {
       error: res_error,
     } = RewardsApplicationModel.ReferralDetailsResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -610,7 +610,7 @@ class Rewards {
       error: res_error,
     } = RewardsApplicationModel.RedeemReferralCodeResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {

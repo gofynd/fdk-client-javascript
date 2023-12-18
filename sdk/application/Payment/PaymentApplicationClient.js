@@ -165,7 +165,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.RefundAccountResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -248,7 +248,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.RefundAccountResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -328,7 +328,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.AttachCardsResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -407,7 +407,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.CancelPaymentLinkResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -486,7 +486,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.CardDetailsResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -570,7 +570,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.PaymentStatusUpdateResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -654,7 +654,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.PaymentStatusUpdateResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -733,7 +733,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.CheckCreditResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -816,7 +816,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.CreateOrderUserResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -895,7 +895,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.CreatePaymentLinkResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -978,7 +978,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.CustomerCreditSummaryResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1057,7 +1057,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.CustomerOnboardingResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1135,7 +1135,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.DeleteCardsResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1219,7 +1219,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.UpdateRefundTransferModeResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1302,7 +1302,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.ActiveCardPaymentGatewayResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1384,7 +1384,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.TransferModeResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1463,7 +1463,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.ListCardsResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1547,7 +1547,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.AggregatorsConfigDetailResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1630,7 +1630,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.EpaylaterBannerResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1714,7 +1714,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.OrderBeneficiaryResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1794,7 +1794,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.GetPaymentLinkResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1907,7 +1907,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.PaymentModeRouteResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1991,7 +1991,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.PaymentModeRouteResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -2108,7 +2108,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.PaymentModeRouteResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -2188,7 +2188,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.RupifiBannerResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2272,7 +2272,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.OrderBeneficiaryResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -2352,7 +2352,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.PaymentInitializationResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -2436,7 +2436,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.PaymentInitializationResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -2519,7 +2519,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.OutstandingOrderDetailsResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -2599,7 +2599,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.PaidOrderDetailsResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -2679,7 +2679,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.PollingPaymentLinkResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -2763,7 +2763,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.RedirectToAggregatorResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -2841,7 +2841,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.renderHTMLResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2923,7 +2923,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.ResendOrCancelPaymentResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -3002,7 +3002,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.ResendPaymentLinkResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -3085,7 +3085,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.SetDefaultBeneficiaryResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -3163,7 +3163,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.ValidateVPAResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3244,7 +3244,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.ChargeCustomerResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -3326,7 +3326,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.ValidateCustomerResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -3405,7 +3405,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.IfscCodeResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3489,7 +3489,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.AddBeneficiaryViaOtpVerificationResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -3571,7 +3571,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.WalletOtpResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
