@@ -1072,7 +1072,7 @@ const Joi = require("joi");
 
 /**
  * @typedef GenerateInvoiceIDErrorResponse
- * @property {GenerateInvoiceIDErrorResponseData} [items]
+ * @property {GenerateInvoiceIDErrorResponseData[]} [items]
  */
 
 /**
@@ -1090,7 +1090,7 @@ const Joi = require("joi");
 
 /**
  * @typedef GenerateInvoiceIDResponse
- * @property {GenerateInvoiceIDResponseData} [items]
+ * @property {GenerateInvoiceIDResponseData[]} [items]
  */
 
 /**
@@ -3977,15 +3977,17 @@ class OrderPlatformModel {
   /** @returns {GenerateInvoiceIDErrorResponse} */
   static GenerateInvoiceIDErrorResponse() {
     return Joi.object({
-      items: OrderPlatformModel.GenerateInvoiceIDErrorResponseData(),
+      items: Joi.array().items(
+        OrderPlatformModel.GenerateInvoiceIDErrorResponseData()
+      ),
     });
   }
 
   /** @returns {GenerateInvoiceIDErrorResponseData} */
   static GenerateInvoiceIDErrorResponseData() {
     return Joi.object({
-      error_message: Joi.string().allow(""),
-      invoice_id: Joi.boolean(),
+      error_message: Joi.string().allow("").allow(null),
+      invoice_id: Joi.boolean().allow(null),
       shipment_id: Joi.string().allow(""),
       success: Joi.boolean(),
     });
@@ -4001,15 +4003,17 @@ class OrderPlatformModel {
   /** @returns {GenerateInvoiceIDResponse} */
   static GenerateInvoiceIDResponse() {
     return Joi.object({
-      items: OrderPlatformModel.GenerateInvoiceIDResponseData(),
+      items: Joi.array().items(
+        OrderPlatformModel.GenerateInvoiceIDResponseData()
+      ),
     });
   }
 
   /** @returns {GenerateInvoiceIDResponseData} */
   static GenerateInvoiceIDResponseData() {
     return Joi.object({
-      error_message: Joi.boolean(),
-      invoice_id: Joi.string().allow(""),
+      error_message: Joi.boolean().allow(null),
+      invoice_id: Joi.string().allow("").allow(null),
       shipment_id: Joi.string().allow(""),
       success: Joi.boolean(),
     });

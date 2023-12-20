@@ -1,4 +1,4 @@
-# CHANGE LOG (1.3.11-beta.4) - v1.8.7-prerelease-v4
+# CHANGE LOG (1.3.11-beta.5) - v1.8.7-prerelease-v5
 
 ## Platform Client
 

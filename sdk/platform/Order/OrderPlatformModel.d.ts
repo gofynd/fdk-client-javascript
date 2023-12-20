@@ -964,7 +964,7 @@ export = OrderPlatformModel;
  */
 /**
  * @typedef GenerateInvoiceIDErrorResponse
- * @property {GenerateInvoiceIDErrorResponseData} [items]
+ * @property {GenerateInvoiceIDErrorResponseData[]} [items]
  */
 /**
  * @typedef GenerateInvoiceIDErrorResponseData
@@ -979,7 +979,7 @@ export = OrderPlatformModel;
  */
 /**
  * @typedef GenerateInvoiceIDResponse
- * @property {GenerateInvoiceIDResponseData} [items]
+ * @property {GenerateInvoiceIDResponseData[]} [items]
  */
 /**
  * @typedef GenerateInvoiceIDResponseData
@@ -3620,7 +3620,7 @@ type FyndOrderIdList = {
 /** @returns {GenerateInvoiceIDErrorResponse} */
 declare function GenerateInvoiceIDErrorResponse(): GenerateInvoiceIDErrorResponse;
 type GenerateInvoiceIDErrorResponse = {
-    items?: GenerateInvoiceIDErrorResponseData;
+    items?: GenerateInvoiceIDErrorResponseData[];
 };
 /** @returns {GenerateInvoiceIDErrorResponseData} */
 declare function GenerateInvoiceIDErrorResponseData(): GenerateInvoiceIDErrorResponseData;
@@ -3638,7 +3638,7 @@ type GenerateInvoiceIDRequest = {
 /** @returns {GenerateInvoiceIDResponse} */
 declare function GenerateInvoiceIDResponse(): GenerateInvoiceIDResponse;
 type GenerateInvoiceIDResponse = {
-    items?: GenerateInvoiceIDResponseData;
+    items?: GenerateInvoiceIDResponseData[];
 };
 /** @returns {GenerateInvoiceIDResponseData} */
 declare function GenerateInvoiceIDResponseData(): GenerateInvoiceIDResponseData;

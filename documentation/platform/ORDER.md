@@ -787,17 +787,14 @@ NOTE success response can contains success and failed result as well
 
 ```json
 {
-  "items": {
-    "type": "array",
-    "items": [
-      {
-        "shipment_id": "16838049724111283577",
-        "success": true,
-        "invoice_id": "A0B1C2D3",
-        "error_message": null
-      }
-    ]
-  }
+  "items": [
+    {
+      "shipment_id": "16838049724111283577",
+      "success": true,
+      "invoice_id": "A0B1C2D3",
+      "error_message": null
+    }
+  ]
 }
 ```
 </details>
@@ -6760,7 +6757,7 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [GenerateInvoiceIDErrorResponseData](#GenerateInvoiceIDErrorResponseData)? |  yes  |  |
+ | items | [[GenerateInvoiceIDErrorResponseData](#GenerateInvoiceIDErrorResponseData)]? |  yes  |  |
  
 
 ---
@@ -6790,7 +6787,7 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [GenerateInvoiceIDResponseData](#GenerateInvoiceIDResponseData)? |  yes  |  |
+ | items | [[GenerateInvoiceIDResponseData](#GenerateInvoiceIDResponseData)]? |  yes  |  |
  
 
 ---
