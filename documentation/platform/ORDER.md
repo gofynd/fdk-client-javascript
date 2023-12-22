@@ -8204,7 +8204,7 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | address | string? |  yes  |  |
- | brand_store_tags | [string]? |  yes  |  |
+ | brand_store_tags | string? |  yes  |  |
  | city | string? |  yes  |  |
  | code | string |  no  |  |
  | id | number |  no  |  |

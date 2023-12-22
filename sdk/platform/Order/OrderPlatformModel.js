@@ -2115,7 +2115,7 @@ const Joi = require("joi");
 /**
  * @typedef ShipmentItemFulFillingStore
  * @property {string} [address]
- * @property {string[]} [brand_store_tags]
+ * @property {string} [brand_store_tags]
  * @property {string} [city]
  * @property {string} code
  * @property {number} id
@@ -5247,7 +5247,7 @@ class OrderPlatformModel {
   static ShipmentItemFulFillingStore() {
     return Joi.object({
       address: Joi.string().allow("").allow(null),
-      brand_store_tags: Joi.array().items(Joi.string().allow("")),
+      brand_store_tags: Joi.string().allow("").allow(null),
       city: Joi.string().allow("").allow(null),
       code: Joi.string().allow("").required(),
       id: Joi.number().required(),

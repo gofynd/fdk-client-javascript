@@ -1,4 +1,4 @@
-# CHANGE LOG (1.3.11-beta.6) - v1.8.7-prerelease-v6
+# CHANGE LOG (1.3.11-beta.7) - v1.8.7-prerelease-v7
 
 ## Platform Client
 
@@ -6,6 +6,24 @@
 
 ### Order
 
+
+
+#### getShipments
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property `items[].fulfilling_store.brand_store_tags[]` of schema `ShipmentItemFulFillingStore` in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from `array` to `string` of property `items[].fulfilling_store.brand_store_tags` of schema `ShipmentItemFulFillingStore` in response with status code 200
+
+
+#### getApplicationShipments
+
+- ##### What's Deprecated
+	- [Breaking] [Deleted] property `items[].fulfilling_store.brand_store_tags[]` of schema `ShipmentItemFulFillingStore` in response with status code 200
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from `array` to `string` of property `items[].fulfilling_store.brand_store_tags` of schema `ShipmentItemFulFillingStore` in response with status code 200
 
 
 #### generateInvoiceID

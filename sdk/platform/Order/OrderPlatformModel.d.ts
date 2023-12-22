@@ -1904,7 +1904,7 @@ export = OrderPlatformModel;
 /**
  * @typedef ShipmentItemFulFillingStore
  * @property {string} [address]
- * @property {string[]} [brand_store_tags]
+ * @property {string} [brand_store_tags]
  * @property {string} [city]
  * @property {string} code
  * @property {number} id
@@ -4762,7 +4762,7 @@ type ShipmentItem = {
 declare function ShipmentItemFulFillingStore(): ShipmentItemFulFillingStore;
 type ShipmentItemFulFillingStore = {
     address?: string;
-    brand_store_tags?: string[];
+    brand_store_tags?: string;
     city?: string;
     code: string;
     id: number;
