@@ -49,28 +49,28 @@ class RetryManger {
     retryInfo.retryCount++;
 
     await (new Promise((resolve, reject) => {
-      retryInfo.retryTimer = setTimeout(resolve, this.getNextRetryMilliseconds(retryInfo.retryCount));
+      retryInfo.retryTimer = setTimeout(resolve, this._getNextRetrySeconds(retryInfo.retryCount));
     }))
 
-    return await this.makeRetry(uniqueKey);
+    return await this._makeRetry(uniqueKey);
   }
 
 
-  getNextRetryMilliseconds(retryCount) {
-    let nextRetryMilliseconds = 30 * 1000; // 30 seconds
+  _getNextRetrySeconds(retryCount) {
+    let nextRetrySeconds = 30 * 1000; // 30 seconds
 
     if (retryCount > 3) {
       const MAX_MINUTES_TO_WAIT = 3;
       const MINUTES_TO_WAIT = Math.min((retryCount - 3), MAX_MINUTES_TO_WAIT);
-      nextRetryMilliseconds = 1000 * 60 * MINUTES_TO_WAIT;
+      nextRetrySeconds = 1000 * 60 * MINUTES_TO_WAIT;
     }
 
-    return nextRetryMilliseconds;
+    return nextRetrySeconds;
   }
 
 
 
-  async makeRetry(uniqueKey) {
+  async _makeRetry(uniqueKey) {
 
     const retryInfo = this.retryInfoMap.get(uniqueKey);
 
@@ -104,6 +104,10 @@ class RetryManger {
     retryInfo.isRetry = false;
     retryInfo.isRetryInProgress = false;
     retryInfo.retryCount = 0;
+  }
+
+  isRetryInProgress(uniqueKey) {
+    return this.retryInfoMap.get(uniqueKey)? this.retryInfoMap.get(uniqueKey).isRetryInProgress: false;
   }
 }
 

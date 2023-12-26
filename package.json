@@ -56,7 +56,7 @@
   },
   "name": "fdk-extension-javascript",
   "description": "FDK Extension Helper Library",
-  "version": "0.6.0-beta.3",
+  "version": "0.6.0",
   "main": "index.js",
   "directories": {
     "example": "examples"

@@ -7,14 +7,13 @@ const { FdkWebhookProcessError, FdkWebhookHandlerNotFound, FdkWebhookRegistratio
 const logger = require("./logger");
 const { RetryManger } = require("./retry_manager");
 
-let retryManager = new RetryManger();
-
 let eventConfig = {}
 class WebhookRegistry {
-    constructor() {
+    constructor(retryManager) {
         this._handlerMap = null;
         this._config = null;
         this._fdkConfig = null;
+        this._retryManager = retryManager;
     }
 
     async initialize(config, fdkConfig) {
@@ -322,9 +321,9 @@ class WebhookRegistry {
     async registerSubscriberConfig(platformClient, subscriberConfig) {
         const uniqueKey = `registerSubscriberToEvent_${platformClient.config.companyId}_${this._fdkConfig.api_key}`;
 
-        const retryInfo = retryManager.retryInfoMap.get(uniqueKey);
+        const retryInfo = this._retryManager.retryInfoMap.get(uniqueKey);
         if (retryInfo && !retryInfo.isRetry) {
-            retryManager.resetRetryState(uniqueKey);
+            this._retryManager.resetRetryState(uniqueKey);
         }
 
         try {
@@ -332,9 +331,9 @@ class WebhookRegistry {
         } catch(err) {
             if (
                 RetryManger.shouldRetryOnError(err)
-                && !retryManager.retryInfoMap.get(uniqueKey)?.isRetryInProgress
+                && !this._retryManager.isRetryInProgress(uniqueKey)
             ) {
-                return await retryManager.retry(
+                return await this._retryManager.retry(
                     uniqueKey, 
                     this.registerSubscriberConfig.bind(this), 
                     platformClient, 
@@ -348,9 +347,9 @@ class WebhookRegistry {
     async updateSubscriberConfig(platformClient, subscriberConfig) {
         const uniqueKey = `updateSubscriberConfig_${platformClient.config.companyId}_${this._fdkConfig.api_key}`;
 
-        const retryInfo = retryManager.retryInfoMap.get(uniqueKey);
+        const retryInfo = this._retryManager.retryInfoMap.get(uniqueKey);
         if (retryInfo && !retryInfo.isRetry) {
-            retryManager.resetRetryState(uniqueKey);
+            this._retryManager.resetRetryState(uniqueKey);
         }
 
         try {
@@ -358,9 +357,9 @@ class WebhookRegistry {
         } catch(err) {
             if (
                 RetryManger.shouldRetryOnError(err)
-                && !retryManager.retryInfoMap.get(uniqueKey)?.isRetryInProgress
+                && !this._retryManager.isRetryInProgress(uniqueKey)
             ) {
-                return await retryManager.retry(
+                return await this._retryManager.retry(
                     uniqueKey, 
                     this.updateSubscriberConfig.bind(this),
                     platformClient, 
@@ -374,9 +373,9 @@ class WebhookRegistry {
     async getSubscriberConfig(platformClient) {
         const uniqueKey = `getSubscribersByExtensionId_${platformClient.config.companyId}_${this._fdkConfig.api_key}`;
 
-        const retryInfo = retryManager.retryInfoMap.get(uniqueKey);
+        const retryInfo = this._retryManager.retryInfoMap.get(uniqueKey);
         if (retryInfo && !retryInfo.isRetry) {
-            retryManager.resetRetryState(uniqueKey);
+            this._retryManager.resetRetryState(uniqueKey);
         }
 
         try {
@@ -386,9 +385,9 @@ class WebhookRegistry {
         catch(err){
             if (
                 RetryManger.shouldRetryOnError(err)
-                && !retryManager.retryInfoMap.get(uniqueKey)?.isRetryInProgress
+                && !this._retryManager.isRetryInProgress(uniqueKey)
             ) {
-                return await retryManager.retry(
+                return await this._retryManager.retry(
                     uniqueKey, 
                     this.getSubscriberConfig.bind(this), 
                     platformClient
@@ -402,10 +401,10 @@ class WebhookRegistry {
         let url = `${this._fdkConfig.cluster}/service/common/webhook/v1.0/events/query-event-details`;
         const uniqueKey = `${url}_${this._fdkConfig.api_key}`;
 
-        const retryInfo = retryManager.retryInfoMap.get(uniqueKey);
+        const retryInfo = this._retryManager.retryInfoMap.get(uniqueKey);
 
         if (retryInfo && !retryInfo.isRetry) {
-            retryManager.resetRetryState(uniqueKey);
+            this._retryManager.resetRetryState(uniqueKey);
         }
 
         try {
@@ -440,9 +439,9 @@ class WebhookRegistry {
 
             if (
                 RetryManger.shouldRetryOnError(err)
-                && !retryManager.retryInfoMap.get(uniqueKey)?.isRetryInProgress
+                && !this._retryManager.isRetryInProgress(uniqueKey)
             ) {
-                return await retryManager.retry(uniqueKey, this.getEventConfig.bind(this), handlerConfig);
+                return await this._retryManager.retry(uniqueKey, this.getEventConfig.bind(this), handlerConfig);
             }
 
             throw new FdkInvalidWebhookConfig(`Error while fetching webhook events configuration, Reason: ${err.message}`)

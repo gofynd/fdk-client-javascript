@@ -20,7 +20,7 @@ class Extension {
         this.cluster = "https://api.fynd.com";
         this.webhookRegistry = null;
         this._isInitialized = false;
-        this.retryManager = new RetryManger();
+        this._retryManager = new RetryManger();
     }
 
     async initialize(data) {
@@ -57,7 +57,7 @@ class Extension {
             }
             this.cluster = data.cluster;
         }
-        this.webhookRegistry = new WebhookRegistry();
+        this.webhookRegistry = new WebhookRegistry(this._retryManager);
 
         await this.getExtensionDetails();
 
@@ -151,9 +151,9 @@ class Extension {
         let url = `${this.cluster}/service/panel/partners/v1.0/extensions/details/${this.api_key}`;
         const uniqueKey = `${url}`;
 
-        const retryInfo = this.retryManager.retryInfoMap.get(uniqueKey);
+        const retryInfo = this._retryManager.retryInfoMap.get(uniqueKey);
         if (retryInfo && !retryInfo.isRetry) {
-            this.retryManager.resetRetryState(uniqueKey);
+            this._retryManager.resetRetryState(uniqueKey);
         }
 
         try {
@@ -177,10 +177,10 @@ class Extension {
 
             if (
                 RetryManger.shouldRetryOnError(err) 
-                && !this.retryManager.retryInfoMap.get(uniqueKey)?.isRetryInProgress
+                && !this._retryManager.isRetryInProgress(uniqueKey)
             ) { 
                 logger.debug(`API call failed. Starting retry for ${uniqueKey}`)
-                return await this.retryManager.retry(uniqueKey, this.getExtensionDetails.bind(this));
+                return await this._retryManager.retry(uniqueKey, this.getExtensionDetails.bind(this));
             }
 
             throw new FdkInvalidExtensionConfig("Invalid api_key or api_secret. Reason:" + err.message);
