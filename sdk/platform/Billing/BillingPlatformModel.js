@@ -74,6 +74,12 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef Details
+ * @property {Features[]} [features]
+ * @property {FeeComponents[]} [fee_components]
+ */
+
+/**
  * @typedef EntityChargePrice
  * @property {number} amount - Amount for price. Minimum value 1
  * @property {string} currency_code
@@ -82,6 +88,14 @@ const Joi = require("joi");
 /**
  * @typedef EntityChargeRecurring
  * @property {string} interval
+ */
+
+/**
+ * @typedef EntityResponse
+ * @property {Details[]} [items]
+ * @property {number} [page]
+ * @property {number} [page_size]
+ * @property {boolean} [success]
  */
 
 /**
@@ -96,6 +110,27 @@ const Joi = require("joi");
  * @property {string} [status]
  * @property {number} [trial_days]
  * @property {SubscriptionTrialPeriod} [trial_period]
+ */
+
+/**
+ * @typedef Features
+ * @property {string} [description]
+ * @property {string} [display_text]
+ * @property {boolean} [enabled]
+ * @property {string} [group]
+ * @property {string} [name]
+ * @property {string} [slug]
+ */
+
+/**
+ * @typedef FeeComponents
+ * @property {string[]} [brand]
+ * @property {string} [business_lead]
+ * @property {Object[]} [channel]
+ * @property {Object[]} [components]
+ * @property {string[]} [location]
+ * @property {Object} [settle_cycle_period]
+ * @property {string} [settlement_type]
  */
 
 /**
@@ -650,6 +685,14 @@ class BillingPlatformModel {
     });
   }
 
+  /** @returns {Details} */
+  static Details() {
+    return Joi.object({
+      features: Joi.array().items(BillingPlatformModel.Features()),
+      fee_components: Joi.array().items(BillingPlatformModel.FeeComponents()),
+    });
+  }
+
   /** @returns {EntityChargePrice} */
   static EntityChargePrice() {
     return Joi.object({
@@ -662,6 +705,16 @@ class BillingPlatformModel {
   static EntityChargeRecurring() {
     return Joi.object({
       interval: Joi.string().allow("").required(),
+    });
+  }
+
+  /** @returns {EntityResponse} */
+  static EntityResponse() {
+    return Joi.object({
+      items: Joi.array().items(BillingPlatformModel.Details()),
+      page: Joi.number(),
+      page_size: Joi.number(),
+      success: Joi.boolean(),
     });
   }
 
@@ -678,6 +731,31 @@ class BillingPlatformModel {
       status: Joi.string().allow(""),
       trial_days: Joi.number(),
       trial_period: BillingPlatformModel.SubscriptionTrialPeriod(),
+    });
+  }
+
+  /** @returns {Features} */
+  static Features() {
+    return Joi.object({
+      description: Joi.string().allow(""),
+      display_text: Joi.string().allow(""),
+      enabled: Joi.boolean(),
+      group: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {FeeComponents} */
+  static FeeComponents() {
+    return Joi.object({
+      brand: Joi.array().items(Joi.string().allow("")),
+      business_lead: Joi.string().allow(""),
+      channel: Joi.array().items(Joi.any()),
+      components: Joi.array().items(Joi.any()),
+      location: Joi.array().items(Joi.string().allow("")),
+      settle_cycle_period: Joi.any(),
+      settlement_type: Joi.string().allow(""),
     });
   }
 

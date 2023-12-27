@@ -141,6 +141,7 @@ const Joi = require("joi");
  * @typedef DummyTemplateData
  * @property {number} [__v]
  * @property {string} [_id]
+ * @property {string} [country_code]
  * @property {DummyTemplateDataPayload} payload
  * @property {number} [pdf_type_id]
  */
@@ -169,7 +170,7 @@ const Joi = require("joi");
  * @property {string} [disclaimer]
  * @property {Image} [image]
  * @property {InvoiceDetail} [invoice_detail]
- * @property {boolean} [is_international]
+ * @property {boolean} [is_export]
  * @property {boolean} [is_self_pickup]
  * @property {boolean} [is_self_ship]
  * @property {Meta} [meta]
@@ -188,6 +189,11 @@ const Joi = require("joi");
  * @property {string} [uid]
  * @property {string} [upi_qrcode]
  * @property {Object[]} [waybills]
+ */
+
+/**
+ * @typedef ExtensionSlug
+ * @property {string} [extension_slug]
  */
 
 /**
@@ -229,7 +235,7 @@ const Joi = require("joi");
  * @typedef InvoiceTypesDataResponse
  * @property {number} __v
  * @property {string} _id
- * @property {string} [country_code]
+ * @property {string} country_code
  * @property {string[]} format
  * @property {string} name
  * @property {number} pdf_type_id
@@ -752,6 +758,7 @@ class FileStoragePlatformModel {
     return Joi.object({
       __v: Joi.number(),
       _id: Joi.string().allow(""),
+      country_code: Joi.string().allow(""),
       payload: FileStoragePlatformModel.DummyTemplateDataPayload().required(),
       pdf_type_id: Joi.number(),
     });
@@ -786,7 +793,7 @@ class FileStoragePlatformModel {
       disclaimer: Joi.string().allow(""),
       image: FileStoragePlatformModel.Image(),
       invoice_detail: FileStoragePlatformModel.InvoiceDetail(),
-      is_international: Joi.boolean(),
+      is_export: Joi.boolean(),
       is_self_pickup: Joi.boolean(),
       is_self_ship: Joi.boolean(),
       meta: FileStoragePlatformModel.Meta(),
@@ -805,6 +812,13 @@ class FileStoragePlatformModel {
       uid: Joi.string().allow(""),
       upi_qrcode: Joi.string().allow(""),
       waybills: Joi.array().items(Joi.any()),
+    });
+  }
+
+  /** @returns {ExtensionSlug} */
+  static ExtensionSlug() {
+    return Joi.object({
+      extension_slug: Joi.string().allow(""),
     });
   }
 
@@ -858,7 +872,7 @@ class FileStoragePlatformModel {
     return Joi.object({
       __v: Joi.number().required(),
       _id: Joi.string().allow("").required(),
-      country_code: Joi.string().allow(""),
+      country_code: Joi.string().allow("").required(),
       format: Joi.array().items(Joi.string().allow("")).required(),
       name: Joi.string().allow("").required(),
       pdf_type_id: Joi.number().required(),

@@ -9,9 +9,12 @@ const Joi = require("joi");
 
 /**
  * @typedef AppCurrencyResponse
+ * @property {string} [_id]
  * @property {string} [application] - Alphanumeric ID allotted to an application
  *   (sales channel website) created within a business account
+ * @property {string} [created_at]
  * @property {DefaultCurrency} [default_currency]
+ * @property {string} [modified_at]
  * @property {Currency[]} [supported_currency]
  */
 
@@ -27,13 +30,13 @@ const Joi = require("joi");
  *   the features were configured
  * @property {HomePageFeature} [home_page]
  * @property {LandingPageFeature} [landing_page]
+ * @property {string} [modified_at] - ISO 8601 timestamp of last known
+ *   modifications to the sales channel feature configuration
  * @property {OrderFeature} [order]
  * @property {PcrFeature} [pcr]
  * @property {ProductDetailFeature} [product_detail]
  * @property {QrFeature} [qr]
  * @property {RegistrationPageFeature} [registration_page]
- * @property {string} [updated_at] - ISO 8601 timestamp of last known
- *   modifications to the sales channel feature configuration
  */
 
 /**
@@ -68,21 +71,23 @@ const Joi = require("joi");
  * @property {SecureUrl} [logo]
  * @property {ApplicationMeta[]} [meta]
  * @property {SecureUrl} [mobile_logo]
+ * @property {string} [mode]
+ * @property {string} [modified_at] - ISO 8601 timestamp of sales channel updation
  * @property {string} [name] - Name of the sales channel, e.g. Zenz Fashion
  * @property {string} [owner] - The unique identifier (24-digit Mongo Object ID)
  *   of owner who owns the application
  * @property {ApplicationRedirections[]} [redirections]
+ * @property {string} [slug]
+ * @property {string} [status]
  * @property {string} [token] - Random generated fix length string for sales
  *   channel. It is required and auto-generated.
- * @property {string} [updated_at] - ISO 8601 timestamp of sales channel updation
+ * @property {TokenSchema[]} [tokens]
  * @property {ApplicationWebsite} [website]
  */
 
 /**
  * @typedef ApplicationAboutResponse
  * @property {ApplicationInfo} [application_info]
- * @property {CompanyInfo} [company_info]
- * @property {OwnerInfo} [owner_info]
  */
 
 /**
@@ -100,6 +105,7 @@ const Joi = require("joi");
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   for the sales channel details
  * @property {SecureUrl} [banner]
+ * @property {number} [company_id]
  * @property {string} [description] - It gives a detailed information about the
  *   sales channel. It is required.
  * @property {Domain} [domain]
@@ -108,6 +114,7 @@ const Joi = require("joi");
  * @property {SecureUrl} [logo]
  * @property {SecureUrl} [mobile_logo]
  * @property {string} name - Name of the sales channel. It is required.
+ * @property {string} [slug]
  */
 
 /**
@@ -115,21 +122,29 @@ const Joi = require("joi");
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   of application information
  * @property {SecureUrl} [banner]
+ * @property {CompanyInfo} [company_info]
  * @property {ApplicationCors} [cors]
  * @property {string} [created_at] - ISO 8601 timestamp of sales channel
  *   information creation
  * @property {string} [description] - It contains details information about the
  *   sales channel
  * @property {Domain} [domain]
+ * @property {Domain[]} [domains]
+ * @property {SecureUrl} [favicon]
  * @property {boolean} [is_active] - Indicates whether sales channel is active
  *   or not active
  * @property {SecureUrl} [logo]
- * @property {ApplicationMeta} [meta]
+ * @property {ApplicationMeta[]} [meta]
+ * @property {SecureUrl} [mobile_logo]
+ * @property {string} [mode]
  * @property {string} [name] - Name of the sales channel, e.g. Zenz Fashion
+ * @property {OwnerInfo} [owner_info]
  * @property {string} [secret] - Random generated fix length string for sales
  *   channel. It is required and auto-generated.
+ * @property {string} [slug]
  * @property {string} [token] - Random generated fix length string for sales
  *   channel. It is required and auto-generated.
+ * @property {TokenSchema[]} [tokens]
  * @property {ApplicationWebsite} [website]
  */
 
@@ -141,16 +156,16 @@ const Joi = require("joi");
  * @property {InformationAddress} [address]
  * @property {string} [application] - Alphanumeric ID allotted to a sales
  *   channel application created within a business account
- * @property {BusinessHighlights} [business_highlights]
+ * @property {BusinessHighlights[]} [business_highlights]
  * @property {string} [copyright_text] - Copyright statement usually seen at the
  *   site's footer
  * @property {string} [created_at] - ISO 8601 timestamp of creation of the
  *   application information
- * @property {Links} [links]
+ * @property {Links[]} [links]
+ * @property {string} [modified_at] - ISO 8601 timestamp of updation of the
+ *   application information
  * @property {SocialLinks} [social_links]
  * @property {InformationSupport} [support]
- * @property {string} [updated_at] - ISO 8601 timestamp of updation of the
- *   application information
  */
 
 /**
@@ -213,8 +228,8 @@ const Joi = require("joi");
  * @property {string} [application] - Alphanumeric ID allotted to the current
  *   application created within the current business account
  * @property {string} [created_at] - ISO 8601 timestamp of token creation
+ * @property {string} [modified_at] - ISO 8601 timestamp of token updation
  * @property {Tokens} [tokens]
- * @property {string} [updated_at] - ISO 8601 timestamp of token updation
  */
 
 /**
@@ -254,6 +269,8 @@ const Joi = require("joi");
  * @property {CurrencyFeature} [currency]
  * @property {DeploymentStoreSelectionFeature} [deployment_store_selection]
  * @property {FeedbackFeature} [feedback]
+ * @property {InternationalShipping} [international_shipping]
+ * @property {ListingPageFeature} [listing_page]
  * @property {ListingPriceFeature} [listing_price]
  * @property {RevenueEngineFeature} [revenue_engine]
  * @property {RewardPointsConfig} [reward_points]
@@ -324,6 +341,8 @@ const Joi = require("joi");
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   of the current sales channel supported currency
  * @property {string} [code] - 3-character currency code, e.g. INR, USD, EUR.
+ * @property {string} [country_code]
+ * @property {string} [country_name]
  * @property {string} [created_at] - ISO 8601 timestamp of sales channel support
  *   currency creation
  * @property {number} [decimal_digits] - Acceptable decimal limits for a given
@@ -331,10 +350,10 @@ const Joi = require("joi");
  *   value of a currency.
  * @property {boolean} [is_active] - Shows currency is enabled or not in current
  *   sales channel
+ * @property {string} [modified_at] - ISO 8601 timestamp of sales channel
+ *   support currency updation
  * @property {string} [name] - Name of the currency, e.g Indian Rupee
  * @property {string} [symbol] - Unique symbol for identifying the currency, e.g. ₹
- * @property {string} [updated_at] - ISO 8601 timestamp of sales channel support
- *   currency updation
  */
 
 /**
@@ -470,9 +489,15 @@ const Joi = require("joi");
  * @property {string[]} [address_line] - Contact address of the sales channel
  * @property {string} [city] - Name of the city, e.g. Mumbai
  * @property {string} [country] - Name of the country, e.g. India
- * @property {string} [loc] - Co-ordinates of the location
- * @property {InformationPhone} [phone]
+ * @property {InformationLoc} [loc]
+ * @property {InformationPhone[]} [phone]
  * @property {number} [pincode] - 6-digit PIN Code of the city, e.g. 400001
+ */
+
+/**
+ * @typedef InformationLoc
+ * @property {number[]} [coordinates] - 10-digit mobile number
+ * @property {string} [type] - Country code for contact number, e.g. +91 (for India)
  */
 
 /**
@@ -483,9 +508,22 @@ const Joi = require("joi");
 
 /**
  * @typedef InformationSupport
- * @property {string[]} [email]
- * @property {string[]} [phone]
+ * @property {InformationSupportEmail[]} [email]
+ * @property {InformationSupportPhone[]} [phone]
  * @property {string} [timing] - Working hours of support team, e.g. 9 AM to 9 PM
+ */
+
+/**
+ * @typedef InformationSupportEmail
+ * @property {string} [key]
+ * @property {string} [value] - Value of email.
+ */
+
+/**
+ * @typedef InformationSupportPhone
+ * @property {string} [code] - Country code for contact number, e.g. +91 (for India)
+ * @property {string} [key]
+ * @property {string} [number] - 10-digit mobile number
  */
 
 /**
@@ -493,6 +531,16 @@ const Joi = require("joi");
  * @property {string} [icon] - Hosted URL of social icon image shown on the website
  * @property {string} [link] - Web URL of brand's Instagram page
  * @property {string} [title] - Name of the social media platform, e.g. Instagram
+ */
+
+/**
+ * @typedef InternationalShipping
+ * @property {boolean} [enabled] - International shipping is enabled or not.
+ */
+
+/**
+ * @typedef InvalidPayloadRequest
+ * @property {string} [message] - Error message when request body payload is improper
  */
 
 /**
@@ -537,6 +585,11 @@ const Joi = require("joi");
  * @typedef Links
  * @property {string} [link] - Web URL for redirecting to a related page
  * @property {string} [title] - Name of the related page or link
+ */
+
+/**
+ * @typedef ListingPageFeature
+ * @property {string} [sort_on]
  */
 
 /**
@@ -775,6 +828,13 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef TokenSchema
+ * @property {string} [created_at] - ISO 8601 timestamp of when token created
+ * @property {Object} [created_by]
+ * @property {string} [token]
+ */
+
+/**
  * @typedef TwitterLink
  * @property {string} [icon] - Hosted URL of social icon image shown on the website
  * @property {string} [link] - Web URL of brand's Twitter account
@@ -833,8 +893,11 @@ class ConfigurationApplicationModel {
   /** @returns {AppCurrencyResponse} */
   static AppCurrencyResponse() {
     return Joi.object({
+      _id: Joi.string().allow(""),
       application: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
       default_currency: ConfigurationApplicationModel.DefaultCurrency(),
+      modified_at: Joi.string().allow(""),
       supported_currency: Joi.array().items(
         ConfigurationApplicationModel.Currency()
       ),
@@ -852,12 +915,12 @@ class ConfigurationApplicationModel {
       created_at: Joi.string().allow(""),
       home_page: ConfigurationApplicationModel.HomePageFeature(),
       landing_page: ConfigurationApplicationModel.LandingPageFeature(),
+      modified_at: Joi.string().allow(""),
       order: ConfigurationApplicationModel.OrderFeature(),
       pcr: ConfigurationApplicationModel.PcrFeature(),
       product_detail: ConfigurationApplicationModel.ProductDetailFeature(),
       qr: ConfigurationApplicationModel.QrFeature(),
       registration_page: ConfigurationApplicationModel.RegistrationPageFeature(),
-      updated_at: Joi.string().allow(""),
     });
   }
 
@@ -890,13 +953,17 @@ class ConfigurationApplicationModel {
       logo: ConfigurationApplicationModel.SecureUrl(),
       meta: Joi.array().items(ConfigurationApplicationModel.ApplicationMeta()),
       mobile_logo: ConfigurationApplicationModel.SecureUrl(),
+      mode: Joi.string().allow(""),
+      modified_at: Joi.string().allow(""),
       name: Joi.string().allow(""),
       owner: Joi.string().allow(""),
       redirections: Joi.array().items(
         ConfigurationApplicationModel.ApplicationRedirections()
       ),
+      slug: Joi.string().allow(""),
+      status: Joi.string().allow(""),
       token: Joi.string().allow(""),
-      updated_at: Joi.string().allow(""),
+      tokens: Joi.array().items(ConfigurationApplicationModel.TokenSchema()),
       website: ConfigurationApplicationModel.ApplicationWebsite(),
     });
   }
@@ -905,8 +972,6 @@ class ConfigurationApplicationModel {
   static ApplicationAboutResponse() {
     return Joi.object({
       application_info: ConfigurationApplicationModel.ApplicationInfo(),
-      company_info: ConfigurationApplicationModel.CompanyInfo(),
-      owner_info: ConfigurationApplicationModel.OwnerInfo(),
     });
   }
 
@@ -929,6 +994,7 @@ class ConfigurationApplicationModel {
     return Joi.object({
       _id: Joi.string().allow(""),
       banner: ConfigurationApplicationModel.SecureUrl(),
+      company_id: Joi.number(),
       description: Joi.string().allow(""),
       domain: ConfigurationApplicationModel.Domain(),
       domains: Joi.array().items(ConfigurationApplicationModel.Domain()),
@@ -936,6 +1002,7 @@ class ConfigurationApplicationModel {
       logo: ConfigurationApplicationModel.SecureUrl(),
       mobile_logo: ConfigurationApplicationModel.SecureUrl(),
       name: Joi.string().allow("").required(),
+      slug: Joi.string().allow(""),
     });
   }
 
@@ -944,16 +1011,24 @@ class ConfigurationApplicationModel {
     return Joi.object({
       _id: Joi.string().allow(""),
       banner: ConfigurationApplicationModel.SecureUrl(),
+      company_info: ConfigurationApplicationModel.CompanyInfo(),
       cors: ConfigurationApplicationModel.ApplicationCors(),
       created_at: Joi.string().allow(""),
       description: Joi.string().allow(""),
       domain: ConfigurationApplicationModel.Domain(),
+      domains: Joi.array().items(ConfigurationApplicationModel.Domain()),
+      favicon: ConfigurationApplicationModel.SecureUrl(),
       is_active: Joi.boolean(),
       logo: ConfigurationApplicationModel.SecureUrl(),
-      meta: ConfigurationApplicationModel.ApplicationMeta(),
+      meta: Joi.array().items(ConfigurationApplicationModel.ApplicationMeta()),
+      mobile_logo: ConfigurationApplicationModel.SecureUrl(),
+      mode: Joi.string().allow(""),
       name: Joi.string().allow(""),
+      owner_info: ConfigurationApplicationModel.OwnerInfo(),
       secret: Joi.string().allow(""),
+      slug: Joi.string().allow(""),
       token: Joi.string().allow(""),
+      tokens: Joi.array().items(ConfigurationApplicationModel.TokenSchema()),
       website: ConfigurationApplicationModel.ApplicationWebsite(),
     });
   }
@@ -965,13 +1040,15 @@ class ConfigurationApplicationModel {
       _id: Joi.string().allow(""),
       address: ConfigurationApplicationModel.InformationAddress(),
       application: Joi.string().allow(""),
-      business_highlights: ConfigurationApplicationModel.BusinessHighlights(),
+      business_highlights: Joi.array().items(
+        ConfigurationApplicationModel.BusinessHighlights()
+      ),
       copyright_text: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
-      links: ConfigurationApplicationModel.Links(),
+      links: Joi.array().items(ConfigurationApplicationModel.Links()),
+      modified_at: Joi.string().allow(""),
       social_links: ConfigurationApplicationModel.SocialLinks(),
       support: ConfigurationApplicationModel.InformationSupport(),
-      updated_at: Joi.string().allow(""),
     });
   }
 
@@ -1038,8 +1115,8 @@ class ConfigurationApplicationModel {
       _id: Joi.string().allow(""),
       application: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
+      modified_at: Joi.string().allow(""),
       tokens: ConfigurationApplicationModel.Tokens(),
-      updated_at: Joi.string().allow(""),
     });
   }
 
@@ -1081,6 +1158,8 @@ class ConfigurationApplicationModel {
       currency: ConfigurationApplicationModel.CurrencyFeature(),
       deployment_store_selection: ConfigurationApplicationModel.DeploymentStoreSelectionFeature(),
       feedback: ConfigurationApplicationModel.FeedbackFeature(),
+      international_shipping: ConfigurationApplicationModel.InternationalShipping(),
+      listing_page: ConfigurationApplicationModel.ListingPageFeature(),
       listing_price: ConfigurationApplicationModel.ListingPriceFeature(),
       revenue_engine: ConfigurationApplicationModel.RevenueEngineFeature(),
       reward_points: ConfigurationApplicationModel.RewardPointsConfig(),
@@ -1160,12 +1239,14 @@ class ConfigurationApplicationModel {
     return Joi.object({
       _id: Joi.string().allow(""),
       code: Joi.string().allow(""),
+      country_code: Joi.string().allow(""),
+      country_name: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
       decimal_digits: Joi.number(),
       is_active: Joi.boolean(),
+      modified_at: Joi.string().allow(""),
       name: Joi.string().allow(""),
       symbol: Joi.string().allow(""),
-      updated_at: Joi.string().allow(""),
     });
   }
 
@@ -1321,9 +1402,19 @@ class ConfigurationApplicationModel {
       address_line: Joi.array().items(Joi.string().allow("")),
       city: Joi.string().allow(""),
       country: Joi.string().allow(""),
-      loc: Joi.string().allow(""),
-      phone: ConfigurationApplicationModel.InformationPhone(),
+      loc: ConfigurationApplicationModel.InformationLoc(),
+      phone: Joi.array().items(
+        ConfigurationApplicationModel.InformationPhone()
+      ),
       pincode: Joi.number(),
+    });
+  }
+
+  /** @returns {InformationLoc} */
+  static InformationLoc() {
+    return Joi.object({
+      coordinates: Joi.array().items(Joi.number()),
+      type: Joi.string().allow(""),
     });
   }
 
@@ -1338,9 +1429,30 @@ class ConfigurationApplicationModel {
   /** @returns {InformationSupport} */
   static InformationSupport() {
     return Joi.object({
-      email: Joi.array().items(Joi.string().allow("")),
-      phone: Joi.array().items(Joi.string().allow("")),
+      email: Joi.array().items(
+        ConfigurationApplicationModel.InformationSupportEmail()
+      ),
+      phone: Joi.array().items(
+        ConfigurationApplicationModel.InformationSupportPhone()
+      ),
       timing: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {InformationSupportEmail} */
+  static InformationSupportEmail() {
+    return Joi.object({
+      key: Joi.string().allow(""),
+      value: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {InformationSupportPhone} */
+  static InformationSupportPhone() {
+    return Joi.object({
+      code: Joi.string().allow(""),
+      key: Joi.string().allow(""),
+      number: Joi.string().allow(""),
     });
   }
 
@@ -1350,6 +1462,20 @@ class ConfigurationApplicationModel {
       icon: Joi.string().allow(""),
       link: Joi.string().allow(""),
       title: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {InternationalShipping} */
+  static InternationalShipping() {
+    return Joi.object({
+      enabled: Joi.boolean(),
+    });
+  }
+
+  /** @returns {InvalidPayloadRequest} */
+  static InvalidPayloadRequest() {
+    return Joi.object({
+      message: Joi.string().allow(""),
     });
   }
 
@@ -1404,6 +1530,13 @@ class ConfigurationApplicationModel {
     return Joi.object({
       link: Joi.string().allow(""),
       title: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ListingPageFeature} */
+  static ListingPageFeature() {
+    return Joi.object({
+      sort_on: Joi.string().allow(""),
     });
   }
 
@@ -1671,6 +1804,15 @@ class ConfigurationApplicationModel {
       moengage: ConfigurationApplicationModel.Moengage(),
       safetynet: ConfigurationApplicationModel.Safetynet(),
       segment: ConfigurationApplicationModel.Segment(),
+    });
+  }
+
+  /** @returns {TokenSchema} */
+  static TokenSchema() {
+    return Joi.object({
+      created_at: Joi.string().allow(""),
+      created_by: Joi.object().pattern(/\S/, Joi.any()),
+      token: Joi.string().allow(""),
     });
   }
 

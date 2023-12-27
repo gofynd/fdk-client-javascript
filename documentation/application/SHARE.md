@@ -6,7 +6,7 @@
 ##### [Back to Application docs](./README.md)
 
 ## Share Methods
-Short link and QR Code
+The Sharing module simplifies the creation and sharing of QR codes and short links. Use it to generate QR codes for apps, products, collections, and URLs. Create short links for long URLs and retrieve them, along with the original URLs, using their respective codes.
 
 
 Default

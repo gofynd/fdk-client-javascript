@@ -1,6 +1,21 @@
 const Joi = require("joi");
 
 /**
+ * @typedef Action
+ * @property {ActionPage} [page]
+ * @property {ActionPage} [popup]
+ * @property {string} [type]
+ */
+
+/**
+ * @typedef ActionPage
+ * @property {Object} [params]
+ * @property {Object} [query]
+ * @property {PageType} type
+ * @property {string} [url]
+ */
+
+/**
  * @typedef AddThemeRequestSchema
  * @property {string} [theme_id]
  */
@@ -11,6 +26,12 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef AppliedThemes
+ * @property {string} [_id] - ID of the application theme
+ * @property {string} [application_id] - ID of the application
+ */
+
+/**
  * @typedef Assets
  * @property {CommonJS} [common_js]
  * @property {CSS} [css]
@@ -18,10 +39,20 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef AvailablePagePlatformPredicate
+ * @property {boolean} [android] - Section visibility on android platform
+ * @property {boolean} [ios] - Section visibility on ios platform
+ * @property {boolean} [web] - Section visibility on web platform
+ */
+
+/**
  * @typedef AvailablePagePredicate
+ * @property {AvailablePagePlatformPredicate} [platform]
  * @property {AvailablePageRoutePredicate} [route]
+ * @property {AvailablePageSchedulePredicate} [schedule]
  * @property {AvailablePageScreenPredicate} [screen]
  * @property {AvailablePageUserPredicate} [user]
+ * @property {string[]} [zones] - An array of zone ids associated with the section
  */
 
 /**
@@ -29,6 +60,13 @@ const Joi = require("joi");
  * @property {string} [exact_url]
  * @property {Object} [query]
  * @property {string} [selected]
+ */
+
+/**
+ * @typedef AvailablePageSchedulePredicate
+ * @property {string} [cron]
+ * @property {string} [end]
+ * @property {string} [start]
  */
 
 /**
@@ -70,7 +108,11 @@ const Joi = require("joi");
 /**
  * @typedef AvailablePageSeo
  * @property {string} [_id]
+ * @property {SEObreadcrumb[]} [breadcrumb]
+ * @property {string} [canonical_url]
  * @property {string} [description]
+ * @property {SEOMetaItem[]} [meta_tags]
+ * @property {SEOSitemap} [sitemap]
  * @property {string} [title]
  */
 
@@ -115,12 +157,37 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef CompanyPrivateTheme
+ * @property {string} [_id] - Unique identifier for the theme
+ * @property {string} [application_id] - Identifier for the application
+ * @property {boolean} [applied] - Whether the theme is applied or not
+ * @property {string} [created_at] - Date and time when the theme was created
+ * @property {boolean} [is_private] - Whether the theme is private or not
+ * @property {CompanyThemeMeta} [meta]
+ * @property {string} [name] - Name of the theme
+ * @property {string} [theme_type] - Type of the theme
+ * @property {string} [updated_at] - Date and time when the theme was last updated
+ * @property {string} [version] - Version of the theme
+ */
+
+/**
+ * @typedef CompanyThemeMeta
+ * @property {string} [description] - A description of the theme.
+ * @property {ThemeImages} [images]
+ * @property {string[]} [industry] - A list of industry categories the theme is
+ *   suitable for.
+ * @property {ThemePayment} [payment]
+ * @property {string} [slug] - The slug for the theme.
+ */
+
+/**
  * @typedef CompanyThemeSchema
  * @property {string} [_id] - The unique identifier for the theme.
+ * @property {AppliedThemes[]} [applied_themes]
  * @property {number} [company_id] - The ID of the company that the theme belongs to.
  * @property {string} [created_at] - The timestamp when the theme was created.
  * @property {MarketplaceThemeId} [marketplace_theme_id]
- * @property {ThemeMeta} [meta]
+ * @property {CompanyThemeMeta} [meta]
  * @property {string} [name] - The name of the theme.
  * @property {string} [updated_at] - The timestamp when the theme was last updated.
  */
@@ -253,18 +320,10 @@ const Joi = require("joi");
 /**
  * @typedef MarketplaceThemeId
  * @property {string} [_id] - The unique identifier for the marketplace theme.
+ * @property {string} [created_at] - Creation date of the theme
  * @property {boolean} [is_default] - Whether the theme is the default theme.
- */
-
-/**
- * @typedef Meta
- * @property {string} [description] - The description of the theme
- * @property {Images} [images]
- * @property {string[]} [industry] - An array of industries associated with the theme
- * @property {string} [name] - The name of the theme
- * @property {ThemePayment} [payment]
- * @property {Release} [release]
- * @property {string} [slug] - The slug of the theme
+ * @property {ReleaseVersionOnly} [release]
+ * @property {string} [updated_at] - Update date of the theme
  */
 
 /**
@@ -312,6 +371,11 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef ReleaseVersionOnly
+ * @property {string} [version] - The version of the theme
+ */
+
+/**
  * @typedef Route
  * @property {string} [exact_url] - The exact URL of the route.
  * @property {string} [selected] - The selected route.
@@ -355,6 +419,30 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef SEObreadcrumb
+ * @property {Action} [action]
+ * @property {string} [url]
+ */
+
+/**
+ * @typedef SEOMetaItem
+ * @property {SEOMetaItems[]} [items]
+ * @property {string} [title]
+ */
+
+/**
+ * @typedef SEOMetaItems
+ * @property {string} [key]
+ * @property {string} [value]
+ */
+
+/**
+ * @typedef SEOSitemap
+ * @property {string} [frequency]
+ * @property {number} [priority]
+ */
+
+/**
  * @typedef TextProp
  * @property {string} [type] - The type of the property.
  * @property {string} [value] - The value of the text property.
@@ -376,12 +464,13 @@ const Joi = require("joi");
 
 /**
  * @typedef ThemeMeta
- * @property {string} [description] - A description of the theme.
- * @property {ThemeImages} [images]
- * @property {string[]} [industry] - A list of industry categories the theme is
- *   suitable for.
+ * @property {string} [description] - The description of the theme
+ * @property {Images} [images]
+ * @property {string[]} [industry] - An array of industries associated with the theme
+ * @property {string} [name] - The name of the theme
  * @property {ThemePayment} [payment]
- * @property {string} [slug] - The slug for the theme.
+ * @property {Release} [release]
+ * @property {string} [slug] - The slug of the theme
  */
 
 /**
@@ -403,16 +492,18 @@ const Joi = require("joi");
  * @property {boolean} [applied] - Whether the theme has been applied or not
  * @property {Assets} [assets]
  * @property {SectionItem[]} [available_sections] - Available sections information
+ * @property {number} [company_id] - The company id in which sales channel exists
  * @property {Config} [config]
  * @property {string} [created_at] - The creation timestamp of the theme
  * @property {Font} [font]
  * @property {boolean} [is_private] - Whether the theme is private or not
  * @property {string} [marketplace_theme_id] - The ID of the theme in the marketplace
- * @property {Meta} [meta]
+ * @property {ThemeMeta} [meta]
  * @property {string} [name] - The name of the theme
  * @property {Object} [styles] - The styles associated with the theme
  * @property {string[]} [tags] - An array of tags associated with the theme
  * @property {string} [template_theme_id] - The ID of the template theme
+ * @property {string} [theme_type]
  * @property {string} [updated_at] - The last update timestamp of the theme
  * @property {string} [version] - The version of the theme
  */
@@ -438,7 +529,7 @@ const Joi = require("joi");
 
 /**
  * @typedef UMDJs
- * @property {string[]} [links]
+ * @property {string[]} [links] - An array of pages
  */
 
 /**
@@ -458,7 +549,81 @@ const Joi = require("joi");
  * @property {string} [value] - The value of the URL property.
  */
 
+/**
+ * @typedef {| "about-us"
+ *   | "addresses"
+ *   | "blog"
+ *   | "brands"
+ *   | "cards"
+ *   | "cart"
+ *   | "categories"
+ *   | "brand"
+ *   | "category"
+ *   | "collection"
+ *   | "collections"
+ *   | "contact-us"
+ *   | "external"
+ *   | "faq"
+ *   | "freshchat"
+ *   | "home"
+ *   | "notification-settings"
+ *   | "orders"
+ *   | "page"
+ *   | "policy"
+ *   | "product"
+ *   | "product-request"
+ *   | "products"
+ *   | "profile"
+ *   | "profile-order-shipment"
+ *   | "profile-basic"
+ *   | "profile-company"
+ *   | "profile-emails"
+ *   | "profile-phones"
+ *   | "rate-us"
+ *   | "refer-earn"
+ *   | "settings"
+ *   | "shared-cart"
+ *   | "tnc"
+ *   | "track-order"
+ *   | "wishlist"
+ *   | "sections"
+ *   | "form"
+ *   | "cart-delivery"
+ *   | "cart-payment"
+ *   | "cart-review"
+ *   | "login"
+ *   | "register"
+ *   | "shipping-policy"
+ *   | "return-policy"
+ *   | "order-status"} PageType
+ */
+
 class ThemePlatformModel {
+  /** @returns {Action} */
+  static Action() {
+    return Joi.object({
+      page: ThemePlatformModel.ActionPage(),
+      popup: ThemePlatformModel.ActionPage(),
+      type: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {ActionPage} */
+  static ActionPage() {
+    return Joi.object({
+      params: Joi.object().pattern(
+        /\S/,
+        Joi.array().items(Joi.string().allow(""))
+      ),
+      query: Joi.object().pattern(
+        /\S/,
+        Joi.array().items(Joi.string().allow(""))
+      ),
+      type: ThemePlatformModel.PageType().required(),
+      url: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {AddThemeRequestSchema} */
   static AddThemeRequestSchema() {
     return Joi.object({
@@ -473,6 +638,14 @@ class ThemePlatformModel {
     });
   }
 
+  /** @returns {AppliedThemes} */
+  static AppliedThemes() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      application_id: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {Assets} */
   static Assets() {
     return Joi.object({
@@ -482,12 +655,24 @@ class ThemePlatformModel {
     });
   }
 
+  /** @returns {AvailablePagePlatformPredicate} */
+  static AvailablePagePlatformPredicate() {
+    return Joi.object({
+      android: Joi.boolean(),
+      ios: Joi.boolean(),
+      web: Joi.boolean(),
+    });
+  }
+
   /** @returns {AvailablePagePredicate} */
   static AvailablePagePredicate() {
     return Joi.object({
+      platform: ThemePlatformModel.AvailablePagePlatformPredicate(),
       route: ThemePlatformModel.AvailablePageRoutePredicate(),
+      schedule: ThemePlatformModel.AvailablePageSchedulePredicate(),
       screen: ThemePlatformModel.AvailablePageScreenPredicate(),
       user: ThemePlatformModel.AvailablePageUserPredicate(),
+      zones: Joi.array().items(Joi.string().allow("")),
     });
   }
 
@@ -497,6 +682,15 @@ class ThemePlatformModel {
       exact_url: Joi.string().allow(""),
       query: Joi.any(),
       selected: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {AvailablePageSchedulePredicate} */
+  static AvailablePageSchedulePredicate() {
+    return Joi.object({
+      cron: Joi.string().allow(""),
+      end: Joi.string().allow(""),
+      start: Joi.string().allow(""),
     });
   }
 
@@ -552,7 +746,11 @@ class ThemePlatformModel {
   static AvailablePageSeo() {
     return Joi.object({
       _id: Joi.string().allow(""),
+      breadcrumb: Joi.array().items(ThemePlatformModel.SEObreadcrumb()),
+      canonical_url: Joi.string().allow(""),
       description: Joi.string().allow(""),
+      meta_tags: Joi.array().items(ThemePlatformModel.SEOMetaItem()),
+      sitemap: ThemePlatformModel.SEOSitemap(),
       title: Joi.string().allow(""),
     });
   }
@@ -611,14 +809,42 @@ class ThemePlatformModel {
     });
   }
 
+  /** @returns {CompanyPrivateTheme} */
+  static CompanyPrivateTheme() {
+    return Joi.object({
+      _id: Joi.string().allow(""),
+      application_id: Joi.string().allow(""),
+      applied: Joi.boolean(),
+      created_at: Joi.string().allow(""),
+      is_private: Joi.boolean(),
+      meta: ThemePlatformModel.CompanyThemeMeta(),
+      name: Joi.string().allow(""),
+      theme_type: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
+      version: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {CompanyThemeMeta} */
+  static CompanyThemeMeta() {
+    return Joi.object({
+      description: Joi.string().allow(""),
+      images: ThemePlatformModel.ThemeImages(),
+      industry: Joi.array().items(Joi.string().allow("")),
+      payment: ThemePlatformModel.ThemePayment(),
+      slug: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {CompanyThemeSchema} */
   static CompanyThemeSchema() {
     return Joi.object({
       _id: Joi.string().allow(""),
+      applied_themes: Joi.array().items(ThemePlatformModel.AppliedThemes()),
       company_id: Joi.number(),
       created_at: Joi.string().allow(""),
       marketplace_theme_id: ThemePlatformModel.MarketplaceThemeId(),
-      meta: ThemePlatformModel.ThemeMeta(),
+      meta: ThemePlatformModel.CompanyThemeMeta(),
       name: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
     });
@@ -778,20 +1004,10 @@ class ThemePlatformModel {
   static MarketplaceThemeId() {
     return Joi.object({
       _id: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
       is_default: Joi.boolean(),
-    });
-  }
-
-  /** @returns {Meta} */
-  static Meta() {
-    return Joi.object({
-      description: Joi.string().allow(""),
-      images: ThemePlatformModel.Images(),
-      industry: Joi.array().items(Joi.string().allow("")),
-      name: Joi.string().allow(""),
-      payment: ThemePlatformModel.ThemePayment(),
-      release: ThemePlatformModel.Release(),
-      slug: Joi.string().allow(""),
+      release: ThemePlatformModel.ReleaseVersionOnly(),
+      updated_at: Joi.string().allow(""),
     });
   }
 
@@ -851,6 +1067,13 @@ class ThemePlatformModel {
     });
   }
 
+  /** @returns {ReleaseVersionOnly} */
+  static ReleaseVersionOnly() {
+    return Joi.object({
+      version: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {Route} */
   static Route() {
     return Joi.object({
@@ -906,6 +1129,38 @@ class ThemePlatformModel {
     });
   }
 
+  /** @returns {SEObreadcrumb} */
+  static SEObreadcrumb() {
+    return Joi.object({
+      action: ThemePlatformModel.Action(),
+      url: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SEOMetaItem} */
+  static SEOMetaItem() {
+    return Joi.object({
+      items: Joi.array().items(ThemePlatformModel.SEOMetaItems()),
+      title: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SEOMetaItems} */
+  static SEOMetaItems() {
+    return Joi.object({
+      key: Joi.string().allow(""),
+      value: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SEOSitemap} */
+  static SEOSitemap() {
+    return Joi.object({
+      frequency: Joi.string().allow(""),
+      priority: Joi.number(),
+    });
+  }
+
   /** @returns {TextProp} */
   static TextProp() {
     return Joi.object({
@@ -936,9 +1191,11 @@ class ThemePlatformModel {
   static ThemeMeta() {
     return Joi.object({
       description: Joi.string().allow(""),
-      images: ThemePlatformModel.ThemeImages(),
+      images: ThemePlatformModel.Images(),
       industry: Joi.array().items(Joi.string().allow("")),
+      name: Joi.string().allow(""),
       payment: ThemePlatformModel.ThemePayment(),
+      release: ThemePlatformModel.Release(),
       slug: Joi.string().allow(""),
     });
   }
@@ -966,16 +1223,18 @@ class ThemePlatformModel {
       applied: Joi.boolean(),
       assets: ThemePlatformModel.Assets(),
       available_sections: Joi.array().items(ThemePlatformModel.SectionItem()),
+      company_id: Joi.number(),
       config: ThemePlatformModel.Config(),
       created_at: Joi.string().allow(""),
       font: ThemePlatformModel.Font(),
       is_private: Joi.boolean(),
       marketplace_theme_id: Joi.string().allow(""),
-      meta: ThemePlatformModel.Meta(),
+      meta: ThemePlatformModel.ThemeMeta(),
       name: Joi.string().allow(""),
       styles: Joi.any(),
       tags: Joi.array().items(Joi.string().allow("")),
       template_theme_id: Joi.string().allow(""),
+      theme_type: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
       version: Joi.string().allow(""),
     });
@@ -1034,6 +1293,107 @@ class ThemePlatformModel {
       type: Joi.string().allow(""),
       value: Joi.string().allow(""),
     });
+  }
+
+  /**
+   * Enum: PageType Used By: Theme
+   *
+   * @returns {PageType}
+   */
+  static PageType() {
+    return Joi.string().valid(
+      "about-us",
+
+      "addresses",
+
+      "blog",
+
+      "brands",
+
+      "cards",
+
+      "cart",
+
+      "categories",
+
+      "brand",
+
+      "category",
+
+      "collection",
+
+      "collections",
+
+      "contact-us",
+
+      "external",
+
+      "faq",
+
+      "freshchat",
+
+      "home",
+
+      "notification-settings",
+
+      "orders",
+
+      "page",
+
+      "policy",
+
+      "product",
+
+      "product-request",
+
+      "products",
+
+      "profile",
+
+      "profile-order-shipment",
+
+      "profile-basic",
+
+      "profile-company",
+
+      "profile-emails",
+
+      "profile-phones",
+
+      "rate-us",
+
+      "refer-earn",
+
+      "settings",
+
+      "shared-cart",
+
+      "tnc",
+
+      "track-order",
+
+      "wishlist",
+
+      "sections",
+
+      "form",
+
+      "cart-delivery",
+
+      "cart-payment",
+
+      "cart-review",
+
+      "login",
+
+      "register",
+
+      "shipping-policy",
+
+      "return-policy",
+
+      "order-status"
+    );
   }
 }
 module.exports = ThemePlatformModel;

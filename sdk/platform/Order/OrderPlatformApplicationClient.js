@@ -13,6 +13,98 @@ class Order {
   }
 
   /**
+   * @param {OrderPlatformApplicationValidator.FailedOrderLogsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<OrderPlatformModel.FailedOrderLogs>} - Success response
+   * @name failedOrderLogs
+   * @summary: Get failed order logs according to the filter provided
+   * @description: This endpoint allows users to get failed order logs listing for filters based on order id, user contact number, user email id and sales channel id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/failedOrderLogs/).
+   */
+  async failedOrderLogs(
+    { pageNo, pageSize, searchType, searchValue, requestHeaders } = {
+      requestHeaders: {},
+    },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = OrderPlatformApplicationValidator.failedOrderLogs().validate(
+      {
+        pageNo,
+        pageSize,
+        searchType,
+        searchValue,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = OrderPlatformApplicationValidator.failedOrderLogs().validate(
+      {
+        pageNo,
+        pageSize,
+        searchType,
+        searchValue,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Order > failedOrderLogs \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["application_id"] = applicationId;
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["search_type"] = searchType;
+    query_params["search_value"] = searchValue;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/orders/failed`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = OrderPlatformModel.FailedOrderLogs().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Order > failedOrderLogs \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {OrderPlatformApplicationValidator.GetApplicationShipmentsParam} arg
    *   - Arg object
    *
@@ -23,7 +115,7 @@ class Order {
    *
    * @name getApplicationShipments
    * @summary:
-   * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getApplicationShipments/).
+   * @description: Get cross selling platform shipments - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getApplicationShipments/).
    */
   async getApplicationShipments(
     {
@@ -312,6 +404,91 @@ class Order {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Order > getShipmentBagReasons \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {OrderPlatformApplicationValidator.GetStateManagerStatesParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<OrderPlatformModel.PaginatedStates>} - Success response
+   * @name getStateManagerStates
+   * @summary: Get all states for a company and channel
+   * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getStateManagerStates/).
+   */
+  async getStateManagerStates(
+    { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = OrderPlatformApplicationValidator.getStateManagerStates().validate(
+      {
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = OrderPlatformApplicationValidator.getStateManagerStates().validate(
+      {
+        pageNo,
+        pageSize,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Order > getStateManagerStates \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/application/${this.applicationId}/states`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = OrderPlatformModel.PaginatedStates().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Order > getStateManagerStates \n ${res_error}`,
         });
       }
     }

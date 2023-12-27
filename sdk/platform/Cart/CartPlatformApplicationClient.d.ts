@@ -207,7 +207,7 @@ declare class Cart {
      * @summary: Fetch Coupon
      * @description: Use this API to get a list of available coupons along with their details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getAppCoupons/).
      */
-    getAppCoupons({ id, buyNow, requestHeaders }?: CartPlatformApplicationValidator.GetAppCouponsParam, { responseHeaders }?: object): Promise<CartPlatformModel.GetCouponResponse>;
+    getAppCoupons({ id, buyNow, slug, storeId, requestHeaders }?: CartPlatformApplicationValidator.GetAppCouponsParam, { responseHeaders }?: object): Promise<CartPlatformModel.GetCouponResponse>;
     /**
      * @param {CartPlatformApplicationValidator.GetAvailableDeliveryModesParam} arg
      *   - Arg object

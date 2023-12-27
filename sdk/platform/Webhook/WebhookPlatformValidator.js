@@ -4,7 +4,7 @@ const WebhookPlatformModel = require("./WebhookPlatformModel");
 
 /**
  * @typedef CancelJobByNameParam
- * @property {string} filename - Filename of the specific report export to cancel.
+ * @property {string} filename
  */
 
 /**
@@ -21,7 +21,7 @@ const WebhookPlatformModel = require("./WebhookPlatformModel");
 
 /**
  * @typedef GetEventCountsParam
- * @property {WebhookPlatformModel.EventProcessRequest} body
+ * @property {WebhookPlatformModel.RetryEventRequest} body
  */
 
 /**
@@ -52,14 +52,14 @@ const WebhookPlatformModel = require("./WebhookPlatformModel");
  * @typedef GetSubscribersByExtensionIdParam
  * @property {number} [pageNo] - Page Number
  * @property {number} [pageSize] - Page Size
- * @property {string} extensionId - Extension id
+ * @property {string} extensionId - Extension_id
  */
 
 /** @typedef ManualRetryCancelParam */
 
 /**
  * @typedef ManualRetryOfFailedEventParam
- * @property {WebhookPlatformModel.EventProcessRequest} body
+ * @property {WebhookPlatformModel.RetryEventRequest} body
  */
 
 /**
@@ -107,7 +107,7 @@ class WebhookPlatformValidator {
   /** @returns {GetEventCountsParam} */
   static getEventCounts() {
     return Joi.object({
-      body: WebhookPlatformModel.EventProcessRequest().required(),
+      body: WebhookPlatformModel.RetryEventRequest().required(),
     }).required();
   }
 
@@ -163,7 +163,7 @@ class WebhookPlatformValidator {
   /** @returns {ManualRetryOfFailedEventParam} */
   static manualRetryOfFailedEvent() {
     return Joi.object({
-      body: WebhookPlatformModel.EventProcessRequest().required(),
+      body: WebhookPlatformModel.RetryEventRequest().required(),
     }).required();
   }
 

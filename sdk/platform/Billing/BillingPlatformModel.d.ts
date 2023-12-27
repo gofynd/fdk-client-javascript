@@ -63,6 +63,11 @@ export = BillingPlatformModel;
  * @property {string} [start_date]
  */
 /**
+ * @typedef Details
+ * @property {Features[]} [features]
+ * @property {FeeComponents[]} [fee_components]
+ */
+/**
  * @typedef EntityChargePrice
  * @property {number} amount - Amount for price. Minimum value 1
  * @property {string} currency_code
@@ -70,6 +75,13 @@ export = BillingPlatformModel;
 /**
  * @typedef EntityChargeRecurring
  * @property {string} interval
+ */
+/**
+ * @typedef EntityResponse
+ * @property {Details[]} [items]
+ * @property {number} [page]
+ * @property {number} [page_size]
+ * @property {boolean} [success]
  */
 /**
  * @typedef EntitySubscription
@@ -83,6 +95,25 @@ export = BillingPlatformModel;
  * @property {string} [status]
  * @property {number} [trial_days]
  * @property {SubscriptionTrialPeriod} [trial_period]
+ */
+/**
+ * @typedef Features
+ * @property {string} [description]
+ * @property {string} [display_text]
+ * @property {boolean} [enabled]
+ * @property {string} [group]
+ * @property {string} [name]
+ * @property {string} [slug]
+ */
+/**
+ * @typedef FeeComponents
+ * @property {string[]} [brand]
+ * @property {string} [business_lead]
+ * @property {Object[]} [channel]
+ * @property {Object[]} [components]
+ * @property {string[]} [location]
+ * @property {Object} [settle_cycle_period]
+ * @property {string} [settlement_type]
  */
 /**
  * @typedef InternalServerError
@@ -496,7 +527,7 @@ export = BillingPlatformModel;
 declare class BillingPlatformModel {
 }
 declare namespace BillingPlatformModel {
-    export { BadRequest, CancelSubscriptionReq, CancelSubscriptionRes, ChargeLineItem, CheckValidityResponse, CreateOneTimeCharge, CreateOneTimeChargeResponse, CreateSubscriptionCharge, CreateSubscriptionResponse, CurrentPeriod, EntityChargePrice, EntityChargeRecurring, EntitySubscription, InternalServerError, Invoice, InvoiceDetails, InvoiceDetailsClient, InvoiceDetailsPeriod, InvoiceDetailsStatusTrail, InvoiceItems, InvoiceItemsPeriod, InvoiceItemsPlan, InvoiceItemsPlanRecurring, InvoicePaymentMethod, Invoices, InvoicesData, InvoicesDataClient, InvoicesDataPaymentMethod, InvoicesDataPeriod, Meta, OneTimeChargeEntity, OneTimeChargeItem, Phone, Plan, PlanRecurring, PlanStatusUpdateReq, ResourceNotFound, SubscribePlanRes, Subscription, SubscriptionActivateReq, SubscriptionActivateRes, SubscriptionBillingAddress, SubscriptionCharge, SubscriptionCurrentPeriod, SubscriptionCustomer, SubscriptionCustomerCreate, SubscriptionInvoiceSettings, SubscriptionLimit, SubscriptionLimitApplication, SubscriptionLimitExtensions, SubscriptionLimitIntegrations, SubscriptionLimitMarketplace, SubscriptionLimitOtherPlatform, SubscriptionLimitProducts, SubscriptionLimitTeam, SubscriptionPauseCollection, SubscriptionStatus, SubscriptionTrial, SubscriptionTrialPeriod, SunscribePlan };
+    export { BadRequest, CancelSubscriptionReq, CancelSubscriptionRes, ChargeLineItem, CheckValidityResponse, CreateOneTimeCharge, CreateOneTimeChargeResponse, CreateSubscriptionCharge, CreateSubscriptionResponse, CurrentPeriod, Details, EntityChargePrice, EntityChargeRecurring, EntityResponse, EntitySubscription, Features, FeeComponents, InternalServerError, Invoice, InvoiceDetails, InvoiceDetailsClient, InvoiceDetailsPeriod, InvoiceDetailsStatusTrail, InvoiceItems, InvoiceItemsPeriod, InvoiceItemsPlan, InvoiceItemsPlanRecurring, InvoicePaymentMethod, Invoices, InvoicesData, InvoicesDataClient, InvoicesDataPaymentMethod, InvoicesDataPeriod, Meta, OneTimeChargeEntity, OneTimeChargeItem, Phone, Plan, PlanRecurring, PlanStatusUpdateReq, ResourceNotFound, SubscribePlanRes, Subscription, SubscriptionActivateReq, SubscriptionActivateRes, SubscriptionBillingAddress, SubscriptionCharge, SubscriptionCurrentPeriod, SubscriptionCustomer, SubscriptionCustomerCreate, SubscriptionInvoiceSettings, SubscriptionLimit, SubscriptionLimitApplication, SubscriptionLimitExtensions, SubscriptionLimitIntegrations, SubscriptionLimitMarketplace, SubscriptionLimitOtherPlatform, SubscriptionLimitProducts, SubscriptionLimitTeam, SubscriptionPauseCollection, SubscriptionStatus, SubscriptionTrial, SubscriptionTrialPeriod, SunscribePlan };
 }
 /** @returns {BadRequest} */
 declare function BadRequest(): BadRequest;
@@ -574,6 +605,12 @@ type CurrentPeriod = {
     end_date?: string;
     start_date?: string;
 };
+/** @returns {Details} */
+declare function Details(): Details;
+type Details = {
+    features?: Features[];
+    fee_components?: FeeComponents[];
+};
 /** @returns {EntityChargePrice} */
 declare function EntityChargePrice(): EntityChargePrice;
 type EntityChargePrice = {
@@ -588,6 +625,14 @@ declare function EntityChargeRecurring(): EntityChargeRecurring;
 type EntityChargeRecurring = {
     interval: string;
 };
+/** @returns {EntityResponse} */
+declare function EntityResponse(): EntityResponse;
+type EntityResponse = {
+    items?: Details[];
+    page?: number;
+    page_size?: number;
+    success?: boolean;
+};
 /** @returns {EntitySubscription} */
 declare function EntitySubscription(): EntitySubscription;
 type EntitySubscription = {
@@ -601,6 +646,27 @@ type EntitySubscription = {
     status?: string;
     trial_days?: number;
     trial_period?: SubscriptionTrialPeriod;
+};
+/** @returns {Features} */
+declare function Features(): Features;
+type Features = {
+    description?: string;
+    display_text?: string;
+    enabled?: boolean;
+    group?: string;
+    name?: string;
+    slug?: string;
+};
+/** @returns {FeeComponents} */
+declare function FeeComponents(): FeeComponents;
+type FeeComponents = {
+    brand?: string[];
+    business_lead?: string;
+    channel?: any[];
+    components?: any[];
+    location?: string[];
+    settle_cycle_period?: any;
+    settlement_type?: string;
 };
 /** @returns {InternalServerError} */
 declare function InternalServerError(): InternalServerError;

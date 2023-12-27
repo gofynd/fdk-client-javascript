@@ -207,6 +207,7 @@ export = CatalogPlatformValidator;
  */
 /** @typedef GetInventoryExportParam */
 /** @typedef GetMarketplaceOptinDetailParam */
+/** @typedef GetMarketplacesParam */
 /**
  * @typedef GetOptimalLocationsParam
  * @property {CatalogPlatformModel.AssignStore} body
@@ -304,6 +305,7 @@ export = CatalogPlatformValidator;
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 10.
+ * @property {number} [brandId] - Brand id that is to be searched.
  */
 /**
  * @typedef GetStoreDetailParam
@@ -324,12 +326,13 @@ export = CatalogPlatformValidator;
 /**
  * @typedef ListCategoriesParam
  * @property {string} [level] - Get category for multiple levels
- * @property {string} [departments] - Get category for multiple departments filtered
+ * @property {number} [department] - Get category for multiple departments filtered
  * @property {string} [q] - Get multiple categories filtered by search string
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 10.
+ * @property {number[]} [uids] - Get multiple categories filtered by category uids.
  */
 /**
  * @typedef ListDepartmentsDataParam
@@ -393,6 +396,11 @@ export = CatalogPlatformValidator;
 /**
  * @typedef UpdateInventoriesParam
  * @property {CatalogPlatformModel.InventoryRequestSchemaV2} body
+ */
+/**
+ * @typedef UpdateMarketplaceOptinParam
+ * @property {string} marketplaceSlug - Slug of the marketplace .
+ * @property {CatalogPlatformModel.UpdateMarketplaceOptinRequest} body
  */
 /**
  * @typedef UpdateProductBundleParam
@@ -517,6 +525,8 @@ declare class CatalogPlatformValidator {
     static getInventoryExport(): any;
     /** @returns {GetMarketplaceOptinDetailParam} */
     static getMarketplaceOptinDetail(): any;
+    /** @returns {GetMarketplacesParam} */
+    static getMarketplaces(): any;
     /** @returns {GetOptimalLocationsParam} */
     static getOptimalLocations(): GetOptimalLocationsParam;
     /** @returns {GetProductParam} */
@@ -577,6 +587,8 @@ declare class CatalogPlatformValidator {
     static updateHsnCode(): UpdateHsnCodeParam;
     /** @returns {UpdateInventoriesParam} */
     static updateInventories(): UpdateInventoriesParam;
+    /** @returns {UpdateMarketplaceOptinParam} */
+    static updateMarketplaceOptin(): UpdateMarketplaceOptinParam;
     /** @returns {UpdateProductBundleParam} */
     static updateProductBundle(): UpdateProductBundleParam;
     /** @returns {UpdateRealtimeInventoryParam} */
@@ -591,7 +603,7 @@ declare class CatalogPlatformValidator {
     static validateProductTemplateSchema(): ValidateProductTemplateSchemaParam;
 }
 declare namespace CatalogPlatformValidator {
-    export { AddInventoryParam, AllSizesParam, BulkHsnCodeParam, CreateBulkInventoryParam, CreateBulkInventoryJobParam, CreateBulkProductUploadJobParam, CreateCategoriesParam, CreateDepartmentsParam, CreateInventoryExportParam, CreateInventoryExportJobParam, CreateMarketplaceOptinParam, CreateProductParam, CreateProductAssetsInBulkParam, CreateProductBundleParam, CreateProductExportJobParam, CreateProductsInBulkParam, CreateSizeGuideParam, DeleteBulkInventoryJobParam, DeleteInventoryParam, DeleteProductParam, DeleteProductBulkJobParam, DeleteRealtimeInventoryParam, DeleteSizeParam, DownloadInventoryTemplateViewParam, DownloadProductTemplateViewsParam, EditProductParam, ExportInventoryConfigParam, GetAllProductHsnCodesParam, GetCategoryDataParam, GetCompanyBrandDetailParam, GetCompanyDetailParam, GetCompanyMetricsParam, GetDepartmentDataParam, GetGenderAttributeParam, GetHsnCodeParam, GetInventoriesParam, GetInventoryBulkUploadHistoryParam, GetInventoryBySizeParam, GetInventoryBySizeIdentifierParam, GetInventoryExportParam, GetMarketplaceOptinDetailParam, GetOptimalLocationsParam, GetProductParam, GetProductAssetsInBulkParam, GetProductAttributesParam, GetProductBulkUploadHistoryParam, GetProductBundleParam, GetProductBundleDetailParam, GetProductExportJobsParam, GetProductSizeParam, GetProductTagsParam, GetProductValidationParam, GetProductsParam, GetSellerInsightsParam, GetSingleProductHSNCodeParam, GetSizeGuideParam, GetSizeGuidesParam, GetStoreDetailParam, GetVariantsOfProductsParam, ListCategoriesParam, ListDepartmentsDataParam, ListHSNCodesParam, ListInventoryExportParam, ListProductTemplateParam, ListProductTemplateCategoriesParam, ListProductTemplateExportDetailsParam, ListTemplateBrandTypeValuesParam, UpdateCategoryParam, UpdateDepartmentParam, UpdateHsnCodeParam, UpdateInventoriesParam, UpdateProductBundleParam, UpdateRealtimeInventoryParam, UpdateSizeGuideParam, UploadBulkProductsParam, ValidateProductTemplateParam, ValidateProductTemplateSchemaParam };
+    export { AddInventoryParam, AllSizesParam, BulkHsnCodeParam, CreateBulkInventoryParam, CreateBulkInventoryJobParam, CreateBulkProductUploadJobParam, CreateCategoriesParam, CreateDepartmentsParam, CreateInventoryExportParam, CreateInventoryExportJobParam, CreateMarketplaceOptinParam, CreateProductParam, CreateProductAssetsInBulkParam, CreateProductBundleParam, CreateProductExportJobParam, CreateProductsInBulkParam, CreateSizeGuideParam, DeleteBulkInventoryJobParam, DeleteInventoryParam, DeleteProductParam, DeleteProductBulkJobParam, DeleteRealtimeInventoryParam, DeleteSizeParam, DownloadInventoryTemplateViewParam, DownloadProductTemplateViewsParam, EditProductParam, ExportInventoryConfigParam, GetAllProductHsnCodesParam, GetCategoryDataParam, GetCompanyBrandDetailParam, GetCompanyDetailParam, GetCompanyMetricsParam, GetDepartmentDataParam, GetGenderAttributeParam, GetHsnCodeParam, GetInventoriesParam, GetInventoryBulkUploadHistoryParam, GetInventoryBySizeParam, GetInventoryBySizeIdentifierParam, GetInventoryExportParam, GetMarketplaceOptinDetailParam, GetMarketplacesParam, GetOptimalLocationsParam, GetProductParam, GetProductAssetsInBulkParam, GetProductAttributesParam, GetProductBulkUploadHistoryParam, GetProductBundleParam, GetProductBundleDetailParam, GetProductExportJobsParam, GetProductSizeParam, GetProductTagsParam, GetProductValidationParam, GetProductsParam, GetSellerInsightsParam, GetSingleProductHSNCodeParam, GetSizeGuideParam, GetSizeGuidesParam, GetStoreDetailParam, GetVariantsOfProductsParam, ListCategoriesParam, ListDepartmentsDataParam, ListHSNCodesParam, ListInventoryExportParam, ListProductTemplateParam, ListProductTemplateCategoriesParam, ListProductTemplateExportDetailsParam, ListTemplateBrandTypeValuesParam, UpdateCategoryParam, UpdateDepartmentParam, UpdateHsnCodeParam, UpdateInventoriesParam, UpdateMarketplaceOptinParam, UpdateProductBundleParam, UpdateRealtimeInventoryParam, UpdateSizeGuideParam, UploadBulkProductsParam, ValidateProductTemplateParam, ValidateProductTemplateSchemaParam };
 }
 type AddInventoryParam = {
     /**
@@ -1126,6 +1138,10 @@ type GetSizeGuidesParam = {
      * Default is 10.
      */
     pageSize?: number;
+    /**
+     * - Brand id that is to be searched.
+     */
+    brandId?: number;
 };
 type GetStoreDetailParam = {
     /**
@@ -1170,7 +1186,7 @@ type ListCategoriesParam = {
     /**
      * - Get category for multiple departments filtered
      */
-    departments?: string;
+    department?: number;
     /**
      * - Get multiple categories filtered by search string
      */
@@ -1185,6 +1201,10 @@ type ListCategoriesParam = {
      * Default is 10.
      */
     pageSize?: number;
+    /**
+     * - Get multiple categories filtered by category uids.
+     */
+    uids?: number[];
 };
 type ListDepartmentsDataParam = {
     /**
@@ -1295,6 +1315,13 @@ type UpdateHsnCodeParam = {
 type UpdateInventoriesParam = {
     body: CatalogPlatformModel.InventoryRequestSchemaV2;
 };
+type UpdateMarketplaceOptinParam = {
+    /**
+     * - Slug of the marketplace .
+     */
+    marketplaceSlug: string;
+    body: CatalogPlatformModel.UpdateMarketplaceOptinRequest;
+};
 type UpdateProductBundleParam = {
     /**
      * - A `id` is a unique identifier for a particular
@@ -1363,6 +1390,7 @@ type GetCompanyDetailParam = any;
 type GetCompanyMetricsParam = any;
 type GetInventoryExportParam = any;
 type GetMarketplaceOptinDetailParam = any;
+type GetMarketplacesParam = any;
 type GetProductTagsParam = any;
 type GetProductValidationParam = any;
 type ListHSNCodesParam = any;

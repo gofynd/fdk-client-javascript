@@ -110,7 +110,7 @@ declare class Payment {
      * @returns {Promise<PaymentPlatformModel.IfscCodeResponse>} - Success response
      * @name verifyIfscCode
      * @summary: Ifsc Code Verification
-     * @description: Get True/False for correct IFSC Code for adding bank details for refund - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/verifyIfscCode/).
+     * @description: Get True or False for correct IFSC Code for adding bank details for refund - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/verifyIfscCode/).
      */
     verifyIfscCode({ ifscCode, requestHeaders }?: PaymentPlatformValidator.VerifyIfscCodeParam, { responseHeaders }?: object): Promise<PaymentPlatformModel.IfscCodeResponse>;
 }

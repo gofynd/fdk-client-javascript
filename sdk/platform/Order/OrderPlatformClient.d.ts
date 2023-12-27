@@ -13,6 +13,28 @@ declare class Order {
      */
     attachOrderUser({ body, requestHeaders }?: OrderPlatformValidator.AttachOrderUserParam, { responseHeaders }?: object): Promise<OrderPlatformModel.AttachOrderUserResponse>;
     /**
+     * @param {OrderPlatformValidator.BulkListingParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.BulkListingResponse>} - Success response
+     * @name bulkListing
+     * @summary:
+     * @description: Fetches of previous or running  bulk jobs.
+     *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/bulkListing/).
+     */
+    bulkListing({ pageSize, pageNo, startDate, endDate, status, bulkActionType, searchKey, requestHeaders, }?: OrderPlatformValidator.BulkListingParam, { responseHeaders }?: object): Promise<OrderPlatformModel.BulkListingResponse>;
+    /**
+     * @param {OrderPlatformValidator.BulkStateTransistionParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.BulkStateTransistionResponse>} -
+     *   Success response
+     * @name bulkStateTransistion
+     * @summary:
+     * @description: Performs State Transisiton in Bulk for the given shipments in the excel/csv file url. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/bulkStateTransistion/).
+     */
+    bulkStateTransistion({ body, requestHeaders }?: OrderPlatformValidator.BulkStateTransistionParam, { responseHeaders }?: object): Promise<OrderPlatformModel.BulkStateTransistionResponse>;
+    /**
      * @param {OrderPlatformValidator.CheckOrderStatusParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -54,15 +76,15 @@ declare class Order {
      */
     createOrder({ body, requestHeaders }?: OrderPlatformValidator.CreateOrderParam, { responseHeaders }?: object): Promise<OrderPlatformModel.CreateOrderResponse>;
     /**
-     * @param {OrderPlatformValidator.DispatchManifestParam} arg - Arg object
+     * @param {OrderPlatformValidator.DispatchManifestsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<OrderPlatformModel.SuccessResponse>} - Success response
-     * @name dispatchManifest
+     * @name dispatchManifests
      * @summary:
-     * @description: Dispatch Manifest - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/dispatchManifest/).
+     * @description: Dispatch Manifest - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/dispatchManifests/).
      */
-    dispatchManifest({ body, requestHeaders }?: OrderPlatformValidator.DispatchManifestParam, { responseHeaders }?: object): Promise<OrderPlatformModel.SuccessResponse>;
+    dispatchManifests({ manifestId, body, requestHeaders }?: OrderPlatformValidator.DispatchManifestsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.SuccessResponse>;
     /**
      * @param {OrderPlatformValidator.DownloadBulkActionTemplateParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -95,6 +117,16 @@ declare class Order {
      */
     eInvoiceRetry({ body, requestHeaders }?: OrderPlatformValidator.EInvoiceRetryParam, { responseHeaders }?: object): Promise<OrderPlatformModel.EInvoiceRetryResponse>;
     /**
+     * @param {OrderPlatformValidator.FailedOrderLogDetailsParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.FailedOrderLogDetails>} - Success response
+     * @name failedOrderLogDetails
+     * @summary: Get failed order logs according to the filter provided
+     * @description: This endpoint allows users to get the exact error trace from the log id provided - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/failedOrderLogDetails/).
+     */
+    failedOrderLogDetails({ logId, requestHeaders }?: OrderPlatformValidator.FailedOrderLogDetailsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.FailedOrderLogDetails>;
+    /**
      * @param {OrderPlatformValidator.FetchCreditBalanceDetailParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -118,16 +150,6 @@ declare class Order {
      */
     fetchRefundModeConfig({ body, requestHeaders }?: OrderPlatformValidator.FetchRefundModeConfigParam, { responseHeaders }?: object): Promise<OrderPlatformModel.RefundModeConfigResponsePayload>;
     /**
-     * @param {OrderPlatformValidator.GenerateInvoiceIDParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<OrderPlatformModel.GenerateInvoiceIDResponse>} - Success response
-     * @name generateInvoiceID
-     * @summary:
-     * @description: This API is used to manually generate Invoice ID against shipments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/generateInvoiceID/).
-     */
-    generateInvoiceID({ invoiceType, body, requestHeaders }?: OrderPlatformValidator.GenerateInvoiceIDParam, { responseHeaders }?: object): Promise<OrderPlatformModel.GenerateInvoiceIDResponse>;
-    /**
      * @param {OrderPlatformValidator.GeneratePOSReceiptByOrderIdParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -150,6 +172,16 @@ declare class Order {
      *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getAllowedStateTransition/).
      */
     getAllowedStateTransition({ orderingChannel, status, requestHeaders }?: OrderPlatformValidator.GetAllowedStateTransitionParam, { responseHeaders }?: object): Promise<OrderPlatformModel.RoleBaseStateTransitionMapping>;
+    /**
+     * @param {OrderPlatformValidator.GetAllowedTemplatesForBulkParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.AllowedTemplatesResponse>} - Success response
+     * @name getAllowedTemplatesForBulk
+     * @summary:
+     * @description: Gets All the allowed Templates to perform Bulk Operations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getAllowedTemplatesForBulk/).
+     */
+    getAllowedTemplatesForBulk({ requestHeaders }?: any, { responseHeaders }?: object): Promise<OrderPlatformModel.AllowedTemplatesResponse>;
     /**
      * @param {OrderPlatformValidator.GetAnnouncementsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -201,7 +233,7 @@ declare class Order {
      * @summary:
      * @description: Generate Bulk Shipment Excel Report. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getBulkShipmentExcelFile/).
      */
-    getBulkShipmentExcelFile({ salesChannels, dpIds, fromDate, toDate, stores, tags, bagStatus, paymentMethods, fileType, timeToDispatch, pageNo, pageSize, requestHeaders, }?: OrderPlatformValidator.GetBulkShipmentExcelFileParam, { responseHeaders }?: object): Promise<OrderPlatformModel.FileResponse>;
+    getBulkShipmentExcelFile({ salesChannels, dpIds, startDate, endDate, stores, tags, bagStatus, paymentMethods, fileType, timeToDispatch, pageNo, pageSize, requestHeaders, }?: OrderPlatformValidator.GetBulkShipmentExcelFileParam, { responseHeaders }?: object): Promise<OrderPlatformModel.FileResponse>;
     /**
      * @param {OrderPlatformValidator.GetChannelConfigParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -213,6 +245,16 @@ declare class Order {
      */
     getChannelConfig({ requestHeaders }?: any, { responseHeaders }?: object): Promise<OrderPlatformModel.CreateChannelConfigData>;
     /**
+     * @param {OrderPlatformValidator.GetFileByStatusParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.JobFailedResponse>} - Success response
+     * @name getFileByStatus
+     * @summary:
+     * @description: Get the file URL consisting Records of the provided status. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getFileByStatus/).
+     */
+    getFileByStatus({ batchId, status, fileType, reportType, requestHeaders }?: OrderPlatformValidator.GetFileByStatusParam, { responseHeaders }?: object): Promise<OrderPlatformModel.JobFailedResponse>;
+    /**
      * @param {OrderPlatformValidator.GetLaneConfigParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -221,7 +263,47 @@ declare class Order {
      * @summary:
      * @description: Get lane config for the order - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getLaneConfig/).
      */
-    getLaneConfig({ superLane, groupEntity, fromDate, toDate, dpIds, stores, salesChannels, paymentMode, bagStatus, searchType, searchValue, tags, timeToDispatch, paymentMethods, myOrders, showCrossCompanyData, orderType, requestHeaders, }?: OrderPlatformValidator.GetLaneConfigParam, { responseHeaders }?: object): Promise<OrderPlatformModel.LaneConfigResponse>;
+    getLaneConfig({ superLane, groupEntity, fromDate, toDate, startDate, endDate, dpIds, stores, salesChannels, paymentMode, bagStatus, searchType, searchValue, tags, timeToDispatch, paymentMethods, myOrders, showCrossCompanyData, orderType, requestHeaders, }?: OrderPlatformValidator.GetLaneConfigParam, { responseHeaders }?: object): Promise<OrderPlatformModel.LaneConfigResponse>;
+    /**
+     * @param {OrderPlatformValidator.GetManifestDetailsParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.ManifestDetails>} - Success response
+     * @name getManifestDetails
+     * @summary:
+     * @description: get Manifest Details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getManifestDetails/).
+     */
+    getManifestDetails({ manifestId, requestHeaders }?: OrderPlatformValidator.GetManifestDetailsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ManifestDetails>;
+    /**
+     * @param {OrderPlatformValidator.GetManifestShipmentsParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.ManifestShipmentListing>} - Success response
+     * @name getManifestShipments
+     * @summary:
+     * @description: get Manifest Shipments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getManifestShipments/).
+     */
+    getManifestShipments({ dpIds, stores, toDate, fromDate, dpName, salesChannels, searchType, searchValue, pageNo, pageSize, requestHeaders, }?: OrderPlatformValidator.GetManifestShipmentsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ManifestShipmentListing>;
+    /**
+     * @param {OrderPlatformValidator.GetManifestfiltersParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.ManifestFiltersResponse>} - Success response
+     * @name getManifestfilters
+     * @summary:
+     * @description: get Manifest Filters. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getManifestfilters/).
+     */
+    getManifestfilters({ view, requestHeaders }?: OrderPlatformValidator.GetManifestfiltersParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ManifestFiltersResponse>;
+    /**
+     * @param {OrderPlatformValidator.GetManifestsParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.ManifestList>} - Success response
+     * @name getManifests
+     * @summary:
+     * @description: Fetch Manifests - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getManifests/).
+     */
+    getManifests({ status, startDate, endDate, searchType, storeId, searchValue, dpIds, pageNo, pageSize, requestHeaders, }?: OrderPlatformValidator.GetManifestsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ManifestList>;
     /**
      * @param {OrderPlatformValidator.GetOrderByIdParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -231,7 +313,7 @@ declare class Order {
      * @summary:
      * @description: Get Order Details by ID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getOrderById/).
      */
-    getOrderById({ orderId, myOrders, requestHeaders }?: OrderPlatformValidator.GetOrderByIdParam, { responseHeaders }?: object): Promise<OrderPlatformModel.OrderDetailsResponse>;
+    getOrderById({ orderId, myOrders, allowInactive, requestHeaders }?: OrderPlatformValidator.GetOrderByIdParam, { responseHeaders }?: object): Promise<OrderPlatformModel.OrderDetailsResponse>;
     /**
      * @param {OrderPlatformValidator.GetOrdersParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -241,7 +323,7 @@ declare class Order {
      * @summary:
      * @description: Get Orders Listing - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getOrders/).
      */
-    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, myOrders, showCrossCompanyData, customerId, orderType, requestHeaders, }?: OrderPlatformValidator.GetOrdersParam, { responseHeaders }?: object): Promise<OrderPlatformModel.OrderListingResponse>;
+    getOrders({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, startDate, endDate, dpIds, stores, salesChannels, pageNo, pageSize, isPrioritySort, customMeta, myOrders, showCrossCompanyData, customerId, orderType, requestHeaders, }?: OrderPlatformValidator.GetOrdersParam, { responseHeaders }?: object): Promise<OrderPlatformModel.OrderListingResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.lane] - Lane refers to a section where orders are
@@ -259,6 +341,8 @@ declare class Order {
      *   field specified by the search_type
      * @param {string} [arg.fromDate] -
      * @param {string} [arg.toDate] -
+     * @param {string} [arg.startDate] -
+     * @param {string} [arg.endDate] -
      * @param {string} [arg.dpIds] - Delivery Partner IDs to which shipments are assigned.
      * @param {string} [arg.stores] -
      * @param {string} [arg.salesChannels] -
@@ -274,7 +358,7 @@ declare class Order {
      * @summary:
      * @description: Get Orders Listing
      */
-    getOrdersPaginator({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageSize, isPrioritySort, customMeta, myOrders, showCrossCompanyData, customerId, orderType, }?: {
+    getOrdersPaginator({ lane, searchType, bagStatus, timeToDispatch, paymentMethods, tags, searchValue, fromDate, toDate, startDate, endDate, dpIds, stores, salesChannels, pageSize, isPrioritySort, customMeta, myOrders, showCrossCompanyData, customerId, orderType, }?: {
         lane?: string;
         searchType?: string;
         bagStatus?: string;
@@ -284,6 +368,8 @@ declare class Order {
         searchValue?: string;
         fromDate?: string;
         toDate?: string;
+        startDate?: string;
+        endDate?: string;
         dpIds?: string;
         stores?: string;
         salesChannels?: string;
@@ -347,7 +433,7 @@ declare class Order {
      * @summary:
      * @description: Get Shipments Listing for the company id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getShipments/).
      */
-    getShipments({ lane, bagStatus, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageNo, pageSize, fetchActiveShipment, allowInactive, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, myOrders, platformUserId, sortType, showCrossCompanyData, tags, customerId, orderType, requestHeaders, }?: OrderPlatformValidator.GetShipmentsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ShipmentInternalPlatformViewResponse>;
+    getShipments({ lane, bagStatus, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, startDate, endDate, dpIds, stores, salesChannels, pageNo, pageSize, fetchActiveShipment, allowInactive, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, myOrders, platformUserId, sortType, showCrossCompanyData, tags, customerId, orderType, requestHeaders, }?: OrderPlatformValidator.GetShipmentsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ShipmentInternalPlatformViewResponse>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.lane] - Name of lane for which data is to be fetched
@@ -359,6 +445,8 @@ declare class Order {
      * @param {string} [arg.searchValue] - Search type value
      * @param {string} [arg.fromDate] - Start Date in DD-MM-YYYY format
      * @param {string} [arg.toDate] - End Date in DD-MM-YYYY format
+     * @param {string} [arg.startDate] - UTC Start Date in ISO format
+     * @param {string} [arg.endDate] - UTC End Date in ISO format
      * @param {string} [arg.dpIds] - Comma separated values of delivery partner ids
      * @param {string} [arg.stores] - Comma separated values of store ids
      * @param {string} [arg.salesChannels] - Comma separated values of sales channel ids
@@ -384,7 +472,7 @@ declare class Order {
      * @summary:
      * @description: Get Shipments Listing for the company id
      */
-    getShipmentsPaginator({ lane, bagStatus, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, dpIds, stores, salesChannels, pageSize, fetchActiveShipment, allowInactive, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, myOrders, platformUserId, sortType, showCrossCompanyData, tags, customerId, orderType, }?: {
+    getShipmentsPaginator({ lane, bagStatus, statusOverrideLane, timeToDispatch, searchType, searchValue, fromDate, toDate, startDate, endDate, dpIds, stores, salesChannels, pageSize, fetchActiveShipment, allowInactive, excludeLockedShipments, paymentMethods, channelShipmentId, channelOrderId, customMeta, orderingChannel, companyAffiliateTag, myOrders, platformUserId, sortType, showCrossCompanyData, tags, customerId, orderType, }?: {
         lane?: string;
         bagStatus?: string;
         statusOverrideLane?: boolean;
@@ -393,6 +481,8 @@ declare class Order {
         searchValue?: string;
         fromDate?: string;
         toDate?: string;
+        startDate?: string;
+        endDate?: string;
         dpIds?: string;
         stores?: string;
         salesChannels?: string;
@@ -415,6 +505,66 @@ declare class Order {
         orderType?: string;
     }): Paginator<OrderPlatformModel.ShipmentInternalPlatformViewResponse>;
     /**
+     * @param {OrderPlatformValidator.GetStateManagerTaskByIdParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<Object>} - Success response
+     * @name getStateManagerTaskById
+     * @summary: Fetch a specific State Transition task
+     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getStateManagerTaskById/).
+     */
+    getStateManagerTaskById({ taskId, requestHeaders }?: OrderPlatformValidator.GetStateManagerTaskByIdParam, { responseHeaders }?: object): Promise<any>;
+    /**
+     * @param {OrderPlatformValidator.GetStateManagerTasksParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<Object>} - Success response
+     * @name getStateManagerTasks
+     * @summary: Fetch all State Transition tasks
+     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getStateManagerTasks/).
+     */
+    getStateManagerTasks({ pageNo, pageSize, requestHeaders }?: OrderPlatformValidator.GetStateManagerTasksParam, { responseHeaders }?: object): Promise<any>;
+    /**
+     * @param {OrderPlatformValidator.GetStateTransitionFiltersParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<Object>} - Success response
+     * @name getStateTransitionFilters
+     * @summary: Fetch all State Transition filters
+     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getStateTransitionFilters/).
+     */
+    getStateTransitionFilters({ pageNo, pageSize, requestHeaders }?: OrderPlatformValidator.GetStateTransitionFiltersParam, { responseHeaders }?: object): Promise<any>;
+    /**
+     * @param {OrderPlatformValidator.GetStateTransitionFiltersByIdParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<Object>} - Success response
+     * @name getStateTransitionFiltersById
+     * @summary: Fetch a specific State Transition filter
+     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getStateTransitionFiltersById/).
+     */
+    getStateTransitionFiltersById({ filterId, requestHeaders }?: OrderPlatformValidator.GetStateTransitionFiltersByIdParam, { responseHeaders }?: object): Promise<any>;
+    /**
+     * @param {OrderPlatformValidator.GetStateTransitionFlagsParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<Object>} - Success response
+     * @name getStateTransitionFlags
+     * @summary:
+     * @description: Fetch all state transition flags for a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getStateTransitionFlags/).
+     */
+    getStateTransitionFlags({ pageNo, pageSize, requestHeaders }?: OrderPlatformValidator.GetStateTransitionFlagsParam, { responseHeaders }?: object): Promise<any>;
+    /**
+     * @param {OrderPlatformValidator.GetStateTransitionFlagsByIdParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<Object>} - Success response
+     * @name getStateTransitionFlagsById
+     * @summary:
+     * @description: Fetch a specific state transition flag for a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getStateTransitionFlagsById/).
+     */
+    getStateTransitionFlagsById({ flagId, requestHeaders }?: OrderPlatformValidator.GetStateTransitionFlagsByIdParam, { responseHeaders }?: object): Promise<any>;
+    /**
      * @param {OrderPlatformValidator.GetStateTransitionMapParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -424,6 +574,16 @@ declare class Order {
      * @description: Get State Transition Map - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getStateTransitionMap/).
      */
     getStateTransitionMap({ requestHeaders }?: any, { responseHeaders }?: object): Promise<OrderPlatformModel.BagStateTransitionMap>;
+    /**
+     * @param {OrderPlatformValidator.GetTemplateParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.TemplateDownloadResponse>} - Success response
+     * @name getTemplate
+     * @summary:
+     * @description: Get the Excel file URL for the Template. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getTemplate/).
+     */
+    getTemplate({ templateName, requestHeaders }?: OrderPlatformValidator.GetTemplateParam, { responseHeaders }?: object): Promise<OrderPlatformModel.TemplateDownloadResponse>;
     /**
      * @param {OrderPlatformValidator.GetfiltersParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -446,6 +606,16 @@ declare class Order {
      */
     invalidateShipmentCache({ body, requestHeaders }?: OrderPlatformValidator.InvalidateShipmentCacheParam, { responseHeaders }?: object): Promise<OrderPlatformModel.InvalidateShipmentCacheResponse>;
     /**
+     * @param {OrderPlatformValidator.JobDetailsParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.JobDetailsResponse>} - Success response
+     * @name jobDetails
+     * @summary:
+     * @description: Fetches details for the job of the provided batch_id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/jobDetails/).
+     */
+    jobDetails({ batchId, requestHeaders }?: OrderPlatformValidator.JobDetailsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.JobDetailsResponse>;
+    /**
      * @param {OrderPlatformValidator.OrderUpdateParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -466,15 +636,16 @@ declare class Order {
      */
     postShipmentHistory({ body, requestHeaders }?: OrderPlatformValidator.PostShipmentHistoryParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ShipmentHistoryResponse>;
     /**
-     * @param {OrderPlatformValidator.ProcessManifestParam} arg - Arg object
+     * @param {OrderPlatformValidator.ProcessManifestsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<OrderPlatformModel.CreateOrderResponse>} - Success response
-     * @name processManifest
+     * @returns {Promise<OrderPlatformModel.ProcessManifestItemResponse>} -
+     *   Success response
+     * @name processManifests
      * @summary:
-     * @description: Process Manifest - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/processManifest/).
+     * @description: Process Manifest. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/processManifests/).
      */
-    processManifest({ body, requestHeaders }?: OrderPlatformValidator.ProcessManifestParam, { responseHeaders }?: object): Promise<OrderPlatformModel.CreateOrderResponse>;
+    processManifests({ body, requestHeaders }?: OrderPlatformValidator.ProcessManifestsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ProcessManifestItemResponse>;
     /**
      * @param {OrderPlatformValidator.ReassignLocationParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -512,7 +683,7 @@ declare class Order {
      * @returns {Promise<OrderPlatformModel.CourierPartnerTrackingResponse>} -
      *   Success response
      * @name trackShipment
-     * @summary: Get courier partner tracking details
+     * @summary:
      * @description: This endpoint allows users to get courier partner tracking details for a given shipment id or awb no. The service will fetch courier partner statuses that are pushed to oms. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/trackShipment/).
      */
     trackShipment({ shipmentId, awb, pageNo, pageSize, requestHeaders }?: OrderPlatformValidator.TrackShipmentParam, { responseHeaders }?: object): Promise<OrderPlatformModel.CourierPartnerTrackingResponse>;
@@ -573,15 +744,15 @@ declare class Order {
      */
     updateShipmentTracking({ body, requestHeaders }?: OrderPlatformValidator.UpdateShipmentTrackingParam, { responseHeaders }?: object): Promise<OrderPlatformModel.CourierPartnerTrackingDetails>;
     /**
-     * @param {OrderPlatformValidator.UploadConsentParam} arg - Arg object
+     * @param {OrderPlatformValidator.UploadConsentsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<OrderPlatformModel.SuccessResponse>} - Success response
-     * @name uploadConsent
+     * @name uploadConsents
      * @summary:
-     * @description: Upload Consent - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/uploadConsent/).
+     * @description: Upload Consent - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/uploadConsents/).
      */
-    uploadConsent({ body, requestHeaders }?: OrderPlatformValidator.UploadConsentParam, { responseHeaders }?: object): Promise<OrderPlatformModel.SuccessResponse>;
+    uploadConsents({ manifestId, body, requestHeaders }?: OrderPlatformValidator.UploadConsentsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.SuccessResponse>;
     /**
      * @param {OrderPlatformValidator.VerifyMobileOTPParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

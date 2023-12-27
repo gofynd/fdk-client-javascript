@@ -3,6 +3,14 @@ const Joi = require("joi");
 const OrderPlatformModel = require("./OrderPlatformModel");
 
 /**
+ * @typedef FailedOrderLogsParam
+ * @property {number} [pageNo] - Page Number
+ * @property {number} [pageSize] - Page Size
+ * @property {string} [searchType] - Search type for filter
+ * @property {string} [searchValue] - Search value for filter
+ */
+
+/**
  * @typedef GetApplicationShipmentsParam
  * @property {string} [lane]
  * @property {string} [searchType]
@@ -34,11 +42,27 @@ const OrderPlatformModel = require("./OrderPlatformModel");
  */
 
 /**
+ * @typedef GetStateManagerStatesParam
+ * @property {number} [pageNo]
+ * @property {number} [pageSize]
+ */
+
+/**
  * @typedef TrackShipmentPlatformParam
  * @property {string} shipmentId - Shipment Id
  */
 
 class OrderPlatformApplicationValidator {
+  /** @returns {FailedOrderLogsParam} */
+  static failedOrderLogs() {
+    return Joi.object({
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      searchType: Joi.string().allow(""),
+      searchValue: Joi.string().allow(""),
+    }).required();
+  }
+
   /** @returns {GetApplicationShipmentsParam} */
   static getApplicationShipments() {
     return Joi.object({
@@ -72,6 +96,14 @@ class OrderPlatformApplicationValidator {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
       lineNumber: Joi.number().required(),
+    }).required();
+  }
+
+  /** @returns {GetStateManagerStatesParam} */
+  static getStateManagerStates() {
+    return Joi.object({
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
     }).required();
   }
 

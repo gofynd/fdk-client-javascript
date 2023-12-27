@@ -17,13 +17,18 @@ Default
 * [createCampaign](#createcampaign)
 * [createEmailProvider](#createemailprovider)
 * [createEmailTemplate](#createemailtemplate)
+* [createEventSubscriptions](#createeventsubscriptions)
+* [createEventSubscriptionsByBulk](#createeventsubscriptionsbybulk)
+* [createJobs](#createjobs)
 * [createSmsProvider](#createsmsprovider)
 * [createSmsTemplate](#createsmstemplate)
 * [deleteAudienceById](#deleteaudiencebyid)
 * [deleteEmailProviderById](#deleteemailproviderbyid)
 * [deleteEmailTemplateById](#deleteemailtemplatebyid)
+* [deleteEventSubscriptionsById](#deleteeventsubscriptionsbyid)
 * [deleteSmsProviderById](#deletesmsproviderbyid)
 * [deleteSmsTemplateById](#deletesmstemplatebyid)
+* [editEventSubscriptions](#editeventsubscriptions)
 * [getAppProviders](#getappproviders)
 * [getAudienceById](#getaudiencebyid)
 * [getAudiences](#getaudiences)
@@ -40,12 +45,14 @@ Default
 * [getEmailTemplateById](#getemailtemplatebyid)
 * [getEmailTemplates](#getemailtemplates)
 * [getEventSubscriptions](#geteventsubscriptions)
+* [getEventSubscriptionsById](#geteventsubscriptionsbyid)
 * [getGlobalProviders](#getglobalproviders)
 * [getGlobalVariables](#getglobalvariables)
 * [getJobLogs](#getjoblogs)
 * [getJobs](#getjobs)
 * [getNSampleRecordsFromCsv](#getnsamplerecordsfromcsv)
 * [getNSampleRecordsFromCsvByGet](#getnsamplerecordsfromcsvbyget)
+* [getOtpConfiguration](#getotpconfiguration)
 * [getSmsProviderById](#getsmsproviderbyid)
 * [getSmsProviders](#getsmsproviders)
 * [getSmsTemplateById](#getsmstemplatebyid)
@@ -67,6 +74,7 @@ Default
 * [updateCampaignById](#updatecampaignbyid)
 * [updateEmailProviderById](#updateemailproviderbyid)
 * [updateEmailTemplateById](#updateemailtemplatebyid)
+* [updateOtpConfiguration](#updateotpconfiguration)
 * [updateSmsProviderById](#updatesmsproviderbyid)
 * [updateSmsTemplateById](#updatesmstemplatebyid)
 * [verfiyOtp](#verfiyotp)
@@ -624,6 +632,250 @@ Refer `EmailTemplate` schema for more details.
 ---
 
 
+### createEventSubscriptions
+Create event subscriptions
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.createEventSubscriptions({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.createEventSubscriptions({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [SubscriptionsObject](#SubscriptionsObject) | yes | Request body |
+
+
+Create event subscriptions
+
+*Returned Response:*
+
+
+
+
+[EventSubscriptionsBulkUpdateResponse](#EventSubscriptionsBulkUpdateResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": [
+    {
+      "template": {
+        "sms": {
+          "subscribed": true,
+          "template": "65252a7f2b235b3b7a75e4be"
+        },
+        "email": {
+          "subscribed": true,
+          "template": "65252a196fcb371a2d6aa418"
+        },
+        "pushnotification": {
+          "subscribed": false
+        }
+      },
+      "_id": "64b2ddb856dd97a75c452f2d",
+      "application": "64b2ddb6cb99a609e12a9bea",
+      "event": "64aec4c6c987e14691600e2b",
+      "slug": "invite-event",
+      "category": "website",
+      "created_at": "2023-07-15T17:56:08.601Z",
+      "updated_at": "2023-10-10T10:50:28.781Z"
+    }
+  ]
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createEventSubscriptionsByBulk
+Create event subscriptions by bulk
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.createEventSubscriptionsByBulk({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.createEventSubscriptionsByBulk({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [EventSubscriptionsBulkUpdateRequest](#EventSubscriptionsBulkUpdateRequest) | yes | Request body |
+
+
+Create event subscriptions by bulk
+
+*Returned Response:*
+
+
+
+
+[Array<EventSubscriptionsBulkUpdateResponse>](#Array<EventSubscriptionsBulkUpdateResponse>)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": [
+    {
+      "template": {
+        "sms": {
+          "subscribed": true,
+          "template": "65252a7f2b235b3b7a75e4be"
+        },
+        "email": {
+          "subscribed": true,
+          "template": "65252a196fcb371a2d6aa418"
+        },
+        "pushnotification": {
+          "subscribed": false
+        }
+      },
+      "_id": "64b2ddb856dd97a75c452f2d",
+      "application": "64b2ddb6cb99a609e12a9bea",
+      "event": "64aec4c6c987e14691600e2b",
+      "slug": "invite-event",
+      "category": "website",
+      "created_at": "2023-07-15T17:56:08.601Z",
+      "updated_at": "2023-10-10T10:50:28.781Z"
+    }
+  ]
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createJobs
+Create jobs
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.createJobs({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.createJobs({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CreateJobsReq](#CreateJobsReq) | yes | Request body |
+
+
+Create jobs
+
+*Returned Response:*
+
+
+
+
+[CreateJobsRes](#CreateJobsRes)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "application": "000000000000000000000004",
+    "campaign": "656c9cad5638b4af9e2329af",
+    "completed": true,
+    "is_active": true,
+    "_id": "5fd9fd44c474a7e3d5d376d6",
+    "created_at": "2020-12-16T12:27:48.051Z",
+    "updated_at": "2020-12-16T12:27:48.051Z",
+    "__v": 0
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### createSmsProvider
 Create sms provider
 
@@ -806,10 +1058,12 @@ Delete audience by id
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.deleteAudienceById({  id : value });
+const promise = platformClient.application("<APPLICATION_ID>").communication.deleteAudienceById({  id : value,
+ body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.deleteAudienceById({  id : value });
+const data = await platformClient.application("<APPLICATION_ID>").communication.deleteAudienceById({  id : value,
+ body : value });
 ```
 
 
@@ -819,7 +1073,7 @@ const data = await platformClient.application("<APPLICATION_ID>").communication.
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | id | string | yes | Audience id |  
-
+| body | [AudienceReq](#AudienceReq) | yes | Request body |
 
 
 Audience is used to import CSV files containing emails, phone numbers, and other variables in order to populate email/SMS templates for bulk delivery via a Campaign. Use this API to delete audience by id.
@@ -829,9 +1083,9 @@ Audience is used to import CSV files containing emails, phone numbers, and other
 
 
 
-[GenericDelete](#GenericDelete)
+[Audience](#Audience)
 
-Refer `GenericDelete` schema for more details.
+Refer `Audience` schema for more details.
 
 
 
@@ -846,10 +1100,26 @@ Refer `GenericDelete` schema for more details.
 ```json
 {
   "value": {
-    "message": "Deletion Successfull",
-    "acknowledged": true,
-    "affected": 1,
-    "operation": "TEMP-ST-DEL:ID"
+    "_id": "64ad30a15efbc5f85fb549d8",
+    "application": "64802b8bd4dc759bcc1fef86",
+    "name": "dummy ds",
+    "description": "desc",
+    "records_count": 1,
+    "type": "raw_csv",
+    "tags": [
+      "tag1",
+      "tag2"
+    ],
+    "headers": [
+      "phone",
+      "mail"
+    ],
+    "file_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x5/application/64802b8bd4dc759bcc1fef86/datasources/ODKRR6aBQ-jsonviewer.csv",
+    "is_active": true,
+    "created_at": "2023-07-11T10:36:17.340Z",
+    "updated_at": "2023-07-11T10:36:17.340Z",
+    "slug": "dummy-1-5JrNGM8LA",
+    "__v": 0
   }
 }
 ```
@@ -961,6 +1231,75 @@ const data = await platformClient.application("<APPLICATION_ID>").communication.
 
 
 Email templates are predefined formats linked to various events for delivering messages to users. Use this API to delete an email template by id.
+
+*Returned Response:*
+
+
+
+
+[GenericDelete](#GenericDelete)
+
+Refer `GenericDelete` schema for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "message": "Deletion Successfull",
+    "acknowledged": true,
+    "affected": 1,
+    "operation": "TEMP-ST-DEL:ID"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteEventSubscriptionsById
+Create event subscriptions
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.deleteEventSubscriptionsById({  id : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.deleteEventSubscriptionsById({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Event subscription id |  
+
+
+
+Create event subscriptions
 
 *Returned Response:*
 
@@ -1127,6 +1466,95 @@ Refer `GenericDelete` schema for more details.
     "affected": 1,
     "operation": "TEMP-ST-DEL:ID"
   }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### editEventSubscriptions
+Create event subscriptions
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.editEventSubscriptions({  id : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.editEventSubscriptions({  id : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Event subscription id |  
+| body | [SubscriptionsObject](#SubscriptionsObject) | yes | Request body |
+
+
+Create event subscriptions
+
+*Returned Response:*
+
+
+
+
+[EventSubscriptionsBulkUpdateResponse](#EventSubscriptionsBulkUpdateResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": [
+    {
+      "template": {
+        "sms": {
+          "subscribed": true,
+          "template": "65252a7f2b235b3b7a75e4be"
+        },
+        "email": {
+          "subscribed": true,
+          "template": "65252a196fcb371a2d6aa418"
+        },
+        "pushnotification": {
+          "subscribed": false
+        }
+      },
+      "_id": "64b2ddb856dd97a75c452f2d",
+      "application": "64b2ddb6cb99a609e12a9bea",
+      "event": "64aec4c6c987e14691600e2b",
+      "slug": "invite-event",
+      "category": "website",
+      "created_at": "2023-07-15T17:56:08.601Z",
+      "updated_at": "2023-10-10T10:50:28.781Z"
+    }
+  ]
 }
 ```
 </details>
@@ -1333,12 +1761,14 @@ Get audiences
 // Promise
 const promise = platformClient.application("<APPLICATION_ID>").communication.getAudiences({  pageNo : value,
  pageSize : value,
- sort : value });
+ sort : value,
+ query : value });
 
 // Async/Await
 const data = await platformClient.application("<APPLICATION_ID>").communication.getAudiences({  pageNo : value,
  pageSize : value,
- sort : value });
+ sort : value,
+ query : value });
 ```
 
 
@@ -1349,7 +1779,8 @@ const data = await platformClient.application("<APPLICATION_ID>").communication.
 | --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |    
-| sort | Object | no | To sort based on created_at |  
+| sort | Object | no | To sort based on created_at |    
+| query | Object | no | To search based on plain text |  
 
 
 
@@ -1652,12 +2083,14 @@ Get campaigns
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").communication.getCampaigns({  pageNo : value,
+const promise = platformClient.application("<APPLICATION_ID>").communication.getCampaigns({  query : value,
+ pageNo : value,
  pageSize : value,
  sort : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").communication.getCampaigns({  pageNo : value,
+const data = await platformClient.application("<APPLICATION_ID>").communication.getCampaigns({  query : value,
+ pageNo : value,
  pageSize : value,
  sort : value });
 ```
@@ -1668,6 +2101,7 @@ const data = await platformClient.application("<APPLICATION_ID>").communication.
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
+| query | Object | no | To search based on plain text |    
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |    
 | sort | Object | no | To sort based on created_at |  
@@ -2180,12 +2614,14 @@ Get email providers
 // Promise
 const promise = platformClient.application("<APPLICATION_ID>").communication.getEmailProviders({  pageNo : value,
  pageSize : value,
- sort : value });
+ sort : value,
+ query : value });
 
 // Async/Await
 const data = await platformClient.application("<APPLICATION_ID>").communication.getEmailProviders({  pageNo : value,
  pageSize : value,
- sort : value });
+ sort : value,
+ query : value });
 ```
 
 
@@ -2196,7 +2632,8 @@ const data = await platformClient.application("<APPLICATION_ID>").communication.
 | --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |    
-| sort | Object | no | To sort based on created_at |  
+| sort | Object | no | To sort based on created_at |    
+| query | Object | no | To search based on plain text |  
 
 
 
@@ -2392,12 +2829,14 @@ Get email templates
 // Promise
 const promise = platformClient.application("<APPLICATION_ID>").communication.getEmailTemplates({  pageNo : value,
  pageSize : value,
- sort : value });
+ sort : value,
+ query : value });
 
 // Async/Await
 const data = await platformClient.application("<APPLICATION_ID>").communication.getEmailTemplates({  pageNo : value,
  pageSize : value,
- sort : value });
+ sort : value,
+ query : value });
 ```
 
 
@@ -2408,7 +2847,8 @@ const data = await platformClient.application("<APPLICATION_ID>").communication.
 | --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |    
-| sort | Object | no | To sort based on created_at |  
+| sort | Object | no | To sort based on created_at |    
+| query | Object | no | To search based on plain text |  
 
 
 
@@ -2537,7 +2977,7 @@ const data = await platformClient.application("<APPLICATION_ID>").communication.
 | --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |    
-| populate | string | no | populate fields |  
+| populate | string | no | Populate Fields |  
 
 
 
@@ -3152,6 +3592,95 @@ Success
 ---
 
 
+### getEventSubscriptionsById
+Get event subscriptions by id
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.getEventSubscriptionsById({  id : value,
+ populate : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.getEventSubscriptionsById({  id : value,
+ populate : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Event subscription id |    
+| populate | string | no | Populate Fields |  
+
+
+
+Get event subscriptions by id
+
+*Returned Response:*
+
+
+
+
+[EventSubscription](#EventSubscription)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "template": {
+      "sms": {
+        "subscribed": true,
+        "template": "64aec4c4c987e14691600d1a"
+      },
+      "email": {
+        "subscribed": true,
+        "template": "64aec4c4c987e14691600d1a"
+      },
+      "pushnotification": {
+        "subscribed": false
+      }
+    },
+    "_id": "64b2ddb756dd97a75c452ee6",
+    "application": "64b2ddb6cb99a609e12a9bea",
+    "event": "64aec4c4c987e14691600d1d",
+    "slug": "arriving_early_out_for_delivery-event",
+    "category": "website",
+    "created_at": "2023-07-15T17:56:07.926Z",
+    "updated_at": "2023-10-07T09:41:32.836Z",
+    "__v": 0
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getGlobalProviders
 Get global providers
 
@@ -3323,12 +3852,14 @@ Get job logs
 // Promise
 const promise = platformClient.application("<APPLICATION_ID>").communication.getJobLogs({  pageNo : value,
  pageSize : value,
- sort : value });
+ sort : value,
+ query : value });
 
 // Async/Await
 const data = await platformClient.application("<APPLICATION_ID>").communication.getJobLogs({  pageNo : value,
  pageSize : value,
- sort : value });
+ sort : value,
+ query : value });
 ```
 
 
@@ -3339,7 +3870,8 @@ const data = await platformClient.application("<APPLICATION_ID>").communication.
 | --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |    
-| sort | Object | no | To sort based on created_at |  
+| sort | Object | no | To sort based on created_at |    
+| query | Object | no | To search based on plain text |  
 
 
 
@@ -3426,12 +3958,14 @@ Get jobs
 // Promise
 const promise = platformClient.application("<APPLICATION_ID>").communication.getJobs({  pageNo : value,
  pageSize : value,
- sort : value });
+ sort : value,
+ query : value });
 
 // Async/Await
 const data = await platformClient.application("<APPLICATION_ID>").communication.getJobs({  pageNo : value,
  pageSize : value,
- sort : value });
+ sort : value,
+ query : value });
 ```
 
 
@@ -3442,7 +3976,8 @@ const data = await platformClient.application("<APPLICATION_ID>").communication.
 | --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |    
-| sort | Object | no | To sort based on created_at |  
+| sort | Object | no | To sort based on created_at |    
+| query | Object | no | To search based on plain text |  
 
 
 
@@ -3631,6 +4166,77 @@ Refer `GetNRecordsCsvRes` schema for more details.
         "orderid": "1"
       }
     ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getOtpConfiguration
+Get otp-configuration, if not present in db then return default settings
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.getOtpConfiguration();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.getOtpConfiguration();
+```
+
+
+
+
+
+
+Get otp-configuration
+
+*Returned Response:*
+
+
+
+
+[OtpConfiguration](#OtpConfiguration)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "type": "numeric",
+    "otp_length": 4,
+    "expiry": {
+      "type": "new",
+      "duration": {
+        "time": 5,
+        "denomination": "min"
+      }
+    },
+    "application_id": "6399ba6924ab1bacf0131492",
+    "company_id": "1"
   }
 }
 ```
@@ -3931,12 +4537,14 @@ Get sms templates
 // Promise
 const promise = platformClient.application("<APPLICATION_ID>").communication.getSmsTemplates({  pageNo : value,
  pageSize : value,
- sort : value });
+ sort : value,
+ query : value });
 
 // Async/Await
 const data = await platformClient.application("<APPLICATION_ID>").communication.getSmsTemplates({  pageNo : value,
  pageSize : value,
- sort : value });
+ sort : value,
+ query : value });
 ```
 
 
@@ -3947,7 +4555,8 @@ const data = await platformClient.application("<APPLICATION_ID>").communication.
 | --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | Current page no |    
 | pageSize | number | no | Current request items count |    
-| sort | Object | no | To sort based on created_at |  
+| sort | Object | no | To sort based on created_at |    
+| query | Object | no | To search based on plain text |  
 
 
 
@@ -4130,11 +4739,13 @@ Get subscribed email templates
 ```javascript
 // Promise
 const promise = platformClient.application("<APPLICATION_ID>").communication.getSubscribedEmailTemplates({  pageNo : value,
- pageSize : value });
+ pageSize : value,
+ query : value });
 
 // Async/Await
 const data = await platformClient.application("<APPLICATION_ID>").communication.getSubscribedEmailTemplates({  pageNo : value,
- pageSize : value });
+ pageSize : value,
+ query : value });
 ```
 
 
@@ -4144,7 +4755,8 @@ const data = await platformClient.application("<APPLICATION_ID>").communication.
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | Current page no |    
-| pageSize | number | no | Current request items count |  
+| pageSize | number | no | Current request items count |    
+| query | Object | no | To search based on plain text |  
 
 
 
@@ -4256,11 +4868,13 @@ Get subscribed sms templates
 ```javascript
 // Promise
 const promise = platformClient.application("<APPLICATION_ID>").communication.getSubscribedSmsTemplates({  pageNo : value,
- pageSize : value });
+ pageSize : value,
+ query : value });
 
 // Async/Await
 const data = await platformClient.application("<APPLICATION_ID>").communication.getSubscribedSmsTemplates({  pageNo : value,
- pageSize : value });
+ pageSize : value,
+ query : value });
 ```
 
 
@@ -4270,7 +4884,8 @@ const data = await platformClient.application("<APPLICATION_ID>").communication.
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | pageNo | number | no | Current page no |    
-| pageSize | number | no | Current request items count |  
+| pageSize | number | no | Current request items count |    
+| query | Object | no | To search based on plain text |  
 
 
 
@@ -5555,6 +6170,77 @@ Refer `EmailTemplate` schema for more details.
 ---
 
 
+### updateOtpConfiguration
+Update/insert otp configurations
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").communication.updateOtpConfiguration();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").communication.updateOtpConfiguration();
+```
+
+
+
+
+
+
+Update otp-configuration
+
+*Returned Response:*
+
+
+
+
+[OtpConfiguration](#OtpConfiguration)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; default</i></summary>
+
+```json
+{
+  "value": {
+    "type": "numeric",
+    "otp_length": 4,
+    "expiry": {
+      "type": "new",
+      "duration": {
+        "time": 5,
+        "denomination": "min"
+      }
+    },
+    "application_id": "6399ba6924ab1bacf0131492",
+    "company_id": "1"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### updateSmsProviderById
 Update sms provider by id
 
@@ -6003,6 +6689,41 @@ Success
 
 ---
 
+#### [CommunicationTemplate](#CommunicationTemplate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | subscribed | boolean? |  yes  | Whether the user is subscribed or not |
+ | template | string? |  yes  | Template ID |
+ 
+
+---
+
+#### [CreateJobsReq](#CreateJobsReq)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | campaign | string? |  yes  |  |
+ 
+
+---
+
+#### [CreateJobsRes](#CreateJobsRes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | campaign | string? |  yes  |  |
+ | completed | boolean? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ 
+
+---
+
 #### [DefaultSmsProviders](#DefaultSmsProviders)
 
  | Properties | Type | Nullable | Description |
@@ -6243,6 +6964,32 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | items | [[EventSubscription](#EventSubscription)]? |  yes  |  |
  | page | [Page](#Page)? |  yes  |  |
+ 
+
+---
+
+#### [EventSubscriptionsBulkUpdateRequest](#EventSubscriptionsBulkUpdateRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | subscriptions | [[SubscriptionsObject](#SubscriptionsObject)]? |  yes  |  |
+ 
+
+---
+
+#### [EventSubscriptionsBulkUpdateResponse](#EventSubscriptionsBulkUpdateResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | __v | number? |  yes  |  |
+ | _id | string? |  yes  |  |
+ | application | string? |  yes  |  |
+ | category | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | event | string? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | template | [EventSubscriptionTemplate](#EventSubscriptionTemplate)? |  yes  |  |
+ | updated_at | string? |  yes  |  |
  
 
 ---
@@ -6561,6 +7308,39 @@ Success
  | icon | string? |  yes  |  |
  | subtitle | string? |  yes  |  |
  | title | string? |  yes  |  |
+ 
+
+---
+
+#### [OtpConfiguration](#OtpConfiguration)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | application_id | string? |  yes  |  |
+ | company_id | string? |  yes  |  |
+ | expiry | [OtpConfigurationExpiry](#OtpConfigurationExpiry) |  no  |  |
+ | otp_length | number |  no  |  |
+ | type | string |  no  |  |
+ 
+
+---
+
+#### [OtpConfigurationExpiry](#OtpConfigurationExpiry)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | duration | [OtpConfigurationExpiryDuration](#OtpConfigurationExpiryDuration) |  no  |  |
+ | type | string |  no  |  |
+ 
+
+---
+
+#### [OtpConfigurationExpiryDuration](#OtpConfigurationExpiryDuration)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | denomination | string |  no  |  |
+ | time | number |  no  |  |
  
 
 ---
@@ -6957,6 +7737,16 @@ Success
 
 ---
 
+#### [SubscriptionsObject](#SubscriptionsObject)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  | Subscription ID |
+ | template | [TemplateObject](#TemplateObject)? |  yes  |  |
+ 
+
+---
+
 #### [SystemEmailTemplate](#SystemEmailTemplate)
 
  | Properties | Type | Nullable | Description |
@@ -7063,6 +7853,17 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | template | string? |  yes  |  |
  | template_type | string? |  yes  |  |
+ 
+
+---
+
+#### [TemplateObject](#TemplateObject)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | email | [CommunicationTemplate](#CommunicationTemplate)? |  yes  |  |
+ | pushnotification | [CommunicationTemplate](#CommunicationTemplate)? |  yes  |  |
+ | sms | [CommunicationTemplate](#CommunicationTemplate)? |  yes  |  |
  
 
 ---

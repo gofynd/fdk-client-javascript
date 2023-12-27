@@ -64,7 +64,9 @@ const Joi = require("joi");
  * @property {Object} [meta]
  * @property {string} [name]
  * @property {string} [phone]
+ * @property {string} [sector]
  * @property {string} [state]
+ * @property {string} [state_code] - State code for international address
  * @property {string[]} [tags]
  * @property {string} [user_id]
  */
@@ -85,6 +87,7 @@ const Joi = require("joi");
  * @property {number} [article_quantity] - Quantity of article on which
  *   promotion is applicable
  * @property {BuyRules[]} [buy_rules] - Buy rules for promotions
+ * @property {CartCurrency} [currency]
  * @property {DiscountRulesApp[]} [discount_rules] - Discount rules for promotions
  * @property {boolean} [mrp_promotion] - If applied promotion is applied on
  *   product MRP or ESP
@@ -610,6 +613,7 @@ const Joi = require("joi");
  * @property {string} [seller_identifier]
  * @property {string} [size]
  * @property {StoreInfo} [store]
+ * @property {string[]} [tags] - A list of article tags
  * @property {string} [type]
  * @property {string} [uid]
  */
@@ -658,6 +662,12 @@ const Joi = require("joi");
  * @typedef PromiseFormatted
  * @property {string} [max]
  * @property {string} [min]
+ */
+
+/**
+ * @typedef PromiseISOFormat
+ * @property {string} [max] - Max promise in ISO format.
+ * @property {string} [min] - Min Promise in ISO format.
  */
 
 /**
@@ -748,6 +758,7 @@ const Joi = require("joi");
 /**
  * @typedef ShipmentPromise
  * @property {PromiseFormatted} [formatted]
+ * @property {PromiseISOFormat} [iso]
  * @property {PromiseTimestamp} [timestamp]
  */
 
@@ -923,7 +934,9 @@ class PosCartApplicationModel {
       meta: Joi.any(),
       name: Joi.string().allow(""),
       phone: Joi.string().allow(""),
+      sector: Joi.string().allow(""),
       state: Joi.string().allow(""),
+      state_code: Joi.string().allow(""),
       tags: Joi.array().items(Joi.string().allow("")),
       user_id: Joi.string().allow(""),
     });
@@ -948,6 +961,7 @@ class PosCartApplicationModel {
       ),
       article_quantity: Joi.number(),
       buy_rules: Joi.array().items(PosCartApplicationModel.BuyRules()),
+      currency: PosCartApplicationModel.CartCurrency(),
       discount_rules: Joi.array().items(
         PosCartApplicationModel.DiscountRulesApp()
       ),
@@ -1580,6 +1594,7 @@ class PosCartApplicationModel {
       seller_identifier: Joi.string().allow(""),
       size: Joi.string().allow(""),
       store: PosCartApplicationModel.StoreInfo(),
+      tags: Joi.array().items(Joi.string().allow("")),
       type: Joi.string().allow(""),
       uid: Joi.string().allow(""),
     });
@@ -1639,6 +1654,14 @@ class PosCartApplicationModel {
 
   /** @returns {PromiseFormatted} */
   static PromiseFormatted() {
+    return Joi.object({
+      max: Joi.string().allow(""),
+      min: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {PromiseISOFormat} */
+  static PromiseISOFormat() {
     return Joi.object({
       max: Joi.string().allow(""),
       min: Joi.string().allow(""),
@@ -1752,6 +1775,7 @@ class PosCartApplicationModel {
   static ShipmentPromise() {
     return Joi.object({
       formatted: PosCartApplicationModel.PromiseFormatted(),
+      iso: PosCartApplicationModel.PromiseISOFormat(),
       timestamp: PosCartApplicationModel.PromiseTimestamp(),
     });
   }

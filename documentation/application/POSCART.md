@@ -6,7 +6,7 @@
 ##### [Back to Application docs](./README.md)
 
 ## PosCart Methods
-Cart APIs
+The POS Cart module optimizes the shopping and checkout experience. Use it to manage cart items, apply discounts, update addresses, and choose delivery options. It also supports shared cart options for collaborative shopping.
 
 
 Default
@@ -2925,6 +2925,7 @@ Success. Returns an Address object containing a list of address saved in the acc
   "user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
   "created_by_user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
   "country_code": "IND",
+  "state_code": "MH",
   "country_phone_code": "91",
   "country_iso_code": "IND",
   "phone": "9915347757",
@@ -3012,42 +3013,92 @@ Success. Returns an Address object containing a list of address saved in the acc
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; example1</i></summary>
 
 ```json
 {
-  "address": [
-    {
-      "landmark": "",
-      "area_code": "410218",
-      "id": "8b526f521bb14a2593a8b9e3ce8c76b3",
-      "state": "Maharashtra",
-      "meta": {},
-      "user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
-      "created_by_user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
-      "country_code": "IND",
-      "country_phone_code": "91",
-      "country_iso_code": "IND",
-      "phone": "9915347757",
-      "geo_location": {},
-      "country": "India",
-      "is_default_address": true,
-      "is_active": true,
-      "city": "Mumbai",
-      "pincode": 400093,
-      "checkout_mode": "self",
-      "address_type": "home",
-      "tags": [],
-      "area": "Sector 127",
-      "name": "abc",
-      "email": "ankur@gofynd1.com",
-      "address": "Megatron2",
-      "store_name": "store123",
-      "_custom_json": {}
-    }
-  ]
+  "summary": "Address for India",
+  "value": {
+    "address": [
+      {
+        "landmark": "",
+        "area_code": "8b526f521bb14a2593a8b9e3ce8c76b3",
+        "id": "8b526f521bb14a2593a8b9e3ce8c76b3",
+        "state": "Maharashtra",
+        "meta": {},
+        "user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
+        "created_by_user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
+        "country_code": "+91",
+        "state_code": "MH",
+        "country_phone_code": "91",
+        "country_iso_code": "IN",
+        "phone": "9915347757",
+        "geo_location": {},
+        "country": "India",
+        "is_default_address": true,
+        "is_active": true,
+        "city": "Mumbai",
+        "pincode": 400093,
+        "checkout_mode": "self",
+        "address_type": "home",
+        "tags": [],
+        "area": "Sector 127",
+        "name": "abc",
+        "email": "ankur@gofynd1.com",
+        "address": "Megatron2",
+        "_custom_json": {}
+      }
+    ]
+  }
 }
 ```
+</details>
+
+<details>
+<summary><i>&nbsp; example2</i></summary>
+
+```json
+{
+  "summary": "Address for Dubai",
+  "value": {
+    "address": [
+      {
+        "landmark": "",
+        "area_code": "",
+        "id": "651c0b882dbd5f702f711677",
+        "state": "",
+        "meta": {},
+        "user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
+        "created_by_user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
+        "country_code": "+971",
+        "country_phone_code": "+971",
+        "country_iso_code": "AE",
+        "phone": "551234567",
+        "geo_location": {},
+        "country": "United Arab Emirates",
+        "is_default_address": true,
+        "is_active": true,
+        "city": "Sharjah",
+        "sector": "Al Fisht",
+        "checkout_mode": "self",
+        "address_type": "home",
+        "tags": [],
+        "area": "Dubai Park",
+        "name": "Shaikh Ahmed",
+        "email": "example@gmail.com",
+        "address": "B-62",
+        "_custom_json": {}
+      }
+    ]
+  }
+}
+```
+</details>
+
 </details>
 
 
@@ -3995,6 +4046,7 @@ Success. Returns a Cart object. Check the example shown below or refer `CartDeta
       "moq": {},
       "article": {
         "type": "article",
+        "tags": [],
         "uid": "604_902_SSTC60401_636BLUE_1",
         "size": "1",
         "seller": {
@@ -5105,6 +5157,10 @@ Success. Returns delivery promise along with shipment details and price breakup.
           "formatted": {
             "min": "Aug 24",
             "max": "Aug 28"
+          },
+          "iso": {
+            "min": "2019-08-25T00:35:08.000Z",
+            "max": "2019-08-29T07:55:08.000Z"
           }
         },
         "box_type": "Small Courier bag",
@@ -5166,6 +5222,7 @@ Success. Returns delivery promise along with shipment details and price breakup.
             },
             "article": {
               "type": "article",
+              "tags": [],
               "uid": "381_610_IGPL01_SPIRAL19ANAVY_L",
               "size": "L",
               "seller": {
@@ -8434,6 +8491,10 @@ Success. Returns delivery promise along with shipment details and price breakup.
           "formatted": {
             "min": "Aug 24",
             "max": "Aug 28"
+          },
+          "iso": {
+            "min": "2019-08-25T00:35:08.000Z",
+            "max": "2019-08-29T07:55:08.000Z"
           }
         },
         "box_type": "Small Courier bag",
@@ -8996,7 +9057,9 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | meta | string? |  yes  |  |
  | name | string? |  yes  |  |
  | phone | string? |  yes  |  |
+ | sector | string? |  yes  |  |
  | state | string? |  yes  |  |
+ | state_code | string? |  yes  | State code for international address |
  | tags | [string]? |  yes  |  |
  | user_id | string? |  yes  |  |
  
@@ -9023,6 +9086,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | applied_free_articles | [[AppliedFreeArticles](#AppliedFreeArticles)]? |  yes  | Applied free article for free gift item promotions |
  | article_quantity | number? |  yes  | Quantity of article on which promotion is applicable |
  | buy_rules | [[BuyRules](#BuyRules)]? |  yes  | Buy rules for promotions |
+ | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
  | discount_rules | [[DiscountRulesApp](#DiscountRulesApp)]? |  yes  | Discount rules for promotions |
  | mrp_promotion | boolean? |  yes  | If applied promotion is applied on product MRP or ESP |
  | offer_text | string? |  yes  | Offer text of current promotion |
@@ -9749,6 +9813,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | seller_identifier | string? |  yes  |  |
  | size | string? |  yes  |  |
  | store | [StoreInfo](#StoreInfo)? |  yes  |  |
+ | tags | [string]? |  yes  | a list of article tags |
  | type | string? |  yes  |  |
  | uid | string? |  yes  |  |
  
@@ -9821,6 +9886,16 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | ---------- | ---- | -------- | ----------- |
  | max | string? |  yes  |  |
  | min | string? |  yes  |  |
+ 
+
+---
+
+#### [PromiseISOFormat](#PromiseISOFormat)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | max | string? |  yes  | Max promise in ISO format. |
+ | min | string? |  yes  | Min Promise in ISO format. |
  
 
 ---
@@ -9951,6 +10026,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | formatted | [PromiseFormatted](#PromiseFormatted)? |  yes  |  |
+ | iso | [PromiseISOFormat](#PromiseISOFormat)? |  yes  |  |
  | timestamp | [PromiseTimestamp](#PromiseTimestamp)? |  yes  |  |
  
 

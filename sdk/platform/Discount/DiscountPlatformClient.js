@@ -741,8 +741,8 @@ class Discount {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<DiscountPlatformModel.DiscountJob>} - Success response
    * @name updateDiscount
-   * @summary: Create Discount.
-   * @description: Create Discount. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/updateDiscount/).
+   * @summary: Update Discount.
+   * @description: Update Discount. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/updateDiscount/).
    */
   async updateDiscount(
     { id, body, requestHeaders } = { requestHeaders: {} },

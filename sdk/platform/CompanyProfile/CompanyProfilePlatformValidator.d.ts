@@ -51,6 +51,10 @@ export = CompanyProfilePlatformValidator;
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 10.
  * @property {number[]} [locationIds] - Helps to filter stores on the basis of uids.
+ * @property {string[]} [types] - Helps to get the location list on the basis of
+ *   multiple location type.
+ * @property {string[]} [tags] - Helps to get the location list on the basis of
+ *   multiple location tag.
  */
 /**
  * @typedef UpdateCompanyParam
@@ -170,6 +174,16 @@ type GetLocationsParam = {
      * - Helps to filter stores on the basis of uids.
      */
     locationIds?: number[];
+    /**
+     * - Helps to get the location list on the basis of
+     * multiple location type.
+     */
+    types?: string[];
+    /**
+     * - Helps to get the location list on the basis of
+     * multiple location tag.
+     */
+    tags?: string[];
 };
 type UpdateCompanyParam = {
     body: CompanyProfilePlatformModel.UpdateCompany;

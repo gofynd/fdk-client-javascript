@@ -54,6 +54,11 @@ const PaymentApplicationModel = require("./PaymentApplicationModel");
  */
 
 /**
+ * @typedef CreatePaymentOrderParam
+ * @property {PaymentApplicationModel.PaymentOrderRequest} body
+ */
+
+/**
  * @typedef CustomerCreditSummaryParam
  * @property {string} [aggregator]
  */
@@ -66,6 +71,11 @@ const PaymentApplicationModel = require("./PaymentApplicationModel");
 /**
  * @typedef DeleteUserCardParam
  * @property {PaymentApplicationModel.DeletehCardRequest} body
+ */
+
+/**
+ * @typedef DelinkWalletParam
+ * @property {PaymentApplicationModel.WalletDelinkRequestSchema} body
  */
 
 /**
@@ -108,14 +118,17 @@ const PaymentApplicationModel = require("./PaymentApplicationModel");
 /**
  * @typedef GetPaymentModeRoutesParam
  * @property {number} amount - Payable amount.
- * @property {string} cartId - Identifier of the cart.
- * @property {string} pincode - The PIN Code of the destination address, e.g. 400059
- * @property {string} checkoutMode - Option to checkout for self or for others.
+ * @property {string} [cartId] - Identifier of the cart.
+ * @property {string} [checkoutMode] - Option to checkout for self or for others.
  * @property {boolean} [refresh] - This is a boolean value. Select `true` to
  *   remove temporary cache files on payment gateway and replace with the latest one.
+ * @property {string} [orderId]
  * @property {string} [cardReference] - Card reference id of user's debit or credit card.
  * @property {string} [userDetails] - URIencoded JSON containing details of an
  *   anonymous user.
+ * @property {boolean} [displaySplit] - Display Split Payment Option or not
+ * @property {boolean} [advancePayment] - Display Advance Payment Options or Normal
+ * @property {string} [shipmentId]
  */
 
 /**
@@ -126,9 +139,9 @@ const PaymentApplicationModel = require("./PaymentApplicationModel");
 /**
  * @typedef GetPosPaymentModeRoutesParam
  * @property {number} amount - Payable amount.
- * @property {string} cartId - Identifier of the cart.
+ * @property {string} [cartId] - Identifier of the cart.
  * @property {string} pincode - The PIN Code of the destination address, e.g. 400059
- * @property {string} checkoutMode - Option to checkout for self or for others.
+ * @property {string} [checkoutMode] - Option to checkout for self or for others.
  * @property {boolean} [refresh] - This is a boolean value. Select `true` to
  *   remove temporary cache files on payment gateway and replace with the latest one.
  * @property {string} [cardReference] - Card reference id of user's debit or credit card.
@@ -155,6 +168,11 @@ const PaymentApplicationModel = require("./PaymentApplicationModel");
 /**
  * @typedef InitialisePaymentPaymentLinkParam
  * @property {PaymentApplicationModel.PaymentInitializationRequest} body
+ */
+
+/**
+ * @typedef LinkWalletParam
+ * @property {PaymentApplicationModel.WalletVerifyRequestSchema} body
  */
 
 /**
@@ -231,6 +249,11 @@ const PaymentApplicationModel = require("./PaymentApplicationModel");
  * @property {PaymentApplicationModel.WalletOtpRequest} body
  */
 
+/**
+ * @typedef WalletLinkInitateParam
+ * @property {PaymentApplicationModel.WalletLinkRequestSchema} body
+ */
+
 class PaymentApplicationValidator {
   /** @returns {AddBeneficiaryDetailsParam} */
   static addBeneficiaryDetails() {
@@ -303,6 +326,13 @@ class PaymentApplicationValidator {
     }).required();
   }
 
+  /** @returns {CreatePaymentOrderParam} */
+  static createPaymentOrder() {
+    return Joi.object({
+      body: PaymentApplicationModel.PaymentOrderRequest().required(),
+    }).required();
+  }
+
   /** @returns {CustomerCreditSummaryParam} */
   static customerCreditSummary() {
     return Joi.object({
@@ -321,6 +351,13 @@ class PaymentApplicationValidator {
   static deleteUserCard() {
     return Joi.object({
       body: PaymentApplicationModel.DeletehCardRequest().required(),
+    }).required();
+  }
+
+  /** @returns {DelinkWalletParam} */
+  static delinkWallet() {
+    return Joi.object({
+      body: PaymentApplicationModel.WalletDelinkRequestSchema().required(),
     }).required();
   }
 
@@ -381,12 +418,15 @@ class PaymentApplicationValidator {
   static getPaymentModeRoutes() {
     return Joi.object({
       amount: Joi.number().required(),
-      cartId: Joi.string().allow("").required(),
-      pincode: Joi.string().allow("").required(),
-      checkoutMode: Joi.string().allow("").required(),
+      cartId: Joi.string().allow(""),
+      checkoutMode: Joi.string().allow(""),
       refresh: Joi.boolean(),
+      orderId: Joi.string().allow(""),
       cardReference: Joi.string().allow(""),
       userDetails: Joi.string().allow(""),
+      displaySplit: Joi.boolean(),
+      advancePayment: Joi.boolean(),
+      shipmentId: Joi.string().allow(""),
     }).required();
   }
 
@@ -401,9 +441,9 @@ class PaymentApplicationValidator {
   static getPosPaymentModeRoutes() {
     return Joi.object({
       amount: Joi.number().required(),
-      cartId: Joi.string().allow("").required(),
+      cartId: Joi.string().allow(""),
       pincode: Joi.string().allow("").required(),
-      checkoutMode: Joi.string().allow("").required(),
+      checkoutMode: Joi.string().allow(""),
       refresh: Joi.boolean(),
       cardReference: Joi.string().allow(""),
       orderType: Joi.string().allow("").required(),
@@ -434,6 +474,13 @@ class PaymentApplicationValidator {
   static initialisePaymentPaymentLink() {
     return Joi.object({
       body: PaymentApplicationModel.PaymentInitializationRequest().required(),
+    }).required();
+  }
+
+  /** @returns {LinkWalletParam} */
+  static linkWallet() {
+    return Joi.object({
+      body: PaymentApplicationModel.WalletVerifyRequestSchema().required(),
     }).required();
   }
 
@@ -533,6 +580,13 @@ class PaymentApplicationValidator {
   static verifyOtpAndAddBeneficiaryForWallet() {
     return Joi.object({
       body: PaymentApplicationModel.WalletOtpRequest().required(),
+    }).required();
+  }
+
+  /** @returns {WalletLinkInitateParam} */
+  static walletLinkInitate() {
+    return Joi.object({
+      body: PaymentApplicationModel.WalletLinkRequestSchema().required(),
     }).required();
   }
 }

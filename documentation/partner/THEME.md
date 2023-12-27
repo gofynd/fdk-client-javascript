@@ -12,6 +12,7 @@ Responsible for partner theme submission
 Default
 * [createNewThemeInOrganization](#createnewthemeinorganization)
 * [createPage](#createpage)
+* [createTheme](#createtheme)
 * [deleteOrganizationTheme](#deleteorganizationtheme)
 * [deletePage](#deletepage)
 * [deleteTheme](#deletetheme)
@@ -746,6 +747,64 @@ Success. Returns the page of the theme. Refer `AvailablePageSchema` for more det
 ```
 </details>
 
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createTheme
+Create a new theme
+
+
+
+```javascript
+// Promise
+const promise = partnerClient.theme.createTheme({  organizationId : value,
+ body : value });
+
+// Async/Await
+const data = await partnerClient.theme.createTheme({  organizationId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| organizationId | string | yes | Organization ID |  
+| body | [CreateNewTheme](#CreateNewTheme) | yes | Request body |
+
+
+Themes improve the look and appearance of a website. Use this API to create a theme.
+
+*Returned Response:*
+
+
+
+
+[ThemesSchema](#ThemesSchema)
+
+Returns the new application theme details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
 </details>
 
 
@@ -3277,7 +3336,8 @@ Theme successfully deleted.
         }
       }
     ],
-    "src": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/organization/64b0eb01c35f990518880a82/theme/assets/7yuL57qP2-archive.zip"
+    "src": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/organization/64b0eb01c35f990518880a82/theme/assets/7yuL57qP2-archive.zip",
+    "company_id": 1
   }
 }
 ```
@@ -5248,7 +5308,8 @@ Theme successfully deleted.
         }
       }
     ],
-    "src": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/organization/64aec4634bc407961ed265c5/theme/assets/Gpbt5naNG-archive.zip"
+    "src": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/organization/64aec4634bc407961ed265c5/theme/assets/Gpbt5naNG-archive.zip",
+    "company_id": 1
   }
 }
 ```
@@ -7649,7 +7710,8 @@ The list of themes for the application was fetched successfully.
           }
         }
       ],
-      "src": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/organization/64b0eb01c35f990518880a82/theme/assets/7yuL57qP2-archive.zip"
+      "src": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/organization/64b0eb01c35f990518880a82/theme/assets/7yuL57qP2-archive.zip",
+      "company_id": 1
     }
   ]
 }
@@ -9622,7 +9684,8 @@ The list of themes for the application was fetched successfully.
           }
         }
       ],
-      "src": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/organization/64aec4634bc407961ed265c5/theme/assets/Gpbt5naNG-archive.zip"
+      "src": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/organization/64aec4634bc407961ed265c5/theme/assets/Gpbt5naNG-archive.zip",
+      "company_id": 1
     }
   ]
 }
@@ -13942,7 +14005,8 @@ Theme updated successfully
         }
       }
     ],
-    "src": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/organization/64b0eb01c35f990518880a82/theme/assets/7yuL57qP2-archive.zip"
+    "src": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/organization/64b0eb01c35f990518880a82/theme/assets/7yuL57qP2-archive.zip",
+    "company_id": 1
   }
 }
 ```
@@ -15913,7 +15977,8 @@ Theme updated successfully
         }
       }
     ],
-    "src": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/organization/64aec4634bc407961ed265c5/theme/assets/Gpbt5naNG-archive.zip"
+    "src": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/organization/64aec4634bc407961ed265c5/theme/assets/Gpbt5naNG-archive.zip",
+    "company_id": 1
   }
 }
 ```
@@ -16208,6 +16273,23 @@ Theme updated successfully
 
 ---
 
+#### [CreateNewTheme](#CreateNewTheme)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | available_sections | [[SectionItem](#SectionItem)] |  no  | Available sections information |
+ | current | string? |  yes  | The current configuration |
+ | global_schema | [GlobalSchema](#GlobalSchema)? |  yes  |  |
+ | list | [[ThemeConfiguration](#ThemeConfiguration)]? |  yes  | A list of configurations |
+ | name | string |  no  | The name of the theme |
+ | pages | [[Page](#Page)]? |  yes  |  |
+ | preset | [Preset](#Preset)? |  yes  |  |
+ | theme_type | string |  no  | Type of the Theme |
+ | version | string |  no  | The version of the theme |
+ 
+
+---
+
 #### [CSS](#CSS)
 
  | Properties | Type | Nullable | Description |
@@ -16492,21 +16574,6 @@ Theme updated successfully
 
 ---
 
-#### [Meta](#Meta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | description | string? |  yes  | The description of the theme |
- | images | [Images](#Images)? |  yes  |  |
- | industry | [string]? |  yes  | An array of industries associated with the theme |
- | name | string? |  yes  | The name of the theme |
- | payment | [ThemePayment](#ThemePayment)? |  yes  |  |
- | release | [Release](#Release)? |  yes  |  |
- | slug | string? |  yes  | The slug of the theme |
- 
-
----
-
 #### [OverlayPopupSetting](#OverlayPopupSetting)
 
  | Properties | Type | Nullable | Description |
@@ -16745,6 +16812,21 @@ Theme updated successfully
 
 ---
 
+#### [ThemeMeta](#ThemeMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string? |  yes  | The description of the theme |
+ | images | [Images](#Images)? |  yes  |  |
+ | industry | [string]? |  yes  | An array of industries associated with the theme |
+ | name | string? |  yes  | The name of the theme |
+ | payment | [ThemePayment](#ThemePayment)? |  yes  |  |
+ | release | [Release](#Release)? |  yes  |  |
+ | slug | string? |  yes  | The slug of the theme |
+ 
+
+---
+
 #### [ThemePayment](#ThemePayment)
 
  | Properties | Type | Nullable | Description |
@@ -16792,16 +16874,18 @@ Theme updated successfully
  | applied | boolean? |  yes  | Whether the theme has been applied or not |
  | assets | [Assets](#Assets)? |  yes  |  |
  | available_sections | [[SectionItem](#SectionItem)]? |  yes  | Available sections information |
+ | company_id | number? |  yes  | The company id in which sales channel exists |
  | config | [Config](#Config)? |  yes  |  |
  | created_at | string? |  yes  | The creation timestamp of the theme |
  | font | [Font](#Font)? |  yes  |  |
  | is_private | boolean? |  yes  | Whether the theme is private or not |
  | marketplace_theme_id | string? |  yes  | The ID of the theme in the marketplace |
- | meta | [Meta](#Meta)? |  yes  |  |
+ | meta | [ThemeMeta](#ThemeMeta)? |  yes  |  |
  | name | string? |  yes  | The name of the theme |
  | styles | string? |  yes  | The styles associated with the theme |
  | tags | [string]? |  yes  | An array of tags associated with the theme |
  | template_theme_id | string? |  yes  | The ID of the template theme |
+ | theme_type | string? |  yes  |  |
  | updated_at | string? |  yes  | The last update timestamp of the theme |
  | version | string? |  yes  | The version of the theme |
  

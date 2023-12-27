@@ -1,7 +1,7 @@
 export = WebhookPlatformValidator;
 /**
  * @typedef CancelJobByNameParam
- * @property {string} filename - Filename of the specific report export to cancel.
+ * @property {string} filename
  */
 /**
  * @typedef DownloadDeliveryReportParam
@@ -14,7 +14,7 @@ export = WebhookPlatformValidator;
  */
 /**
  * @typedef GetEventCountsParam
- * @property {WebhookPlatformModel.EventProcessRequest} body
+ * @property {WebhookPlatformModel.RetryEventRequest} body
  */
 /**
  * @typedef GetHistoricalReportsParam
@@ -39,12 +39,12 @@ export = WebhookPlatformValidator;
  * @typedef GetSubscribersByExtensionIdParam
  * @property {number} [pageNo] - Page Number
  * @property {number} [pageSize] - Page Size
- * @property {string} extensionId - Extension id
+ * @property {string} extensionId - Extension_id
  */
 /** @typedef ManualRetryCancelParam */
 /**
  * @typedef ManualRetryOfFailedEventParam
- * @property {WebhookPlatformModel.EventProcessRequest} body
+ * @property {WebhookPlatformModel.RetryEventRequest} body
  */
 /**
  * @typedef PingWebhookParam
@@ -96,9 +96,6 @@ declare namespace WebhookPlatformValidator {
     export { CancelJobByNameParam, DownloadDeliveryReportParam, FetchAllEventConfigurationsParam, GetDeliveryReportsParam, GetEventCountsParam, GetHistoricalReportsParam, GetManualRetryStatusParam, GetReportFiltersParam, GetSubscriberByIdParam, GetSubscribersByCompanyParam, GetSubscribersByExtensionIdParam, ManualRetryCancelParam, ManualRetryOfFailedEventParam, PingWebhookParam, RegisterSubscriberToEventParam, UpdateSubscriberConfigParam };
 }
 type CancelJobByNameParam = {
-    /**
-     * - Filename of the specific report export to cancel.
-     */
     filename: string;
 };
 type DownloadDeliveryReportParam = {
@@ -108,7 +105,7 @@ type GetDeliveryReportsParam = {
     body: WebhookPlatformModel.EventProcessRequest;
 };
 type GetEventCountsParam = {
-    body: WebhookPlatformModel.EventProcessRequest;
+    body: WebhookPlatformModel.RetryEventRequest;
 };
 type GetHistoricalReportsParam = {
     body: WebhookPlatformModel.HistoryPayload;
@@ -146,12 +143,12 @@ type GetSubscribersByExtensionIdParam = {
      */
     pageSize?: number;
     /**
-     * - Extension id
+     * - Extension_id
      */
     extensionId: string;
 };
 type ManualRetryOfFailedEventParam = {
-    body: WebhookPlatformModel.EventProcessRequest;
+    body: WebhookPlatformModel.RetryEventRequest;
 };
 type PingWebhookParam = {
     body: WebhookPlatformModel.PingWebhook;

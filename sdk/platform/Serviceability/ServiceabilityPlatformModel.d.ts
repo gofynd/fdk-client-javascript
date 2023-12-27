@@ -12,15 +12,10 @@ export = ServiceabilityPlatformModel;
  * @property {string} [state]
  */
 /**
- * @typedef ApplicationCompanyDpViewRequest
- * @property {string} [dp_id]
- */
-/**
- * @typedef ApplicationCompanyDpViewResponse
- * @property {string} application_id
- * @property {number} company_id
- * @property {number} [courier_partner_id]
- * @property {boolean} success
+ * @typedef ApplicationConfig
+ * @property {string[]} [rule_ids]
+ * @property {string[]} [sort]
+ * @property {ZoneConfig} [zones]
  */
 /**
  * @typedef ApplicationSelfShipConfig
@@ -45,24 +40,59 @@ export = ServiceabilityPlatformModel;
  * @property {boolean} success
  */
 /**
+ * @typedef ArithmeticOperations
+ * @property {number} [gt]
+ * @property {number} [gte]
+ * @property {number} [lt]
+ * @property {number} [lte]
+ */
+/**
+ * @typedef BulkRegionJobSerializer
+ * @property {string} action
+ * @property {string} country
+ * @property {string} [file_path]
+ * @property {string} region
+ */
+/**
+ * @typedef BulkRegionResponse
+ * @property {BulkRegionResponseItemData[]} items
+ * @property {Page} page
+ */
+/**
+ * @typedef BulkRegionResponseItemData
+ * @property {string} action
+ * @property {string} batch_id
+ * @property {string} country
+ * @property {string} [error_file_path]
+ * @property {number} [failed]
+ * @property {Object[]} [failed_records]
+ * @property {string} file_path
+ * @property {string} region
+ * @property {string} status
+ * @property {number} [success]
+ * @property {number} [total]
+ */
+/**
+ * @typedef Channel
+ * @property {string} [id]
+ * @property {string} [type]
+ */
+/**
  * @typedef CommonError
  * @property {Object} [error]
  * @property {string} [status_code]
  * @property {string} [success]
  */
 /**
- * @typedef CompanyDpAccountListResponse
- * @property {Dp1[]} items
+ * @typedef CompanyConfig
+ * @property {boolean} [logistics_as_actual]
+ * @property {string[]} rule_ids
+ * @property {string[]} sort
+ */
+/**
+ * @typedef CompanyCourierPartnerAccountListResponse
+ * @property {CourierAccountResponse[]} items
  * @property {Page} page
- * @property {boolean} success
- */
-/**
- * @typedef CompanyDpAccountRequest
- * @property {Dp1[]} data
- */
-/**
- * @typedef CompanyDpAccountResponse
- * @property {boolean} success
  */
 /**
  * @typedef CompanyStoreView_PageItems
@@ -83,9 +113,114 @@ export = ServiceabilityPlatformModel;
  * @property {string} [number]
  */
 /**
+ * @typedef CourierAccount
+ * @property {string} account_id
+ * @property {string} extension_id
+ * @property {boolean} is_own_account
+ * @property {boolean} is_self_ship
+ * @property {string} scheme_id
+ * @property {string} stage
+ */
+/**
+ * @typedef CourierAccountResponse
+ * @property {string} account_id
+ * @property {boolean} is_own_account
+ * @property {boolean} is_self_ship
+ * @property {string} scheme_id
+ * @property {CourierPartnerSchemeModel} scheme_rules
+ * @property {string} stage
+ */
+/**
+ * @typedef CourierPartnerAccountFailureResponse
+ * @property {ErrorResponse[]} error
+ * @property {boolean} success
+ */
+/**
+ * @typedef CourierPartnerList
+ * @property {string} account_id
+ * @property {string} extension_id
+ * @property {boolean} is_self_ship
+ * @property {string} name
+ */
+/**
+ * @typedef CourierPartnerRule
+ * @property {CourierPartnerRuleConditions} conditions
+ * @property {CourierPartnerList[]} [cp_list]
+ * @property {boolean} is_active
+ * @property {string} name
+ * @property {string[]} sort
+ */
+/**
+ * @typedef CourierPartnerRuleConditions
+ * @property {IntComparisonOperations} [brand_ids]
+ * @property {IntComparisonOperations} [category_ids]
+ * @property {IntComparisonOperations} [department_ids]
+ * @property {LocationRule} [forward]
+ * @property {ArithmeticOperations} [order_place_date]
+ * @property {StringComparisonOperations} [payment_mode]
+ * @property {IntComparisonOperations} [product_ids]
+ * @property {StringComparisonOperations} [product_tags]
+ * @property {LocationRule} [reverse]
+ * @property {ArithmeticOperations} [shipment_cost]
+ * @property {ArithmeticOperations} [shipment_volumetric_weight]
+ * @property {ArithmeticOperations} [shipment_weight]
+ * @property {IntComparisonOperations} [store_ids]
+ * @property {StringComparisonOperations} [store_tags]
+ * @property {StringComparisonOperations} [store_type]
+ * @property {StringComparisonOperations} [zone_ids]
+ */
+/**
+ * @typedef CourierPartnerRulesListResponse
+ * @property {CourierPartnerRule[]} items
+ * @property {Page} page
+ */
+/**
+ * @typedef CourierPartnerSchemeFeatures
+ * @property {boolean} [cold_storage_goods]
+ * @property {boolean} [dangerous_goods]
+ * @property {boolean} [doorstep_exchange]
+ * @property {boolean} [doorstep_qc]
+ * @property {boolean} [doorstep_return]
+ * @property {boolean} [ewaybill]
+ * @property {boolean} [fragile_goods]
+ * @property {boolean} [mps]
+ * @property {boolean} [multi_pick_multi_drop]
+ * @property {boolean} [multi_pick_single_drop]
+ * @property {boolean} [ndr]
+ * @property {number} [ndr_attempts]
+ * @property {boolean} [openbox_delivery]
+ * @property {boolean} [product_installation]
+ * @property {boolean} [qr]
+ * @property {boolean} [restricted_goods]
+ * @property {boolean} [single_pick_multi_drop]
+ * @property {string} [status_updates]
+ */
+/**
+ * @typedef CourierPartnerSchemeModel
+ * @property {string} delivery_type
+ * @property {string} extension_id
+ * @property {CourierPartnerSchemeFeatures} feature
+ * @property {string[]} payment_mode
+ * @property {string} region
+ * @property {string} scheme_id
+ * @property {string} stage
+ * @property {string} transport_type
+ * @property {ArithmeticOperations} weight
+ */
+/**
  * @typedef CreatedByResponse
  * @property {string} [user_id]
  * @property {string} [username]
+ */
+/**
+ * @typedef CreateStoreRuleRequestSchema
+ * @property {StoreRuleConditionSchema} [conditions]
+ * @property {boolean} [is_active]
+ * @property {string} [name]
+ * @property {string[]} [sort]
+ * @property {StorePrioritySchema[]} [store_priority]
+ * @property {string[]} [tag_based_priority]
+ * @property {string[]} [type_based_priority]
  */
 /**
  * @typedef CreateZoneData
@@ -95,10 +230,17 @@ export = ServiceabilityPlatformModel;
  * @property {boolean} is_active
  * @property {ZoneMappingType[]} mapping
  * @property {string} name
- * @property {ZoneProductTypes} product
  * @property {string} region_type
  * @property {string} slug
  * @property {number[]} store_ids
+ */
+/**
+ * @typedef CustomerRadiusSchema
+ * @property {number} [gt]
+ * @property {number} [gte]
+ * @property {number} [lt]
+ * @property {number} [lte]
+ * @property {string} unit
  */
 /**
  * @typedef DocumentsResponse
@@ -121,113 +263,6 @@ export = ServiceabilityPlatformModel;
  * @property {string} [transport_mode]
  */
 /**
- * @typedef Dp1
- * @property {string} account_id
- * @property {string} dp_id
- * @property {boolean} is_self_ship
- * @property {string} name
- * @property {string} plan_id
- * @property {Object} plan_rules
- * @property {string} stage
- */
-/**
- * @typedef DpAccountFailureResponse
- * @property {ErrorResponse[]} error
- * @property {number} status_code
- * @property {boolean} success
- */
-/**
- * @typedef DPApplicationRuleRequest
- * @property {string[]} shipping_rules
- */
-/**
- * @typedef DPApplicationRuleResponse
- * @property {DpRuleResponse[]} data
- * @property {boolean} status_code
- * @property {boolean} success
- */
-/**
- * @typedef DPCompanyRuleRequest
- * @property {string[]} rule_ids
- */
-/**
- * @typedef DPCompanyRuleResponse
- * @property {DpRuleResponse[]} data
- * @property {number} status_code
- * @property {boolean} success
- */
-/**
- * @typedef DpIds
- * @property {boolean} enabled
- * @property {Object} [meta]
- * @property {number} priority
- */
-/**
- * @typedef DpMultipleRuleSuccessResponse
- * @property {DpRule[]} items
- * @property {Page} page
- * @property {boolean} success
- */
-/**
- * @typedef DpRule
- * @property {number} [company_id]
- * @property {Object[]} conditions
- * @property {Object} dp_ids
- * @property {boolean} [is_active]
- * @property {string} name
- */
-/**
- * @typedef DpRuleRequest
- * @property {number} [company_id]
- * @property {Object[]} conditions
- * @property {Object} dp_ids
- * @property {boolean} [is_active]
- * @property {string} name
- */
-/**
- * @typedef DpRuleResponse
- * @property {number} company_id
- * @property {string[]} conditions
- * @property {Object} [created_by]
- * @property {string} [created_on]
- * @property {Object} dp_ids
- * @property {boolean} [is_active]
- * @property {Object} [modified_by]
- * @property {string} [modified_on]
- * @property {string} name
- * @property {string} uid
- */
-/**
- * @typedef DpRuleSuccessResponse
- * @property {DpRule} data
- * @property {number} status_code
- * @property {boolean} success
- */
-/**
- * @typedef DpRulesUpdateRequest
- * @property {Object[]} conditions
- * @property {Object} dp_ids
- * @property {boolean} is_active
- * @property {string} name
- */
-/**
- * @typedef DpRuleUpdateSuccessResponse
- * @property {DpRuleResponse} data
- * @property {number} status_code
- * @property {boolean} success
- */
-/**
- * @typedef DpSchemaInRuleListing
- * @property {string} account_id
- * @property {string} dp_id
- * @property {boolean} is_self_ship
- * @property {string} name
- * @property {string} plan_id
- * @property {Object} plan_rules
- * @property {number} priority
- * @property {string} stage
- */
-/**
  * @typedef EinvoiceResponse
  * @property {boolean} [enabled]
  */
@@ -239,7 +274,6 @@ export = ServiceabilityPlatformModel;
  */
 /**
  * @typedef EntityRegionView_Items
- * @property {string} [display_name]
  * @property {string} name
  * @property {string} sub_type
  * @property {string} uid
@@ -259,8 +293,8 @@ export = ServiceabilityPlatformModel;
  */
 /**
  * @typedef EntityRegionView_Response
+ * @property {EntityRegionView_Items[]} data
  * @property {EntityRegionView_Error} error
- * @property {EntityRegionView_Items[]} [items]
  * @property {EntityRegionView_page} page
  * @property {boolean} success
  */
@@ -283,17 +317,41 @@ export = ServiceabilityPlatformModel;
 /**
  * @typedef FailureResponse
  * @property {ErrorResponse[]} error
- * @property {number} status_code
  * @property {boolean} success
+ */
+/**
+ * @typedef getAppRegionZonesResponse
+ * @property {ListViewItems[]} items
+ * @property {PageSchema[]} page
  */
 /**
  * @typedef GetSingleZoneDataViewResponse
  * @property {GetZoneDataViewItems} data
  */
 /**
+ * @typedef GetStoreRulesApiResponse
+ * @property {StoreRuleDataSchema[]} [items]
+ * @property {Page} [page]
+ */
+/**
  * @typedef GetStoresViewResponse
  * @property {ItemResponse[]} [items]
  * @property {ServiceabilityPageResponse} page
+ */
+/**
+ * @typedef GetZoneByIdSchema
+ * @property {string} [assignment_preference]
+ * @property {GetZoneDataViewChannels[]} channels
+ * @property {number} [company_id]
+ * @property {boolean} is_active
+ * @property {ZoneMappingType[]} mapping
+ * @property {string} name
+ * @property {ZoneProductTypes} product
+ * @property {string} region_type
+ * @property {string} slug
+ * @property {number[]} store_ids
+ * @property {number} stores_count
+ * @property {string} zone_id
  */
 /**
  * @typedef GetZoneDataViewChannels
@@ -308,9 +366,8 @@ export = ServiceabilityPlatformModel;
  * @property {boolean} is_active
  * @property {ZoneMappingType[]} mapping
  * @property {string} name
- * @property {number} pincodes_count
  * @property {ZoneProductTypes} product
- * @property {string} region_type
+ * @property {string} [region_type]
  * @property {string} slug
  * @property {number[]} store_ids
  * @property {number} stores_count
@@ -335,6 +392,10 @@ export = ServiceabilityPlatformModel;
  * @typedef GstCredentialsResponse
  * @property {EinvoiceResponse} [e_invoice]
  * @property {EwayBillResponse} [e_waybill]
+ */
+/**
+ * @typedef IntComparisonOperations
+ * @property {number[]} [includes]
  */
 /**
  * @typedef IntegrationTypeResponse
@@ -379,12 +440,12 @@ export = ServiceabilityPlatformModel;
  */
 /**
  * @typedef ListViewItems
- * @property {ListViewChannels[]} channels
+ * @property {ListViewChannels} channels
  * @property {number} company_id
  * @property {boolean} is_active
  * @property {string} name
- * @property {number} pincodes_count
  * @property {ListViewProduct} product
+ * @property {number} regions_count
  * @property {string} slug
  * @property {number} stores_count
  * @property {string} zone_id
@@ -397,14 +458,27 @@ export = ServiceabilityPlatformModel;
 /**
  * @typedef ListViewResponse
  * @property {ListViewItems[]} items
- * @property {ZoneDataItem} page
- * @property {ListViewSummary} summary
+ * @property {ZoneDataItem[]} page
  */
 /**
  * @typedef ListViewSummary
  * @property {number} total_active_zones
  * @property {number} total_pincodes_served
  * @property {number} total_zones
+ */
+/**
+ * @typedef LocationRule
+ * @property {LocationRuleValues[]} [includes]
+ * @property {string} [type]
+ */
+/**
+ * @typedef LocationRuleValues
+ * @property {string} [display_name]
+ * @property {string} id
+ * @property {string} [name]
+ * @property {string} [parent_id]
+ * @property {string[]} [parent_ids]
+ * @property {string} [sub_type]
  */
 /**
  * @typedef LogisticsResponse
@@ -433,6 +507,102 @@ export = ServiceabilityPlatformModel;
  * @property {number} [minute]
  */
 /**
+ * @typedef PackageMaterial
+ * @property {boolean} [auto_calculate]
+ * @property {Channel[]} channels
+ * @property {number} error_rate
+ * @property {number} height
+ * @property {number} length
+ * @property {number} [max_weight]
+ * @property {string[]} [media]
+ * @property {string} name
+ * @property {string} package_type
+ * @property {number} [package_vol_weight]
+ * @property {PackageMaterialRule[]} [rules]
+ * @property {string} size
+ * @property {string} status
+ * @property {number[]} store_ids
+ * @property {boolean} [track_inventory]
+ * @property {number} weight
+ * @property {number} width
+ */
+/**
+ * @typedef PackageMaterialList
+ * @property {PackageMaterialResponse} [items]
+ * @property {Page} [page]
+ */
+/**
+ * @typedef PackageMaterialResponse
+ * @property {boolean} [auto_calculate]
+ * @property {Channel[]} channels
+ * @property {number} error_rate
+ * @property {number} height
+ * @property {string} [id]
+ * @property {number} [item_id]
+ * @property {number} length
+ * @property {number} [max_weight]
+ * @property {string[]} [media]
+ * @property {string} name
+ * @property {string} package_type
+ * @property {number} [package_vol_weight]
+ * @property {PackageMaterialRule[]} [rules]
+ * @property {string} size
+ * @property {string} status
+ * @property {number[]} store_ids
+ * @property {boolean} [track_inventory]
+ * @property {number} weight
+ * @property {number} width
+ */
+/**
+ * @typedef PackageMaterialRule
+ * @property {PackageMaterialRuleQuantity} [quantity]
+ * @property {string} [rule_id]
+ * @property {number} [weight]
+ */
+/**
+ * @typedef PackageMaterialRuleList
+ * @property {PackageRuleResponse} [items]
+ * @property {Page} [page]
+ */
+/**
+ * @typedef PackageMaterialRuleQuantity
+ * @property {number} [max]
+ * @property {number} [min]
+ */
+/**
+ * @typedef PackageRule
+ * @property {PackageRuleCategory} [category_id]
+ * @property {number} company_id
+ * @property {boolean} [is_active]
+ * @property {string} name
+ * @property {PackageRuleProduct} [product_id]
+ * @property {PackageRuleProductTag} [product_tag]
+ * @property {string} type
+ */
+/**
+ * @typedef PackageRuleCategory
+ * @property {number[]} [includes]
+ */
+/**
+ * @typedef PackageRuleProduct
+ * @property {number[]} [includes]
+ */
+/**
+ * @typedef PackageRuleProductTag
+ * @property {string[]} [includes]
+ */
+/**
+ * @typedef PackageRuleResponse
+ * @property {PackageRuleCategory} [category_id]
+ * @property {number} company_id
+ * @property {string} [id]
+ * @property {boolean} [is_active]
+ * @property {string} name
+ * @property {PackageRuleProduct} [product_id]
+ * @property {PackageRuleProductTag} [product_tag]
+ * @property {string} type
+ */
+/**
  * @typedef Page
  * @property {number} [current]
  * @property {boolean} [has_next]
@@ -440,6 +610,14 @@ export = ServiceabilityPlatformModel;
  * @property {number} [item_total]
  * @property {string} [next_id]
  * @property {number} [size]
+ * @property {string} type
+ */
+/**
+ * @typedef PageSchema
+ * @property {number} current
+ * @property {boolean} has_next
+ * @property {number} item_total
+ * @property {number} size
  * @property {string} type
  */
 /**
@@ -555,6 +733,33 @@ export = ServiceabilityPlatformModel;
  * @property {string} to_pincode
  */
 /**
+ * @typedef RulePriorityRequest
+ * @property {number} priority
+ * @property {string} rule_id
+ */
+/**
+ * @typedef RulePriorityResponse
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef SchemeRules
+ * @property {SchemeRulesFeatures} [feature]
+ * @property {string[]} [payment_mode]
+ * @property {string} [region]
+ * @property {string[]} [transport_type]
+ * @property {ArithmeticOperations} [weight]
+ */
+/**
+ * @typedef SchemeRulesFeatures
+ * @property {boolean} [battery_operated]
+ * @property {boolean} [e_waybill]
+ * @property {boolean} [flammable]
+ * @property {boolean} [hazmat]
+ * @property {boolean} [multi_part_shipments]
+ * @property {boolean} [quality_check]
+ * @property {boolean} [quick_response_code]
+ */
+/**
  * @typedef SelfShipResponse
  * @property {boolean} is_active
  * @property {number} tat
@@ -566,6 +771,17 @@ export = ServiceabilityPlatformModel;
  * @property {string} value
  */
 /**
+ * @typedef ServiceabilityModel
+ * @property {boolean} is_first_mile
+ * @property {boolean} is_installation
+ * @property {boolean} is_last_mile
+ * @property {boolean} is_qc
+ * @property {boolean} is_return
+ * @property {number} lm_cod_limit
+ * @property {string} pickup_cutoff
+ * @property {string} route_code
+ */
+/**
  * @typedef ServiceabilityPageResponse
  * @property {number} [current]
  * @property {boolean} [has_next]
@@ -574,8 +790,74 @@ export = ServiceabilityPlatformModel;
  * @property {string} [type]
  */
 /**
- * @typedef ServiceabilityPayloadSchema
- * @property {string} serviceability_type
+ * @typedef StorePrioritySchema
+ * @property {string} [id]
+ * @property {string} [name]
+ */
+/**
+ * @typedef StoreRuleConditionSchema
+ * @property {IntComparisonOperations} [brand_ids]
+ * @property {IntComparisonOperations} [category_ids]
+ * @property {CustomerRadiusSchema} [customer_radius]
+ * @property {IntComparisonOperations} [department_ids]
+ * @property {ArithmeticOperations} [order_place_date]
+ * @property {IntComparisonOperations} [product_ids]
+ * @property {StringComparisonOperations} [product_tags]
+ * @property {StringComparisonOperations} [store_tags]
+ * @property {StringComparisonOperations} [store_type]
+ * @property {LocationRule} [to_location]
+ * @property {StringComparisonOperations} [zone_ids]
+ */
+/**
+ * @typedef StoreRuleConfigData
+ * @property {string[]} [rule_ids]
+ * @property {string[]} [sort]
+ * @property {StorePrioritySchema[]} [store_priority]
+ * @property {string[]} [tag_based_priority]
+ * @property {string[]} [type_based_priority]
+ */
+/**
+ * @typedef StoreRuleDataSchema
+ * @property {string} [application_id]
+ * @property {number} [company_id]
+ * @property {StoreRuleConditionSchema} [conditions]
+ * @property {string} [id]
+ * @property {boolean} [is_active]
+ * @property {string} [name]
+ * @property {string[]} [sort]
+ * @property {StorePrioritySchema[]} [store_priority]
+ * @property {string[]} [tag_based_priority]
+ * @property {string[]} [type_based_priority]
+ */
+/**
+ * @typedef StoreRuleResponseSchema
+ * @property {StoreRuleConditionSchema} [conditions]
+ * @property {string} [id]
+ * @property {boolean} [is_active]
+ * @property {string} [name]
+ * @property {string[]} [sort]
+ * @property {StorePrioritySchema[]} [store_priority]
+ * @property {string[]} [tag_based_priority]
+ * @property {string} [type]
+ * @property {string[]} [type_based_priority]
+ */
+/**
+ * @typedef StoreRuleUpdateResponseSchema
+ * @property {string} [application_id]
+ * @property {number} [company_id]
+ * @property {StoreRuleConditionSchema} [conditions]
+ * @property {string} [id]
+ * @property {boolean} [is_active]
+ * @property {string} [name]
+ * @property {string[]} [sort]
+ * @property {StorePrioritySchema[]} [store_priority]
+ * @property {string[]} [tag_based_priority]
+ * @property {string} [type]
+ * @property {string[]} [type_based_priority]
+ */
+/**
+ * @typedef StringComparisonOperations
+ * @property {string[]} [includes]
  */
 /**
  * @typedef TimmingResponse
@@ -583,6 +865,10 @@ export = ServiceabilityPlatformModel;
  * @property {boolean} [open]
  * @property {OpeningClosing} [opening]
  * @property {string} [weekday]
+ */
+/**
+ * @typedef UpdateZoneConfigRequest
+ * @property {string} [serviceability_type]
  */
 /**
  * @typedef UpdateZoneData
@@ -614,6 +900,10 @@ export = ServiceabilityPlatformModel;
  * @property {string} zone_id
  */
 /**
+ * @typedef ZoneConfig
+ * @property {string} [serviceability_type]
+ */
+/**
  * @typedef ZoneDataItem
  * @property {number} current
  * @property {boolean} has_next
@@ -631,11 +921,6 @@ export = ServiceabilityPlatformModel;
  * @typedef ZoneProductTypes
  * @property {string[]} tags
  * @property {string} type
- */
-/**
- * @typedef ZoneRequest
- * @property {CreateZoneData} data
- * @property {string} identifier
  */
 /**
  * @typedef ZoneResponse
@@ -656,7 +941,7 @@ export = ServiceabilityPlatformModel;
 declare class ServiceabilityPlatformModel {
 }
 declare namespace ServiceabilityPlatformModel {
-    export { AddressResponse, ApplicationCompanyDpViewRequest, ApplicationCompanyDpViewResponse, ApplicationSelfShipConfig, ApplicationSelfShipConfigResponse, ApplicationServiceabilityConfig, ApplicationServiceabilityConfigResponse, CommonError, CompanyDpAccountListResponse, CompanyDpAccountRequest, CompanyDpAccountResponse, CompanyStoreView_PageItems, CompanyStoreView_Response, ContactNumberResponse, CreatedByResponse, CreateZoneData, DocumentsResponse, Dp, Dp1, DpAccountFailureResponse, DPApplicationRuleRequest, DPApplicationRuleResponse, DPCompanyRuleRequest, DPCompanyRuleResponse, DpIds, DpMultipleRuleSuccessResponse, DpRule, DpRuleRequest, DpRuleResponse, DpRuleSuccessResponse, DpRulesUpdateRequest, DpRuleUpdateSuccessResponse, DpSchemaInRuleListing, EinvoiceResponse, EntityRegionView_Error, EntityRegionView_Items, EntityRegionView_page, EntityRegionView_Request, EntityRegionView_Response, Error, ErrorResponse, EwayBillResponse, FailureResponse, GetSingleZoneDataViewResponse, GetStoresViewResponse, GetZoneDataViewChannels, GetZoneDataViewItems, GetZoneFromApplicationIdViewResponse, GetZoneFromPincodeViewRequest, GetZoneFromPincodeViewResponse, GstCredentialsResponse, IntegrationTypeResponse, ItemResponse, ListViewChannels, ListViewItems, ListViewProduct, ListViewResponse, ListViewSummary, LogisticsResponse, ManagerResponse, MobileNo, ModifiedByResponse, OpeningClosing, Page, PincodeBulkViewResponse, PincodeCodStatusListingPage, PincodeCodStatusListingRequest, PincodeCodStatusListingResponse, PincodeCodStatusListingSummary, PincodeMopBulkData, PincodeMopData, PincodeMOPresponse, PincodeMopUpdateAuditHistoryPaging, PincodeMopUpdateAuditHistoryRequest, PincodeMopUpdateAuditHistoryResponse, PincodeMopUpdateAuditHistoryResponseData, PincodeMopUpdateResponse, ProductReturnConfigResponse, ReAssignStoreRequest, ReAssignStoreResponse, SelfShipResponse, ServiceabilityErrorResponse, ServiceabilityPageResponse, ServiceabilityPayloadSchema, TimmingResponse, UpdateZoneData, WarningsResponse, Zone, ZoneDataItem, ZoneMappingType, ZoneProductTypes, ZoneRequest, ZoneResponse, ZoneSuccessResponse, ZoneUpdateRequest };
+    export { AddressResponse, ApplicationConfig, ApplicationSelfShipConfig, ApplicationSelfShipConfigResponse, ApplicationServiceabilityConfig, ApplicationServiceabilityConfigResponse, ArithmeticOperations, BulkRegionJobSerializer, BulkRegionResponse, BulkRegionResponseItemData, Channel, CommonError, CompanyConfig, CompanyCourierPartnerAccountListResponse, CompanyStoreView_PageItems, CompanyStoreView_Response, ContactNumberResponse, CourierAccount, CourierAccountResponse, CourierPartnerAccountFailureResponse, CourierPartnerList, CourierPartnerRule, CourierPartnerRuleConditions, CourierPartnerRulesListResponse, CourierPartnerSchemeFeatures, CourierPartnerSchemeModel, CreatedByResponse, CreateStoreRuleRequestSchema, CreateZoneData, CustomerRadiusSchema, DocumentsResponse, Dp, EinvoiceResponse, EntityRegionView_Error, EntityRegionView_Items, EntityRegionView_page, EntityRegionView_Request, EntityRegionView_Response, Error, ErrorResponse, EwayBillResponse, FailureResponse, getAppRegionZonesResponse, GetSingleZoneDataViewResponse, GetStoreRulesApiResponse, GetStoresViewResponse, GetZoneByIdSchema, GetZoneDataViewChannels, GetZoneDataViewItems, GetZoneFromApplicationIdViewResponse, GetZoneFromPincodeViewRequest, GetZoneFromPincodeViewResponse, GstCredentialsResponse, IntComparisonOperations, IntegrationTypeResponse, ItemResponse, ListViewChannels, ListViewItems, ListViewProduct, ListViewResponse, ListViewSummary, LocationRule, LocationRuleValues, LogisticsResponse, ManagerResponse, MobileNo, ModifiedByResponse, OpeningClosing, PackageMaterial, PackageMaterialList, PackageMaterialResponse, PackageMaterialRule, PackageMaterialRuleList, PackageMaterialRuleQuantity, PackageRule, PackageRuleCategory, PackageRuleProduct, PackageRuleProductTag, PackageRuleResponse, Page, PageSchema, PincodeBulkViewResponse, PincodeCodStatusListingPage, PincodeCodStatusListingRequest, PincodeCodStatusListingResponse, PincodeCodStatusListingSummary, PincodeMopBulkData, PincodeMopData, PincodeMOPresponse, PincodeMopUpdateAuditHistoryPaging, PincodeMopUpdateAuditHistoryRequest, PincodeMopUpdateAuditHistoryResponse, PincodeMopUpdateAuditHistoryResponseData, PincodeMopUpdateResponse, ProductReturnConfigResponse, ReAssignStoreRequest, ReAssignStoreResponse, RulePriorityRequest, RulePriorityResponse, SchemeRules, SchemeRulesFeatures, SelfShipResponse, ServiceabilityErrorResponse, ServiceabilityModel, ServiceabilityPageResponse, StorePrioritySchema, StoreRuleConditionSchema, StoreRuleConfigData, StoreRuleDataSchema, StoreRuleResponseSchema, StoreRuleUpdateResponseSchema, StringComparisonOperations, TimmingResponse, UpdateZoneConfigRequest, UpdateZoneData, WarningsResponse, Zone, ZoneConfig, ZoneDataItem, ZoneMappingType, ZoneProductTypes, ZoneResponse, ZoneSuccessResponse, ZoneUpdateRequest };
 }
 /** @returns {AddressResponse} */
 declare function AddressResponse(): AddressResponse;
@@ -671,18 +956,12 @@ type AddressResponse = {
     pincode?: number;
     state?: string;
 };
-/** @returns {ApplicationCompanyDpViewRequest} */
-declare function ApplicationCompanyDpViewRequest(): ApplicationCompanyDpViewRequest;
-type ApplicationCompanyDpViewRequest = {
-    dp_id?: string;
-};
-/** @returns {ApplicationCompanyDpViewResponse} */
-declare function ApplicationCompanyDpViewResponse(): ApplicationCompanyDpViewResponse;
-type ApplicationCompanyDpViewResponse = {
-    application_id: string;
-    company_id: number;
-    courier_partner_id?: number;
-    success: boolean;
+/** @returns {ApplicationConfig} */
+declare function ApplicationConfig(): ApplicationConfig;
+type ApplicationConfig = {
+    rule_ids?: string[];
+    sort?: string[];
+    zones?: ZoneConfig;
 };
 /** @returns {ApplicationSelfShipConfig} */
 declare function ApplicationSelfShipConfig(): ApplicationSelfShipConfig;
@@ -710,6 +989,49 @@ type ApplicationServiceabilityConfigResponse = {
     error?: ServiceabilityErrorResponse;
     success: boolean;
 };
+/** @returns {ArithmeticOperations} */
+declare function ArithmeticOperations(): ArithmeticOperations;
+type ArithmeticOperations = {
+    gt?: number;
+    gte?: number;
+    lt?: number;
+    lte?: number;
+};
+/** @returns {BulkRegionJobSerializer} */
+declare function BulkRegionJobSerializer(): BulkRegionJobSerializer;
+type BulkRegionJobSerializer = {
+    action: string;
+    country: string;
+    file_path?: string;
+    region: string;
+};
+/** @returns {BulkRegionResponse} */
+declare function BulkRegionResponse(): BulkRegionResponse;
+type BulkRegionResponse = {
+    items: BulkRegionResponseItemData[];
+    page: Page;
+};
+/** @returns {BulkRegionResponseItemData} */
+declare function BulkRegionResponseItemData(): BulkRegionResponseItemData;
+type BulkRegionResponseItemData = {
+    action: string;
+    batch_id: string;
+    country: string;
+    error_file_path?: string;
+    failed?: number;
+    failed_records?: any[];
+    file_path: string;
+    region: string;
+    status: string;
+    success?: number;
+    total?: number;
+};
+/** @returns {Channel} */
+declare function Channel(): Channel;
+type Channel = {
+    id?: string;
+    type?: string;
+};
 /** @returns {CommonError} */
 declare function CommonError(): CommonError;
 type CommonError = {
@@ -717,22 +1039,18 @@ type CommonError = {
     status_code?: string;
     success?: string;
 };
-/** @returns {CompanyDpAccountListResponse} */
-declare function CompanyDpAccountListResponse(): CompanyDpAccountListResponse;
-type CompanyDpAccountListResponse = {
-    items: Dp1[];
+/** @returns {CompanyConfig} */
+declare function CompanyConfig(): CompanyConfig;
+type CompanyConfig = {
+    logistics_as_actual?: boolean;
+    rule_ids: string[];
+    sort: string[];
+};
+/** @returns {CompanyCourierPartnerAccountListResponse} */
+declare function CompanyCourierPartnerAccountListResponse(): CompanyCourierPartnerAccountListResponse;
+type CompanyCourierPartnerAccountListResponse = {
+    items: CourierAccountResponse[];
     page: Page;
-    success: boolean;
-};
-/** @returns {CompanyDpAccountRequest} */
-declare function CompanyDpAccountRequest(): CompanyDpAccountRequest;
-type CompanyDpAccountRequest = {
-    data: Dp1[];
-};
-/** @returns {CompanyDpAccountResponse} */
-declare function CompanyDpAccountResponse(): CompanyDpAccountResponse;
-type CompanyDpAccountResponse = {
-    success: boolean;
 };
 /** @returns {CompanyStoreView_PageItems} */
 declare function CompanyStoreView_PageItems(): CompanyStoreView_PageItems;
@@ -755,11 +1073,126 @@ type ContactNumberResponse = {
     country_code?: number;
     number?: string;
 };
+/** @returns {CourierAccount} */
+declare function CourierAccount(): CourierAccount;
+type CourierAccount = {
+    account_id: string;
+    extension_id: string;
+    is_own_account: boolean;
+    is_self_ship: boolean;
+    scheme_id: string;
+    stage: string;
+};
+/** @returns {CourierAccountResponse} */
+declare function CourierAccountResponse(): CourierAccountResponse;
+type CourierAccountResponse = {
+    account_id: string;
+    is_own_account: boolean;
+    is_self_ship: boolean;
+    scheme_id: string;
+    scheme_rules: CourierPartnerSchemeModel;
+    stage: string;
+};
+/** @returns {CourierPartnerAccountFailureResponse} */
+declare function CourierPartnerAccountFailureResponse(): CourierPartnerAccountFailureResponse;
+type CourierPartnerAccountFailureResponse = {
+    error: ErrorResponse[];
+    success: boolean;
+};
+/** @returns {CourierPartnerList} */
+declare function CourierPartnerList(): CourierPartnerList;
+type CourierPartnerList = {
+    account_id: string;
+    extension_id: string;
+    is_self_ship: boolean;
+    name: string;
+};
+/** @returns {CourierPartnerRule} */
+declare function CourierPartnerRule(): CourierPartnerRule;
+type CourierPartnerRule = {
+    conditions: CourierPartnerRuleConditions;
+    cp_list?: CourierPartnerList[];
+    is_active: boolean;
+    name: string;
+    sort: string[];
+};
+/** @returns {CourierPartnerRuleConditions} */
+declare function CourierPartnerRuleConditions(): CourierPartnerRuleConditions;
+type CourierPartnerRuleConditions = {
+    brand_ids?: IntComparisonOperations;
+    category_ids?: IntComparisonOperations;
+    department_ids?: IntComparisonOperations;
+    forward?: LocationRule;
+    order_place_date?: ArithmeticOperations;
+    payment_mode?: StringComparisonOperations;
+    product_ids?: IntComparisonOperations;
+    product_tags?: StringComparisonOperations;
+    reverse?: LocationRule;
+    shipment_cost?: ArithmeticOperations;
+    shipment_volumetric_weight?: ArithmeticOperations;
+    shipment_weight?: ArithmeticOperations;
+    store_ids?: IntComparisonOperations;
+    store_tags?: StringComparisonOperations;
+    store_type?: StringComparisonOperations;
+    zone_ids?: StringComparisonOperations;
+};
+/** @returns {CourierPartnerRulesListResponse} */
+declare function CourierPartnerRulesListResponse(): CourierPartnerRulesListResponse;
+type CourierPartnerRulesListResponse = {
+    items: CourierPartnerRule[];
+    page: Page;
+};
+/** @returns {CourierPartnerSchemeFeatures} */
+declare function CourierPartnerSchemeFeatures(): CourierPartnerSchemeFeatures;
+type CourierPartnerSchemeFeatures = {
+    cold_storage_goods?: boolean;
+    dangerous_goods?: boolean;
+    doorstep_exchange?: boolean;
+    doorstep_qc?: boolean;
+    doorstep_return?: boolean;
+    ewaybill?: boolean;
+    fragile_goods?: boolean;
+    mps?: boolean;
+    multi_pick_multi_drop?: boolean;
+    multi_pick_single_drop?: boolean;
+    ndr?: boolean;
+    ndr_attempts?: number;
+    openbox_delivery?: boolean;
+    product_installation?: boolean;
+    qr?: boolean;
+    restricted_goods?: boolean;
+    single_pick_multi_drop?: boolean;
+    status_updates?: string;
+};
+/** @returns {CourierPartnerSchemeModel} */
+declare function CourierPartnerSchemeModel(): CourierPartnerSchemeModel;
+type CourierPartnerSchemeModel = {
+    delivery_type: string;
+    extension_id: string;
+    feature: CourierPartnerSchemeFeatures;
+    payment_mode: string[];
+    region: string;
+    scheme_id: string;
+    stage: string;
+    transport_type: string;
+    weight: ArithmeticOperations;
+};
 /** @returns {CreatedByResponse} */
 declare function CreatedByResponse(): CreatedByResponse;
 type CreatedByResponse = {
     user_id?: string;
     username?: string;
+};
+/** @returns {CreateStoreRuleRequestSchema} */
+declare function CreateStoreRuleRequestSchema(): CreateStoreRuleRequestSchema;
+type CreateStoreRuleRequestSchema = {
+    conditions?: StoreRuleConditionSchema;
+    is_active?: boolean;
+    name?: string;
+    sort?: string[];
+    store_priority?: StorePrioritySchema[];
+    tag_based_priority?: string[];
+    type_based_priority?: string[];
 };
 /** @returns {CreateZoneData} */
 declare function CreateZoneData(): CreateZoneData;
@@ -770,10 +1203,18 @@ type CreateZoneData = {
     is_active: boolean;
     mapping: ZoneMappingType[];
     name: string;
-    product: ZoneProductTypes;
     region_type: string;
     slug: string;
     store_ids: number[];
+};
+/** @returns {CustomerRadiusSchema} */
+declare function CustomerRadiusSchema(): CustomerRadiusSchema;
+type CustomerRadiusSchema = {
+    gt?: number;
+    gte?: number;
+    lt?: number;
+    lte?: number;
+    unit: string;
 };
 /** @returns {DocumentsResponse} */
 declare function DocumentsResponse(): DocumentsResponse;
@@ -797,128 +1238,6 @@ type Dp = {
     rvp_priority?: number;
     transport_mode?: string;
 };
-/** @returns {Dp1} */
-declare function Dp1(): Dp1;
-type Dp1 = {
-    account_id: string;
-    dp_id: string;
-    is_self_ship: boolean;
-    name: string;
-    plan_id: string;
-    plan_rules: any;
-    stage: string;
-};
-/** @returns {DpAccountFailureResponse} */
-declare function DpAccountFailureResponse(): DpAccountFailureResponse;
-type DpAccountFailureResponse = {
-    error: ErrorResponse[];
-    status_code: number;
-    success: boolean;
-};
-/** @returns {DPApplicationRuleRequest} */
-declare function DPApplicationRuleRequest(): DPApplicationRuleRequest;
-type DPApplicationRuleRequest = {
-    shipping_rules: string[];
-};
-/** @returns {DPApplicationRuleResponse} */
-declare function DPApplicationRuleResponse(): DPApplicationRuleResponse;
-type DPApplicationRuleResponse = {
-    data: DpRuleResponse[];
-    status_code: boolean;
-    success: boolean;
-};
-/** @returns {DPCompanyRuleRequest} */
-declare function DPCompanyRuleRequest(): DPCompanyRuleRequest;
-type DPCompanyRuleRequest = {
-    rule_ids: string[];
-};
-/** @returns {DPCompanyRuleResponse} */
-declare function DPCompanyRuleResponse(): DPCompanyRuleResponse;
-type DPCompanyRuleResponse = {
-    data: DpRuleResponse[];
-    status_code: number;
-    success: boolean;
-};
-/** @returns {DpIds} */
-declare function DpIds(): DpIds;
-type DpIds = {
-    enabled: boolean;
-    meta?: any;
-    priority: number;
-};
-/** @returns {DpMultipleRuleSuccessResponse} */
-declare function DpMultipleRuleSuccessResponse(): DpMultipleRuleSuccessResponse;
-type DpMultipleRuleSuccessResponse = {
-    items: DpRule[];
-    page: Page;
-    success: boolean;
-};
-/** @returns {DpRule} */
-declare function DpRule(): DpRule;
-type DpRule = {
-    company_id?: number;
-    conditions: any[];
-    dp_ids: any;
-    is_active?: boolean;
-    name: string;
-};
-/** @returns {DpRuleRequest} */
-declare function DpRuleRequest(): DpRuleRequest;
-type DpRuleRequest = {
-    company_id?: number;
-    conditions: any[];
-    dp_ids: any;
-    is_active?: boolean;
-    name: string;
-};
-/** @returns {DpRuleResponse} */
-declare function DpRuleResponse(): DpRuleResponse;
-type DpRuleResponse = {
-    company_id: number;
-    conditions: string[];
-    created_by?: any;
-    created_on?: string;
-    dp_ids: any;
-    is_active?: boolean;
-    modified_by?: any;
-    modified_on?: string;
-    name: string;
-    uid: string;
-};
-/** @returns {DpRuleSuccessResponse} */
-declare function DpRuleSuccessResponse(): DpRuleSuccessResponse;
-type DpRuleSuccessResponse = {
-    data: DpRule;
-    status_code: number;
-    success: boolean;
-};
-/** @returns {DpRulesUpdateRequest} */
-declare function DpRulesUpdateRequest(): DpRulesUpdateRequest;
-type DpRulesUpdateRequest = {
-    conditions: any[];
-    dp_ids: any;
-    is_active: boolean;
-    name: string;
-};
-/** @returns {DpRuleUpdateSuccessResponse} */
-declare function DpRuleUpdateSuccessResponse(): DpRuleUpdateSuccessResponse;
-type DpRuleUpdateSuccessResponse = {
-    data: DpRuleResponse;
-    status_code: number;
-    success: boolean;
-};
-/** @returns {DpSchemaInRuleListing} */
-declare function DpSchemaInRuleListing(): DpSchemaInRuleListing;
-type DpSchemaInRuleListing = {
-    account_id: string;
-    dp_id: string;
-    is_self_ship: boolean;
-    name: string;
-    plan_id: string;
-    plan_rules: any;
-    priority: number;
-    stage: string;
-};
 /** @returns {EinvoiceResponse} */
 declare function EinvoiceResponse(): EinvoiceResponse;
 type EinvoiceResponse = {
@@ -934,7 +1253,6 @@ type EntityRegionView_Error = {
 /** @returns {EntityRegionView_Items} */
 declare function EntityRegionView_Items(): EntityRegionView_Items;
 type EntityRegionView_Items = {
-    display_name?: string;
     name: string;
     sub_type: string;
     uid: string;
@@ -957,8 +1275,8 @@ type EntityRegionView_Request = {
 /** @returns {EntityRegionView_Response} */
 declare function EntityRegionView_Response(): EntityRegionView_Response;
 type EntityRegionView_Response = {
+    data: EntityRegionView_Items[];
     error: EntityRegionView_Error;
-    items?: EntityRegionView_Items[];
     page: EntityRegionView_page;
     success: boolean;
 };
@@ -985,19 +1303,46 @@ type EwayBillResponse = {
 declare function FailureResponse(): FailureResponse;
 type FailureResponse = {
     error: ErrorResponse[];
-    status_code: number;
     success: boolean;
+};
+/** @returns {getAppRegionZonesResponse} */
+declare function getAppRegionZonesResponse(): getAppRegionZonesResponse;
+type getAppRegionZonesResponse = {
+    items: ListViewItems[];
+    page: PageSchema[];
 };
 /** @returns {GetSingleZoneDataViewResponse} */
 declare function GetSingleZoneDataViewResponse(): GetSingleZoneDataViewResponse;
 type GetSingleZoneDataViewResponse = {
     data: GetZoneDataViewItems;
 };
+/** @returns {GetStoreRulesApiResponse} */
+declare function GetStoreRulesApiResponse(): GetStoreRulesApiResponse;
+type GetStoreRulesApiResponse = {
+    items?: StoreRuleDataSchema[];
+    page?: Page;
+};
 /** @returns {GetStoresViewResponse} */
 declare function GetStoresViewResponse(): GetStoresViewResponse;
 type GetStoresViewResponse = {
     items?: ItemResponse[];
     page: ServiceabilityPageResponse;
+};
+/** @returns {GetZoneByIdSchema} */
+declare function GetZoneByIdSchema(): GetZoneByIdSchema;
+type GetZoneByIdSchema = {
+    assignment_preference?: string;
+    channels: GetZoneDataViewChannels[];
+    company_id?: number;
+    is_active: boolean;
+    mapping: ZoneMappingType[];
+    name: string;
+    product: ZoneProductTypes;
+    region_type: string;
+    slug: string;
+    store_ids: number[];
+    stores_count: number;
+    zone_id: string;
 };
 /** @returns {GetZoneDataViewChannels} */
 declare function GetZoneDataViewChannels(): GetZoneDataViewChannels;
@@ -1014,9 +1359,8 @@ type GetZoneDataViewItems = {
     is_active: boolean;
     mapping: ZoneMappingType[];
     name: string;
-    pincodes_count: number;
     product: ZoneProductTypes;
-    region_type: string;
+    region_type?: string;
     slug: string;
     store_ids: number[];
     stores_count: number;
@@ -1045,6 +1389,11 @@ declare function GstCredentialsResponse(): GstCredentialsResponse;
 type GstCredentialsResponse = {
     e_invoice?: EinvoiceResponse;
     e_waybill?: EwayBillResponse;
+};
+/** @returns {IntComparisonOperations} */
+declare function IntComparisonOperations(): IntComparisonOperations;
+type IntComparisonOperations = {
+    includes?: number[];
 };
 /** @returns {IntegrationTypeResponse} */
 declare function IntegrationTypeResponse(): IntegrationTypeResponse;
@@ -1093,12 +1442,12 @@ type ListViewChannels = {
 /** @returns {ListViewItems} */
 declare function ListViewItems(): ListViewItems;
 type ListViewItems = {
-    channels: ListViewChannels[];
+    channels: ListViewChannels;
     company_id: number;
     is_active: boolean;
     name: string;
-    pincodes_count: number;
     product: ListViewProduct;
+    regions_count: number;
     slug: string;
     stores_count: number;
     zone_id: string;
@@ -1113,8 +1462,7 @@ type ListViewProduct = {
 declare function ListViewResponse(): ListViewResponse;
 type ListViewResponse = {
     items: ListViewItems[];
-    page: ZoneDataItem;
-    summary: ListViewSummary;
+    page: ZoneDataItem[];
 };
 /** @returns {ListViewSummary} */
 declare function ListViewSummary(): ListViewSummary;
@@ -1122,6 +1470,22 @@ type ListViewSummary = {
     total_active_zones: number;
     total_pincodes_served: number;
     total_zones: number;
+};
+/** @returns {LocationRule} */
+declare function LocationRule(): LocationRule;
+type LocationRule = {
+    includes?: LocationRuleValues[];
+    type?: string;
+};
+/** @returns {LocationRuleValues} */
+declare function LocationRuleValues(): LocationRuleValues;
+type LocationRuleValues = {
+    display_name?: string;
+    id: string;
+    name?: string;
+    parent_id?: string;
+    parent_ids?: string[];
+    sub_type?: string;
 };
 /** @returns {LogisticsResponse} */
 declare function LogisticsResponse(): LogisticsResponse;
@@ -1154,6 +1518,113 @@ type OpeningClosing = {
     hour?: number;
     minute?: number;
 };
+/** @returns {PackageMaterial} */
+declare function PackageMaterial(): PackageMaterial;
+type PackageMaterial = {
+    auto_calculate?: boolean;
+    channels: Channel[];
+    error_rate: number;
+    height: number;
+    length: number;
+    max_weight?: number;
+    media?: string[];
+    name: string;
+    package_type: string;
+    package_vol_weight?: number;
+    rules?: PackageMaterialRule[];
+    size: string;
+    status: string;
+    store_ids: number[];
+    track_inventory?: boolean;
+    weight: number;
+    width: number;
+};
+/** @returns {PackageMaterialList} */
+declare function PackageMaterialList(): PackageMaterialList;
+type PackageMaterialList = {
+    items?: PackageMaterialResponse;
+    page?: Page;
+};
+/** @returns {PackageMaterialResponse} */
+declare function PackageMaterialResponse(): PackageMaterialResponse;
+type PackageMaterialResponse = {
+    auto_calculate?: boolean;
+    channels: Channel[];
+    error_rate: number;
+    height: number;
+    id?: string;
+    item_id?: number;
+    length: number;
+    max_weight?: number;
+    media?: string[];
+    name: string;
+    package_type: string;
+    package_vol_weight?: number;
+    rules?: PackageMaterialRule[];
+    size: string;
+    status: string;
+    store_ids: number[];
+    track_inventory?: boolean;
+    weight: number;
+    width: number;
+};
+/** @returns {PackageMaterialRule} */
+declare function PackageMaterialRule(): PackageMaterialRule;
+type PackageMaterialRule = {
+    quantity?: PackageMaterialRuleQuantity;
+    rule_id?: string;
+    weight?: number;
+};
+/** @returns {PackageMaterialRuleList} */
+declare function PackageMaterialRuleList(): PackageMaterialRuleList;
+type PackageMaterialRuleList = {
+    items?: PackageRuleResponse;
+    page?: Page;
+};
+/** @returns {PackageMaterialRuleQuantity} */
+declare function PackageMaterialRuleQuantity(): PackageMaterialRuleQuantity;
+type PackageMaterialRuleQuantity = {
+    max?: number;
+    min?: number;
+};
+/** @returns {PackageRule} */
+declare function PackageRule(): PackageRule;
+type PackageRule = {
+    category_id?: PackageRuleCategory;
+    company_id: number;
+    is_active?: boolean;
+    name: string;
+    product_id?: PackageRuleProduct;
+    product_tag?: PackageRuleProductTag;
+    type: string;
+};
+/** @returns {PackageRuleCategory} */
+declare function PackageRuleCategory(): PackageRuleCategory;
+type PackageRuleCategory = {
+    includes?: number[];
+};
+/** @returns {PackageRuleProduct} */
+declare function PackageRuleProduct(): PackageRuleProduct;
+type PackageRuleProduct = {
+    includes?: number[];
+};
+/** @returns {PackageRuleProductTag} */
+declare function PackageRuleProductTag(): PackageRuleProductTag;
+type PackageRuleProductTag = {
+    includes?: string[];
+};
+/** @returns {PackageRuleResponse} */
+declare function PackageRuleResponse(): PackageRuleResponse;
+type PackageRuleResponse = {
+    category_id?: PackageRuleCategory;
+    company_id: number;
+    id?: string;
+    is_active?: boolean;
+    name: string;
+    product_id?: PackageRuleProduct;
+    product_tag?: PackageRuleProductTag;
+    type: string;
+};
 /** @returns {Page} */
 declare function Page(): Page;
 type Page = {
@@ -1163,6 +1634,15 @@ type Page = {
     item_total?: number;
     next_id?: string;
     size?: number;
+    type: string;
+};
+/** @returns {PageSchema} */
+declare function PageSchema(): PageSchema;
+type PageSchema = {
+    current: number;
+    has_next: boolean;
+    item_total: number;
+    size: number;
     type: string;
 };
 /** @returns {PincodeBulkViewResponse} */
@@ -1293,6 +1773,37 @@ type ReAssignStoreResponse = {
     success: boolean;
     to_pincode: string;
 };
+/** @returns {RulePriorityRequest} */
+declare function RulePriorityRequest(): RulePriorityRequest;
+type RulePriorityRequest = {
+    priority: number;
+    rule_id: string;
+};
+/** @returns {RulePriorityResponse} */
+declare function RulePriorityResponse(): RulePriorityResponse;
+type RulePriorityResponse = {
+    success?: boolean;
+};
+/** @returns {SchemeRules} */
+declare function SchemeRules(): SchemeRules;
+type SchemeRules = {
+    feature?: SchemeRulesFeatures;
+    payment_mode?: string[];
+    region?: string;
+    transport_type?: string[];
+    weight?: ArithmeticOperations;
+};
+/** @returns {SchemeRulesFeatures} */
+declare function SchemeRulesFeatures(): SchemeRulesFeatures;
+type SchemeRulesFeatures = {
+    battery_operated?: boolean;
+    e_waybill?: boolean;
+    flammable?: boolean;
+    hazmat?: boolean;
+    multi_part_shipments?: boolean;
+    quality_check?: boolean;
+    quick_response_code?: boolean;
+};
 /** @returns {SelfShipResponse} */
 declare function SelfShipResponse(): SelfShipResponse;
 type SelfShipResponse = {
@@ -1306,6 +1817,18 @@ type ServiceabilityErrorResponse = {
     type: string;
     value: string;
 };
+/** @returns {ServiceabilityModel} */
+declare function ServiceabilityModel(): ServiceabilityModel;
+type ServiceabilityModel = {
+    is_first_mile: boolean;
+    is_installation: boolean;
+    is_last_mile: boolean;
+    is_qc: boolean;
+    is_return: boolean;
+    lm_cod_limit: number;
+    pickup_cutoff: string;
+    route_code: string;
+};
 /** @returns {ServiceabilityPageResponse} */
 declare function ServiceabilityPageResponse(): ServiceabilityPageResponse;
 type ServiceabilityPageResponse = {
@@ -1315,10 +1838,82 @@ type ServiceabilityPageResponse = {
     size?: number;
     type?: string;
 };
-/** @returns {ServiceabilityPayloadSchema} */
-declare function ServiceabilityPayloadSchema(): ServiceabilityPayloadSchema;
-type ServiceabilityPayloadSchema = {
-    serviceability_type: string;
+/** @returns {StorePrioritySchema} */
+declare function StorePrioritySchema(): StorePrioritySchema;
+type StorePrioritySchema = {
+    id?: string;
+    name?: string;
+};
+/** @returns {StoreRuleConditionSchema} */
+declare function StoreRuleConditionSchema(): StoreRuleConditionSchema;
+type StoreRuleConditionSchema = {
+    brand_ids?: IntComparisonOperations;
+    category_ids?: IntComparisonOperations;
+    customer_radius?: CustomerRadiusSchema;
+    department_ids?: IntComparisonOperations;
+    order_place_date?: ArithmeticOperations;
+    product_ids?: IntComparisonOperations;
+    product_tags?: StringComparisonOperations;
+    store_tags?: StringComparisonOperations;
+    store_type?: StringComparisonOperations;
+    to_location?: LocationRule;
+    zone_ids?: StringComparisonOperations;
+};
+/** @returns {StoreRuleConfigData} */
+declare function StoreRuleConfigData(): StoreRuleConfigData;
+type StoreRuleConfigData = {
+    rule_ids?: string[];
+    sort?: string[];
+    store_priority?: StorePrioritySchema[];
+    tag_based_priority?: string[];
+    type_based_priority?: string[];
+};
+/** @returns {StoreRuleDataSchema} */
+declare function StoreRuleDataSchema(): StoreRuleDataSchema;
+type StoreRuleDataSchema = {
+    application_id?: string;
+    company_id?: number;
+    conditions?: StoreRuleConditionSchema;
+    id?: string;
+    is_active?: boolean;
+    name?: string;
+    sort?: string[];
+    store_priority?: StorePrioritySchema[];
+    tag_based_priority?: string[];
+    type_based_priority?: string[];
+};
+/** @returns {StoreRuleResponseSchema} */
+declare function StoreRuleResponseSchema(): StoreRuleResponseSchema;
+type StoreRuleResponseSchema = {
+    conditions?: StoreRuleConditionSchema;
+    id?: string;
+    is_active?: boolean;
+    name?: string;
+    sort?: string[];
+    store_priority?: StorePrioritySchema[];
+    tag_based_priority?: string[];
+    type?: string;
+    type_based_priority?: string[];
+};
+/** @returns {StoreRuleUpdateResponseSchema} */
+declare function StoreRuleUpdateResponseSchema(): StoreRuleUpdateResponseSchema;
+type StoreRuleUpdateResponseSchema = {
+    application_id?: string;
+    company_id?: number;
+    conditions?: StoreRuleConditionSchema;
+    id?: string;
+    is_active?: boolean;
+    name?: string;
+    sort?: string[];
+    store_priority?: StorePrioritySchema[];
+    tag_based_priority?: string[];
+    type?: string;
+    type_based_priority?: string[];
+};
+/** @returns {StringComparisonOperations} */
+declare function StringComparisonOperations(): StringComparisonOperations;
+type StringComparisonOperations = {
+    includes?: string[];
 };
 /** @returns {TimmingResponse} */
 declare function TimmingResponse(): TimmingResponse;
@@ -1327,6 +1922,11 @@ type TimmingResponse = {
     open?: boolean;
     opening?: OpeningClosing;
     weekday?: string;
+};
+/** @returns {UpdateZoneConfigRequest} */
+declare function UpdateZoneConfigRequest(): UpdateZoneConfigRequest;
+type UpdateZoneConfigRequest = {
+    serviceability_type?: string;
 };
 /** @returns {UpdateZoneData} */
 declare function UpdateZoneData(): UpdateZoneData;
@@ -1360,6 +1960,11 @@ type Zone = {
     type: string;
     zone_id: string;
 };
+/** @returns {ZoneConfig} */
+declare function ZoneConfig(): ZoneConfig;
+type ZoneConfig = {
+    serviceability_type?: string;
+};
 /** @returns {ZoneDataItem} */
 declare function ZoneDataItem(): ZoneDataItem;
 type ZoneDataItem = {
@@ -1381,12 +1986,6 @@ declare function ZoneProductTypes(): ZoneProductTypes;
 type ZoneProductTypes = {
     tags: string[];
     type: string;
-};
-/** @returns {ZoneRequest} */
-declare function ZoneRequest(): ZoneRequest;
-type ZoneRequest = {
-    data: CreateZoneData;
-    identifier: string;
 };
 /** @returns {ZoneResponse} */
 declare function ZoneResponse(): ZoneResponse;
