@@ -3803,13 +3803,17 @@ class Content {
    * @description: Use this API to retrieve the custom objects. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomObjects/).
    */
   async getAppCustomObjects(
-    { requestHeaders } = { requestHeaders: {} },
+    { pageNo, pageSize, definitionId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
     } = ContentPlatformApplicationValidator.getAppCustomObjects().validate(
-      {},
+      {
+        pageNo,
+        pageSize,
+        definitionId,
+      },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -3820,7 +3824,11 @@ class Content {
     const {
       error: warrning,
     } = ContentPlatformApplicationValidator.getAppCustomObjects().validate(
-      {},
+      {
+        pageNo,
+        pageSize,
+        definitionId,
+      },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -3831,6 +3839,9 @@ class Content {
     }
 
     const query_params = {};
+    query_params["definition_id"] = definitionId;
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
 
     const response = await PlatformAPIClient.execute(
       this.config,

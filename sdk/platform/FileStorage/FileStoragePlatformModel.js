@@ -297,11 +297,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef Params
- * @property {string} [subpath] - The subpath for the file.
- */
-
-/**
  * @typedef PaymentData
  * @property {number} [amount]
  * @property {string} [date]
@@ -505,7 +500,7 @@ const Joi = require("joi");
  * @typedef StartRequest
  * @property {string} content_type
  * @property {string} file_name
- * @property {Params} [params]
+ * @property {Object} [params]
  * @property {number} size
  * @property {string[]} [tags]
  */
@@ -950,13 +945,6 @@ class FileStoragePlatformModel {
     });
   }
 
-  /** @returns {Params} */
-  static Params() {
-    return Joi.object({
-      subpath: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {PaymentData} */
   static PaymentData() {
     return Joi.object({
@@ -1214,7 +1202,7 @@ class FileStoragePlatformModel {
     return Joi.object({
       content_type: Joi.string().allow("").required(),
       file_name: Joi.string().allow("").required(),
-      params: FileStoragePlatformModel.Params(),
+      params: Joi.object().pattern(/\S/, Joi.any()),
       size: Joi.number().required(),
       tags: Joi.array().items(Joi.string().allow("")),
     });

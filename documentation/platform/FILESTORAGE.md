@@ -2478,15 +2478,6 @@ Update html template for invoice
 
 ---
 
-#### [Params](#Params)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | subpath | string? |  yes  | The subpath for the file. |
- 
-
----
-
 #### [PaymentData](#PaymentData)
 
  | Properties | Type | Nullable | Description |
@@ -2793,7 +2784,7 @@ Update html template for invoice
  | ---------- | ---- | -------- | ----------- |
  | content_type | string |  no  |  |
  | file_name | string |  no  |  |
- | params | [Params](#Params)? |  yes  |  |
+ | params | string? |  yes  |  |
  | size | number |  no  |  |
  | tags | [string]? |  yes  |  |
  

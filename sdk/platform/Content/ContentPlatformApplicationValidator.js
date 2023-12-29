@@ -178,7 +178,7 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  * @typedef EditSEOMarkupSchemaParam
  * @property {string} id - Alphanumeric ID allotted to a SEO Markup Schema
  *   Template created within a business.
- * @property {ContentPlatformModel.SEOSchemaMarkupTemplate} body
+ * @property {ContentPlatformModel.SEOSchemaMarkupTemplateRequestBody} body
  */
 
 /**
@@ -251,7 +251,12 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  * @property {string} [search]
  */
 
-/** @typedef GetAppCustomObjectsParam */
+/**
+ * @typedef GetAppCustomObjectsParam
+ * @property {string} [definitionId]
+ * @property {string} pageNo
+ * @property {string} pageSize
+ */
 
 /**
  * @typedef GetAppJobsParam
@@ -797,7 +802,7 @@ class ContentPlatformApplicationValidator {
   static editSEOMarkupSchema() {
     return Joi.object({
       id: Joi.string().allow("").required(),
-      body: ContentPlatformModel.SEOSchemaMarkupTemplate().required(),
+      body: ContentPlatformModel.SEOSchemaMarkupTemplateRequestBody().required(),
     }).required();
   }
 
@@ -894,7 +899,11 @@ class ContentPlatformApplicationValidator {
 
   /** @returns {GetAppCustomObjectsParam} */
   static getAppCustomObjects() {
-    return Joi.object({}).required();
+    return Joi.object({
+      definitionId: Joi.string().allow(""),
+      pageNo: Joi.string().allow("").required(),
+      pageSize: Joi.string().allow("").required(),
+    }).required();
   }
 
   /** @returns {GetAppJobsParam} */

@@ -88,7 +88,12 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  * @property {string} [search]
  */
 
-/** @typedef GetCustomObjectsParam */
+/**
+ * @typedef GetCustomObjectsParam
+ * @property {string} [definitionId]
+ * @property {string} pageNo
+ * @property {string} pageSize
+ */
 
 /**
  * @typedef GetJobsParam
@@ -250,7 +255,11 @@ class ContentPlatformValidator {
 
   /** @returns {GetCustomObjectsParam} */
   static getCustomObjects() {
-    return Joi.object({}).required();
+    return Joi.object({
+      definitionId: Joi.string().allow(""),
+      pageNo: Joi.string().allow("").required(),
+      pageSize: Joi.string().allow("").required(),
+    }).required();
   }
 
   /** @returns {GetJobsParam} */

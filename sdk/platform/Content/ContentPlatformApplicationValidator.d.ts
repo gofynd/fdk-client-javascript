@@ -142,7 +142,7 @@ export = ContentPlatformApplicationValidator;
  * @typedef EditSEOMarkupSchemaParam
  * @property {string} id - Alphanumeric ID allotted to a SEO Markup Schema
  *   Template created within a business.
- * @property {ContentPlatformModel.SEOSchemaMarkupTemplate} body
+ * @property {ContentPlatformModel.SEOSchemaMarkupTemplateRequestBody} body
  */
 /**
  * @typedef ExportAppCustomObjectEntriesParam
@@ -202,7 +202,12 @@ export = ContentPlatformApplicationValidator;
  * @property {string} pageSize
  * @property {string} [search]
  */
-/** @typedef GetAppCustomObjectsParam */
+/**
+ * @typedef GetAppCustomObjectsParam
+ * @property {string} [definitionId]
+ * @property {string} pageNo
+ * @property {string} pageSize
+ */
 /**
  * @typedef GetAppJobsParam
  * @property {string} page
@@ -546,7 +551,7 @@ declare class ContentPlatformApplicationValidator {
     /** @returns {GetAppCustomObjectDefinitionsParam} */
     static getAppCustomObjectDefinitions(): GetAppCustomObjectDefinitionsParam;
     /** @returns {GetAppCustomObjectsParam} */
-    static getAppCustomObjects(): any;
+    static getAppCustomObjects(): GetAppCustomObjectsParam;
     /** @returns {GetAppJobsParam} */
     static getAppJobs(): GetAppJobsParam;
     /** @returns {GetAppResourcesParam} */
@@ -814,7 +819,7 @@ type EditSEOMarkupSchemaParam = {
      * Template created within a business.
      */
     id: string;
-    body: ContentPlatformModel.SEOSchemaMarkupTemplate;
+    body: ContentPlatformModel.SEOSchemaMarkupTemplateRequestBody;
 };
 type ExportAppCustomObjectEntriesParam = {
     definitionId: string;
@@ -873,6 +878,11 @@ type GetAppCustomObjectDefinitionsParam = {
     pageNo: string;
     pageSize: string;
     search?: string;
+};
+type GetAppCustomObjectsParam = {
+    definitionId?: string;
+    pageNo: string;
+    pageSize: string;
 };
 type GetAppJobsParam = {
     page: string;
@@ -1215,7 +1225,6 @@ type UpdateSupportInformationParam = {
     body: ContentPlatformModel.Support;
 };
 type GetAppCustomFieldTypesParam = any;
-type GetAppCustomObjectsParam = any;
 type GetAppResourcesParam = any;
 type GetDataLoadersParam = any;
 type GetDefaultNavigationsParam = any;

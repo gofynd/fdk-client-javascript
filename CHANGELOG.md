@@ -1,4 +1,4 @@
-# CHANGE LOG (1.3.11-beta.8) - v1.9.0-prerelease-v8
+# CHANGE LOG (1.4.0-beta.1) - v1.9.0-prerelease-v1
 
 ## Application Client
 
@@ -1052,6 +1052,16 @@
 - [Added] Lead class in partner client
 - [Added] Logistics class in partner client
 - [Added] Webhook class in partner client
+
+
+### FileStorage
+
+
+
+#### startUpload
+
+- ##### What's Deprecated
+	- [Deleted] properties `params.subpath` in request body
 
 
 ### Theme
@@ -3129,6 +3139,18 @@
 
 ### FileStorage
 
+
+
+#### startUpload
+
+- ##### What's Deprecated
+	- [Deleted] properties `params.subpath` in request body
+
+
+#### appStartUpload
+
+- ##### What's Deprecated
+	- [Deleted] properties `params.subpath` in request body
 
 
 #### appbrowse

@@ -194,7 +194,7 @@ declare class Content {
      * @summary: Get list of custom objects
      * @description: Use this API to retrieve the custom objects. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getCustomObjects/).
      */
-    getCustomObjects({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectsSchema>;
+    getCustomObjects({ pageNo, pageSize, definitionId, requestHeaders }?: ContentPlatformValidator.GetCustomObjectsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomObjectsSchema>;
     /**
      * @param {ContentPlatformValidator.GetJobsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

@@ -69,7 +69,12 @@ export = ContentPlatformValidator;
  * @property {string} pageSize
  * @property {string} [search]
  */
-/** @typedef GetCustomObjectsParam */
+/**
+ * @typedef GetCustomObjectsParam
+ * @property {string} [definitionId]
+ * @property {string} pageNo
+ * @property {string} pageSize
+ */
 /**
  * @typedef GetJobsParam
  * @property {string} page
@@ -135,7 +140,7 @@ declare class ContentPlatformValidator {
     /** @returns {GetCustomObjectDefinitionsParam} */
     static getCustomObjectDefinitions(): GetCustomObjectDefinitionsParam;
     /** @returns {GetCustomObjectsParam} */
-    static getCustomObjects(): any;
+    static getCustomObjects(): GetCustomObjectsParam;
     /** @returns {GetJobsParam} */
     static getJobs(): GetJobsParam;
     /** @returns {GetResourcesParam} */
@@ -208,6 +213,11 @@ type GetCustomObjectDefinitionsParam = {
     pageSize: string;
     search?: string;
 };
+type GetCustomObjectsParam = {
+    definitionId?: string;
+    pageNo: string;
+    pageSize: string;
+};
 type GetJobsParam = {
     page: string;
     pageSize: string;
@@ -233,6 +243,5 @@ type UpdateCustomObjectDefinitionParam = {
     body: ContentPlatformModel.CustomObjectDefinitionUpdateRequestSchema;
 };
 type GetCustomFieldTypesParam = any;
-type GetCustomObjectsParam = any;
 type GetResourcesParam = any;
 import ContentPlatformModel = require("./ContentPlatformModel");

@@ -4064,7 +4064,7 @@ const data = await platformClient.application("<APPLICATION_ID>").content.editSE
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | id | string | yes | Alphanumeric ID allotted to a SEO Markup Schema Template created within a business. |  
-| body | [SEOSchemaMarkupTemplate](#SEOSchemaMarkupTemplate) | yes | Request body |
+| body | [SEOSchemaMarkupTemplateRequestBody](#SEOSchemaMarkupTemplateRequestBody) | yes | Request body |
 
 
 Use this API to edit an existing SEO Markup schema an application
@@ -5764,14 +5764,25 @@ Get list of custom objects
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").content.getAppCustomObjects();
+const promise = platformClient.application("<APPLICATION_ID>").content.getAppCustomObjects({  pageNo : value,
+ pageSize : value,
+ definitionId : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").content.getAppCustomObjects();
+const data = await platformClient.application("<APPLICATION_ID>").content.getAppCustomObjects({  pageNo : value,
+ pageSize : value,
+ definitionId : value });
 ```
 
 
 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| definitionId | string | no |  |   
+| pageNo | string | yes |  |   
+| pageSize | string | yes |  |  
 
 
 
@@ -7621,14 +7632,25 @@ Get list of custom objects
 
 ```javascript
 // Promise
-const promise = platformClient.content.getCustomObjects();
+const promise = platformClient.content.getCustomObjects({  pageNo : value,
+ pageSize : value,
+ definitionId : value });
 
 // Async/Await
-const data = await platformClient.content.getCustomObjects();
+const data = await platformClient.content.getCustomObjects({  pageNo : value,
+ pageSize : value,
+ definitionId : value });
 ```
 
 
 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| definitionId | string | no |  |   
+| pageNo | string | yes |  |   
+| pageSize | string | yes |  |  
 
 
 
@@ -14594,6 +14616,7 @@ Success. Refer `Support` for more details.
  | ---------- | ---- | -------- | ----------- |
  | page_type | string? |  yes  |  |
  | schema | string? |  yes  |  |
+ | target_json | string? |  yes  |  |
  
 
 ---
@@ -15340,6 +15363,7 @@ Success. Refer `Support` for more details.
  | id | string? |  yes  |  |
  | page_type | string? |  yes  |  |
  | schema | string? |  yes  |  |
+ | target_json | string? |  yes  |  |
  | title | string? |  yes  |  |
  | updated_at | string? |  yes  |  |
  
@@ -15355,6 +15379,7 @@ Success. Refer `Support` for more details.
  | description | string? |  yes  |  |
  | page_type | string? |  yes  |  |
  | schema | string? |  yes  |  |
+ | target_json | string? |  yes  |  |
  | title | string? |  yes  |  |
  | updated_at | string? |  yes  |  |
  

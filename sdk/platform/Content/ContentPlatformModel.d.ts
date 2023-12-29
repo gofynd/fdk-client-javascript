@@ -579,6 +579,7 @@ export = ContentPlatformModel;
  * @typedef DefaultSEOSchemaMarkupTemplate
  * @property {string} [page_type]
  * @property {string} [schema]
+ * @property {Object} [target_json]
  */
 /**
  * @typedef Detail
@@ -1026,6 +1027,7 @@ export = ContentPlatformModel;
  * @property {string} [id]
  * @property {string} [page_type]
  * @property {string} [schema]
+ * @property {Object} [target_json]
  * @property {string} [title]
  * @property {string} [updated_at]
  */
@@ -1036,6 +1038,7 @@ export = ContentPlatformModel;
  * @property {string} [description]
  * @property {string} [page_type]
  * @property {string} [schema]
+ * @property {Object} [target_json]
  * @property {string} [title]
  * @property {string} [updated_at]
  */
@@ -1873,6 +1876,7 @@ declare function DefaultSEOSchemaMarkupTemplate(): DefaultSEOSchemaMarkupTemplat
 type DefaultSEOSchemaMarkupTemplate = {
     page_type?: string;
     schema?: string;
+    target_json?: any;
 };
 /** @returns {Detail} */
 declare function Detail(): Detail;
@@ -2392,6 +2396,7 @@ type SEOSchemaMarkupTemplate = {
     id?: string;
     page_type?: string;
     schema?: string;
+    target_json?: any;
     title?: string;
     updated_at?: string;
 };
@@ -2403,6 +2408,7 @@ type SEOSchemaMarkupTemplateRequestBody = {
     description?: string;
     page_type?: string;
     schema?: string;
+    target_json?: any;
     title?: string;
     updated_at?: string;
 };

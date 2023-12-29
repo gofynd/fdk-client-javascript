@@ -653,6 +653,7 @@ const Joi = require("joi");
  * @typedef DefaultSEOSchemaMarkupTemplate
  * @property {string} [page_type]
  * @property {string} [schema]
+ * @property {Object} [target_json]
  */
 
 /**
@@ -1160,6 +1161,7 @@ const Joi = require("joi");
  * @property {string} [id]
  * @property {string} [page_type]
  * @property {string} [schema]
+ * @property {Object} [target_json]
  * @property {string} [title]
  * @property {string} [updated_at]
  */
@@ -1171,6 +1173,7 @@ const Joi = require("joi");
  * @property {string} [description]
  * @property {string} [page_type]
  * @property {string} [schema]
+ * @property {Object} [target_json]
  * @property {string} [title]
  * @property {string} [updated_at]
  */
@@ -2195,6 +2198,7 @@ class ContentPlatformModel {
     return Joi.object({
       page_type: Joi.string().allow(""),
       schema: Joi.string().allow(""),
+      target_json: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -2835,6 +2839,7 @@ class ContentPlatformModel {
       id: Joi.string().allow(""),
       page_type: Joi.string().allow(""),
       schema: Joi.string().allow(""),
+      target_json: Joi.object().pattern(/\S/, Joi.any()),
       title: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
     });
@@ -2848,6 +2853,7 @@ class ContentPlatformModel {
       description: Joi.string().allow(""),
       page_type: Joi.string().allow(""),
       schema: Joi.string().allow(""),
+      target_json: Joi.object().pattern(/\S/, Joi.any()),
       title: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
     });
