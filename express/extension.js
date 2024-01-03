@@ -76,7 +76,7 @@ class Extension {
         this._isInitialized = true;
     }
 
-    get isInitialized(){
+    get isInitialized() {
         return this._isInitialized;
     }
 
@@ -97,8 +97,8 @@ class Extension {
     }
 
     getPlatformConfig(companyId) {
-        if (!this._isInitialized){
-            throw new FdkInvalidExtensionConfig('Extension not initialized due to invalid data')    
+        if (!this._isInitialized) {
+            throw new FdkInvalidExtensionConfig('Extension not initialized due to invalid data')
         }
         let platformConfig = new PlatformConfig({
             companyId: parseInt(companyId),
@@ -108,34 +108,19 @@ class Extension {
             useAutoRenewTimer: false
         });
         return platformConfig;
-        
-    }
 
-    getPartnerConfig(organizationId) {
-        if (!this._isInitialized) {
-            throw new FdkInvalidExtensionConfig("Extension not initialized due to invalid data");
-        }
-
-        let partnerConfig = new PartnerConfig({
-          organizationId: organizationId,
-          domain: this.cluster,
-          apiKey: this.api_key,
-          apiSecret: this.api_secret,
-          useAutoRenewTimer: false  
-        })
-        return partnerConfig;
     }
 
     async getPlatformClient(companyId, session) {
-        if (!this._isInitialized){
-            throw new FdkInvalidExtensionConfig('Extension not initialized due to invalid data')    
+        if (!this._isInitialized) {
+            throw new FdkInvalidExtensionConfig('Extension not initialized due to invalid data')
         }
         const SessionStorage = require('./session/session_storage');
-        
+
         let platformConfig = this.getPlatformConfig(companyId);
         platformConfig.oauthClient.setToken(session);
         platformConfig.oauthClient.token_expires_at = session.access_token_validity;
-        
+
         if (session.access_token_validity && session.refresh_token) {
             let ac_nr_expired = ((session.access_token_validity - new Date().getTime()) / 1000) <= 120;
             if (ac_nr_expired) {
@@ -145,6 +130,49 @@ class Extension {
                 session.updateToken(renewTokenRes);
                 await SessionStorage.saveSession(session);
                 logger.debug(`Access token renewed for company ${companyId} with response ${logger.safeStringify(renewTokenRes)}`);
+            }
+        }
+        let platformClient = new PlatformClient(platformConfig);
+        platformClient.setExtraHeaders({
+            'x-ext-lib-version': `js/${version}`
+        })
+        return platformClient;
+    }
+
+    getPartnerConfig(organizationId) {
+        if (!this._isInitialized) {
+            throw new FdkInvalidExtensionConfig("Extension not initialized due to invalid data");
+        }
+
+        let partnerConfig = new PartnerConfig({
+            organizationId: organizationId,
+            domain: this.cluster,
+            apiKey: this.api_key,
+            apiSecret: this.api_secret,
+            useAutoRenewTimer: false
+        })
+        return partnerConfig;
+    }
+
+    async getPartnerClient(organizationId, session) {
+        if (!this._isInitialized) {
+            throw new FdkInvalidExtensionConfig('Extension not initialized due to invalid data')
+        }
+        const SessionStorage = require('./session/session_storage');
+
+        let partnerConfig = this.getPartnerConfig(organizationId);
+        partnerConfig.oauthClient.setToken(session);
+        partnerConfig.oauthClient.token_expires_at = session.access_token_validity;
+
+        if (session.access_token_validity && session.refresh_token) {
+            let ac_nr_expired = ((session.access_token_validity - new Date().getTime()) / 1000) <= 120;
+            if (ac_nr_expired) {
+                logger.debug(`Renewing access token for organization ${organizationId} with platform config ${logger.safeStringify(platformConfig)}`);
+                const renewTokenRes = await partnerConfig.oauthClient.renewAccessToken(session.access_mode === 'offline');
+                renewTokenRes.access_token_validity = partnerConfig.oauthClient.token_expires_at;
+                session.updateToken(renewTokenRes);
+                await SessionStorage.saveSession(session);
+                logger.debug(`Access token renewed for organization ${organizationId} with response ${logger.safeStringify(renewTokenRes)}`);
             }
         }
         let platformClient = new PlatformClient(platformConfig);

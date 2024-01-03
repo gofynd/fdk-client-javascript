@@ -18,7 +18,7 @@ function setupFdk(data, syncInitialization) {
             throw err;
         });
     let router = setupRoutes(extension);
-    let { apiRoutes, applicationProxyRoutes } = setupProxyRoutes();
+    let { apiRoutes, applicationProxyRoutes, partnerApiRoutes } = setupProxyRoutes();
 
     async function getPlatformClient(companyId) {
         let client = null;
@@ -47,6 +47,7 @@ function setupFdk(data, syncInitialization) {
         fdkHandler: router,
         extension: extension,
         apiRoutes: apiRoutes,
+        partnerApiRoutes: partnerApiRoutes,
         webhookRegistry: extension.webhookRegistry,
         applicationProxyRoutes: applicationProxyRoutes,
         getPlatformClient: getPlatformClient,
