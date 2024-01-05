@@ -2,7 +2,7 @@
 const validator = require('validator');
 const { FdkInvalidExtensionConfig } = require("./error_code");
 const urljoin = require('url-join');
-const { PlatformConfig, PlatformClient, PartnerConfig } = require("@gofynd/fdk-client-javascript");
+const { PlatformConfig, PlatformClient, PartnerConfig, PartnerClient } = require("@gofynd/fdk-client-javascript");
 const { WebhookRegistry } = require('./webhook');
 const logger = require('./logger');
 const { fdkAxios } = require('@gofynd/fdk-client-javascript/sdk/common/AxiosHelper');
@@ -168,7 +168,7 @@ class Extension {
         if (session.access_token_validity && session.refresh_token) {
             let ac_nr_expired = ((session.access_token_validity - new Date().getTime()) / 1000) <= 120;
             if (ac_nr_expired) {
-                logger.debug(`Renewing access token for organization ${organizationId} with platform config ${logger.safeStringify(platformConfig)}`);
+                logger.debug(`Renewing access token for organization ${organizationId} with platform config ${logger.safeStringify(partnerConfig)}`);
                 const renewTokenRes = await partnerConfig.oauthClient.renewAccessToken(session.access_mode === 'offline');
                 renewTokenRes.access_token_validity = partnerConfig.oauthClient.token_expires_at;
                 session.updateToken(renewTokenRes);
@@ -176,11 +176,11 @@ class Extension {
                 logger.debug(`Access token renewed for organization ${organizationId} with response ${logger.safeStringify(renewTokenRes)}`);
             }
         }
-        let platformClient = new PlatformClient(platformConfig);
-        platformClient.setExtraHeaders({
+        let partnerClient = new PartnerClient(partnerConfig);
+        partnerClient.setExtraHeaders({
             'x-ext-lib-version': `js/${version}`
         })
-        return platformClient;
+        return partnerClient;
     }
 
     async getExtensionDetails(retryCount = 0) {
