@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ---
-## [v0.6.0] - 2023-12-26
+## [v0.6.0] - 2024-01-09
 ### Added
 - Added retry mechanism for APIs getting used inside extension library if Fynd Platform server is down.
 ---
