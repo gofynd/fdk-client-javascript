@@ -251,8 +251,6 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 
 /** @typedef GetMarketplaceOptinDetailParam */
 
-/** @typedef GetMarketplacesParam */
-
 /**
  * @typedef GetOptimalLocationsParam
  * @property {CatalogPlatformModel.AssignStore} body
@@ -365,7 +363,6 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 10.
- * @property {number} [brandId] - Brand id that is to be searched.
  */
 
 /**
@@ -389,13 +386,12 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 /**
  * @typedef ListCategoriesParam
  * @property {string} [level] - Get category for multiple levels
- * @property {number} [department] - Get category for multiple departments filtered
+ * @property {string} [departments] - Get category for multiple departments filtered
  * @property {string} [q] - Get multiple categories filtered by search string
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 10.
- * @property {number[]} [uids] - Get multiple categories filtered by category uids.
  */
 
 /**
@@ -470,12 +466,6 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
 /**
  * @typedef UpdateInventoriesParam
  * @property {CatalogPlatformModel.InventoryRequestSchemaV2} body
- */
-
-/**
- * @typedef UpdateMarketplaceOptinParam
- * @property {string} marketplaceSlug - Slug of the marketplace .
- * @property {CatalogPlatformModel.UpdateMarketplaceOptinRequest} body
  */
 
 /**
@@ -842,11 +832,6 @@ class CatalogPlatformValidator {
     return Joi.object({}).required();
   }
 
-  /** @returns {GetMarketplacesParam} */
-  static getMarketplaces() {
-    return Joi.object({}).required();
-  }
-
   /** @returns {GetOptimalLocationsParam} */
   static getOptimalLocations() {
     return Joi.object({
@@ -977,7 +962,6 @@ class CatalogPlatformValidator {
       tag: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      brandId: Joi.number(),
     }).required();
   }
 
@@ -1004,11 +988,10 @@ class CatalogPlatformValidator {
   static listCategories() {
     return Joi.object({
       level: Joi.string().allow(""),
-      department: Joi.number(),
+      departments: Joi.string().allow(""),
       q: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      uids: Joi.array().items(Joi.number()),
     }).required();
   }
 
@@ -1096,14 +1079,6 @@ class CatalogPlatformValidator {
   static updateInventories() {
     return Joi.object({
       body: CatalogPlatformModel.InventoryRequestSchemaV2().required(),
-    }).required();
-  }
-
-  /** @returns {UpdateMarketplaceOptinParam} */
-  static updateMarketplaceOptin() {
-    return Joi.object({
-      marketplaceSlug: Joi.string().allow("").required(),
-      body: CatalogPlatformModel.UpdateMarketplaceOptinRequest().required(),
     }).required();
   }
 

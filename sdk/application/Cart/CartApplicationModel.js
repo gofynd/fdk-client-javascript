@@ -36,7 +36,6 @@ const Joi = require("joi");
  * @property {string[]} [product_group_tags]
  * @property {number} [quantity]
  * @property {number} [seller_id]
- * @property {string} [seller_identifier] - Add items using seller identifier for store os
  * @property {number} [store_id]
  */
 
@@ -65,9 +64,7 @@ const Joi = require("joi");
  * @property {Object} [meta]
  * @property {string} [name]
  * @property {string} [phone]
- * @property {string} [sector]
  * @property {string} [state]
- * @property {string} [state_code] - State code for international address
  * @property {string[]} [tags]
  * @property {string} [user_id]
  */
@@ -88,7 +85,9 @@ const Joi = require("joi");
  * @property {number} [article_quantity] - Quantity of article on which
  *   promotion is applicable
  * @property {BuyRules[]} [buy_rules] - Buy rules for promotions
+ * @property {string} [code] - Promotion code
  * @property {DiscountRulesApp[]} [discount_rules] - Discount rules for promotions
+ * @property {Object} [meta] - Meta object for extra data
  * @property {boolean} [mrp_promotion] - If applied promotion is applied on
  *   product MRP or ESP
  * @property {string} [offer_text] - Offer text of current promotion
@@ -337,7 +336,6 @@ const Joi = require("joi");
  * @property {ProductArticle} [article]
  * @property {ProductAvailability} [availability]
  * @property {Object} [bulk_offer]
- * @property {Charges[]} [charges]
  * @property {CouponDetails} [coupon]
  * @property {string} [coupon_message]
  * @property {Object} [custom_order]
@@ -388,24 +386,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef Charges
- * @property {boolean} [allow_refund] - This boolean value defines that refund
- *   is allowed or not for the charge
- * @property {ChargesAmount} [amount]
- * @property {string} [code] - This is the code of the charge applied
- * @property {Object} [meta] - This object contains the meta data realted to
- *   charges price adjustment
- * @property {string} [name] - This is the name of the charge applied
- * @property {string} [type] - This is the type of the charge applied
- */
-
-/**
- * @typedef ChargesAmount
- * @property {string} [currency] - This is destination currency of value
- * @property {number} [value] - This is the value of amount added
- */
-
-/**
  * @typedef ChargesThreshold
  * @property {number} [charges]
  * @property {number} [threshold]
@@ -446,20 +426,16 @@ const Joi = require("joi");
 
 /**
  * @typedef Coupon
- * @property {number} [coupon_amount] - The amount based on cart value
- * @property {string} [coupon_applicable_message]
  * @property {string} [coupon_code]
  * @property {string} [coupon_type]
  * @property {number} [coupon_value]
  * @property {string} [description]
- * @property {string} [end_date]
  * @property {string} [expires_on]
  * @property {boolean} [is_applicable]
  * @property {boolean} [is_applied]
  * @property {number} [max_discount_value]
  * @property {string} [message]
  * @property {number} [minimum_cart_value]
- * @property {string} [start_date]
  * @property {string} [sub_title]
  * @property {string} [title]
  */
@@ -761,7 +737,6 @@ const Joi = require("joi");
  * @property {string} [seller_identifier]
  * @property {string} [size]
  * @property {StoreInfo} [store]
- * @property {string[]} [tags] - A list of article tags
  * @property {string} [type]
  * @property {string} [uid]
  */
@@ -829,12 +804,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef PromiseISOFormat
- * @property {string} [max] - Max promise in ISO format.
- * @property {string} [min] - Min Promise in ISO format.
- */
-
-/**
  * @typedef PromiseTimestamp
  * @property {number} [max]
  * @property {number} [min]
@@ -876,7 +845,6 @@ const Joi = require("joi");
  * @property {number} [mrp_total]
  * @property {number} [subtotal]
  * @property {number} [total]
- * @property {number} [total_charge]
  * @property {number} [vog]
  * @property {number} [you_saved]
  */
@@ -941,7 +909,6 @@ const Joi = require("joi");
 /**
  * @typedef ShipmentPromise
  * @property {PromiseFormatted} [formatted]
- * @property {PromiseISOFormat} [iso]
  * @property {PromiseTimestamp} [timestamp]
  */
 
@@ -1070,7 +1037,6 @@ class CartApplicationModel {
       product_group_tags: Joi.array().items(Joi.string().allow("").allow(null)),
       quantity: Joi.number(),
       seller_id: Joi.number(),
-      seller_identifier: Joi.string().allow(""),
       store_id: Joi.number(),
     });
   }
@@ -1101,9 +1067,7 @@ class CartApplicationModel {
       meta: Joi.any(),
       name: Joi.string().allow(""),
       phone: Joi.string().allow(""),
-      sector: Joi.string().allow(""),
       state: Joi.string().allow(""),
-      state_code: Joi.string().allow(""),
       tags: Joi.array().items(Joi.string().allow("")),
       user_id: Joi.string().allow(""),
     });
@@ -1128,9 +1092,11 @@ class CartApplicationModel {
       ),
       article_quantity: Joi.number(),
       buy_rules: Joi.array().items(CartApplicationModel.BuyRules()),
+      code: Joi.string().allow("").allow(null),
       discount_rules: Joi.array().items(
         CartApplicationModel.DiscountRulesApp()
       ),
+      meta: Joi.any(),
       mrp_promotion: Joi.boolean(),
       offer_text: Joi.string().allow(""),
       ownership: CartApplicationModel.Ownership(),
@@ -1430,7 +1396,6 @@ class CartApplicationModel {
       article: CartApplicationModel.ProductArticle(),
       availability: CartApplicationModel.ProductAvailability(),
       bulk_offer: Joi.any(),
-      charges: Joi.array().items(CartApplicationModel.Charges()),
       coupon: CartApplicationModel.CouponDetails(),
       coupon_message: Joi.string().allow(""),
       custom_order: Joi.any(),
@@ -1487,26 +1452,6 @@ class CartApplicationModel {
     });
   }
 
-  /** @returns {Charges} */
-  static Charges() {
-    return Joi.object({
-      allow_refund: Joi.boolean(),
-      amount: CartApplicationModel.ChargesAmount(),
-      code: Joi.string().allow(""),
-      meta: Joi.any(),
-      name: Joi.string().allow(""),
-      type: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {ChargesAmount} */
-  static ChargesAmount() {
-    return Joi.object({
-      currency: Joi.string().allow(""),
-      value: Joi.number(),
-    });
-  }
-
   /** @returns {ChargesThreshold} */
   static ChargesThreshold() {
     return Joi.object({
@@ -1553,20 +1498,16 @@ class CartApplicationModel {
   /** @returns {Coupon} */
   static Coupon() {
     return Joi.object({
-      coupon_amount: Joi.number(),
-      coupon_applicable_message: Joi.string().allow(""),
       coupon_code: Joi.string().allow(""),
       coupon_type: Joi.string().allow("").allow(null),
       coupon_value: Joi.number(),
       description: Joi.string().allow("").allow(null),
-      end_date: Joi.string().allow("").allow(null),
       expires_on: Joi.string().allow(""),
       is_applicable: Joi.boolean(),
       is_applied: Joi.boolean(),
       max_discount_value: Joi.number(),
       message: Joi.string().allow(""),
       minimum_cart_value: Joi.number(),
-      start_date: Joi.string().allow("").allow(null),
       sub_title: Joi.string().allow(""),
       title: Joi.string().allow(""),
     });
@@ -1932,7 +1873,6 @@ class CartApplicationModel {
       seller_identifier: Joi.string().allow(""),
       size: Joi.string().allow(""),
       store: CartApplicationModel.StoreInfo(),
-      tags: Joi.array().items(Joi.string().allow("")),
       type: Joi.string().allow(""),
       uid: Joi.string().allow(""),
     });
@@ -2018,14 +1958,6 @@ class CartApplicationModel {
     });
   }
 
-  /** @returns {PromiseISOFormat} */
-  static PromiseISOFormat() {
-    return Joi.object({
-      max: Joi.string().allow(""),
-      min: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {PromiseTimestamp} */
   static PromiseTimestamp() {
     return Joi.object({
@@ -2079,7 +2011,6 @@ class CartApplicationModel {
       mrp_total: Joi.number(),
       subtotal: Joi.number(),
       total: Joi.number(),
-      total_charge: Joi.number(),
       vog: Joi.number(),
       you_saved: Joi.number(),
     });
@@ -2158,7 +2089,6 @@ class CartApplicationModel {
   static ShipmentPromise() {
     return Joi.object({
       formatted: CartApplicationModel.PromiseFormatted(),
-      iso: CartApplicationModel.PromiseISOFormat(),
       timestamp: CartApplicationModel.PromiseTimestamp(),
     });
   }

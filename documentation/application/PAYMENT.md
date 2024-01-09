@@ -6,7 +6,7 @@
 ##### [Back to Application docs](./README.md)
 
 ## Payment Methods
-The Payment module lists cards and payment modes, allows for the selection of payment modes during checkout, handles refunds, validates customers, and ensures the security of transactions.
+Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account
 
 
 Default
@@ -20,11 +20,9 @@ Default
 * [checkCredit](#checkcredit)
 * [createOrderHandlerPaymentLink](#createorderhandlerpaymentlink)
 * [createPaymentLink](#createpaymentlink)
-* [createPaymentOrder](#createpaymentorder)
 * [customerCreditSummary](#customercreditsummary)
 * [customerOnboard](#customeronboard)
 * [deleteUserCard](#deleteusercard)
-* [delinkWallet](#delinkwallet)
 * [enableOrDisableRefundTransferMode](#enableordisablerefundtransfermode)
 * [getActiveCardAggregator](#getactivecardaggregator)
 * [getActiveRefundTransferModes](#getactiverefundtransfermodes)
@@ -40,7 +38,6 @@ Default
 * [getUserBeneficiariesDetail](#getuserbeneficiariesdetail)
 * [initialisePayment](#initialisepayment)
 * [initialisePaymentPaymentLink](#initialisepaymentpaymentlink)
-* [linkWallet](#linkwallet)
 * [outstandingOrderDetails](#outstandingorderdetails)
 * [paidOrderDetails](#paidorderdetails)
 * [pollingPaymentLink](#pollingpaymentlink)
@@ -55,7 +52,6 @@ Default
 * [verifyIfscCode](#verifyifsccode)
 * [verifyOtpAndAddBeneficiaryForBank](#verifyotpandaddbeneficiaryforbank)
 * [verifyOtpAndAddBeneficiaryForWallet](#verifyotpandaddbeneficiaryforwallet)
-* [walletLinkInitate](#walletlinkinitate)
 
 
 
@@ -725,80 +721,6 @@ Success. Check the example shown below
 ---
 
 
-### createPaymentOrder
-Create Order
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.payment.createPaymentOrder({  body : value });
-
-// Async/Await
-const data = await applicationClient.payment.createPaymentOrder({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [PaymentOrderRequest](#PaymentOrderRequest) | yes | Request body |
-
-
-Use this API to create a order and payment on aggregator side
-
-*Returned Response:*
-
-
-
-
-[PaymentOrderResponse](#PaymentOrderResponse)
-
-Success. Check the example shown below
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "message": "",
-  "success": true,
-  "status_code": 200,
-  "data": {
-    "amount": 2190000,
-    "order_id": "order_JeaZ5ryKO01rno",
-    "email": "abc@example.com",
-    "contact": "9999999999",
-    "currency": "INR",
-    "customer_id": "cust_CZgcLVGsGP8BUQ",
-    "callback_url": "https://api.fyndx0.com/service/webhooks/payment/v1.0/callback/link/?razorpay_order_id=order_JeaZ5ryKO01rno",
-    "method": "upi",
-    "aggregator": "Razorpay",
-    "merchant_order_id": "FY629EDC0980B6A8C1EA"
-  },
-  "callback_url": "https://api.fyndx0.com/service/webhooks/payment/v1.0/callback/link/?razorpay_order_id=order_JeaZ5ryKO01rno",
-  "payment_confirm_url": "https://api.fyndx0.com/service/webhooks/payment/v1.0/callback/link/?razorpay_order_id=order_JeaZ5ryKO01rno",
-  "order_id": "FY629EDC0980B6A8C1EA"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### customerCreditSummary
 API to fetch the customer credit summary
 
@@ -867,13 +789,7 @@ Success. Returns the status of payment. Check the example shown below or refer `
       "currency": "INR"
     },
     "due_date": "Oct 22 2021",
-    "days_overdue": 123,
-    "total_due_amount": {
-      "value": 12576,
-      "formatted_value": "₹ 12,576.00",
-      "currency": "INR"
-    },
-    "repayment_url": "https://example_url.com/example/"
+    "days_overdue": 123
   }
 }
 ```
@@ -937,11 +853,7 @@ Success. Returns the status of payment. Check the example shown below or refer `
       "session_id": "109dae9a-9fe0-4277-979c-0bebb0136930"
     },
     "redirect_url": "https://retail-dev.epaylater.in?sessionId=109dae9a-9fe0-4277-979c-0bebb0136930",
-    "status": true,
-    "merchant_customer_ref_id": "64217ecb42a43c10c5bde1b4",
-    "status_remark": "Your are one step away to avail credit of Amount(value=10000.0, formattedValue=₹ 10,000.00, currency=INR)",
-    "is_eligible_for_txn": false,
-    "activation_url": "https://urlshortener-sandbox.rupifi.com/BHs8Dsc"
+    "status": true
   }
 }
 ```
@@ -1002,75 +914,6 @@ Success. Returns a success message if card is deleted.
   "success": true
 }
 ```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### delinkWallet
-Delink the wallet
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.payment.delinkWallet({  body : value });
-
-// Async/Await
-const data = await applicationClient.payment.delinkWallet({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [WalletDelinkRequestSchema](#WalletDelinkRequestSchema) | yes | Request body |
-
-
-It Removes already linked wallet
-
-*Returned Response:*
-
-
-
-
-[WalletResponseSchema](#WalletResponseSchema)
-
-Wallet delinked successfully
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; wallet_delete_success</i></summary>
-
-```json
-{
-  "summary": "Wallet delinked successfully",
-  "value": {
-    "success": true,
-    "data": {
-      "message": "Wallet delinked successfully"
-    }
-  }
-}
-```
-</details>
-
 </details>
 
 
@@ -1684,26 +1527,20 @@ Get applicable payment options
 // Promise
 const promise = applicationClient.payment.getPaymentModeRoutes({  amount : value,
  cartId : value,
+ pincode : value,
  checkoutMode : value,
  refresh : value,
- orderId : value,
  cardReference : value,
- userDetails : value,
- displaySplit : value,
- advancePayment : value,
- shipmentId : value });
+ userDetails : value });
 
 // Async/Await
 const data = await applicationClient.payment.getPaymentModeRoutes({  amount : value,
  cartId : value,
+ pincode : value,
  checkoutMode : value,
  refresh : value,
- orderId : value,
  cardReference : value,
- userDetails : value,
- displaySplit : value,
- advancePayment : value,
- shipmentId : value });
+ userDetails : value });
 ```
 
 
@@ -1712,16 +1549,13 @@ const data = await applicationClient.payment.getPaymentModeRoutes({  amount : va
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| amount | number | yes | Payable amount. |    
-| cartId | string | no | Identifier of the cart. |    
-| checkoutMode | string | no | Option to checkout for self or for others. |    
+| amount | number | yes | Payable amount. |   
+| cartId | string | yes | Identifier of the cart. |   
+| pincode | string | yes | The PIN Code of the destination address, e.g. 400059 |   
+| checkoutMode | string | yes | Option to checkout for self or for others. |    
 | refresh | boolean | no | This is a boolean value. Select `true` to remove temporary cache files on payment gateway and replace with the latest one. |    
-| orderId | string | no |  |    
 | cardReference | string | no | Card reference id of user's debit or credit card. |    
-| userDetails | string | no | URIencoded JSON containing details of an anonymous user. |    
-| displaySplit | boolean | no | Display Split Payment Option or not |    
-| advancePayment | boolean | no | Display Advance Payment Options or Normal |    
-| shipmentId | string | no |  |  
+| userDetails | string | no | URIencoded JSON containing details of an anonymous user. |  
 
 
 
@@ -1969,14 +1803,7 @@ Success. Returns all available options for payment. Check the example shown belo
               "large": "https://hdn-1.fynd.com/payment/paytm_logo_large.png"
             },
             "aggregator_name": "Juspay",
-            "display_priority": 1,
-            "meta": {
-              "balance": 10,
-              "token": "613b11af-dd32-4b59-8f18-70b2a93dc702",
-              "linked": true,
-              "mobile": 8999999999,
-              "wallet_code": "PAYTM"
-            }
+            "display_priority": 1
           },
           {
             "wallet_name": "Amazon Pay",
@@ -2245,66 +2072,7 @@ Success. Returns all available options for payment. Check the example shown belo
         "payment_flow": "api"
       }
     }
-  },
-  "advance_payment": [
-    {
-      "name": "SPLIT",
-      "display_priority": 22,
-      "payment_mode_id": 34,
-      "display_name": "Split Payment",
-      "list": [
-        {
-          "aggregator_name": "Fynd",
-          "name": "Split Payment",
-          "display_name": "Split Payment",
-          "code": "SPLIT",
-          "logo_url": {
-            "small": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/testz0/misc/default-assets/original/yDRf9iyLbH-PosLogo.png",
-            "large": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/testz0/misc/default-assets/original/yDRf9iyLbH-PosLogo.png"
-          },
-          "merchant_code": "SPLIT"
-        }
-      ],
-      "split": {
-        "total_number_of_splits": 7,
-        "splits_remaining": 7
-      }
-    },
-    {
-      "name": "ADVANCE",
-      "display_priority": 22,
-      "payment_mode_id": 35,
-      "display_name": "Advance Payment",
-      "list": [
-        {
-          "aggregator_name": "Fynd",
-          "name": "Advance Payment",
-          "display_name": "Advance Payment",
-          "code": "ADVANCE",
-          "logo_url": {
-            "small": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/testz0/misc/default-assets/original/yDRf9iyLbH-PosLogo.png",
-            "large": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/testz0/misc/default-assets/original/yDRf9iyLbH-PosLogo.png"
-          },
-          "merchant_code": "ADVANCE"
-        }
-      ],
-      "advance": {
-        "is_active": true,
-        "time_unit": "DAYS",
-        "description": "Pay Rs 3000 or more of the total amount",
-        "display_name": "Pay using Advance Payment",
-        "prepayment_type": "PERCENTAGE",
-        "prepayment_value": 20,
-        "cancellation_type": "AUTO",
-        "refund_time_limit": 4,
-        "all_prepayment_type": [
-          "PERCENTAGE",
-          "FIXED"
-        ],
-        "allow_custom_advance_amount": true
-      }
-    }
-  ]
+  }
 }
 ```
 </details>
@@ -2778,20 +2546,20 @@ Get applicable payment options for Point-of-Sale (POS)
 ```javascript
 // Promise
 const promise = applicationClient.payment.getPosPaymentModeRoutes({  amount : value,
- pincode : value,
- orderType : value,
  cartId : value,
+ pincode : value,
  checkoutMode : value,
+ orderType : value,
  refresh : value,
  cardReference : value,
  userDetails : value });
 
 // Async/Await
 const data = await applicationClient.payment.getPosPaymentModeRoutes({  amount : value,
- pincode : value,
- orderType : value,
  cartId : value,
+ pincode : value,
  checkoutMode : value,
+ orderType : value,
  refresh : value,
  cardReference : value,
  userDetails : value });
@@ -2803,10 +2571,10 @@ const data = await applicationClient.payment.getPosPaymentModeRoutes({  amount :
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| amount | number | yes | Payable amount. |    
-| cartId | string | no | Identifier of the cart. |   
-| pincode | string | yes | The PIN Code of the destination address, e.g. 400059 |    
-| checkoutMode | string | no | Option to checkout for self or for others. |    
+| amount | number | yes | Payable amount. |   
+| cartId | string | yes | Identifier of the cart. |   
+| pincode | string | yes | The PIN Code of the destination address, e.g. 400059 |   
+| checkoutMode | string | yes | Option to checkout for self or for others. |    
 | refresh | boolean | no | This is a boolean value. Select `true` to remove temporary cache files on payment gateway and replace with the latest one. |    
 | cardReference | string | no | Card reference id of user's debit or credit card. |   
 | orderType | string | yes | The order type of shipment * HomeDelivery - If the customer wants the order home-delivered * PickAtStore - If the customer wants the handover of an order at the store itself. |    
@@ -3287,77 +3055,6 @@ Success. Check the example shown below or refer `PaymentInitializationResponse` 
   "customer_id": "cust_dummy_001"
 }
 ```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### linkWallet
-OTP verification for linking of wallet
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.payment.linkWallet({  body : value });
-
-// Async/Await
-const data = await applicationClient.payment.linkWallet({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [WalletVerifyRequestSchema](#WalletVerifyRequestSchema) | yes | Request body |
-
-
-It Verifies the linking of wallet using OTP
-
-*Returned Response:*
-
-
-
-
-[WalletResponseSchema](#WalletResponseSchema)
-
-OTP Verification
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; wallet_verify_success</i></summary>
-
-```json
-{
-  "summary": "OTP verification success",
-  "value": {
-    "success": true,
-    "data": {
-      "message": "OTP verified successfully",
-      "balance": 234,
-      "token": "100f8193-63b6-4f2b-a9bc-6830639583a6"
-    }
-  }
-}
-```
-</details>
-
 </details>
 
 
@@ -4316,76 +4013,6 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 ---
 
 
-### walletLinkInitate
-Initiate linking of wallet
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.payment.walletLinkInitate({  body : value });
-
-// Async/Await
-const data = await applicationClient.payment.walletLinkInitate({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [WalletLinkRequestSchema](#WalletLinkRequestSchema) | yes | Request body |
-
-
-It will initiate linking of wallet for the aggregator.
-
-*Returned Response:*
-
-
-
-
-[WalletResponseSchema](#WalletResponseSchema)
-
-OTP for Wallet Linking sent
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; wallet_link_failed</i></summary>
-
-```json
-{
-  "summary": "OTP sent successfully",
-  "value": {
-    "success": true,
-    "data": {
-      "message": "OTP sent successfully",
-      "link_token": "31a2f5a7-ee30-4cbb-8669-53071878f6d7"
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 
 
 ### Schemas
@@ -4395,7 +4022,7 @@ OTP for Wallet Linking sent
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cards | [CardPaymentGateway](#CardPaymentGateway) |  no  |  |
+ | cards | [CardPaymentGateway](#CardPaymentGateway) |  no  | Card's payment gateway with customer id. |
  | message | string |  no  | Human readable message. |
  | success | boolean |  no  | Response is successful or not. |
  
@@ -4417,7 +4044,7 @@ OTP for Wallet Linking sent
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | delights | boolean |  no  | True if  beneficiary to be added by delights or False if by User |
- | details | [BeneficiaryModeDetails](#BeneficiaryModeDetails) |  no  |  |
+ | details | [BeneficiaryModeDetails](#BeneficiaryModeDetails) |  no  | Beneficiary bank details |
  | order_id | string |  no  | Merchant Order Id |
  | otp | string? |  yes  |  |
  | request_id | string? |  yes  |  |
@@ -4444,40 +4071,6 @@ OTP for Wallet Linking sent
  | ---------- | ---- | -------- | ----------- |
  | message | string |  no  | Aggregator Response of beneficicary  |
  | success | boolean? |  yes  | Response is successful or not |
- 
-
----
-
-#### [AdvanceObject](#AdvanceObject)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | all_prepayment_type | [string]? |  yes  | All available types of prepayment |
- | allow_custom_advance_amount | boolean? |  yes  | Is custom advance amount allowed? |
- | amount | number? |  yes  | Amount for Payment Breakdown |
- | cancellation_type | string? |  yes  | Type of cancellation |
- | description | string? |  yes  | The description for Advance Payment (user configured) |
- | display_name | string? |  yes  | The display name for Advance payment |
- | is_active | boolean? |  yes  | Is Advance Payment active |
- | prepayment_type | string? |  yes  | Type of prepayment value |
- | prepayment_value | number? |  yes  | Value for prepayment in advance payment |
- | refund_time_limit | number? |  yes  | time limit for processing refund |
- | time_unit | string? |  yes  | Time unit for refunds |
- 
-
----
-
-#### [AdvancePaymentObject](#AdvancePaymentObject)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | advance | [AdvanceObject](#AdvanceObject)? |  yes  |  |
- | display_name | string? |  yes  | Display name for Advance Payment Mode |
- | display_priority | number? |  yes  | Display Priority for Payment Option |
- | list | [[PaymentModeList](#PaymentModeList)]? |  yes  | Payment mode |
- | name | string? |  yes  | Name of Advance Payment Mode |
- | payment_mode_id | number? |  yes  | Payment Mode ID for Advance Payment Option |
- | split | [SplitObject](#SplitObject)? |  yes  |  |
  
 
 ---
@@ -4600,7 +4193,7 @@ OTP for Wallet Linking sent
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address | [KYCAddress](#KYCAddress)? |  yes  |  |
+ | address | [KYCAddress](#KYCAddress)? |  yes  | Address details |
  | business_ownership_type | string? |  yes  | business Ownershipp type(e.g Rented) |
  | business_type | string? |  yes  | Business Type |
  | entity_type | string? |  yes  | Busineess Entity Type |
@@ -4688,7 +4281,7 @@ OTP for Wallet Linking sent
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [CardDetails](#CardDetails) |  no  |  |
+ | data | [CardDetails](#CardDetails) |  no  | Saved Card Details |
  | success | boolean |  no  | Response is successful or not. |
  
 
@@ -4737,7 +4330,7 @@ OTP for Wallet Linking sent
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [CreditDetail](#CreditDetail) |  no  |  |
+ | data | [CreditDetail](#CreditDetail) |  no  | Credit summary of user. |
  | success | boolean |  no  | Operation is successful or not. |
  
 
@@ -4765,7 +4358,7 @@ OTP for Wallet Linking sent
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | meta | [PaymentMethodsMeta](#PaymentMethodsMeta) |  no  |  |
+ | meta | [PaymentMethodsMeta](#PaymentMethodsMeta) |  no  | Meta |
  | mode | string |  no  | Payment mode |
  | name | string |  no  | Payment mode name |
  
@@ -4780,7 +4373,7 @@ OTP for Wallet Linking sent
  | failure_callback_url | string |  no  | Failure page url |
  | meta | string? |  yes  | Meta |
  | payment_link_id | string |  no  | Unique id of payment link |
- | payment_methods | [CreateOrderUserPaymentMethods](#CreateOrderUserPaymentMethods) |  no  |  |
+ | payment_methods | [CreateOrderUserPaymentMethods](#CreateOrderUserPaymentMethods) |  no  | Payment method details |
  | success_callback_url | string |  no  | Success  page url |
  
 
@@ -4809,6 +4402,7 @@ OTP for Wallet Linking sent
  | assign_card_id | string? |  yes  |  |
  | cart_id | string |  no  |  |
  | checkout_mode | string |  no  |  |
+ | pincode | string |  no  |  |
  
 
 ---
@@ -4821,7 +4415,7 @@ OTP for Wallet Linking sent
  | description | string? |  yes  | Merchant order id |
  | email | string |  no  | Email to which the payment link is to be sent |
  | external_order_id | string |  no  | Merchant order id |
- | meta | [CreatePaymentLinkMeta](#CreatePaymentLinkMeta) |  no  |  |
+ | meta | [CreatePaymentLinkMeta](#CreatePaymentLinkMeta) |  no  | Meta |
  | mobile_number | string |  no  | Mobile number to which the payment link is to be sent |
  
 
@@ -4856,21 +4450,13 @@ OTP for Wallet Linking sent
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | activation_url | string? |  yes  | Url for activation |
- | amount_available | [BalanceDetails](#BalanceDetails)? |  yes  |  |
- | balance | [BalanceDetails](#BalanceDetails)? |  yes  |  |
+ | amount_available | [BalanceDetails](#BalanceDetails)? |  yes  | Credit summary of user. |
+ | balance | [BalanceDetails](#BalanceDetails)? |  yes  | Credit summary of user. |
  | buyer_status | string? |  yes  | Status from Credit aggregator's end |
  | credit_line_id | string? |  yes  | ID at Credit aggregator's end |
- | due_amount | [BalanceDetails](#BalanceDetails)? |  yes  |  |
- | due_date | string? |  yes  | Due date for repayment |
- | is_eligible_for_txn | boolean? |  yes  | Eligiblity flag to complete transaction |
- | limit | [BalanceDetails](#BalanceDetails)? |  yes  |  |
  | merchant_customer_ref_id | string? |  yes  | Unique aggregator customer id |
- | repayment_url | string? |  yes  | Url for repayment |
- | soa_url | string? |  yes  | Statement of accounts. Show payment history. |
  | status | string? |  yes  | Customer Credit status |
  | status_message | string? |  yes  | message to customer |
- | total_due_amount | [BalanceDetails](#BalanceDetails)? |  yes  |  |
  
 
 ---
@@ -4879,7 +4465,7 @@ OTP for Wallet Linking sent
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [CreditSummary](#CreditSummary)? |  yes  |  |
+ | data | [CreditSummary](#CreditSummary)? |  yes  | Credit summary of user. |
  | success | boolean |  no  | Payment confirmation updated or not. |
  
 
@@ -4890,11 +4476,11 @@ OTP for Wallet Linking sent
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | aggregator | string |  no  | Aggregator Name |
- | business_info | [BusinessDetails](#BusinessDetails)? |  yes  |  |
- | device | [DeviceDetails](#DeviceDetails)? |  yes  |  |
- | marketplace_info | [MarketplaceInfo](#MarketplaceInfo)? |  yes  |  |
+ | business_info | [BusinessDetails](#BusinessDetails)? |  yes  | Business summary. |
+ | device | [DeviceDetails](#DeviceDetails)? |  yes  | Device Details. |
+ | marketplace_info | [MarketplaceInfo](#MarketplaceInfo)? |  yes  | Market Place info. |
  | mcc | string? |  yes  | Mcc |
- | personal_info | [UserPersonalInfoInDetails](#UserPersonalInfoInDetails)? |  yes  |  |
+ | personal_info | [UserPersonalInfoInDetails](#UserPersonalInfoInDetails) |  no  | Credit summary of user. |
  | source | string |  no  | callbackURL |
  
 
@@ -4904,7 +4490,7 @@ OTP for Wallet Linking sent
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [OnboardSummary](#OnboardSummary) |  no  |  |
+ | data | [OnboardSummary](#OnboardSummary) |  no  | Redirect URL. |
  | success | boolean |  no  | Status updated or not. |
  
 
@@ -4959,7 +4545,7 @@ OTP for Wallet Linking sent
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [EpaylaterBannerData](#EpaylaterBannerData) |  no  |  |
+ | data | [EpaylaterBannerData](#EpaylaterBannerData) |  no  | Epaylater KYC banner details. |
  | success | boolean |  no  | Successful or not. |
  
 
@@ -5058,7 +4644,7 @@ OTP for Wallet Linking sent
  | ---------- | ---- | -------- | ----------- |
  | code | string? |  yes  | code |
  | display_name | string? |  yes  | display_name |
- | logos | [PaymentModeLogo](#PaymentModeLogo)? |  yes  |  |
+ | logos | [PaymentModeLogo](#PaymentModeLogo)? |  yes  | logos |
  | package_name | string? |  yes  | package_name |
  
 
@@ -5136,13 +4722,9 @@ OTP for Wallet Linking sent
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | activation_url | string? |  yes  | Url for activation |
- | is_eligible_for_txn | boolean? |  yes  | Whether is eligible for transaction |
- | merchant_customer_ref_id | string? |  yes  | Rupifi customer ID |
- | redirect_url | string? |  yes  | URL to which the user may redirect. |
- | session | string? |  yes  | User Session |
- | status | boolean |  no  | Transaction status |
- | status_remark | string? |  yes  | Decription of status |
+ | redirect_url | string |  no  | URL to which the user may redirect. |
+ | session | string |  no  | User Session |
+ | status | boolean |  no  | Operation Status |
  
 
 ---
@@ -5212,20 +4794,20 @@ OTP for Wallet Linking sent
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | ajiodhan | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
- | bqr_razorpay | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
- | ccavenue | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
- | epaylater | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
- | fynd | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
- | jiopay | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
- | juspay | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
- | mswipe | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
- | payubiz | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
- | razorpay | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
- | rupifi | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
- | simpl | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
- | stripe | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
- | upi_razorpay | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
+ | ajiodhan | [AggregatorRoute](#AggregatorRoute)? |  yes  | Ajiodhan |
+ | bqr_razorpay | [AggregatorRoute](#AggregatorRoute)? |  yes  | BQR_Razorpay |
+ | ccavenue | [AggregatorRoute](#AggregatorRoute)? |  yes  | Ccavenue |
+ | epaylater | [AggregatorRoute](#AggregatorRoute)? |  yes  | Epaylater |
+ | fynd | [AggregatorRoute](#AggregatorRoute)? |  yes  | Fynd |
+ | jiopay | [AggregatorRoute](#AggregatorRoute)? |  yes  | Jiopay |
+ | juspay | [AggregatorRoute](#AggregatorRoute)? |  yes  | Juspay |
+ | mswipe | [AggregatorRoute](#AggregatorRoute)? |  yes  | mswipe |
+ | payubiz | [AggregatorRoute](#AggregatorRoute)? |  yes  | Payubiz |
+ | razorpay | [AggregatorRoute](#AggregatorRoute)? |  yes  | Razorpay |
+ | rupifi | [AggregatorRoute](#AggregatorRoute)? |  yes  | Rupifi |
+ | simpl | [AggregatorRoute](#AggregatorRoute)? |  yes  | simpl |
+ | stripe | [AggregatorRoute](#AggregatorRoute)? |  yes  | Stripe |
+ | upi_razorpay | [AggregatorRoute](#AggregatorRoute)? |  yes  | UPI_Razorpay |
  
 
 ---
@@ -5287,17 +4869,6 @@ OTP for Wallet Linking sent
 
 ---
 
-#### [PaymentMethodsMetaOrder](#PaymentMethodsMetaOrder)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | merchant_code | string |  no  | Merchant code |
- | payment_gateway | string |  no  | Payment gateway name |
- | payment_identifier | string |  no  | Payment identifier |
- 
-
----
-
 #### [PaymentModeList](#PaymentModeList)
 
  | Properties | Type | Nullable | Description |
@@ -5328,9 +4899,8 @@ OTP for Wallet Linking sent
  | intent_app_error_dict_list | [[IntentAppErrorList](#IntentAppErrorList)]? |  yes  | intent_app_error_dict_list |
  | intent_app_error_list | [string]? |  yes  | intent_app_error_list |
  | intent_flow | boolean? |  yes  | intent_flow |
- | logo_url | [PaymentModeLogo](#PaymentModeLogo)? |  yes  |  |
+ | logo_url | [PaymentModeLogo](#PaymentModeLogo)? |  yes  | Logo |
  | merchant_code | string? |  yes  | merchant code |
- | meta | string? |  yes  | Payment methods meta |
  | name | string? |  yes  | name |
  | nickname | string? |  yes  | nickname |
  | remaining_limit | number? |  yes  | Remaining limit |
@@ -5354,9 +4924,7 @@ OTP for Wallet Linking sent
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | advance_payment | [[AdvancePaymentObject](#AdvancePaymentObject)]? |  yes  | Advance Payment Array |
- | payment_breakup | string? |  yes  | Payment Breakup for advance payment |
- | payment_options | [PaymentOptionAndFlow](#PaymentOptionAndFlow) |  no  |  |
+ | payment_options | [PaymentOptionAndFlow](#PaymentOptionAndFlow) |  no  | payment_options |
  | success | boolean |  no  | Response is successful or not |
  
 
@@ -5366,65 +4934,8 @@ OTP for Wallet Linking sent
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | payment_flows | [PaymentFlow](#PaymentFlow) |  no  |  |
- | payment_option | [RootPaymentMode](#RootPaymentMode) |  no  |  |
- 
-
----
-
-#### [PaymentOrderData](#PaymentOrderData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | aggregator | string? |  yes  | Aggregator name |
- | amount | number? |  yes  | Amount |
- | callback_url | string? |  yes  | Callback url for aggregator |
- | contact | string? |  yes  | Mobile number |
- | currency | string? |  yes  | Currency |
- | customer_id | string? |  yes  | Aggregator customer id |
- | email | string? |  yes  | Email |
- | merchant_order_id | string? |  yes  | Merchant order id |
- | method | string? |  yes  | Method |
- | order_id | string? |  yes  | Aggregator order id |
- 
-
----
-
-#### [PaymentOrderMethods](#PaymentOrderMethods)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | amount | number |  no  | Amount to be collected |
- | meta | [PaymentMethodsMetaOrder](#PaymentMethodsMetaOrder) |  no  |  |
- | mode | string |  no  | Payment mode |
- | name | string |  no  | Payment mode name |
- | payment | string? |  yes  | Payment type i.e. Required / Blocked |
- 
-
----
-
-#### [PaymentOrderRequest](#PaymentOrderRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | order_id | string |  no  | Order id |
- | payment_methods | [[PaymentOrderMethods](#PaymentOrderMethods)]? |  yes  |  |
- | shipment_id | string? |  yes  | shipment_id |
- 
-
----
-
-#### [PaymentOrderResponse](#PaymentOrderResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | callback_url | string? |  yes  | Callback url for aggregator |
- | data | [PaymentOrderData](#PaymentOrderData)? |  yes  |  |
- | message | string |  no  | Message |
- | order_id | string? |  yes  | Merchant order id |
- | payment_confirm_url | string? |  yes  | Payment confirm url for aggregator |
- | status_code | number |  no  | HTTP status code |
- | success | boolean |  no  | Successful or failure |
+ | payment_flows | [PaymentFlow](#PaymentFlow) |  no  | payment_flows |
+ | payment_option | [[RootPaymentMode](#RootPaymentMode)] |  no  | Payment options |
  
 
 ---
@@ -5485,7 +4996,7 @@ OTP for Wallet Linking sent
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [RedirectURL](#RedirectURL) |  no  |  |
+ | data | [RedirectURL](#RedirectURL) |  no  | Redirect URL. |
  | success | boolean |  no  | Status updated or not. |
  
 
@@ -5547,7 +5058,7 @@ OTP for Wallet Linking sent
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [LinkStatus](#LinkStatus) |  no  |  |
+ | data | [LinkStatus](#LinkStatus) |  no  | Data about link action status. |
  | success | boolean |  no  | Response is successful or not. |
  
 
@@ -5596,7 +5107,7 @@ OTP for Wallet Linking sent
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [RupifiBannerData](#RupifiBannerData) |  no  |  |
+ | data | [RupifiBannerData](#RupifiBannerData) |  no  | Rupifi KYC banner details. |
  | success | boolean |  no  | Successful or not. |
  
 
@@ -5618,17 +5129,6 @@ OTP for Wallet Linking sent
  | ---------- | ---- | -------- | ----------- |
  | is_beneficiary_set | boolean |  no  | Boolean Flag whether Beneficiary set or not |
  | success | boolean? |  yes  | Response is successful or not |
- 
-
----
-
-#### [SplitObject](#SplitObject)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | amount_remaining | number? |  yes  | Amount pending to be paid |
- | splits_remaining | number? |  yes  | Number of splits remaining |
- | total_number_of_splits | number? |  yes  | Maximum amount of splits allowed |
  
 
 ---
@@ -5688,7 +5188,7 @@ OTP for Wallet Linking sent
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address_as_per_id | [KYCAddress](#KYCAddress) |  no  |  |
+ | address_as_per_id | [KYCAddress](#KYCAddress) |  no  | Address details |
  | dob | string |  no  | DOB |
  | driving_license | string? |  yes  | Driver License |
  | email | string? |  yes  | Email |
@@ -5760,29 +5260,8 @@ OTP for Wallet Linking sent
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [ValidateUPI](#ValidateUPI) |  no  |  |
+ | data | [ValidateUPI](#ValidateUPI) |  no  | Data about UPI ID validate. |
  | success | boolean |  no  | Response is successful or not. |
- 
-
----
-
-#### [WalletDelinkRequestSchema](#WalletDelinkRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | aggregator | string |  no  | Aggregator Name |
- | wallet_code | string |  no  | Wallet Code |
- 
-
----
-
-#### [WalletLinkRequestSchema](#WalletLinkRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | aggregator | string |  no  | Aggregator Name |
- | mobile | string |  no  | Mobile Number for Wallet |
- | wallet_code | string |  no  | Wallet Code |
  
 
 ---
@@ -5804,27 +5283,6 @@ OTP for Wallet Linking sent
  | is_verified_flag | string |  no  | Boolean Flag whether OTP Validation is already done or not |
  | request_id | string |  no  | request id  |
  | success | boolean? |  yes  | Response is successful or not |
- 
-
----
-
-#### [WalletResponseSchema](#WalletResponseSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | string |  no  | Response received from aggregator |
- | success | boolean |  no  | Success/Failure of the API call |
- 
-
----
-
-#### [WalletVerifyRequestSchema](#WalletVerifyRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | aggregator | string |  no  | Aggregator Name |
- | link_token | string |  no  | Token for wallet linking |
- | otp | number |  no  | OTP received for wallet linking |
  
 
 ---

@@ -6,15 +6,13 @@
 ##### [Back to Application docs](./README.md)
 
 ## Content Methods
-The Content module manages content in the application. Use it to help users stay updated with announcements, read blog posts, manage data loaders, consult FAQs, and access legal and support information. It also enhances navigation modules and SEO capabilities for better online visibility, as well as supports slideshow interactions.
+Content System
 
 
 Default
 * [getAnnouncements](#getannouncements)
 * [getBlog](#getblog)
 * [getBlogs](#getblogs)
-* [getCustomFields](#getcustomfields)
-* [getCustomObject](#getcustomobject)
 * [getDataLoaders](#getdataloaders)
 * [getFaqBySlug](#getfaqbyslug)
 * [getFaqCategories](#getfaqcategories)
@@ -27,7 +25,6 @@ Default
 * [getPage](#getpage)
 * [getPages](#getpages)
 * [getSEOConfiguration](#getseoconfiguration)
-* [getSEOMarkupSchemas](#getseomarkupschemas)
 * [getSlideshow](#getslideshow)
 * [getSlideshows](#getslideshows)
 * [getSupportInformation](#getsupportinformation)
@@ -322,193 +319,6 @@ Success. Check the example shown below or refer `BlogGetResponse` for more detai
       "item_total": 2,
       "has_next": true
     }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getCustomFields
-Get list of custom fields of given resource and resource_id.
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.content.getCustomFields({  resource : value,
- resourceId : value });
-
-// Async/Await
-const data = await applicationClient.content.getCustomFields({  resource : value,
- resourceId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| resource | string | yes |  |   
-| resourceId | string | yes |  |  
-
-
-
-Use this API to retrieve the custom fields for given resource and resource_id in param.
-
-*Returned Response:*
-
-
-
-
-[CustomFieldsResponseByResourceIdSchema](#CustomFieldsResponseByResourceIdSchema)
-
-Success. Returns a list of custom fields. Refer `CustomFieldsResponseByResourceIdSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      {
-        "_id": "653929f012376081aafa90f6",
-        "namespace": "painter",
-        "key": "age",
-        "resource": "metaobject",
-        "creator": "application",
-        "value": [
-          5
-        ],
-        "resource_id": "653929f012376081aafa90f1",
-        "type": "integer",
-        "multi_value": false,
-        "company_id": "1",
-        "application_id": "000000000000000000000001",
-        "definition_id": "653907ced878d53c1a502d96",
-        "metaobject_definition_id": "653907ced878d53c1a502d92",
-        "has_invalid_values": false,
-        "invalid_value_errors": [],
-        "created_by": "000000000000000000000001",
-        "is_deleted": false,
-        "created_at": "2023-10-25T14:45:04.441Z",
-        "updated_at": "2023-10-25T14:45:04.441Z"
-      }
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getCustomObject
-Get custom object details
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.content.getCustomObject({  metaobjectId : value });
-
-// Async/Await
-const data = await applicationClient.content.getCustomObject({  metaobjectId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| metaobjectId | string | yes |  |  
-
-
-
-Use this API to retrieve the custom object details, their fields details with definitions and references.
-
-*Returned Response:*
-
-
-
-
-[CustomObjectByIdSchema](#CustomObjectByIdSchema)
-
-Success. Returns a custom object. Refer `CustomObjectByIdSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "_id": "653929f012376081aafa90f1",
-    "status": "active",
-    "display_name": "painter #653929f012376081aafa90f1",
-    "definition": {
-      "_id": "653907ced878d53c1a502d92",
-      "name": "painter",
-      "type": "painter"
-    },
-    "references": [],
-    "fields": [
-      {
-        "_id": "653929f012376081aafa90f5",
-        "key": "name",
-        "value": [
-          "Bruce Wayne"
-        ],
-        "type": "string_single_line",
-        "definition_id": "653907ced878d53c1a502d95"
-      },
-      {
-        "_id": "653929f012376081aafa90f6",
-        "key": "age",
-        "value": [
-          5
-        ],
-        "type": "integer",
-        "definition_id": "653907ced878d53c1a502d96"
-      }
-    ]
   }
 }
 ```
@@ -1666,65 +1476,6 @@ Success. Returns a JSON object SEO details such as robots.txt, meta-tags, and si
 ---
 
 
-### getSEOMarkupSchemas
-Get SEO Markup schemas of an application
-
-
-
-```javascript
-// Promise
-const promise = applicationClient.content.getSEOMarkupSchemas({  pageType : value,
- active : value });
-
-// Async/Await
-const data = await applicationClient.content.getSEOMarkupSchemas({  pageType : value,
- active : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageType | string | no | The type of page against which schema template was created |    
-| active | boolean | no | Boolean value for fetching seo schema. |  
-
-
-
-Use this API to get all SEO Markup schema Templates setup for an application
-
-*Returned Response:*
-
-
-
-
-[SeoSchemaComponent](#SeoSchemaComponent)
-
-Success. Refer `SeoSchemaComponent` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getSlideshow
 Get a slideshow
 
@@ -2324,50 +2075,6 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
 ---
 
-#### [CustomFieldSchema](#CustomFieldSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | application_id | string? |  yes  |  |
- | company_id | string? |  yes  |  |
- | created_at | string? |  yes  |  |
- | created_by | string? |  yes  |  |
- | creator | string? |  yes  |  |
- | definition_id | string? |  yes  |  |
- | has_invalid_values | boolean? |  yes  |  |
- | invalid_value_errors | [any]? |  yes  |  |
- | is_deleted | boolean? |  yes  |  |
- | key | string? |  yes  |  |
- | multi_value | boolean? |  yes  |  |
- | namespace | string? |  yes  |  |
- | resource | string? |  yes  |  |
- | resource_id | string? |  yes  |  |
- | type | string? |  yes  |  |
- | updated_at | string? |  yes  |  |
- | value | [[CustomFieldValue](#CustomFieldValue)]? |  yes  |  |
- 
-
----
-
-#### [CustomFieldsResponseByResourceIdSchema](#CustomFieldsResponseByResourceIdSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[CustomFieldSchema](#CustomFieldSchema)]? |  yes  |  |
- 
-
----
-
-#### [CustomFieldValue](#CustomFieldValue)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | value | any? |  yes  |  |
- 
-
----
-
 #### [CustomMetaTag](#CustomMetaTag)
 
  | Properties | Type | Nullable | Description |
@@ -2375,53 +2082,6 @@ Success. Returns a JSON object containing all the tags injected in the applicati
  | _id | string? |  yes  |  |
  | content | string? |  yes  |  |
  | name | string? |  yes  |  |
- 
-
----
-
-#### [CustomObjectByIdSchema](#CustomObjectByIdSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | definition | [CustomObjectListItemDefinationSchema](#CustomObjectListItemDefinationSchema)? |  yes  |  |
- | display_name | string? |  yes  |  |
- | fields | [[CustomObjectFieldSchema](#CustomObjectFieldSchema)]? |  yes  |  |
- | references | [any]? |  yes  |  |
- | status | string? |  yes  |  |
- 
-
----
-
-#### [CustomObjectFieldSchema](#CustomObjectFieldSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | definition_id | string? |  yes  |  |
- | key | string? |  yes  |  |
- | type | string? |  yes  |  |
- | value | [[CustomObjectFieldValue](#CustomObjectFieldValue)]? |  yes  |  |
- 
-
----
-
-#### [CustomObjectFieldValue](#CustomObjectFieldValue)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | value | any? |  yes  |  |
- 
-
----
-
-#### [CustomObjectListItemDefinationSchema](#CustomObjectListItemDefinationSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
- | name | string? |  yes  |  |
- | type | string? |  yes  |  |
  
 
 ---
@@ -2786,23 +2446,9 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | breadcrumb | [[SEObreadcrumb](#SEObreadcrumb)]? |  yes  |  |
- | canonical_url | string? |  yes  |  |
  | description | string? |  yes  |  |
  | image | [SEOImage](#SEOImage)? |  yes  |  |
- | meta_tags | [[SEOMetaItem](#SEOMetaItem)]? |  yes  |  |
- | sitemap | [SEOSitemap](#SEOSitemap)? |  yes  |  |
  | title | string? |  yes  |  |
- 
-
----
-
-#### [SEObreadcrumb](#SEObreadcrumb)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | action | [Action](#Action)? |  yes  |  |
- | url | string? |  yes  |  |
  
 
 ---
@@ -2825,32 +2471,11 @@ Success. Returns a JSON object containing all the tags injected in the applicati
 
 ---
 
-#### [SEOMetaItem](#SEOMetaItem)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[SEOMetaItems](#SEOMetaItems)]? |  yes  |  |
- | title | string? |  yes  |  |
- 
-
----
-
-#### [SEOMetaItems](#SEOMetaItems)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | key | string? |  yes  |  |
- | value | string? |  yes  |  |
- 
-
----
-
 #### [SeoSchema](#SeoSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | _id | string? |  yes  |  |
- | additonal_sitemap | string? |  yes  |  |
  | app | string? |  yes  |  |
  | cannonical_enabled | boolean? |  yes  |  |
  | created_at | string? |  yes  |  |
@@ -2859,42 +2484,6 @@ Success. Returns a JSON object containing all the tags injected in the applicati
  | robots_txt | string? |  yes  |  |
  | sitemap_enabled | boolean? |  yes  |  |
  | updated_at | string? |  yes  |  |
- 
-
----
-
-#### [SeoSchemaComponent](#SeoSchemaComponent)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[SEOSchemaMarkupTemplate](#SEOSchemaMarkupTemplate)]? |  yes  |  |
- 
-
----
-
-#### [SEOSchemaMarkupTemplate](#SEOSchemaMarkupTemplate)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | active | boolean? |  yes  |  |
- | application | string? |  yes  |  |
- | created_at | string? |  yes  |  |
- | description | string? |  yes  |  |
- | id | string? |  yes  |  |
- | page_type | string? |  yes  |  |
- | schema | string? |  yes  |  |
- | title | string? |  yes  |  |
- | updated_at | string? |  yes  |  |
- 
-
----
-
-#### [SEOSitemap](#SEOSitemap)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | frequency | string? |  yes  |  |
- | priority | number? |  yes  |  |
  
 
 ---

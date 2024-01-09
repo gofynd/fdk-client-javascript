@@ -17,12 +17,12 @@
  
 * [Finance](FINANCE.md) - Handles all finance related activities 
 * [Inventory](INVENTORY.md) - Catalog - Platform Front API's' API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
-* [Lead](LEAD.md) - Handles communication between Administrator-Staff and Staff-Users 
-* [Serviceability](SERVICEABILITY.md) - Logistics Configuration API's allows you to configure zone, application logistics and many more useful features.  
+* [Lead](LEAD.md) - Handles communication between Administrator 
 * [Order](ORDER.md) - Handles all platform order and shipment api(s) 
 * [Partner](PARTNER.md) - Partner configuration apis 
 * [Payment](PAYMENT.md) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
 * [Rewards](REWARDS.md) - Earn and redeem reward points 
+* [Serviceability](SERVICEABILITY.md) - Logistics Configuration API's allows you to configure zone, application logistics and many more useful features.  
 * [Share](SHARE.md) - Short link and QR Code 
 * [Theme](THEME.md) - Responsible for themes 
 * [User](USER.md) - Authentication Service 

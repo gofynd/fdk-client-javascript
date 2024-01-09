@@ -202,6 +202,7 @@ export = UserApplicationModel;
  */
 /**
  * @typedef PasswordLoginRequestSchema
+ * @property {string} [captcha_code]
  * @property {string} [password]
  * @property {string} [username]
  */
@@ -322,6 +323,7 @@ export = UserApplicationModel;
 /**
  * @typedef SendEmailOtpRequestSchema
  * @property {string} [action]
+ * @property {string} [captcha_code]
  * @property {string} [email]
  * @property {string} [register_token]
  * @property {string} [token]
@@ -342,6 +344,7 @@ export = UserApplicationModel;
  * @typedef SendMobileOtpRequestSchema
  * @property {string} [action]
  * @property {string} [android_hash]
+ * @property {string} [captcha_code]
  * @property {string} [country_code]
  * @property {string} [force]
  * @property {string} [mobile]
@@ -354,6 +357,7 @@ export = UserApplicationModel;
 /**
  * @typedef SendOtpRequestSchema
  * @property {string} [android_hash]
+ * @property {string} [captcha_code]
  * @property {string} [country_code]
  * @property {string} [mobile]
  */
@@ -375,10 +379,12 @@ export = UserApplicationModel;
  */
 /**
  * @typedef SendResetPasswordEmailRequestSchema
+ * @property {string} [captcha_code]
  * @property {string} [email]
  */
 /**
  * @typedef SendResetPasswordMobileRequestSchema
+ * @property {string} [captcha_code]
  * @property {string} [country_code]
  * @property {string} [mobile]
  */
@@ -421,18 +427,6 @@ export = UserApplicationModel;
  * @typedef UpdatePasswordRequestSchema
  * @property {string} [new_password]
  * @property {string} [old_password]
- */
-/**
- * @typedef UpdateUserAttributesRequest
- * @property {Object} [attributes]
- */
-/**
- * @typedef UserAttributes
- * @property {Object} [attributes]
- */
-/**
- * @typedef UserExistsResponse
- * @property {boolean} [user_exists]
  */
 /**
  * @typedef UserObjectSchema
@@ -508,7 +502,7 @@ export = UserApplicationModel;
 declare class UserApplicationModel {
 }
 declare namespace UserApplicationModel {
-    export { Accountkit, APIError, AuthenticationApiErrorSchema, AuthenticationInternalServerErrorSchema, AuthSuccess, CodeRequestBodySchema, DeleteAccountConsent, DeleteAccountReasons, DeleteApplicationUserRequestSchema, DeleteUserSuccess, EditEmailRequestSchema, EditMobileRequestSchema, EditProfileMobileSchema, EditProfileRequestSchema, Email, EmailOtpSuccess, Facebook, FlashCard, ForgotPasswordRequestSchema, FormRegisterRequestSchema, FormRegisterRequestSchemaPhone, Google, HasPasswordSuccess, Login, LoginSuccess, LogoutSuccess, LookAndFeel, MetaSchema, OAuthRequestAppleSchema, OAuthRequestAppleSchemaOauth, OAuthRequestAppleSchemaProfile, OAuthRequestSchema, OAuthRequestSchemaOauth2, OAuthRequestSchemaProfile, OtpSuccess, PasswordLoginRequestSchema, PhoneNumber, PlatformEmail, PlatformMobile, PlatformSchema, ProfileEditSuccess, RegisterFormSuccess, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, RequiredFields, ResetForgotPasswordSuccess, ResetPasswordSuccess, SendEmailForgotOtpRequestSchema, SendEmailOtpRequestSchema, SendEmailVerifyLinkSuccess, SendMobileForgotOtpRequestSchema, SendMobileOtpRequestSchema, SendMobileVerifyLinkSuccess, SendOtpRequestSchema, SendOtpResponse, SendResetPasswordEmailRequestSchema, SendResetPasswordMobileRequestSchema, SendVerificationLinkMobileRequestSchema, SessionExpiry, SessionListSuccess, Social, SocialTokens, TokenRequestBodySchema, UpdatePasswordRequestSchema, UpdateUserAttributesRequest, UserAttributes, UserExistsResponse, UserObjectSchema, UserSchema, VerifyEmailForgotOtpRequestSchema, VerifyEmailOtpRequestSchema, VerifyEmailOTPSuccess, VerifyEmailSuccess, VerifyForgotOtpSuccess, VerifyMobileForgotOtpRequestSchema, VerifyMobileOTPSuccess, VerifyOtpRequestSchema, VerifyOtpSuccess };
+    export { Accountkit, APIError, AuthenticationApiErrorSchema, AuthenticationInternalServerErrorSchema, AuthSuccess, CodeRequestBodySchema, DeleteAccountConsent, DeleteAccountReasons, DeleteApplicationUserRequestSchema, DeleteUserSuccess, EditEmailRequestSchema, EditMobileRequestSchema, EditProfileMobileSchema, EditProfileRequestSchema, Email, EmailOtpSuccess, Facebook, FlashCard, ForgotPasswordRequestSchema, FormRegisterRequestSchema, FormRegisterRequestSchemaPhone, Google, HasPasswordSuccess, Login, LoginSuccess, LogoutSuccess, LookAndFeel, MetaSchema, OAuthRequestAppleSchema, OAuthRequestAppleSchemaOauth, OAuthRequestAppleSchemaProfile, OAuthRequestSchema, OAuthRequestSchemaOauth2, OAuthRequestSchemaProfile, OtpSuccess, PasswordLoginRequestSchema, PhoneNumber, PlatformEmail, PlatformMobile, PlatformSchema, ProfileEditSuccess, RegisterFormSuccess, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, RequiredFields, ResetForgotPasswordSuccess, ResetPasswordSuccess, SendEmailForgotOtpRequestSchema, SendEmailOtpRequestSchema, SendEmailVerifyLinkSuccess, SendMobileForgotOtpRequestSchema, SendMobileOtpRequestSchema, SendMobileVerifyLinkSuccess, SendOtpRequestSchema, SendOtpResponse, SendResetPasswordEmailRequestSchema, SendResetPasswordMobileRequestSchema, SendVerificationLinkMobileRequestSchema, SessionExpiry, SessionListSuccess, Social, SocialTokens, TokenRequestBodySchema, UpdatePasswordRequestSchema, UserObjectSchema, UserSchema, VerifyEmailForgotOtpRequestSchema, VerifyEmailOtpRequestSchema, VerifyEmailOTPSuccess, VerifyEmailSuccess, VerifyForgotOtpSuccess, VerifyMobileForgotOtpRequestSchema, VerifyMobileOTPSuccess, VerifyOtpRequestSchema, VerifyOtpSuccess };
 }
 /** @returns {Accountkit} */
 declare function Accountkit(): Accountkit;
@@ -752,6 +746,7 @@ type OtpSuccess = {
 /** @returns {PasswordLoginRequestSchema} */
 declare function PasswordLoginRequestSchema(): PasswordLoginRequestSchema;
 type PasswordLoginRequestSchema = {
+    captcha_code?: string;
     password?: string;
     username?: string;
 };
@@ -886,6 +881,7 @@ type SendEmailForgotOtpRequestSchema = {
 declare function SendEmailOtpRequestSchema(): SendEmailOtpRequestSchema;
 type SendEmailOtpRequestSchema = {
     action?: string;
+    captcha_code?: string;
     email?: string;
     register_token?: string;
     token?: string;
@@ -909,6 +905,7 @@ declare function SendMobileOtpRequestSchema(): SendMobileOtpRequestSchema;
 type SendMobileOtpRequestSchema = {
     action?: string;
     android_hash?: string;
+    captcha_code?: string;
     country_code?: string;
     force?: string;
     mobile?: string;
@@ -923,6 +920,7 @@ type SendMobileVerifyLinkSuccess = {
 declare function SendOtpRequestSchema(): SendOtpRequestSchema;
 type SendOtpRequestSchema = {
     android_hash?: string;
+    captcha_code?: string;
     country_code?: string;
     mobile?: string;
 };
@@ -946,11 +944,13 @@ type SendOtpResponse = {
 /** @returns {SendResetPasswordEmailRequestSchema} */
 declare function SendResetPasswordEmailRequestSchema(): SendResetPasswordEmailRequestSchema;
 type SendResetPasswordEmailRequestSchema = {
+    captcha_code?: string;
     email?: string;
 };
 /** @returns {SendResetPasswordMobileRequestSchema} */
 declare function SendResetPasswordMobileRequestSchema(): SendResetPasswordMobileRequestSchema;
 type SendResetPasswordMobileRequestSchema = {
+    captcha_code?: string;
     country_code?: string;
     mobile?: string;
 };
@@ -1000,21 +1000,6 @@ declare function UpdatePasswordRequestSchema(): UpdatePasswordRequestSchema;
 type UpdatePasswordRequestSchema = {
     new_password?: string;
     old_password?: string;
-};
-/** @returns {UpdateUserAttributesRequest} */
-declare function UpdateUserAttributesRequest(): UpdateUserAttributesRequest;
-type UpdateUserAttributesRequest = {
-    attributes?: any;
-};
-/** @returns {UserAttributes} */
-declare function UserAttributes(): UserAttributes;
-type UserAttributes = {
-    attributes?: any;
-};
-/** @returns {UserExistsResponse} */
-declare function UserExistsResponse(): UserExistsResponse;
-type UserExistsResponse = {
-    user_exists?: boolean;
 };
 /** @returns {UserObjectSchema} */
 declare function UserObjectSchema(): UserObjectSchema;

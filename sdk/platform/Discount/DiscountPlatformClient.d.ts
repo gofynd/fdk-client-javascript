@@ -113,8 +113,8 @@ declare class Discount {
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<DiscountPlatformModel.DiscountJob>} - Success response
      * @name updateDiscount
-     * @summary: Update Discount.
-     * @description: Update Discount. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/updateDiscount/).
+     * @summary: Create Discount.
+     * @description: Create Discount. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/updateDiscount/).
      */
     updateDiscount({ id, body, requestHeaders }?: DiscountPlatformValidator.UpdateDiscountParam, { responseHeaders }?: object): Promise<DiscountPlatformModel.DiscountJob>;
     /**

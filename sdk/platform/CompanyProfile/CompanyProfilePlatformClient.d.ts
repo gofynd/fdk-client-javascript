@@ -152,7 +152,7 @@ declare class CompanyProfile {
      * @summary: Get list of locations
      * @description: This API allows to view all the locations associated to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getLocations/).
      */
-    getLocations({ storeType, q, stage, pageNo, pageSize, locationIds, types, tags, requestHeaders, }?: CompanyProfilePlatformValidator.GetLocationsParam, { responseHeaders }?: object): Promise<CompanyProfilePlatformModel.LocationListSerializer>;
+    getLocations({ storeType, q, stage, pageNo, pageSize, locationIds, requestHeaders }?: CompanyProfilePlatformValidator.GetLocationsParam, { responseHeaders }?: object): Promise<CompanyProfilePlatformModel.LocationListSerializer>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} [arg.storeType] - Helps to sort the location list on the
@@ -163,22 +163,16 @@ declare class CompanyProfile {
      * @param {number} [arg.pageSize] - Number of items to retrieve in each
      *   page. Default is 10.
      * @param {number[]} [arg.locationIds] - Helps to filter stores on the basis of uids.
-     * @param {string[]} [arg.types] - Helps to get the location list on the
-     *   basis of multiple location type.
-     * @param {string[]} [arg.tags] - Helps to get the location list on the
-     *   basis of multiple location tag.
      * @returns {Paginator<CompanyProfilePlatformModel.LocationListSerializer>}
      * @summary: Get list of locations
      * @description: This API allows to view all the locations associated to a company.
      */
-    getLocationsPaginator({ storeType, q, stage, pageSize, locationIds, types, tags, }?: {
+    getLocationsPaginator({ storeType, q, stage, pageSize, locationIds }?: {
         storeType?: string;
         q?: string;
         stage?: string;
         pageSize?: number;
         locationIds?: number[];
-        types?: string[];
-        tags?: string[];
     }): Paginator<CompanyProfilePlatformModel.LocationListSerializer>;
     /**
      * @param {CompanyProfilePlatformValidator.UpdateCompanyParam} arg - Arg object

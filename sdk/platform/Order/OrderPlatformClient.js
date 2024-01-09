@@ -94,192 +94,6 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.BulkListingParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.BulkListingResponse>} - Success response
-   * @name bulkListing
-   * @summary:
-   * @description: Fetches of previous or running  bulk jobs.
-   *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/bulkListing/).
-   */
-  async bulkListing(
-    {
-      pageSize,
-      pageNo,
-      startDate,
-      endDate,
-      status,
-      bulkActionType,
-      searchKey,
-      requestHeaders,
-    } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = OrderPlatformValidator.bulkListing().validate(
-      {
-        pageSize,
-        pageNo,
-        startDate,
-        endDate,
-        status,
-        bulkActionType,
-        searchKey,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderPlatformValidator.bulkListing().validate(
-      {
-        pageSize,
-        pageNo,
-        startDate,
-        endDate,
-        status,
-        bulkActionType,
-        searchKey,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Order > bulkListing \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["page_size"] = pageSize;
-    query_params["page_no"] = pageNo;
-    query_params["start_date"] = startDate;
-    query_params["end_date"] = endDate;
-    query_params["status"] = status;
-    query_params["bulk_action_type"] = bulkActionType;
-    query_params["search_key"] = searchKey;
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/jobs`,
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = OrderPlatformModel.BulkListingResponse().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Order > bulkListing \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {OrderPlatformValidator.BulkStateTransistionParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.BulkStateTransistionResponse>} -
-   *   Success response
-   * @name bulkStateTransistion
-   * @summary:
-   * @description: Performs State Transisiton in Bulk for the given shipments in the excel/csv file url. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/bulkStateTransistion/).
-   */
-  async bulkStateTransistion(
-    { body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = OrderPlatformValidator.bulkStateTransistion().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderPlatformValidator.bulkStateTransistion().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Order > bulkStateTransistion \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/jobs/state-transition`,
-      query_params,
-      body,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = OrderPlatformModel.BulkStateTransistionResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Order > bulkStateTransistion \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {OrderPlatformValidator.CheckOrderStatusParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
@@ -610,21 +424,20 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.DispatchManifestsParam} arg - Arg object
+   * @param {OrderPlatformValidator.DispatchManifestParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.SuccessResponse>} - Success response
-   * @name dispatchManifests
+   * @name dispatchManifest
    * @summary:
-   * @description: Dispatch Manifest - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/dispatchManifests/).
+   * @description: Dispatch Manifest - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/dispatchManifest/).
    */
-  async dispatchManifests(
-    { manifestId, body, requestHeaders } = { requestHeaders: {} },
+  async dispatchManifest(
+    { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = OrderPlatformValidator.dispatchManifests().validate(
+    const { error } = OrderPlatformValidator.dispatchManifest().validate(
       {
-        manifestId,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -636,9 +449,8 @@ class Order {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = OrderPlatformValidator.dispatchManifests().validate(
+    } = OrderPlatformValidator.dispatchManifest().validate(
       {
-        manifestId,
         body,
       },
       { abortEarly: false, allowUnknown: false }
@@ -646,7 +458,7 @@ class Order {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Order > dispatchManifests \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Order > dispatchManifest \n ${warrning}`,
       });
     }
 
@@ -657,7 +469,7 @@ class Order {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/manifest/${manifestId}/dispatch`,
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/manifest/dispatch`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -682,7 +494,7 @@ class Order {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Order > dispatchManifests \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Order > dispatchManifest \n ${res_error}`,
         });
       }
     }
@@ -930,85 +742,6 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.FailedOrderLogDetailsParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.FailedOrderLogDetails>} - Success response
-   * @name failedOrderLogDetails
-   * @summary: Get failed order logs according to the filter provided
-   * @description: This endpoint allows users to get the exact error trace from the log id provided - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/failedOrderLogDetails/).
-   */
-  async failedOrderLogDetails(
-    { logId, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = OrderPlatformValidator.failedOrderLogDetails().validate(
-      {
-        logId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderPlatformValidator.failedOrderLogDetails().validate(
-      {
-        logId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Order > failedOrderLogDetails \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/orders/failed/logs/${logId}`,
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = OrderPlatformModel.FailedOrderLogDetails().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Order > failedOrderLogDetails \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {OrderPlatformValidator.FetchCreditBalanceDetailParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
@@ -1164,6 +897,87 @@ class Order {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Order > fetchRefundModeConfig \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {OrderPlatformValidator.GenerateInvoiceIDParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<OrderPlatformModel.GenerateInvoiceIDResponse>} - Success response
+   * @name generateInvoiceID
+   * @summary:
+   * @description: This API is used to manually generate Invoice ID against shipments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/generateInvoiceID/).
+   */
+  async generateInvoiceID(
+    { invoiceType, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = OrderPlatformValidator.generateInvoiceID().validate(
+      {
+        invoiceType,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = OrderPlatformValidator.generateInvoiceID().validate(
+      {
+        invoiceType,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Order > generateInvoiceID \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/${invoiceType}/id/generate`,
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = OrderPlatformModel.GenerateInvoiceIDResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Order > generateInvoiceID \n ${res_error}`,
         });
       }
     }
@@ -1341,83 +1155,6 @@ class Order {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Order > getAllowedStateTransition \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {OrderPlatformValidator.GetAllowedTemplatesForBulkParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.AllowedTemplatesResponse>} - Success response
-   * @name getAllowedTemplatesForBulk
-   * @summary:
-   * @description: Gets All the allowed Templates to perform Bulk Operations. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getAllowedTemplatesForBulk/).
-   */
-  async getAllowedTemplatesForBulk(
-    { requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = OrderPlatformValidator.getAllowedTemplatesForBulk().validate(
-      {},
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderPlatformValidator.getAllowedTemplatesForBulk().validate(
-      {},
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Order > getAllowedTemplatesForBulk \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/order/v1.0/company/${this.config.companyId}/jobs/templates`,
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = OrderPlatformModel.AllowedTemplatesResponse().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Order > getAllowedTemplatesForBulk \n ${res_error}`,
         });
       }
     }
@@ -1792,8 +1529,8 @@ class Order {
     {
       salesChannels,
       dpIds,
-      startDate,
-      endDate,
+      fromDate,
+      toDate,
       stores,
       tags,
       bagStatus,
@@ -1812,8 +1549,8 @@ class Order {
       {
         salesChannels,
         dpIds,
-        startDate,
-        endDate,
+        fromDate,
+        toDate,
         stores,
         tags,
         bagStatus,
@@ -1836,8 +1573,8 @@ class Order {
       {
         salesChannels,
         dpIds,
-        startDate,
-        endDate,
+        fromDate,
+        toDate,
         stores,
         tags,
         bagStatus,
@@ -1859,8 +1596,8 @@ class Order {
     const query_params = {};
     query_params["sales_channels"] = salesChannels;
     query_params["dp_ids"] = dpIds;
-    query_params["start_date"] = startDate;
-    query_params["end_date"] = endDate;
+    query_params["from_date"] = fromDate;
+    query_params["to_date"] = toDate;
     query_params["stores"] = stores;
     query_params["tags"] = tags;
     query_params["bag_status"] = bagStatus;
@@ -1984,96 +1721,6 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.GetFileByStatusParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.JobFailedResponse>} - Success response
-   * @name getFileByStatus
-   * @summary:
-   * @description: Get the file URL consisting Records of the provided status. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getFileByStatus/).
-   */
-  async getFileByStatus(
-    { batchId, status, fileType, reportType, requestHeaders } = {
-      requestHeaders: {},
-    },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = OrderPlatformValidator.getFileByStatus().validate(
-      {
-        batchId,
-        status,
-        fileType,
-        reportType,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderPlatformValidator.getFileByStatus().validate(
-      {
-        batchId,
-        status,
-        fileType,
-        reportType,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Order > getFileByStatus \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["status"] = status;
-    query_params["file_type"] = fileType;
-    query_params["report_type"] = reportType;
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/jobs/${batchId}/file`,
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = OrderPlatformModel.JobFailedResponse().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Order > getFileByStatus \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {OrderPlatformValidator.GetLaneConfigParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
@@ -2088,8 +1735,6 @@ class Order {
       groupEntity,
       fromDate,
       toDate,
-      startDate,
-      endDate,
       dpIds,
       stores,
       salesChannels,
@@ -2113,8 +1758,6 @@ class Order {
         groupEntity,
         fromDate,
         toDate,
-        startDate,
-        endDate,
         dpIds,
         stores,
         salesChannels,
@@ -2142,8 +1785,6 @@ class Order {
         groupEntity,
         fromDate,
         toDate,
-        startDate,
-        endDate,
         dpIds,
         stores,
         salesChannels,
@@ -2172,8 +1813,6 @@ class Order {
     query_params["group_entity"] = groupEntity;
     query_params["from_date"] = fromDate;
     query_params["to_date"] = toDate;
-    query_params["start_date"] = startDate;
-    query_params["end_date"] = endDate;
     query_params["dp_ids"] = dpIds;
     query_params["stores"] = stores;
     query_params["sales_channels"] = salesChannels;
@@ -2227,397 +1866,6 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.GetManifestDetailsParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.ManifestDetails>} - Success response
-   * @name getManifestDetails
-   * @summary:
-   * @description: get Manifest Details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getManifestDetails/).
-   */
-  async getManifestDetails(
-    { manifestId, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = OrderPlatformValidator.getManifestDetails().validate(
-      {
-        manifestId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderPlatformValidator.getManifestDetails().validate(
-      {
-        manifestId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Order > getManifestDetails \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/manifests/${manifestId}`,
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = OrderPlatformModel.ManifestDetails().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Order > getManifestDetails \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {OrderPlatformValidator.GetManifestShipmentsParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.ManifestShipmentListing>} - Success response
-   * @name getManifestShipments
-   * @summary:
-   * @description: get Manifest Shipments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getManifestShipments/).
-   */
-  async getManifestShipments(
-    {
-      dpIds,
-      stores,
-      toDate,
-      fromDate,
-      dpName,
-      salesChannels,
-      searchType,
-      searchValue,
-      pageNo,
-      pageSize,
-      requestHeaders,
-    } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = OrderPlatformValidator.getManifestShipments().validate(
-      {
-        dpIds,
-        stores,
-        toDate,
-        fromDate,
-        dpName,
-        salesChannels,
-        searchType,
-        searchValue,
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderPlatformValidator.getManifestShipments().validate(
-      {
-        dpIds,
-        stores,
-        toDate,
-        fromDate,
-        dpName,
-        salesChannels,
-        searchType,
-        searchValue,
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Order > getManifestShipments \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["dp_ids"] = dpIds;
-    query_params["stores"] = stores;
-    query_params["to_date"] = toDate;
-    query_params["from_date"] = fromDate;
-    query_params["dp_name"] = dpName;
-    query_params["sales_channels"] = salesChannels;
-    query_params["search_type"] = searchType;
-    query_params["search_value"] = searchValue;
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/manifests/shipments`,
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = OrderPlatformModel.ManifestShipmentListing().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Order > getManifestShipments \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {OrderPlatformValidator.GetManifestfiltersParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.ManifestFiltersResponse>} - Success response
-   * @name getManifestfilters
-   * @summary:
-   * @description: get Manifest Filters. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getManifestfilters/).
-   */
-  async getManifestfilters(
-    { view, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = OrderPlatformValidator.getManifestfilters().validate(
-      {
-        view,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderPlatformValidator.getManifestfilters().validate(
-      {
-        view,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Order > getManifestfilters \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["view"] = view;
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/filter/listing`,
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = OrderPlatformModel.ManifestFiltersResponse().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Order > getManifestfilters \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {OrderPlatformValidator.GetManifestsParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.ManifestList>} - Success response
-   * @name getManifests
-   * @summary:
-   * @description: Fetch Manifests - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getManifests/).
-   */
-  async getManifests(
-    {
-      status,
-      startDate,
-      endDate,
-      searchType,
-      storeId,
-      searchValue,
-      dpIds,
-      pageNo,
-      pageSize,
-      requestHeaders,
-    } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = OrderPlatformValidator.getManifests().validate(
-      {
-        status,
-        startDate,
-        endDate,
-        searchType,
-        storeId,
-        searchValue,
-        dpIds,
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderPlatformValidator.getManifests().validate(
-      {
-        status,
-        startDate,
-        endDate,
-        searchType,
-        storeId,
-        searchValue,
-        dpIds,
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Order > getManifests \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["status"] = status;
-    query_params["start_date"] = startDate;
-    query_params["end_date"] = endDate;
-    query_params["search_type"] = searchType;
-    query_params["store_id"] = storeId;
-    query_params["search_value"] = searchValue;
-    query_params["dp_ids"] = dpIds;
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/manifests`,
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = OrderPlatformModel.ManifestList().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Order > getManifests \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {OrderPlatformValidator.GetOrderByIdParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
@@ -2627,16 +1875,13 @@ class Order {
    * @description: Get Order Details by ID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getOrderById/).
    */
   async getOrderById(
-    { orderId, myOrders, allowInactive, requestHeaders } = {
-      requestHeaders: {},
-    },
+    { orderId, myOrders, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = OrderPlatformValidator.getOrderById().validate(
       {
         orderId,
         myOrders,
-        allowInactive,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -2649,7 +1894,6 @@ class Order {
       {
         orderId,
         myOrders,
-        allowInactive,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -2663,7 +1907,6 @@ class Order {
     const query_params = {};
     query_params["order_id"] = orderId;
     query_params["my_orders"] = myOrders;
-    query_params["allow_inactive"] = allowInactive;
 
     const xHeaders = {};
 
@@ -2723,8 +1966,6 @@ class Order {
       searchValue,
       fromDate,
       toDate,
-      startDate,
-      endDate,
       dpIds,
       stores,
       salesChannels,
@@ -2751,8 +1992,6 @@ class Order {
         searchValue,
         fromDate,
         toDate,
-        startDate,
-        endDate,
         dpIds,
         stores,
         salesChannels,
@@ -2783,8 +2022,6 @@ class Order {
         searchValue,
         fromDate,
         toDate,
-        startDate,
-        endDate,
         dpIds,
         stores,
         salesChannels,
@@ -2816,8 +2053,6 @@ class Order {
     query_params["search_value"] = searchValue;
     query_params["from_date"] = fromDate;
     query_params["to_date"] = toDate;
-    query_params["start_date"] = startDate;
-    query_params["end_date"] = endDate;
     query_params["dp_ids"] = dpIds;
     query_params["stores"] = stores;
     query_params["sales_channels"] = salesChannels;
@@ -2885,8 +2120,6 @@ class Order {
    *   field specified by the search_type
    * @param {string} [arg.fromDate] -
    * @param {string} [arg.toDate] -
-   * @param {string} [arg.startDate] -
-   * @param {string} [arg.endDate] -
    * @param {string} [arg.dpIds] - Delivery Partner IDs to which shipments are assigned.
    * @param {string} [arg.stores] -
    * @param {string} [arg.salesChannels] -
@@ -2912,8 +2145,6 @@ class Order {
     searchValue,
     fromDate,
     toDate,
-    startDate,
-    endDate,
     dpIds,
     stores,
     salesChannels,
@@ -2940,8 +2171,6 @@ class Order {
         searchValue: searchValue,
         fromDate: fromDate,
         toDate: toDate,
-        startDate: startDate,
-        endDate: endDate,
         dpIds: dpIds,
         stores: stores,
         salesChannels: salesChannels,
@@ -3310,8 +2539,6 @@ class Order {
       searchValue,
       fromDate,
       toDate,
-      startDate,
-      endDate,
       dpIds,
       stores,
       salesChannels,
@@ -3347,8 +2574,6 @@ class Order {
         searchValue,
         fromDate,
         toDate,
-        startDate,
-        endDate,
         dpIds,
         stores,
         salesChannels,
@@ -3388,8 +2613,6 @@ class Order {
         searchValue,
         fromDate,
         toDate,
-        startDate,
-        endDate,
         dpIds,
         stores,
         salesChannels,
@@ -3430,8 +2653,6 @@ class Order {
     query_params["search_value"] = searchValue;
     query_params["from_date"] = fromDate;
     query_params["to_date"] = toDate;
-    query_params["start_date"] = startDate;
-    query_params["end_date"] = endDate;
     query_params["dp_ids"] = dpIds;
     query_params["stores"] = stores;
     query_params["sales_channels"] = salesChannels;
@@ -3503,8 +2724,6 @@ class Order {
    * @param {string} [arg.searchValue] - Search type value
    * @param {string} [arg.fromDate] - Start Date in DD-MM-YYYY format
    * @param {string} [arg.toDate] - End Date in DD-MM-YYYY format
-   * @param {string} [arg.startDate] - UTC Start Date in ISO format
-   * @param {string} [arg.endDate] - UTC End Date in ISO format
    * @param {string} [arg.dpIds] - Comma separated values of delivery partner ids
    * @param {string} [arg.stores] - Comma separated values of store ids
    * @param {string} [arg.salesChannels] - Comma separated values of sales channel ids
@@ -3539,8 +2758,6 @@ class Order {
     searchValue,
     fromDate,
     toDate,
-    startDate,
-    endDate,
     dpIds,
     stores,
     salesChannels,
@@ -3576,8 +2793,6 @@ class Order {
         searchValue: searchValue,
         fromDate: fromDate,
         toDate: toDate,
-        startDate: startDate,
-        endDate: endDate,
         dpIds: dpIds,
         stores: stores,
         salesChannels: salesChannels,
@@ -3608,486 +2823,6 @@ class Order {
     };
     paginator.setCallback(callback.bind(this));
     return paginator;
-  }
-
-  /**
-   * @param {OrderPlatformValidator.GetStateManagerTaskByIdParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Object>} - Success response
-   * @name getStateManagerTaskById
-   * @summary: Fetch a specific State Transition task
-   * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getStateManagerTaskById/).
-   */
-  async getStateManagerTaskById(
-    { taskId, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = OrderPlatformValidator.getStateManagerTaskById().validate(
-      {
-        taskId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderPlatformValidator.getStateManagerTaskById().validate(
-      {
-        taskId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Order > getStateManagerTaskById \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/state/transition/tasks/${taskId}`,
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const { error: res_error } = Joi.any().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Order > getStateManagerTaskById \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {OrderPlatformValidator.GetStateManagerTasksParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Object>} - Success response
-   * @name getStateManagerTasks
-   * @summary: Fetch all State Transition tasks
-   * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getStateManagerTasks/).
-   */
-  async getStateManagerTasks(
-    { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = OrderPlatformValidator.getStateManagerTasks().validate(
-      {
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderPlatformValidator.getStateManagerTasks().validate(
-      {
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Order > getStateManagerTasks \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/state/transition/tasks`,
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const { error: res_error } = Joi.any().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Order > getStateManagerTasks \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {OrderPlatformValidator.GetStateTransitionFiltersParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Object>} - Success response
-   * @name getStateTransitionFilters
-   * @summary: Fetch all State Transition filters
-   * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getStateTransitionFilters/).
-   */
-  async getStateTransitionFilters(
-    { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = OrderPlatformValidator.getStateTransitionFilters().validate(
-      {
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderPlatformValidator.getStateTransitionFilters().validate(
-      {
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Order > getStateTransitionFilters \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/state/transition/filters`,
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const { error: res_error } = Joi.any().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Order > getStateTransitionFilters \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {OrderPlatformValidator.GetStateTransitionFiltersByIdParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Object>} - Success response
-   * @name getStateTransitionFiltersById
-   * @summary: Fetch a specific State Transition filter
-   * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getStateTransitionFiltersById/).
-   */
-  async getStateTransitionFiltersById(
-    { filterId, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = OrderPlatformValidator.getStateTransitionFiltersById().validate(
-      {
-        filterId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderPlatformValidator.getStateTransitionFiltersById().validate(
-      {
-        filterId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Order > getStateTransitionFiltersById \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/state/transition/filters/${filterId}`,
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const { error: res_error } = Joi.any().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Order > getStateTransitionFiltersById \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {OrderPlatformValidator.GetStateTransitionFlagsParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Object>} - Success response
-   * @name getStateTransitionFlags
-   * @summary:
-   * @description: Fetch all state transition flags for a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getStateTransitionFlags/).
-   */
-  async getStateTransitionFlags(
-    { pageNo, pageSize, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = OrderPlatformValidator.getStateTransitionFlags().validate(
-      {
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderPlatformValidator.getStateTransitionFlags().validate(
-      {
-        pageNo,
-        pageSize,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Order > getStateTransitionFlags \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/state/transition/flags`,
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const { error: res_error } = Joi.any().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Order > getStateTransitionFlags \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {OrderPlatformValidator.GetStateTransitionFlagsByIdParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Object>} - Success response
-   * @name getStateTransitionFlagsById
-   * @summary:
-   * @description: Fetch a specific state transition flag for a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getStateTransitionFlagsById/).
-   */
-  async getStateTransitionFlagsById(
-    { flagId, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = OrderPlatformValidator.getStateTransitionFlagsById().validate(
-      {
-        flagId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderPlatformValidator.getStateTransitionFlagsById().validate(
-      {
-        flagId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Order > getStateTransitionFlagsById \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/state/transition/flags/${flagId}`,
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const { error: res_error } = Joi.any().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Order > getStateTransitionFlagsById \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
   }
 
   /**
@@ -4158,83 +2893,6 @@ class Order {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Order > getStateTransitionMap \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {OrderPlatformValidator.GetTemplateParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.TemplateDownloadResponse>} - Success response
-   * @name getTemplate
-   * @summary:
-   * @description: Get the Excel file URL for the Template. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getTemplate/).
-   */
-  async getTemplate(
-    { templateName, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = OrderPlatformValidator.getTemplate().validate(
-      {
-        templateName,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderPlatformValidator.getTemplate().validate(
-      {
-        templateName,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Order > getTemplate \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/order/v1.0/company/${this.config.companyId}/jobs/templates/${templateName}`,
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = OrderPlatformModel.TemplateDownloadResponse().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Order > getTemplate \n ${res_error}`,
         });
       }
     }
@@ -4404,83 +3062,6 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.JobDetailsParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.JobDetailsResponse>} - Success response
-   * @name jobDetails
-   * @summary:
-   * @description: Fetches details for the job of the provided batch_id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/jobDetails/).
-   */
-  async jobDetails(
-    { batchId, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = OrderPlatformValidator.jobDetails().validate(
-      {
-        batchId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const { error: warrning } = OrderPlatformValidator.jobDetails().validate(
-      {
-        batchId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Order > jobDetails \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/jobs/${batchId}`,
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = OrderPlatformModel.JobDetailsResponse().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Order > jobDetails \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
    * @param {OrderPlatformValidator.OrderUpdateParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
@@ -4637,20 +3218,19 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.ProcessManifestsParam} arg - Arg object
+   * @param {OrderPlatformValidator.ProcessManifestParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<OrderPlatformModel.ProcessManifestItemResponse>} -
-   *   Success response
-   * @name processManifests
+   * @returns {Promise<OrderPlatformModel.CreateOrderResponse>} - Success response
+   * @name processManifest
    * @summary:
-   * @description: Process Manifest. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/processManifests/).
+   * @description: Process Manifest - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/processManifest/).
    */
-  async processManifests(
+  async processManifest(
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = OrderPlatformValidator.processManifests().validate(
+    const { error } = OrderPlatformValidator.processManifest().validate(
       {
         body,
       },
@@ -4663,7 +3243,7 @@ class Order {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = OrderPlatformValidator.processManifests().validate(
+    } = OrderPlatformValidator.processManifest().validate(
       {
         body,
       },
@@ -4672,7 +3252,7 @@ class Order {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Order > processManifests \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Order > processManifest \n ${warrning}`,
       });
     }
 
@@ -4683,7 +3263,7 @@ class Order {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/manifests`,
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/process-manifest`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -4697,10 +3277,10 @@ class Order {
 
     const {
       error: res_error,
-    } = OrderPlatformModel.ProcessManifestItemResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = OrderPlatformModel.CreateOrderResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -4708,7 +3288,7 @@ class Order {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Order > processManifests \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Order > processManifest \n ${res_error}`,
         });
       }
     }
@@ -4958,7 +3538,7 @@ class Order {
    * @returns {Promise<OrderPlatformModel.CourierPartnerTrackingResponse>} -
    *   Success response
    * @name trackShipment
-   * @summary:
+   * @summary: Get courier partner tracking details
    * @description: This endpoint allows users to get courier partner tracking details for a given shipment id or awb no. The service will fetch courier partner statuses that are pushed to oms. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/trackShipment/).
    */
   async trackShipment(
@@ -5493,21 +4073,20 @@ class Order {
   }
 
   /**
-   * @param {OrderPlatformValidator.UploadConsentsParam} arg - Arg object
+   * @param {OrderPlatformValidator.UploadConsentParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<OrderPlatformModel.SuccessResponse>} - Success response
-   * @name uploadConsents
+   * @name uploadConsent
    * @summary:
-   * @description: Upload Consent - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/uploadConsents/).
+   * @description: Upload Consent - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/uploadConsent/).
    */
-  async uploadConsents(
-    { manifestId, body, requestHeaders } = { requestHeaders: {} },
+  async uploadConsent(
+    { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = OrderPlatformValidator.uploadConsents().validate(
+    const { error } = OrderPlatformValidator.uploadConsent().validate(
       {
-        manifestId,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -5517,11 +4096,8 @@ class Order {
     }
 
     // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = OrderPlatformValidator.uploadConsents().validate(
+    const { error: warrning } = OrderPlatformValidator.uploadConsent().validate(
       {
-        manifestId,
         body,
       },
       { abortEarly: false, allowUnknown: false }
@@ -5529,7 +4105,7 @@ class Order {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Order > uploadConsents \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Order > uploadConsent \n ${warrning}`,
       });
     }
 
@@ -5540,7 +4116,7 @@ class Order {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/manifest/${manifestId}/upload-consent`,
+      `/service/platform/order-manage/v1.0/company/${this.config.companyId}/manifest/uploadConsent`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -5565,7 +4141,7 @@ class Order {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Order > uploadConsents \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Order > uploadConsent \n ${res_error}`,
         });
       }
     }

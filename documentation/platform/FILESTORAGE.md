@@ -18,7 +18,6 @@ Default
 * [appStartUpload](#appstartupload)
 * [appbrowse](#appbrowse)
 * [browse](#browse)
-* [browsefiles](#browsefiles)
 * [completeUpload](#completeupload)
 * [copyFiles](#copyfiles)
 * [generatePaymentReceipt](#generatepaymentreceipt)
@@ -441,14 +440,12 @@ Browse Files
 // Promise
 const promise = platformClient.application("<APPLICATION_ID>").fileStorage.appbrowse({  namespace : value,
  page : value,
- limit : value,
- search : value });
+ limit : value });
 
 // Async/Await
 const data = await platformClient.application("<APPLICATION_ID>").fileStorage.appbrowse({  namespace : value,
  page : value,
- limit : value,
- search : value });
+ limit : value });
 ```
 
 
@@ -459,8 +456,7 @@ const data = await platformClient.application("<APPLICATION_ID>").fileStorage.ap
 | --------- | -----  | -------- | ----------- | 
 | namespace | string | yes | Segregation of different types of files(products, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |    
 | page | number | no | page no |    
-| limit | number | no | Limit |    
-| search | string | no | Search |  
+| limit | number | no | Limit |  
 
 
 
@@ -570,119 +566,6 @@ const data = await platformClient.fileStorage.browse({  namespace : value,
 | page | number | no | page no |    
 | limit | number | no | Limit |  
 
-
-
-Browse Files
-
-*Returned Response:*
-
-
-
-
-[Object](#Object)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      {
-        "_id": "64e1e6fe0153e1a6d3e101f4",
-        "file_name": "logo.png",
-        "file_path": "/brands/pictures/square-logo/original/uY0P_ZtIz-logo.png",
-        "success": true,
-        "namespace": "brand-square-logo",
-        "content_type": "image/png",
-        "size": 3298,
-        "operation": "putObject",
-        "tags": [],
-        "cdn": {
-          "url": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/brands/pictures/square-logo/original/uY0P_ZtIz-logo.png",
-          "absolute_url": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/brands/pictures/square-logo/original/uY0P_ZtIz-logo.png",
-          "relative_url": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/brands/pictures/square-logo/original/uY0P_ZtIz-logo.png"
-        },
-        "upload": {
-          "url": "https://fynd-staging-assets.s3-accelerate.amazonaws.com/addsale/brands/pictures/square-logo/original/uY0P_ZtIz-logo.png?Content-Type=image%2Fpng&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=%2F20230820%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230820T101213Z&X-Amz-Expires=1800&X-Amz-Signature=04915b14aec15712abdea3c340d5dc43729e7c982a4994650488c0150c22b0ae&X-Amz-SignedHeaders=host%3Bx-amz-acl&x-amz-acl=public-read",
-          "expiry": 1800
-        },
-        "created_by": {
-          "username": "fp_sdet_gofynd_com_65071"
-        },
-        "company_id": 6520,
-        "bucket_key": "addsale/brands/pictures/square-logo/original/uY0P_ZtIz-logo.png",
-        "createdAt": "2023-08-20T10:12:14.118Z",
-        "updatedAt": "2023-08-20T10:12:14.118Z",
-        "__v": 0
-      }
-    ],
-    "page": {
-      "current": 1,
-      "has_previous": false,
-      "has_next": true,
-      "item_total": 481,
-      "type": "number"
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### browsefiles
-Browse Files
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").fileStorage.browsefiles({  namespace : value,
- body : value,
- page : value,
- limit : value,
- search : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").fileStorage.browsefiles({  namespace : value,
- body : value,
- page : value,
- limit : value,
- search : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| namespace | string | yes | Segregation of different types of files(products, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |    
-| page | number | no | page no |    
-| limit | number | no | Limit |    
-| search | string | no | Search |  
-| body | [ExtensionSlug](#ExtensionSlug) | yes | Request body |
 
 
 Browse Files
@@ -1044,13 +927,11 @@ Get html template for sales channel
 ```javascript
 // Promise
 const promise = platformClient.application("<APPLICATION_ID>").fileStorage.getDefaultHtmlTemplate({  pdfTypeId : value,
- format : value,
- countryCode : value });
+ format : value });
 
 // Async/Await
 const data = await platformClient.application("<APPLICATION_ID>").fileStorage.getDefaultHtmlTemplate({  pdfTypeId : value,
- format : value,
- countryCode : value });
+ format : value });
 ```
 
 
@@ -1060,8 +941,7 @@ const data = await platformClient.application("<APPLICATION_ID>").fileStorage.ge
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | pdfTypeId | number | yes |  |   
-| format | string | yes |  |    
-| countryCode | string | no |  |  
+| format | string | yes |  |  
 
 
 
@@ -1139,12 +1019,10 @@ Get Dummy pdf data for invoice or label
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").fileStorage.getDefaultPdfData({  pdfTypeId : value,
- countryCode : value });
+const promise = platformClient.application("<APPLICATION_ID>").fileStorage.getDefaultPdfData({  pdfTypeId : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").fileStorage.getDefaultPdfData({  pdfTypeId : value,
- countryCode : value });
+const data = await platformClient.application("<APPLICATION_ID>").fileStorage.getDefaultPdfData({  pdfTypeId : value });
 ```
 
 
@@ -1153,8 +1031,7 @@ const data = await platformClient.application("<APPLICATION_ID>").fileStorage.ge
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| pdfTypeId | number | yes |  |    
-| countryCode | string | no |  |  
+| pdfTypeId | number | yes |  |  
 
 
 
@@ -1187,7 +1064,7 @@ Get dummy json data for invoice
         "_id": "64b7f52d56a0cba5231964b0",
         "pdf_type_id": 1,
         "payload": {
-          "is_export": false,
+          "is_international": false,
           "app_domain_name": "https://shop.fynd.com",
           "conversion_rate": {
             "base": "INR",
@@ -1450,7 +1327,6 @@ Get dummy json data for invoice
           "awb_number_barcode": "data:image/png;base64,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",
           "uid": "16915832909421966006"
         },
-        "country_code": "IN",
         "__v": 0
       }
     ],
@@ -1494,13 +1370,11 @@ Default html template
 ```javascript
 // Promise
 const promise = platformClient.application("<APPLICATION_ID>").fileStorage.getDefaultPdfTemplate({  pdfTypeId : value,
- format : value,
- countryCode : value });
+ format : value });
 
 // Async/Await
 const data = await platformClient.application("<APPLICATION_ID>").fileStorage.getDefaultPdfTemplate({  pdfTypeId : value,
- format : value,
- countryCode : value });
+ format : value });
 ```
 
 
@@ -1510,8 +1384,7 @@ const data = await platformClient.application("<APPLICATION_ID>").fileStorage.ge
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | pdfTypeId | number | yes |  |   
-| format | string | yes |  |    
-| countryCode | string | no |  |  
+| format | string | yes |  |  
 
 
 
@@ -1588,23 +1461,18 @@ Get all the supported invoice pdf types
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").fileStorage.getPdfTypes({  countryCode : value });
+const promise = platformClient.application("<APPLICATION_ID>").fileStorage.getPdfTypes();
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").fileStorage.getPdfTypes({  countryCode : value });
+const data = await platformClient.application("<APPLICATION_ID>").fileStorage.getPdfTypes();
 ```
 
 
 
 
 
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| countryCode | string | no |  |  
 
-
-
-Get all the supported invoice pdf types such as Invoice, Label, Delivery challan
+Get all the supported invoice pdf types such as Invoice, Label, Deliver challan
 
 *Returned Response:*
 
@@ -2257,7 +2125,6 @@ Update html template for invoice
  | ---------- | ---- | -------- | ----------- |
  | __v | number? |  yes  |  |
  | _id | string? |  yes  |  |
- | country_code | string? |  yes  |  |
  | payload | [DummyTemplateDataPayload](#DummyTemplateDataPayload) |  no  |  |
  | pdf_type_id | number? |  yes  |  |
  
@@ -2294,7 +2161,7 @@ Update html template for invoice
  | disclaimer | string? |  yes  |  |
  | image | [Image](#Image)? |  yes  |  |
  | invoice_detail | [InvoiceDetail](#InvoiceDetail)? |  yes  |  |
- | is_export | boolean? |  yes  |  |
+ | is_international | boolean? |  yes  |  |
  | is_self_pickup | boolean? |  yes  |  |
  | is_self_ship | boolean? |  yes  |  |
  | meta | [Meta](#Meta)? |  yes  |  |
@@ -2313,15 +2180,6 @@ Update html template for invoice
  | uid | string? |  yes  |  |
  | upi_qrcode | string? |  yes  |  |
  | waybills | [string]? |  yes  |  |
- 
-
----
-
-#### [ExtensionSlug](#ExtensionSlug)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | extension_slug | string? |  yes  |  |
  
 
 ---
@@ -2387,7 +2245,7 @@ Update html template for invoice
  | ---------- | ---- | -------- | ----------- |
  | __v | number |  no  |  |
  | _id | string |  no  |  |
- | country_code | string |  no  |  |
+ | country_code | string? |  yes  |  |
  | format | [string] |  no  |  |
  | name | string |  no  |  |
  | pdf_type_id | number |  no  |  |
@@ -2474,6 +2332,15 @@ Update html template for invoice
  | shipment_id_barcode_generator | [ShipmentIdBarcodeGenerator](#ShipmentIdBarcodeGenerator)? |  yes  |  |
  | signed_qrcode_generator | [SignedQrcodeGenerator](#SignedQrcodeGenerator)? |  yes  |  |
  | upi_qrcode_generator | [UpiQrcodeGenerator](#UpiQrcodeGenerator)? |  yes  |  |
+ 
+
+---
+
+#### [Params](#Params)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | subpath | string? |  yes  | The subpath for the file. |
  
 
 ---
@@ -2784,7 +2651,7 @@ Update html template for invoice
  | ---------- | ---- | -------- | ----------- |
  | content_type | string |  no  |  |
  | file_name | string |  no  |  |
- | params | string? |  yes  |  |
+ | params | [Params](#Params)? |  yes  |  |
  | size | number |  no  |  |
  | tags | [string]? |  yes  |  |
  

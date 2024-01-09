@@ -1,5 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const {
+  FDKClientValidationError,
+  FDKResponseValidationError,
+} = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
 const LeadPlatformApplicationValidator = require("./LeadPlatformApplicationValidator");
 const LeadPlatformModel = require("./LeadPlatformModel");
@@ -171,21 +174,19 @@ class Lead {
   }
 
   /**
-   * @param {LeadPlatformApplicationValidator.CreateNewHistoryParam} arg - Arg object
+   * @param {LeadPlatformApplicationValidator.CreateHistoryParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<LeadPlatformModel.TicketHistory>} - Success response
-   * @name createNewHistory
+   * @name createHistory
    * @summary: Create history for specific application level ticket
-   * @description: Create history for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/createNewHistory/).
+   * @description: Create history for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/createHistory/).
    */
-  async createNewHistory(
+  async createHistory(
     { id, body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const {
-      error,
-    } = LeadPlatformApplicationValidator.createNewHistory().validate(
+    const { error } = LeadPlatformApplicationValidator.createHistory().validate(
       {
         id,
         body,
@@ -199,7 +200,7 @@ class Lead {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = LeadPlatformApplicationValidator.createNewHistory().validate(
+    } = LeadPlatformApplicationValidator.createHistory().validate(
       {
         id,
         body,
@@ -209,7 +210,7 @@ class Lead {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Lead > createNewHistory \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Lead > createHistory \n ${warrning}`,
       });
     }
 
@@ -243,86 +244,7 @@ class Lead {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Lead > createNewHistory \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {LeadPlatformApplicationValidator.DeleteCustomFormParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<LeadPlatformModel.CustomForm>} - Success response
-   * @name deleteCustomForm
-   * @summary: Delete a custom form
-   * @description: Delete a custom form using it's slug - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/deleteCustomForm/).
-   */
-  async deleteCustomForm(
-    { slug, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = LeadPlatformApplicationValidator.deleteCustomForm().validate(
-      {
-        slug,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = LeadPlatformApplicationValidator.deleteCustomForm().validate(
-      {
-        slug,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Lead > deleteCustomForm \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/lead/v1.0/company/${this.config.companyId}/application/${this.applicationId}/form/${slug}`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = LeadPlatformModel.CustomForm().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Lead > deleteCustomForm \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Lead > createHistory \n ${res_error}`,
         });
       }
     }
@@ -412,19 +334,19 @@ class Lead {
   }
 
   /**
-   * @param {LeadPlatformApplicationValidator.EditNewTicketParam} arg - Arg object
+   * @param {LeadPlatformApplicationValidator.EditTicketParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<LeadPlatformModel.Ticket>} - Success response
-   * @name editNewTicket
+   * @name editTicket
    * @summary: Edits ticket details of a application level ticket
-   * @description: Edits ticket details of a application level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/editNewTicket/).
+   * @description: Edits ticket details of a application level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/editTicket/).
    */
-  async editNewTicket(
+  async editTicket(
     { id, body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = LeadPlatformApplicationValidator.editNewTicket().validate(
+    const { error } = LeadPlatformApplicationValidator.editTicket().validate(
       {
         id,
         body,
@@ -438,7 +360,7 @@ class Lead {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = LeadPlatformApplicationValidator.editNewTicket().validate(
+    } = LeadPlatformApplicationValidator.editTicket().validate(
       {
         id,
         body,
@@ -448,7 +370,7 @@ class Lead {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Lead > editNewTicket \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Lead > editTicket \n ${warrning}`,
       });
     }
 
@@ -482,7 +404,7 @@ class Lead {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Lead > editNewTicket \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Lead > editTicket \n ${res_error}`,
         });
       }
     }
@@ -643,19 +565,19 @@ class Lead {
   }
 
   /**
-   * @param {LeadPlatformApplicationValidator.GetNewTicketParam} arg - Arg object
+   * @param {LeadPlatformApplicationValidator.GetTicketParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<LeadPlatformModel.Ticket>} - Success response
-   * @name getNewTicket
+   * @name getTicket
    * @summary: Retreives ticket details of a application level ticket
-   * @description: Retreives ticket details of a application level ticket with ticket ID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getNewTicket/).
+   * @description: Retreives ticket details of a application level ticket with ticket ID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getTicket/).
    */
-  async getNewTicket(
+  async getTicket(
     { id, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = LeadPlatformApplicationValidator.getNewTicket().validate(
+    const { error } = LeadPlatformApplicationValidator.getTicket().validate(
       {
         id,
       },
@@ -668,7 +590,7 @@ class Lead {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = LeadPlatformApplicationValidator.getNewTicket().validate(
+    } = LeadPlatformApplicationValidator.getTicket().validate(
       {
         id,
       },
@@ -677,7 +599,7 @@ class Lead {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Lead > getNewTicket \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Lead > getTicket \n ${warrning}`,
       });
     }
 
@@ -711,7 +633,7 @@ class Lead {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Lead > getNewTicket \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Lead > getTicket \n ${res_error}`,
         });
       }
     }
@@ -720,21 +642,21 @@ class Lead {
   }
 
   /**
-   * @param {LeadPlatformApplicationValidator.GetNewTicketHistoryParam} arg - Arg object
+   * @param {LeadPlatformApplicationValidator.GetTicketHistoryParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<LeadPlatformModel.TicketHistoryList>} - Success response
-   * @name getNewTicketHistory
+   * @name getTicketHistory
    * @summary: Gets history list for specific application level ticket
-   * @description: Gets history list for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getNewTicketHistory/).
+   * @description: Gets history list for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getTicketHistory/).
    */
-  async getNewTicketHistory(
+  async getTicketHistory(
     { id, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = LeadPlatformApplicationValidator.getNewTicketHistory().validate(
+    } = LeadPlatformApplicationValidator.getTicketHistory().validate(
       {
         id,
       },
@@ -747,7 +669,7 @@ class Lead {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = LeadPlatformApplicationValidator.getNewTicketHistory().validate(
+    } = LeadPlatformApplicationValidator.getTicketHistory().validate(
       {
         id,
       },
@@ -756,7 +678,7 @@ class Lead {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Lead > getNewTicketHistory \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Lead > getTicketHistory \n ${warrning}`,
       });
     }
 
@@ -790,7 +712,7 @@ class Lead {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Lead > getNewTicketHistory \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Lead > getTicketHistory \n ${res_error}`,
         });
       }
     }
@@ -799,21 +721,21 @@ class Lead {
   }
 
   /**
-   * @param {LeadPlatformApplicationValidator.GetNewTicketsParam} arg - Arg object
+   * @param {LeadPlatformApplicationValidator.GetTicketsParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<LeadPlatformModel.TicketList>} - Success response
-   * @name getNewTickets
+   * @name getTickets
    * @summary: Gets the list of Application level Tickets and/or ticket filters depending on query params
-   * @description: Gets the list of Application level Tickets and/or ticket filters - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getNewTickets/).
+   * @description: Gets the list of Application level Tickets and/or ticket filters - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getTickets/).
    */
-  async getNewTickets(
+  async getTickets(
     { items, filters, q, status, priority, category, requestHeaders } = {
       requestHeaders: {},
     },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = LeadPlatformApplicationValidator.getNewTickets().validate(
+    const { error } = LeadPlatformApplicationValidator.getTickets().validate(
       {
         items,
         filters,
@@ -831,7 +753,7 @@ class Lead {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = LeadPlatformApplicationValidator.getNewTickets().validate(
+    } = LeadPlatformApplicationValidator.getTickets().validate(
       {
         items,
         filters,
@@ -845,7 +767,7 @@ class Lead {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Lead > getNewTickets \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Lead > getTickets \n ${warrning}`,
       });
     }
 
@@ -885,7 +807,7 @@ class Lead {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Lead > getNewTickets \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Lead > getTickets \n ${res_error}`,
         });
       }
     }
@@ -894,24 +816,24 @@ class Lead {
   }
 
   /**
-   * @param {LeadPlatformApplicationValidator.GetNewTokenForVideoRoomParam} arg
+   * @param {LeadPlatformApplicationValidator.GetTokenForVideoRoomParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<LeadPlatformModel.GetTokenForVideoRoomResponse>} -
    *   Success response
-   * @name getNewTokenForVideoRoom
+   * @name getTokenForVideoRoom
    * @summary: Get Token to join a specific Video Room using it's unqiue name
-   * @description: Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getNewTokenForVideoRoom/).
+   * @description: Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getTokenForVideoRoom/).
    */
-  async getNewTokenForVideoRoom(
+  async getTokenForVideoRoom(
     { uniqueName, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = LeadPlatformApplicationValidator.getNewTokenForVideoRoom().validate(
+    } = LeadPlatformApplicationValidator.getTokenForVideoRoom().validate(
       {
         uniqueName,
       },
@@ -924,7 +846,7 @@ class Lead {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = LeadPlatformApplicationValidator.getNewTokenForVideoRoom().validate(
+    } = LeadPlatformApplicationValidator.getTokenForVideoRoom().validate(
       {
         uniqueName,
       },
@@ -933,7 +855,7 @@ class Lead {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Lead > getNewTokenForVideoRoom \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Lead > getTokenForVideoRoom \n ${warrning}`,
       });
     }
 
@@ -967,7 +889,7 @@ class Lead {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Lead > getNewTokenForVideoRoom \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Lead > getTokenForVideoRoom \n ${res_error}`,
         });
       }
     }
@@ -976,7 +898,7 @@ class Lead {
   }
 
   /**
-   * @param {LeadPlatformApplicationValidator.GetNewVideoParticipantsParam} arg
+   * @param {LeadPlatformApplicationValidator.GetVideoParticipantsParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -984,17 +906,17 @@ class Lead {
    * @returns {Promise<LeadPlatformModel.GetParticipantsInsideVideoRoomResponse>}
    *   - Success response
    *
-   * @name getNewVideoParticipants
+   * @name getVideoParticipants
    * @summary: Get participants of a specific Video Room using it's unique name
-   * @description: Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getNewVideoParticipants/).
+   * @description: Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getVideoParticipants/).
    */
-  async getNewVideoParticipants(
+  async getVideoParticipants(
     { uniqueName, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = LeadPlatformApplicationValidator.getNewVideoParticipants().validate(
+    } = LeadPlatformApplicationValidator.getVideoParticipants().validate(
       {
         uniqueName,
       },
@@ -1007,7 +929,7 @@ class Lead {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = LeadPlatformApplicationValidator.getNewVideoParticipants().validate(
+    } = LeadPlatformApplicationValidator.getVideoParticipants().validate(
       {
         uniqueName,
       },
@@ -1016,7 +938,7 @@ class Lead {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Lead > getNewVideoParticipants \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Lead > getVideoParticipants \n ${warrning}`,
       });
     }
 
@@ -1050,7 +972,7 @@ class Lead {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Lead > getNewVideoParticipants \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Lead > getVideoParticipants \n ${res_error}`,
         });
       }
     }

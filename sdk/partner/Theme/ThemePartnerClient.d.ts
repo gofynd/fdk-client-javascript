@@ -192,15 +192,5 @@ declare class Theme {
      * @description: Retrieve a list of theme versions for a specific theme in an organization. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/getThemeVersions/).
      */
     getThemeVersions({ themeSlug, pageSize, pageNo, requestHeaders }?: ThemePartnerValidator.GetThemeVersionsParam, { responseHeaders }?: object): Promise<ThemePartnerModel.MarketplaceThemeSchema>;
-    /**
-     * @param {ThemePartnerValidator.CreateThemeParam} arg - Arg object.
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PartnerAPIClient").Options} - Options
-     * @returns {Promise<ThemePartnerModel.ThemesSchema>} - Success response
-     * @name createTheme
-     * @summary: Create a new theme
-     * @description: Themes improve the look and appearance of a website. Use this API to create a theme. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/createTheme/).
-     */
-    createTheme({ companyId, applicationId, body, requestHeaders }?: ThemePartnerValidator.CreateThemeParam, { responseHeaders }?: object): Promise<ThemePartnerModel.ThemesSchema>;
 }
 import ThemePartnerModel = require("./ThemePartnerModel");

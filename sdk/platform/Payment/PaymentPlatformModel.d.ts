@@ -7,11 +7,10 @@ export = PaymentPlatformModel;
 /**
  * @typedef AddressDetail
  * @property {string} address - Address details
- * @property {string} [address_type] - Address type e.g. home, office
+ * @property {string} address_type - Address type e.g. home, office
  * @property {string} area - Area details
  * @property {string} area_code - Customer pin/zip code
- * @property {string} area_code_slug - Area slug code, use pin or zip code if
- *   not available
+ * @property {string} area_code_slug - Area slug code, use pin/zip code if not available
  * @property {string} city - City name
  * @property {string} country - Country name
  * @property {string} country_iso_code - Country's code name e.g. `IN`, `GB`
@@ -26,63 +25,6 @@ export = PaymentPlatformModel;
  * @property {string} phone - Phone number
  * @property {string} state - State of the customer
  * @property {Object[]} [tags] - Optional address tag
- */
-/**
- * @typedef AdvanceObject
- * @property {string[]} [all_prepayment_type] - All available types of prepayment
- * @property {boolean} [allow_custom_advance_amount] - Is custom advance amount allowed?
- * @property {number} [amount] - Amount for Payment Breakdown
- * @property {string} [cancellation_type] - Type of cancellation
- * @property {string} [description] - The description for Advance Payment (user
- *   configured)
- * @property {string} [display_name] - The display name for Advance payment
- * @property {boolean} [is_active] - Is Advance Payment active
- * @property {string} [prepayment_type] - Type of prepayment value
- * @property {number} [prepayment_value] - Value for prepayment in advance payment
- * @property {number} [refund_time_limit] - Time limit for processing refund
- * @property {string} [time_unit] - Time unit for refunds
- */
-/**
- * @typedef AdvancePaymentObject
- * @property {AdvanceObject} [advance]
- * @property {string} [display_name] - Display name for Advance Payment Mode
- * @property {number} [display_priority] - Display Priority for Payment Option
- * @property {PaymentModeList[]} [list] - Payment mode
- * @property {string} [name] - Name of Advance Payment Mode
- * @property {number} [payment_mode_id] - Payment Mode ID for Advance Payment Option
- * @property {SplitObject} [split]
- */
-/**
- * @typedef AggregatorControlRequest
- * @property {string} [business_unit] - Business unit
- * @property {string} [device] - Device name
- * @property {Object[]} [items] - List of item details with respect to payment_mode
- * @property {AggregatorVersionRequestSchema} [version]
- */
-/**
- * @typedef AggregatorRoute
- * @property {string} [api_link] - Api_link
- * @property {Object} [data] - Data
- * @property {string} [payment_flow] - Payment_flow
- * @property {string} [payment_flow_data] - Payment_flow_data
- */
-/**
- * @typedef AggregatorVersionItemSchema
- * @property {string} [is_equal_to]
- * @property {string} [is_greater_than]
- * @property {string} [is_less_than]
- */
-/**
- * @typedef AggregatorVersionRequestSchema
- * @property {string} [is_equal_to]
- * @property {string} [is_greater_than]
- * @property {string} [is_less_than]
- */
-/**
- * @typedef AggregatorVersionResponse
- * @property {AggregatorVersionItemSchema} [items]
- * @property {string} message - Message
- * @property {boolean} success - Successful or failure
  */
 /**
  * @typedef BankDetailsForOTP
@@ -101,13 +43,6 @@ export = PaymentPlatformModel;
  * @property {string} message - Message
  * @property {number} status_code - HTTP status code
  * @property {boolean} success - Successful or failure
- */
-/**
- * @typedef CartDetailsSerializer
- * @property {Object[]} articles - List of articles that are added in cart
- * @property {number} cart_value - Total cart value i.e. amount to be paid
- * @property {Object} items - Items that are added in cart
- * @property {number} [total_quantity] - Total number of items in cart
  */
 /**
  * @typedef CODChargesLimitsResponse
@@ -135,15 +70,15 @@ export = PaymentPlatformModel;
  * @property {string} [assign_card_id]
  * @property {string} cart_id
  * @property {string} checkout_mode
+ * @property {string} pincode
  */
 /**
  * @typedef CreatePaymentLinkRequest
  * @property {number} amount - Total value of order
- * @property {string} [country_phone_code] - Phone country code for complete mobile number
  * @property {string} [description] - Merchant order id
  * @property {string} email - Email to which the payment link is to be sent
  * @property {string} external_order_id - Merchant order id
- * @property {CreatePaymentLinkMeta} meta
+ * @property {CreatePaymentLinkMeta} meta - Meta
  * @property {string} mobile_number - Mobile number to which the payment link is
  *   to be sent
  */
@@ -196,24 +131,24 @@ export = PaymentPlatformModel;
  */
 /**
  * @typedef EdcDeviceAddResponse
- * @property {EdcDevice} data
+ * @property {EdcDevice} data - Details of the EDC Device that is added
  * @property {boolean} success - Response is successful or not
  */
 /**
  * @typedef EdcDeviceDetailsResponse
- * @property {EdcDevice} data
+ * @property {EdcDevice} data - Details of one EDC Device
  * @property {boolean} success - Response is successful or not
  */
 /**
  * @typedef EdcDeviceListResponse
  * @property {EdcDevice[]} items - List of all edc mapped to the application
  *   options with their Details.
- * @property {Page} page
+ * @property {Page} page - Pagination Response
  * @property {boolean} success - Response is successful or not
  */
 /**
  * @typedef EdcDeviceStatsResponse
- * @property {StatisticsData} statistics
+ * @property {StatisticsData} statistics - Message
  * @property {boolean} success - Response is successful or not
  */
 /**
@@ -260,15 +195,10 @@ export = PaymentPlatformModel;
  */
 /**
  * @typedef ErrorResponse
- * @property {ErrorDescription} [error]
+ * @property {Object} [error]
  * @property {string} message - Message
  * @property {number} status_code - HTTP status code
  * @property {boolean} success - Successful or failure
- */
-/**
- * @typedef FromConfig
- * @property {string} business_unit - Business unit name
- * @property {string} device - Device name
  */
 /**
  * @typedef GetOauthUrlResponse
@@ -277,11 +207,11 @@ export = PaymentPlatformModel;
  */
 /**
  * @typedef GetPaymentCode
- * @property {PaymentCode} method_code
+ * @property {PaymentCode} method_code - Payment method code
  */
 /**
  * @typedef GetPaymentCodeResponse
- * @property {GetPaymentCode} data
+ * @property {GetPaymentCode} data - Data about Payment Code.
  * @property {boolean} success - Response is successful or not.
  */
 /**
@@ -299,7 +229,7 @@ export = PaymentPlatformModel;
 /**
  * @typedef GetUserCODLimitResponse
  * @property {boolean} success - Response is successful or not
- * @property {CODdata} user_cod_data
+ * @property {CODdata} user_cod_data - User COD Data
  */
 /**
  * @typedef HttpErrorCodeAndResponse
@@ -316,7 +246,7 @@ export = PaymentPlatformModel;
  * @typedef IntentApp
  * @property {string} [code] - Code
  * @property {string} [display_name] - Display_name
- * @property {PaymentModeLogo} [logos]
+ * @property {Object} [logos] - Logos
  * @property {string} [package_name] - Package_name
  */
 /**
@@ -327,7 +257,7 @@ export = PaymentPlatformModel;
 /**
  * @typedef LinkStatus
  * @property {string} message - Message
- * @property {string} status - Link action status
+ * @property {boolean} status - Link action status
  */
 /**
  * @typedef MerchantOnBoardingRequest
@@ -335,7 +265,7 @@ export = PaymentPlatformModel;
  * @property {string} app_id - Application id
  * @property {string} credit_line_id - Merchant ID at Ajiodhan's end
  * @property {string} status - Status
- * @property {string} user_id - Deadlock or Grimlock user id
+ * @property {string} user_id - Deadlock/Grimlock user id
  */
 /**
  * @typedef MerchantOnBoardingResponse
@@ -343,15 +273,15 @@ export = PaymentPlatformModel;
  * @property {boolean} success - Success/Failure of the transaction
  */
 /**
- * @typedef MerchantPaymentModeRequest
- * @property {string} business_unit - Business unit
- * @property {Object} device - List of devices and its activation status
- * @property {Object[]} items - List of item details with respect to payment_mode
- */
-/**
  * @typedef MerchnatPaymentModeRequest
  * @property {Object} [offline] - Details to be updated for online payment configuration.
  * @property {Object} [online] - Details to be updated for offline payment configuration.
+ */
+/**
+ * @typedef MerchnatPaymentModeResponse
+ * @property {Object[]} [items] - List of all aggregator and payment mode details.
+ * @property {string} [message] - Message
+ * @property {boolean} success - Response is successful or not.
  */
 /**
  * @typedef MultiTenderPaymentMeta
@@ -425,7 +355,7 @@ export = PaymentPlatformModel;
  */
 /**
  * @typedef PaymentCode
- * @property {Code} codes
+ * @property {Code} codes - List of dict that contains payment method data
  * @property {string} name - Name of payment name
  * @property {string} networks - Payment networks
  * @property {string} types - Type of payment mode
@@ -442,99 +372,9 @@ export = PaymentPlatformModel;
  * @property {boolean} success - Payment confirmation updated or not.
  */
 /**
- * @typedef PaymentCustomConfigCustomerRequestSchema
- * @property {number[]} [groups] - Customer groups.
- * @property {string} restriction - Customer restriction type.
- */
-/**
- * @typedef PaymentCustomConfigCustomerSchema
- * @property {number[]} [groups] - Customer groups.
- * @property {string} restriction - Customer restriction type.
- * @property {string[]} [types] - Customer types.
- */
-/**
- * @typedef PaymentCustomConfigDetailsRequestSchema
- * @property {PaymentCustomConfigCustomerRequestSchema} customer
- * @property {number} min_order_value - The minimum order value for the store
- * @property {PaymentCustomConfigModeSchema} payment_mode
- */
-/**
- * @typedef PaymentCustomConfigDetailsSchema
- * @property {PaymentCustomConfigCustomerSchema} customer
- * @property {number} min_order_value - The minimum order value for the store
- * @property {PaymentCustomConfigModeSchema} payment_mode
- */
-/**
- * @typedef PaymentCustomConfigModeSchema
- * @property {boolean} available - Indicates whether the payment mode is available.
- * @property {string[]} [post_order] - Payment modes available for post-order.
- * @property {string[]} [pre_order] - Payment modes available for pre-order.
- */
-/**
- * @typedef PaymentCustomConfigRequestSchema
- * @property {string} business_unit - The business unit to which the store belongs.
- * @property {PaymentCustomConfigDetailsRequestSchema[]} items
- */
-/**
- * @typedef PaymentCustomConfigResponseSchema
- * @property {PaymentModeCustomConfigSchema[]} items
- * @property {string} message
- * @property {boolean} success
- */
-/**
- * @typedef PaymentDetailsSerializer
- * @property {string} [aggregator_customer_id] - Unique customer id generated by
- *   payment gateway, not required for standard checkout.
- * @property {string} [aggregator_order_id] - Unique order id or payment request
- *   id generated by payment gateway
- * @property {number} amount - Amount paid.
- * @property {number} amount_captured - Amount which is captured or credited to
- *   merchant account
- * @property {number} [amount_refunded]
- * @property {string} [cancel_url] - Cancel url sent by Fynd platform at the
- *   time of payment creation
- * @property {boolean} [captured] - Whether the payment is captured (credited to
- *   merchant account) by payment gateway.
- * @property {string} [created] - Timestamp in epoch
- * @property {string} currency - Currency of the payment.
- * @property {string} g_user_id - Global user identifier - unique user id
- *   generated by Fynd platform
- * @property {string} gid - Global identifier of the entity (e.g. order, cart
- *   etc.) against which payment_session was initiated. This is generated by
- *   Fynd payments platform and is unique.
- * @property {string} [kind] - Optional kind of purchase/payment - one time
- *   payment (sale) or subcription. defaults to sale.
- * @property {string} [locale] - User's locale
- * @property {string} [merchant_locale] - Merchant's locale
- * @property {Object} [meta] - Metadata
- * @property {string} mode - Test or live, test mode uses test credentials so
- *   that actual payment is not created.
- * @property {string} [payment_id] - Unique transaction id generated by payment gateway
- * @property {Object[]} payment_methods - Method of payment
- * @property {string} status - Stautus of the payment
- * @property {string} [success_url] - Success url sent by Fynd platform at the
- *   time of payment creation
- */
-/**
- * @typedef PaymentFlow
- * @property {AggregatorRoute} [ajiodhan]
- * @property {AggregatorRoute} [bqr_razorpay]
- * @property {AggregatorRoute} [ccavenue]
- * @property {AggregatorRoute} [epaylater]
- * @property {AggregatorRoute} [fynd]
- * @property {AggregatorRoute} [jiopay]
- * @property {AggregatorRoute} [juspay]
- * @property {AggregatorRoute} [mswipe]
- * @property {AggregatorRoute} [payubiz]
- * @property {AggregatorRoute} [razorpay]
- * @property {AggregatorRoute} [rupifi]
- * @property {AggregatorRoute} [simpl]
- * @property {AggregatorRoute} [stripe]
- */
-/**
  * @typedef PaymentGatewayConfig
  * @property {string} config_type - Config Type of the aggregator
- * @property {boolean} [is_active] - Enable or Disable Flag
+ * @property {boolean} [is_active] - Enable/ Disable Flag
  * @property {string} key - Api key of the payment aggregator
  * @property {string} merchant_salt - Merchant key of the payment aggregator
  * @property {string} secret - Secret Key of the payment aggregator
@@ -543,7 +383,7 @@ export = PaymentPlatformModel;
  * @typedef PaymentGatewayConfigRequest
  * @property {PaymentGatewayConfig} [aggregator_name]
  * @property {string} app_id - Application Id to which Payment config Mapped
- * @property {boolean} [is_active] - Enable or Disable Flag
+ * @property {boolean} [is_active] - Enable/ Disable Flag
  */
 /**
  * @typedef PaymentGatewayConfigResponse
@@ -597,18 +437,6 @@ export = PaymentPlatformModel;
  * @property {string} [vpa] - Customer vpa address
  */
 /**
- * @typedef PaymentMethodsMetaOrder
- * @property {string} merchant_code - Merchant code
- * @property {string} payment_gateway - Payment gateway name
- * @property {string} payment_identifier - Payment identifier
- */
-/**
- * @typedef PaymentModeCustomConfigSchema
- * @property {string} business_unit - The business unit to which the store belongs.
- * @property {PaymentCustomConfigDetailsSchema} custom_config
- * @property {string} display_name - The display name of the store.
- */
-/**
  * @typedef PaymentModeList
  * @property {string} aggregator_name - Aggregator_name
  * @property {string} [card_brand] - Card_brand
@@ -639,11 +467,11 @@ export = PaymentPlatformModel;
  *   Intent_app_error_dict_list
  * @property {string[]} [intent_app_error_list] - Intent_app_error_list
  * @property {boolean} [intent_flow] - Intent_flow
- * @property {PaymentModeLogo} [logo_url]
+ * @property {Object} [logo_url] - Logo
  * @property {string} [merchant_code] - Merchant code
  * @property {string} [name] - Name
  * @property {string} [nickname] - Nickname
- * @property {ProductCODData} [product_cod_data]
+ * @property {Object} [product_cod_data] - Product cod configurations.
  * @property {number} [remaining_limit] - Remaining limit
  * @property {number} [retry_count] - Retry_count
  * @property {number} [timeout] - Timeout
@@ -652,13 +480,6 @@ export = PaymentPlatformModel;
  * @typedef PaymentModeLogo
  * @property {string} large - Large
  * @property {string} small - Smalll
- */
-/**
- * @typedef PaymentModeRouteResponse
- * @property {AdvancePaymentObject[]} [advance_payment] - Advance Payment Array
- * @property {Object} [payment_breakup] - Payment Breakup for advance payment
- * @property {PaymentOptionAndFlow} payment_options
- * @property {boolean} success - Response is successful or not
  */
 /**
  * @typedef PaymentObjectListSerializer
@@ -682,56 +503,13 @@ export = PaymentPlatformModel;
  * @property {Object} user_object
  */
 /**
- * @typedef PaymentOptionAndFlow
- * @property {PaymentFlow} payment_flows
- * @property {RootPaymentMode[]} payment_option - Payment options
- */
-/**
  * @typedef PaymentOptions
  * @property {RootPaymentMode[]} payment_option - Payment options
  */
 /**
  * @typedef PaymentOptionsResponse
- * @property {Object} [payment_breakup] - Payment Breakup for advance payment
- * @property {PaymentOptions} payment_options
+ * @property {PaymentOptions} payment_options - Payment options
  * @property {boolean} success - Response is successful or not
- */
-/**
- * @typedef PaymentOrderData
- * @property {string} [aggregator] - Aggregator name
- * @property {number} [amount] - Amount
- * @property {string} [callback_url] - Callback url for aggregator
- * @property {string} [contact] - Mobile number
- * @property {string} [currency] - Currency
- * @property {string} [customer_id] - Aggregator customer id
- * @property {string} [email] - Email
- * @property {string} [merchant_order_id] - Merchant order id
- * @property {string} [method] - Method
- * @property {string} [order_id] - Aggregator order id
- */
-/**
- * @typedef PaymentOrderMethods
- * @property {number} amount - Amount to be collected
- * @property {PaymentMethodsMetaOrder} meta
- * @property {string} mode - Payment mode
- * @property {string} name - Payment mode name
- * @property {string} [payment] - Payment type i.e. Required / Blocked
- */
-/**
- * @typedef PaymentOrderRequest
- * @property {string} order_id - Order id
- * @property {PaymentOrderMethods[]} [payment_methods]
- * @property {string} [shipment_id] - Shipment_id
- */
-/**
- * @typedef PaymentOrderResponse
- * @property {string} [callback_url] - Callback url for aggregator
- * @property {PaymentOrderData} [data]
- * @property {string} message - Message
- * @property {string} [order_id] - Merchant order id
- * @property {string} [payment_confirm_url] - Payment confirm url for aggregator
- * @property {number} status_code - HTTP status code
- * @property {boolean} success - Successful or failure
  */
 /**
  * @typedef PaymentSessionDetail
@@ -755,11 +533,10 @@ export = PaymentPlatformModel;
  * @property {string} gid - Global identifier of the entity (e.g. order, cart
  *   etc.) against which payment_session was initiated. This is generated by
  *   Fynd payments platform and is unique.
- * @property {string} [kind] - Optional kind of purchase or payment - one time
+ * @property {string} [kind] - Optional kind of purchase/payment - one time
  *   payment (sale) or subcription. defaults to sale.
  * @property {string} [locale] - User's locale
  * @property {string} [merchant_locale] - Merchant's locale
- * @property {Object} [meta] - Metadata
  * @property {string} mode - Test or live, test mode uses test credentials so
  *   that actual payment is not created.
  * @property {string} payment_id - Unique transaction id generated by payment gateway
@@ -791,18 +568,6 @@ export = PaymentPlatformModel;
  * @property {Object[]} platform_transaction_details - Platform transaction details.
  * @property {string} status - Status of the payment.
  * @property {number} total_amount - Amount paid.
- */
-/**
- * @typedef PaymentSessionSerializer
- * @property {CartDetailsSerializer} [cart_details]
- * @property {string} [currency] - The currency of the payment.
- * @property {string} gid - Global identifier of the entity (e.g. order, cart
- *   etc.) against which payment_session was initiated. This is generated by
- *   Fynd payments platform and is unique.
- * @property {Object} payment_details - Object of payment details
- * @property {RefundDetailsSerializer[]} refund_details - Object of refund details
- * @property {string} status - The status of the payment session.
- * @property {number} total_amount - Total amount to be paid
  */
 /**
  * @typedef PaymentStatusBulkHandlerRequest
@@ -847,10 +612,10 @@ export = PaymentPlatformModel;
  */
 /**
  * @typedef Payout
- * @property {PayoutCustomer} customers
+ * @property {PayoutCustomer} customers - Customers details object
  * @property {boolean} is_active - Enable/DIsable Flag Payout
  * @property {boolean} is_default - Default or not
- * @property {PayoutMoreAttributes} more_attributes
+ * @property {PayoutMoreAttributes} more_attributes - Bank details object
  * @property {PayoutAggregator[]} [payouts_aggregators]
  * @property {string} transfer_type - Transafer type
  * @property {string} unique_transfer_no - Display priority of the payment mode
@@ -886,7 +651,7 @@ export = PaymentPlatformModel;
  * @typedef PayoutMoreAttributes
  * @property {string} [account_holder] - Account Holder Name
  * @property {string} [account_no] - Account Number
- * @property {string} [account_type] - Account Type Saving or Current
+ * @property {string} [account_type] - Account Type Saving/Current
  * @property {string} [bank_name] - Name of Bank
  * @property {string} [branch_name] - Branch Name
  * @property {string} [city] - City
@@ -897,8 +662,8 @@ export = PaymentPlatformModel;
 /**
  * @typedef PayoutRequest
  * @property {string} aggregator - Aggregator Name
- * @property {PayoutBankDetails} bank_details
- * @property {boolean} is_active - Enable or Disable Flag Payout
+ * @property {PayoutBankDetails} bank_details - Payout bank details object
+ * @property {boolean} is_active - Enable/Disable Flag Payout
  * @property {string} transfer_type - Transafer type
  * @property {string} unique_external_id - Unique Id of Payout
  * @property {Object} users - Payout users object
@@ -908,7 +673,7 @@ export = PaymentPlatformModel;
  * @property {string} aggregator - Aggregator Name
  * @property {Object} bank_details - Payout bank_details object
  * @property {boolean} created - Created flag
- * @property {boolean} is_active - Enable or DIsable Flag Payout
+ * @property {boolean} is_active - Enable/DIsable Flag Payout
  * @property {string} payment_status - Status of payment
  * @property {Object} payouts - Payout object
  * @property {boolean} success - Response is successful or not
@@ -920,17 +685,6 @@ export = PaymentPlatformModel;
  * @typedef PayoutsResponse
  * @property {Payout[]} items - Contains list of PayoutSchema
  * @property {boolean} success - Response is successful or not
- */
-/**
- * @typedef PlatformPaymentModeCopyConfigRequest
- * @property {FromConfig} from_config
- * @property {ToConfig} to_config
- */
-/**
- * @typedef PlatformPaymentModeResponse
- * @property {Object[]} [items] - List of all aggregator and payment mode details.
- * @property {string} [message] - Message
- * @property {boolean} success - Response is successful or not.
  */
 /**
  * @typedef PollingPaymentLinkResponse
@@ -947,7 +701,7 @@ export = PaymentPlatformModel;
  */
 /**
  * @typedef ProductCODData
- * @property {CODChargesLimitsResponse} [cod_charges]
+ * @property {Object} [cod_charges] - Cod charges and its allowed limits.
  * @property {Object} [items] - Item id with its cod availability.
  */
 /**
@@ -956,15 +710,6 @@ export = PaymentPlatformModel;
  * @property {boolean} [is_verified_flag]
  * @property {string} message - Response message
  * @property {boolean} success - Success or failure flag.
- */
-/**
- * @typedef RefundDetailsSerializer
- * @property {number} amount - Refunded amount
- * @property {string} created - Timestamp in epoch.
- * @property {string} currency - The currency of the payment.
- * @property {string} refund_utr - Unique refund utr generated by payment gateway.
- * @property {string} request_id - Refund request id, unique id generated by Fynd platform
- * @property {string} status - The status of the refund.
  */
 /**
  * @typedef RefundPriorityRequestSerializer
@@ -999,11 +744,9 @@ export = PaymentPlatformModel;
 /**
  * @typedef RefundSessionRequestSerializer
  * @property {string} currency - The currency of the payment.
- * @property {ErrorDescription} [error]
  * @property {string} gid - Global identifier of the entity (e.g. order, cart
  *   etc.) against which payment_session was initiated. This is generated by
  *   Fynd payments platform and is unique.
- * @property {string} [message] - The status of the refund.
  * @property {Object} [meta] - Meta
  * @property {PaymentSessionDetail} payment_details - Details of the payment
  * @property {RefundSessionDetail[]} [refund_details] - Details of the refund
@@ -1060,7 +803,7 @@ export = PaymentPlatformModel;
  */
 /**
  * @typedef ResendOrCancelPaymentResponse
- * @property {LinkStatus} data
+ * @property {LinkStatus} data - Data about link action status.
  * @property {boolean} success - Response is successful or not.
  */
 /**
@@ -1109,12 +852,6 @@ export = PaymentPlatformModel;
  * @property {boolean} success - Response is successful or not
  */
 /**
- * @typedef SplitObject
- * @property {number} [amount_remaining] - Amount pending to be paid
- * @property {number} [splits_remaining] - Number of splits remaining
- * @property {number} [total_number_of_splits] - Maximum amount of splits allowed
- */
-/**
  * @typedef StatisticsData
  * @property {number} active_device_count - No of active devices
  * @property {number} inactive_device_count - No of inactive devices
@@ -1131,20 +868,15 @@ export = PaymentPlatformModel;
  * @property {boolean} success - Response is successful or not
  */
 /**
- * @typedef ToConfig
- * @property {string} business_unit - Business unit name
- * @property {Object[]} device - Device name to copy the config to
- */
-/**
  * @typedef UpdatePayoutRequest
- * @property {boolean} is_active - Enable or Disable Flag Payout
- * @property {boolean} is_default - Enable or Disable Default Payout
+ * @property {boolean} is_active - Enable/Disable Flag Payout
+ * @property {boolean} is_default - Enable/Disable Default Payout
  * @property {string} unique_external_id - Unique Id of Payout
  */
 /**
  * @typedef UpdatePayoutResponse
- * @property {boolean} is_active - Enable or DIsable Flag Payout
- * @property {boolean} is_default - Enable or Disable Default Payout
+ * @property {boolean} is_active - Enable/DIsable Flag Payout
+ * @property {boolean} is_default - Enable/Disable Default Payout
  * @property {boolean} success - Response is successful or not
  */
 /**
@@ -1167,7 +899,7 @@ export = PaymentPlatformModel;
 declare class PaymentPlatformModel {
 }
 declare namespace PaymentPlatformModel {
-    export { AddBeneficiaryDetailsOTPRequest, AddressDetail, AdvanceObject, AdvancePaymentObject, AggregatorControlRequest, AggregatorRoute, AggregatorVersionItemSchema, AggregatorVersionRequestSchema, AggregatorVersionResponse, BankDetailsForOTP, CancelOrResendPaymentLinkRequest, CancelPaymentLinkResponse, CartDetailsSerializer, CODChargesLimitsResponse, CODdata, Code, CreatePaymentLinkMeta, CreatePaymentLinkRequest, CreatePaymentLinkResponse, DeletePayoutResponse, DeleteSubscriptionPaymentMethodResponse, EdcAddRequest, EdcAggregatorAndModelListResponse, EdcDevice, EdcDeviceAddResponse, EdcDeviceDetailsResponse, EdcDeviceListResponse, EdcDeviceStatsResponse, EdcDeviceUpdateResponse, EdcModelData, EdcUpdateRequest, ErrorCodeAndDescription, ErrorCodeDescription, ErrorDescription, ErrorResponse, FromConfig, GetOauthUrlResponse, GetPaymentCode, GetPaymentCodeResponse, GetPaymentLinkResponse, GetUserCODLimitResponse, HttpErrorCodeAndResponse, IfscCodeResponse, IntentApp, IntentAppErrorList, LinkStatus, MerchantOnBoardingRequest, MerchantOnBoardingResponse, MerchantPaymentModeRequest, MerchnatPaymentModeRequest, MultiTenderPaymentMeta, MultiTenderPaymentMethod, NotFoundResourceError, OrderBeneficiaryDetails, OrderBeneficiaryResponse, OrderDetail, Page, PaymentCode, PaymentConfirmationRequest, PaymentConfirmationResponse, PaymentCustomConfigCustomerRequestSchema, PaymentCustomConfigCustomerSchema, PaymentCustomConfigDetailsRequestSchema, PaymentCustomConfigDetailsSchema, PaymentCustomConfigModeSchema, PaymentCustomConfigRequestSchema, PaymentCustomConfigResponseSchema, PaymentDetailsSerializer, PaymentFlow, PaymentGatewayConfig, PaymentGatewayConfigRequest, PaymentGatewayConfigResponse, PaymentGatewayToBeReviewed, PaymentInitializationRequest, PaymentInitializationResponse, PaymentMethodsMetaOrder, PaymentModeCustomConfigSchema, PaymentModeList, PaymentModeLogo, PaymentModeRouteResponse, PaymentObjectListSerializer, PaymentOptionAndFlow, PaymentOptions, PaymentOptionsResponse, PaymentOrderData, PaymentOrderMethods, PaymentOrderRequest, PaymentOrderResponse, PaymentSessionDetail, PaymentSessionRequestSerializer, PaymentSessionResponseSerializer, PaymentSessionSerializer, PaymentStatusBulkHandlerRequest, PaymentStatusBulkHandlerResponse, PaymentStatusObject, PaymentStatusUpdateRequest, PaymentStatusUpdateResponse, Payout, PayoutAggregator, PayoutBankDetails, PayoutCustomer, PayoutMoreAttributes, PayoutRequest, PayoutResponse, PayoutsResponse, PlatformPaymentModeCopyConfigRequest, PlatformPaymentModeResponse, PollingPaymentLinkResponse, ProductCODData, RefundAccountResponse, RefundDetailsSerializer, RefundPriorityRequestSerializer, RefundPriorityResponseSerializer, RefundSessionDetail, RefundSessionRequestSerializer, RefundSessionResponseSerializer, RefundSourcesPriority, RepaymentDetailsSerialiserPayAll, RepaymentRequestDetails, RepaymentResponse, ResendOrCancelPaymentRequest, ResendOrCancelPaymentResponse, ResendPaymentLinkResponse, RevokeOAuthToken, RootPaymentMode, SaveSubscriptionSetupIntentRequest, SaveSubscriptionSetupIntentResponse, SetCODForUserRequest, SetCODOptionResponse, SplitObject, StatisticsData, SubscriptionConfigResponse, SubscriptionPaymentMethodResponse, ToConfig, UpdatePayoutRequest, UpdatePayoutResponse, ValidateCustomerRequest, ValidateCustomerResponse };
+    export { AddBeneficiaryDetailsOTPRequest, AddressDetail, BankDetailsForOTP, CancelOrResendPaymentLinkRequest, CancelPaymentLinkResponse, CODChargesLimitsResponse, CODdata, Code, CreatePaymentLinkMeta, CreatePaymentLinkRequest, CreatePaymentLinkResponse, DeletePayoutResponse, DeleteSubscriptionPaymentMethodResponse, EdcAddRequest, EdcAggregatorAndModelListResponse, EdcDevice, EdcDeviceAddResponse, EdcDeviceDetailsResponse, EdcDeviceListResponse, EdcDeviceStatsResponse, EdcDeviceUpdateResponse, EdcModelData, EdcUpdateRequest, ErrorCodeAndDescription, ErrorCodeDescription, ErrorDescription, ErrorResponse, GetOauthUrlResponse, GetPaymentCode, GetPaymentCodeResponse, GetPaymentLinkResponse, GetUserCODLimitResponse, HttpErrorCodeAndResponse, IfscCodeResponse, IntentApp, IntentAppErrorList, LinkStatus, MerchantOnBoardingRequest, MerchantOnBoardingResponse, MerchnatPaymentModeRequest, MerchnatPaymentModeResponse, MultiTenderPaymentMeta, MultiTenderPaymentMethod, NotFoundResourceError, OrderBeneficiaryDetails, OrderBeneficiaryResponse, OrderDetail, Page, PaymentCode, PaymentConfirmationRequest, PaymentConfirmationResponse, PaymentGatewayConfig, PaymentGatewayConfigRequest, PaymentGatewayConfigResponse, PaymentGatewayToBeReviewed, PaymentInitializationRequest, PaymentInitializationResponse, PaymentModeList, PaymentModeLogo, PaymentObjectListSerializer, PaymentOptions, PaymentOptionsResponse, PaymentSessionDetail, PaymentSessionRequestSerializer, PaymentSessionResponseSerializer, PaymentStatusBulkHandlerRequest, PaymentStatusBulkHandlerResponse, PaymentStatusObject, PaymentStatusUpdateRequest, PaymentStatusUpdateResponse, Payout, PayoutAggregator, PayoutBankDetails, PayoutCustomer, PayoutMoreAttributes, PayoutRequest, PayoutResponse, PayoutsResponse, PollingPaymentLinkResponse, ProductCODData, RefundAccountResponse, RefundPriorityRequestSerializer, RefundPriorityResponseSerializer, RefundSessionDetail, RefundSessionRequestSerializer, RefundSessionResponseSerializer, RefundSourcesPriority, RepaymentDetailsSerialiserPayAll, RepaymentRequestDetails, RepaymentResponse, ResendOrCancelPaymentRequest, ResendOrCancelPaymentResponse, ResendPaymentLinkResponse, RevokeOAuthToken, RootPaymentMode, SaveSubscriptionSetupIntentRequest, SaveSubscriptionSetupIntentResponse, SetCODForUserRequest, SetCODOptionResponse, StatisticsData, SubscriptionConfigResponse, SubscriptionPaymentMethodResponse, UpdatePayoutRequest, UpdatePayoutResponse, ValidateCustomerRequest, ValidateCustomerResponse };
 }
 /** @returns {AddBeneficiaryDetailsOTPRequest} */
 declare function AddBeneficiaryDetailsOTPRequest(): AddBeneficiaryDetailsOTPRequest;
@@ -1185,7 +917,7 @@ type AddressDetail = {
     /**
      * - Address type e.g. home, office
      */
-    address_type?: string;
+    address_type: string;
     /**
      * - Area details
      */
@@ -1195,8 +927,7 @@ type AddressDetail = {
      */
     area_code: string;
     /**
-     * - Area slug code, use pin or zip code if
-     * not available
+     * - Area slug code, use pin/zip code if not available
      */
     area_code_slug: string;
     /**
@@ -1256,145 +987,6 @@ type AddressDetail = {
      */
     tags?: any[];
 };
-/** @returns {AdvanceObject} */
-declare function AdvanceObject(): AdvanceObject;
-type AdvanceObject = {
-    /**
-     * - All available types of prepayment
-     */
-    all_prepayment_type?: string[];
-    /**
-     * - Is custom advance amount allowed?
-     */
-    allow_custom_advance_amount?: boolean;
-    /**
-     * - Amount for Payment Breakdown
-     */
-    amount?: number;
-    /**
-     * - Type of cancellation
-     */
-    cancellation_type?: string;
-    /**
-     * - The description for Advance Payment (user
-     * configured)
-     */
-    description?: string;
-    /**
-     * - The display name for Advance payment
-     */
-    display_name?: string;
-    /**
-     * - Is Advance Payment active
-     */
-    is_active?: boolean;
-    /**
-     * - Type of prepayment value
-     */
-    prepayment_type?: string;
-    /**
-     * - Value for prepayment in advance payment
-     */
-    prepayment_value?: number;
-    /**
-     * - Time limit for processing refund
-     */
-    refund_time_limit?: number;
-    /**
-     * - Time unit for refunds
-     */
-    time_unit?: string;
-};
-/** @returns {AdvancePaymentObject} */
-declare function AdvancePaymentObject(): AdvancePaymentObject;
-type AdvancePaymentObject = {
-    advance?: AdvanceObject;
-    /**
-     * - Display name for Advance Payment Mode
-     */
-    display_name?: string;
-    /**
-     * - Display Priority for Payment Option
-     */
-    display_priority?: number;
-    /**
-     * - Payment mode
-     */
-    list?: PaymentModeList[];
-    /**
-     * - Name of Advance Payment Mode
-     */
-    name?: string;
-    /**
-     * - Payment Mode ID for Advance Payment Option
-     */
-    payment_mode_id?: number;
-    split?: SplitObject;
-};
-/** @returns {AggregatorControlRequest} */
-declare function AggregatorControlRequest(): AggregatorControlRequest;
-type AggregatorControlRequest = {
-    /**
-     * - Business unit
-     */
-    business_unit?: string;
-    /**
-     * - Device name
-     */
-    device?: string;
-    /**
-     * - List of item details with respect to payment_mode
-     */
-    items?: any[];
-    version?: AggregatorVersionRequestSchema;
-};
-/** @returns {AggregatorRoute} */
-declare function AggregatorRoute(): AggregatorRoute;
-type AggregatorRoute = {
-    /**
-     * - Api_link
-     */
-    api_link?: string;
-    /**
-     * - Data
-     */
-    data?: any;
-    /**
-     * - Payment_flow
-     */
-    payment_flow?: string;
-    /**
-     * - Payment_flow_data
-     */
-    payment_flow_data?: string;
-};
-/** @returns {AggregatorVersionItemSchema} */
-declare function AggregatorVersionItemSchema(): AggregatorVersionItemSchema;
-type AggregatorVersionItemSchema = {
-    is_equal_to?: string;
-    is_greater_than?: string;
-    is_less_than?: string;
-};
-/** @returns {AggregatorVersionRequestSchema} */
-declare function AggregatorVersionRequestSchema(): AggregatorVersionRequestSchema;
-type AggregatorVersionRequestSchema = {
-    is_equal_to?: string;
-    is_greater_than?: string;
-    is_less_than?: string;
-};
-/** @returns {AggregatorVersionResponse} */
-declare function AggregatorVersionResponse(): AggregatorVersionResponse;
-type AggregatorVersionResponse = {
-    items?: AggregatorVersionItemSchema;
-    /**
-     * - Message
-     */
-    message: string;
-    /**
-     * - Successful or failure
-     */
-    success: boolean;
-};
 /** @returns {BankDetailsForOTP} */
 declare function BankDetailsForOTP(): BankDetailsForOTP;
 type BankDetailsForOTP = {
@@ -1427,26 +1019,6 @@ type CancelPaymentLinkResponse = {
      * - Successful or failure
      */
     success: boolean;
-};
-/** @returns {CartDetailsSerializer} */
-declare function CartDetailsSerializer(): CartDetailsSerializer;
-type CartDetailsSerializer = {
-    /**
-     * - List of articles that are added in cart
-     */
-    articles: any[];
-    /**
-     * - Total cart value i.e. amount to be paid
-     */
-    cart_value: number;
-    /**
-     * - Items that are added in cart
-     */
-    items: any;
-    /**
-     * - Total number of items in cart
-     */
-    total_quantity?: number;
 };
 /** @returns {CODChargesLimitsResponse} */
 declare function CODChargesLimitsResponse(): CODChargesLimitsResponse;
@@ -1511,6 +1083,7 @@ type CreatePaymentLinkMeta = {
     assign_card_id?: string;
     cart_id: string;
     checkout_mode: string;
+    pincode: string;
 };
 /** @returns {CreatePaymentLinkRequest} */
 declare function CreatePaymentLinkRequest(): CreatePaymentLinkRequest;
@@ -1519,10 +1092,6 @@ type CreatePaymentLinkRequest = {
      * - Total value of order
      */
     amount: number;
-    /**
-     * - Phone country code for complete mobile number
-     */
-    country_phone_code?: string;
     /**
      * - Merchant order id
      */
@@ -1535,6 +1104,9 @@ type CreatePaymentLinkRequest = {
      * - Merchant order id
      */
     external_order_id: string;
+    /**
+     * - Meta
+     */
     meta: CreatePaymentLinkMeta;
     /**
      * - Mobile number to which the payment link is
@@ -1679,6 +1251,9 @@ type EdcDevice = {
 /** @returns {EdcDeviceAddResponse} */
 declare function EdcDeviceAddResponse(): EdcDeviceAddResponse;
 type EdcDeviceAddResponse = {
+    /**
+     * - Details of the EDC Device that is added
+     */
     data: EdcDevice;
     /**
      * - Response is successful or not
@@ -1688,6 +1263,9 @@ type EdcDeviceAddResponse = {
 /** @returns {EdcDeviceDetailsResponse} */
 declare function EdcDeviceDetailsResponse(): EdcDeviceDetailsResponse;
 type EdcDeviceDetailsResponse = {
+    /**
+     * - Details of one EDC Device
+     */
     data: EdcDevice;
     /**
      * - Response is successful or not
@@ -1702,6 +1280,9 @@ type EdcDeviceListResponse = {
      * options with their Details.
      */
     items: EdcDevice[];
+    /**
+     * - Pagination Response
+     */
     page: Page;
     /**
      * - Response is successful or not
@@ -1711,6 +1292,9 @@ type EdcDeviceListResponse = {
 /** @returns {EdcDeviceStatsResponse} */
 declare function EdcDeviceStatsResponse(): EdcDeviceStatsResponse;
 type EdcDeviceStatsResponse = {
+    /**
+     * - Message
+     */
     statistics: StatisticsData;
     /**
      * - Response is successful or not
@@ -1840,7 +1424,7 @@ type ErrorDescription = {
 /** @returns {ErrorResponse} */
 declare function ErrorResponse(): ErrorResponse;
 type ErrorResponse = {
-    error?: ErrorDescription;
+    error?: any;
     /**
      * - Message
      */
@@ -1853,18 +1437,6 @@ type ErrorResponse = {
      * - Successful or failure
      */
     success: boolean;
-};
-/** @returns {FromConfig} */
-declare function FromConfig(): FromConfig;
-type FromConfig = {
-    /**
-     * - Business unit name
-     */
-    business_unit: string;
-    /**
-     * - Device name
-     */
-    device: string;
 };
 /** @returns {GetOauthUrlResponse} */
 declare function GetOauthUrlResponse(): GetOauthUrlResponse;
@@ -1881,11 +1453,17 @@ type GetOauthUrlResponse = {
 /** @returns {GetPaymentCode} */
 declare function GetPaymentCode(): GetPaymentCode;
 type GetPaymentCode = {
+    /**
+     * - Payment method code
+     */
     method_code: PaymentCode;
 };
 /** @returns {GetPaymentCodeResponse} */
 declare function GetPaymentCodeResponse(): GetPaymentCodeResponse;
 type GetPaymentCodeResponse = {
+    /**
+     * - Data about Payment Code.
+     */
     data: GetPaymentCode;
     /**
      * - Response is successful or not.
@@ -1939,6 +1517,9 @@ type GetUserCODLimitResponse = {
      * - Response is successful or not
      */
     success: boolean;
+    /**
+     * - User COD Data
+     */
     user_cod_data: CODdata;
 };
 /** @returns {HttpErrorCodeAndResponse} */
@@ -1977,7 +1558,10 @@ type IntentApp = {
      * - Display_name
      */
     display_name?: string;
-    logos?: PaymentModeLogo;
+    /**
+     * - Logos
+     */
+    logos?: any;
     /**
      * - Package_name
      */
@@ -2005,7 +1589,7 @@ type LinkStatus = {
     /**
      * - Link action status
      */
-    status: string;
+    status: boolean;
 };
 /** @returns {MerchantOnBoardingRequest} */
 declare function MerchantOnBoardingRequest(): MerchantOnBoardingRequest;
@@ -2027,7 +1611,7 @@ type MerchantOnBoardingRequest = {
      */
     status: string;
     /**
-     * - Deadlock or Grimlock user id
+     * - Deadlock/Grimlock user id
      */
     user_id: string;
 };
@@ -2040,22 +1624,6 @@ type MerchantOnBoardingResponse = {
      */
     success: boolean;
 };
-/** @returns {MerchantPaymentModeRequest} */
-declare function MerchantPaymentModeRequest(): MerchantPaymentModeRequest;
-type MerchantPaymentModeRequest = {
-    /**
-     * - Business unit
-     */
-    business_unit: string;
-    /**
-     * - List of devices and its activation status
-     */
-    device: any;
-    /**
-     * - List of item details with respect to payment_mode
-     */
-    items: any[];
-};
 /** @returns {MerchnatPaymentModeRequest} */
 declare function MerchnatPaymentModeRequest(): MerchnatPaymentModeRequest;
 type MerchnatPaymentModeRequest = {
@@ -2067,6 +1635,22 @@ type MerchnatPaymentModeRequest = {
      * - Details to be updated for offline payment configuration.
      */
     online?: any;
+};
+/** @returns {MerchnatPaymentModeResponse} */
+declare function MerchnatPaymentModeResponse(): MerchnatPaymentModeResponse;
+type MerchnatPaymentModeResponse = {
+    /**
+     * - List of all aggregator and payment mode details.
+     */
+    items?: any[];
+    /**
+     * - Message
+     */
+    message?: string;
+    /**
+     * - Response is successful or not.
+     */
+    success: boolean;
 };
 /** @returns {MultiTenderPaymentMeta} */
 declare function MultiTenderPaymentMeta(): MultiTenderPaymentMeta;
@@ -2244,6 +1828,9 @@ type Page = {
 /** @returns {PaymentCode} */
 declare function PaymentCode(): PaymentCode;
 type PaymentCode = {
+    /**
+     * - List of dict that contains payment method data
+     */
     codes: Code;
     /**
      * - Name of payment name
@@ -2283,195 +1870,6 @@ type PaymentConfirmationResponse = {
      */
     success: boolean;
 };
-/** @returns {PaymentCustomConfigCustomerRequestSchema} */
-declare function PaymentCustomConfigCustomerRequestSchema(): PaymentCustomConfigCustomerRequestSchema;
-type PaymentCustomConfigCustomerRequestSchema = {
-    /**
-     * - Customer groups.
-     */
-    groups?: number[];
-    /**
-     * - Customer restriction type.
-     */
-    restriction: string;
-};
-/** @returns {PaymentCustomConfigCustomerSchema} */
-declare function PaymentCustomConfigCustomerSchema(): PaymentCustomConfigCustomerSchema;
-type PaymentCustomConfigCustomerSchema = {
-    /**
-     * - Customer groups.
-     */
-    groups?: number[];
-    /**
-     * - Customer restriction type.
-     */
-    restriction: string;
-    /**
-     * - Customer types.
-     */
-    types?: string[];
-};
-/** @returns {PaymentCustomConfigDetailsRequestSchema} */
-declare function PaymentCustomConfigDetailsRequestSchema(): PaymentCustomConfigDetailsRequestSchema;
-type PaymentCustomConfigDetailsRequestSchema = {
-    customer: PaymentCustomConfigCustomerRequestSchema;
-    /**
-     * - The minimum order value for the store
-     */
-    min_order_value: number;
-    payment_mode: PaymentCustomConfigModeSchema;
-};
-/** @returns {PaymentCustomConfigDetailsSchema} */
-declare function PaymentCustomConfigDetailsSchema(): PaymentCustomConfigDetailsSchema;
-type PaymentCustomConfigDetailsSchema = {
-    customer: PaymentCustomConfigCustomerSchema;
-    /**
-     * - The minimum order value for the store
-     */
-    min_order_value: number;
-    payment_mode: PaymentCustomConfigModeSchema;
-};
-/** @returns {PaymentCustomConfigModeSchema} */
-declare function PaymentCustomConfigModeSchema(): PaymentCustomConfigModeSchema;
-type PaymentCustomConfigModeSchema = {
-    /**
-     * - Indicates whether the payment mode is available.
-     */
-    available: boolean;
-    /**
-     * - Payment modes available for post-order.
-     */
-    post_order?: string[];
-    /**
-     * - Payment modes available for pre-order.
-     */
-    pre_order?: string[];
-};
-/** @returns {PaymentCustomConfigRequestSchema} */
-declare function PaymentCustomConfigRequestSchema(): PaymentCustomConfigRequestSchema;
-type PaymentCustomConfigRequestSchema = {
-    /**
-     * - The business unit to which the store belongs.
-     */
-    business_unit: string;
-    items: PaymentCustomConfigDetailsRequestSchema[];
-};
-/** @returns {PaymentCustomConfigResponseSchema} */
-declare function PaymentCustomConfigResponseSchema(): PaymentCustomConfigResponseSchema;
-type PaymentCustomConfigResponseSchema = {
-    items: PaymentModeCustomConfigSchema[];
-    message: string;
-    success: boolean;
-};
-/** @returns {PaymentDetailsSerializer} */
-declare function PaymentDetailsSerializer(): PaymentDetailsSerializer;
-type PaymentDetailsSerializer = {
-    /**
-     * - Unique customer id generated by
-     * payment gateway, not required for standard checkout.
-     */
-    aggregator_customer_id?: string;
-    /**
-     * - Unique order id or payment request
-     * id generated by payment gateway
-     */
-    aggregator_order_id?: string;
-    /**
-     * - Amount paid.
-     */
-    amount: number;
-    /**
-     * - Amount which is captured or credited to
-     * merchant account
-     */
-    amount_captured: number;
-    amount_refunded?: number;
-    /**
-     * - Cancel url sent by Fynd platform at the
-     * time of payment creation
-     */
-    cancel_url?: string;
-    /**
-     * - Whether the payment is captured (credited to
-     * merchant account) by payment gateway.
-     */
-    captured?: boolean;
-    /**
-     * - Timestamp in epoch
-     */
-    created?: string;
-    /**
-     * - Currency of the payment.
-     */
-    currency: string;
-    /**
-     * - Global user identifier - unique user id
-     * generated by Fynd platform
-     */
-    g_user_id: string;
-    /**
-     * - Global identifier of the entity (e.g. order, cart
-     * etc.) against which payment_session was initiated. This is generated by
-     * Fynd payments platform and is unique.
-     */
-    gid: string;
-    /**
-     * - Optional kind of purchase/payment - one time
-     * payment (sale) or subcription. defaults to sale.
-     */
-    kind?: string;
-    /**
-     * - User's locale
-     */
-    locale?: string;
-    /**
-     * - Merchant's locale
-     */
-    merchant_locale?: string;
-    /**
-     * - Metadata
-     */
-    meta?: any;
-    /**
-     * - Test or live, test mode uses test credentials so
-     * that actual payment is not created.
-     */
-    mode: string;
-    /**
-     * - Unique transaction id generated by payment gateway
-     */
-    payment_id?: string;
-    /**
-     * - Method of payment
-     */
-    payment_methods: any[];
-    /**
-     * - Stautus of the payment
-     */
-    status: string;
-    /**
-     * - Success url sent by Fynd platform at the
-     * time of payment creation
-     */
-    success_url?: string;
-};
-/** @returns {PaymentFlow} */
-declare function PaymentFlow(): PaymentFlow;
-type PaymentFlow = {
-    ajiodhan?: AggregatorRoute;
-    bqr_razorpay?: AggregatorRoute;
-    ccavenue?: AggregatorRoute;
-    epaylater?: AggregatorRoute;
-    fynd?: AggregatorRoute;
-    jiopay?: AggregatorRoute;
-    juspay?: AggregatorRoute;
-    mswipe?: AggregatorRoute;
-    payubiz?: AggregatorRoute;
-    razorpay?: AggregatorRoute;
-    rupifi?: AggregatorRoute;
-    simpl?: AggregatorRoute;
-    stripe?: AggregatorRoute;
-};
 /** @returns {PaymentGatewayConfig} */
 declare function PaymentGatewayConfig(): PaymentGatewayConfig;
 type PaymentGatewayConfig = {
@@ -2480,7 +1878,7 @@ type PaymentGatewayConfig = {
      */
     config_type: string;
     /**
-     * - Enable or Disable Flag
+     * - Enable/ Disable Flag
      */
     is_active?: boolean;
     /**
@@ -2505,7 +1903,7 @@ type PaymentGatewayConfigRequest = {
      */
     app_id: string;
     /**
-     * - Enable or Disable Flag
+     * - Enable/ Disable Flag
      */
     is_active?: boolean;
 };
@@ -2678,35 +2076,6 @@ type PaymentInitializationResponse = {
      */
     vpa?: string;
 };
-/** @returns {PaymentMethodsMetaOrder} */
-declare function PaymentMethodsMetaOrder(): PaymentMethodsMetaOrder;
-type PaymentMethodsMetaOrder = {
-    /**
-     * - Merchant code
-     */
-    merchant_code: string;
-    /**
-     * - Payment gateway name
-     */
-    payment_gateway: string;
-    /**
-     * - Payment identifier
-     */
-    payment_identifier: string;
-};
-/** @returns {PaymentModeCustomConfigSchema} */
-declare function PaymentModeCustomConfigSchema(): PaymentModeCustomConfigSchema;
-type PaymentModeCustomConfigSchema = {
-    /**
-     * - The business unit to which the store belongs.
-     */
-    business_unit: string;
-    custom_config: PaymentCustomConfigDetailsSchema;
-    /**
-     * - The display name of the store.
-     */
-    display_name: string;
-};
 /** @returns {PaymentModeList} */
 declare function PaymentModeList(): PaymentModeList;
 type PaymentModeList = {
@@ -2820,7 +2189,10 @@ type PaymentModeList = {
      * - Intent_flow
      */
     intent_flow?: boolean;
-    logo_url?: PaymentModeLogo;
+    /**
+     * - Logo
+     */
+    logo_url?: any;
     /**
      * - Merchant code
      */
@@ -2833,7 +2205,10 @@ type PaymentModeList = {
      * - Nickname
      */
     nickname?: string;
-    product_cod_data?: ProductCODData;
+    /**
+     * - Product cod configurations.
+     */
+    product_cod_data?: any;
     /**
      * - Remaining limit
      */
@@ -2859,23 +2234,6 @@ type PaymentModeLogo = {
      */
     small: string;
 };
-/** @returns {PaymentModeRouteResponse} */
-declare function PaymentModeRouteResponse(): PaymentModeRouteResponse;
-type PaymentModeRouteResponse = {
-    /**
-     * - Advance Payment Array
-     */
-    advance_payment?: AdvancePaymentObject[];
-    /**
-     * - Payment Breakup for advance payment
-     */
-    payment_breakup?: any;
-    payment_options: PaymentOptionAndFlow;
-    /**
-     * - Response is successful or not
-     */
-    success: boolean;
-};
 /** @returns {PaymentObjectListSerializer} */
 declare function PaymentObjectListSerializer(): PaymentObjectListSerializer;
 type PaymentObjectListSerializer = {
@@ -2898,15 +2256,6 @@ type PaymentObjectListSerializer = {
     refunded_by: string;
     user_object: any;
 };
-/** @returns {PaymentOptionAndFlow} */
-declare function PaymentOptionAndFlow(): PaymentOptionAndFlow;
-type PaymentOptionAndFlow = {
-    payment_flows: PaymentFlow;
-    /**
-     * - Payment options
-     */
-    payment_option: RootPaymentMode[];
-};
 /** @returns {PaymentOptions} */
 declare function PaymentOptions(): PaymentOptions;
 type PaymentOptions = {
@@ -2919,119 +2268,11 @@ type PaymentOptions = {
 declare function PaymentOptionsResponse(): PaymentOptionsResponse;
 type PaymentOptionsResponse = {
     /**
-     * - Payment Breakup for advance payment
+     * - Payment options
      */
-    payment_breakup?: any;
     payment_options: PaymentOptions;
     /**
      * - Response is successful or not
-     */
-    success: boolean;
-};
-/** @returns {PaymentOrderData} */
-declare function PaymentOrderData(): PaymentOrderData;
-type PaymentOrderData = {
-    /**
-     * - Aggregator name
-     */
-    aggregator?: string;
-    /**
-     * - Amount
-     */
-    amount?: number;
-    /**
-     * - Callback url for aggregator
-     */
-    callback_url?: string;
-    /**
-     * - Mobile number
-     */
-    contact?: string;
-    /**
-     * - Currency
-     */
-    currency?: string;
-    /**
-     * - Aggregator customer id
-     */
-    customer_id?: string;
-    /**
-     * - Email
-     */
-    email?: string;
-    /**
-     * - Merchant order id
-     */
-    merchant_order_id?: string;
-    /**
-     * - Method
-     */
-    method?: string;
-    /**
-     * - Aggregator order id
-     */
-    order_id?: string;
-};
-/** @returns {PaymentOrderMethods} */
-declare function PaymentOrderMethods(): PaymentOrderMethods;
-type PaymentOrderMethods = {
-    /**
-     * - Amount to be collected
-     */
-    amount: number;
-    meta: PaymentMethodsMetaOrder;
-    /**
-     * - Payment mode
-     */
-    mode: string;
-    /**
-     * - Payment mode name
-     */
-    name: string;
-    /**
-     * - Payment type i.e. Required / Blocked
-     */
-    payment?: string;
-};
-/** @returns {PaymentOrderRequest} */
-declare function PaymentOrderRequest(): PaymentOrderRequest;
-type PaymentOrderRequest = {
-    /**
-     * - Order id
-     */
-    order_id: string;
-    payment_methods?: PaymentOrderMethods[];
-    /**
-     * - Shipment_id
-     */
-    shipment_id?: string;
-};
-/** @returns {PaymentOrderResponse} */
-declare function PaymentOrderResponse(): PaymentOrderResponse;
-type PaymentOrderResponse = {
-    /**
-     * - Callback url for aggregator
-     */
-    callback_url?: string;
-    data?: PaymentOrderData;
-    /**
-     * - Message
-     */
-    message: string;
-    /**
-     * - Merchant order id
-     */
-    order_id?: string;
-    /**
-     * - Payment confirm url for aggregator
-     */
-    payment_confirm_url?: string;
-    /**
-     * - HTTP status code
-     */
-    status_code: number;
-    /**
-     * - Successful or failure
      */
     success: boolean;
 };
@@ -3092,7 +2333,7 @@ type PaymentSessionDetail = {
      */
     gid: string;
     /**
-     * - Optional kind of purchase or payment - one time
+     * - Optional kind of purchase/payment - one time
      * payment (sale) or subcription. defaults to sale.
      */
     kind?: string;
@@ -3104,10 +2345,6 @@ type PaymentSessionDetail = {
      * - Merchant's locale
      */
     merchant_locale?: string;
-    /**
-     * - Metadata
-     */
-    meta?: any;
     /**
      * - Test or live, test mode uses test credentials so
      * that actual payment is not created.
@@ -3193,37 +2430,6 @@ type PaymentSessionResponseSerializer = {
     status: string;
     /**
      * - Amount paid.
-     */
-    total_amount: number;
-};
-/** @returns {PaymentSessionSerializer} */
-declare function PaymentSessionSerializer(): PaymentSessionSerializer;
-type PaymentSessionSerializer = {
-    cart_details?: CartDetailsSerializer;
-    /**
-     * - The currency of the payment.
-     */
-    currency?: string;
-    /**
-     * - Global identifier of the entity (e.g. order, cart
-     * etc.) against which payment_session was initiated. This is generated by
-     * Fynd payments platform and is unique.
-     */
-    gid: string;
-    /**
-     * - Object of payment details
-     */
-    payment_details: any;
-    /**
-     * - Object of refund details
-     */
-    refund_details: RefundDetailsSerializer[];
-    /**
-     * - The status of the payment session.
-     */
-    status: string;
-    /**
-     * - Total amount to be paid
      */
     total_amount: number;
 };
@@ -3333,6 +2539,9 @@ type PaymentStatusUpdateResponse = {
 /** @returns {Payout} */
 declare function Payout(): Payout;
 type Payout = {
+    /**
+     * - Customers details object
+     */
     customers: PayoutCustomer;
     /**
      * - Enable/DIsable Flag Payout
@@ -3342,6 +2551,9 @@ type Payout = {
      * - Default or not
      */
     is_default: boolean;
+    /**
+     * - Bank details object
+     */
     more_attributes: PayoutMoreAttributes;
     payouts_aggregators?: PayoutAggregator[];
     /**
@@ -3419,7 +2631,7 @@ type PayoutMoreAttributes = {
      */
     account_no?: string;
     /**
-     * - Account Type Saving or Current
+     * - Account Type Saving/Current
      */
     account_type?: string;
     /**
@@ -3454,9 +2666,12 @@ type PayoutRequest = {
      * - Aggregator Name
      */
     aggregator: string;
+    /**
+     * - Payout bank details object
+     */
     bank_details: PayoutBankDetails;
     /**
-     * - Enable or Disable Flag Payout
+     * - Enable/Disable Flag Payout
      */
     is_active: boolean;
     /**
@@ -3488,7 +2703,7 @@ type PayoutResponse = {
      */
     created: boolean;
     /**
-     * - Enable or DIsable Flag Payout
+     * - Enable/DIsable Flag Payout
      */
     is_active: boolean;
     /**
@@ -3525,28 +2740,6 @@ type PayoutsResponse = {
     items: Payout[];
     /**
      * - Response is successful or not
-     */
-    success: boolean;
-};
-/** @returns {PlatformPaymentModeCopyConfigRequest} */
-declare function PlatformPaymentModeCopyConfigRequest(): PlatformPaymentModeCopyConfigRequest;
-type PlatformPaymentModeCopyConfigRequest = {
-    from_config: FromConfig;
-    to_config: ToConfig;
-};
-/** @returns {PlatformPaymentModeResponse} */
-declare function PlatformPaymentModeResponse(): PlatformPaymentModeResponse;
-type PlatformPaymentModeResponse = {
-    /**
-     * - List of all aggregator and payment mode details.
-     */
-    items?: any[];
-    /**
-     * - Message
-     */
-    message?: string;
-    /**
-     * - Response is successful or not.
      */
     success: boolean;
 };
@@ -3597,7 +2790,10 @@ type PollingPaymentLinkResponse = {
 /** @returns {ProductCODData} */
 declare function ProductCODData(): ProductCODData;
 type ProductCODData = {
-    cod_charges?: CODChargesLimitsResponse;
+    /**
+     * - Cod charges and its allowed limits.
+     */
+    cod_charges?: any;
     /**
      * - Item id with its cod availability.
      */
@@ -3619,34 +2815,6 @@ type RefundAccountResponse = {
      * - Success or failure flag.
      */
     success: boolean;
-};
-/** @returns {RefundDetailsSerializer} */
-declare function RefundDetailsSerializer(): RefundDetailsSerializer;
-type RefundDetailsSerializer = {
-    /**
-     * - Refunded amount
-     */
-    amount: number;
-    /**
-     * - Timestamp in epoch.
-     */
-    created: string;
-    /**
-     * - The currency of the payment.
-     */
-    currency: string;
-    /**
-     * - Unique refund utr generated by payment gateway.
-     */
-    refund_utr: string;
-    /**
-     * - Refund request id, unique id generated by Fynd platform
-     */
-    request_id: string;
-    /**
-     * - The status of the refund.
-     */
-    status: string;
 };
 /** @returns {RefundPriorityRequestSerializer} */
 declare function RefundPriorityRequestSerializer(): RefundPriorityRequestSerializer;
@@ -3745,17 +2913,12 @@ type RefundSessionRequestSerializer = {
      * - The currency of the payment.
      */
     currency: string;
-    error?: ErrorDescription;
     /**
      * - Global identifier of the entity (e.g. order, cart
      * etc.) against which payment_session was initiated. This is generated by
      * Fynd payments platform and is unique.
      */
     gid: string;
-    /**
-     * - The status of the refund.
-     */
-    message?: string;
     /**
      * - Meta
      */
@@ -3912,6 +3075,9 @@ type ResendOrCancelPaymentRequest = {
 /** @returns {ResendOrCancelPaymentResponse} */
 declare function ResendOrCancelPaymentResponse(): ResendOrCancelPaymentResponse;
 type ResendOrCancelPaymentResponse = {
+    /**
+     * - Data about link action status.
+     */
     data: LinkStatus;
     /**
      * - Response is successful or not.
@@ -4039,22 +3205,6 @@ type SetCODOptionResponse = {
      */
     success: boolean;
 };
-/** @returns {SplitObject} */
-declare function SplitObject(): SplitObject;
-type SplitObject = {
-    /**
-     * - Amount pending to be paid
-     */
-    amount_remaining?: number;
-    /**
-     * - Number of splits remaining
-     */
-    splits_remaining?: number;
-    /**
-     * - Maximum amount of splits allowed
-     */
-    total_number_of_splits?: number;
-};
 /** @returns {StatisticsData} */
 declare function StatisticsData(): StatisticsData;
 type StatisticsData = {
@@ -4095,27 +3245,15 @@ type SubscriptionPaymentMethodResponse = {
      */
     success: boolean;
 };
-/** @returns {ToConfig} */
-declare function ToConfig(): ToConfig;
-type ToConfig = {
-    /**
-     * - Business unit name
-     */
-    business_unit: string;
-    /**
-     * - Device name to copy the config to
-     */
-    device: any[];
-};
 /** @returns {UpdatePayoutRequest} */
 declare function UpdatePayoutRequest(): UpdatePayoutRequest;
 type UpdatePayoutRequest = {
     /**
-     * - Enable or Disable Flag Payout
+     * - Enable/Disable Flag Payout
      */
     is_active: boolean;
     /**
-     * - Enable or Disable Default Payout
+     * - Enable/Disable Default Payout
      */
     is_default: boolean;
     /**
@@ -4127,11 +3265,11 @@ type UpdatePayoutRequest = {
 declare function UpdatePayoutResponse(): UpdatePayoutResponse;
 type UpdatePayoutResponse = {
     /**
-     * - Enable or DIsable Flag Payout
+     * - Enable/DIsable Flag Payout
      */
     is_active: boolean;
     /**
-     * - Enable or Disable Default Payout
+     * - Enable/Disable Default Payout
      */
     is_default: boolean;
     /**

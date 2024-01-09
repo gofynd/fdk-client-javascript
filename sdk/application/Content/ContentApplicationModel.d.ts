@@ -136,66 +136,10 @@ export = ContentApplicationModel;
  * @property {string} [start]
  */
 /**
- * @typedef CustomFieldSchema
- * @property {string} [_id]
- * @property {string} [application_id]
- * @property {string} [company_id]
- * @property {string} [created_at]
- * @property {string} [created_by]
- * @property {string} [creator]
- * @property {string} [definition_id]
- * @property {boolean} [has_invalid_values]
- * @property {Object[]} [invalid_value_errors]
- * @property {boolean} [is_deleted]
- * @property {string} [key]
- * @property {boolean} [multi_value]
- * @property {string} [namespace]
- * @property {string} [resource]
- * @property {string} [resource_id]
- * @property {string} [type]
- * @property {string} [updated_at]
- * @property {CustomFieldValue[]} [value]
- */
-/**
- * @typedef CustomFieldsResponseByResourceIdSchema
- * @property {CustomFieldSchema[]} [items]
- */
-/**
- * @typedef CustomFieldValue
- * @property {Object} [value]
- */
-/**
  * @typedef CustomMetaTag
  * @property {string} [_id]
  * @property {string} [content]
  * @property {string} [name]
- */
-/**
- * @typedef CustomObjectByIdSchema
- * @property {string} [_id]
- * @property {CustomObjectListItemDefinationSchema} [definition]
- * @property {string} [display_name]
- * @property {CustomObjectFieldSchema[]} [fields]
- * @property {Object[]} [references]
- * @property {string} [status]
- */
-/**
- * @typedef CustomObjectFieldSchema
- * @property {string} [_id]
- * @property {string} [definition_id]
- * @property {string} [key]
- * @property {string} [type]
- * @property {CustomObjectFieldValue[]} [value]
- */
-/**
- * @typedef CustomObjectFieldValue
- * @property {Object} [value]
- */
-/**
- * @typedef CustomObjectListItemDefinationSchema
- * @property {string} [_id]
- * @property {string} [name]
- * @property {string} [type]
  */
 /**
  * @typedef DataLoaderSchema
@@ -411,18 +355,9 @@ export = ContentApplicationModel;
  */
 /**
  * @typedef SEO
- * @property {SEObreadcrumb[]} [breadcrumb]
- * @property {string} [canonical_url]
  * @property {string} [description]
  * @property {SEOImage} [image]
- * @property {SEOMetaItem[]} [meta_tags]
- * @property {SEOSitemap} [sitemap]
  * @property {string} [title]
- */
-/**
- * @typedef SEObreadcrumb
- * @property {Action} [action]
- * @property {string} [url]
  */
 /**
  * @typedef SeoComponent
@@ -433,19 +368,8 @@ export = ContentApplicationModel;
  * @property {string} [url]
  */
 /**
- * @typedef SEOMetaItem
- * @property {SEOMetaItems[]} [items]
- * @property {string} [title]
- */
-/**
- * @typedef SEOMetaItems
- * @property {string} [key]
- * @property {string} [value]
- */
-/**
  * @typedef SeoSchema
  * @property {string} [_id]
- * @property {string} [additonal_sitemap]
  * @property {string} [app]
  * @property {boolean} [cannonical_enabled]
  * @property {string} [created_at]
@@ -454,27 +378,6 @@ export = ContentApplicationModel;
  * @property {string} [robots_txt]
  * @property {boolean} [sitemap_enabled]
  * @property {string} [updated_at]
- */
-/**
- * @typedef SeoSchemaComponent
- * @property {SEOSchemaMarkupTemplate[]} [items]
- */
-/**
- * @typedef SEOSchemaMarkupTemplate
- * @property {boolean} [active]
- * @property {string} [application]
- * @property {string} [created_at]
- * @property {string} [description]
- * @property {string} [id]
- * @property {string} [page_type]
- * @property {string} [schema]
- * @property {string} [title]
- * @property {string} [updated_at]
- */
-/**
- * @typedef SEOSitemap
- * @property {string} [frequency]
- * @property {number} [priority]
  */
 /**
  * @typedef SlideshowGetResponse
@@ -588,7 +491,7 @@ export = ContentApplicationModel;
 declare class ContentApplicationModel {
 }
 declare namespace ContentApplicationModel {
-    export { Action, ActionPage, AnnouncementSchema, AnnouncementsResponseSchema, ApplicationLegal, ApplicationLegalFAQ, Asset, Author, BlogGetResponse, BlogSchema, CategorySchema, ChildrenSchema, CommonError, ConfigurationSchema, ContactSchema, ContentAPIError, CreatedBySchema, CronSchedule, CustomFieldSchema, CustomFieldsResponseByResourceIdSchema, CustomFieldValue, CustomMetaTag, CustomObjectByIdSchema, CustomObjectFieldSchema, CustomObjectFieldValue, CustomObjectListItemDefinationSchema, DataLoaderSchema, DataLoaderSourceSchema, DataLoadersSchema, DateMeta, Detail, EmailProperties, EmailSchema, FAQCategorySchema, FaqResponseSchema, FaqSchema, GetFaqCategoriesSchema, GetFaqCategoryBySlugSchema, GetFaqSchema, LandingPageSchema, Language, LocaleLanguage, NavigationGetResponse, NavigationReference, NavigationSchema, NextSchedule, Orientation, Page, PageGetResponse, PageSchema, PhoneProperties, PhoneSchema, ResourceContent, ScheduleSchema, ScheduleStartSchema, SEO, SEObreadcrumb, SeoComponent, SEOImage, SEOMetaItem, SEOMetaItems, SeoSchema, SeoSchemaComponent, SEOSchemaMarkupTemplate, SEOSitemap, SlideshowGetResponse, SlideshowMedia, SlideshowSchema, Support, TagSchema, TagSourceSchema, TagsSchema, PageType };
+    export { Action, ActionPage, AnnouncementSchema, AnnouncementsResponseSchema, ApplicationLegal, ApplicationLegalFAQ, Asset, Author, BlogGetResponse, BlogSchema, CategorySchema, ChildrenSchema, CommonError, ConfigurationSchema, ContactSchema, ContentAPIError, CreatedBySchema, CronSchedule, CustomMetaTag, DataLoaderSchema, DataLoaderSourceSchema, DataLoadersSchema, DateMeta, Detail, EmailProperties, EmailSchema, FAQCategorySchema, FaqResponseSchema, FaqSchema, GetFaqCategoriesSchema, GetFaqCategoryBySlugSchema, GetFaqSchema, LandingPageSchema, Language, LocaleLanguage, NavigationGetResponse, NavigationReference, NavigationSchema, NextSchedule, Orientation, Page, PageGetResponse, PageSchema, PhoneProperties, PhoneSchema, ResourceContent, ScheduleSchema, ScheduleStartSchema, SEO, SeoComponent, SEOImage, SeoSchema, SlideshowGetResponse, SlideshowMedia, SlideshowSchema, Support, TagSchema, TagSourceSchema, TagsSchema, PageType };
 }
 /** @returns {Action} */
 declare function Action(): Action;
@@ -750,75 +653,12 @@ type CronSchedule = {
     end?: string;
     start?: string;
 };
-/** @returns {CustomFieldSchema} */
-declare function CustomFieldSchema(): CustomFieldSchema;
-type CustomFieldSchema = {
-    _id?: string;
-    application_id?: string;
-    company_id?: string;
-    created_at?: string;
-    created_by?: string;
-    creator?: string;
-    definition_id?: string;
-    has_invalid_values?: boolean;
-    invalid_value_errors?: any[];
-    is_deleted?: boolean;
-    key?: string;
-    multi_value?: boolean;
-    namespace?: string;
-    resource?: string;
-    resource_id?: string;
-    type?: string;
-    updated_at?: string;
-    value?: CustomFieldValue[];
-};
-/** @returns {CustomFieldsResponseByResourceIdSchema} */
-declare function CustomFieldsResponseByResourceIdSchema(): CustomFieldsResponseByResourceIdSchema;
-type CustomFieldsResponseByResourceIdSchema = {
-    items?: CustomFieldSchema[];
-};
-/** @returns {CustomFieldValue} */
-declare function CustomFieldValue(): CustomFieldValue;
-type CustomFieldValue = {
-    value?: any;
-};
 /** @returns {CustomMetaTag} */
 declare function CustomMetaTag(): CustomMetaTag;
 type CustomMetaTag = {
     _id?: string;
     content?: string;
     name?: string;
-};
-/** @returns {CustomObjectByIdSchema} */
-declare function CustomObjectByIdSchema(): CustomObjectByIdSchema;
-type CustomObjectByIdSchema = {
-    _id?: string;
-    definition?: CustomObjectListItemDefinationSchema;
-    display_name?: string;
-    fields?: CustomObjectFieldSchema[];
-    references?: any[];
-    status?: string;
-};
-/** @returns {CustomObjectFieldSchema} */
-declare function CustomObjectFieldSchema(): CustomObjectFieldSchema;
-type CustomObjectFieldSchema = {
-    _id?: string;
-    definition_id?: string;
-    key?: string;
-    type?: string;
-    value?: CustomObjectFieldValue[];
-};
-/** @returns {CustomObjectFieldValue} */
-declare function CustomObjectFieldValue(): CustomObjectFieldValue;
-type CustomObjectFieldValue = {
-    value?: any;
-};
-/** @returns {CustomObjectListItemDefinationSchema} */
-declare function CustomObjectListItemDefinationSchema(): CustomObjectListItemDefinationSchema;
-type CustomObjectListItemDefinationSchema = {
-    _id?: string;
-    name?: string;
-    type?: string;
 };
 /** @returns {DataLoaderSchema} */
 declare function DataLoaderSchema(): DataLoaderSchema;
@@ -1067,19 +907,9 @@ type ScheduleStartSchema = {
 /** @returns {SEO} */
 declare function SEO(): SEO;
 type SEO = {
-    breadcrumb?: SEObreadcrumb[];
-    canonical_url?: string;
     description?: string;
     image?: SEOImage;
-    meta_tags?: SEOMetaItem[];
-    sitemap?: SEOSitemap;
     title?: string;
-};
-/** @returns {SEObreadcrumb} */
-declare function SEObreadcrumb(): SEObreadcrumb;
-type SEObreadcrumb = {
-    action?: Action;
-    url?: string;
 };
 /** @returns {SeoComponent} */
 declare function SeoComponent(): SeoComponent;
@@ -1091,23 +921,10 @@ declare function SEOImage(): SEOImage;
 type SEOImage = {
     url?: string;
 };
-/** @returns {SEOMetaItem} */
-declare function SEOMetaItem(): SEOMetaItem;
-type SEOMetaItem = {
-    items?: SEOMetaItems[];
-    title?: string;
-};
-/** @returns {SEOMetaItems} */
-declare function SEOMetaItems(): SEOMetaItems;
-type SEOMetaItems = {
-    key?: string;
-    value?: string;
-};
 /** @returns {SeoSchema} */
 declare function SeoSchema(): SeoSchema;
 type SeoSchema = {
     _id?: string;
-    additonal_sitemap?: string;
     app?: string;
     cannonical_enabled?: boolean;
     created_at?: string;
@@ -1116,30 +933,6 @@ type SeoSchema = {
     robots_txt?: string;
     sitemap_enabled?: boolean;
     updated_at?: string;
-};
-/** @returns {SeoSchemaComponent} */
-declare function SeoSchemaComponent(): SeoSchemaComponent;
-type SeoSchemaComponent = {
-    items?: SEOSchemaMarkupTemplate[];
-};
-/** @returns {SEOSchemaMarkupTemplate} */
-declare function SEOSchemaMarkupTemplate(): SEOSchemaMarkupTemplate;
-type SEOSchemaMarkupTemplate = {
-    active?: boolean;
-    application?: string;
-    created_at?: string;
-    description?: string;
-    id?: string;
-    page_type?: string;
-    schema?: string;
-    title?: string;
-    updated_at?: string;
-};
-/** @returns {SEOSitemap} */
-declare function SEOSitemap(): SEOSitemap;
-type SEOSitemap = {
-    frequency?: string;
-    priority?: number;
 };
 /** @returns {SlideshowGetResponse} */
 declare function SlideshowGetResponse(): SlideshowGetResponse;

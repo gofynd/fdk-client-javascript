@@ -51,7 +51,7 @@ declare class Order {
      * @summary: Get details of an order
      * @description: Use this API to retrieve order details such as tracking details, shipment, store information using Fynd Order ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getOrderById/).
      */
-    getOrderById({ orderId, allowInactive, requestHeaders }?: OrderApplicationValidator.GetOrderByIdParam, { responseHeaders }?: object): Promise<OrderApplicationModel.OrderById>;
+    getOrderById({ orderId, requestHeaders }?: OrderApplicationValidator.GetOrderByIdParam, { responseHeaders }?: object): Promise<OrderApplicationModel.OrderById>;
     /**
      * @param {OrderApplicationValidator.GetOrdersParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -61,7 +61,7 @@ declare class Order {
      * @summary: Get all orders
      * @description: Use this API to retrieve all the orders. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getOrders/).
      */
-    getOrders({ status, pageNo, pageSize, fromDate, toDate, startDate, endDate, customMeta, requestHeaders, }?: OrderApplicationValidator.GetOrdersParam, { responseHeaders }?: object): Promise<OrderApplicationModel.OrderList>;
+    getOrders({ status, pageNo, pageSize, fromDate, toDate, customMeta, requestHeaders, }?: OrderApplicationValidator.GetOrdersParam, { responseHeaders }?: object): Promise<OrderApplicationModel.OrderList>;
     /**
      * @param {OrderApplicationValidator.GetPosOrderByIdParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -91,7 +91,7 @@ declare class Order {
      * @summary: Get details of a shipment
      * @description: Use this API to retrieve shipment details such as price breakup, tracking details, store information, etc. using Shipment ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getShipmentById/).
      */
-    getShipmentById({ shipmentId, allowInactive, requestHeaders }?: OrderApplicationValidator.GetShipmentByIdParam, { responseHeaders }?: object): Promise<OrderApplicationModel.ShipmentById>;
+    getShipmentById({ shipmentId, requestHeaders }?: OrderApplicationValidator.GetShipmentByIdParam, { responseHeaders }?: object): Promise<OrderApplicationModel.ShipmentById>;
     /**
      * @param {OrderApplicationValidator.GetShipmentReasonsParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

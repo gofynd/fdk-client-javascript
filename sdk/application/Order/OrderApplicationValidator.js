@@ -20,7 +20,6 @@ const OrderApplicationModel = require("./OrderApplicationModel");
  * @typedef GetOrderByIdParam
  * @property {string} orderId - A unique number used for identifying and
  *   tracking your orders.
- * @property {boolean} [allowInactive] - Flag to allow inactive shipments
  */
 
 /**
@@ -33,8 +32,6 @@ const OrderApplicationModel = require("./OrderApplicationModel");
  *   Default value is 10.
  * @property {string} [fromDate] - The date from which the orders should be retrieved.
  * @property {string} [toDate] - The date till which the orders should be retrieved.
- * @property {string} [startDate] - UTC Start Date in ISO format
- * @property {string} [endDate] - UTC Start Date in ISO format
  * @property {string} [customMeta] - A filter and retrieve data using special
  *   fields included for special use-cases
  */
@@ -58,7 +55,6 @@ const OrderApplicationModel = require("./OrderApplicationModel");
  * @property {string} shipmentId - ID of the shipment. An order may contain
  *   multiple items and may get divided into one or more shipment, each having
  *   its own ID.
- * @property {boolean} [allowInactive] - Flag to allow inactive shipments
  */
 
 /**
@@ -122,7 +118,6 @@ class OrderApplicationValidator {
   static getOrderById() {
     return Joi.object({
       orderId: Joi.string().allow("").required(),
-      allowInactive: Joi.boolean(),
     }).required();
   }
 
@@ -134,8 +129,6 @@ class OrderApplicationValidator {
       pageSize: Joi.number(),
       fromDate: Joi.string().allow(""),
       toDate: Joi.string().allow(""),
-      startDate: Joi.string().allow(""),
-      endDate: Joi.string().allow(""),
       customMeta: Joi.string().allow(""),
     });
   }
@@ -159,7 +152,6 @@ class OrderApplicationValidator {
   static getShipmentById() {
     return Joi.object({
       shipmentId: Joi.string().allow("").required(),
-      allowInactive: Joi.boolean(),
     }).required();
   }
 

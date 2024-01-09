@@ -13,29 +13,19 @@ Default
 * [archiveUser](#archiveuser)
 * [blockOrUnblockUsers](#blockorunblockusers)
 * [createUser](#createuser)
-* [createUserAttributeDefinition](#createuserattributedefinition)
 * [createUserGroup](#createusergroup)
 * [createUserSession](#createusersession)
 * [deleteActiveSessions](#deleteactivesessions)
 * [deleteSession](#deletesession)
-* [deleteUserAttribute](#deleteuserattribute)
-* [deleteUserAttributeDefinitionById](#deleteuserattributedefinitionbyid)
 * [getActiveSessions](#getactivesessions)
 * [getCustomers](#getcustomers)
 * [getPlatformConfig](#getplatformconfig)
-* [getUserAttribute](#getuserattribute)
-* [getUserAttributeById](#getuserattributebyid)
-* [getUserAttributeDefinitionById](#getuserattributedefinitionbyid)
-* [getUserAttributeDefinitions](#getuserattributedefinitions)
-* [getUserAttributesForUser](#getuserattributesforuser)
 * [getUserGroupById](#getusergroupbyid)
 * [getUserGroups](#getusergroups)
 * [searchUsers](#searchusers)
 * [unDeleteUser](#undeleteuser)
 * [updatePlatformConfig](#updateplatformconfig)
 * [updateUser](#updateuser)
-* [updateUserAttribute](#updateuserattribute)
-* [updateUserAttributeDefinition](#updateuserattributedefinition)
 * [updateUserGroup](#updateusergroup)
 * [updateUserGroupPartially](#updateusergrouppartially)
 
@@ -259,84 +249,6 @@ User create
 ---
 
 
-### createUserAttributeDefinition
-Create a User Attribute Definition
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").user.createUserAttributeDefinition({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").user.createUserAttributeDefinition({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CreateUserAttributeDefinition](#CreateUserAttributeDefinition) | yes | Request body |
-
-
-Use this API to areate a new User Attribute Definition
-
-*Returned Response:*
-
-
-
-
-[UserAttributeDefinitionResponse](#UserAttributeDefinitionResponse)
-
-Success. returns created User Attribute Definition. `UserAttributeDefinitionResponse` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "_id": "5e68af49cfa09bf7233022f1",
-  "name": "example_name",
-  "slug": "example_key",
-  "description": "example_description",
-  "application_id": "application_id_example",
-  "type": "string",
-  "multi_value": false,
-  "customer_editable": true,
-  "encrypted": false,
-  "pinned": true,
-  "pin_order": 2,
-  "validations": [
-    {
-      "type": "min",
-      "value": 1
-    }
-  ],
-  "is_locked": false,
-  "created_by": "5f6d1d7774e48a04969b2ea7",
-  "updated_by": "5f6d1d7774e48a04969b2ea7",
-  "created_at": "2023-10-17T10:00:00Z",
-  "modified_at": "2023-10-17T10:05:00Z"
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### createUserGroup
 Create an User Group
 
@@ -356,7 +268,7 @@ const data = await platformClient.application("<APPLICATION_ID>").user.createUse
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
-| body | [CreateUserGroup](#CreateUserGroup) | yes | Request body |
+| body | [CreateUserGroupSchema](#CreateUserGroupSchema) | yes | Request body |
 
 
 Use this API to create new user Group
@@ -378,17 +290,16 @@ Success. returns created User Group. `UserGroupResponseSchema` for more details.
 
 ```json
 {
-  "uid": 469,
-  "name": "test2",
-  "description": "test2",
-  "application_id": "000000000000000000000004",
-  "status": "pending",
   "is_active": true,
-  "type": "bulk",
-  "_id": "6540da9759b4f70ad817ace7",
-  "file_url": "testuerl2",
-  "created_at": "2023-10-31T10:44:39.809Z",
-  "modified_at": "2023-10-31T10:44:39.809Z",
+  "_id": "6345677535474fbb6944b7ce",
+  "name": "Group 1",
+  "description": "description",
+  "file_url": "url",
+  "status": "pending",
+  "uid": 1,
+  "application_id": "000000000000000000000001",
+  "created_at": "2022-10-11T12:54:13.539Z",
+  "modified_at": "2022-10-11T12:54:13.539Z",
   "__v": 0
 }
 ```
@@ -614,121 +525,6 @@ Success. Refer `SessionDeleteResponseSchema` for more details.
 ---
 
 
-### deleteUserAttribute
-delete User Attribute
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").user.deleteUserAttribute({  attributeDefId : value,
- userId : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").user.deleteUserAttribute({  attributeDefId : value,
- userId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| attributeDefId | string | yes | The unique identifier of the attribute definition. |   
-| userId | string | yes | The unique identifier of the user. |  
-
-
-
-delete User Attribute
-
-*Returned Response:*
-
-
-
-
-[SuccessMessageResponse](#SuccessMessageResponse)
-
-Successful update
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### deleteUserAttributeDefinitionById
-Delete User Attribute Definition
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").user.deleteUserAttributeDefinitionById({  attributeDefId : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").user.deleteUserAttributeDefinitionById({  attributeDefId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| attributeDefId | string | yes | The unique identifier of the attribute definition to delete. |  
-
-
-
-Delete a user attribute definition by its unique identifier.
-
-*Returned Response:*
-
-
-
-
-[SuccessMessageResponse](#SuccessMessageResponse)
-
-Successful Deletion
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getActiveSessions
 Get a list of all session with info for a user
 
@@ -833,7 +629,7 @@ const data = await platformClient.application("<APPLICATION_ID>").user.getCustom
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| q | string | no | The search query. Mobile number or email ID of a customer. |    
+| q | Object | no | The search query. Mobile number or email ID of a customer. |    
 | pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |    
 | pageNo | number | no | The page number to navigate through the given set of results. Default value is 1.  |  
 
@@ -1059,325 +855,6 @@ Success. Returns a JSON object containing the all the platform configurations. R
 ---
 
 
-### getUserAttribute
-get User Attribute
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").user.getUserAttribute({  attributeDefId : value,
- userId : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").user.getUserAttribute({  attributeDefId : value,
- userId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| attributeDefId | string | yes | The unique identifier of the attribute definition. |   
-| userId | string | yes | The unique identifier of the user. |  
-
-
-
-get User Attribute
-
-*Returned Response:*
-
-
-
-
-[UserAttributeResponse](#UserAttributeResponse)
-
-Successful update
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getUserAttributeById
-Get User Attribute
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").user.getUserAttributeById({  attributeId : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").user.getUserAttributeById({  attributeId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| attributeId | string | yes | The unique identifier of the attribute to get. |  
-
-
-
-Get User Attribute details by id
-
-*Returned Response:*
-
-
-
-
-[UserAttributeResponse](#UserAttributeResponse)
-
-Successful update
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getUserAttributeDefinitionById
-Get User Attribute Definition
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").user.getUserAttributeDefinitionById({  attributeDefId : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").user.getUserAttributeDefinitionById({  attributeDefId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| attributeDefId | string | yes | The unique identifier of the attribute definition to retrieve. |  
-
-
-
-Get a user attribute definition by its unique identifier.
-
-*Returned Response:*
-
-
-
-
-[UserAttributeDefinition](#UserAttributeDefinition)
-
-Successful Retrieval
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getUserAttributeDefinitions
-Get User Attribute Definitions
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").user.getUserAttributeDefinitions({  excludingIds : value,
- slug : value,
- type : value,
- customerEditable : value,
- encrypted : value,
- pinned : value,
- pinOrder : value,
- isLocked : value,
- name : value,
- pageSize : value,
- pageNo : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").user.getUserAttributeDefinitions({  excludingIds : value,
- slug : value,
- type : value,
- customerEditable : value,
- encrypted : value,
- pinned : value,
- pinOrder : value,
- isLocked : value,
- name : value,
- pageSize : value,
- pageNo : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| excludingIds | string | no | Exclude attribute definitions by Ids |    
-| slug | string | no | Filter by attribute slug. |    
-| type | string | no | Filter by attribute type. |    
-| customerEditable | boolean | no | Filter by customer_editable status. |    
-| encrypted | boolean | no | Filter by encrypted status. |    
-| pinned | boolean | no | Filter by pinned status. |    
-| pinOrder | number | no | Filter by pin order. |    
-| isLocked | boolean | no | Filter by locked status. |    
-| name | string | no | Filter by attribute name using a case-insensitive regex. |    
-| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |    
-| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1.  |  
-
-
-
-Retrieve user attribute definitions.
-
-*Returned Response:*
-
-
-
-
-[Object](#Object)
-
-Successful response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getUserAttributesForUser
-Get User Attributes for user
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").user.getUserAttributesForUser({  userId : value,
- pageSize : value,
- pageNo : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").user.getUserAttributesForUser({  userId : value,
- pageSize : value,
- pageNo : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| userId | string | yes | The unique identifier of the user to update. |    
-| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |    
-| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1.  |  
-
-
-
-Get all user attributes for user
-
-*Returned Response:*
-
-
-
-
-[Object](#Object)
-
-Successful update
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getUserGroupById
 Get an User Group by Id
 
@@ -1456,7 +933,6 @@ Get User Groups mathcing criteria
 const promise = platformClient.application("<APPLICATION_ID>").user.getUserGroups({  pageNo : value,
  pageSize : value,
  name : value,
- type : value,
  status : value,
  groupUid : value });
 
@@ -1464,7 +940,6 @@ const promise = platformClient.application("<APPLICATION_ID>").user.getUserGroup
 const data = await platformClient.application("<APPLICATION_ID>").user.getUserGroups({  pageNo : value,
  pageSize : value,
  name : value,
- type : value,
  status : value,
  groupUid : value });
 ```
@@ -1477,8 +952,7 @@ const data = await platformClient.application("<APPLICATION_ID>").user.getUserGr
 | --------- | -----  | -------- | ----------- |  
 | pageNo | string | no | page number for pagination result |    
 | pageSize | string | no | page size for pagination result |    
-| name | string | no | to search for User Groups which contains given string in their name |    
-| type | string | no | to search for User Groups with given type |    
+| name | string | no | to seartch for User Groups which contains given string in their name |    
 | status | string | no | to get User Groups with given status |    
 | groupUid | number | no | to get User Groups with given uid |  
 
@@ -1505,31 +979,29 @@ Success. User Group details. `UserGroupListResponseSchema` for more details.
 {
   "items": [
     {
-      "uid": 469,
-      "name": "test2",
-      "description": "test2",
-      "application_id": "000000000000000000000004",
-      "status": "pending",
       "is_active": true,
-      "type": "bulk",
-      "_id": "6540da9759b4f70ad817ace7",
-      "file_url": "testuerl2",
-      "created_at": "2023-10-31T10:44:39.809Z",
-      "modified_at": "2023-10-31T10:44:39.809Z",
+      "_id": "6345677535474fbb6944b7ce",
+      "name": "Group 1",
+      "description": "description",
+      "file_url": "url",
+      "status": "pending",
+      "uid": 1,
+      "application_id": "000000000000000000000001",
+      "created_at": "2022-10-11T12:54:13.539Z",
+      "modified_at": "2022-10-11T12:54:13.539Z",
       "__v": 0
     },
     {
-      "uid": 460,
-      "name": "test",
-      "description": "test",
-      "application_id": "000000000000000000000004",
-      "status": "pending",
       "is_active": true,
-      "type": "bulk",
-      "_id": "6540da9759b4f70ad817ace8",
-      "file_url": "testuerl2",
-      "created_at": "2023-10-31T10:44:39.809Z",
-      "modified_at": "2023-10-31T10:44:39.809Z",
+      "_id": "6345677535474fbb6944b7ced",
+      "name": "Group 2",
+      "description": "description",
+      "file_url": "url2",
+      "status": "pending",
+      "uid": 1,
+      "application_id": "000000000000000000000001",
+      "created_at": "2022-10-11T12:54:13.539Z",
+      "modified_at": "2022-10-11T12:54:13.539Z",
       "__v": 0
     }
   ],
@@ -1949,125 +1421,6 @@ User update
 ---
 
 
-### updateUserAttribute
-Update Or Create User Attribute
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").user.updateUserAttribute({  attributeDefId : value,
- userId : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").user.updateUserAttribute({  attributeDefId : value,
- userId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| attributeDefId | string | yes | The unique identifier of the attribute definition to update. |   
-| userId | string | yes | The unique identifier of the user to update. |  
-| body | [CreateUserAttributeRequest](#CreateUserAttributeRequest) | yes | Request body |
-
-
-Update Or Create User Attribute
-
-*Returned Response:*
-
-
-
-
-[UserAttributeResponse](#UserAttributeResponse)
-
-Successful update
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateUserAttributeDefinition
-Update User Attribute Definition
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").user.updateUserAttributeDefinition({  attributeDefId : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").user.updateUserAttributeDefinition({  attributeDefId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| attributeDefId | string | yes | The unique identifier of the attribute definition to update. |  
-| body | [CreateUserAttributeDefinition](#CreateUserAttributeDefinition) | yes | Request body |
-
-
-Update an existing user attribute definition.
-
-*Returned Response:*
-
-
-
-
-[UserAttributeDefinition](#UserAttributeDefinition)
-
-Successful update
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### updateUserGroup
 Update an User Group
 
@@ -2112,17 +1465,16 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
 ```json
 {
-  "uid": 469,
-  "name": "test2",
-  "description": "test2",
-  "application_id": "000000000000000000000004",
-  "status": "pending",
   "is_active": true,
-  "type": "bulk",
-  "_id": "6540da9759b4f70ad817ace7",
-  "file_url": "testuerl2",
-  "created_at": "2023-10-31T10:44:39.809Z",
-  "modified_at": "2023-10-31T10:44:39.809Z",
+  "_id": "6345677535474fbb6944b7ce",
+  "name": "Group 1",
+  "description": "description",
+  "file_url": "url",
+  "status": "pending",
+  "uid": 1,
+  "application_id": "000000000000000000000001",
+  "created_at": "2022-10-11T12:54:13.539Z",
+  "modified_at": "2022-10-11T12:54:13.539Z",
   "__v": 0
 }
 ```
@@ -2270,67 +1622,13 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
 ---
 
-#### [Conditions](#Conditions)
+#### [CreateUserGroupSchema](#CreateUserGroupSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | key | string? |  yes  |  |
- | type | string? |  yes  |  |
- | user_attribute_definition_id | string? |  yes  |  |
- | value | string? |  yes  |  |
- 
-
----
-
-#### [ConditionsSchema](#ConditionsSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string? |  yes  |  |
- | user_attribute_definition_id | string? |  yes  |  |
- | value | string? |  yes  |  |
- 
-
----
-
-#### [CreateUserAttributeDefinition](#CreateUserAttributeDefinition)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | customer_editable | boolean? |  yes  |  |
- | default_value | string? |  yes  |  |
- | description | string? |  yes  |  |
- | encrypted | boolean? |  yes  |  |
- | multi_value | boolean? |  yes  |  |
- | name | string? |  yes  |  |
- | pin_order | number? |  yes  |  |
- | pinned | boolean? |  yes  |  |
- | slug | string? |  yes  |  |
- | type | string? |  yes  |  |
- | validations | [string]? |  yes  |  |
- 
-
----
-
-#### [CreateUserAttributeRequest](#CreateUserAttributeRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | attribute | string? |  yes  |  |
- | customer_overriden | boolean? |  yes  |  |
- 
-
----
-
-#### [CreateUserGroup](#CreateUserGroup)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | conditions | [[ConditionsSchema](#ConditionsSchema)]? |  yes  |  |
  | description | string |  no  |  |
- | file_url | string? |  yes  |  |
+ | file_url | string |  no  |  |
  | name | string |  no  |  |
- | type | string? |  yes  |  |
  
 
 ---
@@ -2692,15 +1990,6 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
 ---
 
-#### [SuccessMessageResponse](#SuccessMessageResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | string? |  yes  |  |
- 
-
----
-
 #### [UnDeleteUserRequestSchema](#UnDeleteUserRequestSchema)
 
  | Properties | Type | Nullable | Description |
@@ -2725,11 +2014,9 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | conditions | [[ConditionsSchema](#ConditionsSchema)]? |  yes  |  |
  | description | string? |  yes  |  |
  | file_url | string? |  yes  |  |
  | name | string? |  yes  |  |
- | type | string? |  yes  |  |
  
 
 ---
@@ -2745,81 +2032,6 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
  | last_name | string? |  yes  |  |
  | meta | string? |  yes  |  |
  | phone_numbers | [[UserPhoneNumbers](#UserPhoneNumbers)]? |  yes  |  |
- 
-
----
-
-#### [UserAttributeDefinition](#UserAttributeDefinition)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | __v | number? |  yes  | The version number of the attribute. |
- | _id | string? |  yes  | The unique identifier for the attribute definition. |
- | application_id | string? |  yes  | The application ID. |
- | created_at | string? |  yes  | The creation date of the attribute. |
- | customer_editable | boolean? |  yes  | Whether the attribute is customer-editable. |
- | description | string? |  yes  | The description of the attribute. |
- | encrypted | boolean? |  yes  | Whether the attribute is encrypted. |
- | is_locked | boolean? |  yes  | Whether the attribute is locked. |
- | modified_at | string? |  yes  | The modification date of the attribute. |
- | multi_value | boolean? |  yes  | Whether the attribute supports multiple values. |
- | name | string? |  yes  | The attribute name. |
- | pin_order | number? |  yes  | The order in which the attribute is pinned. |
- | pinned | boolean? |  yes  | Whether the attribute is pinned. |
- | slug | string? |  yes  | The attribute key. |
- | type | string? |  yes  | The attribute type. |
- | validations | [string]? |  yes  |  |
- 
-
----
-
-#### [UserAttributeDefinitionResponse](#UserAttributeDefinitionResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  | The unique identifier for the attribute definition. |
- | application_id | string? |  yes  | The application ID. |
- | created_at | string? |  yes  | The creation date of the attribute definition. |
- | created_by | string? |  yes  | The user who created the attribute. |
- | customer_editable | boolean? |  yes  | Whether the attribute is customer-editable. |
- | description | string? |  yes  | The description of the attribute. |
- | encrypted | boolean? |  yes  | Whether the attribute is encrypted. |
- | is_locked | boolean? |  yes  | Whether the attribute is locked. |
- | modified_at | string? |  yes  | The last modification date of the attribute definition. |
- | multi_value | boolean? |  yes  | Whether the attribute supports multiple values. |
- | name | string? |  yes  | The attribute name. |
- | pin_order | number? |  yes  | The order in which the attribute is pinned. |
- | pinned | boolean? |  yes  | Whether the attribute is pinned. |
- | slug | string? |  yes  | The attribute key. |
- | type | string? |  yes  | The attribute type. |
- | updated_by | string? |  yes  | The user who last updated the attribute. |
- | validations | [[UserAttributeDefinitionValidation](#UserAttributeDefinitionValidation)]? |  yes  |  |
- 
-
----
-
-#### [UserAttributeDefinitionValidation](#UserAttributeDefinitionValidation)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | type | string? |  yes  | The type of validation. |
- | value | any? |  yes  | The validation value. |
- 
-
----
-
-#### [UserAttributeResponse](#UserAttributeResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  | The unique identifier for the attribute definition. |
- | application_id | string? |  yes  | The application ID. |
- | attribute | string? |  yes  |  |
- | customer_overriden | boolean? |  yes  | Whether the attribute is customer-editable. |
- | name | string? |  yes  | The name of user attribute definition. |
- | type | string? |  yes  | The attribute type. |
- | updated_by | string? |  yes  |  |
- | user_id | string? |  yes  | The unique identifier for the user. |
  
 
 ---
@@ -2853,16 +2065,12 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
  | __v | number? |  yes  |  |
  | _id | string? |  yes  |  |
  | application_id | string? |  yes  |  |
- | conditions | [[Conditions](#Conditions)]? |  yes  |  |
  | created_at | string? |  yes  |  |
  | description | string? |  yes  |  |
- | error | [UserResponseErrorSchema](#UserResponseErrorSchema)? |  yes  |  |
  | file_url | string? |  yes  |  |
- | is_active | boolean? |  yes  |  |
  | modified_at | string? |  yes  |  |
  | name | string? |  yes  |  |
  | status | string? |  yes  |  |
- | type | string? |  yes  |  |
  | uid | number? |  yes  |  |
  
 
@@ -2889,16 +2097,6 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
  | phone | string? |  yes  |  |
  | primary | boolean? |  yes  |  |
  | verified | boolean? |  yes  |  |
- 
-
----
-
-#### [UserResponseErrorSchema](#UserResponseErrorSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | count | number? |  yes  |  |
- | file_url | string? |  yes  |  |
  
 
 ---

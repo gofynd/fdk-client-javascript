@@ -1,5 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const {
+  FDKClientValidationError,
+  FDKResponseValidationError,
+} = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
 const RewardsPlatformApplicationValidator = require("./RewardsPlatformApplicationValidator");
 const RewardsPlatformModel = require("./RewardsPlatformModel");

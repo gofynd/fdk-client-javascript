@@ -1,5 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const {
+  FDKClientValidationError,
+  FDKResponseValidationError,
+} = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
 const ServiceabilityPlatformApplicationValidator = require("./ServiceabilityPlatformApplicationValidator");
 const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
@@ -13,107 +16,23 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformApplicationValidator.CreateCourierPartnerRuleParam} arg
-   *   - Arg object
-   *
+   * @param {ServiceabilityPlatformApplicationValidator.AddAppDpParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRule>} -
-   *   Success response
-   * @name createCourierPartnerRule
-   * @summary: Create Courier Rules.
-   * @description: Creates Courier Rules with rule configuration and dp priority - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createCourierPartnerRule/).
-   */
-  async createCourierPartnerRule(
-    { body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ServiceabilityPlatformApplicationValidator.createCourierPartnerRule().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityPlatformApplicationValidator.createCourierPartnerRule().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Serviceability > createCourierPartnerRule \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/courier-partner/rules`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ServiceabilityPlatformModel.CourierPartnerRule().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Serviceability > createCourierPartnerRule \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ServiceabilityPlatformApplicationValidator.CreateStoreRulesParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.StoreRuleResponseSchema>}
+   * @returns {Promise<ServiceabilityPlatformModel.ApplicationCompanyDpViewResponse>}
    *   - Success response
    *
-   * @name createStoreRules
-   * @summary: Create Store Rule
-   * @description: Create Store Rule - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createStoreRules/).
+   * @name addAppDp
+   * @summary: Add application dp data
+   * @description: This API add application dp data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/addAppDp/).
    */
-  async createStoreRules(
+  async addAppDp(
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ServiceabilityPlatformApplicationValidator.createStoreRules().validate(
+    } = ServiceabilityPlatformApplicationValidator.addAppDp().validate(
       {
         body,
       },
@@ -126,7 +45,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityPlatformApplicationValidator.createStoreRules().validate(
+    } = ServiceabilityPlatformApplicationValidator.addAppDp().validate(
       {
         body,
       },
@@ -135,7 +54,7 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Serviceability > createStoreRules \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Serviceability > addAppDp \n ${warrning}`,
       });
     }
 
@@ -144,7 +63,7 @@ class Serviceability {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/store/rules`,
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}`,
       query_params,
       body,
       requestHeaders,
@@ -158,7 +77,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.StoreRuleResponseSchema().validate(
+    } = ServiceabilityPlatformModel.ApplicationCompanyDpViewResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -169,7 +88,7 @@ class Serviceability {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Serviceability > createStoreRules \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Serviceability > addAppDp \n ${res_error}`,
         });
       }
     }
@@ -178,25 +97,28 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformApplicationValidator.GetApplicationConfigParam} arg
+   * @param {ServiceabilityPlatformApplicationValidator.DeleteAppDpParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.StoreRuleConfigData>} -
-   *   Success response
-   * @name getApplicationConfig
-   * @summary: Get Application Configuration
-   * @description: Get Application Configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getApplicationConfig/).
+   * @returns {Promise<ServiceabilityPlatformModel.ApplicationCompanyDpViewResponse>}
+   *   - Success response
+   *
+   * @name deleteAppDp
+   * @summary: Delete application dp data
+   * @description: This API remove application dp data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/deleteAppDp/).
    */
-  async getApplicationConfig(
-    { requestHeaders } = { requestHeaders: {} },
+  async deleteAppDp(
+    { courierPartnerId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ServiceabilityPlatformApplicationValidator.getApplicationConfig().validate(
-      {},
+    } = ServiceabilityPlatformApplicationValidator.deleteAppDp().validate(
+      {
+        courierPartnerId,
+      },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -206,14 +128,16 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityPlatformApplicationValidator.getApplicationConfig().validate(
-      {},
+    } = ServiceabilityPlatformApplicationValidator.deleteAppDp().validate(
+      {
+        courierPartnerId,
+      },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Serviceability > getApplicationConfig \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Serviceability > deleteAppDp \n ${warrning}`,
       });
     }
 
@@ -221,8 +145,8 @@ class Serviceability {
 
     const response = await PlatformAPIClient.execute(
       this.config,
-      "get",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/store/configuration`,
+      "delete",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/courier-partner/${courierPartnerId}`,
       query_params,
       undefined,
       requestHeaders,
@@ -236,7 +160,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.StoreRuleConfigData().validate(
+    } = ServiceabilityPlatformModel.ApplicationCompanyDpViewResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -247,7 +171,7 @@ class Serviceability {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Serviceability > getApplicationConfig \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Serviceability > deleteAppDp \n ${res_error}`,
         });
       }
     }
@@ -256,24 +180,25 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformApplicationValidator.GetApplicationConfigurationParam} arg
+   * @param {ServiceabilityPlatformApplicationValidator.GetApplicationServiceabilityParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.ApplicationConfig>} -
-   *   Success response
-   * @name getApplicationConfiguration
-   * @summary: Get All Courier Rules applied to application
-   * @description: This API returns all the Courier Rules applied to an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getApplicationConfiguration/).
+   * @returns {Promise<ServiceabilityPlatformModel.ApplicationServiceabilityConfigResponse>}
+   *   - Success response
+   *
+   * @name getApplicationServiceability
+   * @summary: Zone configuration of application.
+   * @description: This API returns serviceability config of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getApplicationServiceability/).
    */
-  async getApplicationConfiguration(
+  async getApplicationServiceability(
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ServiceabilityPlatformApplicationValidator.getApplicationConfiguration().validate(
+    } = ServiceabilityPlatformApplicationValidator.getApplicationServiceability().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -284,14 +209,14 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityPlatformApplicationValidator.getApplicationConfiguration().validate(
+    } = ServiceabilityPlatformApplicationValidator.getApplicationServiceability().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Serviceability > getApplicationConfiguration \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Serviceability > getApplicationServiceability \n ${warrning}`,
       });
     }
 
@@ -300,7 +225,7 @@ class Serviceability {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/configuration`,
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/serviceability`,
       query_params,
       undefined,
       requestHeaders,
@@ -314,10 +239,10 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.ApplicationConfig().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = ServiceabilityPlatformModel.ApplicationServiceabilityConfigResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -325,7 +250,7 @@ class Serviceability {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Serviceability > getApplicationConfiguration \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Serviceability > getApplicationServiceability \n ${res_error}`,
         });
       }
     }
@@ -334,7 +259,86 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformApplicationValidator.GetApplicationServiceabilitySelfShipmentParam} arg
+   * @param {ServiceabilityPlatformApplicationValidator.GetDpApplicationRulesParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<ServiceabilityPlatformModel.DPApplicationRuleResponse>}
+   *   - Success response
+   *
+   * @name getDpApplicationRules
+   * @summary: Get All DpApplicationRules rules added at application level from database.
+   * @description: This API returns response of all rules of DpApplicationRules from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getDpApplicationRules/).
+   */
+  async getDpApplicationRules(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ServiceabilityPlatformApplicationValidator.getDpApplicationRules().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ServiceabilityPlatformApplicationValidator.getDpApplicationRules().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Serviceability > getDpApplicationRules \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/courier/priority`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ServiceabilityPlatformModel.DPApplicationRuleResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Serviceability > getDpApplicationRules \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ServiceabilityPlatformApplicationValidator.GetSelfShipParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -342,17 +346,17 @@ class Serviceability {
    * @returns {Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>}
    *   - Success response
    *
-   * @name getApplicationServiceabilitySelfShipment
+   * @name getSelfShip
    * @summary: Self-ship configuration of application.
-   * @description: This API returns Self-ship configuration of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getApplicationServiceabilitySelfShipment/).
+   * @description: This API returns Self-ship configuration of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getSelfShip/).
    */
-  async getApplicationServiceabilitySelfShipment(
+  async getSelfShip(
     { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ServiceabilityPlatformApplicationValidator.getApplicationServiceabilitySelfShipment().validate(
+    } = ServiceabilityPlatformApplicationValidator.getSelfShip().validate(
       {},
       { abortEarly: false, allowUnknown: true }
     );
@@ -363,14 +367,14 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityPlatformApplicationValidator.getApplicationServiceabilitySelfShipment().validate(
+    } = ServiceabilityPlatformApplicationValidator.getSelfShip().validate(
       {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Serviceability > getApplicationServiceabilitySelfShipment \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Serviceability > getSelfShip \n ${warrning}`,
       });
     }
 
@@ -404,7 +408,7 @@ class Serviceability {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Serviceability > getApplicationServiceabilitySelfShipment \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Serviceability > getSelfShip \n ${res_error}`,
         });
       }
     }
@@ -413,368 +417,25 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformApplicationValidator.GetCourierPartnerRuleParam} arg
+   * @param {ServiceabilityPlatformApplicationValidator.GetZoneFromPincodeViewParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRule>} -
-   *   Success response
-   * @name getCourierPartnerRule
-   * @summary: Fetch of Courier Rule.
-   * @description: This API returns Courier Rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCourierPartnerRule/).
-   */
-  async getCourierPartnerRule(
-    { ruleId, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ServiceabilityPlatformApplicationValidator.getCourierPartnerRule().validate(
-      {
-        ruleId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityPlatformApplicationValidator.getCourierPartnerRule().validate(
-      {
-        ruleId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Serviceability > getCourierPartnerRule \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/courier-partner/rules/${ruleId}`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ServiceabilityPlatformModel.CourierPartnerRule().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Serviceability > getCourierPartnerRule \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ServiceabilityPlatformApplicationValidator.GetCourierPartnerRulesParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRulesListResponse>}
+   * @returns {Promise<ServiceabilityPlatformModel.GetZoneFromPincodeViewResponse>}
    *   - Success response
    *
-   * @name getCourierPartnerRules
-   * @summary: Fetch Courier Rules List
-   * @description: This API returns Courier Rules List - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCourierPartnerRules/).
+   * @name getZoneFromPincodeView
+   * @summary: GET zone from the Pincode.
+   * @description: This API returns zone from the Pincode View. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getZoneFromPincodeView/).
    */
-  async getCourierPartnerRules(
-    { pageNo, pageSize, status, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ServiceabilityPlatformApplicationValidator.getCourierPartnerRules().validate(
-      {
-        pageNo,
-        pageSize,
-        status,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityPlatformApplicationValidator.getCourierPartnerRules().validate(
-      {
-        pageNo,
-        pageSize,
-        status,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Serviceability > getCourierPartnerRules \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["status"] = status;
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/courier-partner/rules`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ServiceabilityPlatformModel.CourierPartnerRulesListResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Serviceability > getCourierPartnerRules \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ServiceabilityPlatformApplicationValidator.GetStoreRuleParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.StoreRuleDataSchema>} -
-   *   Success response
-   * @name getStoreRule
-   * @summary: Get Single Store Rule
-   * @description: Get Single Store Rule - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getStoreRule/).
-   */
-  async getStoreRule(
-    { ruleUid, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ServiceabilityPlatformApplicationValidator.getStoreRule().validate(
-      {
-        ruleUid,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityPlatformApplicationValidator.getStoreRule().validate(
-      {
-        ruleUid,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Serviceability > getStoreRule \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/store/rules/${ruleUid}`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ServiceabilityPlatformModel.StoreRuleDataSchema().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Serviceability > getStoreRule \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ServiceabilityPlatformApplicationValidator.GetStoreRulesParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.GetStoreRulesApiResponse>}
-   *   - Success response
-   *
-   * @name getStoreRules
-   * @summary: Get Multiple Store Rules
-   * @description: Get Multiple Store Rules - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getStoreRules/).
-   */
-  async getStoreRules(
-    { pageNo, pageSize, status, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ServiceabilityPlatformApplicationValidator.getStoreRules().validate(
-      {
-        pageNo,
-        pageSize,
-        status,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityPlatformApplicationValidator.getStoreRules().validate(
-      {
-        pageNo,
-        pageSize,
-        status,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Serviceability > getStoreRules \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["status"] = status;
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/store/rules`,
-      query_params,
-      undefined,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ServiceabilityPlatformModel.GetStoreRulesApiResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Serviceability > getStoreRules \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ServiceabilityPlatformApplicationValidator.InsertApplicationConfigParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.StoreRuleConfigData>} -
-   *   Success response
-   * @name insertApplicationConfig
-   * @summary: Insert Application Configuration
-   * @description: Insert Application Configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/insertApplicationConfig/).
-   */
-  async insertApplicationConfig(
+  async getZoneFromPincodeView(
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ServiceabilityPlatformApplicationValidator.insertApplicationConfig().validate(
+    } = ServiceabilityPlatformApplicationValidator.getZoneFromPincodeView().validate(
       {
         body,
       },
@@ -787,7 +448,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityPlatformApplicationValidator.insertApplicationConfig().validate(
+    } = ServiceabilityPlatformApplicationValidator.getZoneFromPincodeView().validate(
       {
         body,
       },
@@ -796,7 +457,7 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Serviceability > insertApplicationConfig \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Serviceability > getZoneFromPincodeView \n ${warrning}`,
       });
     }
 
@@ -805,7 +466,7 @@ class Serviceability {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/store/configuration`,
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/zones`,
       query_params,
       body,
       requestHeaders,
@@ -819,7 +480,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.StoreRuleConfigData().validate(
+    } = ServiceabilityPlatformModel.GetZoneFromPincodeViewResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -830,7 +491,7 @@ class Serviceability {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Serviceability > insertApplicationConfig \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Serviceability > getZoneFromPincodeView \n ${res_error}`,
         });
       }
     }
@@ -839,27 +500,30 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformApplicationValidator.PatchApplicationServiceabilitySelfShipmentParam} arg
+   * @param {ServiceabilityPlatformApplicationValidator.GetZonesFromApplicationIdViewParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>}
+   * @returns {Promise<ServiceabilityPlatformModel.GetZoneFromApplicationIdViewResponse>}
    *   - Success response
    *
-   * @name patchApplicationServiceabilitySelfShipment
-   * @summary: Self-ship configuration of application.
-   * @description: This API updates Self-ship configuration of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/patchApplicationServiceabilitySelfShipment/).
+   * @name getZonesFromApplicationIdView
+   * @summary: GET zones from the application_id.
+   * @description: This API returns zones from the application_id View. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getZonesFromApplicationIdView/).
    */
-  async patchApplicationServiceabilitySelfShipment(
-    { body, requestHeaders } = { requestHeaders: {} },
+  async getZonesFromApplicationIdView(
+    { pageNo, pageSize, zoneId, q, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ServiceabilityPlatformApplicationValidator.patchApplicationServiceabilitySelfShipment().validate(
+    } = ServiceabilityPlatformApplicationValidator.getZonesFromApplicationIdView().validate(
       {
-        body,
+        pageNo,
+        pageSize,
+        zoneId,
+        q,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -870,27 +534,34 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityPlatformApplicationValidator.patchApplicationServiceabilitySelfShipment().validate(
+    } = ServiceabilityPlatformApplicationValidator.getZonesFromApplicationIdView().validate(
       {
-        body,
+        pageNo,
+        pageSize,
+        zoneId,
+        q,
       },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Serviceability > patchApplicationServiceabilitySelfShipment \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Serviceability > getZonesFromApplicationIdView \n ${warrning}`,
       });
     }
 
     const query_params = {};
+    query_params["page_no"] = pageNo;
+    query_params["page_size"] = pageSize;
+    query_params["zone_id"] = zoneId;
+    query_params["q"] = q;
 
     const response = await PlatformAPIClient.execute(
       this.config,
-      "patch",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/selfship`,
+      "get",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/zones`,
       query_params,
-      body,
+      undefined,
       requestHeaders,
       { responseHeaders }
     );
@@ -902,7 +573,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse().validate(
+    } = ServiceabilityPlatformModel.GetZoneFromApplicationIdViewResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -913,7 +584,7 @@ class Serviceability {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Serviceability > patchApplicationServiceabilitySelfShipment \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Serviceability > getZonesFromApplicationIdView \n ${res_error}`,
         });
       }
     }
@@ -922,24 +593,25 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformApplicationValidator.UpdateApplicationConfigurationParam} arg
+   * @param {ServiceabilityPlatformApplicationValidator.UpdateApplicationServiceabilityParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.ApplicationConfig>} -
-   *   Success response
-   * @name updateApplicationConfiguration
-   * @summary: Apply configuration to an application
-   * @description: Apply configuration to application to set DP rules and Zone configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateApplicationConfiguration/).
+   * @returns {Promise<ServiceabilityPlatformModel.ApplicationServiceabilityConfigResponse>}
+   *   - Success response
+   *
+   * @name updateApplicationServiceability
+   * @summary: Zone configuration of application.
+   * @description: This API updates serviceability config of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateApplicationServiceability/).
    */
-  async updateApplicationConfiguration(
+  async updateApplicationServiceability(
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ServiceabilityPlatformApplicationValidator.updateApplicationConfiguration().validate(
+    } = ServiceabilityPlatformApplicationValidator.updateApplicationServiceability().validate(
       {
         body,
       },
@@ -952,7 +624,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityPlatformApplicationValidator.updateApplicationConfiguration().validate(
+    } = ServiceabilityPlatformApplicationValidator.updateApplicationServiceability().validate(
       {
         body,
       },
@@ -961,7 +633,7 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Serviceability > updateApplicationConfiguration \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Serviceability > updateApplicationServiceability \n ${warrning}`,
       });
     }
 
@@ -969,8 +641,8 @@ class Serviceability {
 
     const response = await PlatformAPIClient.execute(
       this.config,
-      "put",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/configuration`,
+      "post",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/serviceability`,
       query_params,
       body,
       requestHeaders,
@@ -984,89 +656,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.ApplicationConfig().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Serviceability > updateApplicationConfiguration \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ServiceabilityPlatformApplicationValidator.UpdateCourierPartnerRulePriorityParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.RulePriorityResponse>} -
-   *   Success response
-   * @name updateCourierPartnerRulePriority
-   * @summary: Updates Courier Partner Rules Priority for a sales channel
-   * @description: Updates Courier Partner Rules Priority for a sales channel - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateCourierPartnerRulePriority/).
-   */
-  async updateCourierPartnerRulePriority(
-    { body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ServiceabilityPlatformApplicationValidator.updateCourierPartnerRulePriority().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityPlatformApplicationValidator.updateCourierPartnerRulePriority().validate(
-      {
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Serviceability > updateCourierPartnerRulePriority \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/courier-partner/rules/priority`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ServiceabilityPlatformModel.RulePriorityResponse().validate(
+    } = ServiceabilityPlatformModel.ApplicationServiceabilityConfigResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1077,91 +667,7 @@ class Serviceability {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Serviceability > updateCourierPartnerRulePriority \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {ServiceabilityPlatformApplicationValidator.UpdateCourierRuleParam} arg
-   *   - Arg object
-   *
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRule>} -
-   *   Success response
-   * @name updateCourierRule
-   * @summary: Updating of Courier Rule.
-   * @description: This API updates and returns Courier Rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateCourierRule/).
-   */
-  async updateCourierRule(
-    { ruleId, body, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = ServiceabilityPlatformApplicationValidator.updateCourierRule().validate(
-      {
-        ruleId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = ServiceabilityPlatformApplicationValidator.updateCourierRule().validate(
-      {
-        ruleId,
-        body,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Serviceability > updateCourierRule \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "put",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/courier-partner/rules/${ruleId}`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = ServiceabilityPlatformModel.CourierPartnerRule().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Serviceability > updateCourierRule \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Serviceability > updateApplicationServiceability \n ${res_error}`,
         });
       }
     }
@@ -1501,27 +1007,26 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformApplicationValidator.UpdateStoreRulesParam} arg
+   * @param {ServiceabilityPlatformApplicationValidator.UpdateSelfShipParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.StoreRuleUpdateResponseSchema>}
+   * @returns {Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>}
    *   - Success response
    *
-   * @name updateStoreRules
-   * @summary: Update Store Rule
-   * @description: Update Store Rule - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateStoreRules/).
+   * @name updateSelfShip
+   * @summary: Self-ship configuration of application.
+   * @description: This API updates Self-ship configuration of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateSelfShip/).
    */
-  async updateStoreRules(
-    { ruleUid, body, requestHeaders } = { requestHeaders: {} },
+  async updateSelfShip(
+    { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ServiceabilityPlatformApplicationValidator.updateStoreRules().validate(
+    } = ServiceabilityPlatformApplicationValidator.updateSelfShip().validate(
       {
-        ruleUid,
         body,
       },
       { abortEarly: false, allowUnknown: true }
@@ -1533,9 +1038,8 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityPlatformApplicationValidator.updateStoreRules().validate(
+    } = ServiceabilityPlatformApplicationValidator.updateSelfShip().validate(
       {
-        ruleUid,
         body,
       },
       { abortEarly: false, allowUnknown: false }
@@ -1543,7 +1047,7 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Serviceability > updateStoreRules \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Serviceability > updateSelfShip \n ${warrning}`,
       });
     }
 
@@ -1551,8 +1055,8 @@ class Serviceability {
 
     const response = await PlatformAPIClient.execute(
       this.config,
-      "put",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/store/rules/${ruleUid}`,
+      "patch",
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/selfship`,
       query_params,
       body,
       requestHeaders,
@@ -1566,7 +1070,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.StoreRuleUpdateResponseSchema().validate(
+    } = ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1577,7 +1081,7 @@ class Serviceability {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Serviceability > updateStoreRules \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Serviceability > updateSelfShip \n ${res_error}`,
         });
       }
     }
@@ -1586,24 +1090,25 @@ class Serviceability {
   }
 
   /**
-   * @param {ServiceabilityPlatformApplicationValidator.UpdateStoreRulesConfigParam} arg
+   * @param {ServiceabilityPlatformApplicationValidator.UpsertDpApplicationRulesParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<ServiceabilityPlatformModel.StoreRuleConfigData>} -
-   *   Success response
-   * @name updateStoreRulesConfig
-   * @summary: Update Store Rule Configuration
-   * @description: Update Store Rule Configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateStoreRulesConfig/).
+   * @returns {Promise<ServiceabilityPlatformModel.DPApplicationRuleResponse>}
+   *   - Success response
+   *
+   * @name upsertDpApplicationRules
+   * @summary: Upsert of DpApplicationRules in database.
+   * @description: This API returns response of upsert of DpApplicationRules in mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/upsertDpApplicationRules/).
    */
-  async updateStoreRulesConfig(
+  async upsertDpApplicationRules(
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
-    } = ServiceabilityPlatformApplicationValidator.updateStoreRulesConfig().validate(
+    } = ServiceabilityPlatformApplicationValidator.upsertDpApplicationRules().validate(
       {
         body,
       },
@@ -1616,7 +1121,7 @@ class Serviceability {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = ServiceabilityPlatformApplicationValidator.updateStoreRulesConfig().validate(
+    } = ServiceabilityPlatformApplicationValidator.upsertDpApplicationRules().validate(
       {
         body,
       },
@@ -1625,7 +1130,7 @@ class Serviceability {
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for platform > Serviceability > updateStoreRulesConfig \n ${warrning}`,
+        message: `Parameter Validation warrnings for platform > Serviceability > upsertDpApplicationRules \n ${warrning}`,
       });
     }
 
@@ -1634,7 +1139,7 @@ class Serviceability {
     const response = await PlatformAPIClient.execute(
       this.config,
       "put",
-      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/store/configuration`,
+      `/service/platform/logistics/v1.0/company/${this.config.companyId}/application/${this.applicationId}/courier/priority`,
       query_params,
       body,
       requestHeaders,
@@ -1648,7 +1153,7 @@ class Serviceability {
 
     const {
       error: res_error,
-    } = ServiceabilityPlatformModel.StoreRuleConfigData().validate(
+    } = ServiceabilityPlatformModel.DPApplicationRuleResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1659,7 +1164,7 @@ class Serviceability {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for platform > Serviceability > updateStoreRulesConfig \n ${res_error}`,
+          message: `Response Validation Warnings for platform > Serviceability > upsertDpApplicationRules \n ${res_error}`,
         });
       }
     }

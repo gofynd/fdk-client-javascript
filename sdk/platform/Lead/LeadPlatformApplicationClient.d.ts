@@ -24,25 +24,15 @@ declare class Lead {
      */
     createCustomForm({ body, requestHeaders }?: LeadPlatformApplicationValidator.CreateCustomFormParam, { responseHeaders }?: object): Promise<LeadPlatformModel.CustomForm>;
     /**
-     * @param {LeadPlatformApplicationValidator.CreateNewHistoryParam} arg - Arg object
+     * @param {LeadPlatformApplicationValidator.CreateHistoryParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<LeadPlatformModel.TicketHistory>} - Success response
-     * @name createNewHistory
+     * @name createHistory
      * @summary: Create history for specific application level ticket
-     * @description: Create history for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/createNewHistory/).
+     * @description: Create history for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/createHistory/).
      */
-    createNewHistory({ id, body, requestHeaders }?: LeadPlatformApplicationValidator.CreateNewHistoryParam, { responseHeaders }?: object): Promise<LeadPlatformModel.TicketHistory>;
-    /**
-     * @param {LeadPlatformApplicationValidator.DeleteCustomFormParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<LeadPlatformModel.CustomForm>} - Success response
-     * @name deleteCustomForm
-     * @summary: Delete a custom form
-     * @description: Delete a custom form using it's slug - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/deleteCustomForm/).
-     */
-    deleteCustomForm({ slug, requestHeaders }?: LeadPlatformApplicationValidator.DeleteCustomFormParam, { responseHeaders }?: object): Promise<LeadPlatformModel.CustomForm>;
+    createHistory({ id, body, requestHeaders }?: LeadPlatformApplicationValidator.CreateHistoryParam, { responseHeaders }?: object): Promise<LeadPlatformModel.TicketHistory>;
     /**
      * @param {LeadPlatformApplicationValidator.EditCustomFormParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -54,15 +44,15 @@ declare class Lead {
      */
     editCustomForm({ slug, body, requestHeaders }?: LeadPlatformApplicationValidator.EditCustomFormParam, { responseHeaders }?: object): Promise<LeadPlatformModel.CustomForm>;
     /**
-     * @param {LeadPlatformApplicationValidator.EditNewTicketParam} arg - Arg object
+     * @param {LeadPlatformApplicationValidator.EditTicketParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<LeadPlatformModel.Ticket>} - Success response
-     * @name editNewTicket
+     * @name editTicket
      * @summary: Edits ticket details of a application level ticket
-     * @description: Edits ticket details of a application level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/editNewTicket/).
+     * @description: Edits ticket details of a application level ticket such as status, priority, category, tags, attachments, assigne & ticket content changes - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/editTicket/).
      */
-    editNewTicket({ id, body, requestHeaders }?: LeadPlatformApplicationValidator.EditNewTicketParam, { responseHeaders }?: object): Promise<LeadPlatformModel.Ticket>;
+    editTicket({ id, body, requestHeaders }?: LeadPlatformApplicationValidator.EditTicketParam, { responseHeaders }?: object): Promise<LeadPlatformModel.Ticket>;
     /**
      * @param {LeadPlatformApplicationValidator.GetCustomFormParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -84,50 +74,50 @@ declare class Lead {
      */
     getCustomForms({ requestHeaders }?: any, { responseHeaders }?: object): Promise<LeadPlatformModel.CustomFormList>;
     /**
-     * @param {LeadPlatformApplicationValidator.GetNewTicketParam} arg - Arg object
+     * @param {LeadPlatformApplicationValidator.GetTicketParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<LeadPlatformModel.Ticket>} - Success response
-     * @name getNewTicket
+     * @name getTicket
      * @summary: Retreives ticket details of a application level ticket
-     * @description: Retreives ticket details of a application level ticket with ticket ID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getNewTicket/).
+     * @description: Retreives ticket details of a application level ticket with ticket ID - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getTicket/).
      */
-    getNewTicket({ id, requestHeaders }?: LeadPlatformApplicationValidator.GetNewTicketParam, { responseHeaders }?: object): Promise<LeadPlatformModel.Ticket>;
+    getTicket({ id, requestHeaders }?: LeadPlatformApplicationValidator.GetTicketParam, { responseHeaders }?: object): Promise<LeadPlatformModel.Ticket>;
     /**
-     * @param {LeadPlatformApplicationValidator.GetNewTicketHistoryParam} arg - Arg object
+     * @param {LeadPlatformApplicationValidator.GetTicketHistoryParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<LeadPlatformModel.TicketHistoryList>} - Success response
-     * @name getNewTicketHistory
+     * @name getTicketHistory
      * @summary: Gets history list for specific application level ticket
-     * @description: Gets history list for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getNewTicketHistory/).
+     * @description: Gets history list for specific application level ticket, this history is seen on ticket detail page, this can be comment, log or rating. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getTicketHistory/).
      */
-    getNewTicketHistory({ id, requestHeaders }?: LeadPlatformApplicationValidator.GetNewTicketHistoryParam, { responseHeaders }?: object): Promise<LeadPlatformModel.TicketHistoryList>;
+    getTicketHistory({ id, requestHeaders }?: LeadPlatformApplicationValidator.GetTicketHistoryParam, { responseHeaders }?: object): Promise<LeadPlatformModel.TicketHistoryList>;
     /**
-     * @param {LeadPlatformApplicationValidator.GetNewTicketsParam} arg - Arg object
+     * @param {LeadPlatformApplicationValidator.GetTicketsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<LeadPlatformModel.TicketList>} - Success response
-     * @name getNewTickets
+     * @name getTickets
      * @summary: Gets the list of Application level Tickets and/or ticket filters depending on query params
-     * @description: Gets the list of Application level Tickets and/or ticket filters - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getNewTickets/).
+     * @description: Gets the list of Application level Tickets and/or ticket filters - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getTickets/).
      */
-    getNewTickets({ items, filters, q, status, priority, category, requestHeaders }?: LeadPlatformApplicationValidator.GetNewTicketsParam, { responseHeaders }?: object): Promise<LeadPlatformModel.TicketList>;
+    getTickets({ items, filters, q, status, priority, category, requestHeaders }?: LeadPlatformApplicationValidator.GetTicketsParam, { responseHeaders }?: object): Promise<LeadPlatformModel.TicketList>;
     /**
-     * @param {LeadPlatformApplicationValidator.GetNewTokenForVideoRoomParam} arg
+     * @param {LeadPlatformApplicationValidator.GetTokenForVideoRoomParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
      * @returns {Promise<LeadPlatformModel.GetTokenForVideoRoomResponse>} -
      *   Success response
-     * @name getNewTokenForVideoRoom
+     * @name getTokenForVideoRoom
      * @summary: Get Token to join a specific Video Room using it's unqiue name
-     * @description: Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getNewTokenForVideoRoom/).
+     * @description: Get Token to join a specific Video Room using it's unqiue name, this Token is your ticket to Room and also creates your identity there. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getTokenForVideoRoom/).
      */
-    getNewTokenForVideoRoom({ uniqueName, requestHeaders }?: LeadPlatformApplicationValidator.GetNewTokenForVideoRoomParam, { responseHeaders }?: object): Promise<LeadPlatformModel.GetTokenForVideoRoomResponse>;
+    getTokenForVideoRoom({ uniqueName, requestHeaders }?: LeadPlatformApplicationValidator.GetTokenForVideoRoomParam, { responseHeaders }?: object): Promise<LeadPlatformModel.GetTokenForVideoRoomResponse>;
     /**
-     * @param {LeadPlatformApplicationValidator.GetNewVideoParticipantsParam} arg
+     * @param {LeadPlatformApplicationValidator.GetVideoParticipantsParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -135,11 +125,11 @@ declare class Lead {
      * @returns {Promise<LeadPlatformModel.GetParticipantsInsideVideoRoomResponse>}
      *   - Success response
      *
-     * @name getNewVideoParticipants
+     * @name getVideoParticipants
      * @summary: Get participants of a specific Video Room using it's unique name
-     * @description: Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getNewVideoParticipants/).
+     * @description: Get participants of a specific Video Room using it's unique name, this can be used to check if people are already there in the room and also to show their names. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/lead/getVideoParticipants/).
      */
-    getNewVideoParticipants({ uniqueName, requestHeaders }?: LeadPlatformApplicationValidator.GetNewVideoParticipantsParam, { responseHeaders }?: object): Promise<LeadPlatformModel.GetParticipantsInsideVideoRoomResponse>;
+    getVideoParticipants({ uniqueName, requestHeaders }?: LeadPlatformApplicationValidator.GetVideoParticipantsParam, { responseHeaders }?: object): Promise<LeadPlatformModel.GetParticipantsInsideVideoRoomResponse>;
     /**
      * @param {LeadPlatformApplicationValidator.OpenVideoRoomParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

@@ -1,5 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const {
+  FDKClientValidationError,
+  FDKResponseValidationError,
+} = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
 const CartPlatformApplicationValidator = require("./CartPlatformApplicationValidator");
 const CartPlatformModel = require("./CartPlatformModel");
@@ -1449,15 +1452,13 @@ class Cart {
    * @description: Use this API to get a list of available coupons along with their details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getAppCoupons/).
    */
   async getAppCoupons(
-    { id, buyNow, slug, storeId, requestHeaders } = { requestHeaders: {} },
+    { id, buyNow, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartPlatformApplicationValidator.getAppCoupons().validate(
       {
         id,
         buyNow,
-        slug,
-        storeId,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1472,8 +1473,6 @@ class Cart {
       {
         id,
         buyNow,
-        slug,
-        storeId,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1487,8 +1486,6 @@ class Cart {
     const query_params = {};
     query_params["id"] = id;
     query_params["buy_now"] = buyNow;
-    query_params["slug"] = slug;
-    query_params["store_id"] = storeId;
 
     const response = await PlatformAPIClient.execute(
       this.config,

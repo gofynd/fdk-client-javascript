@@ -325,7 +325,7 @@ const Joi = require("joi");
  * @property {CollectionQuery[]} [query]
  * @property {string} [slug]
  * @property {string} [sort_on]
- * @property {string[]} [tags]
+ * @property {string[]} [tag]
  * @property {string} [type]
  * @property {string} [uid]
  * @property {string[]} [visible_facets_keys]
@@ -1505,7 +1505,7 @@ class CatalogApplicationModel {
       query: Joi.array().items(CatalogApplicationModel.CollectionQuery()),
       slug: Joi.string().allow(""),
       sort_on: Joi.string().allow(""),
-      tags: Joi.array().items(Joi.string().allow("")),
+      tag: Joi.array().items(Joi.string().allow("")),
       type: Joi.string().allow(""),
       uid: Joi.string().allow(""),
       visible_facets_keys: Joi.array().items(Joi.string().allow("")),

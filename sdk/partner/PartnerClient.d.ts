@@ -14,10 +14,7 @@ declare class PartnerClient {
     constructor(config: import("./PartnerConfig"));
     config: import("./PartnerConfig");
     fileStorage: FileStorage;
-    lead: Lead;
-    logistics: Logistics;
     theme: Theme;
-    webhook: Webhook;
     /**
      * Sets the extra headers for the partner client.
      *
@@ -27,7 +24,4 @@ declare class PartnerClient {
     setExtraHeaders(header: object): void;
 }
 import FileStorage = require("./FileStorage/FileStoragePartnerClient");
-import Lead = require("./Lead/LeadPartnerClient");
-import Logistics = require("./Logistics/LogisticsPartnerClient");
 import Theme = require("./Theme/ThemePartnerClient");
-import Webhook = require("./Webhook/WebhookPartnerClient");

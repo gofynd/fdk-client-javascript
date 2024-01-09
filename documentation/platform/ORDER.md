@@ -11,23 +11,19 @@ Handles all platform order and shipment api(s)
 
 Default
 * [attachOrderUser](#attachorderuser)
-* [bulkListing](#bulklisting)
-* [bulkStateTransistion](#bulkstatetransistion)
 * [checkOrderStatus](#checkorderstatus)
 * [click2Call](#click2call)
 * [createChannelConfig](#createchannelconfig)
 * [createOrder](#createorder)
-* [dispatchManifests](#dispatchmanifests)
+* [dispatchManifest](#dispatchmanifest)
 * [downloadBulkActionTemplate](#downloadbulkactiontemplate)
 * [downloadLanesReport](#downloadlanesreport)
 * [eInvoiceRetry](#einvoiceretry)
-* [failedOrderLogDetails](#failedorderlogdetails)
-* [failedOrderLogs](#failedorderlogs)
 * [fetchCreditBalanceDetail](#fetchcreditbalancedetail)
 * [fetchRefundModeConfig](#fetchrefundmodeconfig)
+* [generateInvoiceID](#generateinvoiceid)
 * [generatePOSReceiptByOrderId](#generateposreceiptbyorderid)
 * [getAllowedStateTransition](#getallowedstatetransition)
-* [getAllowedTemplatesForBulk](#getallowedtemplatesforbulk)
 * [getAnnouncements](#getannouncements)
 * [getApplicationShipments](#getapplicationshipments)
 * [getBagById](#getbagbyid)
@@ -35,12 +31,7 @@ Default
 * [getBulkActionTemplate](#getbulkactiontemplate)
 * [getBulkShipmentExcelFile](#getbulkshipmentexcelfile)
 * [getChannelConfig](#getchannelconfig)
-* [getFileByStatus](#getfilebystatus)
 * [getLaneConfig](#getlaneconfig)
-* [getManifestDetails](#getmanifestdetails)
-* [getManifestShipments](#getmanifestshipments)
-* [getManifestfilters](#getmanifestfilters)
-* [getManifests](#getmanifests)
 * [getOrderById](#getorderbyid)
 * [getOrders](#getorders)
 * [getPlatformShipmentReasons](#getplatformshipmentreasons)
@@ -50,21 +41,12 @@ Default
 * [getShipmentHistory](#getshipmenthistory)
 * [getShipmentReasons](#getshipmentreasons)
 * [getShipments](#getshipments)
-* [getStateManagerStates](#getstatemanagerstates)
-* [getStateManagerTaskById](#getstatemanagertaskbyid)
-* [getStateManagerTasks](#getstatemanagertasks)
-* [getStateTransitionFilters](#getstatetransitionfilters)
-* [getStateTransitionFiltersById](#getstatetransitionfiltersbyid)
-* [getStateTransitionFlags](#getstatetransitionflags)
-* [getStateTransitionFlagsById](#getstatetransitionflagsbyid)
 * [getStateTransitionMap](#getstatetransitionmap)
-* [getTemplate](#gettemplate)
 * [getfilters](#getfilters)
 * [invalidateShipmentCache](#invalidateshipmentcache)
-* [jobDetails](#jobdetails)
 * [orderUpdate](#orderupdate)
 * [postShipmentHistory](#postshipmenthistory)
-* [processManifests](#processmanifests)
+* [processManifest](#processmanifest)
 * [reassignLocation](#reassignlocation)
 * [sendSmsNinja](#sendsmsninja)
 * [sendUserMobileOTP](#sendusermobileotp)
@@ -75,7 +57,7 @@ Default
 * [updateShipmentLock](#updateshipmentlock)
 * [updateShipmentStatus](#updateshipmentstatus)
 * [updateShipmentTracking](#updateshipmenttracking)
-* [uploadConsents](#uploadconsents)
+* [uploadConsent](#uploadconsent)
 * [verifyMobileOTP](#verifymobileotp)
 
 
@@ -129,371 +111,6 @@ Attach user to order
 ```json
 
 ```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### bulkListing
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.bulkListing({  pageSize : value,
- pageNo : value,
- startDate : value,
- endDate : value,
- status : value,
- bulkActionType : value,
- searchKey : value });
-
-// Async/Await
-const data = await platformClient.order.bulkListing({  pageSize : value,
- pageNo : value,
- startDate : value,
- endDate : value,
- status : value,
- bulkActionType : value,
- searchKey : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| pageSize | number | yes | page size |   
-| pageNo | number | yes | page number |   
-| startDate | string | yes | UTC start date in ISO format |   
-| endDate | string | yes | UTC end date in ISO format |    
-| status | string | no | status for which to fetch the jobs. |    
-| bulkActionType | string | no | job type. |    
-| searchKey | string | no | search_key. |  
-
-
-
-Fetches of previous or running  bulk jobs.
-
-
-*Returned Response:*
-
-
-
-
-[BulkListingResponse](#BulkListingResponse)
-
-Fetches Bulk Action Listing
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; BulkListingPartiallyCompletedEventSample</i></summary>
-
-```json
-{
-  "value": {
-    "success": true,
-    "page": [
-      {
-        "current": 1,
-        "has_previous": false,
-        "has_next": false,
-        "total": 1,
-        "item_total": 1,
-        "type": "number",
-        "size": 10
-      }
-    ],
-    "total_count": 1,
-    "data": [
-      {
-        "store_id": 1462,
-        "uploaded_on": "2023-09-05T15:01:28+00:00",
-        "company_id": 2,
-        "shipments_action_info": {
-          "label": [],
-          "invoice": [],
-          "failed_shipments": [
-            {
-              "16938979620571207303": "got error for tag_loops: Field cannot be empty."
-            }
-          ],
-          "processing_shipments": [],
-          "successful_shipments": [
-            "16939056920921266090",
-            "16939056919331910027"
-          ],
-          "invoiceable_shipments": [],
-          "failed_invoiced_shipments": {},
-          "processing_invoice_shipments": [],
-          "successful_invoiced_shipments": []
-        },
-        "is_invoiceable": false,
-        "user_name": "sonalnalawade_gofynd_com_18670",
-        "file_url": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/general/free/original/fTPuVwPj2-store_reassigned_and_placed_and__1462_1693905700.6916761.xlsx",
-        "meta": null,
-        "invoice_document_type": "",
-        "file_name": "store_reassigned_and_placed_and__1462_1693905700.6916761.xlsx",
-        "store_name": "DK Store",
-        "label_document_type": "",
-        "updated_ts": 1693906287,
-        "status": "PARTIALLY COMPLETED",
-        "store_code": "28",
-        "bulk_action_type": "order_processing",
-        "created_ts": "2023-09-12T06:05:53.395Z",
-        "invoice_status": "yet_to_initiate",
-        "do_invoice_label_generated": false,
-        "id": 340,
-        "user_id": "eaad334a6fc2a3f6fd004e88",
-        "last_selected_invoice_label_type": "a4",
-        "batch_id": "d2cd3858-a4f2-4faa-bb86-f7dbc228d277",
-        "uploaded_by": null,
-        "failed_sh_count": 1,
-        "successful_sh_count": 2,
-        "total_count": 3,
-        "failed_shipments": [
-          {
-            "16938979620571207303": "got error for tag_loops: Field cannot be empty."
-          }
-        ],
-        "successful_invoiced_count": 0,
-        "failed_invoiced_count": 0,
-        "total_invoiced_count": 0
-      }
-    ]
-  }
-}
-```
-</details>
-
-<details>
-<summary><i>&nbsp; BulkListingCompletedEventSample</i></summary>
-
-```json
-{
-  "value": {
-    "success": true,
-    "page": {
-      "current": 1,
-      "has_previous": false,
-      "has_next": false,
-      "total": 1,
-      "item_total": 1,
-      "type": "number",
-      "size": 10
-    },
-    "total_count": 1,
-    "data": [
-      {
-        "store_id": 2,
-        "uploaded_on": "2023-09-07T13:10:14+00:00",
-        "company_id": 2,
-        "shipments_action_info": {
-          "label": [],
-          "invoice": [],
-          "failed_shipments": [],
-          "processing_shipments": [],
-          "successful_shipments": [
-            "16940656109321358201",
-            "16940123806821572491"
-          ],
-          "invoiceable_shipments": [],
-          "failed_invoiced_shipments": {},
-          "processing_invoice_shipments": [],
-          "successful_invoiced_shipments": []
-        },
-        "is_invoiceable": false,
-        "user_name": "hansrajdeghun_gofynd_com_07968",
-        "file_url": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/general/free/original/50sqxcYl3-gM0qwREGq-store_reassigned_and_placed_and__2_1694072387.2223.csv",
-        "meta": null,
-        "invoice_document_type": "",
-        "file_name": "gM0qwREGq-store_reassigned_and_placed_and__2_1694072387.2223.csv",
-        "store_name": "Maryam2948442024720231628917",
-        "label_document_type": "",
-        "updated_ts": 1694072414,
-        "status": "COMPLETED",
-        "store_code": "Maryam2948442024720231628917",
-        "bulk_action_type": "order_processing",
-        "created_ts": "2023-09-12T06:05:53.395Z",
-        "invoice_status": "yet_to_initiate",
-        "do_invoice_label_generated": false,
-        "id": 385,
-        "user_id": "a735b8f3fe2200e3de562c63",
-        "last_selected_invoice_label_type": "a4",
-        "batch_id": "4552cc62-688d-45f3-a5e4-dd5c9367daf0",
-        "uploaded_by": null,
-        "failed_sh_count": 0,
-        "successful_sh_count": 2,
-        "total_count": 2,
-        "failed_shipments": [],
-        "successful_invoiced_count": 0,
-        "failed_invoiced_count": 0,
-        "total_invoiced_count": 0
-      }
-    ]
-  }
-}
-```
-</details>
-
-<details>
-<summary><i>&nbsp; BulkListingFailedEventSample</i></summary>
-
-```json
-{
-  "value": {
-    "success": true,
-    "data": [
-      {
-        "store_id": 1,
-        "uploaded_on": "2023-09-07T13:07:13+00:00",
-        "company_id": 2,
-        "shipments_action_info": {
-          "label": [],
-          "invoice": [],
-          "failed_shipments": [
-            {
-              "all": "due to no of rows being less than 2 or greater than 5000"
-            }
-          ],
-          "processing_shipments": [],
-          "successful_shipments": [],
-          "invoiceable_shipments": [],
-          "failed_invoiced_shipments": {},
-          "processing_invoice_shipments": [],
-          "successful_invoiced_shipments": []
-        },
-        "is_invoiceable": false,
-        "user_name": "hansrajdeghun_gofynd_com_07968",
-        "file_url": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/general/free/original/1IWqTaL6e-rZjSQ5aR0-store_reassigned_and_placed_and__3935_1694072101.4739661.csv",
-        "meta": null,
-        "invoice_document_type": "",
-        "file_name": "rZjSQ5aR0-store_reassigned_and_placed_and__3935_1694072101.4739661.csv",
-        "store_name": null,
-        "label_document_type": "",
-        "updated_ts": 1694072233,
-        "status": "FAILED",
-        "store_code": null,
-        "bulk_action_type": "order_processing",
-        "created_ts": "2023-09-12T06:05:53.395Z",
-        "invoice_status": "yet_to_initiate",
-        "do_invoice_label_generated": false,
-        "id": 384,
-        "user_id": "a735b8f3fe2200e3de562c63",
-        "last_selected_invoice_label_type": "a4",
-        "batch_id": "219bfed9-6347-4b7f-96cf-9b7f528c57a1",
-        "uploaded_by": null,
-        "failed_sh_count": 1,
-        "successful_sh_count": 0,
-        "total_count": 1,
-        "failed_shipments": [
-          {
-            "all": "due to no of rows being less than 2 or greater than 5000"
-          }
-        ],
-        "successful_invoiced_count": 0,
-        "failed_invoiced_count": 0,
-        "total_invoiced_count": 0
-      }
-    ],
-    "page": {
-      "current": 1,
-      "has_previous": false,
-      "has_next": false,
-      "total": 1,
-      "item_total": 1,
-      "type": "number",
-      "size": 10
-    },
-    "total_count": 1
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### bulkStateTransistion
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.bulkStateTransistion({  body : value });
-
-// Async/Await
-const data = await platformClient.order.bulkStateTransistion({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [BulkStateTransistionRequest](#BulkStateTransistionRequest) | yes | Request body |
-
-
-Performs State Transisiton in Bulk for the given shipments in the excel/csv file url.
-
-*Returned Response:*
-
-
-
-
-[BulkStateTransistionResponse](#BulkStateTransistionResponse)
-
-Bulk State Transistion Sucessfully Initiated Response.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; BulkReportsSucessfulEventSample</i></summary>
-
-```json
-{
-  "value": {
-    "status": true,
-    "message": "Successfully started processing with batch_id: 0000-1111-2222-3333",
-    "batch_id": "0000-1111-2222-3333"
-  }
-}
-```
-</details>
-
 </details>
 
 
@@ -749,19 +366,17 @@ Successfully created an order!
 ---
 
 
-### dispatchManifests
+### dispatchManifest
 
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.order.dispatchManifests({  manifestId : value,
- body : value });
+const promise = platformClient.order.dispatchManifest({  body : value });
 
 // Async/Await
-const data = await platformClient.order.dispatchManifests({  manifestId : value,
- body : value });
+const data = await platformClient.order.dispatchManifest({  body : value });
 ```
 
 
@@ -769,8 +384,7 @@ const data = await platformClient.order.dispatchManifests({  manifestId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| manifestId | string | yes |  |  
+| --------- | -----  | -------- | ----------- |
 | body | [DispatchManifest](#DispatchManifest) | yes | Request body |
 
 
@@ -976,7 +590,7 @@ Retry e-invoice after failure
 
 [EInvoiceRetryResponse](#EInvoiceRetryResponse)
 
-E-invoice generated successfully for all/few shipments from given list of shipments.
+E-invoice Retry Successfully!!
 
 
 
@@ -994,247 +608,18 @@ E-invoice generated successfully for all/few shipments from given list of shipme
     "response_data": [
       {
         "shipment_id": "16342342342343423",
-        "einvoice_type": "invoice",
-        "status": 200,
-        "message": "E-invoice generated for given shipment",
-        "einvoice_info": {
-          "irn_details": {
-            "ack_no": "172313559180590",
-            "ack_dt": "2023-10-01 12:09:00",
-            "irn": "5ac2752f161c356d6957d5e7e52759343acfa516638b92718a1309dc25ee0015",
-            "signed_invoice": "d6GXwwhz86_aRlXmueRHboFRB8UhnWGU3CREZKesJkYz42e2HduZ5_d29zoh7yhIiIDC5TLueWHIMHE0UJ5C1z5i0QQSdjMrqBcamu7rpS6wOVIEt6RMs2CZulKt",
-            "signed_qr_code": "d6GXwwhz86_aRlXmueRHboFRB8UhnWGU3CREZKesJkYz42e2HduZ5_d29zoh7yhIiIDC5TLueWHIMHE0UJ5C1z5i0QQSdjMrqBcamu7rpS6wOVIEt6RMs2CZulKt"
-          }
-        }
-      },
-      {
-        "shipment_id": "16342342342343424",
-        "einvoice_type": "invoice",
-        "status": 200,
-        "message": "E-invoice generated for given shipment",
-        "einvoice_info": {
-          "irn_details": {
-            "ack_no": "172313559180590",
-            "ack_dt": "2023-10-01 12:09:00",
-            "irn": "5ac2752f161c356d6957d5e7e52759343acfa516638b92718a1309dc25ee0015",
-            "signed_invoice": "d6GXwwhz86_aRlXmueRHboFRB8UhnWGU3CREZKesJkYz42e2HduZ5_d29zoh7yhIiIDC5TLueWHIMHE0UJ5C1z5i0QQSdjMrqBcamu7rpS6wOVIEt6RMs2CZulKt",
-            "signed_qr_code": "d6GXwwhz86_aRlXmueRHboFRB8UhnWGU3CREZKesJkYz42e2HduZ5_d29zoh7yhIiIDC5TLueWHIMHE0UJ5C1z5i0QQSdjMrqBcamu7rpS6wOVIEt6RMs2CZulKt"
-          }
-        }
+        "success": true,
+        "message": "IRN already generated, for e-invoice type: invoice"
       }
-    ]
+    ],
+    "success_count": 1,
+    "message": "Success Count: 1 out of 1",
+    "success": true
   }
 }
 ```
 </details>
 
-<details>
-<summary><i>&nbsp; sample2</i></summary>
-
-```json
-{
-  "value": {
-    "response_data": [
-      {
-        "shipment_id": "16342342342343423",
-        "einvoice_type": "invoice",
-        "status": 200,
-        "message": "E-invoice generated for given shipment",
-        "einvoice_info": {
-          "irn_details": null,
-          "ack_no": "172313559180590",
-          "ack_dt": "2023-10-01 12:09:00",
-          "irn": "5ac2752f161c356d6957d5e7e52759343acfa516638b92718a1309dc25ee0015",
-          "signed_invoice": "d6GXwwhz86_aRlXmueRHboFRB8UhnWGU3CREZKesJkYz42e2HduZ5_d29zoh7yhIiIDC5TLueWHIMHE0UJ5C1z5i0QQSdjMrqBcamu7rpS6wOVIEt6RMs2CZulKt",
-          "signed_qr_code": "d6GXwwhz86_aRlXmueRHboFRB8UhnWGU3CREZKesJkYz42e2HduZ5_d29zoh7yhIiIDC5TLueWHIMHE0UJ5C1z5i0QQSdjMrqBcamu7rpS6wOVIEt6RMs2CZulKt"
-        }
-      },
-      {
-        "shipment_id": "16342342342343424",
-        "einvoice_type": "invoice",
-        "status": 400,
-        "message": "E-invoice generation failed for shipment",
-        "einvoice_info": {
-          "error_details": [
-            {
-              "error_code": "3028",
-              "error_message": "GSTIN -22AQDPK3837A1Z5 is invalid."
-            },
-            {
-              "error_code": "2265",
-              "error_message": "Recipient GSTIN state code does not match with the state code passed in recipient details"
-            }
-          ]
-        }
-      }
-    ]
-  }
-}
-```
-</details>
-
-<details>
-<summary><i>&nbsp; sample3</i></summary>
-
-```json
-{
-  "value": {
-    "response_data": [
-      {
-        "shipment_id": "16342342342343423",
-        "einvoice_type": "invoice",
-        "status": 200,
-        "message": "E-invoice generated for given shipment",
-        "einvoice_info": {
-          "irn_details": null,
-          "ack_no": "172313559180590",
-          "ack_dt": "2023-10-01 12:09:00",
-          "irn": "5ac2752f161c356d6957d5e7e52759343acfa516638b92718a1309dc25ee0015",
-          "signed_invoice": "d6GXwwhz86_aRlXmueRHboFRB8UhnWGU3CREZKesJkYz42e2HduZ5_d29zoh7yhIiIDC5TLueWHIMHE0UJ5C1z5i0QQSdjMrqBcamu7rpS6wOVIEt6RMs2CZulKt",
-          "signed_qr_code": "d6GXwwhz86_aRlXmueRHboFRB8UhnWGU3CREZKesJkYz42e2HduZ5_d29zoh7yhIiIDC5TLueWHIMHE0UJ5C1z5i0QQSdjMrqBcamu7rpS6wOVIEt6RMs2CZulKt"
-        }
-      },
-      {
-        "shipment_id": "16342342342343424",
-        "einvoice_type": "invoice",
-        "status": 400,
-        "message": "E-invoice generation cannot processed because invoice id is not present in shipment",
-        "einvoice_info": {}
-      },
-      {
-        "shipment_id": "16342342342343425",
-        "einvoice_type": "invoice",
-        "status": 500,
-        "message": "Error while generatin E-invoice for shipment, please contact platform support team for assistance",
-        "einvoice_info": {}
-      }
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### failedOrderLogDetails
-Get failed order logs according to the filter provided
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.failedOrderLogDetails({  logId : value });
-
-// Async/Await
-const data = await platformClient.order.failedOrderLogDetails({  logId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| logId | string | yes | Log Error ID |  
-
-
-
-This endpoint allows users to get the exact error trace from the log id provided
-
-*Returned Response:*
-
-
-
-
-[FailedOrderLogDetails](#FailedOrderLogDetails)
-
-Order Logs listing fetched successfully
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### failedOrderLogs
-Get failed order logs according to the filter provided
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").order.failedOrderLogs({  pageNo : value,
- pageSize : value,
- searchType : value,
- searchValue : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").order.failedOrderLogs({  pageNo : value,
- pageSize : value,
- searchType : value,
- searchValue : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no | Page Number |    
-| pageSize | number | no | Page Size |    
-| searchType | string | no | Search type for filter |    
-| searchValue | string | no | Search value for filter |  
-
-
-
-This endpoint allows users to get failed order logs listing for filters based on order id, user contact number, user email id and sales channel id.
-
-*Returned Response:*
-
-
-
-
-[FailedOrderLogs](#FailedOrderLogs)
-
-Order Logs listing fetched successfully
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
 </details>
 
 
@@ -1344,6 +729,73 @@ Refund mode config is returned based on input parameter
 
 ```json
 
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### generateInvoiceID
+
+
+
+
+```javascript
+// Promise
+const promise = platformClient.order.generateInvoiceID({  invoiceType : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.order.generateInvoiceID({  invoiceType : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| invoiceType | string | yes | mention the type of invoice id to generate |  
+| body | [GenerateInvoiceIDRequest](#GenerateInvoiceIDRequest) | yes | Request body |
+
+
+This API is used to manually generate Invoice ID against shipments.
+
+*Returned Response:*
+
+
+
+
+[GenerateInvoiceIDResponse](#GenerateInvoiceIDResponse)
+
+NOTE success response can contains success and failed result as well
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "shipment_id": "16838049724111283577",
+      "success": true,
+      "invoice_id": "A0B1C2D3",
+      "error_message": null
+    }
+  ]
+}
 ```
 </details>
 
@@ -1496,79 +948,6 @@ Role wise state transition mapping, for next possible state
 ---
 
 
-### getAllowedTemplatesForBulk
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.getAllowedTemplatesForBulk();
-
-// Async/Await
-const data = await platformClient.order.getAllowedTemplatesForBulk();
-```
-
-
-
-
-
-
-Gets All the allowed Templates to perform Bulk Operations.
-
-*Returned Response:*
-
-
-
-
-[AllowedTemplatesResponse](#AllowedTemplatesResponse)
-
-Successfully Found the templates.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; AllowedTemplatesResponseExample</i></summary>
-
-```json
-{
-  "value": {
-    "template_x_slug": [
-      {
-        "text": "DP Assignment",
-        "value": "MANUAL_DP_ASSIGNMENT"
-      },
-      {
-        "text": "Fluid",
-        "value": "MOVE_TO_FLUID_STATE"
-      },
-      {
-        "text": "Cancellation"
-      }
-    ]
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getAnnouncements
 
 
@@ -1690,7 +1069,7 @@ const data = await platformClient.application("<APPLICATION_ID>").order.getAppli
 
 
 
-Get cross selling platform shipments
+
 
 *Returned Response:*
 
@@ -1932,8 +1311,8 @@ Slug names
 // Promise
 const promise = platformClient.order.getBulkShipmentExcelFile({  salesChannels : value,
  dpIds : value,
- startDate : value,
- endDate : value,
+ fromDate : value,
+ toDate : value,
  stores : value,
  tags : value,
  bagStatus : value,
@@ -1946,8 +1325,8 @@ const promise = platformClient.order.getBulkShipmentExcelFile({  salesChannels :
 // Async/Await
 const data = await platformClient.order.getBulkShipmentExcelFile({  salesChannels : value,
  dpIds : value,
- startDate : value,
- endDate : value,
+ fromDate : value,
+ toDate : value,
  stores : value,
  tags : value,
  bagStatus : value,
@@ -1966,8 +1345,8 @@ const data = await platformClient.order.getBulkShipmentExcelFile({  salesChannel
 | --------- | -----  | -------- | ----------- |  
 | salesChannels | string | no | Comma separated values of sales channel ids |    
 | dpIds | string | no | Comma separated values of delivery partner ids |    
-| startDate | string | no | UTC start date in ISO format |    
-| endDate | string | no | UTC end date in ISO format |    
+| fromDate | string | no | Start Date in DD-MM-YYYY format |    
+| toDate | string | no | End Date in DD-MM-YYYY format |    
 | stores | string | no | Comma separated values of store ids |    
 | tags | string | no | Comma separated values of tags |    
 | bagStatus | string | no | Comma separated values of bag statuses |    
@@ -2102,82 +1481,6 @@ Successfully created the config data
 ---
 
 
-### getFileByStatus
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.getFileByStatus({  batchId : value,
- status : value,
- fileType : value,
- reportType : value });
-
-// Async/Await
-const data = await platformClient.order.getFileByStatus({  batchId : value,
- status : value,
- fileType : value,
- reportType : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| batchId | string | yes |  |   
-| status | string | yes |  |   
-| fileType | string | yes |  |    
-| reportType | string | no |  |  
-
-
-
-Get the file URL consisting Records of the provided status.
-
-*Returned Response:*
-
-
-
-
-[JobFailedResponse](#JobFailedResponse)
-
-Job details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; DetailsForFailedJobResponse</i></summary>
-
-```json
-{
-  "value": {
-    "file_name": "failed_reason.csv",
-    "url": "www.fynd.com/excelfile.csv"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getLaneConfig
 
 
@@ -2189,8 +1492,6 @@ const promise = platformClient.order.getLaneConfig({  superLane : value,
  groupEntity : value,
  fromDate : value,
  toDate : value,
- startDate : value,
- endDate : value,
  dpIds : value,
  stores : value,
  salesChannels : value,
@@ -2210,8 +1511,6 @@ const data = await platformClient.order.getLaneConfig({  superLane : value,
  groupEntity : value,
  fromDate : value,
  toDate : value,
- startDate : value,
- endDate : value,
  dpIds : value,
  stores : value,
  salesChannels : value,
@@ -2237,8 +1536,6 @@ const data = await platformClient.order.getLaneConfig({  superLane : value,
 | groupEntity | string | no | Name of group entity |    
 | fromDate | string | no | Start Date in DD-MM-YYYY format |    
 | toDate | string | no | End Date in DD-MM-YYYY format |    
-| startDate | string | no | UTC Start Date in ISO format |    
-| endDate | string | no | UTC End Date in ISO format |    
 | dpIds | string | no | Comma separated values of delivery partner ids |    
 | stores | string | no | Comma separated values of store ids |    
 | salesChannels | string | no |  |    
@@ -2361,281 +1658,6 @@ Response containing count of shipments of the given status
 ---
 
 
-### getManifestDetails
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.getManifestDetails({  manifestId : value });
-
-// Async/Await
-const data = await platformClient.order.getManifestDetails({  manifestId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| manifestId | string | yes |  |  
-
-
-
-get Manifest Details.
-
-*Returned Response:*
-
-
-
-
-[ManifestDetails](#ManifestDetails)
-
-Successful Manifest upload!
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getManifestShipments
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.getManifestShipments({  dpIds : value,
- stores : value,
- toDate : value,
- fromDate : value,
- dpName : value,
- salesChannels : value,
- searchType : value,
- searchValue : value,
- pageNo : value,
- pageSize : value });
-
-// Async/Await
-const data = await platformClient.order.getManifestShipments({  dpIds : value,
- stores : value,
- toDate : value,
- fromDate : value,
- dpName : value,
- salesChannels : value,
- searchType : value,
- searchValue : value,
- pageNo : value,
- pageSize : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| dpIds | number | yes |  |   
-| stores | string | yes |  |   
-| toDate | string | yes |  |   
-| fromDate | string | yes |  |    
-| dpName | string | no |  |    
-| salesChannels | string | no |  |    
-| searchType | string | no |  |    
-| searchValue | string | no |  |    
-| pageNo | string | no |  |    
-| pageSize | string | no |  |  
-
-
-
-get Manifest Shipments.
-
-*Returned Response:*
-
-
-
-
-[ManifestShipmentListing](#ManifestShipmentListing)
-
-Successful Manifest upload!
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getManifestfilters
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.getManifestfilters({  view : value });
-
-// Async/Await
-const data = await platformClient.order.getManifestfilters({  view : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| view | string | yes | Name of View |  
-
-
-
-get Manifest Filters.
-
-*Returned Response:*
-
-
-
-
-[ManifestFiltersResponse](#ManifestFiltersResponse)
-
-List of filters
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getManifests
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.getManifests({  status : value,
- startDate : value,
- endDate : value,
- searchType : value,
- storeId : value,
- searchValue : value,
- dpIds : value,
- pageNo : value,
- pageSize : value });
-
-// Async/Await
-const data = await platformClient.order.getManifests({  status : value,
- startDate : value,
- endDate : value,
- searchType : value,
- storeId : value,
- searchValue : value,
- dpIds : value,
- pageNo : value,
- pageSize : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| status | string | no | Possible Status [ active, closed ] |    
-| startDate | string | no | UTC Start Date in ISO format |    
-| endDate | string | no | UTC End Date in ISO format |    
-| searchType | string | no | Search type options [ fynd_order_id, shipment_id, manifest_id, dp_name, awb_no ] |    
-| storeId | number | no | Fetch manifests for a Store. |    
-| searchValue | string | no | Search value for selected search type |    
-| dpIds | string | no | DP Ids separated by ',' (comma) |    
-| pageNo | number | no |  |    
-| pageSize | number | no |  |  
-
-
-
-Fetch Manifests
-
-*Returned Response:*
-
-
-
-
-[ManifestList](#ManifestList)
-
-Successful Manifest upload!
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getOrderById
 
 
@@ -2644,13 +1666,11 @@ Successful Manifest upload!
 ```javascript
 // Promise
 const promise = platformClient.order.getOrderById({  orderId : value,
- myOrders : value,
- allowInactive : value });
+ myOrders : value });
 
 // Async/Await
 const data = await platformClient.order.getOrderById({  orderId : value,
- myOrders : value,
- allowInactive : value });
+ myOrders : value });
 ```
 
 
@@ -2660,8 +1680,7 @@ const data = await platformClient.order.getOrderById({  orderId : value,
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | orderId | string | yes |  |    
-| myOrders | boolean | no |  |    
-| allowInactive | boolean | no | Flag to allow inactive shipments |  
+| myOrders | boolean | no |  |  
 
 
 
@@ -3438,8 +2457,6 @@ const promise = platformClient.order.getOrders({  lane : value,
  searchValue : value,
  fromDate : value,
  toDate : value,
- startDate : value,
- endDate : value,
  dpIds : value,
  stores : value,
  salesChannels : value,
@@ -3462,8 +2479,6 @@ const data = await platformClient.order.getOrders({  lane : value,
  searchValue : value,
  fromDate : value,
  toDate : value,
- startDate : value,
- endDate : value,
  dpIds : value,
  stores : value,
  salesChannels : value,
@@ -3492,8 +2507,6 @@ const data = await platformClient.order.getOrders({  lane : value,
 | searchValue | string | no | search_value is matched against the field specified by the search_type |    
 | fromDate | string | no |  |    
 | toDate | string | no |  |    
-| startDate | string | no |  |    
-| endDate | string | no |  |    
 | dpIds | string | no | Delivery Partner IDs to which shipments are assigned. |    
 | stores | string | no |  |    
 | salesChannels | string | no |  |    
@@ -3831,10 +2844,7 @@ We are processing the report!
         "city": "MUMBAI",
         "state": "MAHARASHTRA",
         "country": "INDIA",
-        "pincode": "400093",
-        "tags": [
-          "infibeam"
-        ]
+        "pincode": "400093"
       },
       "delivery_details": {
         "name": "Manish Prakash",
@@ -4368,8 +3378,6 @@ const promise = platformClient.order.getShipments({  lane : value,
  searchValue : value,
  fromDate : value,
  toDate : value,
- startDate : value,
- endDate : value,
  dpIds : value,
  stores : value,
  salesChannels : value,
@@ -4401,8 +3409,6 @@ const data = await platformClient.order.getShipments({  lane : value,
  searchValue : value,
  fromDate : value,
  toDate : value,
- startDate : value,
- endDate : value,
  dpIds : value,
  stores : value,
  salesChannels : value,
@@ -4440,8 +3446,6 @@ const data = await platformClient.order.getShipments({  lane : value,
 | searchValue | string | no | Search type value |    
 | fromDate | string | no | Start Date in DD-MM-YYYY format |    
 | toDate | string | no | End Date in DD-MM-YYYY format |    
-| startDate | string | no | UTC Start Date in ISO format |    
-| endDate | string | no | UTC End Date in ISO format |    
 | dpIds | string | no | Comma separated values of delivery partner ids |    
 | stores | string | no | Comma separated values of store ids |    
 | salesChannels | string | no | Comma separated values of sales channel ids |    
@@ -4476,410 +3480,6 @@ Get Shipments Listing for the company id
 [ShipmentInternalPlatformViewResponse](#ShipmentInternalPlatformViewResponse)
 
 We are processing the report!
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getStateManagerStates
-Get all states for a company and channel
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").order.getStateManagerStates({  pageNo : value,
- pageSize : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").order.getStateManagerStates({  pageNo : value,
- pageSize : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no |  |    
-| pageSize | number | no |  |  
-
-
-
-
-
-*Returned Response:*
-
-
-
-
-[PaginatedStates](#PaginatedStates)
-
-Successful operation
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getStateManagerTaskById
-Fetch a specific State Transition task
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.getStateManagerTaskById({  taskId : value });
-
-// Async/Await
-const data = await platformClient.order.getStateManagerTaskById({  taskId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| taskId | number | yes |  |  
-
-
-
-
-
-*Returned Response:*
-
-
-
-
-[Object](#Object)
-
-Successful operation
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getStateManagerTasks
-Fetch all State Transition tasks
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.getStateManagerTasks({  pageNo : value,
- pageSize : value });
-
-// Async/Await
-const data = await platformClient.order.getStateManagerTasks({  pageNo : value,
- pageSize : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no |  |    
-| pageSize | number | no |  |  
-
-
-
-
-
-*Returned Response:*
-
-
-
-
-[Object](#Object)
-
-Successful operation
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getStateTransitionFilters
-Fetch all State Transition filters
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.getStateTransitionFilters({  pageNo : value,
- pageSize : value });
-
-// Async/Await
-const data = await platformClient.order.getStateTransitionFilters({  pageNo : value,
- pageSize : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no |  |    
-| pageSize | number | no |  |  
-
-
-
-
-
-*Returned Response:*
-
-
-
-
-[Object](#Object)
-
-Successful operation
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getStateTransitionFiltersById
-Fetch a specific State Transition filter
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.getStateTransitionFiltersById({  filterId : value });
-
-// Async/Await
-const data = await platformClient.order.getStateTransitionFiltersById({  filterId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| filterId | number | yes |  |  
-
-
-
-
-
-*Returned Response:*
-
-
-
-
-[Object](#Object)
-
-Successful operation
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getStateTransitionFlags
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.getStateTransitionFlags({  pageNo : value,
- pageSize : value });
-
-// Async/Await
-const data = await platformClient.order.getStateTransitionFlags({  pageNo : value,
- pageSize : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no | The page number for pagination. |    
-| pageSize | number | no | The number of items to be returned per page for pagination. |  
-
-
-
-Fetch all state transition flags for a company.
-
-*Returned Response:*
-
-
-
-
-[Object](#Object)
-
-Successfully fetched the state transition flags.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getStateTransitionFlagsById
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.getStateTransitionFlagsById({  flagId : value });
-
-// Async/Await
-const data = await platformClient.order.getStateTransitionFlagsById({  flagId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| flagId | number | yes |  |  
-
-
-
-Fetch a specific state transition flag for a company.
-
-*Returned Response:*
-
-
-
-
-[Object](#Object)
-
-Successfully fetched the state transition flags.
 
 
 
@@ -5128,73 +3728,6 @@ State Transition Mapping, for next possible state
   }
 }
 ```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getTemplate
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.getTemplate({  templateName : value });
-
-// Async/Await
-const data = await platformClient.order.getTemplate({  templateName : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| templateName | string | yes |  |  
-
-
-
-Get the Excel file URL for the Template.
-
-*Returned Response:*
-
-
-
-
-[TemplateDownloadResponse](#TemplateDownloadResponse)
-
-Sucessfully Created the Template Url.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; AllowedTemplatesResponseExample</i></summary>
-
-```json
-{
-  "value": {
-    "file_name": "template.xlsx",
-    "url": "www.fynd.com/excelfile.xlsx"
-  }
-}
-```
-</details>
-
 </details>
 
 
@@ -5691,93 +4224,6 @@ Successfully updated shipment cache!
 ---
 
 
-### jobDetails
-
-
-
-
-```javascript
-// Promise
-const promise = platformClient.order.jobDetails({  batchId : value });
-
-// Async/Await
-const data = await platformClient.order.jobDetails({  batchId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| batchId | string | yes |  |  
-
-
-
-Fetches details for the job of the provided batch_id
-
-*Returned Response:*
-
-
-
-
-[JobDetailsResponse](#JobDetailsResponse)
-
-Job details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; JobDetailsSucessfulEventSample</i></summary>
-
-```json
-{
-  "value": {
-    "success": true,
-    "data": [
-      {
-        "batch_id": "1dc51db3-89fc-4985-9237-d96efb9060ae",
-        "total_shipments_count": 1,
-        "successful_shipment_ids": [],
-        "successful_shipments_count": 0,
-        "failed_shipments_count": 1,
-        "processing_shipments_count": 0,
-        "company_id": "2"
-      }
-    ],
-    "file_url": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/general/free/original/kctNhcXxX-UV71fzH2U-store_reassigned_and_placed_and__3809_1694082156.8009899.csv",
-    "failed_records": [
-      {
-        "all": "due to no of rows being less than 2 or greater than 5000"
-      }
-    ],
-    "uploaded_by": "mohitmahatme_gofynd_com_31814",
-    "user_id": "d7595ec4e390849545a68c92",
-    "uploaded_on": "2023-09-07T15:55:24+00:00",
-    "status": "FAILED"
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### orderUpdate
 
 
@@ -5922,17 +4368,17 @@ It shows the journey of the shipment!
 ---
 
 
-### processManifests
+### processManifest
 
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.order.processManifests({  body : value });
+const promise = platformClient.order.processManifest({  body : value });
 
 // Async/Await
-const data = await platformClient.order.processManifests({  body : value });
+const data = await platformClient.order.processManifest({  body : value });
 ```
 
 
@@ -5941,17 +4387,17 @@ const data = await platformClient.order.processManifests({  body : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
-| body | [ProcessManifest](#ProcessManifest) | yes | Request body |
+| body | [CreateOrderPayload](#CreateOrderPayload) | yes | Request body |
 
 
-Process Manifest.
+Process Manifest
 
 *Returned Response:*
 
 
 
 
-[ProcessManifestItemResponse](#ProcessManifestItemResponse)
+[CreateOrderResponse](#CreateOrderResponse)
 
 Manifest will be processed!
 
@@ -6155,7 +4601,7 @@ Send OTP to user mobile
 
 
 ### trackShipment
-
+Get courier partner tracking details
 
 
 
@@ -6227,11 +4673,11 @@ Shipment Tracking fetched successfully
       }
     ],
     "page": {
+      "type": "number",
+      "size": 200,
       "current": 1,
       "has_next": true,
-      "item_total": 3,
-      "size": 200,
-      "type": "number"
+      "item_total": 3
     }
   }
 }
@@ -6706,19 +5152,17 @@ Shipment Tracking updated successfully
 ---
 
 
-### uploadConsents
+### uploadConsent
 
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.order.uploadConsents({  manifestId : value,
- body : value });
+const promise = platformClient.order.uploadConsent({  body : value });
 
 // Async/Await
-const data = await platformClient.order.uploadConsents({  manifestId : value,
- body : value });
+const data = await platformClient.order.uploadConsent({  body : value });
 ```
 
 
@@ -6726,8 +5170,7 @@ const data = await platformClient.order.uploadConsents({  manifestId : value,
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| manifestId | string | yes |  |  
+| --------- | -----  | -------- | ----------- |
 | body | [UploadConsent](#UploadConsent) | yes | Request body |
 
 
@@ -7067,15 +5510,6 @@ Verify OTP
 
 ---
 
-#### [AllowedTemplatesResponse](#AllowedTemplatesResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | template_x_slug | [[Templates](#Templates)]? |  yes  |  |
- 
-
----
-
 #### [AnnouncementResponse](#AnnouncementResponse)
 
  | Properties | Type | Nullable | Description |
@@ -7154,16 +5588,8 @@ Verify OTP
  | category | string |  no  |  |
  | dimension | string |  no  |  |
  | quantity | number |  no  |  |
- | weight | string |  no  |  |
- 
-
----
-
-#### [ArticleStatusDetails](#ArticleStatusDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
  | status | string? |  yes  |  |
+ | weight | string |  no  |  |
  
 
 ---
@@ -7227,6 +5653,20 @@ Verify OTP
 
 ---
 
+#### [B2BPODetails](#B2BPODetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | docker_number | string? |  yes  |  |
+ | item_base_price | number? |  yes  |  |
+ | partial_can_ret | boolean? |  yes  |  |
+ | po_line_amount | number? |  yes  |  |
+ | po_tax_amount | number? |  yes  |  |
+ | total_gst_percentage | number? |  yes  |  |
+ 
+
+---
+
 #### [BagConfigs](#BagConfigs)
 
  | Properties | Type | Nullable | Description |
@@ -7249,7 +5689,7 @@ Verify OTP
  | affiliate_details | [AffiliateDetails](#AffiliateDetails)? |  yes  |  |
  | applied_promos | [string]? |  yes  |  |
  | article | [Article](#Article)? |  yes  |  |
- | article_details | [ArticleStatusDetails](#ArticleStatusDetails)? |  yes  |  |
+ | article_details | [ArticleDetails](#ArticleDetails)? |  yes  |  |
  | bag_status | [[BagStatusHistory](#BagStatusHistory)]? |  yes  |  |
  | bag_status_history | [BagStatusHistory](#BagStatusHistory)? |  yes  |  |
  | bag_update_time | number? |  yes  |  |
@@ -7281,9 +5721,73 @@ Verify OTP
  | restore_promos | string? |  yes  |  |
  | seller_identifier | string? |  yes  |  |
  | shipment_id | string? |  yes  |  |
- | status | [BagReturnableCancelableStatus](#BagReturnableCancelableStatus)? |  yes  |  |
+ | status | [BagReturnableCancelableStatus1](#BagReturnableCancelableStatus1)? |  yes  |  |
  | tags | [string]? |  yes  |  |
  | type | string? |  yes  |  |
+ 
+
+---
+
+#### [BagGST](#BagGST)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | brand_calculated_amount | number? |  yes  |  |
+ | cgst_gst_fee | string? |  yes  |  |
+ | cgst_tax_percentage | number? |  yes  |  |
+ | gst_fee | number? |  yes  |  |
+ | gst_tag | string? |  yes  |  |
+ | gst_tax_percentage | number? |  yes  |  |
+ | gstin_code | string? |  yes  |  |
+ | hsn_code | string? |  yes  |  |
+ | hsn_code_id | string? |  yes  |  |
+ | igst_gst_fee | string? |  yes  |  |
+ | igst_tax_percentage | number? |  yes  |  |
+ | is_default_hsn_code | boolean? |  yes  |  |
+ | sgst_gst_fee | string? |  yes  |  |
+ | sgst_tax_percentage | number? |  yes  |  |
+ | tax_collected_at_source | number? |  yes  |  |
+ | value_of_good | number? |  yes  |  |
+ 
+
+---
+
+#### [BagGSTDetails](#BagGSTDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | brand_calculated_amount | number |  no  |  |
+ | cgst_gst_fee | string |  no  |  |
+ | cgst_tax_percentage | number |  no  |  |
+ | gst_fee | number |  no  |  |
+ | gst_tag | string |  no  |  |
+ | gst_tax_percentage | number |  no  |  |
+ | gstin_code | string? |  yes  |  |
+ | hsn_code | string |  no  |  |
+ | hsn_code_id | string |  no  |  |
+ | igst_gst_fee | string |  no  |  |
+ | igst_tax_percentage | number |  no  |  |
+ | is_default_hsn_code | boolean? |  yes  |  |
+ | sgst_gst_fee | string |  no  |  |
+ | sgst_tax_percentage | number |  no  |  |
+ | tax_collected_at_source | number |  no  |  |
+ | value_of_good | number |  no  |  |
+ 
+
+---
+
+#### [BagMeta](#BagMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | b2b_po_details | [B2BPODetails](#B2BPODetails)? |  yes  |  |
+ | custom_json | string? |  yes  |  |
+ | custom_message | string? |  yes  |  |
+ | docket_number | string? |  yes  |  |
+ | extra_meta | string? |  yes  |  |
+ | gift_card | [GiftCard](#GiftCard)? |  yes  |  |
+ | group_id | string? |  yes  |  |
+ | partial_can_ret | boolean? |  yes  |  |
  
 
 ---
@@ -7322,6 +5826,19 @@ Verify OTP
 ---
 
 #### [BagReturnableCancelableStatus](#BagReturnableCancelableStatus)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | can_be_cancelled | boolean |  no  |  |
+ | enable_tracking | boolean |  no  |  |
+ | is_active | boolean |  no  |  |
+ | is_customer_return_allowed | boolean |  no  |  |
+ | is_returnable | boolean |  no  |  |
+ 
+
+---
+
+#### [BagReturnableCancelableStatus1](#BagReturnableCancelableStatus1)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
@@ -7396,7 +5913,6 @@ Verify OTP
  | bag_state_mapper | [BagStateMapper](#BagStateMapper)? |  yes  |  |
  | bsh_id | number? |  yes  |  |
  | created_at | string? |  yes  |  |
- | created_ts | string? |  yes  |  |
  | delivery_awb_number | string? |  yes  |  |
  | delivery_partner_id | number? |  yes  |  |
  | display_name | string? |  yes  |  |
@@ -7409,7 +5925,6 @@ Verify OTP
  | status | string |  no  |  |
  | store_id | number? |  yes  |  |
  | updated_at | string? |  yes  |  |
- | updated_ts | string? |  yes  |  |
  
 
 ---
@@ -7460,28 +5975,40 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address | string? |  yes  |  |
- | address1 | string? |  yes  |  |
+ | address1 | string |  no  |  |
  | address2 | string? |  yes  |  |
  | alternate_email | string? |  yes  |  |
  | alternate_mobile_number | string? |  yes  |  |
- | city | string? |  yes  |  |
- | country | string? |  yes  |  |
+ | city | string |  no  |  |
+ | country | string |  no  |  |
  | country_code | string? |  yes  |  |
  | customer_code | string? |  yes  |  |
  | external_customer_code | string? |  yes  |  |
- | first_name | string? |  yes  |  |
+ | first_name | string |  no  |  |
  | floor_no | string? |  yes  |  |
  | gender | string? |  yes  |  |
  | house_no | string? |  yes  |  |
  | last_name | string? |  yes  |  |
  | middle_name | string? |  yes  |  |
- | pincode | string? |  yes  |  |
- | primary_email | string? |  yes  |  |
- | primary_mobile_number | string? |  yes  |  |
- | state | string? |  yes  |  |
+ | pincode | string |  no  |  |
+ | primary_email | string |  no  |  |
+ | primary_mobile_number | string |  no  |  |
+ | state | string |  no  |  |
  | state_code | string? |  yes  |  |
  | title | string? |  yes  |  |
+ 
+
+---
+
+#### [BillingStaffDetails](#BillingStaffDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | employee_code | string? |  yes  |  |
+ | first_name | string? |  yes  |  |
+ | last_name | string? |  yes  |  |
+ | staff_id | number? |  yes  |  |
+ | user | string? |  yes  |  |
  
 
 ---
@@ -7507,38 +6034,6 @@ Verify OTP
 
 ---
 
-#### [BulkActionListingData](#BulkActionListingData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | batch_id | string? |  yes  |  |
- | bulk_action_type | string? |  yes  |  |
- | company_id | number? |  yes  |  |
- | created_ts | string? |  yes  |  |
- | do_invoice_label_generated | boolean? |  yes  |  |
- | file_name | string? |  yes  |  |
- | file_url | string? |  yes  |  |
- | id | number? |  yes  |  |
- | invoice_document_type | string? |  yes  |  |
- | invoice_status | string? |  yes  |  |
- | is_invoiceable | boolean? |  yes  |  |
- | label_document_type | string? |  yes  |  |
- | last_selected_invoice_label_type | string? |  yes  |  |
- | meta | string? |  yes  |  |
- | shipments_action_info | [ShipmentActionInfo](#ShipmentActionInfo)? |  yes  |  |
- | status | boolean? |  yes  |  |
- | store_code | string? |  yes  |  |
- | store_id | number? |  yes  |  |
- | store_name | string? |  yes  |  |
- | updated_ts | number? |  yes  |  |
- | uploaded_by | string? |  yes  |  |
- | uploaded_on | string? |  yes  |  |
- | user_id | string? |  yes  |  |
- | user_name | string? |  yes  |  |
- 
-
----
-
 #### [BulkActionTemplate](#BulkActionTemplate)
 
  | Properties | Type | Nullable | Description |
@@ -7558,39 +6053,12 @@ Verify OTP
 
 ---
 
-#### [BulkFailedResponse](#BulkFailedResponse)
+#### [BulkReportsDownloadFailedResponse](#BulkReportsDownloadFailedResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | error | string? |  yes  |  |
  | status | boolean? |  yes  |  |
- 
-
----
-
-#### [BulkListingResponse](#BulkListingResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [[BulkActionListingData](#BulkActionListingData)]? |  yes  |  |
- | page | [BulkListinPage](#BulkListinPage)? |  yes  |  |
- | success | boolean? |  yes  |  |
- | total_count | number? |  yes  |  |
- 
-
----
-
-#### [BulkListinPage](#BulkListinPage)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | current | number? |  yes  |  |
- | has_next | boolean? |  yes  |  |
- | has_previous | boolean? |  yes  |  |
- | item_total | number? |  yes  |  |
- | size | number? |  yes  |  |
- | total | number? |  yes  |  |
- | type | string? |  yes  |  |
  
 
 ---
@@ -7601,14 +6069,14 @@ Verify OTP
  | ---------- | ---- | -------- | ----------- |
  | custom_filters_for_lane | string? |  yes  |  |
  | custom_headers | string? |  yes  | Download report with specific headers |
- | end_date | string? |  yes  | UTC end date in ISO format |
  | entities | [string]? |  yes  | Download for specific enitites, entities can be bag, shipment or order_id, etc. |
  | filter_type | string? |  yes  |  |
+ | from_date | string? |  yes  |  |
  | is_cross_company_enabled | boolean? |  yes  | Download lanes for cross company. |
  | lane_type | string? |  yes  |  |
  | report_type | string? |  yes  | Type of report |
- | start_date | string? |  yes  | UTC start date in ISO format |
  | store_ids | [string]? |  yes  | Download for specific store ids. |
+ | to_date | string? |  yes  |  |
  
 
 ---
@@ -7619,27 +6087,6 @@ Verify OTP
  | ---------- | ---- | -------- | ----------- |
  | batch_id | string? |  yes  |  |
  | success | boolean? |  yes  |  |
- 
-
----
-
-#### [BulkStateTransistionRequest](#BulkStateTransistionRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | file_name | string? |  yes  |  |
- | url | string? |  yes  |  |
- 
-
----
-
-#### [BulkStateTransistionResponse](#BulkStateTransistionResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | batch_id | string? |  yes  |  |
- | message | string? |  yes  |  |
- | status | boolean? |  yes  |  |
  
 
 ---
@@ -7729,16 +6176,6 @@ Verify OTP
  | ---------- | ---- | -------- | ----------- |
  | emails | [string]? |  yes  |  |
  | phone | [[PhoneDetails](#PhoneDetails)]? |  yes  |  |
- 
-
----
-
-#### [ConversionRate](#ConversionRate)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | base | string? |  yes  |  |
- | rates | string? |  yes  |  |
  
 
 ---
@@ -7895,26 +6332,6 @@ Verify OTP
 
 ---
 
-#### [Currency](#Currency)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | currency_code | string? |  yes  |  |
- | currency_symbol | string? |  yes  |  |
- 
-
----
-
-#### [CurrencyInfo](#CurrencyInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | conversion_rate | [ConversionRate](#ConversionRate)? |  yes  |  |
- | ordering_currency | [OrderingCurrency](#OrderingCurrency)? |  yes  |  |
- 
-
----
-
 #### [CurrentStatus](#CurrentStatus)
 
  | Properties | Type | Nullable | Description |
@@ -7922,7 +6339,6 @@ Verify OTP
  | bag_id | number? |  yes  |  |
  | bag_state_mapper | [BagStateMapper](#BagStateMapper)? |  yes  |  |
  | created_at | string? |  yes  |  |
- | created_ts | string? |  yes  |  |
  | delivery_awb_number | string? |  yes  |  |
  | delivery_partner_id | number? |  yes  |  |
  | id | number |  no  |  |
@@ -7944,16 +6360,6 @@ Verify OTP
  | entities | [[EntitiesDataUpdates](#EntitiesDataUpdates)]? |  yes  |  |
  | order_item_status | [[OrderItemDataUpdates](#OrderItemDataUpdates)]? |  yes  |  |
  | products | [[ProductsDataUpdates](#ProductsDataUpdates)]? |  yes  |  |
- 
-
----
-
-#### [DateRange](#DateRange)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | from_date | string? |  yes  |  |
- | to_date | string? |  yes  |  |
  
 
 ---
@@ -8060,87 +6466,12 @@ Verify OTP
 
 ---
 
-#### [EInvoiceDetails](#EInvoiceDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | error_details | [[EInvoiceErrorDetails](#EInvoiceErrorDetails)]? |  yes  |  |
- | irn_details | [EInvoiceIrnDetails](#EInvoiceIrnDetails)? |  yes  |  |
- 
-
----
-
-#### [EInvoiceErrorDetails](#EInvoiceErrorDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | error_code | string? |  yes  |  |
- | error_message | string |  no  |  |
- 
-
----
-
-#### [EInvoiceErrorInfo](#EInvoiceErrorInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | error_details | [[EInvoiceErrorDetails](#EInvoiceErrorDetails)]? |  yes  |  |
- 
-
----
-
-#### [EInvoiceErrorResponse](#EInvoiceErrorResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
- | response_data | [[EInvoiceErrorResponseData](#EInvoiceErrorResponseData)]? |  yes  |  |
- 
-
----
-
-#### [EInvoiceErrorResponseData](#EInvoiceErrorResponseData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | einvoice_info | [EInvoiceErrorInfo](#EInvoiceErrorInfo)? |  yes  |  |
- | einvoice_type | string |  no  |  |
- | message | string |  no  |  |
- | shipment_id | string |  no  |  |
- | status | number |  no  |  |
- 
-
----
-
-#### [EInvoiceErrorResponseDetails](#EInvoiceErrorResponseDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
- | response_data | [[EInvoiceErrorResponseData](#EInvoiceErrorResponseData)] |  no  |  |
- 
-
----
-
 #### [EinvoiceInfo](#EinvoiceInfo)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | credit_note | string? |  yes  |  |
  | invoice | string? |  yes  |  |
- 
-
----
-
-#### [EInvoiceIrnDetails](#EInvoiceIrnDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | ack_dt | string |  no  |  |
- | ack_no | string |  no  |  |
- | irn | string |  no  |  |
- | signed_invoice | string |  no  |  |
- | signed_qr_code | string |  no  |  |
  
 
 ---
@@ -8160,11 +6491,14 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | einvoice_info | [EInvoiceDetails](#EInvoiceDetails)? |  yes  |  |
- | einvoice_type | string |  no  |  |
+ | ack_dt | string? |  yes  |  |
+ | ack_no | string? |  yes  |  |
+ | irn | string? |  yes  |  |
  | message | string |  no  |  |
  | shipment_id | string |  no  |  |
- | status | number |  no  |  |
+ | success | boolean |  no  |  |
+ | timeout | number? |  yes  |  |
+ | timeout_unit | string? |  yes  |  |
  
 
 ---
@@ -8182,7 +6516,10 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
  | response_data | [[EInvoiceResponseData](#EInvoiceResponseData)] |  no  |  |
+ | success | boolean? |  yes  |  |
+ | success_count | number |  no  |  |
  
 
 ---
@@ -8191,7 +6528,6 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | einvoice_type | string |  no  |  |
  | shipment_id | string |  no  |  |
  
 
@@ -8265,48 +6601,11 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | error | string? |  yes  |  |
+ | error | string |  no  |  |
  | error_trace | string? |  yes  |  |
  | message | string |  no  |  |
  | status | number? |  yes  |  |
  | success | boolean? |  yes  |  |
- 
-
----
-
-#### [FailedOrderLogDetails](#FailedOrderLogDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | error_trace | string |  no  |  |
- | exception | string |  no  |  |
- 
-
----
-
-#### [FailedOrderLogs](#FailedOrderLogs)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [FailedOrdersItem](#FailedOrdersItem) |  no  |  |
- | page | [PageDetails](#PageDetails) |  no  |  |
- 
-
----
-
-#### [FailedOrdersItem](#FailedOrdersItem)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | channel | [LogsChannelDetails](#LogsChannelDetails) |  no  |  |
- | created_at | string |  no  |  |
- | display_message | string |  no  |  |
- | error_message | string |  no  |  |
- | log_id | number |  no  |  |
- | meta | string |  no  |  |
- | method_name | string |  no  |  |
- | order_id | string |  no  |  |
- | payment | [LogPaymentDetails](#LogPaymentDetails) |  no  |  |
  
 
 ---
@@ -8356,24 +6655,6 @@ Verify OTP
 
 ---
 
-#### [Filters](#Filters)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | date_range | [DateRange](#DateRange)? |  yes  |  |
- | dp_ids | number? |  yes  |  |
- | dp_name | string? |  yes  |  |
- | from_date | string? |  yes  |  |
- | lane | string? |  yes  |  |
- | logo | string? |  yes  |  |
- | selected_shipments | string? |  yes  |  |
- | store_name | string? |  yes  |  |
- | stores | number? |  yes  |  |
- | to_date | string? |  yes  |  |
- 
-
----
-
 #### [FiltersInfo](#FiltersInfo)
 
  | Properties | Type | Nullable | Description |
@@ -8384,21 +6665,6 @@ Verify OTP
  | text | string |  no  |  |
  | type | string |  no  |  |
  | value | string |  no  |  |
- 
-
----
-
-#### [FiltersRequest](#FiltersRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | date_range | [DateRange](#DateRange)? |  yes  |  |
- | dp_ids | number |  no  |  |
- | dp_name | string |  no  |  |
- | lane | string |  no  |  |
- | logo | string? |  yes  |  |
- | store_name | string |  no  |  |
- | stores | number |  no  |  |
  
 
 ---
@@ -8487,18 +6753,66 @@ Verify OTP
 
 ---
 
+#### [GenerateInvoiceIDErrorResponse](#GenerateInvoiceIDErrorResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[GenerateInvoiceIDErrorResponseData](#GenerateInvoiceIDErrorResponseData)]? |  yes  |  |
+ 
+
+---
+
+#### [GenerateInvoiceIDErrorResponseData](#GenerateInvoiceIDErrorResponseData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | error_message | string? |  yes  |  |
+ | invoice_id | boolean? |  yes  |  |
+ | shipment_id | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [GenerateInvoiceIDRequest](#GenerateInvoiceIDRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shipment_ids | [string] |  no  |  |
+ 
+
+---
+
+#### [GenerateInvoiceIDResponse](#GenerateInvoiceIDResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[GenerateInvoiceIDResponseData](#GenerateInvoiceIDResponseData)]? |  yes  |  |
+ 
+
+---
+
+#### [GenerateInvoiceIDResponseData](#GenerateInvoiceIDResponseData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | error_message | boolean? |  yes  |  |
+ | invoice_id | string? |  yes  |  |
+ | shipment_id | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
 #### [GeneratePosOrderReceiptResponse](#GeneratePosOrderReceiptResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | customer_cn_receipt | string? |  yes  |  |
- | customer_cn_receipt_template | string? |  yes  |  |
  | invoice_receipt | string? |  yes  |  |
- | invoice_receipt_template | string? |  yes  |  |
  | merchant_cn_receipt | string? |  yes  |  |
  | order_id | string? |  yes  |  |
  | payment_receipt | string? |  yes  |  |
- | payment_receipt_template | string? |  yes  |  |
  | success | boolean? |  yes  |  |
  
 
@@ -8519,6 +6833,18 @@ Verify OTP
  | ---------- | ---- | -------- | ----------- |
  | items | [[BagDetailsPlatformResponse](#BagDetailsPlatformResponse)] |  no  |  |
  | page | [BagsPage](#BagsPage) |  no  |  |
+ 
+
+---
+
+#### [GiftCard](#GiftCard)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display_text | string? |  yes  |  |
+ | gift_message | string? |  yes  |  |
+ | gift_price | number? |  yes  |  |
+ | is_gift_applied | boolean? |  yes  |  |
  
 
 ---
@@ -8714,49 +7040,6 @@ Verify OTP
 
 ---
 
-#### [JobDetailsData](#JobDetailsData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | batch_id | string? |  yes  |  |
- | company_id | string? |  yes  |  |
- | failed_shipments_count | number? |  yes  |  |
- | processing_shipments_count | number? |  yes  |  |
- | successful_shipment_ids | [string]? |  yes  |  |
- | successful_shipments_count | number? |  yes  |  |
- | total_shipments_count | number? |  yes  |  |
- 
-
----
-
-#### [JobDetailsResponse](#JobDetailsResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | created_ts | string? |  yes  |  |
- | data | [[JobDetailsData](#JobDetailsData)]? |  yes  |  |
- | failed_records | [[String: string]]? |  yes  |  |
- | file_url | string? |  yes  |  |
- | message | string? |  yes  |  |
- | status | string? |  yes  |  |
- | success | boolean? |  yes  |  |
- | uploaded_by | string? |  yes  |  |
- | uploaded_on | string? |  yes  |  |
- | user_id | string? |  yes  |  |
- 
-
----
-
-#### [JobFailedResponse](#JobFailedResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | file_name | string? |  yes  |  |
- | url | string? |  yes  |  |
- 
-
----
-
 #### [LaneConfigResponse](#LaneConfigResponse)
 
  | Properties | Type | Nullable | Description |
@@ -8802,159 +7085,6 @@ Verify OTP
 
 ---
 
-#### [LogPaymentDetails](#LogPaymentDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | amount_paid | string? |  yes  |  |
- | payment_mode | string? |  yes  |  |
- 
-
----
-
-#### [LogsChannelDetails](#LogsChannelDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | channel_id | string? |  yes  |  |
- | channel_shipment_id | string? |  yes  |  |
- | logo | string? |  yes  |  |
- | name | string? |  yes  |  |
- 
-
----
-
-#### [Manifest](#Manifest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | company_id | number |  no  |  |
- | created_at | string |  no  |  |
- | created_by | string |  no  |  |
- | created_ts | string? |  yes  |  |
- | filters | [Filters](#Filters)? |  yes  |  |
- | id | number |  no  |  |
- | is_active | boolean |  no  |  |
- | manifest_id | string |  no  |  |
- | meta | [ManifestMeta](#ManifestMeta)? |  yes  |  |
- | pdf_meta | [PDFMeta](#PDFMeta)? |  yes  |  |
- | status | string |  no  |  |
- | uid | string |  no  |  |
- | user_id | string |  no  |  |
- 
-
----
-
-#### [ManifestDetails](#ManifestDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | additional_shipment_count | number? |  yes  |  |
- | items | [[ManifestItemDetails](#ManifestItemDetails)]? |  yes  |  |
- | manifest_details | [[Manifest](#Manifest)]? |  yes  |  |
- | page | [ManifestPageInfo](#ManifestPageInfo)? |  yes  |  |
- 
-
----
-
-#### [ManifestFile](#ManifestFile)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | bucket | string? |  yes  |  |
- | key | string? |  yes  |  |
- | region | string? |  yes  |  |
- 
-
----
-
-#### [ManifestFiltersResponse](#ManifestFiltersResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | advance_filter | [[FiltersInfo](#FiltersInfo)]? |  yes  |  |
- | global_filter | [[FiltersInfo](#FiltersInfo)]? |  yes  |  |
- 
-
----
-
-#### [ManifestItemDetails](#ManifestItemDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | awb_number | string? |  yes  |  |
- | invoice_id | string? |  yes  |  |
- | order_id | string |  no  |  |
- | quantity | number? |  yes  |  |
- | shipment_created_at | string? |  yes  |  |
- | shipment_id | string |  no  |  |
- 
-
----
-
-#### [ManifestList](#ManifestList)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[Manifest](#Manifest)]? |  yes  |  |
- | page | [ManifestPageInfo](#ManifestPageInfo)? |  yes  |  |
- 
-
----
-
-#### [ManifestMediaUpdate](#ManifestMediaUpdate)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | number? |  yes  |  |
- | entity | string? |  yes  |  |
- | file | [ManifestFile](#ManifestFile)? |  yes  |  |
- | link | string? |  yes  |  |
- | media_type | string? |  yes  |  |
- | status | boolean? |  yes  |  |
- 
-
----
-
-#### [ManifestMeta](#ManifestMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | filters | [Filters](#Filters)? |  yes  |  |
- | total_shipment_prices_count | [TotalShipmentPricesCount](#TotalShipmentPricesCount)? |  yes  |  |
- 
-
----
-
-#### [ManifestPageInfo](#ManifestPageInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | current | number |  no  |  |
- | has_next | boolean |  no  |  |
- | has_previous | boolean |  no  |  |
- | size | number |  no  |  |
- | total | number |  no  |  |
- | type | string |  no  |  |
- 
-
----
-
-#### [ManifestShipmentListing](#ManifestShipmentListing)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[ManifestItemDetails](#ManifestItemDetails)]? |  yes  |  |
- | lane | string? |  yes  |  |
- | message | string? |  yes  |  |
- | page | [ManifestPageInfo](#ManifestPageInfo) |  no  |  |
- | status | number |  no  |  |
- | success | boolean |  no  |  |
- | total_count | number |  no  |  |
- 
-
----
-
 #### [MarketPlacePdf](#MarketPlacePdf)
 
  | Properties | Type | Nullable | Description |
@@ -8980,7 +7110,7 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | identifiers | string? |  yes  |  |
- | return_config | [ReturnConfig](#ReturnConfig)? |  yes  |  |
+ | return_config | [ReturnConfig1](#ReturnConfig1)? |  yes  |  |
  | size | string? |  yes  |  |
  | uid | string? |  yes  |  |
  
@@ -9053,7 +7183,6 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | created_ts | string? |  yes  |  |
  | fynd_order_id | string |  no  |  |
  | meta | string? |  yes  |  |
  | order_date | string |  no  |  |
@@ -9080,7 +7209,6 @@ Verify OTP
  | ---------- | ---- | -------- | ----------- |
  | affiliate_id | string? |  yes  |  |
  | cod_charges | string? |  yes  |  |
- | created_ts | string? |  yes  |  |
  | fynd_order_id | string |  no  |  |
  | meta | string? |  yes  |  |
  | order_date | string? |  yes  |  |
@@ -9127,18 +7255,6 @@ Verify OTP
 
 ---
 
-#### [OrderingCurrency](#OrderingCurrency)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | currency_code | string? |  yes  |  |
- | currency_name | string? |  yes  |  |
- | currency_sub_unit | string? |  yes  |  |
- | currency_symbol | string? |  yes  |  |
- 
-
----
-
 #### [OrderingStoreDetails](#OrderingStoreDetails)
 
  | Properties | Type | Nullable | Description |
@@ -9177,6 +7293,34 @@ Verify OTP
  | page | [Page](#Page)? |  yes  |  |
  | success | boolean? |  yes  |  |
  | total_count | number? |  yes  |  |
+ 
+
+---
+
+#### [OrderMeta](#OrderMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | billing_staff_details | [BillingStaffDetails](#BillingStaffDetails)? |  yes  |  |
+ | cart_id | number? |  yes  |  |
+ | cart_object_id | string? |  yes  |  |
+ | comment | string? |  yes  |  |
+ | company_logo | string? |  yes  |  |
+ | currency_symbol | string? |  yes  |  |
+ | customer_note | string? |  yes  |  |
+ | employee_id | string? |  yes  |  |
+ | extra_meta | string? |  yes  |  |
+ | files | [string]? |  yes  |  |
+ | mongo_cart_id | number? |  yes  |  |
+ | order_child_entities | [string]? |  yes  |  |
+ | order_platform | string? |  yes  |  |
+ | order_tags | [string]? |  yes  |  |
+ | order_type | string? |  yes  |  |
+ | ordering_store | number? |  yes  |  |
+ | payment_type | string? |  yes  |  |
+ | platform_user_details | [PlatformUserDetails](#PlatformUserDetails)? |  yes  |  |
+ | staff | string? |  yes  |  |
+ | transaction_data | [TransactionData](#TransactionData)? |  yes  |  |
  
 
 ---
@@ -9274,35 +7418,9 @@ Verify OTP
  | ---------- | ---- | -------- | ----------- |
  | current | number? |  yes  | Current page number |
  | has_next | boolean? |  yes  | if next page contains any result |
- | has_previous | boolean? |  yes  | if previous page contains any result |
  | item_total | number |  no  | Total count of the results present in the requested filter |
  | size | number? |  yes  | Page size |
  | type | string? |  yes  | Type of the page |
- 
-
----
-
-#### [PaginatedStates](#PaginatedStates)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[StateManagerState](#StateManagerState)]? |  yes  |  |
- | page | [PaginationInfo](#PaginationInfo)? |  yes  |  |
- 
-
----
-
-#### [PaginationInfo](#PaginationInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | current | number? |  yes  |  |
- | has_next | boolean? |  yes  |  |
- | has_previous | boolean? |  yes  |  |
- | item_total | number? |  yes  |  |
- | size | number? |  yes  |  |
- | total | number? |  yes  |  |
- | type | string? |  yes  |  |
  
 
 ---
@@ -9363,16 +7481,6 @@ Verify OTP
  | label_pos | string? |  yes  |  |
  | label_type | string |  no  |  |
  | po_invoice | string? |  yes  |  |
- 
-
----
-
-#### [PDFMeta](#PDFMeta)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | consent | string? |  yes  |  |
- | media_updates | [[ManifestMediaUpdate](#ManifestMediaUpdate)]? |  yes  |  |
  
 
 ---
@@ -9478,11 +7586,8 @@ Verify OTP
  | ---------- | ---- | -------- | ----------- |
  | breakup_values | [[PlatformBreakupValues](#PlatformBreakupValues)]? |  yes  |  |
  | channel | [PlatformChannel](#PlatformChannel)? |  yes  |  |
- | currency | [Currency](#Currency)? |  yes  |  |
- | currency_info | [CurrencyInfo](#CurrencyInfo)? |  yes  |  |
  | meta | string? |  yes  |  |
  | order_created_time | string? |  yes  |  |
- | order_created_ts | string? |  yes  |  |
  | order_id | string? |  yes  |  |
  | order_value | number? |  yes  |  |
  | payment_mode | string? |  yes  |  |
@@ -9514,8 +7619,6 @@ Verify OTP
  | company_details | [CompanyDetails](#CompanyDetails)? |  yes  |  |
  | coupon | string? |  yes  |  |
  | credit_note_id | string? |  yes  |  |
- | currency | [Currency](#Currency)? |  yes  |  |
- | currency_info | [CurrencyInfo](#CurrencyInfo)? |  yes  |  |
  | custom_message | string? |  yes  |  |
  | custom_meta | [string]? |  yes  |  |
  | delivery_details | [UserDetailsData](#UserDetailsData)? |  yes  |  |
@@ -9524,7 +7627,6 @@ Verify OTP
  | dp_details | [DPDetailsData](#DPDetailsData)? |  yes  |  |
  | enable_dp_tracking | boolean? |  yes  |  |
  | estimated_sla_time | string? |  yes  |  |
- | estimated_sla_ts | string? |  yes  |  |
  | forward_shipment_id | string? |  yes  |  |
  | fulfilling_store | [FulfillingStore](#FulfillingStore)? |  yes  |  |
  | fulfilment_priority | number? |  yes  |  |
@@ -9552,8 +7654,7 @@ Verify OTP
  | priority_text | string? |  yes  |  |
  | rto_address | [PlatformDeliveryAddress](#PlatformDeliveryAddress)? |  yes  |  |
  | shipment_created_at | string? |  yes  |  |
- | shipment_created_ts | string? |  yes  |  |
- | shipment_details | [ShipmentLockDetails](#ShipmentLockDetails)? |  yes  |  |
+ | shipment_details | [ShipmentDetails](#ShipmentDetails)? |  yes  |  |
  | shipment_id | string |  no  |  |
  | shipment_images | [string]? |  yes  |  |
  | shipment_quantity | number? |  yes  |  |
@@ -9604,6 +7705,18 @@ Verify OTP
  | status | string? |  yes  |  |
  | updated_at | string? |  yes  |  |
  | updated_time | string? |  yes  |  |
+ 
+
+---
+
+#### [PlatformUserDetails](#PlatformUserDetails)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | platform_user_employee_code | string? |  yes  |  |
+ | platform_user_first_name | string? |  yes  |  |
+ | platform_user_id | string? |  yes  |  |
+ | platform_user_last_name | string? |  yes  |  |
  
 
 ---
@@ -9708,42 +7821,6 @@ Verify OTP
  | dispatch_by_date | string? |  yes  |  |
  | dp_pickup_slot | string? |  yes  |  |
  | pack_by_date | string? |  yes  |  |
- 
-
----
-
-#### [ProcessManifest](#ProcessManifest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | action | string |  no  |  |
- | filters | [FiltersRequest](#FiltersRequest) |  no  |  |
- | manifest_id | string? |  yes  |  |
- | unique_id | string |  no  |  |
- 
-
----
-
-#### [ProcessManifestItemResponse](#ProcessManifestItemResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [ProcessManifestResponse](#ProcessManifestResponse)? |  yes  |  |
- 
-
----
-
-#### [ProcessManifestResponse](#ProcessManifestResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | action | string? |  yes  |  |
- | company_id | number? |  yes  |  |
- | created_by | string? |  yes  |  |
- | filters | [Filters](#Filters)? |  yes  |  |
- | manifest_id | string? |  yes  |  |
- | uid | string? |  yes  |  |
- | user_id | string? |  yes  |  |
  
 
 ---
@@ -9919,6 +7996,17 @@ Verify OTP
 
 ---
 
+#### [ReturnConfig1](#ReturnConfig1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | returnable | boolean? |  yes  |  |
+ | time | number? |  yes  |  |
+ | unit | string? |  yes  |  |
+ 
+
+---
+
 #### [RoleBaseStateTransitionMapping](#RoleBaseStateTransitionMapping)
 
  | Properties | Type | Nullable | Description |
@@ -9976,23 +8064,6 @@ Verify OTP
 
 ---
 
-#### [ShipmentActionInfo](#ShipmentActionInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | failed_invoiced_shipments | [String: string]? |  yes  |  |
- | failed_shipments | [[String: string]]? |  yes  |  |
- | invoice | [string]? |  yes  |  |
- | invoiceable_shipments | [string]? |  yes  |  |
- | label | [string]? |  yes  |  |
- | processing_invoice_shipments | [string]? |  yes  |  |
- | processing_shipments | [string]? |  yes  |  |
- | successful_invoiced_shipments | [string]? |  yes  |  |
- | successful_shipments | [string]? |  yes  |  |
- 
-
----
-
 #### [ShipmentBagReasons](#ShipmentBagReasons)
 
  | Properties | Type | Nullable | Description |
@@ -10046,11 +8117,14 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | action_to_status | string? |  yes  |  |
  | affiliate_shipment_id | string |  no  |  |
  | articles | [[ArticleDetails](#ArticleDetails)] |  no  |  |
  | box_type | string? |  yes  |  |
  | dp_id | number? |  yes  |  |
  | fulfillment_id | number |  no  |  |
+ | lock_message | string? |  yes  |  |
+ | lock_status | boolean? |  yes  |  |
  | meta | string? |  yes  |  |
  | shipments | number |  no  |  |
  
@@ -10099,19 +8173,15 @@ Verify OTP
  | bags | [[BagUnit](#BagUnit)]? |  yes  |  |
  | can_process | boolean? |  yes  |  |
  | channel | [ShipmentListingChannel](#ShipmentListingChannel)? |  yes  |  |
- | currency | [Currency](#Currency)? |  yes  |  |
- | currency_info | [CurrencyInfo](#CurrencyInfo)? |  yes  |  |
  | customer_note | string? |  yes  |  |
  | delivery_address | [PlatformDeliveryAddress](#PlatformDeliveryAddress)? |  yes  |  |
  | display_name | string? |  yes  |  |
  | estimated_sla_time | string? |  yes  |  |
- | estimated_sla_ts | string? |  yes  |  |
  | fulfilling_store | [ShipmentItemFulFillingStore](#ShipmentItemFulFillingStore)? |  yes  |  |
  | invoice_id | string? |  yes  |  |
  | lock_status | boolean? |  yes  |  |
  | meta | string? |  yes  |  |
  | mode_of_payment | string? |  yes  |  |
- | order_created_ts | string? |  yes  |  |
  | order_date | string? |  yes  |  |
  | order_id | string |  no  |  |
  | ordering_channnel | string? |  yes  |  |
@@ -10120,11 +8190,9 @@ Verify OTP
  | previous_shipment_id | string? |  yes  |  |
  | prices | [Prices](#Prices)? |  yes  |  |
  | shipment_created_at | string |  no  |  |
- | shipment_created_ts | string? |  yes  |  |
  | shipment_id | string? |  yes  |  |
  | shipment_status | [ShipmentStatus](#ShipmentStatus)? |  yes  |  |
  | status_created_at | string? |  yes  |  |
- | status_created_ts | string? |  yes  |  |
  | total_bags | number |  no  |  |
  | user | [UserDataInfo](#UserDataInfo)? |  yes  |  |
  
@@ -10136,7 +8204,7 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | address | string? |  yes  |  |
- | brand_store_tags | [string]? |  yes  |  |
+ | brand_store_tags | string? |  yes  |  |
  | city | string? |  yes  |  |
  | code | string |  no  |  |
  | id | number |  no  |  |
@@ -10147,7 +8215,44 @@ Verify OTP
  | pincode | string? |  yes  |  |
  | state | string? |  yes  |  |
  | store_email | string? |  yes  |  |
+ 
+
+---
+
+#### [ShipmentItemMeta](#ShipmentItemMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | activity_comment | string? |  yes  |  |
+ | assign_dp_from_sb | boolean? |  yes  |  |
+ | auto_trigger_dp_assignment_acf | boolean |  no  |  |
+ | bag_weight | string? |  yes  |  |
+ | debug_info | string? |  yes  |  |
+ | dp_options | string? |  yes  |  |
+ | dp_sort_key | string? |  yes  |  |
+ | ewaybill_info | string? |  yes  |  |
+ | existing_dp_list | [string]? |  yes  |  |
+ | external | string? |  yes  |  |
+ | formatted | [Formatted](#Formatted)? |  yes  |  |
+ | fulfilment_priority_text | string? |  yes  |  |
+ | is_international | boolean? |  yes  |  |
+ | is_self_ship | boolean? |  yes  |  |
+ | lock_data | [LockData](#LockData)? |  yes  |  |
+ | order_type | string? |  yes  |  |
+ | packaging_name | string? |  yes  |  |
+ | parent_dp_id | string? |  yes  |  |
+ | pdf_media | [string]? |  yes  |  |
+ | same_store_available | boolean? |  yes  |  |
+ | shipment_chargeable_weight | number? |  yes  |  |
+ | shipment_tags | [[ShipmentTags](#ShipmentTags)]? |  yes  |  |
+ | shipment_volumetric_weight | number? |  yes  |  |
+ | shipment_weight | number? |  yes  |  |
+ | shipping_zone | string? |  yes  |  |
+ | sla | number? |  yes  |  |
+ | store_invoice_updated_date | string? |  yes  |  |
  | tags | [string]? |  yes  |  |
+ | timestamp | [ShipmentTimeStamp](#ShipmentTimeStamp)? |  yes  |  |
+ | weight | number? |  yes  |  |
  
 
 ---
@@ -10172,17 +8277,6 @@ Verify OTP
  | is_affiliate | boolean? |  yes  |  |
  | logo | string? |  yes  |  |
  | name | string? |  yes  |  |
- 
-
----
-
-#### [ShipmentLockDetails](#ShipmentLockDetails)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | action_to_status | string? |  yes  |  |
- | lock_message | string? |  yes  |  |
- | lock_status | boolean? |  yes  |  |
  
 
 ---
@@ -10304,14 +8398,12 @@ Verify OTP
  | ---------- | ---- | -------- | ----------- |
  | bag_list | [string]? |  yes  |  |
  | created_at | string? |  yes  |  |
- | created_ts | string? |  yes  |  |
  | current_shipment_status | string? |  yes  |  |
  | meta | string? |  yes  |  |
  | shipment_id | string? |  yes  |  |
  | shipment_status_id | number? |  yes  |  |
  | status | string |  no  |  |
  | status_created_at | string? |  yes  |  |
- | status_created_ts | string? |  yes  |  |
  | title | string |  no  |  |
  
 
@@ -10323,7 +8415,6 @@ Verify OTP
  | ---------- | ---- | -------- | ----------- |
  | bag_list | [string]? |  yes  |  |
  | created_at | string? |  yes  |  |
- | created_ts | string? |  yes  |  |
  | current_shipment_status | string? |  yes  |  |
  | display_name | string? |  yes  |  |
  | id | number? |  yes  |  |
@@ -10359,18 +8450,17 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | address | string? |  yes  |  |
- | address1 | string? |  yes  |  |
+ | address1 | string |  no  |  |
  | address2 | string? |  yes  |  |
  | address_type | string? |  yes  |  |
  | alternate_email | string? |  yes  |  |
  | alternate_mobile_number | string? |  yes  |  |
- | city | string? |  yes  |  |
- | country | string? |  yes  |  |
+ | city | string |  no  |  |
+ | country | string |  no  |  |
  | country_code | string? |  yes  |  |
  | customer_code | string? |  yes  |  |
  | external_customer_code | string? |  yes  |  |
- | first_name | string? |  yes  |  |
+ | first_name | string |  no  |  |
  | floor_no | string? |  yes  |  |
  | gender | string? |  yes  |  |
  | geo_location | string? |  yes  |  |
@@ -10378,12 +8468,12 @@ Verify OTP
  | landmark | string? |  yes  |  |
  | last_name | string? |  yes  |  |
  | middle_name | string? |  yes  |  |
- | pincode | string? |  yes  |  |
- | primary_email | string? |  yes  |  |
- | primary_mobile_number | string? |  yes  |  |
+ | pincode | string |  no  |  |
+ | primary_email | string |  no  |  |
+ | primary_mobile_number | string |  no  |  |
  | shipping_type | string? |  yes  |  |
  | slot | [string]? |  yes  |  |
- | state | string? |  yes  |  |
+ | state | string |  no  |  |
  | state_code | string? |  yes  |  |
  | title | string? |  yes  |  |
  
@@ -10403,66 +8493,6 @@ Verify OTP
  | payment_mode | string? |  yes  | Data mapped in Communication template: payment_mode |
  | phone_number | number |  no  | phone number for communication |
  | shipment_id | number |  no  | ShipmentId |
- 
-
----
-
-#### [StateManagerFilter](#StateManagerFilter)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | default_value | string? |  yes  |  |
- | description | string? |  yes  |  |
- | display_name | string? |  yes  |  |
- | id | number? |  yes  |  |
- | name | string? |  yes  |  |
- | options | string? |  yes  |  |
- | type | string? |  yes  |  |
- 
-
----
-
-#### [StateManagerState](#StateManagerState)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | app_display_name | string? |  yes  | The application display name |
- | app_facing | boolean? |  yes  | Whether state is for app facing or not |
- | id | number? |  yes  | Unique identifier for the state |
- | is_active | boolean? |  yes  | Whether state is active or not |
- | journey_type | string? |  yes  | Type of the journey |
- | platform_display_name | string? |  yes  | The platform display name |
- | state | string? |  yes  | The name of the state |
- | state_type | string? |  yes  | Type of the state |
- 
-
----
-
-#### [StateManagerTask](#StateManagerTask)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | description | string? |  yes  |  |
- | display_name | string? |  yes  |  |
- | doc_string | string? |  yes  |  |
- | id | number? |  yes  |  |
- | kwargs | string? |  yes  |  |
- | name | string? |  yes  |  |
- 
-
----
-
-#### [StateTransitionFlag](#StateTransitionFlag)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | default_value | string? |  yes  |  |
- | description | string? |  yes  |  |
- | display_name | string? |  yes  |  |
- | id | number? |  yes  |  |
- | name | string? |  yes  |  |
- | options | string? |  yes  |  |
- | type | string? |  yes  |  |
  
 
 ---
@@ -10713,46 +8743,31 @@ Verify OTP
 
 ---
 
-#### [TemplateDownloadResponse](#TemplateDownloadResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | file_name | string? |  yes  |  |
- | url | string? |  yes  |  |
- 
-
----
-
-#### [Templates](#Templates)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | text | string? |  yes  |  |
- | value | string? |  yes  |  |
- 
-
----
-
-#### [TotalShipmentPricesCount](#TotalShipmentPricesCount)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | shipment_count | number? |  yes  |  |
- | total_price | number? |  yes  |  |
- 
-
----
-
 #### [TrackingList](#TrackingList)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | created_ts | string? |  yes  |  |
  | is_current | boolean? |  yes  |  |
  | is_passed | boolean? |  yes  |  |
  | status | string |  no  |  |
  | text | string |  no  |  |
  | time | string? |  yes  |  |
+ 
+
+---
+
+#### [TransactionData](#TransactionData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount_paid | number? |  yes  |  |
+ | currency | string? |  yes  |  |
+ | entity | string? |  yes  |  |
+ | payment_id | string? |  yes  |  |
+ | status | string? |  yes  |  |
+ | terminal_id | string? |  yes  |  |
+ | transaction_id | string? |  yes  |  |
+ | unique_reference_number | string? |  yes  |  |
  
 
 ---
@@ -10880,15 +8895,12 @@ Verify OTP
  | area | string? |  yes  |  |
  | city | string |  no  |  |
  | country | string |  no  |  |
- | country_iso_code | string? |  yes  |  |
- | country_phone_code | string? |  yes  |  |
  | email | string? |  yes  |  |
  | landmark | string? |  yes  |  |
  | name | string |  no  |  |
  | phone | string |  no  |  |
  | pincode | string |  no  |  |
  | state | string |  no  |  |
- | state_code | string? |  yes  |  |
  
 
 ---

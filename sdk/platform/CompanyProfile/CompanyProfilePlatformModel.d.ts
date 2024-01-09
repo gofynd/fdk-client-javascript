@@ -6,14 +6,12 @@ export = CompanyProfilePlatformModel;
  * @property {string} [address2]
  * @property {string} [city]
  * @property {string} [country]
- * @property {string} country_code
+ * @property {string} [country_code]
  * @property {string} [landmark]
  * @property {number} latitude
  * @property {number} longitude
  * @property {number} [pincode]
- * @property {string} [sector]
  * @property {string} [state]
- * @property {string} [state_code]
  */
 /**
  * @typedef AverageOrderProcessingTime
@@ -31,10 +29,8 @@ export = CompanyProfilePlatformModel;
  */
 /**
  * @typedef BusinessCountryInfo
- * @property {string} country
- * @property {string} country_code
- * @property {CountryCurrencyInfo} currency
- * @property {string} timezone
+ * @property {string} [country]
+ * @property {string} [country_code]
  */
 /**
  * @typedef BusinessDetails
@@ -115,12 +111,6 @@ export = CompanyProfilePlatformModel;
  * @property {SellerPhoneNumber[]} [phone]
  */
 /**
- * @typedef CountryCurrencyInfo
- * @property {string} code
- * @property {string} name
- * @property {string} symbol
- */
-/**
  * @typedef CreateUpdateAddressSerializer
  * @property {string} address_type
  * @property {string} address1
@@ -179,9 +169,7 @@ export = CompanyProfilePlatformModel;
  * @property {number} latitude
  * @property {number} longitude
  * @property {number} [pincode]
- * @property {string} [sector]
  * @property {string} [state]
- * @property {string} [state_code]
  */
 /**
  * @typedef GetBrandResponseSerializer
@@ -251,7 +239,6 @@ export = CompanyProfilePlatformModel;
  * @typedef GetLocationSerializer
  * @property {Object} [_custom_json]
  * @property {GetAddressSerializer} address
- * @property {boolean} [auto_assign_courier_partner]
  * @property {boolean} [auto_invoice]
  * @property {AverageOrderProcessingTime} [avg_order_processing_time]
  * @property {boolean} [bulk_shipment]
@@ -327,7 +314,6 @@ export = CompanyProfilePlatformModel;
  * @typedef LocationSerializer
  * @property {Object} [_custom_json]
  * @property {AddressSerializer} address
- * @property {boolean} [auto_assign_courier_partner]
  * @property {boolean} [auto_invoice]
  * @property {AverageOrderProcessingTime} [avg_order_processing_time]
  * @property {boolean} [bulk_shipment]
@@ -338,7 +324,7 @@ export = CompanyProfilePlatformModel;
  * @property {boolean} [default_order_acceptance_timing] - Flag to set
  *   order_acceptance_timing as default timing
  * @property {string} display_name
- * @property {Document[]} documents
+ * @property {Document[]} [documents]
  * @property {InvoiceDetailsSerializer} [gst_credentials]
  * @property {HolidaySchemaSerializer[]} [holiday]
  * @property {LocationManagerSerializer} [manager]
@@ -430,7 +416,7 @@ export = CompanyProfilePlatformModel;
 declare class CompanyProfilePlatformModel {
 }
 declare namespace CompanyProfilePlatformModel {
-    export { AddressSerializer, AverageOrderProcessingTime, BrandBannerSerializer, BulkLocationSerializer, BusinessCountryInfo, BusinessDetails, CompanyBrandListSerializer, CompanyBrandPostRequestSerializer, CompanyBrandSerializer, CompanyDetails, CompanySerializer, CompanySocialAccounts, CompanyTaxesSerializer, CompanyTaxesSerializer1, ContactDetails, CountryCurrencyInfo, CreateUpdateAddressSerializer, CreateUpdateBrandRequestSerializer, Document, DocumentsObj, ErrorResponse, GetAddressSerializer, GetBrandResponseSerializer, GetCompanyProfileSerializerResponse, GetCompanySerializer, GetLocationSerializer, HolidayDateSerializer, HolidaySchemaSerializer, InvoiceCredSerializer, InvoiceDetailsSerializer, LocationDayWiseSerializer, LocationListSerializer, LocationManagerSerializer, LocationSerializer, LocationTimingSerializer, MetricsSerializer, Page, ProductReturnConfigSerializer, ProfileSuccessResponse, SellerPhoneNumber, StoreTagsResponseSchema, UpdateCompany, UserSerializer, Website };
+    export { AddressSerializer, AverageOrderProcessingTime, BrandBannerSerializer, BulkLocationSerializer, BusinessCountryInfo, BusinessDetails, CompanyBrandListSerializer, CompanyBrandPostRequestSerializer, CompanyBrandSerializer, CompanyDetails, CompanySerializer, CompanySocialAccounts, CompanyTaxesSerializer, CompanyTaxesSerializer1, ContactDetails, CreateUpdateAddressSerializer, CreateUpdateBrandRequestSerializer, Document, DocumentsObj, ErrorResponse, GetAddressSerializer, GetBrandResponseSerializer, GetCompanyProfileSerializerResponse, GetCompanySerializer, GetLocationSerializer, HolidayDateSerializer, HolidaySchemaSerializer, InvoiceCredSerializer, InvoiceDetailsSerializer, LocationDayWiseSerializer, LocationListSerializer, LocationManagerSerializer, LocationSerializer, LocationTimingSerializer, MetricsSerializer, Page, ProductReturnConfigSerializer, ProfileSuccessResponse, SellerPhoneNumber, StoreTagsResponseSchema, UpdateCompany, UserSerializer, Website };
 }
 /** @returns {AddressSerializer} */
 declare function AddressSerializer(): AddressSerializer;
@@ -440,14 +426,12 @@ type AddressSerializer = {
     address2?: string;
     city?: string;
     country?: string;
-    country_code: string;
+    country_code?: string;
     landmark?: string;
     latitude: number;
     longitude: number;
     pincode?: number;
-    sector?: string;
     state?: string;
-    state_code?: string;
 };
 /** @returns {AverageOrderProcessingTime} */
 declare function AverageOrderProcessingTime(): AverageOrderProcessingTime;
@@ -469,10 +453,8 @@ type BulkLocationSerializer = {
 /** @returns {BusinessCountryInfo} */
 declare function BusinessCountryInfo(): BusinessCountryInfo;
 type BusinessCountryInfo = {
-    country: string;
-    country_code: string;
-    currency: CountryCurrencyInfo;
-    timezone: string;
+    country?: string;
+    country_code?: string;
 };
 /** @returns {BusinessDetails} */
 declare function BusinessDetails(): BusinessDetails;
@@ -562,13 +544,6 @@ type ContactDetails = {
     emails?: string[];
     phone?: SellerPhoneNumber[];
 };
-/** @returns {CountryCurrencyInfo} */
-declare function CountryCurrencyInfo(): CountryCurrencyInfo;
-type CountryCurrencyInfo = {
-    code: string;
-    name: string;
-    symbol: string;
-};
 /** @returns {CreateUpdateAddressSerializer} */
 declare function CreateUpdateAddressSerializer(): CreateUpdateAddressSerializer;
 type CreateUpdateAddressSerializer = {
@@ -634,9 +609,7 @@ type GetAddressSerializer = {
     latitude: number;
     longitude: number;
     pincode?: number;
-    sector?: string;
     state?: string;
-    state_code?: string;
 };
 /** @returns {GetBrandResponseSerializer} */
 declare function GetBrandResponseSerializer(): GetBrandResponseSerializer;
@@ -710,7 +683,6 @@ declare function GetLocationSerializer(): GetLocationSerializer;
 type GetLocationSerializer = {
     _custom_json?: any;
     address: GetAddressSerializer;
-    auto_assign_courier_partner?: boolean;
     auto_invoice?: boolean;
     avg_order_processing_time?: AverageOrderProcessingTime;
     bulk_shipment?: boolean;
@@ -794,7 +766,6 @@ declare function LocationSerializer(): LocationSerializer;
 type LocationSerializer = {
     _custom_json?: any;
     address: AddressSerializer;
-    auto_assign_courier_partner?: boolean;
     auto_invoice?: boolean;
     avg_order_processing_time?: AverageOrderProcessingTime;
     bulk_shipment?: boolean;
@@ -808,7 +779,7 @@ type LocationSerializer = {
      */
     default_order_acceptance_timing?: boolean;
     display_name: string;
-    documents: Document[];
+    documents?: Document[];
     gst_credentials?: InvoiceDetailsSerializer;
     holiday?: HolidaySchemaSerializer[];
     manager?: LocationManagerSerializer;

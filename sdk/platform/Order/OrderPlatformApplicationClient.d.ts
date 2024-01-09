@@ -4,16 +4,6 @@ declare class Order {
     config: any;
     applicationId: any;
     /**
-     * @param {OrderPlatformApplicationValidator.FailedOrderLogsParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<OrderPlatformModel.FailedOrderLogs>} - Success response
-     * @name failedOrderLogs
-     * @summary: Get failed order logs according to the filter provided
-     * @description: This endpoint allows users to get failed order logs listing for filters based on order id, user contact number, user email id and sales channel id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/failedOrderLogs/).
-     */
-    failedOrderLogs({ pageNo, pageSize, searchType, searchValue, requestHeaders }?: OrderPlatformApplicationValidator.FailedOrderLogsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.FailedOrderLogs>;
-    /**
      * @param {OrderPlatformApplicationValidator.GetApplicationShipmentsParam} arg
      *   - Arg object
      *
@@ -24,7 +14,7 @@ declare class Order {
      *
      * @name getApplicationShipments
      * @summary:
-     * @description: Get cross selling platform shipments - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getApplicationShipments/).
+     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getApplicationShipments/).
      */
     getApplicationShipments({ lane, searchType, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannel, requestByExt, pageNo, pageSize, customerId, isPrioritySort, excludeLockedShipments, requestHeaders, }?: OrderPlatformApplicationValidator.GetApplicationShipmentsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ShipmentInternalPlatformViewResponse>;
     /**
@@ -51,18 +41,6 @@ declare class Order {
      * @description: Use this API to retrieve the issues that led to the cancellation of bags within a shipment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getShipmentBagReasons/).
      */
     getShipmentBagReasons({ shipmentId, lineNumber, requestHeaders }?: OrderPlatformApplicationValidator.GetShipmentBagReasonsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ShipmentBagReasons>;
-    /**
-     * @param {OrderPlatformApplicationValidator.GetStateManagerStatesParam} arg
-     *   - Arg object
-     *
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<OrderPlatformModel.PaginatedStates>} - Success response
-     * @name getStateManagerStates
-     * @summary: Get all states for a company and channel
-     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getStateManagerStates/).
-     */
-    getStateManagerStates({ pageNo, pageSize, requestHeaders }?: OrderPlatformApplicationValidator.GetStateManagerStatesParam, { responseHeaders }?: object): Promise<OrderPlatformModel.PaginatedStates>;
     /**
      * @param {OrderPlatformApplicationValidator.TrackShipmentPlatformParam} arg
      *   - Arg object

@@ -20,7 +20,6 @@ export = ConfigurationPlatformModel;
  * @property {boolean} [bulk_coupons] - Allow creation of bulk coupons
  * @property {DeliveryCharges} [delivery_charges]
  * @property {boolean} [enabled] - Shows whether cart configuration is enabled or not
- * @property {InternationalDeliveryCharges} [international_delivery_charges]
  * @property {number} [max_cart_items] - Maximum number of items that can be
  *   added to cart by the customer
  * @property {number} [min_cart_value] - Minimum cart value below which customer
@@ -31,15 +30,9 @@ export = ConfigurationPlatformModel;
  */
 /**
  * @typedef AppCurrencyResponse
- * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
- *   of the currency configuration supported by the application
  * @property {string} [application] - Alphanumeric ID allotted to an application
  *   (sales channel website) created within a business account
- * @property {string} [created_at] - ISO 8601 timestamp when currency was added
- *   in the list of currencies supported by the sales channel
  * @property {DefaultCurrency} [default_currency]
- * @property {string} [modified_at] - ISO 8601 timestamp when currency was
- *   updated in the list of currencies supported by the sales channel
  * @property {Currency[]} [supported_currency]
  */
 /**
@@ -58,13 +51,13 @@ export = ConfigurationPlatformModel;
  *   the features were configured
  * @property {HomePageFeature} [home_page]
  * @property {LandingPageFeature} [landing_page]
- * @property {string} [modified_at] - ISO 8601 timestamp of last known
- *   modifications to the sales channel feature configuration
  * @property {OrderFeature} [order]
  * @property {PcrFeature} [pcr]
  * @property {ProductDetailFeature} [product_detail]
  * @property {QrFeature} [qr]
  * @property {RegistrationPageFeature} [registration_page]
+ * @property {string} [updated_at] - ISO 8601 timestamp of last known
+ *   modifications to the sales channel feature configuration
  */
 /**
  * @typedef AppFeatureRequest
@@ -77,8 +70,16 @@ export = ConfigurationPlatformModel;
 /**
  * @typedef AppInventory
  * @property {InventoryArticleAssignment} [article_assignment]
- * @property {InventoryConfig} [inventory]
+ * @property {InventoryBrandRule} [brand]
+ * @property {boolean} [franchise_enabled] - Allow other businesses (companies)
+ *   to consume the current sales channel's inventory and sell products
+ * @property {string[]} [image]
+ * @property {boolean} [only_verified_products] - Show only verified products
+ *   (the ones whose data have been verified by the admin)
+ * @property {boolean} [out_of_stock] - Indicates whether out of stock products
+ *   are allowed to show up on the website.
  * @property {InventoryPaymentConfig} [payment]
+ * @property {InventoryStoreRule} [store]
  */
 /**
  * @typedef AppInventoryCompanies
@@ -91,7 +92,6 @@ export = ConfigurationPlatformModel;
  * @typedef AppInventoryConfig
  * @property {InventoryBrand} [brand]
  * @property {InventoryCategory} [category]
- * @property {number} [company_id]
  * @property {Object[]} [company_store] - List of selling locations whose
  *   inventory is available to the sales channel for displaying on the website
  * @property {InventoryDiscount} [discount]
@@ -120,12 +120,10 @@ export = ConfigurationPlatformModel;
  * @typedef AppInventoryStores
  * @property {string} [_id] - The unique identifier of the store (24-digit Mongo
  *   Object ID) in the sales channel inventory
- * @property {Object} [address]
  * @property {number} [company_id] - Company ID of the selling location (store)
  *   added to the sales channel's inventory
  * @property {string} [display_name] - Display name of the sales channel
  *   inventory store (can be different than the actual store name), e.g. Reebok MUM
- * @property {Object} [integration_type]
  * @property {string} [modified_on] - ISO 8601 timestamp of last known updation
  *   to the stores in sales channel inventory
  * @property {string} [name] - Name of the store in the sales channel inventory,
@@ -163,18 +161,14 @@ export = ConfigurationPlatformModel;
  * @property {SecureUrl} [logo]
  * @property {ApplicationMeta[]} [meta]
  * @property {SecureUrl} [mobile_logo]
- * @property {string} [mode]
- * @property {string} [modified_at] - ISO 8601 timestamp of sales channel updation
  * @property {string} [name] - Name of the sales channel, e.g. Zenz Fashion
  * @property {string} [owner] - The unique identifier (24-digit Mongo Object ID)
  *   of owner who owns the application
  * @property {ApplicationRedirections[]} [redirections]
- * @property {string} [secret]
  * @property {string} [slug]
- * @property {string} [status]
  * @property {string} [token] - Random generated fix length string for sales
  *   channel. It is required and auto-generated.
- * @property {TokenSchema[]} [tokens]
+ * @property {string} [updated_at] - ISO 8601 timestamp of sales channel updation
  * @property {ApplicationWebsite} [website]
  */
 /**
@@ -190,7 +184,6 @@ export = ConfigurationPlatformModel;
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   for the sales channel details
  * @property {SecureUrl} [banner]
- * @property {number} [company_id]
  * @property {string} [description] - It gives a detailed information about the
  *   sales channel. It is required.
  * @property {Domain} [domain]
@@ -199,7 +192,6 @@ export = ConfigurationPlatformModel;
  * @property {SecureUrl} [logo]
  * @property {SecureUrl} [mobile_logo]
  * @property {string} name - Name of the sales channel. It is required.
- * @property {string} [slug]
  */
 /**
  * @typedef ApplicationInformation
@@ -209,20 +201,19 @@ export = ConfigurationPlatformModel;
  * @property {InformationAddress} [address]
  * @property {string} [application] - Alphanumeric ID allotted to a sales
  *   channel application created within a business account
- * @property {BusinessHighlights[]} [business_highlights]
+ * @property {BusinessHighlights} [business_highlights]
  * @property {string} [copyright_text] - Copyright statement usually seen at the
  *   site's footer
  * @property {string} [created_at] - ISO 8601 timestamp of creation of the
  *   application information
  * @property {Links[]} [links]
- * @property {string} [modified_at] - ISO 8601 timestamp of updation of the
- *   application information
  * @property {SocialLinks} [social_links]
  * @property {InformationSupport} [support]
+ * @property {string} [updated_at] - ISO 8601 timestamp of updation of the
+ *   application information
  */
 /**
  * @typedef ApplicationInventory
- * @property {number} [__v]
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   of the sales channel inventory
  * @property {string} [app] - Current sales channel ID
@@ -239,16 +230,14 @@ export = ConfigurationPlatformModel;
  * @property {AppInventoryConfig} [inventory]
  * @property {AppLogisticsConfig} [logistics]
  * @property {LoyaltyPointsConfig} [loyalty_points]
- * @property {string} [modified_at] - ISO 8601 timestamp of sales channel
- *   inventory updation
  * @property {string} [modified_by] - User ID of the person who made the latest
  *   changes in the sales channel inventory
  * @property {AppOrderConfig} [order]
  * @property {AppPaymentConfig} [payment]
- * @property {PiiMasking} [pii_masking]
  * @property {string[]} [platforms]
  * @property {RewardPointsConfig} [reward_points]
- * @property {string[]} [tags]
+ * @property {string} [updated_at] - ISO 8601 timestamp of sales channel
+ *   inventory updation
  */
 /**
  * @typedef ApplicationMeta
@@ -302,11 +291,10 @@ export = ConfigurationPlatformModel;
  * @property {PaymentSelectionLock} [payment_selection_lock]
  * @property {string} [source] - Source of the payment mode, e.g. 'ECOMM'.
  *   Default value is FYND.
- * @property {number} [user_cod_limit]
  */
 /**
  * @typedef AppStoreRules
- * @property {number[]} [brands] - List of brands whose products will be shown
+ * @property {Object[]} [brands] - List of brands whose products will be shown
  *   on the website
  * @property {number[]} [companies] - List of companies whose inventory is
  *   available to the sales channel for displaying on the website
@@ -320,13 +308,12 @@ export = ConfigurationPlatformModel;
  * @property {string} [created_at] - ISO 8601 timestamp when currency was added
  *   in the list of currencies supported by the sales channel
  * @property {DefaultCurrency} [default_currency]
- * @property {string} [modified_at] - ISO 8601 timestamp when currency was
- *   updated in the list of currencies supported by the sales channel
  * @property {string[]} [supported_currency]
+ * @property {string} [updated_at] - ISO 8601 timestamp when currency was
+ *   updated in the list of currencies supported by the sales channel
  */
 /**
  * @typedef ArticleAssignmentConfig
- * @property {number[]} [enforced_stores]
  * @property {boolean} [post_order_reassignment] - Allow post order reassigment of article
  * @property {ArticleAssignmentRules} [rules]
  */
@@ -357,7 +344,7 @@ export = ConfigurationPlatformModel;
  */
 /**
  * @typedef BrandsByCompanyResponse
- * @property {CompanyBrandInfo[]} [brands]
+ * @property {CompanyBrandInfo} [brands]
  */
 /**
  * @typedef BrandStoreInfo
@@ -378,11 +365,10 @@ export = ConfigurationPlatformModel;
  * @property {string} [build_status] - Current progress of the mobile build,
  *   e.g. pending, cancelled, failed, success
  * @property {string} [created_at] - ISO 8601 timestamp of app creation
- * @property {LandingImage} [download_url]
- * @property {string} [modified_at] - ISO 8601 timestamp of last known
- *   modifications to the app build
  * @property {string} [platform_type] - Device platform for which the mobile app
  *   was built, e.g. android, ios.
+ * @property {string} [updated_at] - ISO 8601 timestamp of last known
+ *   modifications to the app build
  * @property {number} [version_code] - A positive integer used as an internal
  *   version number
  * @property {string} [version_name] - Version number of the mobile build, in
@@ -392,7 +378,7 @@ export = ConfigurationPlatformModel;
  * @typedef BuildVersionHistory
  * @property {string} [latest_available_version_name] - Latest version number of
  *   the mobile build, in dot-decimal notation
- * @property {BuildVersion[]} [versions]
+ * @property {BuildVersion} [versions]
  */
 /**
  * @typedef BusinessHighlights
@@ -434,8 +420,6 @@ export = ConfigurationPlatformModel;
  * @property {CurrencyFeature} [currency]
  * @property {DeploymentStoreSelectionFeature} [deployment_store_selection]
  * @property {FeedbackFeature} [feedback]
- * @property {InternationalShipping} [international_shipping]
- * @property {ListingPageFeature} [listing_page]
  * @property {ListingPriceFeature} [listing_price]
  * @property {RevenueEngineFeature} [revenue_engine]
  * @property {RewardPointsConfig} [reward_points]
@@ -456,7 +440,7 @@ export = ConfigurationPlatformModel;
  */
 /**
  * @typedef CompaniesResponse
- * @property {AppInventoryCompanies[]} [items]
+ * @property {AppInventoryCompanies} [items]
  * @property {Page} [page]
  */
 /**
@@ -491,7 +475,7 @@ export = ConfigurationPlatformModel;
 /**
  * @typedef CreateApplicationRequest
  * @property {App} [app]
- * @property {ApplicationInventory} [configuration]
+ * @property {AppInventory} [configuration]
  * @property {AppDomain} [domain]
  */
 /**
@@ -526,8 +510,6 @@ export = ConfigurationPlatformModel;
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   of the current sales channel supported currency
  * @property {string} [code] - 3-character currency code, e.g. INR, USD, EUR.
- * @property {string} [country_code]
- * @property {string} [country_name]
  * @property {string} [created_at] - ISO 8601 timestamp of sales channel support
  *   currency creation
  * @property {number} [decimal_digits] - Acceptable decimal limits for a given
@@ -535,10 +517,10 @@ export = ConfigurationPlatformModel;
  *   value of a currency.
  * @property {boolean} [is_active] - Shows currency is enabled or not in current
  *   sales channel
- * @property {string} [modified_at] - ISO 8601 timestamp of sales channel
- *   support currency updation
  * @property {string} [name] - Name of the currency, e.g Indian Rupee
  * @property {string} [symbol] - Unique symbol for identifying the currency, e.g. ₹
+ * @property {string} [updated_at] - ISO 8601 timestamp of sales channel support
+ *   currency updation
  */
 /**
  * @typedef CurrencyFeature
@@ -568,7 +550,6 @@ export = ConfigurationPlatformModel;
  */
 /**
  * @typedef DeploymentMeta
- * @property {number} [__v]
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   of the ordering stores
  * @property {boolean} [all_stores] - Allow all stores from the ordering store
@@ -596,7 +577,6 @@ export = ConfigurationPlatformModel;
  * @property {boolean} [is_primary] - Domain is primary or not. Primary domain
  *   is the default/main domain.
  * @property {boolean} [is_shortlink] - Shortlink is present or not for the domain
- * @property {string} [message]
  * @property {string} [name] - Full domain name, e.g. newton.com
  * @property {boolean} [verified] - Domain is verified or not. TXT and A records
  *   should propagate correctly.
@@ -702,7 +682,6 @@ export = ConfigurationPlatformModel;
  */
 /**
  * @typedef FyndRewardsCredentials
- * @property {string} [private_key] - Public key for integrating with Fynd rewards.
  * @property {string} [public_key] - Public key for integrating with Fynd rewards.
  */
 /**
@@ -745,14 +724,9 @@ export = ConfigurationPlatformModel;
  * @property {string[]} [address_line] - Contact address of the sales channel
  * @property {string} [city] - Name of the city, e.g. Mumbai
  * @property {string} [country] - Name of the country, e.g. India
- * @property {InformationLoc} [loc]
+ * @property {string} [loc] - Co-ordinates of the location
  * @property {InformationPhone[]} [phone]
  * @property {number} [pincode] - 6-digit PIN Code of the city, e.g. 400001
- */
-/**
- * @typedef InformationLoc
- * @property {number[]} [coordinates] - 10-digit mobile number
- * @property {string} [type] - Country code for contact number, e.g. +91 (for India)
  */
 /**
  * @typedef InformationPhone
@@ -761,20 +735,9 @@ export = ConfigurationPlatformModel;
  */
 /**
  * @typedef InformationSupport
- * @property {InformationSupportEmail[]} [email]
- * @property {InformationSupportPhone[]} [phone]
+ * @property {string[]} [email]
+ * @property {string[]} [phone]
  * @property {string} [timing] - Working hours of support team, e.g. 9 AM to 9 PM
- */
-/**
- * @typedef InformationSupportEmail
- * @property {string} [key]
- * @property {string} [value] - Value of email.
- */
-/**
- * @typedef InformationSupportPhone
- * @property {string} [code] - Country code for contact number, e.g. +91 (for India)
- * @property {string} [key]
- * @property {string} [number] - 10-digit mobile number
  */
 /**
  * @typedef InstagramLink
@@ -787,24 +750,22 @@ export = ConfigurationPlatformModel;
  * @property {number} [__v] - Version key for tracking revisions. Default value is zero.
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   of the integration
- * @property {string[]} [companies]
+ * @property {Object[]} [companies]
  * @property {Object} [constants]
  * @property {string} [created_at] - ISO 8601 timestamp of integration creation
  * @property {string} [description] - Basic description about the integration
  * @property {string} [description_html] - Basic HTML description about the integration
- * @property {boolean} [hidden]
  * @property {string} [icon] - Hosted URL of the icon image
  * @property {IntegrationMeta[]} [meta]
- * @property {string} [modified_at] - ISO 8601 timestamp of integration updation
  * @property {string} [name] - Name of the integration, e.g. SAP RBL Integration
  * @property {string} [owner] - The unique identifier (24-digit Mongo Object ID)
  *   of the user who created the integration
  * @property {string} [secret] - Randomly generated fixed-length string for
  *   opted integration. It is auto-generated. It would never change once it is generated.
- * @property {string} [slug] - Name of the integration, e.g. SAP RBL Integration
  * @property {string[]} [support]
  * @property {string} [token] - Randomly generated fixed-length string for opted
  *   integration. It is auto-generated. It would never change once it is generated.
+ * @property {string} [updated_at] - ISO 8601 timestamp of integration updation
  * @property {Validators} [validators]
  */
 /**
@@ -816,7 +777,6 @@ export = ConfigurationPlatformModel;
  * @property {number} [__v] - Version key for tracking revisions. Default value is zero.
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   of the integration config
- * @property {number} [company_id] - Unique id of company.
  * @property {string} [created_at] - ISO 8601 timestamp of integration config creation
  * @property {Object} [data] - Schema data of the integration stored in key-value pairs
  * @property {string} [integration] - Integration id. Shows which integration
@@ -824,17 +784,15 @@ export = ConfigurationPlatformModel;
  * @property {LastPatch[]} [last_patch]
  * @property {string} [level] - Shows for what level the integration is set up.
  *   It can be company level or store level.
- * @property {string} [message]
  * @property {IntegrationMeta[]} [meta]
- * @property {string} [modified_at] - ISO 8601 timestamp of integration config updation
  * @property {boolean} [opted] - Shows this integration is opted or not opted
  *   for the current company
  * @property {Object[]} [permissions]
- * @property {boolean} [success]
  * @property {string} [token] - Randomly generated fixed-length string for opted
  *   integration. It is auto-generated. It would never change once it is generated.
  * @property {number} [uid] - It can be store uid or company uid. Depends on the
  *   level of integration.
+ * @property {string} [updated_at] - ISO 8601 timestamp of integration config updation
  */
 /**
  * @typedef IntegrationMeta
@@ -849,40 +807,28 @@ export = ConfigurationPlatformModel;
  * @property {number} [__v] - Version key for tracking revisions. Default value is zero.
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   of the opted integration
- * @property {string[]} [companies]
+ * @property {Object[]} [companies]
  * @property {string} [constants]
  * @property {string} [created_at] - ISO 8601 timestamp of integration creation
  * @property {string} [description] - Basic description about the opted integration
  * @property {string} [description_html] - Basic HTML description about the
  *   opted integration
- * @property {boolean} [hidden]
  * @property {string} [icon] - Hosted URL of the icon image
  * @property {IntegrationMeta[]} [meta]
- * @property {string} [modified_at] - ISO 8601 timestamp of integration updation
  * @property {string} [name] - Nmae of the opted integration, e.g. SAP RBL Integration
  * @property {string} [owner] - The unique identifier (24-digit Mongo Object ID)
  *   of the user who created the integration
  * @property {string} [secret] - Randomly generated fixed-length string for
  *   opted integration. It is auto-generated. It would never change once it is generated.
- * @property {string} [slug] - Slug of the opted integration, e.g. ginesys
  * @property {string[]} [support]
  * @property {string} [token] - Randomly generated fixed-length string for opted
  *   integration. It is auto-generated. It would never change once it is generated.
+ * @property {string} [updated_at] - ISO 8601 timestamp of integration updation
  * @property {Validators} [validators]
- */
-/**
- * @typedef InternationalDeliveryCharges
- * @property {Charges[]} [charges]
- * @property {boolean} [enabled] - Allow international delivery charges
- */
-/**
- * @typedef InternationalShipping
- * @property {boolean} [enabled] - International shipping is enabled or not.
  */
 /**
  * @typedef InvalidPayloadRequest
  * @property {string} [message] - Error message when request body payload is improper
- * @property {boolean} [success] - Flag for required not successfull.
  */
 /**
  * @typedef InventoryArticleAssignment
@@ -891,7 +837,7 @@ export = ConfigurationPlatformModel;
  */
 /**
  * @typedef InventoryBrand
- * @property {number[]} [brands] - List of brands
+ * @property {Object[]} [brands] - List of brands
  * @property {string} [criteria] - All brands or specific (explicit) brands to
  *   be shown on the website
  */
@@ -906,18 +852,6 @@ export = ConfigurationPlatformModel;
  * @property {Object[]} [categories] - List of categories whose products will be
  *   shown on the website
  * @property {string} [criteria]
- */
-/**
- * @typedef InventoryConfig
- * @property {InventoryBrandRule} [brand]
- * @property {boolean} [franchise_enabled] - Allow other businesses (companies)
- *   to consume the current sales channel's inventory and sell products
- * @property {string[]} [image]
- * @property {boolean} [only_verified_products] - Show only verified products
- *   (the ones whose data have been verified by the admin)
- * @property {boolean} [out_of_stock] - Indicates whether out of stock products
- *   are allowed to show up on the website.
- * @property {InventoryStoreRule} [store]
  */
 /**
  * @typedef InventoryDiscount
@@ -1012,10 +946,6 @@ export = ConfigurationPlatformModel;
  * @property {string} [title] - Name of the related page or link
  */
 /**
- * @typedef ListingPageFeature
- * @property {string} [sort_on]
- */
-/**
  * @typedef ListingPriceFeature
  * @property {string} [sort] - Sorting of listing price with min or max value.
  *   Default value is min.
@@ -1068,13 +998,13 @@ export = ConfigurationPlatformModel;
  *   configuration creation
  * @property {boolean} [is_active] - Indicates the availability of the mobile build
  * @property {LandingImage} [landing_image]
- * @property {string} [modified_at] - ISO 8601 timestamp of last known
- *   modifications to the app build
  * @property {string} [package_name] - Shows bundle identifier if device
  *   platform is iOS, and directory of the app if device platform is Android
  * @property {string} [platform_type] - Device platform for which the mobile app
  *   was built, e.g. android, ios.
  * @property {SplashImage} [splash_image]
+ * @property {string} [updated_at] - ISO 8601 timestamp of last known
+ *   modifications to the app build
  */
 /**
  * @typedef Moengage
@@ -1091,7 +1021,6 @@ export = ConfigurationPlatformModel;
 /**
  * @typedef NotFound
  * @property {string} [message] - Response message for not found
- * @property {boolean} [success] - Flag for required not successfull.
  */
 /**
  * @typedef OptedApplicationResponse
@@ -1106,7 +1035,6 @@ export = ConfigurationPlatformModel;
  */
 /**
  * @typedef OptedCompany
- * @property {number} [id] - The unique identifier of the opted inventory company
  * @property {string} [name] - Name of the company opted by the other seller's
  *   sales channel in its inventory
  * @property {number} [uid] - Company UID opted by the other seller's sales
@@ -1114,7 +1042,7 @@ export = ConfigurationPlatformModel;
  */
 /**
  * @typedef OptedInventory
- * @property {Object[]} [items]
+ * @property {Object} [items]
  * @property {OptType} [opt_type]
  */
 /**
@@ -1138,12 +1066,9 @@ export = ConfigurationPlatformModel;
  * @property {string} [address2] - Address of the opted store
  * @property {string} [city] - City of the opted store, e.g. Mumbai
  * @property {string} [country] - Country of the opted store, e.g. India
- * @property {string} [country_code] - Country code of the selected country
  * @property {StoreLatLong} [lat_long]
  * @property {number} [pincode] - 6-digit PIN code of the opted store location
- * @property {string} [sector] - Sector for the opted store.
  * @property {string} [state] - State of the opted store, e.g. Maharashtra
- * @property {string} [state_code] - Selected state code
  */
 /**
  * @typedef OptedStoreIntegration
@@ -1234,14 +1159,14 @@ export = ConfigurationPlatformModel;
  * @property {string} [level] - Indicates integration level. It can be company
  *   level or store level.
  * @property {Object[]} [meta]
- * @property {string} [modified_at] - ISO 8601 timestamp of other entity
- *   updation for opted store integration
  * @property {boolean} [opted] - Allow other entity opted in integration
  * @property {string[]} [permissions]
  * @property {string} [token] - Randomly generated fixed-length string for opted
  *   integration. It is auto-generated. It would never change once it is generated.
  * @property {number} [uid] - It can be store uid or company uid. Depends on the
  *   level of integration.
+ * @property {string} [updated_at] - ISO 8601 timestamp of other entity updation
+ *   for opted store integration
  */
 /**
  * @typedef OtherEntityData
@@ -1302,10 +1227,6 @@ export = ConfigurationPlatformModel;
 /**
  * @typedef PcrFeature
  * @property {boolean} [staff_selection] - Allow staff selection. Default value is false.
- */
-/**
- * @typedef PiiMasking
- * @property {boolean} [enabled]
  */
 /**
  * @typedef PinterestLink
@@ -1429,7 +1350,7 @@ export = ConfigurationPlatformModel;
  */
 /**
  * @typedef StoresResponse
- * @property {AppInventoryStores[]} [items]
+ * @property {AppInventoryStores} [items]
  * @property {Page} [page]
  */
 /**
@@ -1450,8 +1371,8 @@ export = ConfigurationPlatformModel;
  * @property {string} [application] - Alphanumeric ID allotted to the current
  *   application created within the current business account
  * @property {string} [created_at] - ISO 8601 timestamp of token creation
- * @property {string} [modified_at] - ISO 8601 timestamp of token updation
  * @property {Tokens} [tokens]
+ * @property {string} [updated_at] - ISO 8601 timestamp of token updation
  */
 /**
  * @typedef Tokens
@@ -1463,12 +1384,6 @@ export = ConfigurationPlatformModel;
  * @property {Moengage} [moengage]
  * @property {Safetynet} [safetynet]
  * @property {Segment} [segment]
- */
-/**
- * @typedef TokenSchema
- * @property {string} [created_at] - ISO 8601 timestamp of when token created
- * @property {Object} [created_by]
- * @property {string} [token]
  */
 /**
  * @typedef TwitterLink
@@ -1524,7 +1439,7 @@ export = ConfigurationPlatformModel;
 declare class ConfigurationPlatformModel {
 }
 declare namespace ConfigurationPlatformModel {
-    export { Android, App, AppCartConfig, AppCurrencyResponse, AppDomain, AppFeature, AppFeatureRequest, AppFeatureResponse, AppInventory, AppInventoryCompanies, AppInventoryConfig, AppInventoryPartialUpdate, AppInventoryStores, Application, ApplicationAuth, ApplicationCors, ApplicationDetail, ApplicationInformation, ApplicationInventory, ApplicationMeta, ApplicationRedirections, ApplicationsResponse, ApplicationWebsite, AppLogisticsConfig, AppOrderConfig, AppPaymentConfig, AppStoreRules, AppSupportedCurrency, ArticleAssignmentConfig, ArticleAssignmentRule, ArticleAssignmentRules, AuthenticationConfig, BlogLink, BrandCompanyInfo, BrandsByCompanyResponse, BrandStoreInfo, BuildVersion, BuildVersionHistory, BusinessHighlights, CallbackUrl, CartFeature, Charges, CommonFeature, CommsConfig, CommunicationConfig, CommunicationOptinDialogFeature, CompaniesResponse, CompanyBrandInfo, CompanyByBrandsRequest, CompanyByBrandsResponse, CompanyValidator, CompareProductsFeature, CreateApplicationRequest, CreateAppResponse, Credentials, Credit, CurrenciesResponse, Currency, CurrencyFeature, Debit, DefaultCurrency, DeliveryCharges, DeploymentMeta, DeploymentStoreSelectionFeature, Domain, DomainAdd, DomainAddRequest, DomainsResponse, DomainStatus, DomainStatusRequest, DomainStatusResponse, DomainSuggestion, DomainSuggestionsRequest, DomainSuggestionsResponse, FacebookLink, FeedbackFeature, FilterOrderingStoreRequest, Firebase, Freshchat, FreshchatCredentials, FyndRewards, FyndRewardsCredentials, GetIntegrationsOptInsResponse, GoogleMap, GoogleMapCredentials, GooglePlusLink, Gtm, GtmCredentials, HomePageFeature, InformationAddress, InformationLoc, InformationPhone, InformationSupport, InformationSupportEmail, InformationSupportPhone, InstagramLink, Integration, IntegrationConfigResponse, IntegrationLevel, IntegrationMeta, IntegrationOptIn, InternationalDeliveryCharges, InternationalShipping, InvalidPayloadRequest, InventoryArticleAssignment, InventoryBrand, InventoryBrandRule, InventoryCategory, InventoryConfig, InventoryDiscount, InventoryPaymentConfig, InventoryPrice, InventoryStore, InventoryStoreRule, InventoryValidator, Ios, JsonSchema, LandingImage, LandingPageFeature, LastPatch, LaunchPage, LinkedInLink, Links, ListingPageFeature, ListingPriceFeature, LoyaltyPointsConfig, Methods, MobileAppConfigRequest, MobileAppConfiguration, Moengage, MoengageCredentials, NotFound, OptedApplicationResponse, OptedCompany, OptedInventory, OptedStore, OptedStoreAddress, OptedStoreIntegration, OptOutInventory, OptType, OrderFeature, OrderingStore, OrderingStoreConfig, OrderingStores, OrderingStoreSelect, OrderingStoreSelectRequest, OrderingStoresResponse, OrderValidator, OtherEntity, OtherEntityData, OtherSellerApplication, OtherSellerApplications, OtherSellerCompany, Page, PanCardConfig, PaymentModeConfig, PaymentSelectionLock, PcrFeature, PiiMasking, PinterestLink, ProductDetailFeature, QrFeature, RegistrationPageFeature, RevenueEngineFeature, RewardPointsConfig, Safetynet, SafetynetCredentials, SecureUrl, Segment, SegmentCredentials, SocialLinks, SplashImage, StoreByBrandsRequest, StoreByBrandsResponse, StoreCriteriaRule, StoreLatLong, StorePriority, StorePriorityRule, StoresResponse, StoreValidator, SuccessMessageResponse, TokenResponse, Tokens, TokenSchema, TwitterLink, UpdateDomain, UpdateDomainTypeRequest, UpdateIntegrationLevelRequest, ValidationFailedResponse, Validators, VimeoLink, YoutubeLink };
+    export { Android, App, AppCartConfig, AppCurrencyResponse, AppDomain, AppFeature, AppFeatureRequest, AppFeatureResponse, AppInventory, AppInventoryCompanies, AppInventoryConfig, AppInventoryPartialUpdate, AppInventoryStores, Application, ApplicationAuth, ApplicationCors, ApplicationDetail, ApplicationInformation, ApplicationInventory, ApplicationMeta, ApplicationRedirections, ApplicationsResponse, ApplicationWebsite, AppLogisticsConfig, AppOrderConfig, AppPaymentConfig, AppStoreRules, AppSupportedCurrency, ArticleAssignmentConfig, ArticleAssignmentRule, ArticleAssignmentRules, AuthenticationConfig, BlogLink, BrandCompanyInfo, BrandsByCompanyResponse, BrandStoreInfo, BuildVersion, BuildVersionHistory, BusinessHighlights, CallbackUrl, CartFeature, Charges, CommonFeature, CommsConfig, CommunicationConfig, CommunicationOptinDialogFeature, CompaniesResponse, CompanyBrandInfo, CompanyByBrandsRequest, CompanyByBrandsResponse, CompanyValidator, CompareProductsFeature, CreateApplicationRequest, CreateAppResponse, Credentials, Credit, CurrenciesResponse, Currency, CurrencyFeature, Debit, DefaultCurrency, DeliveryCharges, DeploymentMeta, DeploymentStoreSelectionFeature, Domain, DomainAdd, DomainAddRequest, DomainsResponse, DomainStatus, DomainStatusRequest, DomainStatusResponse, DomainSuggestion, DomainSuggestionsRequest, DomainSuggestionsResponse, FacebookLink, FeedbackFeature, FilterOrderingStoreRequest, Firebase, Freshchat, FreshchatCredentials, FyndRewards, FyndRewardsCredentials, GetIntegrationsOptInsResponse, GoogleMap, GoogleMapCredentials, GooglePlusLink, Gtm, GtmCredentials, HomePageFeature, InformationAddress, InformationPhone, InformationSupport, InstagramLink, Integration, IntegrationConfigResponse, IntegrationLevel, IntegrationMeta, IntegrationOptIn, InvalidPayloadRequest, InventoryArticleAssignment, InventoryBrand, InventoryBrandRule, InventoryCategory, InventoryDiscount, InventoryPaymentConfig, InventoryPrice, InventoryStore, InventoryStoreRule, InventoryValidator, Ios, JsonSchema, LandingImage, LandingPageFeature, LastPatch, LaunchPage, LinkedInLink, Links, ListingPriceFeature, LoyaltyPointsConfig, Methods, MobileAppConfigRequest, MobileAppConfiguration, Moengage, MoengageCredentials, NotFound, OptedApplicationResponse, OptedCompany, OptedInventory, OptedStore, OptedStoreAddress, OptedStoreIntegration, OptOutInventory, OptType, OrderFeature, OrderingStore, OrderingStoreConfig, OrderingStores, OrderingStoreSelect, OrderingStoreSelectRequest, OrderingStoresResponse, OrderValidator, OtherEntity, OtherEntityData, OtherSellerApplication, OtherSellerApplications, OtherSellerCompany, Page, PanCardConfig, PaymentModeConfig, PaymentSelectionLock, PcrFeature, PinterestLink, ProductDetailFeature, QrFeature, RegistrationPageFeature, RevenueEngineFeature, RewardPointsConfig, Safetynet, SafetynetCredentials, SecureUrl, Segment, SegmentCredentials, SocialLinks, SplashImage, StoreByBrandsRequest, StoreByBrandsResponse, StoreCriteriaRule, StoreLatLong, StorePriority, StorePriorityRule, StoresResponse, StoreValidator, SuccessMessageResponse, TokenResponse, Tokens, TwitterLink, UpdateDomain, UpdateDomainTypeRequest, UpdateIntegrationLevelRequest, ValidationFailedResponse, Validators, VimeoLink, YoutubeLink };
 }
 /** @returns {Android} */
 declare function Android(): Android;
@@ -1574,7 +1489,6 @@ type AppCartConfig = {
      * - Shows whether cart configuration is enabled or not
      */
     enabled?: boolean;
-    international_delivery_charges?: InternationalDeliveryCharges;
     /**
      * - Maximum number of items that can be
      * added to cart by the customer
@@ -1596,26 +1510,11 @@ type AppCartConfig = {
 declare function AppCurrencyResponse(): AppCurrencyResponse;
 type AppCurrencyResponse = {
     /**
-     * - The unique identifier (24-digit Mongo Object ID)
-     * of the currency configuration supported by the application
-     */
-    _id?: string;
-    /**
      * - Alphanumeric ID allotted to an application
      * (sales channel website) created within a business account
      */
     application?: string;
-    /**
-     * - ISO 8601 timestamp when currency was added
-     * in the list of currencies supported by the sales channel
-     */
-    created_at?: string;
     default_currency?: DefaultCurrency;
-    /**
-     * - ISO 8601 timestamp when currency was
-     * updated in the list of currencies supported by the sales channel
-     */
-    modified_at?: string;
     supported_currency?: Currency[];
 };
 /** @returns {AppDomain} */
@@ -1651,16 +1550,16 @@ type AppFeature = {
     created_at?: string;
     home_page?: HomePageFeature;
     landing_page?: LandingPageFeature;
-    /**
-     * - ISO 8601 timestamp of last known
-     * modifications to the sales channel feature configuration
-     */
-    modified_at?: string;
     order?: OrderFeature;
     pcr?: PcrFeature;
     product_detail?: ProductDetailFeature;
     qr?: QrFeature;
     registration_page?: RegistrationPageFeature;
+    /**
+     * - ISO 8601 timestamp of last known
+     * modifications to the sales channel feature configuration
+     */
+    updated_at?: string;
 };
 /** @returns {AppFeatureRequest} */
 declare function AppFeatureRequest(): AppFeatureRequest;
@@ -1676,8 +1575,25 @@ type AppFeatureResponse = {
 declare function AppInventory(): AppInventory;
 type AppInventory = {
     article_assignment?: InventoryArticleAssignment;
-    inventory?: InventoryConfig;
+    brand?: InventoryBrandRule;
+    /**
+     * - Allow other businesses (companies)
+     * to consume the current sales channel's inventory and sell products
+     */
+    franchise_enabled?: boolean;
+    image?: string[];
+    /**
+     * - Show only verified products
+     * (the ones whose data have been verified by the admin)
+     */
+    only_verified_products?: boolean;
+    /**
+     * - Indicates whether out of stock products
+     * are allowed to show up on the website.
+     */
+    out_of_stock?: boolean;
     payment?: InventoryPaymentConfig;
+    store?: InventoryStoreRule;
 };
 /** @returns {AppInventoryCompanies} */
 declare function AppInventoryCompanies(): AppInventoryCompanies;
@@ -1701,7 +1617,6 @@ declare function AppInventoryConfig(): AppInventoryConfig;
 type AppInventoryConfig = {
     brand?: InventoryBrand;
     category?: InventoryCategory;
-    company_id?: number;
     /**
      * - List of selling locations whose
      * inventory is available to the sales channel for displaying on the website
@@ -1753,7 +1668,6 @@ type AppInventoryStores = {
      * Object ID) in the sales channel inventory
      */
     _id?: string;
-    address?: any;
     /**
      * - Company ID of the selling location (store)
      * added to the sales channel's inventory
@@ -1764,7 +1678,6 @@ type AppInventoryStores = {
      * inventory store (can be different than the actual store name), e.g. Reebok MUM
      */
     display_name?: string;
-    integration_type?: any;
     /**
      * - ISO 8601 timestamp of last known updation
      * to the stores in sales channel inventory
@@ -1848,11 +1761,6 @@ type Application = {
     logo?: SecureUrl;
     meta?: ApplicationMeta[];
     mobile_logo?: SecureUrl;
-    mode?: string;
-    /**
-     * - ISO 8601 timestamp of sales channel updation
-     */
-    modified_at?: string;
     /**
      * - Name of the sales channel, e.g. Zenz Fashion
      */
@@ -1863,15 +1771,16 @@ type Application = {
      */
     owner?: string;
     redirections?: ApplicationRedirections[];
-    secret?: string;
     slug?: string;
-    status?: string;
     /**
      * - Random generated fix length string for sales
      * channel. It is required and auto-generated.
      */
     token?: string;
-    tokens?: TokenSchema[];
+    /**
+     * - ISO 8601 timestamp of sales channel updation
+     */
+    updated_at?: string;
     website?: ApplicationWebsite;
 };
 /** @returns {ApplicationAuth} */
@@ -1896,7 +1805,6 @@ type ApplicationDetail = {
      */
     _id?: string;
     banner?: SecureUrl;
-    company_id?: number;
     /**
      * - It gives a detailed information about the
      * sales channel. It is required.
@@ -1911,7 +1819,6 @@ type ApplicationDetail = {
      * - Name of the sales channel. It is required.
      */
     name: string;
-    slug?: string;
 };
 /** @returns {ApplicationInformation} */
 declare function ApplicationInformation(): ApplicationInformation;
@@ -1931,7 +1838,7 @@ type ApplicationInformation = {
      * channel application created within a business account
      */
     application?: string;
-    business_highlights?: BusinessHighlights[];
+    business_highlights?: BusinessHighlights;
     /**
      * - Copyright statement usually seen at the
      * site's footer
@@ -1943,18 +1850,17 @@ type ApplicationInformation = {
      */
     created_at?: string;
     links?: Links[];
+    social_links?: SocialLinks;
+    support?: InformationSupport;
     /**
      * - ISO 8601 timestamp of updation of the
      * application information
      */
-    modified_at?: string;
-    social_links?: SocialLinks;
-    support?: InformationSupport;
+    updated_at?: string;
 };
 /** @returns {ApplicationInventory} */
 declare function ApplicationInventory(): ApplicationInventory;
 type ApplicationInventory = {
-    __v?: number;
     /**
      * - The unique identifier (24-digit Mongo Object ID)
      * of the sales channel inventory
@@ -1987,21 +1893,19 @@ type ApplicationInventory = {
     logistics?: AppLogisticsConfig;
     loyalty_points?: LoyaltyPointsConfig;
     /**
-     * - ISO 8601 timestamp of sales channel
-     * inventory updation
-     */
-    modified_at?: string;
-    /**
      * - User ID of the person who made the latest
      * changes in the sales channel inventory
      */
     modified_by?: string;
     order?: AppOrderConfig;
     payment?: AppPaymentConfig;
-    pii_masking?: PiiMasking;
     platforms?: string[];
     reward_points?: RewardPointsConfig;
-    tags?: string[];
+    /**
+     * - ISO 8601 timestamp of sales channel
+     * inventory updation
+     */
+    updated_at?: string;
 };
 /** @returns {ApplicationMeta} */
 declare function ApplicationMeta(): ApplicationMeta;
@@ -2110,7 +2014,6 @@ type AppPaymentConfig = {
      * Default value is FYND.
      */
     source?: string;
-    user_cod_limit?: number;
 };
 /** @returns {AppStoreRules} */
 declare function AppStoreRules(): AppStoreRules;
@@ -2119,7 +2022,7 @@ type AppStoreRules = {
      * - List of brands whose products will be shown
      * on the website
      */
-    brands?: number[];
+    brands?: any[];
     /**
      * - List of companies whose inventory is
      * available to the sales channel for displaying on the website
@@ -2145,17 +2048,16 @@ type AppSupportedCurrency = {
      */
     created_at?: string;
     default_currency?: DefaultCurrency;
+    supported_currency?: string[];
     /**
      * - ISO 8601 timestamp when currency was
      * updated in the list of currencies supported by the sales channel
      */
-    modified_at?: string;
-    supported_currency?: string[];
+    updated_at?: string;
 };
 /** @returns {ArticleAssignmentConfig} */
 declare function ArticleAssignmentConfig(): ArticleAssignmentConfig;
 type ArticleAssignmentConfig = {
-    enforced_stores?: number[];
     /**
      * - Allow post order reassigment of article
      */
@@ -2216,7 +2118,7 @@ type BrandCompanyInfo = {
 /** @returns {BrandsByCompanyResponse} */
 declare function BrandsByCompanyResponse(): BrandsByCompanyResponse;
 type BrandsByCompanyResponse = {
-    brands?: CompanyBrandInfo[];
+    brands?: CompanyBrandInfo;
 };
 /** @returns {BrandStoreInfo} */
 declare function BrandStoreInfo(): BrandStoreInfo;
@@ -2266,17 +2168,16 @@ type BuildVersion = {
      * - ISO 8601 timestamp of app creation
      */
     created_at?: string;
-    download_url?: LandingImage;
-    /**
-     * - ISO 8601 timestamp of last known
-     * modifications to the app build
-     */
-    modified_at?: string;
     /**
      * - Device platform for which the mobile app
      * was built, e.g. android, ios.
      */
     platform_type?: string;
+    /**
+     * - ISO 8601 timestamp of last known
+     * modifications to the app build
+     */
+    updated_at?: string;
     /**
      * - A positive integer used as an internal
      * version number
@@ -2296,7 +2197,7 @@ type BuildVersionHistory = {
      * the mobile build, in dot-decimal notation
      */
     latest_available_version_name?: string;
-    versions?: BuildVersion[];
+    versions?: BuildVersion;
 };
 /** @returns {BusinessHighlights} */
 declare function BusinessHighlights(): BusinessHighlights;
@@ -2382,8 +2283,6 @@ type CommonFeature = {
     currency?: CurrencyFeature;
     deployment_store_selection?: DeploymentStoreSelectionFeature;
     feedback?: FeedbackFeature;
-    international_shipping?: InternationalShipping;
-    listing_page?: ListingPageFeature;
     listing_price?: ListingPriceFeature;
     revenue_engine?: RevenueEngineFeature;
     reward_points?: RewardPointsConfig;
@@ -2414,7 +2313,7 @@ type CommunicationOptinDialogFeature = {
 /** @returns {CompaniesResponse} */
 declare function CompaniesResponse(): CompaniesResponse;
 type CompaniesResponse = {
-    items?: AppInventoryCompanies[];
+    items?: AppInventoryCompanies;
     page?: Page;
 };
 /** @returns {CompanyBrandInfo} */
@@ -2482,7 +2381,7 @@ type CompareProductsFeature = {
 declare function CreateApplicationRequest(): CreateApplicationRequest;
 type CreateApplicationRequest = {
     app?: App;
-    configuration?: ApplicationInventory;
+    configuration?: AppInventory;
     domain?: AppDomain;
 };
 /** @returns {CreateAppResponse} */
@@ -2543,8 +2442,6 @@ type Currency = {
      * - 3-character currency code, e.g. INR, USD, EUR.
      */
     code?: string;
-    country_code?: string;
-    country_name?: string;
     /**
      * - ISO 8601 timestamp of sales channel support
      * currency creation
@@ -2562,11 +2459,6 @@ type Currency = {
      */
     is_active?: boolean;
     /**
-     * - ISO 8601 timestamp of sales channel
-     * support currency updation
-     */
-    modified_at?: string;
-    /**
      * - Name of the currency, e.g Indian Rupee
      */
     name?: string;
@@ -2574,6 +2466,11 @@ type Currency = {
      * - Unique symbol for identifying the currency, e.g. ₹
      */
     symbol?: string;
+    /**
+     * - ISO 8601 timestamp of sales channel support
+     * currency updation
+     */
+    updated_at?: string;
 };
 /** @returns {CurrencyFeature} */
 declare function CurrencyFeature(): CurrencyFeature;
@@ -2638,7 +2535,6 @@ type DeliveryCharges = {
 /** @returns {DeploymentMeta} */
 declare function DeploymentMeta(): DeploymentMeta;
 type DeploymentMeta = {
-    __v?: number;
     /**
      * - The unique identifier (24-digit Mongo Object ID)
      * of the ordering stores
@@ -2701,7 +2597,6 @@ type Domain = {
      * - Shortlink is present or not for the domain
      */
     is_shortlink?: boolean;
-    message?: string;
     /**
      * - Full domain name, e.g. newton.com
      */
@@ -2920,10 +2815,6 @@ type FyndRewardsCredentials = {
     /**
      * - Public key for integrating with Fynd rewards.
      */
-    private_key?: string;
-    /**
-     * - Public key for integrating with Fynd rewards.
-     */
     public_key?: string;
 };
 /** @returns {GetIntegrationsOptInsResponse} */
@@ -3004,24 +2895,15 @@ type InformationAddress = {
      * - Name of the country, e.g. India
      */
     country?: string;
-    loc?: InformationLoc;
+    /**
+     * - Co-ordinates of the location
+     */
+    loc?: string;
     phone?: InformationPhone[];
     /**
      * - 6-digit PIN Code of the city, e.g. 400001
      */
     pincode?: number;
-};
-/** @returns {InformationLoc} */
-declare function InformationLoc(): InformationLoc;
-type InformationLoc = {
-    /**
-     * - 10-digit mobile number
-     */
-    coordinates?: number[];
-    /**
-     * - Country code for contact number, e.g. +91 (for India)
-     */
-    type?: string;
 };
 /** @returns {InformationPhone} */
 declare function InformationPhone(): InformationPhone;
@@ -3038,34 +2920,12 @@ type InformationPhone = {
 /** @returns {InformationSupport} */
 declare function InformationSupport(): InformationSupport;
 type InformationSupport = {
-    email?: InformationSupportEmail[];
-    phone?: InformationSupportPhone[];
+    email?: string[];
+    phone?: string[];
     /**
      * - Working hours of support team, e.g. 9 AM to 9 PM
      */
     timing?: string;
-};
-/** @returns {InformationSupportEmail} */
-declare function InformationSupportEmail(): InformationSupportEmail;
-type InformationSupportEmail = {
-    key?: string;
-    /**
-     * - Value of email.
-     */
-    value?: string;
-};
-/** @returns {InformationSupportPhone} */
-declare function InformationSupportPhone(): InformationSupportPhone;
-type InformationSupportPhone = {
-    /**
-     * - Country code for contact number, e.g. +91 (for India)
-     */
-    code?: string;
-    key?: string;
-    /**
-     * - 10-digit mobile number
-     */
-    number?: string;
 };
 /** @returns {InstagramLink} */
 declare function InstagramLink(): InstagramLink;
@@ -3095,7 +2955,7 @@ type Integration = {
      * of the integration
      */
     _id?: string;
-    companies?: string[];
+    companies?: any[];
     constants?: any;
     /**
      * - ISO 8601 timestamp of integration creation
@@ -3109,16 +2969,11 @@ type Integration = {
      * - Basic HTML description about the integration
      */
     description_html?: string;
-    hidden?: boolean;
     /**
      * - Hosted URL of the icon image
      */
     icon?: string;
     meta?: IntegrationMeta[];
-    /**
-     * - ISO 8601 timestamp of integration updation
-     */
-    modified_at?: string;
     /**
      * - Name of the integration, e.g. SAP RBL Integration
      */
@@ -3133,16 +2988,16 @@ type Integration = {
      * opted integration. It is auto-generated. It would never change once it is generated.
      */
     secret?: string;
-    /**
-     * - Name of the integration, e.g. SAP RBL Integration
-     */
-    slug?: string;
     support?: string[];
     /**
      * - Randomly generated fixed-length string for opted
      * integration. It is auto-generated. It would never change once it is generated.
      */
     token?: string;
+    /**
+     * - ISO 8601 timestamp of integration updation
+     */
+    updated_at?: string;
     validators?: Validators;
 };
 /** @returns {IntegrationConfigResponse} */
@@ -3163,10 +3018,6 @@ type IntegrationLevel = {
      */
     _id?: string;
     /**
-     * - Unique id of company.
-     */
-    company_id?: number;
-    /**
      * - ISO 8601 timestamp of integration config creation
      */
     created_at?: string;
@@ -3185,19 +3036,13 @@ type IntegrationLevel = {
      * It can be company level or store level.
      */
     level?: string;
-    message?: string;
     meta?: IntegrationMeta[];
-    /**
-     * - ISO 8601 timestamp of integration config updation
-     */
-    modified_at?: string;
     /**
      * - Shows this integration is opted or not opted
      * for the current company
      */
     opted?: boolean;
     permissions?: any[];
-    success?: boolean;
     /**
      * - Randomly generated fixed-length string for opted
      * integration. It is auto-generated. It would never change once it is generated.
@@ -3208,6 +3053,10 @@ type IntegrationLevel = {
      * level of integration.
      */
     uid?: number;
+    /**
+     * - ISO 8601 timestamp of integration config updation
+     */
+    updated_at?: string;
 };
 /** @returns {IntegrationMeta} */
 declare function IntegrationMeta(): IntegrationMeta;
@@ -3239,7 +3088,7 @@ type IntegrationOptIn = {
      * of the opted integration
      */
     _id?: string;
-    companies?: string[];
+    companies?: any[];
     constants?: string;
     /**
      * - ISO 8601 timestamp of integration creation
@@ -3254,16 +3103,11 @@ type IntegrationOptIn = {
      * opted integration
      */
     description_html?: string;
-    hidden?: boolean;
     /**
      * - Hosted URL of the icon image
      */
     icon?: string;
     meta?: IntegrationMeta[];
-    /**
-     * - ISO 8601 timestamp of integration updation
-     */
-    modified_at?: string;
     /**
      * - Nmae of the opted integration, e.g. SAP RBL Integration
      */
@@ -3278,34 +3122,17 @@ type IntegrationOptIn = {
      * opted integration. It is auto-generated. It would never change once it is generated.
      */
     secret?: string;
-    /**
-     * - Slug of the opted integration, e.g. ginesys
-     */
-    slug?: string;
     support?: string[];
     /**
      * - Randomly generated fixed-length string for opted
      * integration. It is auto-generated. It would never change once it is generated.
      */
     token?: string;
+    /**
+     * - ISO 8601 timestamp of integration updation
+     */
+    updated_at?: string;
     validators?: Validators;
-};
-/** @returns {InternationalDeliveryCharges} */
-declare function InternationalDeliveryCharges(): InternationalDeliveryCharges;
-type InternationalDeliveryCharges = {
-    charges?: Charges[];
-    /**
-     * - Allow international delivery charges
-     */
-    enabled?: boolean;
-};
-/** @returns {InternationalShipping} */
-declare function InternationalShipping(): InternationalShipping;
-type InternationalShipping = {
-    /**
-     * - International shipping is enabled or not.
-     */
-    enabled?: boolean;
 };
 /** @returns {InvalidPayloadRequest} */
 declare function InvalidPayloadRequest(): InvalidPayloadRequest;
@@ -3314,10 +3141,6 @@ type InvalidPayloadRequest = {
      * - Error message when request body payload is improper
      */
     message?: string;
-    /**
-     * - Flag for required not successfull.
-     */
-    success?: boolean;
 };
 /** @returns {InventoryArticleAssignment} */
 declare function InventoryArticleAssignment(): InventoryArticleAssignment;
@@ -3334,7 +3157,7 @@ type InventoryBrand = {
     /**
      * - List of brands
      */
-    brands?: number[];
+    brands?: any[];
     /**
      * - All brands or specific (explicit) brands to
      * be shown on the website
@@ -3360,28 +3183,6 @@ type InventoryCategory = {
      */
     categories?: any[];
     criteria?: string;
-};
-/** @returns {InventoryConfig} */
-declare function InventoryConfig(): InventoryConfig;
-type InventoryConfig = {
-    brand?: InventoryBrandRule;
-    /**
-     * - Allow other businesses (companies)
-     * to consume the current sales channel's inventory and sell products
-     */
-    franchise_enabled?: boolean;
-    image?: string[];
-    /**
-     * - Show only verified products
-     * (the ones whose data have been verified by the admin)
-     */
-    only_verified_products?: boolean;
-    /**
-     * - Indicates whether out of stock products
-     * are allowed to show up on the website.
-     */
-    out_of_stock?: boolean;
-    store?: InventoryStoreRule;
 };
 /** @returns {InventoryDiscount} */
 declare function InventoryDiscount(): InventoryDiscount;
@@ -3591,11 +3392,6 @@ type Links = {
      */
     title?: string;
 };
-/** @returns {ListingPageFeature} */
-declare function ListingPageFeature(): ListingPageFeature;
-type ListingPageFeature = {
-    sort_on?: string;
-};
 /** @returns {ListingPriceFeature} */
 declare function ListingPriceFeature(): ListingPriceFeature;
 type ListingPriceFeature = {
@@ -3691,11 +3487,6 @@ type MobileAppConfiguration = {
     is_active?: boolean;
     landing_image?: LandingImage;
     /**
-     * - ISO 8601 timestamp of last known
-     * modifications to the app build
-     */
-    modified_at?: string;
-    /**
      * - Shows bundle identifier if device
      * platform is iOS, and directory of the app if device platform is Android
      */
@@ -3706,6 +3497,11 @@ type MobileAppConfiguration = {
      */
     platform_type?: string;
     splash_image?: SplashImage;
+    /**
+     * - ISO 8601 timestamp of last known
+     * modifications to the app build
+     */
+    updated_at?: string;
 };
 /** @returns {Moengage} */
 declare function Moengage(): Moengage;
@@ -3734,10 +3530,6 @@ type NotFound = {
      * - Response message for not found
      */
     message?: string;
-    /**
-     * - Flag for required not successfull.
-     */
-    success?: boolean;
 };
 /** @returns {OptedApplicationResponse} */
 declare function OptedApplicationResponse(): OptedApplicationResponse;
@@ -3767,10 +3559,6 @@ type OptedApplicationResponse = {
 declare function OptedCompany(): OptedCompany;
 type OptedCompany = {
     /**
-     * - The unique identifier of the opted inventory company
-     */
-    id?: number;
-    /**
      * - Name of the company opted by the other seller's
      * sales channel in its inventory
      */
@@ -3784,7 +3572,7 @@ type OptedCompany = {
 /** @returns {OptedInventory} */
 declare function OptedInventory(): OptedInventory;
 type OptedInventory = {
-    items?: any[];
+    items?: any;
     opt_type?: OptType;
 };
 /** @returns {OptedStore} */
@@ -3846,27 +3634,15 @@ type OptedStoreAddress = {
      * - Country of the opted store, e.g. India
      */
     country?: string;
-    /**
-     * - Country code of the selected country
-     */
-    country_code?: string;
     lat_long?: StoreLatLong;
     /**
      * - 6-digit PIN code of the opted store location
      */
     pincode?: number;
     /**
-     * - Sector for the opted store.
-     */
-    sector?: string;
-    /**
      * - State of the opted store, e.g. Maharashtra
      */
     state?: string;
-    /**
-     * - Selected state code
-     */
-    state_code?: string;
 };
 /** @returns {OptedStoreIntegration} */
 declare function OptedStoreIntegration(): OptedStoreIntegration;
@@ -4051,11 +3827,6 @@ type OtherEntity = {
     level?: string;
     meta?: any[];
     /**
-     * - ISO 8601 timestamp of other entity
-     * updation for opted store integration
-     */
-    modified_at?: string;
-    /**
      * - Allow other entity opted in integration
      */
     opted?: boolean;
@@ -4070,6 +3841,11 @@ type OtherEntity = {
      * level of integration.
      */
     uid?: number;
+    /**
+     * - ISO 8601 timestamp of other entity updation
+     * for opted store integration
+     */
+    updated_at?: string;
 };
 /** @returns {OtherEntityData} */
 declare function OtherEntityData(): OtherEntityData;
@@ -4184,11 +3960,6 @@ type PcrFeature = {
      * - Allow staff selection. Default value is false.
      */
     staff_selection?: boolean;
-};
-/** @returns {PiiMasking} */
-declare function PiiMasking(): PiiMasking;
-type PiiMasking = {
-    enabled?: boolean;
 };
 /** @returns {PinterestLink} */
 declare function PinterestLink(): PinterestLink;
@@ -4416,7 +4187,7 @@ type StorePriorityRule = {
 /** @returns {StoresResponse} */
 declare function StoresResponse(): StoresResponse;
 type StoresResponse = {
-    items?: AppInventoryStores[];
+    items?: AppInventoryStores;
     page?: Page;
 };
 /** @returns {StoreValidator} */
@@ -4461,11 +4232,11 @@ type TokenResponse = {
      * - ISO 8601 timestamp of token creation
      */
     created_at?: string;
+    tokens?: Tokens;
     /**
      * - ISO 8601 timestamp of token updation
      */
-    modified_at?: string;
-    tokens?: Tokens;
+    updated_at?: string;
 };
 /** @returns {Tokens} */
 declare function Tokens(): Tokens;
@@ -4478,16 +4249,6 @@ type Tokens = {
     moengage?: Moengage;
     safetynet?: Safetynet;
     segment?: Segment;
-};
-/** @returns {TokenSchema} */
-declare function TokenSchema(): TokenSchema;
-type TokenSchema = {
-    /**
-     * - ISO 8601 timestamp of when token created
-     */
-    created_at?: string;
-    created_by?: any;
-    token?: string;
 };
 /** @returns {TwitterLink} */
 declare function TwitterLink(): TwitterLink;

@@ -6,7 +6,7 @@
 ##### [Back to Application docs](./README.md)
 
 ## Configuration Methods
-The Application Configuration module simplifies tasks related to configuring the app. You can use it to retrieve information about sales channels, ownership details, app-specific settings, and integration tokens. This module also offers insights into store performance, ordering options, and available modules. It allows you to access currency information, support multiple languages, and customize store cookies for a personalized user experience. Additionally, the module can retrieve the staff list.
+Application configuration apis
 
 
 Default
@@ -69,37 +69,29 @@ Success. Check the example shown below or refer `AppCurrencyResponse` for more d
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "application": "000000000000000000000001",
-    "default_currency": {
-      "ref": "5ecf6122d953d4242c044907",
-      "code": "INR"
-    },
-    "supported_currency": [
-      {
-        "_id": "5ecf6122d953d4242c044907",
-        "is_active": true,
-        "name": "Indian Rupee",
-        "code": "INR",
-        "decimal_digits": 2,
-        "symbol": "₹",
-        "created_at": "2020-05-28T06:58:42.532Z",
-        "modified_at": "2021-04-05T16:44:14.358Z"
-      }
-    ]
-  }
+  "application": "000000000000000000000001",
+  "default_currency": {
+    "ref": "5ecf6122d953d4242c044907",
+    "code": "INR"
+  },
+  "supported_currency": [
+    {
+      "_id": "5ecf6122d953d4242c044907",
+      "is_active": true,
+      "name": "Indian Rupee",
+      "code": "INR",
+      "decimal_digits": 2,
+      "symbol": "₹",
+      "created_at": "2020-05-28T06:58:42.532Z",
+      "modified_at": "2021-04-05T16:44:14.358Z"
+    }
+  ]
 }
 ```
-</details>
-
 </details>
 
 
@@ -166,25 +158,11 @@ Success. Check the example shown below or refer `AppStaffListResponse` for more 
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
-{
-  "value": {
-    "items": [
-      {
-        "_id": "5e6b6ae7d450b1219ffdf3b2"
-      }
-    ]
-  }
-}
-```
-</details>
 
+```
 </details>
 
 
@@ -242,25 +220,11 @@ Success. Check the example shown below or refer `AppStaffResponse` for more deta
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
-{
-  "value": {
-    "staff_users": [
-      {
-        "_id": "5e6b6ae7d450b1219ffdf3b2"
-      }
-    ]
-  }
-}
-```
-</details>
 
+```
 </details>
 
 
@@ -307,81 +271,74 @@ Success. Check the example shown below or refer `Application` for more details.
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "website": {
-      "enabled": true,
-      "basepath": "/"
-    },
-    "cors": {
-      "domains": []
-    },
-    "auth": {
-      "enabled": false
-    },
-    "description": "Uniket B2B - India's Fastest Growing Retail Store - Aapki Badhti Dukaan",
-    "channel_type": "uniket",
-    "cache_ttl": -1,
-    "internal": false,
-    "is_active": true,
-    "_id": "000000000000000000000004",
-    "name": "Uniket B2B",
-    "owner": "5e71a60dc671daffd81992ea",
-    "company_id": 1,
-    "token": "iTNjY_yAI",
-    "redirections": [],
-    "meta": [],
-    "created_at": "2019-12-26T13:22:23.619Z",
-    "modified_at": "2020-12-02T05:49:41.610Z",
-    "__v": 29,
-    "banner": {
-      "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/landscape-banner/original/uSwlNpygq-Uniket-B2B.png"
-    },
-    "logo": {
-      "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
-    },
-    "favicon": {
-      "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/favicon/original/y3h6SSlY5-Uniket-B2B.png"
-    },
-    "domains": [
-      {
-        "verified": true,
-        "is_primary": true,
-        "is_shortlink": true,
-        "_id": "5eb1177748312a3bd55d0f1e",
-        "name": "uniket.hostx0.de"
-      },
-      {
-        "verified": true,
-        "is_primary": false,
-        "is_shortlink": false,
-        "_id": "5f0858c5f86e00cd42dccc8d",
-        "name": "jd.hostx0.de"
-      }
-    ],
-    "app_type": "live",
-    "mobile_logo": {
-      "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
-    },
-    "domain": {
+  "website": {
+    "enabled": true,
+    "basepath": "/"
+  },
+  "cors": {
+    "domains": []
+  },
+  "auth": {
+    "enabled": false
+  },
+  "description": "Uniket B2B - India's Fastest Growing Retail Store - Aapki Badhti Dukaan",
+  "channel_type": "uniket",
+  "cache_ttl": -1,
+  "internal": false,
+  "is_active": true,
+  "_id": "000000000000000000000004",
+  "name": "Uniket B2B",
+  "owner": "5e71a60dc671daffd81992ea",
+  "company_id": 1,
+  "token": "iTNjY_yAI",
+  "redirections": [],
+  "meta": [],
+  "created_at": "2019-12-26T13:22:23.619Z",
+  "modified_at": "2020-12-02T05:49:41.610Z",
+  "__v": 29,
+  "banner": {
+    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/landscape-banner/original/uSwlNpygq-Uniket-B2B.png"
+  },
+  "logo": {
+    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
+  },
+  "favicon": {
+    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/favicon/original/y3h6SSlY5-Uniket-B2B.png"
+  },
+  "domains": [
+    {
       "verified": true,
       "is_primary": true,
       "is_shortlink": true,
       "_id": "5eb1177748312a3bd55d0f1e",
       "name": "uniket.hostx0.de"
+    },
+    {
+      "verified": true,
+      "is_primary": false,
+      "is_shortlink": false,
+      "_id": "5f0858c5f86e00cd42dccc8d",
+      "name": "jd.hostx0.de"
     }
-  }
+  ],
+  "app_type": "live",
+  "mobile_logo": {
+    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
+  },
+  "domain": {
+    "verified": true,
+    "is_primary": true,
+    "is_shortlink": true,
+    "_id": "5eb1177748312a3bd55d0f1e",
+    "name": "uniket.hostx0.de"
+  },
+  "id": "000000000000000000000004"
 }
 ```
-</details>
-
 </details>
 
 
@@ -428,59 +385,51 @@ Success. Check the example shown below or refer `ApplicationDetail` for more det
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "name": "Uniket B2B",
-    "description": "Uniket B2B - India's Fastest Growing Retail Store - Aapki Badhti Dukaan",
-    "logo": {
-      "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
-    },
-    "mobile_logo": {
-      "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
-    },
-    "favicon": {
-      "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/favicon/original/y3h6SSlY5-Uniket-B2B.png"
-    },
-    "banner": {
-      "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/landscape-banner/original/uSwlNpygq-Uniket-B2B.png"
-    },
-    "domain": {
+  "name": "Uniket B2B",
+  "description": "Uniket B2B - India's Fastest Growing Retail Store - Aapki Badhti Dukaan",
+  "logo": {
+    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
+  },
+  "mobile_logo": {
+    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/free-logo/original/oEf3SQjda-Uniket-B2B.png"
+  },
+  "favicon": {
+    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/favicon/original/y3h6SSlY5-Uniket-B2B.png"
+  },
+  "banner": {
+    "secure_url": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/x1/company/1/applications/000000000000000000000004/application/pictures/landscape-banner/original/uSwlNpygq-Uniket-B2B.png"
+  },
+  "domain": {
+    "verified": true,
+    "is_primary": true,
+    "is_shortlink": false,
+    "_id": "5eb1177748312a3bd55d0f1e",
+    "name": "uniket.hostx0.de"
+  },
+  "domains": [
+    {
       "verified": true,
       "is_primary": true,
       "is_shortlink": false,
       "_id": "5eb1177748312a3bd55d0f1e",
       "name": "uniket.hostx0.de"
     },
-    "domains": [
-      {
-        "verified": true,
-        "is_primary": true,
-        "is_shortlink": false,
-        "_id": "5eb1177748312a3bd55d0f1e",
-        "name": "uniket.hostx0.de"
-      },
-      {
-        "verified": true,
-        "is_primary": false,
-        "is_shortlink": true,
-        "_id": "5f0858c5f86e00cd42dccc8d",
-        "name": "jd.hostx0.de"
-      }
-    ],
-    "company_id": 1,
-    "_id": "000000000000000000000004"
-  }
+    {
+      "verified": true,
+      "is_primary": false,
+      "is_shortlink": true,
+      "_id": "5f0858c5f86e00cd42dccc8d",
+      "name": "jd.hostx0.de"
+    }
+  ],
+  "company_id": 1,
+  "_id": "000000000000000000000004"
 }
 ```
-</details>
-
 </details>
 
 
@@ -527,17 +476,13 @@ Success. Check the example shown below or refer `ApplicationAboutResponse` for m
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
   "value": {
     "address": {
-      "loc": {},
+      "loc": null,
       "address_line": [
         "Warehouse 5, Near Industrial Complex",
         "2nd Lane, Andheri"
@@ -627,7 +572,7 @@ Success. Check the example shown below or refer `ApplicationAboutResponse` for m
     "business_highlights": [
       {
         "_id": "5fc901611dfba6c2e87d1ca9",
-        "title": "Most Genuine Products",
+        "title": "100% Genuine Products",
         "icon": "https://hdn-1.addsale.com/x0/company/1/applications/000000000000000000000004/business-highlights/pictures/square-logo/original/bVlx43F2a-H6pvZ9tzp-business-logo-icon.png",
         "sub_title": "Directly from brands"
       },
@@ -651,8 +596,6 @@ Success. Check the example shown below or refer `ApplicationAboutResponse` for m
   }
 }
 ```
-</details>
-
 </details>
 
 
@@ -699,32 +642,24 @@ Success. Check the example shown below or refer `CurrenciesResponse` for more de
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "items": [
-      {
-        "_id": "5ec75d11f7bfb54d798f3516",
-        "is_active": true,
-        "name": "United States Dollar",
-        "code": "USD",
-        "created_at": "2020-05-22T05:03:13.354Z",
-        "modified_at": "2020-06-05T09:12:04.248Z",
-        "decimal_digits": 2,
-        "symbol": "$"
-      }
-    ]
-  }
+  "items": [
+    {
+      "_id": "5ec75d11f7bfb54d798f3516",
+      "is_active": true,
+      "name": "United States Dollar",
+      "code": "USD",
+      "created_at": "2020-05-22T05:03:13.354Z",
+      "modified_at": "2020-06-05T09:12:04.248Z",
+      "decimal_digits": 2,
+      "symbol": "$"
+    }
+  ]
 }
 ```
-</details>
-
 </details>
 
 
@@ -776,28 +711,20 @@ Success. Check the example shown below or refer `Currency` for more details.
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "_id": "5ec75d11f7bfb501d88f3559",
-    "is_active": true,
-    "name": "Gold Ounce",
-    "code": "XAU",
-    "created_at": "2020-05-22T05:03:13.429Z",
-    "modified_at": "2020-06-05T09:12:04.248Z",
-    "decimal_digits": 1,
-    "symbol": ""
-  }
+  "_id": "5ec75d11f7bfb501d88f3559",
+  "is_active": true,
+  "name": "Gold Ounce",
+  "code": "XAU",
+  "created_at": "2020-05-22T05:03:13.429Z",
+  "modified_at": "2020-06-05T09:12:04.248Z",
+  "decimal_digits": 1,
+  "symbol": ""
 }
 ```
-</details>
-
 </details>
 
 
@@ -844,114 +771,106 @@ Success. Check the example shown below or refer `AppFeatureResponse` for more de
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "feature": {
-      "product_detail": {
-        "similar": [
-          "basic",
-          "visual",
-          "brand",
-          "category",
-          "seller",
-          "price",
-          "specs"
+  "feature": {
+    "product_detail": {
+      "similar": [
+        "basic",
+        "visual",
+        "brand",
+        "category",
+        "seller",
+        "price",
+        "specs"
+      ],
+      "seller_selection": true,
+      "update_product_meta": true,
+      "request_product": true
+    },
+    "landing_page": {
+      "launch_page": {
+        "page_type": "home",
+        "params": {},
+        "query": {}
+      },
+      "continue_as_guest": true,
+      "login_btn_text": "Click here to sign-in",
+      "show_domain_textbox": true,
+      "show_register_btn": true
+    },
+    "registration_page": {
+      "ask_store_address": false
+    },
+    "home_page": {
+      "order_processing": true
+    },
+    "common": {
+      "communication_optin_dialog": {
+        "visibility": true
+      },
+      "deployment_store_selection": {
+        "enabled": true,
+        "type": "hard"
+      },
+      "listing_price": {
+        "value": "min",
+        "sort": "min"
+      },
+      "currency": {
+        "value": [
+          "INR"
         ],
-        "seller_selection": true,
-        "update_product_meta": true,
-        "request_product": true
+        "type": "explicit",
+        "default_currency": "INR"
       },
-      "landing_page": {
-        "launch_page": {
-          "page_type": "home",
-          "params": {},
-          "query": {}
+      "revenue_engine": {
+        "enabled": false
+      },
+      "feedback": {
+        "enabled": true
+      },
+      "compare_products": {
+        "enabled": true
+      },
+      "reward_points": {
+        "credit": {
+          "enabled": true
         },
-        "continue_as_guest": true,
-        "login_btn_text": "Click here to sign-in",
-        "show_domain_textbox": true,
-        "show_register_btn": true
-      },
-      "registration_page": {
-        "ask_store_address": false
-      },
-      "home_page": {
-        "order_processing": true
-      },
-      "common": {
-        "communication_optin_dialog": {
-          "visibility": true
-        },
-        "deployment_store_selection": {
+        "debit": {
           "enabled": true,
-          "type": "hard"
-        },
-        "listing_price": {
-          "value": "min",
-          "sort": "min"
-        },
-        "currency": {
-          "value": [
-            "INR"
-          ],
-          "type": "explicit",
-          "default_currency": "INR"
-        },
-        "revenue_engine": {
-          "enabled": false
-        },
-        "feedback": {
-          "enabled": true
-        },
-        "compare_products": {
-          "enabled": true
-        },
-        "reward_points": {
-          "credit": {
-            "enabled": true
-          },
-          "debit": {
-            "enabled": true,
-            "auto_apply": false,
-            "strategy_channel": "REWARDS"
-          }
+          "auto_apply": false,
+          "strategy_channel": "REWARDS"
         }
-      },
-      "cart": {
-        "gst_input": true,
-        "staff_selection": true,
-        "placing_for_customer": true,
-        "google_map": true
-      },
-      "qr": {
-        "application": true,
-        "products": true,
-        "collections": true
-      },
-      "pcr": {
-        "staff_selection": true
-      },
-      "order": {
-        "buy_again": true
-      },
-      "_id": "5e57643c986e4119c973df7d",
-      "app": "000000000000000000000004",
-      "created_at": "2020-02-27T06:39:56.088Z",
-      "modified_at": "2021-02-02T11:04:14.289Z",
-      "__v": 1
-    }
+      }
+    },
+    "cart": {
+      "gst_input": true,
+      "staff_selection": true,
+      "placing_for_customer": true,
+      "google_map": true
+    },
+    "qr": {
+      "application": true,
+      "products": true,
+      "collections": true
+    },
+    "pcr": {
+      "staff_selection": true
+    },
+    "order": {
+      "buy_again": true
+    },
+    "_id": "5e57643c986e4119c973df7d",
+    "app": "000000000000000000000004",
+    "created_at": "2020-02-27T06:39:56.088Z",
+    "modified_at": "2021-02-02T11:04:14.289Z",
+    "__v": 1
   }
 }
 ```
-</details>
-
 </details>
 
 
@@ -998,88 +917,80 @@ Success. Check the example shown below or refer `AppTokenResponse` for more deta
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "tokens": {
-      "firebase": {
-        "credentials": {
-          "project_id": "",
-          "gcm_sender_id": "",
-          "application_id": "",
-          "api_key": ""
-        },
-        "enabled": false
+  "tokens": {
+    "firebase": {
+      "credentials": {
+        "project_id": "",
+        "gcm_sender_id": "",
+        "application_id": "",
+        "api_key": ""
       },
-      "moengage": {
-        "credentials": {
-          "app_id": ""
-        },
-        "enabled": false
+      "enabled": false
+    },
+    "moengage": {
+      "credentials": {
+        "app_id": ""
       },
-      "segment": {
-        "credentials": {
-          "write_key": "U2FsdGVkX18E920z+xtaD+GnGWoK/5SNxu61phXf6/o="
-        },
-        "enabled": false
+      "enabled": false
+    },
+    "segment": {
+      "credentials": {
+        "write_key": "U2FsdGVkX18E920z+xtaD+GnGWoK/5SNxu61phXf6/o="
       },
-      "gtm": {
-        "credentials": {
-          "api_key": ""
-        },
-        "enabled": false
+      "enabled": false
+    },
+    "gtm": {
+      "credentials": {
+        "api_key": ""
       },
-      "freshchat": {
-        "credentials": {
-          "app_id": "U2FsdGVkX19+Egjfy8alIB4S+n2IQEXz2X4yxzimxbGzq9M5+iFsvGjrBAyQrDZ/iIXgWQyWOFRHmf9xhFGajQ==",
-          "app_key": "U2FsdGVkX18OydYSvUBRKJDsLD1KCcwK6+jJVGma4Ck2PVwOv6BW5vyiM2sZ4kEpHbRV38KBPZPqlx3EfZd6mw=="
-        },
-        "enabled": true
+      "enabled": false
+    },
+    "freshchat": {
+      "credentials": {
+        "app_id": "U2FsdGVkX19+Egjfy8alIB4S+n2IQEXz2X4yxzimxbGzq9M5+iFsvGjrBAyQrDZ/iIXgWQyWOFRHmf9xhFGajQ==",
+        "app_key": "U2FsdGVkX18OydYSvUBRKJDsLD1KCcwK6+jJVGma4Ck2PVwOv6BW5vyiM2sZ4kEpHbRV38KBPZPqlx3EfZd6mw=="
       },
-      "safetynet": {
-        "credentials": {
-          "api_key": "U2FsdGVkX1/Ex0BXvB16B81dwWIfVK8LPwexMMbVC3/nB9Y5n4stcnOMUCDalDs8Z92MecOQKydWg+E17QfZ4Q=="
-        },
-        "enabled": true
+      "enabled": true
+    },
+    "safetynet": {
+      "credentials": {
+        "api_key": "U2FsdGVkX1/Ex0BXvB16B81dwWIfVK8LPwexMMbVC3/nB9Y5n4stcnOMUCDalDs8Z92MecOQKydWg+E17QfZ4Q=="
       },
-      "fynd_rewards": {
-        "credentials": {
-          "public_key": "U2FsdGVkX1/C7x0hybxKPpWSMYBEKukQCVjnm7wfW3lrTJPmcr06xvLzVatPQJTKXeXvay0rdvcXuHlp8n/VAX7v9Usobmp1znadnPWt07GOvq5aPK9zDlg05tb+TX8Wx0q2rVonRK0Q6ZyMcn6Oy+Z812TpRAlcU1AmSrDtl/PMjuH1rSRTxKJLD0HzXk9zPl2M6GOKmgzjpHD4ZmtRSfJmm/h+qbZZ4AuD9upTbJzDm/pcp4S4cYu9rSV31JpOtAkrCxZFzCT8seWKa2eU8VdleRltwF5DO1x8Pny/hKNmhrUqxdkevY6lm4aEQjThA/EeBv1UPq52EFDteXLsZ6yBXyNAxcFNuPupour+K8hi0nfgbd/fsFqu5NUBOwz0hsqQh9OsTGt7SdiIyMSQgCttphaqhBbJ926UlG9d/O1W1u+i9rn7pECcH1eyUYlsNbYqghciz9pTrfRdqA8AIa2j7H/3Lxq37arxZCIDlTgl+Kk/8QUTsTefk+seGZsyiDyIkxW+FcmHBZLr3y85ST23szWSnyweV2hQHtPWnCE="
-        }
-      },
-      "auth": {
-        "google": {
-          "app_id": "U2FsdGVkX19ZkUS8HAnz17Sbcixaj0N4xDcaxztzAPdkxsc2i56kuEL+hVDv5z47HjiY4jOFN0zd5HbO9vf5/adwr6L8QQVEmz1BEEGEze13a5PgONGZlfQkxeuQLBT9"
-        },
-        "facebook": {
-          "app_id": "U2FsdGVkX1/kPjoWmEvESc276Ect4VZmAFVTkQKKjsxgk6LXWjj73vPrBsnJyPpR"
-        },
-        "accountkit": {
-          "app_id": ""
-        }
-      },
-      "google_map": {
-        "credentials": {
-          "api_key": "U2FsdGVkX1+5tBH/3lREPiDwVukCS/Q2ftu/CYD9RdLYK8hGO/XJfrs2zpoGDKCJBhgTDRESItRKR7Lt/w+zeQ=="
-        }
+      "enabled": true
+    },
+    "fynd_rewards": {
+      "credentials": {
+        "public_key": "U2FsdGVkX1/C7x0hybxKPpWSMYBEKukQCVjnm7wfW3lrTJPmcr06xvLzVatPQJTKXeXvay0rdvcXuHlp8n/VAX7v9Usobmp1znadnPWt07GOvq5aPK9zDlg05tb+TX8Wx0q2rVonRK0Q6ZyMcn6Oy+Z812TpRAlcU1AmSrDtl/PMjuH1rSRTxKJLD0HzXk9zPl2M6GOKmgzjpHD4ZmtRSfJmm/h+qbZZ4AuD9upTbJzDm/pcp4S4cYu9rSV31JpOtAkrCxZFzCT8seWKa2eU8VdleRltwF5DO1x8Pny/hKNmhrUqxdkevY6lm4aEQjThA/EeBv1UPq52EFDteXLsZ6yBXyNAxcFNuPupour+K8hi0nfgbd/fsFqu5NUBOwz0hsqQh9OsTGt7SdiIyMSQgCttphaqhBbJ926UlG9d/O1W1u+i9rn7pECcH1eyUYlsNbYqghciz9pTrfRdqA8AIa2j7H/3Lxq37arxZCIDlTgl+Kk/8QUTsTefk+seGZsyiDyIkxW+FcmHBZLr3y85ST23szWSnyweV2hQHtPWnCE="
       }
     },
-    "_id": "5e285cb1df7e5b1421d5f840",
-    "application": "000000000000000000000004",
-    "created_at": "2020-01-22T14:31:13.192Z",
-    "modified_at": "2020-05-01T04:14:42.117Z",
-    "__v": 0
-  }
+    "auth": {
+      "google": {
+        "app_id": "U2FsdGVkX19ZkUS8HAnz17Sbcixaj0N4xDcaxztzAPdkxsc2i56kuEL+hVDv5z47HjiY4jOFN0zd5HbO9vf5/adwr6L8QQVEmz1BEEGEze13a5PgONGZlfQkxeuQLBT9"
+      },
+      "facebook": {
+        "app_id": "U2FsdGVkX1/kPjoWmEvESc276Ect4VZmAFVTkQKKjsxgk6LXWjj73vPrBsnJyPpR"
+      },
+      "accountkit": {
+        "app_id": ""
+      }
+    },
+    "google_map": {
+      "credentials": {
+        "api_key": "U2FsdGVkX1+5tBH/3lREPiDwVukCS/Q2ftu/CYD9RdLYK8hGO/XJfrs2zpoGDKCJBhgTDRESItRKR7Lt/w+zeQ=="
+      }
+    }
+  },
+  "_id": "5e285cb1df7e5b1421d5f840",
+  "application": "000000000000000000000004",
+  "created_at": "2020-01-22T14:31:13.192Z",
+  "modified_at": "2020-05-01T04:14:42.117Z",
+  "__v": 0
 }
 ```
-</details>
-
 </details>
 
 
@@ -1126,34 +1037,26 @@ Success. Check the example shown below or refer `LanguageResponse` for more deta
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "items": [
-      {
-        "name": "हिन्दी",
-        "code": "hi-IN"
-      },
-      {
-        "name": "English",
-        "code": "en-IN"
-      },
-      {
-        "name": "عربى",
-        "code": "ar-AE"
-      }
-    ]
-  }
+  "items": [
+    {
+      "name": "हिन्दी",
+      "code": "hi-IN"
+    },
+    {
+      "name": "English",
+      "code": "en-IN"
+    },
+    {
+      "name": "عربى",
+      "code": "ar-AE"
+    }
+  ]
 }
 ```
-</details>
-
 </details>
 
 
@@ -1204,21 +1107,13 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "message": "success"
-  }
+  "message": "success"
 }
 ```
-</details>
-
 </details>
 
 
@@ -1276,25 +1171,11 @@ Success. Check the example shown below or refer `OrderingStores` for more detail
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
-{
-  "value": {
-    "items": [
-      {
-        "uid": 1
-      }
-    ]
-  }
-}
-```
-</details>
 
+```
 </details>
 
 
@@ -1341,119 +1222,110 @@ Success. Check the example shown below or refer `ApplicationAboutResponse` for m
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "application_info": {
-      "domains": [
-        {
-          "verified": true,
-          "name": "uniket-testing.addsale.link",
-          "custom": false,
-          "is_primary": true
-        }
-      ],
-      "website": {
-        "enabled": true,
-        "basepath": "/"
-      },
-      "cors": {
-        "domains": []
-      },
-      "description": "R-City Mall,Ghatkoper East,Mumbai",
-      "is_active": true,
-      "_id": "5cd3db5e9d692cfe5302a7ba",
-      "name": "Shivam Clothing Store",
-      "meta": [
-        {
-          "name": "tes",
-          "value": "test"
-        }
-      ],
-      "token": "xOfcP-aYE",
-      "secret": "",
-      "created_at": "2019-05-09T07:48:46.218Z",
-      "banner": {
-        "secure_url": "https://res.cloudinary.com/jkvora/image/upload/v1561551809/fqt2djkddoe2yjjlln2h.png"
-      },
-      "logo": {
-        "secure_url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1577513094/addsale/applications/app_5cd3db5e9d692cfe5302a7ba/media/store/logo/ayrkk2uzfknst2ohluzc.png"
-      },
-      "company_info": {
-        "_id": "5da4274a723af4000188a66c",
-        "uid": 873,
-        "created_on": "2019-10-14T07:44:10.391Z",
-        "is_active": true,
-        "name": "SAPPER LIFESTYLE PRIVATE LIMITED",
-        "addresses": [
-          {
-            "pincode": 110042,
-            "address1": "412, SISODIA MOHALLA BADALI VILLAGE",
-            "city": "NEW DELHI",
-            "state": "DELHI",
-            "country": "INDIA",
-            "address_type": "registered"
-          },
-          {
-            "pincode": 110042,
-            "address1": "412, SISODIA MOHALLA BADALI VILLAGE",
-            "city": "NEW DELHI",
-            "state": "DELHI",
-            "country": "INDIA",
-            "address_type": "office"
-          }
-        ],
-        "notification_emails": [
-          "ecom.sapperlifestyle@f2fretail.com"
-        ]
-      },
-      "owner_info": {
-        "_id": "5c77921fa1bf7d8695ed57fd",
-        "emails": [
-          {
-            "active": true,
-            "primary": true,
-            "verified": true,
-            "email": "abc@test.com"
-          },
-          {
-            "active": true,
-            "primary": false,
-            "verified": true,
-            "email": "abc@test.com"
-          },
-          {
-            "active": true,
-            "primary": false,
-            "verified": true,
-            "email": "abc@test.com"
-          }
-        ],
-        "phone_numbers": [
-          {
-            "active": true,
-            "primary": true,
-            "verified": true,
-            "country_code": 91,
-            "phone": "9408282323"
-          }
-        ],
-        "first_name": "Jalak",
-        "last_name": "Vora",
-        "profile_pic": ""
+  "application_info": {
+    "domains": [
+      {
+        "verified": true,
+        "name": "uniket-testing.addsale.link",
+        "custom": false,
+        "is_primary": true
       }
+    ],
+    "website": {
+      "enabled": true,
+      "basepath": "/"
+    },
+    "cors": {
+      "domains": []
+    },
+    "description": "R-City Mall,Ghatkoper East,Mumbai",
+    "is_active": true,
+    "_id": "5cd3db5e9d692cfe5302a7ba",
+    "name": "Shivam Clothing Store",
+    "meta": {
+      "name": "tes",
+      "value": "test"
+    },
+    "token": "xOfcP-aYE",
+    "secret": "",
+    "created_at": "2019-05-09T07:48:46.218Z",
+    "banner": {
+      "secure_url": "https://res.cloudinary.com/jkvora/image/upload/v1561551809/fqt2djkddoe2yjjlln2h.png"
+    },
+    "logo": {
+      "secure_url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1577513094/addsale/applications/app_5cd3db5e9d692cfe5302a7ba/media/store/logo/ayrkk2uzfknst2ohluzc.png"
+    },
+    "id": "5cd3db5e9d692cfe5302a7ba",
+    "company_info": {
+      "_id": "5da4274a723af4000188a66c",
+      "uid": 873,
+      "created_on": "2019-10-14T07:44:10.391Z",
+      "is_active": true,
+      "name": "SAPPER LIFESTYLE PRIVATE LIMITED",
+      "addresses": [
+        {
+          "pincode": 110042,
+          "address1": "412, SISODIA MOHALLA BADALI VILLAGE",
+          "city": "NEW DELHI",
+          "state": "DELHI",
+          "country": "INDIA",
+          "address_type": "registered"
+        },
+        {
+          "pincode": 110042,
+          "address1": "412, SISODIA MOHALLA BADALI VILLAGE",
+          "city": "NEW DELHI",
+          "state": "DELHI",
+          "country": "INDIA",
+          "address_type": "office"
+        }
+      ],
+      "notification_emails": [
+        "ecom.sapperlifestyle@f2fretail.com"
+      ]
+    },
+    "owner_info": {
+      "_id": "5c77921fa1bf7d8695ed57fd",
+      "emails": [
+        {
+          "active": true,
+          "primary": true,
+          "verified": true,
+          "email": "abc@test.com"
+        },
+        {
+          "active": true,
+          "primary": false,
+          "verified": true,
+          "email": "abc@test.com"
+        },
+        {
+          "active": true,
+          "primary": false,
+          "verified": true,
+          "email": "abc@test.com"
+        }
+      ],
+      "phone_numbers": [
+        {
+          "active": true,
+          "primary": true,
+          "verified": true,
+          "country_code": 91,
+          "phone": "9408282323"
+        }
+      ],
+      "first_name": "Jalak",
+      "last_name": "Vora",
+      "profile_pic": ""
     }
   }
 }
 ```
-</details>
-
 </details>
 
 
@@ -1505,27 +1377,19 @@ Success. Check the example shown below or refer `OrderingStore` for more details
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "uid": 1,
-    "name": "THE MANDHANA PARK KAMLANAGAR DELHI",
-    "pincode": 110007,
-    "store_code": "MRVLB22",
-    "code": "MRVLB22",
-    "display_name": "Kamla Nagar",
-    "store_type": "mall"
-  }
+  "uid": 1060,
+  "name": "THE MANDHANA PARK KAMLANAGAR DELHI",
+  "pincode": 110007,
+  "store_code": "MRVLB22",
+  "code": "MRVLB22",
+  "display_name": "Kamla Nagar",
+  "store_type": "mall"
 }
 ```
-</details>
-
 </details>
 
 
@@ -1572,21 +1436,13 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; success</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "value": {
-    "message": "success"
-  }
+  "message": "success"
 }
 ```
-</details>
-
 </details>
 
 
@@ -1619,11 +1475,8 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _id | string? |  yes  |  |
  | application | string? |  yes  | Alphanumeric ID allotted to an application (sales channel website) created within a business account |
- | created_at | string? |  yes  |  |
  | default_currency | [DefaultCurrency](#DefaultCurrency)? |  yes  |  |
- | modified_at | string? |  yes  |  |
  | supported_currency | [[Currency](#Currency)]? |  yes  |  |
  
 
@@ -1641,12 +1494,12 @@ Success
  | created_at | string? |  yes  | ISO 8601 timestamp showing the date when the features were configured |
  | home_page | [HomePageFeature](#HomePageFeature)? |  yes  |  |
  | landing_page | [LandingPageFeature](#LandingPageFeature)? |  yes  |  |
- | modified_at | string? |  yes  | ISO 8601 timestamp of last known modifications to the sales channel feature configuration |
  | order | [OrderFeature](#OrderFeature)? |  yes  |  |
  | pcr | [PcrFeature](#PcrFeature)? |  yes  |  |
  | product_detail | [ProductDetailFeature](#ProductDetailFeature)? |  yes  |  |
  | qr | [QrFeature](#QrFeature)? |  yes  |  |
  | registration_page | [RegistrationPageFeature](#RegistrationPageFeature)? |  yes  |  |
+ | updated_at | string? |  yes  | ISO 8601 timestamp of last known modifications to the sales channel feature configuration |
  
 
 ---
@@ -1683,15 +1536,11 @@ Success
  | logo | [SecureUrl](#SecureUrl)? |  yes  |  |
  | meta | [[ApplicationMeta](#ApplicationMeta)]? |  yes  |  |
  | mobile_logo | [SecureUrl](#SecureUrl)? |  yes  |  |
- | mode | string? |  yes  |  |
- | modified_at | string? |  yes  | ISO 8601 timestamp of sales channel updation |
  | name | string? |  yes  | Name of the sales channel, e.g. Zenz Fashion |
  | owner | string? |  yes  | The unique identifier (24-digit Mongo Object ID) of owner who owns the application |
  | redirections | [[ApplicationRedirections](#ApplicationRedirections)]? |  yes  |  |
- | slug | string? |  yes  |  |
- | status | string? |  yes  |  |
  | token | string? |  yes  | Random generated fix length string for sales channel. It is required and auto-generated. |
- | tokens | [[TokenSchema](#TokenSchema)]? |  yes  |  |
+ | updated_at | string? |  yes  | ISO 8601 timestamp of sales channel updation |
  | website | [ApplicationWebsite](#ApplicationWebsite)? |  yes  |  |
  
 
@@ -1702,6 +1551,8 @@ Success
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | application_info | [ApplicationInfo](#ApplicationInfo)? |  yes  |  |
+ | company_info | [CompanyInfo](#CompanyInfo)? |  yes  |  |
+ | owner_info | [OwnerInfo](#OwnerInfo)? |  yes  |  |
  
 
 ---
@@ -1730,7 +1581,6 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | _id | string? |  yes  | The unique identifier (24-digit Mongo Object ID) for the sales channel details |
  | banner | [SecureUrl](#SecureUrl)? |  yes  |  |
- | company_id | number? |  yes  |  |
  | description | string? |  yes  | It gives a detailed information about the sales channel. It is required. |
  | domain | [Domain](#Domain)? |  yes  |  |
  | domains | [[Domain](#Domain)]? |  yes  |  |
@@ -1738,7 +1588,6 @@ Success
  | logo | [SecureUrl](#SecureUrl)? |  yes  |  |
  | mobile_logo | [SecureUrl](#SecureUrl)? |  yes  |  |
  | name | string |  no  | Name of the sales channel. It is required. |
- | slug | string? |  yes  |  |
  
 
 ---
@@ -1749,24 +1598,16 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | _id | string? |  yes  | The unique identifier (24-digit Mongo Object ID) of application information |
  | banner | [SecureUrl](#SecureUrl)? |  yes  |  |
- | company_info | [CompanyInfo](#CompanyInfo)? |  yes  |  |
  | cors | [ApplicationCors](#ApplicationCors)? |  yes  |  |
  | created_at | string? |  yes  | ISO 8601 timestamp of sales channel information creation |
  | description | string? |  yes  | It contains details information about the sales channel |
  | domain | [Domain](#Domain)? |  yes  |  |
- | domains | [[Domain](#Domain)]? |  yes  |  |
- | favicon | [SecureUrl](#SecureUrl)? |  yes  |  |
  | is_active | boolean? |  yes  | Indicates whether sales channel is active or not active |
  | logo | [SecureUrl](#SecureUrl)? |  yes  |  |
- | meta | [[ApplicationMeta](#ApplicationMeta)]? |  yes  |  |
- | mobile_logo | [SecureUrl](#SecureUrl)? |  yes  |  |
- | mode | string? |  yes  |  |
+ | meta | [ApplicationMeta](#ApplicationMeta)? |  yes  |  |
  | name | string? |  yes  | Name of the sales channel, e.g. Zenz Fashion |
- | owner_info | [OwnerInfo](#OwnerInfo)? |  yes  |  |
  | secret | string? |  yes  | Random generated fix length string for sales channel. It is required and auto-generated. |
- | slug | string? |  yes  |  |
  | token | string? |  yes  | Random generated fix length string for sales channel. It is required and auto-generated. |
- | tokens | [[TokenSchema](#TokenSchema)]? |  yes  |  |
  | website | [ApplicationWebsite](#ApplicationWebsite)? |  yes  |  |
  
 
@@ -1780,13 +1621,13 @@ Success
  | _id | string? |  yes  | Unique identifier (24-digit Mongo Object ID) of the application information |
  | address | [InformationAddress](#InformationAddress)? |  yes  |  |
  | application | string? |  yes  | Alphanumeric ID allotted to a sales channel application created within a business account |
- | business_highlights | [[BusinessHighlights](#BusinessHighlights)]? |  yes  |  |
+ | business_highlights | [BusinessHighlights](#BusinessHighlights)? |  yes  |  |
  | copyright_text | string? |  yes  | Copyright statement usually seen at the site's footer |
  | created_at | string? |  yes  | ISO 8601 timestamp of creation of the application information |
- | links | [[Links](#Links)]? |  yes  |  |
- | modified_at | string? |  yes  | ISO 8601 timestamp of updation of the application information |
+ | links | [Links](#Links)? |  yes  |  |
  | social_links | [SocialLinks](#SocialLinks)? |  yes  |  |
  | support | [InformationSupport](#InformationSupport)? |  yes  |  |
+ | updated_at | string? |  yes  | ISO 8601 timestamp of updation of the application information |
  
 
 ---
@@ -1867,8 +1708,8 @@ Success
  | _id | string? |  yes  | The unique identifier (24-digit Mongo Object ID) of the token |
  | application | string? |  yes  | Alphanumeric ID allotted to the current application created within the current business account |
  | created_at | string? |  yes  | ISO 8601 timestamp of token creation |
- | modified_at | string? |  yes  | ISO 8601 timestamp of token updation |
  | tokens | [Tokens](#Tokens)? |  yes  |  |
+ | updated_at | string? |  yes  | ISO 8601 timestamp of token updation |
  
 
 ---
@@ -1918,8 +1759,6 @@ Success
  | currency | [CurrencyFeature](#CurrencyFeature)? |  yes  |  |
  | deployment_store_selection | [DeploymentStoreSelectionFeature](#DeploymentStoreSelectionFeature)? |  yes  |  |
  | feedback | [FeedbackFeature](#FeedbackFeature)? |  yes  |  |
- | international_shipping | [InternationalShipping](#InternationalShipping)? |  yes  |  |
- | listing_page | [ListingPageFeature](#ListingPageFeature)? |  yes  |  |
  | listing_price | [ListingPriceFeature](#ListingPriceFeature)? |  yes  |  |
  | revenue_engine | [RevenueEngineFeature](#RevenueEngineFeature)? |  yes  |  |
  | reward_points | [RewardPointsConfig](#RewardPointsConfig)? |  yes  |  |
@@ -2013,14 +1852,12 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | _id | string? |  yes  | The unique identifier (24-digit Mongo Object ID) of the current sales channel supported currency |
  | code | string? |  yes  | 3-character currency code, e.g. INR, USD, EUR. |
- | country_code | string? |  yes  |  |
- | country_name | string? |  yes  |  |
  | created_at | string? |  yes  | ISO 8601 timestamp of sales channel support currency creation |
  | decimal_digits | number? |  yes  | Acceptable decimal limits for a given currency, e.g. 1.05$ means upto 2 decimal digits can be accepted as a valid value of a currency. |
  | is_active | boolean? |  yes  | Shows currency is enabled or not in current sales channel |
- | modified_at | string? |  yes  | ISO 8601 timestamp of sales channel support currency updation |
  | name | string? |  yes  | Name of the currency, e.g Indian Rupee |
  | symbol | string? |  yes  | Unique symbol for identifying the currency, e.g. ₹ |
+ | updated_at | string? |  yes  | ISO 8601 timestamp of sales channel support currency updation |
  
 
 ---
@@ -2214,19 +2051,9 @@ Success
  | address_line | [string]? |  yes  | Contact address of the sales channel |
  | city | string? |  yes  | Name of the city, e.g. Mumbai |
  | country | string? |  yes  | Name of the country, e.g. India |
- | loc | [InformationLoc](#InformationLoc)? |  yes  |  |
- | phone | [[InformationPhone](#InformationPhone)]? |  yes  |  |
+ | loc | string? |  yes  | Co-ordinates of the location |
+ | phone | [InformationPhone](#InformationPhone)? |  yes  |  |
  | pincode | number? |  yes  | 6-digit PIN Code of the city, e.g. 400001 |
- 
-
----
-
-#### [InformationLoc](#InformationLoc)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | coordinates | [number]? |  yes  | 10-digit mobile number |
- | type | string? |  yes  | Country code for contact number, e.g. +91 (for India) |
  
 
 ---
@@ -2245,30 +2072,9 @@ Success
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | email | [[InformationSupportEmail](#InformationSupportEmail)]? |  yes  |  |
- | phone | [[InformationSupportPhone](#InformationSupportPhone)]? |  yes  |  |
+ | email | [string]? |  yes  |  |
+ | phone | [string]? |  yes  |  |
  | timing | string? |  yes  | Working hours of support team, e.g. 9 AM to 9 PM |
- 
-
----
-
-#### [InformationSupportEmail](#InformationSupportEmail)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | key | string? |  yes  |  |
- | value | string? |  yes  | Value of email. |
- 
-
----
-
-#### [InformationSupportPhone](#InformationSupportPhone)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | string? |  yes  | Country code for contact number, e.g. +91 (for India) |
- | key | string? |  yes  |  |
- | number | string? |  yes  | 10-digit mobile number |
  
 
 ---
@@ -2280,24 +2086,6 @@ Success
  | icon | string? |  yes  | Hosted URL of social icon image shown on the website |
  | link | string? |  yes  | Web URL of brand's Instagram page |
  | title | string? |  yes  | Name of the social media platform, e.g. Instagram |
- 
-
----
-
-#### [InternationalShipping](#InternationalShipping)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | enabled | boolean? |  yes  | International shipping is enabled or not. |
- 
-
----
-
-#### [InvalidPayloadRequest](#InvalidPayloadRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  | Error message when request body payload is improper |
  
 
 ---
@@ -2362,15 +2150,6 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | link | string? |  yes  | Web URL for redirecting to a related page |
  | title | string? |  yes  | Name of the related page or link |
- 
-
----
-
-#### [ListingPageFeature](#ListingPageFeature)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | sort_on | string? |  yes  |  |
  
 
 ---
@@ -2694,17 +2473,6 @@ Success
  | moengage | [Moengage](#Moengage)? |  yes  |  |
  | safetynet | [Safetynet](#Safetynet)? |  yes  |  |
  | segment | [Segment](#Segment)? |  yes  |  |
- 
-
----
-
-#### [TokenSchema](#TokenSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | created_at | string? |  yes  | ISO 8601 timestamp of when token created |
- | created_by | string? |  yes  |  |
- | token | string? |  yes  |  |
  
 
 ---

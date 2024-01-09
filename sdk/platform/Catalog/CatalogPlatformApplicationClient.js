@@ -1,5 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const {
+  FDKClientValidationError,
+  FDKResponseValidationError,
+} = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
 const CatalogPlatformApplicationValidator = require("./CatalogPlatformApplicationValidator");
 const CatalogPlatformModel = require("./CatalogPlatformModel");
@@ -1082,9 +1085,7 @@ class Catalog {
    * @param {CatalogPlatformApplicationValidator.DeleteCollectionParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.CommonResponseSchemaCollection>}
-   *   - Success response
-   *
+   * @returns {Promise<CatalogPlatformModel.DeleteResponse>} - Success response
    * @name deleteCollection
    * @summary: Delete a Collection
    * @description: Delete a collection by it's id. Returns an object that tells whether the collection was deleted successfully - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteCollection/).
@@ -1140,10 +1141,10 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.CommonResponseSchemaCollection().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = CatalogPlatformModel.DeleteResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -1868,17 +1869,9 @@ class Catalog {
    * @description: This API allows to view all the locations asscoiated to a application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getAppLocations/).
    */
   async getAppLocations(
-    {
-      storeType,
-      uid,
-      q,
-      stage,
-      pageNo,
-      pageSize,
-      tags,
-      storeTypes,
-      requestHeaders,
-    } = { requestHeaders: {} },
+    { storeType, uid, q, stage, pageNo, pageSize, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -1891,8 +1884,6 @@ class Catalog {
         stage,
         pageNo,
         pageSize,
-        tags,
-        storeTypes,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1911,8 +1902,6 @@ class Catalog {
         stage,
         pageNo,
         pageSize,
-        tags,
-        storeTypes,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1930,8 +1919,6 @@ class Catalog {
     query_params["stage"] = stage;
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
-    query_params["tags"] = tags;
-    query_params["store_types"] = storeTypes;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -1983,8 +1970,6 @@ class Catalog {
    *   unverified companies.
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
    *   page. Default is 20.
-   * @param {string[]} [arg.tags] - Get locations filtered by tags.
-   * @param {string[]} [arg.storeTypes] - Get locations filtered by store types.
    * @returns {Paginator<CatalogPlatformModel.LocationListSerializer>}
    * @summary: Get list of locations
    * @description: This API allows to view all the locations asscoiated to a application.
@@ -1997,8 +1982,6 @@ class Catalog {
     q,
     stage,
     pageSize,
-    tags,
-    storeTypes,
   } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
@@ -2014,8 +1997,6 @@ class Catalog {
         stage: stage,
         pageNo: pageNo,
         pageSize: pageSize,
-        tags: tags,
-        storeTypes: storeTypes,
       });
       paginator.setPaginator({
         hasNext: data.page.has_next ? true : false,
@@ -3450,7 +3431,7 @@ class Catalog {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.GetCollectionDetailResponse>} -
+   * @returns {Promise<CatalogPlatformModel.CollectionDetailResponse>} -
    *   Success response
    * @name getCollectionDetail
    * @summary: Get a particular collection
@@ -3507,10 +3488,10 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.GetCollectionDetailResponse().validate(
-      responseData,
-      { abortEarly: false, allowUnknown: true }
-    );
+    } = CatalogPlatformModel.CollectionDetailResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -3713,9 +3694,7 @@ class Catalog {
    * @description: Get the configuraion metadata details for catalog. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getConfigurationMetadata/).
    */
   async getConfigurationMetadata(
-    { configType, templateSlug, pageNo, pageSize, q, requestHeaders } = {
-      requestHeaders: {},
-    },
+    { configType, templateSlug, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -3724,9 +3703,6 @@ class Catalog {
       {
         configType,
         templateSlug,
-        pageNo,
-        pageSize,
-        q,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -3741,9 +3717,6 @@ class Catalog {
       {
         configType,
         templateSlug,
-        pageNo,
-        pageSize,
-        q,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -3756,9 +3729,6 @@ class Catalog {
 
     const query_params = {};
     query_params["template_slug"] = templateSlug;
-    query_params["page_no"] = pageNo;
-    query_params["page_size"] = pageSize;
-    query_params["q"] = q;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -4326,7 +4296,9 @@ class Catalog {
    * @param {CatalogPlatformApplicationValidator.GetQueryFiltersParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.GetQueryFiltersResponse>} - Success response
+   * @returns {Promise<CatalogPlatformModel.GetCollectionQueryOptionResponse>}
+   *   - Success response
+   *
    * @name getQueryFilters
    * @summary: Get query filters to configure a collection
    * @description: Get query filters to configure a collection - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getQueryFilters/).
@@ -4378,10 +4350,10 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.GetQueryFiltersResponse().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
+    } = CatalogPlatformModel.GetCollectionQueryOptionResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {

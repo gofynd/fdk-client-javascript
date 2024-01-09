@@ -24,7 +24,6 @@ Default
 * [getInvoices](#getinvoices)
 * [getSubscription](#getsubscription)
 * [getSubscriptionCharge](#getsubscriptioncharge)
-* [getentityDetail](#getentitydetail)
 * [planStatusUpdate](#planstatusupdate)
 * [subscripePlan](#subscripeplan)
 * [upsertCustomerDetail](#upsertcustomerdetail)
@@ -833,22 +832,14 @@ Get subscription subscription limits
 
 ```javascript
 // Promise
-const promise = platformClient.billing.getFeatureLimitConfig({  productSuite : value,
- type : value });
+const promise = platformClient.billing.getFeatureLimitConfig();
 
 // Async/Await
-const data = await platformClient.billing.getFeatureLimitConfig({  productSuite : value,
- type : value });
+const data = await platformClient.billing.getFeatureLimitConfig();
 ```
 
 
 
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| productSuite | string | no |  |    
-| type | string | no |  |  
 
 
 
@@ -2107,74 +2098,6 @@ Success
 ---
 
 
-### getentityDetail
-Generic api to get the entity detail
-
-
-
-```javascript
-// Promise
-const promise = platformClient.billing.getentityDetail({  entityName : value,
- channel : value,
- entityId : value,
- component : value,
- componentName : value });
-
-// Async/Await
-const data = await platformClient.billing.getentityDetail({  entityName : value,
- channel : value,
- entityId : value,
- component : value,
- componentName : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| entityName | string | yes | Entity name. |    
-| entityId | string | no | Entity unique id. |   
-| channel | string | yes | Ordering channel. |    
-| component | string | no | The coponents the user would like to know. |    
-| componentName | string | no | The name of component the preferred to be fetched. |  
-
-
-
-Generic api to get the entity detail
-
-*Returned Response:*
-
-
-
-
-[EntityResponse](#EntityResponse)
-
-Success
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### planStatusUpdate
 Update Status of The plan
 
@@ -2710,16 +2633,6 @@ Success
 
 ---
 
-#### [Details](#Details)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | features | [[Features](#Features)]? |  yes  |  |
- | fee_components | [[FeeComponents](#FeeComponents)]? |  yes  |  |
- 
-
----
-
 #### [EntityChargePrice](#EntityChargePrice)
 
  | Properties | Type | Nullable | Description |
@@ -2739,18 +2652,6 @@ Success
 
 ---
 
-#### [EntityResponse](#EntityResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[Details](#Details)]? |  yes  |  |
- | page | number? |  yes  |  |
- | page_size | number? |  yes  |  |
- | success | boolean? |  yes  |  |
- 
-
----
-
 #### [EntitySubscription](#EntitySubscription)
 
  | Properties | Type | Nullable | Description |
@@ -2765,35 +2666,6 @@ Success
  | status | string? |  yes  |  |
  | trial_days | number? |  yes  |  |
  | trial_period | [SubscriptionTrialPeriod](#SubscriptionTrialPeriod)? |  yes  |  |
- 
-
----
-
-#### [Features](#Features)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | description | string? |  yes  |  |
- | display_text | string? |  yes  |  |
- | enabled | boolean? |  yes  |  |
- | group | string? |  yes  |  |
- | name | string? |  yes  |  |
- | slug | string? |  yes  |  |
- 
-
----
-
-#### [FeeComponents](#FeeComponents)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | brand | [string]? |  yes  |  |
- | business_lead | string? |  yes  |  |
- | channel | [string]? |  yes  |  |
- | components | [string]? |  yes  |  |
- | location | [string]? |  yes  |  |
- | settle_cycle_period | string? |  yes  |  |
- | settlement_type | string? |  yes  |  |
  
 
 ---

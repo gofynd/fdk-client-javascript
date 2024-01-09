@@ -1,5 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const {
+  FDKClientValidationError,
+  FDKResponseValidationError,
+} = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
 const FileStoragePlatformApplicationValidator = require("./FileStoragePlatformApplicationValidator");
 const FileStoragePlatformModel = require("./FileStoragePlatformModel");
@@ -310,7 +313,7 @@ class FileStorage {
    * @description: Browse Files - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/appbrowse/).
    */
   async appbrowse(
-    { namespace, page, limit, search, requestHeaders } = { requestHeaders: {} },
+    { namespace, page, limit, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -321,7 +324,6 @@ class FileStorage {
 
         page,
         limit,
-        search,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -338,7 +340,6 @@ class FileStorage {
 
         page,
         limit,
-        search,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -352,7 +353,6 @@ class FileStorage {
     const query_params = {};
     query_params["page"] = page;
     query_params["limit"] = limit;
-    query_params["search"] = search;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -381,98 +381,6 @@ class FileStorage {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > FileStorage > appbrowse \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {FileStoragePlatformApplicationValidator.BrowsefilesParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<Object>} - Success response
-   * @name browsefiles
-   * @summary: Browse Files
-   * @description: Browse Files - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/browsefiles/).
-   */
-  async browsefiles(
-    { namespace, body, page, limit, search, requestHeaders } = {
-      requestHeaders: {},
-    },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const {
-      error,
-    } = FileStoragePlatformApplicationValidator.browsefiles().validate(
-      {
-        namespace,
-
-        body,
-        page,
-        limit,
-        search,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = FileStoragePlatformApplicationValidator.browsefiles().validate(
-      {
-        namespace,
-
-        body,
-        page,
-        limit,
-        search,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > FileStorage > browsefiles \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["page"] = page;
-    query_params["limit"] = limit;
-    query_params["search"] = search;
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "post",
-      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/namespaces/${namespace}/browse`,
-      query_params,
-      body,
-      requestHeaders,
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const { error: res_error } = Joi.any().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > FileStorage > browsefiles \n ${res_error}`,
         });
       }
     }
@@ -571,7 +479,7 @@ class FileStorage {
    * @description: Get default html template for invoice or label - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getDefaultHtmlTemplate/).
    */
   async getDefaultHtmlTemplate(
-    { pdfTypeId, format, countryCode, requestHeaders } = { requestHeaders: {} },
+    { pdfTypeId, format, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -580,7 +488,6 @@ class FileStorage {
       {
         pdfTypeId,
         format,
-        countryCode,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -595,7 +502,6 @@ class FileStorage {
       {
         pdfTypeId,
         format,
-        countryCode,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -609,7 +515,6 @@ class FileStorage {
     const query_params = {};
     query_params["pdf_type_id"] = pdfTypeId;
     query_params["format"] = format;
-    query_params["country_code"] = countryCode;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -660,7 +565,7 @@ class FileStorage {
    * @description: Get Dummy pdf data for invoice or label - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getDefaultPdfData/).
    */
   async getDefaultPdfData(
-    { pdfTypeId, countryCode, requestHeaders } = { requestHeaders: {} },
+    { pdfTypeId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -668,7 +573,6 @@ class FileStorage {
     } = FileStoragePlatformApplicationValidator.getDefaultPdfData().validate(
       {
         pdfTypeId,
-        countryCode,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -682,7 +586,6 @@ class FileStorage {
     } = FileStoragePlatformApplicationValidator.getDefaultPdfData().validate(
       {
         pdfTypeId,
-        countryCode,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -695,7 +598,6 @@ class FileStorage {
 
     const query_params = {};
     query_params["pdf_type_id"] = pdfTypeId;
-    query_params["country_code"] = countryCode;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -746,7 +648,7 @@ class FileStorage {
    * @description: Get default html template data for invoice or label - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getDefaultPdfTemplate/).
    */
   async getDefaultPdfTemplate(
-    { pdfTypeId, format, countryCode, requestHeaders } = { requestHeaders: {} },
+    { pdfTypeId, format, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -755,7 +657,6 @@ class FileStorage {
       {
         pdfTypeId,
         format,
-        countryCode,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -770,7 +671,6 @@ class FileStorage {
       {
         pdfTypeId,
         format,
-        countryCode,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -784,7 +684,6 @@ class FileStorage {
     const query_params = {};
     query_params["pdf_type_id"] = pdfTypeId;
     query_params["format"] = format;
-    query_params["country_code"] = countryCode;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -830,18 +729,16 @@ class FileStorage {
    *   Success response
    * @name getPdfTypes
    * @summary: Get all the supported invoice pdf types
-   * @description: Get all the supported invoice pdf types such as Invoice, Label, Delivery challan - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getPdfTypes/).
+   * @description: Get all the supported invoice pdf types such as Invoice, Label, Deliver challan - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getPdfTypes/).
    */
   async getPdfTypes(
-    { countryCode, requestHeaders } = { requestHeaders: {} },
+    { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
     } = FileStoragePlatformApplicationValidator.getPdfTypes().validate(
-      {
-        countryCode,
-      },
+      {},
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -852,9 +749,7 @@ class FileStorage {
     const {
       error: warrning,
     } = FileStoragePlatformApplicationValidator.getPdfTypes().validate(
-      {
-        countryCode,
-      },
+      {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -865,7 +760,6 @@ class FileStorage {
     }
 
     const query_params = {};
-    query_params["country_code"] = countryCode;
 
     const response = await PlatformAPIClient.execute(
       this.config,

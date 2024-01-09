@@ -19,17 +19,6 @@ const ContentApplicationModel = require("./ContentApplicationModel");
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  */
 
-/**
- * @typedef GetCustomFieldsParam
- * @property {string} resource
- * @property {string} resourceId
- */
-
-/**
- * @typedef GetCustomObjectParam
- * @property {string} metaobjectId
- */
-
 /** @typedef GetDataLoadersParam */
 
 /**
@@ -86,13 +75,6 @@ const ContentApplicationModel = require("./ContentApplicationModel");
 /** @typedef GetSEOConfigurationParam */
 
 /**
- * @typedef GetSEOMarkupSchemasParam
- * @property {string} [pageType] - The type of page against which schema
- *   template was created
- * @property {boolean} [active] - Boolean value for fetching seo schema.
- */
-
-/**
  * @typedef GetSlideshowParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a slideshow. You can get slug value from the endpoint
@@ -130,21 +112,6 @@ class ContentApplicationValidator {
       pageNo: Joi.number(),
       pageSize: Joi.number(),
     });
-  }
-
-  /** @returns {GetCustomFieldsParam} */
-  static getCustomFields() {
-    return Joi.object({
-      resource: Joi.string().allow("").required(),
-      resourceId: Joi.string().allow("").required(),
-    }).required();
-  }
-
-  /** @returns {GetCustomObjectParam} */
-  static getCustomObject() {
-    return Joi.object({
-      metaobjectId: Joi.string().allow("").required(),
-    }).required();
   }
 
   /** @returns {GetDataLoadersParam} */
@@ -220,14 +187,6 @@ class ContentApplicationValidator {
   /** @returns {GetSEOConfigurationParam} */
   static getSEOConfiguration() {
     return Joi.object({});
-  }
-
-  /** @returns {GetSEOMarkupSchemasParam} */
-  static getSEOMarkupSchemas() {
-    return Joi.object({
-      pageType: Joi.string().allow(""),
-      active: Joi.boolean(),
-    });
   }
 
   /** @returns {GetSlideshowParam} */

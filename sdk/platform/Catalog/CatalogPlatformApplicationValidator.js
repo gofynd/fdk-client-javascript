@@ -144,8 +144,6 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 20.
- * @property {string[]} [tags] - Get locations filtered by tags.
- * @property {string[]} [storeTypes] - Get locations filtered by store types.
  */
 
 /**
@@ -298,10 +296,6 @@ const CatalogPlatformModel = require("./CatalogPlatformModel");
  *   a specific type of configuration.
  * @property {string} [templateSlug] - Get configuration list filtered by
  *   `template_slug` string. This is for the details and comparision groups.
- * @property {number} [pageNo] - The page number to navigate through the given
- *   set of results.
- * @property {number} [pageSize] - Number of items to retrieve in each page.
- * @property {string} [q] - Get configuration list filtered by `q` string.
  */
 
 /** @typedef GetConfigurationsParam */
@@ -632,8 +626,6 @@ class CatalogPlatformApplicationValidator {
       stage: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      tags: Joi.array().items(Joi.string().allow("")),
-      storeTypes: Joi.array().items(Joi.string().allow("")),
     }).required();
   }
 
@@ -779,9 +771,6 @@ class CatalogPlatformApplicationValidator {
     return Joi.object({
       configType: Joi.string().allow("").required(),
       templateSlug: Joi.string().allow(""),
-      pageNo: Joi.number(),
-      pageSize: Joi.number(),
-      q: Joi.string().allow(""),
     }).required();
   }
 

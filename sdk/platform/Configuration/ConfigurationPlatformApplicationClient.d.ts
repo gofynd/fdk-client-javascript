@@ -63,7 +63,7 @@ declare class Configuration {
     getAppCompanies({ uid, pageNo, pageSize, requestHeaders }?: ConfigurationPlatformApplicationValidator.GetAppCompaniesParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.CompaniesResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} arg.companyId - Numeric ID allotted to a business account
+     * @param {string} arg.companyId - Numeric ID allotted to a business account
      *   on Fynd Platform
      * @param {string} arg.applicationId - Alphanumeric ID allotted to an
      *   application (sales channel website) created within a business account
@@ -75,7 +75,7 @@ declare class Configuration {
      * @description: Fetch info of all the companies (e.g. name, uid, and company type) whose inventory is fetched into the current sales channel application
      */
     getAppCompaniesPaginator({ companyId, applicationId, uid, pageSize }?: {
-        companyId: number;
+        companyId: string;
         applicationId: string;
         uid?: number;
         pageSize?: number;
@@ -133,7 +133,7 @@ declare class Configuration {
     getAppStores({ pageNo, pageSize, requestHeaders }?: ConfigurationPlatformApplicationValidator.GetAppStoresParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.StoresResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} arg.companyId - Numeric ID allotted to a business account
+     * @param {string} arg.companyId - Numeric ID allotted to a business account
      *   on Fynd Platform
      * @param {string} arg.applicationId - Alphanumeric ID allotted to an
      *   application (sales channel website) created within a business account
@@ -144,7 +144,7 @@ declare class Configuration {
      * @description: Fetch info of all the companies (e.g. uid, name, display name, store type, store code and company id) whose inventory is fetched into the current sales channel application
      */
     getAppStoresPaginator({ companyId, applicationId, pageSize }?: {
-        companyId: number;
+        companyId: string;
         applicationId: string;
         pageSize?: number;
     }): Paginator<ConfigurationPlatformModel.StoresResponse>;
@@ -262,7 +262,7 @@ declare class Configuration {
     getOrderingStoresByFilter({ body, pageNo, pageSize, requestHeaders }?: ConfigurationPlatformApplicationValidator.GetOrderingStoresByFilterParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.OrderingStores>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} arg.companyId - Numeric ID allotted to a business account
+     * @param {string} arg.companyId - Numeric ID allotted to a business account
      *   on Fynd Platform
      * @param {string} arg.applicationId - Alphanumeric ID allotted to an
      *   application (sales channel website) created within a business account
@@ -274,7 +274,7 @@ declare class Configuration {
      * @description: Use this API to use filters and retrieve the details of the deployment stores (the selling locations where the application will be utilised for placing orders).
      */
     getOrderingStoresByFilterPaginator({ companyId, applicationId, pageSize, body, }?: {
-        companyId: number;
+        companyId: string;
         applicationId: string;
         pageSize?: number;
         body: ConfigurationPlatformModel.FilterOrderingStoreRequest;
@@ -307,7 +307,7 @@ declare class Configuration {
     getStaffOrderingStores({ pageNo, pageSize, q, requestHeaders }?: ConfigurationPlatformApplicationValidator.GetStaffOrderingStoresParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.OrderingStoresResponse>;
     /**
      * @param {Object} arg - Arg object.
-     * @param {number} arg.companyId - Numeric ID allotted to a business account
+     * @param {string} arg.companyId - Numeric ID allotted to a business account
      *   on Fynd Platform
      * @param {string} arg.applicationId - Alphanumeric ID allotted to an
      *   application (sales channel website) created within a business account
@@ -319,7 +319,7 @@ declare class Configuration {
      * @description: Use this API to retrieve the details of all stores access given to the staff member (the selling locations where the application will be utilized for placing orders).
      */
     getStaffOrderingStoresPaginator({ companyId, applicationId, pageSize, q, }?: {
-        companyId: number;
+        companyId: string;
         applicationId: string;
         pageSize?: number;
         q?: string;

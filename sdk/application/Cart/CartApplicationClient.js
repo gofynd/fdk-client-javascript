@@ -1214,11 +1214,11 @@ class Cart {
    * @description: Use this API to get a list of available coupons along with their details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCoupons/).
    */
   async getCoupons(
-    { id, buyNow, slug, storeId, requestHeaders } = { requestHeaders: {} },
+    { id, buyNow, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartApplicationValidator.getCoupons().validate(
-      { id, buyNow, slug, storeId },
+      { id, buyNow },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1227,7 +1227,7 @@ class Cart {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = CartApplicationValidator.getCoupons().validate(
-      { id, buyNow, slug, storeId },
+      { id, buyNow },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -1240,8 +1240,6 @@ class Cart {
     const query_params = {};
     query_params["id"] = id;
     query_params["buy_now"] = buyNow;
-    query_params["slug"] = slug;
-    query_params["store_id"] = storeId;
 
     const xHeaders = {};
 

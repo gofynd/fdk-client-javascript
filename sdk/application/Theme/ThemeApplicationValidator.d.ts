@@ -8,8 +8,6 @@ export = ThemeApplicationValidator;
  * @typedef GetPageParam
  * @property {string} themeId - ID of the theme to be retrieved
  * @property {string} pageValue - Value of the page to be retrieved
- * @property {string} [filters] - Filters on sections to be applied or not
- * @property {number} [company] - Company id of the application
  */
 /**
  * @typedef GetThemeForPreviewParam
@@ -43,14 +41,6 @@ type GetPageParam = {
      * - Value of the page to be retrieved
      */
     pageValue: string;
-    /**
-     * - Filters on sections to be applied or not
-     */
-    filters?: string;
-    /**
-     * - Company id of the application
-     */
-    company?: number;
 };
 type GetThemeForPreviewParam = {
     /**

@@ -6,7 +6,7 @@
 ##### [Back to Application docs](./README.md)
 
 ## FileStorage Methods
-The File Storage module simplifies your file upload and storage tasks. Use the 'Initiate Upload' module to start and complete file uploads. Once the upload is successful, employ the 'Complete Upload' module to retrieve the file's URL. For added security, utilize the 'Sign URLs' module, which grants authorized access through signed URLs.
+File Storage
 
 * [upload](#upload)
 

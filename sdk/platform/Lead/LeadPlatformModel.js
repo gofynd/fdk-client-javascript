@@ -120,11 +120,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ErrorMessage
- * @property {string} [message]
- */
-
-/**
  * @typedef FeedbackForm
  * @property {Object} [inputs] - Input details for the feed back form
  * @property {Object} [timestamps] - Gives details of category releted data
@@ -346,7 +341,7 @@ const Joi = require("joi");
  * @property {string} [username]
  */
 
-/** @typedef {"rating" | "log" | "comment" | "thread"} HistoryTypeEnum */
+/** @typedef {"rating" | "log" | "comment"} HistoryTypeEnum */
 
 /** @typedef {"low" | "medium" | "high" | "urgent"} PriorityEnum */
 
@@ -500,13 +495,6 @@ class LeadPlatformModel {
       email: Joi.string().allow(""),
       primary: Joi.boolean(),
       verified: Joi.boolean(),
-    });
-  }
-
-  /** @returns {ErrorMessage} */
-  static ErrorMessage() {
-    return Joi.object({
-      message: Joi.string().allow(""),
     });
   }
 
@@ -796,9 +784,7 @@ class LeadPlatformModel {
 
       "log",
 
-      "comment",
-
-      "thread"
+      "comment"
     );
   }
 

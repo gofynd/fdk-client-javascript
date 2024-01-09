@@ -747,14 +747,11 @@ class Billing {
    * @description: Get subscription subscription limits. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getFeatureLimitConfig/).
    */
   async getFeatureLimitConfig(
-    { productSuite, type, requestHeaders } = { requestHeaders: {} },
+    { requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = BillingPlatformValidator.getFeatureLimitConfig().validate(
-      {
-        productSuite,
-        type,
-      },
+      {},
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -765,10 +762,7 @@ class Billing {
     const {
       error: warrning,
     } = BillingPlatformValidator.getFeatureLimitConfig().validate(
-      {
-        productSuite,
-        type,
-      },
+      {},
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -779,8 +773,6 @@ class Billing {
     }
 
     const query_params = {};
-    query_params["product_suite"] = productSuite;
-    query_params["type"] = type;
 
     const xHeaders = {};
 
@@ -1122,105 +1114,6 @@ class Billing {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Billing > getSubscriptionCharge \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {BillingPlatformValidator.GetentityDetailParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<BillingPlatformModel.EntityResponse>} - Success response
-   * @name getentityDetail
-   * @summary: Generic api to get the entity detail
-   * @description: Generic api to get the entity detail - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getentityDetail/).
-   */
-  async getentityDetail(
-    {
-      entityName,
-      channel,
-      entityId,
-      component,
-      componentName,
-      requestHeaders,
-    } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = BillingPlatformValidator.getentityDetail().validate(
-      {
-        entityName,
-        channel,
-        entityId,
-        component,
-        componentName,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = BillingPlatformValidator.getentityDetail().validate(
-      {
-        entityName,
-        channel,
-        entityId,
-        component,
-        componentName,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Billing > getentityDetail \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-    query_params["entity_name"] = entityName;
-    query_params["entity_id"] = entityId;
-    query_params["channel"] = channel;
-    query_params["component"] = component;
-    query_params["component_name"] = componentName;
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "get",
-      `/service/platform/billing/v1.0/company/${this.config.companyId}/entity/detail`,
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = BillingPlatformModel.EntityResponse().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: true,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Billing > getentityDetail \n ${res_error}`,
         });
       }
     }

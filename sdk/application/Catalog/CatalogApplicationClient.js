@@ -1894,13 +1894,15 @@ class Catalog {
    * @description: Prices may vary for different sizes of a product. Use this API to retrieve the price of a product size at all the selling locations near to a PIN Code. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductPriceBySlug/).
    */
   async getProductPriceBySlug(
-    { slug, size, storeId, moq, requestHeaders } = { requestHeaders: {} },
+    { slug, size, storeId, pincode, moq, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
     } = CatalogApplicationValidator.getProductPriceBySlug().validate(
-      { slug, size, storeId, moq },
+      { slug, size, storeId, pincode, moq },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1911,7 +1913,7 @@ class Catalog {
     const {
       error: warrning,
     } = CatalogApplicationValidator.getProductPriceBySlug().validate(
-      { slug, size, storeId, moq },
+      { slug, size, storeId, pincode, moq },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -1923,6 +1925,7 @@ class Catalog {
 
     const query_params = {};
     query_params["store_id"] = storeId;
+    query_params["pincode"] = pincode;
     query_params["moq"] = moq;
 
     const xHeaders = {};
@@ -1978,7 +1981,7 @@ class Catalog {
    * @description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductSellersBySlug/).
    */
   async getProductSellersBySlug(
-    { slug, size, strategy, pageNo, pageSize, requestHeaders } = {
+    { slug, size, pincode, strategy, pageNo, pageSize, requestHeaders } = {
       requestHeaders: {},
     },
     { responseHeaders } = { responseHeaders: false }
@@ -1986,7 +1989,7 @@ class Catalog {
     const {
       error,
     } = CatalogApplicationValidator.getProductSellersBySlug().validate(
-      { slug, size, strategy, pageNo, pageSize },
+      { slug, size, pincode, strategy, pageNo, pageSize },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -1997,7 +2000,7 @@ class Catalog {
     const {
       error: warrning,
     } = CatalogApplicationValidator.getProductSellersBySlug().validate(
-      { slug, size, strategy, pageNo, pageSize },
+      { slug, size, pincode, strategy, pageNo, pageSize },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -2008,6 +2011,7 @@ class Catalog {
     }
 
     const query_params = {};
+    query_params["pincode"] = pincode;
     query_params["strategy"] = strategy;
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
@@ -2061,6 +2065,8 @@ class Catalog {
    * @param {string} arg.size - A string indicating the size of the product,
    *   e.g. S, M, XL. You can get slug value from the endpoint
    *   /service/application/catalog/v1.0/products/sizes
+   * @param {string} [arg.pincode] - The 6-digit PIN Code of the area near
+   *   which the selling locations should be searched, e.g. 400059
    * @param {string} [arg.strategy] - Sort stores on the basis of strategy.
    *   eg, fast-delivery, low-price, optimal.
    * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
@@ -2068,7 +2074,13 @@ class Catalog {
    * @summary: Get the sellers of a product size at a PIN Code
    * @description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
    */
-  getProductSellersBySlugPaginator({ slug, size, strategy, pageSize } = {}) {
+  getProductSellersBySlugPaginator({
+    slug,
+    size,
+    pincode,
+    strategy,
+    pageSize,
+  } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
       const pageId = paginator.nextId;
@@ -2077,6 +2089,7 @@ class Catalog {
       const data = await this.getProductSellersBySlug({
         slug: slug,
         size: size,
+        pincode: pincode,
         strategy: strategy,
         pageNo: pageNo,
         pageSize: pageSize,

@@ -491,13 +491,22 @@ Success. Returns a response containing relaving and absolute_url of storage serv
 
 ---
 
+#### [Params](#Params)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | subpath | string? |  yes  | The subpath for the file. |
+ 
+
+---
+
 #### [StartRequest](#StartRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | content_type | string |  no  |  |
  | file_name | string |  no  |  |
- | params | string? |  yes  |  |
+ | params | [Params](#Params)? |  yes  |  |
  | size | number |  no  |  |
  | tags | [string]? |  yes  |  |
  

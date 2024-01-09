@@ -10,52 +10,38 @@ Logistics Configuration API's allows you to configure zone, application logistic
 
 
 Default
-* [bulkServiceability](#bulkserviceability)
-* [bulkTat](#bulktat)
-* [createCourierPartnerAccount](#createcourierpartneraccount)
-* [createCourierPartnerRule](#createcourierpartnerrule)
-* [createPackageMaterial](#createpackagematerial)
-* [createPackageMaterialRule](#createpackagematerialrule)
-* [createStoreRules](#createstorerules)
+* [addAppDp](#addappdp)
 * [createZone](#createzone)
+* [deleteAppDp](#deleteappdp)
 * [getAllStores](#getallstores)
-* [getApplicationConfig](#getapplicationconfig)
-* [getApplicationConfiguration](#getapplicationconfiguration)
-* [getApplicationServiceabilitySelfShipment](#getapplicationserviceabilityselfshipment)
-* [getBulkServiceability](#getbulkserviceability)
-* [getBulkTat](#getbulktat)
-* [getCompanyConfiguration](#getcompanyconfiguration)
-* [getCourierPartnerAccount](#getcourierpartneraccount)
-* [getCourierPartnerAccounts](#getcourierpartneraccounts)
-* [getCourierPartnerRule](#getcourierpartnerrule)
-* [getCourierPartnerRules](#getcourierpartnerrules)
+* [getApplicationServiceability](#getapplicationserviceability)
+* [getCompanyStoreView](#getcompanystoreview)
+* [getDpAccount](#getdpaccount)
+* [getDpApplicationRules](#getdpapplicationrules)
+* [getDpCompanyRules](#getdpcompanyrules)
+* [getDpRuleInsert](#getdpruleinsert)
+* [getDpRules](#getdprules)
+* [getEntityRegionView](#getentityregionview)
+* [getListView](#getlistview)
 * [getOptimalLocations](#getoptimallocations)
-* [getPackageMaterialList](#getpackagemateriallist)
-* [getPackageMaterialRule](#getpackagematerialrule)
-* [getPackageMaterialRules](#getpackagematerialrules)
-* [getPackageMaterials](#getpackagematerials)
-* [getServiceability](#getserviceability)
-* [getStoreRule](#getstorerule)
-* [getStoreRules](#getstorerules)
-* [getZoneById](#getzonebyid)
-* [getZones](#getzones)
-* [insertApplicationConfig](#insertapplicationconfig)
-* [patchApplicationServiceabilitySelfShipment](#patchapplicationserviceabilityselfshipment)
-* [updateApplicationConfiguration](#updateapplicationconfiguration)
-* [updateCompanyConfiguration](#updatecompanyconfiguration)
-* [updateCourierPartnerAccount](#updatecourierpartneraccount)
-* [updateCourierPartnerRulePriority](#updatecourierpartnerrulepriority)
-* [updateCourierRule](#updatecourierrule)
-* [updatePackageMaterialRule](#updatepackagematerialrule)
-* [updatePackageMaterials](#updatepackagematerials)
+* [getSelfShip](#getselfship)
+* [getStore](#getstore)
+* [getZoneDataView](#getzonedataview)
+* [getZoneFromPincodeView](#getzonefrompincodeview)
+* [getZoneListView](#getzonelistview)
+* [getZonesFromApplicationIdView](#getzonesfromapplicationidview)
+* [updateApplicationServiceability](#updateapplicationserviceability)
+* [updateDpRule](#updatedprule)
 * [updatePincodeAuditHistory](#updatepincodeaudithistory)
 * [updatePincodeBulkView](#updatepincodebulkview)
 * [updatePincodeCoDListing](#updatepincodecodlisting)
 * [updatePincodeMopView](#updatepincodemopview)
-* [updateServiceability](#updateserviceability)
-* [updateStoreRules](#updatestorerules)
-* [updateStoreRulesConfig](#updatestorerulesconfig)
-* [updateZoneById](#updatezonebyid)
+* [updateSelfShip](#updateselfship)
+* [updateZoneControllerView](#updatezonecontrollerview)
+* [upsertDpAccount](#upsertdpaccount)
+* [upsertDpApplicationRules](#upsertdpapplicationrules)
+* [upsertDpCompanyRules](#upsertdpcompanyrules)
+* [upsertDpRules](#upsertdprules)
 
 
 
@@ -66,139 +52,17 @@ Default
 
 
 
-### bulkServiceability
-Serviceability Import or Export
+### addAppDp
+Add application dp data
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.serviceability.bulkServiceability({  extensionId : value,
- schemeId : value,
- body : value });
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.addAppDp({  body : value });
 
 // Async/Await
-const data = await platformClient.serviceability.bulkServiceability({  extensionId : value,
- schemeId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| extensionId | string | yes | Unique Identifier of CP Extension |   
-| schemeId | string | yes | Unique identifier of a scheme |  
-| body | [BulkRegionJobSerializer](#BulkRegionJobSerializer) | yes | Request body |
-
-
-Serviceability Import or Export
-
-*Returned Response:*
-
-
-
-
-[BulkRegionResponseItemData](#BulkRegionResponseItemData)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### bulkTat
-Region TAT Import or Export
-
-
-
-```javascript
-// Promise
-const promise = platformClient.serviceability.bulkTat({  extensionId : value,
- schemeId : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.serviceability.bulkTat({  extensionId : value,
- schemeId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| extensionId | string | yes | Unique Identifier of CP Extension |   
-| schemeId | string | yes | Unique identifier of a scheme |  
-| body | [BulkRegionJobSerializer](#BulkRegionJobSerializer) | yes | Request body |
-
-
-Region TAT Import or Export
-
-*Returned Response:*
-
-
-
-
-[BulkRegionResponseItemData](#BulkRegionResponseItemData)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createCourierPartnerAccount
-Creation of Courier Account
-
-
-
-```javascript
-// Promise
-const promise = platformClient.serviceability.createCourierPartnerAccount({  body : value });
-
-// Async/Await
-const data = await platformClient.serviceability.createCourierPartnerAccount({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.addAppDp({  body : value });
 ```
 
 
@@ -207,318 +71,17 @@ const data = await platformClient.serviceability.createCourierPartnerAccount({  
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
-| body | [CourierAccount](#CourierAccount) | yes | Request body |
+| body | [ApplicationCompanyDpViewRequest](#ApplicationCompanyDpViewRequest) | yes | Request body |
 
 
-This API Creates a new Courier Account
-
-*Returned Response:*
-
-
-
-
-[CourierAccount](#CourierAccount)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createCourierPartnerRule
-Create Courier Rules.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").serviceability.createCourierPartnerRule({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").serviceability.createCourierPartnerRule({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CourierPartnerRule](#CourierPartnerRule) | yes | Request body |
-
-
-Creates Courier Rules with rule configuration and dp priority
+This API add application dp data.
 
 *Returned Response:*
 
 
 
 
-[CourierPartnerRule](#CourierPartnerRule)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createPackageMaterial
-Upsert of PackageMaterial in database.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.serviceability.createPackageMaterial({  body : value });
-
-// Async/Await
-const data = await platformClient.serviceability.createPackageMaterial({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [PackageMaterial](#PackageMaterial) | yes | Request body |
-
-
-This API returns response of upsert of PackageMaterial in mongo database.
-
-*Returned Response:*
-
-
-
-
-[PackageMaterialResponse](#PackageMaterialResponse)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; PackageMaterial</i></summary>
-
-```json
-{
-  "value": {
-    "id": "64b8526e5ca47d41582b9fa1",
-    "name": "Package1",
-    "item_id": 1234,
-    "company_id": 1,
-    "length": 1,
-    "height": 1,
-    "width": 1,
-    "weight": 1,
-    "error_rate": 0,
-    "store_ids": [
-      1,
-      9,
-      5
-    ],
-    "rules": [
-      {
-        "rule_id": "64b4337a0c607fbfbcd0156b",
-        "quantity": {
-          "min": 1,
-          "max": 2
-        },
-        "weight": 100
-      }
-    ],
-    "channels": [
-      {
-        "id": "64b4337a0c607fbfbcd0190b",
-        "type": "application"
-      }
-    ],
-    "media": [
-      "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/sandbx/wrkr/sandeepmaale/products/pictures/bundle/free/original/LOc5XW0cc-Logo.png"
-    ],
-    "package_type": "box",
-    "size": "small",
-    "status": "active",
-    "track_inventory": false,
-    "max_weight": 100,
-    "package_vol_weight": 100,
-    "auto_calculate": true
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createPackageMaterialRule
-Upsert of Package Material Rule in database.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.serviceability.createPackageMaterialRule({  body : value });
-
-// Async/Await
-const data = await platformClient.serviceability.createPackageMaterialRule({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [PackageRule](#PackageRule) | yes | Request body |
-
-
-This API returns response of upsert of Package Material Rule in mongo database.
-
-*Returned Response:*
-
-
-
-
-[PackageRuleResponse](#PackageRuleResponse)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; PackageRule</i></summary>
-
-```json
-{
-  "value": {
-    "id": "64b4337a0c607fbfbcd0156b",
-    "company_id": 1,
-    "name": "Rule For Dev Contract",
-    "category_id": {
-      "includes": [
-        1,
-        2
-      ]
-    },
-    "product_tag": {
-      "includes": [
-        "abc",
-        "xyz"
-      ]
-    },
-    "product_id": {
-      "includes": [
-        1,
-        2
-      ]
-    },
-    "type": "package",
-    "is_active": true
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createStoreRules
-Create Store Rule
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").serviceability.createStoreRules({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").serviceability.createStoreRules({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CreateStoreRuleRequestSchema](#CreateStoreRuleRequestSchema) | yes | Request body |
-
-
-Create Store Rule
-
-*Returned Response:*
-
-
-
-
-[StoreRuleResponseSchema](#StoreRuleResponseSchema)
+[ApplicationCompanyDpViewResponse](#ApplicationCompanyDpViewResponse)
 
 Response status_code
 
@@ -545,7 +108,7 @@ Response status_code
 
 
 ### createZone
-Creates a new Zone
+Creation of a new zone
 
 
 
@@ -563,10 +126,10 @@ const data = await platformClient.serviceability.createZone({  body : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
-| body | [CreateZoneData](#CreateZoneData) | yes | Request body |
+| body | [ZoneRequest](#ZoneRequest) | yes | Request body |
 
 
-Creates a new zone with the specified mapping. A zone enables serviceability based on given regions. By creating a zone and including specific regions, you can ensure that the stores associated with the zone are serviceable for those added regions. This functionality is particularly useful when you need to ensure serviceability for multiple regions by grouping them into a single zone.
+This API allows you to create a new zone with the specified information. A zone enables serviceability based on given pincodes or regions. By creating a zone and including specific pincodes or regions, you can ensure that the stores associated with the zone are serviceable for those added pincodes or regions. This functionality is particularly useful when you need to ensure serviceability for multiple pincodes or regions by grouping them into a single zone.
 
 *Returned Response:*
 
@@ -589,6 +152,62 @@ Response status_code
   "status_code": 200,
   "zone_id": "64809f27f2b8f575d5cb9c56"
 }
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteAppDp
+Delete application dp data
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.deleteAppDp({  courierPartnerId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.deleteAppDp({  courierPartnerId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| courierPartnerId | number | yes | A `courier_partner_id` is a unique identifier of a particular delivery partner. |  
+
+
+
+This API remove application dp data.
+
+*Returned Response:*
+
+
+
+
+[ApplicationCompanyDpViewResponse](#ApplicationCompanyDpViewResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
 ```
 </details>
 
@@ -654,17 +273,17 @@ Response status_code
 ---
 
 
-### getApplicationConfig
-Get Application Configuration
+### getApplicationServiceability
+Zone configuration of application.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").serviceability.getApplicationConfig();
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.getApplicationServiceability();
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").serviceability.getApplicationConfig();
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.getApplicationServiceability();
 ```
 
 
@@ -672,116 +291,14 @@ const data = await platformClient.application("<APPLICATION_ID>").serviceability
 
 
 
-Get Application Configuration
+This API returns serviceability config of the application.
 
 *Returned Response:*
 
 
 
 
-[StoreRuleConfigData](#StoreRuleConfigData)
-
-Successful Response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getApplicationConfiguration
-Get All Courier Rules applied to application
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").serviceability.getApplicationConfiguration();
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").serviceability.getApplicationConfiguration();
-```
-
-
-
-
-
-
-This API returns all the Courier Rules applied to an application
-
-*Returned Response:*
-
-
-
-
-[ApplicationConfig](#ApplicationConfig)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getApplicationServiceabilitySelfShipment
-Self-ship configuration of application.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").serviceability.getApplicationServiceabilitySelfShipment();
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").serviceability.getApplicationServiceabilitySelfShipment();
-```
-
-
-
-
-
-
-This API returns Self-ship configuration of the application.
-
-*Returned Response:*
-
-
-
-
-[ApplicationSelfShipConfigResponse](#ApplicationSelfShipConfigResponse)
+[ApplicationServiceabilityConfigResponse](#ApplicationServiceabilityConfigResponse)
 
 Response Data
 
@@ -793,15 +310,16 @@ Response Data
 
 ```json
 {
-  "data": {
-    "is_active": true,
-    "tat": 3
-  },
-  "success": true,
   "error": {
     "type": "",
     "value": "",
     "message": ""
+  },
+  "success": true,
+  "data": {
+    "channel_id": "5d656121a81320c2e6ee2a72",
+    "channel_type": "application",
+    "serviceability_type": "all"
   }
 }
 ```
@@ -818,37 +336,19 @@ Response Data
 ---
 
 
-### getBulkServiceability
-Get Region Serviceability Bulk History
+### getCompanyStoreView
+Company Store View of application.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.serviceability.getBulkServiceability({  extensionId : value,
- schemeId : value,
- pageNo : value,
- pageSize : value,
- batchId : value,
- action : value,
- status : value,
- country : value,
- region : value,
- startDate : value,
- endDate : value });
+const promise = platformClient.serviceability.getCompanyStoreView({  pageNumber : value,
+ pageSize : value });
 
 // Async/Await
-const data = await platformClient.serviceability.getBulkServiceability({  extensionId : value,
- schemeId : value,
- pageNo : value,
- pageSize : value,
- batchId : value,
- action : value,
- status : value,
- country : value,
- region : value,
- startDate : value,
- endDate : value });
+const data = await platformClient.serviceability.getCompanyStoreView({  pageNumber : value,
+ pageSize : value });
 ```
 
 
@@ -856,211 +356,77 @@ const data = await platformClient.serviceability.getBulkServiceability({  extens
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| extensionId | string | yes | Unique Identifier of CP Extension |   
-| schemeId | string | yes | Unique identifier of a scheme |    
-| pageNo | number | no | index of the item to start returning with |    
+| --------- | -----  | -------- | ----------- |  
+| pageNumber | number | no | index of the item to start returning with |    
+| pageSize | number | no | determines the items to be displayed in a page |  
+
+
+
+This API returns Company Store View of the application.
+
+*Returned Response:*
+
+
+
+
+[CompanyStoreView_Response](#CompanyStoreView_Response)
+
+Get Company Store View Data
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getDpAccount
+Getting DpAccount of a company from database.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.serviceability.getDpAccount({  pageNumber : value,
+ pageSize : value,
+ stage : value,
+ paymentMode : value,
+ transportType : value });
+
+// Async/Await
+const data = await platformClient.serviceability.getDpAccount({  pageNumber : value,
+ pageSize : value,
+ stage : value,
+ paymentMode : value,
+ transportType : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNumber | number | no | index of the item to start returning with |    
 | pageSize | number | no | determines the items to be displayed in a page |    
-| batchId | string | no | Unique identifier of bulk job |    
-| action | string | no | import or export bulk type |    
-| status | string | no | Status of the bulk actions |    
-| country | string | no | Country for which bulk job is initiated |    
-| region | string | no | Region for which bulk job is initiated |    
-| startDate | string | no | Fetch job history after a particule date |    
-| endDate | string | no | Fetch job history before a particule date |  
-
-
-
-Get Region Serviceability Bulk History
-
-*Returned Response:*
-
-
-
-
-[BulkRegionResponse](#BulkRegionResponse)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getBulkTat
-Get region tat bulk history
-
-
-
-```javascript
-// Promise
-const promise = platformClient.serviceability.getBulkTat({  extensionId : value,
- schemeId : value,
- pageNo : value,
- pageSize : value,
- batchId : value,
- action : value,
- status : value,
- country : value,
- region : value,
- startDate : value,
- endDate : value });
-
-// Async/Await
-const data = await platformClient.serviceability.getBulkTat({  extensionId : value,
- schemeId : value,
- pageNo : value,
- pageSize : value,
- batchId : value,
- action : value,
- status : value,
- country : value,
- region : value,
- startDate : value,
- endDate : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| extensionId | string | yes | Unique Identifier of CP Extension |   
-| schemeId | string | yes | Unique identifier of a scheme |    
-| pageNo | number | no | index of the item to start returning with |    
-| pageSize | number | no | determines the items to be displayed in a page |    
-| batchId | string | no | Unique identifier of bulk job |    
-| action | string | no | import or export bulk type |    
-| status | string | no | Status of the bulk actions |    
-| country | string | no | Country for which bulk job is initiated |    
-| region | string | no | Region for which bulk job is initiated |    
-| startDate | string | no | Fetch job history after a particule date |    
-| endDate | string | no | Fetch job history before a particule date |  
-
-
-
-Get region tat bulk history
-
-*Returned Response:*
-
-
-
-
-[BulkRegionResponse](#BulkRegionResponse)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getCompanyConfiguration
-Get All Courier Rules applied to company.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.serviceability.getCompanyConfiguration();
-
-// Async/Await
-const data = await platformClient.serviceability.getCompanyConfiguration();
-```
-
-
-
-
-
-
-This API returns all Courier Rules applied for company.
-
-*Returned Response:*
-
-
-
-
-[CompanyConfig](#CompanyConfig)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getCourierPartnerAccount
-Getting Courier Account of a company from database.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.serviceability.getCourierPartnerAccount({  accountId : value });
-
-// Async/Await
-const data = await platformClient.serviceability.getCourierPartnerAccount({  accountId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| accountId | string | yes | Unique ID of courier account |  
+| stage | string | no | stage of the account. enabled/disabled |    
+| paymentMode | string | no | Filters dp accounts based on payment mode |    
+| transportType | string | no | Filters dp accounts based on transport_type |  
 
 
 
@@ -1071,7 +437,7 @@ This API returns response DpAccount of a company from mongo database.
 
 
 
-[CourierAccountResponse](#CourierAccountResponse)
+[CompanyDpAccountListResponse](#CompanyDpAccountListResponse)
 
 Response status_code
 
@@ -1097,25 +463,121 @@ Response status_code
 ---
 
 
-### getCourierPartnerAccounts
-Getting Courier Account list of a company.
+### getDpApplicationRules
+Get All DpApplicationRules rules added at application level from database.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.serviceability.getCourierPartnerAccounts({  pageNo : value,
- pageSize : value,
- stage : value,
- paymentMode : value,
- transportType : value });
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.getDpApplicationRules();
 
 // Async/Await
-const data = await platformClient.serviceability.getCourierPartnerAccounts({  pageNo : value,
- pageSize : value,
- stage : value,
- paymentMode : value,
- transportType : value });
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.getDpApplicationRules();
+```
+
+
+
+
+
+
+This API returns response of all rules of DpApplicationRules from mongo database.
+
+*Returned Response:*
+
+
+
+
+[DPApplicationRuleResponse](#DPApplicationRuleResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getDpCompanyRules
+Get All DpCompanyRules applied to company from database.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.serviceability.getDpCompanyRules();
+
+// Async/Await
+const data = await platformClient.serviceability.getDpCompanyRules();
+```
+
+
+
+
+
+
+This API returns response of all DpCompanyRules from mongo database.
+
+*Returned Response:*
+
+
+
+
+[DPCompanyRuleResponse](#DPCompanyRuleResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getDpRuleInsert
+Fetching of DpRules from database.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.serviceability.getDpRuleInsert({  pageNumber : value,
+ pageSize : value });
+
+// Async/Await
+const data = await platformClient.serviceability.getDpRuleInsert({  pageNumber : value,
+ pageSize : value });
 ```
 
 
@@ -1124,22 +586,19 @@ const data = await platformClient.serviceability.getCourierPartnerAccounts({  pa
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| pageNo | number | no | index of the item to start returning with |    
-| pageSize | number | no | determines the items to be displayed in a page |    
-| stage | string | no | stage of the account. enabled/disabled |    
-| paymentMode | string | no | Filters dp accounts based on payment mode |    
-| transportType | string | no | Filters dp accounts based on transport_type |  
+| pageNumber | number | no | index of the item to start returning with |    
+| pageSize | number | no | determines the items to be displayed in a page |  
 
 
 
-This API returns Courier Account of a company.
+This API returns response of DpRules from mongo database.
 
 *Returned Response:*
 
 
 
 
-[CompanyCourierPartnerAccountListResponse](#CompanyCourierPartnerAccountListResponse)
+[DpMultipleRuleSuccessResponse](#DpMultipleRuleSuccessResponse)
 
 Response status_code
 
@@ -1165,17 +624,17 @@ Response status_code
 ---
 
 
-### getCourierPartnerRule
-Fetch of Courier Rule.
+### getDpRules
+Fetching of DpRules from database.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").serviceability.getCourierPartnerRule({  ruleId : value });
+const promise = platformClient.serviceability.getDpRules({  ruleUid : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").serviceability.getCourierPartnerRule({  ruleId : value });
+const data = await platformClient.serviceability.getDpRules({  ruleUid : value });
 ```
 
 
@@ -1184,18 +643,18 @@ const data = await platformClient.application("<APPLICATION_ID>").serviceability
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| ruleId | string | yes | A `rule_id` is a unique identifier for a rule. |  
+| ruleUid | string | yes | A `rule_uid` is a unique identifier for a particular Dp. |  
 
 
 
-This API returns Courier Rule.
+This API returns response of DpRules from mongo database.
 
 *Returned Response:*
 
 
 
 
-[CourierPartnerRule](#CourierPartnerRule)
+[DpRuleSuccessResponse](#DpRuleSuccessResponse)
 
 Response status_code
 
@@ -1221,21 +680,82 @@ Response status_code
 ---
 
 
-### getCourierPartnerRules
-Fetch Courier Rules List
+### getEntityRegionView
+Get country and state list
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").serviceability.getCourierPartnerRules({  pageNo : value,
- pageSize : value,
- status : value });
+const promise = platformClient.serviceability.getEntityRegionView({  body : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").serviceability.getCourierPartnerRules({  pageNo : value,
+const data = await platformClient.serviceability.getEntityRegionView({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [EntityRegionView_Request](#EntityRegionView_Request) | yes | Request body |
+
+
+This API returns response for Entity Region View.
+
+*Returned Response:*
+
+
+
+
+[EntityRegionView_Response](#EntityRegionView_Response)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getListView
+Zone List of application.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.serviceability.getListView({  pageNumber : value,
  pageSize : value,
- status : value });
+ name : value,
+ isActive : value,
+ channelIds : value,
+ q : value });
+
+// Async/Await
+const data = await platformClient.serviceability.getListView({  pageNumber : value,
+ pageSize : value,
+ name : value,
+ isActive : value,
+ channelIds : value,
+ q : value });
 ```
 
 
@@ -1244,22 +764,25 @@ const data = await platformClient.application("<APPLICATION_ID>").serviceability
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| pageNo | number | no | index of the item to start returning with |    
+| pageNumber | number | no | index of the item to start returning with |    
 | pageSize | number | no | determines the items to be displayed in a page |    
-| status | string | no | Filter rules based on rule status |  
+| name | string | no | Name of particular zone in the seller account |    
+| isActive | boolean | no | status of  zone whether active or inactive |    
+| channelIds | string | no | zones associated with the given channel ids' |    
+| q | string | no | search with name as a free text |  
 
 
 
-This API returns Courier Rules List
+This API returns Zone List View of the application.
 
 *Returned Response:*
 
 
 
 
-[CourierPartnerRulesListResponse](#CourierPartnerRulesListResponse)
+[ListViewResponse](#ListViewResponse)
 
-Response status_code
+Zone List of application in descending order of their last modified date.
 
 
 
@@ -1338,872 +861,25 @@ Response status_code
 ---
 
 
-### getPackageMaterialList
-Fetching of PackageMaterials from database.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.serviceability.getPackageMaterialList({  pageNo : value,
- pageSize : value,
- q : value,
- size : value,
- packageType : value });
-
-// Async/Await
-const data = await platformClient.serviceability.getPackageMaterialList({  pageNo : value,
- pageSize : value,
- q : value,
- size : value,
- packageType : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no | index of the item to start returning with |    
-| pageSize | number | no | determines the items to be displayed in a page |    
-| q | string | no | perform regex search on items matching name for given value |    
-| size | string | no | filters items based on given size |    
-| packageType | string | no | filters items based on given package_type |  
-
-
-
-This API returns response of PackageMaterials from mongo database.
-
-*Returned Response:*
-
-
-
-
-[PackageMaterialList](#PackageMaterialList)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; PackageMaterialList</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      {
-        "id": "64b8526e5ca47d41582b9fa1",
-        "name": "Package1",
-        "item_id": 1234,
-        "company_id": 1,
-        "length": 1,
-        "height": 1,
-        "width": 1,
-        "weight": 1,
-        "error_rate": 0,
-        "store_ids": [
-          1,
-          9,
-          5
-        ],
-        "rules": [
-          {
-            "rule_id": "64b4337a0c607fbfbcd0156b",
-            "quantity": {
-              "min": 1,
-              "max": 2
-            },
-            "weight": 100
-          }
-        ],
-        "channels": [
-          {
-            "id": "64b4337a0c607fbfbcd0190b",
-            "type": "application"
-          }
-        ],
-        "media": [
-          "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/sandbx/wrkr/sandeepmaale/products/pictures/bundle/free/original/LOc5XW0cc-Logo.png"
-        ],
-        "package_type": "box",
-        "size": "small",
-        "status": "active",
-        "track_inventory": true,
-        "max_weight": 100,
-        "package_vol_weight": 100,
-        "auto_calculate": true
-      }
-    ],
-    "page": {
-      "type": "number",
-      "size": 1,
-      "current": 1,
-      "has_next": false,
-      "has_previous": false,
-      "item_total": 1
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getPackageMaterialRule
-Fetching of Package Material from database.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.serviceability.getPackageMaterialRule({  ruleId : value });
-
-// Async/Await
-const data = await platformClient.serviceability.getPackageMaterialRule({  ruleId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| ruleId | string | yes | A `package_material_rule_id` is a unique identifier for a Package Material Rule |  
-
-
-
-This API returns response of Package Material from mongo database.
-
-*Returned Response:*
-
-
-
-
-[PackageRuleResponse](#PackageRuleResponse)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; PackageRule</i></summary>
-
-```json
-{
-  "value": {
-    "id": "64b4337a0c607fbfbcd0156b",
-    "company_id": 1,
-    "name": "Rule For Dev Contract",
-    "category_id": {
-      "includes": [
-        1,
-        2
-      ]
-    },
-    "product_tag": {
-      "includes": [
-        "abc",
-        "xyz"
-      ]
-    },
-    "product_id": {
-      "includes": [
-        1,
-        2
-      ]
-    },
-    "type": "package",
-    "is_active": true
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getPackageMaterialRules
-Fetching of Package Material Rules from database.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.serviceability.getPackageMaterialRules({  pageNo : value,
- pageSize : value,
- isActive : value });
-
-// Async/Await
-const data = await platformClient.serviceability.getPackageMaterialRules({  pageNo : value,
- pageSize : value,
- isActive : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no | index of the item to start returning with |    
-| pageSize | number | no | determines the items to be displayed in a page |    
-| isActive | string | no | filters items based on given is_active |  
-
-
-
-This API returns response of Package Materials Rules from mongo database.
-
-*Returned Response:*
-
-
-
-
-[PackageMaterialRuleList](#PackageMaterialRuleList)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; PackageMaterialRuleList</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      {
-        "id": "64b4337a0c607fbfbcd0156b",
-        "company_id": 1,
-        "name": "Rule For Dev Contract",
-        "category_id": {
-          "includes": [
-            1,
-            2
-          ]
-        },
-        "product_tag": {
-          "includes": [
-            "abc",
-            "xyz"
-          ]
-        },
-        "product_id": {
-          "includes": [
-            1,
-            2
-          ]
-        },
-        "type": "package",
-        "is_active": true
-      }
-    ],
-    "page": {
-      "type": "number",
-      "size": 1,
-      "current": 1,
-      "has_next": false,
-      "has_previous": false,
-      "item_total": 1
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getPackageMaterials
-Fetching of Package Material from database.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.serviceability.getPackageMaterials({  packageMaterialId : value });
-
-// Async/Await
-const data = await platformClient.serviceability.getPackageMaterials({  packageMaterialId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| packageMaterialId | string | yes | A `package_material_id` is a unique identifier for a Package Material |  
-
-
-
-This API returns response of Package Material from mongo database.
-
-*Returned Response:*
-
-
-
-
-[PackageMaterialResponse](#PackageMaterialResponse)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getServiceability
-Get Serviceability of a region
-
-
-
-```javascript
-// Promise
-const promise = platformClient.serviceability.getServiceability({  extensionId : value,
- schemeId : value,
- regionId : value });
-
-// Async/Await
-const data = await platformClient.serviceability.getServiceability({  extensionId : value,
- schemeId : value,
- regionId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| extensionId | string | yes | Unique Identifier of CP Extension |   
-| schemeId | string | yes | Unique identifier of a scheme |   
-| regionId | string | yes | Unique identifier of a region |  
-
-
-
-Get Serviceability of a region
-
-*Returned Response:*
-
-
-
-
-[ServiceabilityModel](#ServiceabilityModel)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getStoreRule
-Get Single Store Rule
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").serviceability.getStoreRule({  ruleUid : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").serviceability.getStoreRule({  ruleUid : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| ruleUid | string | yes | A `rule_uid` is a unique identifier for a particular rule object. |  
-
-
-
-Get Single Store Rule
-
-*Returned Response:*
-
-
-
-
-[StoreRuleDataSchema](#StoreRuleDataSchema)
-
-Successful Response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getStoreRules
-Get Multiple Store Rules
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").serviceability.getStoreRules({  pageNo : value,
- pageSize : value,
- status : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").serviceability.getStoreRules({  pageNo : value,
- pageSize : value,
- status : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no |  |    
-| pageSize | number | no |  |    
-| status | string | no |  |  
-
-
-
-Get Multiple Store Rules
-
-*Returned Response:*
-
-
-
-
-[GetStoreRulesApiResponse](#GetStoreRulesApiResponse)
-
-Successful Response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getZoneById
-Get details of the Zone
-
-
-
-```javascript
-// Promise
-const promise = platformClient.serviceability.getZoneById({  zoneId : value });
-
-// Async/Await
-const data = await platformClient.serviceability.getZoneById({  zoneId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| zoneId | string | yes | A `zone_id` is a unique identifier for a particular zone. |  
-
-
-
-Returns the region, application, store mapping and other details in the Zone.
-
-*Returned Response:*
-
-
-
-
-[GetZoneByIdSchema](#GetZoneByIdSchema)
-
-Get details of the Zone
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Gujarat Zone</i></summary>
-
-```json
-{
-  "value": {
-    "name": "Test Zone",
-    "slug": "test-zone",
-    "is_active": false,
-    "channels": [
-      {
-        "channel_id": "64aed475db2cfb5b8a9f623d",
-        "channel_type": "application"
-      },
-      {
-        "channel_id": "64ba6650932a416fb67557fa",
-        "channel_type": "application"
-      }
-    ],
-    "product": {
-      "type": "all",
-      "tags": []
-    },
-    "store_ids": [
-      2,
-      1462,
-      3470,
-      3471,
-      3475,
-      3742,
-      3748,
-      3751,
-      3752,
-      3753
-    ],
-    "region_type": "non-pincode",
-    "mapping": [
-      {
-        "country": "64aec5a93a079bd328537835",
-        "regions": [
-          "64aec5a93a079bd328537838"
-        ]
-      }
-    ],
-    "zone_id": "64d22858f8aafe61d79f07ea",
-    "stores_count": 10,
-    "display_name_mapping": {
-      "64aec5a93a079bd328537835": "India",
-      "64aec5a93a079bd328537838": "GUJARAT"
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getZones
-Shows zones defined at the company level
-
-
-
-```javascript
-// Promise
-const promise = platformClient.serviceability.getZones({  pageNo : value,
- pageSize : value,
- isActive : value,
- channelId : value,
- q : value,
- country : value,
- state : value,
- city : value,
- pincode : value,
- sector : value });
-
-// Async/Await
-const data = await platformClient.serviceability.getZones({  pageNo : value,
- pageSize : value,
- isActive : value,
- channelId : value,
- q : value,
- country : value,
- state : value,
- city : value,
- pincode : value,
- sector : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |  
-| pageNo | number | no | index of the item to start returning with |    
-| pageSize | number | no | determines the items to be displayed in a page |    
-| isActive | boolean | no | Status of Zone (either active or inactive) |    
-| channelId | string | no | Zones filtered by an application |    
-| q | string | no | search with name as a free text |    
-| country | string | no | ISO2 code of the country |    
-| state | string | no | State name |    
-| city | string | no | City name |    
-| pincode | string | no | Pincode value to search zones |    
-| sector | string | no | Sector value to search zones |  
-
-
-
-Return the list of zones that are defined at the company level.
-
-*Returned Response:*
-
-
-
-
-[ListViewResponse](#ListViewResponse)
-
-Zone List of application in descending order of their last modified date.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; Zone Listing with q=zone</i></summary>
-
-```json
-{
-  "value": {
-    "items": [
-      {
-        "name": "company2 zone",
-        "slug": "company2-zone",
-        "company_id": 2,
-        "is_active": true,
-        "channels": [
-          {
-            "channel_id": "64c22ef872985245a6334afa",
-            "channel_type": "application"
-          }
-        ],
-        "zone_id": "64c3a0926ea670363c8e2e3d",
-        "stores_count": 2,
-        "regions_count": 4242,
-        "product": {
-          "count": 0,
-          "type": "all"
-        }
-      }
-    ],
-    "page": {
-      "type": "number",
-      "size": 1,
-      "current": 1,
-      "has_next": false,
-      "item_total": 1
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### insertApplicationConfig
-Insert Application Configuration
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").serviceability.insertApplicationConfig({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").serviceability.insertApplicationConfig({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [StoreRuleConfigData](#StoreRuleConfigData) | yes | Request body |
-
-
-Insert Application Configuration
-
-*Returned Response:*
-
-
-
-
-[StoreRuleConfigData](#StoreRuleConfigData)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### patchApplicationServiceabilitySelfShipment
+### getSelfShip
 Self-ship configuration of application.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").serviceability.patchApplicationServiceabilitySelfShipment({  body : value });
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.getSelfShip();
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").serviceability.patchApplicationServiceabilitySelfShipment({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.getSelfShip();
 ```
 
 
 
 
 
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [SelfShipResponse](#SelfShipResponse) | yes | Request body |
 
-
-This API updates Self-ship configuration of the application.
+This API returns Self-ship configuration of the application.
 
 *Returned Response:*
 
@@ -2247,129 +923,17 @@ Response Data
 ---
 
 
-### updateApplicationConfiguration
-Apply configuration to an application
+### getStore
+GET stores data
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").serviceability.updateApplicationConfiguration({  body : value });
+const promise = platformClient.serviceability.getStore({  storeUid : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").serviceability.updateApplicationConfiguration({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [ApplicationConfig](#ApplicationConfig) | yes | Request body |
-
-
-Apply configuration to application to set DP rules and Zone configuration
-
-*Returned Response:*
-
-
-
-
-[ApplicationConfig](#ApplicationConfig)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateCompanyConfiguration
-Apply Courier Rule to company.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.serviceability.updateCompanyConfiguration({  body : value });
-
-// Async/Await
-const data = await platformClient.serviceability.updateCompanyConfiguration({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [CompanyConfig](#CompanyConfig) | yes | Request body |
-
-
-Apply Courier Rule to company with rules priority
-
-*Returned Response:*
-
-
-
-
-[CompanyConfig](#CompanyConfig)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateCourierPartnerAccount
-Update Courier Account in database.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.serviceability.updateCourierPartnerAccount({  accountId : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.serviceability.updateCourierPartnerAccount({  accountId : value,
- body : value });
+const data = await platformClient.serviceability.getStore({  storeUid : value });
 ```
 
 
@@ -2378,18 +942,18 @@ const data = await platformClient.serviceability.updateCourierPartnerAccount({  
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| accountId | string | yes | Unique ID of courier account |  
-| body | [CourierAccount](#CourierAccount) | yes | Request body |
+| storeUid | number | yes | A `store_uid` contains a specific ID of a store. |  
 
 
-Updates Courier Account
+
+This API returns stores data.
 
 *Returned Response:*
 
 
 
 
-[CourierAccountResponse](#CourierAccountResponse)
+[GetStoresViewResponse](#GetStoresViewResponse)
 
 Response status_code
 
@@ -2398,320 +962,597 @@ Response status_code
 
 <details>
 <summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateCourierPartnerRulePriority
-Updates Courier Partner Rules Priority for a sales channel
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").serviceability.updateCourierPartnerRulePriority({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").serviceability.updateCourierPartnerRulePriority({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [RulePriorityRequest](#RulePriorityRequest) | yes | Request body |
-
-
-Updates Courier Partner Rules Priority for a sales channel
-
-*Returned Response:*
-
-
-
-
-[RulePriorityResponse](#RulePriorityResponse)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateCourierRule
-Updating of Courier Rule.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").serviceability.updateCourierRule({  ruleId : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").serviceability.updateCourierRule({  ruleId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| ruleId | string | yes | A `rule_id` is a unique identifier for a particular Dp. |  
-| body | [CourierPartnerRule](#CourierPartnerRule) | yes | Request body |
-
-
-This API updates and returns Courier Rule.
-
-*Returned Response:*
-
-
-
-
-[CourierPartnerRule](#CourierPartnerRule)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updatePackageMaterialRule
-Fetching of Package Material Rules into database.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.serviceability.updatePackageMaterialRule({  ruleId : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.serviceability.updatePackageMaterialRule({  ruleId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| ruleId | string | yes | A `package_material_rule_id` is a unique identifier for a Package Material Rule |  
-| body | [PackageRule](#PackageRule) | yes | Request body |
-
-
-This API updates Package Material Rules into mongo database.
-
-*Returned Response:*
-
-
-
-
-[PackageRuleResponse](#PackageRuleResponse)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; PackageRule</i></summary>
 
 ```json
 {
-  "value": {
-    "id": "64b4337a0c607fbfbcd0156b",
-    "company_id": 1,
-    "name": "Rule For Dev Contract",
-    "category_id": {
-      "includes": [
-        1,
-        2
-      ]
-    },
-    "product_tag": {
-      "includes": [
-        "abc",
-        "xyz"
-      ]
-    },
-    "product_id": {
-      "includes": [
-        1,
-        2
-      ]
-    },
-    "type": "package",
-    "is_active": true
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updatePackageMaterials
-Update Package Material to database.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.serviceability.updatePackageMaterials({  packageMaterialId : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.serviceability.updatePackageMaterials({  packageMaterialId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| packageMaterialId | string | yes | A `package_material_id` is a unique identifier for a Package Material |  
-| body | [PackageMaterial](#PackageMaterial) | yes | Request body |
-
-
-This API updates Package Materials from into mongo database.
-
-*Returned Response:*
-
-
-
-
-[PackageMaterialResponse](#PackageMaterialResponse)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; PackageMaterial</i></summary>
-
-```json
-{
-  "value": {
-    "id": "64b8526e5ca47d41582b9fa1",
-    "name": "Package1",
-    "item_id": 1234,
-    "company_id": 1,
-    "length": 1,
-    "height": 1,
-    "width": 1,
-    "weight": 1,
-    "error_rate": 0,
-    "store_ids": [
-      1,
-      9,
-      5
-    ],
-    "rules": [
-      {
-        "rule_id": "64b4337a0c607fbfbcd0156b",
-        "quantity": {
-          "min": 1,
-          "max": 2
+  "items": [
+    {
+      "uid": 2,
+      "_cls": "Store",
+      "address": {
+        "city": "MUMBAI",
+        "country": "INDIA",
+        "address2": "",
+        "address1": "POLARIS 2ND FLOOR, ANDHERI",
+        "landmark": "",
+        "state": "MAHARASHTRA",
+        "pincode": 400001,
+        "longitude": 72.8776559,
+        "latitude": 19.0759837
+      },
+      "code": "HS-a0c85",
+      "company_id": 2,
+      "contact_numbers": [
+        {
+          "country_code": 91,
+          "number": "9096686804"
+        }
+      ],
+      "created_by": {
+        "user_id": "605e8e86493f54a9ccaa47be",
+        "username": "parvezshaikh_gofynd_com_07710"
+      },
+      "created_on": "2021-08-07T06:21:25.293000",
+      "display_name": "Test",
+      "documents": [
+        {
+          "type": "gst",
+          "verified": true,
+          "value": "27AALCA0442L1ZM",
+          "legal_name": "SHOPSENSE RETAIL TECHNOLOGIES PRIVATE LIMITED"
+        }
+      ],
+      "gst_credentials": {
+        "e_waybill": {
+          "enabled": false
         },
-        "weight": 100
-      }
-    ],
-    "channels": [
-      {
-        "id": "64b4337a0c607fbfbcd0190b",
-        "type": "application"
-      }
-    ],
-    "media": [
-      "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/sandbx/wrkr/sandeepmaale/products/pictures/bundle/free/original/LOc5XW0cc-Logo.png"
-    ],
-    "package_type": "box",
-    "size": "small",
-    "status": "active",
-    "track_inventory": false,
-    "max_weight": 100,
-    "package_vol_weight": 100,
-    "auto_calculate": true
+        "e_invoice": {
+          "enabled": false
+        }
+      },
+      "integration_type": {
+        "order": "pulse",
+        "inventory": "pulse"
+      },
+      "logistics": {
+        "dp": {
+          "1": {
+            "fm_priority": 1,
+            "lm_priority": 1,
+            "rvp_priority": 1,
+            "payment_mode": "all",
+            "operations": [
+              "inter_city"
+            ],
+            "area_code": null,
+            "assign_dp_from_sb": true,
+            "transport_mode": "air",
+            "external_account_id": null,
+            "internal_account_id": "1"
+          },
+          "19": {
+            "fm_priority": 2,
+            "lm_priority": 2,
+            "rvp_priority": 2,
+            "payment_mode": "all",
+            "operations": "inter_city",
+            "area_code": null,
+            "assign_dp_from_sb": true,
+            "transport_mode": "air",
+            "external_account_id": null,
+            "internal_account_id": "19"
+          }
+        },
+        "override": false
+      },
+      "manager": {
+        "name": "Parvez Shaikh",
+        "mobile_no": {
+          "country_code": 91,
+          "number": "9096686804"
+        },
+        "email": "parvezshaikh@gofynd.com"
+      },
+      "modified_by": {
+        "user_id": "38ac93a8a5495305fc794e76",
+        "username": "919594495254_32111"
+      },
+      "modified_on": "2021-08-17T14:18:10.788000",
+      "name": "Test",
+      "notification_emails": [
+        "parvezshaikh@gofynd.com"
+      ],
+      "product_return_config": {
+        "on_same_store": true
+      },
+      "stage": "verified",
+      "store_type": "high_street",
+      "sub_type": "store",
+      "timing": [
+        {
+          "open": true,
+          "opening": {
+            "hour": 11,
+            "minute": 0
+          },
+          "closing": {
+            "hour": 21,
+            "minute": 30
+          },
+          "weekday": "monday"
+        },
+        {
+          "open": true,
+          "opening": {
+            "hour": 11,
+            "minute": 0
+          },
+          "closing": {
+            "hour": 21,
+            "minute": 30
+          },
+          "weekday": "tuesday"
+        },
+        {
+          "open": true,
+          "opening": {
+            "hour": 11,
+            "minute": 0
+          },
+          "closing": {
+            "hour": 21,
+            "minute": 30
+          },
+          "weekday": "wednesday"
+        },
+        {
+          "open": true,
+          "opening": {
+            "hour": 11,
+            "minute": 0
+          },
+          "closing": {
+            "hour": 21,
+            "minute": 30
+          },
+          "weekday": "thursday"
+        },
+        {
+          "open": true,
+          "opening": {
+            "hour": 11,
+            "minute": 0
+          },
+          "closing": {
+            "hour": 21,
+            "minute": 30
+          },
+          "weekday": "friday"
+        },
+        {
+          "open": true,
+          "opening": {
+            "hour": 11,
+            "minute": 0
+          },
+          "closing": {
+            "hour": 21,
+            "minute": 30
+          },
+          "weekday": "saturday"
+        },
+        {
+          "open": true,
+          "opening": {
+            "hour": 11,
+            "minute": 0
+          },
+          "closing": {
+            "hour": 21,
+            "minute": 30
+          },
+          "weekday": "sunday"
+        }
+      ],
+      "verified_by": {
+        "user_id": "0",
+        "username": "Silverbolt"
+      },
+      "verified_on": "2022-03-23T13:35:46.869000",
+      "warnings": {
+        "store_address": "Address: Address seems to be inappropriate this might affect the delivery."
+      },
+      "_custom_json": {},
+      "company": 2
+    }
+  ],
+  "page": {
+    "type": "number",
+    "size": 2,
+    "current": 1,
+    "has_next": true,
+    "item_total": 3276
   }
 }
 ```
 </details>
 
+
+
+
+
+
+
+
+
+---
+
+
+### getZoneDataView
+Zone Data View of application.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.serviceability.getZoneDataView({  zoneId : value });
+
+// Async/Await
+const data = await platformClient.serviceability.getZoneDataView({  zoneId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| zoneId | string | yes | A `zone_id` is a unique identifier for a particular zone. |  
+
+
+
+This API returns Zone Data View of the application.
+
+*Returned Response:*
+
+
+
+
+[GetSingleZoneDataViewResponse](#GetSingleZoneDataViewResponse)
+
+Get Application Zone Data
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getZoneFromPincodeView
+GET zone from the Pincode.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.getZoneFromPincodeView({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.getZoneFromPincodeView({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [GetZoneFromPincodeViewRequest](#GetZoneFromPincodeViewRequest) | yes | Request body |
+
+
+This API returns zone from the Pincode View.
+
+*Returned Response:*
+
+
+
+
+[GetZoneFromPincodeViewResponse](#GetZoneFromPincodeViewResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getZoneListView
+Zone List of application.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.serviceability.getZoneListView({  pageNumber : value,
+ pageNo : value,
+ pageSize : value,
+ name : value,
+ isActive : value,
+ channelIds : value,
+ q : value,
+ zoneId : value });
+
+// Async/Await
+const data = await platformClient.serviceability.getZoneListView({  pageNumber : value,
+ pageNo : value,
+ pageSize : value,
+ name : value,
+ isActive : value,
+ channelIds : value,
+ q : value,
+ zoneId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNumber | number | no | index of the item to start returning with |    
+| pageNo | number | no | index of the item to start returning with |    
+| pageSize | number | no | determines the items to be displayed in a page |    
+| name | string | no | Name of particular zone in the seller account |    
+| isActive | boolean | no | status of  zone whether active or inactive |    
+| channelIds | string | no | zones associated with the given channel ids' |    
+| q | string | no | search with name as a free text |    
+| zoneId | Array<string> | no | list of zones to query for |  
+
+
+
+This API returns Zone List View of the application.
+
+*Returned Response:*
+
+
+
+
+[ListViewResponse](#ListViewResponse)
+
+Zone List of application in descending order of their last modified date.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getZonesFromApplicationIdView
+GET zones from the application_id.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.getZonesFromApplicationIdView({  pageNo : value,
+ pageSize : value,
+ zoneId : value,
+ q : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.getZonesFromApplicationIdView({  pageNo : value,
+ pageSize : value,
+ zoneId : value,
+ q : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageNo | number | no | index of the item to start returning with |    
+| pageSize | number | no | determines the items to be displayed in a page |    
+| zoneId | Array<string> | no | list of zones to query for |    
+| q | string | no | search with name as a free text |  
+
+
+
+This API returns zones from the application_id View.
+
+*Returned Response:*
+
+
+
+
+[GetZoneFromApplicationIdViewResponse](#GetZoneFromApplicationIdViewResponse)
+
+List of zones for the given application_id
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateApplicationServiceability
+Zone configuration of application.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.updateApplicationServiceability({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.updateApplicationServiceability({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ServiceabilityPayloadSchema](#ServiceabilityPayloadSchema) | yes | Request body |
+
+
+This API updates serviceability config of the application.
+
+*Returned Response:*
+
+
+
+
+[ApplicationServiceabilityConfigResponse](#ApplicationServiceabilityConfigResponse)
+
+Response Data
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "error": {
+    "type": "",
+    "value": "",
+    "message": ""
+  },
+  "success": true,
+  "data": {
+    "channel_id": "5d656121a81320c2e6ee2a72",
+    "channel_type": "application",
+    "serviceability_type": "all"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateDpRule
+Updating of DpRules from database.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.serviceability.updateDpRule({  ruleUid : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.serviceability.updateDpRule({  ruleUid : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| ruleUid | string | yes | A `rule_uid` is a unique identifier for a particular Dp. |  
+| body | [DpRulesUpdateRequest](#DpRulesUpdateRequest) | yes | Request body |
+
+
+This API updates and returns response of DpRules from mongo database.
+
+*Returned Response:*
+
+
+
+
+[DpRuleUpdateSuccessResponse](#DpRuleUpdateSuccessResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
 </details>
 
 
@@ -2948,139 +1789,17 @@ Response Data
 ---
 
 
-### updateServiceability
-Serviceability Update for a region
+### updateSelfShip
+Self-ship configuration of application.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.serviceability.updateServiceability({  extensionId : value,
- schemeId : value,
- regionId : value,
- body : value });
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.updateSelfShip({  body : value });
 
 // Async/Await
-const data = await platformClient.serviceability.updateServiceability({  extensionId : value,
- schemeId : value,
- regionId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| extensionId | string | yes | Unique Identifier of CP Extension |   
-| schemeId | string | yes | Unique identifier of a scheme |   
-| regionId | string | yes | Unique identifier of a region |  
-| body | [ServiceabilityModel](#ServiceabilityModel) | yes | Request body |
-
-
-Serviceability Update for a region
-
-*Returned Response:*
-
-
-
-
-[ServiceabilityModel](#ServiceabilityModel)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateStoreRules
-Update Store Rule
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").serviceability.updateStoreRules({  ruleUid : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").serviceability.updateStoreRules({  ruleUid : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| ruleUid | string | yes | A `rule_uid` is a unique identifier for a particular rule object. |  
-| body | [CreateStoreRuleRequestSchema](#CreateStoreRuleRequestSchema) | yes | Request body |
-
-
-Update Store Rule
-
-*Returned Response:*
-
-
-
-
-[StoreRuleUpdateResponseSchema](#StoreRuleUpdateResponseSchema)
-
-Response status_code
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### updateStoreRulesConfig
-Update Store Rule Configuration
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").serviceability.updateStoreRulesConfig({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").serviceability.updateStoreRulesConfig({  body : value });
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.updateSelfShip({  body : value });
 ```
 
 
@@ -3089,19 +1808,19 @@ const data = await platformClient.application("<APPLICATION_ID>").serviceability
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |
-| body | [StoreRuleConfigData](#StoreRuleConfigData) | yes | Request body |
+| body | [SelfShipResponse](#SelfShipResponse) | yes | Request body |
 
 
-Update Store Rule Configuration
+This API updates Self-ship configuration of the application.
 
 *Returned Response:*
 
 
 
 
-[StoreRuleConfigData](#StoreRuleConfigData)
+[ApplicationSelfShipConfigResponse](#ApplicationSelfShipConfigResponse)
 
-Response status_code
+Response Data
 
 
 
@@ -3110,7 +1829,18 @@ Response status_code
 <summary><i>&nbsp; Example:</i></summary>
 
 ```json
-
+{
+  "data": {
+    "is_active": true,
+    "tat": 3
+  },
+  "success": true,
+  "error": {
+    "type": "",
+    "value": "",
+    "message": ""
+  }
+}
 ```
 </details>
 
@@ -3125,18 +1855,18 @@ Response status_code
 ---
 
 
-### updateZoneById
-Update details of a Zone
+### updateZoneControllerView
+Updation of zone collections in database.
 
 
 
 ```javascript
 // Promise
-const promise = platformClient.serviceability.updateZoneById({  zoneId : value,
+const promise = platformClient.serviceability.updateZoneControllerView({  zoneId : value,
  body : value });
 
 // Async/Await
-const data = await platformClient.serviceability.updateZoneById({  zoneId : value,
+const data = await platformClient.serviceability.updateZoneControllerView({  zoneId : value,
  body : value });
 ```
 
@@ -3147,10 +1877,10 @@ const data = await platformClient.serviceability.updateZoneById({  zoneId : valu
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | zoneId | string | yes | A `zone_id` is a unique identifier for a particular zone. |  
-| body | [UpdateZoneData](#UpdateZoneData) | yes | Request body |
+| body | [ZoneUpdateRequest](#ZoneUpdateRequest) | yes | Request body |
 
 
-Updates the region, application, store mapping and other details in the Zone.
+This API returns response of updation of zone in mongo database.
 
 *Returned Response:*
 
@@ -3158,6 +1888,226 @@ Updates the region, application, store mapping and other details in the Zone.
 
 
 [ZoneSuccessResponse](#ZoneSuccessResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### upsertDpAccount
+Upsertion of DpAccount in database.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.serviceability.upsertDpAccount({  body : value });
+
+// Async/Await
+const data = await platformClient.serviceability.upsertDpAccount({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CompanyDpAccountRequest](#CompanyDpAccountRequest) | yes | Request body |
+
+
+This API returns response of upsertion of DpAccount in mongo database.
+
+*Returned Response:*
+
+
+
+
+[CompanyDpAccountResponse](#CompanyDpAccountResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### upsertDpApplicationRules
+Upsert of DpApplicationRules in database.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.upsertDpApplicationRules({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.upsertDpApplicationRules({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [DPApplicationRuleRequest](#DPApplicationRuleRequest) | yes | Request body |
+
+
+This API returns response of upsert of DpApplicationRules in mongo database.
+
+*Returned Response:*
+
+
+
+
+[DPApplicationRuleResponse](#DPApplicationRuleResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### upsertDpCompanyRules
+Upsert of DpCompanyRules in database.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.serviceability.upsertDpCompanyRules({  body : value });
+
+// Async/Await
+const data = await platformClient.serviceability.upsertDpCompanyRules({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [DPCompanyRuleRequest](#DPCompanyRuleRequest) | yes | Request body |
+
+
+This API returns response of upsert of DpCompanyRules in mongo database.
+
+*Returned Response:*
+
+
+
+
+[DPCompanyRuleResponse](#DPCompanyRuleResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### upsertDpRules
+Upsert of DpRules in database.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.serviceability.upsertDpRules({  body : value });
+
+// Async/Await
+const data = await platformClient.serviceability.upsertDpRules({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [DpRuleRequest](#DpRuleRequest) | yes | Request body |
+
+
+This API returns response of upsert of DpRules in mongo database.
+
+*Returned Response:*
+
+
+
+
+[DpRuleSuccessResponse](#DpRuleSuccessResponse)
 
 Response status_code
 
@@ -3205,13 +2155,23 @@ Response status_code
 
 ---
 
-#### [ApplicationConfig](#ApplicationConfig)
+#### [ApplicationCompanyDpViewRequest](#ApplicationCompanyDpViewRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | rule_ids | [string]? |  yes  |  |
- | sort | [string]? |  yes  |  |
- | zones | [ZoneConfig](#ZoneConfig)? |  yes  |  |
+ | dp_id | string? |  yes  |  |
+ 
+
+---
+
+#### [ApplicationCompanyDpViewResponse](#ApplicationCompanyDpViewResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | application_id | string |  no  |  |
+ | company_id | number |  no  |  |
+ | courier_partner_id | number? |  yes  |  |
+ | success | boolean |  no  |  |
  
 
 ---
@@ -3258,69 +2218,6 @@ Response status_code
 
 ---
 
-#### [ArithmeticOperations](#ArithmeticOperations)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | gt | number? |  yes  |  |
- | gte | number? |  yes  |  |
- | lt | number? |  yes  |  |
- | lte | number? |  yes  |  |
- 
-
----
-
-#### [BulkRegionJobSerializer](#BulkRegionJobSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | action | string |  no  |  |
- | country | string |  no  |  |
- | file_path | string? |  yes  |  |
- | region | string |  no  |  |
- 
-
----
-
-#### [BulkRegionResponse](#BulkRegionResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[BulkRegionResponseItemData](#BulkRegionResponseItemData)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
- 
-
----
-
-#### [BulkRegionResponseItemData](#BulkRegionResponseItemData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | action | string |  no  |  |
- | batch_id | string |  no  |  |
- | country | string |  no  |  |
- | error_file_path | string? |  yes  |  |
- | failed | number? |  yes  |  |
- | failed_records | [string]? |  yes  |  |
- | file_path | string |  no  |  |
- | region | string |  no  |  |
- | status | string |  no  |  |
- | success | number? |  yes  |  |
- | total | number? |  yes  |  |
- 
-
----
-
-#### [Channel](#Channel)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | id | string? |  yes  |  |
- | type | string? |  yes  |  |
- 
-
----
-
 #### [CommonError](#CommonError)
 
  | Properties | Type | Nullable | Description |
@@ -3332,23 +2229,31 @@ Response status_code
 
 ---
 
-#### [CompanyConfig](#CompanyConfig)
+#### [CompanyDpAccountListResponse](#CompanyDpAccountListResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | logistics_as_actual | boolean? |  yes  |  |
- | rule_ids | [string] |  no  |  |
- | sort | [string] |  no  |  |
+ | items | [[Dp1](#Dp1)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+ | success | boolean |  no  |  |
  
 
 ---
 
-#### [CompanyCourierPartnerAccountListResponse](#CompanyCourierPartnerAccountListResponse)
+#### [CompanyDpAccountRequest](#CompanyDpAccountRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | items | [[CourierAccountResponse](#CourierAccountResponse)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
+ | data | [[Dp1](#Dp1)] |  no  |  |
+ 
+
+---
+
+#### [CompanyDpAccountResponse](#CompanyDpAccountResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean |  no  |  |
  
 
 ---
@@ -3386,167 +2291,12 @@ Response status_code
 
 ---
 
-#### [CourierAccount](#CourierAccount)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | account_id | string |  no  |  |
- | extension_id | string |  no  |  |
- | is_own_account | boolean |  no  |  |
- | is_self_ship | boolean |  no  |  |
- | scheme_id | string |  no  |  |
- | stage | string |  no  |  |
- 
-
----
-
-#### [CourierAccountResponse](#CourierAccountResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | account_id | string |  no  |  |
- | is_own_account | boolean |  no  |  |
- | is_self_ship | boolean |  no  |  |
- | scheme_id | string |  no  |  |
- | scheme_rules | [CourierPartnerSchemeModel](#CourierPartnerSchemeModel) |  no  |  |
- | stage | string |  no  |  |
- 
-
----
-
-#### [CourierPartnerAccountFailureResponse](#CourierPartnerAccountFailureResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | error | [[ErrorResponse](#ErrorResponse)] |  no  |  |
- | success | boolean |  no  |  |
- 
-
----
-
-#### [CourierPartnerList](#CourierPartnerList)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | account_id | string |  no  |  |
- | extension_id | string |  no  |  |
- | is_self_ship | boolean |  no  |  |
- | name | string |  no  |  |
- 
-
----
-
-#### [CourierPartnerRule](#CourierPartnerRule)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | conditions | [CourierPartnerRuleConditions](#CourierPartnerRuleConditions) |  no  |  |
- | cp_list | [[CourierPartnerList](#CourierPartnerList)]? |  yes  |  |
- | is_active | boolean |  no  |  |
- | name | string |  no  |  |
- | sort | [string] |  no  |  |
- 
-
----
-
-#### [CourierPartnerRuleConditions](#CourierPartnerRuleConditions)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | brand_ids | [IntComparisonOperations](#IntComparisonOperations)? |  yes  |  |
- | category_ids | [IntComparisonOperations](#IntComparisonOperations)? |  yes  |  |
- | department_ids | [IntComparisonOperations](#IntComparisonOperations)? |  yes  |  |
- | forward | [LocationRule](#LocationRule)? |  yes  |  |
- | order_place_date | [ArithmeticOperations](#ArithmeticOperations)? |  yes  |  |
- | payment_mode | [StringComparisonOperations](#StringComparisonOperations)? |  yes  |  |
- | product_ids | [IntComparisonOperations](#IntComparisonOperations)? |  yes  |  |
- | product_tags | [StringComparisonOperations](#StringComparisonOperations)? |  yes  |  |
- | reverse | [LocationRule](#LocationRule)? |  yes  |  |
- | shipment_cost | [ArithmeticOperations](#ArithmeticOperations)? |  yes  |  |
- | shipment_volumetric_weight | [ArithmeticOperations](#ArithmeticOperations)? |  yes  |  |
- | shipment_weight | [ArithmeticOperations](#ArithmeticOperations)? |  yes  |  |
- | store_ids | [IntComparisonOperations](#IntComparisonOperations)? |  yes  |  |
- | store_tags | [StringComparisonOperations](#StringComparisonOperations)? |  yes  |  |
- | store_type | [StringComparisonOperations](#StringComparisonOperations)? |  yes  |  |
- | zone_ids | [StringComparisonOperations](#StringComparisonOperations)? |  yes  |  |
- 
-
----
-
-#### [CourierPartnerRulesListResponse](#CourierPartnerRulesListResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[CourierPartnerRule](#CourierPartnerRule)] |  no  |  |
- | page | [Page](#Page) |  no  |  |
- 
-
----
-
-#### [CourierPartnerSchemeFeatures](#CourierPartnerSchemeFeatures)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | cold_storage_goods | boolean? |  yes  |  |
- | dangerous_goods | boolean? |  yes  |  |
- | doorstep_exchange | boolean? |  yes  |  |
- | doorstep_qc | boolean? |  yes  |  |
- | doorstep_return | boolean? |  yes  |  |
- | ewaybill | boolean? |  yes  |  |
- | fragile_goods | boolean? |  yes  |  |
- | mps | boolean? |  yes  |  |
- | multi_pick_multi_drop | boolean? |  yes  |  |
- | multi_pick_single_drop | boolean? |  yes  |  |
- | ndr | boolean? |  yes  |  |
- | ndr_attempts | number? |  yes  |  |
- | openbox_delivery | boolean? |  yes  |  |
- | product_installation | boolean? |  yes  |  |
- | qr | boolean? |  yes  |  |
- | restricted_goods | boolean? |  yes  |  |
- | single_pick_multi_drop | boolean? |  yes  |  |
- | status_updates | string? |  yes  |  |
- 
-
----
-
-#### [CourierPartnerSchemeModel](#CourierPartnerSchemeModel)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | delivery_type | string |  no  |  |
- | extension_id | string |  no  |  |
- | feature | [CourierPartnerSchemeFeatures](#CourierPartnerSchemeFeatures) |  no  |  |
- | payment_mode | [string] |  no  |  |
- | region | string |  no  |  |
- | scheme_id | string |  no  |  |
- | stage | string |  no  |  |
- | transport_type | string |  no  |  |
- | weight | [ArithmeticOperations](#ArithmeticOperations) |  no  |  |
- 
-
----
-
 #### [CreatedByResponse](#CreatedByResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | user_id | string? |  yes  |  |
  | username | string? |  yes  |  |
- 
-
----
-
-#### [CreateStoreRuleRequestSchema](#CreateStoreRuleRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | conditions | [StoreRuleConditionSchema](#StoreRuleConditionSchema)? |  yes  |  |
- | is_active | boolean? |  yes  |  |
- | name | string? |  yes  |  |
- | sort | [string]? |  yes  |  |
- | store_priority | [[StorePrioritySchema](#StorePrioritySchema)]? |  yes  |  |
- | tag_based_priority | [string]? |  yes  |  |
- | type_based_priority | [string]? |  yes  |  |
  
 
 ---
@@ -3561,22 +2311,10 @@ Response status_code
  | is_active | boolean |  no  |  |
  | mapping | [[ZoneMappingType](#ZoneMappingType)] |  no  |  |
  | name | string |  no  |  |
+ | product | [ZoneProductTypes](#ZoneProductTypes) |  no  |  |
  | region_type | string |  no  |  |
  | slug | string |  no  |  |
  | store_ids | [number] |  no  |  |
- 
-
----
-
-#### [CustomerRadiusSchema](#CustomerRadiusSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | gt | number? |  yes  |  |
- | gte | number? |  yes  |  |
- | lt | number? |  yes  |  |
- | lte | number? |  yes  |  |
- | unit | string |  no  |  |
  
 
 ---
@@ -3611,6 +2349,188 @@ Response status_code
 
 ---
 
+#### [Dp1](#Dp1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | account_id | string |  no  |  |
+ | dp_id | string |  no  |  |
+ | is_self_ship | boolean |  no  |  |
+ | name | string |  no  |  |
+ | plan_id | string |  no  |  |
+ | plan_rules | string |  no  |  |
+ | stage | string |  no  |  |
+ 
+
+---
+
+#### [DpAccountFailureResponse](#DpAccountFailureResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | error | [[ErrorResponse](#ErrorResponse)] |  no  |  |
+ | status_code | number |  no  |  |
+ | success | boolean |  no  |  |
+ 
+
+---
+
+#### [DPApplicationRuleRequest](#DPApplicationRuleRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | shipping_rules | [string] |  no  |  |
+ 
+
+---
+
+#### [DPApplicationRuleResponse](#DPApplicationRuleResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [[DpRuleResponse](#DpRuleResponse)] |  no  |  |
+ | status_code | boolean |  no  |  |
+ | success | boolean |  no  |  |
+ 
+
+---
+
+#### [DPCompanyRuleRequest](#DPCompanyRuleRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | rule_ids | [string] |  no  |  |
+ 
+
+---
+
+#### [DPCompanyRuleResponse](#DPCompanyRuleResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [[DpRuleResponse](#DpRuleResponse)] |  no  |  |
+ | status_code | number |  no  |  |
+ | success | boolean |  no  |  |
+ 
+
+---
+
+#### [DpIds](#DpIds)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | boolean |  no  |  |
+ | meta | string? |  yes  |  |
+ | priority | number |  no  |  |
+ 
+
+---
+
+#### [DpMultipleRuleSuccessResponse](#DpMultipleRuleSuccessResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[DpRule](#DpRule)] |  no  |  |
+ | page | [Page](#Page) |  no  |  |
+ | success | boolean |  no  |  |
+ 
+
+---
+
+#### [DpRule](#DpRule)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | company_id | number? |  yes  |  |
+ | conditions | [string] |  no  |  |
+ | dp_ids | [String: [DpSchemaInRuleListing](#DpSchemaInRuleListing)] |  no  |  |
+ | is_active | boolean? |  yes  |  |
+ | name | string |  no  |  |
+ 
+
+---
+
+#### [DpRuleRequest](#DpRuleRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | company_id | number? |  yes  |  |
+ | conditions | [string] |  no  |  |
+ | dp_ids | [String: [DpIds](#DpIds)] |  no  |  |
+ | is_active | boolean? |  yes  |  |
+ | name | string |  no  |  |
+ 
+
+---
+
+#### [DpRuleResponse](#DpRuleResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | company_id | number |  no  |  |
+ | conditions | [string] |  no  |  |
+ | created_by | string? |  yes  |  |
+ | created_on | string? |  yes  |  |
+ | dp_ids | string |  no  |  |
+ | is_active | boolean? |  yes  |  |
+ | modified_by | string? |  yes  |  |
+ | modified_on | string? |  yes  |  |
+ | name | string |  no  |  |
+ | uid | string |  no  |  |
+ 
+
+---
+
+#### [DpRuleSuccessResponse](#DpRuleSuccessResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [DpRule](#DpRule) |  no  |  |
+ | status_code | number |  no  |  |
+ | success | boolean |  no  |  |
+ 
+
+---
+
+#### [DpRulesUpdateRequest](#DpRulesUpdateRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | conditions | [string] |  no  |  |
+ | dp_ids | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | name | string |  no  |  |
+ 
+
+---
+
+#### [DpRuleUpdateSuccessResponse](#DpRuleUpdateSuccessResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [DpRuleResponse](#DpRuleResponse) |  no  |  |
+ | status_code | number |  no  |  |
+ | success | boolean |  no  |  |
+ 
+
+---
+
+#### [DpSchemaInRuleListing](#DpSchemaInRuleListing)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | account_id | string |  no  |  |
+ | dp_id | string |  no  |  |
+ | is_self_ship | boolean |  no  |  |
+ | name | string |  no  |  |
+ | plan_id | string |  no  |  |
+ | plan_rules | string |  no  |  |
+ | priority | number |  no  |  |
+ | stage | string |  no  |  |
+ 
+
+---
+
 #### [EinvoiceResponse](#EinvoiceResponse)
 
  | Properties | Type | Nullable | Description |
@@ -3635,6 +2555,7 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | display_name | string? |  yes  |  |
  | name | string |  no  |  |
  | sub_type | string |  no  |  |
  | uid | string |  no  |  |
@@ -3669,8 +2590,8 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [[EntityRegionView_Items](#EntityRegionView_Items)] |  no  |  |
  | error | [EntityRegionView_Error](#EntityRegionView_Error) |  no  |  |
+ | items | [[EntityRegionView_Items](#EntityRegionView_Items)]? |  yes  |  |
  | page | [EntityRegionView_page](#EntityRegionView_page) |  no  |  |
  | success | boolean |  no  |  |
  
@@ -3713,17 +2634,8 @@ Response status_code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | error | [[ErrorResponse](#ErrorResponse)] |  no  |  |
+ | status_code | number |  no  |  |
  | success | boolean |  no  |  |
- 
-
----
-
-#### [getAppRegionZonesResponse](#getAppRegionZonesResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[ListViewItems](#ListViewItems)] |  no  |  |
- | page | [[PageSchema](#PageSchema)] |  no  |  |
  
 
 ---
@@ -3737,42 +2649,12 @@ Response status_code
 
 ---
 
-#### [GetStoreRulesApiResponse](#GetStoreRulesApiResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[StoreRuleDataSchema](#StoreRuleDataSchema)]? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
- 
-
----
-
 #### [GetStoresViewResponse](#GetStoresViewResponse)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | items | [[ItemResponse](#ItemResponse)]? |  yes  |  |
  | page | [ServiceabilityPageResponse](#ServiceabilityPageResponse) |  no  |  |
- 
-
----
-
-#### [GetZoneByIdSchema](#GetZoneByIdSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | assignment_preference | string? |  yes  |  |
- | channels | [[GetZoneDataViewChannels](#GetZoneDataViewChannels)] |  no  |  |
- | company_id | number? |  yes  |  |
- | is_active | boolean |  no  |  |
- | mapping | [[ZoneMappingType](#ZoneMappingType)] |  no  |  |
- | name | string |  no  |  |
- | product | [ZoneProductTypes](#ZoneProductTypes) |  no  |  |
- | region_type | string |  no  |  |
- | slug | string |  no  |  |
- | store_ids | [number] |  no  |  |
- | stores_count | number |  no  |  |
- | zone_id | string |  no  |  |
  
 
 ---
@@ -3797,8 +2679,9 @@ Response status_code
  | is_active | boolean |  no  |  |
  | mapping | [[ZoneMappingType](#ZoneMappingType)] |  no  |  |
  | name | string |  no  |  |
+ | pincodes_count | number |  no  |  |
  | product | [ZoneProductTypes](#ZoneProductTypes) |  no  |  |
- | region_type | string? |  yes  |  |
+ | region_type | string |  no  |  |
  | slug | string |  no  |  |
  | store_ids | [number] |  no  |  |
  | stores_count | number |  no  |  |
@@ -3843,15 +2726,6 @@ Response status_code
  | ---------- | ---- | -------- | ----------- |
  | e_invoice | [EinvoiceResponse](#EinvoiceResponse)? |  yes  |  |
  | e_waybill | [EwayBillResponse](#EwayBillResponse)? |  yes  |  |
- 
-
----
-
-#### [IntComparisonOperations](#IntComparisonOperations)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | includes | [number]? |  yes  |  |
  
 
 ---
@@ -3916,12 +2790,12 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | channels | [ListViewChannels](#ListViewChannels) |  no  |  |
+ | channels | [[ListViewChannels](#ListViewChannels)] |  no  |  |
  | company_id | number |  no  |  |
  | is_active | boolean |  no  |  |
  | name | string |  no  |  |
+ | pincodes_count | number |  no  |  |
  | product | [ListViewProduct](#ListViewProduct) |  no  |  |
- | regions_count | number |  no  |  |
  | slug | string |  no  |  |
  | stores_count | number |  no  |  |
  | zone_id | string |  no  |  |
@@ -3944,7 +2818,8 @@ Response status_code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | items | [[ListViewItems](#ListViewItems)] |  no  |  |
- | page | [[ZoneDataItem](#ZoneDataItem)] |  no  |  |
+ | page | [ZoneDataItem](#ZoneDataItem) |  no  |  |
+ | summary | [ListViewSummary](#ListViewSummary) |  no  |  |
  
 
 ---
@@ -3956,30 +2831,6 @@ Response status_code
  | total_active_zones | number |  no  |  |
  | total_pincodes_served | number |  no  |  |
  | total_zones | number |  no  |  |
- 
-
----
-
-#### [LocationRule](#LocationRule)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | includes | [[LocationRuleValues](#LocationRuleValues)]? |  yes  |  |
- | type | string? |  yes  |  |
- 
-
----
-
-#### [LocationRuleValues](#LocationRuleValues)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | display_name | string? |  yes  |  |
- | id | string |  no  |  |
- | name | string? |  yes  |  |
- | parent_id | string? |  yes  |  |
- | parent_ids | [string]? |  yes  |  |
- | sub_type | string? |  yes  |  |
  
 
 ---
@@ -4035,157 +2886,6 @@ Response status_code
 
 ---
 
-#### [PackageMaterial](#PackageMaterial)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | auto_calculate | boolean? |  yes  |  |
- | channels | [[Channel](#Channel)] |  no  |  |
- | error_rate | number |  no  |  |
- | height | number |  no  |  |
- | length | number |  no  |  |
- | max_weight | number? |  yes  |  |
- | media | [string]? |  yes  |  |
- | name | string |  no  |  |
- | package_type | string |  no  |  |
- | package_vol_weight | number? |  yes  |  |
- | rules | [[PackageMaterialRule](#PackageMaterialRule)]? |  yes  |  |
- | size | string |  no  |  |
- | status | string |  no  |  |
- | store_ids | [number] |  no  |  |
- | track_inventory | boolean? |  yes  |  |
- | weight | number |  no  |  |
- | width | number |  no  |  |
- 
-
----
-
-#### [PackageMaterialList](#PackageMaterialList)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [PackageMaterialResponse](#PackageMaterialResponse)? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
- 
-
----
-
-#### [PackageMaterialResponse](#PackageMaterialResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | auto_calculate | boolean? |  yes  |  |
- | channels | [[Channel](#Channel)] |  no  |  |
- | error_rate | number |  no  |  |
- | height | number |  no  |  |
- | id | string? |  yes  |  |
- | item_id | number? |  yes  |  |
- | length | number |  no  |  |
- | max_weight | number? |  yes  |  |
- | media | [string]? |  yes  |  |
- | name | string |  no  |  |
- | package_type | string |  no  |  |
- | package_vol_weight | number? |  yes  |  |
- | rules | [[PackageMaterialRule](#PackageMaterialRule)]? |  yes  |  |
- | size | string |  no  |  |
- | status | string |  no  |  |
- | store_ids | [number] |  no  |  |
- | track_inventory | boolean? |  yes  |  |
- | weight | number |  no  |  |
- | width | number |  no  |  |
- 
-
----
-
-#### [PackageMaterialRule](#PackageMaterialRule)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | quantity | [PackageMaterialRuleQuantity](#PackageMaterialRuleQuantity)? |  yes  |  |
- | rule_id | string? |  yes  |  |
- | weight | number? |  yes  |  |
- 
-
----
-
-#### [PackageMaterialRuleList](#PackageMaterialRuleList)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [PackageRuleResponse](#PackageRuleResponse)? |  yes  |  |
- | page | [Page](#Page)? |  yes  |  |
- 
-
----
-
-#### [PackageMaterialRuleQuantity](#PackageMaterialRuleQuantity)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | max | number? |  yes  |  |
- | min | number? |  yes  |  |
- 
-
----
-
-#### [PackageRule](#PackageRule)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | category_id | [PackageRuleCategory](#PackageRuleCategory)? |  yes  |  |
- | company_id | number |  no  |  |
- | is_active | boolean? |  yes  |  |
- | name | string |  no  |  |
- | product_id | [PackageRuleProduct](#PackageRuleProduct)? |  yes  |  |
- | product_tag | [PackageRuleProductTag](#PackageRuleProductTag)? |  yes  |  |
- | type | string |  no  |  |
- 
-
----
-
-#### [PackageRuleCategory](#PackageRuleCategory)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | includes | [number]? |  yes  |  |
- 
-
----
-
-#### [PackageRuleProduct](#PackageRuleProduct)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | includes | [number]? |  yes  |  |
- 
-
----
-
-#### [PackageRuleProductTag](#PackageRuleProductTag)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | includes | [string]? |  yes  |  |
- 
-
----
-
-#### [PackageRuleResponse](#PackageRuleResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | category_id | [PackageRuleCategory](#PackageRuleCategory)? |  yes  |  |
- | company_id | number |  no  |  |
- | id | string? |  yes  |  |
- | is_active | boolean? |  yes  |  |
- | name | string |  no  |  |
- | product_id | [PackageRuleProduct](#PackageRuleProduct)? |  yes  |  |
- | product_tag | [PackageRuleProductTag](#PackageRuleProductTag)? |  yes  |  |
- | type | string |  no  |  |
- 
-
----
-
 #### [Page](#Page)
 
  | Properties | Type | Nullable | Description |
@@ -4195,19 +2895,7 @@ Response status_code
  | has_previous | boolean |  no  |  |
  | item_total | number |  no  |  |
  | size | number |  no  |  |
- | type | string |  no  |  |
- 
-
----
-
-#### [PageSchema](#PageSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | current | number |  no  |  |
- | has_next | boolean |  no  |  |
- | item_total | number |  no  |  |
- | size | number |  no  |  |
+ | total | number |  no  |  |
  | type | string |  no  |  |
  
 
@@ -4405,53 +3093,6 @@ Response status_code
 
 ---
 
-#### [RulePriorityRequest](#RulePriorityRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | priority | number |  no  |  |
- | rule_id | string |  no  |  |
- 
-
----
-
-#### [RulePriorityResponse](#RulePriorityResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | success | boolean? |  yes  |  |
- 
-
----
-
-#### [SchemeRules](#SchemeRules)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | feature | [SchemeRulesFeatures](#SchemeRulesFeatures)? |  yes  |  |
- | payment_mode | [string]? |  yes  |  |
- | region | string? |  yes  |  |
- | transport_type | [string]? |  yes  |  |
- | weight | [ArithmeticOperations](#ArithmeticOperations)? |  yes  |  |
- 
-
----
-
-#### [SchemeRulesFeatures](#SchemeRulesFeatures)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | battery_operated | boolean? |  yes  |  |
- | e_waybill | boolean? |  yes  |  |
- | flammable | boolean? |  yes  |  |
- | hazmat | boolean? |  yes  |  |
- | multi_part_shipments | boolean? |  yes  |  |
- | quality_check | boolean? |  yes  |  |
- | quick_response_code | boolean? |  yes  |  |
- 
-
----
-
 #### [SelfShipResponse](#SelfShipResponse)
 
  | Properties | Type | Nullable | Description |
@@ -4473,22 +3114,6 @@ Response status_code
 
 ---
 
-#### [ServiceabilityModel](#ServiceabilityModel)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_first_mile | boolean |  no  |  |
- | is_installation | boolean |  no  |  |
- | is_last_mile | boolean |  no  |  |
- | is_qc | boolean |  no  |  |
- | is_return | boolean |  no  |  |
- | lm_cod_limit | number |  no  |  |
- | pickup_cutoff | string |  no  |  |
- | route_code | string |  no  |  |
- 
-
----
-
 #### [ServiceabilityPageResponse](#ServiceabilityPageResponse)
 
  | Properties | Type | Nullable | Description |
@@ -4502,107 +3127,11 @@ Response status_code
 
 ---
 
-#### [StorePrioritySchema](#StorePrioritySchema)
+#### [ServiceabilityPayloadSchema](#ServiceabilityPayloadSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | id | string? |  yes  |  |
- | name | string? |  yes  |  |
- 
-
----
-
-#### [StoreRuleConditionSchema](#StoreRuleConditionSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | brand_ids | [IntComparisonOperations](#IntComparisonOperations)? |  yes  |  |
- | category_ids | [IntComparisonOperations](#IntComparisonOperations)? |  yes  |  |
- | customer_radius | [CustomerRadiusSchema](#CustomerRadiusSchema)? |  yes  |  |
- | department_ids | [IntComparisonOperations](#IntComparisonOperations)? |  yes  |  |
- | order_place_date | [ArithmeticOperations](#ArithmeticOperations)? |  yes  |  |
- | product_ids | [IntComparisonOperations](#IntComparisonOperations)? |  yes  |  |
- | product_tags | [StringComparisonOperations](#StringComparisonOperations)? |  yes  |  |
- | store_tags | [StringComparisonOperations](#StringComparisonOperations)? |  yes  |  |
- | store_type | [StringComparisonOperations](#StringComparisonOperations)? |  yes  |  |
- | to_location | [LocationRule](#LocationRule)? |  yes  |  |
- | zone_ids | [StringComparisonOperations](#StringComparisonOperations)? |  yes  |  |
- 
-
----
-
-#### [StoreRuleConfigData](#StoreRuleConfigData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | rule_ids | [string]? |  yes  |  |
- | sort | [string]? |  yes  |  |
- | store_priority | [[StorePrioritySchema](#StorePrioritySchema)]? |  yes  |  |
- | tag_based_priority | [string]? |  yes  |  |
- | type_based_priority | [string]? |  yes  |  |
- 
-
----
-
-#### [StoreRuleDataSchema](#StoreRuleDataSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | application_id | string? |  yes  |  |
- | company_id | number? |  yes  |  |
- | conditions | [StoreRuleConditionSchema](#StoreRuleConditionSchema)? |  yes  |  |
- | id | string? |  yes  |  |
- | is_active | boolean? |  yes  |  |
- | name | string? |  yes  |  |
- | sort | [string]? |  yes  |  |
- | store_priority | [[StorePrioritySchema](#StorePrioritySchema)]? |  yes  |  |
- | tag_based_priority | [string]? |  yes  |  |
- | type_based_priority | [string]? |  yes  |  |
- 
-
----
-
-#### [StoreRuleResponseSchema](#StoreRuleResponseSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | conditions | [StoreRuleConditionSchema](#StoreRuleConditionSchema)? |  yes  |  |
- | id | string? |  yes  |  |
- | is_active | boolean? |  yes  |  |
- | name | string? |  yes  |  |
- | sort | [string]? |  yes  |  |
- | store_priority | [[StorePrioritySchema](#StorePrioritySchema)]? |  yes  |  |
- | tag_based_priority | [string]? |  yes  |  |
- | type | string? |  yes  |  |
- | type_based_priority | [string]? |  yes  |  |
- 
-
----
-
-#### [StoreRuleUpdateResponseSchema](#StoreRuleUpdateResponseSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | application_id | string? |  yes  |  |
- | company_id | number? |  yes  |  |
- | conditions | [StoreRuleConditionSchema](#StoreRuleConditionSchema)? |  yes  |  |
- | id | string? |  yes  |  |
- | is_active | boolean? |  yes  |  |
- | name | string? |  yes  |  |
- | sort | [string]? |  yes  |  |
- | store_priority | [[StorePrioritySchema](#StorePrioritySchema)]? |  yes  |  |
- | tag_based_priority | [string]? |  yes  |  |
- | type | string? |  yes  |  |
- | type_based_priority | [string]? |  yes  |  |
- 
-
----
-
-#### [StringComparisonOperations](#StringComparisonOperations)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | includes | [string]? |  yes  |  |
+ | serviceability_type | string |  no  |  |
  
 
 ---
@@ -4615,15 +3144,6 @@ Response status_code
  | open | boolean? |  yes  |  |
  | opening | [OpeningClosing](#OpeningClosing)? |  yes  |  |
  | weekday | string? |  yes  |  |
- 
-
----
-
-#### [UpdateZoneConfigRequest](#UpdateZoneConfigRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | serviceability_type | string? |  yes  |  |
  
 
 ---
@@ -4672,15 +3192,6 @@ Response status_code
 
 ---
 
-#### [ZoneConfig](#ZoneConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | serviceability_type | string? |  yes  |  |
- 
-
----
-
 #### [ZoneDataItem](#ZoneDataItem)
 
  | Properties | Type | Nullable | Description |
@@ -4711,6 +3222,16 @@ Response status_code
  | ---------- | ---- | -------- | ----------- |
  | tags | [string] |  no  |  |
  | type | string |  no  |  |
+ 
+
+---
+
+#### [ZoneRequest](#ZoneRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [CreateZoneData](#CreateZoneData) |  no  |  |
+ | identifier | string |  no  |  |
  
 
 ---

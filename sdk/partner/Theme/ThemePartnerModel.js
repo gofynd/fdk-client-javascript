@@ -172,19 +172,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef CreateNewTheme
- * @property {SectionItem[]} available_sections - Available sections information
- * @property {string} [current] - The current configuration
- * @property {GlobalSchema} [global_schema]
- * @property {ThemeConfiguration[]} [list] - A list of configurations
- * @property {string} name - The name of the theme
- * @property {Page[]} [pages]
- * @property {Preset} [preset]
- * @property {string} theme_type - Type of the Theme
- * @property {string} version - The version of the theme
- */
-
-/**
  * @typedef CSS
  * @property {string[]} [links]
  */
@@ -386,6 +373,17 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef Meta
+ * @property {string} [description] - The description of the theme
+ * @property {Images} [images]
+ * @property {string[]} [industry] - An array of industries associated with the theme
+ * @property {string} [name] - The name of the theme
+ * @property {ThemePayment} [payment]
+ * @property {Release} [release]
+ * @property {string} [slug] - The slug of the theme
+ */
+
+/**
  * @typedef OverlayPopupSetting
  * @property {string} [dialog_backgroung] - The dialog background color
  * @property {string} [overlay] - The overlay color
@@ -393,13 +391,8 @@ const Joi = require("joi");
 
 /**
  * @typedef Page
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {boolean} [has_previous]
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {number} [size]
- * @property {string} type
+ * @property {Section[]} [sections]
+ * @property {string} [value] - The value of the page.
  */
 
 /**
@@ -541,17 +534,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ThemeMeta
- * @property {string} [description] - The description of the theme
- * @property {Images} [images]
- * @property {string[]} [industry] - An array of industries associated with the theme
- * @property {string} [name] - The name of the theme
- * @property {ThemePayment} [payment]
- * @property {Release} [release]
- * @property {string} [slug] - The slug of the theme
- */
-
-/**
  * @typedef ThemePayment
  * @property {number} [amount] - The amount of the theme
  * @property {boolean} [is_paid] - Whether the theme is paid or not
@@ -586,18 +568,16 @@ const Joi = require("joi");
  * @property {boolean} [applied] - Whether the theme has been applied or not
  * @property {Assets} [assets]
  * @property {SectionItem[]} [available_sections] - Available sections information
- * @property {number} [company_id] - The company id in which sales channel exists
  * @property {Config} [config]
  * @property {string} [created_at] - The creation timestamp of the theme
  * @property {Font} [font]
  * @property {boolean} [is_private] - Whether the theme is private or not
  * @property {string} [marketplace_theme_id] - The ID of the theme in the marketplace
- * @property {ThemeMeta} [meta]
+ * @property {Meta} [meta]
  * @property {string} [name] - The name of the theme
  * @property {Object} [styles] - The styles associated with the theme
  * @property {string[]} [tags] - An array of tags associated with the theme
  * @property {string} [template_theme_id] - The ID of the template theme
- * @property {string} [theme_type]
  * @property {string} [updated_at] - The last update timestamp of the theme
  * @property {string} [version] - The version of the theme
  */
@@ -871,23 +851,6 @@ class ThemePartnerModel {
     });
   }
 
-  /** @returns {CreateNewTheme} */
-  static CreateNewTheme() {
-    return Joi.object({
-      available_sections: Joi.array()
-        .items(ThemePartnerModel.SectionItem())
-        .required(),
-      current: Joi.string().allow(""),
-      global_schema: ThemePartnerModel.GlobalSchema(),
-      list: Joi.array().items(ThemePartnerModel.ThemeConfiguration()),
-      name: Joi.string().allow("").required(),
-      pages: Joi.array().items(ThemePartnerModel.Page()),
-      preset: ThemePartnerModel.Preset(),
-      theme_type: Joi.string().allow("").required(),
-      version: Joi.string().allow("").required(),
-    });
-  }
-
   /** @returns {CSS} */
   static CSS() {
     return Joi.object({
@@ -1128,6 +1091,19 @@ class ThemePartnerModel {
     });
   }
 
+  /** @returns {Meta} */
+  static Meta() {
+    return Joi.object({
+      description: Joi.string().allow(""),
+      images: ThemePartnerModel.Images(),
+      industry: Joi.array().items(Joi.string().allow("")),
+      name: Joi.string().allow(""),
+      payment: ThemePartnerModel.ThemePayment(),
+      release: ThemePartnerModel.Release(),
+      slug: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {OverlayPopupSetting} */
   static OverlayPopupSetting() {
     return Joi.object({
@@ -1139,13 +1115,8 @@ class ThemePartnerModel {
   /** @returns {Page} */
   static Page() {
     return Joi.object({
-      current: Joi.number(),
-      has_next: Joi.boolean(),
-      has_previous: Joi.boolean(),
-      item_total: Joi.number(),
-      next_id: Joi.string().allow(""),
-      size: Joi.number(),
-      type: Joi.string().allow("").required(),
+      sections: Joi.array().items(ThemePartnerModel.Section()),
+      value: Joi.string().allow(""),
     });
   }
 
@@ -1327,19 +1298,6 @@ class ThemePartnerModel {
     });
   }
 
-  /** @returns {ThemeMeta} */
-  static ThemeMeta() {
-    return Joi.object({
-      description: Joi.string().allow(""),
-      images: ThemePartnerModel.Images(),
-      industry: Joi.array().items(Joi.string().allow("")),
-      name: Joi.string().allow(""),
-      payment: ThemePartnerModel.ThemePayment(),
-      release: ThemePartnerModel.Release(),
-      slug: Joi.string().allow(""),
-    });
-  }
-
   /** @returns {ThemePayment} */
   static ThemePayment() {
     return Joi.object({
@@ -1380,18 +1338,16 @@ class ThemePartnerModel {
       applied: Joi.boolean(),
       assets: ThemePartnerModel.Assets(),
       available_sections: Joi.array().items(ThemePartnerModel.SectionItem()),
-      company_id: Joi.number(),
       config: ThemePartnerModel.Config(),
       created_at: Joi.string().allow(""),
       font: ThemePartnerModel.Font(),
       is_private: Joi.boolean(),
       marketplace_theme_id: Joi.string().allow(""),
-      meta: ThemePartnerModel.ThemeMeta(),
+      meta: ThemePartnerModel.Meta(),
       name: Joi.string().allow(""),
       styles: Joi.any(),
       tags: Joi.array().items(Joi.string().allow("")),
       template_theme_id: Joi.string().allow(""),
-      theme_type: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
       version: Joi.string().allow(""),
     });

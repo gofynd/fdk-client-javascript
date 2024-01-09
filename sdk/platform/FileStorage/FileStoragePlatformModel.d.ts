@@ -125,7 +125,6 @@ export = FileStoragePlatformModel;
  * @typedef DummyTemplateData
  * @property {number} [__v]
  * @property {string} [_id]
- * @property {string} [country_code]
  * @property {DummyTemplateDataPayload} payload
  * @property {number} [pdf_type_id]
  */
@@ -152,7 +151,7 @@ export = FileStoragePlatformModel;
  * @property {string} [disclaimer]
  * @property {Image} [image]
  * @property {InvoiceDetail} [invoice_detail]
- * @property {boolean} [is_export]
+ * @property {boolean} [is_international]
  * @property {boolean} [is_self_pickup]
  * @property {boolean} [is_self_ship]
  * @property {Meta} [meta]
@@ -171,10 +170,6 @@ export = FileStoragePlatformModel;
  * @property {string} [uid]
  * @property {string} [upi_qrcode]
  * @property {Object[]} [waybills]
- */
-/**
- * @typedef ExtensionSlug
- * @property {string} [extension_slug]
  */
 /**
  * @typedef FailedResponse
@@ -210,7 +205,7 @@ export = FileStoragePlatformModel;
  * @typedef InvoiceTypesDataResponse
  * @property {number} __v
  * @property {string} _id
- * @property {string} country_code
+ * @property {string} [country_code]
  * @property {string[]} format
  * @property {string} name
  * @property {number} pdf_type_id
@@ -262,6 +257,10 @@ export = FileStoragePlatformModel;
  * @property {ShipmentIdBarcodeGenerator} [shipment_id_barcode_generator]
  * @property {SignedQrcodeGenerator} [signed_qrcode_generator]
  * @property {UpiQrcodeGenerator} [upi_qrcode_generator]
+ */
+/**
+ * @typedef Params
+ * @property {string} [subpath] - The subpath for the file.
  */
 /**
  * @typedef PaymentData
@@ -442,7 +441,7 @@ export = FileStoragePlatformModel;
  * @typedef StartRequest
  * @property {string} content_type
  * @property {string} file_name
- * @property {Object} [params]
+ * @property {Params} [params]
  * @property {number} size
  * @property {string[]} [tags]
  */
@@ -515,7 +514,7 @@ export = FileStoragePlatformModel;
 declare class FileStoragePlatformModel {
 }
 declare namespace FileStoragePlatformModel {
-    export { AwbNumberLabelBarcodeGenerator, Brand, CDN, Cgst, CompanyDetail, CompleteResponse, ConversionRate, CopyFiles, CreatedBy, CustomerBillingDetail, CustomerShippingDetail, DeliveryPartnerDetail, DestinationNamespace, DigitalsignatureGenerator, Document, DummyTemplateData, DummyTemplateDataItems, DummyTemplateDataPayload, ExtensionSlug, FailedResponse, Igst, Image, Inr, InvoiceDetail, InvoiceTypesDataResponse, InvoiceTypesResponse, ItemsProductTable, Kwargs, KwargsAwbNumber, KwargsUpiQrcode, Meta, MetaProperty, PaymentData, PaymentReceiptCustomerDetails, PaymentReceiptFormat, PaymentReceiptMeta, PaymentReceiptOrderDetails, PaymentReceiptPayload, PaymentReceiptPayments, PaymentReceiptRequestBody, PaymentReceiptService, PaymentReceiptTaxes, PdfConfig, PdfConfigSaveSuccess, PdfConfigSaveSuccessData, PdfConfigSuccess, PdfConfigSuccessData, PdfDefaultTemplateSuccess, ProductTable, Rates, RegisteredCompanyDetail, ReturnDetail, Sgst, ShipmentIdBarcodeGenerator, SignedQrcodeGenerator, SignUrlRequest, SignUrlResponse, StartRequest, StartResponse, StoreDetail, Tax, Taxes, TaxTable, UpiQrcodeGenerator, Upload, Urls, Usd };
+    export { AwbNumberLabelBarcodeGenerator, Brand, CDN, Cgst, CompanyDetail, CompleteResponse, ConversionRate, CopyFiles, CreatedBy, CustomerBillingDetail, CustomerShippingDetail, DeliveryPartnerDetail, DestinationNamespace, DigitalsignatureGenerator, Document, DummyTemplateData, DummyTemplateDataItems, DummyTemplateDataPayload, FailedResponse, Igst, Image, Inr, InvoiceDetail, InvoiceTypesDataResponse, InvoiceTypesResponse, ItemsProductTable, Kwargs, KwargsAwbNumber, KwargsUpiQrcode, Meta, MetaProperty, Params, PaymentData, PaymentReceiptCustomerDetails, PaymentReceiptFormat, PaymentReceiptMeta, PaymentReceiptOrderDetails, PaymentReceiptPayload, PaymentReceiptPayments, PaymentReceiptRequestBody, PaymentReceiptService, PaymentReceiptTaxes, PdfConfig, PdfConfigSaveSuccess, PdfConfigSaveSuccessData, PdfConfigSuccess, PdfConfigSuccessData, PdfDefaultTemplateSuccess, ProductTable, Rates, RegisteredCompanyDetail, ReturnDetail, Sgst, ShipmentIdBarcodeGenerator, SignedQrcodeGenerator, SignUrlRequest, SignUrlResponse, StartRequest, StartResponse, StoreDetail, Tax, Taxes, TaxTable, UpiQrcodeGenerator, Upload, Urls, Usd };
 }
 /** @returns {AwbNumberLabelBarcodeGenerator} */
 declare function AwbNumberLabelBarcodeGenerator(): AwbNumberLabelBarcodeGenerator;
@@ -659,7 +658,6 @@ declare function DummyTemplateData(): DummyTemplateData;
 type DummyTemplateData = {
     __v?: number;
     _id?: string;
-    country_code?: string;
     payload: DummyTemplateDataPayload;
     pdf_type_id?: number;
 };
@@ -688,7 +686,7 @@ type DummyTemplateDataPayload = {
     disclaimer?: string;
     image?: Image;
     invoice_detail?: InvoiceDetail;
-    is_export?: boolean;
+    is_international?: boolean;
     is_self_pickup?: boolean;
     is_self_ship?: boolean;
     meta?: Meta;
@@ -707,11 +705,6 @@ type DummyTemplateDataPayload = {
     uid?: string;
     upi_qrcode?: string;
     waybills?: any[];
-};
-/** @returns {ExtensionSlug} */
-declare function ExtensionSlug(): ExtensionSlug;
-type ExtensionSlug = {
-    extension_slug?: string;
 };
 /** @returns {FailedResponse} */
 declare function FailedResponse(): FailedResponse;
@@ -753,7 +746,7 @@ declare function InvoiceTypesDataResponse(): InvoiceTypesDataResponse;
 type InvoiceTypesDataResponse = {
     __v: number;
     _id: string;
-    country_code: string;
+    country_code?: string;
     format: string[];
     name: string;
     pdf_type_id: number;
@@ -812,6 +805,14 @@ type MetaProperty = {
     shipment_id_barcode_generator?: ShipmentIdBarcodeGenerator;
     signed_qrcode_generator?: SignedQrcodeGenerator;
     upi_qrcode_generator?: UpiQrcodeGenerator;
+};
+/** @returns {Params} */
+declare function Params(): Params;
+type Params = {
+    /**
+     * - The subpath for the file.
+     */
+    subpath?: string;
 };
 /** @returns {PaymentData} */
 declare function PaymentData(): PaymentData;
@@ -1027,7 +1028,7 @@ declare function StartRequest(): StartRequest;
 type StartRequest = {
     content_type: string;
     file_name: string;
-    params?: any;
+    params?: Params;
     size: number;
     tags?: string[];
 };

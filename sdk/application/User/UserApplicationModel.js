@@ -238,6 +238,7 @@ const Joi = require("joi");
 
 /**
  * @typedef PasswordLoginRequestSchema
+ * @property {string} [captcha_code]
  * @property {string} [password]
  * @property {string} [username]
  */
@@ -372,6 +373,7 @@ const Joi = require("joi");
 /**
  * @typedef SendEmailOtpRequestSchema
  * @property {string} [action]
+ * @property {string} [captcha_code]
  * @property {string} [email]
  * @property {string} [register_token]
  * @property {string} [token]
@@ -395,6 +397,7 @@ const Joi = require("joi");
  * @typedef SendMobileOtpRequestSchema
  * @property {string} [action]
  * @property {string} [android_hash]
+ * @property {string} [captcha_code]
  * @property {string} [country_code]
  * @property {string} [force]
  * @property {string} [mobile]
@@ -409,6 +412,7 @@ const Joi = require("joi");
 /**
  * @typedef SendOtpRequestSchema
  * @property {string} [android_hash]
+ * @property {string} [captcha_code]
  * @property {string} [country_code]
  * @property {string} [mobile]
  */
@@ -432,11 +436,13 @@ const Joi = require("joi");
 
 /**
  * @typedef SendResetPasswordEmailRequestSchema
+ * @property {string} [captcha_code]
  * @property {string} [email]
  */
 
 /**
  * @typedef SendResetPasswordMobileRequestSchema
+ * @property {string} [captcha_code]
  * @property {string} [country_code]
  * @property {string} [mobile]
  */
@@ -486,21 +492,6 @@ const Joi = require("joi");
  * @typedef UpdatePasswordRequestSchema
  * @property {string} [new_password]
  * @property {string} [old_password]
- */
-
-/**
- * @typedef UpdateUserAttributesRequest
- * @property {Object} [attributes]
- */
-
-/**
- * @typedef UserAttributes
- * @property {Object} [attributes]
- */
-
-/**
- * @typedef UserExistsResponse
- * @property {boolean} [user_exists]
  */
 
 /**
@@ -895,6 +886,7 @@ class UserApplicationModel {
   /** @returns {PasswordLoginRequestSchema} */
   static PasswordLoginRequestSchema() {
     return Joi.object({
+      captcha_code: Joi.string().allow(""),
       password: Joi.string().allow(""),
       username: Joi.string().allow(""),
     });
@@ -1059,6 +1051,7 @@ class UserApplicationModel {
   static SendEmailOtpRequestSchema() {
     return Joi.object({
       action: Joi.string().allow(""),
+      captcha_code: Joi.string().allow(""),
       email: Joi.string().allow(""),
       register_token: Joi.string().allow(""),
       token: Joi.string().allow(""),
@@ -1088,6 +1081,7 @@ class UserApplicationModel {
     return Joi.object({
       action: Joi.string().allow(""),
       android_hash: Joi.string().allow(""),
+      captcha_code: Joi.string().allow(""),
       country_code: Joi.string().allow(""),
       force: Joi.string().allow(""),
       mobile: Joi.string().allow(""),
@@ -1106,6 +1100,7 @@ class UserApplicationModel {
   static SendOtpRequestSchema() {
     return Joi.object({
       android_hash: Joi.string().allow(""),
+      captcha_code: Joi.string().allow(""),
       country_code: Joi.string().allow(""),
       mobile: Joi.string().allow(""),
     });
@@ -1133,6 +1128,7 @@ class UserApplicationModel {
   /** @returns {SendResetPasswordEmailRequestSchema} */
   static SendResetPasswordEmailRequestSchema() {
     return Joi.object({
+      captcha_code: Joi.string().allow(""),
       email: Joi.string().allow(""),
     });
   }
@@ -1140,6 +1136,7 @@ class UserApplicationModel {
   /** @returns {SendResetPasswordMobileRequestSchema} */
   static SendResetPasswordMobileRequestSchema() {
     return Joi.object({
+      captcha_code: Joi.string().allow(""),
       country_code: Joi.string().allow(""),
       mobile: Joi.string().allow(""),
     });
@@ -1203,27 +1200,6 @@ class UserApplicationModel {
     return Joi.object({
       new_password: Joi.string().allow(""),
       old_password: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {UpdateUserAttributesRequest} */
-  static UpdateUserAttributesRequest() {
-    return Joi.object({
-      attributes: Joi.any(),
-    });
-  }
-
-  /** @returns {UserAttributes} */
-  static UserAttributes() {
-    return Joi.object({
-      attributes: Joi.any(),
-    });
-  }
-
-  /** @returns {UserExistsResponse} */
-  static UserExistsResponse() {
-    return Joi.object({
-      user_exists: Joi.boolean(),
     });
   }
 

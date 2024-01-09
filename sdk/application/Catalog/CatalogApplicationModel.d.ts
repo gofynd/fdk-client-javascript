@@ -285,7 +285,7 @@ export = CatalogApplicationModel;
  * @property {CollectionQuery[]} [query]
  * @property {string} [slug]
  * @property {string} [sort_on]
- * @property {string[]} [tags]
+ * @property {string[]} [tag]
  * @property {string} [type]
  * @property {string} [uid]
  * @property {string[]} [visible_facets_keys]
@@ -1352,7 +1352,7 @@ type GetCollectionDetailNest = {
     query?: CollectionQuery[];
     slug?: string;
     sort_on?: string;
-    tags?: string[];
+    tag?: string[];
     type?: string;
     uid?: string;
     visible_facets_keys?: string[];

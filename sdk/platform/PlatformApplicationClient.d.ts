@@ -22,11 +22,11 @@ declare class PlatformApplicationClient {
     content: Content;
     fileStorage: FileStorage;
     lead: Lead;
-    serviceability: Serviceability;
     order: Order;
     partner: Partner;
     payment: Payment;
     rewards: Rewards;
+    serviceability: Serviceability;
     share: Share;
     theme: Theme;
     user: User;
@@ -45,11 +45,11 @@ import Configuration = require("./Configuration/ConfigurationPlatformApplication
 import Content = require("./Content/ContentPlatformApplicationClient");
 import FileStorage = require("./FileStorage/FileStoragePlatformApplicationClient");
 import Lead = require("./Lead/LeadPlatformApplicationClient");
-import Serviceability = require("./Serviceability/ServiceabilityPlatformApplicationClient");
 import Order = require("./Order/OrderPlatformApplicationClient");
 import Partner = require("./Partner/PartnerPlatformApplicationClient");
 import Payment = require("./Payment/PaymentPlatformApplicationClient");
 import Rewards = require("./Rewards/RewardsPlatformApplicationClient");
+import Serviceability = require("./Serviceability/ServiceabilityPlatformApplicationClient");
 import Share = require("./Share/SharePlatformApplicationClient");
 import Theme = require("./Theme/ThemePlatformApplicationClient");
 import User = require("./User/UserPlatformApplicationClient");

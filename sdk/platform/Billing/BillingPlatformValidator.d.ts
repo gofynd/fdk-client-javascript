@@ -34,11 +34,7 @@ export = BillingPlatformValidator;
  */
 /** @typedef GetCustomerDetailParam */
 /** @typedef GetEnterprisePlansParam */
-/**
- * @typedef GetFeatureLimitConfigParam
- * @property {string} [productSuite]
- * @property {string} [type]
- */
+/** @typedef GetFeatureLimitConfigParam */
 /**
  * @typedef GetInvoiceByIdParam
  * @property {string} invoiceId - Invoice id
@@ -49,14 +45,6 @@ export = BillingPlatformValidator;
  * @typedef GetSubscriptionChargeParam
  * @property {string} extensionId - Extension _id
  * @property {string} subscriptionId - Subscription charge _id
- */
-/**
- * @typedef GetentityDetailParam
- * @property {string} entityName - Entity name.
- * @property {string} [entityId] - Entity unique id.
- * @property {string} channel - Ordering channel.
- * @property {string} [component] - The coponents the user would like to know.
- * @property {string} [componentName] - The name of component the preferred to be fetched.
  */
 /**
  * @typedef PlanStatusUpdateParam
@@ -90,7 +78,7 @@ declare class BillingPlatformValidator {
     /** @returns {GetEnterprisePlansParam} */
     static getEnterprisePlans(): any;
     /** @returns {GetFeatureLimitConfigParam} */
-    static getFeatureLimitConfig(): GetFeatureLimitConfigParam;
+    static getFeatureLimitConfig(): any;
     /** @returns {GetInvoiceByIdParam} */
     static getInvoiceById(): GetInvoiceByIdParam;
     /** @returns {GetInvoicesParam} */
@@ -99,8 +87,6 @@ declare class BillingPlatformValidator {
     static getSubscription(): any;
     /** @returns {GetSubscriptionChargeParam} */
     static getSubscriptionCharge(): GetSubscriptionChargeParam;
-    /** @returns {GetentityDetailParam} */
-    static getentityDetail(): GetentityDetailParam;
     /** @returns {PlanStatusUpdateParam} */
     static planStatusUpdate(): PlanStatusUpdateParam;
     /** @returns {SubscripePlanParam} */
@@ -109,7 +95,7 @@ declare class BillingPlatformValidator {
     static upsertCustomerDetail(): UpsertCustomerDetailParam;
 }
 declare namespace BillingPlatformValidator {
-    export { ActivateSubscriptionPlanParam, CancelSubscriptionChargeParam, CancelSubscriptionPlanParam, CheckCouponValidityParam, CreateOneTimeChargeParam, CreateSubscriptionChargeParam, GetChargeDetailsParam, GetCustomerDetailParam, GetEnterprisePlansParam, GetFeatureLimitConfigParam, GetInvoiceByIdParam, GetInvoicesParam, GetSubscriptionParam, GetSubscriptionChargeParam, GetentityDetailParam, PlanStatusUpdateParam, SubscripePlanParam, UpsertCustomerDetailParam };
+    export { ActivateSubscriptionPlanParam, CancelSubscriptionChargeParam, CancelSubscriptionPlanParam, CheckCouponValidityParam, CreateOneTimeChargeParam, CreateSubscriptionChargeParam, GetChargeDetailsParam, GetCustomerDetailParam, GetEnterprisePlansParam, GetFeatureLimitConfigParam, GetInvoiceByIdParam, GetInvoicesParam, GetSubscriptionParam, GetSubscriptionChargeParam, PlanStatusUpdateParam, SubscripePlanParam, UpsertCustomerDetailParam };
 }
 type ActivateSubscriptionPlanParam = {
     body: BillingPlatformModel.SubscriptionActivateReq;
@@ -161,10 +147,6 @@ type GetChargeDetailsParam = {
      */
     chargeId: string;
 };
-type GetFeatureLimitConfigParam = {
-    productSuite?: string;
-    type?: string;
-};
 type GetInvoiceByIdParam = {
     /**
      * - Invoice id
@@ -181,28 +163,6 @@ type GetSubscriptionChargeParam = {
      */
     subscriptionId: string;
 };
-type GetentityDetailParam = {
-    /**
-     * - Entity name.
-     */
-    entityName: string;
-    /**
-     * - Entity unique id.
-     */
-    entityId?: string;
-    /**
-     * - Ordering channel.
-     */
-    channel: string;
-    /**
-     * - The coponents the user would like to know.
-     */
-    component?: string;
-    /**
-     * - The name of component the preferred to be fetched.
-     */
-    componentName?: string;
-};
 type PlanStatusUpdateParam = {
     body: BillingPlatformModel.PlanStatusUpdateReq;
 };
@@ -214,6 +174,7 @@ type UpsertCustomerDetailParam = {
 };
 type GetCustomerDetailParam = any;
 type GetEnterprisePlansParam = any;
+type GetFeatureLimitConfigParam = any;
 type GetInvoicesParam = any;
 type GetSubscriptionParam = any;
 import BillingPlatformModel = require("./BillingPlatformModel");

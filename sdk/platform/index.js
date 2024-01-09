@@ -30,8 +30,6 @@ module.exports = {
 
     LeadPlatformModel: require("./Lead/LeadPlatformModel"),
 
-    ServiceabilityPlatformModel: require("./Serviceability/ServiceabilityPlatformModel"),
-
     OrderPlatformModel: require("./Order/OrderPlatformModel"),
 
     PartnerPlatformModel: require("./Partner/PartnerPlatformModel"),
@@ -39,6 +37,8 @@ module.exports = {
     PaymentPlatformModel: require("./Payment/PaymentPlatformModel"),
 
     RewardsPlatformModel: require("./Rewards/RewardsPlatformModel"),
+
+    ServiceabilityPlatformModel: require("./Serviceability/ServiceabilityPlatformModel"),
 
     SharePlatformModel: require("./Share/SharePlatformModel"),
 

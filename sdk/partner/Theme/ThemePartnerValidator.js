@@ -152,15 +152,6 @@ class ThemeValidator {
       pageNo: Joi.number(),
     }).required();
   }
-
-  static createTheme() {
-    return Joi.object({
-      companyId: Joi.number().required(),
-      applicationId: Joi.string().allow("").required(),
-
-      body: ThemeModel.CreateNewTheme().required(),
-    }).required();
-  }
 }
 
 module.exports = ThemeValidator;

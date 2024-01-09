@@ -13,11 +13,9 @@ declare class Payment {
         checkCredit: string;
         createOrderHandlerPaymentLink: string;
         createPaymentLink: string;
-        createPaymentOrder: string;
         customerCreditSummary: string;
         customerOnboard: string;
         deleteUserCard: string;
-        delinkWallet: string;
         enableOrDisableRefundTransferMode: string;
         getActiveCardAggregator: string;
         getActiveRefundTransferModes: string;
@@ -33,7 +31,6 @@ declare class Payment {
         getUserBeneficiariesDetail: string;
         initialisePayment: string;
         initialisePaymentPaymentLink: string;
-        linkWallet: string;
         outstandingOrderDetails: string;
         paidOrderDetails: string;
         pollingPaymentLink: string;
@@ -48,7 +45,6 @@ declare class Payment {
         verifyIfscCode: string;
         verifyOtpAndAddBeneficiaryForBank: string;
         verifyOtpAndAddBeneficiaryForWallet: string;
-        walletLinkInitate: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
@@ -170,16 +166,6 @@ declare class Payment {
      */
     createPaymentLink({ body, requestHeaders }?: PaymentApplicationValidator.CreatePaymentLinkParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.CreatePaymentLinkResponse>;
     /**
-     * @param {PaymentApplicationValidator.CreatePaymentOrderParam} arg - Arg object.
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<PaymentApplicationModel.PaymentOrderResponse>} - Success response
-     * @name createPaymentOrder
-     * @summary: Create Order
-     * @description: Use this API to create a order and payment on aggregator side - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/createPaymentOrder/).
-     */
-    createPaymentOrder({ body, requestHeaders }?: PaymentApplicationValidator.CreatePaymentOrderParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.PaymentOrderResponse>;
-    /**
      * @param {PaymentApplicationValidator.CustomerCreditSummaryParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -212,16 +198,6 @@ declare class Payment {
      * @description: Use this API to delete a card added by a user on the payment gateway and clear the cache. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/deleteUserCard/).
      */
     deleteUserCard({ body, requestHeaders }?: PaymentApplicationValidator.DeleteUserCardParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.DeleteCardsResponse>;
-    /**
-     * @param {PaymentApplicationValidator.DelinkWalletParam} arg - Arg object.
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<PaymentApplicationModel.WalletResponseSchema>} - Success response
-     * @name delinkWallet
-     * @summary: Delink the wallet
-     * @description: It Removes already linked wallet - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/delinkWallet/).
-     */
-    delinkWallet({ body, requestHeaders }?: PaymentApplicationValidator.DelinkWalletParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.WalletResponseSchema>;
     /**
      * @param {PaymentApplicationValidator.EnableOrDisableRefundTransferModeParam} arg
      *   - Arg object.
@@ -329,7 +305,7 @@ declare class Payment {
      * @summary: Get applicable payment options
      * @description: Use this API to get all valid payment options for doing a payment. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getPaymentModeRoutes/).
      */
-    getPaymentModeRoutes({ amount, cartId, checkoutMode, refresh, orderId, cardReference, userDetails, displaySplit, advancePayment, shipmentId, requestHeaders, }?: PaymentApplicationValidator.GetPaymentModeRoutesParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.PaymentModeRouteResponse>;
+    getPaymentModeRoutes({ amount, cartId, pincode, checkoutMode, refresh, cardReference, userDetails, requestHeaders, }?: PaymentApplicationValidator.GetPaymentModeRoutesParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.PaymentModeRouteResponse>;
     /**
      * @param {PaymentApplicationValidator.GetPaymentModeRoutesPaymentLinkParam} arg
      *   - Arg object.
@@ -353,7 +329,7 @@ declare class Payment {
      * @summary: Get applicable payment options for Point-of-Sale (POS)
      * @description: Use this API to get all valid payment options for doing a payment in POS. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getPosPaymentModeRoutes/).
      */
-    getPosPaymentModeRoutes({ amount, pincode, orderType, cartId, checkoutMode, refresh, cardReference, userDetails, requestHeaders, }?: PaymentApplicationValidator.GetPosPaymentModeRoutesParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.PaymentModeRouteResponse>;
+    getPosPaymentModeRoutes({ amount, cartId, pincode, checkoutMode, orderType, refresh, cardReference, userDetails, requestHeaders, }?: PaymentApplicationValidator.GetPosPaymentModeRoutesParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.PaymentModeRouteResponse>;
     /**
      * @param {PaymentApplicationValidator.GetRupifiBannerDetailsParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -403,16 +379,6 @@ declare class Payment {
      * @description: Use this API to inititate payment using UPI, BharatQR, wherein the UPI requests are send to the app and QR code is displayed on the screen. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/initialisePaymentPaymentLink/).
      */
     initialisePaymentPaymentLink({ body, requestHeaders }?: PaymentApplicationValidator.InitialisePaymentPaymentLinkParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.PaymentInitializationResponse>;
-    /**
-     * @param {PaymentApplicationValidator.LinkWalletParam} arg - Arg object.
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<PaymentApplicationModel.WalletResponseSchema>} - Success response
-     * @name linkWallet
-     * @summary: OTP verification for linking of wallet
-     * @description: It Verifies the linking of wallet using OTP - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/linkWallet/).
-     */
-    linkWallet({ body, requestHeaders }?: PaymentApplicationValidator.LinkWalletParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.WalletResponseSchema>;
     /**
      * @param {PaymentApplicationValidator.OutstandingOrderDetailsParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -574,16 +540,6 @@ declare class Payment {
      * @description: Use this API to send an OTP while adding a wallet beneficiary by mobile no. verification. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/verifyOtpAndAddBeneficiaryForWallet/).
      */
     verifyOtpAndAddBeneficiaryForWallet({ body, requestHeaders }?: PaymentApplicationValidator.VerifyOtpAndAddBeneficiaryForWalletParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.WalletOtpResponse>;
-    /**
-     * @param {PaymentApplicationValidator.WalletLinkInitateParam} arg - Arg object.
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../ApplicationAPIClient").Options} - Options
-     * @returns {Promise<PaymentApplicationModel.WalletResponseSchema>} - Success response
-     * @name walletLinkInitate
-     * @summary: Initiate linking of wallet
-     * @description: It will initiate linking of wallet for the aggregator. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/walletLinkInitate/).
-     */
-    walletLinkInitate({ body, requestHeaders }?: PaymentApplicationValidator.WalletLinkInitateParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.WalletResponseSchema>;
 }
 import PaymentApplicationValidator = require("./PaymentApplicationValidator");
 import PaymentApplicationModel = require("./PaymentApplicationModel");

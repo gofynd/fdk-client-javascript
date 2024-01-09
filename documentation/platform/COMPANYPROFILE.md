@@ -129,13 +129,7 @@ Company profile object. See example below or refer `GetCompanyProfileSerializerR
   "uid": 1,
   "business_country_info": {
     "country": "India",
-    "country_code": "IN",
-    "currency": {
-      "code": "INR",
-      "symbol": "₹",
-      "name": "Indian Rupee"
-    },
-    "timezone": "Asia/Calcutta"
+    "country_code": "IN"
   }
 }
 ```
@@ -1079,9 +1073,7 @@ const promise = platformClient.companyProfile.getLocations({  storeType : value,
  stage : value,
  pageNo : value,
  pageSize : value,
- locationIds : value,
- types : value,
- tags : value });
+ locationIds : value });
 
 // Async/Await
 const data = await platformClient.companyProfile.getLocations({  storeType : value,
@@ -1089,9 +1081,7 @@ const data = await platformClient.companyProfile.getLocations({  storeType : val
  stage : value,
  pageNo : value,
  pageSize : value,
- locationIds : value,
- types : value,
- tags : value });
+ locationIds : value });
 ```
 
 
@@ -1105,9 +1095,7 @@ const data = await platformClient.companyProfile.getLocations({  storeType : val
 | stage | string | no | to filter companies on basis of verified or unverified companies. |    
 | pageNo | number | no | The page number to navigate through the given set of results |    
 | pageSize | number | no | Number of items to retrieve in each page. Default is 10. |    
-| locationIds | Array<number> | no | Helps to filter stores on the basis of uids. |    
-| types | Array<string> | no | Helps to get the location list on the basis of multiple location type. |    
-| tags | Array<string> | no | Helps to get the location list on the basis of multiple location tag. |  
+| locationIds | Array<number> | no | Helps to filter stores on the basis of uids. |  
 
 
 
@@ -1461,14 +1449,12 @@ Returns a success response
  | address_type | string? |  yes  |  |
  | city | string? |  yes  |  |
  | country | string? |  yes  |  |
- | country_code | string |  no  |  |
+ | country_code | string? |  yes  |  |
  | landmark | string? |  yes  |  |
  | latitude | number |  no  |  |
  | longitude | number |  no  |  |
  | pincode | number? |  yes  |  |
- | sector | string? |  yes  |  |
  | state | string? |  yes  |  |
- | state_code | string? |  yes  |  |
  
 
 ---
@@ -1506,10 +1492,8 @@ Returns a success response
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | country | string |  no  |  |
- | country_code | string |  no  |  |
- | currency | [CountryCurrencyInfo](#CountryCurrencyInfo) |  no  |  |
- | timezone | string |  no  |  |
+ | country | string? |  yes  |  |
+ | country_code | string? |  yes  |  |
  
 
 ---
@@ -1642,17 +1626,6 @@ Returns a success response
 
 ---
 
-#### [CountryCurrencyInfo](#CountryCurrencyInfo)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | string |  no  |  |
- | name | string |  no  |  |
- | symbol | string |  no  |  |
- 
-
----
-
 #### [CreateUpdateAddressSerializer](#CreateUpdateAddressSerializer)
 
  | Properties | Type | Nullable | Description |
@@ -1739,9 +1712,7 @@ Returns a success response
  | latitude | number |  no  |  |
  | longitude | number |  no  |  |
  | pincode | number? |  yes  |  |
- | sector | string? |  yes  |  |
  | state | string? |  yes  |  |
- | state_code | string? |  yes  |  |
  
 
 ---
@@ -1831,7 +1802,6 @@ Returns a success response
  | ---------- | ---- | -------- | ----------- |
  | _custom_json | string? |  yes  |  |
  | address | [GetAddressSerializer](#GetAddressSerializer) |  no  |  |
- | auto_assign_courier_partner | boolean? |  yes  |  |
  | auto_invoice | boolean? |  yes  |  |
  | avg_order_processing_time | [AverageOrderProcessingTime](#AverageOrderProcessingTime)? |  yes  |  |
  | bulk_shipment | boolean? |  yes  |  |
@@ -1947,7 +1917,6 @@ Returns a success response
  | ---------- | ---- | -------- | ----------- |
  | _custom_json | string? |  yes  |  |
  | address | [AddressSerializer](#AddressSerializer) |  no  |  |
- | auto_assign_courier_partner | boolean? |  yes  |  |
  | auto_invoice | boolean? |  yes  |  |
  | avg_order_processing_time | [AverageOrderProcessingTime](#AverageOrderProcessingTime)? |  yes  |  |
  | bulk_shipment | boolean? |  yes  |  |
@@ -1957,7 +1926,7 @@ Returns a success response
  | credit_note | boolean? |  yes  |  |
  | default_order_acceptance_timing | boolean? |  yes  | Flag to set order_acceptance_timing as default timing |
  | display_name | string |  no  |  |
- | documents | [[Document](#Document)] |  no  |  |
+ | documents | [[Document](#Document)]? |  yes  |  |
  | gst_credentials | [InvoiceDetailsSerializer](#InvoiceDetailsSerializer)? |  yes  |  |
  | holiday | [[HolidaySchemaSerializer](#HolidaySchemaSerializer)]? |  yes  |  |
  | manager | [LocationManagerSerializer](#LocationManagerSerializer)? |  yes  |  |

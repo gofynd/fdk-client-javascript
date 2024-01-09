@@ -6,7 +6,7 @@
 ##### [Back to Application docs](./README.md)
 
 ## Lead Methods
-The Leads Management module improves communication, support, and effective interaction. Utilize it to retrieve user tickets, create ticket histories, and generate new tickets. This module also enables you to set up video rooms for participants, providing room tokens for secure access.
+Handles communication between Staff and Users
 
 
 Default

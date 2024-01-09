@@ -39,7 +39,7 @@ declare class Theme {
      * @summary: Get page of a theme
      * @description: Use this API to retrieve a page of a theme. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getPage/).
      */
-    getPage({ themeId, pageValue, filters, company, requestHeaders }?: ThemeApplicationValidator.GetPageParam, { responseHeaders }?: object): Promise<ThemeApplicationModel.AvailablePageSchema>;
+    getPage({ themeId, pageValue, requestHeaders }?: ThemeApplicationValidator.GetPageParam, { responseHeaders }?: object): Promise<ThemeApplicationModel.AvailablePageSchema>;
     /**
      * @param {ThemeApplicationValidator.GetThemeForPreviewParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

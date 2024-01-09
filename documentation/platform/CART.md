@@ -921,12 +921,6 @@ Price Adjustment Created successfully
     "collection": {
       "collected_by": "FYND",
       "refund_by": "FYND"
-    },
-    "restrictions": {
-      "post_order": {
-        "cancellation_allowed": false,
-        "return_allowed": false
-      }
     }
   }
 }
@@ -3532,7 +3526,6 @@ Success. Returns an PlatformAddress object containing a list of address saved in
   "user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
   "created_by_user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
   "country_code": "IND",
-  "state_code": "MH",
   "phone": "9915347757",
   "geo_location": {},
   "country": "India",
@@ -3621,92 +3614,39 @@ Success. Returns an Address object containing a list of address saved in the acc
 
 
 <details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; example1</i></summary>
+<summary><i>&nbsp; Example:</i></summary>
 
 ```json
 {
-  "summary": "Address for India",
-  "value": {
-    "address": [
-      {
-        "landmark": "",
-        "area_code": "8b526f521bb14a2593a8b9e3ce8c76b3",
-        "id": "8b526f521bb14a2593a8b9e3ce8c76b3",
-        "state": "Maharashtra",
-        "meta": {},
-        "user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
-        "created_by_user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
-        "country_code": "+91",
-        "state_code": "MH",
-        "country_phone_code": "91",
-        "country_iso_code": "IN",
-        "phone": "9915347757",
-        "geo_location": {},
-        "country": "India",
-        "is_default_address": true,
-        "is_active": true,
-        "city": "Mumbai",
-        "pincode": 400093,
-        "checkout_mode": "self",
-        "address_type": "home",
-        "tags": [],
-        "area": "Sector 127",
-        "name": "abc",
-        "email": "ankur@gofynd1.com",
-        "address": "Megatron2",
-        "_custom_json": {}
-      }
-    ]
-  }
+  "address": [
+    {
+      "landmark": "",
+      "area_code": "410218",
+      "id": "8b526f521bb14a2593a8b9e3ce8c76b3",
+      "state": "Maharashtra",
+      "meta": {},
+      "user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
+      "created_by_user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
+      "country_code": "IND",
+      "phone": "99999999",
+      "geo_location": {},
+      "country": "India",
+      "is_default_address": true,
+      "is_active": true,
+      "city": "Mumbai",
+      "pincode": 400093,
+      "checkout_mode": "self",
+      "address_type": "home",
+      "tags": [],
+      "area": "Sector 127",
+      "name": "abc",
+      "email": "ankur@gofynd1.com",
+      "address": "Megatron2",
+      "store_name": "store123"
+    }
+  ]
 }
 ```
-</details>
-
-<details>
-<summary><i>&nbsp; example2</i></summary>
-
-```json
-{
-  "summary": "Address for Dubai",
-  "value": {
-    "address": [
-      {
-        "landmark": "",
-        "area_code": "",
-        "id": "651c0b882dbd5f702f711677",
-        "state": "",
-        "meta": {},
-        "user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
-        "created_by_user_id": "8b526f521bb14a2593a8b9e3ce8c76b3",
-        "country_code": "+971",
-        "country_phone_code": "+971",
-        "country_iso_code": "AE",
-        "phone": "551234567",
-        "geo_location": {},
-        "country": "United Arab Emirates",
-        "is_default_address": true,
-        "is_active": true,
-        "city": "Sharjah",
-        "sector": "Al Fisht",
-        "checkout_mode": "self",
-        "address_type": "home",
-        "tags": [],
-        "area": "Dubai Park",
-        "name": "Shaikh Ahmed",
-        "email": "example@gmail.com",
-        "address": "B-62",
-        "_custom_json": {}
-      }
-    ]
-  }
-}
-```
-</details>
-
 </details>
 
 
@@ -3728,15 +3668,11 @@ Fetch Coupon
 ```javascript
 // Promise
 const promise = platformClient.application("<APPLICATION_ID>").cart.getAppCoupons({  id : value,
- buyNow : value,
- slug : value,
- storeId : value });
+ buyNow : value });
 
 // Async/Await
 const data = await platformClient.application("<APPLICATION_ID>").cart.getAppCoupons({  id : value,
- buyNow : value,
- slug : value,
- storeId : value });
+ buyNow : value });
 ```
 
 
@@ -3746,9 +3682,7 @@ const data = await platformClient.application("<APPLICATION_ID>").cart.getAppCou
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | id | string | no |  |    
-| buyNow | boolean | no |  |    
-| slug | string | no |  |    
-| storeId | string | no |  |  
+| buyNow | boolean | no |  |  
 
 
 
@@ -3954,7 +3888,6 @@ Success. Returns a Cart object. Check the example shown below or refer `CartDeta
       "discount": "67% OFF",
       "article": {
         "type": "article",
-        "tags": [],
         "uid": "604_902_SSTC60401_636BLUE_1",
         "size": "1",
         "seller": {
@@ -6005,10 +5938,6 @@ Success. Returns delivery promise along with shipment details and price breakup.
           "formatted": {
             "min": "Aug 24",
             "max": "Aug 28"
-          },
-          "iso": {
-            "min": "2019-08-25T00:35:08.000Z",
-            "max": "2019-08-29T07:55:08.000Z"
           }
         },
         "box_type": "Small Courier bag",
@@ -6072,7 +6001,6 @@ Success. Returns delivery promise along with shipment details and price breakup.
             },
             "article": {
               "type": "article",
-              "tags": [],
               "uid": "381_610_IGPL01_SPIRAL19ANAVY_L",
               "size": "L",
               "seller": {
@@ -11971,12 +11899,6 @@ Price Adjustment Updated successfully
     "collection": {
       "collected_by": "FYND",
       "refund_by": "FYND"
-    },
-    "restrictions": {
-      "post_order": {
-        "cancellation_allowed": false,
-        "return_allowed": false
-      }
     }
   }
 }
@@ -12583,10 +12505,6 @@ Success. Returns delivery promise along with shipment details and price breakup.
           "formatted": {
             "min": "Aug 24",
             "max": "Aug 28"
-          },
-          "iso": {
-            "min": "2019-08-25T00:35:08.000Z",
-            "max": "2019-08-29T07:55:08.000Z"
           }
         },
         "box_type": "Small Courier bag",
@@ -13178,7 +13096,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | product_group_tags | [string]? |  yes  |  |
  | quantity | number? |  yes  |  |
  | seller_id | number? |  yes  |  |
- | seller_identifier | string? |  yes  | Add items using seller identifier for store os |
  | store_id | number? |  yes  |  |
  
 
@@ -13204,8 +13121,9 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | applied_free_articles | [[AppliedFreeArticles](#AppliedFreeArticles)]? |  yes  | Applied free article for free gift item promotions |
  | article_quantity | number? |  yes  | Quantity of article on which promotion is applicable |
  | buy_rules | [[BuyRules](#BuyRules)]? |  yes  | Buy rules for promotions |
- | currency | [CartCurrency](#CartCurrency)? |  yes  |  |
+ | code | string? |  yes  | Promotion code |
  | discount_rules | [[DiscountRulesApp](#DiscountRulesApp)]? |  yes  | Discount rules for promotions |
+ | meta | string? |  yes  | Meta object for extra data |
  | mrp_promotion | boolean? |  yes  | If applied promotion is applied on product MRP or ESP |
  | offer_text | string? |  yes  | Offer text of current promotion |
  | ownership | [Ownership2](#Ownership2)? |  yes  | Ownership of promotion |
@@ -13453,7 +13371,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | cart_id | string? |  yes  |  |
  | cart_value | number? |  yes  |  |
  | created_on | string? |  yes  |  |
- | currency_code | string? |  yes  |  |
  | item_counts | number? |  yes  |  |
  | pick_up_customer_details | string? |  yes  |  |
  | user_id | string? |  yes  |  |
@@ -13665,19 +13582,16 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | coupon_applicable_message | string? |  yes  |  |
  | coupon_code | string? |  yes  |  |
  | coupon_type | string? |  yes  |  |
  | coupon_value | number? |  yes  |  |
  | description | string? |  yes  |  |
- | end_date | string? |  yes  |  |
  | expires_on | string? |  yes  |  |
  | is_applicable | boolean? |  yes  |  |
  | is_applied | boolean? |  yes  |  |
  | max_discount_value | number? |  yes  |  |
  | message | string? |  yes  |  |
  | minimum_cart_value | number? |  yes  |  |
- | start_date | string? |  yes  |  |
  | sub_title | string? |  yes  |  |
  | title | string? |  yes  |  |
  
@@ -14321,7 +14235,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | item_list | [string]? |  yes  |  |
- | parent_promo_id | string? |  yes  |  |
  | promo_amount | string |  no  |  |
  | promo_desc | string? |  yes  |  |
  | promo_id | string |  no  |  |
@@ -14541,7 +14454,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | _custom_json | string? |  yes  |  |
  | address | string? |  yes  |  |
  | address_type | string? |  yes  |  |
  | area | string? |  yes  |  |
@@ -14552,8 +14464,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | city | string? |  yes  |  |
  | country | string? |  yes  |  |
  | country_code | string? |  yes  |  |
- | country_iso_code | string? |  yes  |  |
- | country_phone_code | string? |  yes  |  |
  | created_by_user_id | string? |  yes  |  |
  | email | string? |  yes  |  |
  | geo_location | [GeoLocation](#GeoLocation)? |  yes  |  |
@@ -14565,9 +14475,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | meta | string? |  yes  |  |
  | name | string? |  yes  |  |
  | phone | string? |  yes  |  |
- | sector | string? |  yes  |  |
  | state | string? |  yes  |  |
- | state_code | string? |  yes  | State code for international address |
  | tags | [string]? |  yes  |  |
  | user_id | string? |  yes  |  |
  
@@ -14775,7 +14683,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | is_authenticated | boolean |  no  | Flag indicating whether the user is authenticated |
  | message | string |  no  | The message associated with the price adjustment |
  | meta | string? |  yes  |  |
- | restrictions | [PriceAdjustmentRestrictions](#PriceAdjustmentRestrictions)? |  yes  | This field accepts the restrictions applied to this particular item or service, including whether or not cancellation and return are allowed, etc |
  | type | string |  no  | type of price adjusment |
  | value | number |  no  |  |
  
@@ -14796,7 +14703,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | is_authenticated | boolean |  no  | Flag indicating whether the user is authenticated |
  | message | string |  no  | The message associated with the price adjustment |
  | meta | string? |  yes  |  |
- | restrictions | [PriceAdjustmentRestrictions](#PriceAdjustmentRestrictions)? |  yes  | This field accepts the restrictions applied to this particular item or service, including whether or not cancellation and return are allowed, etc |
  | type | string |  no  | type of price adjusment |
  | value | number |  no  |  |
  
@@ -14808,15 +14714,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | data | [PriceAdjustment](#PriceAdjustment)? |  yes  |  |
- 
-
----
-
-#### [PriceAdjustmentRestrictions](#PriceAdjustmentRestrictions)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | post_order | string? |  yes  | This field holds the post-order restrictions, indicated by nested fields ['cancellation_allowed','return_allowed'] |
  
 
 ---
@@ -14835,7 +14732,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | message | string |  no  | The message associated with the price adjustment |
  | meta | string? |  yes  |  |
  | modified_by | string? |  yes  | The entity that modified the field |
- | restrictions | [PriceAdjustmentRestrictions](#PriceAdjustmentRestrictions)? |  yes  | restrictions applied to this particular item or product, including whether or not cancellation and return are allowed. |
  | type | string |  no  | type of price adjusment |
  | value | number |  no  |  |
  
@@ -14883,7 +14779,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | seller_identifier | string? |  yes  |  |
  | size | string? |  yes  |  |
  | store | [StoreInfo](#StoreInfo)? |  yes  |  |
- | tags | [string]? |  yes  | a list of article tags |
  | type | string? |  yes  |  |
  | uid | string? |  yes  |  |
  
@@ -14956,16 +14851,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | ---------- | ---- | -------- | ----------- |
  | max | string? |  yes  |  |
  | min | string? |  yes  |  |
- 
-
----
-
-#### [PromiseISOFormat](#PromiseISOFormat)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | max | string? |  yes  | Max promise in ISO format. |
- | min | string? |  yes  | Min Promise in ISO format. |
  
 
 ---
@@ -15201,7 +15086,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | anonymous_users | boolean? |  yes  |  |
  | order_quantity | number? |  yes  |  |
  | ordering_stores | [number]? |  yes  |  |
- | payments | string? |  yes  |  |
+ | payments | [[PromotionPaymentModes](#PromotionPaymentModes)]? |  yes  |  |
  | platforms | [string]? |  yes  |  |
  | post_order | [PostOrder1](#PostOrder1)? |  yes  |  |
  | user_groups | [number]? |  yes  |  |
@@ -15318,7 +15203,6 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | formatted | [PromiseFormatted](#PromiseFormatted)? |  yes  |  |
- | iso | [PromiseISOFormat](#PromiseISOFormat)? |  yes  |  |
  | timestamp | [PromiseTimestamp](#PromiseTimestamp)? |  yes  |  |
  
 

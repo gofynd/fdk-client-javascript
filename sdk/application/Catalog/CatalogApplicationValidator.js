@@ -170,6 +170,8 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
  *   /service/application/catalog/v1.0/products/sizes
  * @property {number} [storeId] - The ID of the store that is selling the
  *   product, e.g. 1,2,3.
+ * @property {string} [pincode] - The PIN Code of the area near which the
+ *   selling locations should be searched, e.g. 400059.
  * @property {number} [moq] - An Integer indication the Minimum Order Quantity
  *   of a product, e.g. 100.
  */
@@ -182,6 +184,8 @@ const CatalogApplicationModel = require("./CatalogApplicationModel");
  * @property {string} size - A string indicating the size of the product, e.g.
  *   S, M, XL. You can get slug value from the endpoint
  *   /service/application/catalog/v1.0/products/sizes
+ * @property {string} [pincode] - The 6-digit PIN Code of the area near which
+ *   the selling locations should be searched, e.g. 400059
  * @property {string} [strategy] - Sort stores on the basis of strategy. eg,
  *   fast-delivery, low-price, optimal.
  * @property {number} [pageNo] - The page number to navigate through the given
@@ -447,6 +451,7 @@ class CatalogApplicationValidator {
       slug: Joi.string().allow("").required(),
       size: Joi.string().allow("").required(),
       storeId: Joi.number(),
+      pincode: Joi.string().allow(""),
       moq: Joi.number(),
     }).required();
   }
@@ -456,6 +461,7 @@ class CatalogApplicationValidator {
     return Joi.object({
       slug: Joi.string().allow("").required(),
       size: Joi.string().allow("").required(),
+      pincode: Joi.string().allow(""),
       strategy: Joi.string().allow(""),
       pageNo: Joi.number(),
       pageSize: Joi.number(),

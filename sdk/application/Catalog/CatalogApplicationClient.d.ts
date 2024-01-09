@@ -362,7 +362,7 @@ declare class Catalog {
      * @summary: Get the price of a product size at a PIN Code
      * @description: Prices may vary for different sizes of a product. Use this API to retrieve the price of a product size at all the selling locations near to a PIN Code. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductPriceBySlug/).
      */
-    getProductPriceBySlug({ slug, size, storeId, moq, requestHeaders }?: CatalogApplicationValidator.GetProductPriceBySlugParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.ProductSizePriceResponseV3>;
+    getProductPriceBySlug({ slug, size, storeId, pincode, moq, requestHeaders }?: CatalogApplicationValidator.GetProductPriceBySlugParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.ProductSizePriceResponseV3>;
     /**
      * @param {CatalogApplicationValidator.GetProductSellersBySlugParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -374,7 +374,7 @@ declare class Catalog {
      * @summary: Get the sellers of a product size at a PIN Code
      * @description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/catalog/getProductSellersBySlug/).
      */
-    getProductSellersBySlug({ slug, size, strategy, pageNo, pageSize, requestHeaders }?: CatalogApplicationValidator.GetProductSellersBySlugParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.ProductSizeSellersResponseV3>;
+    getProductSellersBySlug({ slug, size, pincode, strategy, pageNo, pageSize, requestHeaders }?: CatalogApplicationValidator.GetProductSellersBySlugParam, { responseHeaders }?: object): Promise<CatalogApplicationModel.ProductSizeSellersResponseV3>;
     /**
      * @param {Object} arg - Arg object.
      * @param {string} arg.slug - A short, human-readable, URL-friendly
@@ -383,6 +383,8 @@ declare class Catalog {
      * @param {string} arg.size - A string indicating the size of the product,
      *   e.g. S, M, XL. You can get slug value from the endpoint
      *   /service/application/catalog/v1.0/products/sizes
+     * @param {string} [arg.pincode] - The 6-digit PIN Code of the area near
+     *   which the selling locations should be searched, e.g. 400059
      * @param {string} [arg.strategy] - Sort stores on the basis of strategy.
      *   eg, fast-delivery, low-price, optimal.
      * @param {number} [arg.pageSize] - The number of items to retrieve in each page.
@@ -390,9 +392,10 @@ declare class Catalog {
      * @summary: Get the sellers of a product size at a PIN Code
      * @description: A product of a particular size may be sold by multiple sellers. Use this API to fetch the sellers having the stock of a particular size at a given PIN Code.
      */
-    getProductSellersBySlugPaginator({ slug, size, strategy, pageSize }?: {
+    getProductSellersBySlugPaginator({ slug, size, pincode, strategy, pageSize, }?: {
         slug: string;
         size: string;
+        pincode?: string;
         strategy?: string;
         pageSize?: number;
     }): Paginator<CatalogApplicationModel.ProductSizeSellersResponseV3>;

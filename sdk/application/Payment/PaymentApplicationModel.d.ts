@@ -1,7 +1,7 @@
 export = PaymentApplicationModel;
 /**
  * @typedef ActiveCardPaymentGatewayResponse
- * @property {CardPaymentGateway} cards
+ * @property {CardPaymentGateway} cards - Card's payment gateway with customer id.
  * @property {string} message - Human readable message.
  * @property {boolean} success - Response is successful or not.
  */
@@ -14,7 +14,7 @@ export = PaymentApplicationModel;
  * @typedef AddBeneficiaryDetailsRequest
  * @property {boolean} delights - True if beneficiary to be added by delights or
  *   False if by User
- * @property {BeneficiaryModeDetails} details
+ * @property {BeneficiaryModeDetails} details - Beneficiary bank details
  * @property {string} order_id - Merchant Order Id
  * @property {string} [otp]
  * @property {string} [request_id]
@@ -31,31 +31,6 @@ export = PaymentApplicationModel;
  * @typedef AddBeneficiaryViaOtpVerificationResponse
  * @property {string} message - Aggregator Response of beneficicary
  * @property {boolean} [success] - Response is successful or not
- */
-/**
- * @typedef AdvanceObject
- * @property {string[]} [all_prepayment_type] - All available types of prepayment
- * @property {boolean} [allow_custom_advance_amount] - Is custom advance amount allowed?
- * @property {number} [amount] - Amount for Payment Breakdown
- * @property {string} [cancellation_type] - Type of cancellation
- * @property {string} [description] - The description for Advance Payment (user
- *   configured)
- * @property {string} [display_name] - The display name for Advance payment
- * @property {boolean} [is_active] - Is Advance Payment active
- * @property {string} [prepayment_type] - Type of prepayment value
- * @property {number} [prepayment_value] - Value for prepayment in advance payment
- * @property {number} [refund_time_limit] - Time limit for processing refund
- * @property {string} [time_unit] - Time unit for refunds
- */
-/**
- * @typedef AdvancePaymentObject
- * @property {AdvanceObject} [advance]
- * @property {string} [display_name] - Display name for Advance Payment Mode
- * @property {number} [display_priority] - Display Priority for Payment Option
- * @property {PaymentModeList[]} [list] - Payment mode
- * @property {string} [name] - Name of Advance Payment Mode
- * @property {number} [payment_mode_id] - Payment Mode ID for Advance Payment Option
- * @property {SplitObject} [split]
  */
 /**
  * @typedef AggregatorConfigDetail
@@ -133,7 +108,7 @@ export = PaymentApplicationModel;
  */
 /**
  * @typedef BusinessDetails
- * @property {KYCAddress} [address]
+ * @property {KYCAddress} [address] - Address details
  * @property {string} [business_ownership_type] - Business Ownershipp type(e.g Rented)
  * @property {string} [business_type] - Business Type
  * @property {string} [entity_type] - Busineess Entity Type
@@ -197,7 +172,7 @@ export = PaymentApplicationModel;
  */
 /**
  * @typedef CardDetailsResponse
- * @property {CardDetails} data
+ * @property {CardDetails} data - Saved Card Details
  * @property {boolean} success - Response is successful or not.
  */
 /**
@@ -226,7 +201,7 @@ export = PaymentApplicationModel;
  */
 /**
  * @typedef CheckCreditResponse
- * @property {CreditDetail} data
+ * @property {CreditDetail} data - Credit summary of user.
  * @property {boolean} success - Operation is successful or not.
  */
 /**
@@ -244,7 +219,7 @@ export = PaymentApplicationModel;
  */
 /**
  * @typedef CreateOrderUserPaymentMethods
- * @property {PaymentMethodsMeta} meta
+ * @property {PaymentMethodsMeta} meta - Meta
  * @property {string} mode - Payment mode
  * @property {string} name - Payment mode name
  */
@@ -254,7 +229,7 @@ export = PaymentApplicationModel;
  * @property {string} failure_callback_url - Failure page url
  * @property {Object} [meta] - Meta
  * @property {string} payment_link_id - Unique id of payment link
- * @property {CreateOrderUserPaymentMethods} payment_methods
+ * @property {CreateOrderUserPaymentMethods} payment_methods - Payment method details
  * @property {string} success_callback_url - Success page url
  */
 /**
@@ -273,6 +248,7 @@ export = PaymentApplicationModel;
  * @property {string} [assign_card_id]
  * @property {string} cart_id
  * @property {string} checkout_mode
+ * @property {string} pincode
  */
 /**
  * @typedef CreatePaymentLinkRequest
@@ -280,7 +256,7 @@ export = PaymentApplicationModel;
  * @property {string} [description] - Merchant order id
  * @property {string} email - Email to which the payment link is to be sent
  * @property {string} external_order_id - Merchant order id
- * @property {CreatePaymentLinkMeta} meta
+ * @property {CreatePaymentLinkMeta} meta - Meta
  * @property {string} mobile_number - Mobile number to which the payment link is
  *   to be sent
  */
@@ -301,40 +277,32 @@ export = PaymentApplicationModel;
  */
 /**
  * @typedef CreditSummary
- * @property {string} [activation_url] - Url for activation
- * @property {BalanceDetails} [amount_available]
- * @property {BalanceDetails} [balance]
+ * @property {BalanceDetails} [amount_available] - Credit summary of user.
+ * @property {BalanceDetails} [balance] - Credit summary of user.
  * @property {string} [buyer_status] - Status from Credit aggregator's end
  * @property {string} [credit_line_id] - ID at Credit aggregator's end
- * @property {BalanceDetails} [due_amount]
- * @property {string} [due_date] - Due date for repayment
- * @property {boolean} [is_eligible_for_txn] - Eligiblity flag to complete transaction
- * @property {BalanceDetails} [limit]
  * @property {string} [merchant_customer_ref_id] - Unique aggregator customer id
- * @property {string} [repayment_url] - Url for repayment
- * @property {string} [soa_url] - Statement of accounts. Show payment history.
  * @property {string} [status] - Customer Credit status
  * @property {string} [status_message] - Message to customer
- * @property {BalanceDetails} [total_due_amount]
  */
 /**
  * @typedef CustomerCreditSummaryResponse
- * @property {CreditSummary} [data]
+ * @property {CreditSummary} [data] - Credit summary of user.
  * @property {boolean} success - Payment confirmation updated or not.
  */
 /**
  * @typedef CustomerOnboardingRequest
  * @property {string} aggregator - Aggregator Name
- * @property {BusinessDetails} [business_info]
- * @property {DeviceDetails} [device]
- * @property {MarketplaceInfo} [marketplace_info]
+ * @property {BusinessDetails} [business_info] - Business summary.
+ * @property {DeviceDetails} [device] - Device Details.
+ * @property {MarketplaceInfo} [marketplace_info] - Market Place info.
  * @property {string} [mcc] - Mcc
- * @property {UserPersonalInfoInDetails} [personal_info]
+ * @property {UserPersonalInfoInDetails} personal_info - Credit summary of user.
  * @property {string} source - CallbackURL
  */
 /**
  * @typedef CustomerOnboardingResponse
- * @property {OnboardSummary} data
+ * @property {OnboardSummary} data - Redirect URL.
  * @property {boolean} success - Status updated or not.
  */
 /**
@@ -364,7 +332,7 @@ export = PaymentApplicationModel;
  */
 /**
  * @typedef EpaylaterBannerResponse
- * @property {EpaylaterBannerData} data
+ * @property {EpaylaterBannerData} data - Epaylater KYC banner details.
  * @property {boolean} success - Successful or not.
  */
 /**
@@ -391,7 +359,7 @@ export = PaymentApplicationModel;
  */
 /**
  * @typedef ErrorResponse
- * @property {ErrorDescription} [error]
+ * @property {Object} [error]
  * @property {string} message - Message
  * @property {number} status_code - HTTP status code
  * @property {boolean} success - Successful or failure
@@ -423,7 +391,7 @@ export = PaymentApplicationModel;
  * @typedef IntentApp
  * @property {string} [code] - Code
  * @property {string} [display_name] - Display_name
- * @property {PaymentModeLogo} [logos]
+ * @property {Object} [logos] - Logos
  * @property {string} [package_name] - Package_name
  */
 /**
@@ -466,13 +434,9 @@ export = PaymentApplicationModel;
  */
 /**
  * @typedef OnboardSummary
- * @property {string} [activation_url] - Url for activation
- * @property {boolean} [is_eligible_for_txn] - Whether is eligible for transaction
- * @property {string} [merchant_customer_ref_id] - Rupifi customer ID
- * @property {string} [redirect_url] - URL to which the user may redirect.
- * @property {Object} [session] - User Session
- * @property {boolean} status - Transaction status
- * @property {string} [status_remark] - Decription of status
+ * @property {string} redirect_url - URL to which the user may redirect.
+ * @property {Object} session - User Session
+ * @property {boolean} status - Operation Status
  */
 /**
  * @typedef OrderBeneficiaryDetails
@@ -517,20 +481,20 @@ export = PaymentApplicationModel;
  */
 /**
  * @typedef PaymentFlow
- * @property {AggregatorRoute} [ajiodhan]
- * @property {AggregatorRoute} [bqr_razorpay]
- * @property {AggregatorRoute} [ccavenue]
- * @property {AggregatorRoute} [epaylater]
- * @property {AggregatorRoute} [fynd]
- * @property {AggregatorRoute} [jiopay]
- * @property {AggregatorRoute} [juspay]
- * @property {AggregatorRoute} [mswipe]
- * @property {AggregatorRoute} [payubiz]
- * @property {AggregatorRoute} [razorpay]
- * @property {AggregatorRoute} [rupifi]
- * @property {AggregatorRoute} [simpl]
- * @property {AggregatorRoute} [stripe]
- * @property {AggregatorRoute} [upi_razorpay]
+ * @property {Object} [ajiodhan] - Ajiodhan
+ * @property {Object} [bqr_razorpay] - BQR_Razorpay
+ * @property {Object} [ccavenue] - Ccavenue
+ * @property {Object} [epaylater] - Epaylater
+ * @property {Object} [fynd] - Fynd
+ * @property {Object} [jiopay] - Jiopay
+ * @property {Object} [juspay] - Juspay
+ * @property {Object} [mswipe] - Mswipe
+ * @property {Object} [payubiz] - Payubiz
+ * @property {Object} [razorpay] - Razorpay
+ * @property {Object} [rupifi] - Rupifi
+ * @property {Object} [simpl] - Simpl
+ * @property {Object} [stripe] - Stripe
+ * @property {Object} [upi_razorpay] - UPI_Razorpay
  */
 /**
  * @typedef PaymentInitializationRequest
@@ -575,12 +539,6 @@ export = PaymentApplicationModel;
  * @property {string} payment_identifier - Payment identifier
  */
 /**
- * @typedef PaymentMethodsMetaOrder
- * @property {string} merchant_code - Merchant code
- * @property {string} payment_gateway - Payment gateway name
- * @property {string} payment_identifier - Payment identifier
- */
-/**
  * @typedef PaymentModeList
  * @property {string} aggregator_name - Aggregator_name
  * @property {string} [card_brand] - Card_brand
@@ -610,9 +568,8 @@ export = PaymentApplicationModel;
  *   Intent_app_error_dict_list
  * @property {string[]} [intent_app_error_list] - Intent_app_error_list
  * @property {boolean} [intent_flow] - Intent_flow
- * @property {PaymentModeLogo} [logo_url]
+ * @property {Object} [logo_url] - Logo
  * @property {string} [merchant_code] - Merchant code
- * @property {Object} [meta] - Payment methods meta
  * @property {string} [name] - Name
  * @property {string} [nickname] - Nickname
  * @property {number} [remaining_limit] - Remaining limit
@@ -626,52 +583,13 @@ export = PaymentApplicationModel;
  */
 /**
  * @typedef PaymentModeRouteResponse
- * @property {AdvancePaymentObject[]} [advance_payment] - Advance Payment Array
- * @property {Object} [payment_breakup] - Payment Breakup for advance payment
- * @property {PaymentOptionAndFlow} payment_options
+ * @property {PaymentOptionAndFlow} payment_options - Payment_options
  * @property {boolean} success - Response is successful or not
  */
 /**
  * @typedef PaymentOptionAndFlow
- * @property {PaymentFlow} payment_flows
- * @property {RootPaymentMode} payment_option
- */
-/**
- * @typedef PaymentOrderData
- * @property {string} [aggregator] - Aggregator name
- * @property {number} [amount] - Amount
- * @property {string} [callback_url] - Callback url for aggregator
- * @property {string} [contact] - Mobile number
- * @property {string} [currency] - Currency
- * @property {string} [customer_id] - Aggregator customer id
- * @property {string} [email] - Email
- * @property {string} [merchant_order_id] - Merchant order id
- * @property {string} [method] - Method
- * @property {string} [order_id] - Aggregator order id
- */
-/**
- * @typedef PaymentOrderMethods
- * @property {number} amount - Amount to be collected
- * @property {PaymentMethodsMetaOrder} meta
- * @property {string} mode - Payment mode
- * @property {string} name - Payment mode name
- * @property {string} [payment] - Payment type i.e. Required / Blocked
- */
-/**
- * @typedef PaymentOrderRequest
- * @property {string} order_id - Order id
- * @property {PaymentOrderMethods[]} [payment_methods]
- * @property {string} [shipment_id] - Shipment_id
- */
-/**
- * @typedef PaymentOrderResponse
- * @property {string} [callback_url] - Callback url for aggregator
- * @property {PaymentOrderData} [data]
- * @property {string} message - Message
- * @property {string} [order_id] - Merchant order id
- * @property {string} [payment_confirm_url] - Payment confirm url for aggregator
- * @property {number} status_code - HTTP status code
- * @property {boolean} success - Successful or failure
+ * @property {PaymentFlow} payment_flows - Payment_flows
+ * @property {RootPaymentMode[]} payment_option - Payment options
  */
 /**
  * @typedef PaymentStatusUpdateRequest
@@ -712,7 +630,7 @@ export = PaymentApplicationModel;
  */
 /**
  * @typedef RedirectToAggregatorResponse
- * @property {RedirectURL} data
+ * @property {RedirectURL} data - Redirect URL.
  * @property {boolean} success - Status updated or not.
  */
 /**
@@ -744,7 +662,7 @@ export = PaymentApplicationModel;
  */
 /**
  * @typedef ResendOrCancelPaymentResponse
- * @property {LinkStatus} data
+ * @property {LinkStatus} data - Data about link action status.
  * @property {boolean} success - Response is successful or not.
  */
 /**
@@ -774,7 +692,7 @@ export = PaymentApplicationModel;
  */
 /**
  * @typedef RupifiBannerResponse
- * @property {RupifiBannerData} data
+ * @property {RupifiBannerData} data - Rupifi KYC banner details.
  * @property {boolean} success - Successful or not.
  */
 /**
@@ -786,12 +704,6 @@ export = PaymentApplicationModel;
  * @typedef SetDefaultBeneficiaryResponse
  * @property {boolean} is_beneficiary_set - Boolean Flag whether Beneficiary set or not
  * @property {boolean} [success] - Response is successful or not
- */
-/**
- * @typedef SplitObject
- * @property {number} [amount_remaining] - Amount pending to be paid
- * @property {number} [splits_remaining] - Number of splits remaining
- * @property {number} [total_number_of_splits] - Maximum amount of splits allowed
  */
 /**
  * @typedef TransferItemsDetails
@@ -821,7 +733,7 @@ export = PaymentApplicationModel;
  */
 /**
  * @typedef UserPersonalInfoInDetails
- * @property {KYCAddress} address_as_per_id
+ * @property {KYCAddress} address_as_per_id - Address details
  * @property {string} dob - DOB
  * @property {string} [driving_license] - Driver License
  * @property {string} [email] - Email
@@ -868,19 +780,8 @@ export = PaymentApplicationModel;
  */
 /**
  * @typedef ValidateVPAResponse
- * @property {ValidateUPI} data
+ * @property {ValidateUPI} data - Data about UPI ID validate.
  * @property {boolean} success - Response is successful or not.
- */
-/**
- * @typedef WalletDelinkRequestSchema
- * @property {string} aggregator - Aggregator Name
- * @property {string} wallet_code - Wallet Code
- */
-/**
- * @typedef WalletLinkRequestSchema
- * @property {string} aggregator - Aggregator Name
- * @property {string} mobile - Mobile Number for Wallet
- * @property {string} wallet_code - Wallet Code
  */
 /**
  * @typedef WalletOtpRequest
@@ -895,17 +796,6 @@ export = PaymentApplicationModel;
  * @property {boolean} [success] - Response is successful or not
  */
 /**
- * @typedef WalletResponseSchema
- * @property {Object} data - Response received from aggregator
- * @property {boolean} success - Success/Failure of the API call
- */
-/**
- * @typedef WalletVerifyRequestSchema
- * @property {string} aggregator - Aggregator Name
- * @property {string} link_token - Token for wallet linking
- * @property {number} otp - OTP received for wallet linking
- */
-/**
  * @typedef WrongOtpError
  * @property {string} description - Wrong OTP Code
  * @property {boolean} is_verified_flag - Vefified flag.
@@ -914,11 +804,14 @@ export = PaymentApplicationModel;
 declare class PaymentApplicationModel {
 }
 declare namespace PaymentApplicationModel {
-    export { ActiveCardPaymentGatewayResponse, AddBeneficiaryDetailsOTPRequest, AddBeneficiaryDetailsRequest, AddBeneficiaryViaOtpVerificationRequest, AddBeneficiaryViaOtpVerificationResponse, AdvanceObject, AdvancePaymentObject, AggregatorConfigDetail, AggregatorRoute, AggregatorsConfigDetailResponse, AttachCardRequest, AttachCardsResponse, BalanceDetails, BankDetailsForOTP, BeneficiaryModeDetails, BusinessDetails, CancelOrResendPaymentLinkRequest, CancelPaymentLinkResponse, Card, CardDetails, CardDetailsResponse, CardPaymentGateway, ChargeCustomerRequest, ChargeCustomerResponse, CheckCreditResponse, CreateOrderUserData, CreateOrderUserPaymentMethods, CreateOrderUserRequest, CreateOrderUserResponse, CreatePaymentLinkMeta, CreatePaymentLinkRequest, CreatePaymentLinkResponse, CreditDetail, CreditSummary, CustomerCreditSummaryResponse, CustomerOnboardingRequest, CustomerOnboardingResponse, DeleteCardsResponse, DeletehCardRequest, DeviceDetails, EpaylaterBannerData, EpaylaterBannerResponse, ErrorCodeAndDescription, ErrorCodeDescription, ErrorDescription, ErrorResponse, GetPaymentLinkResponse, HttpErrorCodeAndResponse, IfscCodeResponse, IntentApp, IntentAppErrorList, KYCAddress, LinkStatus, ListCardsResponse, MarketplaceInfo, NotFoundResourceError, OnboardSummary, OrderBeneficiaryDetails, OrderBeneficiaryResponse, OutstandingOrderDetailsResponse, PaidOrderDetailsResponse, PaymentFlow, PaymentInitializationRequest, PaymentInitializationResponse, PaymentMethodsMeta, PaymentMethodsMetaOrder, PaymentModeList, PaymentModeLogo, PaymentModeRouteResponse, PaymentOptionAndFlow, PaymentOrderData, PaymentOrderMethods, PaymentOrderRequest, PaymentOrderResponse, PaymentStatusUpdateRequest, PaymentStatusUpdateResponse, PollingPaymentLinkResponse, RedirectToAggregatorResponse, RedirectURL, RefundAccountResponse, renderHTMLRequest, renderHTMLResponse, ResendOrCancelPaymentRequest, ResendOrCancelPaymentResponse, ResendPaymentLinkResponse, RootPaymentMode, RupifiBannerData, RupifiBannerResponse, SetDefaultBeneficiaryRequest, SetDefaultBeneficiaryResponse, SplitObject, TransferItemsDetails, TransferModeDetails, TransferModeResponse, UpdateRefundTransferModeRequest, UpdateRefundTransferModeResponse, UserPersonalInfoInDetails, ValidateCustomerRequest, ValidateCustomerResponse, ValidateUPI, ValidateVPARequest, ValidateVPAResponse, WalletDelinkRequestSchema, WalletLinkRequestSchema, WalletOtpRequest, WalletOtpResponse, WalletResponseSchema, WalletVerifyRequestSchema, WrongOtpError };
+    export { ActiveCardPaymentGatewayResponse, AddBeneficiaryDetailsOTPRequest, AddBeneficiaryDetailsRequest, AddBeneficiaryViaOtpVerificationRequest, AddBeneficiaryViaOtpVerificationResponse, AggregatorConfigDetail, AggregatorRoute, AggregatorsConfigDetailResponse, AttachCardRequest, AttachCardsResponse, BalanceDetails, BankDetailsForOTP, BeneficiaryModeDetails, BusinessDetails, CancelOrResendPaymentLinkRequest, CancelPaymentLinkResponse, Card, CardDetails, CardDetailsResponse, CardPaymentGateway, ChargeCustomerRequest, ChargeCustomerResponse, CheckCreditResponse, CreateOrderUserData, CreateOrderUserPaymentMethods, CreateOrderUserRequest, CreateOrderUserResponse, CreatePaymentLinkMeta, CreatePaymentLinkRequest, CreatePaymentLinkResponse, CreditDetail, CreditSummary, CustomerCreditSummaryResponse, CustomerOnboardingRequest, CustomerOnboardingResponse, DeleteCardsResponse, DeletehCardRequest, DeviceDetails, EpaylaterBannerData, EpaylaterBannerResponse, ErrorCodeAndDescription, ErrorCodeDescription, ErrorDescription, ErrorResponse, GetPaymentLinkResponse, HttpErrorCodeAndResponse, IfscCodeResponse, IntentApp, IntentAppErrorList, KYCAddress, LinkStatus, ListCardsResponse, MarketplaceInfo, NotFoundResourceError, OnboardSummary, OrderBeneficiaryDetails, OrderBeneficiaryResponse, OutstandingOrderDetailsResponse, PaidOrderDetailsResponse, PaymentFlow, PaymentInitializationRequest, PaymentInitializationResponse, PaymentMethodsMeta, PaymentModeList, PaymentModeLogo, PaymentModeRouteResponse, PaymentOptionAndFlow, PaymentStatusUpdateRequest, PaymentStatusUpdateResponse, PollingPaymentLinkResponse, RedirectToAggregatorResponse, RedirectURL, RefundAccountResponse, renderHTMLRequest, renderHTMLResponse, ResendOrCancelPaymentRequest, ResendOrCancelPaymentResponse, ResendPaymentLinkResponse, RootPaymentMode, RupifiBannerData, RupifiBannerResponse, SetDefaultBeneficiaryRequest, SetDefaultBeneficiaryResponse, TransferItemsDetails, TransferModeDetails, TransferModeResponse, UpdateRefundTransferModeRequest, UpdateRefundTransferModeResponse, UserPersonalInfoInDetails, ValidateCustomerRequest, ValidateCustomerResponse, ValidateUPI, ValidateVPARequest, ValidateVPAResponse, WalletOtpRequest, WalletOtpResponse, WrongOtpError };
 }
 /** @returns {ActiveCardPaymentGatewayResponse} */
 declare function ActiveCardPaymentGatewayResponse(): ActiveCardPaymentGatewayResponse;
 type ActiveCardPaymentGatewayResponse = {
+    /**
+     * - Card's payment gateway with customer id.
+     */
     cards: CardPaymentGateway;
     /**
      * - Human readable message.
@@ -943,6 +836,9 @@ type AddBeneficiaryDetailsRequest = {
      * False if by User
      */
     delights: boolean;
+    /**
+     * - Beneficiary bank details
+     */
     details: BeneficiaryModeDetails;
     /**
      * - Merchant Order Id
@@ -986,81 +882,6 @@ type AddBeneficiaryViaOtpVerificationResponse = {
      * - Response is successful or not
      */
     success?: boolean;
-};
-/** @returns {AdvanceObject} */
-declare function AdvanceObject(): AdvanceObject;
-type AdvanceObject = {
-    /**
-     * - All available types of prepayment
-     */
-    all_prepayment_type?: string[];
-    /**
-     * - Is custom advance amount allowed?
-     */
-    allow_custom_advance_amount?: boolean;
-    /**
-     * - Amount for Payment Breakdown
-     */
-    amount?: number;
-    /**
-     * - Type of cancellation
-     */
-    cancellation_type?: string;
-    /**
-     * - The description for Advance Payment (user
-     * configured)
-     */
-    description?: string;
-    /**
-     * - The display name for Advance payment
-     */
-    display_name?: string;
-    /**
-     * - Is Advance Payment active
-     */
-    is_active?: boolean;
-    /**
-     * - Type of prepayment value
-     */
-    prepayment_type?: string;
-    /**
-     * - Value for prepayment in advance payment
-     */
-    prepayment_value?: number;
-    /**
-     * - Time limit for processing refund
-     */
-    refund_time_limit?: number;
-    /**
-     * - Time unit for refunds
-     */
-    time_unit?: string;
-};
-/** @returns {AdvancePaymentObject} */
-declare function AdvancePaymentObject(): AdvancePaymentObject;
-type AdvancePaymentObject = {
-    advance?: AdvanceObject;
-    /**
-     * - Display name for Advance Payment Mode
-     */
-    display_name?: string;
-    /**
-     * - Display Priority for Payment Option
-     */
-    display_priority?: number;
-    /**
-     * - Payment mode
-     */
-    list?: PaymentModeList[];
-    /**
-     * - Name of Advance Payment Mode
-     */
-    name?: string;
-    /**
-     * - Payment Mode ID for Advance Payment Option
-     */
-    payment_mode_id?: number;
-    split?: SplitObject;
 };
 /** @returns {AggregatorConfigDetail} */
 declare function AggregatorConfigDetail(): AggregatorConfigDetail;
@@ -1243,6 +1064,9 @@ type BeneficiaryModeDetails = {
 /** @returns {BusinessDetails} */
 declare function BusinessDetails(): BusinessDetails;
 type BusinessDetails = {
+    /**
+     * - Address details
+     */
     address?: KYCAddress;
     /**
      * - Business Ownershipp type(e.g Rented)
@@ -1453,6 +1277,9 @@ type CardDetails = {
 /** @returns {CardDetailsResponse} */
 declare function CardDetailsResponse(): CardDetailsResponse;
 type CardDetailsResponse = {
+    /**
+     * - Saved Card Details
+     */
     data: CardDetails;
     /**
      * - Response is successful or not.
@@ -1534,6 +1361,9 @@ type ChargeCustomerResponse = {
 /** @returns {CheckCreditResponse} */
 declare function CheckCreditResponse(): CheckCreditResponse;
 type CheckCreditResponse = {
+    /**
+     * - Credit summary of user.
+     */
     data: CreditDetail;
     /**
      * - Operation is successful or not.
@@ -1587,6 +1417,9 @@ type CreateOrderUserData = {
 /** @returns {CreateOrderUserPaymentMethods} */
 declare function CreateOrderUserPaymentMethods(): CreateOrderUserPaymentMethods;
 type CreateOrderUserPaymentMethods = {
+    /**
+     * - Meta
+     */
     meta: PaymentMethodsMeta;
     /**
      * - Payment mode
@@ -1616,6 +1449,9 @@ type CreateOrderUserRequest = {
      * - Unique id of payment link
      */
     payment_link_id: string;
+    /**
+     * - Payment method details
+     */
     payment_methods: CreateOrderUserPaymentMethods;
     /**
      * - Success page url
@@ -1658,6 +1494,7 @@ type CreatePaymentLinkMeta = {
     assign_card_id?: string;
     cart_id: string;
     checkout_mode: string;
+    pincode: string;
 };
 /** @returns {CreatePaymentLinkRequest} */
 declare function CreatePaymentLinkRequest(): CreatePaymentLinkRequest;
@@ -1678,6 +1515,9 @@ type CreatePaymentLinkRequest = {
      * - Merchant order id
      */
     external_order_id: string;
+    /**
+     * - Meta
+     */
     meta: CreatePaymentLinkMeta;
     /**
      * - Mobile number to which the payment link is
@@ -1733,10 +1573,12 @@ type CreditDetail = {
 declare function CreditSummary(): CreditSummary;
 type CreditSummary = {
     /**
-     * - Url for activation
+     * - Credit summary of user.
      */
-    activation_url?: string;
     amount_available?: BalanceDetails;
+    /**
+     * - Credit summary of user.
+     */
     balance?: BalanceDetails;
     /**
      * - Status from Credit aggregator's end
@@ -1746,28 +1588,10 @@ type CreditSummary = {
      * - ID at Credit aggregator's end
      */
     credit_line_id?: string;
-    due_amount?: BalanceDetails;
-    /**
-     * - Due date for repayment
-     */
-    due_date?: string;
-    /**
-     * - Eligiblity flag to complete transaction
-     */
-    is_eligible_for_txn?: boolean;
-    limit?: BalanceDetails;
     /**
      * - Unique aggregator customer id
      */
     merchant_customer_ref_id?: string;
-    /**
-     * - Url for repayment
-     */
-    repayment_url?: string;
-    /**
-     * - Statement of accounts. Show payment history.
-     */
-    soa_url?: string;
     /**
      * - Customer Credit status
      */
@@ -1776,11 +1600,13 @@ type CreditSummary = {
      * - Message to customer
      */
     status_message?: string;
-    total_due_amount?: BalanceDetails;
 };
 /** @returns {CustomerCreditSummaryResponse} */
 declare function CustomerCreditSummaryResponse(): CustomerCreditSummaryResponse;
 type CustomerCreditSummaryResponse = {
+    /**
+     * - Credit summary of user.
+     */
     data?: CreditSummary;
     /**
      * - Payment confirmation updated or not.
@@ -1794,14 +1620,26 @@ type CustomerOnboardingRequest = {
      * - Aggregator Name
      */
     aggregator: string;
+    /**
+     * - Business summary.
+     */
     business_info?: BusinessDetails;
+    /**
+     * - Device Details.
+     */
     device?: DeviceDetails;
+    /**
+     * - Market Place info.
+     */
     marketplace_info?: MarketplaceInfo;
     /**
      * - Mcc
      */
     mcc?: string;
-    personal_info?: UserPersonalInfoInDetails;
+    /**
+     * - Credit summary of user.
+     */
+    personal_info: UserPersonalInfoInDetails;
     /**
      * - CallbackURL
      */
@@ -1810,6 +1648,9 @@ type CustomerOnboardingRequest = {
 /** @returns {CustomerOnboardingResponse} */
 declare function CustomerOnboardingResponse(): CustomerOnboardingResponse;
 type CustomerOnboardingResponse = {
+    /**
+     * - Redirect URL.
+     */
     data: OnboardSummary;
     /**
      * - Status updated or not.
@@ -1887,6 +1728,9 @@ type EpaylaterBannerData = {
 /** @returns {EpaylaterBannerResponse} */
 declare function EpaylaterBannerResponse(): EpaylaterBannerResponse;
 type EpaylaterBannerResponse = {
+    /**
+     * - Epaylater KYC banner details.
+     */
     data: EpaylaterBannerData;
     /**
      * - Successful or not.
@@ -1960,7 +1804,7 @@ type ErrorDescription = {
 /** @returns {ErrorResponse} */
 declare function ErrorResponse(): ErrorResponse;
 type ErrorResponse = {
-    error?: ErrorDescription;
+    error?: any;
     /**
      * - Message
      */
@@ -2050,7 +1894,10 @@ type IntentApp = {
      * - Display_name
      */
     display_name?: string;
-    logos?: PaymentModeLogo;
+    /**
+     * - Logos
+     */
+    logos?: any;
     /**
      * - Package_name
      */
@@ -2164,33 +2011,17 @@ type NotFoundResourceError = {
 declare function OnboardSummary(): OnboardSummary;
 type OnboardSummary = {
     /**
-     * - Url for activation
-     */
-    activation_url?: string;
-    /**
-     * - Whether is eligible for transaction
-     */
-    is_eligible_for_txn?: boolean;
-    /**
-     * - Rupifi customer ID
-     */
-    merchant_customer_ref_id?: string;
-    /**
      * - URL to which the user may redirect.
      */
-    redirect_url?: string;
+    redirect_url: string;
     /**
      * - User Session
      */
-    session?: any;
+    session: any;
     /**
-     * - Transaction status
+     * - Operation Status
      */
     status: boolean;
-    /**
-     * - Decription of status
-     */
-    status_remark?: string;
 };
 /** @returns {OrderBeneficiaryDetails} */
 declare function OrderBeneficiaryDetails(): OrderBeneficiaryDetails;
@@ -2327,20 +2158,62 @@ type PaidOrderDetailsResponse = {
 /** @returns {PaymentFlow} */
 declare function PaymentFlow(): PaymentFlow;
 type PaymentFlow = {
-    ajiodhan?: AggregatorRoute;
-    bqr_razorpay?: AggregatorRoute;
-    ccavenue?: AggregatorRoute;
-    epaylater?: AggregatorRoute;
-    fynd?: AggregatorRoute;
-    jiopay?: AggregatorRoute;
-    juspay?: AggregatorRoute;
-    mswipe?: AggregatorRoute;
-    payubiz?: AggregatorRoute;
-    razorpay?: AggregatorRoute;
-    rupifi?: AggregatorRoute;
-    simpl?: AggregatorRoute;
-    stripe?: AggregatorRoute;
-    upi_razorpay?: AggregatorRoute;
+    /**
+     * - Ajiodhan
+     */
+    ajiodhan?: any;
+    /**
+     * - BQR_Razorpay
+     */
+    bqr_razorpay?: any;
+    /**
+     * - Ccavenue
+     */
+    ccavenue?: any;
+    /**
+     * - Epaylater
+     */
+    epaylater?: any;
+    /**
+     * - Fynd
+     */
+    fynd?: any;
+    /**
+     * - Jiopay
+     */
+    jiopay?: any;
+    /**
+     * - Juspay
+     */
+    juspay?: any;
+    /**
+     * - Mswipe
+     */
+    mswipe?: any;
+    /**
+     * - Payubiz
+     */
+    payubiz?: any;
+    /**
+     * - Razorpay
+     */
+    razorpay?: any;
+    /**
+     * - Rupifi
+     */
+    rupifi?: any;
+    /**
+     * - Simpl
+     */
+    simpl?: any;
+    /**
+     * - Stripe
+     */
+    stripe?: any;
+    /**
+     * - UPI_Razorpay
+     */
+    upi_razorpay?: any;
 };
 /** @returns {PaymentInitializationRequest} */
 declare function PaymentInitializationRequest(): PaymentInitializationRequest;
@@ -2486,22 +2359,6 @@ type PaymentMethodsMeta = {
      */
     payment_identifier: string;
 };
-/** @returns {PaymentMethodsMetaOrder} */
-declare function PaymentMethodsMetaOrder(): PaymentMethodsMetaOrder;
-type PaymentMethodsMetaOrder = {
-    /**
-     * - Merchant code
-     */
-    merchant_code: string;
-    /**
-     * - Payment gateway name
-     */
-    payment_gateway: string;
-    /**
-     * - Payment identifier
-     */
-    payment_identifier: string;
-};
 /** @returns {PaymentModeList} */
 declare function PaymentModeList(): PaymentModeList;
 type PaymentModeList = {
@@ -2611,15 +2468,14 @@ type PaymentModeList = {
      * - Intent_flow
      */
     intent_flow?: boolean;
-    logo_url?: PaymentModeLogo;
+    /**
+     * - Logo
+     */
+    logo_url?: any;
     /**
      * - Merchant code
      */
     merchant_code?: string;
-    /**
-     * - Payment methods meta
-     */
-    meta?: any;
     /**
      * - Name
      */
@@ -2657,13 +2513,8 @@ type PaymentModeLogo = {
 declare function PaymentModeRouteResponse(): PaymentModeRouteResponse;
 type PaymentModeRouteResponse = {
     /**
-     * - Advance Payment Array
+     * - Payment_options
      */
-    advance_payment?: AdvancePaymentObject[];
-    /**
-     * - Payment Breakup for advance payment
-     */
-    payment_breakup?: any;
     payment_options: PaymentOptionAndFlow;
     /**
      * - Response is successful or not
@@ -2673,115 +2524,14 @@ type PaymentModeRouteResponse = {
 /** @returns {PaymentOptionAndFlow} */
 declare function PaymentOptionAndFlow(): PaymentOptionAndFlow;
 type PaymentOptionAndFlow = {
+    /**
+     * - Payment_flows
+     */
     payment_flows: PaymentFlow;
-    payment_option: RootPaymentMode;
-};
-/** @returns {PaymentOrderData} */
-declare function PaymentOrderData(): PaymentOrderData;
-type PaymentOrderData = {
     /**
-     * - Aggregator name
+     * - Payment options
      */
-    aggregator?: string;
-    /**
-     * - Amount
-     */
-    amount?: number;
-    /**
-     * - Callback url for aggregator
-     */
-    callback_url?: string;
-    /**
-     * - Mobile number
-     */
-    contact?: string;
-    /**
-     * - Currency
-     */
-    currency?: string;
-    /**
-     * - Aggregator customer id
-     */
-    customer_id?: string;
-    /**
-     * - Email
-     */
-    email?: string;
-    /**
-     * - Merchant order id
-     */
-    merchant_order_id?: string;
-    /**
-     * - Method
-     */
-    method?: string;
-    /**
-     * - Aggregator order id
-     */
-    order_id?: string;
-};
-/** @returns {PaymentOrderMethods} */
-declare function PaymentOrderMethods(): PaymentOrderMethods;
-type PaymentOrderMethods = {
-    /**
-     * - Amount to be collected
-     */
-    amount: number;
-    meta: PaymentMethodsMetaOrder;
-    /**
-     * - Payment mode
-     */
-    mode: string;
-    /**
-     * - Payment mode name
-     */
-    name: string;
-    /**
-     * - Payment type i.e. Required / Blocked
-     */
-    payment?: string;
-};
-/** @returns {PaymentOrderRequest} */
-declare function PaymentOrderRequest(): PaymentOrderRequest;
-type PaymentOrderRequest = {
-    /**
-     * - Order id
-     */
-    order_id: string;
-    payment_methods?: PaymentOrderMethods[];
-    /**
-     * - Shipment_id
-     */
-    shipment_id?: string;
-};
-/** @returns {PaymentOrderResponse} */
-declare function PaymentOrderResponse(): PaymentOrderResponse;
-type PaymentOrderResponse = {
-    /**
-     * - Callback url for aggregator
-     */
-    callback_url?: string;
-    data?: PaymentOrderData;
-    /**
-     * - Message
-     */
-    message: string;
-    /**
-     * - Merchant order id
-     */
-    order_id?: string;
-    /**
-     * - Payment confirm url for aggregator
-     */
-    payment_confirm_url?: string;
-    /**
-     * - HTTP status code
-     */
-    status_code: number;
-    /**
-     * - Successful or failure
-     */
-    success: boolean;
+    payment_option: RootPaymentMode[];
 };
 /** @returns {PaymentStatusUpdateRequest} */
 declare function PaymentStatusUpdateRequest(): PaymentStatusUpdateRequest;
@@ -2910,6 +2660,9 @@ type PollingPaymentLinkResponse = {
 /** @returns {RedirectToAggregatorResponse} */
 declare function RedirectToAggregatorResponse(): RedirectToAggregatorResponse;
 type RedirectToAggregatorResponse = {
+    /**
+     * - Redirect URL.
+     */
     data: RedirectURL;
     /**
      * - Status updated or not.
@@ -2984,6 +2737,9 @@ type ResendOrCancelPaymentRequest = {
 /** @returns {ResendOrCancelPaymentResponse} */
 declare function ResendOrCancelPaymentResponse(): ResendOrCancelPaymentResponse;
 type ResendOrCancelPaymentResponse = {
+    /**
+     * - Data about link action status.
+     */
     data: LinkStatus;
     /**
      * - Response is successful or not.
@@ -3066,6 +2822,9 @@ type RupifiBannerData = {
 /** @returns {RupifiBannerResponse} */
 declare function RupifiBannerResponse(): RupifiBannerResponse;
 type RupifiBannerResponse = {
+    /**
+     * - Rupifi KYC banner details.
+     */
     data: RupifiBannerData;
     /**
      * - Successful or not.
@@ -3095,22 +2854,6 @@ type SetDefaultBeneficiaryResponse = {
      * - Response is successful or not
      */
     success?: boolean;
-};
-/** @returns {SplitObject} */
-declare function SplitObject(): SplitObject;
-type SplitObject = {
-    /**
-     * - Amount pending to be paid
-     */
-    amount_remaining?: number;
-    /**
-     * - Number of splits remaining
-     */
-    splits_remaining?: number;
-    /**
-     * - Maximum amount of splits allowed
-     */
-    total_number_of_splits?: number;
 };
 /** @returns {TransferItemsDetails} */
 declare function TransferItemsDetails(): TransferItemsDetails;
@@ -3179,6 +2922,9 @@ type UpdateRefundTransferModeResponse = {
 /** @returns {UserPersonalInfoInDetails} */
 declare function UserPersonalInfoInDetails(): UserPersonalInfoInDetails;
 type UserPersonalInfoInDetails = {
+    /**
+     * - Address details
+     */
     address_as_per_id: KYCAddress;
     /**
      * - DOB
@@ -3324,39 +3070,14 @@ type ValidateVPARequest = {
 /** @returns {ValidateVPAResponse} */
 declare function ValidateVPAResponse(): ValidateVPAResponse;
 type ValidateVPAResponse = {
+    /**
+     * - Data about UPI ID validate.
+     */
     data: ValidateUPI;
     /**
      * - Response is successful or not.
      */
     success: boolean;
-};
-/** @returns {WalletDelinkRequestSchema} */
-declare function WalletDelinkRequestSchema(): WalletDelinkRequestSchema;
-type WalletDelinkRequestSchema = {
-    /**
-     * - Aggregator Name
-     */
-    aggregator: string;
-    /**
-     * - Wallet Code
-     */
-    wallet_code: string;
-};
-/** @returns {WalletLinkRequestSchema} */
-declare function WalletLinkRequestSchema(): WalletLinkRequestSchema;
-type WalletLinkRequestSchema = {
-    /**
-     * - Aggregator Name
-     */
-    aggregator: string;
-    /**
-     * - Mobile Number for Wallet
-     */
-    mobile: string;
-    /**
-     * - Wallet Code
-     */
-    wallet_code: string;
 };
 /** @returns {WalletOtpRequest} */
 declare function WalletOtpRequest(): WalletOtpRequest;
@@ -3386,34 +3107,6 @@ type WalletOtpResponse = {
      * - Response is successful or not
      */
     success?: boolean;
-};
-/** @returns {WalletResponseSchema} */
-declare function WalletResponseSchema(): WalletResponseSchema;
-type WalletResponseSchema = {
-    /**
-     * - Response received from aggregator
-     */
-    data: any;
-    /**
-     * - Success/Failure of the API call
-     */
-    success: boolean;
-};
-/** @returns {WalletVerifyRequestSchema} */
-declare function WalletVerifyRequestSchema(): WalletVerifyRequestSchema;
-type WalletVerifyRequestSchema = {
-    /**
-     * - Aggregator Name
-     */
-    aggregator: string;
-    /**
-     * - Token for wallet linking
-     */
-    link_token: string;
-    /**
-     * - OTP received for wallet linking
-     */
-    otp: number;
 };
 /** @returns {WrongOtpError} */
 declare function WrongOtpError(): WrongOtpError;

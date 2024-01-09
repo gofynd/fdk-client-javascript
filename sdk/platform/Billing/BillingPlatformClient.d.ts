@@ -104,7 +104,7 @@ declare class Billing {
      * @summary: Get subscription subscription limits
      * @description: Get subscription subscription limits. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getFeatureLimitConfig/).
      */
-    getFeatureLimitConfig({ productSuite, type, requestHeaders }?: BillingPlatformValidator.GetFeatureLimitConfigParam, { responseHeaders }?: object): Promise<BillingPlatformModel.SubscriptionLimit>;
+    getFeatureLimitConfig({ requestHeaders }?: any, { responseHeaders }?: object): Promise<BillingPlatformModel.SubscriptionLimit>;
     /**
      * @param {BillingPlatformValidator.GetInvoiceByIdParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -146,16 +146,6 @@ declare class Billing {
      * @description: Get created subscription charge details - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getSubscriptionCharge/).
      */
     getSubscriptionCharge({ extensionId, subscriptionId, requestHeaders }?: BillingPlatformValidator.GetSubscriptionChargeParam, { responseHeaders }?: object): Promise<BillingPlatformModel.EntitySubscription>;
-    /**
-     * @param {BillingPlatformValidator.GetentityDetailParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<BillingPlatformModel.EntityResponse>} - Success response
-     * @name getentityDetail
-     * @summary: Generic api to get the entity detail
-     * @description: Generic api to get the entity detail - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/billing/getentityDetail/).
-     */
-    getentityDetail({ entityName, channel, entityId, component, componentName, requestHeaders, }?: BillingPlatformValidator.GetentityDetailParam, { responseHeaders }?: object): Promise<BillingPlatformModel.EntityResponse>;
     /**
      * @param {BillingPlatformValidator.PlanStatusUpdateParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

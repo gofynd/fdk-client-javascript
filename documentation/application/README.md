@@ -3,19 +3,19 @@
 # FDK Application Front API Documentaion
 
 
-* [Cart](CART.md) - The Cart and Checkout module manages cart items, applies coupons and reward points, and allows you to select delivery addresses. This module also enables you to update payment information and view ongoing promotions. Additionally, it manages cart sharing, merging, and replacing, as well as providing details on shared carts. 
-* [Catalog](CATALOG.md) - The Catalog module manages product details and size availability, and enables easy comparisons. Use it to explore product options, check stock status, and retrieve brand and category information. The module also supports personalization by allowing tracking of preferred items and brands. It highlights popular products based on user engagement and provides store details. Additionally, this module covers bundled items, size-specific pricing, and seller information. 
+* [Cart](CART.md) - Manages Cart, Coupons, Promotions, Checkout 
+* [Catalog](CATALOG.md) - Catalog API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.  
 * [Common](COMMON.md) - Application configuration apis 
-* [Communication](COMMUNICATION.md) - The Communications module manages user notifications to keep users informed and engaged through personalized push notifications. Use it to enable users to view notifications they've opted into, modify their communication preferences, and update push tokens for real-time updates. 
-* [Configuration](CONFIGURATION.md) - The Application Configuration module simplifies tasks related to configuring the app. You can use it to retrieve information about sales channels, ownership details, app-specific settings, and integration tokens. This module also offers insights into store performance, ordering options, and available modules. It allows you to access currency information, support multiple languages, and customize store cookies for a personalized user experience. Additionally, the module can retrieve the staff list. 
-* [Content](CONTENT.md) - The Content module manages content in the application. Use it to help users stay updated with announcements, read blog posts, manage data loaders, consult FAQs, and access legal and support information. It also enhances navigation modules and SEO capabilities for better online visibility, as well as supports slideshow interactions. 
-* [FileStorage](FILESTORAGE.md) - The File Storage module simplifies your file upload and storage tasks. Use the 'Initiate Upload' module to start and complete file uploads. Once the upload is successful, employ the 'Complete Upload' module to retrieve the file's URL. For added security, utilize the 'Sign URLs' module, which grants authorized access through signed URLs. 
-* [Lead](LEAD.md) - The Leads Management module improves communication, support, and effective interaction. Utilize it to retrieve user tickets, create ticket histories, and generate new tickets. This module also enables you to set up video rooms for participants, providing room tokens for secure access. 
-* [Logistic](LOGISTIC.md) - The Logistics module enhances delivery operations efficiency. It enables you to retrieve data and calculate precise delivery times. You can utilize the Country Information module to serve a global customer base and implement zone mapping for efficient delivery route planning. Additionally, this module offers the capability to optimize store assignments based on various criteria, including products, settings, and ignored locations. Furthermore, it supports Custom Packaging to enhance shipment creation. 
-* [Order](ORDER.md) - The Order and Shipment module is designed for retrieving application-specific orders, accessing order details, and obtaining shipment and invoice information. This module facilitates shipment tracking, allows customization of shipment details, and provides reasons for cancellations and returns. Additionally, it offers real-time shipment status updates. 
-* [Payment](PAYMENT.md) - The Payment module lists cards and payment modes, allows for the selection of payment modes during checkout, handles refunds, validates customers, and ensures the security of transactions. 
-* [PosCart](POSCART.md) - The POS Cart module optimizes the shopping and checkout experience. Use it to manage cart items, apply discounts, update addresses, and choose delivery options. It also supports shared cart options for collaborative shopping. 
-* [Rewards](REWARDS.md) - The Rewards Points module manages loyalty and rewards programs. Use it to search for offers by name, track user points, monitor referrals, and apply order discounts. The module also supports the use of referral codes, allowing users to earn rewards for both themselves and their referrers. 
-* [Share](SHARE.md) - The Sharing module simplifies the creation and sharing of QR codes and short links. Use it to generate QR codes for apps, products, collections, and URLs. Create short links for long URLs and retrieve them, along with the original URLs, using their respective codes. 
-* [Theme](THEME.md) - The Theme module makes theme management more efficient and effective. It allows you to view all theme pages, obtain details about specific theme pages, check the current app theme, and preview and test themes before applying them live. 
-* [User](USER.md) - The User Authentication module prioritizes security, offering multiple login options, password management, and profile updates. This module allows users to log in using social accounts, mobile OTPs, or passwords, and also enables secure password resets. It manages mobile and email verification, profile details, and session information. 
+* [Communication](COMMUNICATION.md) - Manages email, sms, push notifications sent to users 
+* [Configuration](CONFIGURATION.md) - Application configuration apis 
+* [Content](CONTENT.md) - Content System 
+* [FileStorage](FILESTORAGE.md) - File Storage 
+* [Lead](LEAD.md) - Handles communication between Staff and Users 
+* [Logistic](LOGISTIC.md) - Logistics Promise Engine APIs allows you to configure zone, pincode, TAT, logistics and many more useful features.  
+* [Order](ORDER.md) - Handles all Application order and shipment api(s) 
+* [Payment](PAYMENT.md) - Collect payment through many payment gateway i.e Stripe, Razorpay, Juspay etc.into Fynd or Self account 
+* [PosCart](POSCART.md) - Cart APIs 
+* [Rewards](REWARDS.md) - Earn and redeem reward points 
+* [Share](SHARE.md) - Short link and QR Code 
+* [Theme](THEME.md) - Responsible for Storefront 
+* [User](USER.md) - Authentication Service 

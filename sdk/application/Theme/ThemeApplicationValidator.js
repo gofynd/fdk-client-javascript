@@ -13,8 +13,6 @@ const ThemeApplicationModel = require("./ThemeApplicationModel");
  * @typedef GetPageParam
  * @property {string} themeId - ID of the theme to be retrieved
  * @property {string} pageValue - Value of the page to be retrieved
- * @property {string} [filters] - Filters on sections to be applied or not
- * @property {number} [company] - Company id of the application
  */
 
 /**
@@ -40,8 +38,6 @@ class ThemeApplicationValidator {
     return Joi.object({
       themeId: Joi.string().allow("").required(),
       pageValue: Joi.string().allow("").required(),
-      filters: Joi.string().allow(""),
-      company: Joi.number(),
     }).required();
   }
 

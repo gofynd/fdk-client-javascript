@@ -146,18 +146,6 @@ export = ThemePartnerModel;
  * @property {string} [seller_contact] - Seller contact information
  */
 /**
- * @typedef CreateNewTheme
- * @property {SectionItem[]} available_sections - Available sections information
- * @property {string} [current] - The current configuration
- * @property {GlobalSchema} [global_schema]
- * @property {ThemeConfiguration[]} [list] - A list of configurations
- * @property {string} name - The name of the theme
- * @property {Page[]} [pages]
- * @property {Preset} [preset]
- * @property {string} theme_type - Type of the Theme
- * @property {string} version - The version of the theme
- */
-/**
  * @typedef CSS
  * @property {string[]} [links]
  */
@@ -337,19 +325,24 @@ export = ThemePartnerModel;
  * @property {MarketplaceTheme[]} [themes]
  */
 /**
+ * @typedef Meta
+ * @property {string} [description] - The description of the theme
+ * @property {Images} [images]
+ * @property {string[]} [industry] - An array of industries associated with the theme
+ * @property {string} [name] - The name of the theme
+ * @property {ThemePayment} [payment]
+ * @property {Release} [release]
+ * @property {string} [slug] - The slug of the theme
+ */
+/**
  * @typedef OverlayPopupSetting
  * @property {string} [dialog_backgroung] - The dialog background color
  * @property {string} [overlay] - The overlay color
  */
 /**
  * @typedef Page
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {boolean} [has_previous]
- * @property {number} [item_total]
- * @property {string} [next_id]
- * @property {number} [size]
- * @property {string} type
+ * @property {Section[]} [sections]
+ * @property {string} [value] - The value of the page.
  */
 /**
  * @typedef PaginationSchema
@@ -470,16 +463,6 @@ export = ThemePartnerModel;
  * @property {string[]} [page] - An array of pages
  */
 /**
- * @typedef ThemeMeta
- * @property {string} [description] - The description of the theme
- * @property {Images} [images]
- * @property {string[]} [industry] - An array of industries associated with the theme
- * @property {string} [name] - The name of the theme
- * @property {ThemePayment} [payment]
- * @property {Release} [release]
- * @property {string} [slug] - The slug of the theme
- */
-/**
  * @typedef ThemePayment
  * @property {number} [amount] - The amount of the theme
  * @property {boolean} [is_paid] - Whether the theme is paid or not
@@ -511,18 +494,16 @@ export = ThemePartnerModel;
  * @property {boolean} [applied] - Whether the theme has been applied or not
  * @property {Assets} [assets]
  * @property {SectionItem[]} [available_sections] - Available sections information
- * @property {number} [company_id] - The company id in which sales channel exists
  * @property {Config} [config]
  * @property {string} [created_at] - The creation timestamp of the theme
  * @property {Font} [font]
  * @property {boolean} [is_private] - Whether the theme is private or not
  * @property {string} [marketplace_theme_id] - The ID of the theme in the marketplace
- * @property {ThemeMeta} [meta]
+ * @property {Meta} [meta]
  * @property {string} [name] - The name of the theme
  * @property {Object} [styles] - The styles associated with the theme
  * @property {string[]} [tags] - An array of tags associated with the theme
  * @property {string} [template_theme_id] - The ID of the template theme
- * @property {string} [theme_type]
  * @property {string} [updated_at] - The last update timestamp of the theme
  * @property {string} [version] - The version of the theme
  */
@@ -564,7 +545,7 @@ export = ThemePartnerModel;
 declare class ThemePartnerModel {
 }
 declare namespace ThemePartnerModel {
-    export { AdvanceSetting, AllAvailablePageSchema, Assets, AuthConfig, AvailablePagePredicate, AvailablePageRoutePredicate, AvailablePageSchema, AvailablePageSchemaSections, AvailablePageScreenPredicate, AvailablePageSectionMetaAttributes, AvailablePageSeo, AvailablePageUserPredicate, BlitzkriegApiErrorSchema, BlitzkriegInternalServerErrorSchema, Block, BlockProps, ButtonSetting, CarouselItem, CatalogSize, CheckboxProp, Colors, Comments, CommonJS, Config, ContactInfo, CreateNewTheme, CSS, CustomConfig, CustomProps, DividerStrokeHighlightSetting, Documentation, ExploreInfo, Feature, FeatureItem, Font, FontVariant, FontVariants, FooterSetting, GeneralSetting, GlobalConfig, GlobalSchema, HeaderSetting, Highlight, ImagePickerProp, Images, MarketplaceTheme, MarketplaceThemeImages, MarketplaceThemeSchema, OverlayPopupSetting, Page, PaginationSchema, PaletteConfig, PaymentInfo, Predicate, Preset, Prop, RangeProp, Release, Route, SaleDiscountSetting, Screen, Section, SectionItem, SectionPreset, SectionProps, StaticConfig, StaticProps, TextProp, TextSetting, ThemeConfiguration, ThemeMeta, ThemePayment, ThemeRejectionReasons, ThemeSetting, ThemesSchema, ThemeUserSchema, UMDJs, UpdateThemeRequestBody, UrlProp, UserAlertsSetting, Variation };
+    export { AdvanceSetting, AllAvailablePageSchema, Assets, AuthConfig, AvailablePagePredicate, AvailablePageRoutePredicate, AvailablePageSchema, AvailablePageSchemaSections, AvailablePageScreenPredicate, AvailablePageSectionMetaAttributes, AvailablePageSeo, AvailablePageUserPredicate, BlitzkriegApiErrorSchema, BlitzkriegInternalServerErrorSchema, Block, BlockProps, ButtonSetting, CarouselItem, CatalogSize, CheckboxProp, Colors, Comments, CommonJS, Config, ContactInfo, CSS, CustomConfig, CustomProps, DividerStrokeHighlightSetting, Documentation, ExploreInfo, Feature, FeatureItem, Font, FontVariant, FontVariants, FooterSetting, GeneralSetting, GlobalConfig, GlobalSchema, HeaderSetting, Highlight, ImagePickerProp, Images, MarketplaceTheme, MarketplaceThemeImages, MarketplaceThemeSchema, Meta, OverlayPopupSetting, Page, PaginationSchema, PaletteConfig, PaymentInfo, Predicate, Preset, Prop, RangeProp, Release, Route, SaleDiscountSetting, Screen, Section, SectionItem, SectionPreset, SectionProps, StaticConfig, StaticProps, TextProp, TextSetting, ThemeConfiguration, ThemePayment, ThemeRejectionReasons, ThemeSetting, ThemesSchema, ThemeUserSchema, UMDJs, UpdateThemeRequestBody, UrlProp, UserAlertsSetting, Variation };
 }
 /** @returns {AdvanceSetting} */
 declare function AdvanceSetting(): AdvanceSetting;
@@ -811,37 +792,6 @@ type ContactInfo = {
      * - Seller contact information
      */
     seller_contact?: string;
-};
-/** @returns {CreateNewTheme} */
-declare function CreateNewTheme(): CreateNewTheme;
-type CreateNewTheme = {
-    /**
-     * - Available sections information
-     */
-    available_sections: SectionItem[];
-    /**
-     * - The current configuration
-     */
-    current?: string;
-    global_schema?: GlobalSchema;
-    /**
-     * - A list of configurations
-     */
-    list?: ThemeConfiguration[];
-    /**
-     * - The name of the theme
-     */
-    name: string;
-    pages?: Page[];
-    preset?: Preset;
-    /**
-     * - Type of the Theme
-     */
-    theme_type: string;
-    /**
-     * - The version of the theme
-     */
-    version: string;
 };
 /** @returns {CSS} */
 declare function CSS(): CSS;
@@ -1269,6 +1219,29 @@ type MarketplaceThemeSchema = {
     page?: PaginationSchema;
     themes?: MarketplaceTheme[];
 };
+/** @returns {Meta} */
+declare function Meta(): Meta;
+type Meta = {
+    /**
+     * - The description of the theme
+     */
+    description?: string;
+    images?: Images;
+    /**
+     * - An array of industries associated with the theme
+     */
+    industry?: string[];
+    /**
+     * - The name of the theme
+     */
+    name?: string;
+    payment?: ThemePayment;
+    release?: Release;
+    /**
+     * - The slug of the theme
+     */
+    slug?: string;
+};
 /** @returns {OverlayPopupSetting} */
 declare function OverlayPopupSetting(): OverlayPopupSetting;
 type OverlayPopupSetting = {
@@ -1284,13 +1257,11 @@ type OverlayPopupSetting = {
 /** @returns {Page} */
 declare function Page(): Page;
 type Page = {
-    current?: number;
-    has_next?: boolean;
-    has_previous?: boolean;
-    item_total?: number;
-    next_id?: string;
-    size?: number;
-    type: string;
+    sections?: Section[];
+    /**
+     * - The value of the page.
+     */
+    value?: string;
 };
 /** @returns {PaginationSchema} */
 declare function PaginationSchema(): PaginationSchema;
@@ -1526,29 +1497,6 @@ type ThemeConfiguration = {
      */
     page?: string[];
 };
-/** @returns {ThemeMeta} */
-declare function ThemeMeta(): ThemeMeta;
-type ThemeMeta = {
-    /**
-     * - The description of the theme
-     */
-    description?: string;
-    images?: Images;
-    /**
-     * - An array of industries associated with the theme
-     */
-    industry?: string[];
-    /**
-     * - The name of the theme
-     */
-    name?: string;
-    payment?: ThemePayment;
-    release?: Release;
-    /**
-     * - The slug of the theme
-     */
-    slug?: string;
-};
 /** @returns {ThemePayment} */
 declare function ThemePayment(): ThemePayment;
 type ThemePayment = {
@@ -1636,10 +1584,6 @@ type ThemesSchema = {
      * - Available sections information
      */
     available_sections?: SectionItem[];
-    /**
-     * - The company id in which sales channel exists
-     */
-    company_id?: number;
     config?: Config;
     /**
      * - The creation timestamp of the theme
@@ -1654,7 +1598,7 @@ type ThemesSchema = {
      * - The ID of the theme in the marketplace
      */
     marketplace_theme_id?: string;
-    meta?: ThemeMeta;
+    meta?: Meta;
     /**
      * - The name of the theme
      */
@@ -1671,7 +1615,6 @@ type ThemesSchema = {
      * - The ID of the template theme
      */
     template_theme_id?: string;
-    theme_type?: string;
     /**
      * - The last update timestamp of the theme
      */

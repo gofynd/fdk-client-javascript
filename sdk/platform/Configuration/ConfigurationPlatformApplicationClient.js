@@ -1,5 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const {
+  FDKClientValidationError,
+  FDKResponseValidationError,
+} = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
 const ConfigurationPlatformApplicationValidator = require("./ConfigurationPlatformApplicationValidator");
 const ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
@@ -416,7 +419,7 @@ class Configuration {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} arg.companyId - Numeric ID allotted to a business account
+   * @param {string} arg.companyId - Numeric ID allotted to a business account
    *   on Fynd Platform
    * @param {string} arg.applicationId - Alphanumeric ID allotted to an
    *   application (sales channel website) created within a business account
@@ -771,7 +774,7 @@ class Configuration {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} arg.companyId - Numeric ID allotted to a business account
+   * @param {string} arg.companyId - Numeric ID allotted to a business account
    *   on Fynd Platform
    * @param {string} arg.applicationId - Alphanumeric ID allotted to an
    *   application (sales channel website) created within a business account
@@ -1524,7 +1527,7 @@ class Configuration {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} arg.companyId - Numeric ID allotted to a business account
+   * @param {string} arg.companyId - Numeric ID allotted to a business account
    *   on Fynd Platform
    * @param {string} arg.applicationId - Alphanumeric ID allotted to an
    *   application (sales channel website) created within a business account
@@ -1736,7 +1739,7 @@ class Configuration {
 
   /**
    * @param {Object} arg - Arg object.
-   * @param {number} arg.companyId - Numeric ID allotted to a business account
+   * @param {string} arg.companyId - Numeric ID allotted to a business account
    *   on Fynd Platform
    * @param {string} arg.applicationId - Alphanumeric ID allotted to an
    *   application (sales channel website) created within a business account

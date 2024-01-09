@@ -94,8 +94,6 @@ export = CartPlatformApplicationValidator;
  * @typedef GetAppCouponsParam
  * @property {string} [id]
  * @property {boolean} [buyNow]
- * @property {string} [slug]
- * @property {string} [storeId]
  */
 /**
  * @typedef GetAvailableDeliveryModesParam
@@ -548,8 +546,6 @@ type GetAddressesParam = {
 type GetAppCouponsParam = {
     id?: string;
     buyNow?: boolean;
-    slug?: string;
-    storeId?: string;
 };
 type GetAvailableDeliveryModesParam = {
     areaCode: string;

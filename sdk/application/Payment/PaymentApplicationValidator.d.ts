@@ -41,10 +41,6 @@ export = PaymentApplicationValidator;
  * @property {PaymentApplicationModel.CreatePaymentLinkRequest} body
  */
 /**
- * @typedef CreatePaymentOrderParam
- * @property {PaymentApplicationModel.PaymentOrderRequest} body
- */
-/**
  * @typedef CustomerCreditSummaryParam
  * @property {string} [aggregator]
  */
@@ -55,10 +51,6 @@ export = PaymentApplicationValidator;
 /**
  * @typedef DeleteUserCardParam
  * @property {PaymentApplicationModel.DeletehCardRequest} body
- */
-/**
- * @typedef DelinkWalletParam
- * @property {PaymentApplicationModel.WalletDelinkRequestSchema} body
  */
 /**
  * @typedef EnableOrDisableRefundTransferModeParam
@@ -92,17 +84,14 @@ export = PaymentApplicationValidator;
 /**
  * @typedef GetPaymentModeRoutesParam
  * @property {number} amount - Payable amount.
- * @property {string} [cartId] - Identifier of the cart.
- * @property {string} [checkoutMode] - Option to checkout for self or for others.
+ * @property {string} cartId - Identifier of the cart.
+ * @property {string} pincode - The PIN Code of the destination address, e.g. 400059
+ * @property {string} checkoutMode - Option to checkout for self or for others.
  * @property {boolean} [refresh] - This is a boolean value. Select `true` to
  *   remove temporary cache files on payment gateway and replace with the latest one.
- * @property {string} [orderId]
  * @property {string} [cardReference] - Card reference id of user's debit or credit card.
  * @property {string} [userDetails] - URIencoded JSON containing details of an
  *   anonymous user.
- * @property {boolean} [displaySplit] - Display Split Payment Option or not
- * @property {boolean} [advancePayment] - Display Advance Payment Options or Normal
- * @property {string} [shipmentId]
  */
 /**
  * @typedef GetPaymentModeRoutesPaymentLinkParam
@@ -111,9 +100,9 @@ export = PaymentApplicationValidator;
 /**
  * @typedef GetPosPaymentModeRoutesParam
  * @property {number} amount - Payable amount.
- * @property {string} [cartId] - Identifier of the cart.
+ * @property {string} cartId - Identifier of the cart.
  * @property {string} pincode - The PIN Code of the destination address, e.g. 400059
- * @property {string} [checkoutMode] - Option to checkout for self or for others.
+ * @property {string} checkoutMode - Option to checkout for self or for others.
  * @property {boolean} [refresh] - This is a boolean value. Select `true` to
  *   remove temporary cache files on payment gateway and replace with the latest one.
  * @property {string} [cardReference] - Card reference id of user's debit or credit card.
@@ -136,10 +125,6 @@ export = PaymentApplicationValidator;
 /**
  * @typedef InitialisePaymentPaymentLinkParam
  * @property {PaymentApplicationModel.PaymentInitializationRequest} body
- */
-/**
- * @typedef LinkWalletParam
- * @property {PaymentApplicationModel.WalletVerifyRequestSchema} body
  */
 /**
  * @typedef OutstandingOrderDetailsParam
@@ -201,10 +186,6 @@ export = PaymentApplicationValidator;
  * @typedef VerifyOtpAndAddBeneficiaryForWalletParam
  * @property {PaymentApplicationModel.WalletOtpRequest} body
  */
-/**
- * @typedef WalletLinkInitateParam
- * @property {PaymentApplicationModel.WalletLinkRequestSchema} body
- */
 declare class PaymentApplicationValidator {
     /** @returns {AddBeneficiaryDetailsParam} */
     static addBeneficiaryDetails(): AddBeneficiaryDetailsParam;
@@ -226,16 +207,12 @@ declare class PaymentApplicationValidator {
     static createOrderHandlerPaymentLink(): CreateOrderHandlerPaymentLinkParam;
     /** @returns {CreatePaymentLinkParam} */
     static createPaymentLink(): CreatePaymentLinkParam;
-    /** @returns {CreatePaymentOrderParam} */
-    static createPaymentOrder(): CreatePaymentOrderParam;
     /** @returns {CustomerCreditSummaryParam} */
     static customerCreditSummary(): CustomerCreditSummaryParam;
     /** @returns {CustomerOnboardParam} */
     static customerOnboard(): CustomerOnboardParam;
     /** @returns {DeleteUserCardParam} */
     static deleteUserCard(): DeleteUserCardParam;
-    /** @returns {DelinkWalletParam} */
-    static delinkWallet(): DelinkWalletParam;
     /** @returns {EnableOrDisableRefundTransferModeParam} */
     static enableOrDisableRefundTransferMode(): EnableOrDisableRefundTransferModeParam;
     /** @returns {GetActiveCardAggregatorParam} */
@@ -266,8 +243,6 @@ declare class PaymentApplicationValidator {
     static initialisePayment(): InitialisePaymentParam;
     /** @returns {InitialisePaymentPaymentLinkParam} */
     static initialisePaymentPaymentLink(): InitialisePaymentPaymentLinkParam;
-    /** @returns {LinkWalletParam} */
-    static linkWallet(): LinkWalletParam;
     /** @returns {OutstandingOrderDetailsParam} */
     static outstandingOrderDetails(): OutstandingOrderDetailsParam;
     /** @returns {PaidOrderDetailsParam} */
@@ -296,11 +271,9 @@ declare class PaymentApplicationValidator {
     static verifyOtpAndAddBeneficiaryForBank(): VerifyOtpAndAddBeneficiaryForBankParam;
     /** @returns {VerifyOtpAndAddBeneficiaryForWalletParam} */
     static verifyOtpAndAddBeneficiaryForWallet(): VerifyOtpAndAddBeneficiaryForWalletParam;
-    /** @returns {WalletLinkInitateParam} */
-    static walletLinkInitate(): WalletLinkInitateParam;
 }
 declare namespace PaymentApplicationValidator {
-    export { AddBeneficiaryDetailsParam, AddRefundBankAccountUsingOTPParam, AttachCardToCustomerParam, CancelPaymentLinkParam, CardDetailsParam, CheckAndUpdatePaymentStatusParam, CheckAndUpdatePaymentStatusPaymentLinkParam, CheckCreditParam, CreateOrderHandlerPaymentLinkParam, CreatePaymentLinkParam, CreatePaymentOrderParam, CustomerCreditSummaryParam, CustomerOnboardParam, DeleteUserCardParam, DelinkWalletParam, EnableOrDisableRefundTransferModeParam, GetActiveCardAggregatorParam, GetActiveRefundTransferModesParam, GetActiveUserCardsParam, GetAggregatorsConfigParam, GetEpaylaterBannerDetailsParam, GetOrderBeneficiariesDetailParam, GetPaymentLinkParam, GetPaymentModeRoutesParam, GetPaymentModeRoutesPaymentLinkParam, GetPosPaymentModeRoutesParam, GetRupifiBannerDetailsParam, GetUserBeneficiariesDetailParam, InitialisePaymentParam, InitialisePaymentPaymentLinkParam, LinkWalletParam, OutstandingOrderDetailsParam, PaidOrderDetailsParam, PollingPaymentLinkParam, RedirectToAggregatorParam, RenderHTMLParam, ResendOrCancelPaymentParam, ResendPaymentLinkParam, UpdateDefaultBeneficiaryParam, ValidateVPAParam, VerifyAndChargePaymentParam, VerifyCustomerForPaymentParam, VerifyIfscCodeParam, VerifyOtpAndAddBeneficiaryForBankParam, VerifyOtpAndAddBeneficiaryForWalletParam, WalletLinkInitateParam };
+    export { AddBeneficiaryDetailsParam, AddRefundBankAccountUsingOTPParam, AttachCardToCustomerParam, CancelPaymentLinkParam, CardDetailsParam, CheckAndUpdatePaymentStatusParam, CheckAndUpdatePaymentStatusPaymentLinkParam, CheckCreditParam, CreateOrderHandlerPaymentLinkParam, CreatePaymentLinkParam, CustomerCreditSummaryParam, CustomerOnboardParam, DeleteUserCardParam, EnableOrDisableRefundTransferModeParam, GetActiveCardAggregatorParam, GetActiveRefundTransferModesParam, GetActiveUserCardsParam, GetAggregatorsConfigParam, GetEpaylaterBannerDetailsParam, GetOrderBeneficiariesDetailParam, GetPaymentLinkParam, GetPaymentModeRoutesParam, GetPaymentModeRoutesPaymentLinkParam, GetPosPaymentModeRoutesParam, GetRupifiBannerDetailsParam, GetUserBeneficiariesDetailParam, InitialisePaymentParam, InitialisePaymentPaymentLinkParam, OutstandingOrderDetailsParam, PaidOrderDetailsParam, PollingPaymentLinkParam, RedirectToAggregatorParam, RenderHTMLParam, ResendOrCancelPaymentParam, ResendPaymentLinkParam, UpdateDefaultBeneficiaryParam, ValidateVPAParam, VerifyAndChargePaymentParam, VerifyCustomerForPaymentParam, VerifyIfscCodeParam, VerifyOtpAndAddBeneficiaryForBankParam, VerifyOtpAndAddBeneficiaryForWalletParam };
 }
 type AddBeneficiaryDetailsParam = {
     body: PaymentApplicationModel.AddBeneficiaryDetailsRequest;
@@ -336,9 +309,6 @@ type CreateOrderHandlerPaymentLinkParam = {
 type CreatePaymentLinkParam = {
     body: PaymentApplicationModel.CreatePaymentLinkRequest;
 };
-type CreatePaymentOrderParam = {
-    body: PaymentApplicationModel.PaymentOrderRequest;
-};
 type CustomerCreditSummaryParam = {
     aggregator?: string;
 };
@@ -347,9 +317,6 @@ type CustomerOnboardParam = {
 };
 type DeleteUserCardParam = {
     body: PaymentApplicationModel.DeletehCardRequest;
-};
-type DelinkWalletParam = {
-    body: PaymentApplicationModel.WalletDelinkRequestSchema;
 };
 type EnableOrDisableRefundTransferModeParam = {
     body: PaymentApplicationModel.UpdateRefundTransferModeRequest;
@@ -389,17 +356,20 @@ type GetPaymentModeRoutesParam = {
     /**
      * - Identifier of the cart.
      */
-    cartId?: string;
+    cartId: string;
+    /**
+     * - The PIN Code of the destination address, e.g. 400059
+     */
+    pincode: string;
     /**
      * - Option to checkout for self or for others.
      */
-    checkoutMode?: string;
+    checkoutMode: string;
     /**
      * - This is a boolean value. Select `true` to
      * remove temporary cache files on payment gateway and replace with the latest one.
      */
     refresh?: boolean;
-    orderId?: string;
     /**
      * - Card reference id of user's debit or credit card.
      */
@@ -409,15 +379,6 @@ type GetPaymentModeRoutesParam = {
      * anonymous user.
      */
     userDetails?: string;
-    /**
-     * - Display Split Payment Option or not
-     */
-    displaySplit?: boolean;
-    /**
-     * - Display Advance Payment Options or Normal
-     */
-    advancePayment?: boolean;
-    shipmentId?: string;
 };
 type GetPaymentModeRoutesPaymentLinkParam = {
     /**
@@ -433,7 +394,7 @@ type GetPosPaymentModeRoutesParam = {
     /**
      * - Identifier of the cart.
      */
-    cartId?: string;
+    cartId: string;
     /**
      * - The PIN Code of the destination address, e.g. 400059
      */
@@ -441,7 +402,7 @@ type GetPosPaymentModeRoutesParam = {
     /**
      * - Option to checkout for self or for others.
      */
-    checkoutMode?: string;
+    checkoutMode: string;
     /**
      * - This is a boolean value. Select `true` to
      * remove temporary cache files on payment gateway and replace with the latest one.
@@ -475,9 +436,6 @@ type InitialisePaymentParam = {
 };
 type InitialisePaymentPaymentLinkParam = {
     body: PaymentApplicationModel.PaymentInitializationRequest;
-};
-type LinkWalletParam = {
-    body: PaymentApplicationModel.WalletVerifyRequestSchema;
 };
 type OutstandingOrderDetailsParam = {
     aggregator?: string;
@@ -533,9 +491,6 @@ type VerifyOtpAndAddBeneficiaryForBankParam = {
 };
 type VerifyOtpAndAddBeneficiaryForWalletParam = {
     body: PaymentApplicationModel.WalletOtpRequest;
-};
-type WalletLinkInitateParam = {
-    body: PaymentApplicationModel.WalletLinkRequestSchema;
 };
 type GetActiveRefundTransferModesParam = any;
 type GetEpaylaterBannerDetailsParam = any;

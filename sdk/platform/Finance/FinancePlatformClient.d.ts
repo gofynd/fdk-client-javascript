@@ -200,17 +200,6 @@ declare class Finance {
      */
     getReportingFilters({ filterKey, affiliateId, requestHeaders }?: FinancePlatformValidator.GetReportingFiltersParam, { responseHeaders }?: object): Promise<FinancePlatformModel.GetReportingFiltersResponse>;
     /**
-     * @param {FinancePlatformValidator.InvoiceActivityLogsParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<FinancePlatformModel.InvoiceActivityLogsResponse>} -
-     *   Success response
-     * @name invoiceActivityLogs
-     * @summary: Display activity log details of an invoice.
-     * @description: Display activity log details of invoice. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/invoiceActivityLogs/).
-     */
-    invoiceActivityLogs({ invoiceNumber, requestHeaders }?: FinancePlatformValidator.InvoiceActivityLogsParam, { responseHeaders }?: object): Promise<FinancePlatformModel.InvoiceActivityLogsResponse>;
-    /**
      * @param {FinancePlatformValidator.InvoiceListingParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -230,17 +219,6 @@ declare class Finance {
      * @description: Gives pdf view of invoice. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/invoicePDF/).
      */
     invoicePDF({ body, requestHeaders }?: FinancePlatformValidator.InvoicePDFParam, { responseHeaders }?: object): Promise<FinancePlatformModel.InvoicePdfResponse>;
-    /**
-     * @param {FinancePlatformValidator.InvoicePaymentDetailsParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<FinancePlatformModel.InvoicePaymentDetailsResponse>} -
-     *   Success response
-     * @name invoicePaymentDetails
-     * @summary: Display payment details of an invoice.
-     * @description: Display payment details of invoice. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/invoicePaymentDetails/).
-     */
-    invoicePaymentDetails({ invoiceNumber, requestHeaders }?: FinancePlatformValidator.InvoicePaymentDetailsParam, { responseHeaders }?: object): Promise<FinancePlatformModel.InvoicePaymentDetailsResponse>;
     /**
      * @param {FinancePlatformValidator.InvoiceTypeParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -283,17 +261,6 @@ declare class Finance {
      * @description: Payment Processing API. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/paymentProcess/).
      */
     paymentProcess({ body, requestHeaders }?: FinancePlatformValidator.PaymentProcessParam, { responseHeaders }?: object): Promise<FinancePlatformModel.PaymentProcessResponse>;
-    /**
-     * @param {FinancePlatformValidator.UnlockCreditNoteParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<FinancePlatformModel.UnlockCreditNoteResponse>} -
-     *   Success response
-     * @name unlockCreditNote
-     * @summary: Unlocks credit notes.
-     * @description: Used to unlock all request credit notes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/unlockCreditNote/).
-     */
-    unlockCreditNote({ body, requestHeaders }?: FinancePlatformValidator.UnlockCreditNoteParam, { responseHeaders }?: object): Promise<FinancePlatformModel.UnlockCreditNoteResponse>;
 }
 import FinancePlatformValidator = require("./FinancePlatformValidator");
 import FinancePlatformModel = require("./FinancePlatformModel");

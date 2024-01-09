@@ -18,7 +18,6 @@ Default
 * [confirmPayment](#confirmpayment)
 * [createMerchantRefundPriority](#createmerchantrefundpriority)
 * [createPaymentLink](#createpaymentlink)
-* [createPaymentOrder](#createpaymentorder)
 * [deletePayout](#deletepayout)
 * [deleteSubscriptionPaymentMethod](#deletesubscriptionpaymentmethod)
 * [edcAggregatorsAndModelList](#edcaggregatorsandmodellist)
@@ -28,17 +27,13 @@ Default
 * [getBankAccountDetailsOpenAPI](#getbankaccountdetailsopenapi)
 * [getBrandPaymentGatewayConfig](#getbrandpaymentgatewayconfig)
 * [getEdcDevice](#getedcdevice)
-* [getMerchantAggregatorAppVersion](#getmerchantaggregatorappversion)
 * [getMerchantAggregatorPaymentModeDetails](#getmerchantaggregatorpaymentmodedetails)
 * [getMerchantPaymentOption](#getmerchantpaymentoption)
 * [getMerchantRefundPriority](#getmerchantrefundpriority)
 * [getPGConfigAggregators](#getpgconfigaggregators)
 * [getPaymentCodeOption](#getpaymentcodeoption)
 * [getPaymentLink](#getpaymentlink)
-* [getPaymentModeControlRoutes](#getpaymentmodecontrolroutes)
-* [getPaymentModeCustomConfig](#getpaymentmodecustomconfig)
 * [getPaymentModeRoutes](#getpaymentmoderoutes)
-* [getPaymentSession](#getpaymentsession)
 * [getPosPaymentModeRoutes](#getpospaymentmoderoutes)
 * [getSubscriptionConfig](#getsubscriptionconfig)
 * [getSubscriptionPaymentMethod](#getsubscriptionpaymentmethod)
@@ -50,7 +45,6 @@ Default
 * [oauthGetUrl](#oauthgeturl)
 * [patchMerchantAggregatorPaymentModeDetails](#patchmerchantaggregatorpaymentmodedetails)
 * [patchMerchantPaymentOption](#patchmerchantpaymentoption)
-* [patchMerchantPaymentOptionVersion](#patchmerchantpaymentoptionversion)
 * [paymentStatusBulk](#paymentstatusbulk)
 * [pollingPaymentLink](#pollingpaymentlink)
 * [repaymentDetails](#repaymentdetails)
@@ -60,8 +54,6 @@ Default
 * [saveBrandPaymentGatewayConfig](#savebrandpaymentgatewayconfig)
 * [savePayout](#savepayout)
 * [saveSubscriptionSetupIntent](#savesubscriptionsetupintent)
-* [setMerchantModeControlRoutes](#setmerchantmodecontrolroutes)
-* [setPaymentModeCustomConfig](#setpaymentmodecustomconfig)
 * [setUserCODlimitRoutes](#setusercodlimitroutes)
 * [updateEdcDevice](#updateedcdevice)
 * [updateMerchantRefundPriority](#updatemerchantrefundpriority)
@@ -580,80 +572,6 @@ Success. Check the example shown below
   "payment_link_url": "https://api.fyndx0.de/service/application/payment/v1.0/payment/options/link/?id=96b15ea2014a76c8d2774783e239ce26&refresh=false",
   "payment_link_id": "96b15ea2014a76c8d2774783e239ce26",
   "polling_timeout": 480
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### createPaymentOrder
-Create Order
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").payment.createPaymentOrder({  body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").payment.createPaymentOrder({  body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- |
-| body | [PaymentOrderRequest](#PaymentOrderRequest) | yes | Request body |
-
-
-Use this API to create a order and payment on aggregator side
-
-*Returned Response:*
-
-
-
-
-[PaymentOrderResponse](#PaymentOrderResponse)
-
-Success. Check the example shown below
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "message": "",
-  "success": true,
-  "status_code": 200,
-  "data": {
-    "amount": 2190000,
-    "order_id": "order_JeaZ5ryKO01rno",
-    "email": "abc@example.com",
-    "contact": "9999999999",
-    "currency": "INR",
-    "customer_id": "cust_CZgcLVGsGP8BUQ",
-    "callback_url": "https://api.fyndx0.com/service/webhooks/payment/v1.0/callback/link/?razorpay_order_id=order_JeaZ5ryKO01rno",
-    "method": "upi",
-    "aggregator": "Razorpay",
-    "merchant_order_id": "FY629EDC0980B6A8C1EA"
-  },
-  "callback_url": "https://api.fyndx0.com/service/webhooks/payment/v1.0/callback/link/?razorpay_order_id=order_JeaZ5ryKO01rno",
-  "payment_confirm_url": "https://api.fyndx0.com/service/webhooks/payment/v1.0/callback/link/?razorpay_order_id=order_JeaZ5ryKO01rno",
-  "order_id": "FY629EDC0980B6A8C1EA"
 }
 ```
 </details>
@@ -1442,91 +1360,6 @@ Success. Returns the single edc device mapped to the terminal. Check the example
 ---
 
 
-### getMerchantAggregatorAppVersion
-Get app version required for Payment Mode.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").payment.getMerchantAggregatorAppVersion({  aggregatorId : value,
- businessUnit : value,
- device : value,
- paymentModeId : value,
- subPaymentMode : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").payment.getMerchantAggregatorAppVersion({  aggregatorId : value,
- businessUnit : value,
- device : value,
- paymentModeId : value,
- subPaymentMode : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| aggregatorId | number | yes | Aggregators Id |   
-| businessUnit | string | yes |  |   
-| device | string | yes |  |    
-| paymentModeId | number | no |  |    
-| subPaymentMode | string | no |  |  
-
-
-
-This api provide read operations on the app version required for Payment Mode or sub payment mode for an Aggregator.
-
-*Returned Response:*
-
-
-
-
-[AggregatorVersionResponse](#AggregatorVersionResponse)
-
-Success.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; merchant_payment_response_success</i></summary>
-
-```json
-{
-  "summary": "List of active PGs for merchant and its offline payment configurations",
-  "value": {
-    "success": true,
-    "message": "",
-    "items": {
-      "is_equal_to": 13,
-      "is_less_than": 12,
-      "is_greater_than\"": 10
-    }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getMerchantAggregatorPaymentModeDetails
 Get Aggregator, payment mode and sub payment mode.
 
@@ -1563,7 +1396,7 @@ Get Aggregator, payment mode and sub payment mode details.
 
 
 
-[PlatformPaymentModeResponse](#PlatformPaymentModeResponse)
+[MerchnatPaymentModeResponse](#MerchnatPaymentModeResponse)
 
 Success.
 
@@ -1625,7 +1458,7 @@ This api fetches all the available PGs for merchant and its offline payment mode
 
 
 
-[PlatformPaymentModeResponse](#PlatformPaymentModeResponse)
+[MerchnatPaymentModeResponse](#MerchnatPaymentModeResponse)
 
 Success.
 
@@ -1662,28 +1495,21 @@ Success.
           "payment_modes": {
             "cod": [
               {
-                "name": "Cash on Delivery",
-                "slug": "cod",
-                "is_active": true,
-                "logos": {
-                  "small": "https://hdn-1.fynd.com/payment/cod.png",
-                  "large": "https://hdn-1.fynd.com/payment/cod.png"
-                }
+                "user_cod_limit": 0,
+                "cod_charges": 0,
+                "anonymous_cod": false,
+                "cod_max_order_value": 0,
+                "cod_min_order_value": 0,
+                "cod_charges_max_value": 0,
+                "cod_charges_min_value": 0
               }
             ]
           }
         },
-        "advance": {
+        "split": {
           "is_active": true,
           "payment_modes": {
-            "split": [
-              {
-                "name": "Split Payment",
-                "slug": "split",
-                "id": 48,
-                "is_active": true
-              }
-            ]
+            "split_payment": {}
           }
         }
       }
@@ -1823,7 +1649,7 @@ Get Aggregators available to be added as PG.
 
 
 
-[PlatformPaymentModeResponse](#PlatformPaymentModeResponse)
+[MerchnatPaymentModeResponse](#MerchnatPaymentModeResponse)
 
 Success.
 
@@ -2040,208 +1866,6 @@ Success. Check the example shown below
 ---
 
 
-### getPaymentModeControlRoutes
-Get details for the given offline / advance payment mode for merchant
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").payment.getPaymentModeControlRoutes({  mode : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").payment.getPaymentModeControlRoutes({  mode : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| mode | string | yes | offline / advance  modes to get the payment modes |  
-
-
-
-Use this API to get details for the given offline / advance payment mode for merchant
-
-*Returned Response:*
-
-
-
-
-[PlatformPaymentModeResponse](#PlatformPaymentModeResponse)
-
-Success. Returns user cod limit , remaining limit and usage of user for COD. Check the example shown below or refer `GetUserCODLimitResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "message": "get offline / advance payment mode details",
-  "items": [
-    {
-      "display_name": "Store OS",
-      "business_unit": "pos",
-      "config": [
-        {
-          "anonymous": false,
-          "charges": 100,
-          "charges_max_value": 1000,
-          "charges_min_value": 0,
-          "max_order_value": 30000,
-          "min_order_value": 0,
-          "is_active": true,
-          "name": "Cash on Delivery (COD)",
-          "slug": "cod",
-          "user_limit": 10000
-        }
-      ]
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### getPaymentModeCustomConfig
-Get details of advance payment custom configurations of merchant
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").payment.getPaymentModeCustomConfig({  mode : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").payment.getPaymentModeCustomConfig({  mode : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| mode | string | yes | offline / advance  mode |  
-
-
-
-Use this API to Get details of advance payment custom configurations of merchant
-
-*Returned Response:*
-
-
-
-
-[PaymentCustomConfigResponseSchema](#PaymentCustomConfigResponseSchema)
-
-Success. Get Advance Payment Custom Configurations.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "message": "",
-  "items": [
-    {
-      "display_name": "Store OS",
-      "business_unit": "pos",
-      "custom_config": {
-        "customer": {
-          "restriction": "ALL_CUSTOMER",
-          "groups": [
-            1,
-            2,
-            3
-          ],
-          "types": [
-            "ALL_CUSTOMER",
-            "CUSTOMER_GROUP",
-            "REGISTERED_CUSTOMER"
-          ]
-        },
-        "payment_mode": {
-          "available": true,
-          "pre_order": [
-            "NB",
-            "UPI"
-          ],
-          "post_order": [
-            "NB",
-            "UPI"
-          ]
-        },
-        "min_order_value": 50
-      }
-    },
-    {
-      "display_name": "StoreFront",
-      "business_unit": "storefront",
-      "custom_config": {
-        "customer": {
-          "restriction": "ALL_CUSTOMER",
-          "groups": [
-            1,
-            2,
-            3
-          ],
-          "types": [
-            "ALL_CUSTOMER",
-            "CUSTOMER_GROUP",
-            "REGISTERED_CUSTOMER"
-          ]
-        },
-        "payment_mode": {
-          "available": true,
-          "pre_order": [
-            "NB",
-            "UPI"
-          ],
-          "post_order": [
-            "NB",
-            "UPI"
-          ]
-        },
-        "min_order_value": 50
-      }
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getPaymentModeRoutes
 Get All Valid Payment Options
 
@@ -2250,15 +1874,11 @@ Get All Valid Payment Options
 ```javascript
 // Promise
 const promise = platformClient.application("<APPLICATION_ID>").payment.getPaymentModeRoutes({  refresh : value,
- requestType : value,
- orderId : value,
- shipmentId : value });
+ requestType : value });
 
 // Async/Await
 const data = await platformClient.application("<APPLICATION_ID>").payment.getPaymentModeRoutes({  refresh : value,
- requestType : value,
- orderId : value,
- shipmentId : value });
+ requestType : value });
 ```
 
 
@@ -2268,9 +1888,7 @@ const data = await platformClient.application("<APPLICATION_ID>").payment.getPay
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | refresh | boolean | yes |  |   
-| requestType | string | yes |  |    
-| orderId | string | no |  |    
-| shipmentId | string | no |  |  
+| requestType | string | yes |  |  
 
 
 
@@ -3460,107 +3078,6 @@ Success
 ---
 
 
-### getPaymentSession
-API to get payment session details
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").payment.getPaymentSession({  gid : value,
- lineItem : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").payment.getPaymentSession({  gid : value,
- lineItem : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| gid | string | yes | global identifier of the entity (e.g. order, cart etc.) against which payment session was initiated. This is generated by Fynd payments platform and is unique. |    
-| lineItem | boolean | no | line-item to add extra data into response (e.g. cart details) |  
-
-
-
-Use this API to fetch the payment session details for given order ID or Transaction ID.
-
-*Returned Response:*
-
-
-
-
-[PaymentSessionSerializer](#PaymentSessionSerializer)
-
-Success. Returns the details of payment session. Check the example shown below or refer `PaymentSessionSerializer` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "gid": "TR9C4AF3A615DE251A23",
-  "status": "complete",
-  "total_amount": 10000,
-  "currency": "INR",
-  "payment_details": {
-    "gid": "TR9C4AF3A615DE251A23",
-    "payment_mode": "JIOPAY",
-    "aggregator_order_id": "10772307355840195000",
-    "aggregator_customer_id": "63073b48e8d90abe20c42eb8",
-    "payment_mode_identifier": "JIOPAY",
-    "g_user_id": "63073b48e8d90abe20c42eb8",
-    "payment_id": "10772307355847914000",
-    "mode": "live",
-    "amount": 56700,
-    "currency": "INR",
-    "cancel_url": "",
-    "success_url": "",
-    "amount_captured": 56700,
-    "status": "refund_done",
-    "payment_methods": [],
-    "meta": {
-      "cod_eligibile": true
-    }
-  },
-  "refund_details": [
-    {
-      "currency": "INR",
-      "request_id": "16787880654271907518",
-      "status": "refund_done",
-      "created": "2023-03-14 10:54:24",
-      "payment_id": "10772307355847914000",
-      "refund_utr": "10772307355847914000",
-      "amount": 56700
-    }
-  ],
-  "cart_details": {
-    "cart_value": 56700,
-    "total_quantity": 10,
-    "articles": [],
-    "items": {}
-  }
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### getPosPaymentModeRoutes
 Get All Valid Payment Options
 
@@ -3569,31 +3086,23 @@ Get All Valid Payment Options
 ```javascript
 // Promise
 const promise = platformClient.application("<APPLICATION_ID>").payment.getPosPaymentModeRoutes({  amount : value,
- pincode : value,
- orderType : value,
  cartId : value,
+ pincode : value,
  checkoutMode : value,
+ orderType : value,
  refresh : value,
- orderId : value,
  cardReference : value,
- userDetails : value,
- displaySplit : value,
- advancePayment : value,
- shipmentId : value });
+ userDetails : value });
 
 // Async/Await
 const data = await platformClient.application("<APPLICATION_ID>").payment.getPosPaymentModeRoutes({  amount : value,
- pincode : value,
- orderType : value,
  cartId : value,
+ pincode : value,
  checkoutMode : value,
+ orderType : value,
  refresh : value,
- orderId : value,
  cardReference : value,
- userDetails : value,
- displaySplit : value,
- advancePayment : value,
- shipmentId : value });
+ userDetails : value });
 ```
 
 
@@ -3602,18 +3111,14 @@ const data = await platformClient.application("<APPLICATION_ID>").payment.getPos
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| amount | number | yes | Payable amount. |    
-| cartId | string | no | Identifier of the cart. |   
-| pincode | string | yes | The PIN Code of the destination address, e.g. 400059 |    
-| checkoutMode | string | no | Option to checkout for self or for others. |    
+| amount | number | yes | Payable amount. |   
+| cartId | string | yes | Identifier of the cart. |   
+| pincode | string | yes | The PIN Code of the destination address, e.g. 400059 |   
+| checkoutMode | string | yes | Option to checkout for self or for others. |    
 | refresh | boolean | no | This is a boolean value. Select `true` to remove temporary cache files on payment gateway and replace with the latest one. |    
-| orderId | string | no |  |    
 | cardReference | string | no | Card reference id of user's debit or credit card. |   
 | orderType | string | yes | The order type of shipment * HomeDelivery - If the customer wants the order home-delivered * PickAtStore - If the customer wants the handover of an order at the store itself. |    
-| userDetails | string | no | URIencoded JSON containing details of an anonymous user. |    
-| displaySplit | boolean | no | Display Split Payment Option or not |    
-| advancePayment | boolean | no | Display Advance Payment Options or Normal |    
-| shipmentId | string | no |  |  
+| userDetails | string | no | URIencoded JSON containing details of an anonymous user. |  
 
 
 
@@ -3624,7 +3129,7 @@ Use this API to get Get All Valid Payment Options for making payment
 
 
 
-[PaymentModeRouteResponse](#PaymentModeRouteResponse)
+[PaymentOptionsResponse](#PaymentOptionsResponse)
 
 Success
 
@@ -4787,66 +4292,7 @@ Success
         ]
       }
     ]
-  },
-  "advance_payment": [
-    {
-      "name": "SPLIT",
-      "display_priority": 22,
-      "payment_mode_id": 34,
-      "display_name": "Split Payment",
-      "list": [
-        {
-          "aggregator_name": "Fynd",
-          "name": "Split Payment",
-          "display_name": "Split Payment",
-          "code": "SPLIT",
-          "logo_url": {
-            "small": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/testz0/misc/default-assets/original/yDRf9iyLbH-PosLogo.png",
-            "large": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/testz0/misc/default-assets/original/yDRf9iyLbH-PosLogo.png"
-          },
-          "merchant_code": "SPLIT"
-        }
-      ],
-      "split": {
-        "total_number_of_splits": 7,
-        "splits_remaining": 7
-      }
-    },
-    {
-      "name": "ADVANCE",
-      "display_priority": 22,
-      "payment_mode_id": 35,
-      "display_name": "Advance Payment",
-      "list": [
-        {
-          "aggregator_name": "Fynd",
-          "name": "Advance Payment",
-          "display_name": "Advance Payment",
-          "code": "ADVANCE",
-          "logo_url": {
-            "small": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/testz0/misc/default-assets/original/yDRf9iyLbH-PosLogo.png",
-            "large": "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/testz0/misc/default-assets/original/yDRf9iyLbH-PosLogo.png"
-          },
-          "merchant_code": "ADVANCE"
-        }
-      ],
-      "advance": {
-        "is_active": true,
-        "time_unit": "DAYS",
-        "description": "Pay Rs 3000 or more of the total amount",
-        "display_name": "Pay using Advance Payment",
-        "prepayment_type": "PERCENTAGE",
-        "prepayment_value": 20,
-        "cancellation_type": "AUTO",
-        "refund_time_limit": 4,
-        "all_prepayment_type": [
-          "PERCENTAGE",
-          "FIXED"
-        ],
-        "allow_custom_advance_amount": true
-      }
-    }
-  ]
+  }
 }
 ```
 </details>
@@ -5550,7 +4996,7 @@ const data = await platformClient.application("<APPLICATION_ID>").payment.patchM
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | aggregatorId | number | yes | Aggregators Id |  
-| body | [PlatformPaymentModeResponse](#PlatformPaymentModeResponse) | yes | Request body |
+| body | [MerchnatPaymentModeResponse](#MerchnatPaymentModeResponse) | yes | Request body |
 
 
 Update Aggregator, payment mode and sub payment mode details.
@@ -5560,7 +5006,7 @@ Update Aggregator, payment mode and sub payment mode details.
 
 
 
-[PlatformPaymentModeResponse](#PlatformPaymentModeResponse)
+[MerchnatPaymentModeResponse](#MerchnatPaymentModeResponse)
 
 Success.
 
@@ -5626,7 +5072,7 @@ To updated online payment as active/inactive or offline payment configuration li
 
 
 
-[PlatformPaymentModeResponse](#PlatformPaymentModeResponse)
+[MerchnatPaymentModeResponse](#MerchnatPaymentModeResponse)
 
 Success.
 
@@ -5660,83 +5106,19 @@ Success.
       "is_active": true,
       "payment_modes": {
         "cod": {
-          "name": "Cash on Delivery (COD)",
-          "slug": "cod",
-          "is_active": true
+          "cod_charges": 0,
+          "user_cod_limit": 0,
+          "cod_min_order_value": 0,
+          "cod_max_order_value": 10000,
+          "cod_charges_min_value": 100,
+          "cod_charges_max_value": 49000,
+          "anonymous_cod": false
+        },
+        "split": {
+          "is_active": false
         }
       }
     }
-  }
-}
-```
-</details>
-
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### patchMerchantPaymentOptionVersion
-Update app version required for Payment Mode.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").payment.patchMerchantPaymentOptionVersion({  aggregatorId : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").payment.patchMerchantPaymentOptionVersion({  aggregatorId : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| aggregatorId | number | yes | Aggregators Id |  
-| body | [AggregatorControlRequest](#AggregatorControlRequest) | yes | Request body |
-
-
-This api provide wrote operations on the app version required for Payment Mode or sub payment mode for an Aggregator.
-
-*Returned Response:*
-
-
-
-
-[PlatformPaymentModeResponse](#PlatformPaymentModeResponse)
-
-Success.
-
-
-
-
-<details>
-<summary><i>&nbsp; Examples:</i></summary>
-
-
-<details>
-<summary><i>&nbsp; merchant_payment_response_success</i></summary>
-
-```json
-{
-  "summary": "updated payment mode configurations.",
-  "value": {
-    "success": true,
-    "message": "request is being performed",
-    "items": null
   }
 }
 ```
@@ -6418,206 +5800,6 @@ Save Subscription Setup Intent Response.
 ---
 
 
-### setMerchantModeControlRoutes
-Update offline payment mode details for the merchant
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").payment.setMerchantModeControlRoutes({  mode : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").payment.setMerchantModeControlRoutes({  mode : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| mode | string | yes | offline / advance payment mode |  
-| body | [MerchantPaymentModeRequest](#MerchantPaymentModeRequest) | yes | Request body |
-
-
-Use this API to update given offline / advance payment mode details for the merchant
-
-*Returned Response:*
-
-
-
-
-[PlatformPaymentModeResponse](#PlatformPaymentModeResponse)
-
-Success. Returns true or false for user cod option for payment. Check the example shown below or refer `GetUserCODLimitResponseSchema` for more details.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "message": "",
-  "items": [
-    {
-      "anonymous": false,
-      "charges": 100,
-      "charges_max_value": 1000,
-      "charges_min_value": 0,
-      "max_order_value": 30000,
-      "min_order_value": 0,
-      "is_active": true,
-      "name": "Cash on Delivery (COD)",
-      "slug": "cod",
-      "user_limit": 10000
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### setPaymentModeCustomConfig
-Update details of advance payment custom configurations of merchant
-
-
-
-```javascript
-// Promise
-const promise = platformClient.application("<APPLICATION_ID>").payment.setPaymentModeCustomConfig({  mode : value,
- body : value });
-
-// Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").payment.setPaymentModeCustomConfig({  mode : value,
- body : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| mode | string | yes | offline / advance payment mode |  
-| body | [PaymentCustomConfigRequestSchema](#PaymentCustomConfigRequestSchema) | yes | Request body |
-
-
-Use this API to update given details of advance payment custom configurations of merchant
-
-*Returned Response:*
-
-
-
-
-[PaymentCustomConfigResponseSchema](#PaymentCustomConfigResponseSchema)
-
-Success.
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true,
-  "message": "",
-  "items": [
-    {
-      "display_name": "Store OS",
-      "business_unit": "pos",
-      "custom_config": {
-        "customer": {
-          "restriction": "ALL_CUSTOMER",
-          "groups": [
-            1,
-            2,
-            3
-          ],
-          "types": [
-            "ALL_CUSTOMER",
-            "CUSTOMER_GROUP",
-            "REGISTERED_CUSTOMER"
-          ]
-        },
-        "payment_mode": {
-          "available": true,
-          "pre_order": [
-            "NB",
-            "UPI"
-          ],
-          "post_order": [
-            "NB",
-            "UPI"
-          ]
-        },
-        "min_order_value": 50
-      }
-    },
-    {
-      "display_name": "StoreFront",
-      "business_unit": "storefront",
-      "custom_config": {
-        "customer": {
-          "restriction": "ALL_CUSTOMER",
-          "groups": [
-            1,
-            2,
-            3
-          ],
-          "types": [
-            "ALL_CUSTOMER",
-            "CUSTOMER_GROUP",
-            "REGISTERED_CUSTOMER"
-          ]
-        },
-        "payment_mode": {
-          "available": true,
-          "pre_order": [
-            "NB",
-            "UPI"
-          ],
-          "post_order": [
-            "NB",
-            "UPI"
-          ]
-        },
-        "min_order_value": 50
-      }
-    }
-  ]
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
 ### setUserCODlimitRoutes
 Set COD option for user for payment
 
@@ -6649,7 +5831,7 @@ Use this API to set cod option as true or false for the payment
 
 [SetCODOptionResponse](#SetCODOptionResponse)
 
-Success. Returns true or false for user cod option for payment. Check the example shown below or refer `GetUserCODLimitResponseSchema` for more details.
+Success. Returns true/false for user cod option for payment. Check the example shown below or refer `GetUserCODLimitResponseSchema` for more details.
 
 
 
@@ -7182,7 +6364,7 @@ const data = await platformClient.payment.verifyIfscCode({  ifscCode : value });
 
 
 
-Get True or False for correct IFSC Code for adding bank details for refund
+Get True/False for correct IFSC Code for adding bank details for refund
 
 *Returned Response:*
 
@@ -7255,10 +6437,10 @@ Bank details on correct Ifsc Code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | address | string |  no  | address details |
- | address_type | string? |  yes  | address type e.g. home, office |
+ | address_type | string |  no  | address type e.g. home, office |
  | area | string |  no  | area details |
  | area_code | string |  no  | customer pin/zip code |
- | area_code_slug | string |  no  | area slug code, use pin or zip code if not available |
+ | area_code_slug | string |  no  | area slug code, use pin/zip code if not available |
  | city | string |  no  | city name |
  | country | string |  no  | country name |
  | country_iso_code | string |  no  | country's code name e.g. `IN`, `GB` |
@@ -7273,97 +6455,6 @@ Bank details on correct Ifsc Code
  | phone | string |  no  | phone number |
  | state | string |  no  | state of the customer |
  | tags | [string]? |  yes  | optional address tag |
- 
-
----
-
-#### [AdvanceObject](#AdvanceObject)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | all_prepayment_type | [string]? |  yes  | All available types of prepayment |
- | allow_custom_advance_amount | boolean? |  yes  | Is custom advance amount allowed? |
- | amount | number? |  yes  | Amount for Payment Breakdown |
- | cancellation_type | string? |  yes  | Type of cancellation |
- | description | string? |  yes  | The description for Advance Payment (user configured) |
- | display_name | string? |  yes  | The display name for Advance payment |
- | is_active | boolean? |  yes  | Is Advance Payment active |
- | prepayment_type | string? |  yes  | Type of prepayment value |
- | prepayment_value | number? |  yes  | Value for prepayment in advance payment |
- | refund_time_limit | number? |  yes  | time limit for processing refund |
- | time_unit | string? |  yes  | Time unit for refunds |
- 
-
----
-
-#### [AdvancePaymentObject](#AdvancePaymentObject)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | advance | [AdvanceObject](#AdvanceObject)? |  yes  |  |
- | display_name | string? |  yes  | Display name for Advance Payment Mode |
- | display_priority | number? |  yes  | Display Priority for Payment Option |
- | list | [[PaymentModeList](#PaymentModeList)]? |  yes  | Payment mode |
- | name | string? |  yes  | Name of Advance Payment Mode |
- | payment_mode_id | number? |  yes  | Payment Mode ID for Advance Payment Option |
- | split | [SplitObject](#SplitObject)? |  yes  |  |
- 
-
----
-
-#### [AggregatorControlRequest](#AggregatorControlRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | business_unit | string? |  yes  | Business unit |
- | device | string? |  yes  | Device name |
- | items | [string]? |  yes  | List of item details with respect to payment_mode |
- | version | [AggregatorVersionRequestSchema](#AggregatorVersionRequestSchema)? |  yes  |  |
- 
-
----
-
-#### [AggregatorRoute](#AggregatorRoute)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | api_link | string? |  yes  | api_link |
- | data | string? |  yes  | Data |
- | payment_flow | string? |  yes  | payment_flow |
- | payment_flow_data | string? |  yes  | payment_flow_data |
- 
-
----
-
-#### [AggregatorVersionItemSchema](#AggregatorVersionItemSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_equal_to | string? |  yes  |  |
- | is_greater_than | string? |  yes  |  |
- | is_less_than | string? |  yes  |  |
- 
-
----
-
-#### [AggregatorVersionRequestSchema](#AggregatorVersionRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | is_equal_to | string? |  yes  |  |
- | is_greater_than | string? |  yes  |  |
- | is_less_than | string? |  yes  |  |
- 
-
----
-
-#### [AggregatorVersionResponse](#AggregatorVersionResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [AggregatorVersionItemSchema](#AggregatorVersionItemSchema)? |  yes  |  |
- | message | string |  no  | Message |
- | success | boolean |  no  | Successful or failure |
  
 
 ---
@@ -7397,18 +6488,6 @@ Bank details on correct Ifsc Code
  | message | string |  no  | Message |
  | status_code | number |  no  | HTTP status code |
  | success | boolean |  no  | Successful or failure |
- 
-
----
-
-#### [CartDetailsSerializer](#CartDetailsSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | articles | [string] |  no  | list of articles that are added in cart |
- | cart_value | number |  no  | total cart value i.e. amount to be paid |
- | items | string |  no  | Items that are added in cart |
- | total_quantity | number? |  yes  | total number of items in cart |
  
 
 ---
@@ -7456,6 +6535,7 @@ Bank details on correct Ifsc Code
  | assign_card_id | string? |  yes  |  |
  | cart_id | string |  no  |  |
  | checkout_mode | string |  no  |  |
+ | pincode | string |  no  |  |
  
 
 ---
@@ -7465,11 +6545,10 @@ Bank details on correct Ifsc Code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | amount | number |  no  | Total value of order |
- | country_phone_code | string? |  yes  | Phone country code for complete mobile number |
  | description | string? |  yes  | Merchant order id |
  | email | string |  no  | Email to which the payment link is to be sent |
  | external_order_id | string |  no  | Merchant order id |
- | meta | [CreatePaymentLinkMeta](#CreatePaymentLinkMeta) |  no  |  |
+ | meta | [CreatePaymentLinkMeta](#CreatePaymentLinkMeta) |  no  | Meta |
  | mobile_number | string |  no  | Mobile number to which the payment link is to be sent |
  
 
@@ -7554,7 +6633,7 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [EdcDevice](#EdcDevice) |  no  |  |
+ | data | [EdcDevice](#EdcDevice) |  no  | Details of the EDC Device that is added |
  | success | boolean |  no  | Response is successful or not |
  
 
@@ -7564,7 +6643,7 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [EdcDevice](#EdcDevice) |  no  |  |
+ | data | [EdcDevice](#EdcDevice) |  no  | Details of one EDC Device |
  | success | boolean |  no  | Response is successful or not |
  
 
@@ -7575,7 +6654,7 @@ Bank details on correct Ifsc Code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | items | [[EdcDevice](#EdcDevice)] |  no  | List of all edc mapped to the application options with their Details. |
- | page | [Page](#Page) |  no  |  |
+ | page | [Page](#Page) |  no  | Pagination Response |
  | success | boolean |  no  | Response is successful or not |
  
 
@@ -7585,7 +6664,7 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | statistics | [StatisticsData](#StatisticsData) |  no  |  |
+ | statistics | [StatisticsData](#StatisticsData) |  no  | Message |
  | success | boolean |  no  | Response is successful or not |
  
 
@@ -7675,16 +6754,6 @@ Bank details on correct Ifsc Code
 
 ---
 
-#### [FromConfig](#FromConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | business_unit | string |  no  | Business unit name |
- | device | string |  no  | Device name |
- 
-
----
-
 #### [GetOauthUrlResponse](#GetOauthUrlResponse)
 
  | Properties | Type | Nullable | Description |
@@ -7699,7 +6768,7 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | method_code | [PaymentCode](#PaymentCode) |  no  |  |
+ | method_code | [PaymentCode](#PaymentCode) |  no  | Payment method code |
  
 
 ---
@@ -7708,7 +6777,7 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [GetPaymentCode](#GetPaymentCode) |  no  |  |
+ | data | [GetPaymentCode](#GetPaymentCode) |  no  | Data about Payment Code. |
  | success | boolean |  no  | Response is successful or not. |
  
 
@@ -7736,7 +6805,7 @@ Bank details on correct Ifsc Code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | success | boolean |  no  | Response is successful or not |
- | user_cod_data | [CODdata](#CODdata) |  no  |  |
+ | user_cod_data | [CODdata](#CODdata) |  no  | User COD Data |
  
 
 ---
@@ -7768,7 +6837,7 @@ Bank details on correct Ifsc Code
  | ---------- | ---- | -------- | ----------- |
  | code | string? |  yes  | code |
  | display_name | string? |  yes  | display_name |
- | logos | [PaymentModeLogo](#PaymentModeLogo)? |  yes  |  |
+ | logos | [PaymentModeLogo](#PaymentModeLogo)? |  yes  | logos |
  | package_name | string? |  yes  | package_name |
  
 
@@ -7789,7 +6858,7 @@ Bank details on correct Ifsc Code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | message | string |  no  | Message |
- | status | string |  no  | Link action status |
+ | status | boolean |  no  | Link action status |
  
 
 ---
@@ -7802,7 +6871,7 @@ Bank details on correct Ifsc Code
  | app_id | string |  no  | Application id |
  | credit_line_id | string |  no  | Merchant ID at Ajiodhan's end |
  | status | string |  no  | Status |
- | user_id | string |  no  | Deadlock or Grimlock user id |
+ | user_id | string |  no  | Deadlock/Grimlock user id |
  
 
 ---
@@ -7817,23 +6886,23 @@ Bank details on correct Ifsc Code
 
 ---
 
-#### [MerchantPaymentModeRequest](#MerchantPaymentModeRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | business_unit | string |  no  | Business unit |
- | device | string |  no  | List of devices and its activation status |
- | items | [string] |  no  | List of item details with respect to payment_mode |
- 
-
----
-
 #### [MerchnatPaymentModeRequest](#MerchnatPaymentModeRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | offline | string? |  yes  | Details to be updated for online payment configuration. |
  | online | string? |  yes  | Details to be updated for offline payment configuration. |
+ 
+
+---
+
+#### [MerchnatPaymentModeResponse](#MerchnatPaymentModeResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [string]? |  yes  | List of all aggregator and payment mode details. |
+ | message | string? |  yes  | Message |
+ | success | boolean |  no  | Response is successful or not. |
  
 
 ---
@@ -7942,7 +7011,7 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | codes | [Code](#Code) |  no  |  |
+ | codes | [Code](#Code) |  no  | List of dict that contains payment method data |
  | name | string |  no  | name of payment name |
  | networks | string |  no  | payment networks |
  | types | string |  no  | Type of payment mode |
@@ -7971,136 +7040,12 @@ Bank details on correct Ifsc Code
 
 ---
 
-#### [PaymentCustomConfigCustomerRequestSchema](#PaymentCustomConfigCustomerRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | groups | [number]? |  yes  | Customer groups. |
- | restriction | string |  no  | Customer restriction type. |
- 
-
----
-
-#### [PaymentCustomConfigCustomerSchema](#PaymentCustomConfigCustomerSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | groups | [number]? |  yes  | Customer groups. |
- | restriction | string |  no  | Customer restriction type. |
- | types | [string]? |  yes  | Customer types. |
- 
-
----
-
-#### [PaymentCustomConfigDetailsRequestSchema](#PaymentCustomConfigDetailsRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | customer | [PaymentCustomConfigCustomerRequestSchema](#PaymentCustomConfigCustomerRequestSchema) |  no  |  |
- | min_order_value | number |  no  | The minimum order value for the store |
- | payment_mode | [PaymentCustomConfigModeSchema](#PaymentCustomConfigModeSchema) |  no  |  |
- 
-
----
-
-#### [PaymentCustomConfigDetailsSchema](#PaymentCustomConfigDetailsSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | customer | [PaymentCustomConfigCustomerSchema](#PaymentCustomConfigCustomerSchema) |  no  |  |
- | min_order_value | number |  no  | The minimum order value for the store |
- | payment_mode | [PaymentCustomConfigModeSchema](#PaymentCustomConfigModeSchema) |  no  |  |
- 
-
----
-
-#### [PaymentCustomConfigModeSchema](#PaymentCustomConfigModeSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | available | boolean |  no  | Indicates whether the payment mode is available. |
- | post_order | [string]? |  yes  | Payment modes available for post-order. |
- | pre_order | [string]? |  yes  | Payment modes available for pre-order. |
- 
-
----
-
-#### [PaymentCustomConfigRequestSchema](#PaymentCustomConfigRequestSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | business_unit | string |  no  | The business unit to which the store belongs. |
- | items | [[PaymentCustomConfigDetailsRequestSchema](#PaymentCustomConfigDetailsRequestSchema)] |  no  |  |
- 
-
----
-
-#### [PaymentCustomConfigResponseSchema](#PaymentCustomConfigResponseSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [[PaymentModeCustomConfigSchema](#PaymentModeCustomConfigSchema)] |  no  |  |
- | message | string |  no  |  |
- | success | boolean |  no  |  |
- 
-
----
-
-#### [PaymentDetailsSerializer](#PaymentDetailsSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | aggregator_customer_id | string? |  yes  | unique customer id generated by payment gateway, not required for standard checkout. |
- | aggregator_order_id | string? |  yes  | unique order id or payment request id generated by payment gateway |
- | amount | number |  no  | amount paid. |
- | amount_captured | number |  no  | amount which is captured or credited to merchant account |
- | amount_refunded | number? |  yes  |  |
- | cancel_url | string? |  yes  | cancel url sent by Fynd platform at the time of payment creation |
- | captured | boolean? |  yes  | whether the payment is captured (credited to merchant account) by payment gateway. |
- | created | string? |  yes  | timestamp in epoch |
- | currency | string |  no  | currency of the payment. |
- | g_user_id | string |  no  | global user identifier - unique user id generated by Fynd platform |
- | gid | string |  no  | Global identifier of the entity (e.g. order, cart etc.) against which payment_session was initiated. This is generated by Fynd payments platform and is unique. |
- | kind | string? |  yes  | optional kind of purchase/payment - one time payment (sale) or subcription. defaults to sale. |
- | locale | string? |  yes  | user's locale |
- | merchant_locale | string? |  yes  | merchant's locale |
- | meta | string? |  yes  | metadata |
- | mode | string |  no  | test or live, test mode uses test credentials so that actual payment is not created. |
- | payment_id | string? |  yes  | unique transaction id generated by payment gateway |
- | payment_methods | [string] |  no  | method of payment |
- | status | string |  no  | stautus of the payment |
- | success_url | string? |  yes  | success url sent by Fynd platform at the time of payment creation |
- 
-
----
-
-#### [PaymentFlow](#PaymentFlow)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | ajiodhan | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
- | bqr_razorpay | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
- | ccavenue | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
- | epaylater | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
- | fynd | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
- | jiopay | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
- | juspay | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
- | mswipe | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
- | payubiz | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
- | razorpay | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
- | rupifi | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
- | simpl | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
- | stripe | [AggregatorRoute](#AggregatorRoute)? |  yes  |  |
- 
-
----
-
 #### [PaymentGatewayConfig](#PaymentGatewayConfig)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | config_type | string |  no  | Config Type of the aggregator |
- | is_active | boolean? |  yes  | Enable or Disable Flag |
+ | is_active | boolean? |  yes  | Enable/ Disable Flag |
  | key | string |  no  | Api key of the payment aggregator |
  | merchant_salt | string |  no  | Merchant key of the payment aggregator |
  | secret | string |  no  | Secret Key of the payment aggregator |
@@ -8114,7 +7059,7 @@ Bank details on correct Ifsc Code
  | ---------- | ---- | -------- | ----------- |
  | aggregator_name | [PaymentGatewayConfig](#PaymentGatewayConfig)? |  yes  |  |
  | app_id | string |  no  | Application Id to which Payment config Mapped |
- | is_active | boolean? |  yes  | Enable or Disable Flag |
+ | is_active | boolean? |  yes  | Enable/ Disable Flag |
  
 
 ---
@@ -8189,28 +7134,6 @@ Bank details on correct Ifsc Code
 
 ---
 
-#### [PaymentMethodsMetaOrder](#PaymentMethodsMetaOrder)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | merchant_code | string |  no  | Merchant code |
- | payment_gateway | string |  no  | Payment gateway name |
- | payment_identifier | string |  no  | Payment identifier |
- 
-
----
-
-#### [PaymentModeCustomConfigSchema](#PaymentModeCustomConfigSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | business_unit | string |  no  | The business unit to which the store belongs. |
- | custom_config | [PaymentCustomConfigDetailsSchema](#PaymentCustomConfigDetailsSchema) |  no  |  |
- | display_name | string |  no  | The display name of the store. |
- 
-
----
-
 #### [PaymentModeList](#PaymentModeList)
 
  | Properties | Type | Nullable | Description |
@@ -8242,11 +7165,11 @@ Bank details on correct Ifsc Code
  | intent_app_error_dict_list | [[IntentAppErrorList](#IntentAppErrorList)]? |  yes  | intent_app_error_dict_list |
  | intent_app_error_list | [string]? |  yes  | intent_app_error_list |
  | intent_flow | boolean? |  yes  | intent_flow |
- | logo_url | [PaymentModeLogo](#PaymentModeLogo)? |  yes  |  |
+ | logo_url | [PaymentModeLogo](#PaymentModeLogo)? |  yes  | Logo |
  | merchant_code | string? |  yes  | merchant code |
  | name | string? |  yes  | name |
  | nickname | string? |  yes  | nickname |
- | product_cod_data | [ProductCODData](#ProductCODData)? |  yes  |  |
+ | product_cod_data | [ProductCODData](#ProductCODData)? |  yes  | product cod configurations. |
  | remaining_limit | number? |  yes  | Remaining limit |
  | retry_count | number? |  yes  | retry_count |
  | timeout | number? |  yes  | timeout |
@@ -8260,18 +7183,6 @@ Bank details on correct Ifsc Code
  | ---------- | ---- | -------- | ----------- |
  | large | string |  no  | large |
  | small | string |  no  | smalll |
- 
-
----
-
-#### [PaymentModeRouteResponse](#PaymentModeRouteResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | advance_payment | [[AdvancePaymentObject](#AdvancePaymentObject)]? |  yes  | Advance Payment Array |
- | payment_breakup | string? |  yes  | Payment Breakup for advance payment |
- | payment_options | [PaymentOptionAndFlow](#PaymentOptionAndFlow) |  no  |  |
- | success | boolean |  no  | Response is successful or not |
  
 
 ---
@@ -8302,16 +7213,6 @@ Bank details on correct Ifsc Code
 
 ---
 
-#### [PaymentOptionAndFlow](#PaymentOptionAndFlow)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | payment_flows | [PaymentFlow](#PaymentFlow) |  no  |  |
- | payment_option | [[RootPaymentMode](#RootPaymentMode)] |  no  | Payment options |
- 
-
----
-
 #### [PaymentOptions](#PaymentOptions)
 
  | Properties | Type | Nullable | Description |
@@ -8325,66 +7226,8 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | payment_breakup | string? |  yes  | Payment Breakup for advance payment |
- | payment_options | [PaymentOptions](#PaymentOptions) |  no  |  |
+ | payment_options | [PaymentOptions](#PaymentOptions) |  no  | Payment options |
  | success | boolean |  no  | Response is successful or not |
- 
-
----
-
-#### [PaymentOrderData](#PaymentOrderData)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | aggregator | string? |  yes  | Aggregator name |
- | amount | number? |  yes  | Amount |
- | callback_url | string? |  yes  | Callback url for aggregator |
- | contact | string? |  yes  | Mobile number |
- | currency | string? |  yes  | Currency |
- | customer_id | string? |  yes  | Aggregator customer id |
- | email | string? |  yes  | Email |
- | merchant_order_id | string? |  yes  | Merchant order id |
- | method | string? |  yes  | Method |
- | order_id | string? |  yes  | Aggregator order id |
- 
-
----
-
-#### [PaymentOrderMethods](#PaymentOrderMethods)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | amount | number |  no  | Amount to be collected |
- | meta | [PaymentMethodsMetaOrder](#PaymentMethodsMetaOrder) |  no  |  |
- | mode | string |  no  | Payment mode |
- | name | string |  no  | Payment mode name |
- | payment | string? |  yes  | Payment type i.e. Required / Blocked |
- 
-
----
-
-#### [PaymentOrderRequest](#PaymentOrderRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | order_id | string |  no  | Order id |
- | payment_methods | [[PaymentOrderMethods](#PaymentOrderMethods)]? |  yes  |  |
- | shipment_id | string? |  yes  | shipment_id |
- 
-
----
-
-#### [PaymentOrderResponse](#PaymentOrderResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | callback_url | string? |  yes  | Callback url for aggregator |
- | data | [PaymentOrderData](#PaymentOrderData)? |  yes  |  |
- | message | string |  no  | Message |
- | order_id | string? |  yes  | Merchant order id |
- | payment_confirm_url | string? |  yes  | Payment confirm url for aggregator |
- | status_code | number |  no  | HTTP status code |
- | success | boolean |  no  | Successful or failure |
  
 
 ---
@@ -8405,10 +7248,9 @@ Bank details on correct Ifsc Code
  | currency | string |  no  | currency of the payment. |
  | g_user_id | string |  no  | global user identifier - unique user id generated by Fynd platform |
  | gid | string |  no  | Global identifier of the entity (e.g. order, cart etc.) against which payment_session was initiated. This is generated by Fynd payments platform and is unique. |
- | kind | string? |  yes  | optional kind of purchase or payment - one time payment (sale) or subcription. defaults to sale. |
+ | kind | string? |  yes  | optional kind of purchase/payment - one time payment (sale) or subcription. defaults to sale. |
  | locale | string? |  yes  | user's locale |
  | merchant_locale | string? |  yes  | merchant's locale |
- | meta | string? |  yes  | Metadata |
  | mode | string |  no  | test or live, test mode uses test credentials so that actual payment is not created. |
  | payment_id | string |  no  | unique transaction id generated by payment gateway |
  | payment_methods | [string] |  no  | method of payment |
@@ -8443,21 +7285,6 @@ Bank details on correct Ifsc Code
  | platform_transaction_details | [string] |  no  | platform transaction details. |
  | status | string |  no  | status of the payment. |
  | total_amount | number |  no  | amount paid. |
- 
-
----
-
-#### [PaymentSessionSerializer](#PaymentSessionSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | cart_details | [CartDetailsSerializer](#CartDetailsSerializer)? |  yes  |  |
- | currency | string? |  yes  | The currency of the payment. |
- | gid | string |  no  | Global identifier of the entity (e.g. order, cart etc.) against which payment_session was initiated. This is generated by Fynd payments platform and is unique. |
- | payment_details | any |  no  | object of payment details |
- | refund_details | [[RefundDetailsSerializer](#RefundDetailsSerializer)] |  no  | object of refund details |
- | status | string |  no  | The status of the payment session. |
- | total_amount | number |  no  | total amount to be paid |
  
 
 ---
@@ -8532,10 +7359,10 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | customers | [PayoutCustomer](#PayoutCustomer) |  no  |  |
+ | customers | [PayoutCustomer](#PayoutCustomer) |  no  | customers details object |
  | is_active | boolean |  no  | Enable/DIsable Flag Payout |
  | is_default | boolean |  no  | default or not  |
- | more_attributes | [PayoutMoreAttributes](#PayoutMoreAttributes) |  no  |  |
+ | more_attributes | [PayoutMoreAttributes](#PayoutMoreAttributes) |  no  | bank details object |
  | payouts_aggregators | [[PayoutAggregator](#PayoutAggregator)]? |  yes  |  |
  | transfer_type | string |  no  | transafer type |
  | unique_transfer_no | string |  no  | display priority of the payment mode |
@@ -8591,7 +7418,7 @@ Bank details on correct Ifsc Code
  | ---------- | ---- | -------- | ----------- |
  | account_holder | string? |  yes  | Account Holder Name |
  | account_no | string? |  yes  | Account Number |
- | account_type | string? |  yes  | Account Type Saving or Current |
+ | account_type | string? |  yes  | Account Type Saving/Current |
  | bank_name | string? |  yes  | Name of Bank |
  | branch_name | string? |  yes  | Branch Name |
  | city | string? |  yes  | City |
@@ -8607,8 +7434,8 @@ Bank details on correct Ifsc Code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | aggregator | string |  no  | Aggregator Name |
- | bank_details | [PayoutBankDetails](#PayoutBankDetails) |  no  |  |
- | is_active | boolean |  no  | Enable or Disable Flag Payout |
+ | bank_details | [PayoutBankDetails](#PayoutBankDetails) |  no  | payout bank details object |
+ | is_active | boolean |  no  | Enable/Disable Flag Payout |
  | transfer_type | string |  no  | transafer type |
  | unique_external_id | string |  no  | Unique Id of Payout |
  | users | string |  no  | payout users object |
@@ -8623,7 +7450,7 @@ Bank details on correct Ifsc Code
  | aggregator | string |  no  | Aggregator Name |
  | bank_details | string |  no  | payout bank_details object |
  | created | boolean |  no  | created flag |
- | is_active | boolean |  no  | Enable or DIsable Flag Payout |
+ | is_active | boolean |  no  | Enable/DIsable Flag Payout |
  | payment_status | string |  no  | status of payment |
  | payouts | string |  no  | payout  object |
  | success | boolean |  no  | Response is successful or not |
@@ -8640,27 +7467,6 @@ Bank details on correct Ifsc Code
  | ---------- | ---- | -------- | ----------- |
  | items | [[Payout](#Payout)] |  no  | contains list of PayoutSchema |
  | success | boolean |  no  | Response is successful or not |
- 
-
----
-
-#### [PlatformPaymentModeCopyConfigRequest](#PlatformPaymentModeCopyConfigRequest)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | from_config | [FromConfig](#FromConfig) |  no  |  |
- | to_config | [ToConfig](#ToConfig) |  no  |  |
- 
-
----
-
-#### [PlatformPaymentModeResponse](#PlatformPaymentModeResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | items | [string]? |  yes  | List of all aggregator and payment mode details. |
- | message | string? |  yes  | Message |
- | success | boolean |  no  | Response is successful or not. |
  
 
 ---
@@ -8687,7 +7493,7 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | cod_charges | [CODChargesLimitsResponse](#CODChargesLimitsResponse)? |  yes  |  |
+ | cod_charges | [CODChargesLimitsResponse](#CODChargesLimitsResponse)? |  yes  | cod charges and its allowed limits. |
  | items | string? |  yes  | item id with its cod availability. |
  
 
@@ -8701,20 +7507,6 @@ Bank details on correct Ifsc Code
  | is_verified_flag | boolean? |  yes  |  |
  | message | string |  no  | Response message |
  | success | boolean |  no  | Success or failure flag. |
- 
-
----
-
-#### [RefundDetailsSerializer](#RefundDetailsSerializer)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | amount | number |  no  | refunded amount |
- | created | string |  no  | timestamp in epoch. |
- | currency | string |  no  | The currency of the payment. |
- | refund_utr | string |  no  | Unique refund utr generated by payment gateway. |
- | request_id | string |  no  | refund request id, unique id generated by Fynd platform |
- | status | string |  no  | The status of the refund. |
  
 
 ---
@@ -8767,9 +7559,7 @@ Bank details on correct Ifsc Code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | currency | string |  no  | The currency of the payment. |
- | error | [ErrorDescription](#ErrorDescription)? |  yes  |  |
  | gid | string |  no  | Global identifier of the entity (e.g. order, cart etc.) against which payment_session was initiated. This is generated by Fynd payments platform and is unique. |
- | message | string? |  yes  | The status of the refund. |
  | meta | string? |  yes  | meta |
  | payment_details | [PaymentSessionDetail](#PaymentSessionDetail) |  no  | details of the payment |
  | refund_details | [[RefundSessionDetail](#RefundSessionDetail)]? |  yes  | details of the refund |
@@ -8859,7 +7649,7 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | data | [LinkStatus](#LinkStatus) |  no  |  |
+ | data | [LinkStatus](#LinkStatus) |  no  | Data about link action status. |
  | success | boolean |  no  | Response is successful or not. |
  
 
@@ -8944,17 +7734,6 @@ Bank details on correct Ifsc Code
 
 ---
 
-#### [SplitObject](#SplitObject)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | amount_remaining | number? |  yes  | Amount pending to be paid |
- | splits_remaining | number? |  yes  | Number of splits remaining |
- | total_number_of_splits | number? |  yes  | Maximum amount of splits allowed |
- 
-
----
-
 #### [StatisticsData](#StatisticsData)
 
  | Properties | Type | Nullable | Description |
@@ -8986,22 +7765,12 @@ Bank details on correct Ifsc Code
 
 ---
 
-#### [ToConfig](#ToConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | business_unit | string |  no  | Business unit name |
- | device | [string] |  no  | Device name to copy the config to |
- 
-
----
-
 #### [UpdatePayoutRequest](#UpdatePayoutRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_active | boolean |  no  | Enable or Disable Flag Payout |
- | is_default | boolean |  no  | Enable or Disable Default Payout |
+ | is_active | boolean |  no  | Enable/Disable Flag Payout |
+ | is_default | boolean |  no  | Enable/Disable Default Payout |
  | unique_external_id | string |  no  | Unique Id of Payout |
  
 
@@ -9011,8 +7780,8 @@ Bank details on correct Ifsc Code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | is_active | boolean |  no  | Enable or DIsable Flag Payout |
- | is_default | boolean |  no  | Enable or Disable Default Payout |
+ | is_active | boolean |  no  | Enable/DIsable Flag Payout |
+ | is_default | boolean |  no  | Enable/Disable Default Payout |
  | success | boolean |  no  | Response is successful or not |
  
 

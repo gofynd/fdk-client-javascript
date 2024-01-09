@@ -1,12 +1,6 @@
 const FileStorage = require("./FileStorage/FileStoragePartnerClient");
 
-const Lead = require("./Lead/LeadPartnerClient");
-
-const Logistics = require("./Logistics/LogisticsPartnerClient");
-
 const Theme = require("./Theme/ThemePartnerClient");
-
-const Webhook = require("./Webhook/WebhookPartnerClient");
 
 const { FDKClientValidationError } = require("../common/FDKError");
 
@@ -25,10 +19,7 @@ class PartnerClient {
   constructor(config) {
     this.config = config;
     this.fileStorage = new FileStorage(config);
-    this.lead = new Lead(config);
-    this.logistics = new Logistics(config);
     this.theme = new Theme(config);
-    this.webhook = new Webhook(config);
   }
 
   /**
