@@ -30,10 +30,13 @@ class Payment {
         "/service/application/payment/v1.0/create-order/link/",
       createPaymentLink:
         "/service/application/payment/v1.0/create-payment-link/",
+      createPaymentOrder: "/service/application/payment/v1.0/payment-orders/",
       customerCreditSummary:
         "/service/application/payment/v1.0/payment/credit-summary/",
       customerOnboard: "/service/application/payment/v1.0/credit-onboard/",
       deleteUserCard: "/service/application/payment/v1.0/card/remove",
+      delinkWallet:
+        "/service/application/payment/v1.0/payment/options/wallet/delink",
       enableOrDisableRefundTransferMode:
         "/service/application/payment/v1.0/refund/transfer-mode",
       getActiveCardAggregator:
@@ -59,6 +62,8 @@ class Payment {
       initialisePayment: "/service/application/payment/v1.0/payment/request",
       initialisePaymentPaymentLink:
         "/service/application/payment/v1.0/payment/request/link/",
+      linkWallet:
+        "/service/application/payment/v1.0/payment/options/wallet/verify",
       outstandingOrderDetails:
         "/service/application/payment/v1.0/payment/outstanding-orders/",
       paidOrderDetails:
@@ -84,6 +89,8 @@ class Payment {
         "/service/application/payment/v1.0/refund/verification/bank",
       verifyOtpAndAddBeneficiaryForWallet:
         "/service/application/payment/v1.0/refund/verification/wallet",
+      walletLinkInitate:
+        "/service/application/payment/v1.0/payment/options/wallet/link",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
       (urls, [method, relativeUrl]) => {
@@ -165,7 +172,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.RefundAccountResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -248,7 +255,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.RefundAccountResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -328,7 +335,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.AttachCardsResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -407,7 +414,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.CancelPaymentLinkResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -486,7 +493,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.CardDetailsResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -570,7 +577,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.PaymentStatusUpdateResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -654,7 +661,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.PaymentStatusUpdateResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -733,7 +740,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.CheckCreditResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -816,7 +823,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.CreateOrderUserResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -895,7 +902,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.CreatePaymentLinkResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -905,6 +912,84 @@ class Payment {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for application > Payment > createPaymentLink \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {PaymentApplicationValidator.CreatePaymentOrderParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<PaymentApplicationModel.PaymentOrderResponse>} - Success response
+   * @name createPaymentOrder
+   * @summary: Create Order
+   * @description: Use this API to create a order and payment on aggregator side - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/createPaymentOrder/).
+   */
+  async createPaymentOrder(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = PaymentApplicationValidator.createPaymentOrder().validate(
+      { body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentApplicationValidator.createPaymentOrder().validate(
+      { body },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for application > Payment > createPaymentOrder \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["createPaymentOrder"],
+        params: {},
+      }),
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = PaymentApplicationModel.PaymentOrderResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > createPaymentOrder \n ${res_error}`,
         });
       }
     }
@@ -978,7 +1063,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.CustomerCreditSummaryResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1057,7 +1142,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.CustomerOnboardingResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1135,7 +1220,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.DeleteCardsResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1145,6 +1230,84 @@ class Payment {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for application > Payment > deleteUserCard \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {PaymentApplicationValidator.DelinkWalletParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<PaymentApplicationModel.WalletResponseSchema>} - Success response
+   * @name delinkWallet
+   * @summary: Delink the wallet
+   * @description: It Removes already linked wallet - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/delinkWallet/).
+   */
+  async delinkWallet(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = PaymentApplicationValidator.delinkWallet().validate(
+      { body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentApplicationValidator.delinkWallet().validate(
+      { body },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for application > Payment > delinkWallet \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["delinkWallet"],
+        params: {},
+      }),
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = PaymentApplicationModel.WalletResponseSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > delinkWallet \n ${res_error}`,
         });
       }
     }
@@ -1219,7 +1382,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.UpdateRefundTransferModeResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1302,7 +1465,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.ActiveCardPaymentGatewayResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1384,7 +1547,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.TransferModeResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1463,7 +1626,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.ListCardsResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1547,7 +1710,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.AggregatorsConfigDetailResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1630,7 +1793,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.EpaylaterBannerResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1714,7 +1877,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.OrderBeneficiaryResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1794,7 +1957,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.GetPaymentLinkResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1825,11 +1988,14 @@ class Payment {
     {
       amount,
       cartId,
-      pincode,
       checkoutMode,
       refresh,
+      orderId,
       cardReference,
       userDetails,
+      displaySplit,
+      advancePayment,
+      shipmentId,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -1840,11 +2006,14 @@ class Payment {
       {
         amount,
         cartId,
-        pincode,
         checkoutMode,
         refresh,
+        orderId,
         cardReference,
         userDetails,
+        displaySplit,
+        advancePayment,
+        shipmentId,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1859,11 +2028,14 @@ class Payment {
       {
         amount,
         cartId,
-        pincode,
         checkoutMode,
         refresh,
+        orderId,
         cardReference,
         userDetails,
+        displaySplit,
+        advancePayment,
+        shipmentId,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1877,11 +2049,14 @@ class Payment {
     const query_params = {};
     query_params["amount"] = amount;
     query_params["cart_id"] = cartId;
-    query_params["pincode"] = pincode;
     query_params["checkout_mode"] = checkoutMode;
     query_params["refresh"] = refresh;
+    query_params["order_id"] = orderId;
     query_params["card_reference"] = cardReference;
     query_params["user_details"] = userDetails;
+    query_params["display_split"] = displaySplit;
+    query_params["advance_payment"] = advancePayment;
+    query_params["shipment_id"] = shipmentId;
 
     const xHeaders = {};
 
@@ -1907,7 +2082,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.PaymentModeRouteResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1991,7 +2166,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.PaymentModeRouteResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -2021,10 +2196,10 @@ class Payment {
   async getPosPaymentModeRoutes(
     {
       amount,
-      cartId,
       pincode,
-      checkoutMode,
       orderType,
+      cartId,
+      checkoutMode,
       refresh,
       cardReference,
       userDetails,
@@ -2037,10 +2212,10 @@ class Payment {
     } = PaymentApplicationValidator.getPosPaymentModeRoutes().validate(
       {
         amount,
-        cartId,
         pincode,
-        checkoutMode,
         orderType,
+        cartId,
+        checkoutMode,
         refresh,
         cardReference,
         userDetails,
@@ -2057,10 +2232,10 @@ class Payment {
     } = PaymentApplicationValidator.getPosPaymentModeRoutes().validate(
       {
         amount,
-        cartId,
         pincode,
-        checkoutMode,
         orderType,
+        cartId,
+        checkoutMode,
         refresh,
         cardReference,
         userDetails,
@@ -2108,7 +2283,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.PaymentModeRouteResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -2188,7 +2363,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.RupifiBannerResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2272,7 +2447,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.OrderBeneficiaryResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -2352,7 +2527,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.PaymentInitializationResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -2436,7 +2611,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.PaymentInitializationResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -2446,6 +2621,84 @@ class Payment {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for application > Payment > initialisePaymentPaymentLink \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {PaymentApplicationValidator.LinkWalletParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<PaymentApplicationModel.WalletResponseSchema>} - Success response
+   * @name linkWallet
+   * @summary: OTP verification for linking of wallet
+   * @description: It Verifies the linking of wallet using OTP - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/linkWallet/).
+   */
+  async linkWallet(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = PaymentApplicationValidator.linkWallet().validate(
+      { body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentApplicationValidator.linkWallet().validate(
+      { body },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for application > Payment > linkWallet \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["linkWallet"],
+        params: {},
+      }),
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = PaymentApplicationModel.WalletResponseSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > linkWallet \n ${res_error}`,
         });
       }
     }
@@ -2519,7 +2772,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.OutstandingOrderDetailsResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -2599,7 +2852,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.PaidOrderDetailsResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -2679,7 +2932,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.PollingPaymentLinkResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -2763,7 +3016,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.RedirectToAggregatorResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -2841,7 +3094,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.renderHTMLResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2923,7 +3176,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.ResendOrCancelPaymentResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -3002,7 +3255,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.ResendPaymentLinkResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -3085,7 +3338,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.SetDefaultBeneficiaryResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -3163,7 +3416,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.ValidateVPAResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3244,7 +3497,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.ChargeCustomerResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -3326,7 +3579,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.ValidateCustomerResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -3405,7 +3658,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.IfscCodeResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3489,7 +3742,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.AddBeneficiaryViaOtpVerificationResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -3571,7 +3824,7 @@ class Payment {
       error: res_error,
     } = PaymentApplicationModel.WalletOtpResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3581,6 +3834,84 @@ class Payment {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for application > Payment > verifyOtpAndAddBeneficiaryForWallet \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {PaymentApplicationValidator.WalletLinkInitateParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<PaymentApplicationModel.WalletResponseSchema>} - Success response
+   * @name walletLinkInitate
+   * @summary: Initiate linking of wallet
+   * @description: It will initiate linking of wallet for the aggregator. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/walletLinkInitate/).
+   */
+  async walletLinkInitate(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = PaymentApplicationValidator.walletLinkInitate().validate(
+      { body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentApplicationValidator.walletLinkInitate().validate(
+      { body },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for application > Payment > walletLinkInitate \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "post",
+      constructUrl({
+        url: this._urls["walletLinkInitate"],
+        params: {},
+      }),
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = PaymentApplicationModel.WalletResponseSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Payment > walletLinkInitate \n ${res_error}`,
         });
       }
     }

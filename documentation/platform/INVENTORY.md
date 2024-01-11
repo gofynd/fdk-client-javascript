@@ -8,6 +8,8 @@
 ## Inventory Methods
 Catalog - Platform Front API's' API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features. 
 
+
+Default
 * [createJob](#createjob)
 * [disable](#disable)
 * [getConfigByCompany](#getconfigbycompany)
@@ -23,7 +25,9 @@ Catalog - Platform Front API's' API's allows you to access list of products, pri
 
 
 
+
 ## Methods with example and description
+
 
 
 
@@ -712,6 +716,7 @@ Job Config Updated Successfully
 
 
 ---
+
 
 
 

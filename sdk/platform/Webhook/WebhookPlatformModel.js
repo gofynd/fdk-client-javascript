@@ -9,11 +9,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef AssociationDetails
- * @property {number} [company_id]
- */
-
-/**
  * @typedef AuthMeta
  * @property {string} [secret]
  * @property {string} [type]
@@ -21,12 +16,24 @@ const Joi = require("joi");
 
 /**
  * @typedef CancelResponse
- * @property {number} [code] - The HTTP status code of the response (e.g., 200).
+ * @property {string} [message] - The HTTP status code of the response (e.g., 200).
  */
 
 /**
  * @typedef CdnObject
  * @property {Url[]} [urls]
+ */
+
+/**
+ * @typedef DownloadReportResponse
+ * @property {string} [file_name]
+ */
+
+/**
+ * @typedef Err
+ * @property {string} [location]
+ * @property {string} [msg]
+ * @property {string} [param]
  */
 
 /**
@@ -56,27 +63,41 @@ const Joi = require("joi");
 
 /**
  * @typedef EventConfigResponse
- * @property {EventConfig[]} [event_configs]
+ * @property {string} [created_on]
+ * @property {string} [description]
+ * @property {string} [display_name]
+ * @property {string} [event_category]
+ * @property {string} [event_name]
+ * @property {Object} [event_schema]
+ * @property {string} [event_type]
+ * @property {number} [id]
+ * @property {string} [updated_on]
+ * @property {string} [version]
  */
 
 /**
- * @typedef EventCountItem
- * @property {number} [count] - The count of events with the specified status
- * @property {string} [status] - The status of the event (e.g., "FAILED").
- */
-
-/**
- * @typedef EventProcessedSuccessResponse
- * @property {string} [message]
- * @property {boolean} [success]
+ * @typedef EventConfigs
+ * @property {string} [created_on]
+ * @property {string} [description]
+ * @property {string} [display_name]
+ * @property {string} [event_category]
+ * @property {string} [event_name]
+ * @property {Object} [event_schema]
+ * @property {string} [event_type]
+ * @property {number} [id]
+ * @property {SubscriberEventMapping} [subscriber_event_mapping]
+ * @property {string} [updated_on]
+ * @property {string} [version]
  */
 
 /**
  * @typedef EventProcessReportObject
  * @property {number} [attempt] - The attempt number of the event.
- * @property {string} [data] - The data associated with the event.
+ * @property {Object} [data] - The data associated with the event.
  * @property {string} [event_name] - The name of the processed event.
+ * @property {string} [event_trace_id]
  * @property {number} [last_attempted_on] - The timestamp of the last attempted event.
+ * @property {string} [message_id]
  * @property {string} [name] - The name of the event.
  * @property {number} [response_code] - The response code of the event.
  * @property {string} [response_message] - The response message of the event.
@@ -97,35 +118,21 @@ const Joi = require("joi");
  * @property {Event[]} [event]
  * @property {string} [search_text]
  * @property {string} [start_date]
+ * @property {string} [status]
  * @property {number[]} [subscriber_ids]
  */
 
 /**
- * @typedef EventSuccessResponse
- * @property {string} [message]
- * @property {boolean} [success]
- */
-
-/**
- * @typedef FailedEventsCountSuccessResponse
- * @property {EventCountItem[]} [items]
- */
-
-/**
- * @typedef FilterResponseObject
- * @property {string} [filter_name] - The name of the filter.
- * @property {FilterValues[]} [values]
- */
-
-/**
- * @typedef FilterValues
- * @property {string} [text] - The display text for the filter value.
- * @property {Object} [value] - The value associated with the filter value.
+ * @typedef HistoryAssociation
+ * @property {number} [company_id]
+ * @property {number[]} [subscriber_ids]
  */
 
 /**
  * @typedef HistoryFilters
  * @property {string} [end_date] - The end date and time of the history report.
+ * @property {string[]} [events]
+ * @property {string} [search_text]
  * @property {string} [start_date] - The start date and time of the history report.
  * @property {string} [status] - The status of the history report (e.g., "FAILED").
  * @property {number[]} [subscribers] - An array of subscriber IDs associated
@@ -133,20 +140,8 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef HistoryPayload
- * @property {number} [page_no] - The page number of the history report.
- * @property {number} [page_size] - The number of records per page.
- * @property {string} [type] - The type of history report (e.g., "platform").
- */
-
-/**
- * @typedef HistoryResponse
- * @property {HistoryResponseObject[]} [items]
- */
-
-/**
- * @typedef HistoryResponseObject
- * @property {AssociationDetails} [association]
+ * @typedef HistoryItems
+ * @property {HistoryAssociation} [association]
  * @property {string} [created_on] - The date and time when the history report
  *   was created.
  * @property {string} [filename] - The filename of the history report.
@@ -160,12 +155,22 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef ManualRetryFailedResponse
- * @property {string} [message]
- * @property {Object} [meta]
- * @property {string} [request_id]
- * @property {string} [stack_trace]
- * @property {boolean} [success]
+ * @typedef HistoryPayload
+ * @property {number} [page_no] - The page number of the history report.
+ * @property {number} [page_size] - The number of records per page.
+ * @property {string} [type] - The type of history report (e.g., "platform").
+ */
+
+/**
+ * @typedef HistoryResponse
+ * @property {HistoryItems[]} [items]
+ * @property {Page} [page]
+ */
+
+/**
+ * @typedef Item
+ * @property {number} [count]
+ * @property {string} [status]
  */
 
 /**
@@ -196,13 +201,34 @@ const Joi = require("joi");
 
 /**
  * @typedef ReportFilterResponse
- * @property {FilterResponseObject[]} [items]
+ * @property {string} [filter_name] - The name of the filter.
+ * @property {Object[]} [values]
  */
 
 /**
  * @typedef ReportFiltersPayload
  * @property {number[]} [subscriber_ids] - An array of subscriber IDs for
  *   filtering filters (optional).
+ */
+
+/**
+ * @typedef RetryCountResponse
+ * @property {Item[]} [items]
+ */
+
+/**
+ * @typedef RetryEventRequest
+ * @property {string} [end_date]
+ * @property {Event[]} [event]
+ * @property {string} [search_text]
+ * @property {string} [start_date]
+ * @property {string} [status]
+ * @property {number[]} [subscriber_ids]
+ */
+
+/**
+ * @typedef RetryFailureResponse
+ * @property {Err[]} [err]
  */
 
 /**
@@ -215,6 +241,12 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef RetrySuccessResponse
+ * @property {string} [message]
+ * @property {boolean} [success]
+ */
+
+/**
  * @typedef SubscriberConfig
  * @property {Association} [association]
  * @property {AuthMeta} [auth_meta]
@@ -223,7 +255,7 @@ const Joi = require("joi");
  * @property {number[]} [event_id]
  * @property {number} [id]
  * @property {string} [name]
- * @property {SubscriberStatus} [status]
+ * @property {string} [status]
  * @property {string} [webhook_url]
  */
 
@@ -234,16 +266,50 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef SubscriberConfigResponse
+ * @property {Association} [association]
+ * @property {AuthMeta} [auth_meta]
+ * @property {string} [created_on]
+ * @property {Object} [custom_headers]
+ * @property {string} [email_id]
+ * @property {number[]} [event_id]
+ * @property {number} [id]
+ * @property {string} [modified_by]
+ * @property {string} [name]
+ * @property {string} [status]
+ * @property {string} [type]
+ * @property {string} [updated_on]
+ * @property {string} [webhook_url]
+ */
+
+/**
+ * @typedef SubscriberEventMapping
+ * @property {string} [created_on]
+ * @property {number} [event_id]
+ * @property {number} [id]
+ * @property {number} [subscriber_id]
+ */
+
+/**
+ * @typedef SubscriberFailureResponse
+ * @property {string} [code]
+ * @property {string} [message]
+ * @property {string} [stack]
+ */
+
+/**
  * @typedef SubscriberResponse
  * @property {Association} [association]
  * @property {AuthMeta} [auth_meta]
  * @property {string} [created_on]
  * @property {Object} [custom_headers]
  * @property {string} [email_id]
- * @property {EventConfig[]} [event_configs]
+ * @property {EventConfigs[]} [event_configs]
  * @property {number} [id]
+ * @property {string} [modified_by]
  * @property {string} [name]
- * @property {SubscriberStatus} [status]
+ * @property {string} [status]
+ * @property {string} [type]
  * @property {string} [updated_on]
  * @property {string} [webhook_url]
  */
@@ -259,8 +325,6 @@ const Joi = require("joi");
  * @property {string} [url] - The URL of the uploaded report file.
  */
 
-/** @typedef {"active" | "inactive" | "blocked"} SubscriberStatus */
-
 class WebhookPlatformModel {
   /** @returns {Association} */
   static Association() {
@@ -269,13 +333,6 @@ class WebhookPlatformModel {
       company_id: Joi.number(),
       criteria: Joi.string().allow(""),
       extension_id: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {AssociationDetails} */
-  static AssociationDetails() {
-    return Joi.object({
-      company_id: Joi.number(),
     });
   }
 
@@ -290,7 +347,7 @@ class WebhookPlatformModel {
   /** @returns {CancelResponse} */
   static CancelResponse() {
     return Joi.object({
-      code: Joi.number(),
+      message: Joi.string().allow(""),
     });
   }
 
@@ -298,6 +355,22 @@ class WebhookPlatformModel {
   static CdnObject() {
     return Joi.object({
       urls: Joi.array().items(WebhookPlatformModel.Url()),
+    });
+  }
+
+  /** @returns {DownloadReportResponse} */
+  static DownloadReportResponse() {
+    return Joi.object({
+      file_name: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {Err} */
+  static Err() {
+    return Joi.object({
+      location: Joi.string().allow(""),
+      msg: Joi.string().allow(""),
+      param: Joi.string().allow(""),
     });
   }
 
@@ -335,23 +408,33 @@ class WebhookPlatformModel {
   /** @returns {EventConfigResponse} */
   static EventConfigResponse() {
     return Joi.object({
-      event_configs: Joi.array().items(WebhookPlatformModel.EventConfig()),
+      created_on: Joi.string().allow(""),
+      description: Joi.string().allow("").allow(null),
+      display_name: Joi.string().allow(""),
+      event_category: Joi.string().allow(""),
+      event_name: Joi.string().allow(""),
+      event_schema: Joi.object().pattern(/\S/, Joi.any()),
+      event_type: Joi.string().allow(""),
+      id: Joi.number(),
+      updated_on: Joi.string().allow(""),
+      version: Joi.string().allow(""),
     });
   }
 
-  /** @returns {EventCountItem} */
-  static EventCountItem() {
+  /** @returns {EventConfigs} */
+  static EventConfigs() {
     return Joi.object({
-      count: Joi.number(),
-      status: Joi.string().allow(""),
-    });
-  }
-
-  /** @returns {EventProcessedSuccessResponse} */
-  static EventProcessedSuccessResponse() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-      success: Joi.boolean(),
+      created_on: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      display_name: Joi.string().allow(""),
+      event_category: Joi.string().allow(""),
+      event_name: Joi.string().allow(""),
+      event_schema: Joi.object().pattern(/\S/, Joi.any()),
+      event_type: Joi.string().allow(""),
+      id: Joi.number(),
+      subscriber_event_mapping: WebhookPlatformModel.SubscriberEventMapping(),
+      updated_on: Joi.string().allow(""),
+      version: Joi.string().allow(""),
     });
   }
 
@@ -359,9 +442,11 @@ class WebhookPlatformModel {
   static EventProcessReportObject() {
     return Joi.object({
       attempt: Joi.number(),
-      data: Joi.string().allow(""),
+      data: Joi.object().pattern(/\S/, Joi.any()),
       event_name: Joi.string().allow(""),
+      event_trace_id: Joi.string().allow(""),
       last_attempted_on: Joi.number(),
+      message_id: Joi.string().allow(""),
       name: Joi.string().allow(""),
       response_code: Joi.number(),
       response_message: Joi.string().allow(""),
@@ -386,38 +471,16 @@ class WebhookPlatformModel {
       event: Joi.array().items(WebhookPlatformModel.Event()),
       search_text: Joi.string().allow(""),
       start_date: Joi.string().allow(""),
+      status: Joi.string().allow(""),
       subscriber_ids: Joi.array().items(Joi.number()),
     });
   }
 
-  /** @returns {EventSuccessResponse} */
-  static EventSuccessResponse() {
+  /** @returns {HistoryAssociation} */
+  static HistoryAssociation() {
     return Joi.object({
-      message: Joi.string().allow(""),
-      success: Joi.boolean(),
-    });
-  }
-
-  /** @returns {FailedEventsCountSuccessResponse} */
-  static FailedEventsCountSuccessResponse() {
-    return Joi.object({
-      items: Joi.array().items(WebhookPlatformModel.EventCountItem()),
-    });
-  }
-
-  /** @returns {FilterResponseObject} */
-  static FilterResponseObject() {
-    return Joi.object({
-      filter_name: Joi.string().allow(""),
-      values: Joi.array().items(WebhookPlatformModel.FilterValues()),
-    });
-  }
-
-  /** @returns {FilterValues} */
-  static FilterValues() {
-    return Joi.object({
-      text: Joi.string().allow(""),
-      value: Joi.any(),
+      company_id: Joi.number(),
+      subscriber_ids: Joi.array().items(Joi.number()),
     });
   }
 
@@ -425,9 +488,26 @@ class WebhookPlatformModel {
   static HistoryFilters() {
     return Joi.object({
       end_date: Joi.string().allow(""),
+      events: Joi.array().items(Joi.string().allow("")),
+      search_text: Joi.string().allow(""),
       start_date: Joi.string().allow(""),
       status: Joi.string().allow(""),
       subscribers: Joi.array().items(Joi.number()),
+    });
+  }
+
+  /** @returns {HistoryItems} */
+  static HistoryItems() {
+    return Joi.object({
+      association: WebhookPlatformModel.HistoryAssociation(),
+      created_on: Joi.string().allow(""),
+      filename: Joi.string().allow(""),
+      filters: WebhookPlatformModel.HistoryFilters(),
+      id: Joi.number(),
+      message: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+      updated_on: Joi.string().allow("").allow(null),
+      upload_service_response: WebhookPlatformModel.UploadServiceObject(),
     });
   }
 
@@ -443,33 +523,16 @@ class WebhookPlatformModel {
   /** @returns {HistoryResponse} */
   static HistoryResponse() {
     return Joi.object({
-      items: Joi.array().items(WebhookPlatformModel.HistoryResponseObject()),
+      items: Joi.array().items(WebhookPlatformModel.HistoryItems()),
+      page: WebhookPlatformModel.Page(),
     });
   }
 
-  /** @returns {HistoryResponseObject} */
-  static HistoryResponseObject() {
+  /** @returns {Item} */
+  static Item() {
     return Joi.object({
-      association: WebhookPlatformModel.AssociationDetails(),
-      created_on: Joi.string().allow(""),
-      filename: Joi.string().allow(""),
-      filters: WebhookPlatformModel.HistoryFilters(),
-      id: Joi.number(),
-      message: Joi.string().allow(""),
+      count: Joi.number(),
       status: Joi.string().allow(""),
-      updated_on: Joi.string().allow(""),
-      upload_service_response: WebhookPlatformModel.UploadServiceObject(),
-    });
-  }
-
-  /** @returns {ManualRetryFailedResponse} */
-  static ManualRetryFailedResponse() {
-    return Joi.object({
-      message: Joi.string().allow(""),
-      meta: Joi.any(),
-      request_id: Joi.string().allow(""),
-      stack_trace: Joi.string().allow(""),
-      success: Joi.boolean(),
     });
   }
 
@@ -507,7 +570,8 @@ class WebhookPlatformModel {
   /** @returns {ReportFilterResponse} */
   static ReportFilterResponse() {
     return Joi.object({
-      items: Joi.array().items(WebhookPlatformModel.FilterResponseObject()),
+      filter_name: Joi.string().allow(""),
+      values: Joi.array().items(Joi.object().pattern(/\S/, Joi.any())),
     });
   }
 
@@ -515,6 +579,32 @@ class WebhookPlatformModel {
   static ReportFiltersPayload() {
     return Joi.object({
       subscriber_ids: Joi.array().items(Joi.number()),
+    });
+  }
+
+  /** @returns {RetryCountResponse} */
+  static RetryCountResponse() {
+    return Joi.object({
+      items: Joi.array().items(WebhookPlatformModel.Item()),
+    });
+  }
+
+  /** @returns {RetryEventRequest} */
+  static RetryEventRequest() {
+    return Joi.object({
+      end_date: Joi.string().allow(""),
+      event: Joi.array().items(WebhookPlatformModel.Event()),
+      search_text: Joi.string().allow(""),
+      start_date: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+      subscriber_ids: Joi.array().items(Joi.number()),
+    });
+  }
+
+  /** @returns {RetryFailureResponse} */
+  static RetryFailureResponse() {
+    return Joi.object({
+      err: Joi.array().items(WebhookPlatformModel.Err()),
     });
   }
 
@@ -528,6 +618,14 @@ class WebhookPlatformModel {
     });
   }
 
+  /** @returns {RetrySuccessResponse} */
+  static RetrySuccessResponse() {
+    return Joi.object({
+      message: Joi.string().allow(""),
+      success: Joi.boolean(),
+    });
+  }
+
   /** @returns {SubscriberConfig} */
   static SubscriberConfig() {
     return Joi.object({
@@ -538,7 +636,7 @@ class WebhookPlatformModel {
       event_id: Joi.array().items(Joi.number()),
       id: Joi.number(),
       name: Joi.string().allow(""),
-      status: WebhookPlatformModel.SubscriberStatus(),
+      status: Joi.string().allow(""),
       webhook_url: Joi.string().allow(""),
     });
   }
@@ -551,6 +649,44 @@ class WebhookPlatformModel {
     });
   }
 
+  /** @returns {SubscriberConfigResponse} */
+  static SubscriberConfigResponse() {
+    return Joi.object({
+      association: WebhookPlatformModel.Association(),
+      auth_meta: WebhookPlatformModel.AuthMeta(),
+      created_on: Joi.string().allow(""),
+      custom_headers: Joi.any(),
+      email_id: Joi.string().allow(""),
+      event_id: Joi.array().items(Joi.number()),
+      id: Joi.number(),
+      modified_by: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      status: Joi.string().allow(""),
+      type: Joi.string().allow("").allow(null),
+      updated_on: Joi.string().allow(""),
+      webhook_url: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SubscriberEventMapping} */
+  static SubscriberEventMapping() {
+    return Joi.object({
+      created_on: Joi.string().allow(""),
+      event_id: Joi.number(),
+      id: Joi.number(),
+      subscriber_id: Joi.number(),
+    });
+  }
+
+  /** @returns {SubscriberFailureResponse} */
+  static SubscriberFailureResponse() {
+    return Joi.object({
+      code: Joi.string().allow(""),
+      message: Joi.string().allow(""),
+      stack: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {SubscriberResponse} */
   static SubscriberResponse() {
     return Joi.object({
@@ -559,10 +695,12 @@ class WebhookPlatformModel {
       created_on: Joi.string().allow(""),
       custom_headers: Joi.any(),
       email_id: Joi.string().allow(""),
-      event_configs: Joi.array().items(WebhookPlatformModel.EventConfig()),
+      event_configs: Joi.array().items(WebhookPlatformModel.EventConfigs()),
       id: Joi.number(),
+      modified_by: Joi.string().allow(""),
       name: Joi.string().allow(""),
-      status: WebhookPlatformModel.SubscriberStatus(),
+      status: Joi.string().allow(""),
+      type: Joi.string().allow("").allow(null),
       updated_on: Joi.string().allow(""),
       webhook_url: Joi.string().allow(""),
     });
@@ -581,21 +719,6 @@ class WebhookPlatformModel {
       name: Joi.string().allow(""),
       url: Joi.string().allow(""),
     });
-  }
-
-  /**
-   * Enum: SubscriberStatus Used By: Webhook
-   *
-   * @returns {SubscriberStatus}
-   */
-  static SubscriberStatus() {
-    return Joi.string().valid(
-      "active",
-
-      "inactive",
-
-      "blocked"
-    );
   }
 }
 module.exports = WebhookPlatformModel;

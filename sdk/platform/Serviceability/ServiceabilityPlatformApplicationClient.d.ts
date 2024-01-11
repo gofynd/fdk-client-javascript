@@ -4,61 +4,60 @@ declare class Serviceability {
     config: any;
     applicationId: any;
     /**
-     * @param {ServiceabilityPlatformApplicationValidator.AddAppDpParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.ApplicationCompanyDpViewResponse>}
-     *   - Success response
-     *
-     * @name addAppDp
-     * @summary: Add application dp data
-     * @description: This API add application dp data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/addAppDp/).
-     */
-    addAppDp({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.AddAppDpParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ApplicationCompanyDpViewResponse>;
-    /**
-     * @param {ServiceabilityPlatformApplicationValidator.DeleteAppDpParam} arg
+     * @param {ServiceabilityPlatformApplicationValidator.CreateCourierPartnerRuleParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.ApplicationCompanyDpViewResponse>}
-     *   - Success response
-     *
-     * @name deleteAppDp
-     * @summary: Delete application dp data
-     * @description: This API remove application dp data. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/deleteAppDp/).
+     * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRule>} -
+     *   Success response
+     * @name createCourierPartnerRule
+     * @summary: Create Courier Rules.
+     * @description: Creates Courier Rules with rule configuration and dp priority - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createCourierPartnerRule/).
      */
-    deleteAppDp({ courierPartnerId, requestHeaders }?: ServiceabilityPlatformApplicationValidator.DeleteAppDpParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ApplicationCompanyDpViewResponse>;
+    createCourierPartnerRule({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.CreateCourierPartnerRuleParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.CourierPartnerRule>;
     /**
-     * @param {ServiceabilityPlatformApplicationValidator.GetApplicationServiceabilityParam} arg
+     * @param {ServiceabilityPlatformApplicationValidator.CreateStoreRulesParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.ApplicationServiceabilityConfigResponse>}
+     * @returns {Promise<ServiceabilityPlatformModel.StoreRuleResponseSchema>}
      *   - Success response
      *
-     * @name getApplicationServiceability
-     * @summary: Zone configuration of application.
-     * @description: This API returns serviceability config of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getApplicationServiceability/).
+     * @name createStoreRules
+     * @summary: Create Store Rule
+     * @description: Create Store Rule - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/createStoreRules/).
      */
-    getApplicationServiceability({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ApplicationServiceabilityConfigResponse>;
+    createStoreRules({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.CreateStoreRulesParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.StoreRuleResponseSchema>;
     /**
-     * @param {ServiceabilityPlatformApplicationValidator.GetDpApplicationRulesParam} arg
+     * @param {ServiceabilityPlatformApplicationValidator.GetApplicationConfigParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.DPApplicationRuleResponse>}
-     *   - Success response
-     *
-     * @name getDpApplicationRules
-     * @summary: Get All DpApplicationRules rules added at application level from database.
-     * @description: This API returns response of all rules of DpApplicationRules from mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getDpApplicationRules/).
+     * @returns {Promise<ServiceabilityPlatformModel.StoreRuleConfigData>} -
+     *   Success response
+     * @name getApplicationConfig
+     * @summary: Get Application Configuration
+     * @description: Get Application Configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getApplicationConfig/).
      */
-    getDpApplicationRules({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.DPApplicationRuleResponse>;
+    getApplicationConfig({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.StoreRuleConfigData>;
     /**
-     * @param {ServiceabilityPlatformApplicationValidator.GetSelfShipParam} arg
+     * @param {ServiceabilityPlatformApplicationValidator.GetApplicationConfigurationParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.ApplicationConfig>} -
+     *   Success response
+     * @name getApplicationConfiguration
+     * @summary: Get All Courier Rules applied to application
+     * @description: This API returns all the Courier Rules applied to an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getApplicationConfiguration/).
+     */
+    getApplicationConfiguration({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ApplicationConfig>;
+    /**
+     * @param {ServiceabilityPlatformApplicationValidator.GetApplicationServiceabilitySelfShipmentParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -66,53 +65,131 @@ declare class Serviceability {
      * @returns {Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>}
      *   - Success response
      *
-     * @name getSelfShip
+     * @name getApplicationServiceabilitySelfShipment
      * @summary: Self-ship configuration of application.
-     * @description: This API returns Self-ship configuration of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getSelfShip/).
+     * @description: This API returns Self-ship configuration of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getApplicationServiceabilitySelfShipment/).
      */
-    getSelfShip({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>;
+    getApplicationServiceabilitySelfShipment({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>;
     /**
-     * @param {ServiceabilityPlatformApplicationValidator.GetZoneFromPincodeViewParam} arg
+     * @param {ServiceabilityPlatformApplicationValidator.GetCourierPartnerRuleParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.GetZoneFromPincodeViewResponse>}
-     *   - Success response
-     *
-     * @name getZoneFromPincodeView
-     * @summary: GET zone from the Pincode.
-     * @description: This API returns zone from the Pincode View. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getZoneFromPincodeView/).
+     * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRule>} -
+     *   Success response
+     * @name getCourierPartnerRule
+     * @summary: Fetch of Courier Rule.
+     * @description: This API returns Courier Rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCourierPartnerRule/).
      */
-    getZoneFromPincodeView({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.GetZoneFromPincodeViewParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.GetZoneFromPincodeViewResponse>;
+    getCourierPartnerRule({ ruleId, requestHeaders }?: ServiceabilityPlatformApplicationValidator.GetCourierPartnerRuleParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.CourierPartnerRule>;
     /**
-     * @param {ServiceabilityPlatformApplicationValidator.GetZonesFromApplicationIdViewParam} arg
+     * @param {ServiceabilityPlatformApplicationValidator.GetCourierPartnerRulesParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.GetZoneFromApplicationIdViewResponse>}
+     * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRulesListResponse>}
      *   - Success response
      *
-     * @name getZonesFromApplicationIdView
-     * @summary: GET zones from the application_id.
-     * @description: This API returns zones from the application_id View. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getZonesFromApplicationIdView/).
+     * @name getCourierPartnerRules
+     * @summary: Fetch Courier Rules List
+     * @description: This API returns Courier Rules List - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCourierPartnerRules/).
      */
-    getZonesFromApplicationIdView({ pageNo, pageSize, zoneId, q, requestHeaders }?: ServiceabilityPlatformApplicationValidator.GetZonesFromApplicationIdViewParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.GetZoneFromApplicationIdViewResponse>;
+    getCourierPartnerRules({ pageNo, pageSize, status, requestHeaders }?: ServiceabilityPlatformApplicationValidator.GetCourierPartnerRulesParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.CourierPartnerRulesListResponse>;
     /**
-     * @param {ServiceabilityPlatformApplicationValidator.UpdateApplicationServiceabilityParam} arg
+     * @param {ServiceabilityPlatformApplicationValidator.GetStoreRuleParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.ApplicationServiceabilityConfigResponse>}
+     * @returns {Promise<ServiceabilityPlatformModel.StoreRuleDataSchema>} -
+     *   Success response
+     * @name getStoreRule
+     * @summary: Get Single Store Rule
+     * @description: Get Single Store Rule - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getStoreRule/).
+     */
+    getStoreRule({ ruleUid, requestHeaders }?: ServiceabilityPlatformApplicationValidator.GetStoreRuleParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.StoreRuleDataSchema>;
+    /**
+     * @param {ServiceabilityPlatformApplicationValidator.GetStoreRulesParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.GetStoreRulesApiResponse>}
      *   - Success response
      *
-     * @name updateApplicationServiceability
-     * @summary: Zone configuration of application.
-     * @description: This API updates serviceability config of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateApplicationServiceability/).
+     * @name getStoreRules
+     * @summary: Get Multiple Store Rules
+     * @description: Get Multiple Store Rules - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getStoreRules/).
      */
-    updateApplicationServiceability({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdateApplicationServiceabilityParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ApplicationServiceabilityConfigResponse>;
+    getStoreRules({ pageNo, pageSize, status, requestHeaders }?: ServiceabilityPlatformApplicationValidator.GetStoreRulesParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.GetStoreRulesApiResponse>;
+    /**
+     * @param {ServiceabilityPlatformApplicationValidator.InsertApplicationConfigParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.StoreRuleConfigData>} -
+     *   Success response
+     * @name insertApplicationConfig
+     * @summary: Insert Application Configuration
+     * @description: Insert Application Configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/insertApplicationConfig/).
+     */
+    insertApplicationConfig({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.InsertApplicationConfigParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.StoreRuleConfigData>;
+    /**
+     * @param {ServiceabilityPlatformApplicationValidator.PatchApplicationServiceabilitySelfShipmentParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>}
+     *   - Success response
+     *
+     * @name patchApplicationServiceabilitySelfShipment
+     * @summary: Self-ship configuration of application.
+     * @description: This API updates Self-ship configuration of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/patchApplicationServiceabilitySelfShipment/).
+     */
+    patchApplicationServiceabilitySelfShipment({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.PatchApplicationServiceabilitySelfShipmentParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>;
+    /**
+     * @param {ServiceabilityPlatformApplicationValidator.UpdateApplicationConfigurationParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.ApplicationConfig>} -
+     *   Success response
+     * @name updateApplicationConfiguration
+     * @summary: Apply configuration to an application
+     * @description: Apply configuration to application to set DP rules and Zone configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateApplicationConfiguration/).
+     */
+    updateApplicationConfiguration({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdateApplicationConfigurationParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ApplicationConfig>;
+    /**
+     * @param {ServiceabilityPlatformApplicationValidator.UpdateCourierPartnerRulePriorityParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.RulePriorityResponse>} -
+     *   Success response
+     * @name updateCourierPartnerRulePriority
+     * @summary: Updates Courier Partner Rules Priority for a sales channel
+     * @description: Updates Courier Partner Rules Priority for a sales channel - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateCourierPartnerRulePriority/).
+     */
+    updateCourierPartnerRulePriority({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdateCourierPartnerRulePriorityParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.RulePriorityResponse>;
+    /**
+     * @param {ServiceabilityPlatformApplicationValidator.UpdateCourierRuleParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.CourierPartnerRule>} -
+     *   Success response
+     * @name updateCourierRule
+     * @summary: Updating of Courier Rule.
+     * @description: This API updates and returns Courier Rule. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateCourierRule/).
+     */
+    updateCourierRule({ ruleId, body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdateCourierRuleParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.CourierPartnerRule>;
     /**
      * @param {ServiceabilityPlatformApplicationValidator.UpdatePincodeAuditHistoryParam} arg
      *   - Arg object
@@ -169,33 +246,32 @@ declare class Serviceability {
      */
     updatePincodeMopView({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdatePincodeMopViewParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.PincodeMOPresponse>;
     /**
-     * @param {ServiceabilityPlatformApplicationValidator.UpdateSelfShipParam} arg
+     * @param {ServiceabilityPlatformApplicationValidator.UpdateStoreRulesParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>}
+     * @returns {Promise<ServiceabilityPlatformModel.StoreRuleUpdateResponseSchema>}
      *   - Success response
      *
-     * @name updateSelfShip
-     * @summary: Self-ship configuration of application.
-     * @description: This API updates Self-ship configuration of the application. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateSelfShip/).
+     * @name updateStoreRules
+     * @summary: Update Store Rule
+     * @description: Update Store Rule - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateStoreRules/).
      */
-    updateSelfShip({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdateSelfShipParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ApplicationSelfShipConfigResponse>;
+    updateStoreRules({ ruleUid, body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdateStoreRulesParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.StoreRuleUpdateResponseSchema>;
     /**
-     * @param {ServiceabilityPlatformApplicationValidator.UpsertDpApplicationRulesParam} arg
+     * @param {ServiceabilityPlatformApplicationValidator.UpdateStoreRulesConfigParam} arg
      *   - Arg object
      *
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<ServiceabilityPlatformModel.DPApplicationRuleResponse>}
-     *   - Success response
-     *
-     * @name upsertDpApplicationRules
-     * @summary: Upsert of DpApplicationRules in database.
-     * @description: This API returns response of upsert of DpApplicationRules in mongo database. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/upsertDpApplicationRules/).
+     * @returns {Promise<ServiceabilityPlatformModel.StoreRuleConfigData>} -
+     *   Success response
+     * @name updateStoreRulesConfig
+     * @summary: Update Store Rule Configuration
+     * @description: Update Store Rule Configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/updateStoreRulesConfig/).
      */
-    upsertDpApplicationRules({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpsertDpApplicationRulesParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.DPApplicationRuleResponse>;
+    updateStoreRulesConfig({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdateStoreRulesConfigParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.StoreRuleConfigData>;
 }
 import ServiceabilityPlatformApplicationValidator = require("./ServiceabilityPlatformApplicationValidator");
 import ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");

@@ -85,7 +85,7 @@ class Communication {
       error: res_error,
     } = CommunicationPlatformModel.SystemNotifications().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {

@@ -7,7 +7,11 @@ const { FDKServerResponseError } = require("./FDKError");
 const { log, Logger, getLoggerLevel } = require("./Logger");
 const createCurl = require("./curlHelper");
 const { version } = require("./../../package.json");
+const Clickstream = require("flick");
+
 axios.defaults.withCredentials = true;
+
+clickstreamEnabled = false;
 
 function getTransformer(config) {
   const { transformRequest } = config;
@@ -26,6 +30,7 @@ function getTransformer(config) {
 }
 
 function requestInterceptorFn() {
+  console.log("########### inside response interceptor #############");
   return (config) => {
     if (!config.url) {
       throw new Error(
@@ -112,6 +117,7 @@ fdkAxios.interceptors.request.use(
 );
 
 fdkAxios.interceptors.request.use(requestInterceptorFn());
+
 fdkAxios.interceptors.response.use(
   function (response) {
     if (response.config.method == "head") {
@@ -127,6 +133,29 @@ fdkAxios.interceptors.response.use(
     if (response.config.responseHeaders) {
       return [response.data, response.headers];
     }
+    if (!clickstreamEnabled && typeof window != "undefined") {
+      //Clickstream.initialize("testnk")
+      const urlObject = new URL(response.config.url);
+      const baseUrl = `${urlObject.protocol}//${urlObject.hostname}${
+        urlObject.port ? `:${urlObject.port}` : ""
+      }`;
+      console.log("priting base url", baseUrl);
+      Clickstream.initialize(baseUrl, window.config.application._id);
+      require("./Clickstream");
+      clickstreamEnabled = true;
+    }
+
+    // if (response.config.url.includes('/product','/follow/products', '/checkout', '/cart/v1.0/detail')) {
+    //   // track event
+    //   if(response.config.url.includes('/follow/products') && response.config.method == 'post') {
+    //     Clickstream.sendEvent("product_wishlisted", { "event_type": "click", ...response.data }).then((resp) => {
+    //       console.log("Event sent succesfully")
+    //     }).catch(err => {
+    //       console.error(err)
+    //     })
+    //   }
+    // }
+
     return response.data;
   },
   function (error) {

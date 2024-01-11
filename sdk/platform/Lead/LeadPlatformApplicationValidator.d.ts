@@ -8,9 +8,13 @@ export = LeadPlatformApplicationValidator;
  * @property {LeadPlatformModel.CreateCustomFormPayload} body
  */
 /**
- * @typedef CreateHistoryParam
+ * @typedef CreateNewHistoryParam
  * @property {string} id - Ticket ID for which history is created
  * @property {LeadPlatformModel.TicketHistoryPayload} body
+ */
+/**
+ * @typedef DeleteCustomFormParam
+ * @property {string} slug - Slug of form whose response is getting submitted
  */
 /**
  * @typedef EditCustomFormParam
@@ -18,7 +22,7 @@ export = LeadPlatformApplicationValidator;
  * @property {LeadPlatformModel.EditCustomFormPayload} body
  */
 /**
- * @typedef EditTicketParam
+ * @typedef EditNewTicketParam
  * @property {string} id - Ticket ID of ticket to be edited
  * @property {LeadPlatformModel.EditTicketPayload} body
  */
@@ -28,15 +32,15 @@ export = LeadPlatformApplicationValidator;
  */
 /** @typedef GetCustomFormsParam */
 /**
- * @typedef GetTicketParam
+ * @typedef GetNewTicketParam
  * @property {string} id - Tiket ID of the ticket to be fetched
  */
 /**
- * @typedef GetTicketHistoryParam
+ * @typedef GetNewTicketHistoryParam
  * @property {string} id - Ticket ID for which history is to be fetched
  */
 /**
- * @typedef GetTicketsParam
+ * @typedef GetNewTicketsParam
  * @property {boolean} [items] - Decides that the reponse will contain the list of tickets
  * @property {boolean} [filters] - Decides that the reponse will contain the
  *   ticket filters
@@ -46,11 +50,11 @@ export = LeadPlatformApplicationValidator;
  * @property {string} [category] - Filter tickets on category
  */
 /**
- * @typedef GetTokenForVideoRoomParam
+ * @typedef GetNewTokenForVideoRoomParam
  * @property {string} uniqueName - Unique name of video room
  */
 /**
- * @typedef GetVideoParticipantsParam
+ * @typedef GetNewVideoParticipantsParam
  * @property {string} uniqueName - Unique name of Video Room
  */
 /**
@@ -62,31 +66,33 @@ declare class LeadPlatformApplicationValidator {
     static closeVideoRoom(): CloseVideoRoomParam;
     /** @returns {CreateCustomFormParam} */
     static createCustomForm(): CreateCustomFormParam;
-    /** @returns {CreateHistoryParam} */
-    static createHistory(): CreateHistoryParam;
+    /** @returns {CreateNewHistoryParam} */
+    static createNewHistory(): CreateNewHistoryParam;
+    /** @returns {DeleteCustomFormParam} */
+    static deleteCustomForm(): DeleteCustomFormParam;
     /** @returns {EditCustomFormParam} */
     static editCustomForm(): EditCustomFormParam;
-    /** @returns {EditTicketParam} */
-    static editTicket(): EditTicketParam;
+    /** @returns {EditNewTicketParam} */
+    static editNewTicket(): EditNewTicketParam;
     /** @returns {GetCustomFormParam} */
     static getCustomForm(): GetCustomFormParam;
     /** @returns {GetCustomFormsParam} */
     static getCustomForms(): any;
-    /** @returns {GetTicketParam} */
-    static getTicket(): GetTicketParam;
-    /** @returns {GetTicketHistoryParam} */
-    static getTicketHistory(): GetTicketHistoryParam;
-    /** @returns {GetTicketsParam} */
-    static getTickets(): GetTicketsParam;
-    /** @returns {GetTokenForVideoRoomParam} */
-    static getTokenForVideoRoom(): GetTokenForVideoRoomParam;
-    /** @returns {GetVideoParticipantsParam} */
-    static getVideoParticipants(): GetVideoParticipantsParam;
+    /** @returns {GetNewTicketParam} */
+    static getNewTicket(): GetNewTicketParam;
+    /** @returns {GetNewTicketHistoryParam} */
+    static getNewTicketHistory(): GetNewTicketHistoryParam;
+    /** @returns {GetNewTicketsParam} */
+    static getNewTickets(): GetNewTicketsParam;
+    /** @returns {GetNewTokenForVideoRoomParam} */
+    static getNewTokenForVideoRoom(): GetNewTokenForVideoRoomParam;
+    /** @returns {GetNewVideoParticipantsParam} */
+    static getNewVideoParticipants(): GetNewVideoParticipantsParam;
     /** @returns {OpenVideoRoomParam} */
     static openVideoRoom(): OpenVideoRoomParam;
 }
 declare namespace LeadPlatformApplicationValidator {
-    export { CloseVideoRoomParam, CreateCustomFormParam, CreateHistoryParam, EditCustomFormParam, EditTicketParam, GetCustomFormParam, GetCustomFormsParam, GetTicketParam, GetTicketHistoryParam, GetTicketsParam, GetTokenForVideoRoomParam, GetVideoParticipantsParam, OpenVideoRoomParam };
+    export { CloseVideoRoomParam, CreateCustomFormParam, CreateNewHistoryParam, DeleteCustomFormParam, EditCustomFormParam, EditNewTicketParam, GetCustomFormParam, GetCustomFormsParam, GetNewTicketParam, GetNewTicketHistoryParam, GetNewTicketsParam, GetNewTokenForVideoRoomParam, GetNewVideoParticipantsParam, OpenVideoRoomParam };
 }
 type CloseVideoRoomParam = {
     /**
@@ -97,12 +103,18 @@ type CloseVideoRoomParam = {
 type CreateCustomFormParam = {
     body: LeadPlatformModel.CreateCustomFormPayload;
 };
-type CreateHistoryParam = {
+type CreateNewHistoryParam = {
     /**
      * - Ticket ID for which history is created
      */
     id: string;
     body: LeadPlatformModel.TicketHistoryPayload;
+};
+type DeleteCustomFormParam = {
+    /**
+     * - Slug of form whose response is getting submitted
+     */
+    slug: string;
 };
 type EditCustomFormParam = {
     /**
@@ -111,7 +123,7 @@ type EditCustomFormParam = {
     slug: string;
     body: LeadPlatformModel.EditCustomFormPayload;
 };
-type EditTicketParam = {
+type EditNewTicketParam = {
     /**
      * - Ticket ID of ticket to be edited
      */
@@ -124,19 +136,19 @@ type GetCustomFormParam = {
      */
     slug: string;
 };
-type GetTicketParam = {
+type GetNewTicketParam = {
     /**
      * - Tiket ID of the ticket to be fetched
      */
     id: string;
 };
-type GetTicketHistoryParam = {
+type GetNewTicketHistoryParam = {
     /**
      * - Ticket ID for which history is to be fetched
      */
     id: string;
 };
-type GetTicketsParam = {
+type GetNewTicketsParam = {
     /**
      * - Decides that the reponse will contain the list of tickets
      */
@@ -163,13 +175,13 @@ type GetTicketsParam = {
      */
     category?: string;
 };
-type GetTokenForVideoRoomParam = {
+type GetNewTokenForVideoRoomParam = {
     /**
      * - Unique name of video room
      */
     uniqueName: string;
 };
-type GetVideoParticipantsParam = {
+type GetNewVideoParticipantsParam = {
     /**
      * - Unique name of Video Room
      */

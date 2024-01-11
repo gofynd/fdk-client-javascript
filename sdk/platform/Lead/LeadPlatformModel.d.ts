@@ -106,6 +106,10 @@ export = LeadPlatformModel;
  * @property {boolean} [verified] - Denotes it's a verified email
  */
 /**
+ * @typedef ErrorMessage
+ * @property {string} [message]
+ */
+/**
  * @typedef FeedbackForm
  * @property {Object} [inputs] - Input details for the feed back form
  * @property {Object} [timestamps] - Gives details of category releted data
@@ -301,7 +305,7 @@ export = LeadPlatformModel;
  * @property {string} [user_id]
  * @property {string} [username]
  */
-/** @typedef {"rating" | "log" | "comment"} HistoryTypeEnum */
+/** @typedef {"rating" | "log" | "comment" | "thread"} HistoryTypeEnum */
 /** @typedef {"low" | "medium" | "high" | "urgent"} PriorityEnum */
 /**
  * @typedef {| "image"
@@ -318,7 +322,7 @@ export = LeadPlatformModel;
 declare class LeadPlatformModel {
 }
 declare namespace LeadPlatformModel {
-    export { AddTicketPayload, AgentChangePayload, CloseVideoRoomResponse, CreateCustomFormPayload, CreatedOn, CreateVideoRoomPayload, CreateVideoRoomResponse, CustomForm, CustomFormList, Debug, EditCustomFormPayload, EditTicketPayload, Email, FeedbackForm, FeedbackResponseItem, Filter, GetParticipantsInsideVideoRoomResponse, GetTokenForVideoRoomResponse, NotifyUser, Page, Participant, PhoneNumber, PollForAssignment, Priority, Status, SubmitButton, Ticket, TicketAsset, TicketCategory, TicketContent, TicketContext, TicketFeedback, TicketFeedbackList, TicketFeedbackPayload, TicketHistory, TicketHistoryList, TicketHistoryPayload, TicketList, UserSchema, HistoryTypeEnum, PriorityEnum, TicketAssetTypeEnum, TicketSourceEnum };
+    export { AddTicketPayload, AgentChangePayload, CloseVideoRoomResponse, CreateCustomFormPayload, CreatedOn, CreateVideoRoomPayload, CreateVideoRoomResponse, CustomForm, CustomFormList, Debug, EditCustomFormPayload, EditTicketPayload, Email, ErrorMessage, FeedbackForm, FeedbackResponseItem, Filter, GetParticipantsInsideVideoRoomResponse, GetTokenForVideoRoomResponse, NotifyUser, Page, Participant, PhoneNumber, PollForAssignment, Priority, Status, SubmitButton, Ticket, TicketAsset, TicketCategory, TicketContent, TicketContext, TicketFeedback, TicketFeedbackList, TicketFeedbackPayload, TicketHistory, TicketHistoryList, TicketHistoryPayload, TicketList, UserSchema, HistoryTypeEnum, PriorityEnum, TicketAssetTypeEnum, TicketSourceEnum };
 }
 /** @returns {AddTicketPayload} */
 declare function AddTicketPayload(): AddTicketPayload;
@@ -576,6 +580,11 @@ type Email = {
      * - Denotes it's a verified email
      */
     verified?: boolean;
+};
+/** @returns {ErrorMessage} */
+declare function ErrorMessage(): ErrorMessage;
+type ErrorMessage = {
+    message?: string;
 };
 /** @returns {FeedbackForm} */
 declare function FeedbackForm(): FeedbackForm;
@@ -1024,7 +1033,7 @@ type UserSchema = {
  * @returns {HistoryTypeEnum}
  */
 declare function HistoryTypeEnum(): HistoryTypeEnum;
-type HistoryTypeEnum = "rating" | "log" | "comment";
+type HistoryTypeEnum = "rating" | "log" | "comment" | "thread";
 /**
  * Enum: PriorityEnum Used By: Lead
  *

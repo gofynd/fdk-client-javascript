@@ -6,6 +6,8 @@ declare class Content {
         getAnnouncements: string;
         getBlog: string;
         getBlogs: string;
+        getCustomFields: string;
+        getCustomObject: string;
         getDataLoaders: string;
         getFaqBySlug: string;
         getFaqCategories: string;
@@ -18,6 +20,7 @@ declare class Content {
         getPage: string;
         getPages: string;
         getSEOConfiguration: string;
+        getSEOMarkupSchemas: string;
         getSlideshow: string;
         getSlideshows: string;
         getSupportInformation: string;
@@ -67,6 +70,29 @@ declare class Content {
     getBlogsPaginator({ pageSize }?: {
         pageSize?: number;
     }): Paginator<ContentApplicationModel.BlogGetResponse>;
+    /**
+     * @param {ContentApplicationValidator.GetCustomFieldsParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<ContentApplicationModel.CustomFieldsResponseByResourceIdSchema>}
+     *   - Success response
+     *
+     * @name getCustomFields
+     * @summary: Get list of custom fields of given resource and resource_id.
+     * @description: Use this API to retrieve the custom fields for given resource and resource_id in param. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getCustomFields/).
+     */
+    getCustomFields({ resource, resourceId, requestHeaders }?: ContentApplicationValidator.GetCustomFieldsParam, { responseHeaders }?: object): Promise<ContentApplicationModel.CustomFieldsResponseByResourceIdSchema>;
+    /**
+     * @param {ContentApplicationValidator.GetCustomObjectParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<ContentApplicationModel.CustomObjectByIdSchema>} -
+     *   Success response
+     * @name getCustomObject
+     * @summary: Get custom object details
+     * @description: Use this API to retrieve the custom object details, their fields details with definitions and references. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getCustomObject/).
+     */
+    getCustomObject({ metaobjectId, requestHeaders }?: ContentApplicationValidator.GetCustomObjectParam, { responseHeaders }?: object): Promise<ContentApplicationModel.CustomObjectByIdSchema>;
     /**
      * @param {ContentApplicationValidator.GetDataLoadersParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -210,6 +236,16 @@ declare class Content {
      * @description: Use this API to get the SEO details of an application, which includes a robot.txt, meta-tags and sitemap. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSEOConfiguration/).
      */
     getSEOConfiguration({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ContentApplicationModel.SeoComponent>;
+    /**
+     * @param {ContentApplicationValidator.GetSEOMarkupSchemasParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<ContentApplicationModel.SeoSchemaComponent>} - Success response
+     * @name getSEOMarkupSchemas
+     * @summary: Get SEO Markup schemas of an application
+     * @description: Use this API to get all SEO Markup schema Templates setup for an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSEOMarkupSchemas/).
+     */
+    getSEOMarkupSchemas({ pageType, active, requestHeaders }?: ContentApplicationValidator.GetSEOMarkupSchemasParam, { responseHeaders }?: object): Promise<ContentApplicationModel.SeoSchemaComponent>;
     /**
      * @param {ContentApplicationValidator.GetSlideshowParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

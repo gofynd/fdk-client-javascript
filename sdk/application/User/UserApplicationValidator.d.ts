@@ -48,6 +48,10 @@ export = UserApplicationValidator;
  * @typedef GetPlatformConfigParam
  * @property {string} [name] - Name of the application, e.g. Fynd
  */
+/**
+ * @typedef GetUserAttributesParam
+ * @property {string} [slug] - Filter by attribute slug.
+ */
 /** @typedef HasPasswordParam */
 /**
  * @typedef LoginWithAppleIOSParam
@@ -159,6 +163,14 @@ export = UserApplicationValidator;
  * @property {UserApplicationModel.EditProfileRequestSchema} body
  */
 /**
+ * @typedef UpdateUserAttributesParam
+ * @property {UserApplicationModel.UpdateUserAttributesRequest} body
+ */
+/**
+ * @typedef UserExistsParam
+ * @property {string} q - Email id or phone number of user
+ */
+/**
  * @typedef VerifyEmailParam
  * @property {UserApplicationModel.CodeRequestBodySchema} body
  */
@@ -205,6 +217,8 @@ declare class UserApplicationValidator {
     static getLoggedInUser(): any;
     /** @returns {GetPlatformConfigParam} */
     static getPlatformConfig(): GetPlatformConfigParam;
+    /** @returns {GetUserAttributesParam} */
+    static getUserAttributes(): GetUserAttributesParam;
     /** @returns {HasPasswordParam} */
     static hasPassword(): any;
     /** @returns {LoginWithAppleIOSParam} */
@@ -255,6 +269,10 @@ declare class UserApplicationValidator {
     static updatePassword(): UpdatePasswordParam;
     /** @returns {UpdateProfileParam} */
     static updateProfile(): UpdateProfileParam;
+    /** @returns {UpdateUserAttributesParam} */
+    static updateUserAttributes(): UpdateUserAttributesParam;
+    /** @returns {UserExistsParam} */
+    static userExists(): UserExistsParam;
     /** @returns {VerifyEmailParam} */
     static verifyEmail(): VerifyEmailParam;
     /** @returns {VerifyEmailForgotOTPParam} */
@@ -269,7 +287,7 @@ declare class UserApplicationValidator {
     static verifyMobileOTP(): VerifyMobileOTPParam;
 }
 declare namespace UserApplicationValidator {
-    export { AddEmailParam, AddMobileNumberParam, DeleteEmailParam, DeleteMobileNumberParam, DeleteUserParam, ForgotPasswordParam, GetListOfActiveSessionsParam, GetLoggedInUserParam, GetPlatformConfigParam, HasPasswordParam, LoginWithAppleIOSParam, LoginWithEmailAndPasswordParam, LoginWithFacebookParam, LoginWithGoogleParam, LoginWithGoogleAndroidParam, LoginWithGoogleIOSParam, LoginWithOTPParam, LoginWithTokenParam, LogoutParam, RegisterWithFormParam, ResetForgotPasswordParam, SendForgotOTPOnEmailParam, SendForgotOTPOnMobileParam, SendOTPOnEmailParam, SendOTPOnMobileParam, SendResetPasswordEmailParam, SendResetPasswordMobileParam, SendResetTokenParam, SendVerificationLinkToEmailParam, SendVerificationLinkToMobileParam, SetEmailAsPrimaryParam, SetMobileNumberAsPrimaryParam, UpdatePasswordParam, UpdateProfileParam, VerifyEmailParam, VerifyEmailForgotOTPParam, VerifyEmailOTPParam, VerifyMobileParam, VerifyMobileForgotOTPParam, VerifyMobileOTPParam };
+    export { AddEmailParam, AddMobileNumberParam, DeleteEmailParam, DeleteMobileNumberParam, DeleteUserParam, ForgotPasswordParam, GetListOfActiveSessionsParam, GetLoggedInUserParam, GetPlatformConfigParam, GetUserAttributesParam, HasPasswordParam, LoginWithAppleIOSParam, LoginWithEmailAndPasswordParam, LoginWithFacebookParam, LoginWithGoogleParam, LoginWithGoogleAndroidParam, LoginWithGoogleIOSParam, LoginWithOTPParam, LoginWithTokenParam, LogoutParam, RegisterWithFormParam, ResetForgotPasswordParam, SendForgotOTPOnEmailParam, SendForgotOTPOnMobileParam, SendOTPOnEmailParam, SendOTPOnMobileParam, SendResetPasswordEmailParam, SendResetPasswordMobileParam, SendResetTokenParam, SendVerificationLinkToEmailParam, SendVerificationLinkToMobileParam, SetEmailAsPrimaryParam, SetMobileNumberAsPrimaryParam, UpdatePasswordParam, UpdateProfileParam, UpdateUserAttributesParam, UserExistsParam, VerifyEmailParam, VerifyEmailForgotOTPParam, VerifyEmailOTPParam, VerifyMobileParam, VerifyMobileForgotOTPParam, VerifyMobileOTPParam };
 }
 type AddEmailParam = {
     /**
@@ -352,6 +370,12 @@ type GetPlatformConfigParam = {
      * - Name of the application, e.g. Fynd
      */
     name?: string;
+};
+type GetUserAttributesParam = {
+    /**
+     * - Filter by attribute slug.
+     */
+    slug?: string;
 };
 type LoginWithAppleIOSParam = {
     /**
@@ -485,6 +509,15 @@ type UpdateProfileParam = {
      */
     platform?: string;
     body: UserApplicationModel.EditProfileRequestSchema;
+};
+type UpdateUserAttributesParam = {
+    body: UserApplicationModel.UpdateUserAttributesRequest;
+};
+type UserExistsParam = {
+    /**
+     * - Email id or phone number of user
+     */
+    q: string;
 };
 type VerifyEmailParam = {
     body: UserApplicationModel.CodeRequestBodySchema;

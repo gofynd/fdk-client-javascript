@@ -59,7 +59,9 @@ export = PosCartApplicationModel;
  * @property {Object} [meta]
  * @property {string} [name]
  * @property {string} [phone]
+ * @property {string} [sector]
  * @property {string} [state]
+ * @property {string} [state_code] - State code for international address
  * @property {string[]} [tags]
  * @property {string} [user_id]
  */
@@ -78,6 +80,7 @@ export = PosCartApplicationModel;
  * @property {number} [article_quantity] - Quantity of article on which
  *   promotion is applicable
  * @property {BuyRules[]} [buy_rules] - Buy rules for promotions
+ * @property {CartCurrency} [currency]
  * @property {DiscountRulesApp[]} [discount_rules] - Discount rules for promotions
  * @property {boolean} [mrp_promotion] - If applied promotion is applied on
  *   product MRP or ESP
@@ -551,6 +554,7 @@ export = PosCartApplicationModel;
  * @property {string} [seller_identifier]
  * @property {string} [size]
  * @property {StoreInfo} [store]
+ * @property {string[]} [tags] - A list of article tags
  * @property {string} [type]
  * @property {string} [uid]
  */
@@ -593,6 +597,11 @@ export = PosCartApplicationModel;
  * @typedef PromiseFormatted
  * @property {string} [max]
  * @property {string} [min]
+ */
+/**
+ * @typedef PromiseISOFormat
+ * @property {string} [max] - Max promise in ISO format.
+ * @property {string} [min] - Min Promise in ISO format.
  */
 /**
  * @typedef PromiseTimestamp
@@ -673,6 +682,7 @@ export = PosCartApplicationModel;
 /**
  * @typedef ShipmentPromise
  * @property {PromiseFormatted} [formatted]
+ * @property {PromiseISOFormat} [iso]
  * @property {PromiseTimestamp} [timestamp]
  */
 /**
@@ -764,7 +774,7 @@ export = PosCartApplicationModel;
 declare class PosCartApplicationModel {
 }
 declare namespace PosCartApplicationModel {
-    export { ActionQuery, AddCartDetailResponse, AddCartRequest, AddProductCart, Address, AppliedFreeArticles, AppliedPromotion, ApplyCouponRequest, ArticleGiftDetail, ArticlePriceInfo, BaseInfo, BasePrice, BulkPriceOffer, BulkPriceResponse, BuyRules, CartBreakup, CartCheckoutCustomMeta, CartCheckoutResponse, CartCurrency, CartDeliveryModesResponse, CartDetailResponse, CartItemCountResponse, CartMetaMissingResponse, CartMetaRequest, CartMetaResponse, CartPosCheckoutDetailRequest, CartProduct, CartProductIdentifer, CartProductInfo, CartShipmentsResponse, CategoryInfo, CheckCart, Coupon, CouponBreakup, CouponDetails, CouponValidity, CustomerDetails, DeleteAddressResponse, DiscountRulesApp, DisplayBreakup, Files, FreeGiftItem, GeoLocation, GetAddressesResponse, GetCouponResponse, GetShareCartLinkRequest, GetShareCartLinkResponse, GiftDetail, LoyaltyPoints, OfferItem, OfferPrice, OfferSeller, Ownership, PageCoupon, PaymentCouponValidate, PaymentSelectionLock, PickupStoreDetail, ProductAction, ProductArticle, ProductAvailability, ProductAvailabilitySize, ProductImage, ProductPrice, ProductPriceInfo, PromiseFormatted, PromiseTimestamp, PromoMeta, RawBreakup, RewardPointRequest, SaveAddressResponse, SelectCartAddressRequest, SharedCart, SharedCartDetails, SharedCartResponse, ShipmentPromise, ShipmentResponse, StaffCheckout, StoreDetailsResponse, StoreInfo, Tags, UpdateAddressResponse, UpdateCartDetailResponse, UpdateCartPaymentRequest, UpdateCartRequest, UpdateCartShipmentItem, UpdateCartShipmentRequest, UpdateProductCart };
+    export { ActionQuery, AddCartDetailResponse, AddCartRequest, AddProductCart, Address, AppliedFreeArticles, AppliedPromotion, ApplyCouponRequest, ArticleGiftDetail, ArticlePriceInfo, BaseInfo, BasePrice, BulkPriceOffer, BulkPriceResponse, BuyRules, CartBreakup, CartCheckoutCustomMeta, CartCheckoutResponse, CartCurrency, CartDeliveryModesResponse, CartDetailResponse, CartItemCountResponse, CartMetaMissingResponse, CartMetaRequest, CartMetaResponse, CartPosCheckoutDetailRequest, CartProduct, CartProductIdentifer, CartProductInfo, CartShipmentsResponse, CategoryInfo, CheckCart, Coupon, CouponBreakup, CouponDetails, CouponValidity, CustomerDetails, DeleteAddressResponse, DiscountRulesApp, DisplayBreakup, Files, FreeGiftItem, GeoLocation, GetAddressesResponse, GetCouponResponse, GetShareCartLinkRequest, GetShareCartLinkResponse, GiftDetail, LoyaltyPoints, OfferItem, OfferPrice, OfferSeller, Ownership, PageCoupon, PaymentCouponValidate, PaymentSelectionLock, PickupStoreDetail, ProductAction, ProductArticle, ProductAvailability, ProductAvailabilitySize, ProductImage, ProductPrice, ProductPriceInfo, PromiseFormatted, PromiseISOFormat, PromiseTimestamp, PromoMeta, RawBreakup, RewardPointRequest, SaveAddressResponse, SelectCartAddressRequest, SharedCart, SharedCartDetails, SharedCartResponse, ShipmentPromise, ShipmentResponse, StaffCheckout, StoreDetailsResponse, StoreInfo, Tags, UpdateAddressResponse, UpdateCartDetailResponse, UpdateCartPaymentRequest, UpdateCartRequest, UpdateCartShipmentItem, UpdateCartShipmentRequest, UpdateProductCart };
 }
 /** @returns {ActionQuery} */
 declare function ActionQuery(): ActionQuery;
@@ -840,7 +850,12 @@ type Address = {
     meta?: any;
     name?: string;
     phone?: string;
+    sector?: string;
     state?: string;
+    /**
+     * - State code for international address
+     */
+    state_code?: string;
     tags?: string[];
     user_id?: string;
 };
@@ -885,6 +900,7 @@ type AppliedPromotion = {
      * - Buy rules for promotions
      */
     buy_rules?: BuyRules[];
+    currency?: CartCurrency;
     /**
      * - Discount rules for promotions
      */
@@ -1560,6 +1576,10 @@ type ProductArticle = {
     seller_identifier?: string;
     size?: string;
     store?: StoreInfo;
+    /**
+     * - A list of article tags
+     */
+    tags?: string[];
     type?: string;
     uid?: string;
 };
@@ -1607,6 +1627,18 @@ type ProductPriceInfo = {
 declare function PromiseFormatted(): PromiseFormatted;
 type PromiseFormatted = {
     max?: string;
+    min?: string;
+};
+/** @returns {PromiseISOFormat} */
+declare function PromiseISOFormat(): PromiseISOFormat;
+type PromiseISOFormat = {
+    /**
+     * - Max promise in ISO format.
+     */
+    max?: string;
+    /**
+     * - Min Promise in ISO format.
+     */
     min?: string;
 };
 /** @returns {PromiseTimestamp} */
@@ -1710,6 +1742,7 @@ type SharedCartResponse = {
 declare function ShipmentPromise(): ShipmentPromise;
 type ShipmentPromise = {
     formatted?: PromiseFormatted;
+    iso?: PromiseISOFormat;
     timestamp?: PromiseTimestamp;
 };
 /** @returns {ShipmentResponse} */

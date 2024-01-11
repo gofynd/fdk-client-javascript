@@ -101,7 +101,7 @@ class Lead {
       error: res_error,
     } = LeadApplicationModel.TicketHistory().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -179,7 +179,7 @@ class Lead {
       error: res_error,
     } = LeadApplicationModel.Ticket().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -257,7 +257,7 @@ class Lead {
       error: res_error,
     } = LeadApplicationModel.CustomForm().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -341,7 +341,7 @@ class Lead {
       error: res_error,
     } = LeadApplicationModel.GetParticipantsInsideVideoRoomResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -417,7 +417,7 @@ class Lead {
       error: res_error,
     } = LeadApplicationModel.Ticket().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -496,7 +496,7 @@ class Lead {
       error: res_error,
     } = LeadApplicationModel.GetTokenForVideoRoomResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -575,7 +575,7 @@ class Lead {
       error: res_error,
     } = LeadApplicationModel.SubmitCustomFormResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

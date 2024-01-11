@@ -1,9 +1,16 @@
 export = ThemePartnerModel;
 /**
- * @typedef AdvanceSetting
- * @property {DividerStrokeHighlightSetting} [divider_stroke_highlight]
- * @property {OverlayPopupSetting} [overlay_popup]
- * @property {UserAlertsSetting} [user_alerts]
+ * @typedef Action
+ * @property {ActionPage} [page]
+ * @property {ActionPage} [popup]
+ * @property {string} [type]
+ */
+/**
+ * @typedef ActionPage
+ * @property {Object} [params]
+ * @property {Object} [query]
+ * @property {string} [type]
+ * @property {string} [url]
  */
 /**
  * @typedef AllAvailablePageSchema
@@ -16,15 +23,19 @@ export = ThemePartnerModel;
  * @property {UMDJs} [umd_js]
  */
 /**
- * @typedef AuthConfig
- * @property {boolean} [show_footer_auth] - Whether to show footer authentication or not
- * @property {boolean} [show_header_auth] - Whether to show header authentication or not
+ * @typedef AvailablePagePlatformPredicate
+ * @property {boolean} [android] - Section visibility on android platform
+ * @property {boolean} [ios] - Section visibility on ios platform
+ * @property {boolean} [web] - Section visibility on web platform
  */
 /**
  * @typedef AvailablePagePredicate
+ * @property {AvailablePagePlatformPredicate} [platform]
  * @property {AvailablePageRoutePredicate} [route]
+ * @property {AvailablePageSchedulePredicate} [schedule]
  * @property {AvailablePageScreenPredicate} [screen]
  * @property {AvailablePageUserPredicate} [user]
+ * @property {string[]} [zones] - An array of zone ids associated with the section
  */
 /**
  * @typedef AvailablePageRoutePredicate
@@ -33,8 +44,15 @@ export = ThemePartnerModel;
  * @property {string} [selected]
  */
 /**
+ * @typedef AvailablePageSchedulePredicate
+ * @property {string} [cron]
+ * @property {string} [end]
+ * @property {string} [start]
+ */
+/**
  * @typedef AvailablePageSchema
  * @property {string} [_id]
+ * @property {string} [created_at] - The creation timestamp of the page
  * @property {string} [path]
  * @property {Object[]} [props]
  * @property {AvailablePageSchemaSections[]} [sections]
@@ -43,6 +61,7 @@ export = ThemePartnerModel;
  * @property {string} [text]
  * @property {string} [theme]
  * @property {string} [type]
+ * @property {string} [updated_at] - The last update timestamp of the page
  * @property {string} [value]
  */
 /**
@@ -53,6 +72,7 @@ export = ThemePartnerModel;
  * @property {AvailablePagePredicate} [predicate]
  * @property {Object} [preset]
  * @property {Object} [props]
+ * @property {string} [source]
  */
 /**
  * @typedef AvailablePageScreenPredicate
@@ -67,7 +87,10 @@ export = ThemePartnerModel;
 /**
  * @typedef AvailablePageSeo
  * @property {string} [_id]
+ * @property {SEObreadcrumb[]} [breadcrumb]
  * @property {string} [description]
+ * @property {SEOMetaItem[]} [meta_tags]
+ * @property {SEOSitemap} [sitemap]
  * @property {string} [title]
  */
 /**
@@ -95,12 +118,6 @@ export = ThemePartnerModel;
  * @property {UrlProp} [slide_link]
  */
 /**
- * @typedef ButtonSetting
- * @property {string} [button_link] - The button link color
- * @property {string} [button_primary] - The primary button color
- * @property {string} [button_secondary] - The secondary button color
- */
-/**
  * @typedef CarouselItem
  * @property {string} [desktop] - Desktop carousel image URL
  * @property {string} [mobile] - Mobile carousel image URL
@@ -114,15 +131,6 @@ export = ThemePartnerModel;
  * @typedef CheckboxProp
  * @property {string} [type] - The type of the property.
  * @property {boolean} [value] - The value of the checkbox property.
- */
-/**
- * @typedef Colors
- * @property {string} [accent_color] - The accent color
- * @property {string} [bg_color] - The background color
- * @property {string} [button_secondary_color] - The secondary button color
- * @property {string} [link_color] - The link color
- * @property {string} [primary_color] - The primary color
- * @property {string} [secondary_color] - The secondary color
  */
 /**
  * @typedef Comments
@@ -146,7 +154,20 @@ export = ThemePartnerModel;
  * @property {string} [seller_contact] - Seller contact information
  */
 /**
+ * @typedef CreateNewTheme
+ * @property {SectionItem[]} available_sections - Available sections information
+ * @property {string} [current] - The current configuration
+ * @property {GlobalSchema} [global_schema]
+ * @property {ThemeConfiguration[]} [list] - A list of configurations
+ * @property {string} name - The name of the theme
+ * @property {Page[]} [pages]
+ * @property {Preset} [preset]
+ * @property {string} theme_type - Type of the Theme
+ * @property {string} version - The version of the theme
+ */
+/**
  * @typedef CSS
+ * @property {string} [link]
  * @property {string[]} [links]
  */
 /**
@@ -192,9 +213,9 @@ export = ThemePartnerModel;
  *   price color
  */
 /**
- * @typedef DividerStrokeHighlightSetting
- * @property {string} [divider_strokes] - The divider strokes color
- * @property {string} [highlight] - The highlight color
+ * @typedef DividerStrokeHighlight
+ * @property {string} [divider_strokes]
+ * @property {string} [highlight]
  */
 /**
  * @typedef Documentation
@@ -235,37 +256,8 @@ export = ThemePartnerModel;
  * @property {FontVariant} [semi_bold]
  */
 /**
- * @typedef FooterSetting
- * @property {string} [footer_background] - The footer background color
- * @property {string} [footer_body_text] - The footer body text color
- * @property {string} [footer_bottom_background] - The footer bottom background color
- * @property {string} [footer_heading_text] - The footer heading text color
- * @property {string} [footer_icon] - The footer icon color
- */
-/**
- * @typedef GeneralSetting
- * @property {ButtonSetting} [button]
- * @property {FooterSetting} [footer]
- * @property {HeaderSetting} [header]
- * @property {SaleDiscountSetting} [sale_discount]
- * @property {TextSetting} [text]
- * @property {ThemeSetting} [theme]
- */
-/**
- * @typedef GlobalConfig
- * @property {AuthConfig} [auth]
- * @property {PaletteConfig} [palette]
- * @property {StaticConfig} [statics]
- */
-/**
  * @typedef GlobalSchema
  * @property {Prop[]} [props]
- */
-/**
- * @typedef HeaderSetting
- * @property {string} [header_background] - The header background color
- * @property {string} [header_icon] - The header icon color
- * @property {string} [header_nav] - The header navigation color
  */
 /**
  * @typedef Highlight
@@ -325,24 +317,24 @@ export = ThemePartnerModel;
  * @property {MarketplaceTheme[]} [themes]
  */
 /**
- * @typedef Meta
- * @property {string} [description] - The description of the theme
- * @property {Images} [images]
- * @property {string[]} [industry] - An array of industries associated with the theme
- * @property {string} [name] - The name of the theme
- * @property {ThemePayment} [payment]
- * @property {Release} [release]
- * @property {string} [slug] - The slug of the theme
+ * @typedef OrderTracking
+ * @property {boolean} [show_footer]
+ * @property {boolean} [show_header]
  */
 /**
- * @typedef OverlayPopupSetting
- * @property {string} [dialog_backgroung] - The dialog background color
- * @property {string} [overlay] - The overlay color
+ * @typedef OverlayPopup
+ * @property {string} [dialog_backgroung]
+ * @property {string} [overlay]
  */
 /**
  * @typedef Page
- * @property {Section[]} [sections]
- * @property {string} [value] - The value of the page.
+ * @property {number} [current]
+ * @property {boolean} [has_next]
+ * @property {boolean} [has_previous]
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {number} [size]
+ * @property {string} type
  */
 /**
  * @typedef PaginationSchema
@@ -351,11 +343,6 @@ export = ThemePartnerModel;
  * @property {number} [item_total]
  * @property {number} [size]
  * @property {string} [type]
- */
-/**
- * @typedef PaletteConfig
- * @property {AdvanceSetting} [advance_setting]
- * @property {GeneralSetting} [general_setting]
  */
 /**
  * @typedef PaymentInfo
@@ -379,6 +366,7 @@ export = ThemePartnerModel;
  * @property {string} [info] - Additional information about the property
  * @property {string} [label] - The label of the property
  * @property {string} [type] - The type of the property
+ * @property {string} [value] - The value of the property
  */
 /**
  * @typedef RangeProp
@@ -394,13 +382,6 @@ export = ThemePartnerModel;
  * @typedef Route
  * @property {string} [exact_url] - The exact URL of the route.
  * @property {string} [selected] - The selected route.
- */
-/**
- * @typedef SaleDiscountSetting
- * @property {string} [sale_badge_background] - The sale badge background color
- * @property {string} [sale_badge_text] - The sale badge text color
- * @property {string} [sale_discount_text] - The sale discount text color
- * @property {string} [sale_timer] - The sale timer color
  */
 /**
  * @typedef Screen
@@ -435,13 +416,24 @@ export = ThemePartnerModel;
  * @property {TextProp} [title]
  */
 /**
- * @typedef StaticConfig
- * @property {StaticProps} [props]
+ * @typedef SEObreadcrumb
+ * @property {Action} [action]
+ * @property {string} [url]
  */
 /**
- * @typedef StaticProps
- * @property {AuthConfig} [auth]
- * @property {Colors} [colors]
+ * @typedef SEOMetaItem
+ * @property {SEOMetaItems[]} [items]
+ * @property {string} [title]
+ */
+/**
+ * @typedef SEOMetaItems
+ * @property {string} [key]
+ * @property {string} [value]
+ */
+/**
+ * @typedef SEOSitemap
+ * @property {string} [frequency]
+ * @property {number} [priority]
  */
 /**
  * @typedef TextProp
@@ -449,18 +441,29 @@ export = ThemePartnerModel;
  * @property {string} [value] - The value of the text property.
  */
 /**
- * @typedef TextSetting
- * @property {string} [text_body] - The text body color
- * @property {string} [text_heading] - The text heading color
- * @property {string} [text_label] - The text label color
- * @property {string} [text_secondary] - The secondary text color
+ * @typedef ThemeConfigListPage
+ * @property {string} [page] - Name of the page
+ * @property {ThemeConfigListPageSettingsProps} [settings]
+ */
+/**
+ * @typedef ThemeConfigListPageSettingsProps
+ * @property {Object} [props]
  */
 /**
  * @typedef ThemeConfiguration
- * @property {CustomConfig} [custom]
- * @property {GlobalConfig} [global_config]
+ * @property {Object} [global_config]
  * @property {string} [name] - The name of the configuration
- * @property {string[]} [page] - An array of pages
+ * @property {ThemeConfigListPage[]} [page] - An array of pages
+ */
+/**
+ * @typedef ThemeMeta
+ * @property {string} [description] - The description of the theme
+ * @property {Images} [images]
+ * @property {string[]} [industry] - An array of industries associated with the theme
+ * @property {string} [name] - The name of the theme
+ * @property {ThemePayment} [payment]
+ * @property {Release} [release]
+ * @property {string} [slug] - The slug of the theme
  */
 /**
  * @typedef ThemePayment
@@ -483,27 +486,25 @@ export = ThemePartnerModel;
  * @property {string} user_id - The ID of the user who submitted the theme
  */
 /**
- * @typedef ThemeSetting
- * @property {string} [page_background] - The page background color
- * @property {string} [theme_accent] - The theme accent color
- */
-/**
  * @typedef ThemesSchema
  * @property {string} [_id] - The unique identifier of the theme
  * @property {string} [application_id] - The ID of the application
  * @property {boolean} [applied] - Whether the theme has been applied or not
  * @property {Assets} [assets]
  * @property {SectionItem[]} [available_sections] - Available sections information
+ * @property {number} [company_id] - The company id in which sales channel exists
  * @property {Config} [config]
  * @property {string} [created_at] - The creation timestamp of the theme
  * @property {Font} [font]
  * @property {boolean} [is_private] - Whether the theme is private or not
  * @property {string} [marketplace_theme_id] - The ID of the theme in the marketplace
- * @property {Meta} [meta]
+ * @property {ThemeMeta} [meta]
  * @property {string} [name] - The name of the theme
+ * @property {string} [src]
  * @property {Object} [styles] - The styles associated with the theme
  * @property {string[]} [tags] - An array of tags associated with the theme
  * @property {string} [template_theme_id] - The ID of the template theme
+ * @property {string} [theme_type]
  * @property {string} [updated_at] - The last update timestamp of the theme
  * @property {string} [version] - The version of the theme
  */
@@ -514,6 +515,7 @@ export = ThemePartnerModel;
  */
 /**
  * @typedef UMDJs
+ * @property {string} [link]
  * @property {string[]} [links]
  */
 /**
@@ -527,13 +529,13 @@ export = ThemePartnerModel;
  * @property {string} [value] - The value of the URL property.
  */
 /**
- * @typedef UserAlertsSetting
- * @property {string} [error_background] - The error background color
- * @property {string} [error_text] - The error text color
- * @property {string} [info_background] - The info background color
- * @property {string} [info_text] - The info text color
- * @property {string} [success_background] - The success background color
- * @property {string} [success_text] - The success text color
+ * @typedef UserAlerts
+ * @property {string} [error_background]
+ * @property {string} [error_text]
+ * @property {string} [info_background]
+ * @property {string} [info_text]
+ * @property {string} [success_background]
+ * @property {string} [success_text]
  */
 /**
  * @typedef Variation
@@ -545,14 +547,22 @@ export = ThemePartnerModel;
 declare class ThemePartnerModel {
 }
 declare namespace ThemePartnerModel {
-    export { AdvanceSetting, AllAvailablePageSchema, Assets, AuthConfig, AvailablePagePredicate, AvailablePageRoutePredicate, AvailablePageSchema, AvailablePageSchemaSections, AvailablePageScreenPredicate, AvailablePageSectionMetaAttributes, AvailablePageSeo, AvailablePageUserPredicate, BlitzkriegApiErrorSchema, BlitzkriegInternalServerErrorSchema, Block, BlockProps, ButtonSetting, CarouselItem, CatalogSize, CheckboxProp, Colors, Comments, CommonJS, Config, ContactInfo, CSS, CustomConfig, CustomProps, DividerStrokeHighlightSetting, Documentation, ExploreInfo, Feature, FeatureItem, Font, FontVariant, FontVariants, FooterSetting, GeneralSetting, GlobalConfig, GlobalSchema, HeaderSetting, Highlight, ImagePickerProp, Images, MarketplaceTheme, MarketplaceThemeImages, MarketplaceThemeSchema, Meta, OverlayPopupSetting, Page, PaginationSchema, PaletteConfig, PaymentInfo, Predicate, Preset, Prop, RangeProp, Release, Route, SaleDiscountSetting, Screen, Section, SectionItem, SectionPreset, SectionProps, StaticConfig, StaticProps, TextProp, TextSetting, ThemeConfiguration, ThemePayment, ThemeRejectionReasons, ThemeSetting, ThemesSchema, ThemeUserSchema, UMDJs, UpdateThemeRequestBody, UrlProp, UserAlertsSetting, Variation };
+    export { Action, ActionPage, AllAvailablePageSchema, Assets, AvailablePagePlatformPredicate, AvailablePagePredicate, AvailablePageRoutePredicate, AvailablePageSchedulePredicate, AvailablePageSchema, AvailablePageSchemaSections, AvailablePageScreenPredicate, AvailablePageSectionMetaAttributes, AvailablePageSeo, AvailablePageUserPredicate, BlitzkriegApiErrorSchema, BlitzkriegInternalServerErrorSchema, Block, BlockProps, CarouselItem, CatalogSize, CheckboxProp, Comments, CommonJS, Config, ContactInfo, CreateNewTheme, CSS, CustomConfig, CustomProps, DividerStrokeHighlight, Documentation, ExploreInfo, Feature, FeatureItem, Font, FontVariant, FontVariants, GlobalSchema, Highlight, ImagePickerProp, Images, MarketplaceTheme, MarketplaceThemeImages, MarketplaceThemeSchema, OrderTracking, OverlayPopup, Page, PaginationSchema, PaymentInfo, Predicate, Preset, Prop, RangeProp, Release, Route, Screen, Section, SectionItem, SectionPreset, SectionProps, SEObreadcrumb, SEOMetaItem, SEOMetaItems, SEOSitemap, TextProp, ThemeConfigListPage, ThemeConfigListPageSettingsProps, ThemeConfiguration, ThemeMeta, ThemePayment, ThemeRejectionReasons, ThemesSchema, ThemeUserSchema, UMDJs, UpdateThemeRequestBody, UrlProp, UserAlerts, Variation };
 }
-/** @returns {AdvanceSetting} */
-declare function AdvanceSetting(): AdvanceSetting;
-type AdvanceSetting = {
-    divider_stroke_highlight?: DividerStrokeHighlightSetting;
-    overlay_popup?: OverlayPopupSetting;
-    user_alerts?: UserAlertsSetting;
+/** @returns {Action} */
+declare function Action(): Action;
+type Action = {
+    page?: ActionPage;
+    popup?: ActionPage;
+    type?: string;
+};
+/** @returns {ActionPage} */
+declare function ActionPage(): ActionPage;
+type ActionPage = {
+    params?: any;
+    query?: any;
+    type?: string;
+    url?: string;
 };
 /** @returns {AllAvailablePageSchema} */
 declare function AllAvailablePageSchema(): AllAvailablePageSchema;
@@ -566,24 +576,34 @@ type Assets = {
     css?: CSS;
     umd_js?: UMDJs;
 };
-/** @returns {AuthConfig} */
-declare function AuthConfig(): AuthConfig;
-type AuthConfig = {
+/** @returns {AvailablePagePlatformPredicate} */
+declare function AvailablePagePlatformPredicate(): AvailablePagePlatformPredicate;
+type AvailablePagePlatformPredicate = {
     /**
-     * - Whether to show footer authentication or not
+     * - Section visibility on android platform
      */
-    show_footer_auth?: boolean;
+    android?: boolean;
     /**
-     * - Whether to show header authentication or not
+     * - Section visibility on ios platform
      */
-    show_header_auth?: boolean;
+    ios?: boolean;
+    /**
+     * - Section visibility on web platform
+     */
+    web?: boolean;
 };
 /** @returns {AvailablePagePredicate} */
 declare function AvailablePagePredicate(): AvailablePagePredicate;
 type AvailablePagePredicate = {
+    platform?: AvailablePagePlatformPredicate;
     route?: AvailablePageRoutePredicate;
+    schedule?: AvailablePageSchedulePredicate;
     screen?: AvailablePageScreenPredicate;
     user?: AvailablePageUserPredicate;
+    /**
+     * - An array of zone ids associated with the section
+     */
+    zones?: string[];
 };
 /** @returns {AvailablePageRoutePredicate} */
 declare function AvailablePageRoutePredicate(): AvailablePageRoutePredicate;
@@ -592,10 +612,21 @@ type AvailablePageRoutePredicate = {
     query?: any;
     selected?: string;
 };
+/** @returns {AvailablePageSchedulePredicate} */
+declare function AvailablePageSchedulePredicate(): AvailablePageSchedulePredicate;
+type AvailablePageSchedulePredicate = {
+    cron?: string;
+    end?: string;
+    start?: string;
+};
 /** @returns {AvailablePageSchema} */
 declare function AvailablePageSchema(): AvailablePageSchema;
 type AvailablePageSchema = {
     _id?: string;
+    /**
+     * - The creation timestamp of the page
+     */
+    created_at?: string;
     path?: string;
     props?: any[];
     sections?: AvailablePageSchemaSections[];
@@ -604,6 +635,10 @@ type AvailablePageSchema = {
     text?: string;
     theme?: string;
     type?: string;
+    /**
+     * - The last update timestamp of the page
+     */
+    updated_at?: string;
     value?: string;
 };
 /** @returns {AvailablePageSchemaSections} */
@@ -615,6 +650,7 @@ type AvailablePageSchemaSections = {
     predicate?: AvailablePagePredicate;
     preset?: any;
     props?: any;
+    source?: string;
 };
 /** @returns {AvailablePageScreenPredicate} */
 declare function AvailablePageScreenPredicate(): AvailablePageScreenPredicate;
@@ -632,7 +668,10 @@ type AvailablePageSectionMetaAttributes = {
 declare function AvailablePageSeo(): AvailablePageSeo;
 type AvailablePageSeo = {
     _id?: string;
+    breadcrumb?: SEObreadcrumb[];
     description?: string;
+    meta_tags?: SEOMetaItem[];
+    sitemap?: SEOSitemap;
     title?: string;
 };
 /** @returns {AvailablePageUserPredicate} */
@@ -670,22 +709,6 @@ type BlockProps = {
     image?: ImagePickerProp;
     slide_link?: UrlProp;
 };
-/** @returns {ButtonSetting} */
-declare function ButtonSetting(): ButtonSetting;
-type ButtonSetting = {
-    /**
-     * - The button link color
-     */
-    button_link?: string;
-    /**
-     * - The primary button color
-     */
-    button_primary?: string;
-    /**
-     * - The secondary button color
-     */
-    button_secondary?: string;
-};
 /** @returns {CarouselItem} */
 declare function CarouselItem(): CarouselItem;
 type CarouselItem = {
@@ -721,34 +744,6 @@ type CheckboxProp = {
      * - The value of the checkbox property.
      */
     value?: boolean;
-};
-/** @returns {Colors} */
-declare function Colors(): Colors;
-type Colors = {
-    /**
-     * - The accent color
-     */
-    accent_color?: string;
-    /**
-     * - The background color
-     */
-    bg_color?: string;
-    /**
-     * - The secondary button color
-     */
-    button_secondary_color?: string;
-    /**
-     * - The link color
-     */
-    link_color?: string;
-    /**
-     * - The primary color
-     */
-    primary_color?: string;
-    /**
-     * - The secondary color
-     */
-    secondary_color?: string;
 };
 /** @returns {Comments} */
 declare function Comments(): Comments;
@@ -793,9 +788,41 @@ type ContactInfo = {
      */
     seller_contact?: string;
 };
+/** @returns {CreateNewTheme} */
+declare function CreateNewTheme(): CreateNewTheme;
+type CreateNewTheme = {
+    /**
+     * - Available sections information
+     */
+    available_sections: SectionItem[];
+    /**
+     * - The current configuration
+     */
+    current?: string;
+    global_schema?: GlobalSchema;
+    /**
+     * - A list of configurations
+     */
+    list?: ThemeConfiguration[];
+    /**
+     * - The name of the theme
+     */
+    name: string;
+    pages?: Page[];
+    preset?: Preset;
+    /**
+     * - Type of the Theme
+     */
+    theme_type: string;
+    /**
+     * - The version of the theme
+     */
+    version: string;
+};
 /** @returns {CSS} */
 declare function CSS(): CSS;
 type CSS = {
+    link?: string;
     links?: string[];
 };
 /** @returns {CustomConfig} */
@@ -932,16 +959,10 @@ type CustomProps = {
      */
     text_strikethrough_price_color?: string;
 };
-/** @returns {DividerStrokeHighlightSetting} */
-declare function DividerStrokeHighlightSetting(): DividerStrokeHighlightSetting;
-type DividerStrokeHighlightSetting = {
-    /**
-     * - The divider strokes color
-     */
+/** @returns {DividerStrokeHighlight} */
+declare function DividerStrokeHighlight(): DividerStrokeHighlight;
+type DividerStrokeHighlight = {
     divider_strokes?: string;
-    /**
-     * - The highlight color
-     */
     highlight?: string;
 };
 /** @returns {Documentation} */
@@ -1019,67 +1040,10 @@ type FontVariants = {
     regular?: FontVariant;
     semi_bold?: FontVariant;
 };
-/** @returns {FooterSetting} */
-declare function FooterSetting(): FooterSetting;
-type FooterSetting = {
-    /**
-     * - The footer background color
-     */
-    footer_background?: string;
-    /**
-     * - The footer body text color
-     */
-    footer_body_text?: string;
-    /**
-     * - The footer bottom background color
-     */
-    footer_bottom_background?: string;
-    /**
-     * - The footer heading text color
-     */
-    footer_heading_text?: string;
-    /**
-     * - The footer icon color
-     */
-    footer_icon?: string;
-};
-/** @returns {GeneralSetting} */
-declare function GeneralSetting(): GeneralSetting;
-type GeneralSetting = {
-    button?: ButtonSetting;
-    footer?: FooterSetting;
-    header?: HeaderSetting;
-    sale_discount?: SaleDiscountSetting;
-    text?: TextSetting;
-    theme?: ThemeSetting;
-};
-/** @returns {GlobalConfig} */
-declare function GlobalConfig(): GlobalConfig;
-type GlobalConfig = {
-    auth?: AuthConfig;
-    palette?: PaletteConfig;
-    statics?: StaticConfig;
-};
 /** @returns {GlobalSchema} */
 declare function GlobalSchema(): GlobalSchema;
 type GlobalSchema = {
     props?: Prop[];
-};
-/** @returns {HeaderSetting} */
-declare function HeaderSetting(): HeaderSetting;
-type HeaderSetting = {
-    /**
-     * - The header background color
-     */
-    header_background?: string;
-    /**
-     * - The header icon color
-     */
-    header_icon?: string;
-    /**
-     * - The header navigation color
-     */
-    header_nav?: string;
 };
 /** @returns {Highlight} */
 declare function Highlight(): Highlight;
@@ -1219,49 +1183,28 @@ type MarketplaceThemeSchema = {
     page?: PaginationSchema;
     themes?: MarketplaceTheme[];
 };
-/** @returns {Meta} */
-declare function Meta(): Meta;
-type Meta = {
-    /**
-     * - The description of the theme
-     */
-    description?: string;
-    images?: Images;
-    /**
-     * - An array of industries associated with the theme
-     */
-    industry?: string[];
-    /**
-     * - The name of the theme
-     */
-    name?: string;
-    payment?: ThemePayment;
-    release?: Release;
-    /**
-     * - The slug of the theme
-     */
-    slug?: string;
+/** @returns {OrderTracking} */
+declare function OrderTracking(): OrderTracking;
+type OrderTracking = {
+    show_footer?: boolean;
+    show_header?: boolean;
 };
-/** @returns {OverlayPopupSetting} */
-declare function OverlayPopupSetting(): OverlayPopupSetting;
-type OverlayPopupSetting = {
-    /**
-     * - The dialog background color
-     */
+/** @returns {OverlayPopup} */
+declare function OverlayPopup(): OverlayPopup;
+type OverlayPopup = {
     dialog_backgroung?: string;
-    /**
-     * - The overlay color
-     */
     overlay?: string;
 };
 /** @returns {Page} */
 declare function Page(): Page;
 type Page = {
-    sections?: Section[];
-    /**
-     * - The value of the page.
-     */
-    value?: string;
+    current?: number;
+    has_next?: boolean;
+    has_previous?: boolean;
+    item_total?: number;
+    next_id?: string;
+    size?: number;
+    type: string;
 };
 /** @returns {PaginationSchema} */
 declare function PaginationSchema(): PaginationSchema;
@@ -1271,12 +1214,6 @@ type PaginationSchema = {
     item_total?: number;
     size?: number;
     type?: string;
-};
-/** @returns {PaletteConfig} */
-declare function PaletteConfig(): PaletteConfig;
-type PaletteConfig = {
-    advance_setting?: AdvanceSetting;
-    general_setting?: GeneralSetting;
 };
 /** @returns {PaymentInfo} */
 declare function PaymentInfo(): PaymentInfo;
@@ -1325,6 +1262,10 @@ type Prop = {
      * - The type of the property
      */
     type?: string;
+    /**
+     * - The value of the property
+     */
+    value?: string;
 };
 /** @returns {RangeProp} */
 declare function RangeProp(): RangeProp;
@@ -1361,26 +1302,6 @@ type Route = {
      * - The selected route.
      */
     selected?: string;
-};
-/** @returns {SaleDiscountSetting} */
-declare function SaleDiscountSetting(): SaleDiscountSetting;
-type SaleDiscountSetting = {
-    /**
-     * - The sale badge background color
-     */
-    sale_badge_background?: string;
-    /**
-     * - The sale badge text color
-     */
-    sale_badge_text?: string;
-    /**
-     * - The sale discount text color
-     */
-    sale_discount_text?: string;
-    /**
-     * - The sale timer color
-     */
-    sale_timer?: string;
 };
 /** @returns {Screen} */
 declare function Screen(): Screen;
@@ -1440,16 +1361,29 @@ type SectionProps = {
     slide_interval?: RangeProp;
     title?: TextProp;
 };
-/** @returns {StaticConfig} */
-declare function StaticConfig(): StaticConfig;
-type StaticConfig = {
-    props?: StaticProps;
+/** @returns {SEObreadcrumb} */
+declare function SEObreadcrumb(): SEObreadcrumb;
+type SEObreadcrumb = {
+    action?: Action;
+    url?: string;
 };
-/** @returns {StaticProps} */
-declare function StaticProps(): StaticProps;
-type StaticProps = {
-    auth?: AuthConfig;
-    colors?: Colors;
+/** @returns {SEOMetaItem} */
+declare function SEOMetaItem(): SEOMetaItem;
+type SEOMetaItem = {
+    items?: SEOMetaItems[];
+    title?: string;
+};
+/** @returns {SEOMetaItems} */
+declare function SEOMetaItems(): SEOMetaItems;
+type SEOMetaItems = {
+    key?: string;
+    value?: string;
+};
+/** @returns {SEOSitemap} */
+declare function SEOSitemap(): SEOSitemap;
+type SEOSitemap = {
+    frequency?: string;
+    priority?: number;
 };
 /** @returns {TextProp} */
 declare function TextProp(): TextProp;
@@ -1463,31 +1397,24 @@ type TextProp = {
      */
     value?: string;
 };
-/** @returns {TextSetting} */
-declare function TextSetting(): TextSetting;
-type TextSetting = {
+/** @returns {ThemeConfigListPage} */
+declare function ThemeConfigListPage(): ThemeConfigListPage;
+type ThemeConfigListPage = {
     /**
-     * - The text body color
+     * - Name of the page
      */
-    text_body?: string;
-    /**
-     * - The text heading color
-     */
-    text_heading?: string;
-    /**
-     * - The text label color
-     */
-    text_label?: string;
-    /**
-     * - The secondary text color
-     */
-    text_secondary?: string;
+    page?: string;
+    settings?: ThemeConfigListPageSettingsProps;
+};
+/** @returns {ThemeConfigListPageSettingsProps} */
+declare function ThemeConfigListPageSettingsProps(): ThemeConfigListPageSettingsProps;
+type ThemeConfigListPageSettingsProps = {
+    props?: any;
 };
 /** @returns {ThemeConfiguration} */
 declare function ThemeConfiguration(): ThemeConfiguration;
 type ThemeConfiguration = {
-    custom?: CustomConfig;
-    global_config?: GlobalConfig;
+    global_config?: any;
     /**
      * - The name of the configuration
      */
@@ -1495,7 +1422,30 @@ type ThemeConfiguration = {
     /**
      * - An array of pages
      */
-    page?: string[];
+    page?: ThemeConfigListPage[];
+};
+/** @returns {ThemeMeta} */
+declare function ThemeMeta(): ThemeMeta;
+type ThemeMeta = {
+    /**
+     * - The description of the theme
+     */
+    description?: string;
+    images?: Images;
+    /**
+     * - An array of industries associated with the theme
+     */
+    industry?: string[];
+    /**
+     * - The name of the theme
+     */
+    name?: string;
+    payment?: ThemePayment;
+    release?: Release;
+    /**
+     * - The slug of the theme
+     */
+    slug?: string;
 };
 /** @returns {ThemePayment} */
 declare function ThemePayment(): ThemePayment;
@@ -1552,18 +1502,6 @@ type ThemeRejectionReasons = {
      */
     user_id: string;
 };
-/** @returns {ThemeSetting} */
-declare function ThemeSetting(): ThemeSetting;
-type ThemeSetting = {
-    /**
-     * - The page background color
-     */
-    page_background?: string;
-    /**
-     * - The theme accent color
-     */
-    theme_accent?: string;
-};
 /** @returns {ThemesSchema} */
 declare function ThemesSchema(): ThemesSchema;
 type ThemesSchema = {
@@ -1584,6 +1522,10 @@ type ThemesSchema = {
      * - Available sections information
      */
     available_sections?: SectionItem[];
+    /**
+     * - The company id in which sales channel exists
+     */
+    company_id?: number;
     config?: Config;
     /**
      * - The creation timestamp of the theme
@@ -1598,11 +1540,12 @@ type ThemesSchema = {
      * - The ID of the theme in the marketplace
      */
     marketplace_theme_id?: string;
-    meta?: Meta;
+    meta?: ThemeMeta;
     /**
      * - The name of the theme
      */
     name?: string;
+    src?: string;
     /**
      * - The styles associated with the theme
      */
@@ -1615,6 +1558,7 @@ type ThemesSchema = {
      * - The ID of the template theme
      */
     template_theme_id?: string;
+    theme_type?: string;
     /**
      * - The last update timestamp of the theme
      */
@@ -1639,6 +1583,7 @@ type ThemeUserSchema = {
 /** @returns {UMDJs} */
 declare function UMDJs(): UMDJs;
 type UMDJs = {
+    link?: string;
     links?: string[];
 };
 /** @returns {UpdateThemeRequestBody} */
@@ -1659,32 +1604,14 @@ type UrlProp = {
      */
     value?: string;
 };
-/** @returns {UserAlertsSetting} */
-declare function UserAlertsSetting(): UserAlertsSetting;
-type UserAlertsSetting = {
-    /**
-     * - The error background color
-     */
+/** @returns {UserAlerts} */
+declare function UserAlerts(): UserAlerts;
+type UserAlerts = {
     error_background?: string;
-    /**
-     * - The error text color
-     */
     error_text?: string;
-    /**
-     * - The info background color
-     */
     info_background?: string;
-    /**
-     * - The info text color
-     */
     info_text?: string;
-    /**
-     * - The success background color
-     */
     success_background?: string;
-    /**
-     * - The success text color
-     */
     success_text?: string;
 };
 /** @returns {Variation} */

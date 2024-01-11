@@ -8,8 +8,11 @@
 ## Theme Methods
 Responsible for partner theme submission
 
+
+Default
 * [createNewThemeInOrganization](#createnewthemeinorganization)
 * [createPage](#createpage)
+* [createTheme](#createtheme)
 * [deleteOrganizationTheme](#deleteorganizationtheme)
 * [deletePage](#deletepage)
 * [deleteTheme](#deletetheme)
@@ -30,7 +33,9 @@ Responsible for partner theme submission
 
 
 
+
 ## Methods with example and description
+
 
 
 
@@ -742,6 +747,64 @@ Success. Returns the page of the theme. Refer `AvailablePageSchema` for more det
 ```
 </details>
 
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createTheme
+Create a new theme
+
+
+
+```javascript
+// Promise
+const promise = partnerClient.theme.createTheme({  organizationId : value,
+ body : value });
+
+// Async/Await
+const data = await partnerClient.theme.createTheme({  organizationId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| organizationId | string | yes | Organization ID |  
+| body | [CreateNewTheme](#CreateNewTheme) | yes | Request body |
+
+
+Themes improve the look and appearance of a website. Use this API to create a theme.
+
+*Returned Response:*
+
+
+
+
+[ThemesSchema](#ThemesSchema)
+
+Returns the new application theme details
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
 </details>
 
 
@@ -3273,7 +3336,8 @@ Theme successfully deleted.
         }
       }
     ],
-    "src": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/organization/64b0eb01c35f990518880a82/theme/assets/7yuL57qP2-archive.zip"
+    "src": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/organization/64b0eb01c35f990518880a82/theme/assets/7yuL57qP2-archive.zip",
+    "company_id": 1
   }
 }
 ```
@@ -5244,7 +5308,8 @@ Theme successfully deleted.
         }
       }
     ],
-    "src": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/organization/64aec4634bc407961ed265c5/theme/assets/Gpbt5naNG-archive.zip"
+    "src": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/organization/64aec4634bc407961ed265c5/theme/assets/Gpbt5naNG-archive.zip",
+    "company_id": 1
   }
 }
 ```
@@ -7645,7 +7710,8 @@ The list of themes for the application was fetched successfully.
           }
         }
       ],
-      "src": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/organization/64b0eb01c35f990518880a82/theme/assets/7yuL57qP2-archive.zip"
+      "src": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/organization/64b0eb01c35f990518880a82/theme/assets/7yuL57qP2-archive.zip",
+      "company_id": 1
     }
   ]
 }
@@ -9618,7 +9684,8 @@ The list of themes for the application was fetched successfully.
           }
         }
       ],
-      "src": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/organization/64aec4634bc407961ed265c5/theme/assets/Gpbt5naNG-archive.zip"
+      "src": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/organization/64aec4634bc407961ed265c5/theme/assets/Gpbt5naNG-archive.zip",
+      "company_id": 1
     }
   ]
 }
@@ -13938,7 +14005,8 @@ Theme updated successfully
         }
       }
     ],
-    "src": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/organization/64b0eb01c35f990518880a82/theme/assets/7yuL57qP2-archive.zip"
+    "src": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/organization/64b0eb01c35f990518880a82/theme/assets/7yuL57qP2-archive.zip",
+    "company_id": 1
   }
 }
 ```
@@ -15909,7 +15977,8 @@ Theme updated successfully
         }
       }
     ],
-    "src": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/organization/64aec4634bc407961ed265c5/theme/assets/Gpbt5naNG-archive.zip"
+    "src": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/organization/64aec4634bc407961ed265c5/theme/assets/Gpbt5naNG-archive.zip",
+    "company_id": 1
   }
 }
 ```
@@ -15929,16 +15998,29 @@ Theme updated successfully
 
 
 
+
 ### Schemas
 
 
-#### [AdvanceSetting](#AdvanceSetting)
+#### [Action](#Action)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | divider_stroke_highlight | [DividerStrokeHighlightSetting](#DividerStrokeHighlightSetting)? |  yes  |  |
- | overlay_popup | [OverlayPopupSetting](#OverlayPopupSetting)? |  yes  |  |
- | user_alerts | [UserAlertsSetting](#UserAlertsSetting)? |  yes  |  |
+ | page | [ActionPage](#ActionPage)? |  yes  |  |
+ | popup | [ActionPage](#ActionPage)? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
+
+---
+
+#### [ActionPage](#ActionPage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | params | [String: [string]]? |  yes  |  |
+ | query | [String: [string]]? |  yes  |  |
+ | type | string? |  yes  |  |
+ | url | string? |  yes  |  |
  
 
 ---
@@ -15963,12 +16045,13 @@ Theme updated successfully
 
 ---
 
-#### [AuthConfig](#AuthConfig)
+#### [AvailablePagePlatformPredicate](#AvailablePagePlatformPredicate)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | show_footer_auth | boolean? |  yes  | Whether to show footer authentication or not |
- | show_header_auth | boolean? |  yes  | Whether to show header authentication or not |
+ | android | boolean? |  yes  | Section visibility on android platform |
+ | ios | boolean? |  yes  | Section visibility on ios platform |
+ | web | boolean? |  yes  | Section visibility on web platform |
  
 
 ---
@@ -15977,9 +16060,12 @@ Theme updated successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | platform | [AvailablePagePlatformPredicate](#AvailablePagePlatformPredicate)? |  yes  |  |
  | route | [AvailablePageRoutePredicate](#AvailablePageRoutePredicate)? |  yes  |  |
+ | schedule | [AvailablePageSchedulePredicate](#AvailablePageSchedulePredicate)? |  yes  |  |
  | screen | [AvailablePageScreenPredicate](#AvailablePageScreenPredicate)? |  yes  |  |
  | user | [AvailablePageUserPredicate](#AvailablePageUserPredicate)? |  yes  |  |
+ | zones | [string]? |  yes  | An array of zone ids associated with the section |
  
 
 ---
@@ -15995,11 +16081,23 @@ Theme updated successfully
 
 ---
 
+#### [AvailablePageSchedulePredicate](#AvailablePageSchedulePredicate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cron | string? |  yes  |  |
+ | end | string? |  yes  |  |
+ | start | string? |  yes  |  |
+ 
+
+---
+
 #### [AvailablePageSchema](#AvailablePageSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | _id | string? |  yes  |  |
+ | created_at | string? |  yes  | The creation timestamp of the page |
  | path | string? |  yes  |  |
  | props | [string]? |  yes  |  |
  | sections | [[AvailablePageSchemaSections](#AvailablePageSchemaSections)]? |  yes  |  |
@@ -16008,6 +16106,7 @@ Theme updated successfully
  | text | string? |  yes  |  |
  | theme | string? |  yes  |  |
  | type | string? |  yes  |  |
+ | updated_at | string? |  yes  | The last update timestamp of the page |
  | value | string? |  yes  |  |
  
 
@@ -16023,6 +16122,7 @@ Theme updated successfully
  | predicate | [AvailablePagePredicate](#AvailablePagePredicate)? |  yes  |  |
  | preset | string? |  yes  |  |
  | props | string? |  yes  |  |
+ | source | string? |  yes  |  |
  
 
 ---
@@ -16052,7 +16152,10 @@ Theme updated successfully
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | _id | string? |  yes  |  |
+ | breadcrumb | [[SEObreadcrumb](#SEObreadcrumb)]? |  yes  |  |
  | description | string? |  yes  |  |
+ | meta_tags | [[SEOMetaItem](#SEOMetaItem)]? |  yes  |  |
+ | sitemap | [SEOSitemap](#SEOSitemap)? |  yes  |  |
  | title | string? |  yes  |  |
  
 
@@ -16107,17 +16210,6 @@ Theme updated successfully
 
 ---
 
-#### [ButtonSetting](#ButtonSetting)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | button_link | string? |  yes  | The button link color |
- | button_primary | string? |  yes  | The primary button color |
- | button_secondary | string? |  yes  | The secondary button color |
- 
-
----
-
 #### [CarouselItem](#CarouselItem)
 
  | Properties | Type | Nullable | Description |
@@ -16144,20 +16236,6 @@ Theme updated successfully
  | ---------- | ---- | -------- | ----------- |
  | type | string? |  yes  | The type of the property. |
  | value | boolean? |  yes  | The value of the checkbox property. |
- 
-
----
-
-#### [Colors](#Colors)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | accent_color | string? |  yes  | The accent color |
- | bg_color | string? |  yes  | The background color |
- | button_secondary_color | string? |  yes  | The secondary button color |
- | link_color | string? |  yes  | The link color |
- | primary_color | string? |  yes  | The primary color |
- | secondary_color | string? |  yes  | The secondary color |
  
 
 ---
@@ -16203,10 +16281,28 @@ Theme updated successfully
 
 ---
 
+#### [CreateNewTheme](#CreateNewTheme)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | available_sections | [[SectionItem](#SectionItem)] |  no  | Available sections information |
+ | current | string? |  yes  | The current configuration |
+ | global_schema | [GlobalSchema](#GlobalSchema)? |  yes  |  |
+ | list | [[ThemeConfiguration](#ThemeConfiguration)]? |  yes  | A list of configurations |
+ | name | string |  no  | The name of the theme |
+ | pages | [[Page](#Page)]? |  yes  |  |
+ | preset | [Preset](#Preset)? |  yes  |  |
+ | theme_type | string |  no  | Type of the Theme |
+ | version | string |  no  | The version of the theme |
+ 
+
+---
+
 #### [CSS](#CSS)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | link | string? |  yes  |  |
  | links | [string]? |  yes  |  |
  
 
@@ -16259,12 +16355,12 @@ Theme updated successfully
 
 ---
 
-#### [DividerStrokeHighlightSetting](#DividerStrokeHighlightSetting)
+#### [DividerStrokeHighlight](#DividerStrokeHighlight)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | divider_strokes | string? |  yes  | The divider strokes color |
- | highlight | string? |  yes  | The highlight color |
+ | divider_strokes | string? |  yes  |  |
+ | highlight | string? |  yes  |  |
  
 
 ---
@@ -16342,60 +16438,11 @@ Theme updated successfully
 
 ---
 
-#### [FooterSetting](#FooterSetting)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | footer_background | string? |  yes  | The footer background color |
- | footer_body_text | string? |  yes  | The footer body text color |
- | footer_bottom_background | string? |  yes  | The footer bottom background color |
- | footer_heading_text | string? |  yes  | The footer heading text color |
- | footer_icon | string? |  yes  | The footer icon color |
- 
-
----
-
-#### [GeneralSetting](#GeneralSetting)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | button | [ButtonSetting](#ButtonSetting)? |  yes  |  |
- | footer | [FooterSetting](#FooterSetting)? |  yes  |  |
- | header | [HeaderSetting](#HeaderSetting)? |  yes  |  |
- | sale_discount | [SaleDiscountSetting](#SaleDiscountSetting)? |  yes  |  |
- | text | [TextSetting](#TextSetting)? |  yes  |  |
- | theme | [ThemeSetting](#ThemeSetting)? |  yes  |  |
- 
-
----
-
-#### [GlobalConfig](#GlobalConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | auth | [AuthConfig](#AuthConfig)? |  yes  |  |
- | palette | [PaletteConfig](#PaletteConfig)? |  yes  |  |
- | statics | [StaticConfig](#StaticConfig)? |  yes  |  |
- 
-
----
-
 #### [GlobalSchema](#GlobalSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | props | [[Prop](#Prop)]? |  yes  |  |
- 
-
----
-
-#### [HeaderSetting](#HeaderSetting)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | header_background | string? |  yes  | The header background color |
- | header_icon | string? |  yes  | The header icon color |
- | header_nav | string? |  yes  | The header navigation color |
  
 
 ---
@@ -16487,27 +16534,22 @@ Theme updated successfully
 
 ---
 
-#### [Meta](#Meta)
+#### [OrderTracking](#OrderTracking)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | string? |  yes  | The description of the theme |
- | images | [Images](#Images)? |  yes  |  |
- | industry | [string]? |  yes  | An array of industries associated with the theme |
- | name | string? |  yes  | The name of the theme |
- | payment | [ThemePayment](#ThemePayment)? |  yes  |  |
- | release | [Release](#Release)? |  yes  |  |
- | slug | string? |  yes  | The slug of the theme |
+ | show_footer | boolean? |  yes  |  |
+ | show_header | boolean? |  yes  |  |
  
 
 ---
 
-#### [OverlayPopupSetting](#OverlayPopupSetting)
+#### [OverlayPopup](#OverlayPopup)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | dialog_backgroung | string? |  yes  | The dialog background color |
- | overlay | string? |  yes  | The overlay color |
+ | dialog_backgroung | string? |  yes  |  |
+ | overlay | string? |  yes  |  |
  
 
 ---
@@ -16531,16 +16573,6 @@ Theme updated successfully
  | item_total | number? |  yes  |  |
  | size | number? |  yes  |  |
  | type | string? |  yes  |  |
- 
-
----
-
-#### [PaletteConfig](#PaletteConfig)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | advance_setting | [AdvanceSetting](#AdvanceSetting)? |  yes  |  |
- | general_setting | [GeneralSetting](#GeneralSetting)? |  yes  |  |
  
 
 ---
@@ -16584,6 +16616,7 @@ Theme updated successfully
  | info | string? |  yes  | Additional information about the property |
  | label | string? |  yes  | The label of the property |
  | type | string? |  yes  | The type of the property |
+ | value | string? |  yes  | The value of the property |
  
 
 ---
@@ -16614,18 +16647,6 @@ Theme updated successfully
  | ---------- | ---- | -------- | ----------- |
  | exact_url | string? |  yes  | The exact URL of the route. |
  | selected | string? |  yes  | The selected route. |
- 
-
----
-
-#### [SaleDiscountSetting](#SaleDiscountSetting)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | sale_badge_background | string? |  yes  | The sale badge background color |
- | sale_badge_text | string? |  yes  | The sale badge text color |
- | sale_discount_text | string? |  yes  | The sale discount text color |
- | sale_timer | string? |  yes  | The sale timer color |
  
 
 ---
@@ -16687,21 +16708,42 @@ Theme updated successfully
 
 ---
 
-#### [StaticConfig](#StaticConfig)
+#### [SEObreadcrumb](#SEObreadcrumb)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | props | [StaticProps](#StaticProps)? |  yes  |  |
+ | action | [Action](#Action)? |  yes  |  |
+ | url | string? |  yes  |  |
  
 
 ---
 
-#### [StaticProps](#StaticProps)
+#### [SEOMetaItem](#SEOMetaItem)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | auth | [AuthConfig](#AuthConfig)? |  yes  |  |
- | colors | [Colors](#Colors)? |  yes  |  |
+ | items | [[SEOMetaItems](#SEOMetaItems)]? |  yes  |  |
+ | title | string? |  yes  |  |
+ 
+
+---
+
+#### [SEOMetaItems](#SEOMetaItems)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | string? |  yes  |  |
+ | value | string? |  yes  |  |
+ 
+
+---
+
+#### [SEOSitemap](#SEOSitemap)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | frequency | string? |  yes  |  |
+ | priority | number? |  yes  |  |
  
 
 ---
@@ -16716,14 +16758,21 @@ Theme updated successfully
 
 ---
 
-#### [TextSetting](#TextSetting)
+#### [ThemeConfigListPage](#ThemeConfigListPage)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | text_body | string? |  yes  | The text body color |
- | text_heading | string? |  yes  | The text heading color |
- | text_label | string? |  yes  | The text label color |
- | text_secondary | string? |  yes  | The secondary text color |
+ | page | string? |  yes  | Name of the page |
+ | settings | [ThemeConfigListPageSettingsProps](#ThemeConfigListPageSettingsProps)? |  yes  |  |
+ 
+
+---
+
+#### [ThemeConfigListPageSettingsProps](#ThemeConfigListPageSettingsProps)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | props | string? |  yes  |  |
  
 
 ---
@@ -16732,10 +16781,24 @@ Theme updated successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | custom | [CustomConfig](#CustomConfig)? |  yes  |  |
- | global_config | [GlobalConfig](#GlobalConfig)? |  yes  |  |
+ | global_config | string? |  yes  |  |
  | name | string? |  yes  | The name of the configuration |
- | page | [string]? |  yes  | An array of pages |
+ | page | [[ThemeConfigListPage](#ThemeConfigListPage)]? |  yes  | An array of pages |
+ 
+
+---
+
+#### [ThemeMeta](#ThemeMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string? |  yes  | The description of the theme |
+ | images | [Images](#Images)? |  yes  |  |
+ | industry | [string]? |  yes  | An array of industries associated with the theme |
+ | name | string? |  yes  | The name of the theme |
+ | payment | [ThemePayment](#ThemePayment)? |  yes  |  |
+ | release | [Release](#Release)? |  yes  |  |
+ | slug | string? |  yes  | The slug of the theme |
  
 
 ---
@@ -16768,16 +16831,6 @@ Theme updated successfully
 
 ---
 
-#### [ThemeSetting](#ThemeSetting)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | page_background | string? |  yes  | The page background color |
- | theme_accent | string? |  yes  | The theme accent color |
- 
-
----
-
 #### [ThemesSchema](#ThemesSchema)
 
  | Properties | Type | Nullable | Description |
@@ -16787,16 +16840,19 @@ Theme updated successfully
  | applied | boolean? |  yes  | Whether the theme has been applied or not |
  | assets | [Assets](#Assets)? |  yes  |  |
  | available_sections | [[SectionItem](#SectionItem)]? |  yes  | Available sections information |
+ | company_id | number? |  yes  | The company id in which sales channel exists |
  | config | [Config](#Config)? |  yes  |  |
  | created_at | string? |  yes  | The creation timestamp of the theme |
  | font | [Font](#Font)? |  yes  |  |
  | is_private | boolean? |  yes  | Whether the theme is private or not |
  | marketplace_theme_id | string? |  yes  | The ID of the theme in the marketplace |
- | meta | [Meta](#Meta)? |  yes  |  |
+ | meta | [ThemeMeta](#ThemeMeta)? |  yes  |  |
  | name | string? |  yes  | The name of the theme |
+ | src | string? |  yes  |  |
  | styles | string? |  yes  | The styles associated with the theme |
  | tags | [string]? |  yes  | An array of tags associated with the theme |
  | template_theme_id | string? |  yes  | The ID of the template theme |
+ | theme_type | string? |  yes  |  |
  | updated_at | string? |  yes  | The last update timestamp of the theme |
  | version | string? |  yes  | The version of the theme |
  
@@ -16817,6 +16873,7 @@ Theme updated successfully
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | link | string? |  yes  |  |
  | links | [string]? |  yes  |  |
  
 
@@ -16842,16 +16899,16 @@ Theme updated successfully
 
 ---
 
-#### [UserAlertsSetting](#UserAlertsSetting)
+#### [UserAlerts](#UserAlerts)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | error_background | string? |  yes  | The error background color |
- | error_text | string? |  yes  | The error text color |
- | info_background | string? |  yes  | The info background color |
- | info_text | string? |  yes  | The info text color |
- | success_background | string? |  yes  | The success background color |
- | success_text | string? |  yes  | The success text color |
+ | error_background | string? |  yes  |  |
+ | error_text | string? |  yes  |  |
+ | info_background | string? |  yes  |  |
+ | info_text | string? |  yes  |  |
+ | success_background | string? |  yes  |  |
+ | success_text | string? |  yes  |  |
  
 
 ---

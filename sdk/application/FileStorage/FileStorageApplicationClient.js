@@ -116,7 +116,7 @@ class FileStorage {
       error: res_error,
     } = FileStorageApplicationModel.CompleteResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -194,7 +194,7 @@ class FileStorage {
       error: res_error,
     } = FileStorageApplicationModel.SignUrlResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -290,7 +290,7 @@ class FileStorage {
       error: res_error,
     } = FileStorageApplicationModel.StartResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

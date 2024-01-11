@@ -74,7 +74,7 @@ class CompanyProfile {
       error: res_error,
     } = CompanyProfilePlatformModel.GetCompanyProfileSerializerResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -154,7 +154,7 @@ class CompanyProfile {
       error: res_error,
     } = CompanyProfilePlatformModel.ProfileSuccessResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -238,7 +238,7 @@ class CompanyProfile {
       error: res_error,
     } = CompanyProfilePlatformModel.ProfileSuccessResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -318,7 +318,7 @@ class CompanyProfile {
       error: res_error,
     } = CompanyProfilePlatformModel.ProfileSuccessResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -400,7 +400,7 @@ class CompanyProfile {
       error: res_error,
     } = CompanyProfilePlatformModel.ProfileSuccessResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -482,7 +482,7 @@ class CompanyProfile {
       error: res_error,
     } = CompanyProfilePlatformModel.ProfileSuccessResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -563,7 +563,7 @@ class CompanyProfile {
       error: res_error,
     } = CompanyProfilePlatformModel.GetBrandResponseSerializer().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -651,7 +651,7 @@ class CompanyProfile {
       error: res_error,
     } = CompanyProfilePlatformModel.CompanyBrandListSerializer().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -759,7 +759,7 @@ class CompanyProfile {
       error: res_error,
     } = CompanyProfilePlatformModel.MetricsSerializer().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -841,7 +841,7 @@ class CompanyProfile {
       error: res_error,
     } = CompanyProfilePlatformModel.GetLocationSerializer().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -920,7 +920,7 @@ class CompanyProfile {
       error: res_error,
     } = CompanyProfilePlatformModel.StoreTagsResponseSchema().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -948,9 +948,17 @@ class CompanyProfile {
    * @description: This API allows to view all the locations associated to a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/companyprofile/getLocations/).
    */
   async getLocations(
-    { storeType, q, stage, pageNo, pageSize, locationIds, requestHeaders } = {
-      requestHeaders: {},
-    },
+    {
+      storeType,
+      q,
+      stage,
+      pageNo,
+      pageSize,
+      locationIds,
+      types,
+      tags,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CompanyProfilePlatformValidator.getLocations().validate(
@@ -961,6 +969,8 @@ class CompanyProfile {
         pageNo,
         pageSize,
         locationIds,
+        types,
+        tags,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -979,6 +989,8 @@ class CompanyProfile {
         pageNo,
         pageSize,
         locationIds,
+        types,
+        tags,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -996,6 +1008,8 @@ class CompanyProfile {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
     query_params["location_ids"] = locationIds;
+    query_params["types"] = types;
+    query_params["tags"] = tags;
 
     const xHeaders = {};
 
@@ -1018,7 +1032,7 @@ class CompanyProfile {
       error: res_error,
     } = CompanyProfilePlatformModel.LocationListSerializer().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1045,11 +1059,23 @@ class CompanyProfile {
    * @param {number} [arg.pageSize] - Number of items to retrieve in each
    *   page. Default is 10.
    * @param {number[]} [arg.locationIds] - Helps to filter stores on the basis of uids.
+   * @param {string[]} [arg.types] - Helps to get the location list on the
+   *   basis of multiple location type.
+   * @param {string[]} [arg.tags] - Helps to get the location list on the
+   *   basis of multiple location tag.
    * @returns {Paginator<CompanyProfilePlatformModel.LocationListSerializer>}
    * @summary: Get list of locations
    * @description: This API allows to view all the locations associated to a company.
    */
-  getLocationsPaginator({ storeType, q, stage, pageSize, locationIds } = {}) {
+  getLocationsPaginator({
+    storeType,
+    q,
+    stage,
+    pageSize,
+    locationIds,
+    types,
+    tags,
+  } = {}) {
     const paginator = new Paginator();
     const callback = async () => {
       const pageId = paginator.nextId;
@@ -1062,6 +1088,8 @@ class CompanyProfile {
         pageNo: pageNo,
         pageSize: pageSize,
         locationIds: locationIds,
+        types: types,
+        tags: tags,
       });
       paginator.setPaginator({
         hasNext: data.page.has_next ? true : false,
@@ -1136,7 +1164,7 @@ class CompanyProfile {
       error: res_error,
     } = CompanyProfilePlatformModel.ProfileSuccessResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1218,7 +1246,7 @@ class CompanyProfile {
       error: res_error,
     } = CompanyProfilePlatformModel.ProfileSuccessResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {

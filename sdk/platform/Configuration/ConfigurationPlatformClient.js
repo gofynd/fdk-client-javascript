@@ -78,7 +78,7 @@ class Configuration {
       error: res_error,
     } = ConfigurationPlatformModel.CreateAppResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -165,7 +165,7 @@ class Configuration {
       error: res_error,
     } = ConfigurationPlatformModel.ApplicationsResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -281,7 +281,7 @@ class Configuration {
       error: res_error,
     } = ConfigurationPlatformModel.GetIntegrationsOptInsResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -392,7 +392,7 @@ class Configuration {
       error: res_error,
     } = ConfigurationPlatformModel.BrandsByCompanyResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -480,7 +480,7 @@ class Configuration {
       error: res_error,
     } = ConfigurationPlatformModel.CompanyByBrandsResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -586,7 +586,7 @@ class Configuration {
       error: res_error,
     } = ConfigurationPlatformModel.CurrenciesResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -669,7 +669,7 @@ class Configuration {
       error: res_error,
     } = ConfigurationPlatformModel.DomainSuggestionsResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -750,7 +750,7 @@ class Configuration {
       error: res_error,
     } = ConfigurationPlatformModel.Integration().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -837,7 +837,7 @@ class Configuration {
       error: res_error,
     } = ConfigurationPlatformModel.IntegrationLevel().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -932,7 +932,7 @@ class Configuration {
       error: res_error,
     } = ConfigurationPlatformModel.IntegrationConfigResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1020,7 +1020,7 @@ class Configuration {
       error: res_error,
     } = ConfigurationPlatformModel.OptedStoreIntegration().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1105,7 +1105,7 @@ class Configuration {
       error: res_error,
     } = ConfigurationPlatformModel.OptedApplicationResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1193,7 +1193,7 @@ class Configuration {
       error: res_error,
     } = ConfigurationPlatformModel.OtherSellerApplications().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1312,7 +1312,7 @@ class Configuration {
       error: res_error,
     } = ConfigurationPlatformModel.GetIntegrationsOptInsResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1432,7 +1432,7 @@ class Configuration {
       error: res_error,
     } = ConfigurationPlatformModel.StoreByBrandsResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1546,7 +1546,7 @@ class Configuration {
       error: res_error,
     } = ConfigurationPlatformModel.SuccessMessageResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1633,7 +1633,7 @@ class Configuration {
       error: res_error,
     } = ConfigurationPlatformModel.IntegrationLevel().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1722,7 +1722,7 @@ class Configuration {
       error: res_error,
     } = ConfigurationPlatformModel.IntegrationLevel().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

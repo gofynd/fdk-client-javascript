@@ -75,7 +75,7 @@ class Inventory {
       error: res_error,
     } = InventoryPlatformModel.ResponseEnvelopeString().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -153,7 +153,7 @@ class Inventory {
       error: res_error,
     } = InventoryPlatformModel.ResponseEnvelopeString().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -230,7 +230,7 @@ class Inventory {
       error: res_error,
     } = InventoryPlatformModel.ResponseEnvelopeListSlingshotConfigurationDetail().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -311,7 +311,7 @@ class Inventory {
       error: res_error,
     } = InventoryPlatformModel.ResponseEnvelopeJobConfigDTO().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -404,7 +404,7 @@ class Inventory {
       error: res_error,
     } = InventoryPlatformModel.ResponseEnvelopeListJobConfigDTO().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -499,7 +499,7 @@ class Inventory {
       error: res_error,
     } = InventoryPlatformModel.ResponseEnvelopeJobMetricsDto().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -592,7 +592,7 @@ class Inventory {
       error: res_error,
     } = InventoryPlatformModel.ResponseEnvelopeListJobConfigListDTO().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -671,7 +671,7 @@ class Inventory {
       error: res_error,
     } = InventoryPlatformModel.ResponseEnvelopeJobConfigDTO().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -752,7 +752,7 @@ class Inventory {
       error: res_error,
     } = InventoryPlatformModel.ResponseEnvelopeListJobStepsDTO().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -837,7 +837,7 @@ class Inventory {
       error: res_error,
     } = InventoryPlatformModel.ResponseEnvelopeListJobConfigRawDTO().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -918,7 +918,7 @@ class Inventory {
       error: res_error,
     } = InventoryPlatformModel.ResponseEnvelopeKafkaResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -996,7 +996,7 @@ class Inventory {
       error: res_error,
     } = InventoryPlatformModel.ResponseEnvelopeString().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

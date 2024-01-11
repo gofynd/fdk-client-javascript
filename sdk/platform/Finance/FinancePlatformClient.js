@@ -78,7 +78,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.ChannelDisplayNameResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -163,7 +163,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.CreateSellerCreditNoteConfigResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -243,7 +243,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.CreditNoteDetailsResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -326,7 +326,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.CreditlineDataPlatformResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -405,7 +405,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.DeleteConfigResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -488,7 +488,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.DownloadCreditDebitNoteResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -567,7 +567,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.DownloadReportList().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -650,7 +650,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.DownloadReportCustomerCnResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -729,7 +729,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.GenerateReportJson().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -812,7 +812,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.GenerateReportCustomerCnResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -891,7 +891,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.GetAffiliateResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -968,7 +968,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.GetCnConfigResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1051,7 +1051,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.GetCustomerCreditBalanceResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1128,7 +1128,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.GetEngineResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1207,7 +1207,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.GetPdfUrlViewResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1284,7 +1284,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.GetReasonResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1363,7 +1363,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.GetReportListResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1447,7 +1447,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.GetReportingFiltersResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1457,6 +1457,86 @@ class Finance {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Finance > getReportingFilters \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {FinancePlatformValidator.InvoiceActivityLogsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<FinancePlatformModel.InvoiceActivityLogsResponse>} -
+   *   Success response
+   * @name invoiceActivityLogs
+   * @summary: Display activity log details of an invoice.
+   * @description: Display activity log details of invoice. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/invoiceActivityLogs/).
+   */
+  async invoiceActivityLogs(
+    { invoiceNumber, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = FinancePlatformValidator.invoiceActivityLogs().validate(
+      {
+        invoiceNumber,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = FinancePlatformValidator.invoiceActivityLogs().validate(
+      {
+        invoiceNumber,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Finance > invoiceActivityLogs \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/finance/v1.0/company/${this.config.companyId}/invoice/${invoiceNumber}/activity`,
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = FinancePlatformModel.InvoiceActivityLogsResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Finance > invoiceActivityLogs \n ${res_error}`,
         });
       }
     }
@@ -1526,7 +1606,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.InvoiceListingResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1603,7 +1683,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.InvoicePdfResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1613,6 +1693,86 @@ class Finance {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Finance > invoicePDF \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {FinancePlatformValidator.InvoicePaymentDetailsParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<FinancePlatformModel.InvoicePaymentDetailsResponse>} -
+   *   Success response
+   * @name invoicePaymentDetails
+   * @summary: Display payment details of an invoice.
+   * @description: Display payment details of invoice. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/invoicePaymentDetails/).
+   */
+  async invoicePaymentDetails(
+    { invoiceNumber, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = FinancePlatformValidator.invoicePaymentDetails().validate(
+      {
+        invoiceNumber,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = FinancePlatformValidator.invoicePaymentDetails().validate(
+      {
+        invoiceNumber,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Finance > invoicePaymentDetails \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/finance/v1.0/company/${this.config.companyId}/invoice/${invoiceNumber}/payment`,
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = FinancePlatformModel.InvoicePaymentDetailsResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Finance > invoicePaymentDetails \n ${res_error}`,
         });
       }
     }
@@ -1680,7 +1840,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.InvoiceTypeResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1760,7 +1920,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.IsCnRefundMethodResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1840,7 +2000,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.IsCreditlinePlatformResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1919,7 +2079,7 @@ class Finance {
       error: res_error,
     } = FinancePlatformModel.PaymentProcessResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1929,6 +2089,86 @@ class Finance {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Finance > paymentProcess \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {FinancePlatformValidator.UnlockCreditNoteParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<FinancePlatformModel.UnlockCreditNoteResponse>} -
+   *   Success response
+   * @name unlockCreditNote
+   * @summary: Unlocks credit notes.
+   * @description: Used to unlock all request credit notes. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/finance/unlockCreditNote/).
+   */
+  async unlockCreditNote(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = FinancePlatformValidator.unlockCreditNote().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = FinancePlatformValidator.unlockCreditNote().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Finance > unlockCreditNote \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/finance/v1.0/company/${this.config.companyId}/credit-notes/unlock`,
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = FinancePlatformModel.UnlockCreditNoteResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Finance > unlockCreditNote \n ${res_error}`,
         });
       }
     }

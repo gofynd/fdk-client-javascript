@@ -73,12 +73,22 @@ export = FinancePlatformValidator;
  * @property {string} [affiliateId] - Affiliate id.
  */
 /**
+ * @typedef InvoiceActivityLogsParam
+ * @property {string} invoiceNumber - Invoice Number for which the data will be
+ *   returned. Invoice_number is required.
+ */
+/**
  * @typedef InvoiceListingParam
  * @property {FinancePlatformModel.InvoiceListingRequest} body
  */
 /**
  * @typedef InvoicePDFParam
  * @property {FinancePlatformModel.InvoicePdfRequest} body
+ */
+/**
+ * @typedef InvoicePaymentDetailsParam
+ * @property {string} invoiceNumber - Invoice Number for which the data will be
+ *   returned.Invoice_Number is required.
  */
 /**
  * @typedef InvoiceTypeParam
@@ -95,6 +105,10 @@ export = FinancePlatformValidator;
 /**
  * @typedef PaymentProcessParam
  * @property {FinancePlatformModel.PaymentProcessRequest} body
+ */
+/**
+ * @typedef UnlockCreditNoteParam
+ * @property {FinancePlatformModel.UnlockCreditNoteRequest} body
  */
 declare class FinancePlatformValidator {
     /** @returns {ChannelDisplayNameParam} */
@@ -133,10 +147,14 @@ declare class FinancePlatformValidator {
     static getReportList(): GetReportListParam;
     /** @returns {GetReportingFiltersParam} */
     static getReportingFilters(): GetReportingFiltersParam;
+    /** @returns {InvoiceActivityLogsParam} */
+    static invoiceActivityLogs(): InvoiceActivityLogsParam;
     /** @returns {InvoiceListingParam} */
     static invoiceListing(): InvoiceListingParam;
     /** @returns {InvoicePDFParam} */
     static invoicePDF(): InvoicePDFParam;
+    /** @returns {InvoicePaymentDetailsParam} */
+    static invoicePaymentDetails(): InvoicePaymentDetailsParam;
     /** @returns {InvoiceTypeParam} */
     static invoiceType(): InvoiceTypeParam;
     /** @returns {IsCnRefundMethodParam} */
@@ -145,9 +163,11 @@ declare class FinancePlatformValidator {
     static isCreditlinePlatform(): IsCreditlinePlatformParam;
     /** @returns {PaymentProcessParam} */
     static paymentProcess(): PaymentProcessParam;
+    /** @returns {UnlockCreditNoteParam} */
+    static unlockCreditNote(): UnlockCreditNoteParam;
 }
 declare namespace FinancePlatformValidator {
-    export { ChannelDisplayNameParam, CreateSellerCreditNoteConfigParam, CreditNoteDetailsParam, CreditlineDataplatformParam, DeleteConfigParam, DownloadCreditDebitNoteParam, DownloadReportParam, DownloadReportCustomerCnParam, GenerateReportParam, GenerateReportCustomerCnParam, GetAffiliateParam, GetCnConfigParam, GetCustomerCreditBalanceParam, GetDataParam, GetPdfUrlViewParam, GetReasonParam, GetReportListParam, GetReportingFiltersParam, InvoiceListingParam, InvoicePDFParam, InvoiceTypeParam, IsCnRefundMethodParam, IsCreditlinePlatformParam, PaymentProcessParam };
+    export { ChannelDisplayNameParam, CreateSellerCreditNoteConfigParam, CreditNoteDetailsParam, CreditlineDataplatformParam, DeleteConfigParam, DownloadCreditDebitNoteParam, DownloadReportParam, DownloadReportCustomerCnParam, GenerateReportParam, GenerateReportCustomerCnParam, GetAffiliateParam, GetCnConfigParam, GetCustomerCreditBalanceParam, GetDataParam, GetPdfUrlViewParam, GetReasonParam, GetReportListParam, GetReportingFiltersParam, InvoiceActivityLogsParam, InvoiceListingParam, InvoicePDFParam, InvoicePaymentDetailsParam, InvoiceTypeParam, IsCnRefundMethodParam, IsCreditlinePlatformParam, PaymentProcessParam, UnlockCreditNoteParam };
 }
 type ChannelDisplayNameParam = {
     /**
@@ -213,11 +233,25 @@ type GetReportingFiltersParam = {
      */
     affiliateId?: string;
 };
+type InvoiceActivityLogsParam = {
+    /**
+     * - Invoice Number for which the data will be
+     * returned. Invoice_number is required.
+     */
+    invoiceNumber: string;
+};
 type InvoiceListingParam = {
     body: FinancePlatformModel.InvoiceListingRequest;
 };
 type InvoicePDFParam = {
     body: FinancePlatformModel.InvoicePdfRequest;
+};
+type InvoicePaymentDetailsParam = {
+    /**
+     * - Invoice Number for which the data will be
+     * returned.Invoice_Number is required.
+     */
+    invoiceNumber: string;
 };
 type InvoiceTypeParam = {
     body: FinancePlatformModel.InvoiceTypeRequest;
@@ -230,5 +264,8 @@ type IsCreditlinePlatformParam = {
 };
 type PaymentProcessParam = {
     body: FinancePlatformModel.PaymentProcessRequest;
+};
+type UnlockCreditNoteParam = {
+    body: FinancePlatformModel.UnlockCreditNoteRequest;
 };
 import FinancePlatformModel = require("./FinancePlatformModel");

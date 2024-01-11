@@ -8,6 +8,8 @@
 ## Catalog Methods
 Catalog - Platform Front API's' API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features.
 
+
+Default
 * [addCollectionItems](#addcollectionitems)
 * [addInventory](#addinventory)
 * [allSizes](#allsizes)
@@ -41,7 +43,6 @@ Catalog - Platform Front API's' API's allows you to access list of products, pri
 * [deleteBulkInventoryJob](#deletebulkinventoryjob)
 * [deleteCollection](#deletecollection)
 * [deleteGroupConfiguration](#deletegroupconfiguration)
-* [deleteInventory](#deleteinventory)
 * [deleteListingConfiguration](#deletelistingconfiguration)
 * [deleteProduct](#deleteproduct)
 * [deleteProductBulkJob](#deleteproductbulkjob)
@@ -94,6 +95,7 @@ Catalog - Platform Front API's' API's allows you to access list of products, pri
 * [getInventoryExport](#getinventoryexport)
 * [getListingConfigurations](#getlistingconfigurations)
 * [getMarketplaceOptinDetail](#getmarketplaceoptindetail)
+* [getMarketplaces](#getmarketplaces)
 * [getOptimalLocations](#getoptimallocations)
 * [getProduct](#getproduct)
 * [getProductAssetsInBulk](#getproductassetsinbulk)
@@ -141,6 +143,7 @@ Catalog - Platform Front API's' API's allows you to access list of products, pri
 * [updateHsnCode](#updatehsncode)
 * [updateInventories](#updateinventories)
 * [updateListingConfiguration](#updatelistingconfiguration)
+* [updateMarketplaceOptin](#updatemarketplaceoptin)
 * [updateProductBundle](#updateproductbundle)
 * [updateRealtimeInventory](#updaterealtimeinventory)
 * [updateSearchConfiguration](#updatesearchconfiguration)
@@ -152,7 +155,9 @@ Catalog - Platform Front API's' API's allows you to access list of products, pri
 
 
 
+
 ## Methods with example and description
+
 
 
 
@@ -1532,7 +1537,7 @@ This API allows to create product.
 
 
 
-[SuccessResponse](#SuccessResponse)
+[SuccessResponse1](#SuccessResponse1)
 
 Returns a success response
 
@@ -2183,9 +2188,9 @@ Delete a collection by it's id. Returns an object that tells whether the collect
 
 
 
-[DeleteResponse](#DeleteResponse)
+[CommonResponseSchemaCollection](#CommonResponseSchemaCollection)
 
-Status object. Tells whether the operation was successful. See example below or refer `DeleteResponse`
+Status object. Tells whether the operation was successful.
 
 
 
@@ -2257,70 +2262,6 @@ success message will tell whether the operation was successful.
 ```json
 {
   "message": "Config Item deleted successfully."
-}
-```
-</details>
-
-
-
-
-
-
-
-
-
----
-
-
-### deleteInventory
-Delete a Inventory.
-
-
-
-```javascript
-// Promise
-const promise = platformClient.catalog.deleteInventory({  size : value,
- itemId : value,
- locationId : value });
-
-// Async/Await
-const data = await platformClient.catalog.deleteInventory({  size : value,
- itemId : value,
- locationId : value });
-```
-
-
-
-
-
-| Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| size | string | yes | size that is to be deleted. |   
-| itemId | number | yes | Id of the product associated with Inventory to be deleted. |   
-| locationId | number | yes | Location ID of store of which inventory is to be deleted. |  
-
-
-
-This API allows to delete inventory of a particular product for particular company.
-
-*Returned Response:*
-
-
-
-
-[SuccessResponse](#SuccessResponse)
-
-Returns a success response
-
-
-
-
-<details>
-<summary><i>&nbsp; Example:</i></summary>
-
-```json
-{
-  "success": true
 }
 ```
 </details>
@@ -4127,7 +4068,9 @@ const promise = platformClient.application("<APPLICATION_ID>").catalog.getAppLoc
  q : value,
  stage : value,
  pageNo : value,
- pageSize : value });
+ pageSize : value,
+ tags : value,
+ storeTypes : value });
 
 // Async/Await
 const data = await platformClient.application("<APPLICATION_ID>").catalog.getAppLocations({  storeType : value,
@@ -4135,7 +4078,9 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.getApp
  q : value,
  stage : value,
  pageNo : value,
- pageSize : value });
+ pageSize : value,
+ tags : value,
+ storeTypes : value });
 ```
 
 
@@ -4149,7 +4094,9 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.getApp
 | q | string | no | Query that is to be searched. |    
 | stage | string | no | to filter companies on basis of verified or unverified companies. |    
 | pageNo | number | no | The page number to navigate through the given set of results |    
-| pageSize | number | no | Number of items to retrieve in each page. Default is 20. |  
+| pageSize | number | no | Number of items to retrieve in each page. Default is 20. |    
+| tags | Array<string> | no | Get locations filtered by tags. |    
+| storeTypes | Array<string> | no | Get locations filtered by store types. |  
 
 
 
@@ -4281,7 +4228,8 @@ The Company Applicaton Product Data(MOQ/SEO).
     "title": "test-title",
     "breadcrumbs": [],
     "sitemap": {},
-    "meta_tags": []
+    "meta_tags": [],
+    "canonical_url": "/test"
   },
   "size_promotion_threshold": {
     "threshold_type": "flat",
@@ -6273,9 +6221,9 @@ Get the details of a collection by its `slug`. If successful, returns a Collecti
 
 
 
-[CollectionDetailResponse](#CollectionDetailResponse)
+[GetCollectionDetailResponse](#GetCollectionDetailResponse)
 
-The Collection object. See example below or refer `CollectionDetailResponse` for details
+The Collection object. See example below or refer `GetCollectionDetailResponse` for details
 
 
 
@@ -6333,13 +6281,12 @@ The Collection object. See example below or refer `CollectionDetailResponse` for
   "meta": {},
   "name": "new",
   "published": true,
-  "query": [
-    {
-      "attribute": "",
-      "op": "in",
-      "value": []
-    }
-  ],
+  "query": {
+    "l3_categories": [
+      "12"
+    ],
+    "sort_on": "discount_asc"
+  },
   "slug": "new",
   "sort_on": "popular",
   "tags": [],
@@ -6660,11 +6607,17 @@ Get configuration metadata details for catalog for admin panel
 ```javascript
 // Promise
 const promise = platformClient.application("<APPLICATION_ID>").catalog.getConfigurationMetadata({  configType : value,
- templateSlug : value });
+ templateSlug : value,
+ pageNo : value,
+ pageSize : value,
+ q : value });
 
 // Async/Await
 const data = await platformClient.application("<APPLICATION_ID>").catalog.getConfigurationMetadata({  configType : value,
- templateSlug : value });
+ templateSlug : value,
+ pageNo : value,
+ pageSize : value,
+ q : value });
 ```
 
 
@@ -6674,7 +6627,10 @@ const data = await platformClient.application("<APPLICATION_ID>").catalog.getCon
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | configType | string | yes | A `config_type` is an identifier that defines a specific type of configuration. |    
-| templateSlug | string | no | Get configuration list filtered by `template_slug` string. This is for the details and comparision groups. |  
+| templateSlug | string | no | Get configuration list filtered by `template_slug` string. This is for the details and comparision groups. |    
+| pageNo | number | no | The page number to navigate through the given set of results. |    
+| pageSize | number | no | Number of items to retrieve in each page. |    
+| q | string | no | Get configuration list filtered by `q` string. |  
 
 
 
@@ -7402,6 +7358,26 @@ configuration details for catalog. See example below or refer `GetConfigMetadata
         "multivalued"
       ],
       "key": "rating"
+    }
+  ],
+  "page": [
+    {
+      "current": 1
+    },
+    {
+      "type": "number"
+    },
+    {
+      "size": 1
+    },
+    {
+      "has_previous": false
+    },
+    {
+      "has_next": false
+    },
+    {
+      "item_total": 3
     }
   ],
   "values": [
@@ -10954,6 +10930,88 @@ See example below or refer `GetOptInPlatformSchema` for details.
 ---
 
 
+### getMarketplaces
+List all marketplaces
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.getMarketplaces();
+
+// Async/Await
+const data = await platformClient.catalog.getMarketplaces();
+```
+
+
+
+
+
+
+This API allows to get marketplace information.
+
+*Returned Response:*
+
+
+
+
+[GetAllMarketplaces](#GetAllMarketplaces)
+
+List all Marketplace details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "brand_ids": [],
+      "app_id": "000000000000000000000001",
+      "enabled": true,
+      "created_by": {
+        "username": "test@gofynd.com",
+        "user_id": "ef56cde2dc3227c44bcb73fd"
+      },
+      "created_on": "2023-07-11T18:27:10.477000",
+      "opt_level": "company",
+      "company_id": 1,
+      "modified_by": {
+        "username": "test@gofynd.com",
+        "user_id": "ef56cde2dc3227c44bcb73fd"
+      },
+      "store_ids": [],
+      "modified_on": "2023-07-11T18:27:10.477000",
+      "platform": "fynd",
+      "_id": "64ad9efe8069f0f413265003"
+    }
+  ],
+  "page": {
+    "current": 1,
+    "has_next": false,
+    "has_previous": false,
+    "item_total": 6,
+    "size": 1,
+    "type": "number"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getOptimalLocations
 Location Reassignment
 
@@ -13012,9 +13070,9 @@ Get query filters to configure a collection
 
 
 
-[GetCollectionQueryOptionResponse](#GetCollectionQueryOptionResponse)
+[GetQueryFiltersResponse](#GetQueryFiltersResponse)
 
-The attached items of an collection. See example below or refer `GetCollectionQueryOptionResponse` for details
+The attached items of an collection. See example below or refer `GetQueryFiltersResponse` for details
 
 
 
@@ -13048,6 +13106,40 @@ The attached items of an collection. See example below or refer `GetCollectionQu
     {
       "key": {
         "display": "Category",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Category.png",
+        "name": "category"
+      },
+      "values": [
+        {
+          "count": 968,
+          "display": "T-Shirts",
+          "is_selected": false,
+          "logo": "https://hdn-1.fynd.com/media/logo/category/original/15442_57fdc97abfd248aaaf8841f097a4ed67.jpg",
+          "value": "192"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Category L1",
+        "kind": "multivalued",
+        "logo": "https://hdn-1.fynd.com/global/menu-icons/Category.png",
+        "name": "category"
+      },
+      "values": [
+        {
+          "count": 968,
+          "display": "T-Shirts",
+          "is_selected": false,
+          "logo": "https://hdn-1.fynd.com/media/logo/category/original/15442_57fdc97abfd248aaaf8841f097a4ed67.jpg",
+          "value": "192"
+        }
+      ]
+    },
+    {
+      "key": {
+        "display": "Category L2",
         "kind": "multivalued",
         "logo": "https://hdn-1.fynd.com/global/menu-icons/Category.png",
         "name": "category"
@@ -13169,7 +13261,7 @@ The attached items of an collection. See example below or refer `GetCollectionQu
       "key": {
         "display": "Set",
         "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Department.png",
+        "logo": "",
         "name": "is_set"
       },
       "values": [
@@ -13185,7 +13277,7 @@ The attached items of an collection. See example below or refer `GetCollectionQu
       "key": {
         "display": "Product Fit",
         "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Department.png",
+        "logo": "",
         "name": "product_fit"
       },
       "values": [
@@ -13201,7 +13293,7 @@ The attached items of an collection. See example below or refer `GetCollectionQu
       "key": {
         "display": "Primary Material",
         "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Department.png",
+        "logo": "",
         "name": "primary_material"
       },
       "values": [
@@ -13217,7 +13309,7 @@ The attached items of an collection. See example below or refer `GetCollectionQu
       "key": {
         "display": "Gender",
         "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Department.png",
+        "logo": "",
         "name": "gender"
       },
       "values": [
@@ -13239,7 +13331,7 @@ The attached items of an collection. See example below or refer `GetCollectionQu
       "key": {
         "display": "Primary Colour",
         "kind": "multivalued",
-        "logo": "https://hdn-1.fynd.com/global/menu-icons/Department.png",
+        "logo": "",
         "name": "primary_color"
       },
       "values": [
@@ -13268,8 +13360,7 @@ The attached items of an collection. See example below or refer `GetCollectionQu
           "min": 0,
           "query_format": "[{} TO {}]",
           "selected_max": 9,
-          "selected_min": 0,
-          "value": 1
+          "selected_min": 0
         }
       ]
     },
@@ -13285,14 +13376,12 @@ The attached items of an collection. See example below or refer `GetCollectionQu
           "count": 4263,
           "currency_code": "INR",
           "currency_symbol": "₹",
-          "display": "0 - 9",
           "is_selected": false,
           "max": 24999,
           "min": 398,
           "query_format": "[{},INR TO {},INR]",
-          "selected_max": 24998,
-          "selected_min": 398,
-          "value": 1
+          "selected_max": 24998.77,
+          "selected_min": 398.8
         }
       ]
     },
@@ -13313,15 +13402,11 @@ The attached items of an collection. See example below or refer `GetCollectionQu
           "min": 0,
           "query_format": "[{} TO {}]",
           "selected_max": 50,
-          "selected_min": 0,
-          "value": 1
+          "selected_min": 0
         }
       ]
     }
   ],
-  "operators": {
-    "key": "value"
-  },
   "sort_on": [
     {
       "display": "Latest Products",
@@ -13800,14 +13885,16 @@ const promise = platformClient.catalog.getSizeGuides({  active : value,
  q : value,
  tag : value,
  pageNo : value,
- pageSize : value });
+ pageSize : value,
+ brandId : value });
 
 // Async/Await
 const data = await platformClient.catalog.getSizeGuides({  active : value,
  q : value,
  tag : value,
  pageNo : value,
- pageSize : value });
+ pageSize : value,
+ brandId : value });
 ```
 
 
@@ -13820,7 +13907,8 @@ const data = await platformClient.catalog.getSizeGuides({  active : value,
 | q | string | no | Query that is to be searched. |    
 | tag | string | no | to filter size guide on basis of tag. |    
 | pageNo | number | no | The page number to navigate through the given set of results |    
-| pageSize | number | no | Number of items to retrieve in each page. Default is 10. |  
+| pageSize | number | no | Number of items to retrieve in each page. Default is 10. |    
+| brandId | number | no | Brand id that is to be searched. |  
 
 
 
@@ -14077,17 +14165,21 @@ Get product categories list
 ```javascript
 // Promise
 const promise = platformClient.catalog.listCategories({  level : value,
- departments : value,
+ department : value,
  q : value,
  pageNo : value,
- pageSize : value });
+ pageSize : value,
+ uids : value,
+ slug : value });
 
 // Async/Await
 const data = await platformClient.catalog.listCategories({  level : value,
- departments : value,
+ department : value,
  q : value,
  pageNo : value,
- pageSize : value });
+ pageSize : value,
+ uids : value,
+ slug : value });
 ```
 
 
@@ -14097,10 +14189,12 @@ const data = await platformClient.catalog.listCategories({  level : value,
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
 | level | string | no | Get category for multiple levels |    
-| departments | string | no | Get category for multiple departments filtered |    
+| department | number | no | Get category for multiple departments filtered |    
 | q | string | no | Get multiple categories filtered by search string |    
 | pageNo | number | no | The page number to navigate through the given set of results |    
-| pageSize | number | no | Number of items to retrieve in each page. Default is 10. |  
+| pageSize | number | no | Number of items to retrieve in each page. Default is 10. |    
+| uids | Array<number> | no | Get multiple categories filtered by category uids. |    
+| slug | string | no | Get category by slug |  
 
 
 
@@ -14548,7 +14642,8 @@ const promise = platformClient.catalog.listDepartmentsData({  pageNo : value,
  pageSize : value,
  name : value,
  search : value,
- isActive : value });
+ isActive : value,
+ slug : value });
 
 // Async/Await
 const data = await platformClient.catalog.listDepartmentsData({  pageNo : value,
@@ -14556,7 +14651,8 @@ const data = await platformClient.catalog.listDepartmentsData({  pageNo : value,
  pageSize : value,
  name : value,
  search : value,
- isActive : value });
+ isActive : value,
+ slug : value });
 ```
 
 
@@ -14570,7 +14666,8 @@ const data = await platformClient.catalog.listDepartmentsData({  pageNo : value,
 | pageSize | number | no | Number of items to retrieve in each page. Default is 10. |    
 | name | string | no | Can search departments by passing name. |    
 | search | string | no | Can search departments by passing name of the department in search parameter. |    
-| isActive | boolean | no | Can query for departments based on whether they are active or inactive. |  
+| isActive | boolean | no | Can query for departments based on whether they are active or inactive. |    
+| slug | string | no | Can filter by slug |  
 
 
 
@@ -16055,10 +16152,10 @@ The Collection object. See example below or refer `UpdateCollectionSchema` for d
     "next_schedule": [
       {
         "end": null,
-        "start": "2021-04-02T15:43:59.410000Z"
+        "start": "2021-03-15T12:51:21.333000+00:00Z"
       }
     ],
-    "start": "2021-04-02T15:43:59.410000Z"
+    "start": "2021-03-15T12:51:21.333000+00:00Z"
   },
   "action": {
     "page": {
@@ -16079,12 +16176,10 @@ The Collection object. See example below or refer `UpdateCollectionSchema` for d
   },
   "banners": {
     "landscape": {
-      "aspect_ratio": "250",
       "type": "image",
       "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857999/production/applications/app_000000000000000000000001/media/collection/landscape/avm7xibo2jgk8glc4bwl.png"
     },
     "portrait": {
-      "aspect_ratio": "250",
       "type": "image",
       "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588858137/production/applications/app_000000000000000000000001/media/collection/portrait/xzuftshmmw4yuwzb12pm.png"
     }
@@ -16092,14 +16187,13 @@ The Collection object. See example below or refer `UpdateCollectionSchema` for d
   "description": "",
   "is_active": true,
   "logo": {
-    "aspect_ratio": "250",
     "type": "image",
     "url": "https://res.cloudinary.com/dwzm9bysq/image/upload/v1588857854/production/applications/app_000000000000000000000001/media/collection/logo/w9ns7nfgv7fk45xqrpoh.png"
   },
   "meta": {},
   "name": "New",
   "published": true,
-  "query": [],
+  "query": {},
   "seo": {
     "description": "Test description",
     "title": "Test"
@@ -16559,6 +16653,83 @@ success flag will tell whether the operation was successful.
   "key": "latest",
   "name": "Latest",
   "priority": 1
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateMarketplaceOptin
+Update marketplace optin
+
+
+
+```javascript
+// Promise
+const promise = platformClient.catalog.updateMarketplaceOptin({  marketplaceSlug : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.catalog.updateMarketplaceOptin({  marketplaceSlug : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| marketplaceSlug | string | yes | Slug of the marketplace . |  
+| body | [UpdateMarketplaceOptinRequest](#UpdateMarketplaceOptinRequest) | yes | Request body |
+
+
+This API allows to update marketplace optin for a company.
+
+*Returned Response:*
+
+
+
+
+[UpdateMarketplaceOptinResponse](#UpdateMarketplaceOptinResponse)
+
+Update marketplace optin config.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": null,
+  "-data": {
+    "brand_ids": [],
+    "app_id": "000000000000000000000001",
+    "enabled": true,
+    "created_by": {
+      "username": "test@gofynd.com",
+      "user_id": "ef56cde2dc3227c44bcb73fd"
+    },
+    "opt_level": "company",
+    "company_id": 1,
+    "modified_by": {
+      "username": "test@gofynd.com",
+      "user_id": "ef56cde2dc3227c44bcb73fd"
+    },
+    "store_ids": [],
+    "platform": "fynd"
+  }
 }
 ```
 </details>
@@ -17121,10 +17292,6 @@ List of fields and validation values fro each. See example below or refer `Inven
       "InventoryBaseSchema": {
         "properties": {
           "currency": {
-            "enum": [
-              "INR",
-              "QAR"
-            ],
             "title": "Currency",
             "type": "string"
           },
@@ -17222,6 +17389,7 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 
 ---
+
 
 
 
@@ -18233,6 +18401,17 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
+#### [CollectionItemSchemaV2](#CollectionItemSchemaV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | action | string |  no  |  |
+ | item_id | number |  no  |  |
+ | priority | number? |  yes  |  |
+ 
+
+---
+
 #### [CollectionItemUpdate](#CollectionItemUpdate)
 
  | Properties | Type | Nullable | Description |
@@ -18242,6 +18421,20 @@ List of fields and validation values fro each. See example below or refer `Inven
  | items | [[CollectionItem](#CollectionItem)]? |  yes  |  |
  | query | [[CollectionQuery](#CollectionQuery)]? |  yes  |  |
  | type | string? |  yes  |  |
+ | visible_facets_keys | [string]? |  yes  |  |
+ 
+
+---
+
+#### [CollectionItemUpdateSchemaV2](#CollectionItemUpdateSchemaV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | allow_facets | boolean? |  yes  |  |
+ | allow_sort | boolean? |  yes  |  |
+ | items | [[CollectionItemSchemaV2](#CollectionItemSchemaV2)]? |  yes  |  |
+ | query | [[CollectionQuerySchemaV2](#CollectionQuerySchemaV2)]? |  yes  |  |
+ | type | string |  no  |  |
  | visible_facets_keys | [string]? |  yes  |  |
  
 
@@ -18290,6 +18483,17 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
+#### [CollectionQuerySchemaV2](#CollectionQuerySchemaV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | attribute | string |  no  | The attribute of the collection query |
+ | op | string |  no  | The operation to be performed on the attribute of the collection query |
+ | value | [any] |  no  | The value of the attribute of the collection query |
+ 
+
+---
+
 #### [CollectionSchedule](#CollectionSchedule)
 
  | Properties | Type | Nullable | Description |
@@ -18299,6 +18503,15 @@ List of fields and validation values fro each. See example below or refer `Inven
  | end | string? |  yes  |  |
  | next_schedule | [[NextSchedule](#NextSchedule)]? |  yes  |  |
  | start | string? |  yes  |  |
+ 
+
+---
+
+#### [CommonResponseSchemaCollection](#CommonResponseSchemaCollection)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
  
 
 ---
@@ -18566,6 +18779,16 @@ List of fields and validation values fro each. See example below or refer `Inven
  | tags | [string]? |  yes  |  |
  | type | string |  no  |  |
  | visible_facets_keys | [string]? |  yes  |  |
+ 
+
+---
+
+#### [CreatedBy](#CreatedBy)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | user_id | string? |  yes  |  |
+ | username | string? |  yes  |  |
  
 
 ---
@@ -18942,6 +19165,16 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
+#### [GetAllMarketplaces](#GetAllMarketplaces)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[Marketplaces](#Marketplaces)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ 
+
+---
+
 #### [GetAllSizes](#GetAllSizes)
 
  | Properties | Type | Nullable | Description |
@@ -19054,6 +19287,39 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
+#### [GetCollectionDetailResponse](#GetCollectionDetailResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _custom_json | string? |  yes  |  |
+ | _locale_language | string? |  yes  |  |
+ | _schedule | [CollectionSchedule](#CollectionSchedule)? |  yes  |  |
+ | action | string? |  yes  |  |
+ | allow_facets | boolean? |  yes  |  |
+ | allow_sort | boolean? |  yes  |  |
+ | app_id | string? |  yes  |  |
+ | badge | [CollectionBadge](#CollectionBadge)? |  yes  |  |
+ | banners | [ImageUrls](#ImageUrls)? |  yes  |  |
+ | description | string? |  yes  |  |
+ | is_active | boolean? |  yes  |  |
+ | is_visible | boolean? |  yes  |  |
+ | logo | [Media](#Media)? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | priority | number? |  yes  |  |
+ | published | boolean? |  yes  |  |
+ | query | [[CollectionQuery](#CollectionQuery)]? |  yes  |  |
+ | seo | [SeoDetail](#SeoDetail)? |  yes  |  |
+ | slug | string? |  yes  |  |
+ | sort_on | string? |  yes  |  |
+ | tags | [string]? |  yes  |  |
+ | type | string? |  yes  |  |
+ | uid | string? |  yes  |  |
+ | visible_facets_keys | [string]? |  yes  |  |
+ 
+
+---
+
 #### [GetCollectionItemsResponse](#GetCollectionItemsResponse)
 
  | Properties | Type | Nullable | Description |
@@ -19062,6 +19328,16 @@ List of fields and validation values fro each. See example below or refer `Inven
  | items | [[ProductListingDetail](#ProductListingDetail)]? |  yes  |  |
  | page | [Page](#Page)? |  yes  |  |
  | sort_on | [[ProductSortOn](#ProductSortOn)]? |  yes  |  |
+ 
+
+---
+
+#### [GetCollectionItemsResponseSchemaV2](#GetCollectionItemsResponseSchemaV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[ProductDetailV2](#ProductDetailV2)]? |  yes  |  |
+ | page | [Page1](#Page1)? |  yes  |  |
  
 
 ---
@@ -19115,6 +19391,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | ---------- | ---- | -------- | ----------- |
  | condition | [string]? |  yes  |  |
  | data | [string] |  no  |  |
+ | page | [Page](#Page)? |  yes  |  |
  | values | [string]? |  yes  |  |
  
 
@@ -19308,6 +19585,17 @@ List of fields and validation values fro each. See example below or refer `Inven
  | product_details | [LimitedProductData](#LimitedProductData)? |  yes  |  |
  | product_uid | number? |  yes  |  |
  | sizes | [[Size](#Size)]? |  yes  |  |
+ 
+
+---
+
+#### [GetQueryFiltersResponse](#GetQueryFiltersResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | filters | [[ProductFilters](#ProductFilters)]? |  yes  |  |
+ | operators | [String: string] |  no  |  |
+ | sort_on | [[ProductSortOn](#ProductSortOn)]? |  yes  |  |
  
 
 ---
@@ -20102,6 +20390,26 @@ List of fields and validation values fro each. See example below or refer `Inven
 
 ---
 
+#### [Marketplaces](#Marketplaces)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | app_id | string? |  yes  |  |
+ | brand_ids | [number]? |  yes  |  |
+ | company_id | number? |  yes  |  |
+ | created_by | [CreatedBy](#CreatedBy)? |  yes  |  |
+ | created_on | any? |  yes  |  |
+ | enabled | boolean? |  yes  |  |
+ | modified_by | [CreatedBy](#CreatedBy)? |  yes  |  |
+ | modified_on | any? |  yes  |  |
+ | opt_level | string? |  yes  |  |
+ | platforms | string? |  yes  |  |
+ | store_ids | [number]? |  yes  |  |
+ 
+
+---
+
 #### [Media](#Media)
 
  | Properties | Type | Nullable | Description |
@@ -20338,6 +20646,23 @@ List of fields and validation values fro each. See example below or refer `Inven
  | next_id | string? |  yes  |  |
  | size | number? |  yes  |  |
  | type | string |  no  |  |
+ 
+
+---
+
+#### [Page1](#Page1)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | ca | boolean? |  yes  |  |
+ | department | string? |  yes  |  |
+ | page_no | number? |  yes  |  |
+ | page_size | number? |  yes  |  |
+ | q | string? |  yes  |  |
+ | sort | string? |  yes  |  |
+ | sort_on | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | variant | string? |  yes  |  |
  
 
 ---
@@ -20744,6 +21069,25 @@ List of fields and validation values fro each. See example below or refer `Inven
  | ---------- | ---- | -------- | ----------- |
  | details | [[ProductDetailAttribute](#ProductDetailAttribute)]? |  yes  |  |
  | title | string? |  yes  |  |
+ 
+
+---
+
+#### [ProductDetailV2](#ProductDetailV2)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | brand | [ProductBrand](#ProductBrand)? |  yes  |  |
+ | is_excluded | boolean? |  yes  |  |
+ | is_pinned | boolean? |  yes  |  |
+ | item_code | string? |  yes  |  |
+ | item_type | string? |  yes  |  |
+ | medias | [[Media](#Media)]? |  yes  |  |
+ | name | string? |  yes  |  |
+ | priority | number? |  yes  |  |
+ | short_description | string? |  yes  |  |
+ | slug | string |  no  |  |
+ | uid | number? |  yes  |  |
  
 
 ---
@@ -21394,6 +21738,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | breadcrumbs | [[ApplicationItemSeoBreadcrumbs](#ApplicationItemSeoBreadcrumbs)]? |  yes  |  |
+ | canonical_url | string? |  yes  |  |
  | description | string? |  yes  |  |
  | meta_tags | [[Metatags](#Metatags)]? |  yes  |  |
  | sitemap | [Sitemap](#Sitemap)? |  yes  |  |
@@ -21407,6 +21752,7 @@ List of fields and validation values fro each. See example below or refer `Inven
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | breadcrumbs | [[ApplicationItemSeoBreadcrumbs](#ApplicationItemSeoBreadcrumbs)]? |  yes  |  |
+ | canonical_url | string? |  yes  |  |
  | description | string? |  yes  |  |
  | meta_tags | [[Metatags](#Metatags)]? |  yes  |  |
  | sitemap | string? |  yes  |  |
@@ -21748,6 +22094,37 @@ List of fields and validation values fro each. See example below or refer `Inven
  | ---------- | ---- | -------- | ----------- |
  | items_not_updated | [number]? |  yes  |  |
  | message | string? |  yes  |  |
+ 
+
+---
+
+#### [UpdateMarketplaceOptinRequest](#UpdateMarketplaceOptinRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | brand_ids | [number]? |  yes  |  |
+ | company_id | number? |  yes  |  |
+ | enabled | boolean? |  yes  |  |
+ | opt_level | string? |  yes  |  |
+ | platform | string? |  yes  |  |
+ | store_ids | [number]? |  yes  |  |
+ 
+
+---
+
+#### [UpdateMarketplaceOptinResponse](#UpdateMarketplaceOptinResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | app_id | string? |  yes  |  |
+ | brand_ids | [number]? |  yes  |  |
+ | company_id | number? |  yes  |  |
+ | created_by | [CreatedBy](#CreatedBy)? |  yes  |  |
+ | enabled | boolean? |  yes  |  |
+ | modified_by | [CreatedBy](#CreatedBy)? |  yes  |  |
+ | opt_level | string? |  yes  |  |
+ | platform | string? |  yes  |  |
+ | store_ids | [number]? |  yes  |  |
  
 
 ---

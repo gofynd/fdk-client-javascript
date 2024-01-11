@@ -1,5 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const {
+  FDKClientValidationError,
+  FDKResponseValidationError,
+} = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
 const RewardsPlatformApplicationValidator = require("./RewardsPlatformApplicationValidator");
 const RewardsPlatformModel = require("./RewardsPlatformModel");
@@ -74,7 +77,7 @@ class Rewards {
       error: res_error,
     } = RewardsPlatformModel.Giveaway().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -149,7 +152,7 @@ class Rewards {
       error: res_error,
     } = RewardsPlatformModel.Offer().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -226,7 +229,7 @@ class Rewards {
       error: res_error,
     } = RewardsPlatformModel.ConfigurationRes().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -301,7 +304,7 @@ class Rewards {
       error: res_error,
     } = RewardsPlatformModel.UserRes().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -390,7 +393,7 @@ class Rewards {
       error: res_error,
     } = RewardsPlatformModel.HistoryRes().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -507,7 +510,7 @@ class Rewards {
       error: res_error,
     } = RewardsPlatformModel.Giveaway().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -588,7 +591,7 @@ class Rewards {
       error: res_error,
     } = RewardsPlatformModel.SetConfigurationRes().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -671,7 +674,7 @@ class Rewards {
       error: res_error,
     } = RewardsPlatformModel.GiveawayResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -742,7 +745,7 @@ class Rewards {
 
     const { error: res_error } = Joi.array()
       .items(RewardsPlatformModel.Offer())
-      .validate(responseData, { abortEarly: false, allowUnknown: false });
+      .validate(responseData, { abortEarly: false, allowUnknown: true });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -822,7 +825,7 @@ class Rewards {
       error: res_error,
     } = RewardsPlatformModel.Giveaway().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -907,7 +910,7 @@ class Rewards {
       error: res_error,
     } = RewardsPlatformModel.Offer().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -990,7 +993,7 @@ class Rewards {
       error: res_error,
     } = RewardsPlatformModel.AppUser().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

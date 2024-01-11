@@ -97,7 +97,7 @@ class Configuration {
       error: res_error,
     } = ConfigurationPublicModel.Locations().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -177,7 +177,7 @@ class Configuration {
       error: res_error,
     } = ConfigurationPublicModel.ApplicationResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

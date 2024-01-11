@@ -97,6 +97,8 @@ export = CartApplicationValidator;
  * @typedef GetCouponsParam
  * @property {string} [id]
  * @property {boolean} [buyNow]
+ * @property {string} [slug]
+ * @property {string} [storeId]
  */
 /**
  * @typedef GetItemCountParam
@@ -366,6 +368,8 @@ type GetCartSharedItemsParam = {
 type GetCouponsParam = {
     id?: string;
     buyNow?: boolean;
+    slug?: string;
+    storeId?: string;
 };
 type GetItemCountParam = {
     /**

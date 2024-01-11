@@ -74,7 +74,7 @@ class Theme {
       error: res_error,
     } = ThemePartnerModel.AllAvailablePageSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -158,7 +158,7 @@ class Theme {
       error: res_error,
     } = ThemePartnerModel.AvailablePageSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -244,7 +244,7 @@ class Theme {
       error: res_error,
     } = ThemePartnerModel.AllAvailablePageSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -322,7 +322,7 @@ class Theme {
       error: res_error,
     } = ThemePartnerModel.AvailablePageSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -408,7 +408,7 @@ class Theme {
       error: res_error,
     } = ThemePartnerModel.AvailablePageSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -486,7 +486,7 @@ class Theme {
       error: res_error,
     } = ThemePartnerModel.AvailablePageSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -560,7 +560,7 @@ class Theme {
 
     const { error: res_error } = Joi.array()
       .items(ThemePartnerModel.ThemesSchema())
-      .validate(responseData, { abortEarly: false, allowUnknown: false });
+      .validate(responseData, { abortEarly: false, allowUnknown: true });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -636,7 +636,7 @@ class Theme {
       error: res_error,
     } = ThemePartnerModel.ThemesSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -720,7 +720,7 @@ class Theme {
       error: res_error,
     } = ThemePartnerModel.ThemesSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -797,7 +797,7 @@ class Theme {
       error: res_error,
     } = ThemePartnerModel.ThemesSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -881,7 +881,7 @@ class Theme {
       error: res_error,
     } = ThemePartnerModel.MarketplaceThemeSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -960,7 +960,7 @@ class Theme {
       error: res_error,
     } = ThemePartnerModel.MarketplaceTheme().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1039,7 +1039,7 @@ class Theme {
       error: res_error,
     } = ThemePartnerModel.MarketplaceTheme().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1118,7 +1118,7 @@ class Theme {
       error: res_error,
     } = ThemePartnerModel.MarketplaceTheme().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1195,7 +1195,7 @@ class Theme {
       error: res_error,
     } = ThemePartnerModel.MarketplaceTheme().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1272,7 +1272,7 @@ class Theme {
 
     const { error: res_error } = Joi.array()
       .items(ThemePartnerModel.MarketplaceTheme())
-      .validate(responseData, { abortEarly: false, allowUnknown: false });
+      .validate(responseData, { abortEarly: false, allowUnknown: true });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -1353,7 +1353,7 @@ class Theme {
       error: res_error,
     } = ThemePartnerModel.MarketplaceTheme().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1430,7 +1430,7 @@ class Theme {
       error: res_error,
     } = ThemePartnerModel.ThemeRejectionReasons().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1513,7 +1513,7 @@ class Theme {
       error: res_error,
     } = ThemePartnerModel.MarketplaceThemeSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1523,6 +1523,86 @@ class Theme {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for partner > Theme > getThemeVersions \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ThemePartnerValidator.CreateThemeParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PartnerAPIClient").Options} - Options
+   * @returns {Promise<ThemePartnerModel.ThemesSchema>} - Success response
+   * @name createTheme
+   * @summary: Create a new theme
+   * @description: Themes improve the look and appearance of a website. Use this API to create a theme. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/theme/createTheme/).
+   */
+  async createTheme(
+    { companyId, applicationId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = ThemePartnerValidator.createTheme().validate(
+      {
+        companyId,
+        applicationId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = ThemePartnerValidator.createTheme().validate(
+      {
+        companyId,
+        applicationId,
+
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for partner > Theme > createTheme \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PartnerAPIClient.execute(
+      this.config,
+      "post",
+      `/service/partner/theme/v1.0/organization/${this.config.organizationId}/company/${companyId}/application/${applicationId}`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ThemePartnerModel.ThemesSchema().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for partner > Theme > createTheme \n ${res_error}`,
         });
       }
     }

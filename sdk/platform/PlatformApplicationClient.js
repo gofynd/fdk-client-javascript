@@ -12,6 +12,8 @@ const FileStorage = require("./FileStorage/FileStoragePlatformApplicationClient"
 
 const Lead = require("./Lead/LeadPlatformApplicationClient");
 
+const Serviceability = require("./Serviceability/ServiceabilityPlatformApplicationClient");
+
 const Order = require("./Order/OrderPlatformApplicationClient");
 
 const Partner = require("./Partner/PartnerPlatformApplicationClient");
@@ -19,8 +21,6 @@ const Partner = require("./Partner/PartnerPlatformApplicationClient");
 const Payment = require("./Payment/PaymentPlatformApplicationClient");
 
 const Rewards = require("./Rewards/RewardsPlatformApplicationClient");
-
-const Serviceability = require("./Serviceability/ServiceabilityPlatformApplicationClient");
 
 const Share = require("./Share/SharePlatformApplicationClient");
 
@@ -61,6 +61,8 @@ class PlatformApplicationClient {
 
     this.lead = new Lead(config, applicationId);
 
+    this.serviceability = new Serviceability(config, applicationId);
+
     this.order = new Order(config, applicationId);
 
     this.partner = new Partner(config, applicationId);
@@ -68,8 +70,6 @@ class PlatformApplicationClient {
     this.payment = new Payment(config, applicationId);
 
     this.rewards = new Rewards(config, applicationId);
-
-    this.serviceability = new Serviceability(config, applicationId);
 
     this.share = new Share(config, applicationId);
 

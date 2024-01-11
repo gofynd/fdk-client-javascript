@@ -175,7 +175,7 @@ const convertStringToBase64 = (string) => {
   } else if (isBrowser()) {
     return window.btoa(string);
   } else {
-    throw FDKException("Base64 conversion error: Unsupported environment");
+    throw new FDKException("Base64 conversion error: Unsupported environment");
   }
 };
 

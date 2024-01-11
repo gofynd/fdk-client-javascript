@@ -11,9 +11,12 @@ This service provides functionality to manage assets and generate pdf. You can u
 
 * [upload](#upload)
 
+
+Default
 * [browse](#browse)
 * [completeUpload](#completeupload)
 * [startUpload](#startupload)
+
 
 
 
@@ -101,6 +104,7 @@ Use this API to perform the upload of an arbitrarily sized buffer or blob.
 
 
 
+
 ### browse
 Browse Files
 
@@ -127,7 +131,7 @@ const data = await partnerClient.fileStorage.browse({  namespace : value,
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | namespace | string | yes | Segregation of different types of files(products, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |   
-| organizationId | number | yes |  |    
+| organizationId | string | yes |  |    
 | page | number | no | page no |    
 | limit | number | no | Limit |  
 
@@ -236,7 +240,7 @@ const data = await partnerClient.fileStorage.completeUpload({  namespace : value
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | namespace | string | yes | Segregation of different types of files(products, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |   
-| organizationId | number | yes |  |  
+| organizationId | string | yes |  |  
 | body | [StartResponse](#StartResponse) | yes | Request body |
 
 
@@ -347,7 +351,7 @@ const data = await partnerClient.fileStorage.startUpload({  namespace : value,
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
 | namespace | string | yes | Segregation of different types of files(products, orders, logistics etc), Required for validating the data of the file being uploaded, decides where exactly the file will be stored inside the storage bucket. |   
-| organizationId | number | yes |  |  
+| organizationId | string | yes |  |  
 | body | [StartRequest](#StartRequest) | yes | Request body |
 
 
@@ -432,6 +436,7 @@ Success. Returns a response containing relaving and absolute_url of storage serv
 
 
 
+
 ### Schemas
 
 
@@ -486,22 +491,13 @@ Success. Returns a response containing relaving and absolute_url of storage serv
 
 ---
 
-#### [Params](#Params)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | subpath | string? |  yes  | The subpath for the file. |
- 
-
----
-
 #### [StartRequest](#StartRequest)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | content_type | string |  no  |  |
  | file_name | string |  no  |  |
- | params | [Params](#Params)? |  yes  |  |
+ | params | string? |  yes  |  |
  | size | number |  no  |  |
  | tags | [string]? |  yes  |  |
  

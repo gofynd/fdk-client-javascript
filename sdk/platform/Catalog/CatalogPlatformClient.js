@@ -80,7 +80,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -157,7 +157,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.GetAllSizes().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -234,7 +234,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.BulkHsnResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -315,7 +315,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -396,7 +396,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.BulkResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -477,7 +477,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.BulkResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -556,7 +556,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.CategoryCreateResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -636,7 +636,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.DepartmentCreateResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -715,7 +715,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.InventoryExportResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -796,7 +796,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.InventoryExportResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -879,7 +879,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.UpdatedResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -900,7 +900,7 @@ class Catalog {
    * @param {CatalogPlatformValidator.CreateProductParam} arg - Arg object
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.SuccessResponse>} - Success response
+   * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
    * @name createProduct
    * @summary: Create a product.
    * @description: This API allows to create product. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createProduct/).
@@ -956,9 +956,9 @@ class Catalog {
 
     const {
       error: res_error,
-    } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
+    } = CatalogPlatformModel.SuccessResponse1().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1039,7 +1039,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1120,7 +1120,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.GetProductBundleCreateResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1202,7 +1202,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.ProductDownloadsResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1283,7 +1283,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1362,7 +1362,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1443,7 +1443,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1453,89 +1453,6 @@ class Catalog {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Catalog > deleteBulkInventoryJob \n ${res_error}`,
-        });
-      }
-    }
-
-    return response;
-  }
-
-  /**
-   * @param {CatalogPlatformValidator.DeleteInventoryParam} arg - Arg object
-   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-   * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<CatalogPlatformModel.SuccessResponse>} - Success response
-   * @name deleteInventory
-   * @summary: Delete a Inventory.
-   * @description: This API allows to delete inventory of a particular product for particular company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteInventory/).
-   */
-  async deleteInventory(
-    { size, itemId, locationId, requestHeaders } = { requestHeaders: {} },
-    { responseHeaders } = { responseHeaders: false }
-  ) {
-    const { error } = CatalogPlatformValidator.deleteInventory().validate(
-      {
-        size,
-        itemId,
-        locationId,
-      },
-      { abortEarly: false, allowUnknown: true }
-    );
-    if (error) {
-      return Promise.reject(new FDKClientValidationError(error));
-    }
-
-    // Showing warrnings if extra unknown parameters are found
-    const {
-      error: warrning,
-    } = CatalogPlatformValidator.deleteInventory().validate(
-      {
-        size,
-        itemId,
-        locationId,
-      },
-      { abortEarly: false, allowUnknown: false }
-    );
-    if (warrning) {
-      Logger({
-        level: "WARN",
-        message: `Parameter Validation warrnings for platform > Catalog > deleteInventory \n ${warrning}`,
-      });
-    }
-
-    const query_params = {};
-
-    const xHeaders = {};
-
-    const response = await PlatformAPIClient.execute(
-      this.config,
-      "delete",
-      `/service/platform/catalog/v1.0/company/${this.config.companyId}/products/${itemId}/sizes/${size}/location/${locationId}/`,
-      query_params,
-      undefined,
-      { ...xHeaders, ...requestHeaders },
-      { responseHeaders }
-    );
-
-    let responseData = response;
-    if (responseHeaders) {
-      responseData = response[0];
-    }
-
-    const {
-      error: res_error,
-    } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
-      abortEarly: false,
-      allowUnknown: false,
-    });
-
-    if (res_error) {
-      if (this.config.options.strictResponseCheck === true) {
-        return Promise.reject(new FDKResponseValidationError(res_error));
-      } else {
-        Logger({
-          level: "WARN",
-          message: `Response Validation Warnings for platform > Catalog > deleteInventory \n ${res_error}`,
         });
       }
     }
@@ -1605,7 +1522,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1684,7 +1601,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1769,7 +1686,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.InventoryUpdateResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1849,7 +1766,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.ProductSizeDeleteResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1931,7 +1848,7 @@ class Catalog {
 
     const { error: res_error } = Joi.string()
       .allow("")
-      .validate(responseData, { abortEarly: false, allowUnknown: false });
+      .validate(responseData, { abortEarly: false, allowUnknown: true });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -2017,7 +1934,7 @@ class Catalog {
 
     const { error: res_error } = Joi.string()
       .allow("")
-      .validate(responseData, { abortEarly: false, allowUnknown: false });
+      .validate(responseData, { abortEarly: false, allowUnknown: true });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -2095,7 +2012,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2175,7 +2092,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.InventoryConfig().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2266,7 +2183,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.HsnCodesListingResponseSchemaV2().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -2345,7 +2262,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.SingleCategoryResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2440,7 +2357,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.OptinCompanyBrandDetailsView().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -2515,7 +2432,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.OptinCompanyDetail().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2590,7 +2507,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.OptinCompanyMetrics().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2669,7 +2586,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.DepartmentsResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2748,7 +2665,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.GenderDetail().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2825,7 +2742,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.HsnCode().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2936,7 +2853,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.GetInventoriesResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3023,7 +2940,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.BulkInventoryGet().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3119,7 +3036,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.InventoryResponsePaginated().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -3226,7 +3143,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.InventorySellerIdentifierResponsePaginated().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -3301,7 +3218,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.InventoryExportJob().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3378,7 +3295,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.GetOptInPlatform().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3388,6 +3305,81 @@ class Catalog {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Catalog > getMarketplaceOptinDetail \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CatalogPlatformValidator.GetMarketplacesParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.GetAllMarketplaces>} - Success response
+   * @name getMarketplaces
+   * @summary: List all marketplaces
+   * @description: This API allows to get marketplace information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getMarketplaces/).
+   */
+  async getMarketplaces(
+    { requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = CatalogPlatformValidator.getMarketplaces().validate(
+      {},
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.getMarketplaces().validate(
+      {},
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Catalog > getMarketplaces \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/channel`,
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.GetAllMarketplaces().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > getMarketplaces \n ${res_error}`,
         });
       }
     }
@@ -3457,7 +3449,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.StoreAssignResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3540,7 +3532,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.SingleProductResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3625,7 +3617,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.BulkAssetResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3709,7 +3701,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.ProductAttributesResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -3797,7 +3789,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.ProductBulkRequestList().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3882,7 +3874,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.GetProductBundleListingResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -3964,7 +3956,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.GetProductBundleResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4054,7 +4046,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.ProductDownloadsResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4144,7 +4136,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.ProductListingResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4219,7 +4211,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.ProductTagsViewResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4294,7 +4286,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.ValidateProduct().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4408,7 +4400,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.ProductListingResponseV2().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4487,7 +4479,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.CrossSellingResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4564,7 +4556,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.HSNDataInsertV2().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4643,7 +4635,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.SizeGuideResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4670,7 +4662,7 @@ class Catalog {
    * @description: This API allows to view all the size guides associated to the seller. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getSizeGuides/).
    */
   async getSizeGuides(
-    { active, q, tag, pageNo, pageSize, requestHeaders } = {
+    { active, q, tag, pageNo, pageSize, brandId, requestHeaders } = {
       requestHeaders: {},
     },
     { responseHeaders } = { responseHeaders: false }
@@ -4682,6 +4674,7 @@ class Catalog {
         tag,
         pageNo,
         pageSize,
+        brandId,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -4699,6 +4692,7 @@ class Catalog {
         tag,
         pageNo,
         pageSize,
+        brandId,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -4715,6 +4709,7 @@ class Catalog {
     query_params["tag"] = tag;
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
+    query_params["brand_id"] = brandId;
 
     const xHeaders = {};
 
@@ -4737,7 +4732,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.ListSizeGuide().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4823,7 +4818,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.OptinStoreDetails().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4912,7 +4907,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.ProductVariantsResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4939,7 +4934,7 @@ class Catalog {
    * @description: This API gets meta associated to product categories. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/listCategories/).
    */
   async listCategories(
-    { level, departments, q, pageNo, pageSize, requestHeaders } = {
+    { level, department, q, pageNo, pageSize, uids, slug, requestHeaders } = {
       requestHeaders: {},
     },
     { responseHeaders } = { responseHeaders: false }
@@ -4947,10 +4942,12 @@ class Catalog {
     const { error } = CatalogPlatformValidator.listCategories().validate(
       {
         level,
-        departments,
+        department,
         q,
         pageNo,
         pageSize,
+        uids,
+        slug,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -4964,10 +4961,12 @@ class Catalog {
     } = CatalogPlatformValidator.listCategories().validate(
       {
         level,
-        departments,
+        department,
         q,
         pageNo,
         pageSize,
+        uids,
+        slug,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -4980,10 +4979,12 @@ class Catalog {
 
     const query_params = {};
     query_params["level"] = level;
-    query_params["departments"] = departments;
+    query_params["department"] = department;
     query_params["q"] = q;
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
+    query_params["uids"] = uids;
+    query_params["slug"] = slug;
 
     const xHeaders = {};
 
@@ -5006,7 +5007,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.CategoryResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -5033,9 +5034,16 @@ class Catalog {
    * @description: Allows you to list all departments, also can search using name and filter active and incative departments, and item type. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/listDepartmentsData/).
    */
   async listDepartmentsData(
-    { pageNo, itemType, pageSize, name, search, isActive, requestHeaders } = {
-      requestHeaders: {},
-    },
+    {
+      pageNo,
+      itemType,
+      pageSize,
+      name,
+      search,
+      isActive,
+      slug,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CatalogPlatformValidator.listDepartmentsData().validate(
@@ -5046,6 +5054,7 @@ class Catalog {
         name,
         search,
         isActive,
+        slug,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -5064,6 +5073,7 @@ class Catalog {
         name,
         search,
         isActive,
+        slug,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -5081,6 +5091,7 @@ class Catalog {
     query_params["name"] = name;
     query_params["search"] = search;
     query_params["is_active"] = isActive;
+    query_params["slug"] = slug;
 
     const xHeaders = {};
 
@@ -5103,7 +5114,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.DepartmentsResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -5178,7 +5189,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.HSNCodesResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -5269,7 +5280,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.InventoryExportJobListResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -5349,7 +5360,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.TemplatesResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -5438,7 +5449,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.ProdcutTemplateCategoriesResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -5518,7 +5529,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.ProductDownloadsResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -5607,7 +5618,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.ProductConfigurationDownloads().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -5688,7 +5699,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.CategoryUpdateResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -5769,7 +5780,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.DepartmentModel().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -5850,7 +5861,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.HsnCode().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -5929,7 +5940,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.InventoryUpdateResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -5939,6 +5950,91 @@ class Catalog {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Catalog > updateInventories \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {CatalogPlatformValidator.UpdateMarketplaceOptinParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<CatalogPlatformModel.UpdateMarketplaceOptinResponse>}
+   *   - Success response
+   *
+   * @name updateMarketplaceOptin
+   * @summary: Update marketplace optin
+   * @description: This API allows to update marketplace optin for a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateMarketplaceOptin/).
+   */
+  async updateMarketplaceOptin(
+    { marketplaceSlug, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = CatalogPlatformValidator.updateMarketplaceOptin().validate(
+      {
+        marketplaceSlug,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = CatalogPlatformValidator.updateMarketplaceOptin().validate(
+      {
+        marketplaceSlug,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Catalog > updateMarketplaceOptin \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/catalog/v1.0/company/${this.config.companyId}/channel/${marketplaceSlug}/opt-in`,
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = CatalogPlatformModel.UpdateMarketplaceOptinResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Catalog > updateMarketplaceOptin \n ${res_error}`,
         });
       }
     }
@@ -6012,7 +6108,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.GetProductBundleCreateResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -6097,7 +6193,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.InventoryUpdateResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -6178,7 +6274,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.SuccessResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -6263,7 +6359,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.BulkResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -6351,7 +6447,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.TemplatesValidationResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -6436,7 +6532,7 @@ class Catalog {
       error: res_error,
     } = CatalogPlatformModel.InventoryValidationResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {

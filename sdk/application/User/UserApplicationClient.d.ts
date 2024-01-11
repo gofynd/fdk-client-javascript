@@ -12,6 +12,7 @@ declare class User {
         getListOfActiveSessions: string;
         getLoggedInUser: string;
         getPlatformConfig: string;
+        getUserAttributes: string;
         hasPassword: string;
         loginWithAppleIOS: string;
         loginWithEmailAndPassword: string;
@@ -37,6 +38,8 @@ declare class User {
         setMobileNumberAsPrimary: string;
         updatePassword: string;
         updateProfile: string;
+        updateUserAttributes: string;
+        userExists: string;
         verifyEmail: string;
         verifyEmailForgotOTP: string;
         verifyEmailOTP: string;
@@ -136,6 +139,16 @@ declare class User {
      * @description: Use this API to get all the platform configurations such as mobile image, desktop image, social logins, and all other text. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/getPlatformConfig/).
      */
     getPlatformConfig({ name, requestHeaders }?: UserApplicationValidator.GetPlatformConfigParam, { responseHeaders }?: object): Promise<UserApplicationModel.PlatformSchema>;
+    /**
+     * @param {UserApplicationValidator.GetUserAttributesParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<UserApplicationModel.UserAttributes>} - Success response
+     * @name getUserAttributes
+     * @summary: Get user attributes
+     * @description: Use this API to get the list of user attributes - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/getUserAttributes/).
+     */
+    getUserAttributes({ slug, requestHeaders }?: UserApplicationValidator.GetUserAttributesParam, { responseHeaders }?: object): Promise<UserApplicationModel.UserAttributes>;
     /**
      * @param {UserApplicationValidator.HasPasswordParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -392,6 +405,26 @@ declare class User {
      * @description: Use this API to update details in the user profile. Details can be first name, last name, gender, email, phone number, or profile picture. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/updateProfile/).
      */
     updateProfile({ body, platform, requestHeaders }?: UserApplicationValidator.UpdateProfileParam, { responseHeaders }?: object): Promise<UserApplicationModel.ProfileEditSuccess>;
+    /**
+     * @param {UserApplicationValidator.UpdateUserAttributesParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<UserApplicationModel.UserAttributes>} - Success response
+     * @name updateUserAttributes
+     * @summary: Update user attributes
+     * @description: Use this API to update user attributes - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/updateUserAttributes/).
+     */
+    updateUserAttributes({ body, requestHeaders }?: UserApplicationValidator.UpdateUserAttributesParam, { responseHeaders }?: object): Promise<UserApplicationModel.UserAttributes>;
+    /**
+     * @param {UserApplicationValidator.UserExistsParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<UserApplicationModel.UserExistsResponse>} - Success response
+     * @name userExists
+     * @summary: Check user is already registered or not
+     * @description: Use this API to check whether user is already registered or not to the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/userExists/).
+     */
+    userExists({ q, requestHeaders }?: UserApplicationValidator.UserExistsParam, { responseHeaders }?: object): Promise<UserApplicationModel.UserExistsResponse>;
     /**
      * @param {UserApplicationValidator.VerifyEmailParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

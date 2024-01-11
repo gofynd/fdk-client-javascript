@@ -13,9 +13,14 @@ const LeadPlatformModel = require("./LeadPlatformModel");
  */
 
 /**
- * @typedef CreateHistoryParam
+ * @typedef CreateNewHistoryParam
  * @property {string} id - Ticket ID for which history is created
  * @property {LeadPlatformModel.TicketHistoryPayload} body
+ */
+
+/**
+ * @typedef DeleteCustomFormParam
+ * @property {string} slug - Slug of form whose response is getting submitted
  */
 
 /**
@@ -25,7 +30,7 @@ const LeadPlatformModel = require("./LeadPlatformModel");
  */
 
 /**
- * @typedef EditTicketParam
+ * @typedef EditNewTicketParam
  * @property {string} id - Ticket ID of ticket to be edited
  * @property {LeadPlatformModel.EditTicketPayload} body
  */
@@ -38,17 +43,17 @@ const LeadPlatformModel = require("./LeadPlatformModel");
 /** @typedef GetCustomFormsParam */
 
 /**
- * @typedef GetTicketParam
+ * @typedef GetNewTicketParam
  * @property {string} id - Tiket ID of the ticket to be fetched
  */
 
 /**
- * @typedef GetTicketHistoryParam
+ * @typedef GetNewTicketHistoryParam
  * @property {string} id - Ticket ID for which history is to be fetched
  */
 
 /**
- * @typedef GetTicketsParam
+ * @typedef GetNewTicketsParam
  * @property {boolean} [items] - Decides that the reponse will contain the list of tickets
  * @property {boolean} [filters] - Decides that the reponse will contain the
  *   ticket filters
@@ -59,12 +64,12 @@ const LeadPlatformModel = require("./LeadPlatformModel");
  */
 
 /**
- * @typedef GetTokenForVideoRoomParam
+ * @typedef GetNewTokenForVideoRoomParam
  * @property {string} uniqueName - Unique name of video room
  */
 
 /**
- * @typedef GetVideoParticipantsParam
+ * @typedef GetNewVideoParticipantsParam
  * @property {string} uniqueName - Unique name of Video Room
  */
 
@@ -88,11 +93,18 @@ class LeadPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {CreateHistoryParam} */
-  static createHistory() {
+  /** @returns {CreateNewHistoryParam} */
+  static createNewHistory() {
     return Joi.object({
       id: Joi.string().allow("").required(),
       body: LeadPlatformModel.TicketHistoryPayload().required(),
+    }).required();
+  }
+
+  /** @returns {DeleteCustomFormParam} */
+  static deleteCustomForm() {
+    return Joi.object({
+      slug: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -104,8 +116,8 @@ class LeadPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {EditTicketParam} */
-  static editTicket() {
+  /** @returns {EditNewTicketParam} */
+  static editNewTicket() {
     return Joi.object({
       id: Joi.string().allow("").required(),
       body: LeadPlatformModel.EditTicketPayload().required(),
@@ -124,22 +136,22 @@ class LeadPlatformApplicationValidator {
     return Joi.object({}).required();
   }
 
-  /** @returns {GetTicketParam} */
-  static getTicket() {
+  /** @returns {GetNewTicketParam} */
+  static getNewTicket() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {GetTicketHistoryParam} */
-  static getTicketHistory() {
+  /** @returns {GetNewTicketHistoryParam} */
+  static getNewTicketHistory() {
     return Joi.object({
       id: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {GetTicketsParam} */
-  static getTickets() {
+  /** @returns {GetNewTicketsParam} */
+  static getNewTickets() {
     return Joi.object({
       items: Joi.boolean(),
       filters: Joi.boolean(),
@@ -150,15 +162,15 @@ class LeadPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {GetTokenForVideoRoomParam} */
-  static getTokenForVideoRoom() {
+  /** @returns {GetNewTokenForVideoRoomParam} */
+  static getNewTokenForVideoRoom() {
     return Joi.object({
       uniqueName: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {GetVideoParticipantsParam} */
-  static getVideoParticipants() {
+  /** @returns {GetNewVideoParticipantsParam} */
+  static getNewVideoParticipants() {
     return Joi.object({
       uniqueName: Joi.string().allow("").required(),
     }).required();

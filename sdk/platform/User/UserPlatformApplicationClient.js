@@ -1,5 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const {
+  FDKClientValidationError,
+  FDKResponseValidationError,
+} = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
 const UserPlatformApplicationValidator = require("./UserPlatformApplicationValidator");
 const UserPlatformModel = require("./UserPlatformModel");
@@ -72,7 +75,7 @@ class User {
       error: res_error,
     } = UserPlatformModel.ArchiveUserSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -151,7 +154,7 @@ class User {
       error: res_error,
     } = UserPlatformModel.BlockUserSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -228,7 +231,7 @@ class User {
       error: res_error,
     } = UserPlatformModel.CreateUserResponseSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -238,6 +241,88 @@ class User {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > User > createUser \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {UserPlatformApplicationValidator.CreateUserAttributeDefinitionParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<UserPlatformModel.UserAttributeDefinitionResponse>} -
+   *   Success response
+   * @name createUserAttributeDefinition
+   * @summary: Create a User Attribute Definition
+   * @description: Use this API to areate a new User Attribute Definition - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/createUserAttributeDefinition/).
+   */
+  async createUserAttributeDefinition(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = UserPlatformApplicationValidator.createUserAttributeDefinition().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = UserPlatformApplicationValidator.createUserAttributeDefinition().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > User > createUserAttributeDefinition \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/user_attribute/definition`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = UserPlatformModel.UserAttributeDefinitionResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > User > createUserAttributeDefinition \n ${res_error}`,
         });
       }
     }
@@ -307,7 +392,7 @@ class User {
       error: res_error,
     } = UserPlatformModel.UserGroupResponseSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -387,7 +472,7 @@ class User {
       error: res_error,
     } = UserPlatformModel.CreateUserSessionResponseSchema().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -473,7 +558,7 @@ class User {
       error: res_error,
     } = UserPlatformModel.SessionsDeleteResponseSchema().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -558,7 +643,7 @@ class User {
       error: res_error,
     } = UserPlatformModel.SessionDeleteResponseSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -568,6 +653,158 @@ class User {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > User > deleteSession \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {UserPlatformApplicationValidator.DeleteUserAttributeParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<UserPlatformModel.SuccessMessageResponse>} - Success response
+   * @name deleteUserAttribute
+   * @summary: delete User Attribute
+   * @description: delete User Attribute - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/deleteUserAttribute/).
+   */
+  async deleteUserAttribute(
+    { attributeDefId, userId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = UserPlatformApplicationValidator.deleteUserAttribute().validate(
+      { attributeDefId, userId },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = UserPlatformApplicationValidator.deleteUserAttribute().validate(
+      { attributeDefId, userId },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > User > deleteUserAttribute \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/user_attribute/definition/${attributeDefId}/user/${userId}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = UserPlatformModel.SuccessMessageResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > User > deleteUserAttribute \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {UserPlatformApplicationValidator.DeleteUserAttributeDefinitionByIdParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<UserPlatformModel.SuccessMessageResponse>} - Success response
+   * @name deleteUserAttributeDefinitionById
+   * @summary: Delete User Attribute Definition
+   * @description: Delete a user attribute definition by its unique identifier. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/deleteUserAttributeDefinitionById/).
+   */
+  async deleteUserAttributeDefinitionById(
+    { attributeDefId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = UserPlatformApplicationValidator.deleteUserAttributeDefinitionById().validate(
+      { attributeDefId },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = UserPlatformApplicationValidator.deleteUserAttributeDefinitionById().validate(
+      { attributeDefId },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > User > deleteUserAttributeDefinitionById \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/user_attribute/definition/${attributeDefId}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = UserPlatformModel.SuccessMessageResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > User > deleteUserAttributeDefinitionById \n ${res_error}`,
         });
       }
     }
@@ -638,7 +875,7 @@ class User {
       error: res_error,
     } = UserPlatformModel.SessionListResponseSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -722,7 +959,7 @@ class User {
       error: res_error,
     } = UserPlatformModel.CustomerListResponseSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -797,7 +1034,7 @@ class User {
       error: res_error,
     } = UserPlatformModel.PlatformSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -807,6 +1044,445 @@ class User {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > User > getPlatformConfig \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {UserPlatformApplicationValidator.GetUserAttributeParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<UserPlatformModel.UserAttributeResponse>} - Success response
+   * @name getUserAttribute
+   * @summary: get User Attribute
+   * @description: get User Attribute - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUserAttribute/).
+   */
+  async getUserAttribute(
+    { attributeDefId, userId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = UserPlatformApplicationValidator.getUserAttribute().validate(
+      { attributeDefId, userId },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = UserPlatformApplicationValidator.getUserAttribute().validate(
+      { attributeDefId, userId },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > User > getUserAttribute \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/user_attribute/definition/${attributeDefId}/user/${userId}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = UserPlatformModel.UserAttributeResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > User > getUserAttribute \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {UserPlatformApplicationValidator.GetUserAttributeByIdParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<UserPlatformModel.UserAttributeResponse>} - Success response
+   * @name getUserAttributeById
+   * @summary: Get User Attribute
+   * @description: Get User Attribute details by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUserAttributeById/).
+   */
+  async getUserAttributeById(
+    { attributeId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = UserPlatformApplicationValidator.getUserAttributeById().validate(
+      { attributeId },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = UserPlatformApplicationValidator.getUserAttributeById().validate(
+      { attributeId },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > User > getUserAttributeById \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/user_attribute/attribute/${attributeId}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = UserPlatformModel.UserAttributeResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > User > getUserAttributeById \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {UserPlatformApplicationValidator.GetUserAttributeDefinitionByIdParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<UserPlatformModel.UserAttributeDefinition>} - Success response
+   * @name getUserAttributeDefinitionById
+   * @summary: Get User Attribute Definition
+   * @description: Get a user attribute definition by its unique identifier. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUserAttributeDefinitionById/).
+   */
+  async getUserAttributeDefinitionById(
+    { attributeDefId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = UserPlatformApplicationValidator.getUserAttributeDefinitionById().validate(
+      { attributeDefId },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = UserPlatformApplicationValidator.getUserAttributeDefinitionById().validate(
+      { attributeDefId },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > User > getUserAttributeDefinitionById \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/user_attribute/definition/${attributeDefId}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = UserPlatformModel.UserAttributeDefinition().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > User > getUserAttributeDefinitionById \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {UserPlatformApplicationValidator.GetUserAttributeDefinitionsParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<Object>} - Success response
+   * @name getUserAttributeDefinitions
+   * @summary: Get User Attribute Definitions
+   * @description: Retrieve user attribute definitions. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUserAttributeDefinitions/).
+   */
+  async getUserAttributeDefinitions(
+    {
+      excludingIds,
+      slug,
+      type,
+      customerEditable,
+      encrypted,
+      pinned,
+      pinOrder,
+      isLocked,
+      name,
+      pageSize,
+      pageNo,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = UserPlatformApplicationValidator.getUserAttributeDefinitions().validate(
+      {
+        excludingIds,
+        slug,
+        type,
+        customerEditable,
+        encrypted,
+        pinned,
+        pinOrder,
+        isLocked,
+        name,
+        pageSize,
+        pageNo,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = UserPlatformApplicationValidator.getUserAttributeDefinitions().validate(
+      {
+        excludingIds,
+        slug,
+        type,
+        customerEditable,
+        encrypted,
+        pinned,
+        pinOrder,
+        isLocked,
+        name,
+        pageSize,
+        pageNo,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > User > getUserAttributeDefinitions \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["excluding_ids"] = excludingIds;
+    query_params["slug"] = slug;
+    query_params["type"] = type;
+    query_params["customer_editable"] = customerEditable;
+    query_params["encrypted"] = encrypted;
+    query_params["pinned"] = pinned;
+    query_params["pin_order"] = pinOrder;
+    query_params["is_locked"] = isLocked;
+    query_params["name"] = name;
+    query_params["page_size"] = pageSize;
+    query_params["page_no"] = pageNo;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/user_attribute/definition`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = Joi.any().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > User > getUserAttributeDefinitions \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {UserPlatformApplicationValidator.GetUserAttributesForUserParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<Object>} - Success response
+   * @name getUserAttributesForUser
+   * @summary: Get User Attributes for user
+   * @description: Get all user attributes for user - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUserAttributesForUser/).
+   */
+  async getUserAttributesForUser(
+    { userId, pageSize, pageNo, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = UserPlatformApplicationValidator.getUserAttributesForUser().validate(
+      {
+        userId,
+
+        pageSize,
+        pageNo,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = UserPlatformApplicationValidator.getUserAttributesForUser().validate(
+      {
+        userId,
+
+        pageSize,
+        pageNo,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > User > getUserAttributesForUser \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["page_size"] = pageSize;
+    query_params["page_no"] = pageNo;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/user_attribute/user/${userId}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = Joi.any().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > User > getUserAttributesForUser \n ${res_error}`,
         });
       }
     }
@@ -876,7 +1552,7 @@ class User {
       error: res_error,
     } = UserPlatformModel.UserGroupResponseSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -904,7 +1580,7 @@ class User {
    * @description: Use this API to get User Groups mathing criteria passed in query - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/getUserGroups/).
    */
   async getUserGroups(
-    { pageNo, pageSize, name, status, groupUid, requestHeaders } = {
+    { pageNo, pageSize, name, type, status, groupUid, requestHeaders } = {
       requestHeaders: {},
     },
     { responseHeaders } = { responseHeaders: false }
@@ -914,6 +1590,7 @@ class User {
         pageNo,
         pageSize,
         name,
+        type,
         status,
         groupUid,
       },
@@ -931,6 +1608,7 @@ class User {
         pageNo,
         pageSize,
         name,
+        type,
         status,
         groupUid,
       },
@@ -947,6 +1625,7 @@ class User {
     query_params["page_no"] = pageNo;
     query_params["page_size"] = pageSize;
     query_params["name"] = name;
+    query_params["type"] = type;
     query_params["status"] = status;
     query_params["group_uid"] = groupUid;
 
@@ -969,7 +1648,7 @@ class User {
       error: res_error,
     } = UserPlatformModel.UserGroupListResponseSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1050,7 +1729,7 @@ class User {
       error: res_error,
     } = UserPlatformModel.UserSearchResponseSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1127,7 +1806,7 @@ class User {
       error: res_error,
     } = UserPlatformModel.UnDeleteUserSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1208,7 +1887,7 @@ class User {
       error: res_error,
     } = UserPlatformModel.PlatformSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1287,7 +1966,7 @@ class User {
       error: res_error,
     } = UserPlatformModel.CreateUserResponseSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1297,6 +1976,176 @@ class User {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > User > updateUser \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {UserPlatformApplicationValidator.UpdateUserAttributeParam} arg - Arg object
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<UserPlatformModel.UserAttributeResponse>} - Success response
+   * @name updateUserAttribute
+   * @summary: Update Or Create User Attribute
+   * @description: Update Or Create User Attribute - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/updateUserAttribute/).
+   */
+  async updateUserAttribute(
+    { attributeDefId, userId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = UserPlatformApplicationValidator.updateUserAttribute().validate(
+      {
+        attributeDefId,
+        userId,
+
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = UserPlatformApplicationValidator.updateUserAttribute().validate(
+      {
+        attributeDefId,
+        userId,
+
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > User > updateUserAttribute \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/user_attribute/definition/${attributeDefId}/user/${userId}`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = UserPlatformModel.UserAttributeResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > User > updateUserAttribute \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {UserPlatformApplicationValidator.UpdateUserAttributeDefinitionParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<UserPlatformModel.UserAttributeDefinition>} - Success response
+   * @name updateUserAttributeDefinition
+   * @summary: Update User Attribute Definition
+   * @description: Update an existing user attribute definition. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/user/updateUserAttributeDefinition/).
+   */
+  async updateUserAttributeDefinition(
+    { attributeDefId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = UserPlatformApplicationValidator.updateUserAttributeDefinition().validate(
+      {
+        attributeDefId,
+
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = UserPlatformApplicationValidator.updateUserAttributeDefinition().validate(
+      {
+        attributeDefId,
+
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > User > updateUserAttributeDefinition \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "put",
+      `/service/platform/user/v1.0/company/${this.config.companyId}/application/${this.applicationId}/user_attribute/definition/${attributeDefId}`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = UserPlatformModel.UserAttributeDefinition().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > User > updateUserAttributeDefinition \n ${res_error}`,
         });
       }
     }
@@ -1368,7 +2217,7 @@ class User {
       error: res_error,
     } = UserPlatformModel.UserGroupResponseSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1451,7 +2300,7 @@ class User {
       error: res_error,
     } = UserPlatformModel.UserGroupResponseSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

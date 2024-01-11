@@ -32,6 +32,7 @@ export = CartApplicationModel;
  * @property {string[]} [product_group_tags]
  * @property {number} [quantity]
  * @property {number} [seller_id]
+ * @property {string} [seller_identifier] - Add items using seller identifier for store os
  * @property {number} [store_id]
  */
 /**
@@ -59,7 +60,9 @@ export = CartApplicationModel;
  * @property {Object} [meta]
  * @property {string} [name]
  * @property {string} [phone]
+ * @property {string} [sector]
  * @property {string} [state]
+ * @property {string} [state_code] - State code for international address
  * @property {string[]} [tags]
  * @property {string} [user_id]
  */
@@ -281,6 +284,7 @@ export = CartApplicationModel;
  * @typedef CartProduct
  * @property {Object} [_custom_json]
  * @property {ProductAction} [action]
+ * @property {Object} [attributes]
  * @property {BaseInfo} [brand]
  * @property {CategoryInfo[]} [categories]
  * @property {ProductImage[]} [images]
@@ -302,6 +306,7 @@ export = CartApplicationModel;
  * @property {ProductArticle} [article]
  * @property {ProductAvailability} [availability]
  * @property {Object} [bulk_offer]
+ * @property {Charges[]} [charges]
  * @property {CouponDetails} [coupon]
  * @property {string} [coupon_message]
  * @property {Object} [custom_order]
@@ -316,6 +321,7 @@ export = CartApplicationModel;
  * @property {ProductPriceInfo} [price]
  * @property {ProductPricePerUnitInfo} [price_per_unit]
  * @property {CartProduct} [product]
+ * @property {string} [product_ean_id]
  * @property {PromoMeta} [promo_meta]
  * @property {AppliedPromotion[]} [promotions_applied]
  * @property {number} [quantity]
@@ -346,6 +352,22 @@ export = CartApplicationModel;
  * @typedef CategoryInfo
  * @property {string} [name]
  * @property {number} [uid] - Product Category Id
+ */
+/**
+ * @typedef Charges
+ * @property {boolean} [allow_refund] - This boolean value defines that refund
+ *   is allowed or not for the charge
+ * @property {ChargesAmount} [amount]
+ * @property {string} [code] - This is the code of the charge applied
+ * @property {Object} [meta] - This object contains the meta data realted to
+ *   charges price adjustment
+ * @property {string} [name] - This is the name of the charge applied
+ * @property {string} [type] - This is the type of the charge applied
+ */
+/**
+ * @typedef ChargesAmount
+ * @property {string} [currency] - This is destination currency of value
+ * @property {number} [value] - This is the value of amount added
  */
 /**
  * @typedef ChargesThreshold
@@ -386,16 +408,20 @@ export = CartApplicationModel;
  */
 /**
  * @typedef Coupon
+ * @property {number} [coupon_amount] - The amount based on cart value
+ * @property {string} [coupon_applicable_message]
  * @property {string} [coupon_code]
  * @property {string} [coupon_type]
  * @property {number} [coupon_value]
  * @property {string} [description]
+ * @property {string} [end_date]
  * @property {string} [expires_on]
  * @property {boolean} [is_applicable]
  * @property {boolean} [is_applied]
  * @property {number} [max_discount_value]
  * @property {string} [message]
  * @property {number} [minimum_cart_value]
+ * @property {string} [start_date]
  * @property {string} [sub_title]
  * @property {string} [title]
  */
@@ -471,6 +497,7 @@ export = CartApplicationModel;
  * @property {string} [display]
  * @property {string} [key]
  * @property {string[]} [message]
+ * @property {number} [preset]
  * @property {number} [value]
  */
 /**
@@ -662,6 +689,7 @@ export = CartApplicationModel;
  * @property {string} [seller_identifier]
  * @property {string} [size]
  * @property {StoreInfo} [store]
+ * @property {string[]} [tags] - A list of article tags
  * @property {string} [type]
  * @property {string} [uid]
  */
@@ -720,6 +748,11 @@ export = CartApplicationModel;
  * @property {string} [min]
  */
 /**
+ * @typedef PromiseISOFormat
+ * @property {string} [max] - Max promise in ISO format.
+ * @property {string} [min] - Min Promise in ISO format.
+ */
+/**
  * @typedef PromiseTimestamp
  * @property {number} [max]
  * @property {number} [min]
@@ -757,6 +790,7 @@ export = CartApplicationModel;
  * @property {number} [mrp_total]
  * @property {number} [subtotal]
  * @property {number} [total]
+ * @property {number} [total_charge]
  * @property {number} [vog]
  * @property {number} [you_saved]
  */
@@ -814,6 +848,7 @@ export = CartApplicationModel;
 /**
  * @typedef ShipmentPromise
  * @property {PromiseFormatted} [formatted]
+ * @property {PromiseISOFormat} [iso]
  * @property {PromiseTimestamp} [timestamp]
  */
 /**
@@ -891,7 +926,7 @@ export = CartApplicationModel;
 declare class CartApplicationModel {
 }
 declare namespace CartApplicationModel {
-    export { ActionQuery, AddCartDetailResponse, AddCartRequest, AddProductCart, Address, AppliedFreeArticles, AppliedPromotion, ApplyCouponRequest, ArticleGiftDetail, ArticlePriceInfo, BaseInfo, BasePrice, BulkPriceOffer, BulkPriceResponse, BuyRules, CartBreakup, CartCheckoutCustomMeta, CartCheckoutDetailRequest, CartCheckoutDetailV2Request, CartCheckoutResponse, CartCommonConfig, CartCurrency, CartDetailCoupon, CartDetailResponse, CartItemCountResponse, CartMetaMissingResponse, CartMetaRequest, CartMetaResponse, CartProduct, CartProductIdentifer, CartProductInfo, CartShipmentsResponse, CategoryInfo, ChargesThreshold, CheckCart, Coupon, CouponBreakup, CouponDetails, CouponValidity, CurrencyInfo, CustomerDetails, DeleteAddressResponse, DeleteCartDetailResponse, DeliveryChargesConfig, DiscountRulesApp, DisplayBreakup, FreeGiftItem, FreeGiftItems, GeoLocation, GetAddressesResponse, GetCouponResponse, GetShareCartLinkRequest, GetShareCartLinkResponse, GiftDetail, LadderOfferItem, LadderPrice, LadderPriceOffer, LadderPriceOffers, LoyaltyPoints, OfferItem, OfferPrice, OfferSeller, OperationErrorResponse, Ownership, PageCoupon, PaymentCouponValidate, PaymentMeta, PaymentMethod, PaymentSelectionLock, ProductAction, ProductArticle, ProductAvailability, ProductAvailabilitySize, ProductImage, ProductPrice, ProductPriceInfo, ProductPricePerUnit, ProductPricePerUnitInfo, PromiseFormatted, PromiseTimestamp, PromoMeta, PromotionOffer, PromotionOffersResponse, RawBreakup, RewardPointRequest, SaveAddressResponse, SelectCartAddressRequest, SharedCart, SharedCartDetails, SharedCartResponse, ShipmentPromise, ShipmentResponse, StaffCheckout, StoreInfo, Tags, UpdateAddressResponse, UpdateCartDetailResponse, UpdateCartPaymentRequest, UpdateCartRequest, UpdateProductCart };
+    export { ActionQuery, AddCartDetailResponse, AddCartRequest, AddProductCart, Address, AppliedFreeArticles, AppliedPromotion, ApplyCouponRequest, ArticleGiftDetail, ArticlePriceInfo, BaseInfo, BasePrice, BulkPriceOffer, BulkPriceResponse, BuyRules, CartBreakup, CartCheckoutCustomMeta, CartCheckoutDetailRequest, CartCheckoutDetailV2Request, CartCheckoutResponse, CartCommonConfig, CartCurrency, CartDetailCoupon, CartDetailResponse, CartItemCountResponse, CartMetaMissingResponse, CartMetaRequest, CartMetaResponse, CartProduct, CartProductIdentifer, CartProductInfo, CartShipmentsResponse, CategoryInfo, Charges, ChargesAmount, ChargesThreshold, CheckCart, Coupon, CouponBreakup, CouponDetails, CouponValidity, CurrencyInfo, CustomerDetails, DeleteAddressResponse, DeleteCartDetailResponse, DeliveryChargesConfig, DiscountRulesApp, DisplayBreakup, FreeGiftItem, FreeGiftItems, GeoLocation, GetAddressesResponse, GetCouponResponse, GetShareCartLinkRequest, GetShareCartLinkResponse, GiftDetail, LadderOfferItem, LadderPrice, LadderPriceOffer, LadderPriceOffers, LoyaltyPoints, OfferItem, OfferPrice, OfferSeller, OperationErrorResponse, Ownership, PageCoupon, PaymentCouponValidate, PaymentMeta, PaymentMethod, PaymentSelectionLock, ProductAction, ProductArticle, ProductAvailability, ProductAvailabilitySize, ProductImage, ProductPrice, ProductPriceInfo, ProductPricePerUnit, ProductPricePerUnitInfo, PromiseFormatted, PromiseISOFormat, PromiseTimestamp, PromoMeta, PromotionOffer, PromotionOffersResponse, RawBreakup, RewardPointRequest, SaveAddressResponse, SelectCartAddressRequest, SharedCart, SharedCartDetails, SharedCartResponse, ShipmentPromise, ShipmentResponse, StaffCheckout, StoreInfo, Tags, UpdateAddressResponse, UpdateCartDetailResponse, UpdateCartPaymentRequest, UpdateCartRequest, UpdateProductCart };
 }
 /** @returns {ActionQuery} */
 declare function ActionQuery(): ActionQuery;
@@ -939,6 +974,10 @@ type AddProductCart = {
     product_group_tags?: string[];
     quantity?: number;
     seller_id?: number;
+    /**
+     * - Add items using seller identifier for store os
+     */
+    seller_identifier?: string;
     store_id?: number;
 };
 /** @returns {Address} */
@@ -967,7 +1006,12 @@ type Address = {
     meta?: any;
     name?: string;
     phone?: string;
+    sector?: string;
     state?: string;
+    /**
+     * - State code for international address
+     */
+    state_code?: string;
     tags?: string[];
     user_id?: string;
 };
@@ -1288,6 +1332,7 @@ declare function CartProduct(): CartProduct;
 type CartProduct = {
     _custom_json?: any;
     action?: ProductAction;
+    attributes?: any;
     brand?: BaseInfo;
     categories?: CategoryInfo[];
     images?: ProductImage[];
@@ -1317,6 +1362,7 @@ type CartProductInfo = {
     article?: ProductArticle;
     availability?: ProductAvailability;
     bulk_offer?: any;
+    charges?: Charges[];
     coupon?: CouponDetails;
     coupon_message?: string;
     custom_order?: any;
@@ -1331,6 +1377,7 @@ type CartProductInfo = {
     price?: ProductPriceInfo;
     price_per_unit?: ProductPricePerUnitInfo;
     product?: CartProduct;
+    product_ean_id?: string;
     promo_meta?: PromoMeta;
     promotions_applied?: AppliedPromotion[];
     quantity?: number;
@@ -1366,6 +1413,45 @@ type CategoryInfo = {
      * - Product Category Id
      */
     uid?: number;
+};
+/** @returns {Charges} */
+declare function Charges(): Charges;
+type Charges = {
+    /**
+     * - This boolean value defines that refund
+     * is allowed or not for the charge
+     */
+    allow_refund?: boolean;
+    amount?: ChargesAmount;
+    /**
+     * - This is the code of the charge applied
+     */
+    code?: string;
+    /**
+     * - This object contains the meta data realted to
+     * charges price adjustment
+     */
+    meta?: any;
+    /**
+     * - This is the name of the charge applied
+     */
+    name?: string;
+    /**
+     * - This is the type of the charge applied
+     */
+    type?: string;
+};
+/** @returns {ChargesAmount} */
+declare function ChargesAmount(): ChargesAmount;
+type ChargesAmount = {
+    /**
+     * - This is destination currency of value
+     */
+    currency?: string;
+    /**
+     * - This is the value of amount added
+     */
+    value?: number;
 };
 /** @returns {ChargesThreshold} */
 declare function ChargesThreshold(): ChargesThreshold;
@@ -1409,16 +1495,23 @@ type CheckCart = {
 /** @returns {Coupon} */
 declare function Coupon(): Coupon;
 type Coupon = {
+    /**
+     * - The amount based on cart value
+     */
+    coupon_amount?: number;
+    coupon_applicable_message?: string;
     coupon_code?: string;
     coupon_type?: string;
     coupon_value?: number;
     description?: string;
+    end_date?: string;
     expires_on?: string;
     is_applicable?: boolean;
     is_applied?: boolean;
     max_discount_value?: number;
     message?: string;
     minimum_cart_value?: number;
+    start_date?: string;
     sub_title?: string;
     title?: string;
 };
@@ -1519,6 +1612,7 @@ type DisplayBreakup = {
     display?: string;
     key?: string;
     message?: string[];
+    preset?: number;
     value?: number;
 };
 /** @returns {FreeGiftItem} */
@@ -1879,6 +1973,10 @@ type ProductArticle = {
     seller_identifier?: string;
     size?: string;
     store?: StoreInfo;
+    /**
+     * - A list of article tags
+     */
+    tags?: string[];
     type?: string;
     uid?: string;
 };
@@ -1942,6 +2040,18 @@ type ProductPricePerUnitInfo = {
 declare function PromiseFormatted(): PromiseFormatted;
 type PromiseFormatted = {
     max?: string;
+    min?: string;
+};
+/** @returns {PromiseISOFormat} */
+declare function PromiseISOFormat(): PromiseISOFormat;
+type PromiseISOFormat = {
+    /**
+     * - Max promise in ISO format.
+     */
+    max?: string;
+    /**
+     * - Min Promise in ISO format.
+     */
     min?: string;
 };
 /** @returns {PromiseTimestamp} */
@@ -2011,6 +2121,7 @@ type RawBreakup = {
     mrp_total?: number;
     subtotal?: number;
     total?: number;
+    total_charge?: number;
     vog?: number;
     you_saved?: number;
 };
@@ -2087,6 +2198,7 @@ type SharedCartResponse = {
 declare function ShipmentPromise(): ShipmentPromise;
 type ShipmentPromise = {
     formatted?: PromiseFormatted;
+    iso?: PromiseISOFormat;
     timestamp?: PromiseTimestamp;
 };
 /** @returns {ShipmentResponse} */

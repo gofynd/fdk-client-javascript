@@ -76,7 +76,7 @@ class Discount {
       error: res_error,
     } = DiscountPlatformModel.CancelJobResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -155,7 +155,7 @@ class Discount {
       error: res_error,
     } = DiscountPlatformModel.CancelJobResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -234,7 +234,7 @@ class Discount {
       error: res_error,
     } = DiscountPlatformModel.DiscountJob().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -315,7 +315,7 @@ class Discount {
       error: res_error,
     } = DiscountPlatformModel.FileJobResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -394,7 +394,7 @@ class Discount {
       error: res_error,
     } = DiscountPlatformModel.DiscountJob().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -509,7 +509,7 @@ class Discount {
       error: res_error,
     } = DiscountPlatformModel.ListOrCalender().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -639,7 +639,7 @@ class Discount {
       error: res_error,
     } = DiscountPlatformModel.FileJobResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -718,7 +718,7 @@ class Discount {
       error: res_error,
     } = DiscountPlatformModel.FileJobResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -741,8 +741,8 @@ class Discount {
    * @param {import("../PlatformAPIClient").Options} - Options
    * @returns {Promise<DiscountPlatformModel.DiscountJob>} - Success response
    * @name updateDiscount
-   * @summary: Create Discount.
-   * @description: Create Discount. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/updateDiscount/).
+   * @summary: Update Discount.
+   * @description: Update Discount. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/discount/updateDiscount/).
    */
   async updateDiscount(
     { id, body, requestHeaders } = { requestHeaders: {} },
@@ -799,7 +799,7 @@ class Discount {
       error: res_error,
     } = DiscountPlatformModel.DiscountJob().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -878,7 +878,7 @@ class Discount {
 
     const { error: res_error } = Joi.any().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -960,7 +960,7 @@ class Discount {
       error: res_error,
     } = DiscountPlatformModel.FileJobResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

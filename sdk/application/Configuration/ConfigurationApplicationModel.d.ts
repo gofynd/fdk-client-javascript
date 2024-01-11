@@ -7,9 +7,12 @@ export = ConfigurationApplicationModel;
  */
 /**
  * @typedef AppCurrencyResponse
+ * @property {string} [_id]
  * @property {string} [application] - Alphanumeric ID allotted to an application
  *   (sales channel website) created within a business account
+ * @property {string} [created_at]
  * @property {DefaultCurrency} [default_currency]
+ * @property {string} [modified_at]
  * @property {Currency[]} [supported_currency]
  */
 /**
@@ -24,13 +27,13 @@ export = ConfigurationApplicationModel;
  *   the features were configured
  * @property {HomePageFeature} [home_page]
  * @property {LandingPageFeature} [landing_page]
+ * @property {string} [modified_at] - ISO 8601 timestamp of last known
+ *   modifications to the sales channel feature configuration
  * @property {OrderFeature} [order]
  * @property {PcrFeature} [pcr]
  * @property {ProductDetailFeature} [product_detail]
  * @property {QrFeature} [qr]
  * @property {RegistrationPageFeature} [registration_page]
- * @property {string} [updated_at] - ISO 8601 timestamp of last known
- *   modifications to the sales channel feature configuration
  */
 /**
  * @typedef AppFeatureResponse
@@ -63,20 +66,22 @@ export = ConfigurationApplicationModel;
  * @property {SecureUrl} [logo]
  * @property {ApplicationMeta[]} [meta]
  * @property {SecureUrl} [mobile_logo]
+ * @property {string} [mode]
+ * @property {string} [modified_at] - ISO 8601 timestamp of sales channel updation
  * @property {string} [name] - Name of the sales channel, e.g. Zenz Fashion
  * @property {string} [owner] - The unique identifier (24-digit Mongo Object ID)
  *   of owner who owns the application
  * @property {ApplicationRedirections[]} [redirections]
+ * @property {string} [slug]
+ * @property {string} [status]
  * @property {string} [token] - Random generated fix length string for sales
  *   channel. It is required and auto-generated.
- * @property {string} [updated_at] - ISO 8601 timestamp of sales channel updation
+ * @property {TokenSchema[]} [tokens]
  * @property {ApplicationWebsite} [website]
  */
 /**
  * @typedef ApplicationAboutResponse
  * @property {ApplicationInfo} [application_info]
- * @property {CompanyInfo} [company_info]
- * @property {OwnerInfo} [owner_info]
  */
 /**
  * @typedef ApplicationAuth
@@ -91,6 +96,7 @@ export = ConfigurationApplicationModel;
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   for the sales channel details
  * @property {SecureUrl} [banner]
+ * @property {number} [company_id]
  * @property {string} [description] - It gives a detailed information about the
  *   sales channel. It is required.
  * @property {Domain} [domain]
@@ -99,27 +105,36 @@ export = ConfigurationApplicationModel;
  * @property {SecureUrl} [logo]
  * @property {SecureUrl} [mobile_logo]
  * @property {string} name - Name of the sales channel. It is required.
+ * @property {string} [slug]
  */
 /**
  * @typedef ApplicationInfo
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   of application information
  * @property {SecureUrl} [banner]
+ * @property {CompanyInfo} [company_info]
  * @property {ApplicationCors} [cors]
  * @property {string} [created_at] - ISO 8601 timestamp of sales channel
  *   information creation
  * @property {string} [description] - It contains details information about the
  *   sales channel
  * @property {Domain} [domain]
+ * @property {Domain[]} [domains]
+ * @property {SecureUrl} [favicon]
  * @property {boolean} [is_active] - Indicates whether sales channel is active
  *   or not active
  * @property {SecureUrl} [logo]
- * @property {ApplicationMeta} [meta]
+ * @property {ApplicationMeta[]} [meta]
+ * @property {SecureUrl} [mobile_logo]
+ * @property {string} [mode]
  * @property {string} [name] - Name of the sales channel, e.g. Zenz Fashion
+ * @property {OwnerInfo} [owner_info]
  * @property {string} [secret] - Random generated fix length string for sales
  *   channel. It is required and auto-generated.
+ * @property {string} [slug]
  * @property {string} [token] - Random generated fix length string for sales
  *   channel. It is required and auto-generated.
+ * @property {TokenSchema[]} [tokens]
  * @property {ApplicationWebsite} [website]
  */
 /**
@@ -130,16 +145,16 @@ export = ConfigurationApplicationModel;
  * @property {InformationAddress} [address]
  * @property {string} [application] - Alphanumeric ID allotted to a sales
  *   channel application created within a business account
- * @property {BusinessHighlights} [business_highlights]
+ * @property {BusinessHighlights[]} [business_highlights]
  * @property {string} [copyright_text] - Copyright statement usually seen at the
  *   site's footer
  * @property {string} [created_at] - ISO 8601 timestamp of creation of the
  *   application information
- * @property {Links} [links]
+ * @property {Links[]} [links]
+ * @property {string} [modified_at] - ISO 8601 timestamp of updation of the
+ *   application information
  * @property {SocialLinks} [social_links]
  * @property {InformationSupport} [support]
- * @property {string} [updated_at] - ISO 8601 timestamp of updation of the
- *   application information
  */
 /**
  * @typedef ApplicationMeta
@@ -195,8 +210,8 @@ export = ConfigurationApplicationModel;
  * @property {string} [application] - Alphanumeric ID allotted to the current
  *   application created within the current business account
  * @property {string} [created_at] - ISO 8601 timestamp of token creation
+ * @property {string} [modified_at] - ISO 8601 timestamp of token updation
  * @property {Tokens} [tokens]
- * @property {string} [updated_at] - ISO 8601 timestamp of token updation
  */
 /**
  * @typedef BlogLink
@@ -232,6 +247,8 @@ export = ConfigurationApplicationModel;
  * @property {CurrencyFeature} [currency]
  * @property {DeploymentStoreSelectionFeature} [deployment_store_selection]
  * @property {FeedbackFeature} [feedback]
+ * @property {InternationalShipping} [international_shipping]
+ * @property {ListingPageFeature} [listing_page]
  * @property {ListingPriceFeature} [listing_price]
  * @property {RevenueEngineFeature} [revenue_engine]
  * @property {RewardPointsConfig} [reward_points]
@@ -294,6 +311,8 @@ export = ConfigurationApplicationModel;
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   of the current sales channel supported currency
  * @property {string} [code] - 3-character currency code, e.g. INR, USD, EUR.
+ * @property {string} [country_code]
+ * @property {string} [country_name]
  * @property {string} [created_at] - ISO 8601 timestamp of sales channel support
  *   currency creation
  * @property {number} [decimal_digits] - Acceptable decimal limits for a given
@@ -301,10 +320,10 @@ export = ConfigurationApplicationModel;
  *   value of a currency.
  * @property {boolean} [is_active] - Shows currency is enabled or not in current
  *   sales channel
+ * @property {string} [modified_at] - ISO 8601 timestamp of sales channel
+ *   support currency updation
  * @property {string} [name] - Name of the currency, e.g Indian Rupee
  * @property {string} [symbol] - Unique symbol for identifying the currency, e.g. ₹
- * @property {string} [updated_at] - ISO 8601 timestamp of sales channel support
- *   currency updation
  */
 /**
  * @typedef CurrencyFeature
@@ -421,9 +440,14 @@ export = ConfigurationApplicationModel;
  * @property {string[]} [address_line] - Contact address of the sales channel
  * @property {string} [city] - Name of the city, e.g. Mumbai
  * @property {string} [country] - Name of the country, e.g. India
- * @property {string} [loc] - Co-ordinates of the location
- * @property {InformationPhone} [phone]
+ * @property {InformationLoc} [loc]
+ * @property {InformationPhone[]} [phone]
  * @property {number} [pincode] - 6-digit PIN Code of the city, e.g. 400001
+ */
+/**
+ * @typedef InformationLoc
+ * @property {number[]} [coordinates] - 10-digit mobile number
+ * @property {string} [type] - Country code for contact number, e.g. +91 (for India)
  */
 /**
  * @typedef InformationPhone
@@ -432,15 +456,34 @@ export = ConfigurationApplicationModel;
  */
 /**
  * @typedef InformationSupport
- * @property {string[]} [email]
- * @property {string[]} [phone]
+ * @property {InformationSupportEmail[]} [email]
+ * @property {InformationSupportPhone[]} [phone]
  * @property {string} [timing] - Working hours of support team, e.g. 9 AM to 9 PM
+ */
+/**
+ * @typedef InformationSupportEmail
+ * @property {string} [key]
+ * @property {string} [value] - Value of email.
+ */
+/**
+ * @typedef InformationSupportPhone
+ * @property {string} [code] - Country code for contact number, e.g. +91 (for India)
+ * @property {string} [key]
+ * @property {string} [number] - 10-digit mobile number
  */
 /**
  * @typedef InstagramLink
  * @property {string} [icon] - Hosted URL of social icon image shown on the website
  * @property {string} [link] - Web URL of brand's Instagram page
  * @property {string} [title] - Name of the social media platform, e.g. Instagram
+ */
+/**
+ * @typedef InternationalShipping
+ * @property {boolean} [enabled] - International shipping is enabled or not.
+ */
+/**
+ * @typedef InvalidPayloadRequest
+ * @property {string} [message] - Error message when request body payload is improper
  */
 /**
  * @typedef Ios
@@ -479,6 +522,10 @@ export = ConfigurationApplicationModel;
  * @typedef Links
  * @property {string} [link] - Web URL for redirecting to a related page
  * @property {string} [title] - Name of the related page or link
+ */
+/**
+ * @typedef ListingPageFeature
+ * @property {string} [sort_on]
  */
 /**
  * @typedef ListingPriceFeature
@@ -687,6 +734,12 @@ export = ConfigurationApplicationModel;
  * @property {Segment} [segment]
  */
 /**
+ * @typedef TokenSchema
+ * @property {string} [created_at] - ISO 8601 timestamp of when token created
+ * @property {Object} [created_by]
+ * @property {string} [token]
+ */
+/**
  * @typedef TwitterLink
  * @property {string} [icon] - Hosted URL of social icon image shown on the website
  * @property {string} [link] - Web URL of brand's Twitter account
@@ -730,7 +783,7 @@ export = ConfigurationApplicationModel;
 declare class ConfigurationApplicationModel {
 }
 declare namespace ConfigurationApplicationModel {
-    export { Android, AppCurrencyResponse, AppFeature, AppFeatureResponse, Application, ApplicationAboutResponse, ApplicationAuth, ApplicationCors, ApplicationDetail, ApplicationInfo, ApplicationInformation, ApplicationMeta, ApplicationRedirections, ApplicationWebsite, AppStaff, AppStaffListResponse, AppStaffResponse, AppTokenResponse, BlogLink, BusinessHighlights, CartFeature, CommonFeature, CommunicationOptinDialogFeature, CompanyAboutAddress, CompanyInfo, CompareProductsFeature, Credentials, Credit, CurrenciesResponse, Currency, CurrencyFeature, Debit, DefaultCurrency, DeploymentStoreSelectionFeature, Domain, FacebookLink, FeedbackFeature, Firebase, Freshchat, FreshchatCredentials, FyndRewards, FyndRewardsCredentials, GoogleMap, GoogleMapCredentials, GooglePlusLink, Gtm, GtmCredentials, HomePageFeature, InformationAddress, InformationPhone, InformationSupport, InstagramLink, Ios, LandingPageFeature, LanguageResponse, LaunchPage, LinkedInLink, Links, ListingPriceFeature, Moengage, MoengageCredentials, NotFound, OptedStoreAddress, OrderFeature, OrderingStore, OrderingStores, OrderingStoreSelect, OrderingStoreSelectRequest, OwnerInfo, Page, PcrFeature, PinterestLink, ProductDetailFeature, QrFeature, RegistrationPageFeature, RevenueEngineFeature, RewardPointsConfig, Safetynet, SafetynetCredentials, SecureUrl, Segment, SegmentCredentials, SocialLinks, StoreLatLong, SuccessMessageResponse, SupportedLanguage, Tokens, TwitterLink, UnhandledError, UserEmail, UserPhoneNumber, VimeoLink, YoutubeLink };
+    export { Android, AppCurrencyResponse, AppFeature, AppFeatureResponse, Application, ApplicationAboutResponse, ApplicationAuth, ApplicationCors, ApplicationDetail, ApplicationInfo, ApplicationInformation, ApplicationMeta, ApplicationRedirections, ApplicationWebsite, AppStaff, AppStaffListResponse, AppStaffResponse, AppTokenResponse, BlogLink, BusinessHighlights, CartFeature, CommonFeature, CommunicationOptinDialogFeature, CompanyAboutAddress, CompanyInfo, CompareProductsFeature, Credentials, Credit, CurrenciesResponse, Currency, CurrencyFeature, Debit, DefaultCurrency, DeploymentStoreSelectionFeature, Domain, FacebookLink, FeedbackFeature, Firebase, Freshchat, FreshchatCredentials, FyndRewards, FyndRewardsCredentials, GoogleMap, GoogleMapCredentials, GooglePlusLink, Gtm, GtmCredentials, HomePageFeature, InformationAddress, InformationLoc, InformationPhone, InformationSupport, InformationSupportEmail, InformationSupportPhone, InstagramLink, InternationalShipping, InvalidPayloadRequest, Ios, LandingPageFeature, LanguageResponse, LaunchPage, LinkedInLink, Links, ListingPageFeature, ListingPriceFeature, Moengage, MoengageCredentials, NotFound, OptedStoreAddress, OrderFeature, OrderingStore, OrderingStores, OrderingStoreSelect, OrderingStoreSelectRequest, OwnerInfo, Page, PcrFeature, PinterestLink, ProductDetailFeature, QrFeature, RegistrationPageFeature, RevenueEngineFeature, RewardPointsConfig, Safetynet, SafetynetCredentials, SecureUrl, Segment, SegmentCredentials, SocialLinks, StoreLatLong, SuccessMessageResponse, SupportedLanguage, Tokens, TokenSchema, TwitterLink, UnhandledError, UserEmail, UserPhoneNumber, VimeoLink, YoutubeLink };
 }
 /** @returns {Android} */
 declare function Android(): Android;
@@ -748,12 +801,15 @@ type Android = {
 /** @returns {AppCurrencyResponse} */
 declare function AppCurrencyResponse(): AppCurrencyResponse;
 type AppCurrencyResponse = {
+    _id?: string;
     /**
      * - Alphanumeric ID allotted to an application
      * (sales channel website) created within a business account
      */
     application?: string;
+    created_at?: string;
     default_currency?: DefaultCurrency;
+    modified_at?: string;
     supported_currency?: Currency[];
 };
 /** @returns {AppFeature} */
@@ -781,16 +837,16 @@ type AppFeature = {
     created_at?: string;
     home_page?: HomePageFeature;
     landing_page?: LandingPageFeature;
+    /**
+     * - ISO 8601 timestamp of last known
+     * modifications to the sales channel feature configuration
+     */
+    modified_at?: string;
     order?: OrderFeature;
     pcr?: PcrFeature;
     product_detail?: ProductDetailFeature;
     qr?: QrFeature;
     registration_page?: RegistrationPageFeature;
-    /**
-     * - ISO 8601 timestamp of last known
-     * modifications to the sales channel feature configuration
-     */
-    updated_at?: string;
 };
 /** @returns {AppFeatureResponse} */
 declare function AppFeatureResponse(): AppFeatureResponse;
@@ -855,6 +911,11 @@ type Application = {
     logo?: SecureUrl;
     meta?: ApplicationMeta[];
     mobile_logo?: SecureUrl;
+    mode?: string;
+    /**
+     * - ISO 8601 timestamp of sales channel updation
+     */
+    modified_at?: string;
     /**
      * - Name of the sales channel, e.g. Zenz Fashion
      */
@@ -865,23 +926,20 @@ type Application = {
      */
     owner?: string;
     redirections?: ApplicationRedirections[];
+    slug?: string;
+    status?: string;
     /**
      * - Random generated fix length string for sales
      * channel. It is required and auto-generated.
      */
     token?: string;
-    /**
-     * - ISO 8601 timestamp of sales channel updation
-     */
-    updated_at?: string;
+    tokens?: TokenSchema[];
     website?: ApplicationWebsite;
 };
 /** @returns {ApplicationAboutResponse} */
 declare function ApplicationAboutResponse(): ApplicationAboutResponse;
 type ApplicationAboutResponse = {
     application_info?: ApplicationInfo;
-    company_info?: CompanyInfo;
-    owner_info?: OwnerInfo;
 };
 /** @returns {ApplicationAuth} */
 declare function ApplicationAuth(): ApplicationAuth;
@@ -905,6 +963,7 @@ type ApplicationDetail = {
      */
     _id?: string;
     banner?: SecureUrl;
+    company_id?: number;
     /**
      * - It gives a detailed information about the
      * sales channel. It is required.
@@ -919,6 +978,7 @@ type ApplicationDetail = {
      * - Name of the sales channel. It is required.
      */
     name: string;
+    slug?: string;
 };
 /** @returns {ApplicationInfo} */
 declare function ApplicationInfo(): ApplicationInfo;
@@ -929,6 +989,7 @@ type ApplicationInfo = {
      */
     _id?: string;
     banner?: SecureUrl;
+    company_info?: CompanyInfo;
     cors?: ApplicationCors;
     /**
      * - ISO 8601 timestamp of sales channel
@@ -941,27 +1002,34 @@ type ApplicationInfo = {
      */
     description?: string;
     domain?: Domain;
+    domains?: Domain[];
+    favicon?: SecureUrl;
     /**
      * - Indicates whether sales channel is active
      * or not active
      */
     is_active?: boolean;
     logo?: SecureUrl;
-    meta?: ApplicationMeta;
+    meta?: ApplicationMeta[];
+    mobile_logo?: SecureUrl;
+    mode?: string;
     /**
      * - Name of the sales channel, e.g. Zenz Fashion
      */
     name?: string;
+    owner_info?: OwnerInfo;
     /**
      * - Random generated fix length string for sales
      * channel. It is required and auto-generated.
      */
     secret?: string;
+    slug?: string;
     /**
      * - Random generated fix length string for sales
      * channel. It is required and auto-generated.
      */
     token?: string;
+    tokens?: TokenSchema[];
     website?: ApplicationWebsite;
 };
 /** @returns {ApplicationInformation} */
@@ -982,7 +1050,7 @@ type ApplicationInformation = {
      * channel application created within a business account
      */
     application?: string;
-    business_highlights?: BusinessHighlights;
+    business_highlights?: BusinessHighlights[];
     /**
      * - Copyright statement usually seen at the
      * site's footer
@@ -993,14 +1061,14 @@ type ApplicationInformation = {
      * application information
      */
     created_at?: string;
-    links?: Links;
-    social_links?: SocialLinks;
-    support?: InformationSupport;
+    links?: Links[];
     /**
      * - ISO 8601 timestamp of updation of the
      * application information
      */
-    updated_at?: string;
+    modified_at?: string;
+    social_links?: SocialLinks;
+    support?: InformationSupport;
 };
 /** @returns {ApplicationMeta} */
 declare function ApplicationMeta(): ApplicationMeta;
@@ -1123,11 +1191,11 @@ type AppTokenResponse = {
      * - ISO 8601 timestamp of token creation
      */
     created_at?: string;
-    tokens?: Tokens;
     /**
      * - ISO 8601 timestamp of token updation
      */
-    updated_at?: string;
+    modified_at?: string;
+    tokens?: Tokens;
 };
 /** @returns {BlogLink} */
 declare function BlogLink(): BlogLink;
@@ -1203,6 +1271,8 @@ type CommonFeature = {
     currency?: CurrencyFeature;
     deployment_store_selection?: DeploymentStoreSelectionFeature;
     feedback?: FeedbackFeature;
+    international_shipping?: InternationalShipping;
+    listing_page?: ListingPageFeature;
     listing_price?: ListingPriceFeature;
     revenue_engine?: RevenueEngineFeature;
     reward_points?: RewardPointsConfig;
@@ -1336,6 +1406,8 @@ type Currency = {
      * - 3-character currency code, e.g. INR, USD, EUR.
      */
     code?: string;
+    country_code?: string;
+    country_name?: string;
     /**
      * - ISO 8601 timestamp of sales channel support
      * currency creation
@@ -1353,6 +1425,11 @@ type Currency = {
      */
     is_active?: boolean;
     /**
+     * - ISO 8601 timestamp of sales channel
+     * support currency updation
+     */
+    modified_at?: string;
+    /**
      * - Name of the currency, e.g Indian Rupee
      */
     name?: string;
@@ -1360,11 +1437,6 @@ type Currency = {
      * - Unique symbol for identifying the currency, e.g. ₹
      */
     symbol?: string;
-    /**
-     * - ISO 8601 timestamp of sales channel support
-     * currency updation
-     */
-    updated_at?: string;
 };
 /** @returns {CurrencyFeature} */
 declare function CurrencyFeature(): CurrencyFeature;
@@ -1605,15 +1677,24 @@ type InformationAddress = {
      * - Name of the country, e.g. India
      */
     country?: string;
-    /**
-     * - Co-ordinates of the location
-     */
-    loc?: string;
-    phone?: InformationPhone;
+    loc?: InformationLoc;
+    phone?: InformationPhone[];
     /**
      * - 6-digit PIN Code of the city, e.g. 400001
      */
     pincode?: number;
+};
+/** @returns {InformationLoc} */
+declare function InformationLoc(): InformationLoc;
+type InformationLoc = {
+    /**
+     * - 10-digit mobile number
+     */
+    coordinates?: number[];
+    /**
+     * - Country code for contact number, e.g. +91 (for India)
+     */
+    type?: string;
 };
 /** @returns {InformationPhone} */
 declare function InformationPhone(): InformationPhone;
@@ -1630,12 +1711,34 @@ type InformationPhone = {
 /** @returns {InformationSupport} */
 declare function InformationSupport(): InformationSupport;
 type InformationSupport = {
-    email?: string[];
-    phone?: string[];
+    email?: InformationSupportEmail[];
+    phone?: InformationSupportPhone[];
     /**
      * - Working hours of support team, e.g. 9 AM to 9 PM
      */
     timing?: string;
+};
+/** @returns {InformationSupportEmail} */
+declare function InformationSupportEmail(): InformationSupportEmail;
+type InformationSupportEmail = {
+    key?: string;
+    /**
+     * - Value of email.
+     */
+    value?: string;
+};
+/** @returns {InformationSupportPhone} */
+declare function InformationSupportPhone(): InformationSupportPhone;
+type InformationSupportPhone = {
+    /**
+     * - Country code for contact number, e.g. +91 (for India)
+     */
+    code?: string;
+    key?: string;
+    /**
+     * - 10-digit mobile number
+     */
+    number?: string;
 };
 /** @returns {InstagramLink} */
 declare function InstagramLink(): InstagramLink;
@@ -1652,6 +1755,22 @@ type InstagramLink = {
      * - Name of the social media platform, e.g. Instagram
      */
     title?: string;
+};
+/** @returns {InternationalShipping} */
+declare function InternationalShipping(): InternationalShipping;
+type InternationalShipping = {
+    /**
+     * - International shipping is enabled or not.
+     */
+    enabled?: boolean;
+};
+/** @returns {InvalidPayloadRequest} */
+declare function InvalidPayloadRequest(): InvalidPayloadRequest;
+type InvalidPayloadRequest = {
+    /**
+     * - Error message when request body payload is improper
+     */
+    message?: string;
 };
 /** @returns {Ios} */
 declare function Ios(): Ios;
@@ -1738,6 +1857,11 @@ type Links = {
      * - Name of the related page or link
      */
     title?: string;
+};
+/** @returns {ListingPageFeature} */
+declare function ListingPageFeature(): ListingPageFeature;
+type ListingPageFeature = {
+    sort_on?: string;
 };
 /** @returns {ListingPriceFeature} */
 declare function ListingPriceFeature(): ListingPriceFeature;
@@ -2132,6 +2256,16 @@ type Tokens = {
     moengage?: Moengage;
     safetynet?: Safetynet;
     segment?: Segment;
+};
+/** @returns {TokenSchema} */
+declare function TokenSchema(): TokenSchema;
+type TokenSchema = {
+    /**
+     * - ISO 8601 timestamp of when token created
+     */
+    created_at?: string;
+    created_by?: any;
+    token?: string;
 };
 /** @returns {TwitterLink} */
 declare function TwitterLink(): TwitterLink;

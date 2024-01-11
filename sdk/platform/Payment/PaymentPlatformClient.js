@@ -80,7 +80,7 @@ class Payment {
       error: res_error,
     } = PaymentPlatformModel.UpdatePayoutResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -159,7 +159,7 @@ class Payment {
       error: res_error,
     } = PaymentPlatformModel.DeletePayoutResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -250,7 +250,7 @@ class Payment {
       error: res_error,
     } = PaymentPlatformModel.DeleteSubscriptionPaymentMethodResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -330,7 +330,7 @@ class Payment {
       error: res_error,
     } = PaymentPlatformModel.PayoutsResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -406,7 +406,7 @@ class Payment {
       error: res_error,
     } = PaymentPlatformModel.SubscriptionConfigResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -492,7 +492,7 @@ class Payment {
       error: res_error,
     } = PaymentPlatformModel.SubscriptionPaymentMethodResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -569,7 +569,7 @@ class Payment {
       error: res_error,
     } = PaymentPlatformModel.PayoutResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -652,7 +652,7 @@ class Payment {
       error: res_error,
     } = PaymentPlatformModel.SaveSubscriptionSetupIntentResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -733,7 +733,7 @@ class Payment {
       error: res_error,
     } = PaymentPlatformModel.UpdatePayoutResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -757,7 +757,7 @@ class Payment {
    * @returns {Promise<PaymentPlatformModel.IfscCodeResponse>} - Success response
    * @name verifyIfscCode
    * @summary: Ifsc Code Verification
-   * @description: Get True/False for correct IFSC Code for adding bank details for refund - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/verifyIfscCode/).
+   * @description: Get True or False for correct IFSC Code for adding bank details for refund - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/verifyIfscCode/).
    */
   async verifyIfscCode(
     { ifscCode, requestHeaders } = { requestHeaders: {} },
@@ -813,7 +813,7 @@ class Payment {
       error: res_error,
     } = PaymentPlatformModel.IfscCodeResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

@@ -123,6 +123,7 @@ const Joi = require("joi");
  * @property {string} [country_iso_code]
  * @property {string} [country_phone_code]
  * @property {string} [created_at]
+ * @property {string} [display_address]
  * @property {string} [email]
  * @property {string} [landmark]
  * @property {number} [latitude]
@@ -282,6 +283,7 @@ const Joi = require("joi");
  * @property {BagsForReorder[]} [bags_for_reorder]
  * @property {BreakupValues[]} [breakup_values]
  * @property {string} [order_created_time]
+ * @property {string} [order_created_ts]
  * @property {string} [order_id]
  * @property {Shipments[]} [shipments]
  * @property {number} [total_shipments_in_order]
@@ -461,6 +463,7 @@ const Joi = require("joi");
  * @property {Object} [return_meta]
  * @property {string} [returnable_date]
  * @property {string} [shipment_created_at]
+ * @property {string} [shipment_created_ts]
  * @property {string} [shipment_id]
  * @property {ShipmentStatus} [shipment_status]
  * @property {boolean} [show_download_invoice]
@@ -543,6 +546,7 @@ const Joi = require("joi");
 
 /**
  * @typedef TrackingDetails
+ * @property {string} [created_ts]
  * @property {boolean} [is_current]
  * @property {boolean} [is_passed]
  * @property {string} [status]
@@ -734,6 +738,7 @@ class OrderApplicationModel {
       country_iso_code: Joi.string().allow(""),
       country_phone_code: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
+      display_address: Joi.string().allow(""),
       email: Joi.string().allow(""),
       landmark: Joi.string().allow(""),
       latitude: Joi.number().allow(null),
@@ -929,6 +934,7 @@ class OrderApplicationModel {
       ),
       breakup_values: Joi.array().items(OrderApplicationModel.BreakupValues()),
       order_created_time: Joi.string().allow(""),
+      order_created_ts: Joi.string().allow(""),
       order_id: Joi.string().allow(""),
       shipments: Joi.array().items(OrderApplicationModel.Shipments()),
       total_shipments_in_order: Joi.number(),
@@ -1152,6 +1158,7 @@ class OrderApplicationModel {
       return_meta: Joi.any(),
       returnable_date: Joi.string().allow("").allow(null),
       shipment_created_at: Joi.string().allow(""),
+      shipment_created_ts: Joi.string().allow(""),
       shipment_id: Joi.string().allow(""),
       shipment_status: OrderApplicationModel.ShipmentStatus(),
       show_download_invoice: Joi.boolean(),
@@ -1256,6 +1263,7 @@ class OrderApplicationModel {
   /** @returns {TrackingDetails} */
   static TrackingDetails() {
     return Joi.object({
+      created_ts: Joi.string().allow(""),
       is_current: Joi.boolean(),
       is_passed: Joi.boolean(),
       status: Joi.string().allow(""),
