@@ -97,6 +97,7 @@ const Joi = require("joi");
  * @property {string[]} [product_group_tags]
  * @property {number} [quantity]
  * @property {number} [seller_id]
+ * @property {string} [seller_identifier] - Add items using seller identifier for store os
  * @property {number} [store_id]
  */
 
@@ -116,9 +117,8 @@ const Joi = require("joi");
  * @property {number} [article_quantity] - Quantity of article on which
  *   promotion is applicable
  * @property {BuyRules[]} [buy_rules] - Buy rules for promotions
- * @property {string} [code] - Promotion code
+ * @property {CartCurrency} [currency]
  * @property {DiscountRulesApp[]} [discount_rules] - Discount rules for promotions
- * @property {Object} [meta] - Meta object for extra data
  * @property {boolean} [mrp_promotion] - If applied promotion is applied on
  *   product MRP or ESP
  * @property {string} [offer_text] - Offer text of current promotion
@@ -292,6 +292,7 @@ const Joi = require("joi");
  * @property {string} [cart_id]
  * @property {number} [cart_value]
  * @property {string} [created_on]
+ * @property {string} [currency_code]
  * @property {number} [item_counts]
  * @property {Object} [pick_up_customer_details]
  * @property {string} [user_id]
@@ -448,16 +449,19 @@ const Joi = require("joi");
 
 /**
  * @typedef Coupon
+ * @property {string} [coupon_applicable_message]
  * @property {string} [coupon_code]
  * @property {string} [coupon_type]
  * @property {number} [coupon_value]
  * @property {string} [description]
+ * @property {string} [end_date]
  * @property {string} [expires_on]
  * @property {boolean} [is_applicable]
  * @property {boolean} [is_applied]
  * @property {number} [max_discount_value]
  * @property {string} [message]
  * @property {number} [minimum_cart_value]
+ * @property {string} [start_date]
  * @property {string} [sub_title]
  * @property {string} [title]
  */
@@ -912,6 +916,7 @@ const Joi = require("joi");
 /**
  * @typedef OverrideCartItemPromo
  * @property {Object[]} [item_list]
+ * @property {string} [parent_promo_id]
  * @property {string} promo_amount
  * @property {string} [promo_desc]
  * @property {string} promo_id
@@ -1061,6 +1066,7 @@ const Joi = require("joi");
 
 /**
  * @typedef PlatformAddress
+ * @property {Object} [_custom_json]
  * @property {string} [address]
  * @property {string} [address_type]
  * @property {string} [area]
@@ -1071,6 +1077,8 @@ const Joi = require("joi");
  * @property {string} [city]
  * @property {string} [country]
  * @property {string} [country_code]
+ * @property {string} [country_iso_code]
+ * @property {string} [country_phone_code]
  * @property {string} [created_by_user_id]
  * @property {string} [email]
  * @property {GeoLocation} [geo_location]
@@ -1082,7 +1090,9 @@ const Joi = require("joi");
  * @property {Object} [meta]
  * @property {string} [name]
  * @property {string} [phone]
+ * @property {string} [sector]
  * @property {string} [state]
+ * @property {string} [state_code] - State code for international address
  * @property {string[]} [tags]
  * @property {string} [user_id]
  */
@@ -1250,6 +1260,9 @@ const Joi = require("joi");
  *   authenticated
  * @property {string} message - The message associated with the price adjustment
  * @property {Object} [meta]
+ * @property {PriceAdjustmentRestrictions} [restrictions] - This field accepts
+ *   the restrictions applied to this particular item or service, including
+ *   whether or not cancellation and return are allowed, etc
  * @property {string} type - Type of price adjusment
  * @property {number} value
  */
@@ -1269,6 +1282,9 @@ const Joi = require("joi");
  *   authenticated
  * @property {string} message - The message associated with the price adjustment
  * @property {Object} [meta]
+ * @property {PriceAdjustmentRestrictions} [restrictions] - This field accepts
+ *   the restrictions applied to this particular item or service, including
+ *   whether or not cancellation and return are allowed, etc
  * @property {string} type - Type of price adjusment
  * @property {number} value
  */
@@ -1276,6 +1292,12 @@ const Joi = require("joi");
 /**
  * @typedef PriceAdjustmentResponse
  * @property {PriceAdjustment} [data]
+ */
+
+/**
+ * @typedef PriceAdjustmentRestrictions
+ * @property {Object} [post_order] - This field holds the post-order
+ *   restrictions, indicated by nested fields ['cancellation_allowed','return_allowed']
  */
 
 /**
@@ -1293,6 +1315,9 @@ const Joi = require("joi");
  * @property {string} message - The message associated with the price adjustment
  * @property {Object} [meta]
  * @property {string} [modified_by] - The entity that modified the field
+ * @property {PriceAdjustmentRestrictions} [restrictions] - Restrictions applied
+ *   to this particular item or product, including whether or not cancellation
+ *   and return are allowed.
  * @property {string} type - Type of price adjusment
  * @property {number} value
  */
@@ -1328,6 +1353,7 @@ const Joi = require("joi");
  * @property {string} [seller_identifier]
  * @property {string} [size]
  * @property {StoreInfo} [store]
+ * @property {string[]} [tags] - A list of article tags
  * @property {string} [type]
  * @property {string} [uid]
  */
@@ -1376,6 +1402,12 @@ const Joi = require("joi");
  * @typedef PromiseFormatted
  * @property {string} [max]
  * @property {string} [min]
+ */
+
+/**
+ * @typedef PromiseISOFormat
+ * @property {string} [max] - Max promise in ISO format.
+ * @property {string} [min] - Min Promise in ISO format.
  */
 
 /**
@@ -1558,12 +1590,12 @@ const Joi = require("joi");
  * @property {boolean} [anonymous_users]
  * @property {number} [order_quantity]
  * @property {number[]} [ordering_stores]
- * @property {PromotionPaymentModes[]} [payments]
+ * @property {Object} [payments]
  * @property {string[]} [platforms]
  * @property {PostOrder1} [post_order]
  * @property {number[]} [user_groups]
  * @property {string[]} [user_id]
- * @property {Object} [user_registered]
+ * @property {UserRegistered} [user_registered]
  * @property {UsesRestriction1} uses
  */
 
@@ -1643,6 +1675,7 @@ const Joi = require("joi");
 /**
  * @typedef ShipmentPromise
  * @property {PromiseFormatted} [formatted]
+ * @property {PromiseISOFormat} [iso]
  * @property {PromiseTimestamp} [timestamp]
  */
 
@@ -1976,6 +2009,7 @@ class CartPlatformModel {
       product_group_tags: Joi.array().items(Joi.string().allow("").allow(null)),
       quantity: Joi.number(),
       seller_id: Joi.number(),
+      seller_identifier: Joi.string().allow(""),
       store_id: Joi.number(),
     });
   }
@@ -1999,9 +2033,8 @@ class CartPlatformModel {
       ),
       article_quantity: Joi.number(),
       buy_rules: Joi.array().items(CartPlatformModel.BuyRules()),
-      code: Joi.string().allow("").allow(null),
+      currency: CartPlatformModel.CartCurrency(),
       discount_rules: Joi.array().items(CartPlatformModel.DiscountRulesApp()),
-      meta: Joi.any(),
       mrp_promotion: Joi.boolean(),
       offer_text: Joi.string().allow(""),
       ownership: CartPlatformModel.Ownership2(),
@@ -2213,6 +2246,7 @@ class CartPlatformModel {
       cart_id: Joi.string().allow(""),
       cart_value: Joi.number(),
       created_on: Joi.string().allow(""),
+      currency_code: Joi.string().allow(""),
       item_counts: Joi.number(),
       pick_up_customer_details: Joi.any(),
       user_id: Joi.string().allow(""),
@@ -2398,16 +2432,19 @@ class CartPlatformModel {
   /** @returns {Coupon} */
   static Coupon() {
     return Joi.object({
+      coupon_applicable_message: Joi.string().allow(""),
       coupon_code: Joi.string().allow(""),
       coupon_type: Joi.string().allow("").allow(null),
       coupon_value: Joi.number(),
       description: Joi.string().allow("").allow(null),
+      end_date: Joi.string().allow("").allow(null),
       expires_on: Joi.string().allow(""),
       is_applicable: Joi.boolean(),
       is_applied: Joi.boolean(),
       max_discount_value: Joi.number(),
       message: Joi.string().allow(""),
       minimum_cart_value: Joi.number(),
+      start_date: Joi.string().allow("").allow(null),
       sub_title: Joi.string().allow(""),
       title: Joi.string().allow(""),
     });
@@ -2961,6 +2998,7 @@ class CartPlatformModel {
   static OverrideCartItemPromo() {
     return Joi.object({
       item_list: Joi.array().items(Joi.any().allow(null)),
+      parent_promo_id: Joi.string().allow(""),
       promo_amount: Joi.string().allow("").required(),
       promo_desc: Joi.string().allow(""),
       promo_id: Joi.string().allow("").required(),
@@ -3146,6 +3184,7 @@ class CartPlatformModel {
   /** @returns {PlatformAddress} */
   static PlatformAddress() {
     return Joi.object({
+      _custom_json: Joi.any(),
       address: Joi.string().allow(""),
       address_type: Joi.string().allow(""),
       area: Joi.string().allow(""),
@@ -3156,6 +3195,8 @@ class CartPlatformModel {
       city: Joi.string().allow(""),
       country: Joi.string().allow(""),
       country_code: Joi.string().allow(""),
+      country_iso_code: Joi.string().allow(""),
+      country_phone_code: Joi.string().allow(""),
       created_by_user_id: Joi.string().allow(""),
       email: Joi.string().allow(""),
       geo_location: CartPlatformModel.GeoLocation(),
@@ -3167,7 +3208,9 @@ class CartPlatformModel {
       meta: Joi.any(),
       name: Joi.string().allow(""),
       phone: Joi.string().allow(""),
+      sector: Joi.string().allow(""),
       state: Joi.string().allow(""),
+      state_code: Joi.string().allow(""),
       tags: Joi.array().items(Joi.string().allow("")),
       user_id: Joi.string().allow(""),
     });
@@ -3361,6 +3404,7 @@ class CartPlatformModel {
       is_authenticated: Joi.boolean().required(),
       message: Joi.string().allow("").required(),
       meta: Joi.any(),
+      restrictions: CartPlatformModel.PriceAdjustmentRestrictions(),
       type: Joi.string().allow("").required(),
       value: Joi.number().required(),
     });
@@ -3379,6 +3423,7 @@ class CartPlatformModel {
       is_authenticated: Joi.boolean().required(),
       message: Joi.string().allow("").required(),
       meta: Joi.any(),
+      restrictions: CartPlatformModel.PriceAdjustmentRestrictions(),
       type: Joi.string().allow("").required(),
       value: Joi.number().required(),
     });
@@ -3388,6 +3433,13 @@ class CartPlatformModel {
   static PriceAdjustmentResponse() {
     return Joi.object({
       data: CartPlatformModel.PriceAdjustment(),
+    });
+  }
+
+  /** @returns {PriceAdjustmentRestrictions} */
+  static PriceAdjustmentRestrictions() {
+    return Joi.object({
+      post_order: Joi.any(),
     });
   }
 
@@ -3404,6 +3456,7 @@ class CartPlatformModel {
       message: Joi.string().allow("").required(),
       meta: Joi.any(),
       modified_by: Joi.string().allow(""),
+      restrictions: CartPlatformModel.PriceAdjustmentRestrictions(),
       type: Joi.string().allow("").required(),
       value: Joi.number().required(),
     });
@@ -3445,6 +3498,7 @@ class CartPlatformModel {
       seller_identifier: Joi.string().allow(""),
       size: Joi.string().allow(""),
       store: CartPlatformModel.StoreInfo(),
+      tags: Joi.array().items(Joi.string().allow("")),
       type: Joi.string().allow(""),
       uid: Joi.string().allow(""),
     });
@@ -3504,6 +3558,14 @@ class CartPlatformModel {
 
   /** @returns {PromiseFormatted} */
   static PromiseFormatted() {
+    return Joi.object({
+      max: Joi.string().allow(""),
+      min: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {PromiseISOFormat} */
+  static PromiseISOFormat() {
     return Joi.object({
       max: Joi.string().allow(""),
       min: Joi.string().allow(""),
@@ -3724,12 +3786,12 @@ class CartPlatformModel {
       anonymous_users: Joi.boolean(),
       order_quantity: Joi.number(),
       ordering_stores: Joi.array().items(Joi.number()),
-      payments: Joi.array().items(CartPlatformModel.PromotionPaymentModes()),
+      payments: Joi.any(),
       platforms: Joi.array().items(Joi.string().allow("")),
       post_order: CartPlatformModel.PostOrder1(),
       user_groups: Joi.array().items(Joi.number()),
       user_id: Joi.array().items(Joi.string().allow("")),
-      user_registered: Joi.any().allow(null),
+      user_registered: CartPlatformModel.UserRegistered(),
       uses: CartPlatformModel.UsesRestriction1().required(),
     });
   }
@@ -3825,6 +3887,7 @@ class CartPlatformModel {
   static ShipmentPromise() {
     return Joi.object({
       formatted: CartPlatformModel.PromiseFormatted(),
+      iso: CartPlatformModel.PromiseISOFormat(),
       timestamp: CartPlatformModel.PromiseTimestamp(),
     });
   }

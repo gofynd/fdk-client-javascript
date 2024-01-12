@@ -6,7 +6,7 @@
 ##### [Back to Application docs](./README.md)
 
 ## Order Methods
-Handles all Application order and shipment api(s)
+The Order and Shipment module is designed for retrieving application-specific orders, accessing order details, and obtaining shipment and invoice information. This module facilitates shipment tracking, allows customization of shipment details, and provides reasons for cancellations and returns. Additionally, it offers real-time shipment status updates.
 
 
 Default
@@ -160,10 +160,12 @@ Get details of an order
 
 ```javascript
 // Promise
-const promise = applicationClient.order.getOrderById({  orderId : value });
+const promise = applicationClient.order.getOrderById({  orderId : value,
+ allowInactive : value });
 
 // Async/Await
-const data = await applicationClient.order.getOrderById({  orderId : value });
+const data = await applicationClient.order.getOrderById({  orderId : value,
+ allowInactive : value });
 ```
 
 
@@ -172,7 +174,8 @@ const data = await applicationClient.order.getOrderById({  orderId : value });
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| orderId | string | yes | A unique number used for identifying and tracking your orders. |  
+| orderId | string | yes | A unique number used for identifying and tracking your orders. |    
+| allowInactive | boolean | no | Flag to allow inactive shipments |  
 
 
 
@@ -1156,6 +1159,8 @@ const promise = applicationClient.order.getOrders({  status : value,
  pageSize : value,
  fromDate : value,
  toDate : value,
+ startDate : value,
+ endDate : value,
  customMeta : value });
 
 // Async/Await
@@ -1164,6 +1169,8 @@ const data = await applicationClient.order.getOrders({  status : value,
  pageSize : value,
  fromDate : value,
  toDate : value,
+ startDate : value,
+ endDate : value,
  customMeta : value });
 ```
 
@@ -1178,6 +1185,8 @@ const data = await applicationClient.order.getOrders({  status : value,
 | pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |    
 | fromDate | string | no | The date from which the orders should be retrieved. |    
 | toDate | string | no | The date till which the orders should be retrieved. |    
+| startDate | string | no | UTC Start Date in ISO format |    
+| endDate | string | no | UTC Start Date in ISO format |    
 | customMeta | string | no | A filter and retrieve data using special fields included for special use-cases |  
 
 
@@ -1666,10 +1675,12 @@ Get details of a shipment
 
 ```javascript
 // Promise
-const promise = applicationClient.order.getShipmentById({  shipmentId : value });
+const promise = applicationClient.order.getShipmentById({  shipmentId : value,
+ allowInactive : value });
 
 // Async/Await
-const data = await applicationClient.order.getShipmentById({  shipmentId : value });
+const data = await applicationClient.order.getShipmentById({  shipmentId : value,
+ allowInactive : value });
 ```
 
 
@@ -1678,7 +1689,8 @@ const data = await applicationClient.order.getShipmentById({  shipmentId : value
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- | 
-| shipmentId | string | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |  
+| shipmentId | string | yes | ID of the shipment. An order may contain multiple items and may get divided into one or more shipment, each having its own ID. |    
+| allowInactive | boolean | no | Flag to allow inactive shipments |  
 
 
 
@@ -1935,7 +1947,10 @@ Success. Check the example shown below or refer `ShipmentById` for more details.
       "name": "Jio-market-store3",
       "company_id": 33,
       "id": 50,
-      "code": "store3"
+      "code": "store3",
+      "tags": [
+        "infibeam"
+      ]
     },
     "fulfilling_company": {
       "id": 33,
@@ -2665,6 +2680,7 @@ Success, the code is valid and returns a session token
  | country_iso_code | string? |  yes  |  |
  | country_phone_code | string? |  yes  |  |
  | created_at | string? |  yes  |  |
+ | display_address | string? |  yes  |  |
  | email | string? |  yes  |  |
  | landmark | string? |  yes  |  |
  | latitude | number? |  yes  |  |
@@ -2892,6 +2908,7 @@ Success, the code is valid and returns a session token
  | bags_for_reorder | [[BagsForReorder](#BagsForReorder)]? |  yes  |  |
  | breakup_values | [[BreakupValues](#BreakupValues)]? |  yes  |  |
  | order_created_time | string? |  yes  |  |
+ | order_created_ts | string? |  yes  |  |
  | order_id | string? |  yes  |  |
  | shipments | [[Shipments](#Shipments)]? |  yes  |  |
  | total_shipments_in_order | number? |  yes  |  |
@@ -3151,6 +3168,7 @@ Success, the code is valid and returns a session token
  | return_meta | string? |  yes  |  |
  | returnable_date | string? |  yes  |  |
  | shipment_created_at | string? |  yes  |  |
+ | shipment_created_ts | string? |  yes  |  |
  | shipment_id | string? |  yes  |  |
  | shipment_status | [ShipmentStatus](#ShipmentStatus)? |  yes  |  |
  | show_download_invoice | boolean? |  yes  |  |
@@ -3273,6 +3291,7 @@ Success, the code is valid and returns a session token
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | created_ts | string? |  yes  |  |
  | is_current | boolean? |  yes  |  |
  | is_passed | boolean? |  yes  |  |
  | status | string? |  yes  |  |

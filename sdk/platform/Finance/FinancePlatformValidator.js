@@ -94,6 +94,12 @@ const FinancePlatformModel = require("./FinancePlatformModel");
  */
 
 /**
+ * @typedef InvoiceActivityLogsParam
+ * @property {string} invoiceNumber - Invoice Number for which the data will be
+ *   returned. Invoice_number is required.
+ */
+
+/**
  * @typedef InvoiceListingParam
  * @property {FinancePlatformModel.InvoiceListingRequest} body
  */
@@ -101,6 +107,12 @@ const FinancePlatformModel = require("./FinancePlatformModel");
 /**
  * @typedef InvoicePDFParam
  * @property {FinancePlatformModel.InvoicePdfRequest} body
+ */
+
+/**
+ * @typedef InvoicePaymentDetailsParam
+ * @property {string} invoiceNumber - Invoice Number for which the data will be
+ *   returned.Invoice_Number is required.
  */
 
 /**
@@ -121,6 +133,11 @@ const FinancePlatformModel = require("./FinancePlatformModel");
 /**
  * @typedef PaymentProcessParam
  * @property {FinancePlatformModel.PaymentProcessRequest} body
+ */
+
+/**
+ * @typedef UnlockCreditNoteParam
+ * @property {FinancePlatformModel.UnlockCreditNoteRequest} body
  */
 
 class FinancePlatformValidator {
@@ -251,6 +268,13 @@ class FinancePlatformValidator {
     }).required();
   }
 
+  /** @returns {InvoiceActivityLogsParam} */
+  static invoiceActivityLogs() {
+    return Joi.object({
+      invoiceNumber: Joi.string().allow("").required(),
+    }).required();
+  }
+
   /** @returns {InvoiceListingParam} */
   static invoiceListing() {
     return Joi.object({
@@ -262,6 +286,13 @@ class FinancePlatformValidator {
   static invoicePDF() {
     return Joi.object({
       body: FinancePlatformModel.InvoicePdfRequest().required(),
+    }).required();
+  }
+
+  /** @returns {InvoicePaymentDetailsParam} */
+  static invoicePaymentDetails() {
+    return Joi.object({
+      invoiceNumber: Joi.string().allow("").required(),
     }).required();
   }
 
@@ -290,6 +321,13 @@ class FinancePlatformValidator {
   static paymentProcess() {
     return Joi.object({
       body: FinancePlatformModel.PaymentProcessRequest().required(),
+    }).required();
+  }
+
+  /** @returns {UnlockCreditNoteParam} */
+  static unlockCreditNote() {
+    return Joi.object({
+      body: FinancePlatformModel.UnlockCreditNoteRequest().required(),
     }).required();
   }
 }

@@ -1,7 +1,17 @@
 export = DiscountPlatformModel;
 /**
+ * @typedef BadRequestData
+ * @property {string} [message]
+ */
+/**
  * @typedef BadRequestObject
  * @property {string} message
+ */
+/**
+ * @typedef BadRequestObjectGet
+ * @property {BadRequestData} [data]
+ * @property {string} [error]
+ * @property {string} [message]
  */
 /**
  * @typedef BulkDiscount
@@ -20,7 +30,7 @@ export = DiscountPlatformModel;
  * @property {string} discount_level
  * @property {DiscountMeta} [discount_meta]
  * @property {string} discount_type
- * @property {string[]} extension_ids
+ * @property {string[]} [extension_ids]
  * @property {string} [file_path]
  * @property {boolean} is_active
  * @property {string} job_type
@@ -32,7 +42,7 @@ export = DiscountPlatformModel;
  */
 /**
  * @typedef DiscountItems
- * @property {number} [brand_uid]
+ * @property {string} [brand_name]
  * @property {DiscountMeta} [discount_meta]
  * @property {string} discount_type
  * @property {string} [item_code]
@@ -60,6 +70,7 @@ export = DiscountPlatformModel;
  * @property {number[]} [store_ids]
  * @property {ValidityObject} validity
  * @property {number} [value]
+ * @property {string[]} [zone_ids]
  */
 /**
  * @typedef DiscountMeta
@@ -76,9 +87,33 @@ export = DiscountPlatformModel;
  * @property {number[]} [store_ids]
  */
 /**
+ * @typedef FileJobBody
+ * @property {string[]} [app_ids]
+ * @property {number[]} [brand_ids]
+ * @property {number} [company_id]
+ * @property {UserDetails} [created_by]
+ * @property {string} [created_on]
+ * @property {string} [discount_level]
+ * @property {DiscountMeta} [discount_meta]
+ * @property {string} [discount_type]
+ * @property {string[]} [extension_ids]
+ * @property {string} [file_path]
+ * @property {boolean} [is_active]
+ * @property {string} [job_type]
+ * @property {Object} [meta]
+ * @property {UserDetails} [modified_by]
+ * @property {string} [modified_on]
+ * @property {string} [name]
+ * @property {number[]} [store_ids]
+ * @property {ValidityObject} [validity]
+ * @property {number} [value]
+ * @property {string[]} [zone_ids]
+ */
+/**
  * @typedef FileJobRequest
  * @property {string[]} [app_ids]
  * @property {number[]} [brand_ids]
+ * @property {number} company_id
  * @property {string} [discount_level]
  * @property {string} [discount_type]
  * @property {string} [file_path]
@@ -92,14 +127,20 @@ export = DiscountPlatformModel;
 /**
  * @typedef FileJobResponse
  * @property {string} _id - A unique identifier to distinguish and identify a job.
- * @property {Object} [body]
+ * @property {FileJobBody} [body]
  * @property {number} company_id
+ * @property {UserDetails} [created_by]
+ * @property {string} [created_on]
+ * @property {string[]} [extension_ids]
  * @property {number} failed
- * @property {string} file_path
- * @property {string} file_type
+ * @property {string} [file_path]
+ * @property {string} [file_type]
+ * @property {string} [modified_on]
+ * @property {number} [progress]
  * @property {string} stage
  * @property {number} total
  * @property {string} type
+ * @property {string[]} [zone_ids]
  */
 /**
  * @typedef ListOrCalender
@@ -129,12 +170,24 @@ export = DiscountPlatformModel;
 declare class DiscountPlatformModel {
 }
 declare namespace DiscountPlatformModel {
-    export { BadRequestObject, BulkDiscount, CancelJobResponse, CreateUpdateDiscount, DiscountItems, DiscountJob, DiscountMeta, DownloadFileJob, FileJobRequest, FileJobResponse, ListOrCalender, Page, UserDetails, ValidityObject };
+    export { BadRequestData, BadRequestObject, BadRequestObjectGet, BulkDiscount, CancelJobResponse, CreateUpdateDiscount, DiscountItems, DiscountJob, DiscountMeta, DownloadFileJob, FileJobBody, FileJobRequest, FileJobResponse, ListOrCalender, Page, UserDetails, ValidityObject };
 }
+/** @returns {BadRequestData} */
+declare function BadRequestData(): BadRequestData;
+type BadRequestData = {
+    message?: string;
+};
 /** @returns {BadRequestObject} */
 declare function BadRequestObject(): BadRequestObject;
 type BadRequestObject = {
     message: string;
+};
+/** @returns {BadRequestObjectGet} */
+declare function BadRequestObjectGet(): BadRequestObjectGet;
+type BadRequestObjectGet = {
+    data?: BadRequestData;
+    error?: string;
+    message?: string;
 };
 /** @returns {BulkDiscount} */
 declare function BulkDiscount(): BulkDiscount;
@@ -156,7 +209,7 @@ type CreateUpdateDiscount = {
     discount_level: string;
     discount_meta?: DiscountMeta;
     discount_type: string;
-    extension_ids: string[];
+    extension_ids?: string[];
     file_path?: string;
     is_active: boolean;
     job_type: string;
@@ -169,7 +222,7 @@ type CreateUpdateDiscount = {
 /** @returns {DiscountItems} */
 declare function DiscountItems(): DiscountItems;
 type DiscountItems = {
-    brand_uid?: number;
+    brand_name?: string;
     discount_meta?: DiscountMeta;
     discount_type: string;
     item_code?: string;
@@ -198,6 +251,7 @@ type DiscountJob = {
     store_ids?: number[];
     validity: ValidityObject;
     value?: number;
+    zone_ids?: string[];
 };
 /** @returns {DiscountMeta} */
 declare function DiscountMeta(): DiscountMeta;
@@ -224,11 +278,36 @@ type DownloadFileJob = {
     brand_ids?: number[];
     store_ids?: number[];
 };
+/** @returns {FileJobBody} */
+declare function FileJobBody(): FileJobBody;
+type FileJobBody = {
+    app_ids?: string[];
+    brand_ids?: number[];
+    company_id?: number;
+    created_by?: UserDetails;
+    created_on?: string;
+    discount_level?: string;
+    discount_meta?: DiscountMeta;
+    discount_type?: string;
+    extension_ids?: string[];
+    file_path?: string;
+    is_active?: boolean;
+    job_type?: string;
+    meta?: any;
+    modified_by?: UserDetails;
+    modified_on?: string;
+    name?: string;
+    store_ids?: number[];
+    validity?: ValidityObject;
+    value?: number;
+    zone_ids?: string[];
+};
 /** @returns {FileJobRequest} */
 declare function FileJobRequest(): FileJobRequest;
 type FileJobRequest = {
     app_ids?: string[];
     brand_ids?: number[];
+    company_id: number;
     discount_level?: string;
     discount_type?: string;
     file_path?: string;
@@ -246,14 +325,20 @@ type FileJobResponse = {
      * - A unique identifier to distinguish and identify a job.
      */
     _id: string;
-    body?: any;
+    body?: FileJobBody;
     company_id: number;
+    created_by?: UserDetails;
+    created_on?: string;
+    extension_ids?: string[];
     failed: number;
-    file_path: string;
-    file_type: string;
+    file_path?: string;
+    file_type?: string;
+    modified_on?: string;
+    progress?: number;
     stage: string;
     total: number;
     type: string;
+    zone_ids?: string[];
 };
 /** @returns {ListOrCalender} */
 declare function ListOrCalender(): ListOrCalender;

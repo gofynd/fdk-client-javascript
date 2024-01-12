@@ -15,15 +15,30 @@ Default
 * [addInjectableTag](#addinjectabletag)
 * [addPathRedirectionRules](#addpathredirectionrules)
 * [createAnnouncement](#createannouncement)
+* [createAppCustomFieldByResourceId](#createappcustomfieldbyresourceid)
+* [createAppCustomFieldDefinition](#createappcustomfielddefinition)
+* [createAppCustomObject](#createappcustomobject)
+* [createAppCustomObjectDefinition](#createappcustomobjectdefinition)
 * [createBlog](#createblog)
+* [createCustomFieldByResourceId](#createcustomfieldbyresourceid)
+* [createCustomFieldDefinition](#createcustomfielddefinition)
+* [createCustomObject](#createcustomobject)
+* [createCustomObjectDefinition](#createcustomobjectdefinition)
 * [createFaqCategory](#createfaqcategory)
 * [createLandingPage](#createlandingpage)
 * [createNavigation](#createnavigation)
 * [createPage](#createpage)
 * [createPagePreview](#createpagepreview)
+* [createSEOMarkupSchema](#createseomarkupschema)
 * [createSlideshow](#createslideshow)
 * [deleteAnnouncement](#deleteannouncement)
+* [deleteAppCustomFieldDefinition](#deleteappcustomfielddefinition)
+* [deleteAppCustomObject](#deleteappcustomobject)
+* [deleteAppCustomObjectDefinition](#deleteappcustomobjectdefinition)
 * [deleteBlog](#deleteblog)
+* [deleteCustomFieldDefinition](#deletecustomfielddefinition)
+* [deleteCustomObject](#deletecustomobject)
+* [deleteCustomObjectDefinition](#deletecustomobjectdefinition)
 * [deleteDataLoader](#deletedataloader)
 * [deleteFaq](#deletefaq)
 * [deleteFaqCategory](#deletefaqcategory)
@@ -31,22 +46,49 @@ Default
 * [deleteNavigation](#deletenavigation)
 * [deletePage](#deletepage)
 * [deletePathRedirectionRules](#deletepathredirectionrules)
+* [deleteSEOMarkupSchema](#deleteseomarkupschema)
 * [deleteSlideshow](#deleteslideshow)
 * [editDataLoader](#editdataloader)
 * [editInjectableTag](#editinjectabletag)
+* [editSEOMarkupSchema](#editseomarkupschema)
+* [exportAppCustomObjectEntries](#exportappcustomobjectentries)
+* [exportCustomObjectEntries](#exportcustomobjectentries)
 * [generateSEOTitle](#generateseotitle)
 * [getAnnouncementById](#getannouncementbyid)
 * [getAnnouncementsList](#getannouncementslist)
+* [getAppCustomFieldDefinition](#getappcustomfielddefinition)
+* [getAppCustomFieldDefinitions](#getappcustomfielddefinitions)
+* [getAppCustomFieldTypes](#getappcustomfieldtypes)
+* [getAppCustomFields](#getappcustomfields)
+* [getAppCustomFieldsByResourceId](#getappcustomfieldsbyresourceid)
+* [getAppCustomObject](#getappcustomobject)
+* [getAppCustomObjectDefinition](#getappcustomobjectdefinition)
+* [getAppCustomObjectDefinitions](#getappcustomobjectdefinitions)
+* [getAppCustomObjects](#getappcustomobjects)
+* [getAppJobs](#getappjobs)
+* [getAppResources](#getappresources)
 * [getBlogBySlug](#getblogbyslug)
 * [getBlogs](#getblogs)
 * [getComponentById](#getcomponentbyid)
+* [getCustomFieldDefinition](#getcustomfielddefinition)
+* [getCustomFieldDefinitions](#getcustomfielddefinitions)
+* [getCustomFieldTypes](#getcustomfieldtypes)
+* [getCustomFields](#getcustomfields)
+* [getCustomFieldsByResourceId](#getcustomfieldsbyresourceid)
+* [getCustomObject](#getcustomobject)
+* [getCustomObjectDefinition](#getcustomobjectdefinition)
+* [getCustomObjectDefinitions](#getcustomobjectdefinitions)
+* [getCustomObjects](#getcustomobjects)
 * [getDataLoaders](#getdataloaders)
+* [getDataLoadersByService](#getdataloadersbyservice)
 * [getDefaultNavigations](#getdefaultnavigations)
+* [getDefaultSEOMarkupSchema](#getdefaultseomarkupschema)
 * [getFaqByIdOrSlug](#getfaqbyidorslug)
 * [getFaqCategories](#getfaqcategories)
 * [getFaqCategoryBySlugOrId](#getfaqcategorybyslugorid)
 * [getFaqsByCategoryIdOrSlug](#getfaqsbycategoryidorslug)
 * [getInjectableTags](#getinjectabletags)
+* [getJobs](#getjobs)
 * [getLandingPages](#getlandingpages)
 * [getLegalInformation](#getlegalinformation)
 * [getNavigationBySlug](#getnavigationbyslug)
@@ -57,16 +99,29 @@ Default
 * [getPages](#getpages)
 * [getPathRedirectionRule](#getpathredirectionrule)
 * [getPathRedirectionRules](#getpathredirectionrules)
+* [getResources](#getresources)
 * [getSEOConfiguration](#getseoconfiguration)
+* [getSEOMarkupSchema](#getseomarkupschema)
+* [getSEOMarkupSchemas](#getseomarkupschemas)
 * [getSlideshowBySlug](#getslideshowbyslug)
 * [getSlideshows](#getslideshows)
 * [getSupportInformation](#getsupportinformation)
+* [importAppCustomObjectEntries](#importappcustomobjectentries)
+* [importCustomObjectEntries](#importcustomobjectentries)
 * [removeInjectableTag](#removeinjectabletag)
 * [resetDataLoader](#resetdataloader)
+* [sampleAppCustomObjectBulkEntry](#sampleappcustomobjectbulkentry)
+* [sampleCustomObjectBulkEntry](#samplecustomobjectbulkentry)
 * [selectDataLoader](#selectdataloader)
 * [updateAnnouncement](#updateannouncement)
 * [updateAnnouncementSchedule](#updateannouncementschedule)
+* [updateAppCustomFieldDefinition](#updateappcustomfielddefinition)
+* [updateAppCustomObject](#updateappcustomobject)
+* [updateAppCustomObjectDefinition](#updateappcustomobjectdefinition)
 * [updateBlog](#updateblog)
+* [updateCustomFieldDefinition](#updatecustomfielddefinition)
+* [updateCustomObject](#updatecustomobject)
+* [updateCustomObjectDefinition](#updatecustomobjectdefinition)
 * [updateFaq](#updatefaq)
 * [updateFaqCategory](#updatefaqcategory)
 * [updateInjectableTag](#updateinjectabletag)
@@ -466,6 +521,516 @@ Success. Refer `CreateAnnouncementSchema` for more details.
 ---
 
 
+### createAppCustomFieldByResourceId
+Create custom field entries for gives resource and resource_id
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.createAppCustomFieldByResourceId({  resource : value,
+ resourceId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.createAppCustomFieldByResourceId({  resource : value,
+ resourceId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| resource | string | yes |  |   
+| resourceId | string | yes |  |  
+| body | [CustomFieldRequestSchema](#CustomFieldRequestSchema) | yes | Request body |
+
+
+Use this API to create the custom field entry for given resource and resource_id in param.
+
+*Returned Response:*
+
+
+
+
+[CustomFieldsResponseByResourceIdSchema](#CustomFieldsResponseByResourceIdSchema)
+
+Success. Returns a list of custom fields. Refer `CustomFieldsResponseByResourceIdSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "_id": "65705772a20cc45d3f2585b1",
+        "updated_by": "bd7223b6727eb087987eece7",
+        "namespace": "custom",
+        "key": "product-designer",
+        "resource": "product",
+        "resource_id": "7612437",
+        "type": "metaobject",
+        "multi_value": true,
+        "company_id": "2",
+        "creator": "company",
+        "invalid_value_errors": [],
+        "has_invalid_values": false,
+        "definition_id": "656d6bc9766f9511345091a6",
+        "value": [
+          "65702b4574c5764716ee671d"
+        ]
+      },
+      {
+        "_id": "65705772a20cc45d3f2585b2",
+        "updated_by": "bd7223b6727eb087987eece7",
+        "namespace": "custom",
+        "key": "validation-check",
+        "resource": "product",
+        "resource_id": "7612437",
+        "type": "string_single_line",
+        "multi_value": false,
+        "company_id": "2",
+        "creator": "company",
+        "invalid_value_errors": [],
+        "has_invalid_values": false,
+        "definition_id": "656866a30152b0584464d547",
+        "value": [
+          "ram"
+        ]
+      },
+      {
+        "_id": "65705772a20cc45d3f2585b3",
+        "updated_by": "bd7223b6727eb087987eece7",
+        "namespace": "custom",
+        "key": "designer-name",
+        "resource": "product",
+        "resource_id": "7612437",
+        "type": "string_single_line",
+        "multi_value": false,
+        "company_id": "2",
+        "creator": "company",
+        "invalid_value_errors": [],
+        "has_invalid_values": false,
+        "definition_id": "65604cdb6a78c23f082c850b",
+        "value": [
+          "ramsons"
+        ]
+      },
+      {
+        "_id": "65705772a20cc45d3f2585b4",
+        "updated_by": "bd7223b6727eb087987eece7",
+        "namespace": "custom",
+        "key": "manufactures",
+        "resource": "product",
+        "resource_id": "7612437",
+        "type": "string_single_line",
+        "multi_value": false,
+        "company_id": "2",
+        "creator": "company",
+        "invalid_value_errors": [],
+        "has_invalid_values": false,
+        "definition_id": "655f53ddca37f5deb832a185",
+        "value": [
+          "kartik"
+        ]
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createAppCustomFieldDefinition
+Create custom field definition
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.createAppCustomFieldDefinition({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.createAppCustomFieldDefinition({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CustomFieldDefinitionRequestSchema](#CustomFieldDefinitionRequestSchema) | yes | Request body |
+
+
+Use this API to create a custom field definition for your application.
+
+*Returned Response:*
+
+
+
+
+[CustomFieldDefinitionDetailResSchema](#CustomFieldDefinitionDetailResSchema)
+
+Custom field definition created.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success1</i></summary>
+
+```json
+{
+  "value": {
+    "creator": "application",
+    "resource": "product",
+    "name": "name",
+    "namespace": "fname",
+    "key": "fname",
+    "description": "First name",
+    "type": "string_single_line",
+    "multi_value": false,
+    "company_id": "1",
+    "application_id": "000000000000000000000001",
+    "created_by": "000000000000000000000001",
+    "updated_by": "000000000000000000000001",
+    "required": false,
+    "is_deleted": false,
+    "_id": "65369654d436ae0e54147e7b",
+    "validations": [],
+    "created_at": "2023-10-23T15:50:44.143Z",
+    "updated_at": "2023-10-23T15:50:44.143Z"
+  }
+}
+```
+</details>
+
+<details>
+<summary><i>&nbsp; success2</i></summary>
+
+```json
+{
+  "value": {
+    "creator": "application",
+    "resource": "product",
+    "name": "name",
+    "namespace": "fname",
+    "key": "fname",
+    "description": "First name",
+    "type": "string_single_line",
+    "multi_value": false,
+    "company_id": "1",
+    "application_id": "000000000000000000000001",
+    "created_by": "000000000000000000000001",
+    "updated_by": "000000000000000000000001",
+    "required": false,
+    "is_deleted": false,
+    "_id": "65369654d436ae0e54147e7b",
+    "validations": [],
+    "created_at": "2023-10-23T15:50:44.143Z",
+    "updated_at": "2023-10-23T15:50:44.143Z"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createAppCustomObject
+Create custom object entries
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.createAppCustomObject({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.createAppCustomObject({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CustomObjectRequestSchema](#CustomObjectRequestSchema) | yes | Request body |
+
+
+Use this API to create the custom object entry.
+
+*Returned Response:*
+
+
+
+
+[CustomObjectSchema](#CustomObjectSchema)
+
+Success. Returns a list of custom objects. Refer `CustomObjectSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "65392bd912376081aafa90ff",
+    "creator": "application",
+    "company_id": "1",
+    "application_id": "000000000000000000000001",
+    "created_by": "000000000000000000000001",
+    "updated_by": "000000000000000000000001",
+    "status": "active",
+    "type": "painter",
+    "display_name": "painter #65392bd912376081aafa90ff",
+    "definition_id": "653907ced878d53c1a502d92",
+    "fields": [
+      {
+        "_id": "65392bd912376081aafa9103",
+        "namespace": "painter",
+        "key": "name",
+        "resource": "metaobject",
+        "resource_id": "65392bd912376081aafa90ff",
+        "type": "string_single_line",
+        "multi_value": false,
+        "company_id": "1",
+        "application_id": "000000000000000000000001",
+        "creator": "application",
+        "invalid_value_errors": [],
+        "has_invalid_values": false,
+        "metaobject_definition_id": "653907ced878d53c1a502d92",
+        "definition_id": "653907ced878d53c1a502d95",
+        "value": [
+          "Batman"
+        ],
+        "created_by": "000000000000000000000001"
+      },
+      {
+        "_id": "65392bd912376081aafa9104",
+        "namespace": "painter",
+        "key": "age",
+        "resource": "metaobject",
+        "resource_id": "65392bd912376081aafa90ff",
+        "type": "integer",
+        "multi_value": false,
+        "company_id": "1",
+        "application_id": "000000000000000000000001",
+        "creator": "application",
+        "invalid_value_errors": [],
+        "has_invalid_values": false,
+        "metaobject_definition_id": "653907ced878d53c1a502d92",
+        "definition_id": "653907ced878d53c1a502d96",
+        "value": [
+          50
+        ],
+        "created_by": "000000000000000000000001"
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createAppCustomObjectDefinition
+Create custom object definition
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.createAppCustomObjectDefinition({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.createAppCustomObjectDefinition({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CustomObjectDefinitionRequestSchema](#CustomObjectDefinitionRequestSchema) | yes | Request body |
+
+
+Use this API to create custom object defintion
+
+*Returned Response:*
+
+
+
+
+[CustomObjectDefinitionSchema](#CustomObjectDefinitionSchema)
+
+Success. Returns the saved custom object defintion
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "656db530766f951134509542",
+    "name": "customObject1",
+    "type": "customobject1",
+    "display_name_key": "cocustomfield2",
+    "description": "",
+    "creator": "company",
+    "created_by": "bd7223b6727eb087987eece7",
+    "updated_by": "bd7223b6727eb087987eece7",
+    "field_definitions": [
+      {
+        "creator": "company",
+        "resource": "metaobject",
+        "name": "coCustomField1",
+        "namespace": "customobject1",
+        "key": "cocustomfield1",
+        "description": "",
+        "type": "string_single_line",
+        "multi_value": false,
+        "validations": [
+          {
+            "name": "min",
+            "type": "integer",
+            "value": 2
+          },
+          {
+            "name": "max",
+            "type": "integer",
+            "value": 10
+          },
+          {
+            "name": "regex",
+            "type": "string",
+            "value": "^[a-zA-Z]+$"
+          }
+        ],
+        "company_id": "1",
+        "created_by": "bd7223b6727eb087987eece7",
+        "metaobject_definition_id": "656db530766f951134509542",
+        "required": false,
+        "is_deleted": false,
+        "_id": "656db530766f951134509545",
+        "created_at": "2023-12-04T11:17:04.153Z",
+        "updated_at": "2023-12-04T11:17:04.153Z"
+      },
+      {
+        "creator": "company",
+        "resource": "metaobject",
+        "name": "coCustomField2",
+        "namespace": "customobject1",
+        "key": "cocustomfield2",
+        "description": "this is custom field 2 of custom object",
+        "type": "string_single_line",
+        "multi_value": false,
+        "validations": [
+          {
+            "name": "min",
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "name": "max",
+            "type": "integer",
+            "value": 100
+          }
+        ],
+        "company_id": "1",
+        "created_by": "bd7223b6727eb087987eece7",
+        "metaobject_definition_id": "656db530766f951134509542",
+        "required": false,
+        "is_deleted": false,
+        "_id": "656db530766f951134509546",
+        "created_at": "2023-12-04T11:17:04.154Z",
+        "updated_at": "2023-12-04T11:17:04.154Z"
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### createBlog
 Create a blog
 
@@ -548,6 +1113,516 @@ Success. Refer `BlogSchema` for more details.
       "created_on": "2021-03-14T06:49:03.945Z",
       "modified_on": "2021-03-14T06:49:03.945Z"
     }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createCustomFieldByResourceId
+Create custom field entries for gives resource and resource_id
+
+
+
+```javascript
+// Promise
+const promise = platformClient.content.createCustomFieldByResourceId({  resource : value,
+ resourceId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.content.createCustomFieldByResourceId({  resource : value,
+ resourceId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| resource | string | yes |  |   
+| resourceId | string | yes |  |  
+| body | [CustomFieldRequestSchema](#CustomFieldRequestSchema) | yes | Request body |
+
+
+Use this API to create the custom field entry for given resource and resource_id in param.
+
+*Returned Response:*
+
+
+
+
+[CustomFieldsResponseByResourceIdSchema](#CustomFieldsResponseByResourceIdSchema)
+
+Success. Returns a list of custom fields. Refer `CustomFieldsResponseByResourceIdSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "_id": "65705772a20cc45d3f2585b1",
+        "updated_by": "bd7223b6727eb087987eece7",
+        "namespace": "custom",
+        "key": "product-designer",
+        "resource": "product",
+        "resource_id": "7612437",
+        "type": "metaobject",
+        "multi_value": true,
+        "company_id": "2",
+        "creator": "company",
+        "invalid_value_errors": [],
+        "has_invalid_values": false,
+        "definition_id": "656d6bc9766f9511345091a6",
+        "value": [
+          "65702b4574c5764716ee671d"
+        ]
+      },
+      {
+        "_id": "65705772a20cc45d3f2585b2",
+        "updated_by": "bd7223b6727eb087987eece7",
+        "namespace": "custom",
+        "key": "validation-check",
+        "resource": "product",
+        "resource_id": "7612437",
+        "type": "string_single_line",
+        "multi_value": false,
+        "company_id": "2",
+        "creator": "company",
+        "invalid_value_errors": [],
+        "has_invalid_values": false,
+        "definition_id": "656866a30152b0584464d547",
+        "value": [
+          "ram"
+        ]
+      },
+      {
+        "_id": "65705772a20cc45d3f2585b3",
+        "updated_by": "bd7223b6727eb087987eece7",
+        "namespace": "custom",
+        "key": "designer-name",
+        "resource": "product",
+        "resource_id": "7612437",
+        "type": "string_single_line",
+        "multi_value": false,
+        "company_id": "2",
+        "creator": "company",
+        "invalid_value_errors": [],
+        "has_invalid_values": false,
+        "definition_id": "65604cdb6a78c23f082c850b",
+        "value": [
+          "ramsons"
+        ]
+      },
+      {
+        "_id": "65705772a20cc45d3f2585b4",
+        "updated_by": "bd7223b6727eb087987eece7",
+        "namespace": "custom",
+        "key": "manufactures",
+        "resource": "product",
+        "resource_id": "7612437",
+        "type": "string_single_line",
+        "multi_value": false,
+        "company_id": "2",
+        "creator": "company",
+        "invalid_value_errors": [],
+        "has_invalid_values": false,
+        "definition_id": "655f53ddca37f5deb832a185",
+        "value": [
+          "kartik"
+        ]
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createCustomFieldDefinition
+Create custom field definition
+
+
+
+```javascript
+// Promise
+const promise = platformClient.content.createCustomFieldDefinition({  body : value });
+
+// Async/Await
+const data = await platformClient.content.createCustomFieldDefinition({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CustomFieldDefinitionRequestSchema](#CustomFieldDefinitionRequestSchema) | yes | Request body |
+
+
+Use this API to create a custom field definition for your application.
+
+*Returned Response:*
+
+
+
+
+[CustomFieldDefinitionDetailResSchema](#CustomFieldDefinitionDetailResSchema)
+
+Custom field definition created.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success1</i></summary>
+
+```json
+{
+  "value": {
+    "creator": "application",
+    "resource": "product",
+    "name": "name",
+    "namespace": "fname",
+    "key": "fname",
+    "description": "First name",
+    "type": "string_single_line",
+    "multi_value": false,
+    "company_id": "1",
+    "application_id": "000000000000000000000001",
+    "created_by": "000000000000000000000001",
+    "updated_by": "000000000000000000000001",
+    "required": false,
+    "is_deleted": false,
+    "_id": "65369654d436ae0e54147e7b",
+    "validations": [],
+    "created_at": "2023-10-23T15:50:44.143Z",
+    "updated_at": "2023-10-23T15:50:44.143Z"
+  }
+}
+```
+</details>
+
+<details>
+<summary><i>&nbsp; success2</i></summary>
+
+```json
+{
+  "value": {
+    "creator": "application",
+    "resource": "product",
+    "name": "name",
+    "namespace": "fname",
+    "key": "fname",
+    "description": "First name",
+    "type": "string_single_line",
+    "multi_value": false,
+    "company_id": "1",
+    "application_id": "000000000000000000000001",
+    "created_by": "000000000000000000000001",
+    "updated_by": "000000000000000000000001",
+    "required": false,
+    "is_deleted": false,
+    "_id": "65369654d436ae0e54147e7b",
+    "validations": [],
+    "created_at": "2023-10-23T15:50:44.143Z",
+    "updated_at": "2023-10-23T15:50:44.143Z"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createCustomObject
+Create custom object entries
+
+
+
+```javascript
+// Promise
+const promise = platformClient.content.createCustomObject({  body : value });
+
+// Async/Await
+const data = await platformClient.content.createCustomObject({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CustomObjectRequestSchema](#CustomObjectRequestSchema) | yes | Request body |
+
+
+Use this API to create the custom object entry.
+
+*Returned Response:*
+
+
+
+
+[CustomObjectSchema](#CustomObjectSchema)
+
+Success. Returns a list of custom objects. Refer `CustomObjectSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "65392bd912376081aafa90ff",
+    "creator": "application",
+    "company_id": "1",
+    "application_id": "000000000000000000000001",
+    "created_by": "000000000000000000000001",
+    "updated_by": "000000000000000000000001",
+    "status": "active",
+    "type": "painter",
+    "display_name": "painter #65392bd912376081aafa90ff",
+    "definition_id": "653907ced878d53c1a502d92",
+    "fields": [
+      {
+        "_id": "65392bd912376081aafa9103",
+        "namespace": "painter",
+        "key": "name",
+        "resource": "metaobject",
+        "resource_id": "65392bd912376081aafa90ff",
+        "type": "string_single_line",
+        "multi_value": false,
+        "company_id": "1",
+        "application_id": "000000000000000000000001",
+        "creator": "application",
+        "invalid_value_errors": [],
+        "has_invalid_values": false,
+        "metaobject_definition_id": "653907ced878d53c1a502d92",
+        "definition_id": "653907ced878d53c1a502d95",
+        "value": [
+          "Batman"
+        ],
+        "created_by": "000000000000000000000001"
+      },
+      {
+        "_id": "65392bd912376081aafa9104",
+        "namespace": "painter",
+        "key": "age",
+        "resource": "metaobject",
+        "resource_id": "65392bd912376081aafa90ff",
+        "type": "integer",
+        "multi_value": false,
+        "company_id": "1",
+        "application_id": "000000000000000000000001",
+        "creator": "application",
+        "invalid_value_errors": [],
+        "has_invalid_values": false,
+        "metaobject_definition_id": "653907ced878d53c1a502d92",
+        "definition_id": "653907ced878d53c1a502d96",
+        "value": [
+          50
+        ],
+        "created_by": "000000000000000000000001"
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createCustomObjectDefinition
+Create custom object definition
+
+
+
+```javascript
+// Promise
+const promise = platformClient.content.createCustomObjectDefinition({  body : value });
+
+// Async/Await
+const data = await platformClient.content.createCustomObjectDefinition({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [CustomObjectDefinitionRequestSchema](#CustomObjectDefinitionRequestSchema) | yes | Request body |
+
+
+Use this API to create custom object defintion
+
+*Returned Response:*
+
+
+
+
+[CustomObjectDefinitionSchema](#CustomObjectDefinitionSchema)
+
+Success. Returns the saved custom object defintion
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "656db530766f951134509542",
+    "name": "customObject1",
+    "type": "customobject1",
+    "display_name_key": "cocustomfield2",
+    "description": "",
+    "creator": "company",
+    "created_by": "bd7223b6727eb087987eece7",
+    "updated_by": "bd7223b6727eb087987eece7",
+    "field_definitions": [
+      {
+        "creator": "company",
+        "resource": "metaobject",
+        "name": "coCustomField1",
+        "namespace": "customobject1",
+        "key": "cocustomfield1",
+        "description": "",
+        "type": "string_single_line",
+        "multi_value": false,
+        "validations": [
+          {
+            "name": "min",
+            "type": "integer",
+            "value": 2
+          },
+          {
+            "name": "max",
+            "type": "integer",
+            "value": 10
+          },
+          {
+            "name": "regex",
+            "type": "string",
+            "value": "^[a-zA-Z]+$"
+          }
+        ],
+        "company_id": "1",
+        "created_by": "bd7223b6727eb087987eece7",
+        "metaobject_definition_id": "656db530766f951134509542",
+        "required": false,
+        "is_deleted": false,
+        "_id": "656db530766f951134509545",
+        "created_at": "2023-12-04T11:17:04.153Z",
+        "updated_at": "2023-12-04T11:17:04.153Z"
+      },
+      {
+        "creator": "company",
+        "resource": "metaobject",
+        "name": "coCustomField2",
+        "namespace": "customobject1",
+        "key": "cocustomfield2",
+        "description": "this is custom field 2 of custom object",
+        "type": "string_single_line",
+        "multi_value": false,
+        "validations": [
+          {
+            "name": "min",
+            "type": "integer",
+            "value": 1
+          },
+          {
+            "name": "max",
+            "type": "integer",
+            "value": 100
+          }
+        ],
+        "company_id": "1",
+        "created_by": "bd7223b6727eb087987eece7",
+        "metaobject_definition_id": "656db530766f951134509542",
+        "required": false,
+        "is_deleted": false,
+        "_id": "656db530766f951134509546",
+        "created_at": "2023-12-04T11:17:04.154Z",
+        "updated_at": "2023-12-04T11:17:04.154Z"
+      }
+    ]
   }
 }
 ```
@@ -1196,6 +2271,61 @@ Success. Refer `PageSchema` for more details.
 ---
 
 
+### createSEOMarkupSchema
+Create a SEO Markup schema Template of a page type for an application
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.createSEOMarkupSchema({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.createSEOMarkupSchema({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [SEOSchemaMarkupTemplateRequestBody](#SEOSchemaMarkupTemplateRequestBody) | yes | Request body |
+
+
+Use this API to create a SEO Markup schema Template inside an application
+
+*Returned Response:*
+
+
+
+
+[SEOSchemaMarkupTemplate](#SEOSchemaMarkupTemplate)
+
+Success. Refer `SEOSchemaMarkupTemplate` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### createSlideshow
 Create a slideshow
 
@@ -1408,6 +2538,207 @@ Success.
 ---
 
 
+### deleteAppCustomFieldDefinition
+Delete custom fields definition.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.deleteAppCustomFieldDefinition({  definitionId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.deleteAppCustomFieldDefinition({  definitionId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| definitionId | string | yes |  |  
+
+
+
+Use this API to delete the definitions of custom fields using definition_id. This will also delete related custom fields entries related to this definition.
+
+*Returned Response:*
+
+
+
+
+[CustomDataDeleteSchema](#CustomDataDeleteSchema)
+
+Success. It will returns the message for delete successfully.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "message": "Metafield definition deleted successfully"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteAppCustomObject
+Delete custom object
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.deleteAppCustomObject({  metaobjectId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.deleteAppCustomObject({  metaobjectId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| metaobjectId | string | yes |  |  
+
+
+
+Use this API to delete the custom object entry by id. This will also delete related custom fields entries related to this custom object.
+
+*Returned Response:*
+
+
+
+
+[CustomDataDeleteSchema](#CustomDataDeleteSchema)
+
+Success. It will returns the message for delete successfully.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "message": "Metafield definition deleted successfully"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteAppCustomObjectDefinition
+delete custom object definition by id
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.deleteAppCustomObjectDefinition({  definitionId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.deleteAppCustomObjectDefinition({  definitionId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| definitionId | string | yes |  |  
+
+
+
+Use this API to delete a custom object definition and related data for your application.
+
+*Returned Response:*
+
+
+
+
+[CustomObjectDefinitionDeleteResponseSchema](#CustomObjectDefinitionDeleteResponseSchema)
+
+Custom object definition details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "message": "MetaObjectDefinition deleted successfully"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### deleteBlog
 Delete blogs
 
@@ -1491,6 +2822,207 @@ Success.
       "created_on": "2021-03-14T06:49:03.945Z",
       "modified_on": "2021-03-14T06:49:03.945Z"
     }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteCustomFieldDefinition
+Delete custom fields definition.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.content.deleteCustomFieldDefinition({  definitionId : value });
+
+// Async/Await
+const data = await platformClient.content.deleteCustomFieldDefinition({  definitionId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| definitionId | string | yes |  |  
+
+
+
+Use this API to delete the definitions of custom fields using definition_id. This will also delete related custom fields entries related to this definition.
+
+*Returned Response:*
+
+
+
+
+[CustomDataDeleteSchema](#CustomDataDeleteSchema)
+
+Success. It will returns the message for delete successfully.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "message": "Metafield definition deleted successfully"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteCustomObject
+Delete custom object
+
+
+
+```javascript
+// Promise
+const promise = platformClient.content.deleteCustomObject({  metaobjectId : value });
+
+// Async/Await
+const data = await platformClient.content.deleteCustomObject({  metaobjectId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| metaobjectId | string | yes |  |  
+
+
+
+Use this API to delete the custom object entry by id. This will also delete related custom fields entries related to this custom object.
+
+*Returned Response:*
+
+
+
+
+[CustomDataDeleteSchema](#CustomDataDeleteSchema)
+
+Success. It will returns the message for delete successfully.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "message": "Metafield definition deleted successfully"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deleteCustomObjectDefinition
+delete custom object definition by id
+
+
+
+```javascript
+// Promise
+const promise = platformClient.content.deleteCustomObjectDefinition({  definitionId : value });
+
+// Async/Await
+const data = await platformClient.content.deleteCustomObjectDefinition({  definitionId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| definitionId | string | yes |  |  
+
+
+
+Use this API to delete a custom object definition and related data for your application.
+
+*Returned Response:*
+
+
+
+
+[CustomObjectDefinitionDeleteResponseSchema](#CustomObjectDefinitionDeleteResponseSchema)
+
+Custom object definition details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "success": true,
+    "message": "MetaObjectDefinition deleted successfully"
   }
 }
 ```
@@ -2213,6 +3745,62 @@ Success.
 ---
 
 
+### deleteSEOMarkupSchema
+delete a particular SEO Markup schema of an application using its id
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.deleteSEOMarkupSchema({  id : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.deleteSEOMarkupSchema({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Alphanumeric ID allotted to a SEO Markup Schema Template created within a business. |  
+
+
+
+Use this API to delete an existing SEO Markup schema an application
+
+*Returned Response:*
+
+
+
+
+[SEOSchemaMarkupTemplate](#SEOSchemaMarkupTemplate)
+
+Success. Refer `SEOSchemaMarkupTemplate` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### deleteSlideshow
 Delete a slideshow
 
@@ -2441,6 +4029,198 @@ Success.
   "__v": 1
 }
 ```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### editSEOMarkupSchema
+Get a particular SEO Markup schema of an application using its id
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.editSEOMarkupSchema({  id : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.editSEOMarkupSchema({  id : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Alphanumeric ID allotted to a SEO Markup Schema Template created within a business. |  
+| body | [SEOSchemaMarkupTemplateRequestBody](#SEOSchemaMarkupTemplateRequestBody) | yes | Request body |
+
+
+Use this API to edit an existing SEO Markup schema an application
+
+*Returned Response:*
+
+
+
+
+[SEOSchemaMarkupTemplate](#SEOSchemaMarkupTemplate)
+
+Success. Refer `SEOSchemaMarkupTemplate` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### exportAppCustomObjectEntries
+Initiate download for bulk custom object entries
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.exportAppCustomObjectEntries({  definitionId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.exportAppCustomObjectEntries({  definitionId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| definitionId | string | yes |  |  
+
+
+
+Use this api to initiate download of bulk entries
+
+*Returned Response:*
+
+
+
+
+[CustomObjectBulkEntryInitiateDownload](#CustomObjectBulkEntryInitiateDownload)
+
+Success. Initiates bulk entries download 
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "message": "Bulk download of Meta Objects started successfully",
+    "task_id": "65702d2aa20cc45d3f258358"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### exportCustomObjectEntries
+Initiate download for bulk custom object entries
+
+
+
+```javascript
+// Promise
+const promise = platformClient.content.exportCustomObjectEntries({  definitionId : value });
+
+// Async/Await
+const data = await platformClient.content.exportCustomObjectEntries({  definitionId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| definitionId | string | yes |  |  
+
+
+
+Use this api to initiate download of bulk entries
+
+*Returned Response:*
+
+
+
+
+[CustomObjectBulkEntryInitiateDownload](#CustomObjectBulkEntryInitiateDownload)
+
+Success. Initiates bulk entries download 
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "message": "Bulk download of Meta Objects started successfully",
+    "task_id": "65702d2aa20cc45d3f258358"
+  }
+}
+```
+</details>
+
 </details>
 
 
@@ -2730,6 +4510,1564 @@ Success. Refer `GetAnnouncementListSchema` for more details.
       "item_total": 1,
       "has_next": false
     }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getAppCustomFieldDefinition
+Get custom fields definition by id
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getAppCustomFieldDefinition({  definitionId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getAppCustomFieldDefinition({  definitionId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| definitionId | string | yes |  |  
+
+
+
+Use this API to retrieve the definitions of custom fields using definition_id.
+
+*Returned Response:*
+
+
+
+
+[CustomFieldDefinitionDetailResSchema](#CustomFieldDefinitionDetailResSchema)
+
+Success. Returns a object of custom field definition. Refer `CustomFieldDefinitionsSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "_id": "652e183347320aa8d8c28361",
+        "creator": "company",
+        "resource": "product",
+        "name": "new meta object",
+        "namespace": "custom",
+        "key": "new-meta-object",
+        "description": "",
+        "type": "metaobject",
+        "multi_value": false,
+        "validations": [
+          {
+            "name": "metaobject_definition_id",
+            "type": "string",
+            "value": "652e1298b6ece12d06684c18"
+          }
+        ],
+        "company_id": "2",
+        "created_by": "5e5796c4fc10a0d133839372",
+        "updated_by": "5e5796c4fc10a0d133839372",
+        "required": false,
+        "is_deleted": false,
+        "created_at": "2023-10-17T05:14:27.960Z",
+        "updated_at": "2023-10-17T05:14:27.960Z",
+        "type_name": "Custom Object",
+        "invalid_fields_count": 0
+      },
+      {
+        "_id": "652826cd99822ff1f62cbf13",
+        "creator": "company",
+        "resource": "product",
+        "name": "single image",
+        "namespace": "custom",
+        "key": "single-image",
+        "description": "this is single",
+        "type": "file",
+        "multi_value": false,
+        "validations": [
+          {
+            "name": "file_type_options",
+            "type": "string_array",
+            "value": [
+              "image",
+              "audio",
+              "video",
+              "document",
+              "pdf"
+            ]
+          }
+        ],
+        "company_id": "2",
+        "created_by": "5e5796c4fc10a0d133839372",
+        "updated_by": "5e5796c4fc10a0d133839372",
+        "required": false,
+        "is_deleted": false,
+        "created_at": "2023-10-12T17:03:09.868Z",
+        "updated_at": "2023-10-12T17:03:09.868Z",
+        "type_name": "File",
+        "invalid_fields_count": 0
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 10,
+      "item_total": 15,
+      "has_next": true
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getAppCustomFieldDefinitions
+Get custom fields definitions
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getAppCustomFieldDefinitions({  pageNo : value,
+ pageSize : value,
+ resource : value,
+ type : value,
+ search : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getAppCustomFieldDefinitions({  pageNo : value,
+ pageSize : value,
+ resource : value,
+ type : value,
+ search : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| pageNo | string | yes |  |   
+| pageSize | string | yes |  |    
+| resource | string | no |  |    
+| type | string | no |  |    
+| search | string | no |  |  
+
+
+
+Use this API to retrieve the definitions of custom fields.
+
+*Returned Response:*
+
+
+
+
+[CustomFieldDefinitionsSchema](#CustomFieldDefinitionsSchema)
+
+Success. Returns a list of custom fields definitions. Refer `CustomFieldDefinitionsSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "_id": "652e183347320aa8d8c28361",
+        "creator": "company",
+        "resource": "product",
+        "name": "new meta object",
+        "namespace": "custom",
+        "key": "new-meta-object",
+        "description": "",
+        "type": "metaobject",
+        "multi_value": false,
+        "validations": [
+          {
+            "name": "metaobject_definition_id",
+            "type": "string",
+            "value": "652e1298b6ece12d06684c18"
+          }
+        ],
+        "company_id": "2",
+        "created_by": "5e5796c4fc10a0d133839372",
+        "updated_by": "5e5796c4fc10a0d133839372",
+        "required": false,
+        "is_deleted": false,
+        "created_at": "2023-10-17T05:14:27.960Z",
+        "updated_at": "2023-10-17T05:14:27.960Z",
+        "type_name": "Custom Object",
+        "invalid_fields_count": 0
+      },
+      {
+        "_id": "652826cd99822ff1f62cbf13",
+        "creator": "company",
+        "resource": "product",
+        "name": "single image",
+        "namespace": "custom",
+        "key": "single-image",
+        "description": "this is single",
+        "type": "file",
+        "multi_value": false,
+        "validations": [
+          {
+            "name": "file_type_options",
+            "type": "string_array",
+            "value": [
+              "image",
+              "audio",
+              "video",
+              "document",
+              "pdf"
+            ]
+          }
+        ],
+        "company_id": "2",
+        "created_by": "5e5796c4fc10a0d133839372",
+        "updated_by": "5e5796c4fc10a0d133839372",
+        "required": false,
+        "is_deleted": false,
+        "created_at": "2023-10-12T17:03:09.868Z",
+        "updated_at": "2023-10-12T17:03:09.868Z",
+        "type_name": "File",
+        "invalid_fields_count": 0
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 10,
+      "item_total": 15,
+      "has_next": true
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getAppCustomFieldTypes
+Get custom field types
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getAppCustomFieldTypes();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getAppCustomFieldTypes();
+```
+
+
+
+
+
+
+Use this API to retrieve the custom field types 
+
+*Returned Response:*
+
+
+
+
+[CustomObjectByIdSchema](#CustomObjectByIdSchema)
+
+Success. Returns all custom field types. 
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "metafield_types": {
+      "string_single_line": {
+        "name": "Single Line Text",
+        "list_enabled": true,
+        "category": "TEXT",
+        "type": "string",
+        "supported_validations": [
+          {
+            "name": "min",
+            "type": "integer",
+            "display": "Minimum Characters"
+          },
+          {
+            "name": "max",
+            "type": "integer",
+            "display": "Maximum Characters"
+          },
+          {
+            "name": "regex",
+            "type": "string",
+            "display": "Regular Expression",
+            "meta": {
+              "examples": [
+                {
+                  "name": "Alphabet Characters",
+                  "value": "^[a-zA-Z]+$"
+                },
+                {
+                  "name": "Alphanumeric Characters",
+                  "value": "^[a-zA-Z0-9]+$"
+                },
+                {
+                  "name": "Numeric Characters",
+                  "value": "^[0-9]+$"
+                },
+                {
+                  "name": "Email Address",
+                  "value": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+                }
+              ]
+            }
+          },
+          {
+            "name": "choices",
+            "type": "string_array",
+            "display": "Choices"
+          }
+        ]
+      },
+      "string_multi_line": {
+        "name": "Multi Line Text",
+        "list_enabled": true,
+        "category": "TEXT",
+        "type": "string",
+        "supported_validations": [
+          {
+            "name": "min",
+            "type": "integer",
+            "display": "Minimum Characters"
+          },
+          {
+            "name": "max",
+            "type": "integer",
+            "display": "Maximum Characters"
+          }
+        ]
+      },
+      "dropdown": {
+        "name": "Dropdown",
+        "list_enabled": true,
+        "category": "TEXT",
+        "type": "string",
+        "supported_validations": [
+          {
+            "name": "choices",
+            "type": "string_array",
+            "display": "Choices",
+            "required": true
+          }
+        ]
+      },
+      "integer": {
+        "name": "Integer",
+        "list_enabled": true,
+        "type": "integer",
+        "category": "NUMBER",
+        "supported_validations": [
+          {
+            "name": "min",
+            "type": "integer",
+            "display": "Minimum Value"
+          },
+          {
+            "name": "max",
+            "type": "integer",
+            "display": "Maximum Value"
+          },
+          {
+            "name": "choices",
+            "type": "integer_array",
+            "display": "Choices"
+          }
+        ]
+      },
+      "float_type": {
+        "name": "Decimal",
+        "list_enabled": true,
+        "type": "float",
+        "category": "NUMBER",
+        "supported_validations": [
+          {
+            "name": "min",
+            "type": "float",
+            "display": "Minimum Value"
+          },
+          {
+            "name": "max",
+            "type": "float",
+            "display": "Maximum Value"
+          },
+          {
+            "name": "choices",
+            "type": "float_array",
+            "display": "Choices"
+          }
+        ]
+      },
+      "boolean_type": {
+        "name": "Boolean",
+        "category": "TRUE_FALSE",
+        "list_enabled": false,
+        "type": "boolean",
+        "supported_validations": []
+      },
+      "date": {
+        "name": "Date",
+        "list_enabled": true,
+        "category": "DATETIME",
+        "type": "date",
+        "supported_validations": [
+          {
+            "name": "min",
+            "type": "date",
+            "display": "From Date"
+          },
+          {
+            "name": "max",
+            "type": "date",
+            "display": "To Date"
+          }
+        ]
+      },
+      "datetime": {
+        "name": "Date - Time",
+        "category": "DATETIME",
+        "list_enabled": true,
+        "type": "datetime",
+        "supported_validations": [
+          {
+            "name": "min",
+            "type": "date",
+            "display": "From Date & Time"
+          },
+          {
+            "name": "max",
+            "type": "date",
+            "display": "To Date & Time"
+          }
+        ]
+      },
+      "json": {
+        "name": "JSON",
+        "list_enabled": false,
+        "category": "ADVANCED",
+        "type": "json",
+        "supported_validations": [
+          {
+            "name": "schema",
+            "type": "json",
+            "display": "JSON Schema"
+          }
+        ]
+      },
+      "file": {
+        "name": "File",
+        "category": "REFERENCE",
+        "list_enabled": true,
+        "type": "string",
+        "supported_validations": [
+          {
+            "name": "file_type_options",
+            "type": "string_array",
+            "meta": {
+              "options": [
+                {
+                  "image": {
+                    "supported_types": [
+                      "jpeg",
+                      "jpg",
+                      "png",
+                      "svg+xml",
+                      "tiff",
+                      "webp",
+                      "gif"
+                    ],
+                    "max_size": 20971520
+                  },
+                  "video": {
+                    "supported_types": [
+                      "x-flv",
+                      "mp4",
+                      "x-mpegURL",
+                      "MP2T",
+                      "3gpp",
+                      "/quicktime",
+                      "x-msvideo",
+                      "x-ms-wmv",
+                      "webm"
+                    ],
+                    "max_size": 1048576000
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "url": {
+        "name": "URL",
+        "list_enabled": true,
+        "type": "string",
+        "supported_validations": [
+          {
+            "name": "allowed_domains",
+            "display": "Allowed Domains",
+            "type": "string_array"
+          }
+        ]
+      },
+      "metaobject": {
+        "name": "Custom Object",
+        "list_enabled": true,
+        "category": "REFERENCE",
+        "type": "string",
+        "supported_validations": [
+          {
+            "name": "metaobject_definition_id",
+            "display": "Reference",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      "product": {
+        "name": "Product",
+        "list_enabled": true,
+        "category": "REFERENCE",
+        "type": "string",
+        "supported_validations": [],
+        "scope": [
+          "company",
+          "application"
+        ]
+      }
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getAppCustomFields
+Get list of custom fields of given resource
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getAppCustomFields({  resource : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getAppCustomFields({  resource : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| resource | string | yes |  |  
+
+
+
+Use this API to retrieve the custom fields for given resource in param.
+
+*Returned Response:*
+
+
+
+
+[CustomFieldsResponseSchema](#CustomFieldsResponseSchema)
+
+Success. Returns a list of custom fields. Refer `CustomFieldsResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "_id": "652f8c5b6c1643cbd1659d88",
+        "namespace": "product_test_2",
+        "key": "manufacturer",
+        "resource": "product",
+        "creator": "company",
+        "value": [
+          "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/general/free/original/NWt9CSoYbo-airtel_money.png",
+          "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/general/free/original/QqkJBM4IQL-amazon-pay.png",
+          "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/general/free/original/2Ed7Pk03Z-amex.png"
+        ],
+        "resource_id": "64bb987e9a3c4b6c29d676bc",
+        "type": "file",
+        "multi_value": true,
+        "company_id": "1",
+        "definition_id": "650c4ea3e0e7980d14c16c06",
+        "has_invalid_values": false,
+        "invalid_value_errors": [],
+        "created_by": "000000000000000000000001",
+        "is_deleted": false,
+        "created_at": "2023-10-18T07:42:19.551Z",
+        "updated_at": "2023-10-18T07:42:19.551Z"
+      },
+      {
+        "_id": "652f8b4628dd2571fe5e90d8",
+        "namespace": "product_test_1",
+        "key": "manufacturer",
+        "resource": "product",
+        "creator": "company",
+        "value": [
+          "this",
+          "is",
+          "testing"
+        ],
+        "resource_id": "64ba480fdf9cbe3a90b052f4",
+        "type": "string_single_line",
+        "multi_value": true,
+        "company_id": "1",
+        "definition_id": "650ae0d67f9c7b2a7d56b409",
+        "has_invalid_values": false,
+        "invalid_value_errors": [],
+        "created_by": "000000000000000000000001",
+        "is_deleted": false,
+        "created_at": "2023-10-18T07:37:42.797Z",
+        "updated_at": "2023-10-18T07:37:42.797Z"
+      },
+      {
+        "_id": "652f8b4628dd2571fe5e90d7",
+        "namespace": "product_test",
+        "key": "manufacturer",
+        "resource": "product",
+        "creator": "company",
+        "value": [
+          "kuldeep",
+          "kumar",
+          "harshwal"
+        ],
+        "resource_id": "64ba32fbdf9cbe3a90b052f0",
+        "type": "string_single_line",
+        "multi_value": true,
+        "company_id": "1",
+        "definition_id": "650ae0b27f9c7b2a7d56b407",
+        "has_invalid_values": false,
+        "invalid_value_errors": [],
+        "created_by": "000000000000000000000001",
+        "is_deleted": false,
+        "created_at": "2023-10-18T07:37:42.796Z",
+        "updated_at": "2023-10-18T07:37:42.796Z"
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 20,
+      "item_total": 3,
+      "has_next": false
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getAppCustomFieldsByResourceId
+Get list of custom fields of given resource and resource id
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getAppCustomFieldsByResourceId({  resource : value,
+ resourceId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getAppCustomFieldsByResourceId({  resource : value,
+ resourceId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| resource | string | yes |  |   
+| resourceId | string | yes |  |  
+
+
+
+Use this API to retrieve the custom fields for given resource in param.
+
+*Returned Response:*
+
+
+
+
+[CustomFieldsResponseByResourceIdSchema](#CustomFieldsResponseByResourceIdSchema)
+
+Success. Returns a list of custom fields. Refer `CustomFieldsResponseByResourceIdSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "_id": "65705772a20cc45d3f2585b3",
+        "namespace": "custom",
+        "key": "designer-name",
+        "resource": "product",
+        "creator": "company",
+        "value": [
+          "ramsons"
+        ],
+        "resource_id": "7612437",
+        "type": "string_single_line",
+        "multi_value": false,
+        "company_id": "2",
+        "definition_id": "65604cdb6a78c23f082c850b",
+        "has_invalid_values": false,
+        "invalid_value_errors": [],
+        "created_by": "bd7223b6727eb087987eece7",
+        "is_deleted": false,
+        "created_at": "2023-12-06T11:13:54.217Z",
+        "updated_at": "2023-12-06T11:19:02.311Z",
+        "updated_by": "bd7223b6727eb087987eece7"
+      },
+      {
+        "_id": "65705772a20cc45d3f2585b4",
+        "namespace": "custom",
+        "key": "manufactures",
+        "resource": "product",
+        "creator": "company",
+        "value": [
+          "kartik"
+        ],
+        "resource_id": "7612437",
+        "type": "string_single_line",
+        "multi_value": false,
+        "company_id": "2",
+        "definition_id": "655f53ddca37f5deb832a185",
+        "has_invalid_values": false,
+        "invalid_value_errors": [],
+        "created_by": "bd7223b6727eb087987eece7",
+        "is_deleted": false,
+        "created_at": "2023-12-06T11:13:54.218Z",
+        "updated_at": "2023-12-06T11:19:02.311Z",
+        "updated_by": "bd7223b6727eb087987eece7"
+      },
+      {
+        "_id": "65705772a20cc45d3f2585b1",
+        "namespace": "custom",
+        "key": "product-designer",
+        "resource": "product",
+        "creator": "company",
+        "value": [
+          "65702b4574c5764716ee671d"
+        ],
+        "resource_id": "7612437",
+        "type": "metaobject",
+        "multi_value": true,
+        "company_id": "2",
+        "definition_id": "656d6bc9766f9511345091a6",
+        "has_invalid_values": false,
+        "invalid_value_errors": [],
+        "created_by": "bd7223b6727eb087987eece7",
+        "is_deleted": false,
+        "created_at": "2023-12-06T11:13:54.217Z",
+        "updated_at": "2023-12-06T11:19:02.311Z",
+        "updated_by": "bd7223b6727eb087987eece7"
+      },
+      {
+        "_id": "65705772a20cc45d3f2585b2",
+        "namespace": "custom",
+        "key": "validation-check",
+        "resource": "product",
+        "creator": "company",
+        "value": [
+          "ram"
+        ],
+        "resource_id": "7612437",
+        "type": "string_single_line",
+        "multi_value": false,
+        "company_id": "2",
+        "definition_id": "656866a30152b0584464d547",
+        "has_invalid_values": false,
+        "invalid_value_errors": [],
+        "created_by": "bd7223b6727eb087987eece7",
+        "is_deleted": false,
+        "created_at": "2023-12-06T11:13:54.217Z",
+        "updated_at": "2023-12-06T11:19:02.311Z",
+        "updated_by": "bd7223b6727eb087987eece7"
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getAppCustomObject
+Get custom object details
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getAppCustomObject({  metaobjectId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getAppCustomObject({  metaobjectId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| metaobjectId | string | yes |  |  
+
+
+
+Use this API to retrieve the custom object details and their fields details and definitions and references.
+
+*Returned Response:*
+
+
+
+
+[CustomObjectByIdSchema](#CustomObjectByIdSchema)
+
+Success. Returns a custom object. Refer `CustomObjectByIdSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "653929f012376081aafa90f1",
+    "status": "active",
+    "display_name": "painter #653929f012376081aafa90f1",
+    "definition": {
+      "_id": "653907ced878d53c1a502d92",
+      "name": "painter",
+      "type": "painter"
+    },
+    "references": [],
+    "fields": [
+      {
+        "_id": "653929f012376081aafa90f5",
+        "key": "name",
+        "value": [
+          "Bruce Wayne"
+        ],
+        "type": "string_single_line",
+        "definition_id": "653907ced878d53c1a502d95"
+      },
+      {
+        "_id": "653929f012376081aafa90f6",
+        "key": "age",
+        "value": [
+          5
+        ],
+        "type": "integer",
+        "definition_id": "653907ced878d53c1a502d96"
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getAppCustomObjectDefinition
+get custom object definition by id
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getAppCustomObjectDefinition({  definitionId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getAppCustomObjectDefinition({  definitionId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| definitionId | string | yes |  |  
+
+
+
+Use this API to update a custom object definition for your application.
+
+*Returned Response:*
+
+
+
+
+[CustomObjectDefinitionSchema](#CustomObjectDefinitionSchema)
+
+Custom object definition details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "656d67de766f95113450917b",
+    "name": "Designer",
+    "type": "designer",
+    "display_name_key": "name",
+    "description": "",
+    "creator": "company",
+    "created_by": "9759643b65ebc6bacb5275f5",
+    "updated_by": "bd7223b6727eb087987eece7",
+    "field_definitions": [
+      {
+        "creator": "company",
+        "resource": "metaobject",
+        "name": "city2",
+        "namespace": "designer",
+        "key": "city",
+        "type": "string_single_line",
+        "description": "",
+        "multi_value": false,
+        "validations": [],
+        "company_id": "2",
+        "metaobject_definition_id": "656d67de766f95113450917b",
+        "required": false
+      },
+      {
+        "creator": "company",
+        "resource": "metaobject",
+        "name": "mobile",
+        "namespace": "designer",
+        "key": "mobile",
+        "type": "string_single_line",
+        "description": "",
+        "multi_value": false,
+        "validations": [],
+        "company_id": "2",
+        "metaobject_definition_id": "656d67de766f95113450917b",
+        "required": false
+      },
+      {
+        "creator": "company",
+        "resource": "metaobject",
+        "name": "name",
+        "namespace": "designer",
+        "key": "name",
+        "type": "string_single_line",
+        "description": "This is name of designer",
+        "multi_value": false,
+        "validations": [],
+        "company_id": "2",
+        "metaobject_definition_id": "656d67de766f95113450917b",
+        "required": true
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getAppCustomObjectDefinitions
+Get custom object definitions
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getAppCustomObjectDefinitions({  pageNo : value,
+ pageSize : value,
+ search : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getAppCustomObjectDefinitions({  pageNo : value,
+ pageSize : value,
+ search : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| pageNo | string | yes |  |   
+| pageSize | string | yes |  |    
+| search | string | no |  |  
+
+
+
+Use this API to retrieve the custom object definitions
+
+*Returned Response:*
+
+
+
+
+[CustomObjectDefinitionsSchema](#CustomObjectDefinitionsSchema)
+
+Success. Returns a list custom object definitions.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "_id": "656db530766f951134509542",
+        "name": "customObject1",
+        "type": "customobject1",
+        "updated_at": "2023-12-04T11:17:04.136Z",
+        "entries_count": 0,
+        "fields_count": 2
+      },
+      {
+        "_id": "656db2d9766f95113450952b",
+        "name": "sample",
+        "type": "sample",
+        "updated_at": "2023-12-04T11:07:05.705Z",
+        "entries_count": 0,
+        "fields_count": 1
+      },
+      {
+        "_id": "656495b58d3278a7c24260f8",
+        "name": "address",
+        "type": "address",
+        "updated_at": "2023-11-27T13:12:21.999Z",
+        "entries_count": 1,
+        "fields_count": 3
+      },
+      {
+        "_id": "655c706ad5ff69fd3b95a1d9",
+        "name": "coCustomObject",
+        "type": "cocustomobject",
+        "updated_at": "2023-11-21T08:55:06.013Z",
+        "entries_count": 0,
+        "fields_count": 2
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 10,
+      "item_total": 4,
+      "has_next": false
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getAppCustomObjects
+Get list of custom objects
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getAppCustomObjects({  pageNo : value,
+ pageSize : value,
+ definitionId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getAppCustomObjects({  pageNo : value,
+ pageSize : value,
+ definitionId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| definitionId | string | no |  |   
+| pageNo | string | yes |  |   
+| pageSize | string | yes |  |  
+
+
+
+Use this API to retrieve the custom objects.
+
+*Returned Response:*
+
+
+
+
+[CustomObjectsSchema](#CustomObjectsSchema)
+
+Success. Returns a list of custom objects. Refer `CustomObjectsSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "_id": "653929f012376081aafa90f1",
+        "definition_id": "653907ced878d53c1a502d92",
+        "status": "active",
+        "updated_at": "2023-10-25T14:45:04.446Z",
+        "display_name": "painter #653929f012376081aafa90f1",
+        "definition": {
+          "_id": "653907ced878d53c1a502d92",
+          "name": "painter",
+          "type": "painter"
+        },
+        "references": 0
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 10,
+      "item_total": 1,
+      "has_next": false
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getAppJobs
+Fetch bulk import and export job list.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getAppJobs({  page : value,
+ pageSize : value,
+ actionType : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getAppJobs({  page : value,
+ pageSize : value,
+ actionType : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| page | string | yes |  |   
+| pageSize | string | yes |  |   
+| actionType | string | yes |  |  
+
+
+
+Use this api to get list of jobs of bulk import and exports
+
+*Returned Response:*
+
+
+
+
+[CustomObjectBulkEntry](#CustomObjectBulkEntry)
+
+Success. Returns all bulk entries history. 
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "_id": "6570124da20cc45d3f2582a7",
+        "jobs": [
+          "2311"
+        ],
+        "finished_jobs": [
+          "2311"
+        ],
+        "error_jobs": [],
+        "errors_occured": [],
+        "company_id": "2",
+        "creator": "company",
+        "URL": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/custom-data/CustomObject-designer-import-6570124da20cc45d3f2582a7.csv",
+        "status": "completed",
+        "action_type": "upload",
+        "entity": "metaobject",
+        "error_url": "",
+        "finished_count": 0,
+        "error_count": 0,
+        "success_count": 0,
+        "total_jobs": 1,
+        "meta": {
+          "mo_total_count": 2,
+          "mo_success_count": 2,
+          "mo_error_count": 0,
+          "mo_defintion_type": "designer"
+        },
+        "created_by": "bd7223b6727eb087987eece7",
+        "created_at": "2023-12-06T06:18:53.219Z",
+        "updated_at": "2023-12-06T06:20:23.560Z",
+        "id": "6570124da20cc45d3f2582a7"
+      },
+      {
+        "_id": "6558b8c49340c43a7015b4af",
+        "jobs": [
+          "2297"
+        ],
+        "finished_jobs": [
+          "2297"
+        ],
+        "error_jobs": [],
+        "errors_occured": [],
+        "company_id": "2",
+        "creator": "company",
+        "URL": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/custom-data/CustomObject-kuldeep-custom-import-6558b8c49340c43a7015b4af.csv",
+        "status": "completed",
+        "action_type": "upload",
+        "entity": "metaobject",
+        "error_url": "",
+        "finished_count": 0,
+        "error_count": 0,
+        "success_count": 0,
+        "total_jobs": 1,
+        "meta": {
+          "mo_total_count": 1,
+          "mo_success_count": 0,
+          "mo_error_count": 1,
+          "mo_defintion_type": "kuldeep-custom"
+        },
+        "created_by": "9759643b65ebc6bacb5275f5",
+        "created_at": "2023-11-18T13:14:44.360Z",
+        "updated_at": "2023-11-18T13:17:19.765Z",
+        "id": "6558b8c49340c43a7015b4af"
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 20,
+      "item_total": 2,
+      "has_next": false
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getAppResources
+Get resources
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getAppResources();
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getAppResources();
+```
+
+
+
+
+
+
+Use this API to retrieve the resources, such as products, collections, customers, selling locations, etc.
+
+*Returned Response:*
+
+
+
+
+[ResourcesSchema](#ResourcesSchema)
+
+Success. Returns a JSON object of resources. Refer `ResourcesSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "resources": [
+      {
+        "name": "product",
+        "key": "product",
+        "definitions_count": 0
+      },
+      {
+        "name": "Collection",
+        "key": "collection",
+        "definitions_count": 0
+      },
+      {
+        "name": "Page",
+        "key": "page",
+        "definitions_count": 0
+      },
+      {
+        "name": "Blog",
+        "key": "blog",
+        "definitions_count": 0
+      },
+      {
+        "name": "Customer",
+        "key": "customer",
+        "definitions_count": 0
+      },
+      {
+        "name": "Store",
+        "key": "store",
+        "definitions_count": 0
+      }
+    ]
   }
 }
 ```
@@ -3058,6 +6396,1328 @@ Success. Returns a a JSON object with components. Refer `BlogSchema` for more de
 ---
 
 
+### getCustomFieldDefinition
+Get custom fields definition by id
+
+
+
+```javascript
+// Promise
+const promise = platformClient.content.getCustomFieldDefinition({  definitionId : value });
+
+// Async/Await
+const data = await platformClient.content.getCustomFieldDefinition({  definitionId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| definitionId | string | yes |  |  
+
+
+
+Use this API to retrieve the definitions of custom fields using definition_id.
+
+*Returned Response:*
+
+
+
+
+[CustomFieldDefinitionDetailResSchema](#CustomFieldDefinitionDetailResSchema)
+
+Success. Returns a object of custom field definition. Refer `CustomFieldDefinitionsSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "_id": "652e183347320aa8d8c28361",
+        "creator": "company",
+        "resource": "product",
+        "name": "new meta object",
+        "namespace": "custom",
+        "key": "new-meta-object",
+        "description": "",
+        "type": "metaobject",
+        "multi_value": false,
+        "validations": [
+          {
+            "name": "metaobject_definition_id",
+            "type": "string",
+            "value": "652e1298b6ece12d06684c18"
+          }
+        ],
+        "company_id": "2",
+        "created_by": "5e5796c4fc10a0d133839372",
+        "updated_by": "5e5796c4fc10a0d133839372",
+        "required": false,
+        "is_deleted": false,
+        "created_at": "2023-10-17T05:14:27.960Z",
+        "updated_at": "2023-10-17T05:14:27.960Z",
+        "type_name": "Custom Object",
+        "invalid_fields_count": 0
+      },
+      {
+        "_id": "652826cd99822ff1f62cbf13",
+        "creator": "company",
+        "resource": "product",
+        "name": "single image",
+        "namespace": "custom",
+        "key": "single-image",
+        "description": "this is single",
+        "type": "file",
+        "multi_value": false,
+        "validations": [
+          {
+            "name": "file_type_options",
+            "type": "string_array",
+            "value": [
+              "image",
+              "audio",
+              "video",
+              "document",
+              "pdf"
+            ]
+          }
+        ],
+        "company_id": "2",
+        "created_by": "5e5796c4fc10a0d133839372",
+        "updated_by": "5e5796c4fc10a0d133839372",
+        "required": false,
+        "is_deleted": false,
+        "created_at": "2023-10-12T17:03:09.868Z",
+        "updated_at": "2023-10-12T17:03:09.868Z",
+        "type_name": "File",
+        "invalid_fields_count": 0
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 10,
+      "item_total": 15,
+      "has_next": true
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getCustomFieldDefinitions
+Get custom fields definitions
+
+
+
+```javascript
+// Promise
+const promise = platformClient.content.getCustomFieldDefinitions({  pageNo : value,
+ pageSize : value,
+ resource : value,
+ type : value,
+ search : value });
+
+// Async/Await
+const data = await platformClient.content.getCustomFieldDefinitions({  pageNo : value,
+ pageSize : value,
+ resource : value,
+ type : value,
+ search : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| pageNo | string | yes |  |   
+| pageSize | string | yes |  |    
+| resource | string | no |  |    
+| type | string | no |  |    
+| search | string | no |  |  
+
+
+
+Use this API to retrieve the definitions of custom fields.
+
+*Returned Response:*
+
+
+
+
+[CustomFieldDefinitionsSchema](#CustomFieldDefinitionsSchema)
+
+Success. Returns a list of custom fields definitions. Refer `CustomFieldDefinitionsSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "_id": "652e183347320aa8d8c28361",
+        "creator": "company",
+        "resource": "product",
+        "name": "new meta object",
+        "namespace": "custom",
+        "key": "new-meta-object",
+        "description": "",
+        "type": "metaobject",
+        "multi_value": false,
+        "validations": [
+          {
+            "name": "metaobject_definition_id",
+            "type": "string",
+            "value": "652e1298b6ece12d06684c18"
+          }
+        ],
+        "company_id": "2",
+        "created_by": "5e5796c4fc10a0d133839372",
+        "updated_by": "5e5796c4fc10a0d133839372",
+        "required": false,
+        "is_deleted": false,
+        "created_at": "2023-10-17T05:14:27.960Z",
+        "updated_at": "2023-10-17T05:14:27.960Z",
+        "type_name": "Custom Object",
+        "invalid_fields_count": 0
+      },
+      {
+        "_id": "652826cd99822ff1f62cbf13",
+        "creator": "company",
+        "resource": "product",
+        "name": "single image",
+        "namespace": "custom",
+        "key": "single-image",
+        "description": "this is single",
+        "type": "file",
+        "multi_value": false,
+        "validations": [
+          {
+            "name": "file_type_options",
+            "type": "string_array",
+            "value": [
+              "image",
+              "audio",
+              "video",
+              "document",
+              "pdf"
+            ]
+          }
+        ],
+        "company_id": "2",
+        "created_by": "5e5796c4fc10a0d133839372",
+        "updated_by": "5e5796c4fc10a0d133839372",
+        "required": false,
+        "is_deleted": false,
+        "created_at": "2023-10-12T17:03:09.868Z",
+        "updated_at": "2023-10-12T17:03:09.868Z",
+        "type_name": "File",
+        "invalid_fields_count": 0
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 10,
+      "item_total": 15,
+      "has_next": true
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getCustomFieldTypes
+Get custom field types
+
+
+
+```javascript
+// Promise
+const promise = platformClient.content.getCustomFieldTypes();
+
+// Async/Await
+const data = await platformClient.content.getCustomFieldTypes();
+```
+
+
+
+
+
+
+Use this API to retrieve the custom field types 
+
+*Returned Response:*
+
+
+
+
+[CustomObjectByIdSchema](#CustomObjectByIdSchema)
+
+Success. Returns all custom field types. 
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "metafield_types": {
+      "string_single_line": {
+        "name": "Single Line Text",
+        "list_enabled": true,
+        "category": "TEXT",
+        "type": "string",
+        "supported_validations": [
+          {
+            "name": "min",
+            "type": "integer",
+            "display": "Minimum Characters"
+          },
+          {
+            "name": "max",
+            "type": "integer",
+            "display": "Maximum Characters"
+          },
+          {
+            "name": "regex",
+            "type": "string",
+            "display": "Regular Expression",
+            "meta": {
+              "examples": [
+                {
+                  "name": "Alphabet Characters",
+                  "value": "^[a-zA-Z]+$"
+                },
+                {
+                  "name": "Alphanumeric Characters",
+                  "value": "^[a-zA-Z0-9]+$"
+                },
+                {
+                  "name": "Numeric Characters",
+                  "value": "^[0-9]+$"
+                },
+                {
+                  "name": "Email Address",
+                  "value": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+                }
+              ]
+            }
+          },
+          {
+            "name": "choices",
+            "type": "string_array",
+            "display": "Choices"
+          }
+        ]
+      },
+      "string_multi_line": {
+        "name": "Multi Line Text",
+        "list_enabled": true,
+        "category": "TEXT",
+        "type": "string",
+        "supported_validations": [
+          {
+            "name": "min",
+            "type": "integer",
+            "display": "Minimum Characters"
+          },
+          {
+            "name": "max",
+            "type": "integer",
+            "display": "Maximum Characters"
+          }
+        ]
+      },
+      "dropdown": {
+        "name": "Dropdown",
+        "list_enabled": true,
+        "category": "TEXT",
+        "type": "string",
+        "supported_validations": [
+          {
+            "name": "choices",
+            "type": "string_array",
+            "display": "Choices",
+            "required": true
+          }
+        ]
+      },
+      "integer": {
+        "name": "Integer",
+        "list_enabled": true,
+        "type": "integer",
+        "category": "NUMBER",
+        "supported_validations": [
+          {
+            "name": "min",
+            "type": "integer",
+            "display": "Minimum Value"
+          },
+          {
+            "name": "max",
+            "type": "integer",
+            "display": "Maximum Value"
+          },
+          {
+            "name": "choices",
+            "type": "integer_array",
+            "display": "Choices"
+          }
+        ]
+      },
+      "float_type": {
+        "name": "Decimal",
+        "list_enabled": true,
+        "type": "float",
+        "category": "NUMBER",
+        "supported_validations": [
+          {
+            "name": "min",
+            "type": "float",
+            "display": "Minimum Value"
+          },
+          {
+            "name": "max",
+            "type": "float",
+            "display": "Maximum Value"
+          },
+          {
+            "name": "choices",
+            "type": "float_array",
+            "display": "Choices"
+          }
+        ]
+      },
+      "boolean_type": {
+        "name": "Boolean",
+        "category": "TRUE_FALSE",
+        "list_enabled": false,
+        "type": "boolean",
+        "supported_validations": []
+      },
+      "date": {
+        "name": "Date",
+        "list_enabled": true,
+        "category": "DATETIME",
+        "type": "date",
+        "supported_validations": [
+          {
+            "name": "min",
+            "type": "date",
+            "display": "From Date"
+          },
+          {
+            "name": "max",
+            "type": "date",
+            "display": "To Date"
+          }
+        ]
+      },
+      "datetime": {
+        "name": "Date - Time",
+        "category": "DATETIME",
+        "list_enabled": true,
+        "type": "datetime",
+        "supported_validations": [
+          {
+            "name": "min",
+            "type": "date",
+            "display": "From Date & Time"
+          },
+          {
+            "name": "max",
+            "type": "date",
+            "display": "To Date & Time"
+          }
+        ]
+      },
+      "json": {
+        "name": "JSON",
+        "list_enabled": false,
+        "category": "ADVANCED",
+        "type": "json",
+        "supported_validations": [
+          {
+            "name": "schema",
+            "type": "json",
+            "display": "JSON Schema"
+          }
+        ]
+      },
+      "file": {
+        "name": "File",
+        "category": "REFERENCE",
+        "list_enabled": true,
+        "type": "string",
+        "supported_validations": [
+          {
+            "name": "file_type_options",
+            "type": "string_array",
+            "meta": {
+              "options": [
+                {
+                  "image": {
+                    "supported_types": [
+                      "jpeg",
+                      "jpg",
+                      "png",
+                      "svg+xml",
+                      "tiff",
+                      "webp",
+                      "gif"
+                    ],
+                    "max_size": 20971520
+                  },
+                  "video": {
+                    "supported_types": [
+                      "x-flv",
+                      "mp4",
+                      "x-mpegURL",
+                      "MP2T",
+                      "3gpp",
+                      "/quicktime",
+                      "x-msvideo",
+                      "x-ms-wmv",
+                      "webm"
+                    ],
+                    "max_size": 1048576000
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "url": {
+        "name": "URL",
+        "list_enabled": true,
+        "type": "string",
+        "supported_validations": [
+          {
+            "name": "allowed_domains",
+            "display": "Allowed Domains",
+            "type": "string_array"
+          }
+        ]
+      },
+      "metaobject": {
+        "name": "Custom Object",
+        "list_enabled": true,
+        "category": "REFERENCE",
+        "type": "string",
+        "supported_validations": [
+          {
+            "name": "metaobject_definition_id",
+            "display": "Reference",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      "product": {
+        "name": "Product",
+        "list_enabled": true,
+        "category": "REFERENCE",
+        "type": "string",
+        "supported_validations": [],
+        "scope": [
+          "company",
+          "application"
+        ]
+      }
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getCustomFields
+Get list of custom fields of given resource
+
+
+
+```javascript
+// Promise
+const promise = platformClient.content.getCustomFields({  resource : value });
+
+// Async/Await
+const data = await platformClient.content.getCustomFields({  resource : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| resource | string | yes |  |  
+
+
+
+Use this API to retrieve the custom fields for given resource in param.
+
+*Returned Response:*
+
+
+
+
+[CustomFieldsResponseSchema](#CustomFieldsResponseSchema)
+
+Success. Returns a list of custom fields. Refer `CustomFieldsResponseSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "_id": "652f8c5b6c1643cbd1659d88",
+        "namespace": "product_test_2",
+        "key": "manufacturer",
+        "resource": "product",
+        "creator": "company",
+        "value": [
+          "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/general/free/original/NWt9CSoYbo-airtel_money.png",
+          "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/general/free/original/QqkJBM4IQL-amazon-pay.png",
+          "https://cdn.pixelbin.io/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/general/free/original/2Ed7Pk03Z-amex.png"
+        ],
+        "resource_id": "64bb987e9a3c4b6c29d676bc",
+        "type": "file",
+        "multi_value": true,
+        "company_id": "1",
+        "definition_id": "650c4ea3e0e7980d14c16c06",
+        "has_invalid_values": false,
+        "invalid_value_errors": [],
+        "created_by": "000000000000000000000001",
+        "is_deleted": false,
+        "created_at": "2023-10-18T07:42:19.551Z",
+        "updated_at": "2023-10-18T07:42:19.551Z"
+      },
+      {
+        "_id": "652f8b4628dd2571fe5e90d8",
+        "namespace": "product_test_1",
+        "key": "manufacturer",
+        "resource": "product",
+        "creator": "company",
+        "value": [
+          "this",
+          "is",
+          "testing"
+        ],
+        "resource_id": "64ba480fdf9cbe3a90b052f4",
+        "type": "string_single_line",
+        "multi_value": true,
+        "company_id": "1",
+        "definition_id": "650ae0d67f9c7b2a7d56b409",
+        "has_invalid_values": false,
+        "invalid_value_errors": [],
+        "created_by": "000000000000000000000001",
+        "is_deleted": false,
+        "created_at": "2023-10-18T07:37:42.797Z",
+        "updated_at": "2023-10-18T07:37:42.797Z"
+      },
+      {
+        "_id": "652f8b4628dd2571fe5e90d7",
+        "namespace": "product_test",
+        "key": "manufacturer",
+        "resource": "product",
+        "creator": "company",
+        "value": [
+          "kuldeep",
+          "kumar",
+          "harshwal"
+        ],
+        "resource_id": "64ba32fbdf9cbe3a90b052f0",
+        "type": "string_single_line",
+        "multi_value": true,
+        "company_id": "1",
+        "definition_id": "650ae0b27f9c7b2a7d56b407",
+        "has_invalid_values": false,
+        "invalid_value_errors": [],
+        "created_by": "000000000000000000000001",
+        "is_deleted": false,
+        "created_at": "2023-10-18T07:37:42.796Z",
+        "updated_at": "2023-10-18T07:37:42.796Z"
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 20,
+      "item_total": 3,
+      "has_next": false
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getCustomFieldsByResourceId
+Get list of custom fields of given resource and resource id
+
+
+
+```javascript
+// Promise
+const promise = platformClient.content.getCustomFieldsByResourceId({  resource : value,
+ resourceId : value });
+
+// Async/Await
+const data = await platformClient.content.getCustomFieldsByResourceId({  resource : value,
+ resourceId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| resource | string | yes |  |   
+| resourceId | string | yes |  |  
+
+
+
+Use this API to retrieve the custom fields for given resource in param.
+
+*Returned Response:*
+
+
+
+
+[CustomFieldsResponseByResourceIdSchema](#CustomFieldsResponseByResourceIdSchema)
+
+Success. Returns a list of custom fields. Refer `CustomFieldsResponseByResourceIdSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "_id": "65705772a20cc45d3f2585b3",
+        "namespace": "custom",
+        "key": "designer-name",
+        "resource": "product",
+        "creator": "company",
+        "value": [
+          "ramsons"
+        ],
+        "resource_id": "7612437",
+        "type": "string_single_line",
+        "multi_value": false,
+        "company_id": "2",
+        "definition_id": "65604cdb6a78c23f082c850b",
+        "has_invalid_values": false,
+        "invalid_value_errors": [],
+        "created_by": "bd7223b6727eb087987eece7",
+        "is_deleted": false,
+        "created_at": "2023-12-06T11:13:54.217Z",
+        "updated_at": "2023-12-06T11:19:02.311Z",
+        "updated_by": "bd7223b6727eb087987eece7"
+      },
+      {
+        "_id": "65705772a20cc45d3f2585b4",
+        "namespace": "custom",
+        "key": "manufactures",
+        "resource": "product",
+        "creator": "company",
+        "value": [
+          "kartik"
+        ],
+        "resource_id": "7612437",
+        "type": "string_single_line",
+        "multi_value": false,
+        "company_id": "2",
+        "definition_id": "655f53ddca37f5deb832a185",
+        "has_invalid_values": false,
+        "invalid_value_errors": [],
+        "created_by": "bd7223b6727eb087987eece7",
+        "is_deleted": false,
+        "created_at": "2023-12-06T11:13:54.218Z",
+        "updated_at": "2023-12-06T11:19:02.311Z",
+        "updated_by": "bd7223b6727eb087987eece7"
+      },
+      {
+        "_id": "65705772a20cc45d3f2585b1",
+        "namespace": "custom",
+        "key": "product-designer",
+        "resource": "product",
+        "creator": "company",
+        "value": [
+          "65702b4574c5764716ee671d"
+        ],
+        "resource_id": "7612437",
+        "type": "metaobject",
+        "multi_value": true,
+        "company_id": "2",
+        "definition_id": "656d6bc9766f9511345091a6",
+        "has_invalid_values": false,
+        "invalid_value_errors": [],
+        "created_by": "bd7223b6727eb087987eece7",
+        "is_deleted": false,
+        "created_at": "2023-12-06T11:13:54.217Z",
+        "updated_at": "2023-12-06T11:19:02.311Z",
+        "updated_by": "bd7223b6727eb087987eece7"
+      },
+      {
+        "_id": "65705772a20cc45d3f2585b2",
+        "namespace": "custom",
+        "key": "validation-check",
+        "resource": "product",
+        "creator": "company",
+        "value": [
+          "ram"
+        ],
+        "resource_id": "7612437",
+        "type": "string_single_line",
+        "multi_value": false,
+        "company_id": "2",
+        "definition_id": "656866a30152b0584464d547",
+        "has_invalid_values": false,
+        "invalid_value_errors": [],
+        "created_by": "bd7223b6727eb087987eece7",
+        "is_deleted": false,
+        "created_at": "2023-12-06T11:13:54.217Z",
+        "updated_at": "2023-12-06T11:19:02.311Z",
+        "updated_by": "bd7223b6727eb087987eece7"
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getCustomObject
+Get custom object details
+
+
+
+```javascript
+// Promise
+const promise = platformClient.content.getCustomObject({  metaobjectId : value });
+
+// Async/Await
+const data = await platformClient.content.getCustomObject({  metaobjectId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| metaobjectId | string | yes |  |  
+
+
+
+Use this API to retrieve the custom object details and their fields details and definitions and references.
+
+*Returned Response:*
+
+
+
+
+[CustomObjectByIdSchema](#CustomObjectByIdSchema)
+
+Success. Returns a custom object. Refer `CustomObjectByIdSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "653929f012376081aafa90f1",
+    "status": "active",
+    "display_name": "painter #653929f012376081aafa90f1",
+    "definition": {
+      "_id": "653907ced878d53c1a502d92",
+      "name": "painter",
+      "type": "painter"
+    },
+    "references": [],
+    "fields": [
+      {
+        "_id": "653929f012376081aafa90f5",
+        "key": "name",
+        "value": [
+          "Bruce Wayne"
+        ],
+        "type": "string_single_line",
+        "definition_id": "653907ced878d53c1a502d95"
+      },
+      {
+        "_id": "653929f012376081aafa90f6",
+        "key": "age",
+        "value": [
+          5
+        ],
+        "type": "integer",
+        "definition_id": "653907ced878d53c1a502d96"
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getCustomObjectDefinition
+get custom object definition by id
+
+
+
+```javascript
+// Promise
+const promise = platformClient.content.getCustomObjectDefinition({  definitionId : value });
+
+// Async/Await
+const data = await platformClient.content.getCustomObjectDefinition({  definitionId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| definitionId | string | yes |  |  
+
+
+
+Use this API to update a custom object definition for your application.
+
+*Returned Response:*
+
+
+
+
+[CustomObjectDefinitionSchema](#CustomObjectDefinitionSchema)
+
+Custom object definition details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "656d67de766f95113450917b",
+    "name": "Designer",
+    "type": "designer",
+    "display_name_key": "name",
+    "description": "",
+    "creator": "company",
+    "created_by": "9759643b65ebc6bacb5275f5",
+    "updated_by": "bd7223b6727eb087987eece7",
+    "field_definitions": [
+      {
+        "creator": "company",
+        "resource": "metaobject",
+        "name": "city2",
+        "namespace": "designer",
+        "key": "city",
+        "type": "string_single_line",
+        "description": "",
+        "multi_value": false,
+        "validations": [],
+        "company_id": "2",
+        "metaobject_definition_id": "656d67de766f95113450917b",
+        "required": false
+      },
+      {
+        "creator": "company",
+        "resource": "metaobject",
+        "name": "mobile",
+        "namespace": "designer",
+        "key": "mobile",
+        "type": "string_single_line",
+        "description": "",
+        "multi_value": false,
+        "validations": [],
+        "company_id": "2",
+        "metaobject_definition_id": "656d67de766f95113450917b",
+        "required": false
+      },
+      {
+        "creator": "company",
+        "resource": "metaobject",
+        "name": "name",
+        "namespace": "designer",
+        "key": "name",
+        "type": "string_single_line",
+        "description": "This is name of designer",
+        "multi_value": false,
+        "validations": [],
+        "company_id": "2",
+        "metaobject_definition_id": "656d67de766f95113450917b",
+        "required": true
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getCustomObjectDefinitions
+Get custom object definitions
+
+
+
+```javascript
+// Promise
+const promise = platformClient.content.getCustomObjectDefinitions({  pageNo : value,
+ pageSize : value,
+ search : value });
+
+// Async/Await
+const data = await platformClient.content.getCustomObjectDefinitions({  pageNo : value,
+ pageSize : value,
+ search : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| pageNo | string | yes |  |   
+| pageSize | string | yes |  |    
+| search | string | no |  |  
+
+
+
+Use this API to retrieve the custom object definitions
+
+*Returned Response:*
+
+
+
+
+[CustomObjectDefinitionsSchema](#CustomObjectDefinitionsSchema)
+
+Success. Returns a list custom object definitions.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "_id": "656db530766f951134509542",
+        "name": "customObject1",
+        "type": "customobject1",
+        "updated_at": "2023-12-04T11:17:04.136Z",
+        "entries_count": 0,
+        "fields_count": 2
+      },
+      {
+        "_id": "656db2d9766f95113450952b",
+        "name": "sample",
+        "type": "sample",
+        "updated_at": "2023-12-04T11:07:05.705Z",
+        "entries_count": 0,
+        "fields_count": 1
+      },
+      {
+        "_id": "656495b58d3278a7c24260f8",
+        "name": "address",
+        "type": "address",
+        "updated_at": "2023-11-27T13:12:21.999Z",
+        "entries_count": 1,
+        "fields_count": 3
+      },
+      {
+        "_id": "655c706ad5ff69fd3b95a1d9",
+        "name": "coCustomObject",
+        "type": "cocustomobject",
+        "updated_at": "2023-11-21T08:55:06.013Z",
+        "entries_count": 0,
+        "fields_count": 2
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 10,
+      "item_total": 4,
+      "has_next": false
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getCustomObjects
+Get list of custom objects
+
+
+
+```javascript
+// Promise
+const promise = platformClient.content.getCustomObjects({  pageNo : value,
+ pageSize : value,
+ definitionId : value });
+
+// Async/Await
+const data = await platformClient.content.getCustomObjects({  pageNo : value,
+ pageSize : value,
+ definitionId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| definitionId | string | no |  |   
+| pageNo | string | yes |  |   
+| pageSize | string | yes |  |  
+
+
+
+Use this API to retrieve the custom objects.
+
+*Returned Response:*
+
+
+
+
+[CustomObjectsSchema](#CustomObjectsSchema)
+
+Success. Returns a list of custom objects. Refer `CustomObjectsSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "_id": "653929f012376081aafa90f1",
+        "definition_id": "653907ced878d53c1a502d92",
+        "status": "active",
+        "updated_at": "2023-10-25T14:45:04.446Z",
+        "display_name": "painter #653929f012376081aafa90f1",
+        "definition": {
+          "_id": "653907ced878d53c1a502d92",
+          "name": "painter",
+          "type": "painter"
+        },
+        "references": 0
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 10,
+      "item_total": 1,
+      "has_next": false
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getDataLoaders
 Get all the data loaders in an application
 
@@ -3086,6 +7746,95 @@ Use this to get all data loaders of an application
 [DataLoadersSchema](#DataLoadersSchema)
 
 Success. Refer `DataLoadersSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "items": [
+    {
+      "name": "Algolia",
+      "is_selected": false,
+      "type": "url",
+      "_id": "61bc4523a7ffc7504f4de4a5",
+      "service": "catalog",
+      "operation_id": "fetchSuggestions",
+      "url": "/ext/example/url",
+      "__source": {
+        "type": "extension",
+        "id": "000000000000000000000003"
+      },
+      "application": "100000000000000000000001",
+      "__v": 0
+    },
+    {
+      "name": "Algolia v3",
+      "is_selected": false,
+      "type": "url",
+      "_id": "61bc452da7ffc7504f4de4a7",
+      "service": "catalog",
+      "operation_id": "fetchSuggestions",
+      "url": "/ext/example/url",
+      "__source": {
+        "type": "extension",
+        "id": "000000000000000000000003"
+      },
+      "application": "100000000000000000000001",
+      "__v": 0
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getDataLoadersByService
+Get all the data loaders in an application by service name
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getDataLoadersByService({  serviceName : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getDataLoadersByService({  serviceName : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| serviceName | string | yes | Service name of the data loader.. |  
+
+
+
+Use this to get all data loaders of an application by service name
+
+*Returned Response:*
+
+
+
+
+[DataLoaderResponseSchema](#DataLoaderResponseSchema)
+
+Success. Refer `DataLoaderResponseSchema` for more details.
 
 
 
@@ -3863,6 +8612,62 @@ Success. Refer `DefaultNavigationResponse` for more details.
 ---
 
 
+### getDefaultSEOMarkupSchema
+Get Default SEO Markup schemas of an application
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getDefaultSEOMarkupSchema({  pageType : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getDefaultSEOMarkupSchema({  pageType : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| pageType | string | no | The type of page against which schema template was created |  
+
+
+
+Use this API to get the Default SEO Markup schema Templates setup for an application
+
+*Returned Response:*
+
+
+
+
+[DefaultSchemaComponent](#DefaultSchemaComponent)
+
+Success. Refer `DefaultSchemaComponent` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getFaqByIdOrSlug
 Get an FAQ
 
@@ -4195,6 +9000,150 @@ Success. Refer `TagsSchema` for more details.
   "__v": 0
 }
 ```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getJobs
+Fetch bulk import and export job list.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.content.getJobs({  page : value,
+ pageSize : value,
+ actionType : value });
+
+// Async/Await
+const data = await platformClient.content.getJobs({  page : value,
+ pageSize : value,
+ actionType : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| page | string | yes |  |   
+| pageSize | string | yes |  |   
+| actionType | string | yes |  |  
+
+
+
+Use this api to get list of jobs of bulk import and exports
+
+*Returned Response:*
+
+
+
+
+[CustomObjectBulkEntry](#CustomObjectBulkEntry)
+
+Success. Returns all bulk entries history. 
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "items": [
+      {
+        "_id": "6570124da20cc45d3f2582a7",
+        "jobs": [
+          "2311"
+        ],
+        "finished_jobs": [
+          "2311"
+        ],
+        "error_jobs": [],
+        "errors_occured": [],
+        "company_id": "2",
+        "creator": "company",
+        "URL": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/custom-data/CustomObject-designer-import-6570124da20cc45d3f2582a7.csv",
+        "status": "completed",
+        "action_type": "upload",
+        "entity": "metaobject",
+        "error_url": "",
+        "finished_count": 0,
+        "error_count": 0,
+        "success_count": 0,
+        "total_jobs": 1,
+        "meta": {
+          "mo_total_count": 2,
+          "mo_success_count": 2,
+          "mo_error_count": 0,
+          "mo_defintion_type": "designer"
+        },
+        "created_by": "bd7223b6727eb087987eece7",
+        "created_at": "2023-12-06T06:18:53.219Z",
+        "updated_at": "2023-12-06T06:20:23.560Z",
+        "id": "6570124da20cc45d3f2582a7"
+      },
+      {
+        "_id": "6558b8c49340c43a7015b4af",
+        "jobs": [
+          "2297"
+        ],
+        "finished_jobs": [
+          "2297"
+        ],
+        "error_jobs": [],
+        "errors_occured": [],
+        "company_id": "2",
+        "creator": "company",
+        "URL": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/misc/custom-data/CustomObject-kuldeep-custom-import-6558b8c49340c43a7015b4af.csv",
+        "status": "completed",
+        "action_type": "upload",
+        "entity": "metaobject",
+        "error_url": "",
+        "finished_count": 0,
+        "error_count": 0,
+        "success_count": 0,
+        "total_jobs": 1,
+        "meta": {
+          "mo_total_count": 1,
+          "mo_success_count": 0,
+          "mo_error_count": 1,
+          "mo_defintion_type": "kuldeep-custom"
+        },
+        "created_by": "9759643b65ebc6bacb5275f5",
+        "created_at": "2023-11-18T13:14:44.360Z",
+        "updated_at": "2023-11-18T13:17:19.765Z",
+        "id": "6558b8c49340c43a7015b4af"
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 20,
+      "item_total": 2,
+      "has_next": false
+    }
+  }
+}
+```
+</details>
+
 </details>
 
 
@@ -5478,6 +10427,98 @@ Success. Refer `PathMappingSchema` for more details.
 ---
 
 
+### getResources
+Get resources
+
+
+
+```javascript
+// Promise
+const promise = platformClient.content.getResources();
+
+// Async/Await
+const data = await platformClient.content.getResources();
+```
+
+
+
+
+
+
+Use this API to retrieve the resources, such as products, collections, customers, selling locations, etc.
+
+*Returned Response:*
+
+
+
+
+[ResourcesSchema](#ResourcesSchema)
+
+Success. Returns a JSON object of resources. Refer `ResourcesSchema` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "resources": [
+      {
+        "name": "product",
+        "key": "product",
+        "definitions_count": 0
+      },
+      {
+        "name": "Collection",
+        "key": "collection",
+        "definitions_count": 0
+      },
+      {
+        "name": "Page",
+        "key": "page",
+        "definitions_count": 0
+      },
+      {
+        "name": "Blog",
+        "key": "blog",
+        "definitions_count": 0
+      },
+      {
+        "name": "Customer",
+        "key": "customer",
+        "definitions_count": 0
+      },
+      {
+        "name": "Store",
+        "key": "store",
+        "definitions_count": 0
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getSEOConfiguration
 Get SEO configuration of an application
 
@@ -5552,6 +10593,127 @@ Success. Refer `SeoComponent` for more details.
 ```
 </details>
 
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getSEOMarkupSchema
+Get a particular SEO Markup schema of an application using its id
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getSEOMarkupSchema({  id : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getSEOMarkupSchema({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes | Alphanumeric ID allotted to a SEO Markup Schema Template created within a business. |  
+
+
+
+Use this API to get a existing SEO Markup schema an application
+
+*Returned Response:*
+
+
+
+
+[SEOSchemaMarkupTemplate](#SEOSchemaMarkupTemplate)
+
+Success. Refer `SEOSchemaMarkupTemplate` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getSEOMarkupSchemas
+Get SEO Markup schemas of an application
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.getSEOMarkupSchemas({  title : value,
+ active : value,
+ pageNo : value,
+ pageSize : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.getSEOMarkupSchemas({  title : value,
+ active : value,
+ pageNo : value,
+ pageSize : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| title | string | no | Title of the seo schema. |    
+| active | string | no | Boolean value for fetching seo schema. |    
+| pageNo | number | no | The page number to navigate through the given set of results. Default value is 1. |    
+| pageSize | number | no | The number of items to retrieve in each page. Default value is 10. |  
+
+
+
+Use this API to get all SEO Markup schema Templates setup for an application
+
+*Returned Response:*
+
+
+
+
+[SeoSchemaComponent](#SeoSchemaComponent)
+
+Success. Refer `SeoSchemaComponent` for more details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
 </details>
 
 
@@ -5874,6 +11036,144 @@ Success. Refer `Support` for more details.
 ---
 
 
+### importAppCustomObjectEntries
+Bulk custom object entries upload
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.importAppCustomObjectEntries({  definitionId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.importAppCustomObjectEntries({  definitionId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| definitionId | string | yes |  |  
+| body | [CustomObjectBulkSchema](#CustomObjectBulkSchema) | yes | Request body |
+
+
+Use this API to upload custom object entries
+
+*Returned Response:*
+
+
+
+
+[CustomObjectEntryBulkUploadResponse](#CustomObjectEntryBulkUploadResponse)
+
+Success. Returns confirmation that the upload has started
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "message": "Bulk upload of Meta objects started successfully",
+    "task_id": "6570124da20cc45d3f2582a7"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### importCustomObjectEntries
+Bulk custom object entries upload
+
+
+
+```javascript
+// Promise
+const promise = platformClient.content.importCustomObjectEntries({  definitionId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.content.importCustomObjectEntries({  definitionId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| definitionId | string | yes |  |  
+| body | [CustomObjectBulkSchema](#CustomObjectBulkSchema) | yes | Request body |
+
+
+Use this API to upload custom object entries
+
+*Returned Response:*
+
+
+
+
+[CustomObjectEntryBulkUploadResponse](#CustomObjectEntryBulkUploadResponse)
+
+Success. Returns confirmation that the upload has started
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "message": "Bulk upload of Meta objects started successfully",
+    "task_id": "6570124da20cc45d3f2582a7"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### removeInjectableTag
 Remove a tag
 
@@ -5979,6 +11279,134 @@ Success.
   "reset": true
 }
 ```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### sampleAppCustomObjectBulkEntry
+download sample for custom object bulk entry
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.sampleAppCustomObjectBulkEntry({  definitionId : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.sampleAppCustomObjectBulkEntry({  definitionId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| definitionId | string | yes |  |  
+
+
+
+Use this api to get sample csv file 
+
+*Returned Response:*
+
+
+
+
+[string](#string)
+
+Success. Get headers of custom object definition
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": "city,mobile,name,custom_object_status"
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### sampleCustomObjectBulkEntry
+download sample for custom object bulk entry
+
+
+
+```javascript
+// Promise
+const promise = platformClient.content.sampleCustomObjectBulkEntry({  definitionId : value });
+
+// Async/Await
+const data = await platformClient.content.sampleCustomObjectBulkEntry({  definitionId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| definitionId | string | yes |  |  
+
+
+
+Use this api to get sample csv file 
+
+*Returned Response:*
+
+
+
+
+[string](#string)
+
+Success. Get headers of custom object definition
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": "city,mobile,name,custom_object_status"
+}
+```
+</details>
+
 </details>
 
 
@@ -6280,6 +11708,329 @@ Success. Refer `CreateAnnouncementSchema` for more details.
 ---
 
 
+### updateAppCustomFieldDefinition
+Update custom field definition
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.updateAppCustomFieldDefinition({  definitionId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.updateAppCustomFieldDefinition({  definitionId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| definitionId | string | yes |  |  
+| body | [CustomFieldDefinitionRequestSchema](#CustomFieldDefinitionRequestSchema) | yes | Request body |
+
+
+Use this API to update a custom field definition for your application.
+
+*Returned Response:*
+
+
+
+
+[CustomFieldDefinitionDetailResSchema](#CustomFieldDefinitionDetailResSchema)
+
+Custom field definition created.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "creator": "application",
+    "resource": "product",
+    "name": "name",
+    "namespace": "fname",
+    "key": "fname",
+    "description": "First name",
+    "type": "string_single_line",
+    "multi_value": false,
+    "company_id": "1",
+    "application_id": "000000000000000000000001",
+    "created_by": "000000000000000000000001",
+    "updated_by": "000000000000000000000001",
+    "required": false,
+    "is_deleted": false,
+    "_id": "65369654d436ae0e54147e7b",
+    "validations": [],
+    "created_at": "2023-10-23T15:50:44.143Z",
+    "updated_at": "2023-10-23T15:50:44.143Z"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateAppCustomObject
+Update custom object details
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.updateAppCustomObject({  metaobjectId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.updateAppCustomObject({  metaobjectId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| metaobjectId | string | yes |  |  
+| body | [CustomObjectRequestSchema](#CustomObjectRequestSchema) | yes | Request body |
+
+
+Use this API to update a custom object detail for your application.
+
+*Returned Response:*
+
+
+
+
+[CustomObjectByIdSchema](#CustomObjectByIdSchema)
+
+Custom field definition created.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "656d67de766f95113450917b",
+    "name": "Designer",
+    "type": "designer",
+    "display_name_key": "name",
+    "description": "",
+    "creator": "company",
+    "created_by": "9759643b65ebc6bacb5275f5",
+    "updated_by": "bd7223b6727eb087987eece7",
+    "field_definitions": [
+      {
+        "creator": "company",
+        "resource": "metaobject",
+        "name": "city2",
+        "namespace": "designer",
+        "key": "city",
+        "type": "string_single_line",
+        "description": "",
+        "multi_value": false,
+        "validations": [],
+        "company_id": "2",
+        "metaobject_definition_id": "656d67de766f95113450917b",
+        "required": false
+      },
+      {
+        "creator": "company",
+        "resource": "metaobject",
+        "name": "mobile",
+        "namespace": "designer",
+        "key": "mobile",
+        "type": "string_single_line",
+        "description": "",
+        "multi_value": false,
+        "validations": [],
+        "company_id": "2",
+        "metaobject_definition_id": "656d67de766f95113450917b",
+        "required": false
+      },
+      {
+        "creator": "company",
+        "resource": "metaobject",
+        "name": "name",
+        "namespace": "designer",
+        "key": "name",
+        "type": "string_single_line",
+        "description": "This is name of designer",
+        "multi_value": false,
+        "validations": [],
+        "company_id": "2",
+        "metaobject_definition_id": "656d67de766f95113450917b",
+        "required": true
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateAppCustomObjectDefinition
+Update custom object definition
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").content.updateAppCustomObjectDefinition({  definitionId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").content.updateAppCustomObjectDefinition({  definitionId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| definitionId | string | yes |  |  
+| body | [CustomObjectDefinitionUpdateRequestSchema](#CustomObjectDefinitionUpdateRequestSchema) | yes | Request body |
+
+
+Use this API to update a custom object definition for your application.
+
+*Returned Response:*
+
+
+
+
+[CustomObjectDefinitionSchema](#CustomObjectDefinitionSchema)
+
+Custom field definition updated.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "656d67de766f95113450917b",
+    "name": "Designer",
+    "type": "designer",
+    "display_name_key": "name",
+    "description": "",
+    "creator": "company",
+    "created_by": "9759643b65ebc6bacb5275f5",
+    "updated_by": "bd7223b6727eb087987eece7",
+    "field_definitions": [
+      {
+        "creator": "company",
+        "resource": "metaobject",
+        "name": "city2",
+        "namespace": "designer",
+        "key": "city",
+        "type": "string_single_line",
+        "description": "",
+        "multi_value": false,
+        "validations": [],
+        "company_id": "2",
+        "metaobject_definition_id": "656d67de766f95113450917b",
+        "required": false
+      },
+      {
+        "creator": "company",
+        "resource": "metaobject",
+        "name": "mobile",
+        "namespace": "designer",
+        "key": "mobile",
+        "type": "string_single_line",
+        "description": "",
+        "multi_value": false,
+        "validations": [],
+        "company_id": "2",
+        "metaobject_definition_id": "656d67de766f95113450917b",
+        "required": false
+      },
+      {
+        "creator": "company",
+        "resource": "metaobject",
+        "name": "name",
+        "namespace": "designer",
+        "key": "name",
+        "type": "string_single_line",
+        "description": "This is name of designer",
+        "multi_value": false,
+        "validations": [],
+        "company_id": "2",
+        "metaobject_definition_id": "656d67de766f95113450917b",
+        "required": true
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### updateBlog
 Update a blog
 
@@ -6365,6 +12116,329 @@ Success.
       "created_on": "2021-03-14T06:49:03.945Z",
       "modified_on": "2021-03-14T06:49:03.945Z"
     }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateCustomFieldDefinition
+Update custom field definition
+
+
+
+```javascript
+// Promise
+const promise = platformClient.content.updateCustomFieldDefinition({  definitionId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.content.updateCustomFieldDefinition({  definitionId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| definitionId | string | yes |  |  
+| body | [CustomFieldDefinitionRequestSchema](#CustomFieldDefinitionRequestSchema) | yes | Request body |
+
+
+Use this API to update a custom field definition for your application.
+
+*Returned Response:*
+
+
+
+
+[CustomFieldDefinitionDetailResSchema](#CustomFieldDefinitionDetailResSchema)
+
+Custom field definition created.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "creator": "application",
+    "resource": "product",
+    "name": "name",
+    "namespace": "fname",
+    "key": "fname",
+    "description": "First name",
+    "type": "string_single_line",
+    "multi_value": false,
+    "company_id": "1",
+    "application_id": "000000000000000000000001",
+    "created_by": "000000000000000000000001",
+    "updated_by": "000000000000000000000001",
+    "required": false,
+    "is_deleted": false,
+    "_id": "65369654d436ae0e54147e7b",
+    "validations": [],
+    "created_at": "2023-10-23T15:50:44.143Z",
+    "updated_at": "2023-10-23T15:50:44.143Z"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateCustomObject
+Update custom object details
+
+
+
+```javascript
+// Promise
+const promise = platformClient.content.updateCustomObject({  metaobjectId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.content.updateCustomObject({  metaobjectId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| metaobjectId | string | yes |  |  
+| body | [CustomObjectRequestSchema](#CustomObjectRequestSchema) | yes | Request body |
+
+
+Use this API to update a custom object detail for your application.
+
+*Returned Response:*
+
+
+
+
+[CustomObjectByIdSchema](#CustomObjectByIdSchema)
+
+Custom field definition created.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "656d67de766f95113450917b",
+    "name": "Designer",
+    "type": "designer",
+    "display_name_key": "name",
+    "description": "",
+    "creator": "company",
+    "created_by": "9759643b65ebc6bacb5275f5",
+    "updated_by": "bd7223b6727eb087987eece7",
+    "field_definitions": [
+      {
+        "creator": "company",
+        "resource": "metaobject",
+        "name": "city2",
+        "namespace": "designer",
+        "key": "city",
+        "type": "string_single_line",
+        "description": "",
+        "multi_value": false,
+        "validations": [],
+        "company_id": "2",
+        "metaobject_definition_id": "656d67de766f95113450917b",
+        "required": false
+      },
+      {
+        "creator": "company",
+        "resource": "metaobject",
+        "name": "mobile",
+        "namespace": "designer",
+        "key": "mobile",
+        "type": "string_single_line",
+        "description": "",
+        "multi_value": false,
+        "validations": [],
+        "company_id": "2",
+        "metaobject_definition_id": "656d67de766f95113450917b",
+        "required": false
+      },
+      {
+        "creator": "company",
+        "resource": "metaobject",
+        "name": "name",
+        "namespace": "designer",
+        "key": "name",
+        "type": "string_single_line",
+        "description": "This is name of designer",
+        "multi_value": false,
+        "validations": [],
+        "company_id": "2",
+        "metaobject_definition_id": "656d67de766f95113450917b",
+        "required": true
+      }
+    ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### updateCustomObjectDefinition
+Update custom object definition
+
+
+
+```javascript
+// Promise
+const promise = platformClient.content.updateCustomObjectDefinition({  definitionId : value,
+ body : value });
+
+// Async/Await
+const data = await platformClient.content.updateCustomObjectDefinition({  definitionId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| definitionId | string | yes |  |  
+| body | [CustomObjectDefinitionUpdateRequestSchema](#CustomObjectDefinitionUpdateRequestSchema) | yes | Request body |
+
+
+Use this API to update a custom object definition for your application.
+
+*Returned Response:*
+
+
+
+
+[CustomObjectDefinitionSchema](#CustomObjectDefinitionSchema)
+
+Custom field definition updated.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "_id": "656d67de766f95113450917b",
+    "name": "Designer",
+    "type": "designer",
+    "display_name_key": "name",
+    "description": "",
+    "creator": "company",
+    "created_by": "9759643b65ebc6bacb5275f5",
+    "updated_by": "bd7223b6727eb087987eece7",
+    "field_definitions": [
+      {
+        "creator": "company",
+        "resource": "metaobject",
+        "name": "city2",
+        "namespace": "designer",
+        "key": "city",
+        "type": "string_single_line",
+        "description": "",
+        "multi_value": false,
+        "validations": [],
+        "company_id": "2",
+        "metaobject_definition_id": "656d67de766f95113450917b",
+        "required": false
+      },
+      {
+        "creator": "company",
+        "resource": "metaobject",
+        "name": "mobile",
+        "namespace": "designer",
+        "key": "mobile",
+        "type": "string_single_line",
+        "description": "",
+        "multi_value": false,
+        "validations": [],
+        "company_id": "2",
+        "metaobject_definition_id": "656d67de766f95113450917b",
+        "required": false
+      },
+      {
+        "creator": "company",
+        "resource": "metaobject",
+        "name": "name",
+        "namespace": "designer",
+        "key": "name",
+        "type": "string_single_line",
+        "description": "This is name of designer",
+        "multi_value": false,
+        "validations": [],
+        "company_id": "2",
+        "metaobject_definition_id": "656d67de766f95113450917b",
+        "required": true
+      }
+    ]
   }
 }
 ```
@@ -7759,6 +13833,19 @@ Success. Refer `Support` for more details.
 
 ---
 
+#### [BooleanType](#BooleanType)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | category | string? |  yes  |  |
+ | list_enabled | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
+ | supported_validations | [[SupportedValidationsSchema](#SupportedValidationsSchema)]? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
+
+---
+
 #### [CategoryRequestSchema](#CategoryRequestSchema)
 
  | Properties | Type | Nullable | Description |
@@ -7939,6 +14026,161 @@ Success. Refer `Support` for more details.
 
 ---
 
+#### [CustomDataDeleteSchema](#CustomDataDeleteSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [CustomField](#CustomField)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | definition_id | string? |  yes  |  |
+ | value | [any]? |  yes  |  |
+ 
+
+---
+
+#### [CustomFieldDefinitionDetailResSchema](#CustomFieldDefinitionDetailResSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | application_id | string? |  yes  |  |
+ | company_id | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | created_by | string? |  yes  |  |
+ | creator | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | is_deleted | boolean? |  yes  |  |
+ | key | string? |  yes  |  |
+ | multi_value | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
+ | namespace | string? |  yes  |  |
+ | required | boolean? |  yes  |  |
+ | resource | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ | updated_by | string? |  yes  |  |
+ | validations | [any]? |  yes  |  |
+ 
+
+---
+
+#### [CustomFieldDefinitionRequestSchema](#CustomFieldDefinitionRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string? |  yes  |  |
+ | key | string? |  yes  |  |
+ | multi_value | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
+ | namespace | string? |  yes  |  |
+ | resource | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | validations | [[FieldValidations](#FieldValidations)]? |  yes  |  |
+ 
+
+---
+
+#### [CustomFieldDefinitionsSchema](#CustomFieldDefinitionsSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[FieldDefinitionSchema](#FieldDefinitionSchema)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ 
+
+---
+
+#### [CustomFieldRequestSchema](#CustomFieldRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | fields | [[CustomField](#CustomField)]? |  yes  |  |
+ 
+
+---
+
+#### [CustomFieldSchema](#CustomFieldSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | company_id | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | created_by | string? |  yes  |  |
+ | creator | string? |  yes  |  |
+ | definition_id | string? |  yes  |  |
+ | has_invalid_values | boolean? |  yes  |  |
+ | invalid_value_errors | [any]? |  yes  |  |
+ | is_deleted | boolean? |  yes  |  |
+ | key | string? |  yes  |  |
+ | multi_value | boolean? |  yes  |  |
+ | namespace | string? |  yes  |  |
+ | resource | string? |  yes  |  |
+ | resource_id | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ | value | [[CustomFieldValue](#CustomFieldValue)]? |  yes  |  |
+ 
+
+---
+
+#### [CustomFieldsResponseByResourceIdSchema](#CustomFieldsResponseByResourceIdSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[CustomFieldSchema](#CustomFieldSchema)]? |  yes  |  |
+ 
+
+---
+
+#### [CustomFieldsResponseSchema](#CustomFieldsResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[CustomFieldSchema](#CustomFieldSchema)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ 
+
+---
+
+#### [CustomFieldTypeSchema](#CustomFieldTypeSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | boolean_type | [BooleanType](#BooleanType)? |  yes  |  |
+ | date | [Date](#Date)? |  yes  |  |
+ | datetime | [Datetime](#Datetime)? |  yes  |  |
+ | dropdown | [Dropdown](#Dropdown)? |  yes  |  |
+ | file | [File](#File)? |  yes  |  |
+ | float_type | [FloatType](#FloatType)? |  yes  |  |
+ | integer | [Integer](#Integer)? |  yes  |  |
+ | json | [Json](#Json)? |  yes  |  |
+ | metaobject | [Metaobject](#Metaobject)? |  yes  |  |
+ | product | [Product](#Product)? |  yes  |  |
+ | string_multi_line | [StringMultiLine](#StringMultiLine)? |  yes  |  |
+ | string_single_line | [StringSingleLine](#StringSingleLine)? |  yes  |  |
+ | url | [Url](#Url)? |  yes  |  |
+ 
+
+---
+
+#### [CustomFieldValue](#CustomFieldValue)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | value | any? |  yes  |  |
+ 
+
+---
+
 #### [CustomMetaTag](#CustomMetaTag)
 
  | Properties | Type | Nullable | Description |
@@ -7946,6 +14188,308 @@ Success. Refer `Support` for more details.
  | _id | string? |  yes  |  |
  | content | string? |  yes  |  |
  | name | string? |  yes  |  |
+ 
+
+---
+
+#### [CustomObjectBulkEntry](#CustomObjectBulkEntry)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[CustomObjectJobSchema](#CustomObjectJobSchema)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ 
+
+---
+
+#### [CustomObjectBulkEntryInitiateDownload](#CustomObjectBulkEntryInitiateDownload)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
+ | task_id | string? |  yes  |  |
+ 
+
+---
+
+#### [CustomObjectBulkSchema](#CustomObjectBulkSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | total_records | number? |  yes  |  |
+ | url | string? |  yes  |  |
+ 
+
+---
+
+#### [CustomObjectByIdSchema](#CustomObjectByIdSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | definition | [CustomObjectListItemDefinationSchema](#CustomObjectListItemDefinationSchema)? |  yes  |  |
+ | display_name | string? |  yes  |  |
+ | fields | [[CustomObjectFieldSchema](#CustomObjectFieldSchema)]? |  yes  |  |
+ | references | [any]? |  yes  |  |
+ | status | string? |  yes  |  |
+ 
+
+---
+
+#### [CustomObjectCustomFieldDefinitionResSchema](#CustomObjectCustomFieldDefinitionResSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | company_id | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | created_by | string? |  yes  |  |
+ | creator | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | is_deleted | boolean? |  yes  |  |
+ | key | string? |  yes  |  |
+ | metaobject_definition_id | string? |  yes  |  |
+ | multi_value | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
+ | namespace | string? |  yes  |  |
+ | required | boolean? |  yes  |  |
+ | resource | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ | validations | [[FieldValidations](#FieldValidations)]? |  yes  |  |
+ 
+
+---
+
+#### [CustomObjectCustomFieldDefinitions](#CustomObjectCustomFieldDefinitions)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | action | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | key | string? |  yes  |  |
+ | multi_value | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
+ | required | boolean? |  yes  |  |
+ | type | string? |  yes  |  |
+ | validations | [[FieldValidations](#FieldValidations)]? |  yes  |  |
+ 
+
+---
+
+#### [CustomObjectDefinitionDeleteResponseSchema](#CustomObjectDefinitionDeleteResponseSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [CustomObjectDefinitionRequestSchema](#CustomObjectDefinitionRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string? |  yes  |  |
+ | display_name_key | string? |  yes  |  |
+ | field_definitions | [[CustomObjectCustomFieldDefinitions](#CustomObjectCustomFieldDefinitions)]? |  yes  |  |
+ | name | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
+
+---
+
+#### [CustomObjectDefinitionSchema](#CustomObjectDefinitionSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | created_by | string? |  yes  |  |
+ | creator | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | display_name_key | string? |  yes  |  |
+ | field_definitions | [[CustomObjectCustomFieldDefinitionResSchema](#CustomObjectCustomFieldDefinitionResSchema)]? |  yes  |  |
+ | name | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | updated_by | string? |  yes  |  |
+ 
+
+---
+
+#### [CustomObjectDefinitionsSchema](#CustomObjectDefinitionsSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[CustomObjectEntry](#CustomObjectEntry)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ 
+
+---
+
+#### [CustomObjectDefinitionUpdateRequestSchema](#CustomObjectDefinitionUpdateRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string? |  yes  |  |
+ | display_name_key | string? |  yes  |  |
+ | field_definitions | [[CustomObjectCustomFieldDefinitions](#CustomObjectCustomFieldDefinitions)]? |  yes  |  |
+ | name | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
+
+---
+
+#### [CustomObjectEntry](#CustomObjectEntry)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | entries_count | number? |  yes  |  |
+ | fields_count | number? |  yes  |  |
+ | name | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ 
+
+---
+
+#### [CustomObjectEntryBulkUploadResponse](#CustomObjectEntryBulkUploadResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | total_records | number? |  yes  |  |
+ | url | string? |  yes  |  |
+ 
+
+---
+
+#### [CustomObjectEntryFieldSchema](#CustomObjectEntryFieldSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | definition_id | string? |  yes  |  |
+ | value | [any]? |  yes  |  |
+ 
+
+---
+
+#### [CustomObjectFieldSchema](#CustomObjectFieldSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | definition_id | string? |  yes  |  |
+ | key | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | value | [any]? |  yes  |  |
+ 
+
+---
+
+#### [CustomObjectJobSchema](#CustomObjectJobSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | action_type | string? |  yes  |  |
+ | company_id | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | created_by | string? |  yes  |  |
+ | creator | string? |  yes  |  |
+ | entity | string? |  yes  |  |
+ | error_count | number? |  yes  |  |
+ | error_jobs | [string]? |  yes  |  |
+ | error_url | string? |  yes  |  |
+ | errors_occured | [string]? |  yes  |  |
+ | finished_count | number? |  yes  |  |
+ | finished_jobs | [string]? |  yes  |  |
+ | jobs | [string]? |  yes  |  |
+ | meta | [CustomObjectMetaSchema](#CustomObjectMetaSchema)? |  yes  |  |
+ | status | string? |  yes  |  |
+ | success_count | number? |  yes  |  |
+ | total_jobs | number? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ | url | string? |  yes  |  |
+ 
+
+---
+
+#### [CustomObjectListItemDefinationSchema](#CustomObjectListItemDefinationSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
+
+---
+
+#### [CustomObjectListItemSchema](#CustomObjectListItemSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | definition | [CustomObjectListItemDefinationSchema](#CustomObjectListItemDefinationSchema)? |  yes  |  |
+ | definition_id | string? |  yes  |  |
+ | display_name | string? |  yes  |  |
+ | references | number? |  yes  |  |
+ | status | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ 
+
+---
+
+#### [CustomObjectMetaSchema](#CustomObjectMetaSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | mo_defintion_type | string? |  yes  |  |
+ | mo_error_count | number? |  yes  |  |
+ | mo_success_count | number? |  yes  |  |
+ | mo_total_count | number? |  yes  |  |
+ 
+
+---
+
+#### [CustomObjectRequestSchema](#CustomObjectRequestSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | definition_id | string? |  yes  |  |
+ | fields | [[CustomObjectEntryFieldSchema](#CustomObjectEntryFieldSchema)]? |  yes  |  |
+ | status | string? |  yes  |  |
+ 
+
+---
+
+#### [CustomObjectSchema](#CustomObjectSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | application_id | string? |  yes  |  |
+ | company_id | string? |  yes  |  |
+ | created_by | string? |  yes  |  |
+ | creator | string? |  yes  |  |
+ | definition_id | string? |  yes  |  |
+ | display_name | string? |  yes  |  |
+ | fields | [[CustomFieldSchema](#CustomFieldSchema)]? |  yes  |  |
+ | status | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | updated_by | string? |  yes  |  |
+ 
+
+---
+
+#### [CustomObjectsSchema](#CustomObjectsSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[CustomObjectListItemSchema](#CustomObjectListItemSchema)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  
 
 ---
@@ -8012,12 +14556,38 @@ Success. Refer `Support` for more details.
 
 ---
 
+#### [Date](#Date)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | category | string? |  yes  |  |
+ | list_enabled | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
+ | supported_validations | [[SupportedValidationsSchema](#SupportedValidationsSchema)]? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
+
+---
+
 #### [DateMeta](#DateMeta)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | created_on | string? |  yes  |  |
  | modified_on | string? |  yes  |  |
+ 
+
+---
+
+#### [Datetime](#Datetime)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | category | string? |  yes  |  |
+ | list_enabled | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
+ | supported_validations | [[SupportedValidationsSchema](#SupportedValidationsSchema)]? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -8031,6 +14601,26 @@ Success. Refer `Support` for more details.
 
 ---
 
+#### [DefaultSchemaComponent](#DefaultSchemaComponent)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[DefaultSEOSchemaMarkupTemplate](#DefaultSEOSchemaMarkupTemplate)]? |  yes  |  |
+ 
+
+---
+
+#### [DefaultSEOSchemaMarkupTemplate](#DefaultSEOSchemaMarkupTemplate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | page_type | string? |  yes  |  |
+ | schema | string? |  yes  |  |
+ | target_json | string? |  yes  |  |
+ 
+
+---
+
 #### [Detail](#Detail)
 
  | Properties | Type | Nullable | Description |
@@ -8038,6 +14628,19 @@ Success. Refer `Support` for more details.
  | description | string? |  yes  |  |
  | image_url | string? |  yes  |  |
  | title | string? |  yes  |  |
+ 
+
+---
+
+#### [Dropdown](#Dropdown)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | category | string? |  yes  |  |
+ | list_enabled | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
+ | supported_validations | [[SupportedValidationsSchema](#SupportedValidationsSchema)]? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -8116,6 +14719,70 @@ Success. Refer `Support` for more details.
 
 ---
 
+#### [FieldDefinitionSchema](#FieldDefinitionSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | company_id | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | created_by | string? |  yes  |  |
+ | creator | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | invalid_fields_count | number? |  yes  |  |
+ | is_deleted | boolean? |  yes  |  |
+ | key | string? |  yes  |  |
+ | multi_value | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
+ | namespace | string? |  yes  |  |
+ | required | boolean? |  yes  |  |
+ | resource | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | type_name | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ | updated_by | string? |  yes  |  |
+ | validations | [[FieldValidations](#FieldValidations)]? |  yes  |  |
+ 
+
+---
+
+#### [FieldValidations](#FieldValidations)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string? |  yes  |  |
+ | type | string? |  yes  |  |
+ | value | any? |  yes  |  |
+ 
+
+---
+
+#### [File](#File)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | category | string? |  yes  |  |
+ | list_enabled | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
+ | supported_validations | [[SupportedValidationsSchema](#SupportedValidationsSchema)]? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
+
+---
+
+#### [FloatType](#FloatType)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | category | string? |  yes  |  |
+ | list_enabled | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
+ | supported_validations | [[SupportedValidationsSchema](#SupportedValidationsSchema)]? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
+
+---
+
 #### [GeneratedSEOContent](#GeneratedSEOContent)
 
  | Properties | Type | Nullable | Description |
@@ -8190,6 +14857,32 @@ Success. Refer `Support` for more details.
 
 ---
 
+#### [Integer](#Integer)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | category | string? |  yes  |  |
+ | list_enabled | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
+ | supported_validations | [[SupportedValidationsSchema](#SupportedValidationsSchema)]? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
+
+---
+
+#### [Json](#Json)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | category | string? |  yes  |  |
+ | list_enabled | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
+ | supported_validations | [[SupportedValidationsSchema](#SupportedValidationsSchema)]? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
+
+---
+
 #### [LandingPageGetResponse](#LandingPageGetResponse)
 
  | Properties | Type | Nullable | Description |
@@ -8233,6 +14926,19 @@ Success. Refer `Support` for more details.
  | ar | [Language](#Language)? |  yes  |  |
  | en_us | [Language](#Language)? |  yes  |  |
  | hi | [Language](#Language)? |  yes  |  |
+ 
+
+---
+
+#### [Metaobject](#Metaobject)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | category | string? |  yes  |  |
+ | list_enabled | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
+ | supported_validations | [[SupportedValidationsSchema](#SupportedValidationsSchema)]? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -8490,6 +15196,19 @@ Success. Refer `Support` for more details.
 
 ---
 
+#### [Product](#Product)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | category | string? |  yes  |  |
+ | list_enabled | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
+ | supported_validations | [[SupportedValidationsSchema](#SupportedValidationsSchema)]? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
+
+---
+
 #### [RemoveHandpickedSchema](#RemoveHandpickedSchema)
 
  | Properties | Type | Nullable | Description |
@@ -8505,6 +15224,26 @@ Success. Refer `Support` for more details.
  | ---------- | ---- | -------- | ----------- |
  | type | string? |  yes  |  |
  | value | string? |  yes  |  |
+ 
+
+---
+
+#### [ResourceSchema](#ResourceSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | definitions_count | number? |  yes  | Number of definitions |
+ | key | string? |  yes  | Resource key |
+ | name | string? |  yes  | Resource name |
+ 
+
+---
+
+#### [ResourcesSchema](#ResourcesSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | resources | [[ResourceSchema](#ResourceSchema)]? |  yes  |  |
  
 
 ---
@@ -8526,9 +15265,23 @@ Success. Refer `Support` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | breadcrumb | [[SEObreadcrumb](#SEObreadcrumb)]? |  yes  |  |
+ | canonical_url | string? |  yes  |  |
  | description | string? |  yes  |  |
  | image | [SEOImage](#SEOImage)? |  yes  |  |
+ | meta_tags | [[SEOMetaItem](#SEOMetaItem)]? |  yes  |  |
+ | sitemap | [SEOSitemap](#SEOSitemap)? |  yes  |  |
  | title | string? |  yes  |  |
+ 
+
+---
+
+#### [SEObreadcrumb](#SEObreadcrumb)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | action | [Action](#Action)? |  yes  |  |
+ | url | string? |  yes  |  |
  
 
 ---
@@ -8551,11 +15304,32 @@ Success. Refer `Support` for more details.
 
 ---
 
+#### [SEOMetaItem](#SEOMetaItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[SEOMetaItems](#SEOMetaItems)]? |  yes  |  |
+ | title | string? |  yes  |  |
+ 
+
+---
+
+#### [SEOMetaItems](#SEOMetaItems)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | string? |  yes  |  |
+ | value | string? |  yes  |  |
+ 
+
+---
+
 #### [SeoSchema](#SeoSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | _id | string? |  yes  |  |
+ | additional_sitemap | string? |  yes  |  |
  | app | string? |  yes  |  |
  | cannonical_enabled | boolean? |  yes  |  |
  | created_at | string? |  yes  |  |
@@ -8564,6 +15338,60 @@ Success. Refer `Support` for more details.
  | robots_txt | string? |  yes  |  |
  | sitemap_enabled | boolean? |  yes  |  |
  | updated_at | string? |  yes  |  |
+ 
+
+---
+
+#### [SeoSchemaComponent](#SeoSchemaComponent)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[SEOSchemaMarkupTemplate](#SEOSchemaMarkupTemplate)]? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
+ 
+
+---
+
+#### [SEOSchemaMarkupTemplate](#SEOSchemaMarkupTemplate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean? |  yes  |  |
+ | application | string? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | id | string? |  yes  |  |
+ | page_type | string? |  yes  |  |
+ | schema | string? |  yes  |  |
+ | target_json | string? |  yes  |  |
+ | title | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ 
+
+---
+
+#### [SEOSchemaMarkupTemplateRequestBody](#SEOSchemaMarkupTemplateRequestBody)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | active | boolean? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | description | string? |  yes  |  |
+ | page_type | string? |  yes  |  |
+ | schema | string? |  yes  |  |
+ | target_json | string? |  yes  |  |
+ | title | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ 
+
+---
+
+#### [SEOSitemap](#SEOSitemap)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | frequency | string? |  yes  |  |
+ | priority | number? |  yes  |  |
  
 
 ---
@@ -8623,6 +15451,32 @@ Success. Refer `Support` for more details.
 
 ---
 
+#### [StringMultiLine](#StringMultiLine)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | category | string? |  yes  |  |
+ | list_enabled | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
+ | supported_validations | [[SupportedValidationsSchema](#SupportedValidationsSchema)]? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
+
+---
+
+#### [StringSingleLine](#StringSingleLine)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | category | string? |  yes  |  |
+ | list_enabled | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
+ | supported_validations | [[SupportedValidationsSchema](#SupportedValidationsSchema)]? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
+
+---
+
 #### [Support](#Support)
 
  | Properties | Type | Nullable | Description |
@@ -8634,6 +15488,38 @@ Success. Refer `Support` for more details.
  | created | boolean? |  yes  |  |
  | created_at | string? |  yes  |  |
  | updated_at | string? |  yes  |  |
+ 
+
+---
+
+#### [SupportedValidationsMetaExampleSchema](#SupportedValidationsMetaExampleSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | name | string? |  yes  |  |
+ | value | string? |  yes  |  |
+ 
+
+---
+
+#### [SupportedValidationsMetaSchema](#SupportedValidationsMetaSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | examples | [[SupportedValidationsMetaExampleSchema](#SupportedValidationsMetaExampleSchema)]? |  yes  |  |
+ 
+
+---
+
+#### [SupportedValidationsSchema](#SupportedValidationsSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display | string? |  yes  |  |
+ | meta | [SupportedValidationsMetaSchema](#SupportedValidationsMetaSchema)? |  yes  |  |
+ | name | string? |  yes  |  |
+ | required | boolean? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -8700,6 +15586,18 @@ Success. Refer `Support` for more details.
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | tag | [HandpickedTagSchema](#HandpickedTagSchema)? |  yes  |  |
+ 
+
+---
+
+#### [Url](#Url)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | list_enabled | boolean? |  yes  |  |
+ | name | string? |  yes  |  |
+ | supported_validations | [[SupportedValidationsSchema](#SupportedValidationsSchema)]? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---

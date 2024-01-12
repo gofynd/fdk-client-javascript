@@ -110,6 +110,7 @@ export = OrderApplicationModel;
  * @property {string} [country_iso_code]
  * @property {string} [country_phone_code]
  * @property {string} [created_at]
+ * @property {string} [display_address]
  * @property {string} [email]
  * @property {string} [landmark]
  * @property {number} [latitude]
@@ -252,6 +253,7 @@ export = OrderApplicationModel;
  * @property {BagsForReorder[]} [bags_for_reorder]
  * @property {BreakupValues[]} [breakup_values]
  * @property {string} [order_created_time]
+ * @property {string} [order_created_ts]
  * @property {string} [order_id]
  * @property {Shipments[]} [shipments]
  * @property {number} [total_shipments_in_order]
@@ -411,6 +413,7 @@ export = OrderApplicationModel;
  * @property {Object} [return_meta]
  * @property {string} [returnable_date]
  * @property {string} [shipment_created_at]
+ * @property {string} [shipment_created_ts]
  * @property {string} [shipment_id]
  * @property {ShipmentStatus} [shipment_status]
  * @property {boolean} [show_download_invoice]
@@ -483,6 +486,7 @@ export = OrderApplicationModel;
  */
 /**
  * @typedef TrackingDetails
+ * @property {string} [created_ts]
  * @property {boolean} [is_current]
  * @property {boolean} [is_passed]
  * @property {string} [status]
@@ -645,6 +649,7 @@ type DeliveryAddress = {
     country_iso_code?: string;
     country_phone_code?: string;
     created_at?: string;
+    display_address?: string;
     email?: string;
     landmark?: string;
     latitude?: number;
@@ -804,6 +809,7 @@ type OrderSchema = {
     bags_for_reorder?: BagsForReorder[];
     breakup_values?: BreakupValues[];
     order_created_time?: string;
+    order_created_ts?: string;
     order_id?: string;
     shipments?: Shipments[];
     total_shipments_in_order?: number;
@@ -983,6 +989,7 @@ type Shipments = {
     return_meta?: any;
     returnable_date?: string;
     shipment_created_at?: string;
+    shipment_created_ts?: string;
     shipment_id?: string;
     shipment_status?: ShipmentStatus;
     show_download_invoice?: boolean;
@@ -1065,6 +1072,7 @@ type Track = {
 /** @returns {TrackingDetails} */
 declare function TrackingDetails(): TrackingDetails;
 type TrackingDetails = {
+    created_ts?: string;
     is_current?: boolean;
     is_passed?: boolean;
     status?: string;

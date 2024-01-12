@@ -117,12 +117,12 @@ declare class Catalog {
      * @param {CatalogPlatformValidator.CreateProductParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.SuccessResponse>} - Success response
+     * @returns {Promise<CatalogPlatformModel.SuccessResponse1>} - Success response
      * @name createProduct
      * @summary: Create a product.
      * @description: This API allows to create product. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/createProduct/).
      */
-    createProduct({ body, requestHeaders }?: CatalogPlatformValidator.CreateProductParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponse>;
+    createProduct({ body, requestHeaders }?: CatalogPlatformValidator.CreateProductParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponse1>;
     /**
      * @param {CatalogPlatformValidator.CreateProductAssetsInBulkParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -186,16 +186,6 @@ declare class Catalog {
      * @description: This API allows to delete bulk Inventory job associated with company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteBulkInventoryJob/).
      */
     deleteBulkInventoryJob({ batchId, requestHeaders }?: CatalogPlatformValidator.DeleteBulkInventoryJobParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponse>;
-    /**
-     * @param {CatalogPlatformValidator.DeleteInventoryParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<CatalogPlatformModel.SuccessResponse>} - Success response
-     * @name deleteInventory
-     * @summary: Delete a Inventory.
-     * @description: This API allows to delete inventory of a particular product for particular company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/deleteInventory/).
-     */
-    deleteInventory({ size, itemId, locationId, requestHeaders }?: CatalogPlatformValidator.DeleteInventoryParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.SuccessResponse>;
     /**
      * @param {CatalogPlatformValidator.DeleteProductParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -432,6 +422,16 @@ declare class Catalog {
      */
     getMarketplaceOptinDetail({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetOptInPlatform>;
     /**
+     * @param {CatalogPlatformValidator.GetMarketplacesParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.GetAllMarketplaces>} - Success response
+     * @name getMarketplaces
+     * @summary: List all marketplaces
+     * @description: This API allows to get marketplace information. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getMarketplaces/).
+     */
+    getMarketplaces({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CatalogPlatformModel.GetAllMarketplaces>;
+    /**
      * @param {CatalogPlatformValidator.GetOptimalLocationsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -596,7 +596,7 @@ declare class Catalog {
      * @summary: Get list of size guides
      * @description: This API allows to view all the size guides associated to the seller. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/getSizeGuides/).
      */
-    getSizeGuides({ active, q, tag, pageNo, pageSize, requestHeaders }?: CatalogPlatformValidator.GetSizeGuidesParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.ListSizeGuide>;
+    getSizeGuides({ active, q, tag, pageNo, pageSize, brandId, requestHeaders }?: CatalogPlatformValidator.GetSizeGuidesParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.ListSizeGuide>;
     /**
      * @param {CatalogPlatformValidator.GetStoreDetailParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -626,7 +626,7 @@ declare class Catalog {
      * @summary: Get product categories list
      * @description: This API gets meta associated to product categories. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/listCategories/).
      */
-    listCategories({ level, departments, q, pageNo, pageSize, requestHeaders }?: CatalogPlatformValidator.ListCategoriesParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.CategoryResponse>;
+    listCategories({ level, department, q, pageNo, pageSize, uids, slug, requestHeaders }?: CatalogPlatformValidator.ListCategoriesParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.CategoryResponse>;
     /**
      * @param {CatalogPlatformValidator.ListDepartmentsDataParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -636,7 +636,7 @@ declare class Catalog {
      * @summary: List all Departments.
      * @description: Allows you to list all departments, also can search using name and filter active and incative departments, and item type. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/listDepartmentsData/).
      */
-    listDepartmentsData({ pageNo, itemType, pageSize, name, search, isActive, requestHeaders }?: CatalogPlatformValidator.ListDepartmentsDataParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.DepartmentsResponse>;
+    listDepartmentsData({ pageNo, itemType, pageSize, name, search, isActive, slug, requestHeaders, }?: CatalogPlatformValidator.ListDepartmentsDataParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.DepartmentsResponse>;
     /**
      * @param {CatalogPlatformValidator.ListHSNCodesParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -747,6 +747,18 @@ declare class Catalog {
      * @description: This API allows add Inventory for particular size and store. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateInventories/).
      */
     updateInventories({ body, requestHeaders }?: CatalogPlatformValidator.UpdateInventoriesParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.InventoryUpdateResponse>;
+    /**
+     * @param {CatalogPlatformValidator.UpdateMarketplaceOptinParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<CatalogPlatformModel.UpdateMarketplaceOptinResponse>}
+     *   - Success response
+     *
+     * @name updateMarketplaceOptin
+     * @summary: Update marketplace optin
+     * @description: This API allows to update marketplace optin for a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/catalog/updateMarketplaceOptin/).
+     */
+    updateMarketplaceOptin({ marketplaceSlug, body, requestHeaders }?: CatalogPlatformValidator.UpdateMarketplaceOptinParam, { responseHeaders }?: object): Promise<CatalogPlatformModel.UpdateMarketplaceOptinResponse>;
     /**
      * @param {CatalogPlatformValidator.UpdateProductBundleParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`

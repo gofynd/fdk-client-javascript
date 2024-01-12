@@ -227,11 +227,11 @@ class Order {
    * @description: Use this API to retrieve order details such as tracking details, shipment, store information using Fynd Order ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getOrderById/).
    */
   async getOrderById(
-    { orderId, requestHeaders } = { requestHeaders: {} },
+    { orderId, allowInactive, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = OrderApplicationValidator.getOrderById().validate(
-      { orderId },
+      { orderId, allowInactive },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -242,7 +242,7 @@ class Order {
     const {
       error: warrning,
     } = OrderApplicationValidator.getOrderById().validate(
-      { orderId },
+      { orderId, allowInactive },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -253,6 +253,7 @@ class Order {
     }
 
     const query_params = {};
+    query_params["allow_inactive"] = allowInactive;
 
     const xHeaders = {};
 
@@ -311,13 +312,24 @@ class Order {
       pageSize,
       fromDate,
       toDate,
+      startDate,
+      endDate,
       customMeta,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = OrderApplicationValidator.getOrders().validate(
-      { status, pageNo, pageSize, fromDate, toDate, customMeta },
+      {
+        status,
+        pageNo,
+        pageSize,
+        fromDate,
+        toDate,
+        startDate,
+        endDate,
+        customMeta,
+      },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -326,7 +338,16 @@ class Order {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = OrderApplicationValidator.getOrders().validate(
-      { status, pageNo, pageSize, fromDate, toDate, customMeta },
+      {
+        status,
+        pageNo,
+        pageSize,
+        fromDate,
+        toDate,
+        startDate,
+        endDate,
+        customMeta,
+      },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -342,6 +363,8 @@ class Order {
     query_params["page_size"] = pageSize;
     query_params["from_date"] = fromDate;
     query_params["to_date"] = toDate;
+    query_params["start_date"] = startDate;
+    query_params["end_date"] = endDate;
     query_params["custom_meta"] = customMeta;
 
     const xHeaders = {};
@@ -553,11 +576,11 @@ class Order {
    * @description: Use this API to retrieve shipment details such as price breakup, tracking details, store information, etc. using Shipment ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/order/getShipmentById/).
    */
   async getShipmentById(
-    { shipmentId, requestHeaders } = { requestHeaders: {} },
+    { shipmentId, allowInactive, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = OrderApplicationValidator.getShipmentById().validate(
-      { shipmentId },
+      { shipmentId, allowInactive },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -568,7 +591,7 @@ class Order {
     const {
       error: warrning,
     } = OrderApplicationValidator.getShipmentById().validate(
-      { shipmentId },
+      { shipmentId, allowInactive },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -579,6 +602,7 @@ class Order {
     }
 
     const query_params = {};
+    query_params["allow_inactive"] = allowInactive;
 
     const xHeaders = {};
 

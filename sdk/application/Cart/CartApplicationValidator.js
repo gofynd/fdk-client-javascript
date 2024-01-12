@@ -114,6 +114,8 @@ const CartApplicationModel = require("./CartApplicationModel");
  * @typedef GetCouponsParam
  * @property {string} [id]
  * @property {boolean} [buyNow]
+ * @property {string} [slug]
+ * @property {string} [storeId]
  */
 
 /**
@@ -369,6 +371,8 @@ class CartApplicationValidator {
     return Joi.object({
       id: Joi.string().allow(""),
       buyNow: Joi.boolean(),
+      slug: Joi.string().allow(""),
+      storeId: Joi.string().allow(""),
     });
   }
 

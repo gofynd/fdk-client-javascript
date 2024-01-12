@@ -201,11 +201,13 @@ class Theme {
    * @description: Use this API to retrieve a page of a theme. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/theme/getPage/).
    */
   async getPage(
-    { themeId, pageValue, requestHeaders } = { requestHeaders: {} },
+    { themeId, pageValue, filters, company, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = ThemeApplicationValidator.getPage().validate(
-      { themeId, pageValue },
+      { themeId, pageValue, filters, company },
       { abortEarly: false, allowUnknown: true }
     );
     if (error) {
@@ -214,7 +216,7 @@ class Theme {
 
     // Showing warrnings if extra unknown parameters are found
     const { error: warrning } = ThemeApplicationValidator.getPage().validate(
-      { themeId, pageValue },
+      { themeId, pageValue, filters, company },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
@@ -225,6 +227,8 @@ class Theme {
     }
 
     const query_params = {};
+    query_params["filters"] = filters;
+    query_params["company"] = company;
 
     const xHeaders = {};
 

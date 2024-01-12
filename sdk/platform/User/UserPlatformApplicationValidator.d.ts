@@ -12,8 +12,12 @@ export = UserPlatformApplicationValidator;
  * @property {UserPlatformModel.CreateUserRequestSchema} body
  */
 /**
+ * @typedef CreateUserAttributeDefinitionParam
+ * @property {UserPlatformModel.CreateUserAttributeDefinition} body
+ */
+/**
  * @typedef CreateUserGroupParam
- * @property {UserPlatformModel.CreateUserGroupSchema} body
+ * @property {UserPlatformModel.CreateUserGroup} body
  */
 /**
  * @typedef CreateUserSessionParam
@@ -31,18 +35,66 @@ export = UserPlatformApplicationValidator;
  * @property {string} reason - Reason for deleting session.
  */
 /**
+ * @typedef DeleteUserAttributeParam
+ * @property {string} attributeDefId - The unique identifier of the attribute definition.
+ * @property {string} userId - The unique identifier of the user.
+ */
+/**
+ * @typedef DeleteUserAttributeDefinitionByIdParam
+ * @property {string} attributeDefId - The unique identifier of the attribute
+ *   definition to delete.
+ */
+/**
  * @typedef GetActiveSessionsParam
  * @property {string} id - ID of a customer.
  */
 /**
  * @typedef GetCustomersParam
- * @property {Object} [q] - The search query. Mobile number or email ID of a customer.
+ * @property {string} [q] - The search query. Mobile number or email ID of a customer.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  *   Default value is 10.
  * @property {number} [pageNo] - The page number to navigate through the given
  *   set of results. Default value is 1.
  */
 /** @typedef GetPlatformConfigParam */
+/**
+ * @typedef GetUserAttributeParam
+ * @property {string} attributeDefId - The unique identifier of the attribute definition.
+ * @property {string} userId - The unique identifier of the user.
+ */
+/**
+ * @typedef GetUserAttributeByIdParam
+ * @property {string} attributeId - The unique identifier of the attribute to get.
+ */
+/**
+ * @typedef GetUserAttributeDefinitionByIdParam
+ * @property {string} attributeDefId - The unique identifier of the attribute
+ *   definition to retrieve.
+ */
+/**
+ * @typedef GetUserAttributeDefinitionsParam
+ * @property {string} [excludingIds] - Exclude attribute definitions by Ids
+ * @property {string} [slug] - Filter by attribute slug.
+ * @property {string} [type] - Filter by attribute type.
+ * @property {boolean} [customerEditable] - Filter by customer_editable status.
+ * @property {boolean} [encrypted] - Filter by encrypted status.
+ * @property {boolean} [pinned] - Filter by pinned status.
+ * @property {number} [pinOrder] - Filter by pin order.
+ * @property {boolean} [isLocked] - Filter by locked status.
+ * @property {string} [name] - Filter by attribute name using a case-insensitive regex.
+ * @property {number} [pageSize] - The number of items to retrieve in each page.
+ *   Default value is 10.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results. Default value is 1.
+ */
+/**
+ * @typedef GetUserAttributesForUserParam
+ * @property {string} userId - The unique identifier of the user to update.
+ * @property {number} [pageSize] - The number of items to retrieve in each page.
+ *   Default value is 10.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results. Default value is 1.
+ */
 /**
  * @typedef GetUserGroupByIdParam
  * @property {string} groupId - Numeric ID allotted to a User Group
@@ -51,8 +103,9 @@ export = UserPlatformApplicationValidator;
  * @typedef GetUserGroupsParam
  * @property {string} [pageNo] - Page number for pagination result
  * @property {string} [pageSize] - Page size for pagination result
- * @property {string} [name] - To seartch for User Groups which contains given
+ * @property {string} [name] - To search for User Groups which contains given
  *   string in their name
+ * @property {string} [type] - To search for User Groups with given type
  * @property {string} [status] - To get User Groups with given status
  * @property {number} [groupUid] - To get User Groups with given uid
  */
@@ -76,6 +129,19 @@ export = UserPlatformApplicationValidator;
  * @property {UserPlatformModel.UpdateUserRequestSchema} body
  */
 /**
+ * @typedef UpdateUserAttributeParam
+ * @property {string} attributeDefId - The unique identifier of the attribute
+ *   definition to update.
+ * @property {string} userId - The unique identifier of the user to update.
+ * @property {UserPlatformModel.CreateUserAttributeRequest} body
+ */
+/**
+ * @typedef UpdateUserAttributeDefinitionParam
+ * @property {string} attributeDefId - The unique identifier of the attribute
+ *   definition to update.
+ * @property {UserPlatformModel.CreateUserAttributeDefinition} body
+ */
+/**
  * @typedef UpdateUserGroupParam
  * @property {string} groupId - Numeric ID allotted to a User Group
  * @property {UserPlatformModel.UpdateUserGroupSchema} body
@@ -92,6 +158,8 @@ declare class UserPlatformApplicationValidator {
     static blockOrUnblockUsers(): BlockOrUnblockUsersParam;
     /** @returns {CreateUserParam} */
     static createUser(): CreateUserParam;
+    /** @returns {CreateUserAttributeDefinitionParam} */
+    static createUserAttributeDefinition(): CreateUserAttributeDefinitionParam;
     /** @returns {CreateUserGroupParam} */
     static createUserGroup(): CreateUserGroupParam;
     /** @returns {CreateUserSessionParam} */
@@ -100,12 +168,26 @@ declare class UserPlatformApplicationValidator {
     static deleteActiveSessions(): DeleteActiveSessionsParam;
     /** @returns {DeleteSessionParam} */
     static deleteSession(): DeleteSessionParam;
+    /** @returns {DeleteUserAttributeParam} */
+    static deleteUserAttribute(): DeleteUserAttributeParam;
+    /** @returns {DeleteUserAttributeDefinitionByIdParam} */
+    static deleteUserAttributeDefinitionById(): DeleteUserAttributeDefinitionByIdParam;
     /** @returns {GetActiveSessionsParam} */
     static getActiveSessions(): GetActiveSessionsParam;
     /** @returns {GetCustomersParam} */
     static getCustomers(): GetCustomersParam;
     /** @returns {GetPlatformConfigParam} */
     static getPlatformConfig(): any;
+    /** @returns {GetUserAttributeParam} */
+    static getUserAttribute(): GetUserAttributeParam;
+    /** @returns {GetUserAttributeByIdParam} */
+    static getUserAttributeById(): GetUserAttributeByIdParam;
+    /** @returns {GetUserAttributeDefinitionByIdParam} */
+    static getUserAttributeDefinitionById(): GetUserAttributeDefinitionByIdParam;
+    /** @returns {GetUserAttributeDefinitionsParam} */
+    static getUserAttributeDefinitions(): GetUserAttributeDefinitionsParam;
+    /** @returns {GetUserAttributesForUserParam} */
+    static getUserAttributesForUser(): GetUserAttributesForUserParam;
     /** @returns {GetUserGroupByIdParam} */
     static getUserGroupById(): GetUserGroupByIdParam;
     /** @returns {GetUserGroupsParam} */
@@ -118,13 +200,17 @@ declare class UserPlatformApplicationValidator {
     static updatePlatformConfig(): UpdatePlatformConfigParam;
     /** @returns {UpdateUserParam} */
     static updateUser(): UpdateUserParam;
+    /** @returns {UpdateUserAttributeParam} */
+    static updateUserAttribute(): UpdateUserAttributeParam;
+    /** @returns {UpdateUserAttributeDefinitionParam} */
+    static updateUserAttributeDefinition(): UpdateUserAttributeDefinitionParam;
     /** @returns {UpdateUserGroupParam} */
     static updateUserGroup(): UpdateUserGroupParam;
     /** @returns {UpdateUserGroupPartiallyParam} */
     static updateUserGroupPartially(): UpdateUserGroupPartiallyParam;
 }
 declare namespace UserPlatformApplicationValidator {
-    export { ArchiveUserParam, BlockOrUnblockUsersParam, CreateUserParam, CreateUserGroupParam, CreateUserSessionParam, DeleteActiveSessionsParam, DeleteSessionParam, GetActiveSessionsParam, GetCustomersParam, GetPlatformConfigParam, GetUserGroupByIdParam, GetUserGroupsParam, SearchUsersParam, UnDeleteUserParam, UpdatePlatformConfigParam, UpdateUserParam, UpdateUserGroupParam, UpdateUserGroupPartiallyParam };
+    export { ArchiveUserParam, BlockOrUnblockUsersParam, CreateUserParam, CreateUserAttributeDefinitionParam, CreateUserGroupParam, CreateUserSessionParam, DeleteActiveSessionsParam, DeleteSessionParam, DeleteUserAttributeParam, DeleteUserAttributeDefinitionByIdParam, GetActiveSessionsParam, GetCustomersParam, GetPlatformConfigParam, GetUserAttributeParam, GetUserAttributeByIdParam, GetUserAttributeDefinitionByIdParam, GetUserAttributeDefinitionsParam, GetUserAttributesForUserParam, GetUserGroupByIdParam, GetUserGroupsParam, SearchUsersParam, UnDeleteUserParam, UpdatePlatformConfigParam, UpdateUserParam, UpdateUserAttributeParam, UpdateUserAttributeDefinitionParam, UpdateUserGroupParam, UpdateUserGroupPartiallyParam };
 }
 type ArchiveUserParam = {
     body: UserPlatformModel.ArchiveUserRequestSchema;
@@ -135,8 +221,11 @@ type BlockOrUnblockUsersParam = {
 type CreateUserParam = {
     body: UserPlatformModel.CreateUserRequestSchema;
 };
+type CreateUserAttributeDefinitionParam = {
+    body: UserPlatformModel.CreateUserAttributeDefinition;
+};
 type CreateUserGroupParam = {
-    body: UserPlatformModel.CreateUserGroupSchema;
+    body: UserPlatformModel.CreateUserGroup;
 };
 type CreateUserSessionParam = {
     body: UserPlatformModel.CreateUserSessionRequestSchema;
@@ -165,6 +254,23 @@ type DeleteSessionParam = {
      */
     reason: string;
 };
+type DeleteUserAttributeParam = {
+    /**
+     * - The unique identifier of the attribute definition.
+     */
+    attributeDefId: string;
+    /**
+     * - The unique identifier of the user.
+     */
+    userId: string;
+};
+type DeleteUserAttributeDefinitionByIdParam = {
+    /**
+     * - The unique identifier of the attribute
+     * definition to delete.
+     */
+    attributeDefId: string;
+};
 type GetActiveSessionsParam = {
     /**
      * - ID of a customer.
@@ -175,7 +281,94 @@ type GetCustomersParam = {
     /**
      * - The search query. Mobile number or email ID of a customer.
      */
-    q?: any;
+    q?: string;
+    /**
+     * - The number of items to retrieve in each page.
+     * Default value is 10.
+     */
+    pageSize?: number;
+    /**
+     * - The page number to navigate through the given
+     * set of results. Default value is 1.
+     */
+    pageNo?: number;
+};
+type GetUserAttributeParam = {
+    /**
+     * - The unique identifier of the attribute definition.
+     */
+    attributeDefId: string;
+    /**
+     * - The unique identifier of the user.
+     */
+    userId: string;
+};
+type GetUserAttributeByIdParam = {
+    /**
+     * - The unique identifier of the attribute to get.
+     */
+    attributeId: string;
+};
+type GetUserAttributeDefinitionByIdParam = {
+    /**
+     * - The unique identifier of the attribute
+     * definition to retrieve.
+     */
+    attributeDefId: string;
+};
+type GetUserAttributeDefinitionsParam = {
+    /**
+     * - Exclude attribute definitions by Ids
+     */
+    excludingIds?: string;
+    /**
+     * - Filter by attribute slug.
+     */
+    slug?: string;
+    /**
+     * - Filter by attribute type.
+     */
+    type?: string;
+    /**
+     * - Filter by customer_editable status.
+     */
+    customerEditable?: boolean;
+    /**
+     * - Filter by encrypted status.
+     */
+    encrypted?: boolean;
+    /**
+     * - Filter by pinned status.
+     */
+    pinned?: boolean;
+    /**
+     * - Filter by pin order.
+     */
+    pinOrder?: number;
+    /**
+     * - Filter by locked status.
+     */
+    isLocked?: boolean;
+    /**
+     * - Filter by attribute name using a case-insensitive regex.
+     */
+    name?: string;
+    /**
+     * - The number of items to retrieve in each page.
+     * Default value is 10.
+     */
+    pageSize?: number;
+    /**
+     * - The page number to navigate through the given
+     * set of results. Default value is 1.
+     */
+    pageNo?: number;
+};
+type GetUserAttributesForUserParam = {
+    /**
+     * - The unique identifier of the user to update.
+     */
+    userId: string;
     /**
      * - The number of items to retrieve in each page.
      * Default value is 10.
@@ -203,10 +396,14 @@ type GetUserGroupsParam = {
      */
     pageSize?: string;
     /**
-     * - To seartch for User Groups which contains given
+     * - To search for User Groups which contains given
      * string in their name
      */
     name?: string;
+    /**
+     * - To search for User Groups with given type
+     */
+    type?: string;
     /**
      * - To get User Groups with given status
      */
@@ -239,6 +436,26 @@ type UpdateUserParam = {
      */
     userId: string;
     body: UserPlatformModel.UpdateUserRequestSchema;
+};
+type UpdateUserAttributeParam = {
+    /**
+     * - The unique identifier of the attribute
+     * definition to update.
+     */
+    attributeDefId: string;
+    /**
+     * - The unique identifier of the user to update.
+     */
+    userId: string;
+    body: UserPlatformModel.CreateUserAttributeRequest;
+};
+type UpdateUserAttributeDefinitionParam = {
+    /**
+     * - The unique identifier of the attribute
+     * definition to update.
+     */
+    attributeDefId: string;
+    body: UserPlatformModel.CreateUserAttributeDefinition;
 };
 type UpdateUserGroupParam = {
     /**

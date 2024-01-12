@@ -65,6 +65,10 @@ const CompanyProfilePlatformModel = require("./CompanyProfilePlatformModel");
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 10.
  * @property {number[]} [locationIds] - Helps to filter stores on the basis of uids.
+ * @property {string[]} [types] - Helps to get the location list on the basis of
+ *   multiple location type.
+ * @property {string[]} [tags] - Helps to get the location list on the basis of
+ *   multiple location tag.
  */
 
 /**
@@ -162,6 +166,8 @@ class CompanyProfilePlatformValidator {
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       locationIds: Joi.array().items(Joi.number()),
+      types: Joi.array().items(Joi.string().allow("")),
+      tags: Joi.array().items(Joi.string().allow("")),
     }).required();
   }
 

@@ -6,7 +6,7 @@
 ##### [Back to Application docs](./README.md)
 
 ## Communication Methods
-Manages email, sms, push notifications sent to users
+The Communications module manages user notifications to keep users informed and engaged through personalized push notifications. Use it to enable users to view notifications they've opted into, modify their communication preferences, and update push tokens for real-time updates.
 
 
 Default

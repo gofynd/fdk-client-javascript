@@ -4,6 +4,16 @@ declare class Order {
     config: any;
     applicationId: any;
     /**
+     * @param {OrderPlatformApplicationValidator.FailedOrderLogsParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.FailedOrderLogs>} - Success response
+     * @name failedOrderLogs
+     * @summary: Get failed order logs according to the filter provided
+     * @description: This endpoint allows users to get failed order logs listing for filters based on order id, user contact number, user email id and sales channel id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/failedOrderLogs/).
+     */
+    failedOrderLogs({ pageNo, pageSize, searchType, searchValue, requestHeaders }?: OrderPlatformApplicationValidator.FailedOrderLogsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.FailedOrderLogs>;
+    /**
      * @param {OrderPlatformApplicationValidator.GetApplicationShipmentsParam} arg
      *   - Arg object
      *
@@ -14,7 +24,7 @@ declare class Order {
      *
      * @name getApplicationShipments
      * @summary:
-     * @description: - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getApplicationShipments/).
+     * @description: Get cross selling platform shipments - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getApplicationShipments/).
      */
     getApplicationShipments({ lane, searchType, searchId, fromDate, toDate, dpIds, orderingCompanyId, stores, salesChannel, requestByExt, pageNo, pageSize, customerId, isPrioritySort, excludeLockedShipments, requestHeaders, }?: OrderPlatformApplicationValidator.GetApplicationShipmentsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ShipmentInternalPlatformViewResponse>;
     /**

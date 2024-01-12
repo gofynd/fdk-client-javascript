@@ -3,38 +3,70 @@ const Joi = require("joi");
 const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
 
 /**
- * @typedef AddAppDpParam
- * @property {ServiceabilityPlatformModel.ApplicationCompanyDpViewRequest} body
+ * @typedef CreateCourierPartnerRuleParam
+ * @property {ServiceabilityPlatformModel.CourierPartnerRule} body
  */
 
 /**
- * @typedef DeleteAppDpParam
- * @property {number} courierPartnerId - A `courier_partner_id` is a unique
- *   identifier of a particular delivery partner.
+ * @typedef CreateStoreRulesParam
+ * @property {ServiceabilityPlatformModel.CreateStoreRuleRequestSchema} body
  */
 
-/** @typedef GetApplicationServiceabilityParam */
+/** @typedef GetApplicationConfigParam */
 
-/** @typedef GetDpApplicationRulesParam */
+/** @typedef GetApplicationConfigurationParam */
 
-/** @typedef GetSelfShipParam */
+/** @typedef GetApplicationServiceabilitySelfShipmentParam */
 
 /**
- * @typedef GetZoneFromPincodeViewParam
- * @property {ServiceabilityPlatformModel.GetZoneFromPincodeViewRequest} body
+ * @typedef GetCourierPartnerRuleParam
+ * @property {string} ruleId - A `rule_id` is a unique identifier for a rule.
  */
 
 /**
- * @typedef GetZonesFromApplicationIdViewParam
+ * @typedef GetCourierPartnerRulesParam
  * @property {number} [pageNo] - Index of the item to start returning with
  * @property {number} [pageSize] - Determines the items to be displayed in a page
- * @property {string[]} [zoneId] - List of zones to query for
- * @property {string} [q] - Search with name as a free text
+ * @property {string} [status] - Filter rules based on rule status
  */
 
 /**
- * @typedef UpdateApplicationServiceabilityParam
- * @property {ServiceabilityPlatformModel.ServiceabilityPayloadSchema} body
+ * @typedef GetStoreRuleParam
+ * @property {string} ruleUid - A `rule_uid` is a unique identifier for a
+ *   particular rule object.
+ */
+
+/**
+ * @typedef GetStoreRulesParam
+ * @property {number} [pageNo]
+ * @property {number} [pageSize]
+ * @property {string} [status]
+ */
+
+/**
+ * @typedef InsertApplicationConfigParam
+ * @property {ServiceabilityPlatformModel.StoreRuleConfigData} body
+ */
+
+/**
+ * @typedef PatchApplicationServiceabilitySelfShipmentParam
+ * @property {ServiceabilityPlatformModel.SelfShipResponse} body
+ */
+
+/**
+ * @typedef UpdateApplicationConfigurationParam
+ * @property {ServiceabilityPlatformModel.ApplicationConfig} body
+ */
+
+/**
+ * @typedef UpdateCourierPartnerRulePriorityParam
+ * @property {ServiceabilityPlatformModel.RulePriorityRequest} body
+ */
+
+/**
+ * @typedef UpdateCourierRuleParam
+ * @property {string} ruleId - A `rule_id` is a unique identifier for a particular Dp.
+ * @property {ServiceabilityPlatformModel.CourierPartnerRule} body
  */
 
 /**
@@ -58,66 +90,112 @@ const ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
  */
 
 /**
- * @typedef UpdateSelfShipParam
- * @property {ServiceabilityPlatformModel.SelfShipResponse} body
+ * @typedef UpdateStoreRulesParam
+ * @property {string} ruleUid - A `rule_uid` is a unique identifier for a
+ *   particular rule object.
+ * @property {ServiceabilityPlatformModel.CreateStoreRuleRequestSchema} body
  */
 
 /**
- * @typedef UpsertDpApplicationRulesParam
- * @property {ServiceabilityPlatformModel.DPApplicationRuleRequest} body
+ * @typedef UpdateStoreRulesConfigParam
+ * @property {ServiceabilityPlatformModel.StoreRuleConfigData} body
  */
 
 class ServiceabilityPlatformApplicationValidator {
-  /** @returns {AddAppDpParam} */
-  static addAppDp() {
+  /** @returns {CreateCourierPartnerRuleParam} */
+  static createCourierPartnerRule() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.ApplicationCompanyDpViewRequest().required(),
+      body: ServiceabilityPlatformModel.CourierPartnerRule().required(),
     }).required();
   }
 
-  /** @returns {DeleteAppDpParam} */
-  static deleteAppDp() {
+  /** @returns {CreateStoreRulesParam} */
+  static createStoreRules() {
     return Joi.object({
-      courierPartnerId: Joi.number().required(),
+      body: ServiceabilityPlatformModel.CreateStoreRuleRequestSchema().required(),
     }).required();
   }
 
-  /** @returns {GetApplicationServiceabilityParam} */
-  static getApplicationServiceability() {
+  /** @returns {GetApplicationConfigParam} */
+  static getApplicationConfig() {
     return Joi.object({}).required();
   }
 
-  /** @returns {GetDpApplicationRulesParam} */
-  static getDpApplicationRules() {
+  /** @returns {GetApplicationConfigurationParam} */
+  static getApplicationConfiguration() {
     return Joi.object({}).required();
   }
 
-  /** @returns {GetSelfShipParam} */
-  static getSelfShip() {
+  /** @returns {GetApplicationServiceabilitySelfShipmentParam} */
+  static getApplicationServiceabilitySelfShipment() {
     return Joi.object({}).required();
   }
 
-  /** @returns {GetZoneFromPincodeViewParam} */
-  static getZoneFromPincodeView() {
+  /** @returns {GetCourierPartnerRuleParam} */
+  static getCourierPartnerRule() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.GetZoneFromPincodeViewRequest().required(),
+      ruleId: Joi.string().allow("").required(),
     }).required();
   }
 
-  /** @returns {GetZonesFromApplicationIdViewParam} */
-  static getZonesFromApplicationIdView() {
+  /** @returns {GetCourierPartnerRulesParam} */
+  static getCourierPartnerRules() {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
-      zoneId: Joi.array().items(Joi.string().allow("")),
-      q: Joi.string().allow(""),
+      status: Joi.string().allow(""),
     }).required();
   }
 
-  /** @returns {UpdateApplicationServiceabilityParam} */
-  static updateApplicationServiceability() {
+  /** @returns {GetStoreRuleParam} */
+  static getStoreRule() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.ServiceabilityPayloadSchema().required(),
+      ruleUid: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {GetStoreRulesParam} */
+  static getStoreRules() {
+    return Joi.object({
+      pageNo: Joi.number(),
+      pageSize: Joi.number(),
+      status: Joi.string().allow(""),
+    }).required();
+  }
+
+  /** @returns {InsertApplicationConfigParam} */
+  static insertApplicationConfig() {
+    return Joi.object({
+      body: ServiceabilityPlatformModel.StoreRuleConfigData().required(),
+    }).required();
+  }
+
+  /** @returns {PatchApplicationServiceabilitySelfShipmentParam} */
+  static patchApplicationServiceabilitySelfShipment() {
+    return Joi.object({
+      body: ServiceabilityPlatformModel.SelfShipResponse().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateApplicationConfigurationParam} */
+  static updateApplicationConfiguration() {
+    return Joi.object({
+      body: ServiceabilityPlatformModel.ApplicationConfig().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateCourierPartnerRulePriorityParam} */
+  static updateCourierPartnerRulePriority() {
+    return Joi.object({
+      body: ServiceabilityPlatformModel.RulePriorityRequest().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateCourierRuleParam} */
+  static updateCourierRule() {
+    return Joi.object({
+      ruleId: Joi.string().allow("").required(),
+      body: ServiceabilityPlatformModel.CourierPartnerRule().required(),
     }).required();
   }
 
@@ -149,17 +227,18 @@ class ServiceabilityPlatformApplicationValidator {
     }).required();
   }
 
-  /** @returns {UpdateSelfShipParam} */
-  static updateSelfShip() {
+  /** @returns {UpdateStoreRulesParam} */
+  static updateStoreRules() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.SelfShipResponse().required(),
+      ruleUid: Joi.string().allow("").required(),
+      body: ServiceabilityPlatformModel.CreateStoreRuleRequestSchema().required(),
     }).required();
   }
 
-  /** @returns {UpsertDpApplicationRulesParam} */
-  static upsertDpApplicationRules() {
+  /** @returns {UpdateStoreRulesConfigParam} */
+  static updateStoreRulesConfig() {
     return Joi.object({
-      body: ServiceabilityPlatformModel.DPApplicationRuleRequest().required(),
+      body: ServiceabilityPlatformModel.StoreRuleConfigData().required(),
     }).required();
   }
 }

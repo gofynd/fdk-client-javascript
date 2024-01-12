@@ -1,8 +1,5 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
-const {
-  FDKClientValidationError,
-  FDKResponseValidationError,
-} = require("../../common/FDKError");
+const { FDKClientValidationError } = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
 const PaymentPlatformApplicationValidator = require("./PaymentPlatformApplicationValidator");
 const PaymentPlatformModel = require("./PaymentPlatformModel");
@@ -589,6 +586,87 @@ class Payment {
   }
 
   /**
+   * @param {PaymentPlatformApplicationValidator.CreatePaymentOrderParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PaymentPlatformModel.PaymentOrderResponse>} - Success response
+   * @name createPaymentOrder
+   * @summary: Create Order
+   * @description: Use this API to create a order and payment on aggregator side - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/createPaymentOrder/).
+   */
+  async createPaymentOrder(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = PaymentPlatformApplicationValidator.createPaymentOrder().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentPlatformApplicationValidator.createPaymentOrder().validate(
+      {
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Payment > createPaymentOrder \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "post",
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment-orders/`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = PaymentPlatformModel.PaymentOrderResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Payment > createPaymentOrder \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {PaymentPlatformApplicationValidator.EdcAggregatorsAndModelListParam} arg
    *   - Arg object
    *
@@ -1090,12 +1168,113 @@ class Payment {
   }
 
   /**
+   * @param {PaymentPlatformApplicationValidator.GetMerchantAggregatorAppVersionParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PaymentPlatformModel.AggregatorVersionResponse>} -
+   *   Success response
+   * @name getMerchantAggregatorAppVersion
+   * @summary: Get app version required for Payment Mode.
+   * @description: This api provide read operations on the app version required for Payment Mode or sub payment mode for an Aggregator. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getMerchantAggregatorAppVersion/).
+   */
+  async getMerchantAggregatorAppVersion(
+    {
+      aggregatorId,
+      businessUnit,
+      device,
+      paymentModeId,
+      subPaymentMode,
+      requestHeaders,
+    } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = PaymentPlatformApplicationValidator.getMerchantAggregatorAppVersion().validate(
+      {
+        aggregatorId,
+        businessUnit,
+        device,
+        paymentModeId,
+        subPaymentMode,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentPlatformApplicationValidator.getMerchantAggregatorAppVersion().validate(
+      {
+        aggregatorId,
+        businessUnit,
+        device,
+        paymentModeId,
+        subPaymentMode,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Payment > getMerchantAggregatorAppVersion \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["business_unit"] = businessUnit;
+    query_params["device"] = device;
+    query_params["payment_mode_id"] = paymentModeId;
+    query_params["sub_payment_mode"] = subPaymentMode;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/options/aggregators/${aggregatorId}/version`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = PaymentPlatformModel.AggregatorVersionResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Payment > getMerchantAggregatorAppVersion \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {PaymentPlatformApplicationValidator.GetMerchantAggregatorPaymentModeDetailsParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.MerchnatPaymentModeResponse>} -
+   * @returns {Promise<PaymentPlatformModel.PlatformPaymentModeResponse>} -
    *   Success response
    * @name getMerchantAggregatorPaymentModeDetails
    * @summary: Get Aggregator, payment mode and sub payment mode.
@@ -1160,7 +1339,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.MerchnatPaymentModeResponse().validate(
+    } = PaymentPlatformModel.PlatformPaymentModeResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1185,7 +1364,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.MerchnatPaymentModeResponse>} -
+   * @returns {Promise<PaymentPlatformModel.PlatformPaymentModeResponse>} -
    *   Success response
    * @name getMerchantPaymentOption
    * @summary: Get Payment modes and COD details.
@@ -1238,7 +1417,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.MerchnatPaymentModeResponse().validate(
+    } = PaymentPlatformModel.PlatformPaymentModeResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1346,7 +1525,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.MerchnatPaymentModeResponse>} -
+   * @returns {Promise<PaymentPlatformModel.PlatformPaymentModeResponse>} -
    *   Success response
    * @name getPGConfigAggregators
    * @summary: Get Aggregators available to be added as PG.
@@ -1399,7 +1578,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.MerchnatPaymentModeResponse().validate(
+    } = PaymentPlatformModel.PlatformPaymentModeResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -1576,6 +1755,171 @@ class Payment {
   }
 
   /**
+   * @param {PaymentPlatformApplicationValidator.GetPaymentModeControlRoutesParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PaymentPlatformModel.PlatformPaymentModeResponse>} -
+   *   Success response
+   * @name getPaymentModeControlRoutes
+   * @summary: Get details for the given offline / advance payment mode for merchant
+   * @description: Use this API to get details for the given offline / advance payment mode for merchant - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getPaymentModeControlRoutes/).
+   */
+  async getPaymentModeControlRoutes(
+    { mode, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = PaymentPlatformApplicationValidator.getPaymentModeControlRoutes().validate(
+      {
+        mode,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentPlatformApplicationValidator.getPaymentModeControlRoutes().validate(
+      {
+        mode,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Payment > getPaymentModeControlRoutes \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/options/modes/${mode}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = PaymentPlatformModel.PlatformPaymentModeResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Payment > getPaymentModeControlRoutes \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {PaymentPlatformApplicationValidator.GetPaymentModeCustomConfigParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PaymentPlatformModel.PaymentCustomConfigResponseSchema>}
+   *   - Success response
+   *
+   * @name getPaymentModeCustomConfig
+   * @summary: Get details of advance payment custom configurations of merchant
+   * @description: Use this API to Get details of advance payment custom configurations of merchant - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getPaymentModeCustomConfig/).
+   */
+  async getPaymentModeCustomConfig(
+    { mode, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = PaymentPlatformApplicationValidator.getPaymentModeCustomConfig().validate(
+      {
+        mode,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentPlatformApplicationValidator.getPaymentModeCustomConfig().validate(
+      {
+        mode,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Payment > getPaymentModeCustomConfig \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/options/modes/${mode}/custom-config`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = PaymentPlatformModel.PaymentCustomConfigResponseSchema().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Payment > getPaymentModeCustomConfig \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {PaymentPlatformApplicationValidator.GetPaymentModeRoutesParam} arg
    *   - Arg object
    *
@@ -1587,7 +1931,9 @@ class Payment {
    * @description: Use this API to get Get All Valid Payment Options for making payment - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getPaymentModeRoutes/).
    */
   async getPaymentModeRoutes(
-    { refresh, requestType, requestHeaders } = { requestHeaders: {} },
+    { refresh, requestType, orderId, shipmentId, requestHeaders } = {
+      requestHeaders: {},
+    },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -1596,6 +1942,8 @@ class Payment {
       {
         refresh,
         requestType,
+        orderId,
+        shipmentId,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1610,6 +1958,8 @@ class Payment {
       {
         refresh,
         requestType,
+        orderId,
+        shipmentId,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1623,6 +1973,8 @@ class Payment {
     const query_params = {};
     query_params["refresh"] = refresh;
     query_params["request_type"] = requestType;
+    query_params["order_id"] = orderId;
+    query_params["shipment_id"] = shipmentId;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -1661,12 +2013,98 @@ class Payment {
   }
 
   /**
+   * @param {PaymentPlatformApplicationValidator.GetPaymentSessionParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PaymentPlatformModel.PaymentSessionSerializer>} -
+   *   Success response
+   * @name getPaymentSession
+   * @summary: API to get payment session details
+   * @description: Use this API to fetch the payment session details for given order ID or Transaction ID. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getPaymentSession/).
+   */
+  async getPaymentSession(
+    { gid, lineItem, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = PaymentPlatformApplicationValidator.getPaymentSession().validate(
+      {
+        gid,
+        lineItem,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentPlatformApplicationValidator.getPaymentSession().validate(
+      {
+        gid,
+        lineItem,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Payment > getPaymentSession \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["line-item"] = lineItem;
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "get",
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/session/${gid}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = PaymentPlatformModel.PaymentSessionSerializer().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Payment > getPaymentSession \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {PaymentPlatformApplicationValidator.GetPosPaymentModeRoutesParam} arg
    *   - Arg object
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.PaymentOptionsResponse>} - Success response
+   * @returns {Promise<PaymentPlatformModel.PaymentModeRouteResponse>} -
+   *   Success response
    * @name getPosPaymentModeRoutes
    * @summary: Get All Valid Payment Options
    * @description: Use this API to get Get All Valid Payment Options for making payment - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/getPosPaymentModeRoutes/).
@@ -1674,13 +2112,17 @@ class Payment {
   async getPosPaymentModeRoutes(
     {
       amount,
-      cartId,
       pincode,
-      checkoutMode,
       orderType,
+      cartId,
+      checkoutMode,
       refresh,
+      orderId,
       cardReference,
       userDetails,
+      displaySplit,
+      advancePayment,
+      shipmentId,
       requestHeaders,
     } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
@@ -1690,13 +2132,17 @@ class Payment {
     } = PaymentPlatformApplicationValidator.getPosPaymentModeRoutes().validate(
       {
         amount,
-        cartId,
         pincode,
-        checkoutMode,
         orderType,
+        cartId,
+        checkoutMode,
         refresh,
+        orderId,
         cardReference,
         userDetails,
+        displaySplit,
+        advancePayment,
+        shipmentId,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1710,13 +2156,17 @@ class Payment {
     } = PaymentPlatformApplicationValidator.getPosPaymentModeRoutes().validate(
       {
         amount,
-        cartId,
         pincode,
-        checkoutMode,
         orderType,
+        cartId,
+        checkoutMode,
         refresh,
+        orderId,
         cardReference,
         userDetails,
+        displaySplit,
+        advancePayment,
+        shipmentId,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1733,9 +2183,13 @@ class Payment {
     query_params["pincode"] = pincode;
     query_params["checkout_mode"] = checkoutMode;
     query_params["refresh"] = refresh;
+    query_params["order_id"] = orderId;
     query_params["card_reference"] = cardReference;
     query_params["order_type"] = orderType;
     query_params["user_details"] = userDetails;
+    query_params["display_split"] = displaySplit;
+    query_params["advance_payment"] = advancePayment;
+    query_params["shipment_id"] = shipmentId;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -1754,7 +2208,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.PaymentOptionsResponse().validate(responseData, {
+    } = PaymentPlatformModel.PaymentModeRouteResponse().validate(responseData, {
       abortEarly: false,
       allowUnknown: true,
     });
@@ -2273,7 +2727,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.MerchnatPaymentModeResponse>} -
+   * @returns {Promise<PaymentPlatformModel.PlatformPaymentModeResponse>} -
    *   Success response
    * @name patchMerchantAggregatorPaymentModeDetails
    * @summary: Update Aggregator, payment mode and sub payment mode.
@@ -2332,7 +2786,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.MerchnatPaymentModeResponse().validate(
+    } = PaymentPlatformModel.PlatformPaymentModeResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -2357,7 +2811,7 @@ class Payment {
    *
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../PlatformAPIClient").Options} - Options
-   * @returns {Promise<PaymentPlatformModel.MerchnatPaymentModeResponse>} -
+   * @returns {Promise<PaymentPlatformModel.PlatformPaymentModeResponse>} -
    *   Success response
    * @name patchMerchantPaymentOption
    * @summary: Update Payment modes and COD details.
@@ -2414,7 +2868,7 @@ class Payment {
 
     const {
       error: res_error,
-    } = PaymentPlatformModel.MerchnatPaymentModeResponse().validate(
+    } = PaymentPlatformModel.PlatformPaymentModeResponse().validate(
       responseData,
       { abortEarly: false, allowUnknown: true }
     );
@@ -2426,6 +2880,90 @@ class Payment {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Payment > patchMerchantPaymentOption \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {PaymentPlatformApplicationValidator.PatchMerchantPaymentOptionVersionParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PaymentPlatformModel.PlatformPaymentModeResponse>} -
+   *   Success response
+   * @name patchMerchantPaymentOptionVersion
+   * @summary: Update app version required for Payment Mode.
+   * @description: This api provide wrote operations on the app version required for Payment Mode or sub payment mode for an Aggregator. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/patchMerchantPaymentOptionVersion/).
+   */
+  async patchMerchantPaymentOptionVersion(
+    { aggregatorId, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = PaymentPlatformApplicationValidator.patchMerchantPaymentOptionVersion().validate(
+      {
+        aggregatorId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentPlatformApplicationValidator.patchMerchantPaymentOptionVersion().validate(
+      {
+        aggregatorId,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Payment > patchMerchantPaymentOptionVersion \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "patch",
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/options/aggregators/${aggregatorId}/version`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = PaymentPlatformModel.PlatformPaymentModeResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Payment > patchMerchantPaymentOptionVersion \n ${res_error}`,
         });
       }
     }
@@ -2996,6 +3534,175 @@ class Payment {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for platform > Payment > saveBrandPaymentGatewayConfig \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {PaymentPlatformApplicationValidator.SetMerchantModeControlRoutesParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PaymentPlatformModel.PlatformPaymentModeResponse>} -
+   *   Success response
+   * @name setMerchantModeControlRoutes
+   * @summary: Update offline payment mode details for the merchant
+   * @description: Use this API to update given offline / advance payment mode details for the merchant - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/setMerchantModeControlRoutes/).
+   */
+  async setMerchantModeControlRoutes(
+    { mode, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = PaymentPlatformApplicationValidator.setMerchantModeControlRoutes().validate(
+      {
+        mode,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentPlatformApplicationValidator.setMerchantModeControlRoutes().validate(
+      {
+        mode,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Payment > setMerchantModeControlRoutes \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "patch",
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/options/modes/${mode}`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = PaymentPlatformModel.PlatformPaymentModeResponse().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Payment > setMerchantModeControlRoutes \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {PaymentPlatformApplicationValidator.SetPaymentModeCustomConfigParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<PaymentPlatformModel.PaymentCustomConfigResponseSchema>}
+   *   - Success response
+   *
+   * @name setPaymentModeCustomConfig
+   * @summary: Update details of advance payment custom configurations of merchant
+   * @description: Use this API to update given details of advance payment custom configurations of merchant - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/payment/setPaymentModeCustomConfig/).
+   */
+  async setPaymentModeCustomConfig(
+    { mode, body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = PaymentPlatformApplicationValidator.setPaymentModeCustomConfig().validate(
+      {
+        mode,
+        body,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = PaymentPlatformApplicationValidator.setPaymentModeCustomConfig().validate(
+      {
+        mode,
+        body,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > Payment > setPaymentModeCustomConfig \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "patch",
+      `/service/platform/payment/v1.0/company/${this.config.companyId}/application/${this.applicationId}/payment/options/modes/${mode}/custom-config`,
+      query_params,
+      body,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = PaymentPlatformModel.PaymentCustomConfigResponseSchema().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > Payment > setPaymentModeCustomConfig \n ${res_error}`,
         });
       }
     }

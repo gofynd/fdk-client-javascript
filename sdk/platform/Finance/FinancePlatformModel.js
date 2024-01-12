@@ -123,7 +123,7 @@ const Joi = require("joi");
  * @property {number} [item_count]
  * @property {Object[]} [items]
  * @property {string} [message]
- * @property {Object} [page]
+ * @property {Page} [page]
  * @property {boolean} [show_mr]
  */
 
@@ -136,7 +136,7 @@ const Joi = require("joi");
  * @typedef CreditNoteDetails
  * @property {number} [available_cn_balance]
  * @property {number} [cn_amount]
- * @property {Object} [cn_details]
+ * @property {CnDetails} [cn_details]
  * @property {string} [cn_reference_number]
  * @property {string} [cn_status]
  * @property {string} [customer_mobile_number]
@@ -153,6 +153,13 @@ const Joi = require("joi");
  * @typedef CreditNoteDetailsResponse
  * @property {CreditNoteDetails} [data]
  * @property {boolean} [success]
+ */
+
+/**
+ * @typedef Currency
+ * @property {string} [code]
+ * @property {string} [name]
+ * @property {string} [symbol]
  */
 
 /**
@@ -486,6 +493,26 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef InvoiceActivityLogError
+ * @property {string} [reason]
+ */
+
+/**
+ * @typedef InvoiceActivityLogsResponse
+ * @property {InvoiceActivityLogsResponseData[]} [data]
+ */
+
+/**
+ * @typedef InvoiceActivityLogsResponseData
+ * @property {boolean} [is_resolved]
+ * @property {number} [max_retry_attempts]
+ * @property {string} [performed_by]
+ * @property {string} [reason]
+ * @property {number} [retry_attempts]
+ * @property {string} [status]
+ */
+
+/**
  * @typedef InvoiceListingPayloadData
  * @property {string} [end_date]
  * @property {InoviceListingPayloadDataFilters} [filters]
@@ -512,6 +539,7 @@ const Joi = require("joi");
  * @typedef InvoiceListingResponseItems
  * @property {string} [amount]
  * @property {string} [company]
+ * @property {Currency} [currency]
  * @property {string} [due_date]
  * @property {string} [invoice_date]
  * @property {string} [invoice_id]
@@ -520,6 +548,19 @@ const Joi = require("joi");
  * @property {boolean} [is_downloadable]
  * @property {string} [period]
  * @property {string} [status]
+ */
+
+/**
+ * @typedef InvoicePaymentDetailsResponse
+ * @property {InvoicePaymentDetailsResponseData} [data]
+ * @property {boolean} [payment_details_visible]
+ * @property {boolean} [success]
+ */
+
+/**
+ * @typedef InvoicePaymentDetailsResponseData
+ * @property {Object[]} [failed_attempts_details]
+ * @property {PaidInvoicePaymentDetail[]} [paid_invoice_payment_details]
  */
 
 /**
@@ -613,6 +654,19 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef PaidInvoicePaymentDetail
+ * @property {number} [amount]
+ * @property {string} [date_of_payment]
+ * @property {PaymentDetail[]} [payment_details]
+ */
+
+/**
+ * @typedef PaymentDetail
+ * @property {string} [display_name]
+ * @property {string} [value]
+ */
+
+/**
  * @typedef PaymentProcessPayload
  * @property {string} [amount]
  * @property {string} [currency]
@@ -668,6 +722,31 @@ const Joi = require("joi");
  * @property {string} [id]
  * @property {string} [name]
  * @property {string} [report_type]
+ */
+
+/**
+ * @typedef UnlockCreditNoteRequest
+ * @property {UnlockCreditNoteRequestData} [data]
+ */
+
+/**
+ * @typedef UnlockCreditNoteRequestData
+ * @property {string} [description]
+ * @property {string[]} [locked_credit_notes]
+ * @property {string} [seller_id]
+ * @property {string} [unlock_reason]
+ */
+
+/**
+ * @typedef UnlockCreditNoteResponse
+ * @property {UnlockCreditNoteResponseData} [data]
+ * @property {boolean} [success]
+ */
+
+/**
+ * @typedef UnlockCreditNoteResponseData
+ * @property {boolean} [is_cn_unlocked]
+ * @property {string} [status]
  */
 
 /**
@@ -828,7 +907,7 @@ class FinancePlatformModel {
       item_count: Joi.number(),
       items: Joi.array().items(Joi.any()),
       message: Joi.string().allow(""),
-      page: Joi.any(),
+      page: FinancePlatformModel.Page(),
       show_mr: Joi.boolean(),
     });
   }
@@ -845,7 +924,7 @@ class FinancePlatformModel {
     return Joi.object({
       available_cn_balance: Joi.number(),
       cn_amount: Joi.number(),
-      cn_details: Joi.any(),
+      cn_details: FinancePlatformModel.CnDetails(),
       cn_reference_number: Joi.string().allow(""),
       cn_status: Joi.string().allow(""),
       customer_mobile_number: Joi.string().allow(""),
@@ -868,6 +947,15 @@ class FinancePlatformModel {
     return Joi.object({
       data: FinancePlatformModel.CreditNoteDetails(),
       success: Joi.boolean(),
+    });
+  }
+
+  /** @returns {Currency} */
+  static Currency() {
+    return Joi.object({
+      code: Joi.string().allow(""),
+      name: Joi.string().allow(""),
+      symbol: Joi.string().allow(""),
     });
   }
 
@@ -1303,6 +1391,34 @@ class FinancePlatformModel {
     });
   }
 
+  /** @returns {InvoiceActivityLogError} */
+  static InvoiceActivityLogError() {
+    return Joi.object({
+      reason: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {InvoiceActivityLogsResponse} */
+  static InvoiceActivityLogsResponse() {
+    return Joi.object({
+      data: Joi.array().items(
+        FinancePlatformModel.InvoiceActivityLogsResponseData()
+      ),
+    });
+  }
+
+  /** @returns {InvoiceActivityLogsResponseData} */
+  static InvoiceActivityLogsResponseData() {
+    return Joi.object({
+      is_resolved: Joi.boolean(),
+      max_retry_attempts: Joi.number(),
+      performed_by: Joi.string().allow(""),
+      reason: Joi.string().allow(""),
+      retry_attempts: Joi.number(),
+      status: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {InvoiceListingPayloadData} */
   static InvoiceListingPayloadData() {
     return Joi.object({
@@ -1339,6 +1455,7 @@ class FinancePlatformModel {
     return Joi.object({
       amount: Joi.string().allow(""),
       company: Joi.string().allow(""),
+      currency: FinancePlatformModel.Currency(),
       due_date: Joi.string().allow(""),
       invoice_date: Joi.string().allow(""),
       invoice_id: Joi.string().allow(""),
@@ -1347,6 +1464,25 @@ class FinancePlatformModel {
       is_downloadable: Joi.boolean(),
       period: Joi.string().allow(""),
       status: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {InvoicePaymentDetailsResponse} */
+  static InvoicePaymentDetailsResponse() {
+    return Joi.object({
+      data: FinancePlatformModel.InvoicePaymentDetailsResponseData(),
+      payment_details_visible: Joi.boolean(),
+      success: Joi.boolean(),
+    });
+  }
+
+  /** @returns {InvoicePaymentDetailsResponseData} */
+  static InvoicePaymentDetailsResponseData() {
+    return Joi.object({
+      failed_attempts_details: Joi.array().items(Joi.any()),
+      paid_invoice_payment_details: Joi.array().items(
+        FinancePlatformModel.PaidInvoicePaymentDetail()
+      ),
     });
   }
 
@@ -1474,6 +1610,23 @@ class FinancePlatformModel {
     });
   }
 
+  /** @returns {PaidInvoicePaymentDetail} */
+  static PaidInvoicePaymentDetail() {
+    return Joi.object({
+      amount: Joi.number(),
+      date_of_payment: Joi.string().allow(""),
+      payment_details: Joi.array().items(FinancePlatformModel.PaymentDetail()),
+    });
+  }
+
+  /** @returns {PaymentDetail} */
+  static PaymentDetail() {
+    return Joi.object({
+      display_name: Joi.string().allow(""),
+      value: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {PaymentProcessPayload} */
   static PaymentProcessPayload() {
     return Joi.object({
@@ -1541,6 +1694,39 @@ class FinancePlatformModel {
       id: Joi.string().allow(""),
       name: Joi.string().allow(""),
       report_type: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {UnlockCreditNoteRequest} */
+  static UnlockCreditNoteRequest() {
+    return Joi.object({
+      data: FinancePlatformModel.UnlockCreditNoteRequestData(),
+    });
+  }
+
+  /** @returns {UnlockCreditNoteRequestData} */
+  static UnlockCreditNoteRequestData() {
+    return Joi.object({
+      description: Joi.string().allow(""),
+      locked_credit_notes: Joi.array().items(Joi.string().allow("")),
+      seller_id: Joi.string().allow(""),
+      unlock_reason: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {UnlockCreditNoteResponse} */
+  static UnlockCreditNoteResponse() {
+    return Joi.object({
+      data: FinancePlatformModel.UnlockCreditNoteResponseData(),
+      success: Joi.boolean(),
+    });
+  }
+
+  /** @returns {UnlockCreditNoteResponseData} */
+  static UnlockCreditNoteResponseData() {
+    return Joi.object({
+      is_cn_unlocked: Joi.boolean(),
+      status: Joi.string().allow(""),
     });
   }
 

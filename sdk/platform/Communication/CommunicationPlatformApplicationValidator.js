@@ -29,6 +29,21 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  */
 
 /**
+ * @typedef CreateEventSubscriptionsParam
+ * @property {CommunicationPlatformModel.SubscriptionsObject} body
+ */
+
+/**
+ * @typedef CreateEventSubscriptionsByBulkParam
+ * @property {CommunicationPlatformModel.EventSubscriptionsBulkUpdateRequest} body
+ */
+
+/**
+ * @typedef CreateJobsParam
+ * @property {CommunicationPlatformModel.CreateJobsReq} body
+ */
+
+/**
  * @typedef CreateSmsProviderParam
  * @property {CommunicationPlatformModel.SmsProviderReq} body
  */
@@ -41,6 +56,7 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
 /**
  * @typedef DeleteAudienceByIdParam
  * @property {string} id - Audience id
+ * @property {CommunicationPlatformModel.AudienceReq} body
  */
 
 /**
@@ -54,6 +70,11 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  */
 
 /**
+ * @typedef DeleteEventSubscriptionsByIdParam
+ * @property {string} id - Event subscription id
+ */
+
+/**
  * @typedef DeleteSmsProviderByIdParam
  * @property {string} id - Sms provider id
  */
@@ -61,6 +82,12 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
 /**
  * @typedef DeleteSmsTemplateByIdParam
  * @property {string} id - Sms template id
+ */
+
+/**
+ * @typedef EditEventSubscriptionsParam
+ * @property {string} id - Event subscription id
+ * @property {CommunicationPlatformModel.SubscriptionsObject} body
  */
 
 /** @typedef GetAppProvidersParam */
@@ -75,6 +102,7 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
+ * @property {Object} [query] - To search based on plain text
  */
 
 /**
@@ -94,6 +122,7 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
 
 /**
  * @typedef GetCampaignsParam
+ * @property {Object} [query] - To search based on plain text
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
@@ -126,6 +155,7 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
+ * @property {Object} [query] - To search based on plain text
  */
 
 /**
@@ -138,13 +168,20 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
+ * @property {Object} [query] - To search based on plain text
  */
 
 /**
  * @typedef GetEventSubscriptionsParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
- * @property {string} [populate] - Populate fields
+ * @property {string} [populate] - Populate Fields
+ */
+
+/**
+ * @typedef GetEventSubscriptionsByIdParam
+ * @property {string} id - Event subscription id
+ * @property {string} [populate] - Populate Fields
  */
 
 /** @typedef GetGlobalProvidersParam */
@@ -156,6 +193,7 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
+ * @property {Object} [query] - To search based on plain text
  */
 
 /**
@@ -163,6 +201,7 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
+ * @property {Object} [query] - To search based on plain text
  */
 
 /**
@@ -171,6 +210,8 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  */
 
 /** @typedef GetNSampleRecordsFromCsvByGetParam */
+
+/** @typedef GetOtpConfigurationParam */
 
 /**
  * @typedef GetSmsProviderByIdParam
@@ -182,6 +223,7 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
+ * @property {Object} [query] - To search based on plain text
  */
 
 /**
@@ -194,6 +236,7 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
  * @property {Object} [sort] - To sort based on created_at
+ * @property {Object} [query] - To search based on plain text
  */
 
 /**
@@ -205,12 +248,14 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  * @typedef GetSubscribedEmailTemplatesParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
+ * @property {Object} [query] - To search based on plain text
  */
 
 /**
  * @typedef GetSubscribedSmsTemplatesParam
  * @property {number} [pageNo] - Current page no
  * @property {number} [pageSize] - Current request items count
+ * @property {Object} [query] - To search based on plain text
  */
 
 /** @typedef GetSystemAudiencesParam */
@@ -273,6 +318,8 @@ const CommunicationPlatformModel = require("./CommunicationPlatformModel");
  * @property {CommunicationPlatformModel.EmailTemplateReq} body
  */
 
+/** @typedef UpdateOtpConfigurationParam */
+
 /**
  * @typedef UpdateSmsProviderByIdParam
  * @property {string} id - Sms provider id
@@ -334,6 +381,27 @@ class CommunicationPlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {CreateEventSubscriptionsParam} */
+  static createEventSubscriptions() {
+    return Joi.object({
+      body: CommunicationPlatformModel.SubscriptionsObject().required(),
+    }).required();
+  }
+
+  /** @returns {CreateEventSubscriptionsByBulkParam} */
+  static createEventSubscriptionsByBulk() {
+    return Joi.object({
+      body: CommunicationPlatformModel.EventSubscriptionsBulkUpdateRequest().required(),
+    }).required();
+  }
+
+  /** @returns {CreateJobsParam} */
+  static createJobs() {
+    return Joi.object({
+      body: CommunicationPlatformModel.CreateJobsReq().required(),
+    }).required();
+  }
+
   /** @returns {CreateSmsProviderParam} */
   static createSmsProvider() {
     return Joi.object({
@@ -352,6 +420,7 @@ class CommunicationPlatformApplicationValidator {
   static deleteAudienceById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
+      body: CommunicationPlatformModel.AudienceReq().required(),
     }).required();
   }
 
@@ -369,6 +438,13 @@ class CommunicationPlatformApplicationValidator {
     }).required();
   }
 
+  /** @returns {DeleteEventSubscriptionsByIdParam} */
+  static deleteEventSubscriptionsById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+    }).required();
+  }
+
   /** @returns {DeleteSmsProviderByIdParam} */
   static deleteSmsProviderById() {
     return Joi.object({
@@ -380,6 +456,14 @@ class CommunicationPlatformApplicationValidator {
   static deleteSmsTemplateById() {
     return Joi.object({
       id: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {EditEventSubscriptionsParam} */
+  static editEventSubscriptions() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
+      body: CommunicationPlatformModel.SubscriptionsObject().required(),
     }).required();
   }
 
@@ -401,6 +485,7 @@ class CommunicationPlatformApplicationValidator {
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       sort: Joi.any(),
+      query: Joi.any(),
     }).required();
   }
 
@@ -428,6 +513,7 @@ class CommunicationPlatformApplicationValidator {
   /** @returns {GetCampaignsParam} */
   static getCampaigns() {
     return Joi.object({
+      query: Joi.any(),
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       sort: Joi.any(),
@@ -474,6 +560,7 @@ class CommunicationPlatformApplicationValidator {
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       sort: Joi.any(),
+      query: Joi.any(),
     }).required();
   }
 
@@ -490,6 +577,7 @@ class CommunicationPlatformApplicationValidator {
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       sort: Joi.any(),
+      query: Joi.any(),
     }).required();
   }
 
@@ -498,6 +586,14 @@ class CommunicationPlatformApplicationValidator {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
+      populate: Joi.string().allow(""),
+    }).required();
+  }
+
+  /** @returns {GetEventSubscriptionsByIdParam} */
+  static getEventSubscriptionsById() {
+    return Joi.object({
+      id: Joi.string().allow("").required(),
       populate: Joi.string().allow(""),
     }).required();
   }
@@ -518,6 +614,7 @@ class CommunicationPlatformApplicationValidator {
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       sort: Joi.any(),
+      query: Joi.any(),
     }).required();
   }
 
@@ -527,6 +624,7 @@ class CommunicationPlatformApplicationValidator {
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       sort: Joi.any(),
+      query: Joi.any(),
     }).required();
   }
 
@@ -539,6 +637,11 @@ class CommunicationPlatformApplicationValidator {
 
   /** @returns {GetNSampleRecordsFromCsvByGetParam} */
   static getNSampleRecordsFromCsvByGet() {
+    return Joi.object({}).required();
+  }
+
+  /** @returns {GetOtpConfigurationParam} */
+  static getOtpConfiguration() {
     return Joi.object({}).required();
   }
 
@@ -555,6 +658,7 @@ class CommunicationPlatformApplicationValidator {
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       sort: Joi.any(),
+      query: Joi.any(),
     }).required();
   }
 
@@ -571,6 +675,7 @@ class CommunicationPlatformApplicationValidator {
       pageNo: Joi.number(),
       pageSize: Joi.number(),
       sort: Joi.any(),
+      query: Joi.any(),
     }).required();
   }
 
@@ -586,6 +691,7 @@ class CommunicationPlatformApplicationValidator {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
+      query: Joi.any(),
     }).required();
   }
 
@@ -594,6 +700,7 @@ class CommunicationPlatformApplicationValidator {
     return Joi.object({
       pageNo: Joi.number(),
       pageSize: Joi.number(),
+      query: Joi.any(),
     }).required();
   }
 
@@ -684,6 +791,11 @@ class CommunicationPlatformApplicationValidator {
       id: Joi.string().allow("").required(),
       body: CommunicationPlatformModel.EmailTemplateReq().required(),
     }).required();
+  }
+
+  /** @returns {UpdateOtpConfigurationParam} */
+  static updateOtpConfiguration() {
+    return Joi.object({}).required();
   }
 
   /** @returns {UpdateSmsProviderByIdParam} */

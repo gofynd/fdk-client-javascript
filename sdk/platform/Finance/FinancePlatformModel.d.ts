@@ -109,7 +109,7 @@ export = FinancePlatformModel;
  * @property {number} [item_count]
  * @property {Object[]} [items]
  * @property {string} [message]
- * @property {Object} [page]
+ * @property {Page} [page]
  * @property {boolean} [show_mr]
  */
 /**
@@ -120,7 +120,7 @@ export = FinancePlatformModel;
  * @typedef CreditNoteDetails
  * @property {number} [available_cn_balance]
  * @property {number} [cn_amount]
- * @property {Object} [cn_details]
+ * @property {CnDetails} [cn_details]
  * @property {string} [cn_reference_number]
  * @property {string} [cn_status]
  * @property {string} [customer_mobile_number]
@@ -135,6 +135,12 @@ export = FinancePlatformModel;
  * @typedef CreditNoteDetailsResponse
  * @property {CreditNoteDetails} [data]
  * @property {boolean} [success]
+ */
+/**
+ * @typedef Currency
+ * @property {string} [code]
+ * @property {string} [name]
+ * @property {string} [symbol]
  */
 /**
  * @typedef DeleteConfig
@@ -419,6 +425,23 @@ export = FinancePlatformModel;
  * @property {string[]} [payment_status]
  */
 /**
+ * @typedef InvoiceActivityLogError
+ * @property {string} [reason]
+ */
+/**
+ * @typedef InvoiceActivityLogsResponse
+ * @property {InvoiceActivityLogsResponseData[]} [data]
+ */
+/**
+ * @typedef InvoiceActivityLogsResponseData
+ * @property {boolean} [is_resolved]
+ * @property {number} [max_retry_attempts]
+ * @property {string} [performed_by]
+ * @property {string} [reason]
+ * @property {number} [retry_attempts]
+ * @property {string} [status]
+ */
+/**
  * @typedef InvoiceListingPayloadData
  * @property {string} [end_date]
  * @property {InoviceListingPayloadDataFilters} [filters]
@@ -442,6 +465,7 @@ export = FinancePlatformModel;
  * @typedef InvoiceListingResponseItems
  * @property {string} [amount]
  * @property {string} [company]
+ * @property {Currency} [currency]
  * @property {string} [due_date]
  * @property {string} [invoice_date]
  * @property {string} [invoice_id]
@@ -450,6 +474,17 @@ export = FinancePlatformModel;
  * @property {boolean} [is_downloadable]
  * @property {string} [period]
  * @property {string} [status]
+ */
+/**
+ * @typedef InvoicePaymentDetailsResponse
+ * @property {InvoicePaymentDetailsResponseData} [data]
+ * @property {boolean} [payment_details_visible]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef InvoicePaymentDetailsResponseData
+ * @property {Object[]} [failed_attempts_details]
+ * @property {PaidInvoicePaymentDetail[]} [paid_invoice_payment_details]
  */
 /**
  * @typedef InvoicePdfPayloadData
@@ -527,6 +562,17 @@ export = FinancePlatformModel;
  * @property {string} type
  */
 /**
+ * @typedef PaidInvoicePaymentDetail
+ * @property {number} [amount]
+ * @property {string} [date_of_payment]
+ * @property {PaymentDetail[]} [payment_details]
+ */
+/**
+ * @typedef PaymentDetail
+ * @property {string} [display_name]
+ * @property {string} [value]
+ */
+/**
  * @typedef PaymentProcessPayload
  * @property {string} [amount]
  * @property {string} [currency]
@@ -579,6 +625,27 @@ export = FinancePlatformModel;
  * @property {string} [report_type]
  */
 /**
+ * @typedef UnlockCreditNoteRequest
+ * @property {UnlockCreditNoteRequestData} [data]
+ */
+/**
+ * @typedef UnlockCreditNoteRequestData
+ * @property {string} [description]
+ * @property {string[]} [locked_credit_notes]
+ * @property {string} [seller_id]
+ * @property {string} [unlock_reason]
+ */
+/**
+ * @typedef UnlockCreditNoteResponse
+ * @property {UnlockCreditNoteResponseData} [data]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef UnlockCreditNoteResponseData
+ * @property {boolean} [is_cn_unlocked]
+ * @property {string} [status]
+ */
+/**
  * @typedef UnpaidInvoiceDataItems
  * @property {string} [currency]
  * @property {number} [total_unpaid_amount]
@@ -587,7 +654,7 @@ export = FinancePlatformModel;
 declare class FinancePlatformModel {
 }
 declare namespace FinancePlatformModel {
-    export { ChannelDisplayName, ChannelDisplayNameResponse, CnDetails, CnDownloadReport, CnGenerateReport, CnGenerateReportFilters, CnGenerateReportItems, CnReferenceNumber, CreateSellerCreditNoteConfig, CreateSellerCreditNoteConfigRequest, CreateSellerCreditNoteConfigResponse, CreditlineDataPlatformPayload, CreditlineDataPlatformRequest, CreditlineDataPlatformResponse, CreditNoteConfigNotificationEvents, CreditNoteDetails, CreditNoteDetailsRequest, CreditNoteDetailsResponse, DeleteConfig, DeleteConfigRequest, DeleteConfigResponse, DownloadCreditDebitNote, DownloadCreditDebitNoteRequest, DownloadCreditDebitNoteResponse, DownloadCreditDebitNoteResponseData, DownloadReport, DownloadReportCustomerCnRequest, DownloadReportCustomerCnResponse, DownloadReportItems, DownloadReportList, DownloadReportResponseData, Error, GenerateReportCustomerCnRequest, GenerateReportCustomerCnResponse, GenerateReportCustomerCnResponseData, GenerateReportFilters, GenerateReportJson, GenerateReportMeta, GenerateReportPlatform, GenerateReportRequest, GetAffiliate, GetAffiliateResponse, GetCnConfigRequest, GetCnConfigResponse, GetCnConfigResponseData, GetCnConfigResponseMeta, GetCustomerCreditBalance, GetCustomerCreditBalanceRequest, GetCustomerCreditBalanceResponse, GetCustomerCreditBalanceResponseData, GetEngineData, GetEngineRequest, GetEngineResponse, GetPdfUrlViewRequest, GetPdfUrlViewResponse, GetPdfUrlViewResponseData, GetReason, GetReasonRequest, GetReasonResponse, GetReportingFilters, GetReportingFiltersResponse, GetReportingNestedFilters, GetReportListData, GetReportListRequest, GetReportListResponse, InoviceListingPayloadDataFilters, InvoiceListingPayloadData, InvoiceListingRequest, InvoiceListingResponse, InvoiceListingResponseItems, InvoicePdfPayloadData, InvoicePdfRequest, InvoicePdfResponse, InvoiceTypePayloadData, InvoiceTypeRequest, InvoiceTypeResponse, InvoiceTypeResponseItems, IsCnRefundMethodData, IsCnRefundMethodRequest, IsCnRefundMethodResponse, IsCnRefundMethodResponseData, IsCreditlinePayload, IsCreditlinePlatformRequest, IsCreditlinePlatformResponse, Page, PaymentProcessPayload, PaymentProcessRequest, PaymentProcessResponse, ReasonItem, RedemptionDetails, ReportItem, UnpaidInvoiceDataItems };
+    export { ChannelDisplayName, ChannelDisplayNameResponse, CnDetails, CnDownloadReport, CnGenerateReport, CnGenerateReportFilters, CnGenerateReportItems, CnReferenceNumber, CreateSellerCreditNoteConfig, CreateSellerCreditNoteConfigRequest, CreateSellerCreditNoteConfigResponse, CreditlineDataPlatformPayload, CreditlineDataPlatformRequest, CreditlineDataPlatformResponse, CreditNoteConfigNotificationEvents, CreditNoteDetails, CreditNoteDetailsRequest, CreditNoteDetailsResponse, Currency, DeleteConfig, DeleteConfigRequest, DeleteConfigResponse, DownloadCreditDebitNote, DownloadCreditDebitNoteRequest, DownloadCreditDebitNoteResponse, DownloadCreditDebitNoteResponseData, DownloadReport, DownloadReportCustomerCnRequest, DownloadReportCustomerCnResponse, DownloadReportItems, DownloadReportList, DownloadReportResponseData, Error, GenerateReportCustomerCnRequest, GenerateReportCustomerCnResponse, GenerateReportCustomerCnResponseData, GenerateReportFilters, GenerateReportJson, GenerateReportMeta, GenerateReportPlatform, GenerateReportRequest, GetAffiliate, GetAffiliateResponse, GetCnConfigRequest, GetCnConfigResponse, GetCnConfigResponseData, GetCnConfigResponseMeta, GetCustomerCreditBalance, GetCustomerCreditBalanceRequest, GetCustomerCreditBalanceResponse, GetCustomerCreditBalanceResponseData, GetEngineData, GetEngineRequest, GetEngineResponse, GetPdfUrlViewRequest, GetPdfUrlViewResponse, GetPdfUrlViewResponseData, GetReason, GetReasonRequest, GetReasonResponse, GetReportingFilters, GetReportingFiltersResponse, GetReportingNestedFilters, GetReportListData, GetReportListRequest, GetReportListResponse, InoviceListingPayloadDataFilters, InvoiceActivityLogError, InvoiceActivityLogsResponse, InvoiceActivityLogsResponseData, InvoiceListingPayloadData, InvoiceListingRequest, InvoiceListingResponse, InvoiceListingResponseItems, InvoicePaymentDetailsResponse, InvoicePaymentDetailsResponseData, InvoicePdfPayloadData, InvoicePdfRequest, InvoicePdfResponse, InvoiceTypePayloadData, InvoiceTypeRequest, InvoiceTypeResponse, InvoiceTypeResponseItems, IsCnRefundMethodData, IsCnRefundMethodRequest, IsCnRefundMethodResponse, IsCnRefundMethodResponseData, IsCreditlinePayload, IsCreditlinePlatformRequest, IsCreditlinePlatformResponse, Page, PaidInvoicePaymentDetail, PaymentDetail, PaymentProcessPayload, PaymentProcessRequest, PaymentProcessResponse, ReasonItem, RedemptionDetails, ReportItem, UnlockCreditNoteRequest, UnlockCreditNoteRequestData, UnlockCreditNoteResponse, UnlockCreditNoteResponseData, UnpaidInvoiceDataItems };
 }
 /** @returns {ChannelDisplayName} */
 declare function ChannelDisplayName(): ChannelDisplayName;
@@ -713,7 +780,7 @@ type CreditlineDataPlatformResponse = {
     item_count?: number;
     items?: any[];
     message?: string;
-    page?: any;
+    page?: Page;
     show_mr?: boolean;
 };
 /** @returns {CreditNoteConfigNotificationEvents} */
@@ -726,7 +793,7 @@ declare function CreditNoteDetails(): CreditNoteDetails;
 type CreditNoteDetails = {
     available_cn_balance?: number;
     cn_amount?: number;
-    cn_details?: any;
+    cn_details?: CnDetails;
     cn_reference_number?: string;
     cn_status?: string;
     customer_mobile_number?: string;
@@ -743,6 +810,13 @@ declare function CreditNoteDetailsResponse(): CreditNoteDetailsResponse;
 type CreditNoteDetailsResponse = {
     data?: CreditNoteDetails;
     success?: boolean;
+};
+/** @returns {Currency} */
+declare function Currency(): Currency;
+type Currency = {
+    code?: string;
+    name?: string;
+    symbol?: string;
 };
 /** @returns {DeleteConfig} */
 declare function DeleteConfig(): DeleteConfig;
@@ -1074,6 +1148,26 @@ type InoviceListingPayloadDataFilters = {
     invoice_type?: string[];
     payment_status?: string[];
 };
+/** @returns {InvoiceActivityLogError} */
+declare function InvoiceActivityLogError(): InvoiceActivityLogError;
+type InvoiceActivityLogError = {
+    reason?: string;
+};
+/** @returns {InvoiceActivityLogsResponse} */
+declare function InvoiceActivityLogsResponse(): InvoiceActivityLogsResponse;
+type InvoiceActivityLogsResponse = {
+    data?: InvoiceActivityLogsResponseData[];
+};
+/** @returns {InvoiceActivityLogsResponseData} */
+declare function InvoiceActivityLogsResponseData(): InvoiceActivityLogsResponseData;
+type InvoiceActivityLogsResponseData = {
+    is_resolved?: boolean;
+    max_retry_attempts?: number;
+    performed_by?: string;
+    reason?: string;
+    retry_attempts?: number;
+    status?: string;
+};
 /** @returns {InvoiceListingPayloadData} */
 declare function InvoiceListingPayloadData(): InvoiceListingPayloadData;
 type InvoiceListingPayloadData = {
@@ -1102,6 +1196,7 @@ declare function InvoiceListingResponseItems(): InvoiceListingResponseItems;
 type InvoiceListingResponseItems = {
     amount?: string;
     company?: string;
+    currency?: Currency;
     due_date?: string;
     invoice_date?: string;
     invoice_id?: string;
@@ -1110,6 +1205,19 @@ type InvoiceListingResponseItems = {
     is_downloadable?: boolean;
     period?: string;
     status?: string;
+};
+/** @returns {InvoicePaymentDetailsResponse} */
+declare function InvoicePaymentDetailsResponse(): InvoicePaymentDetailsResponse;
+type InvoicePaymentDetailsResponse = {
+    data?: InvoicePaymentDetailsResponseData;
+    payment_details_visible?: boolean;
+    success?: boolean;
+};
+/** @returns {InvoicePaymentDetailsResponseData} */
+declare function InvoicePaymentDetailsResponseData(): InvoicePaymentDetailsResponseData;
+type InvoicePaymentDetailsResponseData = {
+    failed_attempts_details?: any[];
+    paid_invoice_payment_details?: PaidInvoicePaymentDetail[];
 };
 /** @returns {InvoicePdfPayloadData} */
 declare function InvoicePdfPayloadData(): InvoicePdfPayloadData;
@@ -1201,6 +1309,19 @@ type Page = {
     size?: number;
     type: string;
 };
+/** @returns {PaidInvoicePaymentDetail} */
+declare function PaidInvoicePaymentDetail(): PaidInvoicePaymentDetail;
+type PaidInvoicePaymentDetail = {
+    amount?: number;
+    date_of_payment?: string;
+    payment_details?: PaymentDetail[];
+};
+/** @returns {PaymentDetail} */
+declare function PaymentDetail(): PaymentDetail;
+type PaymentDetail = {
+    display_name?: string;
+    value?: string;
+};
 /** @returns {PaymentProcessPayload} */
 declare function PaymentProcessPayload(): PaymentProcessPayload;
 type PaymentProcessPayload = {
@@ -1258,6 +1379,31 @@ type ReportItem = {
     id?: string;
     name?: string;
     report_type?: string;
+};
+/** @returns {UnlockCreditNoteRequest} */
+declare function UnlockCreditNoteRequest(): UnlockCreditNoteRequest;
+type UnlockCreditNoteRequest = {
+    data?: UnlockCreditNoteRequestData;
+};
+/** @returns {UnlockCreditNoteRequestData} */
+declare function UnlockCreditNoteRequestData(): UnlockCreditNoteRequestData;
+type UnlockCreditNoteRequestData = {
+    description?: string;
+    locked_credit_notes?: string[];
+    seller_id?: string;
+    unlock_reason?: string;
+};
+/** @returns {UnlockCreditNoteResponse} */
+declare function UnlockCreditNoteResponse(): UnlockCreditNoteResponse;
+type UnlockCreditNoteResponse = {
+    data?: UnlockCreditNoteResponseData;
+    success?: boolean;
+};
+/** @returns {UnlockCreditNoteResponseData} */
+declare function UnlockCreditNoteResponseData(): UnlockCreditNoteResponseData;
+type UnlockCreditNoteResponseData = {
+    is_cn_unlocked?: boolean;
+    status?: string;
 };
 /** @returns {UnpaidInvoiceDataItems} */
 declare function UnpaidInvoiceDataItems(): UnpaidInvoiceDataItems;

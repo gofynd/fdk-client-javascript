@@ -13,6 +13,15 @@ export = ContentApplicationValidator;
  *   set of results. Default value is 1.
  * @property {number} [pageSize] - The number of items to retrieve in each page.
  */
+/**
+ * @typedef GetCustomFieldsParam
+ * @property {string} resource
+ * @property {string} resourceId
+ */
+/**
+ * @typedef GetCustomObjectParam
+ * @property {string} metaobjectId
+ */
 /** @typedef GetDataLoadersParam */
 /**
  * @typedef GetFaqBySlugParam
@@ -57,6 +66,12 @@ export = ContentApplicationValidator;
  */
 /** @typedef GetSEOConfigurationParam */
 /**
+ * @typedef GetSEOMarkupSchemasParam
+ * @property {string} [pageType] - The type of page against which schema
+ *   template was created
+ * @property {boolean} [active] - Boolean value for fetching seo schema.
+ */
+/**
  * @typedef GetSlideshowParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a slideshow. You can get slug value from the endpoint
@@ -77,6 +92,10 @@ declare class ContentApplicationValidator {
     static getBlog(): GetBlogParam;
     /** @returns {GetBlogsParam} */
     static getBlogs(): GetBlogsParam;
+    /** @returns {GetCustomFieldsParam} */
+    static getCustomFields(): GetCustomFieldsParam;
+    /** @returns {GetCustomObjectParam} */
+    static getCustomObject(): GetCustomObjectParam;
     /** @returns {GetDataLoadersParam} */
     static getDataLoaders(): any;
     /** @returns {GetFaqBySlugParam} */
@@ -101,6 +120,8 @@ declare class ContentApplicationValidator {
     static getPages(): GetPagesParam;
     /** @returns {GetSEOConfigurationParam} */
     static getSEOConfiguration(): any;
+    /** @returns {GetSEOMarkupSchemasParam} */
+    static getSEOMarkupSchemas(): GetSEOMarkupSchemasParam;
     /** @returns {GetSlideshowParam} */
     static getSlideshow(): GetSlideshowParam;
     /** @returns {GetSlideshowsParam} */
@@ -111,7 +132,7 @@ declare class ContentApplicationValidator {
     static getTags(): any;
 }
 declare namespace ContentApplicationValidator {
-    export { GetAnnouncementsParam, GetBlogParam, GetBlogsParam, GetDataLoadersParam, GetFaqBySlugParam, GetFaqCategoriesParam, GetFaqCategoryBySlugParam, GetFaqsParam, GetFaqsByCategorySlugParam, GetLandingPageParam, GetLegalInformationParam, GetNavigationsParam, GetPageParam, GetPagesParam, GetSEOConfigurationParam, GetSlideshowParam, GetSlideshowsParam, GetSupportInformationParam, GetTagsParam };
+    export { GetAnnouncementsParam, GetBlogParam, GetBlogsParam, GetCustomFieldsParam, GetCustomObjectParam, GetDataLoadersParam, GetFaqBySlugParam, GetFaqCategoriesParam, GetFaqCategoryBySlugParam, GetFaqsParam, GetFaqsByCategorySlugParam, GetLandingPageParam, GetLegalInformationParam, GetNavigationsParam, GetPageParam, GetPagesParam, GetSEOConfigurationParam, GetSEOMarkupSchemasParam, GetSlideshowParam, GetSlideshowsParam, GetSupportInformationParam, GetTagsParam };
 }
 type GetBlogParam = {
     /**
@@ -135,6 +156,13 @@ type GetBlogsParam = {
      * - The number of items to retrieve in each page.
      */
     pageSize?: number;
+};
+type GetCustomFieldsParam = {
+    resource: string;
+    resourceId: string;
+};
+type GetCustomObjectParam = {
+    metaobjectId: string;
 };
 type GetFaqBySlugParam = {
     /**
@@ -193,6 +221,17 @@ type GetPagesParam = {
      * - The number of items to retrieve in each page.
      */
     pageSize?: number;
+};
+type GetSEOMarkupSchemasParam = {
+    /**
+     * - The type of page against which schema
+     * template was created
+     */
+    pageType?: string;
+    /**
+     * - Boolean value for fetching seo schema.
+     */
+    active?: boolean;
 };
 type GetSlideshowParam = {
     /**

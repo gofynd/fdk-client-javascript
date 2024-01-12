@@ -24,6 +24,7 @@ Default
 * [getApplicationThemes](#getapplicationthemes)
 * [getApplicationThemesCount](#getapplicationthemescount)
 * [getAppliedTheme](#getappliedtheme)
+* [getCompanyLevelPrivateThemes](#getcompanylevelprivatethemes)
 * [getCompanyLevelThemes](#getcompanylevelthemes)
 * [getFonts](#getfonts)
 * [getPage](#getpage)
@@ -8300,6 +8301,13 @@ Success. Returns the page of the theme. Refer `AvailablePageSchema` for more det
     "seo": {
       "title": "",
       "description": "",
+      "canonical_url": "",
+      "breadcrumbs": [],
+      "sitemap": {
+        "priority": 0.5,
+        "frequency": "never"
+      },
+      "meta_tags": [],
       "_id": "60210832d7e98115b013f6ac"
     },
     "props": [],
@@ -8783,6 +8791,13 @@ Success. Returns a the page of the theme. Refer `AvailablePageSchema` for more d
     "seo": {
       "title": "",
       "description": "",
+      "canonical_url": "",
+      "breadcrumbs": [],
+      "sitemap": {
+        "priority": 0.5,
+        "frequency": "never"
+      },
+      "meta_tags": [],
       "_id": "60210832d7e98115b013f6ac"
     },
     "props": [],
@@ -17239,6 +17254,12 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "seo": {
           "title": "",
           "description": "",
+          "breadcrumbs": [],
+          "sitemap": {
+            "priority": 0.5,
+            "frequency": "never"
+          },
+          "meta_tags": [],
           "_id": "60210832d7e981639e13f6b2"
         },
         "_id": "60ab5ca6d572fed64294eb0e",
@@ -17254,6 +17275,13 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "seo": {
           "title": "",
           "description": "",
+          "canonical_url": "",
+          "breadcrumbs": [],
+          "sitemap": {
+            "priority": 0.5,
+            "frequency": "never"
+          },
+          "meta_tags": [],
           "_id": "60210832d7e981fc5d13f6b9"
         },
         "_id": "60ab5ca6d572fed64294eaf9",
@@ -17269,6 +17297,13 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "seo": {
           "title": "",
           "description": "",
+          "canonical_url": "",
+          "breadcrumbs": [],
+          "sitemap": {
+            "priority": 0.5,
+            "frequency": "never"
+          },
+          "meta_tags": [],
           "_id": "60210832d7e981cbca13f6b1"
         },
         "_id": "60ab5ca6d572fed64294eb0b",
@@ -17284,6 +17319,13 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "seo": {
           "title": "",
           "description": "",
+          "canonical_url": "",
+          "breadcrumbs": [],
+          "sitemap": {
+            "priority": 0.5,
+            "frequency": "never"
+          },
+          "meta_tags": [],
           "_id": "60210832d7e9812fdf13f6ae"
         },
         "_id": "60ab5ca6d572fed64294eb02",
@@ -17299,6 +17341,13 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "seo": {
           "title": "",
           "description": "",
+          "canonical_url": "",
+          "breadcrumbs": [],
+          "sitemap": {
+            "priority": 0.5,
+            "frequency": "never"
+          },
+          "meta_tags": [],
           "_id": "60210832d7e9815c9713f6ab"
         },
         "_id": "60ab5ca6d572fed64294eaf6",
@@ -17314,6 +17363,13 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "seo": {
           "title": "",
           "description": "",
+          "canonical_url": "",
+          "breadcrumbs": [],
+          "sitemap": {
+            "priority": 0.5,
+            "frequency": "never"
+          },
+          "meta_tags": [],
           "_id": "60ab5ca6d572fed64294eb24"
         },
         "_id": "60ab5ca6d572fed64294eb25",
@@ -17329,6 +17385,13 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "seo": {
           "title": "",
           "description": "",
+          "canonical_url": "",
+          "breadcrumbs": [],
+          "sitemap": {
+            "priority": 0.5,
+            "frequency": "never"
+          },
+          "meta_tags": [],
           "_id": "60ab5ca6d572fed64294eb22"
         },
         "_id": "60ab5ca6d572fed64294eb23",
@@ -17344,6 +17407,13 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "seo": {
           "title": "",
           "description": "",
+          "canonical_url": "",
+          "breadcrumbs": [],
+          "sitemap": {
+            "priority": 0.5,
+            "frequency": "never"
+          },
+          "meta_tags": [],
           "_id": "60210832d7e9814fed13f6b5"
         },
         "_id": "60ab5ca6d572fed64294eb17",
@@ -17359,6 +17429,13 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "seo": {
           "title": "",
           "description": "",
+          "canonical_url": "",
+          "breadcrumbs": [],
+          "sitemap": {
+            "priority": 0.5,
+            "frequency": "never"
+          },
+          "meta_tags": [],
           "_id": "60210832d7e981b32713f6b6"
         },
         "_id": "60ab5ca6d572fed64294eb1a",
@@ -17374,6 +17451,13 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "seo": {
           "title": "",
           "description": "",
+          "canonical_url": "",
+          "breadcrumbs": [],
+          "sitemap": {
+            "priority": 0.5,
+            "frequency": "never"
+          },
+          "meta_tags": [],
           "_id": "60ab5ca6d572fed64294eb28"
         },
         "_id": "60ab5ca6d572fed64294eb29",
@@ -17389,6 +17473,13 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "seo": {
           "title": "",
           "description": "",
+          "canonical_url": "",
+          "breadcrumbs": [],
+          "sitemap": {
+            "priority": 0.5,
+            "frequency": "never"
+          },
+          "meta_tags": [],
           "_id": "60210832d7e981dd2d13f6b3"
         },
         "_id": "60ab5ca6d572fed64294eb11",
@@ -17404,6 +17495,13 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "seo": {
           "title": "",
           "description": "",
+          "canonical_url": "",
+          "breadcrumbs": [],
+          "sitemap": {
+            "priority": 0.5,
+            "frequency": "never"
+          },
+          "meta_tags": [],
           "_id": "60ab5ca6d572fed64294eb26"
         },
         "_id": "60ab5ca6d572fed64294eb27",
@@ -17419,6 +17517,13 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "seo": {
           "title": "",
           "description": "",
+          "canonical_url": "",
+          "breadcrumbs": [],
+          "sitemap": {
+            "priority": 0.5,
+            "frequency": "never"
+          },
+          "meta_tags": [],
           "_id": "60210832d7e981161a13f6ad"
         },
         "_id": "60ab5ca6d572fed64294eaff",
@@ -17434,6 +17539,13 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "seo": {
           "title": "",
           "description": "",
+          "canonical_url": "",
+          "breadcrumbs": [],
+          "sitemap": {
+            "priority": 0.5,
+            "frequency": "never"
+          },
+          "meta_tags": [],
           "_id": "60210832d7e98115b013f6ac"
         },
         "_id": "60ab5ca6d572fed64294eafc",
@@ -17449,6 +17561,13 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "seo": {
           "title": "",
           "description": "",
+          "canonical_url": "",
+          "breadcrumbs": [],
+          "sitemap": {
+            "priority": 0.5,
+            "frequency": "never"
+          },
+          "meta_tags": [],
           "_id": "60210832d7e981ad0b13f6b0"
         },
         "_id": "60ab5ca6d572fed64294eb08",
@@ -17464,6 +17583,13 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "seo": {
           "title": "",
           "description": "",
+          "canonical_url": "",
+          "breadcrumbs": [],
+          "sitemap": {
+            "priority": 0.5,
+            "frequency": "never"
+          },
+          "meta_tags": [],
           "_id": "60210832d7e981872c13f6af"
         },
         "_id": "60ab5ca6d572fed64294eb05",
@@ -17479,6 +17605,13 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "seo": {
           "title": "",
           "description": "",
+          "canonical_url": "",
+          "breadcrumbs": [],
+          "sitemap": {
+            "priority": 0.5,
+            "frequency": "never"
+          },
+          "meta_tags": [],
           "_id": "60210832d7e98177f713f6b4"
         },
         "_id": "60ab5ca6d572fed64294eb14",
@@ -17494,6 +17627,13 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "seo": {
           "title": "",
           "description": "",
+          "canonical_url": "",
+          "breadcrumbs": [],
+          "sitemap": {
+            "priority": 0.5,
+            "frequency": "never"
+          },
+          "meta_tags": [],
           "_id": "60210832d7e98170b813f6b8"
         },
         "_id": "60ab5ca6d572fed64294eb20",
@@ -17509,6 +17649,13 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "seo": {
           "title": "",
           "description": "",
+          "canonical_url": "",
+          "breadcrumbs": [],
+          "sitemap": {
+            "priority": 0.5,
+            "frequency": "never"
+          },
+          "meta_tags": [],
           "_id": "60210832d7e981469613f6b7"
         },
         "_id": "60ab5ca6d572fed64294eb1d",
@@ -19559,7 +19706,8 @@ The list of themes for the application was fetched successfully.
           }
         }
       ],
-      "src": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/organization/64b0eb01c35f990518880a82/theme/assets/7yuL57qP2-archive.zip"
+      "src": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/organization/64b0eb01c35f990518880a82/theme/assets/7yuL57qP2-archive.zip",
+      "company_id": 1
     }
   ]
 }
@@ -21532,7 +21680,8 @@ The list of themes for the application was fetched successfully.
           }
         }
       ],
-      "src": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/organization/64aec4634bc407961ed265c5/theme/assets/Gpbt5naNG-archive.zip"
+      "src": "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyndnp/wrkr/addsale/organization/64aec4634bc407961ed265c5/theme/assets/Gpbt5naNG-archive.zip",
+      "company_id": 1
     }
   ]
 }
@@ -25613,6 +25762,62 @@ Successfully fetch the applied theme
 ---
 
 
+### getCompanyLevelPrivateThemes
+Get private themes for a company
+
+
+
+```javascript
+// Promise
+const promise = platformClient.theme.getCompanyLevelPrivateThemes({  searchText : value });
+
+// Async/Await
+const data = await platformClient.theme.getCompanyLevelPrivateThemes({  searchText : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| searchText | string | no | Search Text to match the Theme Names and return the response. |  
+
+
+
+Retrieve a list of private themes available for a specific company.
+
+*Returned Response:*
+
+
+
+
+[Array<CompanyPrivateTheme>](#Array<CompanyPrivateTheme>)
+
+A list of Private themes for the company.
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### getCompanyLevelThemes
 Get themes for a company
 
@@ -25620,14 +25825,19 @@ Get themes for a company
 
 ```javascript
 // Promise
-const promise = platformClient.theme.getCompanyLevelThemes();
+const promise = platformClient.theme.getCompanyLevelThemes({  searchText : value });
 
 // Async/Await
-const data = await platformClient.theme.getCompanyLevelThemes();
+const data = await platformClient.theme.getCompanyLevelThemes({  searchText : value });
 ```
 
 
 
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| searchText | string | no | Search Text to match the Theme Names and return the response. |  
 
 
 
@@ -25796,6 +26006,13 @@ Success. Returns an object of the page.  Refer `AvailablePageSchema` for more de
     "seo": {
       "title": "",
       "description": "",
+      "canonical_url": "",
+      "breadcrumbs": [],
+      "sitemap": {
+        "priority": 0.5,
+        "frequency": "never"
+      },
+      "meta_tags": [],
       "_id": "60210832d7e98115b013f6ac"
     },
     "props": [],
@@ -30706,6 +30923,12 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "seo": {
           "title": "",
           "description": "",
+          "breadcrumbs": [],
+          "sitemap": {
+            "priority": 0.5,
+            "frequency": "never"
+          },
+          "meta_tags": [],
           "_id": "60210832d7e981639e13f6b2"
         },
         "_id": "60ab5ca6d572fed64294eb0e",
@@ -30721,6 +30944,13 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "seo": {
           "title": "",
           "description": "",
+          "canonical_url": "",
+          "breadcrumbs": [],
+          "sitemap": {
+            "priority": 0.5,
+            "frequency": "never"
+          },
+          "meta_tags": [],
           "_id": "60210832d7e981fc5d13f6b9"
         },
         "_id": "60ab5ca6d572fed64294eaf9",
@@ -30736,6 +30966,13 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "seo": {
           "title": "",
           "description": "",
+          "canonical_url": "",
+          "breadcrumbs": [],
+          "sitemap": {
+            "priority": 0.5,
+            "frequency": "never"
+          },
+          "meta_tags": [],
           "_id": "60210832d7e981cbca13f6b1"
         },
         "_id": "60ab5ca6d572fed64294eb0b",
@@ -30751,6 +30988,13 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "seo": {
           "title": "",
           "description": "",
+          "canonical_url": "",
+          "breadcrumbs": [],
+          "sitemap": {
+            "priority": 0.5,
+            "frequency": "never"
+          },
+          "meta_tags": [],
           "_id": "60210832d7e9812fdf13f6ae"
         },
         "_id": "60ab5ca6d572fed64294eb02",
@@ -30766,6 +31010,13 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "seo": {
           "title": "",
           "description": "",
+          "canonical_url": "",
+          "breadcrumbs": [],
+          "sitemap": {
+            "priority": 0.5,
+            "frequency": "never"
+          },
+          "meta_tags": [],
           "_id": "60210832d7e9815c9713f6ab"
         },
         "_id": "60ab5ca6d572fed64294eaf6",
@@ -30781,6 +31032,13 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "seo": {
           "title": "",
           "description": "",
+          "canonical_url": "",
+          "breadcrumbs": [],
+          "sitemap": {
+            "priority": 0.5,
+            "frequency": "never"
+          },
+          "meta_tags": [],
           "_id": "60ab5ca6d572fed64294eb24"
         },
         "_id": "60ab5ca6d572fed64294eb25",
@@ -30796,6 +31054,13 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "seo": {
           "title": "",
           "description": "",
+          "canonical_url": "",
+          "breadcrumbs": [],
+          "sitemap": {
+            "priority": 0.5,
+            "frequency": "never"
+          },
+          "meta_tags": [],
           "_id": "60ab5ca6d572fed64294eb22"
         },
         "_id": "60ab5ca6d572fed64294eb23",
@@ -30811,6 +31076,13 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "seo": {
           "title": "",
           "description": "",
+          "canonical_url": "",
+          "breadcrumbs": [],
+          "sitemap": {
+            "priority": 0.5,
+            "frequency": "never"
+          },
+          "meta_tags": [],
           "_id": "60210832d7e9814fed13f6b5"
         },
         "_id": "60ab5ca6d572fed64294eb17",
@@ -30826,6 +31098,13 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "seo": {
           "title": "",
           "description": "",
+          "canonical_url": "",
+          "breadcrumbs": [],
+          "sitemap": {
+            "priority": 0.5,
+            "frequency": "never"
+          },
+          "meta_tags": [],
           "_id": "60210832d7e981b32713f6b6"
         },
         "_id": "60ab5ca6d572fed64294eb1a",
@@ -30841,6 +31120,13 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "seo": {
           "title": "",
           "description": "",
+          "canonical_url": "",
+          "breadcrumbs": [],
+          "sitemap": {
+            "priority": 0.5,
+            "frequency": "never"
+          },
+          "meta_tags": [],
           "_id": "60ab5ca6d572fed64294eb28"
         },
         "_id": "60ab5ca6d572fed64294eb29",
@@ -30856,6 +31142,13 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "seo": {
           "title": "",
           "description": "",
+          "canonical_url": "",
+          "breadcrumbs": [],
+          "sitemap": {
+            "priority": 0.5,
+            "frequency": "never"
+          },
+          "meta_tags": [],
           "_id": "60210832d7e981dd2d13f6b3"
         },
         "_id": "60ab5ca6d572fed64294eb11",
@@ -30871,6 +31164,13 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "seo": {
           "title": "",
           "description": "",
+          "canonical_url": "",
+          "breadcrumbs": [],
+          "sitemap": {
+            "priority": 0.5,
+            "frequency": "never"
+          },
+          "meta_tags": [],
           "_id": "60ab5ca6d572fed64294eb26"
         },
         "_id": "60ab5ca6d572fed64294eb27",
@@ -30886,6 +31186,13 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "seo": {
           "title": "",
           "description": "",
+          "canonical_url": "",
+          "breadcrumbs": [],
+          "sitemap": {
+            "priority": 0.5,
+            "frequency": "never"
+          },
+          "meta_tags": [],
           "_id": "60210832d7e981161a13f6ad"
         },
         "_id": "60ab5ca6d572fed64294eaff",
@@ -30901,6 +31208,13 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "seo": {
           "title": "",
           "description": "",
+          "canonical_url": "",
+          "breadcrumbs": [],
+          "sitemap": {
+            "priority": 0.5,
+            "frequency": "never"
+          },
+          "meta_tags": [],
           "_id": "60210832d7e98115b013f6ac"
         },
         "_id": "60ab5ca6d572fed64294eafc",
@@ -30916,6 +31230,13 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "seo": {
           "title": "",
           "description": "",
+          "canonical_url": "",
+          "breadcrumbs": [],
+          "sitemap": {
+            "priority": 0.5,
+            "frequency": "never"
+          },
+          "meta_tags": [],
           "_id": "60210832d7e981ad0b13f6b0"
         },
         "_id": "60ab5ca6d572fed64294eb08",
@@ -30931,6 +31252,13 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "seo": {
           "title": "",
           "description": "",
+          "canonical_url": "",
+          "breadcrumbs": [],
+          "sitemap": {
+            "priority": 0.5,
+            "frequency": "never"
+          },
+          "meta_tags": [],
           "_id": "60210832d7e981872c13f6af"
         },
         "_id": "60ab5ca6d572fed64294eb05",
@@ -30946,6 +31274,13 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "seo": {
           "title": "",
           "description": "",
+          "canonical_url": "",
+          "breadcrumbs": [],
+          "sitemap": {
+            "priority": 0.5,
+            "frequency": "never"
+          },
+          "meta_tags": [],
           "_id": "60210832d7e98177f713f6b4"
         },
         "_id": "60ab5ca6d572fed64294eb14",
@@ -30961,6 +31296,13 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "seo": {
           "title": "",
           "description": "",
+          "canonical_url": "",
+          "breadcrumbs": [],
+          "sitemap": {
+            "priority": 0.5,
+            "frequency": "never"
+          },
+          "meta_tags": [],
           "_id": "60210832d7e98170b813f6b8"
         },
         "_id": "60ab5ca6d572fed64294eb20",
@@ -30976,6 +31318,13 @@ Success. Returns an array all the pages of the theme. Refer `AllAvailablePageSch
         "seo": {
           "title": "",
           "description": "",
+          "canonical_url": "",
+          "breadcrumbs": [],
+          "sitemap": {
+            "priority": 0.5,
+            "frequency": "never"
+          },
+          "meta_tags": [],
           "_id": "60210832d7e981469613f6b7"
         },
         "_id": "60ab5ca6d572fed64294eb1d",
@@ -31061,6 +31410,13 @@ Success. Returns a the page of the theme. Refer `AvailablePageSchema` for more d
     "seo": {
       "title": "",
       "description": "",
+      "canonical_url": "",
+      "breadcrumbs": [],
+      "sitemap": {
+        "priority": 0.5,
+        "frequency": "never"
+      },
+      "meta_tags": [],
       "_id": "60210832d7e98115b013f6ac"
     },
     "props": [],
@@ -43487,6 +43843,29 @@ Successful upgrade
 ### Schemas
 
 
+#### [Action](#Action)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | page | [ActionPage](#ActionPage)? |  yes  |  |
+ | popup | [ActionPage](#ActionPage)? |  yes  |  |
+ | type | string? |  yes  |  |
+ 
+
+---
+
+#### [ActionPage](#ActionPage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | params | [String: [string]]? |  yes  |  |
+ | query | [String: [string]]? |  yes  |  |
+ | type | string? |  yes  |  |
+ | url | string? |  yes  |  |
+ 
+
+---
+
 #### [AddThemeRequestSchema](#AddThemeRequestSchema)
 
  | Properties | Type | Nullable | Description |
@@ -43505,6 +43884,16 @@ Successful upgrade
 
 ---
 
+#### [AppliedThemes](#AppliedThemes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  | ID of the application theme |
+ | application_id | string? |  yes  | ID of the application |
+ 
+
+---
+
 #### [Assets](#Assets)
 
  | Properties | Type | Nullable | Description |
@@ -43516,13 +43905,27 @@ Successful upgrade
 
 ---
 
+#### [AvailablePagePlatformPredicate](#AvailablePagePlatformPredicate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | android | boolean? |  yes  | Section visibility on android platform |
+ | ios | boolean? |  yes  | Section visibility on ios platform |
+ | web | boolean? |  yes  | Section visibility on web platform |
+ 
+
+---
+
 #### [AvailablePagePredicate](#AvailablePagePredicate)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | platform | [AvailablePagePlatformPredicate](#AvailablePagePlatformPredicate)? |  yes  |  |
  | route | [AvailablePageRoutePredicate](#AvailablePageRoutePredicate)? |  yes  |  |
+ | schedule | [AvailablePageSchedulePredicate](#AvailablePageSchedulePredicate)? |  yes  |  |
  | screen | [AvailablePageScreenPredicate](#AvailablePageScreenPredicate)? |  yes  |  |
  | user | [AvailablePageUserPredicate](#AvailablePageUserPredicate)? |  yes  |  |
+ | zones | [string]? |  yes  | An array of zone ids associated with the section |
  
 
 ---
@@ -43538,11 +43941,23 @@ Successful upgrade
 
 ---
 
+#### [AvailablePageSchedulePredicate](#AvailablePageSchedulePredicate)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cron | string? |  yes  |  |
+ | end | string? |  yes  |  |
+ | start | string? |  yes  |  |
+ 
+
+---
+
 #### [AvailablePageSchema](#AvailablePageSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | _id | string? |  yes  |  |
+ | created_at | string? |  yes  | The creation timestamp of the page |
  | path | string? |  yes  |  |
  | props | [string]? |  yes  |  |
  | sections | [[AvailablePageSchemaSections](#AvailablePageSchemaSections)]? |  yes  |  |
@@ -43551,6 +43966,7 @@ Successful upgrade
  | text | string? |  yes  |  |
  | theme | string? |  yes  |  |
  | type | string? |  yes  |  |
+ | updated_at | string? |  yes  | The last update timestamp of the page |
  | value | string? |  yes  |  |
  
 
@@ -43566,6 +43982,7 @@ Successful upgrade
  | predicate | [AvailablePagePredicate](#AvailablePagePredicate)? |  yes  |  |
  | preset | string? |  yes  |  |
  | props | string? |  yes  |  |
+ | source | string? |  yes  |  |
  
 
 ---
@@ -43595,7 +44012,10 @@ Successful upgrade
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | _id | string? |  yes  |  |
+ | breadcrumb | [[SEObreadcrumb](#SEObreadcrumb)]? |  yes  |  |
  | description | string? |  yes  |  |
+ | meta_tags | [[SEOMetaItem](#SEOMetaItem)]? |  yes  |  |
+ | sitemap | [SEOSitemap](#SEOSitemap)? |  yes  |  |
  | title | string? |  yes  |  |
  
 
@@ -43669,15 +44089,47 @@ Successful upgrade
 
 ---
 
+#### [CompanyPrivateTheme](#CompanyPrivateTheme)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  | Unique identifier for the theme |
+ | application_id | string? |  yes  | Identifier for the application |
+ | applied | boolean? |  yes  | Whether the theme is applied or not |
+ | created_at | string? |  yes  | Date and time when the theme was created |
+ | is_private | boolean? |  yes  | Whether the theme is private or not |
+ | meta | [CompanyThemeMeta](#CompanyThemeMeta)? |  yes  |  |
+ | name | string? |  yes  | Name of the theme |
+ | theme_type | string? |  yes  | Type of the theme |
+ | updated_at | string? |  yes  | Date and time when the theme was last updated |
+ | version | string? |  yes  | Version of the theme |
+ 
+
+---
+
+#### [CompanyThemeMeta](#CompanyThemeMeta)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string? |  yes  | A description of the theme. |
+ | images | [ThemeImages](#ThemeImages)? |  yes  |  |
+ | industry | [string]? |  yes  | A list of industry categories the theme is suitable for. |
+ | payment | [ThemePayment](#ThemePayment)? |  yes  |  |
+ | slug | string? |  yes  | The slug for the theme. |
+ 
+
+---
+
 #### [CompanyThemeSchema](#CompanyThemeSchema)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | _id | string? |  yes  | The unique identifier for the theme. |
+ | applied_themes | [[AppliedThemes](#AppliedThemes)]? |  yes  |  |
  | company_id | number? |  yes  | The ID of the company that the theme belongs to. |
  | created_at | string? |  yes  | The timestamp when the theme was created. |
  | marketplace_theme_id | [MarketplaceThemeId](#MarketplaceThemeId)? |  yes  |  |
- | meta | [ThemeMeta](#ThemeMeta)? |  yes  |  |
+ | meta | [CompanyThemeMeta](#CompanyThemeMeta)? |  yes  |  |
  | name | string? |  yes  | The name of the theme. |
  | updated_at | string? |  yes  | The timestamp when the theme was last updated. |
  
@@ -43700,6 +44152,7 @@ Successful upgrade
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | link | string? |  yes  |  |
  | links | [string]? |  yes  |  |
  
 
@@ -43748,6 +44201,16 @@ Successful upgrade
  | text_price_color | string? |  yes  | The text price color |
  | text_sale_price_color | string? |  yes  | The text sale price color |
  | text_strikethrough_price_color | string? |  yes  | The text strikethrough price color |
+ 
+
+---
+
+#### [DividerStrokeHighlight](#DividerStrokeHighlight)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | divider_strokes | string? |  yes  |  |
+ | highlight | string? |  yes  |  |
  
 
 ---
@@ -43865,22 +44328,30 @@ Successful upgrade
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | _id | string? |  yes  | The unique identifier for the marketplace theme. |
+ | created_at | string? |  yes  | Creation date of the theme |
  | is_default | boolean? |  yes  | Whether the theme is the default theme. |
+ | release | [Release](#Release)? |  yes  |  |
+ | updated_at | string? |  yes  | Update date of the theme |
  
 
 ---
 
-#### [Meta](#Meta)
+#### [OrderTracking](#OrderTracking)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | string? |  yes  | The description of the theme |
- | images | [Images](#Images)? |  yes  |  |
- | industry | [string]? |  yes  | An array of industries associated with the theme |
- | name | string? |  yes  | The name of the theme |
- | payment | [ThemePayment](#ThemePayment)? |  yes  |  |
- | release | [Release](#Release)? |  yes  |  |
- | slug | string? |  yes  | The slug of the theme |
+ | show_footer | boolean? |  yes  |  |
+ | show_header | boolean? |  yes  |  |
+ 
+
+---
+
+#### [OverlayPopup](#OverlayPopup)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | dialog_backgroung | string? |  yes  |  |
+ | overlay | string? |  yes  |  |
  
 
 ---
@@ -43924,6 +44395,7 @@ Successful upgrade
  | info | string? |  yes  | Additional information about the property |
  | label | string? |  yes  | The label of the property |
  | type | string? |  yes  | The type of the property |
+ | value | string? |  yes  | The value of the property |
  
 
 ---
@@ -44015,6 +44487,46 @@ Successful upgrade
 
 ---
 
+#### [SEObreadcrumb](#SEObreadcrumb)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | action | [Action](#Action)? |  yes  |  |
+ | url | string? |  yes  |  |
+ 
+
+---
+
+#### [SEOMetaItem](#SEOMetaItem)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | items | [[SEOMetaItems](#SEOMetaItems)]? |  yes  |  |
+ | title | string? |  yes  |  |
+ 
+
+---
+
+#### [SEOMetaItems](#SEOMetaItems)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | key | string? |  yes  |  |
+ | value | string? |  yes  |  |
+ 
+
+---
+
+#### [SEOSitemap](#SEOSitemap)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | frequency | string? |  yes  |  |
+ | priority | number? |  yes  |  |
+ 
+
+---
+
 #### [TextProp](#TextProp)
 
  | Properties | Type | Nullable | Description |
@@ -44025,14 +44537,32 @@ Successful upgrade
 
 ---
 
+#### [ThemeConfigListPage](#ThemeConfigListPage)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | page | string? |  yes  | Name of the page |
+ | settings | [ThemeConfigListPageSettingsProps](#ThemeConfigListPageSettingsProps)? |  yes  |  |
+ 
+
+---
+
+#### [ThemeConfigListPageSettingsProps](#ThemeConfigListPageSettingsProps)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | props | string? |  yes  |  |
+ 
+
+---
+
 #### [ThemeConfiguration](#ThemeConfiguration)
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | custom | [CustomConfig](#CustomConfig)? |  yes  |  |
  | global_config | string? |  yes  |  |
  | name | string? |  yes  | The name of the configuration |
- | page | [string]? |  yes  | An array of pages |
+ | page | [[ThemeConfigListPage](#ThemeConfigListPage)]? |  yes  | An array of pages |
  
 
 ---
@@ -44051,11 +44581,13 @@ Successful upgrade
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | description | string? |  yes  | A description of the theme. |
- | images | [ThemeImages](#ThemeImages)? |  yes  |  |
- | industry | [string]? |  yes  | A list of industry categories the theme is suitable for. |
+ | description | string? |  yes  | The description of the theme |
+ | images | [Images](#Images)? |  yes  |  |
+ | industry | [string]? |  yes  | An array of industries associated with the theme |
+ | name | string? |  yes  | The name of the theme |
  | payment | [ThemePayment](#ThemePayment)? |  yes  |  |
- | slug | string? |  yes  | The slug for the theme. |
+ | release | [Release](#Release)? |  yes  |  |
+ | slug | string? |  yes  | The slug of the theme |
  
 
 ---
@@ -44088,16 +44620,19 @@ Successful upgrade
  | applied | boolean? |  yes  | Whether the theme has been applied or not |
  | assets | [Assets](#Assets)? |  yes  |  |
  | available_sections | [[SectionItem](#SectionItem)]? |  yes  | Available sections information |
+ | company_id | number? |  yes  | The company id in which sales channel exists |
  | config | [Config](#Config)? |  yes  |  |
  | created_at | string? |  yes  | The creation timestamp of the theme |
  | font | [Font](#Font)? |  yes  |  |
  | is_private | boolean? |  yes  | Whether the theme is private or not |
  | marketplace_theme_id | string? |  yes  | The ID of the theme in the marketplace |
- | meta | [Meta](#Meta)? |  yes  |  |
+ | meta | [ThemeMeta](#ThemeMeta)? |  yes  |  |
  | name | string? |  yes  | The name of the theme |
+ | src | string? |  yes  |  |
  | styles | string? |  yes  | The styles associated with the theme |
  | tags | [string]? |  yes  | An array of tags associated with the theme |
  | template_theme_id | string? |  yes  | The ID of the template theme |
+ | theme_type | string? |  yes  |  |
  | updated_at | string? |  yes  | The last update timestamp of the theme |
  | version | string? |  yes  | The version of the theme |
  
@@ -44139,7 +44674,8 @@ Successful upgrade
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | links | [string]? |  yes  |  |
+ | link | string? |  yes  |  |
+ | links | [string]? |  yes  | An array of pages |
  
 
 ---
@@ -44172,6 +44708,85 @@ Successful upgrade
  
 
 ---
+
+#### [UserAlerts](#UserAlerts)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | error_background | string? |  yes  |  |
+ | error_text | string? |  yes  |  |
+ | info_background | string? |  yes  |  |
+ | info_text | string? |  yes  |  |
+ | success_background | string? |  yes  |  |
+ | success_text | string? |  yes  |  |
+ 
+
+---
+
+
+
+
+### Enums
+
+
+
+
+
+ #### [PageType](#PageType)
+ Type : string
+
+ | Name | Value | Description |
+ | ---- | ----- | ----------- |
+ | aboutUs | about-us | Symbolic link for About Us: /about-us |
+ | addresses | addresses | Symbolic link for Saved Addresses: /profile/address |
+ | blog | blog | Symbolic link for Blog: /blog/:slug |
+ | brands | brands | Symbolic link for Brands: /brands/:department |
+ | cards | cards | Symbolic link for Saved Cards: /profile/my-cards |
+ | cart | cart | Symbolic link for Cart: /cart/bag/ |
+ | categories | categories | Symbolic link for Categories: /categories/:department |
+ | brand | brand | Symbolic link for Brand: /brand/:slug |
+ | category | category | Symbolic link for Category: /category/:slug |
+ | collection | collection | Symbolic link for Collection: /collection/:slug |
+ | collections | collections | Symbolic link for Collections: /collections/ |
+ | contactUs | contact-us | Symbolic link for Contact Us: /contact-us/ |
+ | external | external | Symbolic link for External Link: /external/ |
+ | faq | faq | Symbolic link for FAQ: /faq |
+ | freshchat | freshchat | Symbolic link for Chat by Freshchat: /freshchat |
+ | home | home | Symbolic link for Home: / |
+ | notificationSettings | notification-settings | Symbolic link for Notification Settings: /notification-settings |
+ | orders | orders | Symbolic link for Orders: /profile/orders |
+ | page | page | Symbolic link for Page: /page/:slug |
+ | policy | policy | Symbolic link for Privacy Policy: /privacy-policy |
+ | product | product | Symbolic link for Product: /product/:slug |
+ | productRequest | product-request | Symbolic link for Product Request: /product-request/ |
+ | products | products | Symbolic link for Products: /products/ |
+ | profile | profile | Symbolic link for Profile: /profile |
+ | profileOrderShipment | profile-order-shipment | Symbolic link for profile orders shipment: /profile/orders/shipment/:shipmentid |
+ | profileBasic | profile-basic | Symbolic link for Basic Profile: /profile/details |
+ | profileCompany | profile-company | Symbolic link for Profile Company: /profile/company |
+ | profileEmails | profile-emails | Symbolic link for Profile Emails: /profile/email |
+ | profilePhones | profile-phones | Symbolic link for Profile Phones: /profile/phone |
+ | rateUs | rate-us | Symbolic link for Rate Us: /rate-us |
+ | referEarn | refer-earn | Symbolic link for Refer & Earn: /profile/refer-earn |
+ | settings | settings | Symbolic link for Settings: /setting/currency |
+ | sharedCart | shared-cart | Symbolic link for Shared Cart: /shared-cart/:token |
+ | tnc | tnc | Symbolic link for Terms and Conditions: /terms-and-conditions |
+ | trackOrder | track-order | Symbolic link for Track Order: /order-tracking/:orderId |
+ | wishlist | wishlist | Symbolic link for Wishlist: /wishlist/ |
+ | sections | sections | Symbolic link for Sections: /sections/:group |
+ | form | form | Symbolic link for Form: /form/:slug |
+ | cartDelivery | cart-delivery | Symbolic link for Cart Delivery: /cart/delivery |
+ | cartPayment | cart-payment | Symbolic link for Cart Payment Information: /cart/payment-info |
+ | cartReview | cart-review | Symbolic link for Cart Order Review: /cart/order-review |
+ | login | login | Symbolic link for Login: /auth/login |
+ | register | register | Symbolic link for Register: /auth/register |
+ | shippingPolicy | shipping-policy | Symbolic link for Shipping policy: /shipping-policy |
+ | returnPolicy | return-policy | Symbolic link for Return policy: /return-policy |
+ | orderStatus | order-status | Symbolic link for Order status: /cart/order-status |
+
+---
+
+
 
 
 

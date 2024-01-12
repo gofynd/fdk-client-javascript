@@ -12,6 +12,11 @@ export = LogisticApplicationModel;
  * @property {string} [uid]
  */
 /**
+ * @typedef CountryHierarchy
+ * @property {string} [name]
+ * @property {string} [slug]
+ */
+/**
  * @typedef CountryListResponse
  * @property {CountryEntityResponse[]} [results]
  */
@@ -19,6 +24,27 @@ export = LogisticApplicationModel;
  * @typedef CountryMetaResponse
  * @property {string} [country_code]
  * @property {string} [isd_code]
+ */
+/**
+ * @typedef CountryObject
+ * @property {CurrencyObject} [currency]
+ * @property {string} [display_name]
+ * @property {CountryHierarchy[]} [hierarchy]
+ * @property {string} [id]
+ * @property {string} [iso2]
+ * @property {string} [iso3]
+ * @property {string} [latitude]
+ * @property {string} [longitude]
+ * @property {string} [name]
+ * @property {string} [phone_code]
+ * @property {string[]} [timezones]
+ * @property {string} [type]
+ */
+/**
+ * @typedef CurrencyObject
+ * @property {string} [code]
+ * @property {string} [name]
+ * @property {string} [symbol]
  */
 /**
  * @typedef DP
@@ -34,6 +60,110 @@ export = LogisticApplicationModel;
  * @property {string} [transport_mode]
  */
 /**
+ * @typedef ErrorResponse
+ * @property {string} [error]
+ */
+/**
+ * @typedef FieldValidation
+ * @property {FieldValidationRegex} [regex]
+ * @property {string} [type]
+ */
+/**
+ * @typedef FieldValidationRegex
+ * @property {LengthValidation} [length]
+ * @property {string} [value]
+ */
+/**
+ * @typedef GetCountries
+ * @property {CountryObject[]} [items]
+ * @property {Page} [page]
+ */
+/**
+ * @typedef GetCountry
+ * @property {CurrencyObject} [currency]
+ * @property {string} [display_name]
+ * @property {GetCountryFields} [fields]
+ * @property {CountryHierarchy[]} [hierarchy]
+ * @property {string} [id]
+ * @property {string} [iso2]
+ * @property {string} [iso3]
+ * @property {string} [latitude]
+ * @property {string} [longitude]
+ * @property {string} [name]
+ * @property {string} [phone_code]
+ * @property {string[]} [timezones]
+ * @property {string} [type]
+ */
+/**
+ * @typedef GetCountryFields
+ * @property {GetCountryFieldsAddress[]} address
+ * @property {GetCountryFieldsAddressTemplate} address_template
+ * @property {string[]} serviceability_fields
+ */
+/**
+ * @typedef GetCountryFieldsAddress
+ * @property {string} display_name
+ * @property {boolean} [edit]
+ * @property {string} [error_text]
+ * @property {string} input
+ * @property {boolean} required
+ * @property {string} slug
+ * @property {FieldValidation} [validation]
+ * @property {GetCountryFieldsAddressValues} [values]
+ */
+/**
+ * @typedef GetCountryFieldsAddressTemplate
+ * @property {string} checkout_form
+ * @property {string} default_display
+ * @property {string} store_os_form
+ */
+/**
+ * @typedef GetCountryFieldsAddressValues
+ * @property {GetOneOrAll} [get_all]
+ * @property {GetOneOrAll} [get_one]
+ */
+/**
+ * @typedef GetLocalities
+ * @property {Localities[]} [items]
+ * @property {Page} [page]
+ */
+/**
+ * @typedef GetLocality
+ * @property {string} [display_name]
+ * @property {string} [id]
+ * @property {LocalityParent[]} [localities]
+ * @property {string} [name]
+ * @property {string[]} [parent_ids]
+ * @property {string} [type]
+ */
+/**
+ * @typedef GetOneOrAll
+ * @property {string} [operation_id]
+ * @property {GetOneOrAllParams} [params]
+ */
+/**
+ * @typedef GetOneOrAllParams
+ * @property {GetOneOrAllPath} [path]
+ * @property {GetOneOrAllQuery} [query]
+ */
+/**
+ * @typedef GetOneOrAllPath
+ * @property {string} [locality_type]
+ * @property {string} [locality_value]
+ */
+/**
+ * @typedef GetOneOrAllQuery
+ * @property {string} [city]
+ * @property {string} [country]
+ * @property {string} [sector]
+ * @property {string} [state]
+ */
+/**
+ * @typedef GetStoreResponse
+ * @property {StoreItemResponse[]} [items]
+ * @property {Page} [page]
+ */
+/**
  * @typedef GetZoneFromPincodeViewRequest
  * @property {string} country
  * @property {string} pincode
@@ -44,8 +174,39 @@ export = LogisticApplicationModel;
  * @property {string[]} zones
  */
 /**
+ * @typedef LengthValidation
+ * @property {number} [max]
+ * @property {number} [min]
+ */
+/**
+ * @typedef Localities
+ * @property {string} [display_name]
+ * @property {string} [id]
+ * @property {string} [name]
+ * @property {string[]} [parent_ids]
+ * @property {string} [type]
+ */
+/**
+ * @typedef LocalityParent
+ * @property {string} [display_name]
+ * @property {string} [id]
+ * @property {string} [name]
+ * @property {string[]} [parent_ids]
+ * @property {string} [type]
+ */
+/**
  * @typedef LogisticsResponse
  * @property {Object} [dp]
+ */
+/**
+ * @typedef Page
+ * @property {number} [current]
+ * @property {boolean} [has_next]
+ * @property {boolean} [has_previous]
+ * @property {number} [item_total]
+ * @property {string} [next_id]
+ * @property {number} [size]
+ * @property {string} type
  */
 /**
  * @typedef PincodeApiResponse
@@ -103,6 +264,17 @@ export = LogisticApplicationModel;
  * @property {string} pystormbreaker_uuid
  * @property {boolean} success
  * @property {string} to_pincode
+ */
+/**
+ * @typedef StoreItemResponse
+ * @property {number} [company_id]
+ * @property {string} [fulfillment_type]
+ * @property {number} [id]
+ * @property {number} [latitude]
+ * @property {number} [longitude]
+ * @property {number} [processing_time]
+ * @property {string} [store_type]
+ * @property {string[]} [tags]
  */
 /**
  * @typedef TATArticlesRequest
@@ -183,10 +355,35 @@ export = LogisticApplicationModel;
  * @property {string} [to_city]
  * @property {string} [to_pincode]
  */
+/**
+ * @typedef ValidateAddressRequest
+ * @property {string} [address] - A string representing the complete address,
+ *   combining address line 1, address line 2, area, landmark, sector, city,
+ *   state, and pincode. This provides a comprehensive view of the address details.
+ * @property {string} [address1] - A string representing the first line of the
+ *   address, typically containing street or building information.
+ * @property {string} [address2] - A string representing the second line of the
+ *   address, which can be used for additional address details if needed.
+ * @property {string} [area] - A string specifying the locality or area
+ *   associated with the address.
+ * @property {string} [city] - A string denoting the city or municipality of the address.
+ * @property {string} [email] - A string containing the recipient's email address.
+ * @property {string} [landmark] - A string representing a prominent nearby
+ *   landmark that aids in locating the address.
+ * @property {string} [name] - A string representing the recipient's name or the
+ *   organization name associated with the address.
+ * @property {string} [phone] - An integer representing the recipient's contact
+ *   phone number.
+ * @property {string} [pincode] - A string indicating the postal code or PIN
+ *   code of the address area.
+ * @property {string} [sector] - A string specifying the sector or district of
+ *   the address if applicable.
+ * @property {string} [state] - A string indicating the state or province of the address.
+ */
 declare class LogisticApplicationModel {
 }
 declare namespace LogisticApplicationModel {
-    export { CountryEntityResponse, CountryListResponse, CountryMetaResponse, DP, GetZoneFromPincodeViewRequest, GetZoneFromPincodeViewResponse, LogisticsResponse, PincodeApiResponse, PincodeDataResponse, PincodeErrorSchemaResponse, PincodeLatLongData, PincodeMetaResponse, PincodeParentsResponse, ReAssignStoreRequest, ReAssignStoreResponse, TATArticlesRequest, TATArticlesResponse, TATCategoryRequest, TATErrorSchemaResponse, TATFormattedResponse, TATLocationDetailsRequest, TATLocationDetailsResponse, TATPromiseResponse, TATTimestampResponse, TATViewRequest, TATViewResponse };
+    export { CountryEntityResponse, CountryHierarchy, CountryListResponse, CountryMetaResponse, CountryObject, CurrencyObject, DP, ErrorResponse, FieldValidation, FieldValidationRegex, GetCountries, GetCountry, GetCountryFields, GetCountryFieldsAddress, GetCountryFieldsAddressTemplate, GetCountryFieldsAddressValues, GetLocalities, GetLocality, GetOneOrAll, GetOneOrAllParams, GetOneOrAllPath, GetOneOrAllQuery, GetStoreResponse, GetZoneFromPincodeViewRequest, GetZoneFromPincodeViewResponse, LengthValidation, Localities, LocalityParent, LogisticsResponse, Page, PincodeApiResponse, PincodeDataResponse, PincodeErrorSchemaResponse, PincodeLatLongData, PincodeMetaResponse, PincodeParentsResponse, ReAssignStoreRequest, ReAssignStoreResponse, StoreItemResponse, TATArticlesRequest, TATArticlesResponse, TATCategoryRequest, TATErrorSchemaResponse, TATFormattedResponse, TATLocationDetailsRequest, TATLocationDetailsResponse, TATPromiseResponse, TATTimestampResponse, TATViewRequest, TATViewResponse, ValidateAddressRequest };
 }
 /** @returns {CountryEntityResponse} */
 declare function CountryEntityResponse(): CountryEntityResponse;
@@ -201,6 +398,12 @@ type CountryEntityResponse = {
     type?: string;
     uid?: string;
 };
+/** @returns {CountryHierarchy} */
+declare function CountryHierarchy(): CountryHierarchy;
+type CountryHierarchy = {
+    name?: string;
+    slug?: string;
+};
 /** @returns {CountryListResponse} */
 declare function CountryListResponse(): CountryListResponse;
 type CountryListResponse = {
@@ -211,6 +414,29 @@ declare function CountryMetaResponse(): CountryMetaResponse;
 type CountryMetaResponse = {
     country_code?: string;
     isd_code?: string;
+};
+/** @returns {CountryObject} */
+declare function CountryObject(): CountryObject;
+type CountryObject = {
+    currency?: CurrencyObject;
+    display_name?: string;
+    hierarchy?: CountryHierarchy[];
+    id?: string;
+    iso2?: string;
+    iso3?: string;
+    latitude?: string;
+    longitude?: string;
+    name?: string;
+    phone_code?: string;
+    timezones?: string[];
+    type?: string;
+};
+/** @returns {CurrencyObject} */
+declare function CurrencyObject(): CurrencyObject;
+type CurrencyObject = {
+    code?: string;
+    name?: string;
+    symbol?: string;
 };
 /** @returns {DP} */
 declare function DP(): DP;
@@ -226,6 +452,126 @@ type DP = {
     rvp_priority: number;
     transport_mode?: string;
 };
+/** @returns {ErrorResponse} */
+declare function ErrorResponse(): ErrorResponse;
+type ErrorResponse = {
+    error?: string;
+};
+/** @returns {FieldValidation} */
+declare function FieldValidation(): FieldValidation;
+type FieldValidation = {
+    regex?: FieldValidationRegex;
+    type?: string;
+};
+/** @returns {FieldValidationRegex} */
+declare function FieldValidationRegex(): FieldValidationRegex;
+type FieldValidationRegex = {
+    length?: LengthValidation;
+    value?: string;
+};
+/** @returns {GetCountries} */
+declare function GetCountries(): GetCountries;
+type GetCountries = {
+    items?: CountryObject[];
+    page?: Page;
+};
+/** @returns {GetCountry} */
+declare function GetCountry(): GetCountry;
+type GetCountry = {
+    currency?: CurrencyObject;
+    display_name?: string;
+    fields?: GetCountryFields;
+    hierarchy?: CountryHierarchy[];
+    id?: string;
+    iso2?: string;
+    iso3?: string;
+    latitude?: string;
+    longitude?: string;
+    name?: string;
+    phone_code?: string;
+    timezones?: string[];
+    type?: string;
+};
+/** @returns {GetCountryFields} */
+declare function GetCountryFields(): GetCountryFields;
+type GetCountryFields = {
+    address: GetCountryFieldsAddress[];
+    address_template: GetCountryFieldsAddressTemplate;
+    serviceability_fields: string[];
+};
+/** @returns {GetCountryFieldsAddress} */
+declare function GetCountryFieldsAddress(): GetCountryFieldsAddress;
+type GetCountryFieldsAddress = {
+    display_name: string;
+    edit?: boolean;
+    error_text?: string;
+    input: string;
+    required: boolean;
+    slug: string;
+    validation?: FieldValidation;
+    values?: GetCountryFieldsAddressValues;
+};
+/** @returns {GetCountryFieldsAddressTemplate} */
+declare function GetCountryFieldsAddressTemplate(): GetCountryFieldsAddressTemplate;
+type GetCountryFieldsAddressTemplate = {
+    checkout_form: string;
+    default_display: string;
+    store_os_form: string;
+};
+/** @returns {GetCountryFieldsAddressValues} */
+declare function GetCountryFieldsAddressValues(): GetCountryFieldsAddressValues;
+type GetCountryFieldsAddressValues = {
+    get_all?: GetOneOrAll;
+    get_one?: GetOneOrAll;
+};
+/** @returns {GetLocalities} */
+declare function GetLocalities(): GetLocalities;
+type GetLocalities = {
+    items?: Localities[];
+    page?: Page;
+};
+/** @returns {GetLocality} */
+declare function GetLocality(): GetLocality;
+type GetLocality = {
+    display_name?: string;
+    id?: string;
+    localities?: LocalityParent[];
+    name?: string;
+    parent_ids?: string[];
+    type?: string;
+};
+/** @returns {GetOneOrAll} */
+declare function GetOneOrAll(): GetOneOrAll;
+type GetOneOrAll = {
+    operation_id?: string;
+    params?: GetOneOrAllParams;
+};
+/** @returns {GetOneOrAllParams} */
+declare function GetOneOrAllParams(): GetOneOrAllParams;
+type GetOneOrAllParams = {
+    path?: GetOneOrAllPath;
+    query?: GetOneOrAllQuery;
+};
+/** @returns {GetOneOrAllPath} */
+declare function GetOneOrAllPath(): GetOneOrAllPath;
+type GetOneOrAllPath = {
+    locality_type?: string;
+    locality_value?: string;
+};
+/** @returns {GetOneOrAllQuery} */
+declare function GetOneOrAllQuery(): GetOneOrAllQuery;
+type GetOneOrAllQuery = {
+    city?: string;
+    country?: string;
+    sector?: string;
+    state?: string;
+};
+/** @returns {GetStoreResponse} */
+declare function GetStoreResponse(): GetStoreResponse;
+type GetStoreResponse = {
+    items?: StoreItemResponse[];
+    page?: Page;
+};
 /** @returns {GetZoneFromPincodeViewRequest} */
 declare function GetZoneFromPincodeViewRequest(): GetZoneFromPincodeViewRequest;
 type GetZoneFromPincodeViewRequest = {
@@ -238,10 +584,45 @@ type GetZoneFromPincodeViewResponse = {
     serviceability_type: string;
     zones: string[];
 };
+/** @returns {LengthValidation} */
+declare function LengthValidation(): LengthValidation;
+type LengthValidation = {
+    max?: number;
+    min?: number;
+};
+/** @returns {Localities} */
+declare function Localities(): Localities;
+type Localities = {
+    display_name?: string;
+    id?: string;
+    name?: string;
+    parent_ids?: string[];
+    type?: string;
+};
+/** @returns {LocalityParent} */
+declare function LocalityParent(): LocalityParent;
+type LocalityParent = {
+    display_name?: string;
+    id?: string;
+    name?: string;
+    parent_ids?: string[];
+    type?: string;
+};
 /** @returns {LogisticsResponse} */
 declare function LogisticsResponse(): LogisticsResponse;
 type LogisticsResponse = {
     dp?: any;
+};
+/** @returns {Page} */
+declare function Page(): Page;
+type Page = {
+    current?: number;
+    has_next?: boolean;
+    has_previous?: boolean;
+    item_total?: number;
+    next_id?: string;
+    size?: number;
+    type: string;
 };
 /** @returns {PincodeApiResponse} */
 declare function PincodeApiResponse(): PincodeApiResponse;
@@ -307,6 +688,18 @@ type ReAssignStoreResponse = {
     pystormbreaker_uuid: string;
     success: boolean;
     to_pincode: string;
+};
+/** @returns {StoreItemResponse} */
+declare function StoreItemResponse(): StoreItemResponse;
+type StoreItemResponse = {
+    company_id?: number;
+    fulfillment_type?: string;
+    id?: number;
+    latitude?: number;
+    longitude?: number;
+    processing_time?: number;
+    store_type?: string;
+    tags?: string[];
 };
 /** @returns {TATArticlesRequest} */
 declare function TATArticlesRequest(): TATArticlesRequest;
@@ -397,4 +790,66 @@ type TATViewResponse = {
     success?: boolean;
     to_city?: string;
     to_pincode?: string;
+};
+/** @returns {ValidateAddressRequest} */
+declare function ValidateAddressRequest(): ValidateAddressRequest;
+type ValidateAddressRequest = {
+    /**
+     * - A string representing the complete address,
+     * combining address line 1, address line 2, area, landmark, sector, city,
+     * state, and pincode. This provides a comprehensive view of the address details.
+     */
+    address?: string;
+    /**
+     * - A string representing the first line of the
+     * address, typically containing street or building information.
+     */
+    address1?: string;
+    /**
+     * - A string representing the second line of the
+     * address, which can be used for additional address details if needed.
+     */
+    address2?: string;
+    /**
+     * - A string specifying the locality or area
+     * associated with the address.
+     */
+    area?: string;
+    /**
+     * - A string denoting the city or municipality of the address.
+     */
+    city?: string;
+    /**
+     * - A string containing the recipient's email address.
+     */
+    email?: string;
+    /**
+     * - A string representing a prominent nearby
+     * landmark that aids in locating the address.
+     */
+    landmark?: string;
+    /**
+     * - A string representing the recipient's name or the
+     * organization name associated with the address.
+     */
+    name?: string;
+    /**
+     * - An integer representing the recipient's contact
+     * phone number.
+     */
+    phone?: string;
+    /**
+     * - A string indicating the postal code or PIN
+     * code of the address area.
+     */
+    pincode?: string;
+    /**
+     * - A string specifying the sector or district of
+     * the address if applicable.
+     */
+    sector?: string;
+    /**
+     * - A string indicating the state or province of the address.
+     */
+    state?: string;
 };

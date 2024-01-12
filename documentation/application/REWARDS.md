@@ -6,7 +6,7 @@
 ##### [Back to Application docs](./README.md)
 
 ## Rewards Methods
-Earn and redeem reward points
+The Rewards Points module manages loyalty and rewards programs. Use it to search for offers by name, track user points, monitor referrals, and apply order discounts. The module also supports the use of referral codes, allowing users to earn rewards for both themselves and their referrers.
 
 
 Default
