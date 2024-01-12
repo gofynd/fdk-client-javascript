@@ -9,7 +9,7 @@ export = ThemePartnerModel;
  * @typedef ActionPage
  * @property {Object} [params]
  * @property {Object} [query]
- * @property {string} [type]
+ * @property {PageType} type
  * @property {string} [url]
  */
 /**
@@ -544,10 +544,58 @@ export = ThemePartnerModel;
  * @property {MarketplaceThemeImages} [images]
  * @property {string} [name] - Variation name
  */
+/**
+ * @typedef {| "about-us"
+ *   | "addresses"
+ *   | "blog"
+ *   | "brands"
+ *   | "cards"
+ *   | "cart"
+ *   | "categories"
+ *   | "brand"
+ *   | "category"
+ *   | "collection"
+ *   | "collections"
+ *   | "contact-us"
+ *   | "external"
+ *   | "faq"
+ *   | "freshchat"
+ *   | "home"
+ *   | "notification-settings"
+ *   | "orders"
+ *   | "page"
+ *   | "policy"
+ *   | "product"
+ *   | "product-request"
+ *   | "products"
+ *   | "profile"
+ *   | "profile-order-shipment"
+ *   | "profile-basic"
+ *   | "profile-company"
+ *   | "profile-emails"
+ *   | "profile-phones"
+ *   | "rate-us"
+ *   | "refer-earn"
+ *   | "settings"
+ *   | "shared-cart"
+ *   | "tnc"
+ *   | "track-order"
+ *   | "wishlist"
+ *   | "sections"
+ *   | "form"
+ *   | "cart-delivery"
+ *   | "cart-payment"
+ *   | "cart-review"
+ *   | "login"
+ *   | "register"
+ *   | "shipping-policy"
+ *   | "return-policy"
+ *   | "order-status"} PageType
+ */
 declare class ThemePartnerModel {
 }
 declare namespace ThemePartnerModel {
-    export { Action, ActionPage, AllAvailablePageSchema, Assets, AvailablePagePlatformPredicate, AvailablePagePredicate, AvailablePageRoutePredicate, AvailablePageSchedulePredicate, AvailablePageSchema, AvailablePageSchemaSections, AvailablePageScreenPredicate, AvailablePageSectionMetaAttributes, AvailablePageSeo, AvailablePageUserPredicate, BlitzkriegApiErrorSchema, BlitzkriegInternalServerErrorSchema, Block, BlockProps, CarouselItem, CatalogSize, CheckboxProp, Comments, CommonJS, Config, ContactInfo, CreateNewTheme, CSS, CustomConfig, CustomProps, DividerStrokeHighlight, Documentation, ExploreInfo, Feature, FeatureItem, Font, FontVariant, FontVariants, GlobalSchema, Highlight, ImagePickerProp, Images, MarketplaceTheme, MarketplaceThemeImages, MarketplaceThemeSchema, OrderTracking, OverlayPopup, Page, PaginationSchema, PaymentInfo, Predicate, Preset, Prop, RangeProp, Release, Route, Screen, Section, SectionItem, SectionPreset, SectionProps, SEObreadcrumb, SEOMetaItem, SEOMetaItems, SEOSitemap, TextProp, ThemeConfigListPage, ThemeConfigListPageSettingsProps, ThemeConfiguration, ThemeMeta, ThemePayment, ThemeRejectionReasons, ThemesSchema, ThemeUserSchema, UMDJs, UpdateThemeRequestBody, UrlProp, UserAlerts, Variation };
+    export { Action, ActionPage, AllAvailablePageSchema, Assets, AvailablePagePlatformPredicate, AvailablePagePredicate, AvailablePageRoutePredicate, AvailablePageSchedulePredicate, AvailablePageSchema, AvailablePageSchemaSections, AvailablePageScreenPredicate, AvailablePageSectionMetaAttributes, AvailablePageSeo, AvailablePageUserPredicate, BlitzkriegApiErrorSchema, BlitzkriegInternalServerErrorSchema, Block, BlockProps, CarouselItem, CatalogSize, CheckboxProp, Comments, CommonJS, Config, ContactInfo, CreateNewTheme, CSS, CustomConfig, CustomProps, DividerStrokeHighlight, Documentation, ExploreInfo, Feature, FeatureItem, Font, FontVariant, FontVariants, GlobalSchema, Highlight, ImagePickerProp, Images, MarketplaceTheme, MarketplaceThemeImages, MarketplaceThemeSchema, OrderTracking, OverlayPopup, Page, PaginationSchema, PaymentInfo, Predicate, Preset, Prop, RangeProp, Release, Route, Screen, Section, SectionItem, SectionPreset, SectionProps, SEObreadcrumb, SEOMetaItem, SEOMetaItems, SEOSitemap, TextProp, ThemeConfigListPage, ThemeConfigListPageSettingsProps, ThemeConfiguration, ThemeMeta, ThemePayment, ThemeRejectionReasons, ThemesSchema, ThemeUserSchema, UMDJs, UpdateThemeRequestBody, UrlProp, UserAlerts, Variation, PageType };
 }
 /** @returns {Action} */
 declare function Action(): Action;
@@ -561,7 +609,7 @@ declare function ActionPage(): ActionPage;
 type ActionPage = {
     params?: any;
     query?: any;
-    type?: string;
+    type: PageType;
     url?: string;
 };
 /** @returns {AllAvailablePageSchema} */
@@ -1631,3 +1679,10 @@ type Variation = {
      */
     name?: string;
 };
+/**
+ * Enum: PageType Used By: Theme
+ *
+ * @returns {PageType}
+ */
+declare function PageType(): PageType;
+type PageType = "about-us" | "addresses" | "blog" | "brands" | "cards" | "cart" | "categories" | "brand" | "category" | "collection" | "collections" | "contact-us" | "external" | "faq" | "freshchat" | "home" | "notification-settings" | "orders" | "page" | "policy" | "product" | "product-request" | "products" | "profile" | "profile-order-shipment" | "profile-basic" | "profile-company" | "profile-emails" | "profile-phones" | "rate-us" | "refer-earn" | "settings" | "shared-cart" | "tnc" | "track-order" | "wishlist" | "sections" | "form" | "cart-delivery" | "cart-payment" | "cart-review" | "login" | "register" | "shipping-policy" | "return-policy" | "order-status";
