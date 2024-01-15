@@ -35,7 +35,7 @@ export = ConfigurationPlatformValidator;
  */
 /**
  * @typedef GetIntegrationByIdParam
- * @property {number} id - Integration id
+ * @property {string} id - Integration id
  */
 /**
  * @typedef GetIntegrationByLevelIdParam
@@ -195,7 +195,7 @@ type GetIntegrationByIdParam = {
     /**
      * - Integration id
      */
-    id: number;
+    id: string;
 };
 type GetIntegrationByLevelIdParam = {
     /**

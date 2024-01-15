@@ -6,8 +6,10 @@
 ##### [Back to Application docs](./README.md)
 
 ## User Methods
-Authentication Service
+The User Authentication module prioritizes security, offering multiple login options, password management, and profile updates. This module allows users to log in using social accounts, mobile OTPs, or passwords, and also enables secure password resets. It manages mobile and email verification, profile details, and session information.
 
+
+Default
 * [addEmail](#addemail)
 * [addMobileNumber](#addmobilenumber)
 * [deleteEmail](#deleteemail)
@@ -17,6 +19,7 @@ Authentication Service
 * [getListOfActiveSessions](#getlistofactivesessions)
 * [getLoggedInUser](#getloggedinuser)
 * [getPlatformConfig](#getplatformconfig)
+* [getUserAttributes](#getuserattributes)
 * [hasPassword](#haspassword)
 * [loginWithAppleIOS](#loginwithappleios)
 * [loginWithEmailAndPassword](#loginwithemailandpassword)
@@ -42,6 +45,8 @@ Authentication Service
 * [setMobileNumberAsPrimary](#setmobilenumberasprimary)
 * [updatePassword](#updatepassword)
 * [updateProfile](#updateprofile)
+* [updateUserAttributes](#updateuserattributes)
+* [userExists](#userexists)
 * [verifyEmail](#verifyemail)
 * [verifyEmailForgotOTP](#verifyemailforgototp)
 * [verifyEmailOTP](#verifyemailotp)
@@ -51,7 +56,9 @@ Authentication Service
 
 
 
+
 ## Methods with example and description
+
 
 
 
@@ -986,6 +993,75 @@ Success. Returns a JSON object containing the all the platform configurations. R
   "__v": 0
 }
 ```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### getUserAttributes
+Get user attributes
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.getUserAttributes({  slug : value });
+
+// Async/Await
+const data = await applicationClient.user.getUserAttributes({  slug : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |  
+| slug | string | no | Filter by attribute slug. |  
+
+
+
+Use this API to get the list of user attributes
+
+*Returned Response:*
+
+
+
+
+[UserAttributes](#UserAttributes)
+
+Returns a list of users attributes
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
+```json
+{
+  "value": {
+    "attributes": {
+      "Attribute_01": 1,
+      "Attribute_02": "String01"
+    }
+  }
+}
+```
+</details>
+
 </details>
 
 
@@ -2966,6 +3042,140 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
 ---
 
 
+### updateUserAttributes
+Update user attributes
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.updateUserAttributes({  body : value });
+
+// Async/Await
+const data = await applicationClient.user.updateUserAttributes({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [UpdateUserAttributesRequest](#UpdateUserAttributesRequest) | yes | Request body |
+
+
+Use this API to update user attributes
+
+*Returned Response:*
+
+
+
+
+[UserAttributes](#UserAttributes)
+
+Returns a list of users attributes
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
+```json
+{
+  "value": {
+    "attributes": {
+      "Attribute_01": 1,
+      "Attribute_02": "String01"
+    }
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### userExists
+Check user is already registered or not
+
+
+
+```javascript
+// Promise
+const promise = applicationClient.user.userExists({  q : value });
+
+// Async/Await
+const data = await applicationClient.user.userExists({  q : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| q | string | yes | email id or phone number of user |  
+
+
+
+Use this API to check whether user is already registered or not to the sales channel.
+
+*Returned Response:*
+
+
+
+
+[UserExistsResponse](#UserExistsResponse)
+
+Returns true or false based on user is registered or not.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; Success</i></summary>
+
+```json
+{
+  "value": {
+    "user_exists": true
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### verifyEmail
 Verify email
 
@@ -3447,6 +3657,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
 
 
+
 ### Schemas
 
 
@@ -3830,7 +4041,6 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | captcha_code | string? |  yes  |  |
  | password | string? |  yes  |  |
  | username | string? |  yes  |  |
  
@@ -4021,7 +4231,6 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | action | string? |  yes  |  |
- | captcha_code | string? |  yes  |  |
  | email | string? |  yes  |  |
  | register_token | string? |  yes  |  |
  | token | string? |  yes  |  |
@@ -4057,7 +4266,6 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
  | ---------- | ---- | -------- | ----------- |
  | action | string? |  yes  |  |
  | android_hash | string? |  yes  |  |
- | captcha_code | string? |  yes  |  |
  | country_code | string? |  yes  |  |
  | force | string? |  yes  |  |
  | mobile | string? |  yes  |  |
@@ -4080,7 +4288,6 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | android_hash | string? |  yes  |  |
- | captcha_code | string? |  yes  |  |
  | country_code | string? |  yes  |  |
  | mobile | string? |  yes  |  |
  
@@ -4112,7 +4319,6 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | captcha_code | string? |  yes  |  |
  | email | string? |  yes  |  |
  
 
@@ -4122,7 +4328,6 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | captcha_code | string? |  yes  |  |
  | country_code | string? |  yes  |  |
  | mobile | string? |  yes  |  |
  
@@ -4200,6 +4405,33 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
  | ---------- | ---- | -------- | ----------- |
  | new_password | string? |  yes  |  |
  | old_password | string? |  yes  |  |
+ 
+
+---
+
+#### [UpdateUserAttributesRequest](#UpdateUserAttributesRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | attributes | string? |  yes  |  |
+ 
+
+---
+
+#### [UserAttributes](#UserAttributes)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | attributes | string? |  yes  |  |
+ 
+
+---
+
+#### [UserExistsResponse](#UserExistsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | user_exists | boolean? |  yes  |  |
  
 
 ---

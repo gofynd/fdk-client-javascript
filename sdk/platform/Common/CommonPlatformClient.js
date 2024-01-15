@@ -72,7 +72,7 @@ class Common {
       error: res_error,
     } = CommonPlatformModel.Locations().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -149,7 +149,7 @@ class Common {
       error: res_error,
     } = CommonPlatformModel.ApplicationResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

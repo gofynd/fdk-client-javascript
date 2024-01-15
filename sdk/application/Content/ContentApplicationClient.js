@@ -17,6 +17,10 @@ class Content {
       getAnnouncements: "/service/application/content/v1.0/announcements",
       getBlog: "/service/application/content/v1.0/blogs/{slug}",
       getBlogs: "/service/application/content/v1.0/blogs/",
+      getCustomFields:
+        "/service/application/content/v1.0/metafields/{resource}/{resource_id}",
+      getCustomObject:
+        "/service/application/content/v1.0/metaobjects/{metaobject_id}",
       getDataLoaders: "/service/application/content/v1.0/data-loader",
       getFaqBySlug: "/service/application/content/v1.0/faq/{slug}",
       getFaqCategories: "/service/application/content/v1.0/faq/categories",
@@ -31,6 +35,7 @@ class Content {
       getPage: "/service/application/content/v2.0/pages/{slug}",
       getPages: "/service/application/content/v2.0/pages/",
       getSEOConfiguration: "/service/application/content/v1.0/seo",
+      getSEOMarkupSchemas: "/service/application/content/v1.0/seo/schema",
       getSlideshow: "/service/application/content/v1.0/slideshow/{slug}",
       getSlideshows: "/service/application/content/v1.0/slideshow/",
       getSupportInformation: "/service/application/content/v1.0/support",
@@ -115,7 +120,7 @@ class Content {
       error: res_error,
     } = ContentApplicationModel.AnnouncementsResponseSchema().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -192,7 +197,7 @@ class Content {
       error: res_error,
     } = ContentApplicationModel.BlogSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -270,7 +275,7 @@ class Content {
       error: res_error,
     } = ContentApplicationModel.BlogGetResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -312,6 +317,165 @@ class Content {
     };
     paginator.setCallback(callback.bind(this));
     return paginator;
+  }
+
+  /**
+   * @param {ContentApplicationValidator.GetCustomFieldsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ContentApplicationModel.CustomFieldsResponseByResourceIdSchema>}
+   *   - Success response
+   *
+   * @name getCustomFields
+   * @summary: Get list of custom fields of given resource and resource_id.
+   * @description: Use this API to retrieve the custom fields for given resource and resource_id in param. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getCustomFields/).
+   */
+  async getCustomFields(
+    { resource, resourceId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = ContentApplicationValidator.getCustomFields().validate(
+      { resource, resourceId },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentApplicationValidator.getCustomFields().validate(
+      { resource, resourceId },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for application > Content > getCustomFields \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getCustomFields"],
+        params: { resource, resourceId },
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentApplicationModel.CustomFieldsResponseByResourceIdSchema().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Content > getCustomFields \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ContentApplicationValidator.GetCustomObjectParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ContentApplicationModel.CustomObjectByIdSchema>} -
+   *   Success response
+   * @name getCustomObject
+   * @summary: Get custom object details
+   * @description: Use this API to retrieve the custom object details, their fields details with definitions and references. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getCustomObject/).
+   */
+  async getCustomObject(
+    { metaobjectId, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = ContentApplicationValidator.getCustomObject().validate(
+      { metaobjectId },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentApplicationValidator.getCustomObject().validate(
+      { metaobjectId },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for application > Content > getCustomObject \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getCustomObject"],
+        params: { metaobjectId },
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentApplicationModel.CustomObjectByIdSchema().validate(
+      responseData,
+      { abortEarly: false, allowUnknown: true }
+    );
+
+    if (res_error) {
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Content > getCustomObject \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
   }
 
   /**
@@ -375,7 +539,7 @@ class Content {
       error: res_error,
     } = ContentApplicationModel.DataLoadersSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -453,7 +617,7 @@ class Content {
       error: res_error,
     } = ContentApplicationModel.FaqSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -532,7 +696,7 @@ class Content {
       error: res_error,
     } = ContentApplicationModel.GetFaqCategoriesSchema().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -613,7 +777,7 @@ class Content {
       error: res_error,
     } = ContentApplicationModel.GetFaqCategoryBySlugSchema().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -689,7 +853,7 @@ class Content {
       error: res_error,
     } = ContentApplicationModel.FaqResponseSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -769,7 +933,7 @@ class Content {
       error: res_error,
     } = ContentApplicationModel.GetFaqSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -847,7 +1011,7 @@ class Content {
       error: res_error,
     } = ContentApplicationModel.LandingPageSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -927,7 +1091,7 @@ class Content {
       error: res_error,
     } = ContentApplicationModel.ApplicationLegal().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1008,7 +1172,7 @@ class Content {
       error: res_error,
     } = ContentApplicationModel.NavigationGetResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1112,7 +1276,7 @@ class Content {
       error: res_error,
     } = ContentApplicationModel.PageSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1190,7 +1354,7 @@ class Content {
       error: res_error,
     } = ContentApplicationModel.PageGetResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1297,7 +1461,7 @@ class Content {
       error: res_error,
     } = ContentApplicationModel.SeoComponent().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1307,6 +1471,88 @@ class Content {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for application > Content > getSEOConfiguration \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {ContentApplicationValidator.GetSEOMarkupSchemasParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<ContentApplicationModel.SeoSchemaComponent>} - Success response
+   * @name getSEOMarkupSchemas
+   * @summary: Get SEO Markup schemas of an application
+   * @description: Use this API to get all SEO Markup schema Templates setup for an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/content/getSEOMarkupSchemas/).
+   */
+  async getSEOMarkupSchemas(
+    { pageType, active, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = ContentApplicationValidator.getSEOMarkupSchemas().validate(
+      { pageType, active },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = ContentApplicationValidator.getSEOMarkupSchemas().validate(
+      { pageType, active },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for application > Content > getSEOMarkupSchemas \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["page_type"] = pageType;
+    query_params["active"] = active;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getSEOMarkupSchemas"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = ContentApplicationModel.SeoSchemaComponent().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > Content > getSEOMarkupSchemas \n ${res_error}`,
         });
       }
     }
@@ -1375,7 +1621,7 @@ class Content {
       error: res_error,
     } = ContentApplicationModel.SlideshowSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1455,7 +1701,7 @@ class Content {
       error: res_error,
     } = ContentApplicationModel.SlideshowGetResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1562,7 +1808,7 @@ class Content {
       error: res_error,
     } = ContentApplicationModel.Support().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1638,7 +1884,7 @@ class Content {
       error: res_error,
     } = ContentApplicationModel.TagsSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

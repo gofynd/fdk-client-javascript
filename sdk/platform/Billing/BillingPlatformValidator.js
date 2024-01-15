@@ -46,7 +46,11 @@ const BillingPlatformModel = require("./BillingPlatformModel");
 
 /** @typedef GetEnterprisePlansParam */
 
-/** @typedef GetFeatureLimitConfigParam */
+/**
+ * @typedef GetFeatureLimitConfigParam
+ * @property {string} [productSuite]
+ * @property {string} [type]
+ */
 
 /**
  * @typedef GetInvoiceByIdParam
@@ -61,6 +65,15 @@ const BillingPlatformModel = require("./BillingPlatformModel");
  * @typedef GetSubscriptionChargeParam
  * @property {string} extensionId - Extension _id
  * @property {string} subscriptionId - Subscription charge _id
+ */
+
+/**
+ * @typedef GetentityDetailParam
+ * @property {string} entityName - Entity name.
+ * @property {string} [entityId] - Entity unique id.
+ * @property {string} channel - Ordering channel.
+ * @property {string} [component] - The coponents the user would like to know.
+ * @property {string} [componentName] - The name of component the preferred to be fetched.
  */
 
 /**
@@ -145,7 +158,10 @@ class BillingPlatformValidator {
 
   /** @returns {GetFeatureLimitConfigParam} */
   static getFeatureLimitConfig() {
-    return Joi.object({}).required();
+    return Joi.object({
+      productSuite: Joi.string().allow(""),
+      type: Joi.string().allow(""),
+    }).required();
   }
 
   /** @returns {GetInvoiceByIdParam} */
@@ -170,6 +186,17 @@ class BillingPlatformValidator {
     return Joi.object({
       extensionId: Joi.string().allow("").required(),
       subscriptionId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {GetentityDetailParam} */
+  static getentityDetail() {
+    return Joi.object({
+      entityName: Joi.string().allow("").required(),
+      entityId: Joi.string().allow(""),
+      channel: Joi.string().allow("").required(),
+      component: Joi.string().allow(""),
+      componentName: Joi.string().allow(""),
     }).required();
   }
 

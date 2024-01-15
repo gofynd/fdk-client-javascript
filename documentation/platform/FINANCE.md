@@ -8,6 +8,8 @@
 ## Finance Methods
 Handles all finance related activities
 
+
+Default
 * [channelDisplayName](#channeldisplayname)
 * [createSellerCreditNoteConfig](#createsellercreditnoteconfig)
 * [creditNoteDetails](#creditnotedetails)
@@ -26,16 +28,21 @@ Handles all finance related activities
 * [getReason](#getreason)
 * [getReportList](#getreportlist)
 * [getReportingFilters](#getreportingfilters)
+* [invoiceActivityLogs](#invoiceactivitylogs)
 * [invoiceListing](#invoicelisting)
 * [invoicePDF](#invoicepdf)
+* [invoicePaymentDetails](#invoicepaymentdetails)
 * [invoiceType](#invoicetype)
 * [isCnRefundMethod](#iscnrefundmethod)
 * [isCreditlinePlatform](#iscreditlineplatform)
 * [paymentProcess](#paymentprocess)
+* [unlockCreditNote](#unlockcreditnote)
+
 
 
 
 ## Methods with example and description
+
 
 
 
@@ -1757,6 +1764,73 @@ Success
 ---
 
 
+### invoiceActivityLogs
+Display activity log details of an invoice.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.finance.invoiceActivityLogs({  invoiceNumber : value });
+
+// Async/Await
+const data = await platformClient.finance.invoiceActivityLogs({  invoiceNumber : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| invoiceNumber | string | yes | Invoice Number for which the data will be returned. Invoice_number is required. |  
+
+
+
+Display activity log details of invoice.
+
+*Returned Response:*
+
+
+
+
+[InvoiceActivityLogsResponse](#InvoiceActivityLogsResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "data": [
+    {
+      "performed_by": "system",
+      "status": "processed",
+      "reason": "",
+      "is_resolved": true,
+      "retry_attempts": 0,
+      "max_retry_attempts": 3
+    }
+  ]
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### invoiceListing
 Gives list of invoices.
 
@@ -1824,7 +1898,12 @@ Success
       "status": "UNPAID",
       "is_downloadable": true,
       "invoice_id": "18d6bf81-21f8-4dd7-9c37-72751173a24a",
-      "source_id": ""
+      "source_id": "",
+      "currency": {
+        "code": "INR",
+        "symbol": "r",
+        "name": "Indian Rupee"
+      }
     }
   ],
   "unpaid_invoice_data": {
@@ -1911,6 +1990,89 @@ Success
     "https://fynd-staging-assets-private.s3-accelerate.amazonaws.com/addsale/documents/daytrader/PDFs/61/07-2023/FY/FY-I-A23004-FY24_61_07-2023.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJUADR2WMPQT6ZJ2Q%2F20230727%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20230727T190229Z&X-Amz-Expires=604800&X-Amz-Signature=b8642e8764ea320332b5ccb825fe7427872d8fe31b4a3cafafb6c89dd854d9c3&X-Amz-SignedHeaders=host"
   ],
   "error": []
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### invoicePaymentDetails
+Display payment details of an invoice.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.finance.invoicePaymentDetails({  invoiceNumber : value });
+
+// Async/Await
+const data = await platformClient.finance.invoicePaymentDetails({  invoiceNumber : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| invoiceNumber | string | yes | Invoice Number for which the data will be returned.Invoice_Number is required. |  
+
+
+
+Display payment details of invoice.
+
+*Returned Response:*
+
+
+
+
+[InvoicePaymentDetailsResponse](#InvoicePaymentDetailsResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "payment_details_visible": true,
+  "paid_invoice_payment_details": [
+    {
+      "payment_details": [
+        {
+          "display_name": "Type of Payment",
+          "value": "Online"
+        },
+        {
+          "display_name": "Mode of Payment",
+          "value": "Upi"
+        },
+        {
+          "display_name": "UPI ID",
+          "value": "8787987654@ybl"
+        },
+        {
+          "display_name": "Reference Number",
+          "value": "882648404204"
+        }
+      ],
+      "date_of_payment": "2023-07-19 13:12:15.901928",
+      "amount": 8000
+    }
+  ],
+  "failed_attempts_details": []
 }
 ```
 </details>
@@ -2212,6 +2374,68 @@ Success
 ---
 
 
+### unlockCreditNote
+Unlocks credit notes.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.finance.unlockCreditNote({  body : value });
+
+// Async/Await
+const data = await platformClient.finance.unlockCreditNote({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [UnlockCreditNoteRequest](#UnlockCreditNoteRequest) | yes | Request body |
+
+
+Used to unlock all request credit notes.
+
+*Returned Response:*
+
+
+
+
+[UnlockCreditNoteResponse](#UnlockCreditNoteResponse)
+
+Success
+
+
+
+
+<details>
+<summary><i>&nbsp; Example:</i></summary>
+
+```json
+{
+  "success": true,
+  "data": {
+    "is_cn_unlocked": true,
+    "status": "completed"
+  }
+}
+```
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+
 
 ### Schemas
 
@@ -2393,7 +2617,7 @@ Success
  | item_count | number? |  yes  |  |
  | items | [string]? |  yes  |  |
  | message | string? |  yes  |  |
- | page | string? |  yes  |  |
+ | page | [Page](#Page)? |  yes  |  |
  | show_mr | boolean? |  yes  |  |
  
 
@@ -2414,7 +2638,7 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | available_cn_balance | number? |  yes  |  |
  | cn_amount | number? |  yes  |  |
- | cn_details | string? |  yes  |  |
+ | cn_details | [CnDetails](#CnDetails)? |  yes  |  |
  | cn_reference_number | string? |  yes  |  |
  | cn_status | string? |  yes  |  |
  | customer_mobile_number | string? |  yes  |  |
@@ -2439,6 +2663,17 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | data | [CreditNoteDetails](#CreditNoteDetails)? |  yes  |  |
  | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [Currency](#Currency)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | code | string? |  yes  |  |
+ | name | string? |  yes  |  |
+ | symbol | string? |  yes  |  |
  
 
 ---
@@ -2965,6 +3200,38 @@ Success
 
 ---
 
+#### [InvoiceActivityLogError](#InvoiceActivityLogError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | reason | string? |  yes  |  |
+ 
+
+---
+
+#### [InvoiceActivityLogsResponse](#InvoiceActivityLogsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [[InvoiceActivityLogsResponseData](#InvoiceActivityLogsResponseData)]? |  yes  |  |
+ 
+
+---
+
+#### [InvoiceActivityLogsResponseData](#InvoiceActivityLogsResponseData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_resolved | boolean? |  yes  |  |
+ | max_retry_attempts | number? |  yes  |  |
+ | performed_by | string? |  yes  |  |
+ | reason | string? |  yes  |  |
+ | retry_attempts | number? |  yes  |  |
+ | status | string? |  yes  |  |
+ 
+
+---
+
 #### [InvoiceListingPayloadData](#InvoiceListingPayloadData)
 
  | Properties | Type | Nullable | Description |
@@ -3006,6 +3273,7 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | amount | string? |  yes  |  |
  | company | string? |  yes  |  |
+ | currency | [Currency](#Currency)? |  yes  |  |
  | due_date | string? |  yes  |  |
  | invoice_date | string? |  yes  |  |
  | invoice_id | string? |  yes  |  |
@@ -3014,6 +3282,27 @@ Success
  | is_downloadable | boolean? |  yes  |  |
  | period | string? |  yes  |  |
  | status | string? |  yes  |  |
+ 
+
+---
+
+#### [InvoicePaymentDetailsResponse](#InvoicePaymentDetailsResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [InvoicePaymentDetailsResponseData](#InvoicePaymentDetailsResponseData)? |  yes  |  |
+ | payment_details_visible | boolean? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [InvoicePaymentDetailsResponseData](#InvoicePaymentDetailsResponseData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | failed_attempts_details | [string]? |  yes  |  |
+ | paid_invoice_payment_details | [[PaidInvoicePaymentDetail](#PaidInvoicePaymentDetail)]? |  yes  |  |
  
 
 ---
@@ -3159,9 +3448,30 @@ Success
  | ---------- | ---- | -------- | ----------- |
  | current | number? |  yes  |  |
  | has_next | boolean? |  yes  |  |
- | item_total | number? |  yes  |  |
+ | item_count | number? |  yes  |  |
  | size | number? |  yes  |  |
  | type | string? |  yes  |  |
+ 
+
+---
+
+#### [PaidInvoicePaymentDetail](#PaidInvoicePaymentDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | amount | number? |  yes  |  |
+ | date_of_payment | string? |  yes  |  |
+ | payment_details | [[PaymentDetail](#PaymentDetail)]? |  yes  |  |
+ 
+
+---
+
+#### [PaymentDetail](#PaymentDetail)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | display_name | string? |  yes  |  |
+ | value | string? |  yes  |  |
  
 
 ---
@@ -3244,6 +3554,47 @@ Success
  | id | string? |  yes  |  |
  | name | string? |  yes  |  |
  | report_type | string? |  yes  |  |
+ 
+
+---
+
+#### [UnlockCreditNoteRequest](#UnlockCreditNoteRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [UnlockCreditNoteRequestData](#UnlockCreditNoteRequestData)? |  yes  |  |
+ 
+
+---
+
+#### [UnlockCreditNoteRequestData](#UnlockCreditNoteRequestData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string? |  yes  |  |
+ | locked_credit_notes | [string]? |  yes  |  |
+ | seller_id | string? |  yes  |  |
+ | unlock_reason | string? |  yes  |  |
+ 
+
+---
+
+#### [UnlockCreditNoteResponse](#UnlockCreditNoteResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | [UnlockCreditNoteResponseData](#UnlockCreditNoteResponseData)? |  yes  |  |
+ | success | boolean? |  yes  |  |
+ 
+
+---
+
+#### [UnlockCreditNoteResponseData](#UnlockCreditNoteResponseData)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_cn_unlocked | boolean? |  yes  |  |
+ | status | string? |  yes  |  |
  
 
 ---

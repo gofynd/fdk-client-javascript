@@ -113,6 +113,8 @@ const CartPlatformModel = require("./CartPlatformModel");
  * @typedef GetAppCouponsParam
  * @property {string} [id]
  * @property {boolean} [buyNow]
+ * @property {string} [slug]
+ * @property {string} [storeId]
  */
 
 /**
@@ -549,6 +551,8 @@ class CartPlatformApplicationValidator {
     return Joi.object({
       id: Joi.string().allow(""),
       buyNow: Joi.boolean(),
+      slug: Joi.string().allow(""),
+      storeId: Joi.string().allow(""),
     }).required();
   }
 

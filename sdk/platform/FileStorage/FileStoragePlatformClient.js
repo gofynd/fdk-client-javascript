@@ -82,7 +82,7 @@ class FileStorage {
 
     const { error: res_error } = Joi.any().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -183,7 +183,7 @@ class FileStorage {
       error: res_error,
     } = FileStoragePlatformModel.CompleteResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -263,7 +263,7 @@ class FileStorage {
 
     const { error: res_error } = Joi.any().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -342,7 +342,7 @@ class FileStorage {
       error: res_error,
     } = FileStoragePlatformModel.SignUrlResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -418,7 +418,7 @@ class FileStorage {
 
     const { error: res_error } = Joi.string()
       .allow("")
-      .validate(responseData, { abortEarly: false, allowUnknown: false });
+      .validate(responseData, { abortEarly: false, allowUnknown: true });
 
     if (res_error) {
       if (this.config.options.strictResponseCheck === true) {
@@ -518,7 +518,7 @@ class FileStorage {
       error: res_error,
     } = FileStoragePlatformModel.StartResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

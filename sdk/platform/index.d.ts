@@ -15,11 +15,11 @@ export namespace PlatformModel {
     const FinancePlatformModel: typeof import("./Finance/FinancePlatformModel");
     const InventoryPlatformModel: typeof import("./Inventory/InventoryPlatformModel");
     const LeadPlatformModel: typeof import("./Lead/LeadPlatformModel");
+    const ServiceabilityPlatformModel: typeof import("./Serviceability/ServiceabilityPlatformModel");
     const OrderPlatformModel: typeof import("./Order/OrderPlatformModel");
     const PartnerPlatformModel: typeof import("./Partner/PartnerPlatformModel");
     const PaymentPlatformModel: typeof import("./Payment/PaymentPlatformModel");
     const RewardsPlatformModel: typeof import("./Rewards/RewardsPlatformModel");
-    const ServiceabilityPlatformModel: typeof import("./Serviceability/ServiceabilityPlatformModel");
     const SharePlatformModel: typeof import("./Share/SharePlatformModel");
     const ThemePlatformModel: typeof import("./Theme/ThemePlatformModel");
     const UserPlatformModel: typeof import("./User/UserPlatformModel");

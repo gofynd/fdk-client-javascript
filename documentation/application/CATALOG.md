@@ -6,8 +6,10 @@
 ##### [Back to Application docs](./README.md)
 
 ## Catalog Methods
-Catalog API's allows you to access list of products, prices, seller details, similar features, variants and many more useful features. 
+The Catalog module manages product details and size availability, and enables easy comparisons. Use it to explore product options, check stock status, and retrieve brand and category information. The module also supports personalization by allowing tracking of preferred items and brands. It highlights popular products based on user engagement and provides store details. Additionally, this module covers bundled items, size-specific pricing, and seller information.
 
+
+Default
 * [followById](#followbyid)
 * [getBrandDetailBySlug](#getbranddetailbyslug)
 * [getBrands](#getbrands)
@@ -41,7 +43,9 @@ Catalog API's allows you to access list of products, prices, seller details, sim
 
 
 
+
 ## Methods with example and description
+
 
 
 
@@ -4752,14 +4756,12 @@ Get the price of a product size at a PIN Code
 const promise = applicationClient.catalog.getProductPriceBySlug({  slug : value,
  size : value,
  storeId : value,
- pincode : value,
  moq : value });
 
 // Async/Await
 const data = await applicationClient.catalog.getProductPriceBySlug({  slug : value,
  size : value,
  storeId : value,
- pincode : value,
  moq : value });
 ```
 
@@ -4772,7 +4774,6 @@ const data = await applicationClient.catalog.getProductPriceBySlug({  slug : val
 | slug | string | yes | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |   
 | size | string | yes | A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint /service/application/catalog/v1.0/products/sizes |    
 | storeId | number | no | The ID of the store that is selling the product, e.g. 1,2,3. |    
-| pincode | string | no | The PIN Code of the area near which the selling locations should be searched, e.g. 400059. |    
 | moq | number | no | An Integer indication the Minimum Order Quantity of a product, e.g. 100. |  
 
 
@@ -4901,7 +4902,6 @@ Get the sellers of a product size at a PIN Code
 // Promise
 const promise = applicationClient.catalog.getProductSellersBySlug({  slug : value,
  size : value,
- pincode : value,
  strategy : value,
  pageNo : value,
  pageSize : value });
@@ -4909,7 +4909,6 @@ const promise = applicationClient.catalog.getProductSellersBySlug({  slug : valu
 // Async/Await
 const data = await applicationClient.catalog.getProductSellersBySlug({  slug : value,
  size : value,
- pincode : value,
  strategy : value,
  pageNo : value,
  pageSize : value });
@@ -4923,7 +4922,6 @@ const data = await applicationClient.catalog.getProductSellersBySlug({  slug : v
 | --------- | -----  | -------- | ----------- | 
 | slug | string | yes | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |   
 | size | string | yes | A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint /service/application/catalog/v1.0/products/sizes |    
-| pincode | string | no | The 6-digit PIN Code of the area near which the selling locations should be searched, e.g. 400059 |    
 | strategy | string | no | Sort stores on the basis of strategy. eg, fast-delivery, low-price, optimal. |    
 | pageNo | number | no | The page number to navigate through the given set of results. |    
 | pageSize | number | no | The number of items to retrieve in each page. |  
@@ -7945,6 +7943,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
 
 
 
+
 ### Schemas
 
 
@@ -8428,7 +8427,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
  | query | [[CollectionQuery](#CollectionQuery)]? |  yes  |  |
  | slug | string? |  yes  |  |
  | sort_on | string? |  yes  |  |
- | tag | [string]? |  yes  |  |
+ | tags | [string]? |  yes  |  |
  | type | string? |  yes  |  |
  | uid | string? |  yes  |  |
  | visible_facets_keys | [string]? |  yes  |  |

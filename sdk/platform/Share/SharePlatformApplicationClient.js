@@ -1,5 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const {
+  FDKClientValidationError,
+  FDKResponseValidationError,
+} = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
 const SharePlatformApplicationValidator = require("./SharePlatformApplicationValidator");
 const SharePlatformModel = require("./SharePlatformModel");
@@ -74,7 +77,7 @@ class Share {
       error: res_error,
     } = SharePlatformModel.ShortLinkRes().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -153,7 +156,7 @@ class Share {
       error: res_error,
     } = SharePlatformModel.ShortLinkRes().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -231,7 +234,7 @@ class Share {
       error: res_error,
     } = SharePlatformModel.ClickStatsResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -325,7 +328,7 @@ class Share {
       error: res_error,
     } = SharePlatformModel.ShortLinkList().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -408,7 +411,7 @@ class Share {
       error: res_error,
     } = SharePlatformModel.ShortLinkRes().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

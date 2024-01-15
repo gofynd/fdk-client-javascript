@@ -25,6 +25,8 @@ class User {
         "/service/application/user/authentication/v1.0/sessions",
       getLoggedInUser: "/service/application/user/authentication/v1.0/session",
       getPlatformConfig: "/service/application/user/platform/v1.0/config",
+      getUserAttributes:
+        "/service/application/user/profile/v1.0/user-attributes",
       hasPassword: "/service/application/user/authentication/v1.0/has-password",
       loginWithAppleIOS:
         "/service/application/user/authentication/v1.0/login/apple-ios",
@@ -69,6 +71,9 @@ class User {
         "/service/application/user/profile/v1.0/mobile/primary",
       updatePassword: "/service/application/user/authentication/v1.0/password",
       updateProfile: "/service/application/user/profile/v1.0/detail",
+      updateUserAttributes:
+        "/service/application/user/profile/v1.0/user-attributes",
+      userExists: "/service/application/user/authentication/v1.0/user-exists",
       verifyEmail: "/service/application/user/authentication/v1.0/verify/email",
       verifyEmailForgotOTP:
         "/service/application/user/authentication/v1.0/otp/forgot/email/verify",
@@ -157,7 +162,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.VerifyEmailOTPSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -236,7 +241,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.VerifyMobileOTPSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -319,7 +324,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.LoginSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -411,7 +416,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.LoginSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -487,7 +492,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.DeleteUserSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -565,7 +570,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.LoginSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -645,7 +650,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.SessionListSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -723,7 +728,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.UserObjectSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -802,7 +807,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.PlatformSchema().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -812,6 +817,85 @@ class User {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for application > User > getPlatformConfig \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {UserApplicationValidator.GetUserAttributesParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<UserApplicationModel.UserAttributes>} - Success response
+   * @name getUserAttributes
+   * @summary: Get user attributes
+   * @description: Use this API to get the list of user attributes - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/getUserAttributes/).
+   */
+  async getUserAttributes(
+    { slug, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = UserApplicationValidator.getUserAttributes().validate(
+      { slug },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = UserApplicationValidator.getUserAttributes().validate(
+      { slug },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for application > User > getUserAttributes \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["slug"] = slug;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["getUserAttributes"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = UserApplicationModel.UserAttributes().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > getUserAttributes \n ${res_error}`,
         });
       }
     }
@@ -878,7 +962,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.HasPasswordSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -957,7 +1041,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.AuthSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1037,7 +1121,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.LoginSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1116,7 +1200,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.AuthSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1195,7 +1279,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.AuthSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1276,7 +1360,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.AuthSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1355,7 +1439,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.AuthSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1434,7 +1518,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.SendOtpResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1512,7 +1596,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.LoginSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1588,7 +1672,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.LogoutSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1667,7 +1751,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.RegisterFormSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1746,7 +1830,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.ResetForgotPasswordSuccess().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1825,7 +1909,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.EmailOtpSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1904,7 +1988,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.OtpSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1983,7 +2067,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.EmailOtpSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2062,7 +2146,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.OtpSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2143,7 +2227,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.ResetPasswordSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2224,7 +2308,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.ResetPasswordSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2302,7 +2386,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.ResetPasswordSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2385,7 +2469,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.SendEmailVerifyLinkSuccess().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -2469,7 +2553,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.SendMobileVerifyLinkSuccess().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -2547,7 +2631,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.LoginSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2627,7 +2711,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.LoginSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2705,7 +2789,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.VerifyEmailSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2784,7 +2868,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.ProfileEditSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2794,6 +2878,161 @@ class User {
         Logger({
           level: "WARN",
           message: `Response Validation Warnings for application > User > updateProfile \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {UserApplicationValidator.UpdateUserAttributesParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<UserApplicationModel.UserAttributes>} - Success response
+   * @name updateUserAttributes
+   * @summary: Update user attributes
+   * @description: Use this API to update user attributes - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/updateUserAttributes/).
+   */
+  async updateUserAttributes(
+    { body, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = UserApplicationValidator.updateUserAttributes().validate(
+      { body },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = UserApplicationValidator.updateUserAttributes().validate(
+      { body },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for application > User > updateUserAttributes \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "patch",
+      constructUrl({
+        url: this._urls["updateUserAttributes"],
+        params: {},
+      }),
+      query_params,
+      body,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = UserApplicationModel.UserAttributes().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > updateUserAttributes \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {UserApplicationValidator.UserExistsParam} arg - Arg object.
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../ApplicationAPIClient").Options} - Options
+   * @returns {Promise<UserApplicationModel.UserExistsResponse>} - Success response
+   * @name userExists
+   * @summary: Check user is already registered or not
+   * @description: Use this API to check whether user is already registered or not to the sales channel. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/user/userExists/).
+   */
+  async userExists(
+    { q, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const { error } = UserApplicationValidator.userExists().validate(
+      { q },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const { error: warrning } = UserApplicationValidator.userExists().validate(
+      { q },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for application > User > userExists \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+    query_params["q"] = q;
+
+    const xHeaders = {};
+
+    const response = await ApplicationAPIClient.execute(
+      this._conf,
+      "get",
+      constructUrl({
+        url: this._urls["userExists"],
+        params: {},
+      }),
+      query_params,
+      undefined,
+      { ...xHeaders, ...requestHeaders },
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const {
+      error: res_error,
+    } = UserApplicationModel.UserExistsResponse().validate(responseData, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+
+    if (res_error) {
+      if (this._conf.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for application > User > userExists \n ${res_error}`,
         });
       }
     }
@@ -2860,7 +3099,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.VerifyEmailSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2939,7 +3178,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.VerifyForgotOtpSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3018,7 +3257,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.VerifyOtpSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3096,7 +3335,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.VerifyEmailSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3175,7 +3414,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.VerifyForgotOtpSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3254,7 +3493,7 @@ class User {
       error: res_error,
     } = UserApplicationModel.VerifyOtpSuccess().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

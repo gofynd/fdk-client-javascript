@@ -96,7 +96,7 @@ class Partner {
       error: res_error,
     } = PartnerPublicModel.ExtensionUsingSlug().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

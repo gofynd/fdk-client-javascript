@@ -102,7 +102,7 @@ class Communication {
       error: res_error,
     } = CommunicationApplicationModel.CommunicationConsent().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -183,7 +183,7 @@ class Communication {
       error: res_error,
     } = CommunicationApplicationModel.PushtokenRes().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -267,7 +267,7 @@ class Communication {
       error: res_error,
     } = CommunicationApplicationModel.CommunicationConsentRes().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {

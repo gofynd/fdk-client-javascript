@@ -95,7 +95,7 @@ class FileStorage {
       error: res_error,
     } = FileStoragePartnerModel.StartResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -193,7 +193,7 @@ class FileStorage {
       error: res_error,
     } = FileStoragePartnerModel.CompleteResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -279,7 +279,7 @@ class FileStorage {
 
     const { error: res_error } = Joi.any().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

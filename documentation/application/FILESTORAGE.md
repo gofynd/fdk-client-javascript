@@ -6,13 +6,16 @@
 ##### [Back to Application docs](./README.md)
 
 ## FileStorage Methods
-File Storage
+The File Storage module simplifies your file upload and storage tasks. Use the 'Initiate Upload' module to start and complete file uploads. Once the upload is successful, employ the 'Complete Upload' module to retrieve the file's URL. For added security, utilize the 'Sign URLs' module, which grants authorized access through signed URLs.
 
 * [upload](#upload)
 
+
+Default
 * [completeUpload](#completeupload)
 * [signUrls](#signurls)
 * [startUpload](#startupload)
+
 
 
 
@@ -95,6 +98,7 @@ Use this API to perform the upload of an arbitrarily sized buffer or blob.
 </details>
 
 ---
+
 
 
 
@@ -386,6 +390,7 @@ Success. Returns a response containing relaving and absolute_url of storage serv
 
 
 ---
+
 
 
 

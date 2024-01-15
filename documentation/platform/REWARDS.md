@@ -8,6 +8,8 @@
 ## Rewards Methods
 Earn and redeem reward points
 
+
+Default
 * [getGiveawayById](#getgiveawaybyid)
 * [getOfferByName](#getofferbyname)
 * [getRewardsConfiguration](#getrewardsconfiguration)
@@ -23,7 +25,9 @@ Earn and redeem reward points
 
 
 
+
 ## Methods with example and description
+
 
 
 
@@ -1307,6 +1311,7 @@ Success
 
 
 ---
+
 
 
 

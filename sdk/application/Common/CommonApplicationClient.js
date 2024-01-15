@@ -97,7 +97,7 @@ class Common {
       error: res_error,
     } = CommonApplicationModel.Locations().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -177,7 +177,7 @@ class Common {
       error: res_error,
     } = CommonApplicationModel.ApplicationResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

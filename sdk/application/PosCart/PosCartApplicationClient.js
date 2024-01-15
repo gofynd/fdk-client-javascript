@@ -123,7 +123,7 @@ class PosCart {
       error: res_error,
     } = PosCartApplicationModel.SaveAddressResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -207,7 +207,7 @@ class PosCart {
       error: res_error,
     } = PosCartApplicationModel.AddCartDetailResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -290,7 +290,7 @@ class PosCart {
       error: res_error,
     } = PosCartApplicationModel.CartDetailResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -372,7 +372,7 @@ class PosCart {
       error: res_error,
     } = PosCartApplicationModel.CartDetailResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -451,7 +451,7 @@ class PosCart {
       error: res_error,
     } = PosCartApplicationModel.CartCheckoutResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -544,7 +544,7 @@ class PosCart {
       error: res_error,
     } = PosCartApplicationModel.Address().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -636,7 +636,7 @@ class PosCart {
       error: res_error,
     } = PosCartApplicationModel.GetAddressesResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -721,7 +721,7 @@ class PosCart {
       error: res_error,
     } = PosCartApplicationModel.CartDeliveryModesResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -805,7 +805,7 @@ class PosCart {
       error: res_error,
     } = PosCartApplicationModel.BulkPriceResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -890,7 +890,7 @@ class PosCart {
       error: res_error,
     } = PosCartApplicationModel.CartDetailResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -969,7 +969,7 @@ class PosCart {
 
     const { error: res_error } = Joi.string()
       .allow("")
-      .validate(responseData, { abortEarly: false, allowUnknown: false });
+      .validate(responseData, { abortEarly: false, allowUnknown: true });
 
     if (res_error) {
       if (this._conf.options.strictResponseCheck === true) {
@@ -1047,7 +1047,7 @@ class PosCart {
       error: res_error,
     } = PosCartApplicationModel.GetShareCartLinkResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1125,7 +1125,7 @@ class PosCart {
       error: res_error,
     } = PosCartApplicationModel.SharedCartResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1205,7 +1205,7 @@ class PosCart {
       error: res_error,
     } = PosCartApplicationModel.GetCouponResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1286,7 +1286,7 @@ class PosCart {
       error: res_error,
     } = PosCartApplicationModel.CartItemCountResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1397,7 +1397,7 @@ class PosCart {
       error: res_error,
     } = PosCartApplicationModel.CartShipmentsResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1478,7 +1478,7 @@ class PosCart {
       error: res_error,
     } = PosCartApplicationModel.StoreDetailsResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1557,7 +1557,7 @@ class PosCart {
       error: res_error,
     } = PosCartApplicationModel.DeleteAddressResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1637,7 +1637,7 @@ class PosCart {
       error: res_error,
     } = PosCartApplicationModel.CartDetailResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1719,7 +1719,7 @@ class PosCart {
       error: res_error,
     } = PosCartApplicationModel.CartDetailResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1799,7 +1799,7 @@ class PosCart {
       error: res_error,
     } = PosCartApplicationModel.CartDetailResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1878,7 +1878,7 @@ class PosCart {
       error: res_error,
     } = PosCartApplicationModel.UpdateAddressResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1964,7 +1964,7 @@ class PosCart {
       error: res_error,
     } = PosCartApplicationModel.UpdateCartDetailResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -2044,7 +2044,7 @@ class PosCart {
       error: res_error,
     } = PosCartApplicationModel.CartMetaResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2126,7 +2126,7 @@ class PosCart {
       error: res_error,
     } = PosCartApplicationModel.SharedCartResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2213,7 +2213,7 @@ class PosCart {
       error: res_error,
     } = PosCartApplicationModel.CartShipmentsResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2343,7 +2343,7 @@ class PosCart {
       error: res_error,
     } = PosCartApplicationModel.PaymentCouponValidate().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

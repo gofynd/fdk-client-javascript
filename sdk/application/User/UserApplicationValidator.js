@@ -60,6 +60,11 @@ const UserApplicationModel = require("./UserApplicationModel");
  * @property {string} [name] - Name of the application, e.g. Fynd
  */
 
+/**
+ * @typedef GetUserAttributesParam
+ * @property {string} [slug] - Filter by attribute slug.
+ */
+
 /** @typedef HasPasswordParam */
 
 /**
@@ -196,6 +201,16 @@ const UserApplicationModel = require("./UserApplicationModel");
  */
 
 /**
+ * @typedef UpdateUserAttributesParam
+ * @property {UserApplicationModel.UpdateUserAttributesRequest} body
+ */
+
+/**
+ * @typedef UserExistsParam
+ * @property {string} q - Email id or phone number of user
+ */
+
+/**
  * @typedef VerifyEmailParam
  * @property {UserApplicationModel.CodeRequestBodySchema} body
  */
@@ -297,6 +312,13 @@ class UserApplicationValidator {
   static getPlatformConfig() {
     return Joi.object({
       name: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {GetUserAttributesParam} */
+  static getUserAttributes() {
+    return Joi.object({
+      slug: Joi.string().allow(""),
     });
   }
 
@@ -484,6 +506,20 @@ class UserApplicationValidator {
     return Joi.object({
       platform: Joi.string().allow(""),
       body: UserApplicationModel.EditProfileRequestSchema().required(),
+    }).required();
+  }
+
+  /** @returns {UpdateUserAttributesParam} */
+  static updateUserAttributes() {
+    return Joi.object({
+      body: UserApplicationModel.UpdateUserAttributesRequest().required(),
+    }).required();
+  }
+
+  /** @returns {UserExistsParam} */
+  static userExists() {
+    return Joi.object({
+      q: Joi.string().allow("").required(),
     }).required();
   }
 

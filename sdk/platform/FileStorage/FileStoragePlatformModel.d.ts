@@ -1,5 +1,10 @@
 export = FileStoragePlatformModel;
 /**
+ * @typedef AwbNumberBarcodeGenerator
+ * @property {Kwargs} [kwargs]
+ * @property {string} [method]
+ */
+/**
  * @typedef AwbNumberLabelBarcodeGenerator
  * @property {KwargsAwbNumber} [kwargs]
  * @property {string} [method]
@@ -23,17 +28,24 @@ export = FileStoragePlatformModel;
 /**
  * @typedef CompanyDetail
  * @property {string} [address]
+ * @property {Object} [business_country_currency]
+ * @property {string} [business_country_timezone]
  * @property {string} [cin]
  * @property {string} [city]
  * @property {string} [country]
  * @property {string} [country_code]
+ * @property {string} [display_address]
  * @property {string} [email]
  * @property {string} [gstin]
  * @property {string} [name]
  * @property {string} [pan]
+ * @property {Object} [phone]
  * @property {string} [phone_no]
+ * @property {string} [sector]
  * @property {string} [state]
  * @property {string} [state_code]
+ * @property {string} [trn]
+ * @property {string} [vat]
  * @property {string} [website_url]
  * @property {number} [zip_code]
  */
@@ -58,7 +70,7 @@ export = FileStoragePlatformModel;
 /**
  * @typedef ConversionRate
  * @property {string} [base]
- * @property {Rates} [rates]
+ * @property {Object} [rates]
  * @property {number} [timestamp]
  */
 /**
@@ -76,9 +88,12 @@ export = FileStoragePlatformModel;
  * @property {string} [city]
  * @property {string} [country]
  * @property {string} [country_code]
+ * @property {string} [display_address]
+ * @property {string} [email]
  * @property {string} [gstin]
  * @property {string} [name]
  * @property {string} [phone_no]
+ * @property {string} [sector]
  * @property {string} [state]
  * @property {string} [state_code]
  * @property {string} [zip_code]
@@ -89,9 +104,11 @@ export = FileStoragePlatformModel;
  * @property {string} [city]
  * @property {string} [country]
  * @property {string} [country_code]
+ * @property {string} [display_address]
  * @property {string} [gstin]
  * @property {string} [name]
  * @property {string} [phone_no]
+ * @property {string} [sector]
  * @property {string} [state]
  * @property {string} [state_code]
  * @property {string} [zip_code]
@@ -100,8 +117,10 @@ export = FileStoragePlatformModel;
  * @typedef DeliveryPartnerDetail
  * @property {string} [awb_number]
  * @property {string} [awb_number_barcode]
+ * @property {string} [destination]
  * @property {string} [eway_bill_number]
  * @property {string} [name]
+ * @property {string} [origin]
  */
 /**
  * @typedef DestinationNamespace
@@ -125,6 +144,7 @@ export = FileStoragePlatformModel;
  * @typedef DummyTemplateData
  * @property {number} [__v]
  * @property {string} [_id]
+ * @property {string} [country_code]
  * @property {DummyTemplateDataPayload} payload
  * @property {number} [pdf_type_id]
  */
@@ -139,10 +159,13 @@ export = FileStoragePlatformModel;
  * @property {number} [amount_to_be_collected]
  * @property {string} [app_domain_name]
  * @property {string} [awb_number_barcode]
+ * @property {Object} [b2b_buyer_details]
  * @property {string} [brand_logo]
  * @property {CompanyDetail} [company_detail]
  * @property {ConversionRate} [conversion_rate]
+ * @property {string} [credit_note_id]
  * @property {string} [currency_code]
+ * @property {string} [current_date]
  * @property {CustomerBillingDetail} [customer_billing_detail]
  * @property {CustomerShippingDetail} [customer_shipping_detail]
  * @property {string[]} [declaration_texts]
@@ -151,13 +174,17 @@ export = FileStoragePlatformModel;
  * @property {string} [disclaimer]
  * @property {Image} [image]
  * @property {InvoiceDetail} [invoice_detail]
- * @property {boolean} [is_international]
+ * @property {boolean} [is_export]
+ * @property {boolean} [is_export_shipment]
+ * @property {Object} [is_qwik]
  * @property {boolean} [is_self_pickup]
  * @property {boolean} [is_self_ship]
  * @property {Meta} [meta]
  * @property {string} [mode]
+ * @property {string} [order_type]
  * @property {PaymentData[]} [payments]
  * @property {string} [platform_name]
+ * @property {string} [po_number]
  * @property {ProductTable} [product_table]
  * @property {RegisteredCompanyDetail} [registered_company_detail]
  * @property {ReturnDetail} [return_detail]
@@ -167,9 +194,16 @@ export = FileStoragePlatformModel;
  * @property {StoreDetail} [store_detail]
  * @property {TaxTable} [tax_table]
  * @property {number} [total_items]
+ * @property {number} [total_value_of_goods]
+ * @property {string} [txn_id]
  * @property {string} [uid]
  * @property {string} [upi_qrcode]
+ * @property {string} [utr]
  * @property {Object[]} [waybills]
+ */
+/**
+ * @typedef ExtensionSlug
+ * @property {string} [extension_slug]
  */
 /**
  * @typedef FailedResponse
@@ -185,18 +219,15 @@ export = FileStoragePlatformModel;
  * @property {string} [sales_channel_logo]
  */
 /**
- * @typedef Inr
- * @property {string} [name]
- * @property {string} [sub_unit]
- * @property {string} [symbol]
- * @property {number} [value]
- */
-/**
  * @typedef InvoiceDetail
+ * @property {string} [channel_order_id]
+ * @property {string} [device_id]
  * @property {string} [external_order_id]
  * @property {string} [invoice_date]
  * @property {string} [invoice_id]
  * @property {string} [irn]
+ * @property {string} [marketplace_invoice_id]
+ * @property {string} [marketplace_shipment_id]
  * @property {string} [shipment_id]
  * @property {string} [signed_qrcode]
  * @property {string} [upi_qrcode]
@@ -205,7 +236,7 @@ export = FileStoragePlatformModel;
  * @typedef InvoiceTypesDataResponse
  * @property {number} __v
  * @property {string} _id
- * @property {string} [country_code]
+ * @property {string} country_code
  * @property {string[]} format
  * @property {string} name
  * @property {number} pdf_type_id
@@ -220,9 +251,11 @@ export = FileStoragePlatformModel;
 /**
  * @typedef ItemsProductTable
  * @property {Brand} [brand]
+ * @property {string} [country_of_origin]
  * @property {number} [discount]
  * @property {string} [hsn_code]
  * @property {string} [item_code]
+ * @property {Object} [meta]
  * @property {number} [mrp]
  * @property {string} [name]
  * @property {string} [seller_identifier]
@@ -252,6 +285,7 @@ export = FileStoragePlatformModel;
  */
 /**
  * @typedef MetaProperty
+ * @property {AwbNumberBarcodeGenerator} [awb_number_barcode_generator]
  * @property {AwbNumberLabelBarcodeGenerator} [awb_number_label_barcode_generator]
  * @property {DigitalsignatureGenerator} [digitalsignature_generator]
  * @property {ShipmentIdBarcodeGenerator} [shipment_id_barcode_generator]
@@ -259,14 +293,14 @@ export = FileStoragePlatformModel;
  * @property {UpiQrcodeGenerator} [upi_qrcode_generator]
  */
 /**
- * @typedef Params
- * @property {string} [subpath] - The subpath for the file.
- */
-/**
  * @typedef PaymentData
  * @property {number} [amount]
  * @property {string} [date]
+ * @property {Object} [meta]
+ * @property {string} [mode]
+ * @property {string} [name]
  * @property {string} [payment_type]
+ * @property {string} [time]
  * @property {string} [transaction_id]
  */
 /**
@@ -379,18 +413,22 @@ export = FileStoragePlatformModel;
 /**
  * @typedef ProductTable
  * @property {number} [cod_charges]
+ * @property {number} [coupon]
  * @property {string} [delivery_charge_text]
  * @property {number} [delivery_charges]
+ * @property {number} [discount]
  * @property {number} [fynd_discounts]
+ * @property {number} [gift_price]
  * @property {number} [grand_total]
  * @property {ItemsProductTable[]} [products]
+ * @property {number} [promotion]
+ * @property {number} [reward]
+ * @property {number} [round_off]
+ * @property {number} [sub_total]
  * @property {string} [total_in_words]
  * @property {number} [total_items]
- */
-/**
- * @typedef Rates
- * @property {Inr} [inr]
- * @property {Usd} [usd]
+ * @property {number} [total_quantity]
+ * @property {number} [total_value_of_goods]
  */
 /**
  * @typedef RegisteredCompanyDetail
@@ -398,6 +436,8 @@ export = FileStoragePlatformModel;
  * @property {string} [city]
  * @property {string} [country]
  * @property {string} [country_code]
+ * @property {string} [display_address]
+ * @property {string} [sector]
  * @property {string} [state]
  * @property {string} [state_code]
  * @property {number} [zip_code]
@@ -408,7 +448,9 @@ export = FileStoragePlatformModel;
  * @property {string} [city]
  * @property {string} [country]
  * @property {string} [country_code]
+ * @property {string} [display_address]
  * @property {string} [gstin]
+ * @property {string} [sector]
  * @property {string} [state]
  * @property {string} [state_code]
  * @property {string} [zip_code]
@@ -441,7 +483,7 @@ export = FileStoragePlatformModel;
  * @typedef StartRequest
  * @property {string} content_type
  * @property {string} file_name
- * @property {Params} [params]
+ * @property {Object} [params]
  * @property {number} size
  * @property {string[]} [tags]
  */
@@ -464,9 +506,12 @@ export = FileStoragePlatformModel;
  * @property {string} [city]
  * @property {string} [country]
  * @property {string} [country_code]
+ * @property {string} [display_address]
  * @property {string} [gstin]
+ * @property {string} [sector]
  * @property {string} [state]
  * @property {string} [state_code]
+ * @property {string} [store_id]
  * @property {string} [store_name]
  * @property {string} [zip_code]
  */
@@ -504,18 +549,17 @@ export = FileStoragePlatformModel;
  * @property {string} signed_url
  * @property {string} url
  */
-/**
- * @typedef Usd
- * @property {string} [name]
- * @property {string} [sub_unit]
- * @property {string} [symbol]
- * @property {number} [value]
- */
 declare class FileStoragePlatformModel {
 }
 declare namespace FileStoragePlatformModel {
-    export { AwbNumberLabelBarcodeGenerator, Brand, CDN, Cgst, CompanyDetail, CompleteResponse, ConversionRate, CopyFiles, CreatedBy, CustomerBillingDetail, CustomerShippingDetail, DeliveryPartnerDetail, DestinationNamespace, DigitalsignatureGenerator, Document, DummyTemplateData, DummyTemplateDataItems, DummyTemplateDataPayload, FailedResponse, Igst, Image, Inr, InvoiceDetail, InvoiceTypesDataResponse, InvoiceTypesResponse, ItemsProductTable, Kwargs, KwargsAwbNumber, KwargsUpiQrcode, Meta, MetaProperty, Params, PaymentData, PaymentReceiptCustomerDetails, PaymentReceiptFormat, PaymentReceiptMeta, PaymentReceiptOrderDetails, PaymentReceiptPayload, PaymentReceiptPayments, PaymentReceiptRequestBody, PaymentReceiptService, PaymentReceiptTaxes, PdfConfig, PdfConfigSaveSuccess, PdfConfigSaveSuccessData, PdfConfigSuccess, PdfConfigSuccessData, PdfDefaultTemplateSuccess, ProductTable, Rates, RegisteredCompanyDetail, ReturnDetail, Sgst, ShipmentIdBarcodeGenerator, SignedQrcodeGenerator, SignUrlRequest, SignUrlResponse, StartRequest, StartResponse, StoreDetail, Tax, Taxes, TaxTable, UpiQrcodeGenerator, Upload, Urls, Usd };
+    export { AwbNumberBarcodeGenerator, AwbNumberLabelBarcodeGenerator, Brand, CDN, Cgst, CompanyDetail, CompleteResponse, ConversionRate, CopyFiles, CreatedBy, CustomerBillingDetail, CustomerShippingDetail, DeliveryPartnerDetail, DestinationNamespace, DigitalsignatureGenerator, Document, DummyTemplateData, DummyTemplateDataItems, DummyTemplateDataPayload, ExtensionSlug, FailedResponse, Igst, Image, InvoiceDetail, InvoiceTypesDataResponse, InvoiceTypesResponse, ItemsProductTable, Kwargs, KwargsAwbNumber, KwargsUpiQrcode, Meta, MetaProperty, PaymentData, PaymentReceiptCustomerDetails, PaymentReceiptFormat, PaymentReceiptMeta, PaymentReceiptOrderDetails, PaymentReceiptPayload, PaymentReceiptPayments, PaymentReceiptRequestBody, PaymentReceiptService, PaymentReceiptTaxes, PdfConfig, PdfConfigSaveSuccess, PdfConfigSaveSuccessData, PdfConfigSuccess, PdfConfigSuccessData, PdfDefaultTemplateSuccess, ProductTable, RegisteredCompanyDetail, ReturnDetail, Sgst, ShipmentIdBarcodeGenerator, SignedQrcodeGenerator, SignUrlRequest, SignUrlResponse, StartRequest, StartResponse, StoreDetail, Tax, Taxes, TaxTable, UpiQrcodeGenerator, Upload, Urls };
 }
+/** @returns {AwbNumberBarcodeGenerator} */
+declare function AwbNumberBarcodeGenerator(): AwbNumberBarcodeGenerator;
+type AwbNumberBarcodeGenerator = {
+    kwargs?: Kwargs;
+    method?: string;
+};
 /** @returns {AwbNumberLabelBarcodeGenerator} */
 declare function AwbNumberLabelBarcodeGenerator(): AwbNumberLabelBarcodeGenerator;
 type AwbNumberLabelBarcodeGenerator = {
@@ -545,17 +589,24 @@ type Cgst = {
 declare function CompanyDetail(): CompanyDetail;
 type CompanyDetail = {
     address?: string;
+    business_country_currency?: any;
+    business_country_timezone?: string;
     cin?: string;
     city?: string;
     country?: string;
     country_code?: string;
+    display_address?: string;
     email?: string;
     gstin?: string;
     name?: string;
     pan?: string;
+    phone?: any;
     phone_no?: string;
+    sector?: string;
     state?: string;
     state_code?: string;
+    trn?: string;
+    vat?: string;
     website_url?: string;
     zip_code?: number;
 };
@@ -582,7 +633,7 @@ type CompleteResponse = {
 declare function ConversionRate(): ConversionRate;
 type ConversionRate = {
     base?: string;
-    rates?: Rates;
+    rates?: any;
     timestamp?: number;
 };
 /** @returns {CopyFiles} */
@@ -603,9 +654,12 @@ type CustomerBillingDetail = {
     city?: string;
     country?: string;
     country_code?: string;
+    display_address?: string;
+    email?: string;
     gstin?: string;
     name?: string;
     phone_no?: string;
+    sector?: string;
     state?: string;
     state_code?: string;
     zip_code?: string;
@@ -617,9 +671,11 @@ type CustomerShippingDetail = {
     city?: string;
     country?: string;
     country_code?: string;
+    display_address?: string;
     gstin?: string;
     name?: string;
     phone_no?: string;
+    sector?: string;
     state?: string;
     state_code?: string;
     zip_code?: string;
@@ -629,8 +685,10 @@ declare function DeliveryPartnerDetail(): DeliveryPartnerDetail;
 type DeliveryPartnerDetail = {
     awb_number?: string;
     awb_number_barcode?: string;
+    destination?: string;
     eway_bill_number?: string;
     name?: string;
+    origin?: string;
 };
 /** @returns {DestinationNamespace} */
 declare function DestinationNamespace(): DestinationNamespace;
@@ -658,6 +716,7 @@ declare function DummyTemplateData(): DummyTemplateData;
 type DummyTemplateData = {
     __v?: number;
     _id?: string;
+    country_code?: string;
     payload: DummyTemplateDataPayload;
     pdf_type_id?: number;
 };
@@ -674,10 +733,13 @@ type DummyTemplateDataPayload = {
     amount_to_be_collected?: number;
     app_domain_name?: string;
     awb_number_barcode?: string;
+    b2b_buyer_details?: any;
     brand_logo?: string;
     company_detail?: CompanyDetail;
     conversion_rate?: ConversionRate;
+    credit_note_id?: string;
     currency_code?: string;
+    current_date?: string;
     customer_billing_detail?: CustomerBillingDetail;
     customer_shipping_detail?: CustomerShippingDetail;
     declaration_texts?: string[];
@@ -686,13 +748,17 @@ type DummyTemplateDataPayload = {
     disclaimer?: string;
     image?: Image;
     invoice_detail?: InvoiceDetail;
-    is_international?: boolean;
+    is_export?: boolean;
+    is_export_shipment?: boolean;
+    is_qwik?: any;
     is_self_pickup?: boolean;
     is_self_ship?: boolean;
     meta?: Meta;
     mode?: string;
+    order_type?: string;
     payments?: PaymentData[];
     platform_name?: string;
+    po_number?: string;
     product_table?: ProductTable;
     registered_company_detail?: RegisteredCompanyDetail;
     return_detail?: ReturnDetail;
@@ -702,9 +768,17 @@ type DummyTemplateDataPayload = {
     store_detail?: StoreDetail;
     tax_table?: TaxTable;
     total_items?: number;
+    total_value_of_goods?: number;
+    txn_id?: string;
     uid?: string;
     upi_qrcode?: string;
+    utr?: string;
     waybills?: any[];
+};
+/** @returns {ExtensionSlug} */
+declare function ExtensionSlug(): ExtensionSlug;
+type ExtensionSlug = {
+    extension_slug?: string;
 };
 /** @returns {FailedResponse} */
 declare function FailedResponse(): FailedResponse;
@@ -722,21 +796,17 @@ declare function Image(): Image;
 type Image = {
     sales_channel_logo?: string;
 };
-/** @returns {Inr} */
-declare function Inr(): Inr;
-type Inr = {
-    name?: string;
-    sub_unit?: string;
-    symbol?: string;
-    value?: number;
-};
 /** @returns {InvoiceDetail} */
 declare function InvoiceDetail(): InvoiceDetail;
 type InvoiceDetail = {
+    channel_order_id?: string;
+    device_id?: string;
     external_order_id?: string;
     invoice_date?: string;
     invoice_id?: string;
     irn?: string;
+    marketplace_invoice_id?: string;
+    marketplace_shipment_id?: string;
     shipment_id?: string;
     signed_qrcode?: string;
     upi_qrcode?: string;
@@ -746,7 +816,7 @@ declare function InvoiceTypesDataResponse(): InvoiceTypesDataResponse;
 type InvoiceTypesDataResponse = {
     __v: number;
     _id: string;
-    country_code?: string;
+    country_code: string;
     format: string[];
     name: string;
     pdf_type_id: number;
@@ -763,9 +833,11 @@ type InvoiceTypesResponse = {
 declare function ItemsProductTable(): ItemsProductTable;
 type ItemsProductTable = {
     brand?: Brand;
+    country_of_origin?: string;
     discount?: number;
     hsn_code?: string;
     item_code?: string;
+    meta?: any;
     mrp?: number;
     name?: string;
     seller_identifier?: string;
@@ -800,26 +872,23 @@ type Meta = {
 /** @returns {MetaProperty} */
 declare function MetaProperty(): MetaProperty;
 type MetaProperty = {
+    awb_number_barcode_generator?: AwbNumberBarcodeGenerator;
     awb_number_label_barcode_generator?: AwbNumberLabelBarcodeGenerator;
     digitalsignature_generator?: DigitalsignatureGenerator;
     shipment_id_barcode_generator?: ShipmentIdBarcodeGenerator;
     signed_qrcode_generator?: SignedQrcodeGenerator;
     upi_qrcode_generator?: UpiQrcodeGenerator;
 };
-/** @returns {Params} */
-declare function Params(): Params;
-type Params = {
-    /**
-     * - The subpath for the file.
-     */
-    subpath?: string;
-};
 /** @returns {PaymentData} */
 declare function PaymentData(): PaymentData;
 type PaymentData = {
     amount?: number;
     date?: string;
+    meta?: any;
+    mode?: string;
+    name?: string;
     payment_type?: string;
+    time?: string;
     transaction_id?: string;
 };
 /** @returns {PaymentReceiptCustomerDetails} */
@@ -957,19 +1026,22 @@ type PdfDefaultTemplateSuccess = {
 declare function ProductTable(): ProductTable;
 type ProductTable = {
     cod_charges?: number;
+    coupon?: number;
     delivery_charge_text?: string;
     delivery_charges?: number;
+    discount?: number;
     fynd_discounts?: number;
+    gift_price?: number;
     grand_total?: number;
     products?: ItemsProductTable[];
+    promotion?: number;
+    reward?: number;
+    round_off?: number;
+    sub_total?: number;
     total_in_words?: string;
     total_items?: number;
-};
-/** @returns {Rates} */
-declare function Rates(): Rates;
-type Rates = {
-    inr?: Inr;
-    usd?: Usd;
+    total_quantity?: number;
+    total_value_of_goods?: number;
 };
 /** @returns {RegisteredCompanyDetail} */
 declare function RegisteredCompanyDetail(): RegisteredCompanyDetail;
@@ -978,6 +1050,8 @@ type RegisteredCompanyDetail = {
     city?: string;
     country?: string;
     country_code?: string;
+    display_address?: string;
+    sector?: string;
     state?: string;
     state_code?: string;
     zip_code?: number;
@@ -989,7 +1063,9 @@ type ReturnDetail = {
     city?: string;
     country?: string;
     country_code?: string;
+    display_address?: string;
     gstin?: string;
+    sector?: string;
     state?: string;
     state_code?: string;
     zip_code?: string;
@@ -1028,7 +1104,7 @@ declare function StartRequest(): StartRequest;
 type StartRequest = {
     content_type: string;
     file_name: string;
-    params?: Params;
+    params?: any;
     size: number;
     tags?: string[];
 };
@@ -1053,9 +1129,12 @@ type StoreDetail = {
     city?: string;
     country?: string;
     country_code?: string;
+    display_address?: string;
     gstin?: string;
+    sector?: string;
     state?: string;
     state_code?: string;
+    store_id?: string;
     store_name?: string;
     zip_code?: string;
 };
@@ -1098,12 +1177,4 @@ type Urls = {
     expiry: number;
     signed_url: string;
     url: string;
-};
-/** @returns {Usd} */
-declare function Usd(): Usd;
-type Usd = {
-    name?: string;
-    sub_unit?: string;
-    symbol?: string;
-    value?: number;
 };

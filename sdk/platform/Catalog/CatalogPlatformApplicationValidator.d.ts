@@ -119,6 +119,8 @@ export = CatalogPlatformApplicationValidator;
  *   set of results
  * @property {number} [pageSize] - Number of items to retrieve in each page.
  *   Default is 20.
+ * @property {string[]} [tags] - Get locations filtered by tags.
+ * @property {string[]} [storeTypes] - Get locations filtered by store types.
  */
 /**
  * @typedef GetAppProductParam
@@ -254,6 +256,10 @@ export = CatalogPlatformApplicationValidator;
  *   a specific type of configuration.
  * @property {string} [templateSlug] - Get configuration list filtered by
  *   `template_slug` string. This is for the details and comparision groups.
+ * @property {number} [pageNo] - The page number to navigate through the given
+ *   set of results.
+ * @property {number} [pageSize] - Number of items to retrieve in each page.
+ * @property {string} [q] - Get configuration list filtered by `q` string.
  */
 /** @typedef GetConfigurationsParam */
 /** @typedef GetDepartmentsParam */
@@ -706,6 +712,14 @@ type GetAppLocationsParam = {
      * Default is 20.
      */
     pageSize?: number;
+    /**
+     * - Get locations filtered by tags.
+     */
+    tags?: string[];
+    /**
+     * - Get locations filtered by store types.
+     */
+    storeTypes?: string[];
 };
 type GetAppProductParam = {
     /**
@@ -962,6 +976,19 @@ type GetConfigurationMetadataParam = {
      * `template_slug` string. This is for the details and comparision groups.
      */
     templateSlug?: string;
+    /**
+     * - The page number to navigate through the given
+     * set of results.
+     */
+    pageNo?: number;
+    /**
+     * - Number of items to retrieve in each page.
+     */
+    pageSize?: number;
+    /**
+     * - Get configuration list filtered by `q` string.
+     */
+    q?: string;
 };
 type GetDiscountedInventoryBySizeIdentifierParam = {
     /**

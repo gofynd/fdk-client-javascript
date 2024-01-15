@@ -8,6 +8,8 @@
 ## Inventory Methods
 Inventory Swoop API's
 
+
+Default
 * [getApiKey](#getapikey)
 * [getConfigByApiKey](#getconfigbyapikey)
 * [getJobByCode](#getjobbycode)
@@ -17,7 +19,9 @@ Inventory Swoop API's
 
 
 
+
 ## Methods with example and description
+
 
 
 
@@ -364,6 +368,7 @@ JobCode Metrics entry Created Successfully
 
 
 ---
+
 
 
 

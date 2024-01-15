@@ -1,5 +1,8 @@
 const PlatformAPIClient = require("../PlatformAPIClient");
-const { FDKClientValidationError } = require("../../common/FDKError");
+const {
+  FDKClientValidationError,
+  FDKResponseValidationError,
+} = require("../../common/FDKError");
 const Paginator = require("../../common/Paginator");
 const CartPlatformApplicationValidator = require("./CartPlatformApplicationValidator");
 const CartPlatformModel = require("./CartPlatformModel");
@@ -72,7 +75,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.SaveAddressResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -154,7 +157,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.AddCartDetailResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -233,7 +236,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.PriceAdjustmentResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -325,7 +328,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.CartDetailResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -408,7 +411,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.OpenApiCartServiceabilityResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -485,7 +488,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.OpenApiCheckoutResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -566,7 +569,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.CartMetaConfigAdd().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -643,7 +646,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.SuccessMessage().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -722,7 +725,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.PromotionAdd().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -802,7 +805,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.DeleteCartDetailResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -883,7 +886,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.OpenapiCartDetailsResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -958,7 +961,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.CartMetaConfigAdd().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1065,7 +1068,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.AbandonedCartResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1206,7 +1209,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.CartDetailResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1316,7 +1319,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.PlatformAddress().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1422,7 +1425,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.PlatformGetAddressesResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -1449,13 +1452,15 @@ class Cart {
    * @description: Use this API to get a list of available coupons along with their details. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/cart/getAppCoupons/).
    */
   async getAppCoupons(
-    { id, buyNow, requestHeaders } = { requestHeaders: {} },
+    { id, buyNow, slug, storeId, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const { error } = CartPlatformApplicationValidator.getAppCoupons().validate(
       {
         id,
         buyNow,
+        slug,
+        storeId,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1470,6 +1475,8 @@ class Cart {
       {
         id,
         buyNow,
+        slug,
+        storeId,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1483,6 +1490,8 @@ class Cart {
     const query_params = {};
     query_params["id"] = id;
     query_params["buy_now"] = buyNow;
+    query_params["slug"] = slug;
+    query_params["store_id"] = storeId;
 
     const response = await PlatformAPIClient.execute(
       this.config,
@@ -1503,7 +1512,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.GetCouponResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1588,7 +1597,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.CartDeliveryModesResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1683,7 +1692,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.CartDetailResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1767,7 +1776,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.MultiCartResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1846,7 +1855,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.GetShareCartLinkResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -1925,7 +1934,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.SharedCartResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2002,7 +2011,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.CouponUpdate().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2080,7 +2089,7 @@ class Cart {
 
     const { error: res_error } = Joi.any().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2155,7 +2164,7 @@ class Cart {
 
     const { error: res_error } = Joi.any().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2264,7 +2273,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.CouponsResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2398,7 +2407,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.CartItemCountResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2483,7 +2492,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.ActivePromosResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2562,7 +2571,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.PromotionUpdate().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2642,7 +2651,7 @@ class Cart {
 
     const { error: res_error } = Joi.any().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2751,7 +2760,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.PromotionsResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -2914,7 +2923,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.PlatformCartShipmentsResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -2996,7 +3005,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.StoreDetailsResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3073,7 +3082,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.OverrideCheckoutResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3164,7 +3173,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.AddCartDetailResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3248,7 +3257,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.CartCheckoutResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3332,7 +3341,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.CartCheckoutResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3423,7 +3432,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.UpdateCartDetailResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3503,7 +3512,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.DeleteAddressResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3584,7 +3593,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.CartDetailResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3665,7 +3674,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.SuccessMessage().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3754,7 +3763,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.CartDetailResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3842,7 +3851,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.CartDetailResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -3930,7 +3939,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.CartDetailResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4009,7 +4018,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.UpdateAddressResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4091,7 +4100,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.UpdateCartDetailResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4176,7 +4185,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.CartMetaResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4259,7 +4268,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.CartMetaConfigUpdate().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4341,7 +4350,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.UserCartMappingResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4427,7 +4436,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.SharedCartResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4506,7 +4515,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.SuccessMessage().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4589,7 +4598,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.SuccessMessage().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4672,7 +4681,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.PriceAdjustmentResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4753,7 +4762,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.PromotionUpdate().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4836,7 +4845,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.SuccessMessage().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -4936,7 +4945,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.PlatformCartShipmentsResponse().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -5045,7 +5054,7 @@ class Cart {
       error: res_error,
     } = CartPlatformModel.PaymentCouponValidate().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {

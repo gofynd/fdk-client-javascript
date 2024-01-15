@@ -102,7 +102,7 @@ class Inventory {
       error: res_error,
     } = InventoryPublicModel.ResponseEnvelopeApikeyModel().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -183,7 +183,7 @@ class Inventory {
       error: res_error,
     } = InventoryPublicModel.ResponseEnvelopeSlingshotConfigurationDetail().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -262,7 +262,7 @@ class Inventory {
       error: res_error,
     } = InventoryPublicModel.ResponseEnvelopeJobConfigDTO().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -342,7 +342,7 @@ class Inventory {
       error: res_error,
     } = InventoryPublicModel.ResponseEnvelopeObject().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -428,7 +428,7 @@ class Inventory {
       error: res_error,
     } = InventoryPublicModel.ResponseEnvelopeListJobConfigDTO().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {
@@ -508,7 +508,7 @@ class Inventory {
       error: res_error,
     } = InventoryPublicModel.ResponseEnvelopeEmailJobMetrics().validate(
       responseData,
-      { abortEarly: false, allowUnknown: false }
+      { abortEarly: false, allowUnknown: true }
     );
 
     if (res_error) {

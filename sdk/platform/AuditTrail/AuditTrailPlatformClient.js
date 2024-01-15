@@ -60,7 +60,7 @@ class AuditTrail {
     const response = await PlatformAPIClient.execute(
       this.config,
       "post",
-      `/service/platform/audit-trail/v1.0/company/${this.config.companyId}/logs/`,
+      `/service/platform/audit-trail/v1.0/company/${this.config.companyId}/logs`,
       query_params,
       body,
       { ...xHeaders, ...requestHeaders },
@@ -76,7 +76,7 @@ class AuditTrail {
       error: res_error,
     } = AuditTrailPlatformModel.CreateLogResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -155,7 +155,7 @@ class AuditTrail {
       error: res_error,
     } = AuditTrailPlatformModel.LogSchemaResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -225,7 +225,7 @@ class AuditTrail {
     const response = await PlatformAPIClient.execute(
       this.config,
       "get",
-      `/service/platform/audit-trail/v1.0/company/${this.config.companyId}/logs/`,
+      `/service/platform/audit-trail/v1.0/company/${this.config.companyId}/logs`,
       query_params,
       undefined,
       { ...xHeaders, ...requestHeaders },
@@ -241,7 +241,7 @@ class AuditTrail {
       error: res_error,
     } = AuditTrailPlatformModel.LogSchemaResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
@@ -316,7 +316,7 @@ class AuditTrail {
       error: res_error,
     } = AuditTrailPlatformModel.EntityTypesResponse().validate(responseData, {
       abortEarly: false,
-      allowUnknown: false,
+      allowUnknown: true,
     });
 
     if (res_error) {
