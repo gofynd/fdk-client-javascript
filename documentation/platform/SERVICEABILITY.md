@@ -3916,7 +3916,7 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | channels | [ListViewChannels](#ListViewChannels) |  no  |  |
+ | channels | [[ListViewChannels](#ListViewChannels)] |  no  |  |
  | company_id | number |  no  |  |
  | is_active | boolean |  no  |  |
  | name | string |  no  |  |

@@ -81,7 +81,9 @@ export = CartApplicationModel;
  * @property {number} [article_quantity] - Quantity of article on which
  *   promotion is applicable
  * @property {BuyRules[]} [buy_rules] - Buy rules for promotions
+ * @property {string} [code] - Promotion code
  * @property {DiscountRulesApp[]} [discount_rules] - Discount rules for promotions
+ * @property {Object} [meta] - Meta object for extra data
  * @property {boolean} [mrp_promotion] - If applied promotion is applied on
  *   product MRP or ESP
  * @property {string} [offer_text] - Offer text of current promotion
@@ -1057,9 +1059,17 @@ type AppliedPromotion = {
      */
     buy_rules?: BuyRules[];
     /**
+     * - Promotion code
+     */
+    code?: string;
+    /**
      * - Discount rules for promotions
      */
     discount_rules?: DiscountRulesApp[];
+    /**
+     * - Meta object for extra data
+     */
+    meta?: any;
     /**
      * - If applied promotion is applied on
      * product MRP or ESP

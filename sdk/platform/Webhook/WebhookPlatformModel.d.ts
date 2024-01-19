@@ -58,20 +58,6 @@ export = WebhookPlatformModel;
  * @property {EventConfig[]} [event_configs]
  */
 /**
- * @typedef EventConfigs
- * @property {string} [created_on]
- * @property {string} [description]
- * @property {string} [display_name]
- * @property {string} [event_category]
- * @property {string} [event_name]
- * @property {Object} [event_schema]
- * @property {string} [event_type]
- * @property {number} [id]
- * @property {SubscriberEventMapping} [subscriber_event_mapping]
- * @property {string} [updated_on]
- * @property {string} [version]
- */
-/**
  * @typedef EventProcessReportObject
  * @property {number} [attempt] - The attempt number of the event.
  * @property {Object} [data] - The data associated with the event.
@@ -242,26 +228,13 @@ export = WebhookPlatformModel;
  * @property {string} [webhook_url]
  */
 /**
- * @typedef SubscriberEventMapping
- * @property {string} [created_on]
- * @property {number} [event_id]
- * @property {number} [id]
- * @property {number} [subscriber_id]
- */
-/**
- * @typedef SubscriberFailureResponse
- * @property {string} [code]
- * @property {string} [message]
- * @property {string} [stack]
- */
-/**
  * @typedef SubscriberResponse
  * @property {Association} [association]
  * @property {AuthMeta} [auth_meta]
  * @property {string} [created_on]
  * @property {Object} [custom_headers]
  * @property {string} [email_id]
- * @property {EventConfigs[]} [event_configs]
+ * @property {EventConfig[]} [event_configs]
  * @property {number} [id]
  * @property {string} [modified_by]
  * @property {string} [name]
@@ -283,7 +256,7 @@ export = WebhookPlatformModel;
 declare class WebhookPlatformModel {
 }
 declare namespace WebhookPlatformModel {
-    export { Association, AuthMeta, CancelResponse, CdnObject, DownloadReportResponse, Err, Error, Event, EventConfig, EventConfigResponse, EventConfigs, EventProcessReportObject, EventProcessReports, EventProcessRequest, HistoryAssociation, HistoryFilters, HistoryItems, HistoryPayload, HistoryResponse, Item, Page, PingWebhook, PingWebhookResponse, ReportFilterResponse, ReportFiltersPayload, RetryCountResponse, RetryEventRequest, RetryFailureResponse, RetryStatusResponse, RetrySuccessResponse, SubscriberConfig, SubscriberConfigList, SubscriberConfigResponse, SubscriberEventMapping, SubscriberFailureResponse, SubscriberResponse, UploadServiceObject, Url, SubscriberStatus };
+    export { Association, AuthMeta, CancelResponse, CdnObject, DownloadReportResponse, Err, Error, Event, EventConfig, EventConfigResponse, EventProcessReportObject, EventProcessReports, EventProcessRequest, HistoryAssociation, HistoryFilters, HistoryItems, HistoryPayload, HistoryResponse, Item, Page, PingWebhook, PingWebhookResponse, ReportFilterResponse, ReportFiltersPayload, RetryCountResponse, RetryEventRequest, RetryFailureResponse, RetryStatusResponse, RetrySuccessResponse, SubscriberConfig, SubscriberConfigList, SubscriberConfigResponse, SubscriberResponse, UploadServiceObject, Url, SubscriberStatus };
 }
 /** @returns {Association} */
 declare function Association(): Association;
@@ -358,21 +331,6 @@ type EventConfig = {
 declare function EventConfigResponse(): EventConfigResponse;
 type EventConfigResponse = {
     event_configs?: EventConfig[];
-};
-/** @returns {EventConfigs} */
-declare function EventConfigs(): EventConfigs;
-type EventConfigs = {
-    created_on?: string;
-    description?: string;
-    display_name?: string;
-    event_category?: string;
-    event_name?: string;
-    event_schema?: any;
-    event_type?: string;
-    id?: number;
-    subscriber_event_mapping?: SubscriberEventMapping;
-    updated_on?: string;
-    version?: string;
 };
 /** @returns {EventProcessReportObject} */
 declare function EventProcessReportObject(): EventProcessReportObject;
@@ -671,21 +629,6 @@ type SubscriberConfigResponse = {
     updated_on?: string;
     webhook_url?: string;
 };
-/** @returns {SubscriberEventMapping} */
-declare function SubscriberEventMapping(): SubscriberEventMapping;
-type SubscriberEventMapping = {
-    created_on?: string;
-    event_id?: number;
-    id?: number;
-    subscriber_id?: number;
-};
-/** @returns {SubscriberFailureResponse} */
-declare function SubscriberFailureResponse(): SubscriberFailureResponse;
-type SubscriberFailureResponse = {
-    code?: string;
-    message?: string;
-    stack?: string;
-};
 /** @returns {SubscriberResponse} */
 declare function SubscriberResponse(): SubscriberResponse;
 type SubscriberResponse = {
@@ -694,7 +637,7 @@ type SubscriberResponse = {
     created_on?: string;
     custom_headers?: any;
     email_id?: string;
-    event_configs?: EventConfigs[];
+    event_configs?: EventConfig[];
     id?: number;
     modified_by?: string;
     name?: string;

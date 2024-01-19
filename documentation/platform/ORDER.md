@@ -9438,16 +9438,6 @@ Verify OTP
 
 ---
 
-#### [PostActivityHistory](#PostActivityHistory)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | data | [PostHistoryData](#PostHistoryData) |  no  |  |
- | filters | [[PostHistoryFilters](#PostHistoryFilters)] |  no  |  |
- 
-
----
-
 #### [PostHistoryData](#PostHistoryData)
 
  | Properties | Type | Nullable | Description |
@@ -9462,7 +9452,8 @@ Verify OTP
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | activity_history | [PostActivityHistory](#PostActivityHistory) |  no  |  |
+ | data | [PostHistoryData](#PostHistoryData) |  no  |  |
+ | filters | [[PostHistoryFilters](#PostHistoryFilters)] |  no  |  |
  
 
 ---

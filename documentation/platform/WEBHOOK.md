@@ -1464,25 +1464,6 @@ Success
 
 ---
 
-#### [EventConfigs](#EventConfigs)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | created_on | string? |  yes  |  |
- | description | string? |  yes  |  |
- | display_name | string? |  yes  |  |
- | event_category | string? |  yes  |  |
- | event_name | string? |  yes  |  |
- | event_schema | string? |  yes  |  |
- | event_type | string? |  yes  |  |
- | id | number? |  yes  |  |
- | subscriber_event_mapping | [SubscriberEventMapping](#SubscriberEventMapping)? |  yes  |  |
- | updated_on | string? |  yes  |  |
- | version | string? |  yes  |  |
- 
-
----
-
 #### [EventProcessReportObject](#EventProcessReportObject)
 
  | Properties | Type | Nullable | Description |
@@ -1757,29 +1738,6 @@ Success
 
 ---
 
-#### [SubscriberEventMapping](#SubscriberEventMapping)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | created_on | string? |  yes  |  |
- | event_id | number? |  yes  |  |
- | id | number? |  yes  |  |
- | subscriber_id | number? |  yes  |  |
- 
-
----
-
-#### [SubscriberFailureResponse](#SubscriberFailureResponse)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | code | string? |  yes  |  |
- | message | string? |  yes  |  |
- | stack | string? |  yes  |  |
- 
-
----
-
 #### [SubscriberResponse](#SubscriberResponse)
 
  | Properties | Type | Nullable | Description |
@@ -1789,7 +1747,7 @@ Success
  | created_on | string? |  yes  |  |
  | custom_headers | string? |  yes  |  |
  | email_id | string? |  yes  |  |
- | event_configs | [[EventConfigs](#EventConfigs)]? |  yes  |  |
+ | event_configs | [[EventConfig](#EventConfig)]? |  yes  |  |
  | id | number? |  yes  |  |
  | modified_by | string? |  yes  |  |
  | name | string? |  yes  |  |

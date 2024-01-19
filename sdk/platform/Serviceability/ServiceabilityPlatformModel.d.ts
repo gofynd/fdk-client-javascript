@@ -440,7 +440,7 @@ export = ServiceabilityPlatformModel;
  */
 /**
  * @typedef ListViewItems
- * @property {ListViewChannels} channels
+ * @property {ListViewChannels[]} channels
  * @property {number} company_id
  * @property {boolean} is_active
  * @property {string} name
@@ -1442,7 +1442,7 @@ type ListViewChannels = {
 /** @returns {ListViewItems} */
 declare function ListViewItems(): ListViewItems;
 type ListViewItems = {
-    channels: ListViewChannels;
+    channels: ListViewChannels[];
     company_id: number;
     is_active: boolean;
     name: string;

@@ -498,7 +498,7 @@ const Joi = require("joi");
 
 /**
  * @typedef ListViewItems
- * @property {ListViewChannels} channels
+ * @property {ListViewChannels[]} channels
  * @property {number} company_id
  * @property {boolean} is_active
  * @property {string} name
@@ -1721,7 +1721,9 @@ class ServiceabilityPlatformModel {
   /** @returns {ListViewItems} */
   static ListViewItems() {
     return Joi.object({
-      channels: ServiceabilityPlatformModel.ListViewChannels().required(),
+      channels: Joi.array()
+        .items(ServiceabilityPlatformModel.ListViewChannels())
+        .required(),
       company_id: Joi.number().required(),
       is_active: Joi.boolean().required(),
       name: Joi.string().allow("").required(),

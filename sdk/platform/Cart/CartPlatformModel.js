@@ -117,8 +117,10 @@ const Joi = require("joi");
  * @property {number} [article_quantity] - Quantity of article on which
  *   promotion is applicable
  * @property {BuyRules[]} [buy_rules] - Buy rules for promotions
+ * @property {string} [code] - Promotion code
  * @property {CartCurrency} [currency]
  * @property {DiscountRulesApp[]} [discount_rules] - Discount rules for promotions
+ * @property {Object} [meta] - Meta object for extra data
  * @property {boolean} [mrp_promotion] - If applied promotion is applied on
  *   product MRP or ESP
  * @property {string} [offer_text] - Offer text of current promotion
@@ -2033,8 +2035,10 @@ class CartPlatformModel {
       ),
       article_quantity: Joi.number(),
       buy_rules: Joi.array().items(CartPlatformModel.BuyRules()),
+      code: Joi.string().allow("").allow(null),
       currency: CartPlatformModel.CartCurrency(),
       discount_rules: Joi.array().items(CartPlatformModel.DiscountRulesApp()),
+      meta: Joi.any(),
       mrp_promotion: Joi.boolean(),
       offer_text: Joi.string().allow(""),
       ownership: CartPlatformModel.Ownership2(),

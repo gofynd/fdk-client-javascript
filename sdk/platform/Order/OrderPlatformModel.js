@@ -2140,12 +2140,6 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef PostActivityHistory
- * @property {PostHistoryData} data
- * @property {PostHistoryFilters[]} filters
- */
-
-/**
  * @typedef PostHistoryData
  * @property {string} message
  * @property {string} user_name
@@ -2153,7 +2147,8 @@ const Joi = require("joi");
 
 /**
  * @typedef PostHistoryDict
- * @property {PostActivityHistory} activity_history
+ * @property {PostHistoryData} data
+ * @property {PostHistoryFilters[]} filters
  */
 
 /**
@@ -5702,16 +5697,6 @@ class OrderPlatformModel {
     });
   }
 
-  /** @returns {PostActivityHistory} */
-  static PostActivityHistory() {
-    return Joi.object({
-      data: OrderPlatformModel.PostHistoryData().required(),
-      filters: Joi.array()
-        .items(OrderPlatformModel.PostHistoryFilters())
-        .required(),
-    });
-  }
-
   /** @returns {PostHistoryData} */
   static PostHistoryData() {
     return Joi.object({
@@ -5723,7 +5708,10 @@ class OrderPlatformModel {
   /** @returns {PostHistoryDict} */
   static PostHistoryDict() {
     return Joi.object({
-      activity_history: OrderPlatformModel.PostActivityHistory().required(),
+      data: OrderPlatformModel.PostHistoryData().required(),
+      filters: Joi.array()
+        .items(OrderPlatformModel.PostHistoryFilters())
+        .required(),
     });
   }
 
