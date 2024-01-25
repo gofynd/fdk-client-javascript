@@ -1,4 +1,4 @@
-# CHANGE LOG (1.4.2-beta.1) - v1.9.0-prerelease-v1
+# CHANGE LOG (1.4.2-beta.2) - v1.9.0-prerelease-v2
 
 ## Platform Client
 
