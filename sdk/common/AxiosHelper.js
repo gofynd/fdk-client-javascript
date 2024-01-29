@@ -8,6 +8,7 @@ const { log, Logger, getLoggerLevel } = require("./Logger");
 const createCurl = require("./curlHelper");
 const { version } = require("./../../package.json");
 const Clickstream = require("flick");
+const { convertStringToBase64 } = require("./utils");
 
 axios.defaults.withCredentials = true;
 
@@ -140,7 +141,12 @@ fdkAxios.interceptors.response.use(
         urlObject.port ? `:${urlObject.port}` : ""
       }`;
       console.log("priting base url", baseUrl);
-      Clickstream.initialize(baseUrl, window.config.application._id);
+      Clickstream.initialize(
+        baseUrl,
+        convertStringToBase64(
+          window.config.application._id + ":" + window.config.application.token
+        )
+      );
       require("./Clickstream");
       clickstreamEnabled = true;
     }
