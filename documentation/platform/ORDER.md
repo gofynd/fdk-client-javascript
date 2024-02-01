@@ -7214,7 +7214,7 @@ Verify OTP
  | invoice_prefix | string? |  yes  |  |
  | is_virtual_invoice | boolean? |  yes  |  |
  | logo | string? |  yes  |  |
- | modified_on | number? |  yes  |  |
+ | modified_on | string? |  yes  |  |
  | pickup_location | string? |  yes  |  |
  | script_last_ran | string? |  yes  |  |
  | start_date | string? |  yes  |  |
@@ -8919,6 +8919,7 @@ Verify OTP
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | affiliate_id | string? |  yes  |  |
+ | affiliate_order_id | string? |  yes  |  |
  | cod_charges | string? |  yes  |  |
  | created_ts | string? |  yes  |  |
  | fynd_order_id | string |  no  |  |
@@ -9902,7 +9903,7 @@ Verify OTP
  | ---------- | ---- | -------- | ----------- |
  | brand_calculated_amount | number? |  yes  |  |
  | gst_fee | number? |  yes  |  |
- | gstin_code | number? |  yes  |  |
+ | gstin_code | string? |  yes  |  |
  | tax_collected_at_source | number? |  yes  |  |
  | value_of_good | number? |  yes  |  |
  
@@ -10315,7 +10316,7 @@ Verify OTP
  | order_integration_id | string? |  yes  |  |
  | packaging_material_count | number? |  yes  |  |
  | parent_store_id | number? |  yes  |  |
- | phone | number |  no  |  |
+ | phone | string |  no  |  |
  | pincode | string |  no  |  |
  | s_id | string? |  yes  |  |
  | state | string |  no  |  |
@@ -10583,6 +10584,7 @@ Verify OTP
  | action_type | string |  no  | Expected action_type: [complete, operational, financial] |
  | entities | [[Entities](#Entities)] |  no  | Shipment/Entity |
  | entity_type | string |  no  | Expected entity_type: [bags, shipments] |
+ | resume_tasks_after_unlock | boolean? |  yes  |  |
  
 
 ---

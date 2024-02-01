@@ -9548,13 +9548,16 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | billing_address | string? |  yes  |  |
  | billing_address_id | string? |  yes  |  |
  | callback_url | string? |  yes  |  |
+ | card_id | string? |  yes  |  |
  | custom_meta | [[CartCheckoutCustomMeta](#CartCheckoutCustomMeta)]? |  yes  |  |
  | customer_details | [CustomerDetails](#CustomerDetails)? |  yes  | Customer details |
  | delivery_address | string? |  yes  |  |
  | extra_meta | string? |  yes  |  |
  | id | string? |  yes  |  |
+ | iin | string? |  yes  |  |
  | merchant_code | string? |  yes  |  |
  | meta | string? |  yes  |  |
+ | network | string? |  yes  |  |
  | order_type | string? |  yes  |  |
  | ordering_store | number? |  yes  |  |
  | payment_auto_confirm | boolean? |  yes  |  |
@@ -9563,6 +9566,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | payment_mode | string |  no  |  |
  | payment_params | string? |  yes  |  |
  | staff | [StaffCheckout](#StaffCheckout)? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---
@@ -9576,14 +9580,17 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | billing_address | string? |  yes  |  |
  | billing_address_id | string? |  yes  |  |
  | callback_url | string? |  yes  |  |
+ | card_id | string? |  yes  |  |
  | cart_id | string? |  yes  |  |
  | custom_meta | string? |  yes  |  |
  | customer_details | [CustomerDetails](#CustomerDetails)? |  yes  | Customer details |
  | delivery_address | string? |  yes  |  |
  | extra_meta | string? |  yes  |  |
  | id | string? |  yes  |  |
+ | iin | string? |  yes  |  |
  | merchant_code | string? |  yes  |  |
  | meta | string? |  yes  |  |
+ | network | string? |  yes  |  |
  | order_type | string? |  yes  |  |
  | ordering_store | number? |  yes  |  |
  | payment_auto_confirm | boolean? |  yes  |  |
@@ -9592,6 +9599,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | payment_mode | string |  no  |  |
  | payment_params | string? |  yes  |  |
  | staff | [StaffCheckout](#StaffCheckout)? |  yes  |  |
+ | type | string? |  yes  |  |
  
 
 ---

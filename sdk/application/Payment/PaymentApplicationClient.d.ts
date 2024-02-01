@@ -48,7 +48,7 @@ declare class Payment {
         verifyIfscCode: string;
         verifyOtpAndAddBeneficiaryForBank: string;
         verifyOtpAndAddBeneficiaryForWallet: string;
-        walletLinkInitate: string;
+        walletLinkInitiate: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
@@ -575,15 +575,15 @@ declare class Payment {
      */
     verifyOtpAndAddBeneficiaryForWallet({ body, requestHeaders }?: PaymentApplicationValidator.VerifyOtpAndAddBeneficiaryForWalletParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.WalletOtpResponse>;
     /**
-     * @param {PaymentApplicationValidator.WalletLinkInitateParam} arg - Arg object.
+     * @param {PaymentApplicationValidator.WalletLinkInitiateParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<PaymentApplicationModel.WalletResponseSchema>} - Success response
-     * @name walletLinkInitate
+     * @name walletLinkInitiate
      * @summary: Initiate linking of wallet
-     * @description: It will initiate linking of wallet for the aggregator. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/walletLinkInitate/).
+     * @description: It will initiate linking of wallet for the aggregator. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/walletLinkInitiate/).
      */
-    walletLinkInitate({ body, requestHeaders }?: PaymentApplicationValidator.WalletLinkInitateParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.WalletResponseSchema>;
+    walletLinkInitiate({ body, requestHeaders }?: PaymentApplicationValidator.WalletLinkInitiateParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.WalletResponseSchema>;
 }
 import PaymentApplicationValidator = require("./PaymentApplicationValidator");
 import PaymentApplicationModel = require("./PaymentApplicationModel");

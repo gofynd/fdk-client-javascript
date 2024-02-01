@@ -250,7 +250,7 @@ const PaymentApplicationModel = require("./PaymentApplicationModel");
  */
 
 /**
- * @typedef WalletLinkInitateParam
+ * @typedef WalletLinkInitiateParam
  * @property {PaymentApplicationModel.WalletLinkRequestSchema} body
  */
 
@@ -583,8 +583,8 @@ class PaymentApplicationValidator {
     }).required();
   }
 
-  /** @returns {WalletLinkInitateParam} */
-  static walletLinkInitate() {
+  /** @returns {WalletLinkInitiateParam} */
+  static walletLinkInitiate() {
     return Joi.object({
       body: PaymentApplicationModel.WalletLinkRequestSchema().required(),
     }).required();

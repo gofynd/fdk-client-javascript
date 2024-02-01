@@ -89,7 +89,7 @@ class Payment {
         "/service/application/payment/v1.0/refund/verification/bank",
       verifyOtpAndAddBeneficiaryForWallet:
         "/service/application/payment/v1.0/refund/verification/wallet",
-      walletLinkInitate:
+      walletLinkInitiate:
         "/service/application/payment/v1.0/payment/options/wallet/link",
     };
     this._urls = Object.entries(this._relativeUrls).reduce(
@@ -3842,19 +3842,19 @@ class Payment {
   }
 
   /**
-   * @param {PaymentApplicationValidator.WalletLinkInitateParam} arg - Arg object.
+   * @param {PaymentApplicationValidator.WalletLinkInitiateParam} arg - Arg object.
    * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
    * @param {import("../ApplicationAPIClient").Options} - Options
    * @returns {Promise<PaymentApplicationModel.WalletResponseSchema>} - Success response
-   * @name walletLinkInitate
+   * @name walletLinkInitiate
    * @summary: Initiate linking of wallet
-   * @description: It will initiate linking of wallet for the aggregator. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/walletLinkInitate/).
+   * @description: It will initiate linking of wallet for the aggregator. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/walletLinkInitiate/).
    */
-  async walletLinkInitate(
+  async walletLinkInitiate(
     { body, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
-    const { error } = PaymentApplicationValidator.walletLinkInitate().validate(
+    const { error } = PaymentApplicationValidator.walletLinkInitiate().validate(
       { body },
       { abortEarly: false, allowUnknown: true }
     );
@@ -3865,14 +3865,14 @@ class Payment {
     // Showing warrnings if extra unknown parameters are found
     const {
       error: warrning,
-    } = PaymentApplicationValidator.walletLinkInitate().validate(
+    } = PaymentApplicationValidator.walletLinkInitiate().validate(
       { body },
       { abortEarly: false, allowUnknown: false }
     );
     if (warrning) {
       Logger({
         level: "WARN",
-        message: `Parameter Validation warrnings for application > Payment > walletLinkInitate \n ${warrning}`,
+        message: `Parameter Validation warrnings for application > Payment > walletLinkInitiate \n ${warrning}`,
       });
     }
 
@@ -3884,7 +3884,7 @@ class Payment {
       this._conf,
       "post",
       constructUrl({
-        url: this._urls["walletLinkInitate"],
+        url: this._urls["walletLinkInitiate"],
         params: {},
       }),
       query_params,
@@ -3911,7 +3911,7 @@ class Payment {
       } else {
         Logger({
           level: "WARN",
-          message: `Response Validation Warnings for application > Payment > walletLinkInitate \n ${res_error}`,
+          message: `Response Validation Warnings for application > Payment > walletLinkInitiate \n ${res_error}`,
         });
       }
     }

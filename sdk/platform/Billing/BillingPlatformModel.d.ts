@@ -4,68 +4,50 @@ export = BillingPlatformModel;
  * @property {string} [message] - Failure message.
  */
 /**
- * @typedef CancelSubscriptionReq
- * @property {string} [product_suite]
- * @property {string} [subscription_id]
- * @property {string} [type]
- * @property {string} [unique_id]
+ * @typedef ResourceNotFound
+ * @property {string} [message] - Resource not found with {id}
  */
 /**
- * @typedef CancelSubscriptionRes
- * @property {Subscription} [data]
- * @property {boolean} [success]
- */
-/**
- * @typedef ChargeLineItem
- * @property {number} [capped_amount]
- * @property {boolean} [is_test]
- * @property {Object} [metadata]
- * @property {string} name
- * @property {EntityChargePrice} price
- * @property {string} pricing_type
- * @property {EntityChargeRecurring} [recurring]
- * @property {string} term
- * @property {number} [trial_days]
+ * @typedef InternalServerError
+ * @property {string} [message] - Internal server Server error
+ * @property {string} [code] - Error code
  */
 /**
  * @typedef CheckValidityResponse
- * @property {number} [discount_amount]
  * @property {boolean} [is_valid]
+ * @property {number} [discount_amount]
  */
 /**
- * @typedef CreateOneTimeCharge
- * @property {OneTimeChargeItem} charge
- * @property {boolean} [is_test]
- * @property {string} name
- * @property {string} return_url
+ * @typedef PlanRecurring
+ * @property {string} [interval]
+ * @property {number} [interval_count]
  */
 /**
- * @typedef CreateOneTimeChargeResponse
- * @property {OneTimeChargeEntity} [charge]
- * @property {string} [confirm_url]
+ * @typedef Plan
+ * @property {PlanRecurring} [recurring]
+ * @property {boolean} [is_trial_plan]
+ * @property {string} [plan_group]
+ * @property {string[]} [tag_lines]
+ * @property {string} [currency]
+ * @property {boolean} [is_active]
+ * @property {boolean} [is_visible]
+ * @property {number} [trial_period]
+ * @property {string[]} [addons]
+ * @property {string[]} [tags]
+ * @property {string} [type]
+ * @property {string} [country]
+ * @property {string} [_id]
+ * @property {string} [name]
+ * @property {string} [description]
+ * @property {number} [amount]
+ * @property {string} [product_suite_id]
+ * @property {string} [created_at]
+ * @property {string} [modified_at]
  */
 /**
- * @typedef CreateSubscriptionCharge
- * @property {boolean} [is_test]
- * @property {ChargeLineItem[]} line_items
- * @property {string} name
- * @property {string} return_url
- * @property {number} [trial_days]
- */
-/**
- * @typedef CreateSubscriptionResponse
- * @property {string} [confirm_url]
- * @property {EntitySubscription} [subscription]
- */
-/**
- * @typedef CurrentPeriod
- * @property {string} [end_date]
+ * @typedef SubscriptionTrialPeriod
  * @property {string} [start_date]
- */
-/**
- * @typedef Details
- * @property {Features[]} [features]
- * @property {FeeComponents[]} [fee_components]
+ * @property {string} [end_date]
  */
 /**
  * @typedef EntityChargePrice
@@ -77,141 +59,152 @@ export = BillingPlatformModel;
  * @property {string} interval
  */
 /**
- * @typedef EntityResponse
- * @property {Details[]} [items]
- * @property {number} [page]
- * @property {number} [page_size]
- * @property {boolean} [success]
+ * @typedef ChargeLineItem
+ * @property {string} name
+ * @property {string} term
+ * @property {string} pricing_type
+ * @property {EntityChargePrice} price
+ * @property {EntityChargeRecurring} [recurring]
+ * @property {number} [capped_amount]
+ * @property {number} [trial_days]
+ * @property {boolean} [is_test]
+ * @property {Object} [metadata]
+ */
+/**
+ * @typedef CreateSubscriptionCharge
+ * @property {string} name
+ * @property {number} [trial_days]
+ * @property {ChargeLineItem[]} line_items
+ * @property {boolean} [is_test]
+ * @property {string} return_url
+ */
+/**
+ * @typedef OneTimeChargeItem
+ * @property {string} name
+ * @property {string} [term]
+ * @property {string} pricing_type
+ * @property {EntityChargePrice} price
+ * @property {number} [capped_amount]
+ * @property {boolean} [is_test]
+ * @property {Object} [metadata]
+ */
+/**
+ * @typedef CreateOneTimeCharge
+ * @property {string} name
+ * @property {OneTimeChargeItem} charge
+ * @property {boolean} [is_test]
+ * @property {string} return_url
+ */
+/**
+ * @typedef CurrentPeriod
+ * @property {string} [start_date]
+ * @property {string} [end_date]
+ */
+/**
+ * @typedef SubscriptionCharge
+ * @property {string} [_id]
+ * @property {string} [name]
+ * @property {string} [term] - Brief description for a charge
+ * @property {string} [pricing_type]
+ * @property {EntityChargePrice} [price]
+ * @property {EntityChargeRecurring} [recurring]
+ * @property {number} [capped_amount]
+ * @property {string} [activated_on]
+ * @property {string} [cancelled_on]
+ * @property {string} [billing_date]
+ * @property {CurrentPeriod} [current_period]
+ * @property {string} [status]
+ * @property {boolean} [is_test]
+ * @property {Object} [metadata]
  */
 /**
  * @typedef EntitySubscription
  * @property {string} [_id]
- * @property {string} [activated_on]
- * @property {string} [cancelled_on]
- * @property {number} [company_id]
- * @property {SubscriptionCharge[]} [line_items]
- * @property {Object} [metadata]
  * @property {string} [name]
  * @property {string} [status]
+ * @property {number} [company_id]
+ * @property {string} [activated_on]
+ * @property {string} [cancelled_on]
  * @property {number} [trial_days]
  * @property {SubscriptionTrialPeriod} [trial_period]
+ * @property {Object} [metadata]
+ * @property {SubscriptionCharge[]} [line_items]
  */
 /**
- * @typedef Features
- * @property {string} [description]
- * @property {string} [display_text]
- * @property {boolean} [enabled]
- * @property {string} [group]
- * @property {string} [name]
- * @property {string} [slug]
- */
-/**
- * @typedef FeeComponents
- * @property {string[]} [brand]
- * @property {string} [business_lead]
- * @property {Object[]} [channel]
- * @property {Object[]} [components]
- * @property {string[]} [location]
- * @property {Object} [settle_cycle_period]
- * @property {string} [settlement_type]
- */
-/**
- * @typedef InternalServerError
- * @property {string} [code] - Error code
- * @property {string} [message] - Internal server Server error
- */
-/**
- * @typedef Invoice
- * @property {InvoiceDetails} [invoice]
- * @property {InvoiceItems[]} [invoice_items]
- */
-/**
- * @typedef InvoiceDetails
+ * @typedef OneTimeChargeEntity
  * @property {string} [_id]
- * @property {number} [attemp]
- * @property {boolean} [auto_advance]
- * @property {InvoiceDetailsClient} [client]
- * @property {string} [collection_method]
- * @property {string} [created_at]
- * @property {string} [currency]
- * @property {string} [current_status]
- * @property {string} [hash_identifier]
- * @property {string} [invoice_url]
- * @property {string} [modified_at]
- * @property {string} [next_action_time]
- * @property {string} [number]
- * @property {boolean} [paid]
- * @property {InvoicePaymentMethod} [payment_method]
- * @property {InvoiceDetailsPeriod} [period]
- * @property {Object} [pg_data]
- * @property {string} [receipt_number]
- * @property {string} [statement_descriptor]
- * @property {InvoiceDetailsStatusTrail[]} [status_trail]
+ * @property {string} [name]
+ * @property {string} [status]
+ * @property {string} [activated_on]
+ * @property {string} [cancelled_on]
+ * @property {Object} [metadata]
+ * @property {string} [return_url]
+ * @property {boolean} [is_test]
+ * @property {string} [pricing_type]
  * @property {string} [subscriber_id]
- * @property {string} [subscription]
- * @property {number} [subtotal]
- * @property {number} [total]
+ * @property {string} [entity_type]
+ * @property {string} [entity_id]
+ * @property {Object} [meta]
+ * @property {EntityChargePrice} [price]
+ */
+/**
+ * @typedef CreateOneTimeChargeResponse
+ * @property {OneTimeChargeEntity} [charge]
+ * @property {string} [confirm_url]
+ */
+/**
+ * @typedef CreateSubscriptionResponse
+ * @property {EntitySubscription} [subscription]
+ * @property {string} [confirm_url]
+ */
+/**
+ * @typedef InvoiceDetailsPeriod
+ * @property {string} [start]
+ * @property {string} [end]
  */
 /**
  * @typedef InvoiceDetailsClient
  * @property {string[]} [address_lines]
- * @property {string} [email]
  * @property {string} [name]
+ * @property {string} [email]
  * @property {string} [phone]
- */
-/**
- * @typedef InvoiceDetailsPeriod
- * @property {string} [end]
- * @property {string} [start]
  */
 /**
  * @typedef InvoiceDetailsStatusTrail
  * @property {string} [_id]
- * @property {string} [timestamp]
  * @property {string} [value]
+ * @property {string} [timestamp]
  */
 /**
- * @typedef InvoiceItems
- * @property {string} [_id]
- * @property {number} [amount]
- * @property {string} [created_at]
+ * @typedef InvoicePaymentMethod
+ * @property {string} [pg_payment_method_id]
+ */
+/**
+ * @typedef InvoiceDetails
+ * @property {InvoiceDetailsPeriod} [period]
+ * @property {InvoiceDetailsClient} [client]
+ * @property {boolean} [auto_advance]
  * @property {string} [currency]
- * @property {string} [description]
- * @property {string} [invoice_id]
- * @property {string} [modified_at]
- * @property {string} [name]
- * @property {InvoiceItemsPeriod} [period]
- * @property {InvoiceItemsPlan} [plan]
- * @property {number} [quantity]
- * @property {string} [type]
- * @property {number} [unit_amount]
- */
-/**
- * @typedef InvoiceItemsPeriod
- * @property {string} [end]
- * @property {string} [start]
- */
-/**
- * @typedef InvoiceItemsPlan
+ * @property {boolean} [paid]
+ * @property {number} [attemp]
  * @property {string} [_id]
- * @property {string[]} [addons]
- * @property {number} [amount]
- * @property {string} [country]
+ * @property {string} [collection_method]
+ * @property {string} [subscriber_id]
+ * @property {string} [invoice_url]
+ * @property {string} [number]
+ * @property {Object} [pg_data]
+ * @property {string} [receipt_number]
+ * @property {string} [statement_descriptor]
+ * @property {string} [current_status]
+ * @property {InvoiceDetailsStatusTrail[]} [status_trail]
+ * @property {number} [subtotal]
+ * @property {number} [total]
+ * @property {string} [subscription]
+ * @property {string} [next_action_time]
  * @property {string} [created_at]
- * @property {string} [currency]
- * @property {string} [description]
- * @property {boolean} [is_active]
- * @property {boolean} [is_trial_plan]
- * @property {boolean} [is_visible]
  * @property {string} [modified_at]
- * @property {string} [name]
- * @property {string} [plan_group]
- * @property {string} [product_suite_id]
- * @property {InvoiceItemsPlanRecurring} [recurring]
- * @property {string[]} [tag_lines]
- * @property {string[]} [tags]
- * @property {number} [trial_period]
- * @property {string} [type]
+ * @property {string} [hash_identifier]
+ * @property {InvoicePaymentMethod} [payment_method]
  */
 /**
  * @typedef InvoiceItemsPlanRecurring
@@ -219,251 +212,213 @@ export = BillingPlatformModel;
  * @property {number} [interval_count]
  */
 /**
- * @typedef InvoicePaymentMethod
- * @property {string} [pg_payment_method_id]
- */
-/**
- * @typedef Invoices
- * @property {InvoicesData[]} [data]
- * @property {number} [end]
- * @property {number} [limit]
- * @property {number} [page]
- * @property {number} [start]
- * @property {number} [total]
- */
-/**
- * @typedef InvoicesData
- * @property {string} [_id]
- * @property {number} [attemp]
- * @property {boolean} [auto_advance]
- * @property {InvoicesDataClient} [client]
- * @property {string} [collection_method]
- * @property {string} [created_at]
+ * @typedef InvoiceItemsPlan
+ * @property {InvoiceItemsPlanRecurring} [recurring]
+ * @property {boolean} [is_trial_plan]
+ * @property {string} [plan_group]
+ * @property {string[]} [tag_lines]
  * @property {string} [currency]
- * @property {string} [current_status]
- * @property {string} [hash_identifier]
- * @property {InvoiceItems[]} [invoice_items]
- * @property {string} [invoice_url]
+ * @property {boolean} [is_active]
+ * @property {boolean} [is_visible]
+ * @property {number} [trial_period]
+ * @property {string[]} [addons]
+ * @property {string[]} [tags]
+ * @property {string} [type]
+ * @property {string} [country]
+ * @property {string} [_id]
+ * @property {string} [name]
+ * @property {string} [description]
+ * @property {number} [amount]
+ * @property {string} [product_suite_id]
+ * @property {string} [created_at]
  * @property {string} [modified_at]
- * @property {string} [next_action_time]
- * @property {string} [number]
- * @property {boolean} [paid]
- * @property {InvoicesDataPaymentMethod} [payment_method]
- * @property {InvoicesDataPeriod} [period]
- * @property {Object} [pg_data]
- * @property {string} [receipt_number]
- * @property {string} [statement_descriptor]
- * @property {InvoiceDetailsStatusTrail[]} [status_trail]
- * @property {string} [subscriber_id]
- * @property {string} [subscription]
- * @property {number} [subtotal]
- * @property {number} [total]
+ */
+/**
+ * @typedef InvoiceItemsPeriod
+ * @property {string} [start]
+ * @property {string} [end]
+ */
+/**
+ * @typedef InvoiceItems
+ * @property {string} [_id]
+ * @property {string} [currency]
+ * @property {InvoiceItemsPlan} [plan]
+ * @property {string} [name]
+ * @property {number} [quantity]
+ * @property {string} [description]
+ * @property {InvoiceItemsPeriod} [period]
+ * @property {number} [unit_amount]
+ * @property {number} [amount]
+ * @property {string} [type]
+ * @property {string} [invoice_id]
+ * @property {string} [created_at]
+ * @property {string} [modified_at]
+ */
+/**
+ * @typedef Invoice
+ * @property {InvoiceDetails} [invoice]
+ * @property {InvoiceItems[]} [invoice_items]
  */
 /**
  * @typedef InvoicesDataClient
- * @property {string[]} [address_lines]
- * @property {string} [email]
  * @property {string} [name]
+ * @property {string} [email]
  * @property {string} [phone]
+ * @property {string[]} [address_lines]
+ */
+/**
+ * @typedef InvoicesDataPeriod
+ * @property {string} [start]
+ * @property {string} [end]
  */
 /**
  * @typedef InvoicesDataPaymentMethod
  * @property {string} [pg_payment_method_id]
  */
 /**
- * @typedef InvoicesDataPeriod
- * @property {string} [end]
- * @property {string} [start]
- */
-/**
- * @typedef Meta
- * @property {boolean} [is_custom_plan]
- * @property {boolean} [is_plan_upgrade]
- * @property {boolean} [subscribe]
- */
-/**
- * @typedef OneTimeChargeEntity
+ * @typedef InvoicesData
  * @property {string} [_id]
- * @property {string} [activated_on]
- * @property {string} [cancelled_on]
- * @property {string} [entity_id]
- * @property {string} [entity_type]
- * @property {boolean} [is_test]
- * @property {Object} [meta]
- * @property {Object} [metadata]
- * @property {string} [name]
- * @property {EntityChargePrice} [price]
- * @property {string} [pricing_type]
- * @property {string} [return_url]
- * @property {string} [status]
+ * @property {InvoicesDataClient} [client]
+ * @property {boolean} [auto_advance]
+ * @property {string} [currency]
+ * @property {boolean} [paid]
+ * @property {number} [attemp]
+ * @property {string} [collection_method]
  * @property {string} [subscriber_id]
+ * @property {string} [invoice_url]
+ * @property {string} [number]
+ * @property {Object} [pg_data]
+ * @property {InvoicesDataPeriod} [period]
+ * @property {string} [receipt_number]
+ * @property {string} [statement_descriptor]
+ * @property {string} [current_status]
+ * @property {InvoiceDetailsStatusTrail[]} [status_trail]
+ * @property {number} [subtotal]
+ * @property {number} [total]
+ * @property {string} [subscription]
+ * @property {string} [next_action_time]
+ * @property {string} [created_at]
+ * @property {string} [modified_at]
+ * @property {string} [hash_identifier]
+ * @property {InvoicesDataPaymentMethod} [payment_method]
+ * @property {InvoiceItems[]} [invoice_items]
  */
 /**
- * @typedef OneTimeChargeItem
- * @property {number} [capped_amount]
- * @property {boolean} [is_test]
- * @property {Object} [metadata]
- * @property {string} name
- * @property {EntityChargePrice} price
- * @property {string} pricing_type
- * @property {string} [term]
+ * @typedef Invoices
+ * @property {InvoicesData[]} [data]
+ * @property {number} [start]
+ * @property {number} [end]
+ * @property {number} [limit]
+ * @property {number} [page]
+ * @property {number} [total]
  */
 /**
  * @typedef Phone
- * @property {string} [phone_country_code]
  * @property {string} [phone_number]
- */
-/**
- * @typedef Plan
- * @property {string} [_id]
- * @property {string[]} [addons]
- * @property {number} [amount]
- * @property {string} [country]
- * @property {string} [created_at]
- * @property {string} [currency]
- * @property {string} [description]
- * @property {boolean} [is_active]
- * @property {boolean} [is_trial_plan]
- * @property {boolean} [is_visible]
- * @property {string} [modified_at]
- * @property {string} [name]
- * @property {string} [plan_group]
- * @property {string} [product_suite_id]
- * @property {PlanRecurring} [recurring]
- * @property {string[]} [tag_lines]
- * @property {string[]} [tags]
- * @property {number} [trial_period]
- * @property {string} [type]
- */
-/**
- * @typedef PlanRecurring
- * @property {string} [interval]
- * @property {number} [interval_count]
- */
-/**
- * @typedef PlanStatusUpdateReq
- * @property {string} [plan_id]
- * @property {string} [reason]
- * @property {string} [seller_status]
- */
-/**
- * @typedef ResourceNotFound
- * @property {string} [message] - Resource not found with {id}
- */
-/**
- * @typedef SubscribePlanRes
- * @property {string} [current_status]
- * @property {Meta} [meta]
- * @property {string} [redirect_url]
- * @property {string} [transaction_id]
- */
-/**
- * @typedef Subscription
- * @property {string} [_id]
- * @property {boolean} [cancel_at_period_end]
- * @property {string} [channel_type]
- * @property {string} [collection_method]
- * @property {string} [created_at]
- * @property {SubscriptionCurrentPeriod} [current_period]
- * @property {string} [current_status]
- * @property {SubscriptionInvoiceSettings} [invoice_settings]
- * @property {boolean} [is_active]
- * @property {string} [latest_invoice]
- * @property {string} [modified_at]
- * @property {SubscriptionPauseCollection} [pause_collection]
- * @property {Plan} [plan_data]
- * @property {string} [plan_id]
- * @property {string} [product_suite_id]
- * @property {string} [subscriber_id]
- * @property {SubscriptionTrial} [trial]
- */
-/**
- * @typedef SubscriptionActivateReq
- * @property {string} [payment_method]
- * @property {string} [plan_id]
- * @property {string} [product_suite]
- * @property {string} [type]
- * @property {string} [unique_id]
- */
-/**
- * @typedef SubscriptionActivateRes
- * @property {Subscription} [data]
- * @property {boolean} [success]
+ * @property {string} [phone_country_code]
  */
 /**
  * @typedef SubscriptionBillingAddress
- * @property {string} [city]
  * @property {string} [country]
+ * @property {string} [state]
+ * @property {string} [city]
  * @property {string} [line1]
  * @property {string} [line2]
  * @property {string} [postal_code]
- * @property {string} [state]
- */
-/**
- * @typedef SubscriptionCharge
- * @property {string} [_id]
- * @property {string} [activated_on]
- * @property {string} [billing_date]
- * @property {string} [cancelled_on]
- * @property {number} [capped_amount]
- * @property {CurrentPeriod} [current_period]
- * @property {boolean} [is_test]
- * @property {Object} [metadata]
- * @property {string} [name]
- * @property {EntityChargePrice} [price]
- * @property {string} [pricing_type]
- * @property {EntityChargeRecurring} [recurring]
- * @property {string} [status]
- * @property {string} [term] - Brief description for a charge
- */
-/**
- * @typedef SubscriptionCurrentPeriod
- * @property {string} [end]
- * @property {string} [start]
  */
 /**
  * @typedef SubscriptionCustomer
- * @property {string} [_id]
- * @property {SubscriptionBillingAddress} [billing_address]
- * @property {string} [created_at]
- * @property {Object} [data]
- * @property {string} [email]
- * @property {string} [modified_at]
- * @property {string} [name]
  * @property {Phone} [phone]
- * @property {string} [type]
+ * @property {SubscriptionBillingAddress} [billing_address]
+ * @property {string} [_id]
  * @property {string} [unique_id]
+ * @property {string} [type]
+ * @property {string} [name]
+ * @property {string} [email]
+ * @property {string} [created_at]
+ * @property {string} [modified_at]
+ * @property {Object} [data]
  */
 /**
  * @typedef SubscriptionCustomerCreate
- * @property {SubscriptionBillingAddress} [billing_address]
- * @property {string} [email]
- * @property {string} [name]
  * @property {Phone} [phone]
- * @property {string} [type]
+ * @property {SubscriptionBillingAddress} [billing_address]
  * @property {string} [unique_id]
+ * @property {string} [type]
+ * @property {string} [name]
+ * @property {string} [email]
+ */
+/**
+ * @typedef SubscriptionCurrentPeriod
+ * @property {string} [start]
+ * @property {string} [end]
+ */
+/**
+ * @typedef SubscriptionPauseCollection
+ * @property {string} [behavior]
+ * @property {string} [resume_at]
+ */
+/**
+ * @typedef SubscriptionTrial
+ * @property {string} [start]
+ * @property {string} [end]
  */
 /**
  * @typedef SubscriptionInvoiceSettings
- * @property {boolean} [charging]
  * @property {boolean} [generation]
+ * @property {boolean} [charging]
  */
 /**
- * @typedef SubscriptionLimit
- * @property {SubscriptionLimitApplication} [application]
- * @property {SubscriptionLimitExtensions} [extensions]
- * @property {SubscriptionLimitIntegrations} [integrations]
- * @property {boolean} [is_trial_plan]
- * @property {SubscriptionLimitMarketplace} [marketplace]
- * @property {SubscriptionLimitOtherPlatform} [other_platform]
- * @property {SubscriptionLimitProducts} [products]
- * @property {SubscriptionLimitTeam} [team]
+ * @typedef Subscription
+ * @property {SubscriptionCurrentPeriod} [current_period]
+ * @property {SubscriptionPauseCollection} [pause_collection]
+ * @property {SubscriptionTrial} [trial]
+ * @property {SubscriptionInvoiceSettings} [invoice_settings]
+ * @property {boolean} [is_active]
+ * @property {boolean} [cancel_at_period_end]
+ * @property {string} [_id]
+ * @property {string} [subscriber_id]
+ * @property {string} [plan_id]
+ * @property {string} [product_suite_id]
+ * @property {Plan} [plan_data]
+ * @property {string} [current_status]
+ * @property {string} [collection_method]
+ * @property {string} [created_at]
+ * @property {string} [modified_at]
+ * @property {string} [latest_invoice]
+ * @property {string} [channel_type]
+ */
+/**
+ * @typedef SubscriptionStatus
+ * @property {boolean} [is_enabled]
+ * @property {Subscription} [subscription]
+ * @property {InvoicesData} [latest_invoice]
+ * @property {Plan} [next_plan]
+ * @property {Subscription[]} [current_subscriptions]
+ * @property {string} [mandate_amount]
  */
 /**
  * @typedef SubscriptionLimitApplication
  * @property {boolean} [enabled]
  * @property {number} [hard_limit]
  * @property {number} [soft_limit]
+ */
+/**
+ * @typedef SubscriptionLimitMarketplace
+ * @property {boolean} [enabled]
+ */
+/**
+ * @typedef SubscriptionLimitOtherPlatform
+ * @property {boolean} [enabled]
+ */
+/**
+ * @typedef SubscriptionLimitTeam
+ * @property {number} [limit]
+ */
+/**
+ * @typedef SubscriptionLimitProducts
+ * @property {boolean} [bulk]
+ * @property {number} [limit]
  */
 /**
  * @typedef SubscriptionLimitExtensions
@@ -476,58 +431,103 @@ export = BillingPlatformModel;
  * @property {number} [limit]
  */
 /**
- * @typedef SubscriptionLimitMarketplace
- * @property {boolean} [enabled]
+ * @typedef SubscriptionLimit
+ * @property {SubscriptionLimitApplication} [application]
+ * @property {SubscriptionLimitMarketplace} [marketplace]
+ * @property {SubscriptionLimitOtherPlatform} [other_platform]
+ * @property {SubscriptionLimitTeam} [team]
+ * @property {SubscriptionLimitProducts} [products]
+ * @property {SubscriptionLimitExtensions} [extensions]
+ * @property {SubscriptionLimitIntegrations} [integrations]
+ * @property {boolean} [is_trial_plan]
  */
 /**
- * @typedef SubscriptionLimitOtherPlatform
- * @property {boolean} [enabled]
+ * @typedef SubscriptionActivateReq
+ * @property {string} [unique_id]
+ * @property {string} [type]
+ * @property {string} [product_suite]
+ * @property {string} [plan_id]
+ * @property {string} [payment_method]
  */
 /**
- * @typedef SubscriptionLimitProducts
- * @property {boolean} [bulk]
- * @property {number} [limit]
+ * @typedef SubscriptionActivateRes
+ * @property {boolean} [success]
+ * @property {Subscription} [data]
  */
 /**
- * @typedef SubscriptionLimitTeam
- * @property {number} [limit]
+ * @typedef CancelSubscriptionReq
+ * @property {string} [unique_id]
+ * @property {string} [type]
+ * @property {string} [product_suite]
+ * @property {string} [subscription_id]
  */
 /**
- * @typedef SubscriptionPauseCollection
- * @property {string} [behavior]
- * @property {string} [resume_at]
+ * @typedef CancelSubscriptionRes
+ * @property {boolean} [success]
+ * @property {Subscription} [data]
  */
 /**
- * @typedef SubscriptionStatus
- * @property {Subscription[]} [current_subscriptions]
- * @property {boolean} [is_enabled]
- * @property {InvoicesData} [latest_invoice]
- * @property {string} [mandate_amount]
- * @property {Plan} [next_plan]
- * @property {Subscription} [subscription]
- */
-/**
- * @typedef SubscriptionTrial
- * @property {string} [end]
- * @property {string} [start]
- */
-/**
- * @typedef SubscriptionTrialPeriod
- * @property {string} [end_date]
- * @property {string} [start_date]
+ * @typedef PlanStatusUpdateReq
+ * @property {string} [plan_id]
+ * @property {string} [reason]
+ * @property {string} [seller_status]
  */
 /**
  * @typedef SunscribePlan
- * @property {string} [callback_url]
- * @property {string} [collection_type]
  * @property {string} [entity_type]
- * @property {Meta} [meta]
+ * @property {string} [collection_type]
  * @property {string} [plan_id]
+ * @property {string} [callback_url]
+ * @property {Meta} [meta]
+ */
+/**
+ * @typedef Meta
+ * @property {boolean} [subscribe]
+ * @property {boolean} [is_custom_plan]
+ * @property {boolean} [is_plan_upgrade]
+ */
+/**
+ * @typedef SubscribePlanRes
+ * @property {string} [redirect_url]
+ * @property {string} [transaction_id]
+ * @property {string} [current_status]
+ * @property {Meta} [meta]
+ */
+/**
+ * @typedef Features
+ * @property {string} [name]
+ * @property {string} [slug]
+ * @property {string} [description]
+ * @property {string} [group]
+ * @property {boolean} [enabled]
+ * @property {string} [display_text]
+ */
+/**
+ * @typedef FeeComponents
+ * @property {string[]} [brand]
+ * @property {string[]} [location]
+ * @property {Object[]} [channel]
+ * @property {string} [business_lead]
+ * @property {string} [settlement_type]
+ * @property {Object} [settle_cycle_period]
+ * @property {Object[]} [components]
+ */
+/**
+ * @typedef Details
+ * @property {FeeComponents[]} [fee_components]
+ * @property {Features[]} [features]
+ */
+/**
+ * @typedef EntityResponse
+ * @property {boolean} [success]
+ * @property {number} [page]
+ * @property {number} [page_size]
+ * @property {Details[]} [items]
  */
 declare class BillingPlatformModel {
 }
 declare namespace BillingPlatformModel {
-    export { BadRequest, CancelSubscriptionReq, CancelSubscriptionRes, ChargeLineItem, CheckValidityResponse, CreateOneTimeCharge, CreateOneTimeChargeResponse, CreateSubscriptionCharge, CreateSubscriptionResponse, CurrentPeriod, Details, EntityChargePrice, EntityChargeRecurring, EntityResponse, EntitySubscription, Features, FeeComponents, InternalServerError, Invoice, InvoiceDetails, InvoiceDetailsClient, InvoiceDetailsPeriod, InvoiceDetailsStatusTrail, InvoiceItems, InvoiceItemsPeriod, InvoiceItemsPlan, InvoiceItemsPlanRecurring, InvoicePaymentMethod, Invoices, InvoicesData, InvoicesDataClient, InvoicesDataPaymentMethod, InvoicesDataPeriod, Meta, OneTimeChargeEntity, OneTimeChargeItem, Phone, Plan, PlanRecurring, PlanStatusUpdateReq, ResourceNotFound, SubscribePlanRes, Subscription, SubscriptionActivateReq, SubscriptionActivateRes, SubscriptionBillingAddress, SubscriptionCharge, SubscriptionCurrentPeriod, SubscriptionCustomer, SubscriptionCustomerCreate, SubscriptionInvoiceSettings, SubscriptionLimit, SubscriptionLimitApplication, SubscriptionLimitExtensions, SubscriptionLimitIntegrations, SubscriptionLimitMarketplace, SubscriptionLimitOtherPlatform, SubscriptionLimitProducts, SubscriptionLimitTeam, SubscriptionPauseCollection, SubscriptionStatus, SubscriptionTrial, SubscriptionTrialPeriod, SunscribePlan };
+    export { BadRequest, ResourceNotFound, InternalServerError, CheckValidityResponse, PlanRecurring, Plan, SubscriptionTrialPeriod, EntityChargePrice, EntityChargeRecurring, ChargeLineItem, CreateSubscriptionCharge, OneTimeChargeItem, CreateOneTimeCharge, CurrentPeriod, SubscriptionCharge, EntitySubscription, OneTimeChargeEntity, CreateOneTimeChargeResponse, CreateSubscriptionResponse, InvoiceDetailsPeriod, InvoiceDetailsClient, InvoiceDetailsStatusTrail, InvoicePaymentMethod, InvoiceDetails, InvoiceItemsPlanRecurring, InvoiceItemsPlan, InvoiceItemsPeriod, InvoiceItems, Invoice, InvoicesDataClient, InvoicesDataPeriod, InvoicesDataPaymentMethod, InvoicesData, Invoices, Phone, SubscriptionBillingAddress, SubscriptionCustomer, SubscriptionCustomerCreate, SubscriptionCurrentPeriod, SubscriptionPauseCollection, SubscriptionTrial, SubscriptionInvoiceSettings, Subscription, SubscriptionStatus, SubscriptionLimitApplication, SubscriptionLimitMarketplace, SubscriptionLimitOtherPlatform, SubscriptionLimitTeam, SubscriptionLimitProducts, SubscriptionLimitExtensions, SubscriptionLimitIntegrations, SubscriptionLimit, SubscriptionActivateReq, SubscriptionActivateRes, CancelSubscriptionReq, CancelSubscriptionRes, PlanStatusUpdateReq, SunscribePlan, Meta, SubscribePlanRes, Features, FeeComponents, Details, EntityResponse };
 }
 /** @returns {BadRequest} */
 declare function BadRequest(): BadRequest;
@@ -537,79 +537,66 @@ type BadRequest = {
      */
     message?: string;
 };
-/** @returns {CancelSubscriptionReq} */
-declare function CancelSubscriptionReq(): CancelSubscriptionReq;
-type CancelSubscriptionReq = {
-    product_suite?: string;
-    subscription_id?: string;
-    type?: string;
-    unique_id?: string;
+/** @returns {ResourceNotFound} */
+declare function ResourceNotFound(): ResourceNotFound;
+type ResourceNotFound = {
+    /**
+     * - Resource not found with {id}
+     */
+    message?: string;
 };
-/** @returns {CancelSubscriptionRes} */
-declare function CancelSubscriptionRes(): CancelSubscriptionRes;
-type CancelSubscriptionRes = {
-    data?: Subscription;
-    success?: boolean;
-};
-/** @returns {ChargeLineItem} */
-declare function ChargeLineItem(): ChargeLineItem;
-type ChargeLineItem = {
-    capped_amount?: number;
-    is_test?: boolean;
-    metadata?: any;
-    name: string;
-    price: EntityChargePrice;
-    pricing_type: string;
-    recurring?: EntityChargeRecurring;
-    term: string;
-    trial_days?: number;
+/** @returns {InternalServerError} */
+declare function InternalServerError(): InternalServerError;
+type InternalServerError = {
+    /**
+     * - Internal server Server error
+     */
+    message?: string;
+    /**
+     * - Error code
+     */
+    code?: string;
 };
 /** @returns {CheckValidityResponse} */
 declare function CheckValidityResponse(): CheckValidityResponse;
 type CheckValidityResponse = {
-    discount_amount?: number;
     is_valid?: boolean;
+    discount_amount?: number;
 };
-/** @returns {CreateOneTimeCharge} */
-declare function CreateOneTimeCharge(): CreateOneTimeCharge;
-type CreateOneTimeCharge = {
-    charge: OneTimeChargeItem;
-    is_test?: boolean;
-    name: string;
-    return_url: string;
+/** @returns {PlanRecurring} */
+declare function PlanRecurring(): PlanRecurring;
+type PlanRecurring = {
+    interval?: string;
+    interval_count?: number;
 };
-/** @returns {CreateOneTimeChargeResponse} */
-declare function CreateOneTimeChargeResponse(): CreateOneTimeChargeResponse;
-type CreateOneTimeChargeResponse = {
-    charge?: OneTimeChargeEntity;
-    confirm_url?: string;
+/** @returns {Plan} */
+declare function Plan(): Plan;
+type Plan = {
+    recurring?: PlanRecurring;
+    is_trial_plan?: boolean;
+    plan_group?: string;
+    tag_lines?: string[];
+    currency?: string;
+    is_active?: boolean;
+    is_visible?: boolean;
+    trial_period?: number;
+    addons?: string[];
+    tags?: string[];
+    type?: string;
+    country?: string;
+    _id?: string;
+    name?: string;
+    description?: string;
+    amount?: number;
+    product_suite_id?: string;
+    created_at?: string;
+    modified_at?: string;
 };
-/** @returns {CreateSubscriptionCharge} */
-declare function CreateSubscriptionCharge(): CreateSubscriptionCharge;
-type CreateSubscriptionCharge = {
-    is_test?: boolean;
-    line_items: ChargeLineItem[];
-    name: string;
-    return_url: string;
-    trial_days?: number;
-};
-/** @returns {CreateSubscriptionResponse} */
-declare function CreateSubscriptionResponse(): CreateSubscriptionResponse;
-type CreateSubscriptionResponse = {
-    confirm_url?: string;
-    subscription?: EntitySubscription;
-};
-/** @returns {CurrentPeriod} */
-declare function CurrentPeriod(): CurrentPeriod;
-type CurrentPeriod = {
-    end_date?: string;
+/** @returns {SubscriptionTrialPeriod} */
+declare function SubscriptionTrialPeriod(): SubscriptionTrialPeriod;
+type SubscriptionTrialPeriod = {
     start_date?: string;
-};
-/** @returns {Details} */
-declare function Details(): Details;
-type Details = {
-    features?: Features[];
-    fee_components?: FeeComponents[];
+    end_date?: string;
 };
 /** @returns {EntityChargePrice} */
 declare function EntityChargePrice(): EntityChargePrice;
@@ -625,161 +612,171 @@ declare function EntityChargeRecurring(): EntityChargeRecurring;
 type EntityChargeRecurring = {
     interval: string;
 };
-/** @returns {EntityResponse} */
-declare function EntityResponse(): EntityResponse;
-type EntityResponse = {
-    items?: Details[];
-    page?: number;
-    page_size?: number;
-    success?: boolean;
+/** @returns {ChargeLineItem} */
+declare function ChargeLineItem(): ChargeLineItem;
+type ChargeLineItem = {
+    name: string;
+    term: string;
+    pricing_type: string;
+    price: EntityChargePrice;
+    recurring?: EntityChargeRecurring;
+    capped_amount?: number;
+    trial_days?: number;
+    is_test?: boolean;
+    metadata?: any;
+};
+/** @returns {CreateSubscriptionCharge} */
+declare function CreateSubscriptionCharge(): CreateSubscriptionCharge;
+type CreateSubscriptionCharge = {
+    name: string;
+    trial_days?: number;
+    line_items: ChargeLineItem[];
+    is_test?: boolean;
+    return_url: string;
+};
+/** @returns {OneTimeChargeItem} */
+declare function OneTimeChargeItem(): OneTimeChargeItem;
+type OneTimeChargeItem = {
+    name: string;
+    term?: string;
+    pricing_type: string;
+    price: EntityChargePrice;
+    capped_amount?: number;
+    is_test?: boolean;
+    metadata?: any;
+};
+/** @returns {CreateOneTimeCharge} */
+declare function CreateOneTimeCharge(): CreateOneTimeCharge;
+type CreateOneTimeCharge = {
+    name: string;
+    charge: OneTimeChargeItem;
+    is_test?: boolean;
+    return_url: string;
+};
+/** @returns {CurrentPeriod} */
+declare function CurrentPeriod(): CurrentPeriod;
+type CurrentPeriod = {
+    start_date?: string;
+    end_date?: string;
+};
+/** @returns {SubscriptionCharge} */
+declare function SubscriptionCharge(): SubscriptionCharge;
+type SubscriptionCharge = {
+    _id?: string;
+    name?: string;
+    /**
+     * - Brief description for a charge
+     */
+    term?: string;
+    pricing_type?: string;
+    price?: EntityChargePrice;
+    recurring?: EntityChargeRecurring;
+    capped_amount?: number;
+    activated_on?: string;
+    cancelled_on?: string;
+    billing_date?: string;
+    current_period?: CurrentPeriod;
+    status?: string;
+    is_test?: boolean;
+    metadata?: any;
 };
 /** @returns {EntitySubscription} */
 declare function EntitySubscription(): EntitySubscription;
 type EntitySubscription = {
     _id?: string;
-    activated_on?: string;
-    cancelled_on?: string;
-    company_id?: number;
-    line_items?: SubscriptionCharge[];
-    metadata?: any;
     name?: string;
     status?: string;
+    company_id?: number;
+    activated_on?: string;
+    cancelled_on?: string;
     trial_days?: number;
     trial_period?: SubscriptionTrialPeriod;
+    metadata?: any;
+    line_items?: SubscriptionCharge[];
 };
-/** @returns {Features} */
-declare function Features(): Features;
-type Features = {
-    description?: string;
-    display_text?: string;
-    enabled?: boolean;
-    group?: string;
-    name?: string;
-    slug?: string;
-};
-/** @returns {FeeComponents} */
-declare function FeeComponents(): FeeComponents;
-type FeeComponents = {
-    brand?: string[];
-    business_lead?: string;
-    channel?: any[];
-    components?: any[];
-    location?: string[];
-    settle_cycle_period?: any;
-    settlement_type?: string;
-};
-/** @returns {InternalServerError} */
-declare function InternalServerError(): InternalServerError;
-type InternalServerError = {
-    /**
-     * - Error code
-     */
-    code?: string;
-    /**
-     * - Internal server Server error
-     */
-    message?: string;
-};
-/** @returns {Invoice} */
-declare function Invoice(): Invoice;
-type Invoice = {
-    invoice?: InvoiceDetails;
-    invoice_items?: InvoiceItems[];
-};
-/** @returns {InvoiceDetails} */
-declare function InvoiceDetails(): InvoiceDetails;
-type InvoiceDetails = {
+/** @returns {OneTimeChargeEntity} */
+declare function OneTimeChargeEntity(): OneTimeChargeEntity;
+type OneTimeChargeEntity = {
     _id?: string;
-    attemp?: number;
-    auto_advance?: boolean;
-    client?: InvoiceDetailsClient;
-    collection_method?: string;
-    created_at?: string;
-    currency?: string;
-    current_status?: string;
-    hash_identifier?: string;
-    invoice_url?: string;
-    modified_at?: string;
-    next_action_time?: string;
-    number?: string;
-    paid?: boolean;
-    payment_method?: InvoicePaymentMethod;
-    period?: InvoiceDetailsPeriod;
-    pg_data?: any;
-    receipt_number?: string;
-    statement_descriptor?: string;
-    status_trail?: InvoiceDetailsStatusTrail[];
+    name?: string;
+    status?: string;
+    activated_on?: string;
+    cancelled_on?: string;
+    metadata?: any;
+    return_url?: string;
+    is_test?: boolean;
+    pricing_type?: string;
     subscriber_id?: string;
-    subscription?: string;
-    subtotal?: number;
-    total?: number;
+    entity_type?: string;
+    entity_id?: string;
+    meta?: any;
+    price?: EntityChargePrice;
+};
+/** @returns {CreateOneTimeChargeResponse} */
+declare function CreateOneTimeChargeResponse(): CreateOneTimeChargeResponse;
+type CreateOneTimeChargeResponse = {
+    charge?: OneTimeChargeEntity;
+    confirm_url?: string;
+};
+/** @returns {CreateSubscriptionResponse} */
+declare function CreateSubscriptionResponse(): CreateSubscriptionResponse;
+type CreateSubscriptionResponse = {
+    subscription?: EntitySubscription;
+    confirm_url?: string;
+};
+/** @returns {InvoiceDetailsPeriod} */
+declare function InvoiceDetailsPeriod(): InvoiceDetailsPeriod;
+type InvoiceDetailsPeriod = {
+    start?: string;
+    end?: string;
 };
 /** @returns {InvoiceDetailsClient} */
 declare function InvoiceDetailsClient(): InvoiceDetailsClient;
 type InvoiceDetailsClient = {
     address_lines?: string[];
-    email?: string;
     name?: string;
+    email?: string;
     phone?: string;
-};
-/** @returns {InvoiceDetailsPeriod} */
-declare function InvoiceDetailsPeriod(): InvoiceDetailsPeriod;
-type InvoiceDetailsPeriod = {
-    end?: string;
-    start?: string;
 };
 /** @returns {InvoiceDetailsStatusTrail} */
 declare function InvoiceDetailsStatusTrail(): InvoiceDetailsStatusTrail;
 type InvoiceDetailsStatusTrail = {
     _id?: string;
-    timestamp?: string;
     value?: string;
+    timestamp?: string;
 };
-/** @returns {InvoiceItems} */
-declare function InvoiceItems(): InvoiceItems;
-type InvoiceItems = {
-    _id?: string;
-    amount?: number;
-    created_at?: string;
+/** @returns {InvoicePaymentMethod} */
+declare function InvoicePaymentMethod(): InvoicePaymentMethod;
+type InvoicePaymentMethod = {
+    pg_payment_method_id?: string;
+};
+/** @returns {InvoiceDetails} */
+declare function InvoiceDetails(): InvoiceDetails;
+type InvoiceDetails = {
+    period?: InvoiceDetailsPeriod;
+    client?: InvoiceDetailsClient;
+    auto_advance?: boolean;
     currency?: string;
-    description?: string;
-    invoice_id?: string;
-    modified_at?: string;
-    name?: string;
-    period?: InvoiceItemsPeriod;
-    plan?: InvoiceItemsPlan;
-    quantity?: number;
-    type?: string;
-    unit_amount?: number;
-};
-/** @returns {InvoiceItemsPeriod} */
-declare function InvoiceItemsPeriod(): InvoiceItemsPeriod;
-type InvoiceItemsPeriod = {
-    end?: string;
-    start?: string;
-};
-/** @returns {InvoiceItemsPlan} */
-declare function InvoiceItemsPlan(): InvoiceItemsPlan;
-type InvoiceItemsPlan = {
+    paid?: boolean;
+    attemp?: number;
     _id?: string;
-    addons?: string[];
-    amount?: number;
-    country?: string;
+    collection_method?: string;
+    subscriber_id?: string;
+    invoice_url?: string;
+    number?: string;
+    pg_data?: any;
+    receipt_number?: string;
+    statement_descriptor?: string;
+    current_status?: string;
+    status_trail?: InvoiceDetailsStatusTrail[];
+    subtotal?: number;
+    total?: number;
+    subscription?: string;
+    next_action_time?: string;
     created_at?: string;
-    currency?: string;
-    description?: string;
-    is_active?: boolean;
-    is_trial_plan?: boolean;
-    is_visible?: boolean;
     modified_at?: string;
-    name?: string;
-    plan_group?: string;
-    product_suite_id?: string;
-    recurring?: InvoiceItemsPlanRecurring;
-    tag_lines?: string[];
-    tags?: string[];
-    trial_period?: number;
-    type?: string;
+    hash_identifier?: string;
+    payment_method?: InvoicePaymentMethod;
 };
 /** @returns {InvoiceItemsPlanRecurring} */
 declare function InvoiceItemsPlanRecurring(): InvoiceItemsPlanRecurring;
@@ -787,277 +784,210 @@ type InvoiceItemsPlanRecurring = {
     interval?: string;
     interval_count?: number;
 };
-/** @returns {InvoicePaymentMethod} */
-declare function InvoicePaymentMethod(): InvoicePaymentMethod;
-type InvoicePaymentMethod = {
-    pg_payment_method_id?: string;
-};
-/** @returns {Invoices} */
-declare function Invoices(): Invoices;
-type Invoices = {
-    data?: InvoicesData[];
-    end?: number;
-    limit?: number;
-    page?: number;
-    start?: number;
-    total?: number;
-};
-/** @returns {InvoicesData} */
-declare function InvoicesData(): InvoicesData;
-type InvoicesData = {
-    _id?: string;
-    attemp?: number;
-    auto_advance?: boolean;
-    client?: InvoicesDataClient;
-    collection_method?: string;
-    created_at?: string;
+/** @returns {InvoiceItemsPlan} */
+declare function InvoiceItemsPlan(): InvoiceItemsPlan;
+type InvoiceItemsPlan = {
+    recurring?: InvoiceItemsPlanRecurring;
+    is_trial_plan?: boolean;
+    plan_group?: string;
+    tag_lines?: string[];
     currency?: string;
-    current_status?: string;
-    hash_identifier?: string;
-    invoice_items?: InvoiceItems[];
-    invoice_url?: string;
+    is_active?: boolean;
+    is_visible?: boolean;
+    trial_period?: number;
+    addons?: string[];
+    tags?: string[];
+    type?: string;
+    country?: string;
+    _id?: string;
+    name?: string;
+    description?: string;
+    amount?: number;
+    product_suite_id?: string;
+    created_at?: string;
     modified_at?: string;
-    next_action_time?: string;
-    number?: string;
-    paid?: boolean;
-    payment_method?: InvoicesDataPaymentMethod;
-    period?: InvoicesDataPeriod;
-    pg_data?: any;
-    receipt_number?: string;
-    statement_descriptor?: string;
-    status_trail?: InvoiceDetailsStatusTrail[];
-    subscriber_id?: string;
-    subscription?: string;
-    subtotal?: number;
-    total?: number;
+};
+/** @returns {InvoiceItemsPeriod} */
+declare function InvoiceItemsPeriod(): InvoiceItemsPeriod;
+type InvoiceItemsPeriod = {
+    start?: string;
+    end?: string;
+};
+/** @returns {InvoiceItems} */
+declare function InvoiceItems(): InvoiceItems;
+type InvoiceItems = {
+    _id?: string;
+    currency?: string;
+    plan?: InvoiceItemsPlan;
+    name?: string;
+    quantity?: number;
+    description?: string;
+    period?: InvoiceItemsPeriod;
+    unit_amount?: number;
+    amount?: number;
+    type?: string;
+    invoice_id?: string;
+    created_at?: string;
+    modified_at?: string;
+};
+/** @returns {Invoice} */
+declare function Invoice(): Invoice;
+type Invoice = {
+    invoice?: InvoiceDetails;
+    invoice_items?: InvoiceItems[];
 };
 /** @returns {InvoicesDataClient} */
 declare function InvoicesDataClient(): InvoicesDataClient;
 type InvoicesDataClient = {
-    address_lines?: string[];
-    email?: string;
     name?: string;
+    email?: string;
     phone?: string;
+    address_lines?: string[];
+};
+/** @returns {InvoicesDataPeriod} */
+declare function InvoicesDataPeriod(): InvoicesDataPeriod;
+type InvoicesDataPeriod = {
+    start?: string;
+    end?: string;
 };
 /** @returns {InvoicesDataPaymentMethod} */
 declare function InvoicesDataPaymentMethod(): InvoicesDataPaymentMethod;
 type InvoicesDataPaymentMethod = {
     pg_payment_method_id?: string;
 };
-/** @returns {InvoicesDataPeriod} */
-declare function InvoicesDataPeriod(): InvoicesDataPeriod;
-type InvoicesDataPeriod = {
-    end?: string;
-    start?: string;
-};
-/** @returns {Meta} */
-declare function Meta(): Meta;
-type Meta = {
-    is_custom_plan?: boolean;
-    is_plan_upgrade?: boolean;
-    subscribe?: boolean;
-};
-/** @returns {OneTimeChargeEntity} */
-declare function OneTimeChargeEntity(): OneTimeChargeEntity;
-type OneTimeChargeEntity = {
+/** @returns {InvoicesData} */
+declare function InvoicesData(): InvoicesData;
+type InvoicesData = {
     _id?: string;
-    activated_on?: string;
-    cancelled_on?: string;
-    entity_id?: string;
-    entity_type?: string;
-    is_test?: boolean;
-    meta?: any;
-    metadata?: any;
-    name?: string;
-    price?: EntityChargePrice;
-    pricing_type?: string;
-    return_url?: string;
-    status?: string;
+    client?: InvoicesDataClient;
+    auto_advance?: boolean;
+    currency?: string;
+    paid?: boolean;
+    attemp?: number;
+    collection_method?: string;
     subscriber_id?: string;
+    invoice_url?: string;
+    number?: string;
+    pg_data?: any;
+    period?: InvoicesDataPeriod;
+    receipt_number?: string;
+    statement_descriptor?: string;
+    current_status?: string;
+    status_trail?: InvoiceDetailsStatusTrail[];
+    subtotal?: number;
+    total?: number;
+    subscription?: string;
+    next_action_time?: string;
+    created_at?: string;
+    modified_at?: string;
+    hash_identifier?: string;
+    payment_method?: InvoicesDataPaymentMethod;
+    invoice_items?: InvoiceItems[];
 };
-/** @returns {OneTimeChargeItem} */
-declare function OneTimeChargeItem(): OneTimeChargeItem;
-type OneTimeChargeItem = {
-    capped_amount?: number;
-    is_test?: boolean;
-    metadata?: any;
-    name: string;
-    price: EntityChargePrice;
-    pricing_type: string;
-    term?: string;
+/** @returns {Invoices} */
+declare function Invoices(): Invoices;
+type Invoices = {
+    data?: InvoicesData[];
+    start?: number;
+    end?: number;
+    limit?: number;
+    page?: number;
+    total?: number;
 };
 /** @returns {Phone} */
 declare function Phone(): Phone;
 type Phone = {
-    phone_country_code?: string;
     phone_number?: string;
-};
-/** @returns {Plan} */
-declare function Plan(): Plan;
-type Plan = {
-    _id?: string;
-    addons?: string[];
-    amount?: number;
-    country?: string;
-    created_at?: string;
-    currency?: string;
-    description?: string;
-    is_active?: boolean;
-    is_trial_plan?: boolean;
-    is_visible?: boolean;
-    modified_at?: string;
-    name?: string;
-    plan_group?: string;
-    product_suite_id?: string;
-    recurring?: PlanRecurring;
-    tag_lines?: string[];
-    tags?: string[];
-    trial_period?: number;
-    type?: string;
-};
-/** @returns {PlanRecurring} */
-declare function PlanRecurring(): PlanRecurring;
-type PlanRecurring = {
-    interval?: string;
-    interval_count?: number;
-};
-/** @returns {PlanStatusUpdateReq} */
-declare function PlanStatusUpdateReq(): PlanStatusUpdateReq;
-type PlanStatusUpdateReq = {
-    plan_id?: string;
-    reason?: string;
-    seller_status?: string;
-};
-/** @returns {ResourceNotFound} */
-declare function ResourceNotFound(): ResourceNotFound;
-type ResourceNotFound = {
-    /**
-     * - Resource not found with {id}
-     */
-    message?: string;
-};
-/** @returns {SubscribePlanRes} */
-declare function SubscribePlanRes(): SubscribePlanRes;
-type SubscribePlanRes = {
-    current_status?: string;
-    meta?: Meta;
-    redirect_url?: string;
-    transaction_id?: string;
-};
-/** @returns {Subscription} */
-declare function Subscription(): Subscription;
-type Subscription = {
-    _id?: string;
-    cancel_at_period_end?: boolean;
-    channel_type?: string;
-    collection_method?: string;
-    created_at?: string;
-    current_period?: SubscriptionCurrentPeriod;
-    current_status?: string;
-    invoice_settings?: SubscriptionInvoiceSettings;
-    is_active?: boolean;
-    latest_invoice?: string;
-    modified_at?: string;
-    pause_collection?: SubscriptionPauseCollection;
-    plan_data?: Plan;
-    plan_id?: string;
-    product_suite_id?: string;
-    subscriber_id?: string;
-    trial?: SubscriptionTrial;
-};
-/** @returns {SubscriptionActivateReq} */
-declare function SubscriptionActivateReq(): SubscriptionActivateReq;
-type SubscriptionActivateReq = {
-    payment_method?: string;
-    plan_id?: string;
-    product_suite?: string;
-    type?: string;
-    unique_id?: string;
-};
-/** @returns {SubscriptionActivateRes} */
-declare function SubscriptionActivateRes(): SubscriptionActivateRes;
-type SubscriptionActivateRes = {
-    data?: Subscription;
-    success?: boolean;
+    phone_country_code?: string;
 };
 /** @returns {SubscriptionBillingAddress} */
 declare function SubscriptionBillingAddress(): SubscriptionBillingAddress;
 type SubscriptionBillingAddress = {
-    city?: string;
     country?: string;
+    state?: string;
+    city?: string;
     line1?: string;
     line2?: string;
     postal_code?: string;
-    state?: string;
-};
-/** @returns {SubscriptionCharge} */
-declare function SubscriptionCharge(): SubscriptionCharge;
-type SubscriptionCharge = {
-    _id?: string;
-    activated_on?: string;
-    billing_date?: string;
-    cancelled_on?: string;
-    capped_amount?: number;
-    current_period?: CurrentPeriod;
-    is_test?: boolean;
-    metadata?: any;
-    name?: string;
-    price?: EntityChargePrice;
-    pricing_type?: string;
-    recurring?: EntityChargeRecurring;
-    status?: string;
-    /**
-     * - Brief description for a charge
-     */
-    term?: string;
-};
-/** @returns {SubscriptionCurrentPeriod} */
-declare function SubscriptionCurrentPeriod(): SubscriptionCurrentPeriod;
-type SubscriptionCurrentPeriod = {
-    end?: string;
-    start?: string;
 };
 /** @returns {SubscriptionCustomer} */
 declare function SubscriptionCustomer(): SubscriptionCustomer;
 type SubscriptionCustomer = {
-    _id?: string;
-    billing_address?: SubscriptionBillingAddress;
-    created_at?: string;
-    data?: any;
-    email?: string;
-    modified_at?: string;
-    name?: string;
     phone?: Phone;
-    type?: string;
+    billing_address?: SubscriptionBillingAddress;
+    _id?: string;
     unique_id?: string;
+    type?: string;
+    name?: string;
+    email?: string;
+    created_at?: string;
+    modified_at?: string;
+    data?: any;
 };
 /** @returns {SubscriptionCustomerCreate} */
 declare function SubscriptionCustomerCreate(): SubscriptionCustomerCreate;
 type SubscriptionCustomerCreate = {
-    billing_address?: SubscriptionBillingAddress;
-    email?: string;
-    name?: string;
     phone?: Phone;
-    type?: string;
+    billing_address?: SubscriptionBillingAddress;
     unique_id?: string;
+    type?: string;
+    name?: string;
+    email?: string;
+};
+/** @returns {SubscriptionCurrentPeriod} */
+declare function SubscriptionCurrentPeriod(): SubscriptionCurrentPeriod;
+type SubscriptionCurrentPeriod = {
+    start?: string;
+    end?: string;
+};
+/** @returns {SubscriptionPauseCollection} */
+declare function SubscriptionPauseCollection(): SubscriptionPauseCollection;
+type SubscriptionPauseCollection = {
+    behavior?: string;
+    resume_at?: string;
+};
+/** @returns {SubscriptionTrial} */
+declare function SubscriptionTrial(): SubscriptionTrial;
+type SubscriptionTrial = {
+    start?: string;
+    end?: string;
 };
 /** @returns {SubscriptionInvoiceSettings} */
 declare function SubscriptionInvoiceSettings(): SubscriptionInvoiceSettings;
 type SubscriptionInvoiceSettings = {
-    charging?: boolean;
     generation?: boolean;
+    charging?: boolean;
 };
-/** @returns {SubscriptionLimit} */
-declare function SubscriptionLimit(): SubscriptionLimit;
-type SubscriptionLimit = {
-    application?: SubscriptionLimitApplication;
-    extensions?: SubscriptionLimitExtensions;
-    integrations?: SubscriptionLimitIntegrations;
-    is_trial_plan?: boolean;
-    marketplace?: SubscriptionLimitMarketplace;
-    other_platform?: SubscriptionLimitOtherPlatform;
-    products?: SubscriptionLimitProducts;
-    team?: SubscriptionLimitTeam;
+/** @returns {Subscription} */
+declare function Subscription(): Subscription;
+type Subscription = {
+    current_period?: SubscriptionCurrentPeriod;
+    pause_collection?: SubscriptionPauseCollection;
+    trial?: SubscriptionTrial;
+    invoice_settings?: SubscriptionInvoiceSettings;
+    is_active?: boolean;
+    cancel_at_period_end?: boolean;
+    _id?: string;
+    subscriber_id?: string;
+    plan_id?: string;
+    product_suite_id?: string;
+    plan_data?: Plan;
+    current_status?: string;
+    collection_method?: string;
+    created_at?: string;
+    modified_at?: string;
+    latest_invoice?: string;
+    channel_type?: string;
+};
+/** @returns {SubscriptionStatus} */
+declare function SubscriptionStatus(): SubscriptionStatus;
+type SubscriptionStatus = {
+    is_enabled?: boolean;
+    subscription?: Subscription;
+    latest_invoice?: InvoicesData;
+    next_plan?: Plan;
+    current_subscriptions?: Subscription[];
+    mandate_amount?: string;
 };
 /** @returns {SubscriptionLimitApplication} */
 declare function SubscriptionLimitApplication(): SubscriptionLimitApplication;
@@ -1065,6 +995,27 @@ type SubscriptionLimitApplication = {
     enabled?: boolean;
     hard_limit?: number;
     soft_limit?: number;
+};
+/** @returns {SubscriptionLimitMarketplace} */
+declare function SubscriptionLimitMarketplace(): SubscriptionLimitMarketplace;
+type SubscriptionLimitMarketplace = {
+    enabled?: boolean;
+};
+/** @returns {SubscriptionLimitOtherPlatform} */
+declare function SubscriptionLimitOtherPlatform(): SubscriptionLimitOtherPlatform;
+type SubscriptionLimitOtherPlatform = {
+    enabled?: boolean;
+};
+/** @returns {SubscriptionLimitTeam} */
+declare function SubscriptionLimitTeam(): SubscriptionLimitTeam;
+type SubscriptionLimitTeam = {
+    limit?: number;
+};
+/** @returns {SubscriptionLimitProducts} */
+declare function SubscriptionLimitProducts(): SubscriptionLimitProducts;
+type SubscriptionLimitProducts = {
+    bulk?: boolean;
+    limit?: number;
 };
 /** @returns {SubscriptionLimitExtensions} */
 declare function SubscriptionLimitExtensions(): SubscriptionLimitExtensions;
@@ -1078,61 +1029,110 @@ type SubscriptionLimitIntegrations = {
     enabled?: boolean;
     limit?: number;
 };
-/** @returns {SubscriptionLimitMarketplace} */
-declare function SubscriptionLimitMarketplace(): SubscriptionLimitMarketplace;
-type SubscriptionLimitMarketplace = {
-    enabled?: boolean;
+/** @returns {SubscriptionLimit} */
+declare function SubscriptionLimit(): SubscriptionLimit;
+type SubscriptionLimit = {
+    application?: SubscriptionLimitApplication;
+    marketplace?: SubscriptionLimitMarketplace;
+    other_platform?: SubscriptionLimitOtherPlatform;
+    team?: SubscriptionLimitTeam;
+    products?: SubscriptionLimitProducts;
+    extensions?: SubscriptionLimitExtensions;
+    integrations?: SubscriptionLimitIntegrations;
+    is_trial_plan?: boolean;
 };
-/** @returns {SubscriptionLimitOtherPlatform} */
-declare function SubscriptionLimitOtherPlatform(): SubscriptionLimitOtherPlatform;
-type SubscriptionLimitOtherPlatform = {
-    enabled?: boolean;
+/** @returns {SubscriptionActivateReq} */
+declare function SubscriptionActivateReq(): SubscriptionActivateReq;
+type SubscriptionActivateReq = {
+    unique_id?: string;
+    type?: string;
+    product_suite?: string;
+    plan_id?: string;
+    payment_method?: string;
 };
-/** @returns {SubscriptionLimitProducts} */
-declare function SubscriptionLimitProducts(): SubscriptionLimitProducts;
-type SubscriptionLimitProducts = {
-    bulk?: boolean;
-    limit?: number;
+/** @returns {SubscriptionActivateRes} */
+declare function SubscriptionActivateRes(): SubscriptionActivateRes;
+type SubscriptionActivateRes = {
+    success?: boolean;
+    data?: Subscription;
 };
-/** @returns {SubscriptionLimitTeam} */
-declare function SubscriptionLimitTeam(): SubscriptionLimitTeam;
-type SubscriptionLimitTeam = {
-    limit?: number;
+/** @returns {CancelSubscriptionReq} */
+declare function CancelSubscriptionReq(): CancelSubscriptionReq;
+type CancelSubscriptionReq = {
+    unique_id?: string;
+    type?: string;
+    product_suite?: string;
+    subscription_id?: string;
 };
-/** @returns {SubscriptionPauseCollection} */
-declare function SubscriptionPauseCollection(): SubscriptionPauseCollection;
-type SubscriptionPauseCollection = {
-    behavior?: string;
-    resume_at?: string;
+/** @returns {CancelSubscriptionRes} */
+declare function CancelSubscriptionRes(): CancelSubscriptionRes;
+type CancelSubscriptionRes = {
+    success?: boolean;
+    data?: Subscription;
 };
-/** @returns {SubscriptionStatus} */
-declare function SubscriptionStatus(): SubscriptionStatus;
-type SubscriptionStatus = {
-    current_subscriptions?: Subscription[];
-    is_enabled?: boolean;
-    latest_invoice?: InvoicesData;
-    mandate_amount?: string;
-    next_plan?: Plan;
-    subscription?: Subscription;
-};
-/** @returns {SubscriptionTrial} */
-declare function SubscriptionTrial(): SubscriptionTrial;
-type SubscriptionTrial = {
-    end?: string;
-    start?: string;
-};
-/** @returns {SubscriptionTrialPeriod} */
-declare function SubscriptionTrialPeriod(): SubscriptionTrialPeriod;
-type SubscriptionTrialPeriod = {
-    end_date?: string;
-    start_date?: string;
+/** @returns {PlanStatusUpdateReq} */
+declare function PlanStatusUpdateReq(): PlanStatusUpdateReq;
+type PlanStatusUpdateReq = {
+    plan_id?: string;
+    reason?: string;
+    seller_status?: string;
 };
 /** @returns {SunscribePlan} */
 declare function SunscribePlan(): SunscribePlan;
 type SunscribePlan = {
-    callback_url?: string;
-    collection_type?: string;
     entity_type?: string;
-    meta?: Meta;
+    collection_type?: string;
     plan_id?: string;
+    callback_url?: string;
+    meta?: Meta;
+};
+/** @returns {Meta} */
+declare function Meta(): Meta;
+type Meta = {
+    subscribe?: boolean;
+    is_custom_plan?: boolean;
+    is_plan_upgrade?: boolean;
+};
+/** @returns {SubscribePlanRes} */
+declare function SubscribePlanRes(): SubscribePlanRes;
+type SubscribePlanRes = {
+    redirect_url?: string;
+    transaction_id?: string;
+    current_status?: string;
+    meta?: Meta;
+};
+/** @returns {Features} */
+declare function Features(): Features;
+type Features = {
+    name?: string;
+    slug?: string;
+    description?: string;
+    group?: string;
+    enabled?: boolean;
+    display_text?: string;
+};
+/** @returns {FeeComponents} */
+declare function FeeComponents(): FeeComponents;
+type FeeComponents = {
+    brand?: string[];
+    location?: string[];
+    channel?: any[];
+    business_lead?: string;
+    settlement_type?: string;
+    settle_cycle_period?: any;
+    components?: any[];
+};
+/** @returns {Details} */
+declare function Details(): Details;
+type Details = {
+    fee_components?: FeeComponents[];
+    features?: Features[];
+};
+/** @returns {EntityResponse} */
+declare function EntityResponse(): EntityResponse;
+type EntityResponse = {
+    success?: boolean;
+    page?: number;
+    page_size?: number;
+    items?: Details[];
 };

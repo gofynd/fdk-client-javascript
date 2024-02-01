@@ -1,127 +1,127 @@
 export = FileStoragePartnerModel;
 /**
  * @typedef CDN
+ * @property {string} url
  * @property {string} absolute_url
  * @property {string} relative_url
- * @property {string} url
- */
-/**
- * @typedef CompleteResponse
- * @property {string} _id
- * @property {CDN} cdn
- * @property {string} content_type
- * @property {CreatedBy} [created_by]
- * @property {string} created_on
- * @property {string} file_name
- * @property {string} file_path
- * @property {string} modified_on
- * @property {string} namespace
- * @property {string} operation
- * @property {number} size
- * @property {boolean} success
- * @property {string[]} [tags]
- * @property {Upload} upload
- */
-/**
- * @typedef CreatedBy
- * @property {string} [username]
- */
-/**
- * @typedef FailedResponse
- * @property {string} message
- */
-/**
- * @typedef StartRequest
- * @property {string} content_type
- * @property {string} file_name
- * @property {Object} [params]
- * @property {number} size
- * @property {string[]} [tags]
- */
-/**
- * @typedef StartResponse
- * @property {CDN} cdn
- * @property {string} content_type
- * @property {string} file_name
- * @property {string} file_path
- * @property {string} [method]
- * @property {string} namespace
- * @property {string} operation
- * @property {number} size
- * @property {string[]} [tags]
- * @property {Upload} upload
  */
 /**
  * @typedef Upload
  * @property {number} expiry
  * @property {string} url
  */
+/**
+ * @typedef StartResponse
+ * @property {string} file_name
+ * @property {string} file_path
+ * @property {string} content_type
+ * @property {string} [method]
+ * @property {string} namespace
+ * @property {string} operation
+ * @property {number} size
+ * @property {Upload} upload
+ * @property {CDN} cdn
+ * @property {string[]} [tags]
+ */
+/**
+ * @typedef StartRequest
+ * @property {string} file_name
+ * @property {string} content_type
+ * @property {number} size
+ * @property {string[]} [tags]
+ * @property {Object} [params]
+ */
+/**
+ * @typedef CreatedBy
+ * @property {string} [username]
+ */
+/**
+ * @typedef CompleteResponse
+ * @property {string} _id
+ * @property {string} file_name
+ * @property {string} file_path
+ * @property {string} content_type
+ * @property {string} namespace
+ * @property {string} operation
+ * @property {number} size
+ * @property {Upload} upload
+ * @property {CDN} cdn
+ * @property {boolean} success
+ * @property {string[]} [tags]
+ * @property {string} created_on
+ * @property {string} modified_on
+ * @property {CreatedBy} [created_by]
+ */
+/**
+ * @typedef FailedResponse
+ * @property {string} message
+ */
 declare class FileStoragePartnerModel {
 }
 declare namespace FileStoragePartnerModel {
-    export { CDN, CompleteResponse, CreatedBy, FailedResponse, StartRequest, StartResponse, Upload };
+    export { CDN, Upload, StartResponse, StartRequest, CreatedBy, CompleteResponse, FailedResponse };
 }
 /** @returns {CDN} */
 declare function CDN(): CDN;
 type CDN = {
+    url: string;
     absolute_url: string;
     relative_url: string;
-    url: string;
-};
-/** @returns {CompleteResponse} */
-declare function CompleteResponse(): CompleteResponse;
-type CompleteResponse = {
-    _id: string;
-    cdn: CDN;
-    content_type: string;
-    created_by?: CreatedBy;
-    created_on: string;
-    file_name: string;
-    file_path: string;
-    modified_on: string;
-    namespace: string;
-    operation: string;
-    size: number;
-    success: boolean;
-    tags?: string[];
-    upload: Upload;
-};
-/** @returns {CreatedBy} */
-declare function CreatedBy(): CreatedBy;
-type CreatedBy = {
-    username?: string;
-};
-/** @returns {FailedResponse} */
-declare function FailedResponse(): FailedResponse;
-type FailedResponse = {
-    message: string;
-};
-/** @returns {StartRequest} */
-declare function StartRequest(): StartRequest;
-type StartRequest = {
-    content_type: string;
-    file_name: string;
-    params?: any;
-    size: number;
-    tags?: string[];
-};
-/** @returns {StartResponse} */
-declare function StartResponse(): StartResponse;
-type StartResponse = {
-    cdn: CDN;
-    content_type: string;
-    file_name: string;
-    file_path: string;
-    method?: string;
-    namespace: string;
-    operation: string;
-    size: number;
-    tags?: string[];
-    upload: Upload;
 };
 /** @returns {Upload} */
 declare function Upload(): Upload;
 type Upload = {
     expiry: number;
     url: string;
+};
+/** @returns {StartResponse} */
+declare function StartResponse(): StartResponse;
+type StartResponse = {
+    file_name: string;
+    file_path: string;
+    content_type: string;
+    method?: string;
+    namespace: string;
+    operation: string;
+    size: number;
+    upload: Upload;
+    cdn: CDN;
+    tags?: string[];
+};
+/** @returns {StartRequest} */
+declare function StartRequest(): StartRequest;
+type StartRequest = {
+    file_name: string;
+    content_type: string;
+    size: number;
+    tags?: string[];
+    params?: any;
+};
+/** @returns {CreatedBy} */
+declare function CreatedBy(): CreatedBy;
+type CreatedBy = {
+    username?: string;
+};
+/** @returns {CompleteResponse} */
+declare function CompleteResponse(): CompleteResponse;
+type CompleteResponse = {
+    _id: string;
+    file_name: string;
+    file_path: string;
+    content_type: string;
+    namespace: string;
+    operation: string;
+    size: number;
+    upload: Upload;
+    cdn: CDN;
+    success: boolean;
+    tags?: string[];
+    created_on: string;
+    modified_on: string;
+    created_by?: CreatedBy;
+};
+/** @returns {FailedResponse} */
+declare function FailedResponse(): FailedResponse;
+type FailedResponse = {
+    message: string;
 };

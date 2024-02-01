@@ -1,7 +1,71 @@
-# CHANGE LOG (1.4.2-beta.2) - v1.9.0-prerelease-v2
+# CHANGE LOG (1.4.2-beta.3) - v1.9.1-prerelease-v3
+
+## Application Client
+
+
+
+### Cart
+
+
+
+#### checkoutCart
+
+- ##### What's New
+	- [Added] property `iin` of schema `CartCheckoutDetailRequest` in request body
+	- [Added] property `network` of schema `CartCheckoutDetailRequest` in request body
+	- [Added] property `type` of schema `CartCheckoutDetailRequest` in request body
+	- [Added] property `card_id` of schema `CartCheckoutDetailRequest` in request body
+
+
+#### checkoutCartV2
+
+- ##### What's New
+	- [Added] property `iin` of schema `CartCheckoutDetailV2Request` in request body
+	- [Added] property `network` of schema `CartCheckoutDetailV2Request` in request body
+	- [Added] property `type` of schema `CartCheckoutDetailV2Request` in request body
+	- [Added] property `card_id` of schema `CartCheckoutDetailV2Request` in request body
+
+
+### Payment
+
+
+
+#### walletLinkInitate
+
+- ##### What's Changed
+	- [Breaking] [Changed] operationId from `walletLinkInitate` to `walletLinkInitiate`
+
+
+#### validateVPA
+
+- ##### What's New
+	- [Added] property `aggregator` of schema `ValidateVPARequest` in request body
+
 
 ## Platform Client
 
+
+
+### Cart
+
+
+
+#### platformCheckoutCart
+
+- ##### What's New
+	- [Added] property `iin` of schema `PlatformCartCheckoutDetailRequest` in request body
+	- [Added] property `network` of schema `PlatformCartCheckoutDetailRequest` in request body
+	- [Added] property `type` of schema `PlatformCartCheckoutDetailRequest` in request body
+	- [Added] property `card_id` of schema `PlatformCartCheckoutDetailRequest` in request body
+
+
+#### platformCheckoutCartV2
+
+- ##### What's New
+	- [Added] property `iin` of schema `PlatformCartCheckoutDetailV2Request` in request body
+	- [Added] property `network` of schema `PlatformCartCheckoutDetailV2Request` in request body
+	- [Added] property `type` of schema `PlatformCartCheckoutDetailV2Request` in request body
+	- [Added] property `card_id` of schema `PlatformCartCheckoutDetailV2Request` in request body
 
 
 ### Serviceability
@@ -19,6 +83,60 @@
 
 - ##### What's Changed
 	- [Breaking] [Changed] Type from `object` to `array` of property `items[].channels` of schema `ListViewChannels` in response with status code 200
+
+
+### Order
+
+
+
+#### updateShipmentLock
+
+- ##### What's New
+	- [Added] property `resume_tasks_after_unlock` of schema `UpdateShipmentLockPayload` in request body
+
+
+#### createOrder
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from `number` to `string` of property `shipments[].gst.gstin_code` of schema `ShipmentGstDetails` in request body
+
+
+#### getShipmentById
+
+- ##### What's New
+	- [Added] property `shipments[].order.affiliate_order_id` of schema `OrderDetailsData` in response with status code 200
+
+
+#### getOrderById
+
+- ##### What's New
+	- [Added] property `shipments[].order.affiliate_order_id` of schema `OrderDetailsData` in response with status code 200
+
+
+#### getOrders
+
+- ##### What's New
+	- [Added] property `items[].shipments[].order.affiliate_order_id` of schema `OrderDetailsData` in response with status code 200
+
+
+#### getBagById
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from `integer` to `string` of property `data.brand.modified_on` of schema `Brand` in response with status code 200
+	- [Breaking] [Changed] Type from `integer` to `string` of property `data.fulfilling_store.phone` of schema `Store` in response with status code 200
+	- [Breaking] [Changed] Type from `integer` to `string` of property `data.ordering_store.phone` of schema `Store` in response with status code 200
+	- [Breaking] [Changed] Type from `number` to `string` of property `data.shipment.gst.gstin_code` of schema `ShipmentGstDetails` in response with status code 200
+	- [Breaking] [Changed] Type from `number` to `string` of property `data.shipment_gst.gstin_code` of schema `ShipmentGstDetails` in response with status code 200
+
+
+#### getBags
+
+- ##### What's Changed
+	- [Breaking] [Changed] Type from `integer` to `string` of property `data.items[].brand.modified_on` of schema `Brand` in response with status code 200
+	- [Breaking] [Changed] Type from `integer` to `string` of property `data.items[].fulfilling_store.phone` of schema `Store` in response with status code 200
+	- [Breaking] [Changed] Type from `integer` to `string` of property `data.items[].ordering_store.phone` of schema `Store` in response with status code 200
+	- [Breaking] [Changed] Type from `number` to `string` of property `data.items[].shipment.gst.gstin_code` of schema `ShipmentGstDetails` in response with status code 200
+	- [Breaking] [Changed] Type from `number` to `string` of property `data.items[].shipment_gst.gstin_code` of schema `ShipmentGstDetails` in response with status code 200
 
 
 # CHANGE LOG (1.4.1) - fp-v1.9.0

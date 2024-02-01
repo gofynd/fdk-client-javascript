@@ -1,8 +1,144 @@
 export = OrderApplicationModel;
 /**
- * @typedef ApefaceApiError
- * @property {string} [message]
- * @property {boolean} [success]
+ * @typedef OrderPage
+ * @property {string} [type]
+ * @property {number} [item_total]
+ * @property {number} [current]
+ * @property {number} [size]
+ * @property {boolean} [has_next]
+ */
+/**
+ * @typedef UserInfo
+ * @property {string} [first_name]
+ * @property {string} [gender]
+ * @property {string} [name]
+ * @property {string} [last_name]
+ * @property {string} [mobile]
+ * @property {string} [email]
+ */
+/**
+ * @typedef BreakupValues
+ * @property {number} [value]
+ * @property {string} [currency_symbol]
+ * @property {string} [name]
+ * @property {string} [display]
+ * @property {string} [currency_code]
+ */
+/**
+ * @typedef ShipmentPayment
+ * @property {string} [mop]
+ * @property {string} [payment_mode]
+ * @property {string} [status]
+ * @property {string} [mode]
+ * @property {string} [logo]
+ * @property {string} [display_name]
+ */
+/**
+ * @typedef ShipmentUserInfo
+ * @property {string} [first_name]
+ * @property {string} [gender]
+ * @property {string} [name]
+ * @property {string} [last_name]
+ * @property {string} [mobile]
+ * @property {string} [email]
+ */
+/**
+ * @typedef FulfillingStore
+ * @property {number} [id]
+ * @property {string} [code]
+ * @property {string} [name]
+ * @property {string} [company_name]
+ * @property {number} [company_id]
+ */
+/**
+ * @typedef ShipmentStatus
+ * @property {string} [value]
+ * @property {string} [title]
+ * @property {string} [hex_code]
+ */
+/**
+ * @typedef Invoice
+ * @property {string} [invoice_url]
+ * @property {string} [updated_date]
+ * @property {string} [label_url]
+ */
+/**
+ * @typedef NestedTrackingDetails
+ * @property {boolean} [is_passed]
+ * @property {string} [time]
+ * @property {boolean} [is_current]
+ * @property {string} [status]
+ */
+/**
+ * @typedef TrackingDetails
+ * @property {string} [value]
+ * @property {boolean} [is_current]
+ * @property {boolean} [is_passed]
+ * @property {string} [status]
+ * @property {string} [time]
+ * @property {string} [created_ts]
+ * @property {NestedTrackingDetails[]} [tracking_details]
+ */
+/**
+ * @typedef TimeStampData
+ * @property {string} [min]
+ * @property {string} [max]
+ */
+/**
+ * @typedef Promise
+ * @property {boolean} [show_promise]
+ * @property {TimeStampData} [timestamp]
+ */
+/**
+ * @typedef ShipmentTotalDetails
+ * @property {number} [pieces]
+ * @property {number} [total_price]
+ * @property {number} [sizes]
+ */
+/**
+ * @typedef Prices
+ * @property {number} [delivery_charge]
+ * @property {number} [coupon_value]
+ * @property {number} [brand_calculated_amount]
+ * @property {number} [value_of_good]
+ * @property {number} [price_marked]
+ * @property {number} [coupon_effective_discount]
+ * @property {string} [currency_symbol]
+ * @property {number} [discount]
+ * @property {number} [gst_tax_percentage]
+ * @property {number} [cod_charges]
+ * @property {number} [amount_paid]
+ * @property {boolean} [added_to_fynd_cash]
+ * @property {number} [transfer_price]
+ * @property {number} [cashback_applied]
+ * @property {number} [price_effective]
+ * @property {number} [cashback]
+ * @property {number} [refund_credit]
+ * @property {number} [amount_paid_roundoff]
+ * @property {number} [promotion_effective_discount]
+ * @property {number} [refund_amount]
+ * @property {string} [currency_code]
+ * @property {number} [fynd_credits]
+ */
+/**
+ * @typedef ItemBrand
+ * @property {string} [logo]
+ * @property {string} [name]
+ */
+/**
+ * @typedef Item
+ * @property {string[]} [image]
+ * @property {string[]} [l1_categories]
+ * @property {ItemBrand} [brand]
+ * @property {string} [seller_identifier]
+ * @property {string} [code]
+ * @property {number} [id]
+ * @property {string} [name]
+ * @property {string} [l3_category_name]
+ * @property {string} [slug_key]
+ * @property {string[]} [l2_categories]
+ * @property {string} [size]
+ * @property {Object} [attributes]
  */
 /**
  * @typedef AppliedFreeArticles
@@ -13,180 +149,13 @@ export = OrderApplicationModel;
  */
 /**
  * @typedef AppliedPromos
- * @property {number} [amount]
- * @property {AppliedFreeArticles[]} [applied_free_articles]
- * @property {number} [article_quantity]
  * @property {boolean} [mrp_promotion]
- * @property {string} [promo_id]
  * @property {string} [promotion_name]
+ * @property {number} [article_quantity]
+ * @property {string} [promo_id]
+ * @property {number} [amount]
  * @property {string} [promotion_type]
- */
-/**
- * @typedef BagReasonMeta
- * @property {boolean} [show_text_area]
- */
-/**
- * @typedef BagReasons
- * @property {string} [display_name]
- * @property {number} [id]
- * @property {BagReasonMeta} [meta]
- * @property {string[]} [qc_type]
- * @property {QuestionSet[]} [question_set]
- * @property {BagReasons[]} [reasons]
- */
-/**
- * @typedef Bags
- * @property {AppliedPromos[]} [applied_promos]
- * @property {boolean} [can_cancel]
- * @property {boolean} [can_return]
- * @property {string} [currency_code]
- * @property {string} [currency_symbol]
- * @property {CurrentStatus} [current_status]
- * @property {string} [delivery_date]
- * @property {FinancialBreakup[]} [financial_breakup]
- * @property {number} [id]
- * @property {Item} [item]
- * @property {number} [line_number]
- * @property {Object} [meta]
- * @property {Object} [parent_promo_bags]
- * @property {Prices} [prices]
- * @property {number} [quantity]
- * @property {string} [returnable_date]
- * @property {string} [seller_identifier]
- */
-/**
- * @typedef BagsForReorder
- * @property {BagsForReorderArticleAssignment} [article_assignment]
- * @property {number} [item_id]
- * @property {string} [item_size]
- * @property {number} [quantity]
- * @property {number} [seller_id]
- * @property {number} [store_id]
- */
-/**
- * @typedef BagsForReorderArticleAssignment
- * @property {string} [level]
- * @property {string} [strategy]
- */
-/**
- * @typedef BreakupValues
- * @property {string} [currency_code]
- * @property {string} [currency_symbol]
- * @property {string} [display]
- * @property {string} [name]
- * @property {number} [value]
- */
-/**
- * @typedef CurrentStatus
- * @property {string} [journey_type]
- * @property {string} [name]
- * @property {string} [status]
- * @property {string} [updated_at]
- */
-/**
- * @typedef CustomerDetailsResponse
- * @property {string} [country]
- * @property {string} [name]
- * @property {string} [order_id]
- * @property {string} [phone]
- * @property {string} [shipment_id]
- */
-/**
- * @typedef DataUpdates
- * @property {EntitiesDataUpdates[]} [entities]
- * @property {ProductsDataUpdates[]} [products]
- */
-/**
- * @typedef DeliveryAddress
- * @property {string} [address]
- * @property {string} [address_category]
- * @property {string} [address_type]
- * @property {string} [address1]
- * @property {string} [address2]
- * @property {string} [area]
- * @property {string} [city]
- * @property {string} [contact_person]
- * @property {string} [country]
- * @property {string} [country_iso_code]
- * @property {string} [country_phone_code]
- * @property {string} [created_at]
- * @property {string} [display_address]
- * @property {string} [email]
- * @property {string} [landmark]
- * @property {number} [latitude]
- * @property {number} [longitude]
- * @property {string} [name]
- * @property {string} [phone]
- * @property {string} [pincode]
- * @property {string} [state]
- * @property {string} [updated_at]
- * @property {string} [version]
- */
-/**
- * @typedef EntitiesDataUpdates
- * @property {Object} [data]
- * @property {Object[]} [filters]
- */
-/**
- * @typedef EntitiesReasons
- * @property {EntityReasonData} [data]
- * @property {Object[]} [filters]
- */
-/**
- * @typedef EntityReasonData
- * @property {number} [reason_id]
- * @property {string} [reason_text]
- */
-/**
- * @typedef ErrorResponse
- * @property {string} [code]
- * @property {string} [exception]
- * @property {string} [message]
- * @property {string} [stack_trace]
- * @property {number} [status]
- */
-/**
- * @typedef FinancialBreakup
- * @property {boolean} [added_to_fynd_cash]
- * @property {number} [amount_paid]
- * @property {number} [amount_paid_roundoff]
- * @property {number} [brand_calculated_amount]
- * @property {number} [cashback]
- * @property {number} [cashback_applied]
- * @property {number} [cod_charges]
- * @property {number} [coupon_effective_discount]
- * @property {number} [coupon_value]
- * @property {number} [delivery_charge]
- * @property {number} [discount]
- * @property {number} [fynd_credits]
- * @property {number} [gst_fee]
- * @property {string} [gst_tag]
- * @property {number} [gst_tax_percentage]
- * @property {string} [hsn_code]
- * @property {Identifiers} [identifiers]
- * @property {string} [item_name]
- * @property {number} [price_effective]
- * @property {number} [price_marked]
- * @property {number} [promotion_effective_discount]
- * @property {number} [refund_amount]
- * @property {number} [refund_credit]
- * @property {string} [size]
- * @property {number} [total_units]
- * @property {number} [transfer_price]
- * @property {number} [value_of_good]
- */
-/**
- * @typedef FulfillingCompany
- * @property {number} [id]
- * @property {string} [name]
- */
-/**
- * @typedef FulfillingStore
- * @property {string} [code]
- * @property {number} [company_id]
- * @property {string} [company_name]
- * @property {number} [id]
- * @property {string} [name]
+ * @property {AppliedFreeArticles[]} [applied_free_articles]
  */
 /**
  * @typedef Identifiers
@@ -194,41 +163,163 @@ export = OrderApplicationModel;
  * @property {string} [sku_code]
  */
 /**
- * @typedef Invoice
- * @property {string} [invoice_url]
- * @property {string} [label_url]
- * @property {string} [updated_date]
- */
-/**
- * @typedef Item
- * @property {Object} [attributes]
- * @property {ItemBrand} [brand]
- * @property {string} [code]
- * @property {number} [id]
- * @property {string[]} [image]
- * @property {string[]} [l1_categories]
- * @property {string[]} [l2_categories]
- * @property {string} [l3_category_name]
- * @property {string} [name]
- * @property {string} [seller_identifier]
+ * @typedef FinancialBreakup
+ * @property {number} [coupon_value]
+ * @property {number} [delivery_charge]
+ * @property {number} [brand_calculated_amount]
+ * @property {number} [value_of_good]
+ * @property {number} [price_marked]
+ * @property {number} [coupon_effective_discount]
+ * @property {string} [hsn_code]
+ * @property {number} [discount]
+ * @property {number} [gst_tax_percentage]
+ * @property {number} [cod_charges]
+ * @property {number} [amount_paid]
+ * @property {boolean} [added_to_fynd_cash]
  * @property {string} [size]
- * @property {string} [slug_key]
+ * @property {number} [transfer_price]
+ * @property {number} [cashback_applied]
+ * @property {number} [price_effective]
+ * @property {number} [cashback]
+ * @property {number} [refund_credit]
+ * @property {number} [amount_paid_roundoff]
+ * @property {number} [total_units]
+ * @property {Identifiers} [identifiers]
+ * @property {string} [gst_tag]
+ * @property {string} [item_name]
+ * @property {number} [promotion_effective_discount]
+ * @property {number} [gst_fee]
+ * @property {number} [refund_amount]
+ * @property {number} [fynd_credits]
  */
 /**
- * @typedef ItemBrand
- * @property {string} [logo]
+ * @typedef CurrentStatus
+ * @property {string} [updated_at]
+ * @property {string} [name]
+ * @property {string} [status]
+ * @property {string} [journey_type]
+ */
+/**
+ * @typedef Bags
+ * @property {string} [delivery_date]
+ * @property {number} [line_number]
+ * @property {string} [currency_symbol]
+ * @property {Item} [item]
+ * @property {AppliedPromos[]} [applied_promos]
+ * @property {number} [quantity]
+ * @property {Prices} [prices]
+ * @property {boolean} [can_cancel]
+ * @property {boolean} [can_return]
+ * @property {number} [id]
+ * @property {string} [returnable_date]
+ * @property {FinancialBreakup[]} [financial_breakup]
+ * @property {Object} [parent_promo_bags]
+ * @property {Object} [meta]
+ * @property {string} [currency_code]
+ * @property {string} [seller_identifier]
+ * @property {CurrentStatus} [current_status]
+ */
+/**
+ * @typedef FulfillingCompany
+ * @property {number} [id]
  * @property {string} [name]
  */
 /**
- * @typedef NestedTrackingDetails
- * @property {boolean} [is_current]
- * @property {boolean} [is_passed]
- * @property {string} [status]
- * @property {string} [time]
+ * @typedef DeliveryAddress
+ * @property {string} [pincode]
+ * @property {string} [phone]
+ * @property {number} [latitude]
+ * @property {string} [address2]
+ * @property {string} [landmark]
+ * @property {string} [area]
+ * @property {string} [city]
+ * @property {string} [address]
+ * @property {string} [address_type]
+ * @property {number} [longitude]
+ * @property {string} [country_iso_code]
+ * @property {string} [state]
+ * @property {string} [created_at]
+ * @property {string} [address1]
+ * @property {string} [display_address]
+ * @property {string} [name]
+ * @property {string} [contact_person]
+ * @property {string} [address_category]
+ * @property {string} [email]
+ * @property {string} [country_phone_code]
+ * @property {string} [version]
+ * @property {string} [updated_at]
+ * @property {string} [country]
  */
 /**
- * @typedef OrderById
- * @property {OrderSchema} [order]
+ * @typedef Shipments
+ * @property {ShipmentPayment} [payment]
+ * @property {string} [order_type]
+ * @property {boolean} [show_download_invoice]
+ * @property {boolean} [can_cancel]
+ * @property {ShipmentUserInfo} [user_info]
+ * @property {string} [shipment_id]
+ * @property {FulfillingStore} [fulfilling_store]
+ * @property {Object[]} [custom_meta]
+ * @property {ShipmentStatus} [shipment_status]
+ * @property {string} [comment]
+ * @property {Invoice} [invoice]
+ * @property {boolean} [show_track_link]
+ * @property {Object} [refund_details]
+ * @property {BreakupValues[]} [breakup_values]
+ * @property {Object} [can_break]
+ * @property {string} [traking_no]
+ * @property {TrackingDetails[]} [tracking_details]
+ * @property {Promise} [promise]
+ * @property {number} [total_bags]
+ * @property {ShipmentTotalDetails} [total_details]
+ * @property {Prices} [prices]
+ * @property {string} [returnable_date]
+ * @property {string} [shipment_created_at]
+ * @property {string} [shipment_created_ts]
+ * @property {Object} [size_info]
+ * @property {Bags[]} [bags]
+ * @property {string} [dp_name]
+ * @property {string} [awb_no]
+ * @property {boolean} [beneficiary_details]
+ * @property {FulfillingCompany} [fulfilling_company]
+ * @property {boolean} [can_return]
+ * @property {DeliveryAddress} [delivery_address]
+ * @property {string} [track_url]
+ * @property {string} [order_id]
+ * @property {string} [need_help_url]
+ * @property {Object} [return_meta]
+ * @property {string} [delivery_date]
+ */
+/**
+ * @typedef BagsForReorderArticleAssignment
+ * @property {string} [strategy]
+ * @property {string} [level]
+ */
+/**
+ * @typedef BagsForReorder
+ * @property {string} [item_size]
+ * @property {number} [quantity]
+ * @property {number} [store_id]
+ * @property {BagsForReorderArticleAssignment} [article_assignment]
+ * @property {number} [seller_id]
+ * @property {number} [item_id]
+ */
+/**
+ * @typedef OrderSchema
+ * @property {number} [total_shipments_in_order]
+ * @property {UserInfo} [user_info]
+ * @property {BreakupValues[]} [breakup_values]
+ * @property {string} [order_created_time]
+ * @property {string} [order_created_ts]
+ * @property {string} [order_id]
+ * @property {Shipments[]} [shipments]
+ * @property {BagsForReorder[]} [bags_for_reorder]
+ */
+/**
+ * @typedef OrderStatuses
+ * @property {number} [value]
+ * @property {boolean} [is_selected]
+ * @property {string} [display]
  */
 /**
  * @typedef OrderFilters
@@ -236,280 +327,59 @@ export = OrderApplicationModel;
  */
 /**
  * @typedef OrderList
- * @property {OrderFilters} [filters]
- * @property {OrderSchema[]} [items]
  * @property {OrderPage} [page]
+ * @property {OrderSchema[]} [items]
+ * @property {OrderFilters} [filters]
  */
 /**
- * @typedef OrderPage
- * @property {number} [current]
- * @property {boolean} [has_next]
- * @property {number} [item_total]
- * @property {number} [size]
- * @property {string} [type]
- */
-/**
- * @typedef OrderSchema
- * @property {BagsForReorder[]} [bags_for_reorder]
- * @property {BreakupValues[]} [breakup_values]
- * @property {string} [order_created_time]
- * @property {string} [order_created_ts]
- * @property {string} [order_id]
- * @property {Shipments[]} [shipments]
- * @property {number} [total_shipments_in_order]
- * @property {UserInfo} [user_info]
- */
-/**
- * @typedef OrderStatuses
- * @property {string} [display]
- * @property {boolean} [is_selected]
- * @property {number} [value]
- */
-/**
- * @typedef Prices
- * @property {boolean} [added_to_fynd_cash]
- * @property {number} [amount_paid]
- * @property {number} [amount_paid_roundoff]
- * @property {number} [brand_calculated_amount]
- * @property {number} [cashback]
- * @property {number} [cashback_applied]
- * @property {number} [cod_charges]
- * @property {number} [coupon_effective_discount]
- * @property {number} [coupon_value]
- * @property {string} [currency_code]
- * @property {string} [currency_symbol]
- * @property {number} [delivery_charge]
- * @property {number} [discount]
- * @property {number} [fynd_credits]
- * @property {number} [gst_tax_percentage]
- * @property {number} [price_effective]
- * @property {number} [price_marked]
- * @property {number} [promotion_effective_discount]
- * @property {number} [refund_amount]
- * @property {number} [refund_credit]
- * @property {number} [transfer_price]
- * @property {number} [value_of_good]
- */
-/**
- * @typedef Products
- * @property {string} [identifier]
- * @property {number} [line_number]
- * @property {number} [quantity]
- */
-/**
- * @typedef ProductsDataUpdates
- * @property {Object} [data]
- * @property {ProductsDataUpdatesFilters[]} [filters]
- */
-/**
- * @typedef ProductsDataUpdatesFilters
- * @property {string} [identifier]
- * @property {number} [line_number]
- */
-/**
- * @typedef ProductsReasons
- * @property {ProductsReasonsData} [data]
- * @property {ProductsReasonsFilters[]} [filters]
- */
-/**
- * @typedef ProductsReasonsData
- * @property {number} [reason_id]
- * @property {string} [reason_text]
- */
-/**
- * @typedef ProductsReasonsFilters
- * @property {string} [identifier]
- * @property {number} [line_number]
- * @property {number} [quantity]
- */
-/**
- * @typedef Promise
- * @property {boolean} [show_promise]
- * @property {TimeStampData} [timestamp]
- */
-/**
- * @typedef QuestionSet
- * @property {string} [display_name]
- * @property {number} [id]
- */
-/**
- * @typedef ReasonsData
- * @property {EntitiesReasons[]} [entities]
- * @property {ProductsReasons[]} [products]
- */
-/**
- * @typedef ResponseGetInvoiceShipment
- * @property {string} presigned_type
- * @property {string} presigned_url
- * @property {string} shipment_id
- * @property {boolean} success
- */
-/**
- * @typedef SendOtpToCustomerResponse
+ * @typedef ApefaceApiError
  * @property {string} [message]
- * @property {string} [request_id]
- * @property {number} [resend_timer]
  * @property {boolean} [success]
  */
 /**
- * @typedef ShipmentApplicationStatusResponse
- * @property {StatusesBodyResponse[]} [statuses]
- */
-/**
- * @typedef ShipmentBagReasons
- * @property {BagReasons[]} [reasons]
- * @property {boolean} [success]
+ * @typedef OrderById
+ * @property {OrderSchema} [order]
  */
 /**
  * @typedef ShipmentById
  * @property {Shipments} [shipment]
  */
 /**
- * @typedef ShipmentPayment
- * @property {string} [display_name]
- * @property {string} [logo]
- * @property {string} [mode]
- * @property {string} [mop]
- * @property {string} [payment_mode]
+ * @typedef ResponseGetInvoiceShipment
+ * @property {string} presigned_type
+ * @property {boolean} success
+ * @property {string} shipment_id
+ * @property {string} presigned_url
+ */
+/**
+ * @typedef Track
+ * @property {string} [account_name]
+ * @property {string} [shipment_type]
  * @property {string} [status]
- */
-/**
- * @typedef ShipmentReason
- * @property {string} [feedback_type]
- * @property {string} [flow]
- * @property {number} [priority]
- * @property {number} [reason_id]
- * @property {string} [reason_text]
- * @property {boolean} [show_text_area]
- */
-/**
- * @typedef ShipmentReasons
- * @property {ShipmentReason[]} [reasons]
- */
-/**
- * @typedef Shipments
- * @property {string} [awb_no]
- * @property {Bags[]} [bags]
- * @property {boolean} [beneficiary_details]
- * @property {BreakupValues[]} [breakup_values]
- * @property {Object} [can_break]
- * @property {boolean} [can_cancel]
- * @property {boolean} [can_return]
- * @property {string} [comment]
- * @property {Object[]} [custom_meta]
- * @property {DeliveryAddress} [delivery_address]
- * @property {string} [delivery_date]
- * @property {string} [dp_name]
- * @property {FulfillingCompany} [fulfilling_company]
- * @property {FulfillingStore} [fulfilling_store]
- * @property {Invoice} [invoice]
- * @property {string} [need_help_url]
- * @property {string} [order_id]
- * @property {string} [order_type]
- * @property {ShipmentPayment} [payment]
- * @property {Prices} [prices]
- * @property {Promise} [promise]
- * @property {Object} [refund_details]
- * @property {Object} [return_meta]
- * @property {string} [returnable_date]
- * @property {string} [shipment_created_at]
- * @property {string} [shipment_created_ts]
- * @property {string} [shipment_id]
- * @property {ShipmentStatus} [shipment_status]
- * @property {boolean} [show_download_invoice]
- * @property {boolean} [show_track_link]
- * @property {Object} [size_info]
- * @property {number} [total_bags]
- * @property {ShipmentTotalDetails} [total_details]
- * @property {string} [track_url]
- * @property {TrackingDetails[]} [tracking_details]
- * @property {string} [traking_no]
- * @property {ShipmentUserInfo} [user_info]
- */
-/**
- * @typedef ShipmentsRequest
- * @property {DataUpdates} [data_updates]
- * @property {string} identifier
- * @property {Products[]} [products]
- * @property {ReasonsData} [reasons]
- */
-/**
- * @typedef ShipmentStatus
- * @property {string} [hex_code]
- * @property {string} [title]
- * @property {string} [value]
- */
-/**
- * @typedef ShipmentTotalDetails
- * @property {number} [pieces]
- * @property {number} [sizes]
- * @property {number} [total_price]
+ * @property {string} [last_location_recieved_at]
+ * @property {string} [updated_time]
+ * @property {string} [updated_at]
+ * @property {string} [reason]
+ * @property {string} [awb]
  */
 /**
  * @typedef ShipmentTrack
  * @property {Track[]} [results]
  */
 /**
- * @typedef ShipmentUserInfo
- * @property {string} [email]
- * @property {string} [first_name]
- * @property {string} [gender]
- * @property {string} [last_name]
- * @property {string} [mobile]
+ * @typedef CustomerDetailsResponse
+ * @property {string} [phone]
+ * @property {string} [shipment_id]
  * @property {string} [name]
+ * @property {string} [order_id]
+ * @property {string} [country]
  */
 /**
- * @typedef StatuesRequest
- * @property {string} [exclude_bags_next_state]
- * @property {ShipmentsRequest[]} [shipments]
- * @property {string} [status]
- */
-/**
- * @typedef StatusesBodyResponse
- * @property {Object[]} [shipments]
- */
-/**
- * @typedef TimeStampData
- * @property {string} [max]
- * @property {string} [min]
- */
-/**
- * @typedef Track
- * @property {string} [account_name]
- * @property {string} [awb]
- * @property {string} [last_location_recieved_at]
- * @property {string} [reason]
- * @property {string} [shipment_type]
- * @property {string} [status]
- * @property {string} [updated_at]
- * @property {string} [updated_time]
- */
-/**
- * @typedef TrackingDetails
- * @property {string} [created_ts]
- * @property {boolean} [is_current]
- * @property {boolean} [is_passed]
- * @property {string} [status]
- * @property {string} [time]
- * @property {NestedTrackingDetails[]} [tracking_details]
- * @property {string} [value]
- */
-/**
- * @typedef UpdateShipmentStatusRequest
- * @property {boolean} [force_transition]
- * @property {boolean} [lock_after_transition]
- * @property {StatuesRequest[]} [statuses]
- * @property {boolean} [task]
- * @property {boolean} [unlock_before_transition]
- */
-/**
- * @typedef UserInfo
- * @property {string} [email]
- * @property {string} [first_name]
- * @property {string} [gender]
- * @property {string} [last_name]
- * @property {string} [mobile]
- * @property {string} [name]
+ * @typedef SendOtpToCustomerResponse
+ * @property {string} [request_id]
+ * @property {string} [message]
+ * @property {boolean} [success]
+ * @property {number} [resend_timer]
  */
 /**
  * @typedef VerifyOtp
@@ -520,16 +390,297 @@ export = OrderApplicationModel;
  * @typedef VerifyOtpResponse
  * @property {boolean} [success]
  */
+/**
+ * @typedef BagReasonMeta
+ * @property {boolean} [show_text_area]
+ */
+/**
+ * @typedef QuestionSet
+ * @property {number} [id]
+ * @property {string} [display_name]
+ */
+/**
+ * @typedef BagReasons
+ * @property {string[]} [qc_type]
+ * @property {number} [id]
+ * @property {string} [display_name]
+ * @property {BagReasonMeta} [meta]
+ * @property {QuestionSet[]} [question_set]
+ * @property {BagReasons[]} [reasons]
+ */
+/**
+ * @typedef ShipmentBagReasons
+ * @property {BagReasons[]} [reasons]
+ * @property {boolean} [success]
+ */
+/**
+ * @typedef ShipmentReason
+ * @property {number} [priority]
+ * @property {boolean} [show_text_area]
+ * @property {number} [reason_id]
+ * @property {string} [feedback_type]
+ * @property {string} [reason_text]
+ * @property {string} [flow]
+ */
+/**
+ * @typedef ShipmentReasons
+ * @property {ShipmentReason[]} [reasons]
+ */
+/**
+ * @typedef ProductsReasonsData
+ * @property {number} [reason_id]
+ * @property {string} [reason_text]
+ */
+/**
+ * @typedef ProductsReasonsFilters
+ * @property {number} [line_number]
+ * @property {number} [quantity]
+ * @property {string} [identifier]
+ */
+/**
+ * @typedef ProductsReasons
+ * @property {ProductsReasonsData} [data]
+ * @property {ProductsReasonsFilters[]} [filters]
+ */
+/**
+ * @typedef EntityReasonData
+ * @property {number} [reason_id]
+ * @property {string} [reason_text]
+ */
+/**
+ * @typedef EntitiesReasons
+ * @property {EntityReasonData} [data]
+ * @property {Object[]} [filters]
+ */
+/**
+ * @typedef ReasonsData
+ * @property {ProductsReasons[]} [products]
+ * @property {EntitiesReasons[]} [entities]
+ */
+/**
+ * @typedef Products
+ * @property {number} [line_number]
+ * @property {number} [quantity]
+ * @property {string} [identifier]
+ */
+/**
+ * @typedef ProductsDataUpdatesFilters
+ * @property {number} [line_number]
+ * @property {string} [identifier]
+ */
+/**
+ * @typedef ProductsDataUpdates
+ * @property {Object} [data]
+ * @property {ProductsDataUpdatesFilters[]} [filters]
+ */
+/**
+ * @typedef EntitiesDataUpdates
+ * @property {Object} [data]
+ * @property {Object[]} [filters]
+ */
+/**
+ * @typedef DataUpdates
+ * @property {ProductsDataUpdates[]} [products]
+ * @property {EntitiesDataUpdates[]} [entities]
+ */
+/**
+ * @typedef ShipmentsRequest
+ * @property {ReasonsData} [reasons]
+ * @property {Products[]} [products]
+ * @property {DataUpdates} [data_updates]
+ * @property {string} identifier
+ */
+/**
+ * @typedef StatuesRequest
+ * @property {ShipmentsRequest[]} [shipments]
+ * @property {string} [exclude_bags_next_state]
+ * @property {string} [status]
+ */
+/**
+ * @typedef UpdateShipmentStatusRequest
+ * @property {StatuesRequest[]} [statuses]
+ * @property {boolean} [task]
+ * @property {boolean} [lock_after_transition]
+ * @property {boolean} [force_transition]
+ * @property {boolean} [unlock_before_transition]
+ */
+/**
+ * @typedef StatusesBodyResponse
+ * @property {Object[]} [shipments]
+ */
+/**
+ * @typedef ShipmentApplicationStatusResponse
+ * @property {StatusesBodyResponse[]} [statuses]
+ */
+/**
+ * @typedef ErrorResponse
+ * @property {string} [code]
+ * @property {string} [message]
+ * @property {number} [status]
+ * @property {string} [exception]
+ * @property {string} [stack_trace]
+ */
 declare class OrderApplicationModel {
 }
 declare namespace OrderApplicationModel {
-    export { ApefaceApiError, AppliedFreeArticles, AppliedPromos, BagReasonMeta, BagReasons, Bags, BagsForReorder, BagsForReorderArticleAssignment, BreakupValues, CurrentStatus, CustomerDetailsResponse, DataUpdates, DeliveryAddress, EntitiesDataUpdates, EntitiesReasons, EntityReasonData, ErrorResponse, FinancialBreakup, FulfillingCompany, FulfillingStore, Identifiers, Invoice, Item, ItemBrand, NestedTrackingDetails, OrderById, OrderFilters, OrderList, OrderPage, OrderSchema, OrderStatuses, Prices, Products, ProductsDataUpdates, ProductsDataUpdatesFilters, ProductsReasons, ProductsReasonsData, ProductsReasonsFilters, Promise, QuestionSet, ReasonsData, ResponseGetInvoiceShipment, SendOtpToCustomerResponse, ShipmentApplicationStatusResponse, ShipmentBagReasons, ShipmentById, ShipmentPayment, ShipmentReason, ShipmentReasons, Shipments, ShipmentsRequest, ShipmentStatus, ShipmentTotalDetails, ShipmentTrack, ShipmentUserInfo, StatuesRequest, StatusesBodyResponse, TimeStampData, Track, TrackingDetails, UpdateShipmentStatusRequest, UserInfo, VerifyOtp, VerifyOtpResponse };
+    export { OrderPage, UserInfo, BreakupValues, ShipmentPayment, ShipmentUserInfo, FulfillingStore, ShipmentStatus, Invoice, NestedTrackingDetails, TrackingDetails, TimeStampData, Promise, ShipmentTotalDetails, Prices, ItemBrand, Item, AppliedFreeArticles, AppliedPromos, Identifiers, FinancialBreakup, CurrentStatus, Bags, FulfillingCompany, DeliveryAddress, Shipments, BagsForReorderArticleAssignment, BagsForReorder, OrderSchema, OrderStatuses, OrderFilters, OrderList, ApefaceApiError, OrderById, ShipmentById, ResponseGetInvoiceShipment, Track, ShipmentTrack, CustomerDetailsResponse, SendOtpToCustomerResponse, VerifyOtp, VerifyOtpResponse, BagReasonMeta, QuestionSet, BagReasons, ShipmentBagReasons, ShipmentReason, ShipmentReasons, ProductsReasonsData, ProductsReasonsFilters, ProductsReasons, EntityReasonData, EntitiesReasons, ReasonsData, Products, ProductsDataUpdatesFilters, ProductsDataUpdates, EntitiesDataUpdates, DataUpdates, ShipmentsRequest, StatuesRequest, UpdateShipmentStatusRequest, StatusesBodyResponse, ShipmentApplicationStatusResponse, ErrorResponse };
 }
-/** @returns {ApefaceApiError} */
-declare function ApefaceApiError(): ApefaceApiError;
-type ApefaceApiError = {
-    message?: string;
-    success?: boolean;
+/** @returns {OrderPage} */
+declare function OrderPage(): OrderPage;
+type OrderPage = {
+    type?: string;
+    item_total?: number;
+    current?: number;
+    size?: number;
+    has_next?: boolean;
+};
+/** @returns {UserInfo} */
+declare function UserInfo(): UserInfo;
+type UserInfo = {
+    first_name?: string;
+    gender?: string;
+    name?: string;
+    last_name?: string;
+    mobile?: string;
+    email?: string;
+};
+/** @returns {BreakupValues} */
+declare function BreakupValues(): BreakupValues;
+type BreakupValues = {
+    value?: number;
+    currency_symbol?: string;
+    name?: string;
+    display?: string;
+    currency_code?: string;
+};
+/** @returns {ShipmentPayment} */
+declare function ShipmentPayment(): ShipmentPayment;
+type ShipmentPayment = {
+    mop?: string;
+    payment_mode?: string;
+    status?: string;
+    mode?: string;
+    logo?: string;
+    display_name?: string;
+};
+/** @returns {ShipmentUserInfo} */
+declare function ShipmentUserInfo(): ShipmentUserInfo;
+type ShipmentUserInfo = {
+    first_name?: string;
+    gender?: string;
+    name?: string;
+    last_name?: string;
+    mobile?: string;
+    email?: string;
+};
+/** @returns {FulfillingStore} */
+declare function FulfillingStore(): FulfillingStore;
+type FulfillingStore = {
+    id?: number;
+    code?: string;
+    name?: string;
+    company_name?: string;
+    company_id?: number;
+};
+/** @returns {ShipmentStatus} */
+declare function ShipmentStatus(): ShipmentStatus;
+type ShipmentStatus = {
+    value?: string;
+    title?: string;
+    hex_code?: string;
+};
+/** @returns {Invoice} */
+declare function Invoice(): Invoice;
+type Invoice = {
+    invoice_url?: string;
+    updated_date?: string;
+    label_url?: string;
+};
+/** @returns {NestedTrackingDetails} */
+declare function NestedTrackingDetails(): NestedTrackingDetails;
+type NestedTrackingDetails = {
+    is_passed?: boolean;
+    time?: string;
+    is_current?: boolean;
+    status?: string;
+};
+/** @returns {TrackingDetails} */
+declare function TrackingDetails(): TrackingDetails;
+type TrackingDetails = {
+    value?: string;
+    is_current?: boolean;
+    is_passed?: boolean;
+    status?: string;
+    time?: string;
+    created_ts?: string;
+    tracking_details?: NestedTrackingDetails[];
+};
+/** @returns {TimeStampData} */
+declare function TimeStampData(): TimeStampData;
+type TimeStampData = {
+    min?: string;
+    max?: string;
+};
+/** @returns {Promise} */
+declare function Promise(): Promise;
+type Promise = {
+    show_promise?: boolean;
+    timestamp?: TimeStampData;
+};
+/** @returns {ShipmentTotalDetails} */
+declare function ShipmentTotalDetails(): ShipmentTotalDetails;
+type ShipmentTotalDetails = {
+    pieces?: number;
+    total_price?: number;
+    sizes?: number;
+};
+/** @returns {Prices} */
+declare function Prices(): Prices;
+type Prices = {
+    delivery_charge?: number;
+    coupon_value?: number;
+    brand_calculated_amount?: number;
+    value_of_good?: number;
+    price_marked?: number;
+    coupon_effective_discount?: number;
+    currency_symbol?: string;
+    discount?: number;
+    gst_tax_percentage?: number;
+    cod_charges?: number;
+    amount_paid?: number;
+    added_to_fynd_cash?: boolean;
+    transfer_price?: number;
+    cashback_applied?: number;
+    price_effective?: number;
+    cashback?: number;
+    refund_credit?: number;
+    amount_paid_roundoff?: number;
+    promotion_effective_discount?: number;
+    refund_amount?: number;
+    currency_code?: string;
+    fynd_credits?: number;
+};
+/** @returns {ItemBrand} */
+declare function ItemBrand(): ItemBrand;
+type ItemBrand = {
+    logo?: string;
+    name?: string;
+};
+/** @returns {Item} */
+declare function Item(): Item;
+type Item = {
+    image?: string[];
+    l1_categories?: string[];
+    brand?: ItemBrand;
+    seller_identifier?: string;
+    code?: string;
+    id?: number;
+    name?: string;
+    l3_category_name?: string;
+    slug_key?: string;
+    l2_categories?: string[];
+    size?: string;
+    attributes?: any;
 };
 /** @returns {AppliedFreeArticles} */
 declare function AppliedFreeArticles(): AppliedFreeArticles;
@@ -542,197 +693,13 @@ type AppliedFreeArticles = {
 /** @returns {AppliedPromos} */
 declare function AppliedPromos(): AppliedPromos;
 type AppliedPromos = {
-    amount?: number;
-    applied_free_articles?: AppliedFreeArticles[];
-    article_quantity?: number;
     mrp_promotion?: boolean;
-    promo_id?: string;
     promotion_name?: string;
+    article_quantity?: number;
+    promo_id?: string;
+    amount?: number;
     promotion_type?: string;
-};
-/** @returns {BagReasonMeta} */
-declare function BagReasonMeta(): BagReasonMeta;
-type BagReasonMeta = {
-    show_text_area?: boolean;
-};
-/** @returns {BagReasons} */
-declare function BagReasons(): BagReasons;
-type BagReasons = {
-    display_name?: string;
-    id?: number;
-    meta?: BagReasonMeta;
-    qc_type?: string[];
-    question_set?: QuestionSet[];
-    reasons?: BagReasons[];
-};
-/** @returns {Bags} */
-declare function Bags(): Bags;
-type Bags = {
-    applied_promos?: AppliedPromos[];
-    can_cancel?: boolean;
-    can_return?: boolean;
-    currency_code?: string;
-    currency_symbol?: string;
-    current_status?: CurrentStatus;
-    delivery_date?: string;
-    financial_breakup?: FinancialBreakup[];
-    id?: number;
-    item?: Item;
-    line_number?: number;
-    meta?: any;
-    parent_promo_bags?: any;
-    prices?: Prices;
-    quantity?: number;
-    returnable_date?: string;
-    seller_identifier?: string;
-};
-/** @returns {BagsForReorder} */
-declare function BagsForReorder(): BagsForReorder;
-type BagsForReorder = {
-    article_assignment?: BagsForReorderArticleAssignment;
-    item_id?: number;
-    item_size?: string;
-    quantity?: number;
-    seller_id?: number;
-    store_id?: number;
-};
-/** @returns {BagsForReorderArticleAssignment} */
-declare function BagsForReorderArticleAssignment(): BagsForReorderArticleAssignment;
-type BagsForReorderArticleAssignment = {
-    level?: string;
-    strategy?: string;
-};
-/** @returns {BreakupValues} */
-declare function BreakupValues(): BreakupValues;
-type BreakupValues = {
-    currency_code?: string;
-    currency_symbol?: string;
-    display?: string;
-    name?: string;
-    value?: number;
-};
-/** @returns {CurrentStatus} */
-declare function CurrentStatus(): CurrentStatus;
-type CurrentStatus = {
-    journey_type?: string;
-    name?: string;
-    status?: string;
-    updated_at?: string;
-};
-/** @returns {CustomerDetailsResponse} */
-declare function CustomerDetailsResponse(): CustomerDetailsResponse;
-type CustomerDetailsResponse = {
-    country?: string;
-    name?: string;
-    order_id?: string;
-    phone?: string;
-    shipment_id?: string;
-};
-/** @returns {DataUpdates} */
-declare function DataUpdates(): DataUpdates;
-type DataUpdates = {
-    entities?: EntitiesDataUpdates[];
-    products?: ProductsDataUpdates[];
-};
-/** @returns {DeliveryAddress} */
-declare function DeliveryAddress(): DeliveryAddress;
-type DeliveryAddress = {
-    address?: string;
-    address_category?: string;
-    address_type?: string;
-    address1?: string;
-    address2?: string;
-    area?: string;
-    city?: string;
-    contact_person?: string;
-    country?: string;
-    country_iso_code?: string;
-    country_phone_code?: string;
-    created_at?: string;
-    display_address?: string;
-    email?: string;
-    landmark?: string;
-    latitude?: number;
-    longitude?: number;
-    name?: string;
-    phone?: string;
-    pincode?: string;
-    state?: string;
-    updated_at?: string;
-    version?: string;
-};
-/** @returns {EntitiesDataUpdates} */
-declare function EntitiesDataUpdates(): EntitiesDataUpdates;
-type EntitiesDataUpdates = {
-    data?: any;
-    filters?: any[];
-};
-/** @returns {EntitiesReasons} */
-declare function EntitiesReasons(): EntitiesReasons;
-type EntitiesReasons = {
-    data?: EntityReasonData;
-    filters?: any[];
-};
-/** @returns {EntityReasonData} */
-declare function EntityReasonData(): EntityReasonData;
-type EntityReasonData = {
-    reason_id?: number;
-    reason_text?: string;
-};
-/** @returns {ErrorResponse} */
-declare function ErrorResponse(): ErrorResponse;
-type ErrorResponse = {
-    code?: string;
-    exception?: string;
-    message?: string;
-    stack_trace?: string;
-    status?: number;
-};
-/** @returns {FinancialBreakup} */
-declare function FinancialBreakup(): FinancialBreakup;
-type FinancialBreakup = {
-    added_to_fynd_cash?: boolean;
-    amount_paid?: number;
-    amount_paid_roundoff?: number;
-    brand_calculated_amount?: number;
-    cashback?: number;
-    cashback_applied?: number;
-    cod_charges?: number;
-    coupon_effective_discount?: number;
-    coupon_value?: number;
-    delivery_charge?: number;
-    discount?: number;
-    fynd_credits?: number;
-    gst_fee?: number;
-    gst_tag?: string;
-    gst_tax_percentage?: number;
-    hsn_code?: string;
-    identifiers?: Identifiers;
-    item_name?: string;
-    price_effective?: number;
-    price_marked?: number;
-    promotion_effective_discount?: number;
-    refund_amount?: number;
-    refund_credit?: number;
-    size?: string;
-    total_units?: number;
-    transfer_price?: number;
-    value_of_good?: number;
-};
-/** @returns {FulfillingCompany} */
-declare function FulfillingCompany(): FulfillingCompany;
-type FulfillingCompany = {
-    id?: number;
-    name?: string;
-};
-/** @returns {FulfillingStore} */
-declare function FulfillingStore(): FulfillingStore;
-type FulfillingStore = {
-    code?: string;
-    company_id?: number;
-    company_name?: string;
-    id?: number;
-    name?: string;
+    applied_free_articles?: AppliedFreeArticles[];
 };
 /** @returns {Identifiers} */
 declare function Identifiers(): Identifiers;
@@ -740,47 +707,174 @@ type Identifiers = {
     ean?: string;
     sku_code?: string;
 };
-/** @returns {Invoice} */
-declare function Invoice(): Invoice;
-type Invoice = {
-    invoice_url?: string;
-    label_url?: string;
-    updated_date?: string;
-};
-/** @returns {Item} */
-declare function Item(): Item;
-type Item = {
-    attributes?: any;
-    brand?: ItemBrand;
-    code?: string;
-    id?: number;
-    image?: string[];
-    l1_categories?: string[];
-    l2_categories?: string[];
-    l3_category_name?: string;
-    name?: string;
-    seller_identifier?: string;
+/** @returns {FinancialBreakup} */
+declare function FinancialBreakup(): FinancialBreakup;
+type FinancialBreakup = {
+    coupon_value?: number;
+    delivery_charge?: number;
+    brand_calculated_amount?: number;
+    value_of_good?: number;
+    price_marked?: number;
+    coupon_effective_discount?: number;
+    hsn_code?: string;
+    discount?: number;
+    gst_tax_percentage?: number;
+    cod_charges?: number;
+    amount_paid?: number;
+    added_to_fynd_cash?: boolean;
     size?: string;
-    slug_key?: string;
+    transfer_price?: number;
+    cashback_applied?: number;
+    price_effective?: number;
+    cashback?: number;
+    refund_credit?: number;
+    amount_paid_roundoff?: number;
+    total_units?: number;
+    identifiers?: Identifiers;
+    gst_tag?: string;
+    item_name?: string;
+    promotion_effective_discount?: number;
+    gst_fee?: number;
+    refund_amount?: number;
+    fynd_credits?: number;
 };
-/** @returns {ItemBrand} */
-declare function ItemBrand(): ItemBrand;
-type ItemBrand = {
-    logo?: string;
+/** @returns {CurrentStatus} */
+declare function CurrentStatus(): CurrentStatus;
+type CurrentStatus = {
+    updated_at?: string;
+    name?: string;
+    status?: string;
+    journey_type?: string;
+};
+/** @returns {Bags} */
+declare function Bags(): Bags;
+type Bags = {
+    delivery_date?: string;
+    line_number?: number;
+    currency_symbol?: string;
+    item?: Item;
+    applied_promos?: AppliedPromos[];
+    quantity?: number;
+    prices?: Prices;
+    can_cancel?: boolean;
+    can_return?: boolean;
+    id?: number;
+    returnable_date?: string;
+    financial_breakup?: FinancialBreakup[];
+    parent_promo_bags?: any;
+    meta?: any;
+    currency_code?: string;
+    seller_identifier?: string;
+    current_status?: CurrentStatus;
+};
+/** @returns {FulfillingCompany} */
+declare function FulfillingCompany(): FulfillingCompany;
+type FulfillingCompany = {
+    id?: number;
     name?: string;
 };
-/** @returns {NestedTrackingDetails} */
-declare function NestedTrackingDetails(): NestedTrackingDetails;
-type NestedTrackingDetails = {
-    is_current?: boolean;
-    is_passed?: boolean;
-    status?: string;
-    time?: string;
+/** @returns {DeliveryAddress} */
+declare function DeliveryAddress(): DeliveryAddress;
+type DeliveryAddress = {
+    pincode?: string;
+    phone?: string;
+    latitude?: number;
+    address2?: string;
+    landmark?: string;
+    area?: string;
+    city?: string;
+    address?: string;
+    address_type?: string;
+    longitude?: number;
+    country_iso_code?: string;
+    state?: string;
+    created_at?: string;
+    address1?: string;
+    display_address?: string;
+    name?: string;
+    contact_person?: string;
+    address_category?: string;
+    email?: string;
+    country_phone_code?: string;
+    version?: string;
+    updated_at?: string;
+    country?: string;
 };
-/** @returns {OrderById} */
-declare function OrderById(): OrderById;
-type OrderById = {
-    order?: OrderSchema;
+/** @returns {Shipments} */
+declare function Shipments(): Shipments;
+type Shipments = {
+    payment?: ShipmentPayment;
+    order_type?: string;
+    show_download_invoice?: boolean;
+    can_cancel?: boolean;
+    user_info?: ShipmentUserInfo;
+    shipment_id?: string;
+    fulfilling_store?: FulfillingStore;
+    custom_meta?: any[];
+    shipment_status?: ShipmentStatus;
+    comment?: string;
+    invoice?: Invoice;
+    show_track_link?: boolean;
+    refund_details?: any;
+    breakup_values?: BreakupValues[];
+    can_break?: any;
+    traking_no?: string;
+    tracking_details?: TrackingDetails[];
+    promise?: Promise;
+    total_bags?: number;
+    total_details?: ShipmentTotalDetails;
+    prices?: Prices;
+    returnable_date?: string;
+    shipment_created_at?: string;
+    shipment_created_ts?: string;
+    size_info?: any;
+    bags?: Bags[];
+    dp_name?: string;
+    awb_no?: string;
+    beneficiary_details?: boolean;
+    fulfilling_company?: FulfillingCompany;
+    can_return?: boolean;
+    delivery_address?: DeliveryAddress;
+    track_url?: string;
+    order_id?: string;
+    need_help_url?: string;
+    return_meta?: any;
+    delivery_date?: string;
+};
+/** @returns {BagsForReorderArticleAssignment} */
+declare function BagsForReorderArticleAssignment(): BagsForReorderArticleAssignment;
+type BagsForReorderArticleAssignment = {
+    strategy?: string;
+    level?: string;
+};
+/** @returns {BagsForReorder} */
+declare function BagsForReorder(): BagsForReorder;
+type BagsForReorder = {
+    item_size?: string;
+    quantity?: number;
+    store_id?: number;
+    article_assignment?: BagsForReorderArticleAssignment;
+    seller_id?: number;
+    item_id?: number;
+};
+/** @returns {OrderSchema} */
+declare function OrderSchema(): OrderSchema;
+type OrderSchema = {
+    total_shipments_in_order?: number;
+    user_info?: UserInfo;
+    breakup_values?: BreakupValues[];
+    order_created_time?: string;
+    order_created_ts?: string;
+    order_id?: string;
+    shipments?: Shipments[];
+    bags_for_reorder?: BagsForReorder[];
+};
+/** @returns {OrderStatuses} */
+declare function OrderStatuses(): OrderStatuses;
+type OrderStatuses = {
+    value?: number;
+    is_selected?: boolean;
+    display?: string;
 };
 /** @returns {OrderFilters} */
 declare function OrderFilters(): OrderFilters;
@@ -790,314 +884,67 @@ type OrderFilters = {
 /** @returns {OrderList} */
 declare function OrderList(): OrderList;
 type OrderList = {
-    filters?: OrderFilters;
-    items?: OrderSchema[];
     page?: OrderPage;
+    items?: OrderSchema[];
+    filters?: OrderFilters;
 };
-/** @returns {OrderPage} */
-declare function OrderPage(): OrderPage;
-type OrderPage = {
-    current?: number;
-    has_next?: boolean;
-    item_total?: number;
-    size?: number;
-    type?: string;
-};
-/** @returns {OrderSchema} */
-declare function OrderSchema(): OrderSchema;
-type OrderSchema = {
-    bags_for_reorder?: BagsForReorder[];
-    breakup_values?: BreakupValues[];
-    order_created_time?: string;
-    order_created_ts?: string;
-    order_id?: string;
-    shipments?: Shipments[];
-    total_shipments_in_order?: number;
-    user_info?: UserInfo;
-};
-/** @returns {OrderStatuses} */
-declare function OrderStatuses(): OrderStatuses;
-type OrderStatuses = {
-    display?: string;
-    is_selected?: boolean;
-    value?: number;
-};
-/** @returns {Prices} */
-declare function Prices(): Prices;
-type Prices = {
-    added_to_fynd_cash?: boolean;
-    amount_paid?: number;
-    amount_paid_roundoff?: number;
-    brand_calculated_amount?: number;
-    cashback?: number;
-    cashback_applied?: number;
-    cod_charges?: number;
-    coupon_effective_discount?: number;
-    coupon_value?: number;
-    currency_code?: string;
-    currency_symbol?: string;
-    delivery_charge?: number;
-    discount?: number;
-    fynd_credits?: number;
-    gst_tax_percentage?: number;
-    price_effective?: number;
-    price_marked?: number;
-    promotion_effective_discount?: number;
-    refund_amount?: number;
-    refund_credit?: number;
-    transfer_price?: number;
-    value_of_good?: number;
-};
-/** @returns {Products} */
-declare function Products(): Products;
-type Products = {
-    identifier?: string;
-    line_number?: number;
-    quantity?: number;
-};
-/** @returns {ProductsDataUpdates} */
-declare function ProductsDataUpdates(): ProductsDataUpdates;
-type ProductsDataUpdates = {
-    data?: any;
-    filters?: ProductsDataUpdatesFilters[];
-};
-/** @returns {ProductsDataUpdatesFilters} */
-declare function ProductsDataUpdatesFilters(): ProductsDataUpdatesFilters;
-type ProductsDataUpdatesFilters = {
-    identifier?: string;
-    line_number?: number;
-};
-/** @returns {ProductsReasons} */
-declare function ProductsReasons(): ProductsReasons;
-type ProductsReasons = {
-    data?: ProductsReasonsData;
-    filters?: ProductsReasonsFilters[];
-};
-/** @returns {ProductsReasonsData} */
-declare function ProductsReasonsData(): ProductsReasonsData;
-type ProductsReasonsData = {
-    reason_id?: number;
-    reason_text?: string;
-};
-/** @returns {ProductsReasonsFilters} */
-declare function ProductsReasonsFilters(): ProductsReasonsFilters;
-type ProductsReasonsFilters = {
-    identifier?: string;
-    line_number?: number;
-    quantity?: number;
-};
-/** @returns {Promise} */
-declare function Promise(): Promise;
-type Promise = {
-    show_promise?: boolean;
-    timestamp?: TimeStampData;
-};
-/** @returns {QuestionSet} */
-declare function QuestionSet(): QuestionSet;
-type QuestionSet = {
-    display_name?: string;
-    id?: number;
-};
-/** @returns {ReasonsData} */
-declare function ReasonsData(): ReasonsData;
-type ReasonsData = {
-    entities?: EntitiesReasons[];
-    products?: ProductsReasons[];
-};
-/** @returns {ResponseGetInvoiceShipment} */
-declare function ResponseGetInvoiceShipment(): ResponseGetInvoiceShipment;
-type ResponseGetInvoiceShipment = {
-    presigned_type: string;
-    presigned_url: string;
-    shipment_id: string;
-    success: boolean;
-};
-/** @returns {SendOtpToCustomerResponse} */
-declare function SendOtpToCustomerResponse(): SendOtpToCustomerResponse;
-type SendOtpToCustomerResponse = {
+/** @returns {ApefaceApiError} */
+declare function ApefaceApiError(): ApefaceApiError;
+type ApefaceApiError = {
     message?: string;
-    request_id?: string;
-    resend_timer?: number;
     success?: boolean;
 };
-/** @returns {ShipmentApplicationStatusResponse} */
-declare function ShipmentApplicationStatusResponse(): ShipmentApplicationStatusResponse;
-type ShipmentApplicationStatusResponse = {
-    statuses?: StatusesBodyResponse[];
-};
-/** @returns {ShipmentBagReasons} */
-declare function ShipmentBagReasons(): ShipmentBagReasons;
-type ShipmentBagReasons = {
-    reasons?: BagReasons[];
-    success?: boolean;
+/** @returns {OrderById} */
+declare function OrderById(): OrderById;
+type OrderById = {
+    order?: OrderSchema;
 };
 /** @returns {ShipmentById} */
 declare function ShipmentById(): ShipmentById;
 type ShipmentById = {
     shipment?: Shipments;
 };
-/** @returns {ShipmentPayment} */
-declare function ShipmentPayment(): ShipmentPayment;
-type ShipmentPayment = {
-    display_name?: string;
-    logo?: string;
-    mode?: string;
-    mop?: string;
-    payment_mode?: string;
+/** @returns {ResponseGetInvoiceShipment} */
+declare function ResponseGetInvoiceShipment(): ResponseGetInvoiceShipment;
+type ResponseGetInvoiceShipment = {
+    presigned_type: string;
+    success: boolean;
+    shipment_id: string;
+    presigned_url: string;
+};
+/** @returns {Track} */
+declare function Track(): Track;
+type Track = {
+    account_name?: string;
+    shipment_type?: string;
     status?: string;
-};
-/** @returns {ShipmentReason} */
-declare function ShipmentReason(): ShipmentReason;
-type ShipmentReason = {
-    feedback_type?: string;
-    flow?: string;
-    priority?: number;
-    reason_id?: number;
-    reason_text?: string;
-    show_text_area?: boolean;
-};
-/** @returns {ShipmentReasons} */
-declare function ShipmentReasons(): ShipmentReasons;
-type ShipmentReasons = {
-    reasons?: ShipmentReason[];
-};
-/** @returns {Shipments} */
-declare function Shipments(): Shipments;
-type Shipments = {
-    awb_no?: string;
-    bags?: Bags[];
-    beneficiary_details?: boolean;
-    breakup_values?: BreakupValues[];
-    can_break?: any;
-    can_cancel?: boolean;
-    can_return?: boolean;
-    comment?: string;
-    custom_meta?: any[];
-    delivery_address?: DeliveryAddress;
-    delivery_date?: string;
-    dp_name?: string;
-    fulfilling_company?: FulfillingCompany;
-    fulfilling_store?: FulfillingStore;
-    invoice?: Invoice;
-    need_help_url?: string;
-    order_id?: string;
-    order_type?: string;
-    payment?: ShipmentPayment;
-    prices?: Prices;
-    promise?: Promise;
-    refund_details?: any;
-    return_meta?: any;
-    returnable_date?: string;
-    shipment_created_at?: string;
-    shipment_created_ts?: string;
-    shipment_id?: string;
-    shipment_status?: ShipmentStatus;
-    show_download_invoice?: boolean;
-    show_track_link?: boolean;
-    size_info?: any;
-    total_bags?: number;
-    total_details?: ShipmentTotalDetails;
-    track_url?: string;
-    tracking_details?: TrackingDetails[];
-    traking_no?: string;
-    user_info?: ShipmentUserInfo;
-};
-/** @returns {ShipmentsRequest} */
-declare function ShipmentsRequest(): ShipmentsRequest;
-type ShipmentsRequest = {
-    data_updates?: DataUpdates;
-    identifier: string;
-    products?: Products[];
-    reasons?: ReasonsData;
-};
-/** @returns {ShipmentStatus} */
-declare function ShipmentStatus(): ShipmentStatus;
-type ShipmentStatus = {
-    hex_code?: string;
-    title?: string;
-    value?: string;
-};
-/** @returns {ShipmentTotalDetails} */
-declare function ShipmentTotalDetails(): ShipmentTotalDetails;
-type ShipmentTotalDetails = {
-    pieces?: number;
-    sizes?: number;
-    total_price?: number;
+    last_location_recieved_at?: string;
+    updated_time?: string;
+    updated_at?: string;
+    reason?: string;
+    awb?: string;
 };
 /** @returns {ShipmentTrack} */
 declare function ShipmentTrack(): ShipmentTrack;
 type ShipmentTrack = {
     results?: Track[];
 };
-/** @returns {ShipmentUserInfo} */
-declare function ShipmentUserInfo(): ShipmentUserInfo;
-type ShipmentUserInfo = {
-    email?: string;
-    first_name?: string;
-    gender?: string;
-    last_name?: string;
-    mobile?: string;
+/** @returns {CustomerDetailsResponse} */
+declare function CustomerDetailsResponse(): CustomerDetailsResponse;
+type CustomerDetailsResponse = {
+    phone?: string;
+    shipment_id?: string;
     name?: string;
+    order_id?: string;
+    country?: string;
 };
-/** @returns {StatuesRequest} */
-declare function StatuesRequest(): StatuesRequest;
-type StatuesRequest = {
-    exclude_bags_next_state?: string;
-    shipments?: ShipmentsRequest[];
-    status?: string;
-};
-/** @returns {StatusesBodyResponse} */
-declare function StatusesBodyResponse(): StatusesBodyResponse;
-type StatusesBodyResponse = {
-    shipments?: any[];
-};
-/** @returns {TimeStampData} */
-declare function TimeStampData(): TimeStampData;
-type TimeStampData = {
-    max?: string;
-    min?: string;
-};
-/** @returns {Track} */
-declare function Track(): Track;
-type Track = {
-    account_name?: string;
-    awb?: string;
-    last_location_recieved_at?: string;
-    reason?: string;
-    shipment_type?: string;
-    status?: string;
-    updated_at?: string;
-    updated_time?: string;
-};
-/** @returns {TrackingDetails} */
-declare function TrackingDetails(): TrackingDetails;
-type TrackingDetails = {
-    created_ts?: string;
-    is_current?: boolean;
-    is_passed?: boolean;
-    status?: string;
-    time?: string;
-    tracking_details?: NestedTrackingDetails[];
-    value?: string;
-};
-/** @returns {UpdateShipmentStatusRequest} */
-declare function UpdateShipmentStatusRequest(): UpdateShipmentStatusRequest;
-type UpdateShipmentStatusRequest = {
-    force_transition?: boolean;
-    lock_after_transition?: boolean;
-    statuses?: StatuesRequest[];
-    task?: boolean;
-    unlock_before_transition?: boolean;
-};
-/** @returns {UserInfo} */
-declare function UserInfo(): UserInfo;
-type UserInfo = {
-    email?: string;
-    first_name?: string;
-    gender?: string;
-    last_name?: string;
-    mobile?: string;
-    name?: string;
+/** @returns {SendOtpToCustomerResponse} */
+declare function SendOtpToCustomerResponse(): SendOtpToCustomerResponse;
+type SendOtpToCustomerResponse = {
+    request_id?: string;
+    message?: string;
+    success?: boolean;
+    resend_timer?: number;
 };
 /** @returns {VerifyOtp} */
 declare function VerifyOtp(): VerifyOtp;
@@ -1109,4 +956,157 @@ type VerifyOtp = {
 declare function VerifyOtpResponse(): VerifyOtpResponse;
 type VerifyOtpResponse = {
     success?: boolean;
+};
+/** @returns {BagReasonMeta} */
+declare function BagReasonMeta(): BagReasonMeta;
+type BagReasonMeta = {
+    show_text_area?: boolean;
+};
+/** @returns {QuestionSet} */
+declare function QuestionSet(): QuestionSet;
+type QuestionSet = {
+    id?: number;
+    display_name?: string;
+};
+/** @returns {BagReasons} */
+declare function BagReasons(): BagReasons;
+type BagReasons = {
+    qc_type?: string[];
+    id?: number;
+    display_name?: string;
+    meta?: BagReasonMeta;
+    question_set?: QuestionSet[];
+    reasons?: BagReasons[];
+};
+/** @returns {ShipmentBagReasons} */
+declare function ShipmentBagReasons(): ShipmentBagReasons;
+type ShipmentBagReasons = {
+    reasons?: BagReasons[];
+    success?: boolean;
+};
+/** @returns {ShipmentReason} */
+declare function ShipmentReason(): ShipmentReason;
+type ShipmentReason = {
+    priority?: number;
+    show_text_area?: boolean;
+    reason_id?: number;
+    feedback_type?: string;
+    reason_text?: string;
+    flow?: string;
+};
+/** @returns {ShipmentReasons} */
+declare function ShipmentReasons(): ShipmentReasons;
+type ShipmentReasons = {
+    reasons?: ShipmentReason[];
+};
+/** @returns {ProductsReasonsData} */
+declare function ProductsReasonsData(): ProductsReasonsData;
+type ProductsReasonsData = {
+    reason_id?: number;
+    reason_text?: string;
+};
+/** @returns {ProductsReasonsFilters} */
+declare function ProductsReasonsFilters(): ProductsReasonsFilters;
+type ProductsReasonsFilters = {
+    line_number?: number;
+    quantity?: number;
+    identifier?: string;
+};
+/** @returns {ProductsReasons} */
+declare function ProductsReasons(): ProductsReasons;
+type ProductsReasons = {
+    data?: ProductsReasonsData;
+    filters?: ProductsReasonsFilters[];
+};
+/** @returns {EntityReasonData} */
+declare function EntityReasonData(): EntityReasonData;
+type EntityReasonData = {
+    reason_id?: number;
+    reason_text?: string;
+};
+/** @returns {EntitiesReasons} */
+declare function EntitiesReasons(): EntitiesReasons;
+type EntitiesReasons = {
+    data?: EntityReasonData;
+    filters?: any[];
+};
+/** @returns {ReasonsData} */
+declare function ReasonsData(): ReasonsData;
+type ReasonsData = {
+    products?: ProductsReasons[];
+    entities?: EntitiesReasons[];
+};
+/** @returns {Products} */
+declare function Products(): Products;
+type Products = {
+    line_number?: number;
+    quantity?: number;
+    identifier?: string;
+};
+/** @returns {ProductsDataUpdatesFilters} */
+declare function ProductsDataUpdatesFilters(): ProductsDataUpdatesFilters;
+type ProductsDataUpdatesFilters = {
+    line_number?: number;
+    identifier?: string;
+};
+/** @returns {ProductsDataUpdates} */
+declare function ProductsDataUpdates(): ProductsDataUpdates;
+type ProductsDataUpdates = {
+    data?: any;
+    filters?: ProductsDataUpdatesFilters[];
+};
+/** @returns {EntitiesDataUpdates} */
+declare function EntitiesDataUpdates(): EntitiesDataUpdates;
+type EntitiesDataUpdates = {
+    data?: any;
+    filters?: any[];
+};
+/** @returns {DataUpdates} */
+declare function DataUpdates(): DataUpdates;
+type DataUpdates = {
+    products?: ProductsDataUpdates[];
+    entities?: EntitiesDataUpdates[];
+};
+/** @returns {ShipmentsRequest} */
+declare function ShipmentsRequest(): ShipmentsRequest;
+type ShipmentsRequest = {
+    reasons?: ReasonsData;
+    products?: Products[];
+    data_updates?: DataUpdates;
+    identifier: string;
+};
+/** @returns {StatuesRequest} */
+declare function StatuesRequest(): StatuesRequest;
+type StatuesRequest = {
+    shipments?: ShipmentsRequest[];
+    exclude_bags_next_state?: string;
+    status?: string;
+};
+/** @returns {UpdateShipmentStatusRequest} */
+declare function UpdateShipmentStatusRequest(): UpdateShipmentStatusRequest;
+type UpdateShipmentStatusRequest = {
+    statuses?: StatuesRequest[];
+    task?: boolean;
+    lock_after_transition?: boolean;
+    force_transition?: boolean;
+    unlock_before_transition?: boolean;
+};
+/** @returns {StatusesBodyResponse} */
+declare function StatusesBodyResponse(): StatusesBodyResponse;
+type StatusesBodyResponse = {
+    shipments?: any[];
+};
+/** @returns {ShipmentApplicationStatusResponse} */
+declare function ShipmentApplicationStatusResponse(): ShipmentApplicationStatusResponse;
+type ShipmentApplicationStatusResponse = {
+    statuses?: StatusesBodyResponse[];
+};
+/** @returns {ErrorResponse} */
+declare function ErrorResponse(): ErrorResponse;
+type ErrorResponse = {
+    code?: string;
+    message?: string;
+    status?: number;
+    exception?: string;
+    stack_trace?: string;
 };

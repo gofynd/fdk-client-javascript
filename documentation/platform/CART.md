@@ -14585,6 +14585,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | billing_address | string? |  yes  |  |
  | billing_address_id | string? |  yes  |  |
  | callback_url | string? |  yes  |  |
+ | card_id | string? |  yes  |  |
  | checkout_mode | string? |  yes  |  |
  | custom_meta | [[CartCheckoutCustomMeta](#CartCheckoutCustomMeta)]? |  yes  |  |
  | customer_details | [CustomerDetails](#CustomerDetails)? |  yes  | Customer details |
@@ -14594,8 +14595,10 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | extra_meta | string? |  yes  |  |
  | files | [[Files](#Files)]? |  yes  | List of file url |
  | id | string |  no  |  |
+ | iin | string? |  yes  |  |
  | merchant_code | string? |  yes  |  |
  | meta | string? |  yes  |  |
+ | network | string? |  yes  |  |
  | order_type | string |  no  |  |
  | ordering_store | number? |  yes  |  |
  | payment_auto_confirm | boolean? |  yes  |  |
@@ -14606,6 +14609,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | pick_at_store_uid | number? |  yes  |  |
  | pos | boolean? |  yes  |  |
  | staff | [StaffCheckout](#StaffCheckout)? |  yes  |  |
+ | type | string? |  yes  |  |
  | user_id | string |  no  |  |
  
 
@@ -14620,6 +14624,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | billing_address | string? |  yes  |  |
  | billing_address_id | string? |  yes  |  |
  | callback_url | string? |  yes  |  |
+ | card_id | string? |  yes  |  |
  | checkout_mode | string? |  yes  |  |
  | custom_meta | string? |  yes  |  |
  | customer_details | [CustomerDetails](#CustomerDetails)? |  yes  | Customer details |
@@ -14629,8 +14634,10 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | extra_meta | string? |  yes  |  |
  | files | [[Files](#Files)]? |  yes  | List of file url |
  | id | string |  no  |  |
+ | iin | string? |  yes  |  |
  | merchant_code | string? |  yes  |  |
  | meta | string? |  yes  |  |
+ | network | string? |  yes  |  |
  | order_type | string |  no  |  |
  | ordering_store | number? |  yes  |  |
  | payment_auto_confirm | boolean? |  yes  |  |
@@ -14641,6 +14648,7 @@ Success. Returns a success message and the coupon validity. Refer `PaymentCoupon
  | pick_at_store_uid | number? |  yes  |  |
  | pos | boolean? |  yes  |  |
  | staff | [StaffCheckout](#StaffCheckout)? |  yes  |  |
+ | type | string? |  yes  |  |
  | user_id | string |  no  |  |
  
 

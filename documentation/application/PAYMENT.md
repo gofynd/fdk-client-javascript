@@ -55,7 +55,7 @@ Default
 * [verifyIfscCode](#verifyifsccode)
 * [verifyOtpAndAddBeneficiaryForBank](#verifyotpandaddbeneficiaryforbank)
 * [verifyOtpAndAddBeneficiaryForWallet](#verifyotpandaddbeneficiaryforwallet)
-* [walletLinkInitate](#walletlinkinitate)
+* [walletLinkInitiate](#walletlinkinitiate)
 
 
 
@@ -2118,10 +2118,6 @@ Success. Returns all available options for payment. Check the example shown belo
                 "redirect": false,
                 "callback_url": null,
                 "action_url": "https://api.fyndx0.de/platform/payment/v2/external/payments/confirm/charge/?app_id=000000000000000000000001"
-              },
-              "data": {
-                "user_phone": "9999632145",
-                "user_email": "app@fynd.com"
               }
             },
             "return_url": null
@@ -2665,10 +2661,6 @@ Success. Returns all available options for payment. Check the example shown belo
                 "redirect": false,
                 "callback_url": null,
                 "action_url": "https://api.fyndx0.de/platform/payment/v2/external/payments/confirm/charge/?app_id=000000000000000000000001"
-              },
-              "data": {
-                "user_phone": "9999632145",
-                "user_email": "app@fynd.com"
               }
             },
             "return_url": null
@@ -2941,10 +2933,6 @@ Success. Returns all available options for payment. Check the example shown belo
                 "redirect": false,
                 "callback_url": null,
                 "action_url": "https://api.fyndx0.de/platform/payment/v2/external/payments/confirm/charge/?app_id=000000000000000000000001"
-              },
-              "data": {
-                "user_phone": "9999632145",
-                "user_email": "app@fynd.com"
               }
             },
             "return_url": null
@@ -4316,17 +4304,17 @@ Success. Sends the OTP to the given mobile number. Check the example shown below
 ---
 
 
-### walletLinkInitate
+### walletLinkInitiate
 Initiate linking of wallet
 
 
 
 ```javascript
 // Promise
-const promise = applicationClient.payment.walletLinkInitate({  body : value });
+const promise = applicationClient.payment.walletLinkInitiate({  body : value });
 
 // Async/Await
-const data = await applicationClient.payment.walletLinkInitate({  body : value });
+const data = await applicationClient.payment.walletLinkInitiate({  body : value });
 ```
 
 
@@ -5751,6 +5739,7 @@ OTP for Wallet Linking sent
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | aggregator | string? |  yes  | aggregator slug |
  | upi_vpa | string |  no  | UPI ID |
  
 

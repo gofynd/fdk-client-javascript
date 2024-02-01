@@ -1,90 +1,163 @@
 export = AuditTrailPlatformModel;
 /**
- * @typedef BadRequest
- * @property {string} [message] - Failure message.
+ * @typedef RequestBodyAuditLog
+ * @property {LogMetaObj} log_meta
+ * @property {Object} log_payload
  */
 /**
  * @typedef CreateLogResponse
- * @property {string} [internal_message]
  * @property {string} [message]
- */
-/**
- * @typedef DeviceInfo
- * @property {Object} [extra_meta]
- * @property {string} [user_agent]
- */
-/**
- * @typedef EntityObj
- * @property {string} [action]
- * @property {Object} [entity_details]
- * @property {string} [id]
- * @property {string} [type]
- */
-/**
- * @typedef EntityObject
- * @property {string} [action]
- * @property {string} [id]
- * @property {string} [type]
- */
-/**
- * @typedef EntityTypeObj
- * @property {string} [display_name]
- * @property {string} [entity_value]
- */
-/**
- * @typedef EntityTypesResponse
- * @property {EntityTypeObj[]} [items]
- */
-/**
- * @typedef InternalServerError
- * @property {string} [code] - Error code
- * @property {string} [message] - Internal server Server error
- */
-/**
- * @typedef Location
- * @property {Object} [extra_meta]
- */
-/**
- * @typedef LogDocs
- * @property {string} [_id]
- * @property {string} [application]
- * @property {string} [company]
- * @property {string} [date]
- * @property {DeviceInfo} [device_info]
- * @property {EntityObj} [entity]
- * @property {Location} [location]
- * @property {Object} [logs]
- * @property {Modifier} [modifier]
- * @property {string} [sessions]
+ * @property {string} [internal_message]
  */
 /**
  * @typedef LogMetaObj
- * @property {string} [application]
- * @property {Object} [device_info]
- * @property {EntityObject} [entity]
- * @property {Object} [location]
  * @property {Object} [modifier]
+ * @property {string} [application]
+ * @property {EntityObject} [entity]
+ * @property {Object} [device_info]
+ * @property {Object} [location]
+ */
+/**
+ * @typedef EntityObject
+ * @property {string} [id]
+ * @property {string} [type]
+ * @property {string} [action]
  */
 /**
  * @typedef LogSchemaResponse
  * @property {LogDocs[]} [docs]
  */
 /**
- * @typedef Modifier
- * @property {boolean} [as_administrator]
- * @property {Object} [user_details]
- * @property {string} [user_id]
+ * @typedef LogDocs
+ * @property {EntityObj} [entity]
+ * @property {Modifier} [modifier]
+ * @property {DeviceInfo} [device_info]
+ * @property {Location} [location]
+ * @property {string} [_id]
+ * @property {string} [company]
+ * @property {string} [application]
+ * @property {string} [sessions]
+ * @property {string} [date]
+ * @property {Object} [logs]
  */
 /**
- * @typedef RequestBodyAuditLog
- * @property {LogMetaObj} log_meta
- * @property {Object} log_payload
+ * @typedef EntityObj
+ * @property {string} [id]
+ * @property {string} [type]
+ * @property {string} [action]
+ * @property {Object} [entity_details]
+ */
+/**
+ * @typedef Modifier
+ * @property {string} [user_id]
+ * @property {boolean} [as_administrator]
+ * @property {Object} [user_details]
+ */
+/**
+ * @typedef DeviceInfo
+ * @property {string} [user_agent]
+ * @property {Object} [extra_meta]
+ */
+/**
+ * @typedef Location
+ * @property {Object} [extra_meta]
+ */
+/**
+ * @typedef BadRequest
+ * @property {string} [message] - Failure message.
+ */
+/**
+ * @typedef InternalServerError
+ * @property {string} [message] - Internal server Server error
+ * @property {string} [code] - Error code
+ */
+/**
+ * @typedef EntityTypesResponse
+ * @property {EntityTypeObj[]} [items]
+ */
+/**
+ * @typedef EntityTypeObj
+ * @property {string} [entity_value]
+ * @property {string} [display_name]
  */
 declare class AuditTrailPlatformModel {
 }
 declare namespace AuditTrailPlatformModel {
-    export { BadRequest, CreateLogResponse, DeviceInfo, EntityObj, EntityObject, EntityTypeObj, EntityTypesResponse, InternalServerError, Location, LogDocs, LogMetaObj, LogSchemaResponse, Modifier, RequestBodyAuditLog };
+    export { RequestBodyAuditLog, CreateLogResponse, LogMetaObj, EntityObject, LogSchemaResponse, LogDocs, EntityObj, Modifier, DeviceInfo, Location, BadRequest, InternalServerError, EntityTypesResponse, EntityTypeObj };
 }
+/** @returns {RequestBodyAuditLog} */
+declare function RequestBodyAuditLog(): RequestBodyAuditLog;
+type RequestBodyAuditLog = {
+    log_meta: LogMetaObj;
+    log_payload: any;
+};
+/** @returns {CreateLogResponse} */
+declare function CreateLogResponse(): CreateLogResponse;
+type CreateLogResponse = {
+    message?: string;
+    internal_message?: string;
+};
+/** @returns {LogMetaObj} */
+declare function LogMetaObj(): LogMetaObj;
+type LogMetaObj = {
+    modifier?: any;
+    application?: string;
+    entity?: EntityObject;
+    device_info?: any;
+    location?: any;
+};
+/** @returns {EntityObject} */
+declare function EntityObject(): EntityObject;
+type EntityObject = {
+    id?: string;
+    type?: string;
+    action?: string;
+};
+/** @returns {LogSchemaResponse} */
+declare function LogSchemaResponse(): LogSchemaResponse;
+type LogSchemaResponse = {
+    docs?: LogDocs[];
+};
+/** @returns {LogDocs} */
+declare function LogDocs(): LogDocs;
+type LogDocs = {
+    entity?: EntityObj;
+    modifier?: Modifier;
+    device_info?: DeviceInfo;
+    location?: Location;
+    _id?: string;
+    company?: string;
+    application?: string;
+    sessions?: string;
+    date?: string;
+    logs?: any;
+};
+/** @returns {EntityObj} */
+declare function EntityObj(): EntityObj;
+type EntityObj = {
+    id?: string;
+    type?: string;
+    action?: string;
+    entity_details?: any;
+};
+/** @returns {Modifier} */
+declare function Modifier(): Modifier;
+type Modifier = {
+    user_id?: string;
+    as_administrator?: boolean;
+    user_details?: any;
+};
+/** @returns {DeviceInfo} */
+declare function DeviceInfo(): DeviceInfo;
+type DeviceInfo = {
+    user_agent?: string;
+    extra_meta?: any;
+};
+/** @returns {Location} */
+declare function Location(): Location;
+type Location = {
+    extra_meta?: any;
+};
 /** @returns {BadRequest} */
 declare function BadRequest(): BadRequest;
 type BadRequest = {
@@ -93,99 +166,26 @@ type BadRequest = {
      */
     message?: string;
 };
-/** @returns {CreateLogResponse} */
-declare function CreateLogResponse(): CreateLogResponse;
-type CreateLogResponse = {
-    internal_message?: string;
+/** @returns {InternalServerError} */
+declare function InternalServerError(): InternalServerError;
+type InternalServerError = {
+    /**
+     * - Internal server Server error
+     */
     message?: string;
-};
-/** @returns {DeviceInfo} */
-declare function DeviceInfo(): DeviceInfo;
-type DeviceInfo = {
-    extra_meta?: any;
-    user_agent?: string;
-};
-/** @returns {EntityObj} */
-declare function EntityObj(): EntityObj;
-type EntityObj = {
-    action?: string;
-    entity_details?: any;
-    id?: string;
-    type?: string;
-};
-/** @returns {EntityObject} */
-declare function EntityObject(): EntityObject;
-type EntityObject = {
-    action?: string;
-    id?: string;
-    type?: string;
-};
-/** @returns {EntityTypeObj} */
-declare function EntityTypeObj(): EntityTypeObj;
-type EntityTypeObj = {
-    display_name?: string;
-    entity_value?: string;
+    /**
+     * - Error code
+     */
+    code?: string;
 };
 /** @returns {EntityTypesResponse} */
 declare function EntityTypesResponse(): EntityTypesResponse;
 type EntityTypesResponse = {
     items?: EntityTypeObj[];
 };
-/** @returns {InternalServerError} */
-declare function InternalServerError(): InternalServerError;
-type InternalServerError = {
-    /**
-     * - Error code
-     */
-    code?: string;
-    /**
-     * - Internal server Server error
-     */
-    message?: string;
-};
-/** @returns {Location} */
-declare function Location(): Location;
-type Location = {
-    extra_meta?: any;
-};
-/** @returns {LogDocs} */
-declare function LogDocs(): LogDocs;
-type LogDocs = {
-    _id?: string;
-    application?: string;
-    company?: string;
-    date?: string;
-    device_info?: DeviceInfo;
-    entity?: EntityObj;
-    location?: Location;
-    logs?: any;
-    modifier?: Modifier;
-    sessions?: string;
-};
-/** @returns {LogMetaObj} */
-declare function LogMetaObj(): LogMetaObj;
-type LogMetaObj = {
-    application?: string;
-    device_info?: any;
-    entity?: EntityObject;
-    location?: any;
-    modifier?: any;
-};
-/** @returns {LogSchemaResponse} */
-declare function LogSchemaResponse(): LogSchemaResponse;
-type LogSchemaResponse = {
-    docs?: LogDocs[];
-};
-/** @returns {Modifier} */
-declare function Modifier(): Modifier;
-type Modifier = {
-    as_administrator?: boolean;
-    user_details?: any;
-    user_id?: string;
-};
-/** @returns {RequestBodyAuditLog} */
-declare function RequestBodyAuditLog(): RequestBodyAuditLog;
-type RequestBodyAuditLog = {
-    log_meta: LogMetaObj;
-    log_payload: any;
+/** @returns {EntityTypeObj} */
+declare function EntityTypeObj(): EntityTypeObj;
+type EntityTypeObj = {
+    entity_value?: string;
+    display_name?: string;
 };

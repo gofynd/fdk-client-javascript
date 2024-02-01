@@ -1,14 +1,32 @@
 export = CommunicationApplicationModel;
 /**
- * @typedef BadRequestSchema
- * @property {string} [message] - Failure message.
- * @property {string} [status] - Response status.
+ * @typedef CommunicationConsentReq
+ * @property {string} [response]
+ * @property {string} [action]
+ * @property {string} [channel]
  */
 /**
- * @typedef CommunicationConsent
+ * @typedef CommunicationConsentRes
  * @property {string} [app_id]
- * @property {CommunicationConsentChannels} [channels]
  * @property {string} [user_id]
+ * @property {CommunicationConsentChannels} [channels]
+ */
+/**
+ * @typedef CommunicationConsentChannelsEmail
+ * @property {string} [response]
+ * @property {string} [display_name]
+ */
+/**
+ * @typedef CommunicationConsentChannelsSms
+ * @property {string} [response]
+ * @property {string} [display_name]
+ */
+/**
+ * @typedef CommunicationConsentChannelsWhatsapp
+ * @property {string} [response]
+ * @property {string} [display_name]
+ * @property {string} [country_code]
+ * @property {string} [phone_number]
  */
 /**
  * @typedef CommunicationConsentChannels
@@ -17,79 +35,76 @@ export = CommunicationApplicationModel;
  * @property {CommunicationConsentChannelsWhatsapp} [whatsapp]
  */
 /**
- * @typedef CommunicationConsentChannelsEmail
- * @property {string} [display_name]
- * @property {string} [response]
- */
-/**
- * @typedef CommunicationConsentChannelsSms
- * @property {string} [display_name]
- * @property {string} [response]
- */
-/**
- * @typedef CommunicationConsentChannelsWhatsapp
- * @property {string} [country_code]
- * @property {string} [display_name]
- * @property {string} [phone_number]
- * @property {string} [response]
- */
-/**
- * @typedef CommunicationConsentReq
- * @property {string} [action]
- * @property {string} [channel]
- * @property {string} [response]
- */
-/**
- * @typedef CommunicationConsentRes
+ * @typedef CommunicationConsent
  * @property {string} [app_id]
- * @property {CommunicationConsentChannels} [channels]
  * @property {string} [user_id]
+ * @property {CommunicationConsentChannels} [channels]
+ */
+/**
+ * @typedef BadRequestSchema
+ * @property {string} [status] - Response status.
+ * @property {string} [message] - Failure message.
  */
 /**
  * @typedef PushtokenReq
  * @property {string} [action]
  * @property {string} [bundle_identifier]
  * @property {string} [push_token]
- * @property {string} [type]
  * @property {string} [unique_device_id]
+ * @property {string} [type]
  */
 /**
  * @typedef PushtokenRes
  * @property {string} [_id]
- * @property {string} [application_id]
  * @property {string} [bundle_identifier]
- * @property {string} [created_at]
- * @property {string} [expired_at]
- * @property {string} [platform]
  * @property {string} [push_token]
- * @property {string} [type]
  * @property {string} [unique_device_id]
- * @property {string} [updated_at]
+ * @property {string} [type]
+ * @property {string} [platform]
+ * @property {string} [application_id]
  * @property {string} [user_id]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ * @property {string} [expired_at]
  */
 declare class CommunicationApplicationModel {
 }
 declare namespace CommunicationApplicationModel {
-    export { BadRequestSchema, CommunicationConsent, CommunicationConsentChannels, CommunicationConsentChannelsEmail, CommunicationConsentChannelsSms, CommunicationConsentChannelsWhatsapp, CommunicationConsentReq, CommunicationConsentRes, PushtokenReq, PushtokenRes };
+    export { CommunicationConsentReq, CommunicationConsentRes, CommunicationConsentChannelsEmail, CommunicationConsentChannelsSms, CommunicationConsentChannelsWhatsapp, CommunicationConsentChannels, CommunicationConsent, BadRequestSchema, PushtokenReq, PushtokenRes };
 }
-/** @returns {BadRequestSchema} */
-declare function BadRequestSchema(): BadRequestSchema;
-type BadRequestSchema = {
-    /**
-     * - Failure message.
-     */
-    message?: string;
-    /**
-     * - Response status.
-     */
-    status?: string;
+/** @returns {CommunicationConsentReq} */
+declare function CommunicationConsentReq(): CommunicationConsentReq;
+type CommunicationConsentReq = {
+    response?: string;
+    action?: string;
+    channel?: string;
 };
-/** @returns {CommunicationConsent} */
-declare function CommunicationConsent(): CommunicationConsent;
-type CommunicationConsent = {
+/** @returns {CommunicationConsentRes} */
+declare function CommunicationConsentRes(): CommunicationConsentRes;
+type CommunicationConsentRes = {
     app_id?: string;
-    channels?: CommunicationConsentChannels;
     user_id?: string;
+    channels?: CommunicationConsentChannels;
+};
+/** @returns {CommunicationConsentChannelsEmail} */
+declare function CommunicationConsentChannelsEmail(): CommunicationConsentChannelsEmail;
+type CommunicationConsentChannelsEmail = {
+    response?: string;
+    display_name?: string;
+};
+/** @returns {CommunicationConsentChannelsSms} */
+declare function CommunicationConsentChannelsSms(): CommunicationConsentChannelsSms;
+type CommunicationConsentChannelsSms = {
+    response?: string;
+    display_name?: string;
+};
+/** @returns {CommunicationConsentChannelsWhatsapp} */
+declare function CommunicationConsentChannelsWhatsapp(): CommunicationConsentChannelsWhatsapp;
+type CommunicationConsentChannelsWhatsapp = {
+    response?: string;
+    display_name?: string;
+    country_code?: string;
+    phone_number?: string;
 };
 /** @returns {CommunicationConsentChannels} */
 declare function CommunicationConsentChannels(): CommunicationConsentChannels;
@@ -98,39 +113,24 @@ type CommunicationConsentChannels = {
     sms?: CommunicationConsentChannelsSms;
     whatsapp?: CommunicationConsentChannelsWhatsapp;
 };
-/** @returns {CommunicationConsentChannelsEmail} */
-declare function CommunicationConsentChannelsEmail(): CommunicationConsentChannelsEmail;
-type CommunicationConsentChannelsEmail = {
-    display_name?: string;
-    response?: string;
-};
-/** @returns {CommunicationConsentChannelsSms} */
-declare function CommunicationConsentChannelsSms(): CommunicationConsentChannelsSms;
-type CommunicationConsentChannelsSms = {
-    display_name?: string;
-    response?: string;
-};
-/** @returns {CommunicationConsentChannelsWhatsapp} */
-declare function CommunicationConsentChannelsWhatsapp(): CommunicationConsentChannelsWhatsapp;
-type CommunicationConsentChannelsWhatsapp = {
-    country_code?: string;
-    display_name?: string;
-    phone_number?: string;
-    response?: string;
-};
-/** @returns {CommunicationConsentReq} */
-declare function CommunicationConsentReq(): CommunicationConsentReq;
-type CommunicationConsentReq = {
-    action?: string;
-    channel?: string;
-    response?: string;
-};
-/** @returns {CommunicationConsentRes} */
-declare function CommunicationConsentRes(): CommunicationConsentRes;
-type CommunicationConsentRes = {
+/** @returns {CommunicationConsent} */
+declare function CommunicationConsent(): CommunicationConsent;
+type CommunicationConsent = {
     app_id?: string;
-    channels?: CommunicationConsentChannels;
     user_id?: string;
+    channels?: CommunicationConsentChannels;
+};
+/** @returns {BadRequestSchema} */
+declare function BadRequestSchema(): BadRequestSchema;
+type BadRequestSchema = {
+    /**
+     * - Response status.
+     */
+    status?: string;
+    /**
+     * - Failure message.
+     */
+    message?: string;
 };
 /** @returns {PushtokenReq} */
 declare function PushtokenReq(): PushtokenReq;
@@ -138,21 +138,21 @@ type PushtokenReq = {
     action?: string;
     bundle_identifier?: string;
     push_token?: string;
-    type?: string;
     unique_device_id?: string;
+    type?: string;
 };
 /** @returns {PushtokenRes} */
 declare function PushtokenRes(): PushtokenRes;
 type PushtokenRes = {
     _id?: string;
-    application_id?: string;
     bundle_identifier?: string;
-    created_at?: string;
-    expired_at?: string;
-    platform?: string;
     push_token?: string;
-    type?: string;
     unique_device_id?: string;
-    updated_at?: string;
+    type?: string;
+    platform?: string;
+    application_id?: string;
     user_id?: string;
+    created_at?: string;
+    updated_at?: string;
+    expired_at?: string;
 };
