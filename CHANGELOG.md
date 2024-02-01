@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ---
+## [v0.6.0] - 2024-01-09
+### Added
+- Added retry mechanism for APIs getting used inside extension library if Fynd Platform server is down.
+---
 ## [v0.5.4] - 2023-03-03
 ### Changed
 - Fixed `syncEvents` for webhooks not working as expected in case of `subscribe_on_install` is set as `true` in config passed to `setupFdk` function.

@@ -5,13 +5,15 @@ const { fdkAxios } = require("@gofynd/fdk-client-javascript/sdk/common/AxiosHelp
 const { TEST_WEBHOOK_EVENT_NAME, ASSOCIATION_CRITERIA } = require("./constants");
 const { FdkWebhookProcessError, FdkWebhookHandlerNotFound, FdkWebhookRegistrationError, FdkInvalidHMacError, FdkInvalidWebhookConfig } = require("./error_code");
 const logger = require("./logger");
+const { RetryManger } = require("./retry_manager");
 
 let eventConfig = {}
 class WebhookRegistry {
-    constructor() {
+    constructor(retryManager) {
         this._handlerMap = null;
         this._config = null;
         this._fdkConfig = null;
+        this._retryManager = retryManager;
     }
 
     async initialize(config, fdkConfig) {
@@ -178,7 +180,7 @@ class WebhookRegistry {
 
         try {
             if (registerNew) {
-                await platformClient.webhook.registerSubscriberToEvent({ body: subscriberConfig });
+                await this.registerSubscriberConfig(platformClient, subscriberConfig);
                 if (this._fdkConfig.debug) {
                     const event_map = Object.keys(eventConfig.eventsMap).reduce((map, eventName) => {
                         map[eventConfig.eventsMap[eventName]] = eventName;
@@ -195,7 +197,7 @@ class WebhookRegistry {
                 ]
 
                 if (eventDiff.length || configUpdated) {
-                    await platformClient.webhook.updateSubscriberConfig({ body: subscriberConfig });
+                    await this.updateSubscriberConfig(platformClient, subscriberConfig);
                     if (this._fdkConfig.debug) {
                         const event_map = Object.keys(eventConfig.eventsMap).reduce((map, eventName) => {
                             map[eventConfig.eventsMap[eventName]] = eventName;
@@ -214,7 +216,7 @@ class WebhookRegistry {
 
     async enableSalesChannelWebhook(platformClient, applicationId) {
         if (!this.isInitialized){
-            throw new FdkInvalidWebhookConfig('Webhook registry not initialized');
+            await this.initialize(this._config, this._fdkConfig);
         }
         if (this._config.subscribed_saleschannel !== 'specific') {
             throw new FdkWebhookRegistrationError('`subscribed_saleschannel` is not set to `specific` in webhook config');
@@ -233,7 +235,7 @@ class WebhookRegistry {
                 arrApplicationId.push(applicationId);
                 subscriberConfig.association.application_id = arrApplicationId;
                 subscriberConfig.association.criteria = this._associationCriteria(subscriberConfig.association.application_id);
-                await platformClient.webhook.updateSubscriberConfig({ body: subscriberConfig });
+                await this.updateSubscriberConfig(platformClient, subscriberConfig);
                 logger.debug(`Webhook enabled for saleschannel: ${applicationId}`);
             }
         }
@@ -244,7 +246,7 @@ class WebhookRegistry {
 
     async disableSalesChannelWebhook(platformClient, applicationId) {
         if (!this.isInitialized){
-            throw new FdkInvalidWebhookConfig('Webhook registry not initialized');
+            await this.initialize(this._config, this._fdkConfig);
         }
         if (this._config.subscribed_saleschannel !== 'specific') {
             throw new FdkWebhookRegistrationError('`subscribed_saleschannel` is not set to `specific` in webhook config');
@@ -264,7 +266,7 @@ class WebhookRegistry {
                 if (rmIndex > -1) {
                     arrApplicationId.splice(rmIndex, 1);
                     subscriberConfig.association.criteria = this._associationCriteria(subscriberConfig.association.application_id);
-                    await platformClient.webhook.updateSubscriberConfig({ body: subscriberConfig });
+                    await this.updateSubscriberConfig(platformClient, subscriberConfig);
                     logger.debug(`Webhook disabled for saleschannel: ${applicationId}`);
                 }
             }
@@ -285,7 +287,7 @@ class WebhookRegistry {
 
     async processWebhook(req) {
         if (!this.isInitialized){
-            throw new FdkInvalidWebhookConfig('Webhook registry not initialized');
+            await this.initialize(this._config, this._fdkConfig);
         }
         try {
             const { body } = req;
@@ -315,17 +317,96 @@ class WebhookRegistry {
         }
     }
 
+
+    async registerSubscriberConfig(platformClient, subscriberConfig) {
+        const uniqueKey = `registerSubscriberToEvent_${platformClient.config.companyId}_${this._fdkConfig.api_key}`;
+
+        const retryInfo = this._retryManager.retryInfoMap.get(uniqueKey);
+        if (retryInfo && !retryInfo.isRetry) {
+            this._retryManager.resetRetryState(uniqueKey);
+        }
+
+        try {
+            return await platformClient.webhook.registerSubscriberToEvent({body: subscriberConfig});
+        } catch(err) {
+            if (
+                RetryManger.shouldRetryOnError(err)
+                && !this._retryManager.isRetryInProgress(uniqueKey)
+            ) {
+                return await this._retryManager.retry(
+                    uniqueKey, 
+                    this.registerSubscriberConfig.bind(this), 
+                    platformClient, 
+                    subscriberConfig
+                )
+            }
+        }
+        throw new FdkWebhookRegistrationError(`Error while registering webhook subscriber configuration, Reason: ${err.message}`);
+    }
+
+    async updateSubscriberConfig(platformClient, subscriberConfig) {
+        const uniqueKey = `updateSubscriberConfig_${platformClient.config.companyId}_${this._fdkConfig.api_key}`;
+
+        const retryInfo = this._retryManager.retryInfoMap.get(uniqueKey);
+        if (retryInfo && !retryInfo.isRetry) {
+            this._retryManager.resetRetryState(uniqueKey);
+        }
+
+        try {
+            return await platformClient.webhook.updateSubscriberConfig({body: subscriberConfig});
+        } catch(err) {
+            if (
+                RetryManger.shouldRetryOnError(err)
+                && !this._retryManager.isRetryInProgress(uniqueKey)
+            ) {
+                return await this._retryManager.retry(
+                    uniqueKey, 
+                    this.updateSubscriberConfig.bind(this),
+                    platformClient, 
+                    subscriberConfig
+                );
+            }
+            throw new FdkWebhookRegistrationError(`Error while updating webhook subscriber configuration. Reason: ${err.message}`);
+        }
+    }
+
     async getSubscriberConfig(platformClient) {
+        const uniqueKey = `getSubscribersByExtensionId_${platformClient.config.companyId}_${this._fdkConfig.api_key}`;
+
+        const retryInfo = this._retryManager.retryInfoMap.get(uniqueKey);
+        if (retryInfo && !retryInfo.isRetry) {
+            this._retryManager.resetRetryState(uniqueKey);
+        }
+
         try {
             const subscriberConfig = await platformClient.webhook.getSubscribersByExtensionId({ extensionId: this._fdkConfig.api_key });
             return subscriberConfig.items[0];
         }
         catch(err){
-            throw new FdkInvalidWebhookConfig(`Error while fetching webhook subscriber configuration, Reason: ${err.message}`)
+            if (
+                RetryManger.shouldRetryOnError(err)
+                && !this._retryManager.isRetryInProgress(uniqueKey)
+            ) {
+                return await this._retryManager.retry(
+                    uniqueKey, 
+                    this.getSubscriberConfig.bind(this), 
+                    platformClient
+                );
+            }
+            throw new FdkInvalidWebhookConfig(`Error while fetching webhook subscriber configuration, Reason: ${err.message}`);
         }
     }
 
     async getEventConfig(handlerConfig) {
+        let url = `${this._fdkConfig.cluster}/service/common/webhook/v1.0/events/query-event-details`;
+        const uniqueKey = `${url}_${this._fdkConfig.api_key}`;
+
+        const retryInfo = this._retryManager.retryInfoMap.get(uniqueKey);
+
+        if (retryInfo && !retryInfo.isRetry) {
+            this._retryManager.resetRetryState(uniqueKey);
+        }
+
         try {
             let data = [];
             Object.keys(handlerConfig).forEach((key) => {
@@ -340,7 +421,7 @@ class WebhookRegistry {
                 eventObj.version = handlerConfig[key].version;
                 data.push(eventObj);
             });
-            let url = `${this._fdkConfig.cluster}/service/common/webhook/v1.0/events/query-event-details`;
+            
             const rawRequest = {
                 method: "post",
                 url: url,
@@ -355,6 +436,14 @@ class WebhookRegistry {
             return responseData;            
         }
         catch (err) {
+
+            if (
+                RetryManger.shouldRetryOnError(err)
+                && !this._retryManager.isRetryInProgress(uniqueKey)
+            ) {
+                return await this._retryManager.retry(uniqueKey, this.getEventConfig.bind(this), handlerConfig);
+            }
+
             throw new FdkInvalidWebhookConfig(`Error while fetching webhook events configuration, Reason: ${err.message}`)
         }
     }

@@ -20,7 +20,7 @@ function setupRoutes(ext) {
         // ?company_id=1&client_id=123313112122
         try {
             let companyId = parseInt(req.query.company_id);
-            let platformConfig = ext.getPlatformConfig(companyId);
+            let platformConfig = await ext.getPlatformConfig(companyId);
             let session;
 
             session = new Session(Session.generateSessionId(true));
@@ -89,7 +89,7 @@ function setupRoutes(ext) {
             }
             const companyId = req.fdkSession.company_id
 
-            const platformConfig = ext.getPlatformConfig(req.fdkSession.company_id);
+            const platformConfig = await ext.getPlatformConfig(req.fdkSession.company_id);
             await platformConfig.oauthClient.verifyCallback(req.query);
 
             let token = platformConfig.oauthClient.raw_token;
@@ -162,7 +162,7 @@ function setupRoutes(ext) {
 
             logger.debug(`Extension auto install started for company: ${company_id} on company creation.`);
 
-            let platformConfig = ext.getPlatformConfig(company_id);
+            let platformConfig = await ext.getPlatformConfig(company_id);
             let sid = Session.generateSessionId(false, {
                 cluster: ext.cluster,
                 id: company_id
