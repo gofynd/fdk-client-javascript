@@ -113,7 +113,6 @@ const Joi = require("joi");
  * @property {string} slug
  * @property {number} stores_count
  * @property {boolean} is_active
- * @property {ListViewProduct} product
  * @property {number} regions_count
  * @property {number} company_id
  * @property {ListViewChannels[]} channels
@@ -121,7 +120,7 @@ const Joi = require("joi");
 
 /**
  * @typedef ListViewResponse
- * @property {ZoneDataItem[]} page
+ * @property {ZoneDataItem} page
  * @property {ListViewItems[]} items
  */
 
@@ -1214,7 +1213,6 @@ class ServiceabilityPlatformModel {
       slug: Joi.string().allow("").required(),
       stores_count: Joi.number().required(),
       is_active: Joi.boolean().required(),
-      product: ServiceabilityPlatformModel.ListViewProduct().required(),
       regions_count: Joi.number().required(),
       company_id: Joi.number().required(),
       channels: Joi.array()
@@ -1226,9 +1224,7 @@ class ServiceabilityPlatformModel {
   /** @returns {ListViewResponse} */
   static ListViewResponse() {
     return Joi.object({
-      page: Joi.array()
-        .items(ServiceabilityPlatformModel.ZoneDataItem())
-        .required(),
+      page: ServiceabilityPlatformModel.ZoneDataItem().required(),
       items: Joi.array()
         .items(ServiceabilityPlatformModel.ListViewItems())
         .required(),

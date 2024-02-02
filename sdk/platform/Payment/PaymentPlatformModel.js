@@ -1002,6 +1002,7 @@ const Joi = require("joi");
  * @property {PaymentSessionDetail[]} payment_details - The payment details with
  *   the schema `PaymentSessionDetail`.
  * @property {number} total_amount - Amount paid.
+ * @property {string} checksum - Checksum to verify the payload
  */
 
 /**
@@ -1043,9 +1044,10 @@ const Joi = require("joi");
  * @property {string} currency - The currency of the payment.
  * @property {PaymentSessionDetail} payment_details - Details of the payment
  * @property {number} total_amount - The total amount refunded.
- * @property {RefundSessionDetail[]} [refund_details] - Details of the refund
+ * @property {RefundSessionDetail[]} refund_details - Details of the refund
  * @property {ErrorDescription} [error]
  * @property {string} [message] - The status of the refund.
+ * @property {string} checksum - Checksum to verify payload
  */
 
 /**
@@ -2512,6 +2514,7 @@ class PaymentPlatformModel {
         .items(PaymentPlatformModel.PaymentSessionDetail())
         .required(),
       total_amount: Joi.number().required(),
+      checksum: Joi.string().allow("").required(),
     });
   }
 
@@ -2553,11 +2556,12 @@ class PaymentPlatformModel {
       currency: Joi.string().allow("").required(),
       payment_details: PaymentPlatformModel.PaymentSessionDetail().required(),
       total_amount: Joi.number().required(),
-      refund_details: Joi.array().items(
-        PaymentPlatformModel.RefundSessionDetail()
-      ),
+      refund_details: Joi.array()
+        .items(PaymentPlatformModel.RefundSessionDetail())
+        .required(),
       error: PaymentPlatformModel.ErrorDescription(),
       message: Joi.string().allow(""),
+      checksum: Joi.string().allow("").required(),
     });
   }
 

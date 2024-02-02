@@ -97,14 +97,13 @@ export = ServiceabilityPlatformModel;
  * @property {string} slug
  * @property {number} stores_count
  * @property {boolean} is_active
- * @property {ListViewProduct} product
  * @property {number} regions_count
  * @property {number} company_id
  * @property {ListViewChannels[]} channels
  */
 /**
  * @typedef ListViewResponse
- * @property {ZoneDataItem[]} page
+ * @property {ZoneDataItem} page
  * @property {ListViewItems[]} items
  */
 /**
@@ -1057,7 +1056,6 @@ type ListViewItems = {
     slug: string;
     stores_count: number;
     is_active: boolean;
-    product: ListViewProduct;
     regions_count: number;
     company_id: number;
     channels: ListViewChannels[];
@@ -1065,7 +1063,7 @@ type ListViewItems = {
 /** @returns {ListViewResponse} */
 declare function ListViewResponse(): ListViewResponse;
 type ListViewResponse = {
-    page: ZoneDataItem[];
+    page: ZoneDataItem;
     items: ListViewItems[];
 };
 /** @returns {CompanyStoreView_PageItems} */

@@ -2094,11 +2094,7 @@ Zone List of application in descending order of their last modified date.
         ],
         "zone_id": "64c3a0926ea670363c8e2e3d",
         "stores_count": 2,
-        "regions_count": 4242,
-        "product": {
-          "count": 0,
-          "type": "all"
-        }
+        "regions_count": 4242
       }
     ],
     "page": {
@@ -3920,7 +3916,6 @@ Response status_code
  | company_id | number |  no  |  |
  | is_active | boolean |  no  |  |
  | name | string |  no  |  |
- | product | [ListViewProduct](#ListViewProduct) |  no  |  |
  | regions_count | number |  no  |  |
  | slug | string |  no  |  |
  | stores_count | number |  no  |  |
@@ -3944,7 +3939,7 @@ Response status_code
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | items | [[ListViewItems](#ListViewItems)] |  no  |  |
- | page | [[ZoneDataItem](#ZoneDataItem)] |  no  |  |
+ | page | [ZoneDataItem](#ZoneDataItem) |  no  |  |
  
 
 ---

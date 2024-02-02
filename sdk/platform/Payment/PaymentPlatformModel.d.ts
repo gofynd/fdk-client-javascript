@@ -896,6 +896,7 @@ export = PaymentPlatformModel;
  * @property {PaymentSessionDetail[]} payment_details - The payment details with
  *   the schema `PaymentSessionDetail`.
  * @property {number} total_amount - Amount paid.
+ * @property {string} checksum - Checksum to verify the payload
  */
 /**
  * @typedef PaymentSessionResponseSerializer
@@ -934,9 +935,10 @@ export = PaymentPlatformModel;
  * @property {string} currency - The currency of the payment.
  * @property {PaymentSessionDetail} payment_details - Details of the payment
  * @property {number} total_amount - The total amount refunded.
- * @property {RefundSessionDetail[]} [refund_details] - Details of the refund
+ * @property {RefundSessionDetail[]} refund_details - Details of the refund
  * @property {ErrorDescription} [error]
  * @property {string} [message] - The status of the refund.
+ * @property {string} checksum - Checksum to verify payload
  */
 /**
  * @typedef RefundSessionResponseSerializer
@@ -3516,6 +3518,10 @@ type PaymentSessionRequestSerializer = {
      * - Amount paid.
      */
     total_amount: number;
+    /**
+     * - Checksum to verify the payload
+     */
+    checksum: string;
 };
 /** @returns {PaymentSessionResponseSerializer} */
 declare function PaymentSessionResponseSerializer(): PaymentSessionResponseSerializer;
@@ -3629,12 +3635,16 @@ type RefundSessionRequestSerializer = {
     /**
      * - Details of the refund
      */
-    refund_details?: RefundSessionDetail[];
+    refund_details: RefundSessionDetail[];
     error?: ErrorDescription;
     /**
      * - The status of the refund.
      */
     message?: string;
+    /**
+     * - Checksum to verify payload
+     */
+    checksum: string;
 };
 /** @returns {RefundSessionResponseSerializer} */
 declare function RefundSessionResponseSerializer(): RefundSessionResponseSerializer;

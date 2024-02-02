@@ -75,13 +75,20 @@
 #### getZones
 
 - ##### What's New
+	- [Breaking] [Added] properties `page.has_next`, `page.item_total`, `page.size`, `page.current`, `page.type` in response with status code 200
+	- [Breaking] [Added] Required status to properties `page.current`, `page.has_next`, `page.item_total`, `page.size`, `page.type` in response with status code 200
 	- [Added] property `items[].channels[]` of schema `ListViewItems` in response with status code 200
 
 - ##### What's Deprecated
+	- [Breaking] [Deleted] property `page[]` of schema `ListViewResponse` in response with status code 200
+	- [Breaking] [Deleted] property `items[].product` of schema `ListViewItems` in response with status code 200
 	- [Deleted] properties `items[].channels.channel_id`, `items[].channels.channel_type` in response with status code 200
 	- [Deleted] Required status from properties `items[].channels.channel_id`, `items[].channels.channel_type` in response with status code 200
+	- [Deleted] Required status from property `items[].product` in response with status code 200
+	- [Deleted] Required status from property `summary` in response with status code 200
 
 - ##### What's Changed
+	- [Breaking] [Changed] Type from `array` to `object` of property `page` of schema `ListViewResponse` in response with status code 200
 	- [Breaking] [Changed] Type from `object` to `array` of property `items[].channels` of schema `ListViewChannels` in response with status code 200
 
 
@@ -137,6 +144,25 @@
 	- [Breaking] [Changed] Type from `integer` to `string` of property `data.items[].ordering_store.phone` of schema `Store` in response with status code 200
 	- [Breaking] [Changed] Type from `number` to `string` of property `data.items[].shipment.gst.gstin_code` of schema `ShipmentGstDetails` in response with status code 200
 	- [Breaking] [Changed] Type from `number` to `string` of property `data.items[].shipment_gst.gstin_code` of schema `ShipmentGstDetails` in response with status code 200
+
+
+### Payment
+
+
+
+#### updatePaymentSession
+
+- ##### What's New
+	- [Added] property `checksum` of schema `PaymentSessionRequestSerializer` in request body
+	- [Breaking] [Added] Required status to property `checksum` in request body
+
+
+#### updateRefundSession
+
+- ##### What's New
+	- [Added] property `checksum` of schema `RefundSessionRequestSerializer` in request body
+	- [Breaking] [Added] Required status to property `total_amount` in request body
+	- [Breaking] [Added] Required status to property `checksum` in request body
 
 
 # CHANGE LOG (1.4.1) - fp-v1.9.0
