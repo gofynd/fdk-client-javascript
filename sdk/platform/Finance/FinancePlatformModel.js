@@ -318,7 +318,7 @@ const Joi = require("joi");
 
 /**
  * @typedef InvoiceListingResponseItems
- * @property {string} [amount]
+ * @property {number} [amount]
  * @property {string} [company]
  * @property {string} [status]
  * @property {string} [due_date]
@@ -1172,7 +1172,7 @@ class FinancePlatformModel {
   /** @returns {InvoiceListingResponseItems} */
   static InvoiceListingResponseItems() {
     return Joi.object({
-      amount: Joi.string().allow(""),
+      amount: Joi.number(),
       company: Joi.string().allow(""),
       status: Joi.string().allow(""),
       due_date: Joi.string().allow(""),
@@ -1461,7 +1461,7 @@ class FinancePlatformModel {
   /** @returns {GetCnConfigResponseMeta} */
   static GetCnConfigResponseMeta() {
     return Joi.object({
-      reason: Joi.string().allow(""),
+      reason: Joi.string().allow("").allow(null),
       source_channel: Joi.array().items(Joi.string().allow("")),
     });
   }
@@ -1681,12 +1681,12 @@ class FinancePlatformModel {
   /** @returns {InvoiceActivityLogsResponseData} */
   static InvoiceActivityLogsResponseData() {
     return Joi.object({
-      performed_by: Joi.string().allow(""),
+      performed_by: Joi.string().allow("").allow(null),
       status: Joi.string().allow(""),
-      reason: Joi.string().allow(""),
+      reason: Joi.string().allow("").allow(null),
       is_resolved: Joi.boolean(),
       retry_attempts: Joi.number(),
-      max_retry_attempts: Joi.number(),
+      max_retry_attempts: Joi.number().allow(null),
     });
   }
 

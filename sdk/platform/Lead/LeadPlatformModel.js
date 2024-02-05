@@ -1,6 +1,27 @@
 const Joi = require("joi");
 
 /**
+ * @typedef GeneralConfigResponse
+ * @property {SupportCommunicationSchema[]} [support_communication]
+ * @property {string} [type]
+ * @property {GeneralConfigIntegrationSchema} [integration]
+ * @property {string[]} [available_integration]
+ */
+
+/**
+ * @typedef SupportCommunicationSchema
+ * @property {string} [type]
+ * @property {string} [title]
+ * @property {string} [description]
+ * @property {boolean} [enabled]
+ */
+
+/**
+ * @typedef GeneralConfigIntegrationSchema
+ * @property {string} [type]
+ */
+
+/**
  * @typedef TicketList
  * @property {Ticket[]} [items] - List of tickets
  * @property {Filter} [filters]
@@ -104,7 +125,8 @@ const Joi = require("joi");
  * @property {Priority[]} priorities - List of possible priorities for tickets
  * @property {TicketCategory[]} [categories] - List of possible categories for tickets
  * @property {Status[]} statuses - List of possible statuses for tickets
- * @property {Object[]} assignees - List of support staff availble for tickets assignment
+ * @property {Object[]} [assignees] - List of support staff availble for tickets
+ *   assignment
  */
 
 /**
@@ -281,7 +303,7 @@ const Joi = require("joi");
  * @typedef TicketCategory
  * @property {string} display - Category display value identifier
  * @property {string} key - Category key value identifier
- * @property {TicketCategory} [sub_categories]
+ * @property {TicketCategory[]} [sub_categories]
  * @property {number} [group_id] - Group id of category releted data
  * @property {FeedbackForm} [feedback_form]
  */
@@ -365,6 +387,35 @@ const Joi = require("joi");
 /** @typedef {"platform_panel" | "sales_channel"} TicketSourceEnum */
 
 class LeadPlatformModel {
+  /** @returns {GeneralConfigResponse} */
+  static GeneralConfigResponse() {
+    return Joi.object({
+      support_communication: Joi.array().items(
+        LeadPlatformModel.SupportCommunicationSchema()
+      ),
+      type: Joi.string().allow(""),
+      integration: LeadPlatformModel.GeneralConfigIntegrationSchema(),
+      available_integration: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {SupportCommunicationSchema} */
+  static SupportCommunicationSchema() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+      title: Joi.string().allow(""),
+      description: Joi.string().allow(""),
+      enabled: Joi.boolean(),
+    });
+  }
+
+  /** @returns {GeneralConfigIntegrationSchema} */
+  static GeneralConfigIntegrationSchema() {
+    return Joi.object({
+      type: Joi.string().allow(""),
+    });
+  }
+
   /** @returns {TicketList} */
   static TicketList() {
     return Joi.object({
@@ -490,7 +541,7 @@ class LeadPlatformModel {
       priorities: Joi.array().items(LeadPlatformModel.Priority()).required(),
       categories: Joi.array().items(LeadPlatformModel.TicketCategory()),
       statuses: Joi.array().items(LeadPlatformModel.Status()).required(),
-      assignees: Joi.array().items(Joi.any()).required(),
+      assignees: Joi.array().items(Joi.any()),
     });
   }
 
@@ -537,7 +588,7 @@ class LeadPlatformModel {
       last_name: Joi.string().allow(""),
       phone_numbers: Joi.array().items(LeadPlatformModel.PhoneNumber()),
       emails: Joi.array().items(LeadPlatformModel.Email()),
-      gender: Joi.string().allow(""),
+      gender: Joi.string().allow("").allow(null),
       dob: Joi.string().allow(""),
       active: Joi.boolean(),
       profile_pic_url: Joi.string().allow(""),
@@ -709,7 +760,7 @@ class LeadPlatformModel {
     return Joi.object({
       display: Joi.string().allow("").required(),
       key: Joi.string().allow("").required(),
-      sub_categories: Joi.link("#TicketCategory"),
+      sub_categories: Joi.array().items(Joi.link("#TicketCategory")),
       group_id: Joi.number(),
       feedback_form: LeadPlatformModel.FeedbackForm(),
     });

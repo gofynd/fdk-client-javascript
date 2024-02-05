@@ -21,6 +21,8 @@ Default
 * [browsefiles](#browsefiles)
 * [completeUpload](#completeupload)
 * [copyFiles](#copyfiles)
+* [deletePdfConfigTemplate](#deletepdfconfigtemplate)
+* [deletePdfType](#deletepdftype)
 * [generatePaymentReceipt](#generatepaymentreceipt)
 * [getDefaultHtmlTemplate](#getdefaulthtmltemplate)
 * [getDefaultPdfData](#getdefaultpdfdata)
@@ -971,6 +973,134 @@ Success
 ---
 
 
+### deletePdfConfigTemplate
+delete html template for invoice or label
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").fileStorage.deletePdfConfigTemplate({  id : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").fileStorage.deletePdfConfigTemplate({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes |  |  
+
+
+
+delete html template for invoice such as Invoice, Label, Deliver challan
+
+*Returned Response:*
+
+
+
+
+[string](#string)
+
+pdf config Template deleted successfully for given id.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": "Configured template deleted successfully"
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### deletePdfType
+delete Pdf Type
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").fileStorage.deletePdfType({  id : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").fileStorage.deletePdfType({  id : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| id | string | yes |  |  
+
+
+
+delete Pdf Type for invoice such as Invoice, Label, Deliver challan
+
+*Returned Response:*
+
+
+
+
+[string](#string)
+
+pdf type deleted successfully for given id.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": "Pdf type deleted successfully"
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### generatePaymentReceipt
 Generate Payment Receipt for Jiomart Digital
 
@@ -1588,10 +1718,12 @@ Get all the supported invoice pdf types
 
 ```javascript
 // Promise
-const promise = platformClient.application("<APPLICATION_ID>").fileStorage.getPdfTypes({  countryCode : value });
+const promise = platformClient.application("<APPLICATION_ID>").fileStorage.getPdfTypes({  storeOs : value,
+ countryCode : value });
 
 // Async/Await
-const data = await platformClient.application("<APPLICATION_ID>").fileStorage.getPdfTypes({  countryCode : value });
+const data = await platformClient.application("<APPLICATION_ID>").fileStorage.getPdfTypes({  storeOs : value,
+ countryCode : value });
 ```
 
 
@@ -1600,7 +1732,8 @@ const data = await platformClient.application("<APPLICATION_ID>").fileStorage.ge
 
 | Argument  |  Type  | Required | Description |
 | --------- | -----  | -------- | ----------- |  
-| countryCode | string | no |  |  
+| countryCode | string | no |  |   
+| storeOs | boolean | yes |  |  
 
 
 
@@ -1640,6 +1773,7 @@ Get all the invoice types and its format
         ],
         "visibility": true,
         "country_code": "IN",
+        "store_os": false,
         "__v": 0
       }
     ],
@@ -1763,7 +1897,7 @@ Proxy
 
 
 
-[string](#string)
+[ProxyResponse](#ProxyResponse)
 
 Success
 
@@ -1779,7 +1913,21 @@ Success
 
 ```json
 {
-  "value": "Binary stream data"
+  "value": {
+    "data": {
+      "id": 2,
+      "email": "janet.weaver@reqres.in",
+      "first_name": "Janet",
+      "last_name": "Weaver",
+      "avatar": "https://reqres.in/img/faces/2-image.jpg",
+      "additionalProperty": "This is an additional property in the example"
+    },
+    "support": {
+      "url": "https://reqres.in/#support-heading",
+      "text": "To keep ReqRes free, contributions towards server costs are appreciated!",
+      "additionalProperty": "This is another additional property in the example"
+    }
+  }
 }
 ```
 </details>
@@ -2418,6 +2566,7 @@ Update html template for invoice
  | name | string |  no  |  |
  | pdf_type_id | number |  no  |  |
  | status | boolean? |  yes  |  |
+ | store_os | boolean |  no  |  |
  | visibility | boolean |  no  |  |
  
 
@@ -2726,6 +2875,16 @@ Update html template for invoice
  | total_items | number? |  yes  |  |
  | total_quantity | number? |  yes  |  |
  | total_value_of_goods | number? |  yes  |  |
+ 
+
+---
+
+#### [ProxyResponse](#ProxyResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | data | string? |  yes  |  |
+ | support | string? |  yes  |  |
  
 
 ---

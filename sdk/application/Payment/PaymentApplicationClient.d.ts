@@ -16,6 +16,7 @@ declare class Payment {
         createPaymentOrder: string;
         customerCreditSummary: string;
         customerOnboard: string;
+        deleteBeneficiaryDetails: string;
         deleteUserCard: string;
         delinkWallet: string;
         enableOrDisableRefundTransferMode: string;
@@ -29,8 +30,11 @@ declare class Payment {
         getPaymentModeRoutes: string;
         getPaymentModeRoutesPaymentLink: string;
         getPosPaymentModeRoutes: string;
+        getRefundOptions: string;
         getRupifiBannerDetails: string;
+        getSelectedRefundOption: string;
         getUserBeneficiariesDetail: string;
+        getUserBeneficiariesDetailV2: string;
         initialisePayment: string;
         initialisePaymentPaymentLink: string;
         linkWallet: string;
@@ -41,14 +45,16 @@ declare class Payment {
         renderHTML: string;
         resendOrCancelPayment: string;
         resendPaymentLink: string;
+        setRefundOptionforShipment: string;
         updateDefaultBeneficiary: string;
+        validateBeneficiaryAddress: string;
         validateVPA: string;
         verifyAndChargePayment: string;
         verifyCustomerForPayment: string;
         verifyIfscCode: string;
         verifyOtpAndAddBeneficiaryForBank: string;
         verifyOtpAndAddBeneficiaryForWallet: string;
-        walletLinkInitiate: string;
+        walletLinkInitate: string;
     };
     _urls: {};
     updateUrls(urls: any): void;
@@ -203,6 +209,19 @@ declare class Payment {
      */
     customerOnboard({ body, requestHeaders }?: PaymentApplicationValidator.CustomerOnboardParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.CustomerOnboardingResponse>;
     /**
+     * @param {PaymentApplicationValidator.DeleteBeneficiaryDetailsParam} arg -
+     *   Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<PaymentApplicationModel.DeleteRefundAccountResponse>}
+     *   - Success response
+     *
+     * @name deleteBeneficiaryDetails
+     * @summary: Delete saved beneficiary details of customers
+     * @description: Use this API to delete the saved beneficiary details provided beneficiary Id. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/deleteBeneficiaryDetails/).
+     */
+    deleteBeneficiaryDetails({ beneficiaryId, requestHeaders }?: PaymentApplicationValidator.DeleteBeneficiaryDetailsParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.DeleteRefundAccountResponse>;
+    /**
      * @param {PaymentApplicationValidator.DeleteUserCardParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -355,6 +374,16 @@ declare class Payment {
      */
     getPosPaymentModeRoutes({ amount, pincode, orderType, cartId, checkoutMode, refresh, cardReference, userDetails, requestHeaders, }?: PaymentApplicationValidator.GetPosPaymentModeRoutesParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.PaymentModeRouteResponse>;
     /**
+     * @param {PaymentApplicationValidator.GetRefundOptionsParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<PaymentApplicationModel.RefundOptionResponse>} - Success response
+     * @name getRefundOptions
+     * @summary: Refund Options Handler to fetch available refund options.
+     * @description: Refund Options Handler to fetch available refund options - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getRefundOptions/).
+     */
+    getRefundOptions({ configuration, productType, amount, requestHeaders }?: PaymentApplicationValidator.GetRefundOptionsParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.RefundOptionResponse>;
+    /**
      * @param {PaymentApplicationValidator.GetRupifiBannerDetailsParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -364,6 +393,18 @@ declare class Payment {
      * @description: Get CreditLine Offer if user is tentatively approved by rupifi - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getRupifiBannerDetails/).
      */
     getRupifiBannerDetails({ requestHeaders }?: any, { responseHeaders }?: object): Promise<PaymentApplicationModel.RupifiBannerResponse>;
+    /**
+     * @param {PaymentApplicationValidator.GetSelectedRefundOptionParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<PaymentApplicationModel.SelectedRefundOptionResponse>}
+     *   - Success response
+     *
+     * @name getSelectedRefundOption
+     * @summary: API to get the selected refund options for shipment id
+     * @description: API to get the selected refund options for shipment id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getSelectedRefundOption/).
+     */
+    getSelectedRefundOption({ shipmentId, orderId, requestHeaders }?: PaymentApplicationValidator.GetSelectedRefundOptionParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.SelectedRefundOptionResponse>;
     /**
      * @param {PaymentApplicationValidator.GetUserBeneficiariesDetailParam} arg
      *   - Arg object.
@@ -377,6 +418,20 @@ declare class Payment {
      * @description: Use this API to get the details of all active beneficiary added by a user for refund. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getUserBeneficiariesDetail/).
      */
     getUserBeneficiariesDetail({ orderId, requestHeaders }?: PaymentApplicationValidator.GetUserBeneficiariesDetailParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.OrderBeneficiaryResponse>;
+    /**
+     * @param {PaymentApplicationValidator.GetUserBeneficiariesDetailV2Param} arg
+     *   - Arg object.
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<PaymentApplicationModel.OrderBeneficiaryResponseSchemaV2>}
+     *   - Success response
+     *
+     * @name getUserBeneficiariesDetailV2
+     * @summary: Lists the beneficiary of a refund
+     * @description: Use this API to get the details of all active beneficiary added by a user for refund. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/getUserBeneficiariesDetailV2/).
+     */
+    getUserBeneficiariesDetailV2({ orderId, shipmentId, mop, requestHeaders }?: PaymentApplicationValidator.GetUserBeneficiariesDetailV2Param, { responseHeaders }?: object): Promise<PaymentApplicationModel.OrderBeneficiaryResponseSchemaV2>;
     /**
      * @param {PaymentApplicationValidator.InitialisePaymentParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -493,6 +548,19 @@ declare class Payment {
      */
     resendPaymentLink({ body, requestHeaders }?: PaymentApplicationValidator.ResendPaymentLinkParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.ResendPaymentLinkResponse>;
     /**
+     * @param {PaymentApplicationValidator.SetRefundOptionforShipmentParam} arg
+     *   - Arg object.
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<PaymentApplicationModel.ShipmentRefundResponse>} -
+     *   Success response
+     * @name setRefundOptionforShipment
+     * @summary: Save refund source against shipment and order
+     * @description: Save refund source against shipment and order - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/setRefundOptionforShipment/).
+     */
+    setRefundOptionforShipment({ body, requestHeaders }?: PaymentApplicationValidator.SetRefundOptionforShipmentParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.ShipmentRefundResponse>;
+    /**
      * @param {PaymentApplicationValidator.UpdateDefaultBeneficiaryParam} arg -
      *   Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -505,6 +573,20 @@ declare class Payment {
      * @description: Use this API to set a default beneficiary for getting a refund. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/updateDefaultBeneficiary/).
      */
     updateDefaultBeneficiary({ body, requestHeaders }?: PaymentApplicationValidator.UpdateDefaultBeneficiaryParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.SetDefaultBeneficiaryResponse>;
+    /**
+     * @param {PaymentApplicationValidator.ValidateBeneficiaryAddressParam} arg
+     *   - Arg object.
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<PaymentApplicationModel.ValidateValidateAddressResponse>}
+     *   - Success response
+     *
+     * @name validateBeneficiaryAddress
+     * @summary: API to Validate UPI ID and IFSC code
+     * @description: API to Validate UPI ID and IFSC code - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/validateBeneficiaryAddress/).
+     */
+    validateBeneficiaryAddress({ body, requestHeaders }?: PaymentApplicationValidator.ValidateBeneficiaryAddressParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.ValidateValidateAddressResponse>;
     /**
      * @param {PaymentApplicationValidator.ValidateVPAParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -575,15 +657,15 @@ declare class Payment {
      */
     verifyOtpAndAddBeneficiaryForWallet({ body, requestHeaders }?: PaymentApplicationValidator.VerifyOtpAndAddBeneficiaryForWalletParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.WalletOtpResponse>;
     /**
-     * @param {PaymentApplicationValidator.WalletLinkInitiateParam} arg - Arg object.
+     * @param {PaymentApplicationValidator.WalletLinkInitateParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
      * @returns {Promise<PaymentApplicationModel.WalletResponseSchema>} - Success response
-     * @name walletLinkInitiate
+     * @name walletLinkInitate
      * @summary: Initiate linking of wallet
-     * @description: It will initiate linking of wallet for the aggregator. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/walletLinkInitiate/).
+     * @description: It will initiate linking of wallet for the aggregator. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/payment/walletLinkInitate/).
      */
-    walletLinkInitiate({ body, requestHeaders }?: PaymentApplicationValidator.WalletLinkInitiateParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.WalletResponseSchema>;
+    walletLinkInitate({ body, requestHeaders }?: PaymentApplicationValidator.WalletLinkInitateParam, { responseHeaders }?: object): Promise<PaymentApplicationModel.WalletResponseSchema>;
 }
-import PaymentApplicationValidator = require("./PaymentApplicationValidator");
-import PaymentApplicationModel = require("./PaymentApplicationModel");
+import PaymentApplicationValidator = require("sdk/output/javascript/code/sdk/application/Payment/PaymentApplicationValidator");
+import PaymentApplicationModel = require("sdk/output/javascript/code/sdk/application/Payment/PaymentApplicationModel");

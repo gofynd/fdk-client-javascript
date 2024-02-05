@@ -484,6 +484,162 @@ class FileStorage {
   }
 
   /**
+   * @param {FileStoragePlatformApplicationValidator.DeletePdfConfigTemplateParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<string>} - Success response
+   * @name deletePdfConfigTemplate
+   * @summary: delete html template for invoice or label
+   * @description: delete html template for invoice such as Invoice, Label, Deliver challan - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/deletePdfConfigTemplate/).
+   */
+  async deletePdfConfigTemplate(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = FileStoragePlatformApplicationValidator.deletePdfConfigTemplate().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = FileStoragePlatformApplicationValidator.deletePdfConfigTemplate().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > FileStorage > deletePdfConfigTemplate \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pdf/config/${id}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = Joi.string()
+      .allow("")
+      .validate(responseData, { abortEarly: false, allowUnknown: true });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > FileStorage > deletePdfConfigTemplate \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
+   * @param {FileStoragePlatformApplicationValidator.DeletePdfTypeParam} arg
+   *   - Arg object
+   *
+   * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+   * @param {import("../PlatformAPIClient").Options} - Options
+   * @returns {Promise<string>} - Success response
+   * @name deletePdfType
+   * @summary: delete Pdf Type
+   * @description: delete Pdf Type for invoice such as Invoice, Label, Deliver challan - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/deletePdfType/).
+   */
+  async deletePdfType(
+    { id, requestHeaders } = { requestHeaders: {} },
+    { responseHeaders } = { responseHeaders: false }
+  ) {
+    const {
+      error,
+    } = FileStoragePlatformApplicationValidator.deletePdfType().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: true }
+    );
+    if (error) {
+      return Promise.reject(new FDKClientValidationError(error));
+    }
+
+    // Showing warrnings if extra unknown parameters are found
+    const {
+      error: warrning,
+    } = FileStoragePlatformApplicationValidator.deletePdfType().validate(
+      {
+        id,
+      },
+      { abortEarly: false, allowUnknown: false }
+    );
+    if (warrning) {
+      Logger({
+        level: "WARN",
+        message: `Parameter Validation warrnings for platform > FileStorage > deletePdfType \n ${warrning}`,
+      });
+    }
+
+    const query_params = {};
+
+    const response = await PlatformAPIClient.execute(
+      this.config,
+      "delete",
+      `/service/platform/assets/v1.0/company/${this.config.companyId}/application/${this.applicationId}/pdf/types/${id}`,
+      query_params,
+      undefined,
+      requestHeaders,
+      { responseHeaders }
+    );
+
+    let responseData = response;
+    if (responseHeaders) {
+      responseData = response[0];
+    }
+
+    const { error: res_error } = Joi.string()
+      .allow("")
+      .validate(responseData, { abortEarly: false, allowUnknown: true });
+
+    if (res_error) {
+      if (this.config.options.strictResponseCheck === true) {
+        return Promise.reject(new FDKResponseValidationError(res_error));
+      } else {
+        Logger({
+          level: "WARN",
+          message: `Response Validation Warnings for platform > FileStorage > deletePdfType \n ${res_error}`,
+        });
+      }
+    }
+
+    return response;
+  }
+
+  /**
    * @param {FileStoragePlatformApplicationValidator.GeneratePaymentReceiptParam} arg
    *   - Arg object
    *
@@ -836,13 +992,14 @@ class FileStorage {
    * @description: Get all the supported invoice pdf types such as Invoice, Label, Delivery challan - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/filestorage/getPdfTypes/).
    */
   async getPdfTypes(
-    { countryCode, requestHeaders } = { requestHeaders: {} },
+    { storeOs, countryCode, requestHeaders } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
       error,
     } = FileStoragePlatformApplicationValidator.getPdfTypes().validate(
       {
+        storeOs,
         countryCode,
       },
       { abortEarly: false, allowUnknown: true }
@@ -856,6 +1013,7 @@ class FileStorage {
       error: warrning,
     } = FileStoragePlatformApplicationValidator.getPdfTypes().validate(
       {
+        storeOs,
         countryCode,
       },
       { abortEarly: false, allowUnknown: false }
@@ -869,6 +1027,7 @@ class FileStorage {
 
     const query_params = {};
     query_params["country_code"] = countryCode;
+    query_params["store_os"] = storeOs;
 
     const response = await PlatformAPIClient.execute(
       this.config,

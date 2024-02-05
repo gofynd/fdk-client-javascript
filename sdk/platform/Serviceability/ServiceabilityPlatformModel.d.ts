@@ -611,6 +611,7 @@ export = ServiceabilityPlatformModel;
  * @property {CourierPartnerList[]} [cp_list]
  * @property {string} name
  * @property {CourierPartnerRuleConditions} conditions
+ * @property {string[]} [manual_priority]
  * @property {string[]} sort
  */
 /**
@@ -634,10 +635,73 @@ export = ServiceabilityPlatformModel;
  * @property {string} [serviceability_type]
  */
 /**
+ * @typedef BuyboxConfig
+ * @property {boolean} show_seller
+ * @property {boolean} enable_selection
+ * @property {boolean} is_seller_buybox_enabled
+ */
+/**
+ * @typedef BuyboxRuleConfig
+ * @property {string[]} [store_type_priority]
+ * @property {string[]} [store_tag_priority]
+ * @property {string[]} [sort]
+ */
+/**
+ * @typedef PromiseType
+ * @property {string} display_name
+ * @property {string} slug
+ * @property {string} description
+ * @property {boolean} is_active
+ * @property {boolean} is_default
+ */
+/**
+ * @typedef StorePromiseAttributeConfig
+ * @property {boolean} [is_operational_timing_enabled]
+ * @property {boolean} [is_order_acceptance_timing_enabled]
+ * @property {boolean} [is_average_processing_time]
+ * @property {boolean} [is_holiday_enabled]
+ */
+/**
+ * @typedef DeliveryServiceAttributeConfig
+ * @property {boolean} [is_pickup_cutoff_time_enabled]
+ * @property {boolean} [is_service_tat_enabled]
+ * @property {boolean} [is_holiday_enabled]
+ */
+/**
+ * @typedef BufferField
+ * @property {string} [unit]
+ * @property {number} [value]
+ * @property {boolean} [enabled]
+ */
+/**
+ * @typedef PromiseConfig
+ * @property {StorePromiseAttributeConfig} [store_attributes]
+ * @property {DeliveryServiceAttributeConfig} [delivery_service_attributes]
+ * @property {BufferField} [buffer_field]
+ */
+/**
  * @typedef ApplicationConfig
  * @property {string[]} [rule_ids]
  * @property {string[]} [sort]
+ * @property {string} [application_id]
+ * @property {number} [company_id]
+ * @property {string[]} [manual_priority]
  * @property {ZoneConfig} [zones]
+ * @property {BuyboxConfig} [buybox_config]
+ * @property {BuyboxRuleConfig} [buybox_rule_config]
+ * @property {PromiseType[]} [promise_types]
+ * @property {PromiseConfig} [promise_config]
+ */
+/**
+ * @typedef ApplicationConfigPatchRequest
+ * @property {BuyboxConfig} [buybox_config]
+ * @property {BuyboxRuleConfig} [buybox_rule_config]
+ * @property {PromiseType[]} [promise_types]
+ * @property {PromiseConfig} [promise_config]
+ */
+/**
+ * @typedef ApplicationConfigPatchResponse
+ * @property {boolean} [success]
  */
 /**
  * @typedef BulkRegionJobSerializer
@@ -687,6 +751,7 @@ export = ServiceabilityPlatformModel;
  * @property {string[]} [tag_based_priority]
  * @property {StorePrioritySchema[]} [store_priority]
  * @property {string[]} [sort]
+ * @property {string[]} [manual_priority]
  */
 /**
  * @typedef CustomerRadiusSchema
@@ -720,6 +785,7 @@ export = ServiceabilityPlatformModel;
  * @property {string[]} [tag_based_priority]
  * @property {StorePrioritySchema[]} [store_priority]
  * @property {string[]} [sort]
+ * @property {string[]} [manual_priority]
  * @property {StoreRuleConditionSchema} [conditions]
  * @property {boolean} [is_active]
  */
@@ -741,6 +807,7 @@ export = ServiceabilityPlatformModel;
  * @property {string[]} [type_based_priority]
  * @property {string[]} [tag_based_priority]
  * @property {StorePrioritySchema[]} [store_priority]
+ * @property {string[]} [manual_priority]
  * @property {string[]} [sort]
  */
 /**
@@ -752,6 +819,7 @@ export = ServiceabilityPlatformModel;
  * @property {string[]} [tag_based_priority]
  * @property {StorePrioritySchema[]} [store_priority]
  * @property {string[]} [sort]
+ * @property {string[]} [manual_priority]
  * @property {StoreRuleConditionSchema} [conditions]
  * @property {boolean} [is_active]
  */
@@ -764,6 +832,7 @@ export = ServiceabilityPlatformModel;
  * @property {string[]} [tag_based_priority]
  * @property {StorePrioritySchema[]} [store_priority]
  * @property {string[]} [sort]
+ * @property {string[]} [manual_priority]
  * @property {StoreRuleConditionSchema} [conditions]
  * @property {boolean} [is_active]
  * @property {number} [company_id]
@@ -940,7 +1009,7 @@ export = ServiceabilityPlatformModel;
 declare class ServiceabilityPlatformModel {
 }
 declare namespace ServiceabilityPlatformModel {
-    export { UpdateZoneConfigRequest, ServiceabilityErrorResponse, ApplicationServiceabilityConfig, ApplicationServiceabilityConfigResponse, EntityRegionView_Request, EntityRegionView_Error, EntityRegionView_page, getAppRegionZonesResponse, PageSchema, EntityRegionView_Items, EntityRegionView_Response, ListViewSummary, ZoneDataItem, ListViewProduct, ListViewChannels, ListViewItems, ListViewResponse, CompanyStoreView_PageItems, CompanyStoreView_Response, GetZoneDataViewChannels, ZoneProductTypes, ZoneMappingType, UpdateZoneData, ZoneUpdateRequest, ZoneSuccessResponse, GetZoneDataViewItems, GetSingleZoneDataViewResponse, GetZoneByIdSchema, CreateZoneData, ZoneResponse, GetZoneFromPincodeViewRequest, Zone, GetZoneFromPincodeViewResponse, GetZoneFromApplicationIdViewResponse, ServiceabilityPageResponse, MobileNo, ManagerResponse, ModifiedByResponse, IntegrationTypeResponse, ProductReturnConfigResponse, ContactNumberResponse, AddressResponse, CreatedByResponse, EwayBillResponse, EinvoiceResponse, GstCredentialsResponse, WarningsResponse, OpeningClosing, TimmingResponse, DocumentsResponse, Dp, LogisticsResponse, ItemResponse, GetStoresViewResponse, ReAssignStoreRequest, ReAssignStoreResponse, PincodeMopData, PincodeMopUpdateResponse, PincodeMOPresponse, CommonError, PincodeMopBulkData, PincodeBulkViewResponse, PincodeCodStatusListingRequest, PincodeCodStatusListingResponse, Error, PincodeCodStatusListingPage, PincodeCodStatusListingSummary, PincodeMopUpdateAuditHistoryRequest, PincodeMopUpdateAuditHistoryPaging, PincodeMopUpdateAuditHistoryResponse, PincodeMopUpdateAuditHistoryResponseData, ArithmeticOperations, SchemeRulesFeatures, SchemeRules, CourierAccount, ErrorResponse, CourierPartnerAccountFailureResponse, Page, CourierPartnerList, LocationRuleValues, LocationRule, StringComparisonOperations, IntComparisonOperations, CourierPartnerRuleConditions, CourierPartnerRule, FailureResponse, CourierPartnerRulesListResponse, CompanyConfig, ZoneConfig, ApplicationConfig, BulkRegionJobSerializer, BulkRegionResponseItemData, BulkRegionResponse, SelfShipResponse, ApplicationSelfShipConfig, ApplicationSelfShipConfigResponse, StoreRuleConfigData, CustomerRadiusSchema, StoreRuleConditionSchema, StoreRuleDataSchema, StorePrioritySchema, GetStoreRulesApiResponse, CreateStoreRuleRequestSchema, StoreRuleResponseSchema, StoreRuleUpdateResponseSchema, ServiceabilityModel, CourierPartnerSchemeFeatures, CourierPartnerSchemeModel, CourierAccountResponse, CompanyCourierPartnerAccountListResponse, PackageMaterial, PackageMaterialResponse, PackageMaterialRule, PackageRule, PackageRuleResponse, Channel, PackageMaterialRuleList, PackageMaterialList, PackageRuleProduct, PackageRuleProductTag, PackageRuleCategory, PackageMaterialRuleQuantity, RulePriorityRequest, RulePriorityResponse };
+    export { UpdateZoneConfigRequest, ServiceabilityErrorResponse, ApplicationServiceabilityConfig, ApplicationServiceabilityConfigResponse, EntityRegionView_Request, EntityRegionView_Error, EntityRegionView_page, getAppRegionZonesResponse, PageSchema, EntityRegionView_Items, EntityRegionView_Response, ListViewSummary, ZoneDataItem, ListViewProduct, ListViewChannels, ListViewItems, ListViewResponse, CompanyStoreView_PageItems, CompanyStoreView_Response, GetZoneDataViewChannels, ZoneProductTypes, ZoneMappingType, UpdateZoneData, ZoneUpdateRequest, ZoneSuccessResponse, GetZoneDataViewItems, GetSingleZoneDataViewResponse, GetZoneByIdSchema, CreateZoneData, ZoneResponse, GetZoneFromPincodeViewRequest, Zone, GetZoneFromPincodeViewResponse, GetZoneFromApplicationIdViewResponse, ServiceabilityPageResponse, MobileNo, ManagerResponse, ModifiedByResponse, IntegrationTypeResponse, ProductReturnConfigResponse, ContactNumberResponse, AddressResponse, CreatedByResponse, EwayBillResponse, EinvoiceResponse, GstCredentialsResponse, WarningsResponse, OpeningClosing, TimmingResponse, DocumentsResponse, Dp, LogisticsResponse, ItemResponse, GetStoresViewResponse, ReAssignStoreRequest, ReAssignStoreResponse, PincodeMopData, PincodeMopUpdateResponse, PincodeMOPresponse, CommonError, PincodeMopBulkData, PincodeBulkViewResponse, PincodeCodStatusListingRequest, PincodeCodStatusListingResponse, Error, PincodeCodStatusListingPage, PincodeCodStatusListingSummary, PincodeMopUpdateAuditHistoryRequest, PincodeMopUpdateAuditHistoryPaging, PincodeMopUpdateAuditHistoryResponse, PincodeMopUpdateAuditHistoryResponseData, ArithmeticOperations, SchemeRulesFeatures, SchemeRules, CourierAccount, ErrorResponse, CourierPartnerAccountFailureResponse, Page, CourierPartnerList, LocationRuleValues, LocationRule, StringComparisonOperations, IntComparisonOperations, CourierPartnerRuleConditions, CourierPartnerRule, FailureResponse, CourierPartnerRulesListResponse, CompanyConfig, ZoneConfig, BuyboxConfig, BuyboxRuleConfig, PromiseType, StorePromiseAttributeConfig, DeliveryServiceAttributeConfig, BufferField, PromiseConfig, ApplicationConfig, ApplicationConfigPatchRequest, ApplicationConfigPatchResponse, BulkRegionJobSerializer, BulkRegionResponseItemData, BulkRegionResponse, SelfShipResponse, ApplicationSelfShipConfig, ApplicationSelfShipConfigResponse, StoreRuleConfigData, CustomerRadiusSchema, StoreRuleConditionSchema, StoreRuleDataSchema, StorePrioritySchema, GetStoreRulesApiResponse, CreateStoreRuleRequestSchema, StoreRuleResponseSchema, StoreRuleUpdateResponseSchema, ServiceabilityModel, CourierPartnerSchemeFeatures, CourierPartnerSchemeModel, CourierAccountResponse, CompanyCourierPartnerAccountListResponse, PackageMaterial, PackageMaterialResponse, PackageMaterialRule, PackageRule, PackageRuleResponse, Channel, PackageMaterialRuleList, PackageMaterialList, PackageRuleProduct, PackageRuleProductTag, PackageRuleCategory, PackageMaterialRuleQuantity, RulePriorityRequest, RulePriorityResponse };
 }
 /** @returns {UpdateZoneConfigRequest} */
 declare function UpdateZoneConfigRequest(): UpdateZoneConfigRequest;
@@ -1639,6 +1708,7 @@ type CourierPartnerRule = {
     cp_list?: CourierPartnerList[];
     name: string;
     conditions: CourierPartnerRuleConditions;
+    manual_priority?: string[];
     sort: string[];
 };
 /** @returns {FailureResponse} */
@@ -1665,12 +1735,84 @@ declare function ZoneConfig(): ZoneConfig;
 type ZoneConfig = {
     serviceability_type?: string;
 };
+/** @returns {BuyboxConfig} */
+declare function BuyboxConfig(): BuyboxConfig;
+type BuyboxConfig = {
+    show_seller: boolean;
+    enable_selection: boolean;
+    is_seller_buybox_enabled: boolean;
+};
+/** @returns {BuyboxRuleConfig} */
+declare function BuyboxRuleConfig(): BuyboxRuleConfig;
+type BuyboxRuleConfig = {
+    store_type_priority?: string[];
+    store_tag_priority?: string[];
+    sort?: string[];
+};
+/** @returns {PromiseType} */
+declare function PromiseType(): PromiseType;
+type PromiseType = {
+    display_name: string;
+    slug: string;
+    description: string;
+    is_active: boolean;
+    is_default: boolean;
+};
+/** @returns {StorePromiseAttributeConfig} */
+declare function StorePromiseAttributeConfig(): StorePromiseAttributeConfig;
+type StorePromiseAttributeConfig = {
+    is_operational_timing_enabled?: boolean;
+    is_order_acceptance_timing_enabled?: boolean;
+    is_average_processing_time?: boolean;
+    is_holiday_enabled?: boolean;
+};
+/** @returns {DeliveryServiceAttributeConfig} */
+declare function DeliveryServiceAttributeConfig(): DeliveryServiceAttributeConfig;
+type DeliveryServiceAttributeConfig = {
+    is_pickup_cutoff_time_enabled?: boolean;
+    is_service_tat_enabled?: boolean;
+    is_holiday_enabled?: boolean;
+};
+/** @returns {BufferField} */
+declare function BufferField(): BufferField;
+type BufferField = {
+    unit?: string;
+    value?: number;
+    enabled?: boolean;
+};
+/** @returns {PromiseConfig} */
+declare function PromiseConfig(): PromiseConfig;
+type PromiseConfig = {
+    store_attributes?: StorePromiseAttributeConfig;
+    delivery_service_attributes?: DeliveryServiceAttributeConfig;
+    buffer_field?: BufferField;
+};
 /** @returns {ApplicationConfig} */
 declare function ApplicationConfig(): ApplicationConfig;
 type ApplicationConfig = {
     rule_ids?: string[];
     sort?: string[];
+    application_id?: string;
+    company_id?: number;
+    manual_priority?: string[];
     zones?: ZoneConfig;
+    buybox_config?: BuyboxConfig;
+    buybox_rule_config?: BuyboxRuleConfig;
+    promise_types?: PromiseType[];
+    promise_config?: PromiseConfig;
+};
+/** @returns {ApplicationConfigPatchRequest} */
+declare function ApplicationConfigPatchRequest(): ApplicationConfigPatchRequest;
+type ApplicationConfigPatchRequest = {
+    buybox_config?: BuyboxConfig;
+    buybox_rule_config?: BuyboxRuleConfig;
+    promise_types?: PromiseType[];
+    promise_config?: PromiseConfig;
+};
+/** @returns {ApplicationConfigPatchResponse} */
+declare function ApplicationConfigPatchResponse(): ApplicationConfigPatchResponse;
+type ApplicationConfigPatchResponse = {
+    success?: boolean;
 };
 /** @returns {BulkRegionJobSerializer} */
 declare function BulkRegionJobSerializer(): BulkRegionJobSerializer;
@@ -1727,6 +1869,7 @@ type StoreRuleConfigData = {
     tag_based_priority?: string[];
     store_priority?: StorePrioritySchema[];
     sort?: string[];
+    manual_priority?: string[];
 };
 /** @returns {CustomerRadiusSchema} */
 declare function CustomerRadiusSchema(): CustomerRadiusSchema;
@@ -1763,6 +1906,7 @@ type StoreRuleDataSchema = {
     tag_based_priority?: string[];
     store_priority?: StorePrioritySchema[];
     sort?: string[];
+    manual_priority?: string[];
     conditions?: StoreRuleConditionSchema;
     is_active?: boolean;
 };
@@ -1787,6 +1931,7 @@ type CreateStoreRuleRequestSchema = {
     type_based_priority?: string[];
     tag_based_priority?: string[];
     store_priority?: StorePrioritySchema[];
+    manual_priority?: string[];
     sort?: string[];
 };
 /** @returns {StoreRuleResponseSchema} */
@@ -1799,6 +1944,7 @@ type StoreRuleResponseSchema = {
     tag_based_priority?: string[];
     store_priority?: StorePrioritySchema[];
     sort?: string[];
+    manual_priority?: string[];
     conditions?: StoreRuleConditionSchema;
     is_active?: boolean;
 };
@@ -1812,6 +1958,7 @@ type StoreRuleUpdateResponseSchema = {
     tag_based_priority?: string[];
     store_priority?: StorePrioritySchema[];
     sort?: string[];
+    manual_priority?: string[];
     conditions?: StoreRuleConditionSchema;
     is_active?: boolean;
     company_id?: number;

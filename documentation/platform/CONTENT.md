@@ -4671,15 +4671,15 @@ Get custom fields definitions
 // Promise
 const promise = platformClient.application("<APPLICATION_ID>").content.getAppCustomFieldDefinitions({  pageNo : value,
  pageSize : value,
- resource : value,
- type : value,
+ resources : value,
+ types : value,
  search : value });
 
 // Async/Await
 const data = await platformClient.application("<APPLICATION_ID>").content.getAppCustomFieldDefinitions({  pageNo : value,
  pageSize : value,
- resource : value,
- type : value,
+ resources : value,
+ types : value,
  search : value });
 ```
 
@@ -4691,8 +4691,8 @@ const data = await platformClient.application("<APPLICATION_ID>").content.getApp
 | --------- | -----  | -------- | ----------- | 
 | pageNo | string | yes |  |   
 | pageSize | string | yes |  |    
-| resource | string | no |  |    
-| type | string | no |  |    
+| resources | string | no |  |    
+| types | string | no |  |    
 | search | string | no |  |  
 
 
@@ -6539,15 +6539,15 @@ Get custom fields definitions
 // Promise
 const promise = platformClient.content.getCustomFieldDefinitions({  pageNo : value,
  pageSize : value,
- resource : value,
- type : value,
+ resources : value,
+ types : value,
  search : value });
 
 // Async/Await
 const data = await platformClient.content.getCustomFieldDefinitions({  pageNo : value,
  pageSize : value,
- resource : value,
- type : value,
+ resources : value,
+ types : value,
  search : value });
 ```
 
@@ -6559,8 +6559,8 @@ const data = await platformClient.content.getCustomFieldDefinitions({  pageNo : 
 | --------- | -----  | -------- | ----------- | 
 | pageNo | string | yes |  |   
 | pageSize | string | yes |  |    
-| resource | string | no |  |    
-| type | string | no |  |    
+| resources | string | no |  |    
+| types | string | no |  |    
 | search | string | no |  |  
 
 
@@ -13674,7 +13674,6 @@ Success. Refer `Support` for more details.
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | page | [ActionPage](#ActionPage)? |  yes  |  |
- | popup | [ActionPage](#ActionPage)? |  yes  |  |
  | type | string? |  yes  |  |
  
 
@@ -14014,6 +14013,18 @@ Success. Refer `Support` for more details.
 
 ---
 
+#### [CronBasedScheduleSchema](#CronBasedScheduleSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | cron | string? |  yes  |  |
+ | enabled | boolean? |  yes  |  |
+ | end | string? |  yes  |  |
+ | start | string? |  yes  |  |
+ 
+
+---
+
 #### [CronSchedule](#CronSchedule)
 
  | Properties | Type | Nullable | Description |
@@ -14127,7 +14138,7 @@ Success. Refer `Support` for more details.
  | resource_id | string? |  yes  |  |
  | type | string? |  yes  |  |
  | updated_at | string? |  yes  |  |
- | value | [[CustomFieldValue](#CustomFieldValue)]? |  yes  |  |
+ | value | [any]? |  yes  |  |
  
 
 ---
@@ -14168,15 +14179,6 @@ Success. Refer `Support` for more details.
  | string_multi_line | [StringMultiLine](#StringMultiLine)? |  yes  |  |
  | string_single_line | [StringSingleLine](#StringSingleLine)? |  yes  |  |
  | url | [Url](#Url)? |  yes  |  |
- 
-
----
-
-#### [CustomFieldValue](#CustomFieldValue)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | value | any? |  yes  |  |
  
 
 ---
@@ -14963,6 +14965,7 @@ Success. Refer `Support` for more details.
  | active | boolean? |  yes  |  |
  | display | string? |  yes  |  |
  | image | string? |  yes  |  |
+ | schedule | [CronBasedScheduleSchema](#CronBasedScheduleSchema)? |  yes  |  |
  | sort_order | number? |  yes  |  |
  | sub_navigation | [[NavigationReference](#NavigationReference)]? |  yes  |  |
  | tags | [string]? |  yes  |  |

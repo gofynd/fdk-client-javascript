@@ -268,6 +268,11 @@ Success. Check the example shown below or refer `OrderById` for more details.
         "value": 0
       },
       {
+        "name": "amount_to_be_collected",
+        "display": "Amount To Be Collected",
+        "value": 0
+      },
+      {
         "name": "total",
         "display": "Total",
         "value": 1797
@@ -276,6 +281,13 @@ Success. Check the example shown below or refer `OrderById` for more details.
     "shipments": [
       {
         "order_id": "FY632D541F01152493D0",
+        "order": {
+          "meta": {
+            "custom_cart_id": "652ce6972512f05477a32547",
+            "name": "Universal/Smart Bazar/Fresh Cart",
+            "slug": "universal/smart-bazar/fresh-cart"
+          }
+        },
         "breakup_values": [
           {
             "name": "mrp_total",
@@ -320,6 +332,11 @@ Success. Check the example shown below or refer `OrderById` for more details.
           {
             "name": "cod_charges",
             "display": "COD Charges",
+            "value": 0
+          },
+          {
+            "name": "amount_to_be_collected",
+            "display": "Amount To Be Collected",
             "value": 0
           },
           {
@@ -417,6 +434,7 @@ Success. Check the example shown below or refer `OrderById` for more details.
               "brand_calculated_amount": 599,
               "promotion_effective_discount": 0,
               "coupon_value": 0,
+              "amount_to_be_collected": 0,
               "pm_price_split": {
                 "": 599
               }
@@ -519,6 +537,7 @@ Success. Check the example shown below or refer `OrderById` for more details.
                 "brand_calculated_amount": 599,
                 "promotion_effective_discount": 0,
                 "coupon_value": 0,
+                "amount_to_be_collected": 0,
                 "pm_price_split": {
                   "": 599
                 },
@@ -537,7 +556,14 @@ Success. Check the example shown below or refer `OrderById` for more details.
             "can_cancel": true,
             "can_return": false,
             "delivery_date": null,
-            "returnable_date": null
+            "returnable_date": null,
+            "article": [
+              {
+                "tags": [
+                  "1P"
+                ]
+              }
+            ]
           }
         ],
         "size_info": {
@@ -617,7 +643,8 @@ Success. Check the example shown below or refer `OrderById` for more details.
           "price_effective": 1198,
           "refund_credit": 0,
           "value_of_good": 1140.96,
-          "discount_percent": 40
+          "discount_percent": 40,
+          "amount_to_be_collected": 0
         },
         "can_break": {
           "bag_repriced": {
@@ -664,6 +691,14 @@ Success. Check the example shown below or refer `OrderById` for more details.
           "mop": "PREPAID",
           "status": "Paid"
         },
+        "payment_info": [
+          {
+            "logo": "https://hdn-1.fynd.com/payment/Pos+Logo.png",
+            "mode": "Jio Partner Pay",
+            "mop": "PREPAID",
+            "status": "Paid"
+          }
+        ],
         "user_info": {
           "email": "paymentsdummy@gofynd.com",
           "gender": "male",
@@ -727,6 +762,11 @@ Success. Check the example shown below or refer `OrderById` for more details.
           {
             "name": "cod_charges",
             "display": "COD Charges",
+            "value": 0
+          },
+          {
+            "name": "amount_to_be_collected",
+            "display": "Amount To Be Collected",
             "value": 0
           },
           {
@@ -820,6 +860,7 @@ Success. Check the example shown below or refer `OrderById` for more details.
               "brand_calculated_amount": 599,
               "promotion_effective_discount": 0,
               "coupon_value": 0,
+              "amount_to_be_collected": 0,
               "pm_price_split": {
                 "": 599
               }
@@ -922,6 +963,7 @@ Success. Check the example shown below or refer `OrderById` for more details.
                 "brand_calculated_amount": 599,
                 "promotion_effective_discount": 0,
                 "coupon_value": 0,
+                "amount_to_be_collected": 0,
                 "pm_price_split": {
                   "": 599
                 },
@@ -1020,7 +1062,8 @@ Success. Check the example shown below or refer `OrderById` for more details.
           "price_effective": 599,
           "refund_credit": 0,
           "value_of_good": 570.48,
-          "discount_percent": 40
+          "discount_percent": 40,
+          "amount_to_be_collected": 0
         },
         "can_break": {
           "refund_completed": {
@@ -1112,6 +1155,14 @@ Success. Check the example shown below or refer `OrderById` for more details.
           "mop": "PREPAID",
           "status": "Paid"
         },
+        "payment_info": [
+          {
+            "logo": "https://hdn-1.fynd.com/payment/Pos+Logo.png",
+            "mode": "Jio Partner Pay",
+            "mop": "PREPAID",
+            "status": "Paid"
+          }
+        ],
         "user_info": {
           "email": "paymentsdummy@gofynd.com",
           "gender": "male",
@@ -1715,6 +1766,13 @@ Success. Check the example shown below or refer `ShipmentById` for more details.
 {
   "shipment": {
     "order_id": "FY62F3B8290150D13E36",
+    "order": {
+      "meta": {
+        "custom_cart_id": "652ce6972512f05477a32547",
+        "name": "Universal/Smart Bazar/Fresh Cart",
+        "slug": "universal/smart-bazar/fresh-cart"
+      }
+    },
     "breakup_values": [
       {
         "name": "mrp_total",
@@ -1759,6 +1817,11 @@ Success. Check the example shown below or refer `ShipmentById` for more details.
       {
         "name": "cod_charges",
         "display": "COD Charges",
+        "value": 0
+      },
+      {
+        "name": "amount_to_be_collected",
+        "display": "Amount To Be Collected",
         "value": 0
       },
       {
@@ -1856,6 +1919,7 @@ Success. Check the example shown below or refer `ShipmentById` for more details.
           "brand_calculated_amount": 50,
           "promotion_effective_discount": 0,
           "coupon_value": 0,
+          "amount_to_be_collected": 0,
           "pm_price_split": {
             "COD": 50
           }
@@ -1907,6 +1971,7 @@ Success. Check the example shown below or refer `ShipmentById` for more details.
             "brand_calculated_amount": 50,
             "promotion_effective_discount": 0,
             "coupon_value": 0,
+            "amount_to_be_collected": 0,
             "pm_price_split": {
               "COD": 50
             },
@@ -1926,7 +1991,14 @@ Success. Check the example shown below or refer `ShipmentById` for more details.
           31
         ],
         "can_cancel": false,
-        "can_return": false
+        "can_return": false,
+        "article": [
+          {
+            "tags": [
+              "1P"
+            ]
+          }
+        ]
       }
     ],
     "size_info": {
@@ -2008,7 +2080,8 @@ Success. Check the example shown below or refer `ShipmentById` for more details.
       "cashback": 0,
       "price_effective": 50,
       "refund_credit": 0,
-      "value_of_good": 42.37
+      "value_of_good": 42.37,
+      "amount_to_be_collected": 0
     },
     "can_break": {
       "bag_not_picked": {
@@ -2059,6 +2132,16 @@ Success. Check the example shown below or refer `ShipmentById` for more details.
       "payment_mode": "COD",
       "status": "Unpaid"
     },
+    "payment_info": [
+      {
+        "logo": "https://hdn-1.fynd.com/payment/Pos+Logo.png",
+        "mode": "Jio Partner Pay",
+        "mop": "COD",
+        "display_name": "COD",
+        "payment_mode": "COD",
+        "status": "Unpaid"
+      }
+    ],
     "user_info": {
       "email": "paymentsdummy@gofynd.com",
       "gender": "male",
@@ -2544,6 +2627,15 @@ Success, the code is valid and returns a session token
 
 ---
 
+#### [Article](#Article)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | tags | [string]? |  yes  |  |
+ 
+
+---
+
 #### [BagReasonMeta](#BagReasonMeta)
 
  | Properties | Type | Nullable | Description |
@@ -2572,6 +2664,7 @@ Success, the code is valid and returns a session token
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | applied_promos | [[AppliedPromos](#AppliedPromos)]? |  yes  |  |
+ | article | [Article](#Article)? |  yes  |  |
  | can_cancel | boolean? |  yes  |  |
  | can_return | boolean? |  yes  |  |
  | currency_code | string? |  yes  |  |
@@ -2745,6 +2838,7 @@ Success, the code is valid and returns a session token
  | added_to_fynd_cash | boolean? |  yes  |  |
  | amount_paid | number? |  yes  |  |
  | amount_paid_roundoff | number? |  yes  |  |
+ | amount_to_be_collected | number? |  yes  |  |
  | brand_calculated_amount | number? |  yes  |  |
  | cashback | number? |  yes  |  |
  | cashback_applied | number? |  yes  |  |
@@ -2901,6 +2995,15 @@ Success, the code is valid and returns a session token
 
 ---
 
+#### [OrderRequest](#OrderRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | meta | string? |  yes  |  |
+ 
+
+---
+
 #### [OrderSchema](#OrderSchema)
 
  | Properties | Type | Nullable | Description |
@@ -2935,6 +3038,7 @@ Success, the code is valid and returns a session token
  | added_to_fynd_cash | boolean? |  yes  |  |
  | amount_paid | number? |  yes  |  |
  | amount_paid_roundoff | number? |  yes  |  |
+ | amount_to_be_collected | number? |  yes  |  |
  | brand_calculated_amount | number? |  yes  |  |
  | cashback | number? |  yes  |  |
  | cashback_applied | number? |  yes  |  |
@@ -3159,9 +3263,11 @@ Success, the code is valid and returns a session token
  | fulfilling_store | [FulfillingStore](#FulfillingStore)? |  yes  |  |
  | invoice | [Invoice](#Invoice)? |  yes  |  |
  | need_help_url | string? |  yes  |  |
+ | order | [OrderRequest](#OrderRequest)? |  yes  |  |
  | order_id | string? |  yes  |  |
  | order_type | string? |  yes  |  |
  | payment | [ShipmentPayment](#ShipmentPayment)? |  yes  |  |
+ | payment_info | [[ShipmentPayment](#ShipmentPayment)]? |  yes  |  |
  | prices | [Prices](#Prices)? |  yes  |  |
  | promise | [Promise](#Promise)? |  yes  |  |
  | refund_details | string? |  yes  |  |

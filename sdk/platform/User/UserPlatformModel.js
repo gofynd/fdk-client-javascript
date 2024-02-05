@@ -122,7 +122,7 @@ const Joi = require("joi");
 
 /**
  * @typedef UserSearchResponseSchema
- * @property {UserSchema[]} [users]
+ * @property {UserSearchSchema[]} [users]
  */
 
 /**
@@ -158,8 +158,14 @@ const Joi = require("joi");
  */
 
 /**
- * @typedef AuthenticationApiErrorSchema
+ * @typedef APIError
+ * @property {string} [code]
  * @property {string} [message]
+ * @property {string} [info] - Error code description link
+ * @property {string} [request_id]
+ * @property {string} [error]
+ * @property {Object} [meta]
+ * @property {boolean} [authenticated]
  */
 
 /**
@@ -169,6 +175,7 @@ const Joi = require("joi");
  * @property {string} [ip]
  * @property {string} [domain]
  * @property {string} [expire_in]
+ * @property {string} [location]
  */
 
 /**
@@ -283,8 +290,9 @@ const Joi = require("joi");
  * @property {string} [desktop_image]
  * @property {number} [delete_account_day]
  * @property {DeleteAccountReasons[]} [delete_account_reasons]
- * @property {Object} [delete_account_consent]
- * @property {Object} [session_config]
+ * @property {DeleteAccountConsent} [delete_account_consent]
+ * @property {SessionExpiry} [session_config]
+ * @property {number} [__v]
  */
 
 /**
@@ -358,7 +366,7 @@ const Joi = require("joi");
 /**
  * @typedef SocialTokens
  * @property {Facebook} [facebook]
- * @property {Accountkit} [account_kit]
+ * @property {Accountkit} [accountkit]
  * @property {Google} [google]
  */
 
@@ -377,16 +385,19 @@ const Joi = require("joi");
 /**
  * @typedef Facebook
  * @property {string} [app_id]
+ * @property {string} [app_secret]
  */
 
 /**
  * @typedef Accountkit
  * @property {string} [app_id]
+ * @property {string} [app_secret]
  */
 
 /**
  * @typedef Google
  * @property {string} [app_id]
+ * @property {string} [app_secret]
  */
 
 /**
@@ -475,6 +486,29 @@ const Joi = require("joi");
  * @property {string} [created_at]
  * @property {string} [updated_at]
  * @property {string} [external_id]
+ */
+
+/**
+ * @typedef UserSearchSchema
+ * @property {string} [application_id]
+ * @property {string} [user_id]
+ * @property {string} [first_name]
+ * @property {Object} [meta]
+ * @property {string} [last_name]
+ * @property {PhoneNumber[]} [phone_numbers]
+ * @property {Email[]} [emails]
+ * @property {string} [gender]
+ * @property {string} [dob]
+ * @property {boolean} [active]
+ * @property {string} [profile_pic_url]
+ * @property {string} [username]
+ * @property {string} [account_type]
+ * @property {string} [_id]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ * @property {string} [external_id]
+ * @property {boolean} [archive]
+ * @property {string} [status]
  */
 
 /**
@@ -645,7 +679,7 @@ class UserPlatformModel {
   /** @returns {UserSearchResponseSchema} */
   static UserSearchResponseSchema() {
     return Joi.object({
-      users: Joi.array().items(UserPlatformModel.UserSchema()),
+      users: Joi.array().items(UserPlatformModel.UserSearchSchema()),
     });
   }
 
@@ -691,10 +725,16 @@ class UserPlatformModel {
     });
   }
 
-  /** @returns {AuthenticationApiErrorSchema} */
-  static AuthenticationApiErrorSchema() {
+  /** @returns {APIError} */
+  static APIError() {
     return Joi.object({
+      code: Joi.string().allow(""),
       message: Joi.string().allow(""),
+      info: Joi.string().allow(""),
+      request_id: Joi.string().allow(""),
+      error: Joi.string().allow(""),
+      meta: Joi.any(),
+      authenticated: Joi.boolean(),
     });
   }
 
@@ -706,6 +746,7 @@ class UserPlatformModel {
       ip: Joi.string().allow(""),
       domain: Joi.string().allow(""),
       expire_in: Joi.string().allow(""),
+      location: Joi.string().allow(""),
     });
   }
 
@@ -812,7 +853,7 @@ class UserPlatformModel {
       max_age: Joi.number(),
       secure: Joi.boolean(),
       http_only: Joi.boolean(),
-      cookie: Joi.any(),
+      cookie: Joi.object().pattern(/\S/, Joi.any()),
     });
   }
 
@@ -838,14 +879,15 @@ class UserPlatformModel {
       social_tokens: UserPlatformModel.SocialTokens(),
       created_at: Joi.string().allow(""),
       register: Joi.boolean(),
-      mobile_image: Joi.string().allow(""),
-      desktop_image: Joi.string().allow(""),
+      mobile_image: Joi.string().allow("").allow(null),
+      desktop_image: Joi.string().allow("").allow(null),
       delete_account_day: Joi.number(),
       delete_account_reasons: Joi.array().items(
         UserPlatformModel.DeleteAccountReasons()
       ),
-      delete_account_consent: Joi.any(),
-      session_config: Joi.any(),
+      delete_account_consent: UserPlatformModel.DeleteAccountConsent(),
+      session_config: UserPlatformModel.SessionExpiry(),
+      __v: Joi.number(),
     });
   }
 
@@ -943,7 +985,7 @@ class UserPlatformModel {
   static SocialTokens() {
     return Joi.object({
       facebook: UserPlatformModel.Facebook(),
-      account_kit: UserPlatformModel.Accountkit(),
+      accountkit: UserPlatformModel.Accountkit(),
       google: UserPlatformModel.Google(),
     });
   }
@@ -968,6 +1010,7 @@ class UserPlatformModel {
   static Facebook() {
     return Joi.object({
       app_id: Joi.string().allow(""),
+      app_secret: Joi.string().allow(""),
     });
   }
 
@@ -975,6 +1018,7 @@ class UserPlatformModel {
   static Accountkit() {
     return Joi.object({
       app_id: Joi.string().allow(""),
+      app_secret: Joi.string().allow(""),
     });
   }
 
@@ -982,6 +1026,7 @@ class UserPlatformModel {
   static Google() {
     return Joi.object({
       app_id: Joi.string().allow(""),
+      app_secret: Joi.string().allow(""),
     });
   }
 
@@ -1070,7 +1115,7 @@ class UserPlatformModel {
       last_name: Joi.string().allow(""),
       phone_numbers: Joi.array().items(UserPlatformModel.PhoneNumber()),
       emails: Joi.array().items(UserPlatformModel.Email()),
-      gender: Joi.string().allow(""),
+      gender: Joi.string().allow("").allow(null),
       dob: Joi.string().allow(""),
       active: Joi.boolean(),
       profile_pic_url: Joi.string().allow(""),
@@ -1080,6 +1125,31 @@ class UserPlatformModel {
       created_at: Joi.string().allow(""),
       updated_at: Joi.string().allow(""),
       external_id: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {UserSearchSchema} */
+  static UserSearchSchema() {
+    return Joi.object({
+      application_id: Joi.string().allow(""),
+      user_id: Joi.string().allow(""),
+      first_name: Joi.string().allow(""),
+      meta: Joi.any(),
+      last_name: Joi.string().allow(""),
+      phone_numbers: Joi.array().items(UserPlatformModel.PhoneNumber()),
+      emails: Joi.array().items(UserPlatformModel.Email()),
+      gender: Joi.string().allow("").allow(null),
+      dob: Joi.string().allow(""),
+      active: Joi.boolean(),
+      profile_pic_url: Joi.string().allow(""),
+      username: Joi.string().allow(""),
+      account_type: Joi.string().allow(""),
+      _id: Joi.string().allow(""),
+      created_at: Joi.string().allow(""),
+      updated_at: Joi.string().allow(""),
+      external_id: Joi.string().allow(""),
+      archive: Joi.boolean(),
+      status: Joi.string().allow(""),
     });
   }
 

@@ -66,6 +66,12 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef ProxyResponse
+ * @property {Object} [data]
+ * @property {Object} [support]
+ */
+
+/**
  * @typedef DestinationNamespace
  * @property {string} [namespace]
  */
@@ -103,6 +109,7 @@ const Joi = require("joi");
  * @property {string[]} format
  * @property {number} __v
  * @property {boolean} visibility
+ * @property {boolean} store_os
  * @property {string} country_code
  */
 
@@ -695,6 +702,14 @@ class FileStoragePlatformModel {
     });
   }
 
+  /** @returns {ProxyResponse} */
+  static ProxyResponse() {
+    return Joi.object({
+      data: Joi.object().pattern(/\S/, Joi.any()),
+      support: Joi.object().pattern(/\S/, Joi.any()),
+    });
+  }
+
   /** @returns {DestinationNamespace} */
   static DestinationNamespace() {
     return Joi.object({
@@ -744,6 +759,7 @@ class FileStoragePlatformModel {
       format: Joi.array().items(Joi.string().allow("")).required(),
       __v: Joi.number().required(),
       visibility: Joi.boolean().required(),
+      store_os: Joi.boolean().required(),
       country_code: Joi.string().allow("").required(),
     });
   }

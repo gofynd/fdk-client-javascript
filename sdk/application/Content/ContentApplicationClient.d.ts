@@ -297,6 +297,6 @@ declare class Content {
      */
     getTags({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ContentApplicationModel.TagsSchema>;
 }
-import ContentApplicationModel = require("./ContentApplicationModel");
-import ContentApplicationValidator = require("./ContentApplicationValidator");
-import Paginator = require("../../common/Paginator");
+import ContentApplicationModel = require("sdk/output/javascript/code/sdk/application/Content/ContentApplicationModel");
+import ContentApplicationValidator = require("sdk/output/javascript/code/sdk/application/Content/ContentApplicationValidator");
+import Paginator = require("sdk/output/javascript/code/sdk/common/Paginator");

@@ -557,4 +557,4 @@ type GetListOfActiveSessionsParam = any;
 type GetLoggedInUserParam = any;
 type HasPasswordParam = any;
 type LogoutParam = any;
-import UserApplicationModel = require("./UserApplicationModel");
+import UserApplicationModel = require("sdk/output/javascript/code/sdk/application/User/UserApplicationModel");

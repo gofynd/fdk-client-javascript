@@ -476,6 +476,6 @@ declare class Configuration {
      */
     updateOrderingStoreConfig({ body, requestHeaders }?: ConfigurationPlatformApplicationValidator.UpdateOrderingStoreConfigParam, { responseHeaders }?: object): Promise<ConfigurationPlatformModel.DeploymentMeta>;
 }
-import ConfigurationPlatformApplicationValidator = require("./ConfigurationPlatformApplicationValidator");
-import ConfigurationPlatformModel = require("./ConfigurationPlatformModel");
-import Paginator = require("../../common/Paginator");
+import ConfigurationPlatformApplicationValidator = require("sdk/output/javascript/code/sdk/platform/Configuration/ConfigurationPlatformApplicationValidator");
+import ConfigurationPlatformModel = require("sdk/output/javascript/code/sdk/platform/Configuration/ConfigurationPlatformModel");
+import Paginator = require("sdk/output/javascript/code/sdk/common/Paginator");

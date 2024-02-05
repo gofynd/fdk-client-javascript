@@ -85,13 +85,21 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; archive user success</i></summary>
 
 ```json
 {
-  "success": true
+  "value": {
+    "success": true
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -142,13 +150,21 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; block/unblock user success</i></summary>
 
 ```json
 {
-  "success": true
+  "value": {
+    "success": true
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -199,53 +215,61 @@ User create
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; create user success</i></summary>
 
 ```json
 {
-  "user": {
-    "_id": "5e68af49cfa09bf7233022f1",
-    "gender": "male",
-    "active": true,
-    "emails": [
-      {
-        "active": true,
-        "primary": true,
-        "verified": true,
-        "email": "akashmane@gofynd.com"
-      },
-      {
-        "active": true,
-        "primary": false,
-        "verified": true,
-        "email": "akashmane@fynd.com"
-      },
-      {
-        "active": true,
-        "primary": false,
-        "verified": true,
-        "email": "akashmane@uniket.store"
-      }
-    ],
-    "external_id": "100002000036789",
-    "account_type": "user",
-    "first_name": "Akash",
-    "last_name": "Mane",
-    "phone_numbers": [
-      {
-        "active": true,
-        "primary": true,
-        "verified": true,
-        "phone": "8652523958",
-        "country_code": 91
-      }
-    ],
-    "meta": {},
-    "created_at": "2020-03-11T09:28:41.982Z",
-    "updated_at": "2020-03-11T09:28:41.982Z"
+  "value": {
+    "user": {
+      "_id": "5e68af49cfa09bf7233022f1",
+      "gender": "male",
+      "active": true,
+      "emails": [
+        {
+          "active": true,
+          "primary": true,
+          "verified": true,
+          "email": "akashmane@gofynd.com"
+        },
+        {
+          "active": true,
+          "primary": false,
+          "verified": true,
+          "email": "akashmane@fynd.com"
+        },
+        {
+          "active": true,
+          "primary": false,
+          "verified": true,
+          "email": "akashmane@uniket.store"
+        }
+      ],
+      "external_id": "100002000036789",
+      "account_type": "user",
+      "first_name": "Akash",
+      "last_name": "Mane",
+      "phone_numbers": [
+        {
+          "active": true,
+          "primary": true,
+          "verified": true,
+          "phone": "8652523958",
+          "country_code": 91
+        }
+      ],
+      "meta": {},
+      "created_at": "2020-03-11T09:28:41.982Z",
+      "updated_at": "2020-03-11T09:28:41.982Z"
+    }
   }
 }
 ```
+</details>
+
 </details>
 
 
@@ -374,24 +398,31 @@ Success. returns created User Group. `UserGroupResponseSchema` for more details.
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; create user group success</i></summary>
 
 ```json
 {
-  "uid": 469,
-  "name": "test2",
-  "description": "test2",
-  "application_id": "000000000000000000000004",
-  "status": "pending",
-  "is_active": true,
-  "type": "bulk",
-  "_id": "6540da9759b4f70ad817ace7",
-  "file_url": "testuerl2",
-  "created_at": "2023-10-31T10:44:39.809Z",
-  "modified_at": "2023-10-31T10:44:39.809Z",
-  "__v": 0
+  "value": {
+    "is_active": true,
+    "_id": "6345677535474fbb6944b7ce",
+    "name": "Group 1",
+    "description": "description",
+    "file_url": "url",
+    "status": "pending",
+    "uid": 1,
+    "application_id": "000000000000000000000001",
+    "created_at": "2022-10-11T12:54:13.539Z",
+    "modified_at": "2022-10-11T12:54:13.539Z",
+    "__v": 0
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -442,19 +473,27 @@ Create user session
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; create user session success</i></summary>
 
 ```json
 {
-  "domain": "vinit.com",
-  "max_age": 4555555,
-  "secure": true,
-  "http_only": true,
-  "cookie": {
-    "f.session": "s%3A-LrEF5FVR8jrT5DCtCHSbAy7JFyX-f9T.uXOQwzje8nOfx4ODANrLi4yNX5fW2W5kLQ2rkBdO2xE"
+  "value": {
+    "domain": "vinit.com",
+    "max_age": 4555555,
+    "secure": true,
+    "http_only": true,
+    "cookie": {
+      "f.session": "s%3A-LrEF5FVR8jrT5DCtCHSbAy7JFyX-f9T.uXOQwzje8nOfx4ODANrLi4yNX5fW2W5kLQ2rkBdO2xE"
+    }
   }
 }
 ```
+</details>
+
 </details>
 
 
@@ -513,7 +552,7 @@ Success. Refer `SessionsDeleteResponseSchema` for more details.
 
 
 <details>
-<summary><i>&nbsp; Success</i></summary>
+<summary><i>&nbsp; delete user sessions success</i></summary>
 
 ```json
 {
@@ -589,7 +628,7 @@ Success. Refer `SessionDeleteResponseSchema` for more details.
 
 
 <details>
-<summary><i>&nbsp; Success</i></summary>
+<summary><i>&nbsp; delete user session success</i></summary>
 
 ```json
 {
@@ -771,7 +810,7 @@ Success. Refer `SessionListResponseSchema` for more details.
 
 
 <details>
-<summary><i>&nbsp; Success</i></summary>
+<summary><i>&nbsp; get user sessions success</i></summary>
 
 ```json
 {
@@ -858,7 +897,7 @@ Success. Refer `CustomerListResponseSchema` for more details.
 
 
 <details>
-<summary><i>&nbsp; Success</i></summary>
+<summary><i>&nbsp; get list customer success</i></summary>
 
 ```json
 {
@@ -960,92 +999,100 @@ Success. Returns a JSON object containing the all the platform configurations. R
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; get platform config success</i></summary>
 
 ```json
 {
-  "active": true,
-  "mobile_image": "",
-  "desktop_image": "",
-  "social": {
-    "facebook": true,
-    "google": true,
-    "account_kit": true
-  },
-  "flash_card": {
-    "text": "",
-    "text_color": "#FFFFFF",
-    "background_color": "#EF5350"
-  },
-  "register": true,
-  "forgot_password": true,
-  "login": {
-    "password": true,
-    "otp": true
-  },
-  "skip_captcha": false,
-  "display": "Fynd",
-  "subtext": "Login to Fynd",
-  "name": "Fynd",
-  "meta": {},
-  "required_fields": {
-    "email": {
-      "is_required": false,
-      "level": "hard"
+  "value": {
+    "active": true,
+    "mobile_image": "",
+    "desktop_image": "",
+    "social": {
+      "facebook": true,
+      "google": true,
+      "account_kit": true
     },
-    "mobile": {
-      "is_required": true,
-      "level": "hard"
-    }
-  },
-  "register_required_fields": {
-    "email": {
-      "is_required": false,
-      "level": "hard"
+    "flash_card": {
+      "text": "",
+      "text_color": "#FFFFFF",
+      "background_color": "#EF5350"
     },
-    "mobile": {
-      "is_required": true,
-      "level": "hard"
-    }
-  },
-  "skip_login": false,
-  "look_and_feel": {
-    "background_color": "#F5F5F5",
-    "card_position": "center"
-  },
-  "social_tokens": {
-    "google": {
-      "appId": "token_123"
+    "register": true,
+    "forgot_password": true,
+    "login": {
+      "password": true,
+      "otp": true
     },
-    "facebook": {
-      "appId": "token_123"
+    "skip_captcha": false,
+    "display": "Fynd",
+    "subtext": "Login to Fynd",
+    "name": "Fynd",
+    "meta": {},
+    "required_fields": {
+      "email": {
+        "is_required": false,
+        "level": "hard"
+      },
+      "mobile": {
+        "is_required": true,
+        "level": "hard"
+      }
     },
-    "account_kit": {
-      "appId": "token_123"
-    }
-  },
-  "session_config": {
-    "duration": 30,
-    "type": "Days",
-    "is_rolling": false
-  },
-  "delete_account_reasons": [
-    {
-      "reason_text": "test",
-      "reason_id": "123",
-      "show_text_area": true
-    }
-  ],
-  "delete_account_day": 7,
-  "delete_account_consent": {
-    "consent_text": ""
-  },
-  "_id": "5e04a5e5220bc15839ad9bc0",
-  "created_at": "2019-12-26T12:21:57.878Z",
-  "updated_at": "2020-08-13T14:31:09.878Z",
-  "__v": 0
+    "register_required_fields": {
+      "email": {
+        "is_required": false,
+        "level": "hard"
+      },
+      "mobile": {
+        "is_required": true,
+        "level": "hard"
+      }
+    },
+    "skip_login": false,
+    "look_and_feel": {
+      "background_color": "#F5F5F5",
+      "card_position": "center"
+    },
+    "social_tokens": {
+      "google": {
+        "app_id": "token_123"
+      },
+      "facebook": {
+        "app_id": "token_123"
+      },
+      "accountkit": {
+        "app_id": "token_123"
+      }
+    },
+    "session_config": {
+      "duration": 30,
+      "type": "Days",
+      "is_rolling": false
+    },
+    "delete_account_reasons": [
+      {
+        "reason_text": "test",
+        "reason_id": "123",
+        "show_text_area": true
+      }
+    ],
+    "delete_account_day": 7,
+    "delete_account_consent": {
+      "consent_text": ""
+    },
+    "_id": "5e04a5e5220bc15839ad9bc0",
+    "created_at": "2019-12-26T12:21:57.878Z",
+    "updated_at": "2020-08-13T14:31:09.878Z",
+    "__v": 0
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -1416,23 +1463,31 @@ Success. User Group details. `UserGroupResponseSchema` for more details.
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; get user group id success</i></summary>
 
 ```json
 {
-  "is_active": true,
-  "_id": "6345677535474fbb6944b7ce",
-  "name": "Group 1",
-  "description": "description",
-  "file_url": "url",
-  "status": "pending",
-  "uid": 1,
-  "application_id": "000000000000000000000001",
-  "created_at": "2022-10-11T12:54:13.539Z",
-  "modified_at": "2022-10-11T12:54:13.539Z",
-  "__v": 0
+  "value": {
+    "is_active": true,
+    "_id": "6345677535474fbb6944b7ce",
+    "name": "Group 1",
+    "description": "description",
+    "file_url": "url",
+    "status": "pending",
+    "uid": 1,
+    "application_id": "000000000000000000000001",
+    "created_at": "2022-10-11T12:54:13.539Z",
+    "modified_at": "2022-10-11T12:54:13.539Z",
+    "__v": 0
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -1499,49 +1554,55 @@ Success. User Group details. `UserGroupListResponseSchema` for more details.
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; get user group success</i></summary>
 
 ```json
 {
-  "items": [
-    {
-      "uid": 469,
-      "name": "test2",
-      "description": "test2",
-      "application_id": "000000000000000000000004",
-      "status": "pending",
-      "is_active": true,
-      "type": "bulk",
-      "_id": "6540da9759b4f70ad817ace7",
-      "file_url": "testuerl2",
-      "created_at": "2023-10-31T10:44:39.809Z",
-      "modified_at": "2023-10-31T10:44:39.809Z",
-      "__v": 0
-    },
-    {
-      "uid": 460,
-      "name": "test",
-      "description": "test",
-      "application_id": "000000000000000000000004",
-      "status": "pending",
-      "is_active": true,
-      "type": "bulk",
-      "_id": "6540da9759b4f70ad817ace8",
-      "file_url": "testuerl2",
-      "created_at": "2023-10-31T10:44:39.809Z",
-      "modified_at": "2023-10-31T10:44:39.809Z",
-      "__v": 0
+  "value": {
+    "items": [
+      {
+        "is_active": true,
+        "_id": "6345677535474fbb6944b7ce",
+        "name": "Group 1",
+        "description": "description",
+        "file_url": "url",
+        "status": "pending",
+        "uid": 1,
+        "application_id": "000000000000000000000001",
+        "created_at": "2022-10-11T12:54:13.539Z",
+        "modified_at": "2022-10-11T12:54:13.539Z",
+        "__v": 0
+      },
+      {
+        "is_active": true,
+        "_id": "6345677535474fbb6944b7ced",
+        "name": "Group 2",
+        "description": "description",
+        "file_url": "url2",
+        "status": "pending",
+        "uid": 1,
+        "application_id": "000000000000000000000001",
+        "created_at": "2022-10-11T12:54:13.539Z",
+        "modified_at": "2022-10-11T12:54:13.539Z",
+        "__v": 0
+      }
+    ],
+    "page": {
+      "type": "number",
+      "current": 1,
+      "size": 10,
+      "item_total": 0,
+      "has_next": false
     }
-  ],
-  "page": {
-    "type": "number",
-    "current": 1,
-    "size": 10,
-    "item_total": 0,
-    "has_next": false
   }
 }
 ```
+</details>
+
 </details>
 
 
@@ -1596,53 +1657,61 @@ Success. Returns first name, last name, emails, phone number and gender of the u
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; search customer success</i></summary>
 
 ```json
 {
-  "users": [
-    {
-      "_id": "5e68af49cfa09bf7233022f1",
-      "gender": "male",
-      "active": true,
-      "emails": [
-        {
-          "active": true,
-          "primary": true,
-          "verified": true,
-          "email": "akashmane@gofynd.com"
-        },
-        {
-          "active": true,
-          "primary": false,
-          "verified": true,
-          "email": "akashmane@fynd.com"
-        },
-        {
-          "active": true,
-          "primary": false,
-          "verified": true,
-          "email": "akashmane@uniket.store"
-        }
-      ],
-      "account_type": "user",
-      "first_name": "Akash",
-      "last_name": "Mane",
-      "phone_numbers": [
-        {
-          "active": true,
-          "primary": true,
-          "verified": true,
-          "phone": "8652523958",
-          "country_code": 91
-        }
-      ],
-      "created_at": "2020-03-11T09:28:41.982Z",
-      "updated_at": "2020-03-11T09:28:41.982Z"
-    }
-  ]
+  "value": {
+    "users": [
+      {
+        "_id": "5e68af49cfa09bf7233022f1",
+        "gender": "male",
+        "active": true,
+        "emails": [
+          {
+            "active": true,
+            "primary": true,
+            "verified": true,
+            "email": "akashmane@gofynd.com"
+          },
+          {
+            "active": true,
+            "primary": false,
+            "verified": true,
+            "email": "akashmane@fynd.com"
+          },
+          {
+            "active": true,
+            "primary": false,
+            "verified": true,
+            "email": "akashmane@uniket.store"
+          }
+        ],
+        "account_type": "user",
+        "first_name": "Akash",
+        "last_name": "Mane",
+        "phone_numbers": [
+          {
+            "active": true,
+            "primary": true,
+            "verified": true,
+            "phone": "8652523958",
+            "country_code": 91
+          }
+        ],
+        "created_at": "2020-03-11T09:28:41.982Z",
+        "updated_at": "2020-03-11T09:28:41.982Z"
+      }
+    ]
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -1693,13 +1762,21 @@ Success
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; undelete user success</i></summary>
 
 ```json
 {
-  "success": true
+  "value": {
+    "success": true
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -1750,92 +1827,100 @@ Success. Returns a JSON object with the updated platform configurations. Refer `
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; update platform config success</i></summary>
 
 ```json
 {
-  "active": true,
-  "mobile_image": "",
-  "desktop_image": "",
-  "social": {
-    "facebook": true,
-    "google": true,
-    "account_kit": true
-  },
-  "flash_card": {
-    "text": "",
-    "text_color": "#FFFFFF",
-    "background_color": "#EF5350"
-  },
-  "register": true,
-  "forgot_password": true,
-  "login": {
-    "password": true,
-    "otp": true
-  },
-  "skip_captcha": false,
-  "display": "Fynd",
-  "subtext": "Login to Fynd",
-  "name": "Fynd",
-  "meta": {},
-  "required_fields": {
-    "email": {
-      "is_required": false,
-      "level": "hard"
+  "value": {
+    "active": true,
+    "mobile_image": "",
+    "desktop_image": "",
+    "social": {
+      "facebook": true,
+      "google": true,
+      "account_kit": true
     },
-    "mobile": {
-      "is_required": true,
-      "level": "hard"
-    }
-  },
-  "register_required_fields": {
-    "email": {
-      "is_required": false,
-      "level": "hard"
+    "flash_card": {
+      "text": "",
+      "text_color": "#FFFFFF",
+      "background_color": "#EF5350"
     },
-    "mobile": {
-      "is_required": true,
-      "level": "hard"
-    }
-  },
-  "skip_login": false,
-  "look_and_feel": {
-    "background_color": "#F5F5F5",
-    "card_position": "center"
-  },
-  "social_tokens": {
-    "google": {
-      "appId": "token_123"
+    "register": true,
+    "forgot_password": true,
+    "login": {
+      "password": true,
+      "otp": true
     },
-    "facebook": {
-      "appId": "token_123"
+    "skip_captcha": false,
+    "display": "Fynd",
+    "subtext": "Login to Fynd",
+    "name": "Fynd",
+    "meta": {},
+    "required_fields": {
+      "email": {
+        "is_required": false,
+        "level": "hard"
+      },
+      "mobile": {
+        "is_required": true,
+        "level": "hard"
+      }
     },
-    "account_kit": {
-      "appId": "token_123"
-    }
-  },
-  "session_config": {
-    "duration": 30,
-    "type": "Days",
-    "is_rolling": false
-  },
-  "delete_account_reasons": [
-    {
-      "reason_text": "test",
-      "reason_id": "123",
-      "show_text_area": true
-    }
-  ],
-  "delete_account_day": 7,
-  "delete_account_consent": {
-    "consent_text": ""
-  },
-  "_id": "5e04a5e5220bc15839ad9bc0",
-  "created_at": "2019-12-26T12:21:57.878Z",
-  "updated_at": "2020-08-13T14:31:09.878Z",
-  "__v": 0
+    "register_required_fields": {
+      "email": {
+        "is_required": false,
+        "level": "hard"
+      },
+      "mobile": {
+        "is_required": true,
+        "level": "hard"
+      }
+    },
+    "skip_login": false,
+    "look_and_feel": {
+      "background_color": "#F5F5F5",
+      "card_position": "center"
+    },
+    "social_tokens": {
+      "google": {
+        "app_id": "token_123"
+      },
+      "facebook": {
+        "app_id": "token_123"
+      },
+      "accountkit": {
+        "app_id": "token_123"
+      }
+    },
+    "session_config": {
+      "duration": 30,
+      "type": "Days",
+      "is_rolling": false
+    },
+    "delete_account_reasons": [
+      {
+        "reason_text": "test",
+        "reason_id": "123",
+        "show_text_area": true
+      }
+    ],
+    "delete_account_day": 7,
+    "delete_account_consent": {
+      "consent_text": ""
+    },
+    "_id": "5e04a5e5220bc15839ad9bc0",
+    "created_at": "2019-12-26T12:21:57.878Z",
+    "updated_at": "2020-08-13T14:31:09.878Z",
+    "__v": 0
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -1889,53 +1974,61 @@ User update
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; update user success</i></summary>
 
 ```json
 {
-  "user": {
-    "_id": "5e68af49cfa09bf7233022f1",
-    "gender": "male",
-    "active": true,
-    "emails": [
-      {
-        "active": true,
-        "primary": true,
-        "verified": true,
-        "email": "akashmane@gofynd.com"
-      },
-      {
-        "active": true,
-        "primary": false,
-        "verified": true,
-        "email": "akashmane@fynd.com"
-      },
-      {
-        "active": true,
-        "primary": false,
-        "verified": true,
-        "email": "akashmane@uniket.store"
-      }
-    ],
-    "external_id": "100002000036789",
-    "account_type": "user",
-    "first_name": "Akash",
-    "last_name": "Mane",
-    "phone_numbers": [
-      {
-        "active": true,
-        "primary": true,
-        "verified": true,
-        "phone": "8652523958",
-        "country_code": 91
-      }
-    ],
-    "meta": {},
-    "created_at": "2020-03-11T09:28:41.982Z",
-    "updated_at": "2020-03-11T09:28:41.982Z"
+  "value": {
+    "user": {
+      "_id": "5e68af49cfa09bf7233022f1",
+      "gender": "male",
+      "active": true,
+      "emails": [
+        {
+          "active": true,
+          "primary": true,
+          "verified": true,
+          "email": "akashmane@gofynd.com"
+        },
+        {
+          "active": true,
+          "primary": false,
+          "verified": true,
+          "email": "akashmane@fynd.com"
+        },
+        {
+          "active": true,
+          "primary": false,
+          "verified": true,
+          "email": "akashmane@uniket.store"
+        }
+      ],
+      "external_id": "100002000036789",
+      "account_type": "user",
+      "first_name": "Akash",
+      "last_name": "Mane",
+      "phone_numbers": [
+        {
+          "active": true,
+          "primary": true,
+          "verified": true,
+          "phone": "8652523958",
+          "country_code": 91
+        }
+      ],
+      "meta": {},
+      "created_at": "2020-03-11T09:28:41.982Z",
+      "updated_at": "2020-03-11T09:28:41.982Z"
+    }
   }
 }
 ```
+</details>
+
 </details>
 
 
@@ -2108,24 +2201,31 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; update user group success</i></summary>
 
 ```json
 {
-  "uid": 469,
-  "name": "test2",
-  "description": "test2",
-  "application_id": "000000000000000000000004",
-  "status": "pending",
-  "is_active": true,
-  "type": "bulk",
-  "_id": "6540da9759b4f70ad817ace7",
-  "file_url": "testuerl2",
-  "created_at": "2023-10-31T10:44:39.809Z",
-  "modified_at": "2023-10-31T10:44:39.809Z",
-  "__v": 0
+  "value": {
+    "is_active": true,
+    "_id": "6345677535474fbb6944b7ce",
+    "name": "Group 1",
+    "description": "description",
+    "file_url": "url",
+    "status": "pending",
+    "uid": 1,
+    "application_id": "000000000000000000000004",
+    "created_at": "2022-10-11T12:54:13.539Z",
+    "modified_at": "2022-10-11T12:54:13.539Z",
+    "__v": 0
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -2179,23 +2279,31 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; update user group partially success</i></summary>
 
 ```json
 {
-  "is_active": true,
-  "_id": "6345677535474fbb6944b7ce",
-  "name": "Group 1",
-  "description": "description",
-  "file_url": "url",
-  "status": "pending",
-  "uid": 1,
-  "application_id": "000000000000000000000001",
-  "created_at": "2022-10-11T12:54:13.539Z",
-  "modified_at": "2022-10-11T12:54:13.539Z",
-  "__v": 0
+  "value": {
+    "is_active": true,
+    "_id": "6345677535474fbb6944b7ce",
+    "name": "Group 1",
+    "description": "description",
+    "file_url": "url",
+    "status": "pending",
+    "uid": 1,
+    "application_id": "000000000000000000000001",
+    "created_at": "2022-10-11T12:54:13.539Z",
+    "modified_at": "2022-10-11T12:54:13.539Z",
+    "__v": 0
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -2219,6 +2327,22 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | app_id | string? |  yes  |  |
+ | app_secret | string? |  yes  |  |
+ 
+
+---
+
+#### [APIError](#APIError)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | authenticated | boolean? |  yes  |  |
+ | code | string? |  yes  |  |
+ | error | string? |  yes  |  |
+ | info | string? |  yes  | Error code description link |
+ | message | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | request_id | string? |  yes  |  |
  
 
 ---
@@ -2237,15 +2361,6 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | success | boolean? |  yes  |  |
- 
-
----
-
-#### [AuthenticationApiErrorSchema](#AuthenticationApiErrorSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
  
 
 ---
@@ -2431,6 +2546,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | app_id | string? |  yes  |  |
+ | app_secret | string? |  yes  |  |
  
 
 ---
@@ -2451,6 +2567,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | app_id | string? |  yes  |  |
+ | app_secret | string? |  yes  |  |
  
 
 ---
@@ -2547,10 +2664,11 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | __v | number? |  yes  |  |
  | _id | string? |  yes  |  |
  | active | boolean? |  yes  |  |
  | created_at | string? |  yes  |  |
- | delete_account_consent | string? |  yes  |  |
+ | delete_account_consent | [DeleteAccountConsent](#DeleteAccountConsent)? |  yes  |  |
  | delete_account_day | number? |  yes  |  |
  | delete_account_reasons | [[DeleteAccountReasons](#DeleteAccountReasons)]? |  yes  |  |
  | desktop_image | string? |  yes  |  |
@@ -2565,7 +2683,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
  | register | boolean? |  yes  |  |
  | register_required_fields | [RegisterRequiredFields](#RegisterRequiredFields)? |  yes  |  |
  | required_fields | [RequiredFields](#RequiredFields)? |  yes  |  |
- | session_config | string? |  yes  |  |
+ | session_config | [SessionExpiry](#SessionExpiry)? |  yes  |  |
  | skip_captcha | boolean? |  yes  |  |
  | skip_login | boolean? |  yes  |  |
  | social | [Social](#Social)? |  yes  |  |
@@ -2644,6 +2762,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
  | domain | string? |  yes  |  |
  | expire_in | string? |  yes  |  |
  | ip | string? |  yes  |  |
+ | location | string? |  yes  |  |
  | session_id | string? |  yes  |  |
  | user_agent | string? |  yes  |  |
  
@@ -2685,7 +2804,7 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | account_kit | [Accountkit](#Accountkit)? |  yes  |  |
+ | accountkit | [Accountkit](#Accountkit)? |  yes  |  |
  | facebook | [Facebook](#Facebook)? |  yes  |  |
  | google | [Google](#Google)? |  yes  |  |
  
@@ -2932,7 +3051,34 @@ Success. returns updated User Group. `UserGroupResponseSchema` for more details.
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | users | [[UserSchema](#UserSchema)]? |  yes  |  |
+ | users | [[UserSearchSchema](#UserSearchSchema)]? |  yes  |  |
+ 
+
+---
+
+#### [UserSearchSchema](#UserSearchSchema)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | _id | string? |  yes  |  |
+ | account_type | string? |  yes  |  |
+ | active | boolean? |  yes  |  |
+ | application_id | string? |  yes  |  |
+ | archive | boolean? |  yes  |  |
+ | created_at | string? |  yes  |  |
+ | dob | string? |  yes  |  |
+ | emails | [[Email](#Email)]? |  yes  |  |
+ | external_id | string? |  yes  |  |
+ | first_name | string? |  yes  |  |
+ | gender | string? |  yes  |  |
+ | last_name | string? |  yes  |  |
+ | meta | string? |  yes  |  |
+ | phone_numbers | [[PhoneNumber](#PhoneNumber)]? |  yes  |  |
+ | profile_pic_url | string? |  yes  |  |
+ | status | string? |  yes  |  |
+ | updated_at | string? |  yes  |  |
+ | user_id | string? |  yes  |  |
+ | username | string? |  yes  |  |
  
 
 ---

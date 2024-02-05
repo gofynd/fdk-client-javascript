@@ -989,6 +989,11 @@ Success
       "order": {
         "buy_again": true
       },
+      "buybox": {
+        "show_name": true,
+        "enable_selection": true,
+        "is_seller_buybox_enabled": false
+      },
       "_id": "5e57643c986e4119c973df7d",
       "app": "000000000000000000000001",
       "created_at": "2020-02-27T06:39:56.088Z",
@@ -2486,6 +2491,10 @@ Success
         "min": 0,
         "max": 100
       },
+      "pricing_strategy": {
+        "is_active": false,
+        "value": "all"
+      },
       "out_of_stock": true,
       "franchise_enabled": true,
       "exclude_category": [],
@@ -3864,6 +3873,11 @@ Success
     "order": {
       "buy_again": true
     },
+    "buybox": {
+      "show_name": true,
+      "enable_selection": true,
+      "is_seller_buybox_enabled": false
+    },
     "_id": "5e57643c986e4119c973df7d",
     "app": "000000000000000000000001",
     "created_at": "2020-02-27T06:39:56.088Z",
@@ -4031,6 +4045,10 @@ Success
       "discount": {
         "min": 0,
         "max": 100
+      },
+      "pricing_strategy": {
+        "is_active": false,
+        "value": "all"
       },
       "out_of_stock": true,
       "franchise_enabled": true,
@@ -4969,6 +4987,11 @@ Success
     "order": {
       "buy_again": true
     },
+    "buybox": {
+      "show_name": true,
+      "enable_selection": true,
+      "is_seller_buybox_enabled": false
+    },
     "_id": "5e57643c986e4119c973df7d",
     "app": "000000000000000000000001",
     "created_at": "2020-02-27T06:39:56.088Z",
@@ -5663,6 +5686,7 @@ Success
  | __v | number? |  yes  | Version key for tracking revisions. Default value is zero |
  | _id | string? |  yes  | The unique identifier (24-digit Mongo Object ID) for the sales channel features |
  | app | string? |  yes  | Application ID of the sales channel |
+ | buybox | [BuyboxFeature](#BuyboxFeature)? |  yes  |  |
  | cart | [CartFeature](#CartFeature)? |  yes  |  |
  | common | [CommonFeature](#CommonFeature)? |  yes  |  |
  | created_at | string? |  yes  | ISO 8601 timestamp showing the date when the features were configured |
@@ -5733,6 +5757,7 @@ Success
  | only_verified_products | boolean? |  yes  | Show only verified products (the ones whose data has been verified by the admin) |
  | out_of_stock | boolean? |  yes  | Indicates whether out of stock products are allowed to show up on the website |
  | price | [InventoryPrice](#InventoryPrice)? |  yes  |  |
+ | pricing_strategy | [PricingStrategy](#PricingStrategy)? |  yes  |  |
  | store | [InventoryStore](#InventoryStore)? |  yes  |  |
  
 
@@ -5801,7 +5826,7 @@ Success
  | secret | string? |  yes  |  |
  | slug | string? |  yes  |  |
  | status | string? |  yes  |  |
- | token | string? |  yes  | Random generated fix length string for sales channel. It is required and auto-generated.           |
+ | token | string? |  yes  | Random generated fix length string for sales channel. It is required and auto-generated. |
  | tokens | [[TokenSchema](#TokenSchema)]? |  yes  |  |
  | website | [ApplicationWebsite](#ApplicationWebsite)? |  yes  |  |
  
@@ -6118,6 +6143,17 @@ Success
  | icon | string? |  yes  | Hosted URL of icon image representing the business highlight |
  | sub_title | string? |  yes  | Detailed information about the highlight |
  | title | string? |  yes  | Title of the business highlight, e.g. Superfast Delivery |
+ 
+
+---
+
+#### [BuyboxFeature](#BuyboxFeature)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enable_selection | boolean? |  yes  | Allow selection of sellers/stores on PDP (product detail page). |
+ | is_seller_buybox_enabled | boolean? |  yes  | Toggle buybox listing between sellers and stores. True indicates seller listing, while False indicates store listing. |
+ | show_name | boolean? |  yes  | Allow users to see seller/stores name on PDP (product detail page). |
  
 
 ---
@@ -6911,6 +6947,7 @@ Success
  | image | [string]? |  yes  |  |
  | only_verified_products | boolean? |  yes  | Show only verified products (the ones whose data have been verified by the admin) |
  | out_of_stock | boolean? |  yes  | Indicates whether out of stock products are allowed to show up on the website. |
+ | pricing_strategy | [PricingStrategy](#PricingStrategy)? |  yes  |  |
  | store | [InventoryStoreRule](#InventoryStoreRule)? |  yes  |  |
  
 
@@ -7509,6 +7546,16 @@ Success
  | icon | string? |  yes  | Hosted URL of social icon image shown on the website |
  | link | string? |  yes  | Web URL of brand's Pinterest page |
  | title | string? |  yes  | Name of the social media platform, e.g. Pinterest |
+ 
+
+---
+
+#### [PricingStrategy](#PricingStrategy)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_active | boolean? |  yes  | Indicates whether the pricing strategy is active or not active |
+ | value | string? |  yes  | Indicates the pricing strategy value. |
  
 
 ---

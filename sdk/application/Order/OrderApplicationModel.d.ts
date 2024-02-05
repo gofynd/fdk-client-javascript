@@ -119,6 +119,7 @@ export = OrderApplicationModel;
  * @property {number} [refund_amount]
  * @property {string} [currency_code]
  * @property {number} [fynd_credits]
+ * @property {number} [amount_to_be_collected]
  */
 /**
  * @typedef ItemBrand
@@ -191,6 +192,7 @@ export = OrderApplicationModel;
  * @property {number} [gst_fee]
  * @property {number} [refund_amount]
  * @property {number} [fynd_credits]
+ * @property {number} [amount_to_be_collected]
  */
 /**
  * @typedef CurrentStatus
@@ -218,11 +220,16 @@ export = OrderApplicationModel;
  * @property {string} [currency_code]
  * @property {string} [seller_identifier]
  * @property {CurrentStatus} [current_status]
+ * @property {Article} [article]
  */
 /**
  * @typedef FulfillingCompany
  * @property {number} [id]
  * @property {string} [name]
+ */
+/**
+ * @typedef Article
+ * @property {string[]} [tags]
  */
 /**
  * @typedef DeliveryAddress
@@ -253,6 +260,7 @@ export = OrderApplicationModel;
 /**
  * @typedef Shipments
  * @property {ShipmentPayment} [payment]
+ * @property {ShipmentPayment[]} [payment_info]
  * @property {string} [order_type]
  * @property {boolean} [show_download_invoice]
  * @property {boolean} [can_cancel]
@@ -289,6 +297,7 @@ export = OrderApplicationModel;
  * @property {string} [need_help_url]
  * @property {Object} [return_meta]
  * @property {string} [delivery_date]
+ * @property {OrderRequest} [order]
  */
 /**
  * @typedef BagsForReorderArticleAssignment
@@ -497,6 +506,10 @@ export = OrderApplicationModel;
  * @property {string} [status]
  */
 /**
+ * @typedef OrderRequest
+ * @property {Object} [meta]
+ */
+/**
  * @typedef UpdateShipmentStatusRequest
  * @property {StatuesRequest[]} [statuses]
  * @property {boolean} [task]
@@ -523,7 +536,7 @@ export = OrderApplicationModel;
 declare class OrderApplicationModel {
 }
 declare namespace OrderApplicationModel {
-    export { OrderPage, UserInfo, BreakupValues, ShipmentPayment, ShipmentUserInfo, FulfillingStore, ShipmentStatus, Invoice, NestedTrackingDetails, TrackingDetails, TimeStampData, Promise, ShipmentTotalDetails, Prices, ItemBrand, Item, AppliedFreeArticles, AppliedPromos, Identifiers, FinancialBreakup, CurrentStatus, Bags, FulfillingCompany, DeliveryAddress, Shipments, BagsForReorderArticleAssignment, BagsForReorder, OrderSchema, OrderStatuses, OrderFilters, OrderList, ApefaceApiError, OrderById, ShipmentById, ResponseGetInvoiceShipment, Track, ShipmentTrack, CustomerDetailsResponse, SendOtpToCustomerResponse, VerifyOtp, VerifyOtpResponse, BagReasonMeta, QuestionSet, BagReasons, ShipmentBagReasons, ShipmentReason, ShipmentReasons, ProductsReasonsData, ProductsReasonsFilters, ProductsReasons, EntityReasonData, EntitiesReasons, ReasonsData, Products, ProductsDataUpdatesFilters, ProductsDataUpdates, EntitiesDataUpdates, DataUpdates, ShipmentsRequest, StatuesRequest, UpdateShipmentStatusRequest, StatusesBodyResponse, ShipmentApplicationStatusResponse, ErrorResponse };
+    export { OrderPage, UserInfo, BreakupValues, ShipmentPayment, ShipmentUserInfo, FulfillingStore, ShipmentStatus, Invoice, NestedTrackingDetails, TrackingDetails, TimeStampData, Promise, ShipmentTotalDetails, Prices, ItemBrand, Item, AppliedFreeArticles, AppliedPromos, Identifiers, FinancialBreakup, CurrentStatus, Bags, FulfillingCompany, Article, DeliveryAddress, Shipments, BagsForReorderArticleAssignment, BagsForReorder, OrderSchema, OrderStatuses, OrderFilters, OrderList, ApefaceApiError, OrderById, ShipmentById, ResponseGetInvoiceShipment, Track, ShipmentTrack, CustomerDetailsResponse, SendOtpToCustomerResponse, VerifyOtp, VerifyOtpResponse, BagReasonMeta, QuestionSet, BagReasons, ShipmentBagReasons, ShipmentReason, ShipmentReasons, ProductsReasonsData, ProductsReasonsFilters, ProductsReasons, EntityReasonData, EntitiesReasons, ReasonsData, Products, ProductsDataUpdatesFilters, ProductsDataUpdates, EntitiesDataUpdates, DataUpdates, ShipmentsRequest, StatuesRequest, OrderRequest, UpdateShipmentStatusRequest, StatusesBodyResponse, ShipmentApplicationStatusResponse, ErrorResponse };
 }
 /** @returns {OrderPage} */
 declare function OrderPage(): OrderPage;
@@ -659,6 +672,7 @@ type Prices = {
     refund_amount?: number;
     currency_code?: string;
     fynd_credits?: number;
+    amount_to_be_collected?: number;
 };
 /** @returns {ItemBrand} */
 declare function ItemBrand(): ItemBrand;
@@ -737,6 +751,7 @@ type FinancialBreakup = {
     gst_fee?: number;
     refund_amount?: number;
     fynd_credits?: number;
+    amount_to_be_collected?: number;
 };
 /** @returns {CurrentStatus} */
 declare function CurrentStatus(): CurrentStatus;
@@ -766,12 +781,18 @@ type Bags = {
     currency_code?: string;
     seller_identifier?: string;
     current_status?: CurrentStatus;
+    article?: Article;
 };
 /** @returns {FulfillingCompany} */
 declare function FulfillingCompany(): FulfillingCompany;
 type FulfillingCompany = {
     id?: number;
     name?: string;
+};
+/** @returns {Article} */
+declare function Article(): Article;
+type Article = {
+    tags?: string[];
 };
 /** @returns {DeliveryAddress} */
 declare function DeliveryAddress(): DeliveryAddress;
@@ -804,6 +825,7 @@ type DeliveryAddress = {
 declare function Shipments(): Shipments;
 type Shipments = {
     payment?: ShipmentPayment;
+    payment_info?: ShipmentPayment[];
     order_type?: string;
     show_download_invoice?: boolean;
     can_cancel?: boolean;
@@ -840,6 +862,7 @@ type Shipments = {
     need_help_url?: string;
     return_meta?: any;
     delivery_date?: string;
+    order?: OrderRequest;
 };
 /** @returns {BagsForReorderArticleAssignment} */
 declare function BagsForReorderArticleAssignment(): BagsForReorderArticleAssignment;
@@ -1081,6 +1104,11 @@ type StatuesRequest = {
     shipments?: ShipmentsRequest[];
     exclude_bags_next_state?: string;
     status?: string;
+};
+/** @returns {OrderRequest} */
+declare function OrderRequest(): OrderRequest;
+type OrderRequest = {
+    meta?: any;
 };
 /** @returns {UpdateShipmentStatusRequest} */
 declare function UpdateShipmentStatusRequest(): UpdateShipmentStatusRequest;

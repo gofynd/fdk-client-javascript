@@ -175,6 +175,11 @@ export = CartPlatformModel;
  * @property {Page} [page]
  */
 /**
+ * @typedef TagsViewResponse
+ * @property {boolean} [success]
+ * @property {string[]} [items]
+ */
+/**
  * @typedef SuccessMessage
  * @property {boolean} [success]
  * @property {string} [message]
@@ -183,6 +188,7 @@ export = CartPlatformModel;
  * @typedef OperationErrorResponse
  * @property {boolean} [success]
  * @property {string} [message]
+ * @property {string} [error]
  */
 /**
  * @typedef CouponUpdate
@@ -380,6 +386,8 @@ export = CartPlatformModel;
  * @property {Object} [_custom_json] - Custom data stored in promotion
  * @property {PromotionDateMeta} [date_meta]
  * @property {string} [_id] - Promotion id
+ * @property {string[]} [tags]
+ * @property {Object[]} [custom_field_meta] - Custom field meta for promotion.
  */
 /**
  * @typedef PromotionsResponse
@@ -411,6 +419,7 @@ export = CartPlatformModel;
  * @property {Object} buy_rules
  * @property {Object} [_custom_json]
  * @property {PromotionDateMeta} [date_meta]
+ * @property {string[]} [tags]
  */
 /**
  * @typedef PromotionUpdate
@@ -437,6 +446,8 @@ export = CartPlatformModel;
  * @property {Object} buy_rules
  * @property {Object} [_custom_json]
  * @property {PromotionDateMeta} [date_meta]
+ * @property {string[]} [tags]
+ * @property {Object[]} [custom_field_meta] - Custom field meta for promotion.
  */
 /**
  * @typedef PromotionPartialUpdate
@@ -468,26 +479,87 @@ export = CartPlatformModel;
  * @property {boolean} [enabled]
  */
 /**
+ * @typedef OrderPlacing
+ * @property {boolean} [enabled]
+ * @property {string} [message]
+ */
+/**
+ * @typedef PanCard
+ * @property {boolean} [enabled]
+ * @property {number} [cod_threshold_amount]
+ * @property {number} [online_threshold_amount]
+ */
+/**
  * @typedef CartMetaConfigUpdate
  * @property {number} [min_cart_value]
+ * @property {number} [max_cart_value]
  * @property {boolean} [bulk_coupons]
  * @property {number} [max_cart_items]
  * @property {string} [gift_display_text]
  * @property {DeliveryCharges} [delivery_charges]
+ * @property {DeliveryCharges} [international_delivery_charges]
  * @property {boolean} [revenue_engine_coupon]
  * @property {number} [gift_pricing]
  * @property {boolean} [enabled]
+ * @property {boolean} [is_active]
+ * @property {OrderPlacing} [order_placing]
+ * @property {string} [name]
+ * @property {string[]} [article_tags]
+ * @property {boolean} [allow_coupon_with_rewards]
+ * @property {boolean} [gst_input]
+ * @property {boolean} [staff_selection]
+ * @property {boolean} [placing_for_customer]
+ * @property {PanCard} [pan_card]
+ */
+/**
+ * @typedef TimeStampIDResponse
+ * @property {string} [id]
+ * @property {string} [app_id]
+ * @property {number} [company_id]
+ * @property {string} [created_on]
+ * @property {string} [updated_on]
+ * @property {string} [last_modified_by]
+ */
+/**
+ * @typedef CartMetaConfigDetailResponse
+ * @property {boolean} [success]
+ * @property {Object} [data]
+ */
+/**
+ * @typedef CartMetaConfigListObj
+ * @property {string} [id]
+ * @property {string} [name]
+ * @property {string} [slug]
+ * @property {boolean} [is_active]
+ * @property {string} [created_on]
+ */
+/**
+ * @typedef CartMetaConfigListResponse
+ * @property {boolean} [success]
+ * @property {CartMetaConfigListObj[]} [data]
  */
 /**
  * @typedef CartMetaConfigAdd
  * @property {number} [min_cart_value]
+ * @property {number} [max_cart_value]
  * @property {boolean} [bulk_coupons]
  * @property {number} [max_cart_items]
  * @property {string} [gift_display_text]
  * @property {DeliveryCharges} [delivery_charges]
+ * @property {DeliveryCharges} [international_delivery_charges]
  * @property {boolean} [revenue_engine_coupon]
  * @property {number} [gift_pricing]
  * @property {boolean} [enabled]
+ * @property {boolean} [is_active]
+ * @property {OrderPlacing} [order_placing]
+ * @property {string} name
+ * @property {string} slug
+ * @property {string[]} [article_tags]
+ * @property {boolean} [allow_coupon_with_rewards]
+ * @property {boolean} [gst_input]
+ * @property {boolean} [staff_selection]
+ * @property {boolean} [placing_for_customer]
+ * @property {PanCard} [pan_card]
  */
 /**
  * @typedef Article
@@ -527,6 +599,10 @@ export = CartPlatformModel;
  * @property {boolean} is_authenticated - Flag indicating whether the user is
  *   authenticated
  * @property {Article[]} article_ids - The list of article object in the price adjustment
+ * @property {boolean} [remove_articles] - This field if set true will remove
+ *   all articles in price adjustment if article_ids are present
+ * @property {boolean} [auto_remove] - This field if set true will remove mop
+ *   type price adjustment.
  * @property {Object} [meta]
  * @property {string} cart_id - The ID of the cart
  */
@@ -550,6 +626,13 @@ export = CartPlatformModel;
  * @property {Article[]} article_ids - The list of article object in the price adjustment
  * @property {Object} [meta]
  * @property {string} cart_id - The ID of the cart
+ * @property {boolean} [remove_articles] - This field if set true will remove
+ *   all articles in price adjustment if article_ids are present
+ * @property {boolean} [auto_remove] - This field if set true will remove mop
+ *   type price adjustment.
+ * @property {string} [distribution_level] - Distribution level of price adjusment
+ * @property {string} [distribution_type] - Distribution type of price adjusment
+ *   in case of shipment distribution level
  */
 /**
  * @typedef PriceAdjustmentResponse
@@ -575,6 +658,13 @@ export = CartPlatformModel;
  * @property {Article[]} article_ids - The list of article object in the price adjustment
  * @property {Object} [meta]
  * @property {string} cart_id - The ID of the cart
+ * @property {boolean} [remove_articles] - This field if set true will remove
+ *   all articles in price adjustment if article_ids are present
+ * @property {boolean} [auto_remove] - This field if set true will remove mop
+ *   type price adjustment.
+ * @property {string} [distribution_level] - Distribution level of price adjusment
+ * @property {string} [distribution_type] - Distribution type of price adjusment
+ *   in case of shipment distribution level
  */
 /**
  * @typedef CartItem
@@ -711,6 +801,7 @@ export = CartPlatformModel;
  * @property {string} [seller_identifier]
  * @property {number} [quantity]
  * @property {BaseInfo} [seller]
+ * @property {string} [product_name]
  * @property {Object} [cart_item_meta]
  * @property {Object} [parent_item_identifiers]
  * @property {boolean} [is_gift_visible]
@@ -781,6 +872,7 @@ export = CartPlatformModel;
  * @property {string} [promo_id] - Promotion id
  * @property {Object} [meta] - Meta object for extra data
  * @property {string} [code] - Promotion code
+ * @property {Object[]} [custom_field_meta] - Custom field meta for promotion.
  */
 /**
  * @typedef PromiseFormatted
@@ -856,6 +948,7 @@ export = CartPlatformModel;
  * @property {ProductArticle} [article]
  * @property {AppliedPromotion[]} [promotions_applied]
  * @property {ShipmentPromise} [delivery_promise]
+ * @property {number} [seller_count]
  * @property {string} [key]
  * @property {CouponDetails} [coupon]
  * @property {Object} [bulk_offer]
@@ -1081,6 +1174,14 @@ export = CartPlatformModel;
  * @property {DeliveryChargesConfig} [delivery_charges_config]
  */
 /**
+ * @typedef CustomCart
+ * @property {string} [id] - Id of custom cart config
+ * @property {string} [cart_name] - Name of custom cart
+ * @property {string} [cart_type] - Type of custom cart
+ * @property {boolean} [is_universal] - By default all carts are universal, will
+ *   be false for custom cart
+ */
+/**
  * @typedef CartDetailResponse
  * @property {number} [cart_id]
  * @property {string} [uid]
@@ -1108,6 +1209,8 @@ export = CartPlatformModel;
  * @property {string} [gstin]
  * @property {AppliedPromotion[]} [applied_promo_details]
  * @property {string} [pan_no]
+ * @property {boolean} [is_pan_received]
+ * @property {CustomCart} [custom_cart]
  */
 /**
  * @typedef AddProductCart
@@ -1115,6 +1218,7 @@ export = CartPlatformModel;
  * @property {string} [item_size]
  * @property {number} [seller_id]
  * @property {Object[]} [parent_item_identifiers]
+ * @property {string} [price_factory_type_id]
  * @property {string[]} [product_group_tags]
  * @property {string} [article_id]
  * @property {Object} [article_assignment]
@@ -1149,6 +1253,7 @@ export = CartPlatformModel;
  * @property {Object} [meta]
  * @property {Object} [extra_meta]
  * @property {Object} [_custom_json]
+ * @property {string} [price_factory_type_id]
  * @property {number} [item_id]
  * @property {number} [item_index]
  * @property {CartProductIdentifer} identifiers
@@ -1309,6 +1414,7 @@ export = CartPlatformModel;
  * @property {string} [gstin]
  * @property {AppliedPromotion[]} [applied_promo_details]
  * @property {string} [pan_no]
+ * @property {boolean} [is_pan_received]
  */
 /**
  * @typedef PlatformAddCartRequest
@@ -1482,6 +1588,7 @@ export = CartPlatformModel;
  * @property {AppliedPromotion[]} [applied_promo_details]
  * @property {boolean} [error]
  * @property {string} [pan_no]
+ * @property {boolean} [is_pan_received]
  */
 /**
  * @typedef UpdateCartShipmentItem
@@ -1501,6 +1608,7 @@ export = CartPlatformModel;
  * @property {string} [checkout_mode]
  * @property {Object} [gift_details]
  * @property {string} [pan_no]
+ * @property {boolean} [is_pan_received]
  * @property {string} [comment]
  * @property {string} [staff_user_id] - Staff user id
  */
@@ -1560,7 +1668,7 @@ export = CartPlatformModel;
  * @property {string} [employee_code]
  * @property {Object} [billing_address]
  * @property {string} [callback_url]
- * @property {string} user_id
+ * @property {string} [user_id]
  * @property {Object} [extra_meta]
  * @property {string} order_type
  * @property {Files[]} [files] - List of file url
@@ -1602,6 +1710,7 @@ export = CartPlatformModel;
  * @property {string} [gstin]
  * @property {boolean} [cod_available]
  * @property {number} [delivery_charges]
+ * @property {CustomCart} [custom_cart]
  */
 /**
  * @typedef CartCheckoutResponse
@@ -1707,7 +1816,7 @@ export = CartPlatformModel;
  * @property {string} [employee_code]
  * @property {Object} [billing_address]
  * @property {string} [callback_url]
- * @property {string} user_id
+ * @property {string} [user_id]
  * @property {Object} [extra_meta]
  * @property {string} order_type
  * @property {Files[]} [files] - List of file url
@@ -1730,7 +1839,7 @@ export = CartPlatformModel;
 declare class CartPlatformModel {
 }
 declare namespace CartPlatformModel {
-    export { CouponDateMeta, Ownership, CouponAuthor, State, PaymentAllowValue, PaymentModes, PriceRange, PostOrder, BulkBundleRestriction, UsesRemaining, UsesRestriction, Restrictions, Validation, CouponAction, CouponSchedule, Rule, DisplayMetaDict, DisplayMeta, Identifier, Validity, RuleDefinition, CouponAdd, Page, CouponsResponse, SuccessMessage, OperationErrorResponse, CouponUpdate, CouponPartialUpdate, DisplayMeta1, Ownership1, CompareObject, ItemCriteria, DiscountOffer, DiscountRule, PaymentAllowValue1, PromotionPaymentModes, UserRegistered, PostOrder1, UsesRemaining1, UsesRestriction1, Restrictions1, PromotionSchedule, PromotionAction, PromotionAuthor, Visibility, PromotionDateMeta, PromotionListItem, PromotionsResponse, PromotionAdd, PromotionUpdate, PromotionPartialUpdate, ActivePromosResponse, Charges, DeliveryCharges, CartMetaConfigUpdate, CartMetaConfigAdd, Article, PriceAdjustmentRestrictions, Collection, PriceAdjustmentUpdate, PriceAdjustment, PriceAdjustmentResponse, PriceAdjustmentAdd, CartItem, OpenapiCartDetailsRequest, CouponBreakup, DisplayBreakup, LoyaltyPoints, RawBreakup, CartBreakup, ProductImage, Tags, BaseInfo, ActionQuery, ProductAction, CategoryInfo, CartProduct, BasePrice, ArticlePriceInfo, StoreInfo, ProductArticle, Ownership2, DiscountRulesApp, FreeGiftItem, AppliedFreeArticles, BuyRules, AppliedPromotion, PromiseFormatted, PromiseISOFormat, PromiseTimestamp, ShipmentPromise, CouponDetails, ProductPrice, ProductPriceInfo, CartProductIdentifer, ProductAvailabilitySize, ProductAvailability, PromoMeta, CartProductInfo, OpenapiCartDetailsResponse, OpenApiErrorResponse, ShippingAddress, OpenApiCartServiceabilityRequest, OpenApiCartServiceabilityResponse, OpenApiFiles, CartItemMeta, MultiTenderPaymentMeta, MultiTenderPaymentMethod, OpenApiOrderItem, OpenApiPlatformCheckoutReq, OpenApiCheckoutResponse, AbandonedCart, AbandonedCartResponse, PaymentSelectionLock, CartCurrency, CartDetailCoupon, ChargesThreshold, DeliveryChargesConfig, CartCommonConfig, CartDetailResponse, AddProductCart, AddCartRequest, AddCartDetailResponse, UpdateProductCart, UpdateCartRequest, UpdateCartDetailResponse, OverrideCartItemPromo, OverrideCartItem, OverrideCheckoutReq, OverrideCheckoutResponse, GetShareCartLinkRequest, GetShareCartLinkResponse, SharedCartDetails, SharedCart, SharedCartResponse, CartList, MultiCartResponse, UpdateUserCartMapping, UserInfo, UserCartMappingResponse, PlatformAddCartRequest, PlatformUpdateCartRequest, DeleteCartRequest, DeleteCartDetailResponse, CartItemCountResponse, Coupon, PageCoupon, GetCouponResponse, ApplyCouponRequest, GeoLocation, PlatformAddress, PlatformGetAddressesResponse, SaveAddressResponse, UpdateAddressResponse, DeleteAddressResponse, PlatformSelectCartAddressRequest, ShipmentArticle, PlatformShipmentResponse, PlatformCartShipmentsResponse, UpdateCartShipmentItem, UpdateCartShipmentRequest, PlatformCartMetaRequest, CartMetaResponse, CartMetaMissingResponse, StaffCheckout, CustomerDetails, Files, CartCheckoutCustomMeta, PlatformCartCheckoutDetailRequest, CheckCart, CartCheckoutResponse, CartDeliveryModesResponse, PickupStoreDetail, StoreDetailsResponse, UpdateCartPaymentRequest, CouponValidity, PaymentCouponValidate, PaymentMeta, PaymentMethod, PlatformCartCheckoutDetailV2Request, UpdateCartPaymentRequestV2 };
+    export { CouponDateMeta, Ownership, CouponAuthor, State, PaymentAllowValue, PaymentModes, PriceRange, PostOrder, BulkBundleRestriction, UsesRemaining, UsesRestriction, Restrictions, Validation, CouponAction, CouponSchedule, Rule, DisplayMetaDict, DisplayMeta, Identifier, Validity, RuleDefinition, CouponAdd, Page, CouponsResponse, TagsViewResponse, SuccessMessage, OperationErrorResponse, CouponUpdate, CouponPartialUpdate, DisplayMeta1, Ownership1, CompareObject, ItemCriteria, DiscountOffer, DiscountRule, PaymentAllowValue1, PromotionPaymentModes, UserRegistered, PostOrder1, UsesRemaining1, UsesRestriction1, Restrictions1, PromotionSchedule, PromotionAction, PromotionAuthor, Visibility, PromotionDateMeta, PromotionListItem, PromotionsResponse, PromotionAdd, PromotionUpdate, PromotionPartialUpdate, ActivePromosResponse, Charges, DeliveryCharges, OrderPlacing, PanCard, CartMetaConfigUpdate, TimeStampIDResponse, CartMetaConfigDetailResponse, CartMetaConfigListObj, CartMetaConfigListResponse, CartMetaConfigAdd, Article, PriceAdjustmentRestrictions, Collection, PriceAdjustmentUpdate, PriceAdjustment, PriceAdjustmentResponse, PriceAdjustmentAdd, CartItem, OpenapiCartDetailsRequest, CouponBreakup, DisplayBreakup, LoyaltyPoints, RawBreakup, CartBreakup, ProductImage, Tags, BaseInfo, ActionQuery, ProductAction, CategoryInfo, CartProduct, BasePrice, ArticlePriceInfo, StoreInfo, ProductArticle, Ownership2, DiscountRulesApp, FreeGiftItem, AppliedFreeArticles, BuyRules, AppliedPromotion, PromiseFormatted, PromiseISOFormat, PromiseTimestamp, ShipmentPromise, CouponDetails, ProductPrice, ProductPriceInfo, CartProductIdentifer, ProductAvailabilitySize, ProductAvailability, PromoMeta, CartProductInfo, OpenapiCartDetailsResponse, OpenApiErrorResponse, ShippingAddress, OpenApiCartServiceabilityRequest, OpenApiCartServiceabilityResponse, OpenApiFiles, CartItemMeta, MultiTenderPaymentMeta, MultiTenderPaymentMethod, OpenApiOrderItem, OpenApiPlatformCheckoutReq, OpenApiCheckoutResponse, AbandonedCart, AbandonedCartResponse, PaymentSelectionLock, CartCurrency, CartDetailCoupon, ChargesThreshold, DeliveryChargesConfig, CartCommonConfig, CustomCart, CartDetailResponse, AddProductCart, AddCartRequest, AddCartDetailResponse, UpdateProductCart, UpdateCartRequest, UpdateCartDetailResponse, OverrideCartItemPromo, OverrideCartItem, OverrideCheckoutReq, OverrideCheckoutResponse, GetShareCartLinkRequest, GetShareCartLinkResponse, SharedCartDetails, SharedCart, SharedCartResponse, CartList, MultiCartResponse, UpdateUserCartMapping, UserInfo, UserCartMappingResponse, PlatformAddCartRequest, PlatformUpdateCartRequest, DeleteCartRequest, DeleteCartDetailResponse, CartItemCountResponse, Coupon, PageCoupon, GetCouponResponse, ApplyCouponRequest, GeoLocation, PlatformAddress, PlatformGetAddressesResponse, SaveAddressResponse, UpdateAddressResponse, DeleteAddressResponse, PlatformSelectCartAddressRequest, ShipmentArticle, PlatformShipmentResponse, PlatformCartShipmentsResponse, UpdateCartShipmentItem, UpdateCartShipmentRequest, PlatformCartMetaRequest, CartMetaResponse, CartMetaMissingResponse, StaffCheckout, CustomerDetails, Files, CartCheckoutCustomMeta, PlatformCartCheckoutDetailRequest, CheckCart, CartCheckoutResponse, CartDeliveryModesResponse, PickupStoreDetail, StoreDetailsResponse, UpdateCartPaymentRequest, CouponValidity, PaymentCouponValidate, PaymentMeta, PaymentMethod, PlatformCartCheckoutDetailV2Request, UpdateCartPaymentRequestV2 };
 }
 /** @returns {CouponDateMeta} */
 declare function CouponDateMeta(): CouponDateMeta;
@@ -1934,6 +2043,12 @@ type CouponsResponse = {
     items?: CouponAdd[];
     page?: Page;
 };
+/** @returns {TagsViewResponse} */
+declare function TagsViewResponse(): TagsViewResponse;
+type TagsViewResponse = {
+    success?: boolean;
+    items?: string[];
+};
 /** @returns {SuccessMessage} */
 declare function SuccessMessage(): SuccessMessage;
 type SuccessMessage = {
@@ -1945,6 +2060,7 @@ declare function OperationErrorResponse(): OperationErrorResponse;
 type OperationErrorResponse = {
     success?: boolean;
     message?: string;
+    error?: string;
 };
 /** @returns {CouponUpdate} */
 declare function CouponUpdate(): CouponUpdate;
@@ -2211,6 +2327,11 @@ type PromotionListItem = {
      * - Promotion id
      */
     _id?: string;
+    tags?: string[];
+    /**
+     * - Custom field meta for promotion.
+     */
+    custom_field_meta?: any[];
 };
 /** @returns {PromotionsResponse} */
 declare function PromotionsResponse(): PromotionsResponse;
@@ -2247,6 +2368,7 @@ type PromotionAdd = {
     buy_rules: any;
     _custom_json?: any;
     date_meta?: PromotionDateMeta;
+    tags?: string[];
 };
 /** @returns {PromotionUpdate} */
 declare function PromotionUpdate(): PromotionUpdate;
@@ -2277,6 +2399,11 @@ type PromotionUpdate = {
     buy_rules: any;
     _custom_json?: any;
     date_meta?: PromotionDateMeta;
+    tags?: string[];
+    /**
+     * - Custom field meta for promotion.
+     */
+    custom_field_meta?: any[];
 };
 /** @returns {PromotionPartialUpdate} */
 declare function PromotionPartialUpdate(): PromotionPartialUpdate;
@@ -2341,29 +2468,96 @@ type DeliveryCharges = {
     charges?: Charges[];
     enabled?: boolean;
 };
+/** @returns {OrderPlacing} */
+declare function OrderPlacing(): OrderPlacing;
+type OrderPlacing = {
+    enabled?: boolean;
+    message?: string;
+};
+/** @returns {PanCard} */
+declare function PanCard(): PanCard;
+type PanCard = {
+    enabled?: boolean;
+    cod_threshold_amount?: number;
+    online_threshold_amount?: number;
+};
 /** @returns {CartMetaConfigUpdate} */
 declare function CartMetaConfigUpdate(): CartMetaConfigUpdate;
 type CartMetaConfigUpdate = {
     min_cart_value?: number;
+    max_cart_value?: number;
     bulk_coupons?: boolean;
     max_cart_items?: number;
     gift_display_text?: string;
     delivery_charges?: DeliveryCharges;
+    international_delivery_charges?: DeliveryCharges;
     revenue_engine_coupon?: boolean;
     gift_pricing?: number;
     enabled?: boolean;
+    is_active?: boolean;
+    order_placing?: OrderPlacing;
+    name?: string;
+    article_tags?: string[];
+    allow_coupon_with_rewards?: boolean;
+    gst_input?: boolean;
+    staff_selection?: boolean;
+    placing_for_customer?: boolean;
+    pan_card?: PanCard;
+};
+/** @returns {TimeStampIDResponse} */
+declare function TimeStampIDResponse(): TimeStampIDResponse;
+type TimeStampIDResponse = {
+    id?: string;
+    app_id?: string;
+    company_id?: number;
+    created_on?: string;
+    updated_on?: string;
+    last_modified_by?: string;
+};
+/** @returns {CartMetaConfigDetailResponse} */
+declare function CartMetaConfigDetailResponse(): CartMetaConfigDetailResponse;
+type CartMetaConfigDetailResponse = {
+    success?: boolean;
+    data?: any;
+};
+/** @returns {CartMetaConfigListObj} */
+declare function CartMetaConfigListObj(): CartMetaConfigListObj;
+type CartMetaConfigListObj = {
+    id?: string;
+    name?: string;
+    slug?: string;
+    is_active?: boolean;
+    created_on?: string;
+};
+/** @returns {CartMetaConfigListResponse} */
+declare function CartMetaConfigListResponse(): CartMetaConfigListResponse;
+type CartMetaConfigListResponse = {
+    success?: boolean;
+    data?: CartMetaConfigListObj[];
 };
 /** @returns {CartMetaConfigAdd} */
 declare function CartMetaConfigAdd(): CartMetaConfigAdd;
 type CartMetaConfigAdd = {
     min_cart_value?: number;
+    max_cart_value?: number;
     bulk_coupons?: boolean;
     max_cart_items?: number;
     gift_display_text?: string;
     delivery_charges?: DeliveryCharges;
+    international_delivery_charges?: DeliveryCharges;
     revenue_engine_coupon?: boolean;
     gift_pricing?: number;
     enabled?: boolean;
+    is_active?: boolean;
+    order_placing?: OrderPlacing;
+    name: string;
+    slug: string;
+    article_tags?: string[];
+    allow_coupon_with_rewards?: boolean;
+    gst_input?: boolean;
+    staff_selection?: boolean;
+    placing_for_customer?: boolean;
+    pan_card?: PanCard;
 };
 /** @returns {Article} */
 declare function Article(): Article;
@@ -2455,6 +2649,16 @@ type PriceAdjustmentUpdate = {
      * - The list of article object in the price adjustment
      */
     article_ids: Article[];
+    /**
+     * - This field if set true will remove
+     * all articles in price adjustment if article_ids are present
+     */
+    remove_articles?: boolean;
+    /**
+     * - This field if set true will remove mop
+     * type price adjustment.
+     */
+    auto_remove?: boolean;
     meta?: any;
     /**
      * - The ID of the cart
@@ -2509,6 +2713,25 @@ type PriceAdjustment = {
      * - The ID of the cart
      */
     cart_id: string;
+    /**
+     * - This field if set true will remove
+     * all articles in price adjustment if article_ids are present
+     */
+    remove_articles?: boolean;
+    /**
+     * - This field if set true will remove mop
+     * type price adjustment.
+     */
+    auto_remove?: boolean;
+    /**
+     * - Distribution level of price adjusment
+     */
+    distribution_level?: string;
+    /**
+     * - Distribution type of price adjusment
+     * in case of shipment distribution level
+     */
+    distribution_type?: string;
 };
 /** @returns {PriceAdjustmentResponse} */
 declare function PriceAdjustmentResponse(): PriceAdjustmentResponse;
@@ -2566,6 +2789,25 @@ type PriceAdjustmentAdd = {
      * - The ID of the cart
      */
     cart_id: string;
+    /**
+     * - This field if set true will remove
+     * all articles in price adjustment if article_ids are present
+     */
+    remove_articles?: boolean;
+    /**
+     * - This field if set true will remove mop
+     * type price adjustment.
+     */
+    auto_remove?: boolean;
+    /**
+     * - Distribution level of price adjusment
+     */
+    distribution_level?: string;
+    /**
+     * - Distribution type of price adjusment
+     * in case of shipment distribution level
+     */
+    distribution_type?: string;
 };
 /** @returns {CartItem} */
 declare function CartItem(): CartItem;
@@ -2729,6 +2971,7 @@ type ProductArticle = {
     seller_identifier?: string;
     quantity?: number;
     seller?: BaseInfo;
+    product_name?: string;
     cart_item_meta?: any;
     parent_item_identifiers?: any;
     is_gift_visible?: boolean;
@@ -2904,6 +3147,10 @@ type AppliedPromotion = {
      * - Promotion code
      */
     code?: string;
+    /**
+     * - Custom field meta for promotion.
+     */
+    custom_field_meta?: any[];
 };
 /** @returns {PromiseFormatted} */
 declare function PromiseFormatted(): PromiseFormatted;
@@ -3000,6 +3247,7 @@ type CartProductInfo = {
     article?: ProductArticle;
     promotions_applied?: AppliedPromotion[];
     delivery_promise?: ShipmentPromise;
+    seller_count?: number;
     key?: string;
     coupon?: CouponDetails;
     bulk_offer?: any;
@@ -3268,6 +3516,27 @@ declare function CartCommonConfig(): CartCommonConfig;
 type CartCommonConfig = {
     delivery_charges_config?: DeliveryChargesConfig;
 };
+/** @returns {CustomCart} */
+declare function CustomCart(): CustomCart;
+type CustomCart = {
+    /**
+     * - Id of custom cart config
+     */
+    id?: string;
+    /**
+     * - Name of custom cart
+     */
+    cart_name?: string;
+    /**
+     * - Type of custom cart
+     */
+    cart_type?: string;
+    /**
+     * - By default all carts are universal, will
+     * be false for custom cart
+     */
+    is_universal?: boolean;
+};
 /** @returns {CartDetailResponse} */
 declare function CartDetailResponse(): CartDetailResponse;
 type CartDetailResponse = {
@@ -3297,6 +3566,8 @@ type CartDetailResponse = {
     gstin?: string;
     applied_promo_details?: AppliedPromotion[];
     pan_no?: string;
+    is_pan_received?: boolean;
+    custom_cart?: CustomCart;
 };
 /** @returns {AddProductCart} */
 declare function AddProductCart(): AddProductCart;
@@ -3305,6 +3576,7 @@ type AddProductCart = {
     item_size?: string;
     seller_id?: number;
     parent_item_identifiers?: any[];
+    price_factory_type_id?: string;
     product_group_tags?: string[];
     article_id?: string;
     article_assignment?: any;
@@ -3351,6 +3623,7 @@ type UpdateProductCart = {
     meta?: any;
     extra_meta?: any;
     _custom_json?: any;
+    price_factory_type_id?: string;
     item_id?: number;
     item_index?: number;
     identifiers: CartProductIdentifer;
@@ -3554,6 +3827,7 @@ type UserCartMappingResponse = {
     gstin?: string;
     applied_promo_details?: AppliedPromotion[];
     pan_no?: string;
+    is_pan_received?: boolean;
 };
 /** @returns {PlatformAddCartRequest} */
 declare function PlatformAddCartRequest(): PlatformAddCartRequest;
@@ -3758,6 +4032,7 @@ type PlatformCartShipmentsResponse = {
     applied_promo_details?: AppliedPromotion[];
     error?: boolean;
     pan_no?: string;
+    is_pan_received?: boolean;
 };
 /** @returns {UpdateCartShipmentItem} */
 declare function UpdateCartShipmentItem(): UpdateCartShipmentItem;
@@ -3792,6 +4067,7 @@ type PlatformCartMetaRequest = {
     checkout_mode?: string;
     gift_details?: any;
     pan_no?: string;
+    is_pan_received?: boolean;
     comment?: string;
     /**
      * - Staff user id
@@ -3864,7 +4140,7 @@ type PlatformCartCheckoutDetailRequest = {
     employee_code?: string;
     billing_address?: any;
     callback_url?: string;
-    user_id: string;
+    user_id?: string;
     extra_meta?: any;
     order_type: string;
     /**
@@ -3910,6 +4186,7 @@ type CheckCart = {
     gstin?: string;
     cod_available?: boolean;
     delivery_charges?: number;
+    custom_cart?: CustomCart;
 };
 /** @returns {CartCheckoutResponse} */
 declare function CartCheckoutResponse(): CartCheckoutResponse;
@@ -4034,7 +4311,7 @@ type PlatformCartCheckoutDetailV2Request = {
     employee_code?: string;
     billing_address?: any;
     callback_url?: string;
-    user_id: string;
+    user_id?: string;
     extra_meta?: any;
     order_type: string;
     /**

@@ -9,11 +9,15 @@ const CartApplicationModel = require("./CartApplicationModel");
 
 /**
  * @typedef AddItemsParam
- * @property {boolean} [i]
- * @property {boolean} [b]
- * @property {string} [areaCode]
- * @property {boolean} [buyNow]
- * @property {string} [id]
+ * @property {boolean} [i] - This is a boolean value. Select `true` to retrieve
+ *   all the items added in the cart.
+ * @property {boolean} [b] - This is a boolean value. Select `true` to retrieve
+ *   the price breakup of cart items.
+ * @property {string} [areaCode] - Customer servicable area_code
+ * @property {boolean} [buyNow] - This is a boolen value. Select `true` to
+ *   set/initialize buy now cart
+ * @property {string} [id] - The unique identifier of the cart
+ * @property {string} [cartType] - The type of cart
  * @property {CartApplicationModel.AddCartRequest} body
  */
 
@@ -24,33 +28,40 @@ const CartApplicationModel = require("./CartApplicationModel");
  * @property {boolean} [p]
  * @property {string} [id]
  * @property {boolean} [buyNow]
+ * @property {string} [cartType]
  * @property {CartApplicationModel.ApplyCouponRequest} body
  */
 
 /**
  * @typedef ApplyRewardPointsParam
- * @property {string} [id]
- * @property {boolean} [i]
- * @property {boolean} [b]
- * @property {boolean} [buyNow]
+ * @property {string} [id] - The unique identifier of the cart
+ * @property {boolean} [i] - This is a boolean value. Select `true` to retrieve
+ *   all the items added in the cart.
+ * @property {boolean} [b] - This is a boolean value. Select `true` to retrieve
+ *   the price breakup of cart items.
+ * @property {boolean} [buyNow] - This is boolean to get buy_now cart
+ * @property {string} [cartType] - Type of the cart
  * @property {CartApplicationModel.RewardPointRequest} body
  */
 
 /**
  * @typedef CheckoutCartParam
  * @property {boolean} [buyNow] - This indicates the type of cart to checkout
+ * @property {string} [cartType] - The type of cart
  * @property {CartApplicationModel.CartCheckoutDetailRequest} body
  */
 
 /**
  * @typedef CheckoutCartV2Param
  * @property {boolean} [buyNow] - This indicates the type of cart to checkout
+ * @property {string} [cartType] - The type of cart
  * @property {CartApplicationModel.CartCheckoutDetailV2Request} body
  */
 
 /**
  * @typedef DeleteCartParam
  * @property {string} [id] - The unique identifier of the cart.
+ * @property {string} [cartType] - The type of cart
  */
 
 /**
@@ -82,23 +93,36 @@ const CartApplicationModel = require("./CartApplicationModel");
  * @property {string} [slug] - A short, human-readable, URL-friendly identifier
  *   of a product. You can get slug value from the endpoint
  *   /service/application/catalog/v1.0/products/
+ * @property {string} [cartType] - Type of the cart
  */
 
 /**
  * @typedef GetCartParam
- * @property {string} [id]
- * @property {boolean} [i]
- * @property {boolean} [b]
- * @property {boolean} [c]
- * @property {number} [assignCardId]
- * @property {string} [areaCode]
- * @property {boolean} [buyNow]
+ * @property {string} [id] - The unique identifier of the cart
+ * @property {boolean} [i] - This is a boolean value. Select `true` to retrieve
+ *   all the items added in the cart.
+ * @property {boolean} [b] - This is a boolean value. Select `true` to retrieve
+ *   the price breakup of cart items.
+ * @property {boolean} [c] - This is a boolean value. Select `true` to retrieve
+ *   the cod charges in breakup of cart items.
+ * @property {number} [assignCardId] - Token of user's debit or credit card
+ * @property {string} [areaCode] - Customer servicable area_code
+ * @property {boolean} [buyNow] - This is a boolen value. Select `true` to
+ *   set/initialize buy now cart
+ * @property {string} [cartType] - The type of cart
  */
 
 /**
  * @typedef GetCartLastModifiedParam
  * @property {string} [id]
  */
+
+/**
+ * @typedef GetCartMetaConfigParam
+ * @property {string} cartMetaId - CartMeta mongo id for fetching single cart meta data
+ */
+
+/** @typedef GetCartMetaConfigsParam */
 
 /**
  * @typedef GetCartShareLinkParam
@@ -125,6 +149,12 @@ const CartApplicationModel = require("./CartApplicationModel");
  */
 
 /**
+ * @typedef GetItemCountV2Param
+ * @property {string} [id] - The unique identifier of the cart
+ * @property {boolean} [buyNow] - Boolean value to get buy_now cart
+ */
+
+/**
  * @typedef GetLadderOffersParam
  * @property {string} slug - A short, human-readable, URL-friendly identifier of
  *   a product. You can get slug value from the endpoint
@@ -144,6 +174,7 @@ const CartApplicationModel = require("./CartApplicationModel");
  * @property {number} [pageSize] - Number of offers to be fetched to show
  * @property {string} [promotionGroup] - Type of promotion groups
  * @property {number} [storeId] - Store id
+ * @property {string} [cartType] - The type of cart
  */
 
 /**
@@ -167,8 +198,9 @@ const CartApplicationModel = require("./CartApplicationModel");
 
 /**
  * @typedef RemoveCouponParam
- * @property {string} [id]
- * @property {boolean} [buyNow]
+ * @property {string} [id] - The unique identifier of the cart
+ * @property {boolean} [buyNow] - This is boolean to get buy_now cart
+ * @property {string} [cartType] - The type of cart
  */
 
 /**
@@ -195,11 +227,15 @@ const CartApplicationModel = require("./CartApplicationModel");
 
 /**
  * @typedef UpdateCartParam
- * @property {string} [id]
- * @property {boolean} [i]
- * @property {boolean} [b]
- * @property {string} [areaCode]
- * @property {boolean} [buyNow]
+ * @property {string} [id] - The unique identifier of the cart
+ * @property {boolean} [i] - This is a boolean value. Select `true` to retrieve
+ *   all the items added in the cart.
+ * @property {boolean} [b] - This is a boolean value. Select `true` to retrieve
+ *   the price breakup of cart items.
+ * @property {string} [areaCode] - Customer servicable area_code
+ * @property {boolean} [buyNow] - This is a boolen value. Select `true` to
+ *   set/initialize buy now cart
+ * @property {string} [cartType] - The type of cart
  * @property {CartApplicationModel.UpdateCartRequest} body
  */
 
@@ -218,17 +254,19 @@ const CartApplicationModel = require("./CartApplicationModel");
 
 /**
  * @typedef ValidateCouponForPaymentParam
- * @property {string} [id]
- * @property {boolean} [buyNow]
- * @property {string} [addressId]
- * @property {string} [paymentMode]
- * @property {string} [paymentIdentifier]
- * @property {string} [aggregatorName]
- * @property {string} [merchantCode]
- * @property {string} [iin]
- * @property {string} [network]
- * @property {string} [type]
- * @property {string} [cardId]
+ * @property {string} [id] - The unique identifier of the cart
+ * @property {boolean} [buyNow] - This is boolean to get buy_now cart
+ * @property {string} [addressId] - ID allotted to an address
+ * @property {string} [paymentMode] - Payment mode selected by the customer
+ * @property {string} [paymentIdentifier] - Identifier of payment like ICIC, PAYTM
+ * @property {string} [aggregatorName] - Payment gateway identifier
+ * @property {string} [merchantCode] - Identifier used by payment gateway for a
+ *   given payment mode, e.g. NB_ICIC, PAYTM
+ * @property {string} [iin] - Debit/Credit card prefix (first 6 digit)
+ * @property {string} [network] - Credit/Debit card issuer, e.g. VISA, MASTERCARD, RUPAY
+ * @property {string} [type] - Card type, e.g. Credit, Debit
+ * @property {string} [cardId] - Saved card token reference id
+ * @property {string} [cartType] - Type of the cart
  */
 
 class CartApplicationValidator {
@@ -247,6 +285,7 @@ class CartApplicationValidator {
       areaCode: Joi.string().allow(""),
       buyNow: Joi.boolean(),
       id: Joi.string().allow(""),
+      cartType: Joi.string().allow(""),
       body: CartApplicationModel.AddCartRequest().required(),
     }).required();
   }
@@ -259,6 +298,7 @@ class CartApplicationValidator {
       p: Joi.boolean(),
       id: Joi.string().allow(""),
       buyNow: Joi.boolean(),
+      cartType: Joi.string().allow(""),
       body: CartApplicationModel.ApplyCouponRequest().required(),
     }).required();
   }
@@ -270,6 +310,7 @@ class CartApplicationValidator {
       i: Joi.boolean(),
       b: Joi.boolean(),
       buyNow: Joi.boolean(),
+      cartType: Joi.string().allow(""),
       body: CartApplicationModel.RewardPointRequest().required(),
     }).required();
   }
@@ -278,6 +319,7 @@ class CartApplicationValidator {
   static checkoutCart() {
     return Joi.object({
       buyNow: Joi.boolean(),
+      cartType: Joi.string().allow(""),
       body: CartApplicationModel.CartCheckoutDetailRequest().required(),
     }).required();
   }
@@ -286,6 +328,7 @@ class CartApplicationValidator {
   static checkoutCartV2() {
     return Joi.object({
       buyNow: Joi.boolean(),
+      cartType: Joi.string().allow(""),
       body: CartApplicationModel.CartCheckoutDetailV2Request().required(),
     }).required();
   }
@@ -294,6 +337,7 @@ class CartApplicationValidator {
   static deleteCart() {
     return Joi.object({
       id: Joi.string().allow(""),
+      cartType: Joi.string().allow(""),
     });
   }
 
@@ -329,6 +373,7 @@ class CartApplicationValidator {
       articleId: Joi.string().allow(""),
       uid: Joi.number(),
       slug: Joi.string().allow(""),
+      cartType: Joi.string().allow(""),
     });
   }
 
@@ -342,6 +387,7 @@ class CartApplicationValidator {
       assignCardId: Joi.number(),
       areaCode: Joi.string().allow(""),
       buyNow: Joi.boolean(),
+      cartType: Joi.string().allow(""),
     });
   }
 
@@ -350,6 +396,18 @@ class CartApplicationValidator {
     return Joi.object({
       id: Joi.string().allow(""),
     });
+  }
+
+  /** @returns {GetCartMetaConfigParam} */
+  static getCartMetaConfig() {
+    return Joi.object({
+      cartMetaId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  /** @returns {GetCartMetaConfigsParam} */
+  static getCartMetaConfigs() {
+    return Joi.object({});
   }
 
   /** @returns {GetCartShareLinkParam} */
@@ -384,6 +442,14 @@ class CartApplicationValidator {
     });
   }
 
+  /** @returns {GetItemCountV2Param} */
+  static getItemCountV2() {
+    return Joi.object({
+      id: Joi.string().allow(""),
+      buyNow: Joi.boolean(),
+    });
+  }
+
   /** @returns {GetLadderOffersParam} */
   static getLadderOffers() {
     return Joi.object({
@@ -401,6 +467,7 @@ class CartApplicationValidator {
       pageSize: Joi.number(),
       promotionGroup: Joi.string().allow(""),
       storeId: Joi.number(),
+      cartType: Joi.string().allow(""),
     });
   }
 
@@ -428,6 +495,7 @@ class CartApplicationValidator {
     return Joi.object({
       id: Joi.string().allow(""),
       buyNow: Joi.boolean(),
+      cartType: Joi.string().allow(""),
     });
   }
 
@@ -467,6 +535,7 @@ class CartApplicationValidator {
       b: Joi.boolean(),
       areaCode: Joi.string().allow(""),
       buyNow: Joi.boolean(),
+      cartType: Joi.string().allow(""),
       body: CartApplicationModel.UpdateCartRequest().required(),
     }).required();
   }
@@ -502,6 +571,7 @@ class CartApplicationValidator {
       network: Joi.string().allow(""),
       type: Joi.string().allow(""),
       cardId: Joi.string().allow(""),
+      cartType: Joi.string().allow(""),
     });
   }
 }

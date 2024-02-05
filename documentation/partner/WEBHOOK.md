@@ -11,14 +11,18 @@ Webhook dispatcher with retry and one event to many subscriber vice versa
 
 Default
 * [cancelReportDownload](#cancelreportdownload)
+* [createKafkaConfiguration](#createkafkaconfiguration)
 * [fetchDeliverySummary](#fetchdeliverysummary)
 * [fetchDeliveryTs](#fetchdeliveryts)
+* [fetchKafkaConfiguration](#fetchkafkaconfiguration)
 * [fetchReportFilters](#fetchreportfilters)
 * [fetchSubscribers](#fetchsubscribers)
 * [getDeliveryDetailInsights](#getdeliverydetailinsights)
 * [getHistoricalReports](#gethistoricalreports)
 * [getInvalidEventList](#getinvalideventlist)
+* [updateKafkaConfiguration](#updatekafkaconfiguration)
 * [updateSubscriber](#updatesubscriber)
+* [validateKafkaConfiguration](#validatekafkaconfiguration)
 
 
 
@@ -84,6 +88,78 @@ Success
   "value": {
     "message": "Job cancelled successfully",
     "result": "SUCCESS"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### createKafkaConfiguration
+Create Kafka configuration.
+
+
+
+```javascript
+// Promise
+const promise = partnerClient.webhook.createKafkaConfiguration({  organizationId : value,
+ extensionId : value,
+ body : value });
+
+// Async/Await
+const data = await partnerClient.webhook.createKafkaConfiguration({  organizationId : value,
+ extensionId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| organizationId | string | yes | organization_id |   
+| extensionId | string | yes | extension_id |  
+| body | [KafkaConfigRequest](#KafkaConfigRequest) | yes | Request body |
+
+
+Create kafka configuration which will be used by sureshot to push event to corresponding kafka broker.
+
+
+*Returned Response:*
+
+
+
+
+[KafkaConfigResponse](#KafkaConfigResponse)
+
+It will create kafka configuration for that extension.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "message": "Successfully created kafka configuration"
   }
 }
 ```
@@ -259,6 +335,87 @@ Success
         "success": 1121
       }
     ]
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### fetchKafkaConfiguration
+Fetch Kafka configuration.
+
+
+
+```javascript
+// Promise
+const promise = partnerClient.webhook.fetchKafkaConfiguration({  organizationId : value,
+ extensionId : value });
+
+// Async/Await
+const data = await partnerClient.webhook.fetchKafkaConfiguration({  organizationId : value,
+ extensionId : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| organizationId | string | yes | organization_id |   
+| extensionId | string | yes | extension_id |  
+
+
+
+Fetch kafka configuration which will be used by sureshot to push event to corresponding kafka broker.
+
+
+*Returned Response:*
+
+
+
+
+[KafkaConfigResponse](#KafkaConfigResponse)
+
+It will give you subscriber config details.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "name": "testConn",
+    "client_id": "test1-test",
+    "brokers": [
+      "localhost:9092"
+    ],
+    "ssl_enabled": false,
+    "sasl_enabled": false,
+    "ssl_configuration": {},
+    "sasl_configuration": {},
+    "connection_timeout": 1000,
+    "authentication_timeout": 10000,
+    "request_timeout": 30000
   }
 }
 ```
@@ -737,6 +894,78 @@ It will give list of all the invalid events that was failed to pushed to subscri
 ---
 
 
+### updateKafkaConfiguration
+Update Kafka configuration.
+
+
+
+```javascript
+// Promise
+const promise = partnerClient.webhook.updateKafkaConfiguration({  organizationId : value,
+ extensionId : value,
+ body : value });
+
+// Async/Await
+const data = await partnerClient.webhook.updateKafkaConfiguration({  organizationId : value,
+ extensionId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| organizationId | string | yes | organization_id |   
+| extensionId | string | yes | extension_id |  
+| body | [KafkaConfigUpdateRequest](#KafkaConfigUpdateRequest) | yes | Request body |
+
+
+Update kafka configuration which will be used by sureshot to push event to corresponding kafka broker.
+
+
+*Returned Response:*
+
+
+
+
+[KafkaConfigResponse](#KafkaConfigResponse)
+
+It will update kafka configuration for that extension.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "message": "Successfully updated kafka configuration"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### updateSubscriber
 Update subscriber status by id.
 
@@ -794,6 +1023,78 @@ It will give you subscriber config details of a selected subscribers.
 {
   "value": {
     "message": "Subscriber with id 1 with extension id 64affd97cbddb85348ca8f93 updated successfully"
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
+### validateKafkaConfiguration
+Validate Kafka configuration.
+
+
+
+```javascript
+// Promise
+const promise = partnerClient.webhook.validateKafkaConfiguration({  organizationId : value,
+ extensionId : value,
+ body : value });
+
+// Async/Await
+const data = await partnerClient.webhook.validateKafkaConfiguration({  organizationId : value,
+ extensionId : value,
+ body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- | 
+| organizationId | string | yes | organization_id |   
+| extensionId | string | yes | extension_id |  
+| body | [KafkaConfigRequest](#KafkaConfigRequest) | yes | Request body |
+
+
+Validate kafka configuration which will be used by sureshot to push event to corresponding kafka broker.
+
+
+*Returned Response:*
+
+
+
+
+[KafkaConfigValidateResponse](#KafkaConfigValidateResponse)
+
+It will update kafka configuration for that extension.
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; success</i></summary>
+
+```json
+{
+  "value": {
+    "message": "Successfully validated kafka configuration"
   }
 }
 ```
@@ -1114,10 +1415,79 @@ It will give you subscriber config details of a selected subscribers.
  | id | number? |  yes  |  |
  | modified_by | string? |  yes  |  |
  | name | string? |  yes  |  |
+ | provider | string? |  yes  |  |
  | status | string? |  yes  |  |
  | type | string? |  yes  |  |
  | updated_on | string? |  yes  |  |
  | webhook_url | string? |  yes  |  |
+ 
+
+---
+
+#### [KafkaConfigRequest](#KafkaConfigRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | authentication_timeout | number? |  yes  |  |
+ | brokers | [string]? |  yes  |  |
+ | client_id | string? |  yes  |  |
+ | connection_timeout | number? |  yes  |  |
+ | name | string? |  yes  |  |
+ | request_timeout | number? |  yes  |  |
+ | sasl_configuration | string? |  yes  |  |
+ | sasl_enabled | boolean? |  yes  |  |
+ | ssl_configuration | string? |  yes  |  |
+ | ssl_enabled | boolean? |  yes  |  |
+ 
+
+---
+
+#### [KafkaConfigResponse](#KafkaConfigResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | association | string? |  yes  |  |
+ | authentication_timeout | number? |  yes  |  |
+ | brokers | [string]? |  yes  |  |
+ | client_id | string? |  yes  |  |
+ | connection_timeout | number? |  yes  |  |
+ | created_on | string? |  yes  |  |
+ | id | number? |  yes  |  |
+ | name | string? |  yes  |  |
+ | request_timeout | number? |  yes  |  |
+ | sasl_configuration | string? |  yes  |  |
+ | sasl_enabled | boolean? |  yes  |  |
+ | ssl_configuration | string? |  yes  |  |
+ | ssl_enabled | boolean? |  yes  |  |
+ 
+
+---
+
+#### [KafkaConfigUpdateRequest](#KafkaConfigUpdateRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | authentication_timeout | number? |  yes  |  |
+ | brokers | [string]? |  yes  |  |
+ | client_id | string? |  yes  |  |
+ | connection_timeout | number? |  yes  |  |
+ | id | number? |  yes  |  |
+ | name | string? |  yes  |  |
+ | request_timeout | number? |  yes  |  |
+ | sasl_configuration | string? |  yes  |  |
+ | sasl_enabled | boolean? |  yes  |  |
+ | ssl_configuration | string? |  yes  |  |
+ | ssl_enabled | boolean? |  yes  |  |
+ 
+
+---
+
+#### [KafkaConfigValidateResponse](#KafkaConfigValidateResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | message | string? |  yes  |  |
+ | status | boolean? |  yes  |  |
  
 
 ---
@@ -1155,6 +1525,7 @@ It will give you subscriber config details of a selected subscribers.
  | event_id | number? |  yes  |  |
  | id | number? |  yes  |  |
  | subscriber_id | number? |  yes  |  |
+ | topic | string? |  yes  |  |
  
 
 ---

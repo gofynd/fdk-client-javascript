@@ -172,4 +172,4 @@ type SubmitFeedbackParam = {
     body: LeadPlatformModel.TicketFeedbackPayload;
 };
 type GetGeneralConfigParam = any;
-import LeadPlatformModel = require("./LeadPlatformModel");
+import LeadPlatformModel = require("sdk/output/javascript/code/sdk/platform/Lead/LeadPlatformModel");

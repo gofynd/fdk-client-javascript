@@ -44,7 +44,7 @@ declare class Share {
      * @summary: Get short links
      * @description: Get short links - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/share/getShortLinks/).
      */
-    getShortLinks({ pageNo, pageSize, createdBy, active, q, requestHeaders }?: SharePlatformApplicationValidator.GetShortLinksParam, { responseHeaders }?: object): Promise<SharePlatformModel.ShortLinkList>;
+    getShortLinks({ pageNo, pageSize, createdBy, active, shortUrl, originalUrl, title, requestHeaders, }?: SharePlatformApplicationValidator.GetShortLinksParam, { responseHeaders }?: object): Promise<SharePlatformModel.ShortLinkList>;
     /**
      * @param {SharePlatformApplicationValidator.UpdateShortLinkByIdParam} arg
      *   - Arg object
@@ -58,5 +58,5 @@ declare class Share {
      */
     updateShortLinkById({ id, body, requestHeaders }?: SharePlatformApplicationValidator.UpdateShortLinkByIdParam, { responseHeaders }?: object): Promise<SharePlatformModel.ShortLinkRes>;
 }
-import SharePlatformApplicationValidator = require("./SharePlatformApplicationValidator");
-import SharePlatformModel = require("./SharePlatformModel");
+import SharePlatformApplicationValidator = require("sdk/output/javascript/code/sdk/platform/Share/SharePlatformApplicationValidator");
+import SharePlatformModel = require("sdk/output/javascript/code/sdk/platform/Share/SharePlatformModel");

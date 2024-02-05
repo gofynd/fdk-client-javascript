@@ -480,4 +480,4 @@ type ValidateCouponForPaymentParam = {
     type?: string;
     cardId?: string;
 };
-import PosCartApplicationModel = require("./PosCartApplicationModel");
+import PosCartApplicationModel = require("sdk/output/javascript/code/sdk/application/PosCart/PosCartApplicationModel");

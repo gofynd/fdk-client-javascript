@@ -43,6 +43,7 @@ const Joi = require("joi");
  * @property {InventoryCategory} [category]
  * @property {InventoryPrice} [price]
  * @property {InventoryDiscount} [discount]
+ * @property {PricingStrategy} [pricing_strategy]
  * @property {boolean} [out_of_stock] - Indicates whether out of stock products
  *   are allowed to show up on the website
  * @property {boolean} [only_verified_products] - Show only verified products
@@ -770,6 +771,7 @@ const Joi = require("joi");
  *   are allowed to show up on the website.
  * @property {boolean} [only_verified_products] - Show only verified products
  *   (the ones whose data have been verified by the admin)
+ * @property {PricingStrategy} [pricing_strategy]
  */
 
 /**
@@ -1166,6 +1168,7 @@ const Joi = require("joi");
  * @property {QrFeature} [qr]
  * @property {PcrFeature} [pcr]
  * @property {OrderFeature} [order]
+ * @property {BuyboxFeature} [buybox]
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   for the sales channel features
  * @property {string} [app] - Application ID of the sales channel
@@ -1282,6 +1285,17 @@ const Joi = require("joi");
  * @typedef OrderFeature
  * @property {boolean} [buy_again] - Allow buy again option for order. Default
  *   value is false.
+ */
+
+/**
+ * @typedef BuyboxFeature
+ * @property {boolean} [show_name] - Allow users to see seller/stores name on
+ *   PDP (product detail page).
+ * @property {boolean} [enable_selection] - Allow selection of sellers/stores on
+ *   PDP (product detail page).
+ * @property {boolean} [is_seller_buybox_enabled] - Toggle buybox listing
+ *   between sellers and stores. True indicates seller listing, while False
+ *   indicates store listing.
  */
 
 /**
@@ -1412,6 +1426,13 @@ const Joi = require("joi");
  * @property {string} [criteria] - Whether all brands are enabled, or explicitly
  *   few brands in the inventory
  * @property {number[]} [brands]
+ */
+
+/**
+ * @typedef PricingStrategy
+ * @property {boolean} [is_active] - Indicates whether the pricing strategy is
+ *   active or not active
+ * @property {string} [value] - Indicates the pricing strategy value.
  */
 
 /**
@@ -1757,6 +1778,7 @@ class ConfigurationPlatformModel {
       category: ConfigurationPlatformModel.InventoryCategory(),
       price: ConfigurationPlatformModel.InventoryPrice(),
       discount: ConfigurationPlatformModel.InventoryDiscount(),
+      pricing_strategy: ConfigurationPlatformModel.PricingStrategy(),
       out_of_stock: Joi.boolean(),
       only_verified_products: Joi.boolean(),
       franchise_enabled: Joi.boolean(),
@@ -2547,6 +2569,7 @@ class ConfigurationPlatformModel {
       franchise_enabled: Joi.boolean(),
       out_of_stock: Joi.boolean(),
       only_verified_products: Joi.boolean(),
+      pricing_strategy: ConfigurationPlatformModel.PricingStrategy(),
     });
   }
 
@@ -2991,6 +3014,7 @@ class ConfigurationPlatformModel {
       qr: ConfigurationPlatformModel.QrFeature(),
       pcr: ConfigurationPlatformModel.PcrFeature(),
       order: ConfigurationPlatformModel.OrderFeature(),
+      buybox: ConfigurationPlatformModel.BuyboxFeature(),
       _id: Joi.string().allow(""),
       app: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
@@ -3113,6 +3137,15 @@ class ConfigurationPlatformModel {
   static OrderFeature() {
     return Joi.object({
       buy_again: Joi.boolean(),
+    });
+  }
+
+  /** @returns {BuyboxFeature} */
+  static BuyboxFeature() {
+    return Joi.object({
+      show_name: Joi.boolean(),
+      enable_selection: Joi.boolean(),
+      is_seller_buybox_enabled: Joi.boolean(),
     });
   }
 
@@ -3252,6 +3285,14 @@ class ConfigurationPlatformModel {
     return Joi.object({
       criteria: Joi.string().allow(""),
       brands: Joi.array().items(Joi.number()),
+    });
+  }
+
+  /** @returns {PricingStrategy} */
+  static PricingStrategy() {
+    return Joi.object({
+      is_active: Joi.boolean(),
+      value: Joi.string().allow(""),
     });
   }
 

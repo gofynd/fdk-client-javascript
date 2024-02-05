@@ -76,6 +76,17 @@ declare class Order {
      */
     createOrder({ body, requestHeaders }?: OrderPlatformValidator.CreateOrderParam, { responseHeaders }?: object): Promise<OrderPlatformModel.CreateOrderResponse>;
     /**
+     * @param {OrderPlatformValidator.DeleteuserviewsParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.CreateUpdateDeleteResponse>} -
+     *   Success response
+     * @name deleteuserviews
+     * @summary:
+     * @description: Delete User views(User cross company views) - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/deleteuserviews/).
+     */
+    deleteuserviews({ id, requestHeaders }?: OrderPlatformValidator.DeleteuserviewsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.CreateUpdateDeleteResponse>;
+    /**
      * @param {OrderPlatformValidator.DispatchManifestsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -149,16 +160,6 @@ declare class Order {
      * @description: Fetch Refund Mode Config - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/fetchRefundModeConfig/).
      */
     fetchRefundModeConfig({ body, requestHeaders }?: OrderPlatformValidator.FetchRefundModeConfigParam, { responseHeaders }?: object): Promise<OrderPlatformModel.RefundModeConfigResponsePayload>;
-    /**
-     * @param {OrderPlatformValidator.GenerateInvoiceIDParam} arg - Arg object
-     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
-     * @param {import("../PlatformAPIClient").Options} - Options
-     * @returns {Promise<OrderPlatformModel.GenerateInvoiceIDResponse>} - Success response
-     * @name generateInvoiceID
-     * @summary:
-     * @description: This API is used to manually generate Invoice ID against shipments. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/generateInvoiceID/).
-     */
-    generateInvoiceID({ invoiceType, body, requestHeaders }?: OrderPlatformValidator.GenerateInvoiceIDParam, { responseHeaders }?: object): Promise<OrderPlatformModel.GenerateInvoiceIDResponse>;
     /**
      * @param {OrderPlatformValidator.GeneratePOSReceiptByOrderIdParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -392,6 +393,40 @@ declare class Order {
         orderType?: string;
     }): Paginator<OrderPlatformModel.OrderListingResponse>;
     /**
+     * @param {OrderPlatformValidator.GetRefundConfigurationParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.RefundStateConfigurationManualSchemaResponse>}
+     *   - Success response
+     *
+     * @name getRefundConfiguration
+     * @summary:
+     * @description: refund configuration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getRefundConfiguration/).
+     */
+    getRefundConfiguration({ appId, requestHeaders }?: OrderPlatformValidator.GetRefundConfigurationParam, { responseHeaders }?: object): Promise<OrderPlatformModel.RefundStateConfigurationManualSchemaResponse>;
+    /**
+     * @param {OrderPlatformValidator.GetRefundEnableStateListParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.GetRefundStates>} - Success response
+     * @name getRefundEnableStateList
+     * @summary:
+     * @description: Refund State Configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getRefundEnableStateList/).
+     */
+    getRefundEnableStateList({ requestHeaders }?: any, { responseHeaders }?: object): Promise<OrderPlatformModel.GetRefundStates>;
+    /**
+     * @param {OrderPlatformValidator.GetRefundStateConfigurationParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.GetRefundStateConfigurationResponse>}
+     *   - Success response
+     *
+     * @name getRefundStateConfiguration
+     * @summary:
+     * @description: Refund State Configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getRefundStateConfiguration/).
+     */
+    getRefundStateConfiguration({ appId, requestHeaders }?: OrderPlatformValidator.GetRefundStateConfigurationParam, { responseHeaders }?: object): Promise<OrderPlatformModel.GetRefundStateConfigurationResponse>;
+    /**
      * @param {OrderPlatformValidator.GetRoleBasedActionsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -545,6 +580,26 @@ declare class Order {
      */
     getfilters({ view, groupEntity, requestHeaders }?: OrderPlatformValidator.GetfiltersParam, { responseHeaders }?: object): Promise<OrderPlatformModel.FiltersResponse>;
     /**
+     * @param {OrderPlatformValidator.GetuserviewsParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.UserViewsResponse>} - Success response
+     * @name getuserviews
+     * @summary:
+     * @description: Get User views(User cross company views) - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/getuserviews/).
+     */
+    getuserviews({ requestHeaders }?: any, { responseHeaders }?: object): Promise<OrderPlatformModel.UserViewsResponse>;
+    /**
+     * @param {OrderPlatformValidator.GlobalfiltersParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.GlobalFiltersResponse>} - Success response
+     * @name globalfilters
+     * @summary:
+     * @description: Get Global Filters - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/globalfilters/).
+     */
+    globalfilters({ showIn, requestSource, requestHeaders }?: OrderPlatformValidator.GlobalfiltersParam, { responseHeaders }?: object): Promise<OrderPlatformModel.GlobalFiltersResponse>;
+    /**
      * @param {OrderPlatformValidator.InvalidateShipmentCacheParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -576,6 +631,30 @@ declare class Order {
      */
     orderUpdate({ body, requestHeaders }?: OrderPlatformValidator.OrderUpdateParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ResponseDetail>;
     /**
+     * @param {OrderPlatformValidator.PostRefundConfigurationParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.RefundStateConfigurationManualSchemaResponse>}
+     *   - Success response
+     *
+     * @name postRefundConfiguration
+     * @summary:
+     * @description: refund configuration. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/postRefundConfiguration/).
+     */
+    postRefundConfiguration({ appId, body, requestHeaders }?: OrderPlatformValidator.PostRefundConfigurationParam, { responseHeaders }?: object): Promise<OrderPlatformModel.RefundStateConfigurationManualSchemaResponse>;
+    /**
+     * @param {OrderPlatformValidator.PostRefundStateConfigurationParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.PostRefundStateConfigurationResponse>}
+     *   - Success response
+     *
+     * @name postRefundStateConfiguration
+     * @summary:
+     * @description: Refund State Configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/postRefundStateConfiguration/).
+     */
+    postRefundStateConfiguration({ appId, body, requestHeaders }?: OrderPlatformValidator.PostRefundStateConfigurationParam, { responseHeaders }?: object): Promise<OrderPlatformModel.PostRefundStateConfigurationResponse>;
+    /**
      * @param {OrderPlatformValidator.PostShipmentHistoryParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -585,6 +664,17 @@ declare class Order {
      * @description: Post shipment history - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/postShipmentHistory/).
      */
     postShipmentHistory({ body, requestHeaders }?: OrderPlatformValidator.PostShipmentHistoryParam, { responseHeaders }?: object): Promise<OrderPlatformModel.ShipmentHistoryResponse>;
+    /**
+     * @param {OrderPlatformValidator.PostuserviewsParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.CreateUpdateDeleteResponse>} -
+     *   Success response
+     * @name postuserviews
+     * @summary:
+     * @description: Add User views(User cross company views) - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/postuserviews/).
+     */
+    postuserviews({ body, requestHeaders }?: OrderPlatformValidator.PostuserviewsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.CreateUpdateDeleteResponse>;
     /**
      * @param {OrderPlatformValidator.ProcessManifestsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -694,6 +784,17 @@ declare class Order {
      */
     updateShipmentTracking({ body, requestHeaders }?: OrderPlatformValidator.UpdateShipmentTrackingParam, { responseHeaders }?: object): Promise<OrderPlatformModel.CourierPartnerTrackingDetails>;
     /**
+     * @param {OrderPlatformValidator.UpdateuserviewsParam} arg - Arg object
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<OrderPlatformModel.CreateUpdateDeleteResponse>} -
+     *   Success response
+     * @name updateuserviews
+     * @summary:
+     * @description: Update User views(User cross company views) - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/order/updateuserviews/).
+     */
+    updateuserviews({ body, requestHeaders }?: OrderPlatformValidator.UpdateuserviewsParam, { responseHeaders }?: object): Promise<OrderPlatformModel.CreateUpdateDeleteResponse>;
+    /**
      * @param {OrderPlatformValidator.UploadConsentsParam} arg - Arg object
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../PlatformAPIClient").Options} - Options
@@ -714,6 +815,6 @@ declare class Order {
      */
     verifyMobileOTP({ body, requestHeaders }?: OrderPlatformValidator.VerifyMobileOTPParam, { responseHeaders }?: object): Promise<OrderPlatformModel.VerifyOtpResponse>;
 }
-import OrderPlatformValidator = require("./OrderPlatformValidator");
-import OrderPlatformModel = require("./OrderPlatformModel");
-import Paginator = require("../../common/Paginator");
+import OrderPlatformValidator = require("sdk/output/javascript/code/sdk/platform/Order/OrderPlatformValidator");
+import OrderPlatformModel = require("sdk/output/javascript/code/sdk/platform/Order/OrderPlatformModel");
+import Paginator = require("sdk/output/javascript/code/sdk/common/Paginator");

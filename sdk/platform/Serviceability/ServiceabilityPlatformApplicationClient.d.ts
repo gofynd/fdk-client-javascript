@@ -52,8 +52,8 @@ declare class Serviceability {
      * @returns {Promise<ServiceabilityPlatformModel.ApplicationConfig>} -
      *   Success response
      * @name getApplicationConfiguration
-     * @summary: Get All Courier Rules applied to application
-     * @description: This API returns all the Courier Rules applied to an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getApplicationConfiguration/).
+     * @summary: Get All application configs
+     * @description: This API returns all config applied to an application - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getApplicationConfiguration/).
      */
     getApplicationConfiguration({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ApplicationConfig>;
     /**
@@ -137,6 +137,20 @@ declare class Serviceability {
      * @description: Insert Application Configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/insertApplicationConfig/).
      */
     insertApplicationConfig({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.InsertApplicationConfigParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.StoreRuleConfigData>;
+    /**
+     * @param {ServiceabilityPlatformApplicationValidator.PatchApplicationConfigurationParam} arg
+     *   - Arg object
+     *
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PlatformAPIClient").Options} - Options
+     * @returns {Promise<ServiceabilityPlatformModel.ApplicationConfigPatchResponse>}
+     *   - Success response
+     *
+     * @name patchApplicationConfiguration
+     * @summary: To patch any config which can be applied to application.
+     * @description: Apply configs to application and for reference, refer to examples - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/patchApplicationConfiguration/).
+     */
+    patchApplicationConfiguration({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.PatchApplicationConfigurationParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.ApplicationConfigPatchResponse>;
     /**
      * @param {ServiceabilityPlatformApplicationValidator.PatchApplicationServiceabilitySelfShipmentParam} arg
      *   - Arg object
@@ -273,5 +287,5 @@ declare class Serviceability {
      */
     updateStoreRulesConfig({ body, requestHeaders }?: ServiceabilityPlatformApplicationValidator.UpdateStoreRulesConfigParam, { responseHeaders }?: object): Promise<ServiceabilityPlatformModel.StoreRuleConfigData>;
 }
-import ServiceabilityPlatformApplicationValidator = require("./ServiceabilityPlatformApplicationValidator");
-import ServiceabilityPlatformModel = require("./ServiceabilityPlatformModel");
+import ServiceabilityPlatformApplicationValidator = require("sdk/output/javascript/code/sdk/platform/Serviceability/ServiceabilityPlatformApplicationValidator");
+import ServiceabilityPlatformModel = require("sdk/output/javascript/code/sdk/platform/Serviceability/ServiceabilityPlatformModel");

@@ -107,7 +107,7 @@ Success. Returns a JSON object with user details. Refer `VerifyEmailOTPSuccess` 
 
 
 <details>
-<summary><i>&nbsp; default</i></summary>
+<summary><i>&nbsp; add email to profile success</i></summary>
 
 ```json
 {
@@ -221,7 +221,7 @@ Success. Check the example shown below or refer `VerifyMobileOTPSuccess` for mor
 
 
 <details>
-<summary><i>&nbsp; default</i></summary>
+<summary><i>&nbsp; add mobile number to profile success</i></summary>
 
 ```json
 {
@@ -345,7 +345,7 @@ Success. Returns a JSON object with user details. Refer `LoginSuccess` for more 
 
 
 <details>
-<summary><i>&nbsp; default</i></summary>
+<summary><i>&nbsp; Delete email from profile success</i></summary>
 
 ```json
 {
@@ -471,7 +471,7 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
 
 
 <details>
-<summary><i>&nbsp; default</i></summary>
+<summary><i>&nbsp; Delete mobile number from profile success</i></summary>
 
 ```json
 {
@@ -577,13 +577,21 @@ Success. Returns a success message. Refer `DeleteUserSuccess` for more details.
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; delete user success</i></summary>
 
 ```json
 {
-  "success": true
+  "value": {
+    "success": true
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -638,7 +646,7 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
 
 
 <details>
-<summary><i>&nbsp; Success</i></summary>
+<summary><i>&nbsp; forgot password success</i></summary>
 
 ```json
 {
@@ -740,16 +748,24 @@ Success. Returns a JSON object containing an array of sessions. Refer `SessionLi
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; get all sessions success</i></summary>
 
 ```json
 {
-  "sessions": [
-    "session_1",
-    "session_2"
-  ]
+  "value": {
+    "sessions": [
+      "session1",
+      "session2"
+    ]
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -800,7 +816,7 @@ Success. Returns a JSON object with user details. Refer `UserObjectSchema` for m
 
 
 <details>
-<summary><i>&nbsp; default</i></summary>
+<summary><i>&nbsp; get session success</i></summary>
 
 ```json
 {
@@ -907,92 +923,100 @@ Success. Returns a JSON object containing the all the platform configurations. R
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; get platform config success</i></summary>
 
 ```json
 {
-  "active": true,
-  "mobile_image": "",
-  "desktop_image": "",
-  "social": {
-    "facebook": true,
-    "google": true,
-    "account_kit": true
-  },
-  "flash_card": {
-    "text": "",
-    "text_color": "#FFFFFF",
-    "background_color": "#EF5350"
-  },
-  "register": true,
-  "forgot_password": true,
-  "login": {
-    "password": true,
-    "otp": true
-  },
-  "skip_captcha": false,
-  "display": "Fynd",
-  "subtext": "Login to Fynd",
-  "name": "Fynd",
-  "meta": {},
-  "required_fields": {
-    "email": {
-      "is_required": false,
-      "level": "hard"
+  "value": {
+    "active": true,
+    "mobile_image": "test",
+    "desktop_image": "test",
+    "social": {
+      "facebook": true,
+      "google": true,
+      "account_kit": true
     },
-    "mobile": {
-      "is_required": true,
-      "level": "hard"
-    }
-  },
-  "register_required_fields": {
-    "email": {
-      "is_required": false,
-      "level": "hard"
+    "flash_card": {
+      "text": "",
+      "text_color": "#FFFFFF",
+      "background_color": "#EF5350"
     },
-    "mobile": {
-      "is_required": true,
-      "level": "hard"
-    }
-  },
-  "skip_login": false,
-  "look_and_feel": {
-    "background_color": "#F5F5F5",
-    "card_position": "center"
-  },
-  "social_tokens": {
-    "google": {
-      "appId": "token_123"
+    "register": true,
+    "forgot_password": true,
+    "login": {
+      "password": true,
+      "otp": true
     },
-    "facebook": {
-      "appId": "2033146826724884"
+    "skip_captcha": false,
+    "display": "Fynd",
+    "subtext": "Login to Fynd",
+    "name": "Fynd",
+    "meta": {},
+    "required_fields": {
+      "email": {
+        "is_required": false,
+        "level": "hard"
+      },
+      "mobile": {
+        "is_required": true,
+        "level": "hard"
+      }
     },
-    "account_kit": {
-      "appId": "548529975557631"
-    }
-  },
-  "delete_account_reasons": [
-    {
-      "reason_text": "test",
-      "reason_id": "123",
-      "show_text_area": true
-    }
-  ],
-  "delete_account_day": 7,
-  "delete_account_consent": {
-    "consent_text": ""
-  },
-  "session_config": {
-    "duration": "30",
-    "type": "Days",
-    "is_rolling": false
-  },
-  "_id": "5e04a5e5220bc15839ad9bc0",
-  "created_at": "2019-12-26T12:21:57.878Z",
-  "updated_at": "2020-08-13T14:31:09.878Z",
-  "__v": 0
+    "register_required_fields": {
+      "email": {
+        "is_required": false,
+        "level": "hard"
+      },
+      "mobile": {
+        "is_required": true,
+        "level": "hard"
+      }
+    },
+    "skip_login": false,
+    "look_and_feel": {
+      "background_color": "#F5F5F5",
+      "card_position": "center"
+    },
+    "social_tokens": {
+      "google": {
+        "appId": "token_123"
+      },
+      "facebook": {
+        "appId": "2033146826724884"
+      },
+      "account_kit": {
+        "appId": "548529975557631"
+      }
+    },
+    "delete_account_reasons": [
+      {
+        "reason_text": "test",
+        "reason_id": "123",
+        "show_text_area": true
+      }
+    ],
+    "delete_account_day": 7,
+    "delete_account_consent": {
+      "consent_text": ""
+    },
+    "session_config": {
+      "duration": 30,
+      "type": "Days",
+      "is_rolling": false
+    },
+    "_id": "5e04a5e5220bc15839ad9bc0",
+    "created_at": "2019-12-26T12:21:57.878Z",
+    "updated_at": "2020-08-13T14:31:09.878Z",
+    "__v": 0
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -1108,11 +1132,21 @@ Success. Returns a boolean value. Check the example shown below or refer `HasPas
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; has password success</i></summary>
 
 ```json
-
+{
+  "value": {
+    "result": 1
+  }
+}
 ```
+</details>
+
 </details>
 
 
@@ -1170,7 +1204,7 @@ Success. Returns a JSON object with the user details. Check the example shown be
 
 
 <details>
-<summary><i>&nbsp; Success</i></summary>
+<summary><i>&nbsp; apple ios login success</i></summary>
 
 ```json
 {
@@ -1253,7 +1287,7 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
 
 
 <details>
-<summary><i>&nbsp; Success</i></summary>
+<summary><i>&nbsp; login password success</i></summary>
 
 ```json
 {
@@ -1366,7 +1400,7 @@ Success. Returns a JSON object with the user details. Check the example shown be
 
 
 <details>
-<summary><i>&nbsp; Success</i></summary>
+<summary><i>&nbsp; facebook token login success</i></summary>
 
 ```json
 {
@@ -1452,7 +1486,7 @@ Success. Returns a JSON object with the user details. Check the example shown be
 
 
 <details>
-<summary><i>&nbsp; Success</i></summary>
+<summary><i>&nbsp; google token login success</i></summary>
 
 ```json
 {
@@ -1538,7 +1572,7 @@ Success. Returns a JSON object with the user details. Check the example shown be
 
 
 <details>
-<summary><i>&nbsp; Success</i></summary>
+<summary><i>&nbsp; google android token login success</i></summary>
 
 ```json
 {
@@ -1624,7 +1658,7 @@ Success. Returns a JSON object with the user details. Check the example shown be
 
 
 <details>
-<summary><i>&nbsp; Success</i></summary>
+<summary><i>&nbsp; google android token login success</i></summary>
 
 ```json
 {
@@ -1710,7 +1744,7 @@ Success. Check the example shown below or refer `SendOtpResponse` for more detai
 
 
 <details>
-<summary><i>&nbsp; Success</i></summary>
+<summary><i>&nbsp; login otp success</i></summary>
 
 ```json
 {
@@ -1781,7 +1815,7 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
 
 
 <details>
-<summary><i>&nbsp; Success</i></summary>
+<summary><i>&nbsp; login with token success</i></summary>
 
 ```json
 {
@@ -1883,11 +1917,21 @@ Success. Returns a success message as shown below. Refer `LogoutSuccess` for mor
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; logout success</i></summary>
 
 ```json
-
+{
+  "value": {
+    "success": true
+  }
+}
 ```
+</details>
+
 </details>
 
 
@@ -1941,22 +1985,30 @@ Success. Check the example shown below or refer `RegisterFormSuccess` for more d
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; register form success</i></summary>
 
 ```json
 {
-  "success": true,
-  "request_id": "ebc059191393681cdfb805b5424bddad",
-  "message": "OTP sent",
-  "mobile": "7400448798",
-  "country_code": "91",
-  "resend_timer": 30,
-  "resend_token": "5197ff90-66e2-11eb-9399-0312fbf2c2a6",
-  "verify_mobile_otp": true,
-  "register_token": "276e718a-d406-4a4b-83f7-cb6cb72b99ff",
-  "userExists": false
+  "value": {
+    "success": true,
+    "request_id": "ebc059191393681cdfb805b5424bddad",
+    "message": "OTP sent",
+    "mobile": "7400448798",
+    "country_code": "91",
+    "resend_timer": 30,
+    "resend_token": "5197ff90-66e2-11eb-9399-0312fbf2c2a6",
+    "verify_mobile_otp": true,
+    "register_token": "276e718a-d406-4a4b-83f7-cb6cb72b99ff",
+    "userExists": false
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -2155,7 +2207,7 @@ Success. Returns a JSON object as shown below. Refer `OtpSuccess` for more detai
     "success": true,
     "request_id": "01503005aeab87cbed93d40f46cc2749",
     "message": "OTP sent",
-    "mobile": "8652523958",
+    "mobile": "9987568524",
     "country_code": "91",
     "resend_timer": 30,
     "resend_token": "18fc3d60-66e5-11eb-9399-0312fbf2c2a6"
@@ -2217,13 +2269,21 @@ Success. Returns a JSON object as shown below. Refer `EmailOtpSuccess` for more 
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; send email otp success</i></summary>
 
 ```json
 {
-  "success": true
+  "value": {
+    "success": true
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -2277,19 +2337,27 @@ Success. Returns a JSON object as shown below. Refer `OtpSuccess` for more detai
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; send mobile otp success</i></summary>
 
 ```json
 {
-  "success": true,
-  "request_id": "01503005aeab87cbed93d40f46cc2749",
-  "message": "OTP sent",
-  "mobile": "8652523958",
-  "country_code": "91",
-  "resend_timer": 30,
-  "resend_token": "18fc3d60-66e5-11eb-9399-0312fbf2c2a6"
+  "value": {
+    "success": true,
+    "request_id": "01503005aeab87cbed93d40f46cc2749",
+    "message": "OTP sent",
+    "mobile": "8652523958",
+    "country_code": "91",
+    "resend_timer": 30,
+    "resend_token": "18fc3d60-66e5-11eb-9399-0312fbf2c2a6"
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -2343,13 +2411,21 @@ Success. Check the example shown below or refer `ResetPasswordSuccess` for more 
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; reset password success</i></summary>
 
 ```json
 {
-  "status": "sent"
+  "value": {
+    "status": "sent"
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -2460,13 +2536,21 @@ Success. Check the example shown below or refer `ResetPasswordSuccess` for more 
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; reset token success</i></summary>
 
 ```json
 {
-  "status": "success"
+  "value": {
+    "status": "success"
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -2520,11 +2604,21 @@ Request body must contain an email ID. Refer `EditEmailRequestSchema` for more d
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; send verification link to email success</i></summary>
 
 ```json
-
+{
+  "value": {
+    "verify_email_link": true
+  }
+}
 ```
+</details>
+
 </details>
 
 
@@ -2582,7 +2676,7 @@ Success. Check the example shown below or refer `SendMobileVerifyLinkSuccess` fo
 
 
 <details>
-<summary><i>&nbsp; default</i></summary>
+<summary><i>&nbsp; send verification link to mobile success</i></summary>
 
 ```json
 {
@@ -2693,7 +2787,7 @@ Success. Returns a JSON object with user details. Refer `LoginSuccess` for more 
 
 
 <details>
-<summary><i>&nbsp; default</i></summary>
+<summary><i>&nbsp; set email as primary success</i></summary>
 
 ```json
 {
@@ -2803,7 +2897,7 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
 
 
 <details>
-<summary><i>&nbsp; default</i></summary>
+<summary><i>&nbsp; add mobile number as primary to profile success</i></summary>
 
 ```json
 {
@@ -2909,13 +3003,21 @@ Success. Returns a success message. Refer `VerifyEmailSuccess` for more details.
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; update password success</i></summary>
 
 ```json
 {
-  "message": "success"
+  "value": {
+    "message": "success"
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -2973,7 +3075,7 @@ Success. Check the example shown below or refer `LoginSuccess` for more details.
 
 
 <details>
-<summary><i>&nbsp; default</i></summary>
+<summary><i>&nbsp; edit profile success</i></summary>
 
 ```json
 {
@@ -3152,7 +3254,7 @@ Returns true or false based on user is registered or not.
 
 
 <details>
-<summary><i>&nbsp; Success</i></summary>
+<summary><i>&nbsp; user exists success</i></summary>
 
 ```json
 {
@@ -3213,13 +3315,21 @@ Success. Check the example shown below or refer `VerifyEmailSuccess` for more de
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; verify email success</i></summary>
 
 ```json
 {
-  "message": "verified"
+  "value": {
+    "message": "verified"
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -3346,7 +3456,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
 
 <details>
-<summary><i>&nbsp; default</i></summary>
+<summary><i>&nbsp; verify email otp success</i></summary>
 
 ```json
 {
@@ -3453,13 +3563,21 @@ Success. Check the example shown below or refer `VerifyEmailSuccess` for more de
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; verify mobile success</i></summary>
 
 ```json
 {
-  "message": "verified"
+  "value": {
+    "message": "verified"
+  }
 }
 ```
+</details>
+
 </details>
 
 
@@ -3586,7 +3704,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
 
 <details>
-<summary><i>&nbsp; default</i></summary>
+<summary><i>&nbsp; verify mobile otp success</i></summary>
 
 ```json
 {
@@ -3674,29 +3792,13 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | authenticated | boolean? |  yes  |  |
  | code | string? |  yes  |  |
+ | error | string? |  yes  |  |
  | info | string? |  yes  | Error code description link |
  | message | string? |  yes  |  |
  | meta | string? |  yes  |  |
  | request_id | string? |  yes  |  |
- 
-
----
-
-#### [AuthenticationApiErrorSchema](#AuthenticationApiErrorSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
- 
-
----
-
-#### [AuthenticationInternalServerErrorSchema](#AuthenticationInternalServerErrorSchema)
-
- | Properties | Type | Nullable | Description |
- | ---------- | ---- | -------- | ----------- |
- | message | string? |  yes  |  |
  
 
 ---
@@ -3797,6 +3899,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | android_hash | string? |  yes  |  |
+ | ci | boolean? |  yes  | set to true if you want to encrypt the OTP. |
  | country_code | string? |  yes  |  |
  | dob | string? |  yes  |  |
  | email | string? |  yes  |  |
@@ -3827,6 +3930,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | resend_email_token | string? |  yes  |  |
  | success | boolean? |  yes  |  |
  
 
@@ -3900,7 +4004,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | result | boolean? |  yes  |  |
+ | result | number? |  yes  |  |
  
 
 ---
@@ -4084,10 +4188,11 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | __v | number? |  yes  |  |
  | _id | string? |  yes  |  |
  | active | boolean? |  yes  |  |
  | created_at | string? |  yes  |  |
- | delete_account_consent | string? |  yes  |  |
+ | delete_account_consent | [DeleteAccountConsent](#DeleteAccountConsent)? |  yes  |  |
  | delete_account_day | number? |  yes  |  |
  | delete_account_reasons | [[DeleteAccountReasons](#DeleteAccountReasons)]? |  yes  |  |
  | desktop_image | string? |  yes  |  |
@@ -4102,7 +4207,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
  | register | boolean? |  yes  |  |
  | register_required_fields | [RegisterRequiredFields](#RegisterRequiredFields)? |  yes  |  |
  | required_fields | [RequiredFields](#RequiredFields)? |  yes  |  |
- | session_config | string? |  yes  |  |
+ | session_config | [SessionExpiry](#SessionExpiry)? |  yes  |  |
  | skip_captcha | boolean? |  yes  |  |
  | skip_login | boolean? |  yes  |  |
  | social | [Social](#Social)? |  yes  |  |
@@ -4266,6 +4371,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
  | ---------- | ---- | -------- | ----------- |
  | action | string? |  yes  |  |
  | android_hash | string? |  yes  |  |
+ | ci | boolean? |  yes  | set to true if you want to encrypt the OTP. |
  | country_code | string? |  yes  |  |
  | force | string? |  yes  |  |
  | mobile | string? |  yes  |  |
@@ -4288,6 +4394,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | android_hash | string? |  yes  |  |
+ | ci | boolean? |  yes  | set to true if you want to encrypt the OTP. |
  | country_code | string? |  yes  |  |
  | mobile | string? |  yes  |  |
  
@@ -4383,7 +4490,7 @@ Success. Returns a JSON object as shown below. Refer `VerifyOtpSuccess` for more
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
- | account_kit | [Accountkit](#Accountkit)? |  yes  |  |
+ | accountkit | [Accountkit](#Accountkit)? |  yes  |  |
  | facebook | [Facebook](#Facebook)? |  yes  |  |
  | google | [Google](#Google)? |  yes  |  |
  

@@ -2,13 +2,13 @@ export = PaymentApplicationModel;
 /**
  * @typedef AggregatorConfigDetail
  * @property {boolean} [sdk] - SDK
- * @property {string} secret - Masked payment gateway api secret
+ * @property {string} [secret] - Masked payment gateway api secret
  * @property {string} [api] - Payment gateway api endpoint
  * @property {string} [pin] - Masked pin
- * @property {string} config_type - Fynd or self payment gateway
+ * @property {string} [config_type] - Fynd or self payment gateway
  * @property {string} [merchant_key] - Unique merchant key
  * @property {string} [verify_api] - Payment gateway verify payment api endpoint
- * @property {string} key - Payment gateway api key
+ * @property {string} [key] - Payment gateway api key
  * @property {string} [user_id] - Registered User id
  * @property {string} [merchant_id] - Unique merchant id
  */
@@ -286,7 +286,7 @@ export = PaymentApplicationModel;
  */
 /**
  * @typedef PaymentOptionAndFlow
- * @property {RootPaymentMode} payment_option
+ * @property {RootPaymentMode[]} payment_option - Payment options
  * @property {PaymentFlow} payment_flows
  */
 /**
@@ -398,7 +398,6 @@ export = PaymentApplicationModel;
 /**
  * @typedef ValidateVPARequest
  * @property {string} upi_vpa - UPI ID
- * @property {string} [aggregator] - Aggregator slug
  */
 /**
  * @typedef ValidateUPI
@@ -540,8 +539,8 @@ export = PaymentApplicationModel;
  */
 /**
  * @typedef AddBeneficiaryDetailsRequest
- * @property {boolean} delights - True if beneficiary to be added by delights or
- *   False if by User
+ * @property {boolean} [delights] - True if beneficiary to be added by delights
+ *   or False if by User
  * @property {string} shipment_id - Shipment Id of the respective Merchant Order Id
  * @property {BeneficiaryModeDetails} details
  * @property {string} [otp]
@@ -585,6 +584,7 @@ export = PaymentApplicationModel;
  * @typedef SetDefaultBeneficiaryRequest
  * @property {string} order_id - Merchant Order Id
  * @property {string} beneficiary_id - Beneficiary Hash Id of the beneficiary added
+ * @property {string} [shipment_id] - Shipment Id from respective merchant order ID
  */
 /**
  * @typedef SetDefaultBeneficiaryResponse
@@ -870,6 +870,113 @@ export = PaymentApplicationModel;
  * @property {string} [message] - Message
  */
 /**
+ * @typedef DeleteRefundAccountResponse
+ * @property {boolean} success - Success/Failure of the deleted beneficiary
+ * @property {string} message - Message
+ */
+/**
+ * @typedef RefundOptionsDetails
+ * @property {string} display_name - Refund option display name
+ * @property {number} id - Refund ID. It will be unique identifier
+ * @property {boolean} [is_active] - Refund option is active or not
+ * @property {string} name - Refund option name
+ */
+/**
+ * @typedef RefundOptions
+ * @property {RefundOptionsDetails} items - List of all refund options.
+ */
+/**
+ * @typedef OfflineRefundOptions
+ * @property {RefundOptionsDetails} items - List of all refund options.
+ * @property {string[]} payment_modes - List of all offline payment options. MOP
+ *   Code value
+ */
+/**
+ * @typedef RefundOptionResponse
+ * @property {OfflineRefundOptions} offline_refund_options - Available offline
+ *   refund options data
+ * @property {boolean} success - Success/Failure Of response
+ * @property {RefundOptions} refund_options - Available refund options data
+ */
+/**
+ * @typedef SelectedRefundOptionResponse
+ * @property {Object} transfer_mode - Selected transfer mode for given shipment
+ * @property {string} shipment_id - Shipment ID
+ * @property {string} message - Message
+ * @property {boolean} success - Successful or not.
+ */
+/**
+ * @typedef WalletBeneficiaryDetails
+ * @property {string} beneficiary_id - Benenficiary Id
+ * @property {string} modified_on - MOdification Date of Beneficiary
+ * @property {string} display_name - Display Name Of Account
+ * @property {number} id -
+ * @property {string} subtitle - SHort Title Of Account
+ * @property {string} transfer_mode - Transfer Mode Of Account
+ * @property {string} [mobile] - MObile no of User
+ * @property {boolean} is_active - Boolean Flag whether Beneficiary set or not
+ * @property {string} created_on - Creation Date of Beneficiary
+ * @property {string} address - Address of User
+ * @property {string} title - Title Of Account
+ * @property {string} wallet_address - Bank Name Of Account
+ * @property {string} [comment] - Remarks
+ * @property {string} [wallet] - Branch Name Of Account
+ * @property {string} email - EMail of User
+ * @property {string} [delights_user_name] - User Id Who filled the Beneficiary
+ */
+/**
+ * @typedef UpiBeneficiaryDetails
+ * @property {string} beneficiary_id - Benenficiary Id
+ * @property {string} modified_on - MOdification Date of Beneficiary
+ * @property {string} display_name - Display Name Of Account
+ * @property {number} id -
+ * @property {string} subtitle - SHort Title Of Account
+ * @property {string} transfer_mode - Transfer Mode Of Account
+ * @property {string} [vpa] - Branch Name Of Account
+ * @property {string} [mobile] - Mobile no of User
+ * @property {string} vpa_address - Bank Name Of Account
+ * @property {string} created_on - Creation Date of Beneficiary
+ * @property {string} address - Address of User
+ * @property {string} title - Title Of Account
+ * @property {string} [comment] - Remarks
+ * @property {boolean} is_active - Boolean Flag whether Beneficiary set or not
+ * @property {string} email - EMail of User
+ * @property {string} [delights_user_name] - User Id Who filled the Beneficiary
+ */
+/**
+ * @typedef BeneficiaryRefundOptions
+ * @property {OrderBeneficiaryDetails} [bank] - List of all add bank beneficiary details.
+ * @property {WalletBeneficiaryDetails} [wallet] - List of all add Wallet
+ *   beneficiary details.
+ * @property {UpiBeneficiaryDetails} [upi] - List of all add UPI beneficiary details.
+ */
+/**
+ * @typedef OrderBeneficiaryResponseSchemaV2
+ * @property {boolean} show_beneficiary_details - Show Beneficiary details on UI or not.
+ * @property {BeneficiaryRefundOptions} data - Beneficiary Data for Bank
+ *   account, UPI and Wallets.
+ * @property {Object} limit - Max Limit for adding bank account, UPI and wallet
+ */
+/**
+ * @typedef ValidateValidateAddressRequest
+ * @property {string} [ifsc_code] - IFSC Code
+ * @property {string} [upi_vpa] - VPA Address
+ * @property {string} [aggregator] - Aggregator Name
+ */
+/**
+ * @typedef VPADetails
+ * @property {boolean} is_valid - Is VPA valid or not
+ * @property {string} upi_vpa - VPA address
+ * @property {string} status - VPA validation message
+ * @property {string} customer_name - VPA Customer Name
+ */
+/**
+ * @typedef ValidateValidateAddressResponse
+ * @property {VPADetails} [upi] - UPI validation details.
+ * @property {boolean} success - Successful or not.
+ * @property {Object} [ifsc] - IFSC details response data
+ */
+/**
  * @typedef PaymentMethodsMetaOrder
  * @property {string} merchant_code - Merchant code
  * @property {string} payment_gateway - Payment gateway name
@@ -907,15 +1014,35 @@ export = PaymentApplicationModel;
  * @property {string} [payment_confirm_url] - Payment confirm url for aggregator
  * @property {string} [callback_url] - Callback url for aggregator
  * @property {string} [order_id] - Merchant order id
- * @property {boolean} success - Successful or failure
+ * @property {boolean} [success] - Successful or failure
  * @property {number} status_code - HTTP status code
  * @property {PaymentOrderData} [data]
+ * @property {string} message - Message
+ */
+/**
+ * @typedef ShipmentRefundRequest
+ * @property {string} shipment_id - Shipment Id of the respective Merchant Order Id
+ * @property {string} order_id - Merchant Order Id
+ * @property {string} transfer_mode - Transfer Mode of the Beneficiary to be added
+ * @property {string} [beneficiary_id] - Beneficiary Hash Id of the beneficiary added
+ */
+/**
+ * @typedef ShipmentRefundDetail
+ * @property {string} shipment_id - Shipment ID
+ * @property {string} order_id - Order ID
+ * @property {string} transfer_mode - TransferMode
+ * @property {string} beneficiary_id - Beneficiary ID
+ */
+/**
+ * @typedef ShipmentRefundResponse
+ * @property {ShipmentRefundDetail} data - Selected Shipment refund option details.
+ * @property {boolean} success - Successful or not.
  * @property {string} message - Message
  */
 declare class PaymentApplicationModel {
 }
 declare namespace PaymentApplicationModel {
-    export { AggregatorConfigDetail, AggregatorsConfigDetailResponse, ErrorCodeAndDescription, HttpErrorCodeAndResponse, AttachCardRequest, AttachCardsResponse, CardPaymentGateway, ActiveCardPaymentGatewayResponse, Card, ListCardsResponse, DeletehCardRequest, DeleteCardsResponse, ValidateCustomerRequest, ValidateCustomerResponse, ChargeCustomerRequest, ChargeCustomerResponse, PaymentInitializationRequest, PaymentInitializationResponse, PaymentStatusUpdateRequest, PaymentStatusUpdateResponse, IntentAppErrorList, PaymentModeLogo, IntentApp, PaymentModeList, RootPaymentMode, AggregatorRoute, PaymentFlow, PaymentOptionAndFlow, AdvanceObject, SplitObject, AdvancePaymentObject, PaymentModeRouteResponse, WalletLinkRequestSchema, WalletVerifyRequestSchema, WalletDelinkRequestSchema, WalletResponseSchema, RupifiBannerData, RupifiBannerResponse, EpaylaterBannerData, EpaylaterBannerResponse, ResendOrCancelPaymentRequest, LinkStatus, ResendOrCancelPaymentResponse, renderHTMLRequest, renderHTMLResponse, ValidateVPARequest, ValidateUPI, ValidateVPAResponse, CardDetails, CardDetailsResponse, TransferItemsDetails, TransferModeDetails, TransferModeResponse, UpdateRefundTransferModeRequest, UpdateRefundTransferModeResponse, OrderBeneficiaryDetails, OrderBeneficiaryResponse, NotFoundResourceError, IfscCodeResponse, ErrorCodeDescription, AddBeneficiaryViaOtpVerificationRequest, AddBeneficiaryViaOtpVerificationResponse, WrongOtpError, BeneficiaryModeDetails, AddBeneficiaryDetailsRequest, RefundAccountResponse, BankDetailsForOTP, AddBeneficiaryDetailsOTPRequest, WalletOtpRequest, WalletOtpResponse, SetDefaultBeneficiaryRequest, SetDefaultBeneficiaryResponse, GetPaymentLinkResponse, ErrorDescription, ErrorResponse, CreatePaymentLinkMeta, CreatePaymentLinkRequest, CreatePaymentLinkResponse, CancelOrResendPaymentLinkRequest, ResendPaymentLinkResponse, CancelPaymentLinkResponse, PollingPaymentLinkResponse, PaymentMethodsMeta, CreateOrderUserPaymentMethods, CreateOrderUserRequest, CreateOrderUserData, CreateOrderUserResponse, BalanceDetails, CreditSummary, CustomerCreditSummaryResponse, RedirectURL, RedirectToAggregatorResponse, CreditDetail, CheckCreditResponse, KYCAddress, UserPersonalInfoInDetails, MarketplaceInfo, BusinessDetails, DeviceDetails, CustomerOnboardingRequest, OnboardSummary, CustomerOnboardingResponse, OutstandingOrderDetailsResponse, PaidOrderDetailsResponse, PaymentMethodsMetaOrder, PaymentOrderMethods, PaymentOrderRequest, PaymentOrderData, PaymentOrderResponse };
+    export { AggregatorConfigDetail, AggregatorsConfigDetailResponse, ErrorCodeAndDescription, HttpErrorCodeAndResponse, AttachCardRequest, AttachCardsResponse, CardPaymentGateway, ActiveCardPaymentGatewayResponse, Card, ListCardsResponse, DeletehCardRequest, DeleteCardsResponse, ValidateCustomerRequest, ValidateCustomerResponse, ChargeCustomerRequest, ChargeCustomerResponse, PaymentInitializationRequest, PaymentInitializationResponse, PaymentStatusUpdateRequest, PaymentStatusUpdateResponse, IntentAppErrorList, PaymentModeLogo, IntentApp, PaymentModeList, RootPaymentMode, AggregatorRoute, PaymentFlow, PaymentOptionAndFlow, AdvanceObject, SplitObject, AdvancePaymentObject, PaymentModeRouteResponse, WalletLinkRequestSchema, WalletVerifyRequestSchema, WalletDelinkRequestSchema, WalletResponseSchema, RupifiBannerData, RupifiBannerResponse, EpaylaterBannerData, EpaylaterBannerResponse, ResendOrCancelPaymentRequest, LinkStatus, ResendOrCancelPaymentResponse, renderHTMLRequest, renderHTMLResponse, ValidateVPARequest, ValidateUPI, ValidateVPAResponse, CardDetails, CardDetailsResponse, TransferItemsDetails, TransferModeDetails, TransferModeResponse, UpdateRefundTransferModeRequest, UpdateRefundTransferModeResponse, OrderBeneficiaryDetails, OrderBeneficiaryResponse, NotFoundResourceError, IfscCodeResponse, ErrorCodeDescription, AddBeneficiaryViaOtpVerificationRequest, AddBeneficiaryViaOtpVerificationResponse, WrongOtpError, BeneficiaryModeDetails, AddBeneficiaryDetailsRequest, RefundAccountResponse, BankDetailsForOTP, AddBeneficiaryDetailsOTPRequest, WalletOtpRequest, WalletOtpResponse, SetDefaultBeneficiaryRequest, SetDefaultBeneficiaryResponse, GetPaymentLinkResponse, ErrorDescription, ErrorResponse, CreatePaymentLinkMeta, CreatePaymentLinkRequest, CreatePaymentLinkResponse, CancelOrResendPaymentLinkRequest, ResendPaymentLinkResponse, CancelPaymentLinkResponse, PollingPaymentLinkResponse, PaymentMethodsMeta, CreateOrderUserPaymentMethods, CreateOrderUserRequest, CreateOrderUserData, CreateOrderUserResponse, BalanceDetails, CreditSummary, CustomerCreditSummaryResponse, RedirectURL, RedirectToAggregatorResponse, CreditDetail, CheckCreditResponse, KYCAddress, UserPersonalInfoInDetails, MarketplaceInfo, BusinessDetails, DeviceDetails, CustomerOnboardingRequest, OnboardSummary, CustomerOnboardingResponse, OutstandingOrderDetailsResponse, PaidOrderDetailsResponse, DeleteRefundAccountResponse, RefundOptionsDetails, RefundOptions, OfflineRefundOptions, RefundOptionResponse, SelectedRefundOptionResponse, WalletBeneficiaryDetails, UpiBeneficiaryDetails, BeneficiaryRefundOptions, OrderBeneficiaryResponseSchemaV2, ValidateValidateAddressRequest, VPADetails, ValidateValidateAddressResponse, PaymentMethodsMetaOrder, PaymentOrderMethods, PaymentOrderRequest, PaymentOrderData, PaymentOrderResponse, ShipmentRefundRequest, ShipmentRefundDetail, ShipmentRefundResponse };
 }
 /** @returns {AggregatorConfigDetail} */
 declare function AggregatorConfigDetail(): AggregatorConfigDetail;
@@ -927,7 +1054,7 @@ type AggregatorConfigDetail = {
     /**
      * - Masked payment gateway api secret
      */
-    secret: string;
+    secret?: string;
     /**
      * - Payment gateway api endpoint
      */
@@ -939,7 +1066,7 @@ type AggregatorConfigDetail = {
     /**
      * - Fynd or self payment gateway
      */
-    config_type: string;
+    config_type?: string;
     /**
      * - Unique merchant key
      */
@@ -951,7 +1078,7 @@ type AggregatorConfigDetail = {
     /**
      * - Payment gateway api key
      */
-    key: string;
+    key?: string;
     /**
      * - Registered User id
      */
@@ -1745,7 +1872,10 @@ type PaymentFlow = {
 /** @returns {PaymentOptionAndFlow} */
 declare function PaymentOptionAndFlow(): PaymentOptionAndFlow;
 type PaymentOptionAndFlow = {
-    payment_option: RootPaymentMode;
+    /**
+     * - Payment options
+     */
+    payment_option: RootPaymentMode[];
     payment_flows: PaymentFlow;
 };
 /** @returns {AdvanceObject} */
@@ -2022,10 +2152,6 @@ type ValidateVPARequest = {
      * - UPI ID
      */
     upi_vpa: string;
-    /**
-     * - Aggregator slug
-     */
-    aggregator?: string;
 };
 /** @returns {ValidateUPI} */
 declare function ValidateUPI(): ValidateUPI;
@@ -2427,10 +2553,10 @@ type BeneficiaryModeDetails = {
 declare function AddBeneficiaryDetailsRequest(): AddBeneficiaryDetailsRequest;
 type AddBeneficiaryDetailsRequest = {
     /**
-     * - True if beneficiary to be added by delights or
-     * False if by User
+     * - True if beneficiary to be added by delights
+     * or False if by User
      */
-    delights: boolean;
+    delights?: boolean;
     /**
      * - Shipment Id of the respective Merchant Order Id
      */
@@ -2519,6 +2645,10 @@ type SetDefaultBeneficiaryRequest = {
      * - Beneficiary Hash Id of the beneficiary added
      */
     beneficiary_id: string;
+    /**
+     * - Shipment Id from respective merchant order ID
+     */
+    shipment_id?: string;
 };
 /** @returns {SetDefaultBeneficiaryResponse} */
 declare function SetDefaultBeneficiaryResponse(): SetDefaultBeneficiaryResponse;
@@ -3313,6 +3443,318 @@ type PaidOrderDetailsResponse = {
      */
     message?: string;
 };
+/** @returns {DeleteRefundAccountResponse} */
+declare function DeleteRefundAccountResponse(): DeleteRefundAccountResponse;
+type DeleteRefundAccountResponse = {
+    /**
+     * - Success/Failure of the deleted beneficiary
+     */
+    success: boolean;
+    /**
+     * - Message
+     */
+    message: string;
+};
+/** @returns {RefundOptionsDetails} */
+declare function RefundOptionsDetails(): RefundOptionsDetails;
+type RefundOptionsDetails = {
+    /**
+     * - Refund option display name
+     */
+    display_name: string;
+    /**
+     * - Refund ID. It will be unique identifier
+     */
+    id: number;
+    /**
+     * - Refund option is active or not
+     */
+    is_active?: boolean;
+    /**
+     * - Refund option name
+     */
+    name: string;
+};
+/** @returns {RefundOptions} */
+declare function RefundOptions(): RefundOptions;
+type RefundOptions = {
+    /**
+     * - List of all refund options.
+     */
+    items: RefundOptionsDetails;
+};
+/** @returns {OfflineRefundOptions} */
+declare function OfflineRefundOptions(): OfflineRefundOptions;
+type OfflineRefundOptions = {
+    /**
+     * - List of all refund options.
+     */
+    items: RefundOptionsDetails;
+    /**
+     * - List of all offline payment options. MOP
+     * Code value
+     */
+    payment_modes: string[];
+};
+/** @returns {RefundOptionResponse} */
+declare function RefundOptionResponse(): RefundOptionResponse;
+type RefundOptionResponse = {
+    /**
+     * - Available offline
+     * refund options data
+     */
+    offline_refund_options: OfflineRefundOptions;
+    /**
+     * - Success/Failure Of response
+     */
+    success: boolean;
+    /**
+     * - Available refund options data
+     */
+    refund_options: RefundOptions;
+};
+/** @returns {SelectedRefundOptionResponse} */
+declare function SelectedRefundOptionResponse(): SelectedRefundOptionResponse;
+type SelectedRefundOptionResponse = {
+    /**
+     * - Selected transfer mode for given shipment
+     */
+    transfer_mode: any;
+    /**
+     * - Shipment ID
+     */
+    shipment_id: string;
+    /**
+     * - Message
+     */
+    message: string;
+    /**
+     * - Successful or not.
+     */
+    success: boolean;
+};
+/** @returns {WalletBeneficiaryDetails} */
+declare function WalletBeneficiaryDetails(): WalletBeneficiaryDetails;
+type WalletBeneficiaryDetails = {
+    /**
+     * - Benenficiary Id
+     */
+    beneficiary_id: string;
+    /**
+     * - MOdification Date of Beneficiary
+     */
+    modified_on: string;
+    /**
+     * - Display Name Of Account
+     */
+    display_name: string;
+    /**
+     * -
+     */
+    id: number;
+    /**
+     * - SHort Title Of Account
+     */
+    subtitle: string;
+    /**
+     * - Transfer Mode Of Account
+     */
+    transfer_mode: string;
+    /**
+     * - MObile no of User
+     */
+    mobile?: string;
+    /**
+     * - Boolean Flag whether Beneficiary set or not
+     */
+    is_active: boolean;
+    /**
+     * - Creation Date of Beneficiary
+     */
+    created_on: string;
+    /**
+     * - Address of User
+     */
+    address: string;
+    /**
+     * - Title Of Account
+     */
+    title: string;
+    /**
+     * - Bank Name Of Account
+     */
+    wallet_address: string;
+    /**
+     * - Remarks
+     */
+    comment?: string;
+    /**
+     * - Branch Name Of Account
+     */
+    wallet?: string;
+    /**
+     * - EMail of User
+     */
+    email: string;
+    /**
+     * - User Id Who filled the Beneficiary
+     */
+    delights_user_name?: string;
+};
+/** @returns {UpiBeneficiaryDetails} */
+declare function UpiBeneficiaryDetails(): UpiBeneficiaryDetails;
+type UpiBeneficiaryDetails = {
+    /**
+     * - Benenficiary Id
+     */
+    beneficiary_id: string;
+    /**
+     * - MOdification Date of Beneficiary
+     */
+    modified_on: string;
+    /**
+     * - Display Name Of Account
+     */
+    display_name: string;
+    /**
+     * -
+     */
+    id: number;
+    /**
+     * - SHort Title Of Account
+     */
+    subtitle: string;
+    /**
+     * - Transfer Mode Of Account
+     */
+    transfer_mode: string;
+    /**
+     * - Branch Name Of Account
+     */
+    vpa?: string;
+    /**
+     * - Mobile no of User
+     */
+    mobile?: string;
+    /**
+     * - Bank Name Of Account
+     */
+    vpa_address: string;
+    /**
+     * - Creation Date of Beneficiary
+     */
+    created_on: string;
+    /**
+     * - Address of User
+     */
+    address: string;
+    /**
+     * - Title Of Account
+     */
+    title: string;
+    /**
+     * - Remarks
+     */
+    comment?: string;
+    /**
+     * - Boolean Flag whether Beneficiary set or not
+     */
+    is_active: boolean;
+    /**
+     * - EMail of User
+     */
+    email: string;
+    /**
+     * - User Id Who filled the Beneficiary
+     */
+    delights_user_name?: string;
+};
+/** @returns {BeneficiaryRefundOptions} */
+declare function BeneficiaryRefundOptions(): BeneficiaryRefundOptions;
+type BeneficiaryRefundOptions = {
+    /**
+     * - List of all add bank beneficiary details.
+     */
+    bank?: OrderBeneficiaryDetails;
+    /**
+     * - List of all add Wallet
+     * beneficiary details.
+     */
+    wallet?: WalletBeneficiaryDetails;
+    /**
+     * - List of all add UPI beneficiary details.
+     */
+    upi?: UpiBeneficiaryDetails;
+};
+/** @returns {OrderBeneficiaryResponseSchemaV2} */
+declare function OrderBeneficiaryResponseSchemaV2(): OrderBeneficiaryResponseSchemaV2;
+type OrderBeneficiaryResponseSchemaV2 = {
+    /**
+     * - Show Beneficiary details on UI or not.
+     */
+    show_beneficiary_details: boolean;
+    /**
+     * - Beneficiary Data for Bank
+     * account, UPI and Wallets.
+     */
+    data: BeneficiaryRefundOptions;
+    /**
+     * - Max Limit for adding bank account, UPI and wallet
+     */
+    limit: any;
+};
+/** @returns {ValidateValidateAddressRequest} */
+declare function ValidateValidateAddressRequest(): ValidateValidateAddressRequest;
+type ValidateValidateAddressRequest = {
+    /**
+     * - IFSC Code
+     */
+    ifsc_code?: string;
+    /**
+     * - VPA Address
+     */
+    upi_vpa?: string;
+    /**
+     * - Aggregator Name
+     */
+    aggregator?: string;
+};
+/** @returns {VPADetails} */
+declare function VPADetails(): VPADetails;
+type VPADetails = {
+    /**
+     * - Is VPA valid or not
+     */
+    is_valid: boolean;
+    /**
+     * - VPA address
+     */
+    upi_vpa: string;
+    /**
+     * - VPA validation message
+     */
+    status: string;
+    /**
+     * - VPA Customer Name
+     */
+    customer_name: string;
+};
+/** @returns {ValidateValidateAddressResponse} */
+declare function ValidateValidateAddressResponse(): ValidateValidateAddressResponse;
+type ValidateValidateAddressResponse = {
+    /**
+     * - UPI validation details.
+     */
+    upi?: VPADetails;
+    /**
+     * - Successful or not.
+     */
+    success: boolean;
+    /**
+     * - IFSC details response data
+     */
+    ifsc?: any;
+};
 /** @returns {PaymentMethodsMetaOrder} */
 declare function PaymentMethodsMetaOrder(): PaymentMethodsMetaOrder;
 type PaymentMethodsMetaOrder = {
@@ -3425,12 +3867,68 @@ type PaymentOrderResponse = {
     /**
      * - Successful or failure
      */
-    success: boolean;
+    success?: boolean;
     /**
      * - HTTP status code
      */
     status_code: number;
     data?: PaymentOrderData;
+    /**
+     * - Message
+     */
+    message: string;
+};
+/** @returns {ShipmentRefundRequest} */
+declare function ShipmentRefundRequest(): ShipmentRefundRequest;
+type ShipmentRefundRequest = {
+    /**
+     * - Shipment Id of the respective Merchant Order Id
+     */
+    shipment_id: string;
+    /**
+     * - Merchant Order Id
+     */
+    order_id: string;
+    /**
+     * - Transfer Mode of the Beneficiary to be added
+     */
+    transfer_mode: string;
+    /**
+     * - Beneficiary Hash Id of the beneficiary added
+     */
+    beneficiary_id?: string;
+};
+/** @returns {ShipmentRefundDetail} */
+declare function ShipmentRefundDetail(): ShipmentRefundDetail;
+type ShipmentRefundDetail = {
+    /**
+     * - Shipment ID
+     */
+    shipment_id: string;
+    /**
+     * - Order ID
+     */
+    order_id: string;
+    /**
+     * - TransferMode
+     */
+    transfer_mode: string;
+    /**
+     * - Beneficiary ID
+     */
+    beneficiary_id: string;
+};
+/** @returns {ShipmentRefundResponse} */
+declare function ShipmentRefundResponse(): ShipmentRefundResponse;
+type ShipmentRefundResponse = {
+    /**
+     * - Selected Shipment refund option details.
+     */
+    data: ShipmentRefundDetail;
+    /**
+     * - Successful or not.
+     */
+    success: boolean;
     /**
      * - Message
      */

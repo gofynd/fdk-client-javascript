@@ -69,6 +69,33 @@ class WebhookValidator {
       body: WebhookModel.UpdateSubscriberRequest().required(),
     }).required();
   }
+
+  static createKafkaConfiguration() {
+    return Joi.object({
+      extensionId: Joi.string().allow("").required(),
+      body: WebhookModel.KafkaConfigRequest().required(),
+    }).required();
+  }
+
+  static fetchKafkaConfiguration() {
+    return Joi.object({
+      extensionId: Joi.string().allow("").required(),
+    }).required();
+  }
+
+  static updateKafkaConfiguration() {
+    return Joi.object({
+      extensionId: Joi.string().allow("").required(),
+      body: WebhookModel.KafkaConfigUpdateRequest().required(),
+    }).required();
+  }
+
+  static validateKafkaConfiguration() {
+    return Joi.object({
+      extensionId: Joi.string().allow("").required(),
+      body: WebhookModel.KafkaConfigRequest().required(),
+    }).required();
+  }
 }
 
 module.exports = WebhookValidator;

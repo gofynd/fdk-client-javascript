@@ -295,5 +295,5 @@ declare class Finance {
      */
     unlockCreditNote({ body, requestHeaders }?: FinancePlatformValidator.UnlockCreditNoteParam, { responseHeaders }?: object): Promise<FinancePlatformModel.UnlockCreditNoteResponse>;
 }
-import FinancePlatformValidator = require("./FinancePlatformValidator");
-import FinancePlatformModel = require("./FinancePlatformModel");
+import FinancePlatformValidator = require("sdk/output/javascript/code/sdk/platform/Finance/FinancePlatformValidator");
+import FinancePlatformModel = require("sdk/output/javascript/code/sdk/platform/Finance/FinancePlatformModel");

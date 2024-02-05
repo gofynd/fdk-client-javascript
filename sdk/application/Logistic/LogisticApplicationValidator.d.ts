@@ -59,16 +59,8 @@ export = LogisticApplicationValidator;
  * @property {LogisticApplicationModel.ReAssignStoreRequest} body
  */
 /**
- * @typedef GetPincodeCityParam
- * @property {string} pincode - A `pincode` contains a specific address of a location.
- */
-/**
  * @typedef GetPincodeZonesParam
  * @property {LogisticApplicationModel.GetZoneFromPincodeViewRequest} body
- */
-/**
- * @typedef GetTatProductParam
- * @property {LogisticApplicationModel.TATViewRequest} body
  */
 /**
  * @typedef ValidateAddressParam
@@ -91,17 +83,13 @@ declare class LogisticApplicationValidator {
     static getLocations(): GetLocationsParam;
     /** @returns {GetOptimalLocationsParam} */
     static getOptimalLocations(): GetOptimalLocationsParam;
-    /** @returns {GetPincodeCityParam} */
-    static getPincodeCity(): GetPincodeCityParam;
     /** @returns {GetPincodeZonesParam} */
     static getPincodeZones(): GetPincodeZonesParam;
-    /** @returns {GetTatProductParam} */
-    static getTatProduct(): GetTatProductParam;
     /** @returns {ValidateAddressParam} */
     static validateAddress(): ValidateAddressParam;
 }
 declare namespace LogisticApplicationValidator {
-    export { GetAllCountriesParam, GetCountriesParam, GetCountryParam, GetLocalitiesParam, GetLocalityParam, GetLocationsParam, GetOptimalLocationsParam, GetPincodeCityParam, GetPincodeZonesParam, GetTatProductParam, ValidateAddressParam };
+    export { GetAllCountriesParam, GetCountriesParam, GetCountryParam, GetLocalitiesParam, GetLocalityParam, GetLocationsParam, GetOptimalLocationsParam, GetPincodeZonesParam, ValidateAddressParam };
 }
 type GetCountriesParam = {
     /**
@@ -233,17 +221,8 @@ type GetLocationsParam = {
 type GetOptimalLocationsParam = {
     body: LogisticApplicationModel.ReAssignStoreRequest;
 };
-type GetPincodeCityParam = {
-    /**
-     * - A `pincode` contains a specific address of a location.
-     */
-    pincode: string;
-};
 type GetPincodeZonesParam = {
     body: LogisticApplicationModel.GetZoneFromPincodeViewRequest;
-};
-type GetTatProductParam = {
-    body: LogisticApplicationModel.TATViewRequest;
 };
 type ValidateAddressParam = {
     /**
@@ -257,4 +236,4 @@ type ValidateAddressParam = {
     body: LogisticApplicationModel.ValidateAddressRequest;
 };
 type GetAllCountriesParam = any;
-import LogisticApplicationModel = require("./LogisticApplicationModel");
+import LogisticApplicationModel = require("sdk/output/javascript/code/sdk/application/Logistic/LogisticApplicationModel");

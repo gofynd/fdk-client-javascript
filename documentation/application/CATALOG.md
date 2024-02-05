@@ -4756,13 +4756,17 @@ Get the price of a product size at a PIN Code
 const promise = applicationClient.catalog.getProductPriceBySlug({  slug : value,
  size : value,
  storeId : value,
- moq : value });
+ exchangeSellerIdentifier : value,
+ moq : value,
+ sellerId : value });
 
 // Async/Await
 const data = await applicationClient.catalog.getProductPriceBySlug({  slug : value,
  size : value,
  storeId : value,
- moq : value });
+ exchangeSellerIdentifier : value,
+ moq : value,
+ sellerId : value });
 ```
 
 
@@ -4774,7 +4778,9 @@ const data = await applicationClient.catalog.getProductPriceBySlug({  slug : val
 | slug | string | yes | A short, human-readable, URL-friendly identifier of a product. You can get slug value from the endpoint /service/application/catalog/v1.0/products/ |   
 | size | string | yes | A string indicating the size of the product, e.g. S, M, XL. You can get slug value from the endpoint /service/application/catalog/v1.0/products/sizes |    
 | storeId | number | no | The ID of the store that is selling the product, e.g. 1,2,3. |    
-| moq | number | no | An Integer indication the Minimum Order Quantity of a product, e.g. 100. |  
+| exchangeSellerIdentifier | string | no | The seller identifier of the exchange product. |    
+| moq | number | no | An Integer indication the Minimum Order Quantity of a product, e.g. 100. |    
+| sellerId | number | no | The ID of the seller that is selling the product, e.g. 1,2,3. |  
 
 
 
@@ -7662,10 +7668,20 @@ Get relevant suggestions for a search query
 
 ```javascript
 // Promise
-const promise = applicationClient.catalog.getSearchResults({  q : value });
+const promise = applicationClient.catalog.getSearchResults({  q : value,
+ categorySuggestion : value,
+ brandSuggestion : value,
+ collectionSuggestion : value,
+ productSuggestion : value,
+ querySuggestion : value });
 
 // Async/Await
-const data = await applicationClient.catalog.getSearchResults({  q : value });
+const data = await applicationClient.catalog.getSearchResults({  q : value,
+ categorySuggestion : value,
+ brandSuggestion : value,
+ collectionSuggestion : value,
+ productSuggestion : value,
+ querySuggestion : value });
 ```
 
 
@@ -7673,8 +7689,13 @@ const data = await applicationClient.catalog.getSearchResults({  q : value });
 
 
 | Argument  |  Type  | Required | Description |
-| --------- | -----  | -------- | ----------- | 
-| q | string | yes | The search query for entering partial or full name of a product, brand or category. For example, if the given search query `q` is _ski_, the relevant search suggestions could be _skirt_, _ski shoes_, __skin cream_ etc. |  
+| --------- | -----  | -------- | ----------- |  
+| q | string | no | The search query for entering partial or full name of a product, brand or category. For example, if the given search query `q` is _ski_, the relevant search suggestions could be _skirt_, _ski shoes_, __skin cream_ etc. |    
+| categorySuggestion | number | no | For getting related category suggestions. |    
+| brandSuggestion | number | no | For getting related brand suggestions. |    
+| collectionSuggestion | number | no | For getting related collection suggestions. |    
+| productSuggestion | number | no | For getting related product suggestions. |    
+| querySuggestion | number | no | For getting related query suggestions. |  
 
 
 
@@ -7687,7 +7708,7 @@ Retrieves a list of suggestions for a given search query. Each suggestion is a v
 
 [AutoCompleteResponse](#AutoCompleteResponse)
 
-Success. Returns a list autocomplete suggestions for the search query `q`. Check the example shown below or refer `AutoCompleteResponse` for more details.
+Success. Returns a list autocomplete suggestions for the search query `q` along side provided suggestion configs. Check the example shown below or refer `AutoCompleteResponse` for more details.
 
 
 
@@ -8860,6 +8881,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
  | custom_order | [ProductDetailCustomOrder](#ProductDetailCustomOrder)? |  yes  |  |
  | description | string? |  yes  |  |
  | discount | string? |  yes  |  |
+ | discount_meta | [DiscountMeta](#DiscountMeta)? |  yes  |  |
  | grouped_attributes | [[ProductDetailGroupedAttribute](#ProductDetailGroupedAttribute)]? |  yes  |  |
  | has_variant | boolean? |  yes  |  |
  | highlights | [string]? |  yes  |  |
@@ -8899,6 +8921,7 @@ Success. Returns a response object. Check the example shown below or refer `Foll
  | ---------- | ---- | -------- | ----------- |
  | effective | [Price](#Price)? |  yes  |  |
  | marked | [Price](#Price)? |  yes  |  |
+ | selling | [Price](#Price)? |  yes  |  |
  
 
 ---

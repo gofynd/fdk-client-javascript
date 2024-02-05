@@ -283,14 +283,18 @@ const promise = platformClient.application("<APPLICATION_ID>").share.getShortLin
  pageSize : value,
  createdBy : value,
  active : value,
- q : value });
+ shortUrl : value,
+ originalUrl : value,
+ title : value });
 
 // Async/Await
 const data = await platformClient.application("<APPLICATION_ID>").share.getShortLinks({  pageNo : value,
  pageSize : value,
  createdBy : value,
  active : value,
- q : value });
+ shortUrl : value,
+ originalUrl : value,
+ title : value });
 ```
 
 
@@ -303,7 +307,9 @@ const data = await platformClient.application("<APPLICATION_ID>").share.getShort
 | pageSize | number | no | Current page size |    
 | createdBy | string | no | Short link creator |    
 | active | string | no | Short link active status |    
-| q | string | no | Search text for original and short url |  
+| shortUrl | string | no | Search for short url |    
+| originalUrl | string | no | Search for original url |    
+| title | string | no | Search text for title |  
 
 
 

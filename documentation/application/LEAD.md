@@ -1372,7 +1372,7 @@ Success
  | feedback_form | [FeedbackForm](#FeedbackForm)? |  yes  |  |
  | group_id | number? |  yes  | Group id of category releted data |
  | key | string |  no  | Category key value identifier |
- | sub_categories | [TicketCategory](#TicketCategory)? |  yes  |  |
+ | sub_categories | [[TicketCategory](#TicketCategory)]? |  yes  |  |
  
 
 ---

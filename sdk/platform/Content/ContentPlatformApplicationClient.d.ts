@@ -487,7 +487,7 @@ declare class Content {
      * @summary: Get custom fields definitions
      * @description: Use this API to retrieve the definitions of custom fields. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/content/getAppCustomFieldDefinitions/).
      */
-    getAppCustomFieldDefinitions({ pageNo, pageSize, resource, type, search, requestHeaders }?: ContentPlatformApplicationValidator.GetAppCustomFieldDefinitionsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomFieldDefinitionsSchema>;
+    getAppCustomFieldDefinitions({ pageNo, pageSize, resources, types, search, requestHeaders }?: ContentPlatformApplicationValidator.GetAppCustomFieldDefinitionsParam, { responseHeaders }?: object): Promise<ContentPlatformModel.CustomFieldDefinitionsSchema>;
     /**
      * @param {ContentPlatformApplicationValidator.GetAppCustomFieldTypesParam} arg
      *   - Arg object
@@ -1274,6 +1274,6 @@ declare class Content {
      */
     updateSupportInformation({ body, requestHeaders }?: ContentPlatformApplicationValidator.UpdateSupportInformationParam, { responseHeaders }?: object): Promise<ContentPlatformModel.Support>;
 }
-import ContentPlatformApplicationValidator = require("./ContentPlatformApplicationValidator");
-import ContentPlatformModel = require("./ContentPlatformModel");
-import Paginator = require("../../common/Paginator");
+import ContentPlatformApplicationValidator = require("sdk/output/javascript/code/sdk/platform/Content/ContentPlatformApplicationValidator");
+import ContentPlatformModel = require("sdk/output/javascript/code/sdk/platform/Content/ContentPlatformModel");
+import Paginator = require("sdk/output/javascript/code/sdk/common/Paginator");

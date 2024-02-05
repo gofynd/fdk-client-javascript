@@ -83,5 +83,5 @@ declare class Inventory {
      */
     saveJobCodesMetrics({ body, requestHeaders }?: InventoryPublicValidator.SaveJobCodesMetricsParam, { responseHeaders }?: object): Promise<InventoryPublicModel.ResponseEnvelopeEmailJobMetrics>;
 }
-import InventoryPublicValidator = require("./InventoryPublicValidator");
-import InventoryPublicModel = require("./InventoryPublicModel");
+import InventoryPublicValidator = require("sdk/output/javascript/code/sdk/public/Inventory/InventoryPublicValidator");
+import InventoryPublicModel = require("sdk/output/javascript/code/sdk/public/Inventory/InventoryPublicModel");

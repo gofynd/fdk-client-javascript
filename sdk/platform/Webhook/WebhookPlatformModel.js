@@ -240,6 +240,7 @@ const Joi = require("joi");
  * @property {number} [id]
  * @property {string} [modified_by]
  * @property {string} [name]
+ * @property {string} [provider]
  * @property {string} [webhook_url]
  * @property {Association} [association]
  * @property {Object} [custom_headers]
@@ -250,6 +251,26 @@ const Joi = require("joi");
  * @property {string} [type]
  * @property {AuthMeta} [auth_meta]
  * @property {EventConfig[]} [event_configs]
+ */
+
+/**
+ * @typedef Events
+ * @property {string} [slug]
+ * @property {string} [topic]
+ */
+
+/**
+ * @typedef SubscriberConfigRequestV2
+ * @property {number} [id]
+ * @property {string} [name]
+ * @property {string} [webhook_url]
+ * @property {string} [provider]
+ * @property {Association} [association]
+ * @property {Object} [custom_headers]
+ * @property {string} [status]
+ * @property {string} [email_id]
+ * @property {AuthMeta} [auth_meta]
+ * @property {Events[]} [events]
  */
 
 /**
@@ -271,6 +292,7 @@ const Joi = require("joi");
  * @property {string} [modified_by]
  * @property {string} [name]
  * @property {string} [webhook_url]
+ * @property {string} [provider]
  * @property {Association} [association]
  * @property {Object} [custom_headers]
  * @property {SubscriberStatus} [status]
@@ -588,6 +610,7 @@ class WebhookPlatformModel {
       id: Joi.number(),
       modified_by: Joi.string().allow(""),
       name: Joi.string().allow(""),
+      provider: Joi.string().allow(""),
       webhook_url: Joi.string().allow(""),
       association: WebhookPlatformModel.Association(),
       custom_headers: Joi.any(),
@@ -598,6 +621,30 @@ class WebhookPlatformModel {
       type: Joi.string().allow("").allow(null),
       auth_meta: WebhookPlatformModel.AuthMeta(),
       event_configs: Joi.array().items(WebhookPlatformModel.EventConfig()),
+    });
+  }
+
+  /** @returns {Events} */
+  static Events() {
+    return Joi.object({
+      slug: Joi.string().allow(""),
+      topic: Joi.string().allow(""),
+    });
+  }
+
+  /** @returns {SubscriberConfigRequestV2} */
+  static SubscriberConfigRequestV2() {
+    return Joi.object({
+      id: Joi.number(),
+      name: Joi.string().allow(""),
+      webhook_url: Joi.string().allow(""),
+      provider: Joi.string().allow(""),
+      association: WebhookPlatformModel.Association(),
+      custom_headers: Joi.any(),
+      status: Joi.string().allow(""),
+      email_id: Joi.string().allow(""),
+      auth_meta: WebhookPlatformModel.AuthMeta(),
+      events: Joi.array().items(WebhookPlatformModel.Events()),
     });
   }
 
@@ -623,6 +670,7 @@ class WebhookPlatformModel {
       modified_by: Joi.string().allow(""),
       name: Joi.string().allow(""),
       webhook_url: Joi.string().allow(""),
+      provider: Joi.string().allow(""),
       association: WebhookPlatformModel.Association(),
       custom_headers: Joi.any(),
       status: WebhookPlatformModel.SubscriberStatus(),

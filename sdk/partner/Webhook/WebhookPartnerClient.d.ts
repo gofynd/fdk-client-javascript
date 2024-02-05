@@ -95,5 +95,50 @@ declare class Webhook {
      *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/webhook/updateSubscriber/).
      */
     updateSubscriber({ extensionId, subscriberId, body, requestHeaders }?: WebhookPartnerValidator.UpdateSubscriberParam, { responseHeaders }?: object): Promise<WebhookPartnerModel.UpdateSubscriberResponse>;
+    /**
+     * @param {WebhookPartnerValidator.CreateKafkaConfigurationParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PartnerAPIClient").Options} - Options
+     * @returns {Promise<WebhookPartnerModel.KafkaConfigResponse>} - Success response
+     * @name createKafkaConfiguration
+     * @summary: Create Kafka configuration.
+     * @description: Create kafka configuration which will be used by sureshot to push event to corresponding kafka broker.
+     *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/webhook/createKafkaConfiguration/).
+     */
+    createKafkaConfiguration({ extensionId, body, requestHeaders }?: WebhookPartnerValidator.CreateKafkaConfigurationParam, { responseHeaders }?: object): Promise<WebhookPartnerModel.KafkaConfigResponse>;
+    /**
+     * @param {WebhookPartnerValidator.FetchKafkaConfigurationParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PartnerAPIClient").Options} - Options
+     * @returns {Promise<WebhookPartnerModel.KafkaConfigResponse>} - Success response
+     * @name fetchKafkaConfiguration
+     * @summary: Fetch Kafka configuration.
+     * @description: Fetch kafka configuration which will be used by sureshot to push event to corresponding kafka broker.
+     *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/webhook/fetchKafkaConfiguration/).
+     */
+    fetchKafkaConfiguration({ extensionId, requestHeaders }?: WebhookPartnerValidator.FetchKafkaConfigurationParam, { responseHeaders }?: object): Promise<WebhookPartnerModel.KafkaConfigResponse>;
+    /**
+     * @param {WebhookPartnerValidator.UpdateKafkaConfigurationParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PartnerAPIClient").Options} - Options
+     * @returns {Promise<WebhookPartnerModel.KafkaConfigResponse>} - Success response
+     * @name updateKafkaConfiguration
+     * @summary: Update Kafka configuration.
+     * @description: Update kafka configuration which will be used by sureshot to push event to corresponding kafka broker.
+     *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/webhook/updateKafkaConfiguration/).
+     */
+    updateKafkaConfiguration({ extensionId, body, requestHeaders }?: WebhookPartnerValidator.UpdateKafkaConfigurationParam, { responseHeaders }?: object): Promise<WebhookPartnerModel.KafkaConfigResponse>;
+    /**
+     * @param {WebhookPartnerValidator.ValidateKafkaConfigurationParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../PartnerAPIClient").Options} - Options
+     * @returns {Promise<WebhookPartnerModel.KafkaConfigValidateResponse>} -
+     *   Success response
+     * @name validateKafkaConfiguration
+     * @summary: Validate Kafka configuration.
+     * @description: Validate kafka configuration which will be used by sureshot to push event to corresponding kafka broker.
+     *  - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/partner/webhook/validateKafkaConfiguration/).
+     */
+    validateKafkaConfiguration({ extensionId, body, requestHeaders }?: WebhookPartnerValidator.ValidateKafkaConfigurationParam, { responseHeaders }?: object): Promise<WebhookPartnerModel.KafkaConfigValidateResponse>;
 }
-import WebhookPartnerModel = require("./WebhookPartnerModel");
+import WebhookPartnerModel = require("sdk/output/javascript/code/sdk/partner/Webhook/WebhookPartnerModel");

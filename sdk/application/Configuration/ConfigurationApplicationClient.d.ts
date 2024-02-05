@@ -240,6 +240,6 @@ declare class Configuration {
      */
     removeOrderingStoreCookie({ requestHeaders }?: any, { responseHeaders }?: object): Promise<ConfigurationApplicationModel.SuccessMessageResponse>;
 }
-import ConfigurationApplicationModel = require("./ConfigurationApplicationModel");
-import ConfigurationApplicationValidator = require("./ConfigurationApplicationValidator");
-import Paginator = require("../../common/Paginator");
+import ConfigurationApplicationModel = require("sdk/output/javascript/code/sdk/application/Configuration/ConfigurationApplicationModel");
+import ConfigurationApplicationValidator = require("sdk/output/javascript/code/sdk/application/Configuration/ConfigurationApplicationValidator");
+import Paginator = require("sdk/output/javascript/code/sdk/common/Paginator");

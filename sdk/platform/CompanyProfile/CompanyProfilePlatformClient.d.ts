@@ -203,6 +203,6 @@ declare class CompanyProfile {
      */
     updateLocation({ locationId, body, requestHeaders }?: CompanyProfilePlatformValidator.UpdateLocationParam, { responseHeaders }?: object): Promise<CompanyProfilePlatformModel.ProfileSuccessResponse>;
 }
-import CompanyProfilePlatformModel = require("./CompanyProfilePlatformModel");
-import CompanyProfilePlatformValidator = require("./CompanyProfilePlatformValidator");
-import Paginator = require("../../common/Paginator");
+import CompanyProfilePlatformModel = require("sdk/output/javascript/code/sdk/platform/CompanyProfile/CompanyProfilePlatformModel");
+import CompanyProfilePlatformValidator = require("sdk/output/javascript/code/sdk/platform/CompanyProfile/CompanyProfilePlatformValidator");
+import Paginator = require("sdk/output/javascript/code/sdk/common/Paginator");

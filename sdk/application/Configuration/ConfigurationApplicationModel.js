@@ -326,6 +326,7 @@ const Joi = require("joi");
  * @property {QrFeature} [qr]
  * @property {PcrFeature} [pcr]
  * @property {OrderFeature} [order]
+ * @property {BuyboxFeature} [buybox]
  * @property {string} [_id] - The unique identifier (24-digit Mongo Object ID)
  *   for the sales channel features
  * @property {string} [app] - Application ID of the sales channel
@@ -447,6 +448,17 @@ const Joi = require("joi");
  * @typedef OrderFeature
  * @property {boolean} [buy_again] - Allow buy again option for order. Default
  *   value is false.
+ */
+
+/**
+ * @typedef BuyboxFeature
+ * @property {boolean} [show_name] - Allow users to see seller/stores name on
+ *   PDP (product detail page).
+ * @property {boolean} [enable_selection] - Allow selection of sellers/stores on
+ *   PDP (product detail page).
+ * @property {boolean} [is_seller_buybox_enabled] - Toggle buybox listing
+ *   between sellers and stores. True indicates seller listing, while False
+ *   indicates store listing.
  */
 
 /**
@@ -1247,6 +1259,7 @@ class ConfigurationApplicationModel {
       qr: ConfigurationApplicationModel.QrFeature(),
       pcr: ConfigurationApplicationModel.PcrFeature(),
       order: ConfigurationApplicationModel.OrderFeature(),
+      buybox: ConfigurationApplicationModel.BuyboxFeature(),
       _id: Joi.string().allow(""),
       app: Joi.string().allow(""),
       created_at: Joi.string().allow(""),
@@ -1376,6 +1389,15 @@ class ConfigurationApplicationModel {
   static OrderFeature() {
     return Joi.object({
       buy_again: Joi.boolean(),
+    });
+  }
+
+  /** @returns {BuyboxFeature} */
+  static BuyboxFeature() {
+    return Joi.object({
+      show_name: Joi.boolean(),
+      enable_selection: Joi.boolean(),
+      is_seller_buybox_enabled: Joi.boolean(),
     });
   }
 

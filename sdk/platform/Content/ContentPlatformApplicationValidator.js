@@ -216,8 +216,8 @@ const ContentPlatformModel = require("./ContentPlatformModel");
  * @typedef GetAppCustomFieldDefinitionsParam
  * @property {string} pageNo
  * @property {string} pageSize
- * @property {string} [resource]
- * @property {string} [type]
+ * @property {string} [resources]
+ * @property {string} [types]
  * @property {string} [search]
  */
 
@@ -848,8 +848,8 @@ class ContentPlatformApplicationValidator {
     return Joi.object({
       pageNo: Joi.string().allow("").required(),
       pageSize: Joi.string().allow("").required(),
-      resource: Joi.string().allow(""),
-      type: Joi.string().allow(""),
+      resources: Joi.string().allow(""),
+      types: Joi.string().allow(""),
       search: Joi.string().allow(""),
     }).required();
   }

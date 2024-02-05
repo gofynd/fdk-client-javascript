@@ -12,4 +12,4 @@ declare class OAuthClient extends BaseOAuthClient {
     getOfflineAccessToken(scopes: any, code: any): Promise<any>;
     getOfflineAccessTokenObj(scopes: any, code: any): Promise<any>;
 }
-import BaseOAuthClient = require("../common/BaseOAuthClient");
+import BaseOAuthClient = require("sdk/output/javascript/code/sdk/common/BaseOAuthClient");

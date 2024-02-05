@@ -1018,9 +1018,15 @@ class Serviceability {
    * @description: This API returns Courier Account of a company. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/serviceability/getCourierPartnerAccounts/).
    */
   async getCourierPartnerAccounts(
-    { pageNo, pageSize, stage, paymentMode, transportType, requestHeaders } = {
-      requestHeaders: {},
-    },
+    {
+      pageNo,
+      pageSize,
+      stage,
+      paymentMode,
+      transportType,
+      accountIds,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -1032,6 +1038,7 @@ class Serviceability {
         stage,
         paymentMode,
         transportType,
+        accountIds,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -1049,6 +1056,7 @@ class Serviceability {
         stage,
         paymentMode,
         transportType,
+        accountIds,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -1065,6 +1073,7 @@ class Serviceability {
     query_params["stage"] = stage;
     query_params["payment_mode"] = paymentMode;
     query_params["transport_type"] = transportType;
+    query_params["account_ids"] = accountIds;
 
     const xHeaders = {};
 

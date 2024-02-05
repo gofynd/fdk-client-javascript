@@ -696,6 +696,7 @@ const Joi = require("joi");
  * @property {CourierPartnerList[]} [cp_list]
  * @property {string} name
  * @property {CourierPartnerRuleConditions} conditions
+ * @property {string[]} [manual_priority]
  * @property {string[]} sort
  */
 
@@ -724,10 +725,82 @@ const Joi = require("joi");
  */
 
 /**
+ * @typedef BuyboxConfig
+ * @property {boolean} show_seller
+ * @property {boolean} enable_selection
+ * @property {boolean} is_seller_buybox_enabled
+ */
+
+/**
+ * @typedef BuyboxRuleConfig
+ * @property {string[]} [store_type_priority]
+ * @property {string[]} [store_tag_priority]
+ * @property {string[]} [sort]
+ */
+
+/**
+ * @typedef PromiseType
+ * @property {string} display_name
+ * @property {string} slug
+ * @property {string} description
+ * @property {boolean} is_active
+ * @property {boolean} is_default
+ */
+
+/**
+ * @typedef StorePromiseAttributeConfig
+ * @property {boolean} [is_operational_timing_enabled]
+ * @property {boolean} [is_order_acceptance_timing_enabled]
+ * @property {boolean} [is_average_processing_time]
+ * @property {boolean} [is_holiday_enabled]
+ */
+
+/**
+ * @typedef DeliveryServiceAttributeConfig
+ * @property {boolean} [is_pickup_cutoff_time_enabled]
+ * @property {boolean} [is_service_tat_enabled]
+ * @property {boolean} [is_holiday_enabled]
+ */
+
+/**
+ * @typedef BufferField
+ * @property {string} [unit]
+ * @property {number} [value]
+ * @property {boolean} [enabled]
+ */
+
+/**
+ * @typedef PromiseConfig
+ * @property {StorePromiseAttributeConfig} [store_attributes]
+ * @property {DeliveryServiceAttributeConfig} [delivery_service_attributes]
+ * @property {BufferField} [buffer_field]
+ */
+
+/**
  * @typedef ApplicationConfig
  * @property {string[]} [rule_ids]
  * @property {string[]} [sort]
+ * @property {string} [application_id]
+ * @property {number} [company_id]
+ * @property {string[]} [manual_priority]
  * @property {ZoneConfig} [zones]
+ * @property {BuyboxConfig} [buybox_config]
+ * @property {BuyboxRuleConfig} [buybox_rule_config]
+ * @property {PromiseType[]} [promise_types]
+ * @property {PromiseConfig} [promise_config]
+ */
+
+/**
+ * @typedef ApplicationConfigPatchRequest
+ * @property {BuyboxConfig} [buybox_config]
+ * @property {BuyboxRuleConfig} [buybox_rule_config]
+ * @property {PromiseType[]} [promise_types]
+ * @property {PromiseConfig} [promise_config]
+ */
+
+/**
+ * @typedef ApplicationConfigPatchResponse
+ * @property {boolean} [success]
  */
 
 /**
@@ -784,6 +857,7 @@ const Joi = require("joi");
  * @property {string[]} [tag_based_priority]
  * @property {StorePrioritySchema[]} [store_priority]
  * @property {string[]} [sort]
+ * @property {string[]} [manual_priority]
  */
 
 /**
@@ -820,6 +894,7 @@ const Joi = require("joi");
  * @property {string[]} [tag_based_priority]
  * @property {StorePrioritySchema[]} [store_priority]
  * @property {string[]} [sort]
+ * @property {string[]} [manual_priority]
  * @property {StoreRuleConditionSchema} [conditions]
  * @property {boolean} [is_active]
  */
@@ -844,6 +919,7 @@ const Joi = require("joi");
  * @property {string[]} [type_based_priority]
  * @property {string[]} [tag_based_priority]
  * @property {StorePrioritySchema[]} [store_priority]
+ * @property {string[]} [manual_priority]
  * @property {string[]} [sort]
  */
 
@@ -856,6 +932,7 @@ const Joi = require("joi");
  * @property {string[]} [tag_based_priority]
  * @property {StorePrioritySchema[]} [store_priority]
  * @property {string[]} [sort]
+ * @property {string[]} [manual_priority]
  * @property {StoreRuleConditionSchema} [conditions]
  * @property {boolean} [is_active]
  */
@@ -869,6 +946,7 @@ const Joi = require("joi");
  * @property {string[]} [tag_based_priority]
  * @property {StorePrioritySchema[]} [store_priority]
  * @property {string[]} [sort]
+ * @property {string[]} [manual_priority]
  * @property {StoreRuleConditionSchema} [conditions]
  * @property {boolean} [is_active]
  * @property {number} [company_id]
@@ -1978,6 +2056,7 @@ class ServiceabilityPlatformModel {
       ),
       name: Joi.string().allow("").required(),
       conditions: ServiceabilityPlatformModel.CourierPartnerRuleConditions().required(),
+      manual_priority: Joi.array().items(Joi.string().allow("")),
       sort: Joi.array().items(Joi.string().allow("")).required(),
     });
   }
@@ -2018,12 +2097,106 @@ class ServiceabilityPlatformModel {
     });
   }
 
+  /** @returns {BuyboxConfig} */
+  static BuyboxConfig() {
+    return Joi.object({
+      show_seller: Joi.boolean().required(),
+      enable_selection: Joi.boolean().required(),
+      is_seller_buybox_enabled: Joi.boolean().required(),
+    });
+  }
+
+  /** @returns {BuyboxRuleConfig} */
+  static BuyboxRuleConfig() {
+    return Joi.object({
+      store_type_priority: Joi.array().items(Joi.string().allow("")),
+      store_tag_priority: Joi.array().items(Joi.string().allow("")),
+      sort: Joi.array().items(Joi.string().allow("")),
+    });
+  }
+
+  /** @returns {PromiseType} */
+  static PromiseType() {
+    return Joi.object({
+      display_name: Joi.string().allow("").required(),
+      slug: Joi.string().allow("").required(),
+      description: Joi.string().allow("").required(),
+      is_active: Joi.boolean().required(),
+      is_default: Joi.boolean().required(),
+    });
+  }
+
+  /** @returns {StorePromiseAttributeConfig} */
+  static StorePromiseAttributeConfig() {
+    return Joi.object({
+      is_operational_timing_enabled: Joi.boolean(),
+      is_order_acceptance_timing_enabled: Joi.boolean(),
+      is_average_processing_time: Joi.boolean(),
+      is_holiday_enabled: Joi.boolean(),
+    });
+  }
+
+  /** @returns {DeliveryServiceAttributeConfig} */
+  static DeliveryServiceAttributeConfig() {
+    return Joi.object({
+      is_pickup_cutoff_time_enabled: Joi.boolean(),
+      is_service_tat_enabled: Joi.boolean(),
+      is_holiday_enabled: Joi.boolean(),
+    });
+  }
+
+  /** @returns {BufferField} */
+  static BufferField() {
+    return Joi.object({
+      unit: Joi.string().allow(""),
+      value: Joi.number(),
+      enabled: Joi.boolean(),
+    });
+  }
+
+  /** @returns {PromiseConfig} */
+  static PromiseConfig() {
+    return Joi.object({
+      store_attributes: ServiceabilityPlatformModel.StorePromiseAttributeConfig(),
+      delivery_service_attributes: ServiceabilityPlatformModel.DeliveryServiceAttributeConfig(),
+      buffer_field: ServiceabilityPlatformModel.BufferField(),
+    });
+  }
+
   /** @returns {ApplicationConfig} */
   static ApplicationConfig() {
     return Joi.object({
       rule_ids: Joi.array().items(Joi.string().allow("")),
       sort: Joi.array().items(Joi.string().allow("")),
+      application_id: Joi.string().allow(""),
+      company_id: Joi.number(),
+      manual_priority: Joi.array().items(Joi.string().allow("")),
       zones: ServiceabilityPlatformModel.ZoneConfig(),
+      buybox_config: ServiceabilityPlatformModel.BuyboxConfig(),
+      buybox_rule_config: ServiceabilityPlatformModel.BuyboxRuleConfig(),
+      promise_types: Joi.array().items(
+        ServiceabilityPlatformModel.PromiseType()
+      ),
+      promise_config: ServiceabilityPlatformModel.PromiseConfig(),
+    });
+  }
+
+  /** @returns {ApplicationConfigPatchRequest} */
+  static ApplicationConfigPatchRequest() {
+    return Joi.object({
+      buybox_config: ServiceabilityPlatformModel.BuyboxConfig(),
+      buybox_rule_config: ServiceabilityPlatformModel.BuyboxRuleConfig(),
+      promise_types: Joi.array().items(
+        ServiceabilityPlatformModel.PromiseType()
+      ),
+      promise_config: ServiceabilityPlatformModel.PromiseConfig(),
+    });
+  }
+
+  /** @returns {ApplicationConfigPatchResponse} */
+  static ApplicationConfigPatchResponse() {
+    return Joi.object({
+      success: Joi.boolean(),
     });
   }
 
@@ -2098,6 +2271,7 @@ class ServiceabilityPlatformModel {
         ServiceabilityPlatformModel.StorePrioritySchema()
       ),
       sort: Joi.array().items(Joi.string().allow("")),
+      manual_priority: Joi.array().items(Joi.string().allow("")),
     });
   }
 
@@ -2142,6 +2316,7 @@ class ServiceabilityPlatformModel {
         ServiceabilityPlatformModel.StorePrioritySchema()
       ),
       sort: Joi.array().items(Joi.string().allow("")),
+      manual_priority: Joi.array().items(Joi.string().allow("")),
       conditions: ServiceabilityPlatformModel.StoreRuleConditionSchema(),
       is_active: Joi.boolean(),
     });
@@ -2176,6 +2351,7 @@ class ServiceabilityPlatformModel {
       store_priority: Joi.array().items(
         ServiceabilityPlatformModel.StorePrioritySchema()
       ),
+      manual_priority: Joi.array().items(Joi.string().allow("")),
       sort: Joi.array().items(Joi.string().allow("")),
     });
   }
@@ -2192,6 +2368,7 @@ class ServiceabilityPlatformModel {
         ServiceabilityPlatformModel.StorePrioritySchema()
       ),
       sort: Joi.array().items(Joi.string().allow("")),
+      manual_priority: Joi.array().items(Joi.string().allow("")),
       conditions: ServiceabilityPlatformModel.StoreRuleConditionSchema(),
       is_active: Joi.boolean(),
     });
@@ -2209,6 +2386,7 @@ class ServiceabilityPlatformModel {
         ServiceabilityPlatformModel.StorePrioritySchema()
       ),
       sort: Joi.array().items(Joi.string().allow("")),
+      manual_priority: Joi.array().items(Joi.string().allow("")),
       conditions: ServiceabilityPlatformModel.StoreRuleConditionSchema(),
       is_active: Joi.boolean(),
       company_id: Joi.number(),

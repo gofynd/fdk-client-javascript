@@ -2105,7 +2105,6 @@ Success. Returns a JSON object containing all the tags injected in the applicati
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
  | page | [ActionPage](#ActionPage)? |  yes  |  |
- | popup | [ActionPage](#ActionPage)? |  yes  |  |
  | type | string? |  yes  |  |
  
 

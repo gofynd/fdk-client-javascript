@@ -1376,7 +1376,6 @@ Success
  | store_ids | [number]? |  yes  |  |
  | validity | [ValidityObject](#ValidityObject) |  no  |  |
  | value | number? |  yes  |  |
- | zone_ids | [string]? |  yes  |  |
  
 
 ---

@@ -40,6 +40,7 @@ Default
 * [getZoneById](#getzonebyid)
 * [getZones](#getzones)
 * [insertApplicationConfig](#insertapplicationconfig)
+* [patchApplicationConfiguration](#patchapplicationconfiguration)
 * [patchApplicationServiceabilitySelfShipment](#patchapplicationserviceabilityselfshipment)
 * [updateApplicationConfiguration](#updateapplicationconfiguration)
 * [updateCompanyConfiguration](#updatecompanyconfiguration)
@@ -706,7 +707,7 @@ Successful Response
 
 
 ### getApplicationConfiguration
-Get All Courier Rules applied to application
+Get All application configs
 
 
 
@@ -723,7 +724,7 @@ const data = await platformClient.application("<APPLICATION_ID>").serviceability
 
 
 
-This API returns all the Courier Rules applied to an application
+This API returns all config applied to an application
 
 *Returned Response:*
 
@@ -738,11 +739,91 @@ Response status_code
 
 
 <details>
-<summary><i>&nbsp; Example:</i></summary>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; ApplicationConfig</i></summary>
 
 ```json
-
+{
+  "value": {
+    "application_id": "test_app",
+    "company_id": 1,
+    "rule_ids": [
+      "64b4337a0c607fbfbcd0156b",
+      "64b4337a0c607fbfbcd01564"
+    ],
+    "sort": [
+      "fastest"
+    ],
+    "zones": {
+      "serviceability_type": "zone-based",
+      "active_count": 0,
+      "total_count": 0
+    },
+    "buybox_config": {
+      "show_seller": true,
+      "enable_selection": true,
+      "is_seller_buybox_enabled": true
+    },
+    "buybox_rule_config": {
+      "store_type_priority": [
+        "FC",
+        "STORE"
+      ],
+      "store_tag_proiority": [
+        "store_tag_1",
+        "store_tag_2"
+      ],
+      "sort": [
+        "price",
+        "store_type",
+        "promise",
+        "store_creation_date",
+        "distance",
+        "store_tag"
+      ]
+    },
+    "promise_types": [
+      {
+        "display_name": "Standard Delivery",
+        "slug": "standard_delivery",
+        "description": "A standard promise type for general use",
+        "is_active": true,
+        "is_default": true
+      },
+      {
+        "display_name": "Express Delivery",
+        "slug": "express_delivery",
+        "description": "A express promise type for general use",
+        "is_active": true,
+        "is_default": false
+      }
+    ],
+    "promise_config": {
+      "store_attributes": {
+        "is_operational_timing_enabled": true,
+        "is_order_acceptance_timing_enabled": true,
+        "is_average_processing_time": true,
+        "is_holiday_enabled": true
+      },
+      "delivery_service_attributes": {
+        "is_pickup_cutoff_time_enabled": "true,",
+        "is_service_tat_enabled": true,
+        "is_holiday_enabled": true
+      },
+      "buffer_field": {
+        "unit": "hours",
+        "value": 10,
+        "enabled": true
+      }
+    }
+  }
+}
 ```
+</details>
+
 </details>
 
 
@@ -1108,14 +1189,16 @@ const promise = platformClient.serviceability.getCourierPartnerAccounts({  pageN
  pageSize : value,
  stage : value,
  paymentMode : value,
- transportType : value });
+ transportType : value,
+ accountIds : value });
 
 // Async/Await
 const data = await platformClient.serviceability.getCourierPartnerAccounts({  pageNo : value,
  pageSize : value,
  stage : value,
  paymentMode : value,
- transportType : value });
+ transportType : value,
+ accountIds : value });
 ```
 
 
@@ -1128,7 +1211,8 @@ const data = await platformClient.serviceability.getCourierPartnerAccounts({  pa
 | pageSize | number | no | determines the items to be displayed in a page |    
 | stage | string | no | stage of the account. enabled/disabled |    
 | paymentMode | string | no | Filters dp accounts based on payment mode |    
-| transportType | string | no | Filters dp accounts based on transport_type |  
+| transportType | string | no | Filters dp accounts based on transport_type |    
+| accountIds | Array<string> | no | Filters dp accounts based on their ids |  
 
 
 
@@ -2177,6 +2261,71 @@ Response status_code
 ---
 
 
+### patchApplicationConfiguration
+To patch any config which can be applied to application.
+
+
+
+```javascript
+// Promise
+const promise = platformClient.application("<APPLICATION_ID>").serviceability.patchApplicationConfiguration({  body : value });
+
+// Async/Await
+const data = await platformClient.application("<APPLICATION_ID>").serviceability.patchApplicationConfiguration({  body : value });
+```
+
+
+
+
+
+| Argument  |  Type  | Required | Description |
+| --------- | -----  | -------- | ----------- |
+| body | [ApplicationConfigPatchRequest](#ApplicationConfigPatchRequest) | yes | Request body |
+
+
+Apply configs to application and for reference, refer to examples
+
+*Returned Response:*
+
+
+
+
+[ApplicationConfigPatchResponse](#ApplicationConfigPatchResponse)
+
+Response status_code
+
+
+
+
+<details>
+<summary><i>&nbsp; Examples:</i></summary>
+
+
+<details>
+<summary><i>&nbsp; ApplicationConfigPatchResponse</i></summary>
+
+```json
+{
+  "value": {
+    "success": true
+  }
+}
+```
+</details>
+
+</details>
+
+
+
+
+
+
+
+
+
+---
+
+
 ### patchApplicationServiceabilitySelfShipment
 Self-ship configuration of application.
 
@@ -3205,9 +3354,37 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | application_id | string? |  yes  |  |
+ | buybox_config | [BuyboxConfig](#BuyboxConfig)? |  yes  |  |
+ | buybox_rule_config | [BuyboxRuleConfig](#BuyboxRuleConfig)? |  yes  |  |
+ | company_id | number? |  yes  |  |
+ | manual_priority | [string]? |  yes  |  |
+ | promise_config | [PromiseConfig](#PromiseConfig)? |  yes  |  |
+ | promise_types | [[PromiseType](#PromiseType)]? |  yes  |  |
  | rule_ids | [string]? |  yes  |  |
  | sort | [string]? |  yes  |  |
  | zones | [ZoneConfig](#ZoneConfig)? |  yes  |  |
+ 
+
+---
+
+#### [ApplicationConfigPatchRequest](#ApplicationConfigPatchRequest)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | buybox_config | [BuyboxConfig](#BuyboxConfig)? |  yes  |  |
+ | buybox_rule_config | [BuyboxRuleConfig](#BuyboxRuleConfig)? |  yes  |  |
+ | promise_config | [PromiseConfig](#PromiseConfig)? |  yes  |  |
+ | promise_types | [[PromiseType](#PromiseType)]? |  yes  |  |
+ 
+
+---
+
+#### [ApplicationConfigPatchResponse](#ApplicationConfigPatchResponse)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | success | boolean? |  yes  |  |
  
 
 ---
@@ -3266,6 +3443,17 @@ Response status_code
 
 ---
 
+#### [BufferField](#BufferField)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enabled | boolean? |  yes  |  |
+ | unit | string? |  yes  |  |
+ | value | number? |  yes  |  |
+ 
+
+---
+
 #### [BulkRegionJobSerializer](#BulkRegionJobSerializer)
 
  | Properties | Type | Nullable | Description |
@@ -3303,6 +3491,28 @@ Response status_code
  | status | string |  no  |  |
  | success | number? |  yes  |  |
  | total | number? |  yes  |  |
+ 
+
+---
+
+#### [BuyboxConfig](#BuyboxConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | enable_selection | boolean |  no  |  |
+ | is_seller_buybox_enabled | boolean |  no  |  |
+ | show_seller | boolean |  no  |  |
+ 
+
+---
+
+#### [BuyboxRuleConfig](#BuyboxRuleConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | sort | [string]? |  yes  |  |
+ | store_tag_priority | [string]? |  yes  |  |
+ | store_type_priority | [string]? |  yes  |  |
  
 
 ---
@@ -3439,6 +3649,7 @@ Response status_code
  | conditions | [CourierPartnerRuleConditions](#CourierPartnerRuleConditions) |  no  |  |
  | cp_list | [[CourierPartnerList](#CourierPartnerList)]? |  yes  |  |
  | is_active | boolean |  no  |  |
+ | manual_priority | [string]? |  yes  |  |
  | name | string |  no  |  |
  | sort | [string] |  no  |  |
  
@@ -3538,6 +3749,7 @@ Response status_code
  | ---------- | ---- | -------- | ----------- |
  | conditions | [StoreRuleConditionSchema](#StoreRuleConditionSchema)? |  yes  |  |
  | is_active | boolean? |  yes  |  |
+ | manual_priority | [string]? |  yes  |  |
  | name | string? |  yes  |  |
  | sort | [string]? |  yes  |  |
  | store_priority | [[StorePrioritySchema](#StorePrioritySchema)]? |  yes  |  |
@@ -3573,6 +3785,17 @@ Response status_code
  | lt | number? |  yes  |  |
  | lte | number? |  yes  |  |
  | unit | string |  no  |  |
+ 
+
+---
+
+#### [DeliveryServiceAttributeConfig](#DeliveryServiceAttributeConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_holiday_enabled | boolean? |  yes  |  |
+ | is_pickup_cutoff_time_enabled | boolean? |  yes  |  |
+ | is_service_tat_enabled | boolean? |  yes  |  |
  
 
 ---
@@ -4375,6 +4598,30 @@ Response status_code
 
 ---
 
+#### [PromiseConfig](#PromiseConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | buffer_field | [BufferField](#BufferField)? |  yes  |  |
+ | delivery_service_attributes | [DeliveryServiceAttributeConfig](#DeliveryServiceAttributeConfig)? |  yes  |  |
+ | store_attributes | [StorePromiseAttributeConfig](#StorePromiseAttributeConfig)? |  yes  |  |
+ 
+
+---
+
+#### [PromiseType](#PromiseType)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | description | string |  no  |  |
+ | display_name | string |  no  |  |
+ | is_active | boolean |  no  |  |
+ | is_default | boolean |  no  |  |
+ | slug | string |  no  |  |
+ 
+
+---
+
 #### [ReAssignStoreRequest](#ReAssignStoreRequest)
 
  | Properties | Type | Nullable | Description |
@@ -4507,6 +4754,18 @@ Response status_code
 
 ---
 
+#### [StorePromiseAttributeConfig](#StorePromiseAttributeConfig)
+
+ | Properties | Type | Nullable | Description |
+ | ---------- | ---- | -------- | ----------- |
+ | is_average_processing_time | boolean? |  yes  |  |
+ | is_holiday_enabled | boolean? |  yes  |  |
+ | is_operational_timing_enabled | boolean? |  yes  |  |
+ | is_order_acceptance_timing_enabled | boolean? |  yes  |  |
+ 
+
+---
+
 #### [StoreRuleConditionSchema](#StoreRuleConditionSchema)
 
  | Properties | Type | Nullable | Description |
@@ -4530,6 +4789,7 @@ Response status_code
 
  | Properties | Type | Nullable | Description |
  | ---------- | ---- | -------- | ----------- |
+ | manual_priority | [string]? |  yes  |  |
  | rule_ids | [string]? |  yes  |  |
  | sort | [string]? |  yes  |  |
  | store_priority | [[StorePrioritySchema](#StorePrioritySchema)]? |  yes  |  |
@@ -4548,6 +4808,7 @@ Response status_code
  | conditions | [StoreRuleConditionSchema](#StoreRuleConditionSchema)? |  yes  |  |
  | id | string? |  yes  |  |
  | is_active | boolean? |  yes  |  |
+ | manual_priority | [string]? |  yes  |  |
  | name | string? |  yes  |  |
  | sort | [string]? |  yes  |  |
  | store_priority | [[StorePrioritySchema](#StorePrioritySchema)]? |  yes  |  |
@@ -4564,6 +4825,7 @@ Response status_code
  | conditions | [StoreRuleConditionSchema](#StoreRuleConditionSchema)? |  yes  |  |
  | id | string? |  yes  |  |
  | is_active | boolean? |  yes  |  |
+ | manual_priority | [string]? |  yes  |  |
  | name | string? |  yes  |  |
  | sort | [string]? |  yes  |  |
  | store_priority | [[StorePrioritySchema](#StorePrioritySchema)]? |  yes  |  |
@@ -4583,6 +4845,7 @@ Response status_code
  | conditions | [StoreRuleConditionSchema](#StoreRuleConditionSchema)? |  yes  |  |
  | id | string? |  yes  |  |
  | is_active | boolean? |  yes  |  |
+ | manual_priority | [string]? |  yes  |  |
  | name | string? |  yes  |  |
  | sort | [string]? |  yes  |  |
  | store_priority | [[StorePrioritySchema](#StorePrioritySchema)]? |  yes  |  |

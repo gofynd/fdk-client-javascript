@@ -15,10 +15,13 @@ declare class Cart {
         getBulkDiscountOffers: string;
         getCart: string;
         getCartLastModified: string;
+        getCartMetaConfig: string;
+        getCartMetaConfigs: string;
         getCartShareLink: string;
         getCartSharedItems: string;
         getCoupons: string;
         getItemCount: string;
+        getItemCountV2: string;
         getLadderOffers: string;
         getPromotionOffers: string;
         getShipments: string;
@@ -53,7 +56,7 @@ declare class Cart {
      * @summary: Add items to cart
      * @description: Use this API to add items to the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/addItems/).
      */
-    addItems({ body, i, b, areaCode, buyNow, id, requestHeaders }?: CartApplicationValidator.AddItemsParam, { responseHeaders }?: object): Promise<CartApplicationModel.AddCartDetailResponse>;
+    addItems({ body, i, b, areaCode, buyNow, id, cartType, requestHeaders }?: CartApplicationValidator.AddItemsParam, { responseHeaders }?: object): Promise<CartApplicationModel.AddCartDetailResponse>;
     /**
      * @param {CartApplicationValidator.ApplyCouponParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -63,7 +66,7 @@ declare class Cart {
      * @summary: Apply Coupon
      * @description: Use this API to apply coupons on items in the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/applyCoupon/).
      */
-    applyCoupon({ body, i, b, p, id, buyNow, requestHeaders }?: CartApplicationValidator.ApplyCouponParam, { responseHeaders }?: object): Promise<CartApplicationModel.CartDetailResponse>;
+    applyCoupon({ body, i, b, p, id, buyNow, cartType, requestHeaders }?: CartApplicationValidator.ApplyCouponParam, { responseHeaders }?: object): Promise<CartApplicationModel.CartDetailResponse>;
     /**
      * @param {CartApplicationValidator.ApplyRewardPointsParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -73,7 +76,7 @@ declare class Cart {
      * @summary: Apply reward points at cart
      * @description: Use this API to redeem a fixed no. of reward points by applying it to the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/applyRewardPoints/).
      */
-    applyRewardPoints({ body, id, i, b, buyNow, requestHeaders }?: CartApplicationValidator.ApplyRewardPointsParam, { responseHeaders }?: object): Promise<CartApplicationModel.CartDetailResponse>;
+    applyRewardPoints({ body, id, i, b, buyNow, cartType, requestHeaders }?: CartApplicationValidator.ApplyRewardPointsParam, { responseHeaders }?: object): Promise<CartApplicationModel.CartDetailResponse>;
     /**
      * @param {CartApplicationValidator.CheckoutCartParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -83,7 +86,7 @@ declare class Cart {
      * @summary: Checkout all items in the cart
      * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/checkoutCart/).
      */
-    checkoutCart({ body, buyNow, requestHeaders }?: CartApplicationValidator.CheckoutCartParam, { responseHeaders }?: object): Promise<CartApplicationModel.CartCheckoutResponse>;
+    checkoutCart({ body, buyNow, cartType, requestHeaders }?: CartApplicationValidator.CheckoutCartParam, { responseHeaders }?: object): Promise<CartApplicationModel.CartCheckoutResponse>;
     /**
      * @param {CartApplicationValidator.CheckoutCartV2Param} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -93,7 +96,7 @@ declare class Cart {
      * @summary: Checkout all items in the cart
      * @description: Use this API to checkout all items in the cart for payment and order generation. For COD, order will be directly generated, whereas for other checkout modes, user will be redirected to a payment gateway. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/checkoutCartV2/).
      */
-    checkoutCartV2({ body, buyNow, requestHeaders }?: CartApplicationValidator.CheckoutCartV2Param, { responseHeaders }?: object): Promise<CartApplicationModel.CartCheckoutResponse>;
+    checkoutCartV2({ body, buyNow, cartType, requestHeaders }?: CartApplicationValidator.CheckoutCartV2Param, { responseHeaders }?: object): Promise<CartApplicationModel.CartCheckoutResponse>;
     /**
      * @param {CartApplicationValidator.DeleteCartParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -104,7 +107,7 @@ declare class Cart {
      * @summary: Delete cart once user made successful checkout
      * @description: Use this API to delete the cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/deleteCart/).
      */
-    deleteCart({ id, requestHeaders }?: CartApplicationValidator.DeleteCartParam, { responseHeaders }?: object): Promise<CartApplicationModel.DeleteCartDetailResponse>;
+    deleteCart({ id, cartType, requestHeaders }?: CartApplicationValidator.DeleteCartParam, { responseHeaders }?: object): Promise<CartApplicationModel.DeleteCartDetailResponse>;
     /**
      * @param {CartApplicationValidator.GetAddressByIdParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -134,7 +137,7 @@ declare class Cart {
      * @summary: Get discount offers based on quantity
      * @description: Use this API to get a list of applicable offers along with current, next and best offer for given product. Either one of uid, item_id, slug should be present. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getBulkDiscountOffers/).
      */
-    getBulkDiscountOffers({ itemId, articleId, uid, slug, requestHeaders }?: CartApplicationValidator.GetBulkDiscountOffersParam, { responseHeaders }?: object): Promise<CartApplicationModel.BulkPriceResponse>;
+    getBulkDiscountOffers({ itemId, articleId, uid, slug, cartType, requestHeaders }?: CartApplicationValidator.GetBulkDiscountOffersParam, { responseHeaders }?: object): Promise<CartApplicationModel.BulkPriceResponse>;
     /**
      * @param {CartApplicationValidator.GetCartParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -144,7 +147,7 @@ declare class Cart {
      * @summary: Fetch all items added to the cart
      * @description: Use this API to get details of all the items added to a cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCart/).
      */
-    getCart({ id, i, b, c, assignCardId, areaCode, buyNow, requestHeaders }?: CartApplicationValidator.GetCartParam, { responseHeaders }?: object): Promise<CartApplicationModel.CartDetailResponse>;
+    getCart({ id, i, b, c, assignCardId, areaCode, buyNow, cartType, requestHeaders, }?: CartApplicationValidator.GetCartParam, { responseHeaders }?: object): Promise<CartApplicationModel.CartDetailResponse>;
     /**
      * @param {CartApplicationValidator.GetCartLastModifiedParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -155,6 +158,27 @@ declare class Cart {
      * @description: Use this API to fetch Last-Modified timestamp in header metadata. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCartLastModified/).
      */
     getCartLastModified({ id, requestHeaders }?: CartApplicationValidator.GetCartLastModifiedParam, { responseHeaders }?: object): Promise<any>;
+    /**
+     * @param {CartApplicationValidator.GetCartMetaConfigParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<CartApplicationModel.CartConfigDetailResponse>} -
+     *   Success response
+     * @name getCartMetaConfig
+     * @summary: Get cart configuration by id
+     * @description: Get cart configuration by id - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCartMetaConfig/).
+     */
+    getCartMetaConfig({ cartMetaId, requestHeaders }?: CartApplicationValidator.GetCartMetaConfigParam, { responseHeaders }?: object): Promise<CartApplicationModel.CartConfigDetailResponse>;
+    /**
+     * @param {CartApplicationValidator.GetCartMetaConfigsParam} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<CartApplicationModel.CartConfigListResponse>} - Success response
+     * @name getCartMetaConfigs
+     * @summary: Get cart configuration
+     * @description: Get cart configuration - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getCartMetaConfigs/).
+     */
+    getCartMetaConfigs({ requestHeaders }?: any, { responseHeaders }?: object): Promise<CartApplicationModel.CartConfigListResponse>;
     /**
      * @param {CartApplicationValidator.GetCartShareLinkParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -197,6 +221,16 @@ declare class Cart {
      */
     getItemCount({ id, buyNow, requestHeaders }?: CartApplicationValidator.GetItemCountParam, { responseHeaders }?: object): Promise<CartApplicationModel.CartItemCountResponse>;
     /**
+     * @param {CartApplicationValidator.GetItemCountV2Param} arg - Arg object.
+     * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
+     * @param {import("../ApplicationAPIClient").Options} - Options
+     * @returns {Promise<CartApplicationModel.CartItemCountResponseV2>} - Success response
+     * @name getItemCountV2
+     * @summary: Count items in the cart according to cart_type
+     * @description: Use this API to get the total number of items present in cart. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getItemCountV2/).
+     */
+    getItemCountV2({ id, buyNow, requestHeaders }?: CartApplicationValidator.GetItemCountV2Param, { responseHeaders }?: object): Promise<CartApplicationModel.CartItemCountResponseV2>;
+    /**
      * @param {CartApplicationValidator.GetLadderOffersParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
      * @param {import("../ApplicationAPIClient").Options} - Options
@@ -215,7 +249,7 @@ declare class Cart {
      * @summary: Fetch available promotions
      * @description: Use this API to get top 5 offers available for current product - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/getPromotionOffers/).
      */
-    getPromotionOffers({ slug, pageSize, promotionGroup, storeId, requestHeaders }?: CartApplicationValidator.GetPromotionOffersParam, { responseHeaders }?: object): Promise<CartApplicationModel.PromotionOffersResponse>;
+    getPromotionOffers({ slug, pageSize, promotionGroup, storeId, cartType, requestHeaders }?: CartApplicationValidator.GetPromotionOffersParam, { responseHeaders }?: object): Promise<CartApplicationModel.PromotionOffersResponse>;
     /**
      * @param {CartApplicationValidator.GetShipmentsParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -245,7 +279,7 @@ declare class Cart {
      * @summary: Remove Coupon Applied
      * @description: Remove Coupon applied on the cart by passing uid in request body. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/removeCoupon/).
      */
-    removeCoupon({ id, buyNow, requestHeaders }?: CartApplicationValidator.RemoveCouponParam, { responseHeaders }?: object): Promise<CartApplicationModel.CartDetailResponse>;
+    removeCoupon({ id, buyNow, cartType, requestHeaders }?: CartApplicationValidator.RemoveCouponParam, { responseHeaders }?: object): Promise<CartApplicationModel.CartDetailResponse>;
     /**
      * @param {CartApplicationValidator.SelectAddressParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -286,7 +320,7 @@ declare class Cart {
      * @summary: Update items in the cart
      * @description: Use this API to update items added to the cart with the help of a request object containing attributes like item_quantity and item_size. These attributes will be fetched from the following APIs operation:  Operation for current api call. update_item for update items. remove_item for removing items. item_id "/platform/content/v1/products/" item_size "/platform/content/v1/products/:slug/sizes/" quantity item quantity (must be greater than or equal to 1) article_id "/content​/v1​/products​/:identifier​/sizes​/price​/" item_index item position in the cart (must be greater than or equal to 0) - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/updateCart/).
      */
-    updateCart({ body, id, i, b, areaCode, buyNow, requestHeaders }?: CartApplicationValidator.UpdateCartParam, { responseHeaders }?: object): Promise<CartApplicationModel.UpdateCartDetailResponse>;
+    updateCart({ body, id, i, b, areaCode, buyNow, cartType, requestHeaders }?: CartApplicationValidator.UpdateCartParam, { responseHeaders }?: object): Promise<CartApplicationModel.UpdateCartDetailResponse>;
     /**
      * @param {CartApplicationValidator.UpdateCartMetaParam} arg - Arg object.
      * @param {object} [arg.requestHeaders={}] - Request headers. Default is `{}`
@@ -316,7 +350,7 @@ declare class Cart {
      * @summary: Verify the coupon eligibility against the payment mode
      * @description: Use this API to validate a coupon against the payment mode such as NetBanking, Wallet, UPI etc. - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/application/cart/validateCouponForPayment/).
      */
-    validateCouponForPayment({ id, buyNow, addressId, paymentMode, paymentIdentifier, aggregatorName, merchantCode, iin, network, type, cardId, requestHeaders, }?: CartApplicationValidator.ValidateCouponForPaymentParam, { responseHeaders }?: object): Promise<CartApplicationModel.PaymentCouponValidate>;
+    validateCouponForPayment({ id, buyNow, addressId, paymentMode, paymentIdentifier, aggregatorName, merchantCode, iin, network, type, cardId, cartType, requestHeaders, }?: CartApplicationValidator.ValidateCouponForPaymentParam, { responseHeaders }?: object): Promise<CartApplicationModel.PaymentCouponValidate>;
 }
-import CartApplicationValidator = require("./CartApplicationValidator");
-import CartApplicationModel = require("./CartApplicationModel");
+import CartApplicationValidator = require("sdk/output/javascript/code/sdk/application/Cart/CartApplicationValidator");
+import CartApplicationModel = require("sdk/output/javascript/code/sdk/application/Cart/CartApplicationModel");

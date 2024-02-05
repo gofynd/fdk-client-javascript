@@ -261,9 +261,16 @@ class Share {
    * @description: Get short links - Check out [method documentation](https://partners.fynd.com/help/docs/sdk/platform/share/getShortLinks/).
    */
   async getShortLinks(
-    { pageNo, pageSize, createdBy, active, q, requestHeaders } = {
-      requestHeaders: {},
-    },
+    {
+      pageNo,
+      pageSize,
+      createdBy,
+      active,
+      shortUrl,
+      originalUrl,
+      title,
+      requestHeaders,
+    } = { requestHeaders: {} },
     { responseHeaders } = { responseHeaders: false }
   ) {
     const {
@@ -274,7 +281,9 @@ class Share {
         pageSize,
         createdBy,
         active,
-        q,
+        shortUrl,
+        originalUrl,
+        title,
       },
       { abortEarly: false, allowUnknown: true }
     );
@@ -291,7 +300,9 @@ class Share {
         pageSize,
         createdBy,
         active,
-        q,
+        shortUrl,
+        originalUrl,
+        title,
       },
       { abortEarly: false, allowUnknown: false }
     );
@@ -307,7 +318,9 @@ class Share {
     query_params["page_size"] = pageSize;
     query_params["created_by"] = createdBy;
     query_params["active"] = active;
-    query_params["q"] = q;
+    query_params["short_url"] = shortUrl;
+    query_params["original_url"] = originalUrl;
+    query_params["title"] = title;
 
     const response = await PlatformAPIClient.execute(
       this.config,

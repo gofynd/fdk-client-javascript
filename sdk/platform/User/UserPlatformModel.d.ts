@@ -108,7 +108,7 @@ export = UserPlatformModel;
  */
 /**
  * @typedef UserSearchResponseSchema
- * @property {UserSchema[]} [users]
+ * @property {UserSearchSchema[]} [users]
  */
 /**
  * @typedef CustomerListResponseSchema
@@ -138,8 +138,14 @@ export = UserPlatformModel;
  * @property {string[]} [session_ids]
  */
 /**
- * @typedef AuthenticationApiErrorSchema
+ * @typedef APIError
+ * @property {string} [code]
  * @property {string} [message]
+ * @property {string} [info] - Error code description link
+ * @property {string} [request_id]
+ * @property {string} [error]
+ * @property {Object} [meta]
+ * @property {boolean} [authenticated]
  */
 /**
  * @typedef SessionListResponseInfo
@@ -148,6 +154,7 @@ export = UserPlatformModel;
  * @property {string} [ip]
  * @property {string} [domain]
  * @property {string} [expire_in]
+ * @property {string} [location]
  */
 /**
  * @typedef Conditions
@@ -251,8 +258,9 @@ export = UserPlatformModel;
  * @property {string} [desktop_image]
  * @property {number} [delete_account_day]
  * @property {DeleteAccountReasons[]} [delete_account_reasons]
- * @property {Object} [delete_account_consent]
- * @property {Object} [session_config]
+ * @property {DeleteAccountConsent} [delete_account_consent]
+ * @property {SessionExpiry} [session_config]
+ * @property {number} [__v]
  */
 /**
  * @typedef LookAndFeel
@@ -314,7 +322,7 @@ export = UserPlatformModel;
 /**
  * @typedef SocialTokens
  * @property {Facebook} [facebook]
- * @property {Accountkit} [account_kit]
+ * @property {Accountkit} [accountkit]
  * @property {Google} [google]
  */
 /**
@@ -330,14 +338,17 @@ export = UserPlatformModel;
 /**
  * @typedef Facebook
  * @property {string} [app_id]
+ * @property {string} [app_secret]
  */
 /**
  * @typedef Accountkit
  * @property {string} [app_id]
+ * @property {string} [app_secret]
  */
 /**
  * @typedef Google
  * @property {string} [app_id]
+ * @property {string} [app_secret]
  */
 /**
  * @typedef SessionExpiry
@@ -420,6 +431,28 @@ export = UserPlatformModel;
  * @property {string} [external_id]
  */
 /**
+ * @typedef UserSearchSchema
+ * @property {string} [application_id]
+ * @property {string} [user_id]
+ * @property {string} [first_name]
+ * @property {Object} [meta]
+ * @property {string} [last_name]
+ * @property {PhoneNumber[]} [phone_numbers]
+ * @property {Email[]} [emails]
+ * @property {string} [gender]
+ * @property {string} [dob]
+ * @property {boolean} [active]
+ * @property {string} [profile_pic_url]
+ * @property {string} [username]
+ * @property {string} [account_type]
+ * @property {string} [_id]
+ * @property {string} [created_at]
+ * @property {string} [updated_at]
+ * @property {string} [external_id]
+ * @property {boolean} [archive]
+ * @property {string} [status]
+ */
+/**
  * @typedef PhoneNumber
  * @property {boolean} [active]
  * @property {boolean} [primary]
@@ -437,7 +470,7 @@ export = UserPlatformModel;
 declare class UserPlatformModel {
 }
 declare namespace UserPlatformModel {
-    export { SuccessMessageResponse, UserAttributeDefinition, UserAttributeDefinitionResponse, UserAttributeDefinitionValidation, UserAttributeResponse, CreateUserAttributeRequest, CreateUserAttributeDefinition, BlockUserRequestSchema, ArchiveUserRequestSchema, UnDeleteUserRequestSchema, BlockUserSuccess, ArchiveUserSuccess, UnDeleteUserSuccess, UserSearchResponseSchema, CustomerListResponseSchema, PaginationSchema, SessionListResponseSchema, SessionDeleteResponseSchema, SessionsDeleteResponseSchema, AuthenticationApiErrorSchema, SessionListResponseInfo, Conditions, UserResponseErrorSchema, UserGroupResponseSchema, UserGroupListResponseSchema, ConditionsSchema, CreateUserGroup, CreateUserRequestSchema, CreateUserResponseSchema, CreateUserSessionRequestSchema, CreateUserSessionResponseSchema, PlatformSchema, LookAndFeel, Login, MetaSchema, Social, RequiredFields, PlatformEmail, PlatformMobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, DeleteAccountReasons, DeleteAccountConsent, Facebook, Accountkit, Google, SessionExpiry, UpdateUserGroupSchema, PartialUserGroupUpdateSchema, UserGroupUpdateData, UpdateUserRequestSchema, UserEmails, UserPhoneNumbers, UserSchema, PhoneNumber, Email };
+    export { SuccessMessageResponse, UserAttributeDefinition, UserAttributeDefinitionResponse, UserAttributeDefinitionValidation, UserAttributeResponse, CreateUserAttributeRequest, CreateUserAttributeDefinition, BlockUserRequestSchema, ArchiveUserRequestSchema, UnDeleteUserRequestSchema, BlockUserSuccess, ArchiveUserSuccess, UnDeleteUserSuccess, UserSearchResponseSchema, CustomerListResponseSchema, PaginationSchema, SessionListResponseSchema, SessionDeleteResponseSchema, SessionsDeleteResponseSchema, APIError, SessionListResponseInfo, Conditions, UserResponseErrorSchema, UserGroupResponseSchema, UserGroupListResponseSchema, ConditionsSchema, CreateUserGroup, CreateUserRequestSchema, CreateUserResponseSchema, CreateUserSessionRequestSchema, CreateUserSessionResponseSchema, PlatformSchema, LookAndFeel, Login, MetaSchema, Social, RequiredFields, PlatformEmail, PlatformMobile, RegisterRequiredFields, RegisterRequiredFieldsEmail, RegisterRequiredFieldsMobile, FlashCard, SocialTokens, DeleteAccountReasons, DeleteAccountConsent, Facebook, Accountkit, Google, SessionExpiry, UpdateUserGroupSchema, PartialUserGroupUpdateSchema, UserGroupUpdateData, UpdateUserRequestSchema, UserEmails, UserPhoneNumbers, UserSchema, UserSearchSchema, PhoneNumber, Email };
 }
 /** @returns {SuccessMessageResponse} */
 declare function SuccessMessageResponse(): SuccessMessageResponse;
@@ -679,7 +712,7 @@ type UnDeleteUserSuccess = {
 /** @returns {UserSearchResponseSchema} */
 declare function UserSearchResponseSchema(): UserSearchResponseSchema;
 type UserSearchResponseSchema = {
-    users?: UserSchema[];
+    users?: UserSearchSchema[];
 };
 /** @returns {CustomerListResponseSchema} */
 declare function CustomerListResponseSchema(): CustomerListResponseSchema;
@@ -713,10 +746,19 @@ type SessionsDeleteResponseSchema = {
     user_id?: string;
     session_ids?: string[];
 };
-/** @returns {AuthenticationApiErrorSchema} */
-declare function AuthenticationApiErrorSchema(): AuthenticationApiErrorSchema;
-type AuthenticationApiErrorSchema = {
+/** @returns {APIError} */
+declare function APIError(): APIError;
+type APIError = {
+    code?: string;
     message?: string;
+    /**
+     * - Error code description link
+     */
+    info?: string;
+    request_id?: string;
+    error?: string;
+    meta?: any;
+    authenticated?: boolean;
 };
 /** @returns {SessionListResponseInfo} */
 declare function SessionListResponseInfo(): SessionListResponseInfo;
@@ -726,6 +768,7 @@ type SessionListResponseInfo = {
     ip?: string;
     domain?: string;
     expire_in?: string;
+    location?: string;
 };
 /** @returns {Conditions} */
 declare function Conditions(): Conditions;
@@ -840,8 +883,9 @@ type PlatformSchema = {
     desktop_image?: string;
     delete_account_day?: number;
     delete_account_reasons?: DeleteAccountReasons[];
-    delete_account_consent?: any;
-    session_config?: any;
+    delete_account_consent?: DeleteAccountConsent;
+    session_config?: SessionExpiry;
+    __v?: number;
 };
 /** @returns {LookAndFeel} */
 declare function LookAndFeel(): LookAndFeel;
@@ -915,7 +959,7 @@ type FlashCard = {
 declare function SocialTokens(): SocialTokens;
 type SocialTokens = {
     facebook?: Facebook;
-    account_kit?: Accountkit;
+    accountkit?: Accountkit;
     google?: Google;
 };
 /** @returns {DeleteAccountReasons} */
@@ -934,16 +978,19 @@ type DeleteAccountConsent = {
 declare function Facebook(): Facebook;
 type Facebook = {
     app_id?: string;
+    app_secret?: string;
 };
 /** @returns {Accountkit} */
 declare function Accountkit(): Accountkit;
 type Accountkit = {
     app_id?: string;
+    app_secret?: string;
 };
 /** @returns {Google} */
 declare function Google(): Google;
 type Google = {
     app_id?: string;
+    app_secret?: string;
 };
 /** @returns {SessionExpiry} */
 declare function SessionExpiry(): SessionExpiry;
@@ -1050,6 +1097,29 @@ type UserSchema = {
     created_at?: string;
     updated_at?: string;
     external_id?: string;
+};
+/** @returns {UserSearchSchema} */
+declare function UserSearchSchema(): UserSearchSchema;
+type UserSearchSchema = {
+    application_id?: string;
+    user_id?: string;
+    first_name?: string;
+    meta?: any;
+    last_name?: string;
+    phone_numbers?: PhoneNumber[];
+    emails?: Email[];
+    gender?: string;
+    dob?: string;
+    active?: boolean;
+    profile_pic_url?: string;
+    username?: string;
+    account_type?: string;
+    _id?: string;
+    created_at?: string;
+    updated_at?: string;
+    external_id?: string;
+    archive?: boolean;
+    status?: string;
 };
 /** @returns {PhoneNumber} */
 declare function PhoneNumber(): PhoneNumber;

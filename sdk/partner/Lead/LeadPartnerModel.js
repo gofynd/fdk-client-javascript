@@ -99,7 +99,6 @@ const Joi = require("joi");
  * @typedef SupportCommunicationSchema
  * @property {string} [type]
  * @property {string} [title]
- * @property {Object} [value]
  * @property {string} [description]
  * @property {boolean} [enabled]
  */
@@ -126,7 +125,8 @@ const Joi = require("joi");
  * @property {Priority[]} priorities - List of possible priorities for tickets
  * @property {TicketCategory[]} [categories] - List of possible categories for tickets
  * @property {Status[]} statuses - List of possible statuses for tickets
- * @property {Object[]} assignees - List of support staff availble for tickets assignment
+ * @property {Object[]} [assignees] - List of support staff availble for tickets
+ *   assignment
  */
 
 /**
@@ -301,7 +301,7 @@ const Joi = require("joi");
  * @typedef TicketCategory
  * @property {string} display - Category display value identifier
  * @property {string} key - Category key value identifier
- * @property {TicketCategory} [sub_categories]
+ * @property {TicketCategory[]} [sub_categories]
  * @property {number} [group_id] - Group id of category releted data
  * @property {FeedbackForm} [feedback_form]
  */
@@ -500,7 +500,6 @@ class LeadPartnerModel {
     return Joi.object({
       type: Joi.string().allow(""),
       title: Joi.string().allow(""),
-      value: Joi.any(),
       description: Joi.string().allow(""),
       enabled: Joi.boolean(),
     });
@@ -535,7 +534,7 @@ class LeadPartnerModel {
       priorities: Joi.array().items(LeadPartnerModel.Priority()).required(),
       categories: Joi.array().items(LeadPartnerModel.TicketCategory()),
       statuses: Joi.array().items(LeadPartnerModel.Status()).required(),
-      assignees: Joi.array().items(Joi.any()).required(),
+      assignees: Joi.array().items(Joi.any()),
     });
   }
 
@@ -752,7 +751,7 @@ class LeadPartnerModel {
     return Joi.object({
       display: Joi.string().allow("").required(),
       key: Joi.string().allow("").required(),
-      sub_categories: Joi.link("#TicketCategory"),
+      sub_categories: Joi.array().items(Joi.link("#TicketCategory")),
       group_id: Joi.number(),
       feedback_form: LeadPartnerModel.FeedbackForm(),
     });
